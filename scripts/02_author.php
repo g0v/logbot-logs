@@ -5,7 +5,7 @@ $timeEnd = time();
 $author = 'kiang';
 $authorLog = $basePath . '/logs/' . $author . '.csv';
 $fh = fopen($authorLog, 'w');
-fputcsv($fh, array('time', 'msg'));
+fputcsv($fh, array('time', 'date', 'msg'));
 for($timeCurrent = $timeBegin; $timeCurrent < $timeEnd; $timeCurrent += 86400) {
     $theDate = date('Y-m-d', $timeCurrent);
     $yearPath = $basePath . '/logs/' . date('Y', $timeCurrent);
@@ -14,7 +14,7 @@ for($timeCurrent = $timeBegin; $timeCurrent < $timeEnd; $timeCurrent += 86400) {
         $lines = json_decode(file_get_contents($targetFile), true);
         foreach($lines AS $line) {
             if($line['nick'] === $author) {
-                fputcsv($fh, array($line['time'], $line['msg']));
+                fputcsv($fh, array($line['time'], $theDate, $line['msg']));
             }
         }
     }
