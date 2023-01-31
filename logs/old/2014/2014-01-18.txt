@@ -1,0 +1,621 @@
+--- Day changed 六  1月 18 2014
+00:01 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has quit [Quit: Closing]
+00:01 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has joined #g0v.tw
+00:01 < jimyhuang_> Lee1092: 同一個點量多次，以前接過一個案子，會不斷監測被病害刺桐樹的病徵。然後在危急分級上，怎麼平均的邏輯從開始到專案完成，植物系教授吵來吵去就改了6-7次...
+00:05 -!- ltroot [~ltroot@140.127.182.55] has quit [Ping timeout: 252 seconds]
+00:07 < venev> au: 貓奴食庫 Ushahidi ++（但貓食通常都網購，怎麼 LBS XD)
+00:07 < simonpai> ronnywang au clkao 遊戲成就 -> 朝類似 BTC proof of work 去考慮可能可以做出更有價值的東西?
+00:08  * venev 好餓，先去覓食
+00:08 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+00:10 < au> venev: LBS 是貓咪(和貓奴)的位置，不是食物的位置 XD 
+00:14 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+00:15 < au> simonpai: 實體世界的 proof of work 要怎麼做?
+00:16  * au 目前只想得到 recaptcha 這個例子
+00:18 < jimyhuang_> recaptcha 真是很厲害的例子
+00:18 < simonpai> au 我剛才的比喻不太恰當, 我原本是指 BTC 把發行權與對維護系統做的功串起來, 現在看起來掃商品可以算是對系統做功, 是否值得換到超過 achievement 的東西
+00:20 < hlb> tkirby: 離台北車站最近，又可以喝的咖啡，似乎是 c7b O_O
+00:20 < au> 瞭解，就是說累積積分除了換虛寶之外，還可以兌換服務之類
+00:21 < tkirby> c7b?
+00:21 < simonpai> 之類的, 我還沒有想到很具體的可能性; 不過這和整件事情參與的動機設計也有關係, 是否要加入別的利益做誘因又是另一層 concern
+00:26 < hlb> tkirby: coffee lab, 在善導寺/忠孝新生站中間
+00:26 < hlb> tkirby: 有網路有插座有貓
+00:28 < jimyhuang_> clkao_: http://beta.ly.g0v.tw/bills/335L15406 這怎麼產生fb og:image ...!! 我完全沒看到meta說
+00:29 < simonpai> 以 BTC 為例類比的話, 就是讓該系統產生的利益優先回饋到幫助系統運行的人身上
+00:31 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+00:31 < tkirby> hlb: ohoh~ thanks
+00:31 < tkirby> 喵咪~ *_*
+00:32 < hlb> tkirby: 不過星球總部附近的 Single Origin espresso & roast 實在是家令人推薦的好咖啡店 :o
+00:33 < hlb> # 走路要 10mins 而且在忠孝東路另一面，其實也沒有很附近
+00:35 < au> simonpai: 也許可以累積幾點貓奴點數之後獲贈一具 melaminometer...
+00:36 < au> 就可以提高到 disaster report 層級
+00:36 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+00:36  * tkirby 筆記
+00:36 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+00:38 -!- ypwong [~anthony@124244232015.ctinets.com] has quit [Quit: cya]
+00:40 < au> (melaminometer = 好便宜的三聚氰胺測定器，比利時有一組人正在做)
+00:40 -!- ltroot [~ltroot@140.127.182.55] has joined #g0v.tw
+00:41 < jimyhuang_> au: 這個嗎？ http://openwetware.org/wiki/User:Jonathan_Cline/Notebook/Melaminometer
+00:41 < kcwu> jimyhuang_'s url: [User:Jonathan Cline/Notebook/Melaminometer - OpenWetWare]
+00:42 < au> jimyhuang_: 對，然後 http://goo.gl/WpwCLS
+00:42 < kcwu> au's url: [Google 網上論壇]
+00:42 -!- pm5 [~pm5@111-248-207-176.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+00:42 < jimyhuang_> wow 有曙光感覺... 
+00:45 < au> <- 因為三聚氰胺的關係，三年裡送走了三隻同伴動物... 所以很有從 disaster prevention 來參與的動機
+00:46 < jimyhuang_> 動物是因為毒奶粉的關係？
+00:47 < au> 毒飼料，俗稱寶路事件（之後還陸續有幾波）。
+00:47 < jimyhuang_> http://goo.gl/IT0Iz6 找到了... 天哪我不知道跟三聚氰胺有關... 
+00:47 < kcwu> jimyhuang_'s url: [2007年美国宠物食品污染事件 - 维基百科，自由的百科全书]
+00:49 -!- scrollback [scrollback@conference/jsconf/x-icgjyqkjgyiuqfnj] has joined #g0v.tw
+00:50 < jimyhuang_> 問一個笨問題，做API應該還是得server side處理 request，不然呼叫者沒辦法render javascript就不會取得資料...是嗎？
+00:50 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has quit [Read error: Operation timed out]
+00:51 < jimyhuang_> http://goo.gl/l7xeC2  <--- 地號轉經緯度API，想擴充成地址轉經緯度 or 地號轉經緯度
+00:52 -!- mno2 [~mno2@42.60.173.63] has quit [Quit: mno2]
+00:53 < au> server side 接收 ?address 輸出 json 沒錯啊
+00:53 < jimyhuang_> 嗯嗯，只是想說直接用 git page來做api，似乎不可能
+00:54 -!- aeil [~Adium@111-243-168-38.dynamic.hinet.net] has joined #g0v.tw
+00:54 < jimyhuang_> 且想用client side來做google map api的地址反解，然後解開每日2000次request限制 ...
+00:54 -!- aeil [~Adium@111-243-168-38.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+00:55 < au> 有道理... 其實某個地號一個靜態 json 的話也是可以用 github page
+00:55 < au> 或每個母地號一個，之類
+00:56 < jimyhuang_> oh!!! 一語驚醒... 
+00:56 -!- aeil [~Adium@111-243-168-38.dynamic.hinet.net] has joined #g0v.tw
+01:02 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+01:09 -!- scrollback [scrollback@conference/jsconf/x-icgjyqkjgyiuqfnj] has quit [Read error: Connection reset by peer]
+01:10 -!- scrollback [scrollback@conference/jsconf/x-pwuwcwqeycooadkh] has joined #g0v.tw
+01:12 -!- scrollback [scrollback@conference/jsconf/x-pwuwcwqeycooadkh] has quit [Remote host closed the connection]
+01:13 -!- scrollback [scrollback@conference/jsconf/x-qaspykpiklxqselt] has joined #g0v.tw
+01:13 -!- scrollback [scrollback@conference/jsconf/x-qaspykpiklxqselt] has quit [Remote host closed the connection]
+01:14 -!- scrollback [scrollback@conference/jsconf/x-zetodzimpidjctoj] has joined #g0v.tw
+01:35 -!- mutolisp [~mutolisp@219.85.182.86] has quit [Ping timeout: 246 seconds]
+01:35 < venev> au 家居然受到寶路事件衝擊 T-T # disaster prevention
+01:42 < au> venev: 對啊，要是早幾年有好用的檢測器，也不會等到 2007 年（事發後三年）才知道 # http://long-life-vet.myweb.hinet.net/after.html
+01:42 < kcwu> au's url: [寶路事件之後]
+01:45 -!- scrollback [scrollback@conference/jsconf/x-zetodzimpidjctoj] has quit [Remote host closed the connection]
+01:45 -!- scrollback [scrollback@conference/jsconf/x-rwvwikkflrmiijoq] has joined #g0v.tw
+01:47 < venev> 因為飲食單一化和劑量耐受度的關係，同伴動物對食安風險的承受力比人低多了。但光選品牌或看成份表不夠，最近幾次出包應該都是原料問題？
+01:47 -!- scrollback [scrollback@conference/jsconf/x-rwvwikkflrmiijoq] has quit [Remote host closed the connection]
+01:47 -!- scrollback [scrollback@conference/jsconf/x-tdfdnqibhxjrgyjs] has joined #g0v.tw
+01:48 < venev> 甚至出包後送檢驗，檢驗報告與症狀的關連性也是羅生門（2013 耐吉斯事件）
+01:48 < au> 是，所以理論上貓奴小幫手應該在網購時、網購後，發現有問題/下架都要提醒
+01:49 < jimyhuang_> 狗奴小幫手也需要 XD
+01:50 < au> 然後配上相對低成本的檢驗 kit + disaster report 這樣
+01:50 < au> jimyhuang_: 真的 XD
+01:50 < venev> 除了三聚氰胺檢測之外，可能可以調查其他需要檢測、也找得到稱手檢驗器材的成分
+01:50 < venev> au: 所見略同
+01:57 < venev> http://bit.ly/1eQZcVP http://on.fb.me/1eQZmwp 飼料毒素檢驗項目參考（2013 耐吉斯事件）相應檢驗 kit 還要再調查
+01:57 < kcwu> venev's url (1/2): [耐吉斯檢驗項目品項.pdf - Google 雲端硬碟]
+01:57 < kcwu> venev's url (2/2): [動態時報相片 - 耐吉斯受害貓咪資訊專頁 - 2013黃包事件 | Facebook]
+01:58 -!- aeil [~Adium@111-243-168-38.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+01:58 -!- aeil [~Adium@111-243-168-38.dynamic.hinet.net] has joined #g0v.tw
+01:59 < au> 幾年前消基會驗出超量的還有苯甲酸（防腐劑）
+02:00 -!- aeil [~Adium@111-243-168-38.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+02:01 -!- aeil [~Adium@111-243-168-38.dynamic.hinet.net] has joined #g0v.tw
+02:02 -!- aeil [~Adium@111-243-168-38.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+02:03 -!- scrollback [scrollback@conference/jsconf/x-tdfdnqibhxjrgyjs] has quit [Remote host closed the connection]
+02:03 -!- scrollback [scrollback@conference/jsconf/x-qkfjcvxqhtsbxaiq] has joined #g0v.tw
+02:15 < venev> 我認識一位朋友讓貓咪全濕食，食材和營養補充劑全部自己計算、採買。但對上班族貓奴或習慣任食制的貓咪來說，有實行上困難 >"<
+02:16 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has quit [Quit: lyanchih]
+02:18 < au> 真的不容易... 我爸媽養那三隻狗好像也有一陣子全濕食，但一忙就顧不過來，還是要配乾飼料。
+02:20 < jimyhuang_> 我想都不敢想... 以我這宅度，全溼食，狗狗應該會餓死
+02:23 < jimyhuang_> 地址地號->經緯度 API，是否可以開個 g0v.tw 的sub domain? 目前要放上我自己的網址...   https://github.com/g0v/posland/
+02:23 < kcwu> jimyhuang_'s url: [g0v/posland · GitHub]
+02:25 -!- scrollback [scrollback@conference/jsconf/x-qkfjcvxqhtsbxaiq] has quit [Read error: Connection reset by peer]
+02:25 -!- scrollback [scrollback@conference/jsconf/x-sfzlgufcozbsutpz] has joined #g0v.tw
+02:26 < au> jimyhuang_: 是要 virtual host (CNAME jimmyhub.net) ?
+02:28 < jimyhuang_> A record 好了，去jimmy化
+02:28 < jimyhuang_> 106.187.50.25 
+02:29 < jimyhuang_> 只是想不到subdomain ... 
+02:30 < ETBlue> tkirby: 聚會地點有找到的話幫補完… XD https://g0v.hackpad.com/g0v--OvTuo0jGr51
+02:30 < kcwu> ETBlue's url: [g0v 小松地點收集區 - g0v.hackpad.com]
+02:31 < au> jimyhuang_: 等明天村長醒來再想 project subdomain 好了
+02:31 < ETBlue> tkirby: 除了 market place 跟 the base 之外，之前 ruby tuesday 有在 HDX 辦過，天瓏隔壁的樣子
+02:31 < jimyhuang_> au: yep !! 來去睏... (倒)
+02:31 < au> jimyhuang_: 我正想跟你說 http://posland.g0v.io/ 開了 XD
+02:32 < jimyhuang_> oh!!! io!!
+02:32 < jimyhuang_> au: 那來繼續 XD
+02:33 -!- ypwong [~anthony@124244232015.ctinets.com] has joined #g0v.tw
+02:37 < ETBlue> Lee1092: au ronnywang 派工系統LBS遊戲不就是小奉在新年松的時候提到的這個嗎 https://g0v.hackpad.com/OEbNd3ae67H
+02:37 < kcwu> ETBlue's url: [社運實體遊戲系統 - g0v.hackpad.com]
+02:38 < ETBlue> 啊還要加 cc 給 nchild__ 
+02:38 < ETBlue> 這樣小奉會不會願意當 PM... XD
+02:39 < ETBlue> 不過他可能掉進馬桶裡了
+02:39 -!- scrollback [scrollback@conference/jsconf/x-sfzlgufcozbsutpz] has quit [Remote host closed the connection]
+02:39 < au> ETBlue: 確實是很像 (虛寶的部份)
+02:40 -!- scrollback [scrollback@conference/jsconf/session] has joined #g0v.tw
+02:40 < ETBlue> au: 好像只差派的工內容不同、成就系統跟徽章不同？
+02:41 -!- scrollback [scrollback@conference/jsconf/session] has quit [Changing host]
+02:41 -!- scrollback [scrollback@conference/jsconf/x-aepmznnryfcubngh] has joined #g0v.tw
+02:43 -!- scrollback [scrollback@conference/jsconf/x-aepmznnryfcubngh] has quit [Remote host closed the connection]
+02:43 -!- scrollback1 [scrollback@conference/jsconf/x-rbddrfkfkkkdggke] has joined #g0v.tw
+02:49 < au> ETBlue: 是。考慮到 crowdmap/ushahidi 內建徽章系統... 好像可以玩看看
+02:52 < au> jimyhuang_: https://posland.g0v.io/ 也會動了，happy hacking
+02:52 < au> -> zzz &
+02:53 -!- icman [~icman@123.240.140.154] has quit [Remote host closed the connection]
+02:56 -!- scrollback1 [scrollback@conference/jsconf/x-rbddrfkfkkkdggke] has quit [Remote host closed the connection]
+02:56 -!- scrollback [scrollback@conference/jsconf/x-iaunotihyvqqwpka] has joined #g0v.tw
+03:01 < venev> au: 今天會議上和 allenown_ legist 強哥談到「自主學習」-> 又回到 hacker 精神，決定把它拉成一支獨立影片，來聊開放文化基因
+03:02 < venev> au 有空的話要不要來簡答～詳論一下，幫忙完善基因圖譜 XD https://openup.hackpad.com/Hacker--8OTFoIkiaie#:h=請問願意自稱-hacker-的你：
+03:02 < kcwu> venev's url: [Hacker 精神作為開放文化、協作共好的基因 - openup.hackpad.com]
+03:05 < venev> poga: 願意自稱 hacker 嗎？來填問卷坑？（又抓到）
+03:06 < poga> venev: 我覺得我等級不太夠... XD
+03:13 < venev> poga: 那一起來觀賞大大們填坑（搬椅子）
+03:15 < poga> venev: XD 趁機修正我腦中那不太健全的觀念
+03:32 -!- scrollback [scrollback@conference/jsconf/x-iaunotihyvqqwpka] has quit [Remote host closed the connection]
+03:32 -!- scrollback [scrollback@conference/jsconf/x-onooazjnahimpntg] has joined #g0v.tw
+03:33 < poga> clkao_: 哪個人頭？ XD # infocard?
+03:41 -!- Mathon [uid23533@gateway/web/irccloud.com/x-cjskgogpmnwgdhpe] has quit [Quit: Connection closed for inactivity]
+03:45 -!- scrollback [scrollback@conference/jsconf/x-onooazjnahimpntg] has quit [Remote host closed the connection]
+03:45 -!- scrollback [scrollback@conference/jsconf/session] has joined #g0v.tw
+03:48 -!- scrollback [scrollback@conference/jsconf/session] has quit [Changing host]
+03:48 -!- scrollback [scrollback@conference/jsconf/x-bzzxvnsaxqqundvx] has joined #g0v.tw
+03:50 -!- scrollback [scrollback@conference/jsconf/x-bzzxvnsaxqqundvx] has quit [Remote host closed the connection]
+03:50 -!- scrollback [scrollback@conference/jsconf/x-fmikkbveutyvojph] has joined #g0v.tw
+04:03 -!- ttcat [sid12341@gateway/web/irccloud.com/x-xeptellonwfpgrqd] has joined #g0v.tw
+04:03 < ttcat> .___.
+04:09 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Remote host closed the connection]
+04:09 -!- cpyang [~cpyang@nerv.siraya.net] has joined #g0v.tw
+04:23 < venev> 逐字稿（字幕）工具 oTranscribe http://www.freegroup.org/2014/01/otranscribe/  # txt 組 / 廣宣團
+04:23 < kcwu> venev's url: [oTranscribe 推薦！聽打逐字稿雲端服務，不用下載安裝軟體 | 免費資源網路社群]
+04:27 -!- YangHung_ [uid21603@gateway/web/irccloud.com/x-kpzvxrsbiuwdpwed] has quit [Read error: Connection reset by peer]
+04:27 -!- YangHung__ [uid21603@gateway/web/irccloud.com/x-oztwmpttehvlswim] has joined #g0v.tw
+04:31 -!- ttcat [sid12341@gateway/web/irccloud.com/x-xeptellonwfpgrqd] has quit []
+04:56 -!- cpyang [~cpyang@nerv.siraya.net] has quit [Ping timeout: 246 seconds]
+05:01 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+05:03 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Ping timeout: 265 seconds]
+05:04 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+05:06 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Remote host closed the connection]
+05:06 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+05:14 < ETBlue> Fire.app 支援 Jade 了，使用方式 https://g0v.hackpad.com/-Fire.app-Jade-Windows--FK7eBR4BdAj
+05:14 < kcwu> ETBlue's url: [在 Fire.app 中使用 Jade 樣板語法（以 Windows 版為例） - g0v.hackpad.com]
+05:16 < ETBlue> 最新版要過一小下才會release…可以抓https://github.com/KKBOX/FireApp/的master branch下來compile
+05:16 < ETBlue> ...（或者私底下找我） XD
+05:17 < ETBlue> 奇怪，某生物不是睡了
+05:27 < kcwu> 發現 newsdiff.tw 的 owner 是 DK
+05:28 < ETBlue> 疑……難道他也想跳坑
+05:41 -!- scrollback [scrollback@conference/jsconf/x-fmikkbveutyvojph] has quit [Remote host closed the connection]
+05:41 -!- scrollback [scrollback@conference/jsconf/x-fmuxhtdoarjgkcsh] has joined #g0v.tw
+06:02 -!- mutolisp [~mutolisp@219.85.182.86] has joined #g0v.tw
+06:27 -!- alliao [~blah@121.99.36.161] has joined #g0v.tw
+06:30 -!- scrollback [scrollback@conference/jsconf/x-fmuxhtdoarjgkcsh] has quit [Remote host closed the connection]
+06:31 -!- scrollback [scrollback@conference/jsconf/x-fyjwyhgvuudzhotf] has joined #g0v.tw
+06:31 -!- scrollback [scrollback@conference/jsconf/x-fyjwyhgvuudzhotf] has quit [Read error: Connection reset by peer]
+06:31 -!- scrollback [scrollback@conference/jsconf/x-vfntovqiqwjxkeem] has joined #g0v.tw
+06:32 -!- scrollback [scrollback@conference/jsconf/x-vfntovqiqwjxkeem] has quit [Remote host closed the connection]
+06:32 -!- scrollback [scrollback@conference/jsconf/x-cxksvcalylkjqovg] has joined #g0v.tw
+06:33 -!- scrollback [scrollback@conference/jsconf/x-cxksvcalylkjqovg] has quit [Remote host closed the connection]
+06:33 -!- scrollback [scrollback@conference/jsconf/x-uwmhqutyoovwjzqj] has joined #g0v.tw
+06:33 -!- scrollback [scrollback@conference/jsconf/x-uwmhqutyoovwjzqj] has quit [Remote host closed the connection]
+06:34 -!- scrollback [scrollback@conference/jsconf/x-tbzyevuvonxjviwa] has joined #g0v.tw
+06:34 -!- scrollback [scrollback@conference/jsconf/x-tbzyevuvonxjviwa] has quit [Remote host closed the connection]
+06:34 -!- scrollback [scrollback@conference/jsconf/x-znnldzwlehtxqfzf] has joined #g0v.tw
+06:35 -!- scrollback [scrollback@conference/jsconf/x-znnldzwlehtxqfzf] has quit [Remote host closed the connection]
+06:35 -!- scrollback [scrollback@conference/jsconf/x-gfimriipibqkjdpi] has joined #g0v.tw
+06:35 -!- scrollback [scrollback@conference/jsconf/x-gfimriipibqkjdpi] has quit [Remote host closed the connection]
+06:36 -!- scrollback [scrollback@conference/jsconf/x-ebpvlamubcgmhwuo] has joined #g0v.tw
+06:36 -!- scrollback [scrollback@conference/jsconf/x-ebpvlamubcgmhwuo] has quit [Remote host closed the connection]
+06:36 -!- scrollback [scrollback@conference/jsconf/x-pitfddycwdlkejdn] has joined #g0v.tw
+06:37 -!- scrollback [scrollback@conference/jsconf/x-pitfddycwdlkejdn] has quit [Remote host closed the connection]
+06:37 -!- scrollback [scrollback@conference/jsconf/x-odaucmifvimhkbgv] has joined #g0v.tw
+06:37 -!- scrollback [scrollback@conference/jsconf/x-odaucmifvimhkbgv] has quit [Remote host closed the connection]
+06:38 -!- scrollback [scrollback@conference/jsconf/x-qellnvofbhmjhofj] has joined #g0v.tw
+06:38 -!- scrollback [scrollback@conference/jsconf/x-qellnvofbhmjhofj] has quit [Read error: Connection reset by peer]
+06:38 -!- scrollback [scrollback@conference/jsconf/x-fazvvoazxmkfasqu] has joined #g0v.tw
+06:39 -!- scrollback [scrollback@conference/jsconf/x-fazvvoazxmkfasqu] has quit [Remote host closed the connection]
+06:39 -!- scrollback [scrollback@conference/jsconf/x-dhmyxmzuakbccrwu] has joined #g0v.tw
+06:40 -!- scrollback [scrollback@conference/jsconf/x-dhmyxmzuakbccrwu] has quit [Remote host closed the connection]
+06:40 -!- scrollback [scrollback@conference/jsconf/x-vehdcvrebarfxoqt] has joined #g0v.tw
+07:14 -!- scrollback [scrollback@conference/jsconf/x-vehdcvrebarfxoqt] has quit [Remote host closed the connection]
+07:15 -!- scrollback [scrollback@conference/jsconf/x-eehcmpaaszkgbjkr] has joined #g0v.tw
+07:33 -!- mno2 [~mno2@42.60.173.63] has joined #g0v.tw
+08:00 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 252 seconds]
+08:00 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+08:00 -!- Phoenixmiss [~Miss@114.41.124.101] has joined #g0v.tw
+08:05 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 272 seconds]
+08:06 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+08:41 < Lee1092> ETBlue:  各種派工系統 LBS !!!!!    crowdmap/ushahidi  可應用的真多~ 
+08:42 < Lee1092> jimyhuang_:  痾    那不就吵 數據的統計分析  就飽了    orz....  
+09:02 -!- LCfunPlay [~chatzilla@111-250-19-221.dynamic.hinet.net] has joined #g0v.tw
+09:06 -!- jwbai [~jwbai@staff.kkbox.com.tw] has quit [Ping timeout: 246 seconds]
+09:07 -!- jwbai [~jwbai@staff.kkbox.com.tw] has joined #g0v.tw
+09:09 -!- ymow [~Adium@61-230-103-57.dynamic.hinet.net] has quit [Quit: Leaving.]
+09:23 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 264 seconds]
+09:23 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+09:33 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Remote host closed the connection]
+09:33 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+09:33 < hcchien> KKBOX/FireApp!!
+09:35 -!- jwbai [~jwbai@staff.kkbox.com.tw] has quit [Ping timeout: 260 seconds]
+09:36 -!- jwbai [~jwbai@staff.kkbox.com.tw] has joined #g0v.tw
+09:38 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 264 seconds]
+09:38 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+09:43 < hcchien> 最近也想去 Single Origin espresso & roast  # 00:32 < hlb> tkirby: 不過星球總部附近的 Single Origin espresso & roast 實在是家令人推薦的好咖啡店 :o
+09:52 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 248 seconds]
+09:54 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+09:59 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Remote host closed the connection]
+10:04 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+10:13 < Lee1092> PM 2.5 要來了！！＃  https://www.facebook.com/photo.php?fbid=10152871340241988&set=pcb.10152871341181988&type=1&theater
+10:13 < kcwu> Lee1092's url: [氣象達人彭啟明 - 來自氣象達人彭啟明貼文的相片 | Facebook]
+10:48 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+11:00 < clkao_> poga: ly bill page 的人頭 本來 hover 有一個 popover... 事實上人頭應該變成 directive
+11:01 < clkao_> jimyhuang_: re om:image on beta.ly.g0v.tw  try: curl -A 'prerender' ... or -A 'externalhit_uatext'
+11:02 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has joined #g0v.tw
+11:03 < clkao_> 發現懸浮微粒的字體默默的變厲害了
+11:03 < clkao_> au++
+11:05 -!- pm5 [~pm5@111-248-207-176.dynamic.hinet.net] has joined #g0v.tw
+11:05 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has quit [Client Quit]
+11:09 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has joined #g0v.tw
+11:10 -!- pm5 [~pm5@111-248-207-176.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+11:11 < clkao_> lyanchih: !! i see scrollspy updated.. is it ready for merge?
+11:11 -!- pm5 [~pm5@111-248-207-176.dynamic.hinet.net] has joined #g0v.tw
+11:12 < clkao_> lyanchih: 1150L15359 好像要讓左邊也自動 scrollIntoView
+11:13 < clkao_> 不然捲下去就看不到目前 highlight 的了
+11:31 -!- scrollback [scrollback@conference/jsconf/x-eehcmpaaszkgbjkr] has quit [Remote host closed the connection]
+11:31 -!- scrollback [scrollback@conference/jsconf/x-ewivpvlavnfapmys] has joined #g0v.tw
+11:31 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has quit [Quit: lyanchih]
+11:35 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has joined #g0v.tw
+11:38 < lyanchih> 喔喔這我有想過，只是我還沒試過怎scroll local的blockxd
+11:39 < lyanchih> 另外我發現有些左邊的navbar不是會改變url的hash嗎？但有些target的dom是隱藏時就不會移過去
+11:43 < clkao_> lyanchih: 那應該是 bug.. 只有新增的條文時 anchor 需要修改
+11:45 -!- LCfunPlay [~chatzilla@111-250-19-221.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.87-rdmsoft [XULRunner 1.9.2.19/20110707195905]]
+12:03 < yhsiang> 昨天討論到的irc2hackpad, 先記錄在這 https://g0v.hackpad.com/hackpad--ogVzpCI6IJp
+12:03 < kcwu> yhsiang's url: [hackpad 延伸功能 - g0v.hackpad.com]
+12:15 -!- scrollback [scrollback@conference/jsconf/x-ewivpvlavnfapmys] has quit [Remote host closed the connection]
+12:16 -!- scrollback [scrollback@conference/jsconf/x-lyvetykcphkmocgd] has joined #g0v.tw
+12:19 < ipa> yhsiang++ 挖坑越來越快
+12:22 < yhsiang> ipa: 希望填坑速度也一樣 orz
+12:28 < clkao_> no-bootstrap 先衝一下? :p
+12:51 -!- scrollback [scrollback@conference/jsconf/x-lyvetykcphkmocgd] has quit [Remote host closed the connection]
+12:52 -!- scrollback [scrollback@conference/jsconf/x-ytsoibpoxeplekny] has joined #g0v.tw
+12:55 < clkao_> walkingice: 結果複製活紅動好了嗎? :p
+12:56 -!- scrollback [scrollback@conference/jsconf/x-ytsoibpoxeplekny] has quit [Read error: Connection reset by peer]
+12:57 -!- scrollback [scrollback@conference/jsconf/x-zmtuilkpzyysfjme] has joined #g0v.tw
+13:08 < clkao_> poga: 開了 issue 給你 XD
+13:17 -GitHub42:#g0v.tw- [ly.g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/ly.g0v.tw/commit/0e7e0b2a4ea432cbf70bc247663efa5aade68c70
+13:17 -GitHub42:#g0v.tw- ly.g0v.tw/gh-pages 0e7e0b2 g0v ly (via TravisCI): regen for ddba3b0
+13:20 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has quit [Quit: lyanchih]
+13:28 < clkao_> ethantw: han.css 會讓 ly.g0v.tw 上的 select or input placeholder 的偏下... 發現是那個 select:lang(zh) 的 font-family 造成的
+13:30 < ethantw> clkao_: 感謝，表單的部分是參考舊版Normalize CSS寫的，我之後會拿掉
+13:31 < ethantw> 不過我最近比較忙，可能等下周我回台灣之後
+13:31 < clkao_> ethantw++
+13:33 < clkao_> ethantw: ok created an issue: https://github.com/ethantw/Han/issues/47
+13:33 < kcwu> clkao_'s url: [fonts in form elements · Issue #47 · ethantw/Han · GitHub]
+13:33 -GitHub81:#g0v.tw- [ly.g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/ly.g0v.tw/commit/b44cada6d50cf2857b8e33f962ae9f625184ddd7
+13:33 -GitHub81:#g0v.tw- ly.g0v.tw/gh-pages b44cada g0v ly (via TravisCI): regen for 15385f5
+13:41 < poga> clkao_: 要在local跑ly.g0v.tw的話要自己跑api server起來嗎？我看到這個 "TypeError: Object [object Array] has no method 'apply'" 整個站不會動
+13:49 < clkao_> poga: 應該不用耶
+13:49 < clkao_> poga: 有說那行錯誤嗎？ just npm i && npm start should work
+13:51 < poga> 他還在angular.js裡面... angularjs:9413
+13:52 < poga> 然後有一行"Invalid App Id: Must be a number or numeric string representing the application id. " 在壓過的app.js裡
+13:53 < clkao_> app.js 在 local 應該不會被壓耶
+13:53 < clkao_> 把 _public/ 砍掉重新 npm start 看看呢？
+13:54 < poga> 看錯了，是all.js
+13:54 < poga> 我試試
+13:54 < clkao_> all.js seems to be from facebook ?
+13:56 -!- scrollback [scrollback@conference/jsconf/x-zmtuilkpzyysfjme] has quit [Remote host closed the connection]
+13:57 -!- scrollback [scrollback@conference/jsconf/x-acdrrmjiknsvzutd] has joined #g0v.tw
+13:57 < poga> hmm 我重新clone一次好了
+13:58 < clkao_> `git pull --rebase && git clean -xdf` should do the same :p
+13:59 < poga> 還是一樣qq
+14:00 < clkao_> let me try clean as well
+14:02 < clkao_> 怪 我可以耶 nopaste this? git describe --always; npm list 
+14:04 < poga> https://gist.github.com/poga/8486810
+14:04 < kcwu> poga's url: [gist:8486810]
+14:08 < clkao_> poga: orz 完全一樣耶
+14:08 < poga> clkao_: 囧 神奇了
+14:09 < clkao_> poga: 那個 invliad app id 我也有看到 但是不影響
+14:09 < poga> clkao_: ...大概是我cache有問題，我用無痕開就會動了 XD
+14:09 < clkao_> ha
+14:11 < poga> 清掉cookie才會動，大概有寫什麼到localstorage
+14:12 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+14:17 < jimyhuang_> clkao_: 類似api的是否之後丟到 g0v.io 即可？
+14:21 < jimyhuang_> au: posland.g0v.io 後來指到 106.187.50.25 ？目前看來是指到了 162.159.245.160 
+14:22 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has joined #g0v.tw
+14:27 < au> jimyhuang_: 那是 CDN
+14:27 < au> 應該還是會 request 往 106.187.50.25:80 所以 virtual host 設定好就可以動了
+14:31 < jimyhuang_> au: 喔喔！我試試
+14:33 -!- SupaplexTW___ [~Adium@101.3.35.2] has joined #g0v.tw
+14:34 -!- scrollback [scrollback@conference/jsconf/x-acdrrmjiknsvzutd] has quit [Remote host closed the connection]
+14:34 -!- scrollback [scrollback@conference/jsconf/x-gfsrcrluciqerire] has joined #g0v.tw
+14:35 < clkao_> jimyhuang_: sure. but if it's tw-specific, we can still do .g0v.tw domain
+14:36 < jimyhuang_> got it . 打算先接好後，拋回去國土測繪，看他們要不要用、提供這個api～
+14:38 < clkao_> api.nlsc.g0v.tw ? XD
+14:39 < jimyhuang_> 哈對啊 XD 地址反轉經緯度、地址解析，我自己也常常用到，google map雖好用，但24hr 2500次太少... 
+14:43 -!- scrollback [scrollback@conference/jsconf/x-gfsrcrluciqerire] has quit [Remote host closed the connection]
+14:43 -!- scrollback [scrollback@conference/jsconf/x-qeodteqtznjapyah] has joined #g0v.tw
+14:45 -!- scrollback [scrollback@conference/jsconf/x-qeodteqtznjapyah] has quit [Remote host closed the connection]
+14:45 -!- scrollback [scrollback@conference/jsconf/x-zjmtnlgkcsktgujy] has joined #g0v.tw
+14:46 < au> jimyhuang_: 會動了! https://posland.g0v.io/?address=%E8%87%BA%E4%B8%AD%E5%B8%82%E5%8C%97%E5%8D%80%E6%B0%B4%E6%BA%90%E6%AE%B5282%E4%B9%8B5
+14:47 < jimyhuang_> 對啊！感謝～
+14:47 -!- scrollback [scrollback@conference/jsconf/x-zjmtnlgkcsktgujy] has quit [Remote host closed the connection]
+14:47 -!- scrollback [scrollback@conference/jsconf/x-nwtdhzpltzhzuqyv] has joined #g0v.tw
+14:50 < clkao_> tkalu: kktix 新的活動時間 selector 潮怪der 而且還不能直接用打的 有點痛苦呀
+14:58 < clkao_> https://kktix.com/events/g0vly-hackathon-2
+14:58 < kcwu> clkao_'s url: [g0v.tw 立院組小松 - KKTIX]
+15:09 -!- adam_ [~adam@140.206.34.174] has joined #g0v.tw
+15:11 -!- goagoa [8cce22ae@gateway/web/cgi-irc/kiwiirc.com/ip.140.206.34.174] has joined #g0v.tw
+15:12 -!- goagoa [8cce22ae@gateway/web/cgi-irc/kiwiirc.com/ip.140.206.34.174] has quit [Client Quit]
+15:19 < nchild__> ipa 忘了提一點參考，昨天有人說，2/15~16 他們有兩天的反核研討活動，所以要來提案的話只能參加22場，但反過來說，若是輻射地圖要 hackathon 之後才做的話，距離三月初也就更近了。
+15:21 < ipa> hmm.... 還在猶豫是15 or 22，因為我15號有事。。。
+15:25 -!- Zespre [uid12810@gateway/web/irccloud.com/x-cxwguvfzqczcfwph] has quit []
+15:27 < clkao_> 那就 22 了吧 不然過完年好像突然間就超忙 ><
+15:27 < ipa> ok
+15:28 < ipa> 過年除夕是 30 號，兩週後就黑客松也蠻緊的
+15:31 -!- adam_ [~adam@140.206.34.174] has quit [Quit: ZZzzzzzz]
+15:35 -!- ypwong [~anthony@124244232015.ctinets.com] has quit [Read error: Connection reset by peer]
+15:40 < tkalu> clkao_: 有票了, 近日處理完
+15:41 < clkao_> tkalu++
+15:41 < tkalu> 不是我解 XD
+15:42 < tkalu> 其實我覺得只要是 datetimepicker 都很難用, 下拉選單反而最直覺
+15:42 < tkalu> 用打的也不錯
+15:43 < tkalu> 不過總之修正中
+15:46 -!- ypwong [~anthony@124244232015.ctinets.com] has joined #g0v.tw
+15:49 < venev> yhsiang++ 延伸功能好棒！ # IRC2hackpad  hackpad2blog
+15:52 -!- SupaplexTW___ [~Adium@101.3.35.2] has quit [Quit: Leaving.]
+15:53 -!- Zespre [~starbops@winpc13.cs.nctu.edu.tw] has joined #g0v.tw
+15:54 -!- Zespre [~starbops@winpc13.cs.nctu.edu.tw] has quit [Client Quit]
+15:55 -!- Zespre [~starbops@winpc13.cs.nctu.edu.tw] has joined #g0v.tw
+15:56 -!- Zespre [~starbops@winpc13.cs.nctu.edu.tw] has quit [Client Quit]
+15:57 -!- Zespre [~starbops@winpc13.cs.nctu.edu.tw] has joined #g0v.tw
+15:57 -!- Zespre [~starbops@winpc13.cs.nctu.edu.tw] has quit [Client Quit]
+15:58 -!- Zespre [~starbops@winpc13.cs.nctu.edu.tw] has joined #g0v.tw
+15:59 -!- Zespre [~starbops@winpc13.cs.nctu.edu.tw] has quit [Client Quit]
+15:59 -!- Zespre [~starbops@winpc13.cs.nctu.edu.tw] has joined #g0v.tw
+16:02 < dirty__> 去年年終真的有提幾個跟 g0v 合作的國科會計畫出去嗎?
+16:03 -!- Zespre_ [uid12810@gateway/web/irccloud.com/x-rcftfbbesugkybge] has joined #g0v.tw
+16:04 -!- Zespre_ is now known as chihhsin_cloud
+16:15 -GitHub119:#g0v.tw- [ly.g0v.tw] clkao closed pull request #110: Add scroll-spy for bill pages. (master...scrollSpy) https://github.com/g0v/ly.g0v.tw/pull/110
+16:19 -GitHub100:#g0v.tw- [ly.g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/ly.g0v.tw/commit/18622457c23d94a101c8145df486cc484cccff7a
+16:19 -GitHub100:#g0v.tw- ly.g0v.tw/gh-pages 1862245 g0v ly (via TravisCI): regen for a4b6091
+16:26 -!- scrollback [scrollback@conference/jsconf/x-nwtdhzpltzhzuqyv] has quit [Remote host closed the connection]
+16:26 -!- scrollback [scrollback@conference/jsconf/x-edmcldjqcapbliqo] has joined #g0v.tw
+16:29 < ronnywang> orz, 我的 newsdiff 卡住了, 原因是 www.libertytimes.com.tw 的 A Record 有六個 IP，但是第一個 IP 的 web server 掛掉了，所以 curl 要抓都會 timeout...
+16:36 < clkao_> ><
+16:40 < ronnywang> 我先改成同一來源失敗超過 100 次，就十分鐘不抓這個來源..至少不要卡到抓其他新聞 orz
+16:45 -!- scrollback [scrollback@conference/jsconf/x-edmcldjqcapbliqo] has quit [Remote host closed the connection]
+16:45 -!- scrollback [scrollback@conference/jsconf/x-bkvlvjjwmlggydxs] has joined #g0v.tw
+16:48 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+16:51 < clkao_> 要改用什麼 worker 架構嗎
+16:56 -!- scrollback [scrollback@conference/jsconf/x-bkvlvjjwmlggydxs] has quit [Remote host closed the connection]
+16:57 -!- a-tsioh [~pierre@60-248-176-205.HINET-IP.hinet.net] has joined #g0v.tw
+16:57 -!- scrollback [scrollback@conference/jsconf/x-bfcgdfetngapipse] has joined #g0v.tw
+16:57 -GitHub7:#g0v.tw- [ly.g0v.tw] poga opened pull request #112: Legislator directive (master...legislator-directive) https://github.com/g0v/ly.g0v.tw/pull/112
+16:57 < clkao_> !
+17:01 -!- scrollback [scrollback@conference/jsconf/x-bfcgdfetngapipse] has quit [Remote host closed the connection]
+17:02 -!- scrollback [scrollback@conference/jsconf/x-jmmtiuthmpexbael] has joined #g0v.tw
+17:04 -!- scrollback [scrollback@conference/jsconf/x-jmmtiuthmpexbael] has quit [Remote host closed the connection]
+17:05 -!- scrollback [scrollback@conference/jsconf/x-xblsjowhlhqohoik] has joined #g0v.tw
+17:06 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+17:09 -!- scrollback [scrollback@conference/jsconf/x-xblsjowhlhqohoik] has quit [Remote host closed the connection]
+17:09 -!- scrollback [scrollback@conference/jsconf/x-qjtgezhqmxmgdttv] has joined #g0v.tw
+17:15 -!- adam_ [~adam@101.224.30.149] has joined #g0v.tw
+17:34 -!- pm5 [~pm5@111-248-207-176.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+17:57 -!- alliao [~blah@121.99.36.161] has quit [Read error: Connection reset by peer]
+17:59 -!- alliao [~blah@121.99.36.161] has joined #g0v.tw
+17:59 -!- kcwu [fakeidkcwu@kcwu.csie.org] has quit [Read error: Connection reset by peer]
+17:59 -!- kcwu [fakeidkcwu@kcwu.csie.org] has joined #g0v.tw
+18:00 -!- susu [~cwshu@140.113.27.39] has quit [Read error: Connection reset by peer]
+18:00 -!- susu [~cwshu@140.113.27.39] has joined #g0v.tw
+18:02 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has quit [Remote host closed the connection]
+18:02 -!- OtomeSound [~otomesoun@www.sg.nchu.edu.tw] has quit [Remote host closed the connection]
+18:02 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+18:02 -!- OtomeSound [~otomesoun@www.sg.nchu.edu.tw] has joined #g0v.tw
+18:03 -!- tonysan [~tonysan@thefst.com] has quit [Ping timeout: 272 seconds]
+18:03 -!- tonysan [~tonysan@thefst.com] has joined #g0v.tw
+18:06 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+18:11 -!- Neson_ [~Neson@dex.tw] has quit [Remote host closed the connection]
+18:11 -!- Neson [~Neson@dex.tw] has joined #g0v.tw
+18:12 -!- scrollback [scrollback@conference/jsconf/x-qjtgezhqmxmgdttv] has quit [Remote host closed the connection]
+18:12 -!- cataska [~cataska@118-163-69-1.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+18:12 -!- scrollback [scrollback@conference/jsconf/x-ezkmcykuookpjotx] has joined #g0v.tw
+18:13 -!- scrollback [scrollback@conference/jsconf/x-ezkmcykuookpjotx] has quit [Remote host closed the connection]
+18:13 -!- mno2 [~mno2@42.60.173.63] has quit [Quit: mno2]
+18:13 -!- scrollback [scrollback@conference/jsconf/x-szhuysomgydrpypf] has joined #g0v.tw
+18:14 -!- scrollback [scrollback@conference/jsconf/x-szhuysomgydrpypf] has quit [Remote host closed the connection]
+18:15 -!- scrollback [scrollback@conference/jsconf/x-zftaifklxlfmfeei] has joined #g0v.tw
+18:15 -!- aLlia [~blah@121.99.36.161] has joined #g0v.tw
+18:17 -!- alliao [~blah@121.99.36.161] has quit [Ping timeout: 264 seconds]
+18:19 -!- scrollback [scrollback@conference/jsconf/x-zftaifklxlfmfeei] has quit [Remote host closed the connection]
+18:19 -!- scrollback [scrollback@conference/jsconf/x-umhdoelcfhwnfbnw] has joined #g0v.tw
+18:21 -!- ttcat [sid12341@gateway/web/irccloud.com/x-ftmnbjbhvamhiozd] has joined #g0v.tw
+18:21 < ttcat> +s
+18:30 < ipa> 今天跟一位新朋友聊到，他在做直接跟農夫買的銷售和教育，需要一個方便農夫上傳圖片、語音輸入的APP
+18:30 < ipa> 但有些農夫講台語，現在有台語語音辨識的系統嗎？
+18:31  * ipa 有請他下次黑客松來提案了
+18:36 -!- adam_ [~adam@101.224.30.149] has quit [Quit: ZZzzzzzz]
+18:38 -!- scrollback [scrollback@conference/jsconf/x-umhdoelcfhwnfbnw] has quit [Remote host closed the connection]
+18:39 -!- scrollback [scrollback@conference/jsconf/x-lklhbhtofccxpizv] has joined #g0v.tw
+18:44 -!- i3n [~icman@118.233.52.11] has joined #g0v.tw
+18:49 -!- g0v_tw_logbot [~cinch@li630-203.members.linode.com] has quit [Ping timeout: 264 seconds]
+18:50 -!- g0v_tw_logbot [~cinch@li630-203.members.linode.com] has joined #g0v.tw
+18:57 -!- scrollback [scrollback@conference/jsconf/x-lklhbhtofccxpizv] has quit [Remote host closed the connection]
+18:57 -!- scrollback [scrollback@conference/jsconf/x-ouxnrmencgeegrlu] has joined #g0v.tw
+19:08 < a-tsioh> ipa: 這個很難
+19:09 < a-tsioh> 臺灣的地區口音很多，差別很大
+19:09 -!- scrollback [scrollback@conference/jsconf/x-ouxnrmencgeegrlu] has quit [Remote host closed the connection]
+19:10 -!- scrollback [scrollback@conference/jsconf/x-oxkshyfajmcjnyud] has joined #g0v.tw
+19:10 < a-tsioh> 他想讓人上傳什麼？
+19:11 -!- mno2 [~mno2@42.60.173.63] has joined #g0v.tw
+19:16 < ipa> a-tsioh: 照相之後，語音輸入肥料的分類、成長階段、作物種類等等。不然用選單也許也行，就不用語音辨識
+19:17 < ipa> 重點就是農夫沒辦法注音輸入
+19:18 < ipa> 遙想起十年前 clkao 想做的 farmer.org
+19:19 -!- pm5 [~pm5@1-162-108-169.dynamic.hinet.net] has joined #g0v.tw
+19:43 < a-tsioh> 詞彙小的話，也許可以。可是聽起來用選比較直接
+19:43  * a-tsioh 得走
+19:48 -!- a-tsioh [~pierre@60-248-176-205.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+19:53 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has quit [Quit: lyanchih]
+20:00 -!- scrollback [scrollback@conference/jsconf/x-oxkshyfajmcjnyud] has quit [Remote host closed the connection]
+20:00 -!- scrollback1 [scrollback@conference/jsconf/x-ltvkiaxwasadeugm] has joined #g0v.tw
+20:12 -!- mutolisp [~mutolisp@219.85.182.86] has quit [Ping timeout: 264 seconds]
+20:12 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+20:15 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+20:19 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has joined #g0v.tw
+20:20 -!- LCfunPlay [~chatzilla@111-250-19-221.dynamic.hinet.net] has joined #g0v.tw
+20:20 < johnny__> ipa: 去年也想做類似概念的網站，但最後物流方面想不到實際的作法
+20:21 < ETBlue> ipa: 農夫上傳app有hackpad否？……噢看起來沒有
+20:22 < ETBlue> 我外公是農夫… =w=
+20:25 < ipa> 還沒有 hackpad，有請提案者自己寫。他們是跟農夫和購買者都直接接觸）
+20:26 < ipa> http://www.howsfood.com/ 應該是這個
+20:26 < kcwu> ipa's url: [Howsfood 好食機]
+20:29 -GitHub103:#g0v.tw- [ly.g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/ly.g0v.tw/commit/b4fc24412d9e563fcbb8fcc4bd133829515a8fc3
+20:29 -GitHub103:#g0v.tw- ly.g0v.tw/gh-pages b4fc244 g0v ly (via TravisCI): regen for 7d03c03
+20:37 -!- jerryliu_ [uid23995@gateway/web/irccloud.com/x-roenauvwmniwlfss] has joined #g0v.tw
+20:40 < ipa> ETBlue++++ 等一下寄給朋友，他可能會嚇到
+20:44 -!- scrollback1 [scrollback@conference/jsconf/x-ltvkiaxwasadeugm] has quit [Remote host closed the connection]
+20:44 -!- scrollback [scrollback@conference/jsconf/x-iolgpbpjfocqspcj] has joined #g0v.tw
+20:45 -!- scrollback [scrollback@conference/jsconf/x-iolgpbpjfocqspcj] has quit [Read error: Connection reset by peer]
+20:45 -!- scrollback [scrollback@conference/jsconf/x-ssqjvfsauxtooxza] has joined #g0v.tw
+20:48 < clkao_> ...... 有人正在把 3d printer 改造成超大型自動耕種機器人 # http://wiki.farmbot.it/Welcome
+20:48 < kcwu> clkao_'s url: [FarmBot Wiki - Welcome]
+20:51 < ipa> 最近kiwi irc好像都難以登入
+20:53 -!- scrollback [scrollback@conference/jsconf/x-ssqjvfsauxtooxza] has quit [Remote host closed the connection]
+20:53 -!- scrollback [scrollback@conference/jsconf/x-eujsupejovqvtucs] has joined #g0v.tw
+20:55 -!- scrollback [scrollback@conference/jsconf/x-eujsupejovqvtucs] has quit [Remote host closed the connection]
+20:55 -!- scrollback [scrollback@conference/jsconf/x-wbfrudlkfarjoguu] has joined #g0v.tw
+21:13 -!- scrollback [scrollback@conference/jsconf/x-wbfrudlkfarjoguu] has quit [Remote host closed the connection]
+21:13 -!- scrollback [scrollback@conference/jsconf/x-dmifqdqaogfcimmc] has joined #g0v.tw
+21:13 -!- scrollback [scrollback@conference/jsconf/x-dmifqdqaogfcimmc] has quit [Remote host closed the connection]
+21:13 -!- scrollback [scrollback@conference/jsconf/x-tiujnmlbtqddcrhk] has joined #g0v.tw
+21:17 -!- scrollback [scrollback@conference/jsconf/x-tiujnmlbtqddcrhk] has quit [Remote host closed the connection]
+21:17 -!- scrollback [scrollback@conference/jsconf/x-wuewzepqakkfmroi] has joined #g0v.tw
+21:22 -!- aeil [~Adium@111-251-189-153.dynamic.hinet.net] has joined #g0v.tw
+21:33 < yhsiang> 我爺爺也是農夫喔, 老家是古蹟 :p
+21:34 -!- ymow [~Adium@1-171-179-5.dynamic.hinet.net] has joined #g0v.tw
+21:39 -!- aeil [~Adium@111-251-189-153.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+21:40 -!- aeil [~Adium@111-251-189-153.dynamic.hinet.net] has joined #g0v.tw
+21:45 < ETBlue> yhsiang: 你們公司app進度到哪啦
+21:45 < ETBlue> yhsiang: 是open source嗎
+21:45 < ETBlue> yhsiang: 可以直接合體嗎XD
+21:46 < ETBlue> yhsiang: 噢噢………是那種底層的宅物……… = ="
+21:47 -!- scrollback [scrollback@conference/jsconf/x-wuewzepqakkfmroi] has quit [Remote host closed the connection]
+21:47 -!- scrollback [scrollback@conference/jsconf/x-aarvuwuzngqbpbgc] has joined #g0v.tw
+21:48 < yhsiang> ETBlue: not exactly orz
+21:48 < yhsiang> 正在和hanahsu 搞定新的外觀
+21:49 < clkao_> 什麼 app 呀
+21:49 < yhsiang> clkao_: 植物工廠的東西 XD
+21:51 -!- mutolisp [~mutolisp@219.85.182.86] has joined #g0v.tw
+21:54 < yhsiang> ETBlue: 病蟲害那個 就跟a0kman想的蠻像的
+21:54 < ETBlue> yhsiang: 植物病蟲害app你有開hackpad否
+21:54 < ETBlue> 不曉得能否用同一個帳號登入小農故事+病蟲害app之類的…登入整合
+21:54 < yhsiang> ETBlue: https://g0v.hackpad.com/8Hlh2hux8xg 
+21:55 < kcwu> yhsiang's url: [植物疫情と藥劑系統 - g0v.hackpad.com]
+21:55 < yhsiang> ETBlue: a0kman的mockup
+21:55 < yhsiang> 列表可能還是有點複雜
+21:55 < yhsiang> 我覺得要設計的字大一點 
+21:56 < ETBlue> 這內容很專業…嗯嗯面向不同
+21:56 -!- aeil [~Adium@111-251-189-153.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+21:56 < ETBlue> 他用的假圖怎麼那麼好笑
+21:56 < yhsiang> ETBlue: yes 所以設計給農夫可能要更親切一點
+21:56 < yhsiang> a0kman 是梗王阿!!
+21:57 < clkao_> yhsiang: brunch-1.7 branch push 了... 可是不知道為何 karma 整個不動... 有空看看嗎？
+21:57 < a0kman> 我好像被召喚了
+21:57 < yhsiang> clkao_: ok, no-boostrap 可以加個一行collapse應該就可以先上了
+21:58 -!- aeil [~Adium@111-251-189-153.dynamic.hinet.net] has joined #g0v.tw
+21:58 < yhsiang> 我只是糾結collapse 要包成semantic ui module才是
+21:58 < yhsiang> colllapse menu
+21:58 < clkao_> yhsiang: ok, open pull-req when it's done.. i can help reviewing
+21:58 < a0kman> 那是針對老農和中老嗎
+21:59 < yhsiang> ok thx!
+21:59 < a0kman> 第三系統我還沒做成mock
+22:00 < a0kman> 那我也把老農同時考慮好惹
+22:00 -!- mno2 [~mno2@42.60.173.63] has quit [Quit: mno2]
+22:00 < yhsiang> a0kman: 所以我那時是想 拍照 就可以辨識 是有考慮比較年長的使用者
+22:01 < a0kman> 不過直接買這件事情，其實我一直有一個疑慮orz
+22:01 < a0kman> 病蟲？
+22:01 < yhsiang> yes 植物疫情
+22:01 < yhsiang> 作物疫情
+22:01 < a0kman> 我是做田間疫情的xd
+22:02 < a0kman> 其實他有一個最麻煩的問題
+22:02 < a0kman> 那就是 拍了
+22:03 < a0kman> 也只能超級初篩
+22:03 -!- pm5 [~pm5@1-162-108-169.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+22:03 < yhsiang> a0kman: ya 不過當時後的想法是 讓年長的使用者 記錄下來經驗
+22:04 < a0kman> 有必要我可以在大松開小講 或開農業小松
+22:04 < yhsiang> 然後 年輕的農夫可以從中學習 或者是 一般民眾也可以參考
+22:04 < a0kman> 可唷
+22:04 < yhsiang> a0kman: 所以算是偏向ETBlue 有提到的 就是 作生產紀錄 的一部分
+22:05 < a0kman> 其實就是生產旅歷
+22:05 < yhsiang> 所以你得比較像是較大型的病情追蹤 我這邊算是種菜學習 XD
+22:05 < yhsiang> a0kman: yes :)
+22:05 < a0kman> 那是第二系統
+22:05 < a0kman> 第三是給個人的
+22:05 < ballII> 對農夫app很期待⋯⋯
+22:06 < a0kman> 診斷以及栽培者系統
+22:06 < yhsiang> a0kman: 我覺得對於初學者 能夠做初篩 已經很不錯
+22:07 < yhsiang> 想說能給一個可能的list 讓農夫參考 
+22:07 < a0kman> 栽培過程 病蟲記錄 診斷求助 用藥肥陪 教育訓練 疫情警報 天氣警報
+22:08 < yhsiang> 不然就是在做那種交流論壇 XD
+22:08 < yhsiang> 更簡單直接使用的 農業問問題 XD
+22:08 < a0kman> 可以來好好討論第三系統怎樣組成
+22:08 < yhsiang> 求助! 我的菜奈ㄟ安內 ...
+22:09 < a0kman> 有唷
+22:09 < a0kman> 台南場出了line
+22:09 < a0kman> 各單位也有統一的0800
+22:10 < yhsiang> line 這種想法還不錯耶 XD
+22:10 < yhsiang> 0800的話 使用率是多少呢?
+22:10 < a0kman> 所以才會構思要更便利多元
+22:10 < a0kman> 很高
+22:10 < a0kman> 一年萬通以上
+22:13 < a0kman> http://www.baphiq.gov.tw/newsview.php?typeid=1369&typeid2=1370&news_id=308
+22:13 < kcwu> a0kman's url: [行政院農業委員會動植物防疫檢疫局-植物防疫-植物疫情通報]
+22:13 < a0kman> 這是我前年的業務
+22:13 < a0kman> XDDDDDDDDDDDD
+22:14 < a0kman> 以前曾經出現過線上看診
+22:14 < yhsiang> 然後 我之前是有砍 有機農場的資料 XD
+22:14 < a0kman> 可惜效果不好
+22:15 < a0kman> 有機要夠高的門檻技術
+22:15 < yhsiang> a0kman: 我們是在做 氣霧耕  XD
+22:18 < a0kman> Xd
+22:19 < a0kman> 金搞綱
+22:20 < a0kman> 辛勞
+22:20 < yhsiang> 現在可以種草莓了 ~
+22:21 < clkao_> yhsiang: 好像是 angular-mocks 版本問題
+22:23 < clkao_> oh 應該是 angular-scenario 被包入 就炸掉了
+22:24 < yhsiang> ETBlue: 你看得懂日文嗎?
+22:25 < yhsiang> 不然可以參考富士通的農業生產管理
+22:25 < yhsiang> http://jp.fujitsu.com/solutions/cloud/agri/
+22:25 < kcwu> yhsiang's url: [FUJITSU Intelligent Society Solution 食・農クラウド Akisai（秋彩） : 富士通]
+22:25 -!- channing [76a708d0@gateway/web/freenode/ip.118.167.8.208] has joined #g0v.tw
+22:26 < yhsiang> 目前我找不到 它們之前講的protocol 可能要去辦公室翻DM出來看了
+22:29 < a0kman> 7月我會去日本農業展
+22:30 < yhsiang> a0kman: 3月世貿就有展覽囉
+22:30 < yhsiang> 綠色農業
+22:30 < yhsiang> 還是綠色產業 ...
+22:30 < a0kman> 台灣的展………
+22:31 < a0kman> 好幾次了 讓我很失望
+22:32 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has quit [Quit: lyanchih]
+22:33 -!- LCfunPlay [~chatzilla@111-250-19-221.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.87-rdmsoft [XULRunner 1.9.2.19/20110707195905]]
+22:33 < yhsiang> clkao_: 這樣是好了?
+22:33 < clkao_> y
+22:34 < clkao_> travis++
+22:34 -!- aLlia [~blah@121.99.36.161] has quit [Quit: Just time]
+22:34 < yhsiang> a0kman: 去過大陸的 你就會開心點了 :)
+22:36 < a0kman> XDDDDDDDDDDDD
+22:36 < a0kman> 金柯拉
+22:43 -!- allenown_ [~allenown@devstd.in] has quit [Ping timeout: 246 seconds]
+22:43 -!- aeil1 [~Adium@111-243-168-219.dynamic.hinet.net] has joined #g0v.tw
+22:45 -!- aeil [~Adium@111-251-189-153.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+23:02 -!- aeil [~Adium@111-243-168-219.dynamic.hinet.net] has joined #g0v.tw
+23:02 -!- aeil1 [~Adium@111-243-168-219.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+23:04 < ipa> 為何立院松結束時間是 20:50?
+23:05 < clkao_> 因為 date picker 很難用... 隨便亂選的 接下來應該喝酒燒烤時間？ XD
+23:08 < ipa> X
+23:08 < ipa> D
+23:08 < yhsiang> clkao_: 這是ngScenairo炸了 ?
+23:10 < clkao_> yhsiang: ya 因為 bower 的 {main} 都被塞進去 vendor
+23:11 -!- channing [76a708d0@gateway/web/freenode/ip.118.167.8.208] has quit [Quit: Page closed]
+23:16 -!- scrollback [scrollback@conference/jsconf/x-aarvuwuzngqbpbgc] has quit [Remote host closed the connection]
+23:16 -!- scrollback [scrollback@conference/jsconf/x-kaetrbwinlxuleyk] has joined #g0v.tw
+23:17 -!- aeil [~Adium@111-243-168-219.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+23:19 < johnny__> 對了 立院松我大概下午大概三點才能到 先說一下
+23:20 < ethantw> 來咖啡廳寫東西居然遇到做電子書的台灣朋友，講了一堆epub規範的東西，真有趣
+23:21 -!- SupaplexTW___ [~Adium@114-36-249-247.dynamic.hinet.net] has joined #g0v.tw
+23:26 -!- pm5 [~pm5@111-248-207-176.dynamic.hinet.net] has joined #g0v.tw
+23:32 -!- SupaplexTW___ [~Adium@114-36-249-247.dynamic.hinet.net] has quit [Quit: Leaving.]
+23:33 -!- aeil [~Adium@111-243-168-219.dynamic.hinet.net] has joined #g0v.tw
+23:48 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has joined #g0v.tw
+23:49 -!- Netsplit *.net <-> *.split quits: pm5, tkirby, mikimoto_, chihchun_afk, samuelololol, zeal_bsd, mutolisp
+23:52 -!- Netsplit over, joins: pm5
+23:52 -!- Netsplit over, joins: chihchun_afk, samuelololol, mutolisp, zeal_bsd, tkirby, mikimoto_
+23:55 -!- scrollback [scrollback@conference/jsconf/x-kaetrbwinlxuleyk] has quit [Remote host closed the connection]
+23:55 -!- scrollback [scrollback@conference/jsconf/x-mzakmkflphmqsxul] has joined #g0v.tw
+23:56 -!- Netsplit *.net <-> *.split quits: pm5, tkirby, mikimoto_, chihchun_afk, samuelololol, zeal_bsd, mutolisp
+23:58 -!- Netsplit over, joins: pm5, chihchun_afk, samuelololol, mutolisp, zeal_bsd, tkirby, mikimoto_

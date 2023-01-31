@@ -1,0 +1,428 @@
+--- Day changed 四  7月 25 2013
+00:16 -!- DAINESE [~dainese@112.104.106.91] has joined #g0v.tw
+00:31 -!- poga [~poga@1-171-105-86.dynamic.hinet.net] has joined #g0v.tw
+00:37 -!- DAINESE [~dainese@112.104.106.91] has quit [Quit: DAINESE]
+00:39 < yllan> clkao_: 這個可以用嗎？ http://radial.sourceforge.net/index.html 
+00:39 < kcwu> yllan's url: [Radial++]
+00:43 < yllan> http://docs.scipy.org/doc/scipy/reference/tutorial/interpolate.html 這好像不錯哩。
+00:43 < kcwu> yllan's url: [Interpolation (scipy.interpolate) — SciPy v0.12 Reference Guide (DRAFT)]
+00:44 < clkao_> 交給你了 :p
+00:50 -!- icman [~icman@123.240.128.193] has quit [Quit: 明天天氣晴]
+00:51 -!- DAINESE [~dainese@112.104.106.91] has joined #g0v.tw
+00:57 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 248 seconds]
+00:57 -!- poga [~poga@1-171-105-86.dynamic.hinet.net] has quit [Remote host closed the connection]
+00:59 -!- Conrad [~cpyang@122-116-161-44.HINET-IP.hinet.net] has joined #g0v.tw
+01:04 -!- DAINESE [~dainese@112.104.106.91] has quit [Quit: DAINESE]
+01:13 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+01:13 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+01:15 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+01:15 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+01:41 < clkao_> https://www.transifex.com/projects/p/redphone/translate/#zh_TW/master/13863701 # 沒事的話幫忙 review 翻譯吧 我從簡體中文匯入的。
+01:41 < kcwu> clkao_'s url: [Log in · Transifex]
+01:58 -!- chuiyi [~chuiyi@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+02:06 -!- poga [~poga@1-171-105-86.dynamic.hinet.net] has joined #g0v.tw
+02:06 < ETBlue> 在 google drive 上頻繁存檔有點恐怖，存檔時會跳出檔案不存在，網頁上會看到一堆無法預覽的舊版屍體... 工作資料夾還是 dropbox 比較令人安心呀
+02:17 < ETBlue> google drive 檔案會人間蒸發太恐怖惹，我要把 psd 工作檔放回 dropbox（抖）
+02:30 -!- bobchao [~bobchao@123-194-245-161.dynamic.kbronet.com.tw] has joined #g0v.tw
+02:39 < superbil> goole drive 檔案會不見？！
+02:45 -!- chihchun__afk is now known as chihchun__afk_af
+02:45 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+02:59 < yllan> clkao_: 我把 Radial++ 編好了，應該可以把 (point, value) sample 轉成 interpolated matrix 了
+03:03 < clkao_> yllan++ # 那就是 https://cwbtw.firebaseio.com/rainfall/2013-07-12/23%3A50%3A00.json + https://github.com/g0v/twgeojson/blob/gh-pages/stations.json 
+03:04 < kcwu> clkao_'s url (2/2): [twgeojson/stations.json at gh-pages · g0v/twgeojson · GitHub]
+03:18 -!- chuiyi [~chuiyi@220-135-178-174.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+03:19 -!- poga [~poga@1-171-105-86.dynamic.hinet.net] has quit [Remote host closed the connection]
+03:25 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 268 seconds]
+03:41 -!- bobchao [~bobchao@123-194-245-161.dynamic.kbronet.com.tw] has quit [Quit: bobchao]
+05:24 -!- fshiori_ [~eric@36-224-36-253.dynamic-ip.hinet.net] has joined #g0v.tw
+05:28 -!- fshiori [~eric@36-224-31-47.dynamic-ip.hinet.net] has quit [Ping timeout: 264 seconds]
+08:22 < yllan> clkao_: 有些雨量紀錄抓不到坐標哩  臺北、土坂、吉貝……
+08:22 < yllan> clkao_: 然後雨量怎麼還有 X 和 - ？
+08:27 -!- lijung_ [~lijung@36-231-165-26.dynamic-ip.hinet.net] has joined #g0v.tw
+08:37 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+09:12 -!- NawaShoLin [6ffe38fd@gateway/web/freenode/ip.111.254.56.253] has quit [Ping timeout: 250 seconds]
+09:23 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+09:40 -!- yllan [~yllan@1.34.155.188] has quit [Quit: yllan]
+09:41 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+09:49 -!- FourDoll1rs [~sylee@175.41.48.77] has joined #g0v.tw
+09:49 -!- MnO2 [~MnO2@nat/yahoo/x-qsnqyngylsaulqvk] has joined #g0v.tw
+09:50 -!- ieon_ is now known as ieon
+09:58 -!- MnO2 [~MnO2@nat/yahoo/x-qsnqyngylsaulqvk] has quit [Quit: MnO2]
+10:02 -!- MnO2 [~MnO2@nat/yahoo/x-szkaiusgytrzqqlm] has joined #g0v.tw
+10:03 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:08 -!- Conrad [~cpyang@122-116-161-44.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+10:24 < jimmy> hello早。想問一下... angry.g0v.tw 已經有人用了嗎.. 想把 timeline.jimmyhub.net 放過去
+10:24 < jimmy> 而且angry.g0v.tw ...真是完美的domain文意
+10:25 -!- Conrad [~cpyang@122-116-161-44.HINET-IP.hinet.net] has joined #g0v.tw
+10:29 -!- yllan [~yllan@114-24-7-222.dynamic.hinet.net] has joined #g0v.tw
+10:33 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:35 -!- qgewfg [77fd3a41@gateway/web/freenode/ip.119.253.58.65] has joined #g0v.tw
+10:35 < qgewfg> so many people
+10:36 < qgewfg> hello world
+10:37 -!- qgewfg [77fd3a41@gateway/web/freenode/ip.119.253.58.65] has quit [Client Quit]
+10:37 -!- miaout17 [~miaout17@miaout17.net] has quit [Quit: leaving]
+10:38 -!- tuiry [uid12761@gateway/web/irccloud.com/x-tuftyzwvimxqgmjt] has joined #g0v.tw
+10:38 -!- miaout17 [~miaout17@miaout17.net] has joined #g0v.tw
+10:38 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+10:40 -!- miaout17 [~miaout17@miaout17.net] has quit [Client Quit]
+10:40 -!- miaout17 [~miaout17@miaout17.net] has joined #g0v.tw
+10:41 < clkaoud_> Jimmy 是單純 Wikipedia page to timeline transform 還是要加 editing 功能?
+10:41 -!- miaout17 [~miaout17@miaout17.net] has quit [Client Quit]
+10:41 -!- miaout17 [~miaout17@miaout17.net] has joined #g0v.tw
+10:42 < clkaoud_> 噢 有事件一覽了
+10:42 < jimmy> 希望再加上去editing ... 只是不希望現在被google index到是我的domain，遲早要放出去的
+10:43 -!- miaout17 [~miaout17@miaout17.net] has quit [Client Quit]
+10:43 -!- miaout17 [~miaout17@miaout17.net] has joined #g0v.tw
+10:44 < jimmy> clkaoud_: by the way，github的g0v我找了一下，好像放不了東西進去，是不是得成為member？
+10:44 < clkaoud_> 好哇 晚點設 或其他人有沒什麼 domain 想法
+10:44 < clkaoud_> 我要先去拿貼紙
+10:44 -!- miaout17 [~miaout17@miaout17.net] has quit [Client Quit]
+10:44 < clkaoud_> What's your github is
+10:44 < clkaoud_> Id
+10:45 -!- miaout17 [~miaout17@miaout17.net] has joined #g0v.tw
+10:45 < jimmy> jimyhuang
+10:49 < jimmy> 或有人覺得g0v不合適也沒關係，申請一箇domain是簡單事情...問問大家意見
+10:53 -!- yllan [~yllan@114-24-7-222.dynamic.hinet.net] has quit [Quit: yllan]
+10:57 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 260 seconds]
+11:05 -!- yllan [~yllan@114-24-7-222.dynamic.hinet.net] has joined #g0v.tw
+11:18 -!- yllan [~yllan@114-24-7-222.dynamic.hinet.net] has quit [Quit: yllan]
+11:23 -!- yllan [~yllan@114-24-7-222.dynamic.hinet.net] has joined #g0v.tw
+11:32 -!- cataska [~cataska@210.64.6.233] has quit [Remote host closed the connection]
+11:34 -!- cataska [~cataska@210.64.6.233] has joined #g0v.tw
+11:37 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+11:43 -!- chihchun__afk_af is now known as chihchun_
+11:48 -!- MnO2 [~MnO2@nat/yahoo/x-szkaiusgytrzqqlm] has quit [Quit: MnO2]
+11:50 -!- bobchao [~bobchao@123-194-245-161.dynamic.kbronet.com.tw] has joined #g0v.tw
+11:52 < clkaoud_> 蠻適合的呀
+12:10 < lijung_> clkaoud_: 你們今天印的那個，要不要也給大家可以下載 pdf然後自己印？
+12:11 -!- MnO2 [~MnO2@nat/yahoo/x-jtgcrjwzqgobrthj] has joined #g0v.tw
+12:11 < clkaoud_> 老丹好像是 all rights reserved 晚點ㄗㄞㄓ問問他
+12:13 < lijung_> 嗯嗯
+12:24 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+12:24 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+12:26 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+12:27 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+12:28 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+12:29 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+12:29 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has left #g0v.tw []
+12:30 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+12:31 -!- lijung_ [~lijung@36-231-165-26.dynamic-ip.hinet.net] has quit [Quit: lijung_]
+12:33 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 268 seconds]
+12:33 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has left #g0v.tw []
+12:36 -!- lijung_ [~lijung@36-231-165-26.dynamic-ip.hinet.net] has joined #g0v.tw
+12:36 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+12:36 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has left #g0v.tw []
+12:42 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+12:45 -!- bobchao [~bobchao@123-194-245-161.dynamic.kbronet.com.tw] has quit [Quit: bobchao]
+12:54 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has left #g0v.tw []
+12:56 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+12:56 -!- kcwu [fakeidkcwu@kcwu.csie.org] has quit [Ping timeout: 240 seconds]
+13:04 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+13:05 -!- chihchun_ is now known as chihchun__afk
+13:10 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+13:10 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+13:21 -!- lijung_ [~lijung@36-231-165-26.dynamic-ip.hinet.net] has quit [Quit: lijung_]
+13:24 -!- yllan [~yllan@114-24-7-222.dynamic.hinet.net] has quit [Quit: yllan]
+13:25 -!- kcwu [fakeidkcwu@218-161-32-14.HINET-IP.hinet.net] has joined #g0v.tw
+13:31 -!- kcwu [fakeidkcwu@218-161-32-14.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+13:32 -!- kcwu [fakeidkcwu@218-161-32-14.HINET-IP.hinet.net] has joined #g0v.tw
+13:41 -!- sayuan [~sayuan@114-34-7-189.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+13:49 -!- lijung_ [~lijung@36-231-181-73.dynamic-ip.hinet.net] has joined #g0v.tw
+13:55 -!- sayuan [~sayuan@111-250-127-172.dynamic.hinet.net] has joined #g0v.tw
+14:00 -!- MnO2 [~MnO2@nat/yahoo/x-jtgcrjwzqgobrthj] has quit [Quit: MnO2]
+14:00 -!- yllan [~yllan@111-248-49-111.dynamic.hinet.net] has joined #g0v.tw
+14:03 -!- MnO2 [~MnO2@nat/yahoo/x-tdzavqjxnqsxwzit] has joined #g0v.tw
+14:11 -!- chihchun__afk is now known as chihchun__afk_af
+14:23 -!- chihchun__afk_af is now known as chihchun
+14:24 -!- Conrad [~cpyang@122-116-161-44.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+14:24 -!- bobchao [~bobchao@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+14:30 < yllan> clkao: 確認一下，現在是給綠點就有 lib 可以自動生 contour 了對吧？ http://cl.ly/image/153d0o1x2K0W 
+14:30 < kcwu> yllan's url: [rain.png]
+14:31 < clkaoud_> yllan: yes. 平面上所有點的z值
+14:31 < clkaoud_> 然後用d3 plugin contour
+14:35 < yllan> clkaoud_: Cool. 不過這 interpolation lib 是 C++ 的，下班以後來看看要怎麼接，才能讓 web 用
+14:36 < clkaoud_> 不然就是去 subscribe 我的 firebase, 算好再賽回去另個 key
+14:37 < jimmy> 有人推薦nodejs上面的 form api嗎？主要是想做html產出、validate / flow control ...
+14:37 < clkaoud_> 反正若有 cli json in json out 剩下應該就好辦
+14:37 < jimmy> 目前看到的是 https://github.com/felixge/node-form-data  或  https://github.com/rootslab/formaline
+14:37 < kcwu> jimmy's url (1/2): [felixge/node-form-data · GitHub]
+14:37 < kcwu> jimmy's url (2/2): [rootslab/formaline · GitHub]
+14:38 -!- chihchun is now known as chihchun_afk
+14:38 < clkaoud_> jimmy: 最近流行純前端 angular 解決 XD
+14:38 < jimmy> oh ... 我果然是新手 XD
+14:39 < jimmy> 來玩玩 angular ~~
+14:39 < clkaoud_> clkaoud_: domain 決定 angry 了嗎 cname 給我一下
+14:40 < jimmy> A Record，ip合適嗎？
+14:40 < clkaoud_> Sure
+14:40 < jimmy> 106.187.50.25
+14:42 < jimmy> thanks
+14:44 < clkaoud_> Ok done
+14:50 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+15:07 -!- mhsin [~mhsin@114-32-9-83.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+15:12 -!- mhsin [~mhsin@114-32-9-83.HINET-IP.hinet.net] has joined #g0v.tw
+15:14 < ipa_> 看到晚上g0v文化部的通信，只能說美術館真的是戰力噴發了
+15:15 < ipa_> (家華 etblue 阿賢)++
+15:18 < ETBlue> 美術館 XDDDD
+15:21 < ipa_> http://zbryikt.github.io/ppllink/index.html?542 
+15:21 < kcwu> ipa_'s url: [公眾人物關係圖產生器]
+15:21 < ETBlue> tuiry tkirby 我有個 photoshop 的問題... 我在描線的時候不小心把筆刷設定成 100% 黑 50% 透明，但我需要的是 50% 灰完全不透明，這樣我在著色的時候壓在輪廓線下面的顏色才不會從線後面透出來，有什麼辦法可以把 50% 透明拿掉嗎 orz
+15:23 < ETBlue> 如果直接壓平到全白背景上可以解決，但是這樣著色區域就不是透明的了，就沒辦法拿線壓在色塊上 QQ
+15:30 -!- chihchun_afk is now known as chihchun
+15:38 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 240 seconds]
+15:47 < bobchao> clkao: ping
+15:47 < bobchao> clkao: Even Wu 來拿你放在這裡的貼紙喲，跟你確認一下
+15:48 < jimmy> ETBlue: 筆刷印象中可以不透明?
+15:50 < jimmy> ipa_: 看來好強...
+15:50 -!- salon58 [3b7803a3@gateway/web/freenode/ip.59.120.3.163] has joined #g0v.tw
+15:55 < clkaoud_> bobchao: sure
+15:55 < bobchao> clkaoud_: ok 他拿走了 :)  BTW 我也要兩張 XD
+15:56 -!- MnO2 [~MnO2@nat/yahoo/x-tdzavqjxnqsxwzit] has quit [Quit: MnO2]
+15:59 < ipa_> jimmy: tkirby 做的，咦，有小精靈在更新
+16:03 < ETBlue> tkirby: tuiry jimmy : 解了 XD 結果是把圖層壓平到白色背景，然後調整色階把灰色變成黑色，再存成 alpha 色版，然後把 alpha 色版載入成選取範圍，用一塊全黑的圖層剪掉選取範圍... 最後終於得到一個描線不透明但著色區塊透明的圖層（擦汗）
+16:04 < jimmy> 你打的好詳細... （擦汗）
+16:04 < ETBlue> clkaoud_: 我也想要貼紙... +___+
+16:05 < ETBlue> jimmy:  XDXD
+16:10 -!- ipa is now known as ipa__
+16:10 -!- ipa_ is now known as ipa
+16:11 < wHisKy> ETBlue 我有個大頭貼的點子想找人畫，可以請你協助嗎？
+16:12 < wHisKy> ETBlue 一個黑盒子，那種小丑盒子，就是會有小丑跳出來的，全黑，上面畫滿問號，然後稍微打開，可以看到裡面一雙眼睛，和一隻手稍微撐開盒蓋
+16:13 < ETBlue> wHisKy: 插畫嗎？沒問題我剛找到下線啊哈哈哈哈 XDDDD （呼叫 tuiry  ）
+16:13 < ETBlue> wHisKy: 話說這是什麼主題
+16:14 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+16:15 < wHisKy> 是想替換目前的FB上頁面的大頭貼
+16:15 < ETBlue> 哪個頁面... 服貿？
+16:15 < wHisKy> 讓大家一看到黑盒，就知道是反服貿，反黑箱作業
+16:16 < wHisKy> 對，目前是一個黑圈+很多文字，這在FB上看不清楚的
+16:16 < ETBlue> 長寬比是 1:1 嗎
+16:16 < wHisKy> 我找一下正確的尺寸給妳
+16:16 < wHisKy> https://www.facebook.com/help/www/315809258465467 16px 16px
+16:16 < kcwu> wHisKy's url: [我的專頁相片尺寸是什麼？ | Facebook 使用說明 | Facebook]
+16:17 < wHisKy> Page profile pictures are square and displays at 160x160 pixels. The photo you upload must be at least 180x180 pixels. 
+16:19 < ETBlue> 理解，取代目前 https://www.facebook.com/antiblacktw 的黑底白字大頭貼用對吧，我把規格整理一下發到 google groups
+16:19 < kcwu> ETBlue's url: [反黑箱服貿協議 | Facebook]
+16:20 < wHisKy> 對，沒錯
+16:20 < wHisKy> 另外目前好像又有兩三個反服貿的頁面了啊
+16:22 < ETBlue> wHisKy: 以平常 timeline 上出現的頭像 16x16 尺寸，要看清楚內容物的話，插圖內容也許還要更少些，到時候留給 tuiry 決定
+16:27 < ipa> http://tinyurl.com/lzn4egg 這個也是用黑箱
+16:27 < kcwu> ipa's url: [上班族自救！反對黑箱兩岸服務貿易協議！ | Facebook]
+16:28 < ETBlue> 咦有現成的黑箱 XD
+16:28 -!- salon58 [3b7803a3@gateway/web/freenode/ip.59.120.3.163] has quit [Quit: Page closed]
+16:29 < ipa> 不同fb頁喔
+16:29 < ipa> 小丑概念不錯 
+16:35 < wHisKy> ETBlue 16x16 是？ 160x160px 才對喔 XD
+16:36 < ETBlue> 剛才的「wHisKy> https://www.facebook.com/help/www/315809258465467 16px 16px」是timeline上小縮圖是 16x16 的意思嗎？XD
+16:36 < kcwu> ETBlue's url: [我的專頁相片尺寸是什麼？ | Facebook 使用說明 | Facebook]
+16:37 < wHisKy> 抱歉我剛敲錯 XD 160x160  到 180x180 才對
+16:37 < ETBlue> 說明頁是沒寫...
+16:37 < ETBlue> 喔喔喔 XD 
+16:38 < wHisKy> 其實應該可以更大，但是他會縮小到 160x160，依照他上面的說明，然後最好是正方形
+16:38 < ETBlue> chrome inspector 說 頭像會被縮小到 32 x 32 px，在時間軸上
+16:39 < ETBlue> 平常大家應該是看時間軸的機會比看專頁頁面多吧
+16:40 < wHisKy> 對，時間軸上會小很多，所以不適合塞很多文字
+16:40 < ETBlue> 現在黑底白字看不清楚也是指在時間軸上的小頭像看不清楚吧？
+16:40 < wHisKy> 對，沒錯
+16:40 < ETBlue> 嗯嗯所以儘管完稿時是大圖，實際構圖時卻要以 32x32 當作呈現尺寸
+16:40 < ETBlue> 我補一下 groups
+16:43 -!- bobchao [~bobchao@114-35-121-105.HINET-IP.hinet.net] has quit [Quit: bobchao]
+16:49 < wHisKy> 好，感謝
+16:49 < wHisKy> 我剛在補那個人物關係圖的頭像 XD http://zbryikt.github.io/ppllink/index.html?542#
+16:49 < kcwu> wHisKy's url: [公眾人物關係圖產生器]
+16:50 -!- bobchao [~bobchao@60.245.64.191] has joined #g0v.tw
+16:57 < wHisKy> https://www.facebook.com/727antiblackbox 還有這一個
+16:57 < kcwu> wHisKy's url: [反黑箱協議行動聯盟 | Facebook]
+17:02 < ipa> 本來是要幫忙兩督盟fb，不過上週他們網管被抓去教召所以才新開
+17:02 < ipa> 有個問題：
+17:03 -!- bobchao [~bobchao@60.245.64.191] has quit [Quit: bobchao]
+17:04 < ipa> 年底又有另一個貨品貿易協議，那現在單點進行不知道之後是不是又要重起爐灶
+17:04 < ipa> 來問一下家華好了
+17:05 < ipa> 不然之前網路全黑活動人數很多，換陣地也就沒人了
+17:10 < wHisKy> 嗯嗯
+17:11 < ipa> 看了一下 200人以上粉絲頁就不能改名了 XD
+17:23 -!- scyen_ [~scyen@122.146.84.72] has joined #g0v.tw
+17:27 -!- scyen [~scyen@4.53.154.230] has quit [Ping timeout: 264 seconds]
+17:27 -!- scyen_ [~scyen@122.146.84.72] has quit [Remote host closed the connection]
+17:28 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+17:31 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+17:32 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+17:38 -!- MnO2 [~MnO2@nat/yahoo/x-nsddreoibqprhlhz] has joined #g0v.tw
+18:01 -!- FourDoll1rs [~sylee@175.41.48.77] has quit [Quit: leaving]
+18:02 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 246 seconds]
+18:11 -!- MnO2 [~MnO2@nat/yahoo/x-nsddreoibqprhlhz] has quit [Quit: MnO2]
+18:15 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: pm5]
+18:46 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+18:48 -!- scyen [~scyen@4.53.154.230] has quit [Remote host closed the connection]
+18:53 < tuiry> Etblue 其實你只要一直疊到不透明，然後鎖透度填滿你要的顏色就好
+18:55 < ETBlue> tuiry: QAQ
+18:56 < ETBlue> tuiry: 我已經繞超大圈遠路抵達終點惹... T_T
+18:57 < tuiry> 下次可以直接敲我FB 比較會在看到XD
+19:06 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 264 seconds]
+19:12 -!- kaxing [~kaxing@175.96.178.6] has joined #g0v.tw
+19:16 -!- kcwu [fakeidkcwu@218-161-32-14.HINET-IP.hinet.net] has quit [Quit: leaving]
+19:18 -!- kcwu [fakeidkcwu@218-161-32-14.HINET-IP.hinet.net] has joined #g0v.tw
+19:23 -!- chihchun is now known as chihchun_afk
+19:24 < tkirby> 喔喔, 洪案關係圖有人上傳了照片!
+19:25 -!- yllan [~yllan@111-248-49-111.dynamic.hinet.net] has quit [Quit: yllan]
+19:27 < tuiry> 服貿黑箱上傳，有建議請提出＞_＜
+19:32 -!- Zespre_ [uid12810@gateway/web/irccloud.com/x-ifbakhlgosddjirw] has joined #g0v.tw
+19:32 -!- Zespre_ [uid12810@gateway/web/irccloud.com/x-ifbakhlgosddjirw] has left #g0v.tw []
+19:32 -!- Zespre_ [uid12810@gateway/web/irccloud.com/x-ifbakhlgosddjirw] has joined #g0v.tw
+19:33 -!- Zespre_ [uid12810@gateway/web/irccloud.com/x-ifbakhlgosddjirw] has left #g0v.tw []
+19:33 < tkirby> 喔喔~
+19:40 < clkao_> tkirby: 要取個什麼 domain name 嗎
+19:41 < tkirby> clkao_: relation.g0v.tw?
+19:43 < clkao_> tkirby: 好像爆炸了
+19:43 < clkao_> 有人試圖存有 . # $ [ ] 之類的當作 key
+19:44 < clkao_> firebase 不允許
+19:48 < tkirby> oops
+19:52 < tkirby> 恩? 好像活著阿?
+19:53 < clkao_> 我知道了 http://zbryikt.github.io/ppllink/index.html?542# 有 hash 會爛掉
+19:53 < kcwu> clkao_'s url: [公眾人物關係圖產生器]
+19:54 < tkirby> XD
+19:54 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 240 seconds]
+19:54 < clkao_> 現在好像 hover 隨便一個 其他人就被擠出去了
+19:56 < tkirby> 感覺還是要把座標一併存... 編輯的時候順便排版
+19:56 -!- jlnr [~jlnr@lurado.com] has quit [Read error: Operation timed out]
+19:56 -!- jlnr_ [~jlnr@lurado.com] has joined #g0v.tw
+19:56 < tkirby> 可以先用磁鐵吸回來
+19:56 < kcwu> tkirby++ 我正想說
+19:56 < tkirby> kcwu++ # 獲得生力軍 (?)
+19:57 -!- yllan [~yllan@111-248-49-111.dynamic.hinet.net] has joined #g0v.tw
+19:58 < kcwu> tkirby: 能不能把 cursor 的斥力關掉? 至少鎖定時關掉... 不然想自己拉位置拉一拉又自己跑掉了
+19:59 < tkirby> hmm 可以加加看
+20:03 < kcwu> tkirby: 要怎麼加人, 不加 relation?
+20:06 < ETBlue> tuiry 的反黑箱 facebook 專頁頭像構圖 https://docs.google.com/folder/d/0B0NsS2a-Qx8Za2hTV3J4RVNQbDg/edit?docId=0B0NsS2a-Qx8ZRTUyeWsxY012SHc
+20:06 < kcwu> ETBlue's url: [0725 反黑箱 facebook 專頁 - Google 雲端硬碟]
+20:07 < tkirby> 先加人自己就會加進去了 (大概吧)
+20:07 < tkirby> 有很多地方可以再修改, 比方說.. 加上 tag, 然後把人物縮成該 tag 一個點..
+20:08 < tkirby> kcwu: btw 鎖定時的斥力我關了
+20:08 < tkirby> ?542# 也修了, 當初寫什麼自己都看不懂
+20:08 < clkao> 要案 enter 才會加人
+20:09 < tkirby> 咦, 我以為我修掉了, 竟然沒有XD
+20:10 < tkirby> hmm 看來是 cache
+20:19 -!- chihchun_afk is now known as chihchun
+20:20 -!- chihchun is now known as chihchun_afk
+20:21 -!- yllan [~yllan@111-248-49-111.dynamic.hinet.net] has quit [Quit: yllan]
+20:27 -!- howar31_ [uid12749@gateway/web/irccloud.com/x-mpgqxfbfvzykxgmj] has joined #g0v.tw
+20:29 -!- howar31_ [uid12749@gateway/web/irccloud.com/x-mpgqxfbfvzykxgmj] has quit [Client Quit]
+20:29 -!- howar31_ [uid12749@gateway/web/irccloud.com/x-chcelndcclepilhl] has joined #g0v.tw
+20:30 -!- howar31_ [uid12749@gateway/web/irccloud.com/x-chcelndcclepilhl] has quit [Client Quit]
+20:30 -!- howar31_ [uid12749@gateway/web/irccloud.com/x-xwirzcpnadolzaar] has joined #g0v.tw
+20:31 -!- howar31_ [uid12749@gateway/web/irccloud.com/x-xwirzcpnadolzaar] has quit [Client Quit]
+20:40 -!- bobchao [~bobchao@114-45-134-27.dynamic.hinet.net] has joined #g0v.tw
+20:58 -!- yllan [~yllan@111-248-49-111.dynamic.hinet.net] has joined #g0v.tw
+21:00 < hychen> clkao: 
+21:00 < hychen> pgrest_upsert 在做insert時有Error: column "0" of relation "users" does not exist
+21:01 < hychen> 這是什麼原因?
+21:03 < lijung_> 我有一個不知道好不好的提議，就是我想開一個 organization 給 student
+21:03 < lijung_> 可能較 g0v-stu?
+21:04 < lijung_> 讓學生可以比較輕鬆的在上面開專案然後玩玩看之類的
+21:05 < yllan> clkao: http://f.cl.ly/items/02310T3J173e1F0j0V3L/Interpolate.mov 結果我用的這個 interpolation method 不太適合做雨量統計，找到的代數曲面會有一些不符合雨量行為的情況，我再換別的 algorithm 試試
+21:06 -!- yllan [~yllan@111-248-49-111.dynamic.hinet.net] has quit [Quit: yllan]
+21:07 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+21:07 -!- superbil [uid12362@gateway/web/irccloud.com/x-nnoxshtxpfvaubae] has quit [Ping timeout: 257 seconds]
+21:08 -!- superbil [uid12362@gateway/web/irccloud.com/x-vvytdwvclxzjspbo] has joined #g0v.tw
+21:13 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 240 seconds]
+21:23 -!- tryggvib [~tryggvib@i-46-149-18-6.compute.is-1.greenqloud.com] has quit [Read error: Operation timed out]
+21:27 -!- tryggvib [~tryggvib@i-46-149-18-6.compute.is-1.greenqloud.com] has joined #g0v.tw
+21:28 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+21:28 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+21:29 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:35 < clkao_> hychen: 你 PUT 的 structure 長什麼樣呢？
+21:40 < clkao_> lijung_: 都可以啊，或是在個人的 github 下也沒差
+21:48 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+21:48 < hychen> clkao_: 
+21:49 < clkao_> jimmy++ # twangry (我剛開了 issue#1 :p)
+21:51 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:54 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+21:55 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:55 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has left #g0v.tw []
+22:05 -!- bobchao [~bobchao@114-45-134-27.dynamic.hinet.net] has quit [Quit: bobchao]
+22:11 -!- jlnr [~jlnr@lurado.com] has joined #g0v.tw
+22:12 < walkingice> 貼紙好帥
+22:13 -!- jlnr_ [~jlnr@lurado.com] has quit [Ping timeout: 256 seconds]
+22:26 -!- TigerHua1g is now known as TigerHuang
+22:29 < clkao_> 帥啊，老丹
+22:29 < clkao_> 他說下一版可以換成「昨天拆大埔，今天拆政府」 XD
+22:31 < clkao_> macpaul 說他會帶五百張去 coscup
+22:31 -!- kaxing [~kaxing@175.96.178.6] has quit [Ping timeout: 276 seconds]
+22:35 < ipa> https://www.facebook.com/photo.php?fbid=506012909469555&set=a.505081519562694.1073741830.503119123092267&type=1&theater&notif_t=like  這是畫好的嗎？
+22:35 < kcwu> ipa's url: [動態時報相片 | Facebook]
+22:47 -!- TigerHuang [~tiger@netflow.csie.nfu.edu.tw] has quit [Remote host closed the connection]
+22:52 -!- yllan [~yllan@36-231-140-72.dynamic-ip.hinet.net] has joined #g0v.tw
+22:53 < ETBlue> ipa: 呃不是，很明顯才畫一半....
+22:54 < clkao_> 慘遭破梗？ XD
+22:54 < ETBlue> 真的 XD
+22:55 < ETBlue> 我剛才按錯 photoshop 快速鍵結果發現一個 windows 快速鍵，Win + 和 Win - 原來是螢幕放大鏡，可以整個畫面放大 /OoO/
+22:56 < ETBlue>  不過放大以後東西都變鋸齒狀的了，很醜... 跟 mac 的完全不同 = =
+22:57 < ipa> 噗 家華可能急著要po文
+22:57 < ipa> 這叫搶先版
+22:58 < ipa> 或者folder可能要標註未完成
+23:03 < ETBlue> hychen: chiayu 會想這部分的規劃嗎 http://hack.g0v.tw/kuansim/HM8MBTIU8Pp 還是他要先弄整個大的，子專案目前都還沒動？（又，前幾天 brecht 畫的 mockups 是哪個元件也忘記惹... orz ）
+23:05 < ETBlue> hychen: 有需要先分頭進行的子專案的話，我要推坑全端設計師黃米奧進去了 XD
+23:06 < ipa> 今天最爆笑對話：hlb: 我們會不會因為寫危害政府安全的 g0v code 被逮捕？ :-/
+23:06 < ETBlue> ipa: 他剛才 facebook 訊息說了的確是趕時間的關係，我想他應該無法戒掉用 fb 丟訊息的習慣 orz
+23:07 < ETBlue> 我們的 code 明明是維護政府安全
+23:07 < ipa> @drakeguan 另外成立個錦衣衛組織, 就叫 p0lice 好了?!
+23:07 < clkao_> 就算拆了，我們一定負責原地重建? XD
+23:07 < ipa> 好笑的事後這句啊 快來人成立p0lice啊
+23:07 < ipa> 不過中文沒辦法唸（殘念）
+23:08 < ipa> ETBlue: 我已經跟家華、柏烽、還有另外兩位同學在同一個fb chat了
+23:08 -!- pm5 [~pm5@111-248-210-13.dynamic.hinet.net] has joined #g0v.tw
+23:08 < ipa> 討論po文的chat
+23:10 < au> . o O { 波零士大隊 }
+23:10 < clkao_> au: ... XD
+23:10 < ipa> ＋＋＋＋
+23:11 < ipa> XDDD
+23:11 < ipa> 魔法生物出現了
+23:14 -!- lijung_ [~lijung@36-231-181-73.dynamic-ip.hinet.net] has quit [Quit: lijung_]
+23:17 < walkingice> p0lice++  XD
+23:20 < ETBlue> 波零士 :3 ^o^
+23:21 < ETBlue> 說到還沒畫完的圖，剛才 tka_lu 說不用著色啊，印一印跟彩色筆一起發給小朋友就好了
+23:22 < clkao_> (!)
+23:22 < ipa> 驚嘆號
+23:23 -!- clkao [~clkao@192.81.215.95] has quit [Quit: leaving]
+23:23 -!- clkao_ is now known as clkao
+23:23 < walkingice> 波零士大人之 我可能不會抓你
+23:23 -!- lijung_ [~lijung@36-231-165-26.dynamic-ip.hinet.net] has joined #g0v.tw
+23:29 -!- DAINESE [~dainese@112-104-106-91.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+23:35 < tkirby> /win 1
+23:39 < hychen> ETBlue: 需要分頭進行
+23:39 < hychen> ETBlue: brecht是作書籤
+23:39 -!- lijung_ [~lijung@36-231-165-26.dynamic-ip.hinet.net] has quit [Quit: lijung_]
+23:39 < hychen> ETBlue: chayu最近再忙, 所以目前還沒產出
+23:41 -!- pm5 [~pm5@111-248-210-13.dynamic.hinet.net] has quit [Quit: pm5]
+23:42 < hychen> ETBlue: 
+23:42 < hychen> ETBlue: 人是多多益善, 因為我們都不是fulltime.
+23:48 < clkao> hychen: 結果你的 PUT 問題解了嗎？
+23:48 < hychen> clkao: 我不是put, 我是直接call pgrest_upsert
+23:49 < hychen> pgrest_upsert跟pgrest_insert差異是?
+23:49 < clkao> brecht++ # mockup
+23:49 < clkao> hychen: oh! upsert 是 update or insert, 所以會需要 primary key
+23:49 < clkao> 找不到那個 entry 就當作 insert
+23:49 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 246 seconds]
+23:49 < hychen> 所以一定要先有table?
+23:51 < clkao> 對. table vivification 是 routing 做的，所以透過 PUT 才會有 用 api 不會
+23:53 < hychen> ok
+23:54 < hychen> 因為我現在直接改pgrest, 所以正在研究用底層的東西做
+23:54 < hychen> https://github.com/g0v/kuansim-backend/commit/7e0e193c91fea3a8b8f42abe7d3c7e621bba8ee5
+23:54 < kcwu> hychen's url: [move mount-auth from cmd.ls to lib/routes.ls. · 7e0e193 · g0v/kuansim-backend · GitHub]
+23:55 < hychen> 那天firebase 爛掉我一直看不到我的table，一怒之下只好用passport 刻..  
+23:55 < clkao> ok :p 也不賴
+23:56 < hychen> 結果一下就弄完了.... 
+23:56 < clkao> hychen: 啊 不過你是直接 cp pgrest? 應該是 depend on pgrest 吧
+23:56 < hychen> 因為我有可能會想直接改更其他地方
+23:56 < hychen> 所以就直接fork
+23:57 < clkao> ok 再看怎麼清吧~
+23:57 < hychen> 之後再抽出來吧
+23:57 < hychen> 之前再研究怎麼做custom user datatype
+23:57 < clkao> 噢 pg level?
+23:57 < hychen> 不過應該要做在plv8x
+23:57 < clkao> 就直接 define view 就好了
+23:58 < clkao> 一個 table 或 view 就是一個 pg level 的 type 了。 bind 到 plv8x-exported function 他就會自動變成 json
+23:58 < hychen> 那若要檢查呢?
+23:58 < clkao> 就... insert 就檢查了呀、
+23:59 -!- chihhsin_ [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:59 < hychen> ok, 所以是在plv8x實作type system
+23:59 < hychen> 這樣太high了!
+23:59 < clkao> 很快樂吧
+23:59 < hychen> 太有趣了!

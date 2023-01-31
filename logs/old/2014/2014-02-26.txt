@@ -1,0 +1,633 @@
+--- Day changed 三  2月 26 2014
+00:01 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has quit [Quit: Closing]
+00:01 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has joined #g0v.tw
+00:05 < clkao> caasih: 要來研究一下 http://www.ng-newsletter.com/posts/angular-translate.html 嗎？ diff directive state name 應該要 i18n 一下
+00:05 < kcwu> clkao's url: [Easy global i18n angularJS language translations for your Angular app | ng-newsletter]
+00:06 < yhsiang> au: 萌典有抓 專利名詞中英對照嗎 XD
+00:06 < caasih> clkao: 喔喔喔！ i18n!
+00:06 < clkao> 只是想嫌他 module namespace 太醜... .
+00:07 -!- lyanchih_ [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has joined #g0v.tw
+00:07 -!- ddio [uid13869@gateway/web/irccloud.com/x-evtwxhmbvzryzpsb] has quit [Quit: Connection closed for inactivity]
+00:07 -!- jimyhuang [uid12523@gateway/web/irccloud.com/x-rjkkrszgcugucazo] has quit [Quit: Connection closed for inactivity]
+00:08 < yhsiang> clkao: angular.module 'ng-translate' <['pascalprecht.translate']> # flee
+00:17 -!- icman [~icman@123.240.150.80] has quit [Quit: 明天天氣晴]
+00:23 < au> yhsiang: 沒有耶，另外 http://terms.naer.edu.tw/ 好像也不錯，也許萌典松來 spike 一下
+00:23 < kcwu> au's url: [國家教育研究院雙語詞彙、學術名詞暨辭書資訊網]
+00:24 < yhsiang> XD 搶先政府開放資料 :p
+00:27 -!- cataska__ [uid12717@gateway/web/irccloud.com/x-ooqqiokycmxhtdjk] has quit [Quit: Connection closed for inactivity]
+00:56 -!- iamblue_cloud___ [uid13120@gateway/web/irccloud.com/x-hpqmwcvwhyprowvm] has joined #g0v.tw
+00:56 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+00:58 < iamblue_cloud___> 最近好常斷線
+00:58 < iamblue_cloud___> 漏掉好多訊息  Q_Q
+01:05 -!- ymow [~Adium@1-171-52-101.dynamic.hinet.net] has quit [Quit: Leaving.]
+01:06 -!- ymow [~Adium@1-171-52-101.dynamic.hinet.net] has joined #g0v.tw
+01:12 -!- AliceWei [uid12990@gateway/web/irccloud.com/x-hlxehwcohfsbweql] has quit [Quit: Connection closed for inactivity]
+01:17 -!- lyanchih_ [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+01:20 < RSChiang> 最近根本常常斷線owo
+01:23 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+01:24 -!- hlb_ is now known as hlb
+01:25 -!- alicekey [~alicekey@host-219-68-10-109.dynamic.kbtelecom.net] has joined #g0v.tw
+01:28 -!- alicekey [~alicekey@host-219-68-10-109.dynamic.kbtelecom.net] has quit [Client Quit]
+01:30 -!- t0mst0ne_ [uid13954@gateway/web/irccloud.com/x-igikfzwfqefhlbfx] has quit [Quit: Connection closed for inactivity]
+01:39 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 258 seconds]
+01:44 -!- RSChiang [~rschiang@61-230-205-55.dynamic.hinet.net] has quit []
+01:45 -!- a0kman [uid15218@gateway/web/irccloud.com/x-rafxclaojezcvdgi] has quit [Quit: Connection closed for inactivity]
+01:48 -!- ymow [~Adium@1-171-52-101.dynamic.hinet.net] has quit [Quit: Leaving.]
+02:10 -!- S3p_lin_ [slzzp@linode64.slzzp.net] has joined #g0v.tw
+02:10 -!- tkalu_ [~tka@li381-115.members.linode.com] has joined #g0v.tw
+02:10 -!- zea1_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+02:10 -!- cylee_ [b91103@linux9.csie.ntu.edu.tw] has joined #g0v.tw
+02:10 -!- evan3rd__ [~evan3rd@ec2-54-201-39-142.us-west-2.compute.amazonaws.com] has joined #g0v.tw
+02:12 -!- chihhsin_cloud [uid12810@gateway/web/irccloud.com/x-vvbvyncjsdojotgc] has joined #g0v.tw
+02:12 -!- chihhsin_cloud [uid12810@gateway/web/irccloud.com/x-vvbvyncjsdojotgc] has quit [Client Quit]
+02:12 -!- chihhsin_cloud [uid12810@gateway/web/irccloud.com/x-nhuwfhgesmyjnvvk] has joined #g0v.tw
+02:16 -!- caasih_ [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+02:20 -!- cylee [b91103@linux9.csie.ntu.edu.tw] has quit [Write error: Broken pipe]
+02:20 -!- tkalu [~tka@li381-115.members.linode.com] has quit [Write error: Broken pipe]
+02:20 -!- S3p_lin [slzzp@linode64.slzzp.net] has quit [Write error: Broken pipe]
+02:20 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Write error: Broken pipe]
+02:20 -!- zea1_bsd is now known as zeal_bsd
+02:20 -!- caasih [~caasiHuan@59.126.194.108] has quit [Write error: Broken pipe]
+02:21 -!- yyhuang [uid13204@gateway/web/irccloud.com/x-kcipxexcerhggfnc] has quit [Ping timeout: 279 seconds]
+02:21 -!- Lee1092 [uid13277@gateway/web/irccloud.com/x-hzrrniztjvnayzlr] has quit [Ping timeout: 279 seconds]
+02:21 -!- pofeng [uid13024@gateway/web/irccloud.com/x-ifklntxmeemxcile] has quit [Ping timeout: 279 seconds]
+02:21 -!- whitglint [uid15486@gateway/web/irccloud.com/x-yeoqejbihjipsndt] has quit [Ping timeout: 279 seconds]
+02:21 -!- whitglint [uid15486@gateway/web/irccloud.com/x-fqsmtisoszwyyckr] has joined #g0v.tw
+02:21 -!- yyhuang [uid13204@gateway/web/irccloud.com/x-vtscbiivmdmqiprn] has joined #g0v.tw
+02:22 -!- Lee1092 [uid13277@gateway/web/irccloud.com/x-eutryxxszgslwuly] has joined #g0v.tw
+02:22 -!- evan3rd_ [~evan3rd@ec2-54-201-39-142.us-west-2.compute.amazonaws.com] has quit [Remote host closed the connection]
+02:22 -!- pofeng [uid13024@gateway/web/irccloud.com/x-tvwubanaqcuejylc] has joined #g0v.tw
+02:27 -!- Lee1092 [uid13277@gateway/web/irccloud.com/x-eutryxxszgslwuly] has quit [Quit: Connection closed for inactivity]
+02:32 -!- Phoenixmiss [~Miss@114-41-122-210.dynamic.hinet.net] has quit [Quit: Leaving]
+02:46 -!- vanjuggler [~lukec@dev.recollect.net] has joined #g0v.tw
+02:46 < vanjuggler> hello
+02:47 < vanjuggler> We are just pre-release on new translations for ReCollect. Here is our zh-Hans - any feedback? https://recollect.net/example/coquitlam?locale=zh-Hans
+02:47 < kcwu> vanjuggler's url: [ReCollect Calendar Widget Example]
+02:48 < vanjuggler> p.s. i love g0v.tw - you all are very inspirational. I think my open data community has a lot to learn from your expeirences and leadership.
+03:03 -!- iamblue_cloud___ [uid13120@gateway/web/irccloud.com/x-hpqmwcvwhyprowvm] has quit [Ping timeout: 245 seconds]
+03:04 -!- a-tsioh [~pierre@1-162-68-209.dynamic.hinet.net] has quit [Ping timeout: 244 seconds]
+03:06 -!- iamblue_cloud___ [uid13120@gateway/web/irccloud.com/x-kjwsoacwofwdcvka] has joined #g0v.tw
+03:07  * caasih_ failed to find the repo.
+03:07 -!- caasih_ is now known as caasih
+03:12 -!- iamblue_cloud___ [uid13120@gateway/web/irccloud.com/x-kjwsoacwofwdcvka] has quit [Quit: Connection closed for inactivity]
+03:27 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+03:31 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has quit [Remote host closed the connection]
+03:31 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+04:06 -!- johnny__ [uid19482@gateway/web/irccloud.com/x-zbycppkmxfhcssut] has quit [Quit: Connection closed for inactivity]
+04:11 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Quit: Leaving]
+04:19 -!- chihhsin_cloud [uid12810@gateway/web/irccloud.com/x-nhuwfhgesmyjnvvk] has quit [Quit: Connection closed for inactivity]
+04:27 -!- juanna [~juanna@114-44-194-147.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+04:27 < gugod> vanjuggler: most of the page are in English, I only see some zh-Hans in the search box on the right hand side
+04:27 -!- juanna [~juanna@114-44-246-219.dynamic.hinet.net] has joined #g0v.tw
+04:30 < gugod> vanjuggler: but for those few pieces, I can understand them. ( However I have limited knowledge about zh-Hans )
+04:35 -!- hychen_ [uid12518@gateway/web/irccloud.com/x-cgslnhvaqywwkklk] has quit [Quit: Connection closed for inactivity]
+04:48 -!- dkwhuang_ [uid15317@gateway/web/irccloud.com/x-pqwsdublkcvoalru] has quit [Quit: Connection closed for inactivity]
+05:01 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+05:01 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+05:02 -!- whitglint [uid15486@gateway/web/irccloud.com/x-fqsmtisoszwyyckr] has quit [Quit: Connection closed for inactivity]
+05:09 -!- Goddamn [~goddamn@218-161-44-5.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+05:09 -!- Supaplextw [~Lucky@114-36-243-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:09 -!- Supaplextw [~Lucky@114-36-247-91.dynamic.hinet.net] has joined #g0v.tw
+05:10 -!- Goddamn [~goddamn@218-161-44-5.HINET-IP.hinet.net] has joined #g0v.tw
+05:23 < vanjuggler> gugod: yeah, the frame is all our "sales content" the little widget is what residents use, it is what we translate.
+05:24 < vanjuggler> thanks :)
+05:27 -!- yyhuang [uid13204@gateway/web/irccloud.com/x-vtscbiivmdmqiprn] has quit [Quit: Connection closed for inactivity]
+05:36 -!- mno2 [~mno2@42.60.173.63] has joined #g0v.tw
+06:22 -!- mno2 [~mno2@42.60.173.63] has quit [Quit: mno2]
+07:14 -!- pofeng [uid13024@gateway/web/irccloud.com/x-tvwubanaqcuejylc] has quit [Quit: Connection closed for inactivity]
+07:17 -!- kiang [uid25350@gateway/web/irccloud.com/x-zfixbazpjpdqjgoj] has joined #g0v.tw
+07:44 -!- aeil [~Adium@111-251-184-81.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+07:51 -!- lcamel [~lcamel@114-45-57-85.dynamic.hinet.net] has joined #g0v.tw
+07:51 -!- ymow [~Adium@1-171-56-124.dynamic.hinet.net] has joined #g0v.tw
+08:15 -!- pofeng [uid13024@gateway/web/irccloud.com/x-denpkfcecwkmnrib] has joined #g0v.tw
+08:18 < clkaoud> vanjuggler: !
+08:23 -!- lcamel [~lcamel@114-45-57-85.dynamic.hinet.net] has quit [Remote host closed the connection]
+08:27 -!- mno2 [~mno2@42.60.173.63] has joined #g0v.tw
+08:41 -!- hychen_ [uid12518@gateway/web/irccloud.com/x-ulbdocfzibympdfj] has joined #g0v.tw
+08:51 -!- Lee1092 [uid13277@gateway/web/irccloud.com/x-qkzichzgxgtoregm] has joined #g0v.tw
+08:52 -!- aeil [~Adium@61-222-220-134.HINET-IP.hinet.net] has joined #g0v.tw
+08:52 -!- tpda [uid26257@gateway/web/irccloud.com/x-amkpxghahmbvxabs] has joined #g0v.tw
+08:57 -!- Luxun [uid13676@gateway/web/irccloud.com/x-wqwygsxfztqsopxo] has joined #g0v.tw
+09:06 -!- wolfenstein [~Thunderbi@123.51.216.88] has joined #g0v.tw
+09:10 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+09:11 -!- pm5cloud___ [uid13333@gateway/web/irccloud.com/x-lmpylwatusqxzwui] has joined #g0v.tw
+09:17 -!- lcamel [~lcamel@nat/yahoo/x-emubdsrrwxwryuwd] has joined #g0v.tw
+09:19 -!- jimyhuang [uid12523@gateway/web/irccloud.com/x-qxncwjltekptiqlh] has joined #g0v.tw
+09:21 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Quit: leaving]
+09:38 < kiang> https://scrollback.io/g0v-tw/ 這個拿來看歷史討論好像舒服一點
+09:38 < kcwu> kiang's url: [G0v Tw on scrollback]
+09:53 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+10:00 -!- sb-idemor [722BA8D2@conference/jsconf/x-upasckvpubxrrmbr] has joined #g0v.tw
+10:00 < sb-idemor> kiang: 可是這個有時候會漏訊息，或者無預警斷線(導致無法發言或更新訊息)，還是建議開著IRC以及LOGBOT互相看比較好
+10:01 < kiang> sb-idemor++, 那還是同時看 http://logbot.g0v.tw/channel/g0v.tw/ 好了 XD
+10:01 < kiang> scrollback 的介面比較舒服就是了 XD
+10:01 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+10:02 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Client Quit]
+10:02 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+10:03 < sb-idemor> kiang: 而且Beta版會吃CPU使用量(在作用中分頁時)，所以我都用old版本的scrollback
+10:03 -!- ddio [uid13869@gateway/web/irccloud.com/x-ouvrlzwjbvrffhna] has joined #g0v.tw
+10:04 < sb-idemor> 不過說真的，你現在用的版本(Beta版)介面比較好看
+10:05 -!- lcamel [~lcamel@nat/yahoo/x-emubdsrrwxwryuwd] has quit [Remote host closed the connection]
+10:06 < clkao> scrollback 是 open source 的.. 可以送 patch 給他 :p
+10:07 < kiang> clkao: 怎麼覺得到處都有坑啊 XD
+10:08 -!- lcamel [~lcamel@nat/yahoo/x-aebpukhfqvftfyli] has joined #g0v.tw
+10:09 < clkao> 真的
+10:10 < sb-idemor> LOGBOT也有坑，有時候瀏覽(重讀或者讀其他日期)會收到503。還有最尾巴的Powered by年份還沒改。
+10:11 < kiang> sb-idemor: 送個 PR 吧（化身挖坑獸）
+10:14 < sb-idemor> 挖坑獸或許還有分身，例如：挖坑勇者、挖坑高手、挖坑達人、挖坑...
+10:21 < kiang> https://github.com/g0v/Logbot/issues/4 挖坑完成
+10:21 < kcwu> kiang's url: [日期下拉選單只有最近幾天 · Issue #4 · g0v/Logbot · GitHub]
+10:30 -!- ymow [~Adium@1-171-56-124.dynamic.hinet.net] has quit [Quit: Leaving.]
+10:31 -!- ymow [~Adium@1-171-56-124.dynamic.hinet.net] has joined #g0v.tw
+10:35 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has quit [Ping timeout: 244 seconds]
+10:36 -!- douplus [uid14155@gateway/web/irccloud.com/x-swuxisjsmvybnfbs] has joined #g0v.tw
+10:38 -!- ballII [uid22246@gateway/web/irccloud.com/x-vuktxxnwzyouapgs] has joined #g0v.tw
+10:41 < isacloud_>  
+10:41 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+10:42 < isacloud_> oops sorry
+10:48 -!- Michael [3b7d4597@gateway/web/freenode/ip.59.125.69.151] has joined #g0v.tw
+10:48 -!- Michael is now known as Guest6742
+10:53 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+10:53 -!- Guest6742 [3b7d4597@gateway/web/freenode/ip.59.125.69.151] has quit [Quit: Page closed]
+11:00 < yhsiang> ronnywang: 來去跟fb索取授權費用 # 專頁小助手 :p
+11:00 < yhsiang> "小助手" XD
+11:02 -!- nchild [uid16194@gateway/web/irccloud.com/x-iwziuqswaatidshk] has joined #g0v.tw
+11:04  * hcchien 換上 'g0v' enter
+11:05 -!- mutolisp [~mutolisp@219.85.178.55] has joined #g0v.tw
+11:10 -!- johnny__ [uid19482@gateway/web/irccloud.com/x-xsqoitfoqpfqkdcu] has joined #g0v.tw
+11:16 -!- lcamel [~lcamel@nat/yahoo/x-aebpukhfqvftfyli] has quit [Read error: Connection reset by peer]
+11:16 -!- lcamel_ [~lcamel@nat/yahoo/x-bvxergucgzirirkp] has joined #g0v.tw
+11:17 -!- pm5cloud___ [uid13333@gateway/web/irccloud.com/x-lmpylwatusqxzwui] has quit [Quit: Connection closed for inactivity]
+11:22 -!- lyanchih [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has joined #g0v.tw
+11:22 < hcchien> wow, 還有慈濟的老師要加入萌典囉
+11:25 -!- scchen [cb484b92@gateway/web/cgi-irc/kiwiirc.com/ip.203.72.75.146] has joined #g0v.tw
+11:29 < tkirby> 把 logbot 的 log 爬到 https://github.com/zbryikt/Logbot/tree/master/utils/crawler 了
+11:29 < kcwu> tkirby's url: [Logbot/utils/crawler at master · zbryikt/Logbot · GitHub]
+11:29 < clkao> 為何要自爬 XD
+11:29 < tkirby> 可以做分析XD
+11:34 < clkao> 不是 dump 一下 redis 就好 :p
+11:35 -!- sc_chen [uid26266@gateway/web/irccloud.com/x-lbawmdnrrznmqzbj] has joined #g0v.tw
+11:36 < tkirby> 也是啦..XD 應該直接在 logbot 裡面加個 api 開出來 
+11:36 -!- scchen [cb484b92@gateway/web/cgi-irc/kiwiirc.com/ip.203.72.75.146] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+11:37 -!- Lee1092 [uid13277@gateway/web/irccloud.com/x-qkzichzgxgtoregm] has quit [Quit: Connection closed for inactivity]
+11:37 -!- FourDollars [uid12544@gateway/web/irccloud.com/x-qwsmcvbmtxnzbppm] has joined #g0v.tw
+11:42 < ipa> 我想要 2012 年 10 月左右開始的 g0v log， kcwu 有嗎？還是 tkirby 有呢？
+11:42 < tkirby> kcwu 可能會有?
+11:50 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+11:52 -!- kcliu [uid12402@gateway/web/irccloud.com/x-beeiqutuvohqwiil] has joined #g0v.tw
+11:54  * walkingice 想要每天 git pull 讀 log XD
+11:55 < tkirby> newspaper by git pull... xDD
+11:58 < johnny__> walkingice: sounds great XD
+11:59 < johnny__> tkirby: git pull branch 國外大事
+12:00 < clkao> 宅翻了
+12:01 < tkirby> 可以幫 logbot 加個 json endpoint & dumpdb.. 看誰對 ruby 比較熟來衝一下? 在那之前可以用 crawler 自爬.. # 開 issue 了, http://goo.gl/Kl7lJg & http://goo.gl/D1qEfD
+12:01 < kcwu> tkirby's url (2/2): [create API endpoint for daily log · Issue #5 · g0v/Logbot · GitHub]
+12:01 < kcwu> tkirby's url (1/2): [create endpoint for downloading all data · Issue #6 · g0v/Logbot · GitHub]
+12:01 < tkirby> johnny__: 聽起來很可以當零傳媒的發展方向啊.. XD
+12:02 < clkao> http://thehousenews.com/budget2014-2/ !!! 成功輸出！
+12:02 < kcwu> ipa: 我從 2012/11/15 開始. 要更早的可以問問 V1ctor_,opop,shr_,clkao,mhsin
+12:02 < kcwu> clkao's url: [互動圖解預算案系列二：政府點洗4000億 | House News 主場新聞]
+12:04 < ipa> kcwu: 好啊，那就先看你這邊的吧，是什麼檔案？
+12:04 < ipa> 我想看第零次黑客松前的一些討論
+12:05 < tkirby> kcwu: 找個地方丟一下吧 XD
+12:06 -!- ymow_ [uid26268@gateway/web/irccloud.com/x-rcbnlfrhryifhnon] has joined #g0v.tw
+12:07 < kcwu> ipa,tkirby: see msg
+12:07  * kcwu &
+12:07 -!- ymow__ [uid26268@gateway/web/irccloud.com/x-zpdcwgaesetsxxvg] has joined #g0v.tw
+12:08 < clkao> kcwu 最近好忙~
+12:09 -!- wolfenstein [~Thunderbi@123.51.216.88] has quit [Ping timeout: 264 seconds]
+12:11 -!- Lee1092 [uid13277@gateway/web/irccloud.com/x-ihulckkbjeiflkmc] has joined #g0v.tw
+12:11 < tkirby> 原來 shr_ 第二天就在 channel 裡了, 到現在還沒參加過黑客松... (指)
+12:11 < tkirby> shr_: 都快兩年啦~
+12:13 -!- chihchun_afk is now known as chihchun
+12:14 < clkao> 真的!
+12:14  * hcchien 推坑 pct 中
+12:15 -!- fntsrlike [uid16354@gateway/web/irccloud.com/x-gpguwwjoelcvjfcc] has quit [Quit: Connection closed for inactivity]
+12:15 < tkirby> 推了 pct 那 eddie 會跟進嗎 XD
+12:16 < hcchien> eddie 是!?
+12:16 < tkirby> 咦  高見龍?
+12:16 < hcchien> 喔喔
+12:16 < hcchien> 我還不知道他叫 eddie   XD
+12:17 < hcchien> 推坑失敗
+12:17 < tkirby> 一時我也不知道怎麼 refer 他, 忽然發現他的網址是 blog.eddie.com.tw.. xd
+12:18 < hcchien> tkirby: http://osdc.4pt.tw/speakers.html
+12:18 < kcwu> hcchien's url: [OSDC.TW 2014 — Speakers]
+12:18 < hcchien> 沒照片
+12:19 < clkao> tkirby: 另一個 clkao
+12:19 < hcchien> 或是要用 twiiter/facebook avatar
+12:19 < tkirby> clkao: 嘎?
+12:19 < tkirby> hcchien: 我之前有寄給你說, 還是我要自己送 PR?
+12:20 < hcchien> 其實 summit 網站 evenwu 不知道有沒有熱血支援
+12:20 < hcchien> tkirby: 咦，有嗎   # 失意
+12:20 < tkirby> hcchien: 在附檔中的 bio.jpg  XD
+12:20 -!- ymow__ [uid26268@gateway/web/irccloud.com/x-zpdcwgaesetsxxvg] has left #g0v.tw []
+12:21 < vanjuggler> clkao: hello
+12:21 < hcchien> 看到了，請 pct 補上
+12:22 < tkirby> clkao: 是指推坑嗎 XD
+12:22 < clkao> eddie
+12:23 -!- ymow__ [uid26268@gateway/web/irccloud.com/x-zpdcwgaesetsxxvg] has joined #g0v.tw
+12:23 < tkirby> hmm
+12:23 < tkirby>  想起來了XD
+12:24 < johnny__> 上過eddie的vim教學
+12:24 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+12:25 < vanjuggler> i'm trying to share g0v.tw with open data people in canada.
+12:25 < vanjuggler> the focus here is more on OD rather than g0v
+12:26 < clkao> vanjuggler: awesome! i'll be in ottawa for pgcon... probably a bit far from you though
+12:27 < vanjuggler> yes. pgcon++ though!
+12:27 < vanjuggler> there are some good OD hackers there
+12:27 < vanjuggler> like edwardog
+12:27 < hcchien> tkirby: pct 問你說可以用 twitter avatar 嗎
+12:30 -!- a-tsioh [~pierre@1-162-68-209.dynamic.hinet.net] has joined #g0v.tw
+12:32 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+12:32 < clkao> AceLan!
+12:32 < poga> caa51: fixed on master, pull plz
+12:33 < AceLan> clkao: @@?
+12:33 < tkirby> hcchien: 可是那個是 kaby, 那是任天堂的版權物, 這樣好嗎
+12:34 < tkirby> hcchien: 我個人是可以
+12:35 < hcchien> 噗，那我還是上傳到我的機器好了   lol
+12:36 < tkirby> XD
+12:40 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+12:47 -!- lcamel [~lcamel@2406:2000:efa5:9:e1f8:2e9f:823c:324f] has joined #g0v.tw
+12:47 -!- lcamel_ [~lcamel@nat/yahoo/x-bvxergucgzirirkp] has quit [Read error: Connection reset by peer]
+12:49 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+12:59 -!- douplus [uid14155@gateway/web/irccloud.com/x-swuxisjsmvybnfbs] has quit [Quit: Connection closed for inactivity]
+13:06 -!- ballII [uid22246@gateway/web/irccloud.com/x-vuktxxnwzyouapgs] has quit [Quit: Connection closed for inactivity]
+13:08 -!- macpaul [~macpaul@162.248.8.104] has quit [Ping timeout: 264 seconds]
+13:09 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+13:10 -!- AceLan_ [~Chia-Lin@175.41.48.77] has quit [Ping timeout: 272 seconds]
+13:17 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+13:27 -!- jimyhuang [uid12523@gateway/web/irccloud.com/x-qxncwjltekptiqlh] has quit [Quit: Connection closed for inactivity]
+13:29 < ETBlue> 科比的 avatar 不是這個嗎 https://docs.google.com/file/d/0B0NsS2a-Qx8ZVmpLMnBfbVJETWc/edit
+13:29 < kcwu> ETBlue's url: [TREEEE.jpg - Google 雲端硬碟]
+13:31 -!- a-tsioh [~pierre@1-162-68-209.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+13:39 < hcchien> 看來 pct 已經把圖弄上去了
+13:39 < hcchien> 等等就會上線了   # 趕在報名前一刻
+13:44 -!- lyanchih [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has quit [Quit: lyanchih]
+13:48 -!- lyanchih_ [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has joined #g0v.tw
+13:49 -!- pm5 [~pm5@1-161-51-119.dynamic.hinet.net] has joined #g0v.tw
+13:52 -!- AceLan_ [~Chia-Lin@175.41.48.77] has joined #g0v.tw
+13:54 -!- pm5 [~pm5@1-161-51-119.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+14:04 -!- pm5cloud___ [uid13333@gateway/web/irccloud.com/x-iygopmegxtfgyntt] has joined #g0v.tw
+14:05 -!- whitglint [uid15486@gateway/web/irccloud.com/x-zoqnffqvzcspkkcw] has joined #g0v.tw
+14:10 < poga> 動民主松是在92號7樓嗎，按電鈴沒回應
+14:10 < poga> 原來是去吃飯了 XD
+14:10 -!- lyanchih_ [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has quit [Quit: lyanchih_]
+14:12 -!- johnny__ is now known as johnny
+14:12 -!- johnny is now known as Guest38485
+14:12 -!- Guest38485 is now known as johnny__
+14:14 -!- pofeng [uid13024@gateway/web/irccloud.com/x-denpkfcecwkmnrib] has quit [Quit: Connection closed for inactivity]
+14:17 -!- Luxun [uid13676@gateway/web/irccloud.com/x-wqwygsxfztqsopxo] has quit [Quit: Connection closed for inactivity]
+14:19 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Ping timeout: 246 seconds]
+14:20 -!- lyanchih [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has joined #g0v.tw
+14:25 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has quit [Remote host closed the connection]
+14:25 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+14:25 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has quit [Remote host closed the connection]
+14:26 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+14:26 -!- a-tsioh [~pierre@1-171-51-234.dynamic.hinet.net] has joined #g0v.tw
+14:27 -!- iamblue_cloud___ [uid13120@gateway/web/irccloud.com/x-jehsrptpukbzopve] has joined #g0v.tw
+14:27 < iamblue_cloud___> hi
+14:27 < iamblue_cloud___> 想請教一個livescript test小問題@@
+14:28 < iamblue_cloud___> it  'blabla..', !->
+14:29 < iamblue_cloud___> 那個it怎麼讓它不會變成特定的編譯東西@@? 我看他都會把外面的describe 的function(it)多編進it 
+14:30 < au> (,) ->
+14:30 < au> ``it``
+14:30 < au> 以上兩種解法
+14:32 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+14:34 -!- pm5 [~pm5@1-171-51-234.dynamic.hinet.net] has joined #g0v.tw
+14:38 < iamblue_cloud___> 帥
+14:38 < iamblue_cloud___> 感謝au大人XD
+14:38 < au> np :)
+14:38 < iamblue_cloud___> 順便問個編譯問題XD
+14:39 < iamblue_cloud___> 有辦法讓livescript 編譯時不要編譯這個開頭和結尾嗎 ～ (function(){ }).call(this);
+14:40 < au> lsc -b
+14:41 < yhsiang> iamblue_cloud___: api 請用bare: true
+14:42 < iamblue_cloud___> 原來如此  m(_._)m
+14:42 < iamblue_cloud___> 感謝兩位大人
+14:43 < yhsiang> iamblue_cloud___: 別這麼客氣 神人blue QQ
+14:43 < tkirby> yo
+14:44 -!- misgod [~sam@210.61.122.2] has joined #g0v.tw
+14:45 < iamblue_cloud___> ......Orz  
+14:52 -!- buganini [~buganini@61-221-51-22.HINET-IP.hinet.net] has quit [Write error: Broken pipe]
+14:53 -!- buganini [~buganini@61.221.51.22] has joined #g0v.tw
+14:59 < a-tsioh> http://www.framindmap.org/
+14:59 < kcwu> a-tsioh's url: [Framindmap]
+15:01 -!- sc_chem [cb484b92@gateway/web/cgi-irc/kiwiirc.com/ip.203.72.75.146] has joined #g0v.tw
+15:01 < ETBlue> http://www.lifehack.org/articles/technology/11-free-mind-mapping-applications-web-services.html
+15:01 < kcwu> ETBlue's url: [11 Free Mind Mapping Applications & Web Services]
+15:02 < a-tsioh> http://drichard.org/mindmaps/
+15:02 -!- douplus [uid14155@gateway/web/irccloud.com/x-fhavavbownmqhukx] has joined #g0v.tw
+15:03 < WeiHung> poga: 不好意思剛去買飲料XD
+15:03 < ETBlue> https://bubbl.us/ , http://mind42.com/public/5a7b6722-7728-4bf1-abf7-791110d98c46 , https://app.wisemapping.com/c/maps/3/try
+15:03 < kcwu> ETBlue's url (2/3): [Movie things that never happen in real life - Mind42: Free online mind mapping software]
+15:03 < kcwu> ETBlue's url (1/3): [bubbl.us | brainstorm and mind map online]
+15:13 -!- lyanchih [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has quit [Quit: lyanchih]
+15:15 -!- lyanchih_ [~lyanchih@202.39.219.19] has joined #g0v.tw
+15:31 < ETBlue> https://g0v.hackpad.com/-2.0-app-a.k.a.-1.337-iBRhXaRlfZh
+15:31 < kcwu> ETBlue's url: [動民主 2.0 app 化 a.k.a. 動民主 1.337 - g0v.hackpad.com]
+15:34 < WeiHung> 請問在動民主的大家覺得場地還ok嗎
+15:35 < WeiHung> 柳林問的XD
+15:36 < kiang> https://groups.google.com/forum/#!topic/g0v-general/o3C__mJQvlA - 邀請大家參加下週一（3/3）國會調查權公聽會（尤美女國會辦公室與田秋堇國會辦公室主辦）
+15:36 < kcwu> kiang's url: [Google 網上論壇]
+15:48 < ETBlue> 文化基金會章程範例（有兩個） https://g0v.hackpad.com/UaUwDe36GdM
+15:48 < kcwu> ETBlue's url: [台新銀行文化藝術基金會捐助章程 - g0v.hackpad.com]
+15:49 < ETBlue> WeiHung: 很爽啊 XD
+15:54 -!- Netsplit *.net <-> *.split quits: buganini
+15:56 < ipa> 好需要停車app 
+15:56 < ipa> 停超遠der
+15:56 < tkirby> der
+15:56 -!- nchild [uid16194@gateway/web/irccloud.com/x-iwziuqswaatidshk] has quit [Quit: Connection closed for inactivity]
+16:05 -!- pm5 [~pm5@1-171-51-234.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+16:06 -!- pm5 [~pm5@101.8.35.126] has joined #g0v.tw
+16:09 < hcchien> 再 2 mins 開始報名 osdc
+16:10 < ETBlue> ipa: https://github.com/g0v/don-press/blob/gh-pages/views/user_story.md
+16:10 < kcwu> ETBlue's url: [don-press/views/user_story.md at gh-pages · g0v/don-press · GitHub]
+16:13 < hcchien> 報名成長速度還真快
+16:13 < au> 310 人
+16:13 < hcchien> 布丁報第一個，這一定有內幕
+16:14 < clkao> https://kktix.com/events/osdctw2014/registrations/new
+16:14 < au> 報名時間可能是 1970/01/01
+16:14 < kcwu> clkao's url: [OSDC.TW 2014 報名 - KKTIX]
+16:15 < yhsiang> 沒有付款方式阿 ...
+16:15 < yhsiang> 但是我點了確認繳費那個button orz
+16:15 < hcchien> 剛剛布丁幫忙開了   XD
+16:15 < walkingice> 付款方式開了  (抖)
+16:16 < hcchien> 增加速度果然變慢了   hahaha
+16:16 < au> 一瞬間破 400 人
+16:17 -!- lyanchih_ [~lyanchih@202.39.219.19] has quit [Quit: lyanchih_]
+16:17 -!- pm5cloud___ [uid13333@gateway/web/irccloud.com/x-iygopmegxtfgyntt] has quit [Quit: Connection closed for inactivity]
+16:17 < hcchien> 結果 405 就卡住了   
+16:18 < yhsiang> tkirby: there?
+16:18 < au> 這次上限是幾人，該不會也是 411?
+16:18 < yhsiang> tkirby: how do you deal with d3.svg.axis() and angular ?
+16:20 < hcchien> 450 
+16:20 -!- andyisman [uid15105@gateway/web/irccloud.com/x-hckwccczalxnoova] has joined #g0v.tw
+16:21 < andyisman> hi
+16:22 -!- wonder_ [uid14149@gateway/web/irccloud.com/x-fixivuofolyyupgi] has joined #g0v.tw
+16:22 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+16:23 < hcchien> hi
+16:24 < chihchun> 沒報到...(抱頭！)
+16:24 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 244 seconds]
+16:25 < hcchien> 應該還沒額滿吧？
+16:25 < johnny__> 第一次報名conf
+16:25 < hlb> hcchien: 據說... 某人寫的可能是照 uid 排，而不是照報名時間排...
+16:26 < andyisman> 報名什麼呀@@
+16:26 < hcchien> hlb: 不能報了？
+16:26 < hcchien> andyisman: http://osdc.kktix.cc/events/osdctw2014
+16:26 < kcwu> hcchien's url: [OSDC.TW 2014]
+16:26 < au> 已經滿了，但是 15 分鐘之後會有新名額?
+16:26 < johnny__> 荷蘭鼓勵人民hack空屋  http://anntw.com/articles/20140225-5XAE#comment-1261016531
+16:26 < kcwu> johnny__'s url: [住宅過度閒置 佔屋運動盛行 - 台灣醒報 Awakening News Networks]
+16:26 < au> (=沒有填完註冊單的人)
+16:26 < chihchun> 沒滿阿！
+16:26 -!- lyanchih_ [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has joined #g0v.tw
+16:27 < chihchun> 首頁寫 413 人，可是點進去是「 已售完]
+16:27 < hcchien> chihchun: 因為有人佔了 tty  lol
+16:27 < caa51> poga: 謝謝，等等開電腦 pull
+16:27 < chihchun> 囧
+16:27  * chihchun 變成 F5 機器人中
+16:27 < clkao> 佔位 XD
+16:28  * hcchien kick clkao 
+16:29 < clkao> 不是我
+16:29 < clkao> 我是說有佔位這件事情
+16:30 < hcchien> 對啊，新機制
+16:30 < hcchien> OSDC 先試用
+16:30 < chihchun> 喔喔
+16:31 -!- Luxun [uid13676@gateway/web/irccloud.com/x-hpciylfdceuniyfy] has joined #g0v.tw
+16:34 < hcchien> 不過這樣的問題是，要是有人不知道，以為沒票了就走了？
+16:35 -!- hychen_ [uid12518@gateway/web/irccloud.com/x-ulbdocfzibympdfj] has quit [Quit: Connection closed for inactivity]
+16:35 < tkirby> yhsiang: 還沒做過.. 自幹?
+16:35 < au> 如果大部份佔位的人都會寫完資料，那確實等於是沒票了...
+16:35 < tkirby> ETBlue: http://zbryikt.github.io/Logbot/server/index.html  # 下線 candidate
+16:35 < kcwu> tkirby's url: [template]
+16:37 < yhsiang> tkirby: hmm 可能要自幹 不然d3都要傳 selection進去耶
+16:38 < hcchien> 所以 chihchun 可以報了嗎
+16:39 < chihchun> hcchien: 不行阿。報名數字還在慢慢增加耶
+16:39 < chihchun> hcchien: 我一直看到「已售完」。
+16:40 < tkirby> yhsiang: yeah.. 他裡面有建立 node 的 code, 那就跟 angular 衝突了
+16:40 -!- jimyhuang [uid12523@gateway/web/irccloud.com/x-xgeybjxyhknrrweh] has joined #g0v.tw
+16:42 < jimyhuang> 翹班前往沃草
+16:42 < clkao> jimyhuang: !!
+16:42 < chihchun> osdc 報名人數 440 了。XD
+16:43 -!- sc_chem [cb484b92@gateway/web/cgi-irc/kiwiirc.com/ip.203.72.75.146] has left #g0v.tw []
+16:44 < yhsiang> tkirby: hmm ..看來真的要自己搞一個ng-svg-axis ... 
+16:45 < tkirby> yhsiang: 衝!
+16:45 < clkao> yhsiang: 不是要外包給 tkirby
+16:45 < yhsiang> clkao: 這是line chart Q_Q
+16:46 -!- Seiken [722666d9@gateway/web/cgi-irc/kiwiirc.com/ip.114.38.102.217] has joined #g0v.tw
+16:56 -!- caasih [~caasiHuan@61-223-79-100.dynamic.hinet.net] has joined #g0v.tw
+16:57 -!- fntsrlike [uid16354@gateway/web/irccloud.com/x-kclkvouxuirqzgrd] has joined #g0v.tw
+17:00 < caa51> tkirby: 下線？
+17:02 < caa51> poga++ # https://github.com/g0v/Logbot/pull/7
+17:02 < kcwu> caa51's url: [support /channel/:channel/:date/json by poga · Pull Request #7 · g0v/Logbot · GitHub]
+17:04 < ipa> ttcat_: http://hack.g0v.tw/don-democracy/JouO9fcJvnN
+17:05 -!- buganini [~buganini@61-221-51-22.HINET-IP.hinet.net] has joined #g0v.tw
+17:07 -!- Lee1092 [uid13277@gateway/web/irccloud.com/x-ihulckkbjeiflkmc] has quit [Quit: Connection closed for inactivity]
+17:07 -!- Phoenixmiss [~Miss@114-38-96-42.dynamic.hinet.net] has joined #g0v.tw
+17:07 -!- g0v_tw_logbot_ [~cinch@li630-203.members.linode.com] has quit [Remote host closed the connection]
+17:08 -!- g0v_tw_logbot [~cinch@li630-203.members.linode.com] has joined #g0v.tw
+17:08 < au> caa51++ poga++ # http://logbot.g0v.tw/channel/g0v.tw/today/json 
+17:11 < clkao> woot
+17:11 < clkao> 這坑也填的太快
+17:11 -!- a0kman [uid15218@gateway/web/irccloud.com/x-iwzawnwrirrynbrv] has joined #g0v.tw
+17:11 < a0kman> 斷線QAQ
+17:12 < ETBlue> https://github.com/g0v/don-press/blob/gh-pages/views/user_story.md
+17:12 < kcwu> ETBlue's url: [don-press/views/user_story.md at gh-pages · g0v/don-press · GitHub]
+17:12 -!- iamblue_cloud___ [uid13120@gateway/web/irccloud.com/x-jehsrptpukbzopve] has quit [Quit: Connection closed for inactivity]
+17:15 < bobchao___> hcchien: 提一下，如果遇到報名系統問題的客服信可以直接轉給 contact@kktix.com 我們會高速處理
+17:16 < bobchao___> 感謝
+17:16 < clkao> 高速！
+17:16 < bobchao___> 聽起來就比儘速有誠意很多有沒有！
+17:17 < clkao> 光速
+17:17 < hcchien> bobchao___: 有，剛剛布丁跟我說了，感謝
+17:20 < hcchien> 未繳費比例還滿高的
+17:21 -!- Lee1092 [uid13277@gateway/web/irccloud.com/x-ojalwsoiciopwwrc] has joined #g0v.tw
+17:22 < caasih> 我只按了綠綠按鈕（遮臉
+17:25 -!- Bressonlee [722d8cb5@gateway/web/cgi-irc/kiwiirc.com/ip.114.45.140.181] has joined #g0v.tw
+17:25 -!- Bressonlee [722d8cb5@gateway/web/cgi-irc/kiwiirc.com/ip.114.45.140.181] has quit [Client Quit]
+17:26 < Lee1092> tkirby ++  感覺是之前廣宣團講的 irc 過濾器 XD # http://zbryikt.github.io/Logbot/server/index.html
+17:26 < kcwu> Lee1092's url: [template]
+17:30 < Lee1092> poga ++  火速填坑
+17:31 -!- BINGO [8c740770@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.7.112] has joined #g0v.tw
+17:32 -!- BINGO [8c740770@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.7.112] has quit [Client Quit]
+17:33 < ipa> ttcat_: http://more.handlino.com/
+17:33 < kcwu> ipa's url: [MoreText.js: 一用就愛上的中文假文產生器]
+17:35 < bertwang__> 假文跟最近的SEO投機站好用
+17:35 < clkao> env.g0v.tw 徵 travis auto deploy script, 可以參考 hack.g0v.tw 的 .travis.yml
+17:36 < johnny__> 請問 萌典的全文搜索和highlight是用什麼技術
+17:37 < au> johnny__: https://www.google.com/cse/
+17:37 < kcwu> au's url: [Custom Search Engine]
+17:38 -!- buganini [~buganini@61-221-51-22.HINET-IP.hinet.net] has quit [Ping timeout: 250 seconds]
+17:38 < johnny__> au: thanks!
+17:39 < au> np :)
+17:42 < ipa> jimyhuang: https://github.com/ipaaa/semantic_zoo
+17:42 < kcwu> ipa's url: [ipaaa/semantic_zoo · GitHub]
+17:49 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has quit [Ping timeout: 246 seconds]
+17:50 < hcchien> hlb: 好奇怪啊，人數就停在 449 了
+17:51 -!- buganini [~buganini@61-221-51-22.HINET-IP.hinet.net] has joined #g0v.tw
+17:53 < hcchien> clkao: 10/4, 11/8, 11/15, 11/22 選一天？
+17:55 -!- JIELite [8c74075a@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.7.90] has joined #g0v.tw
+17:58 -!- misgod [~sam@210.61.122.2] has quit [Quit: Konversation terminated!]
+18:01 -!- JIELite [8c74075a@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.7.90] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+18:02 < clkao> hcchien: 你決定吧 XD
+18:02 < a0kman> 明日凌晨來去新加坡兒!
+18:03 < hcchien> clkao: 我是怕你有其他行程啊
+18:03 < a0kman> 下次小松弄這個好了(?)  http://www.ettoday.net/news/20140226/329116.htm
+18:03 < kcwu> a0kman's url: [「家庭式鼎王」每人只要40元　康寶官網公布麻辣鍋食譜 | ETtoday生活新聞 | ETtoday 新聞雲]
+18:03 -GitHub31:#g0v.tw- [twlyparser] clkao pushed 1 new commit to master: https://github.com/g0v/twlyparser/commit/614887613cf881228527e8058c219ce8325df862
+18:03 -GitHub31:#g0v.tw- twlyparser/master 6148876 Chia-liang Kao: Update ivod live status
+18:04 < hcchien> 或是 au 年底會不會又跑去 fr   lol
+18:04 -!- pm5 [~pm5@101.8.35.126] has quit [Read error: Connection reset by peer]
+18:05 < au> 我 9/21 ~ 10/11 在 .eu
+18:06 < hcchien> au 最近相當頻繁的搭飛機啊
+18:06 < au> 已經儘量改搭 eurostar 了 (咦)
+18:06 < hcchien> lol
+18:07 < a0kman> au!au!au!au!au!au!au!au!
+18:07 < yhsiang> aurostar ~
+18:08 -!- a-tsioh [~pierre@1-171-51-234.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+18:09 < ronnywang> 呃，剛剛才注意到 osdc 報名.. GG 了
+18:09 < hcchien> ronnywang: 不用擔心，不久後就會有名額釋出了
+18:10 < ronnywang> 要跟台鐵搶票一樣了...
+18:10 -!- lcamel [~lcamel@2406:2000:efa5:9:e1f8:2e9f:823c:324f] has quit [Remote host closed the connection]
+18:10 < ronnywang> 來拿追蹤各縣市勞工局有沒有更新違反勞基法名單的 script 來檢查一下有沒有名額釋出 XD
+18:10 -!- lcamel [~lcamel@2406:2000:efa5:5:bd75:1d3f:b468:3286] has joined #g0v.tw
+18:13 < hcchien> bobchao___: 我有收到一些有問題的，先轉給你們嗎
+18:13 < bobchao___> hcchien: 是的，麻煩你了
+18:14 -!- wolfenstein [~Thunderbi@60-250-73-121.HINET-IP.hinet.net] has joined #g0v.tw
+18:14 -!- sb-idemor [722BA8D2@conference/jsconf/x-upasckvpubxrrmbr] has left #g0v.tw []
+18:19 -!- caasih [~caasiHuan@61-223-79-100.dynamic.hinet.net] has quit [Quit: leaving]
+18:24 -!- pm5 [~pm5@1.171.51.234] has joined #g0v.tw
+18:24 -!- aeil [~Adium@61-222-220-134.HINET-IP.hinet.net] has quit [Ping timeout: 244 seconds]
+18:25 -!- Seiken [722666d9@gateway/web/cgi-irc/kiwiirc.com/ip.114.38.102.217] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+18:30 -!- wolfenstein [~Thunderbi@60-250-73-121.HINET-IP.hinet.net] has quit [Quit: wolfenstein]
+18:32 -!- lcamel [~lcamel@2406:2000:efa5:5:bd75:1d3f:b468:3286] has quit [Ping timeout: 240 seconds]
+18:32 -!- lcamel [~lcamel@nat/yahoo/x-ltlkypuepvofkajw] has joined #g0v.tw
+18:34 < pm5> ETBlue: 剛才有人跑來找妳... 是飼主?
+18:36 -!- lcamel [~lcamel@nat/yahoo/x-ltlkypuepvofkajw] has quit [Ping timeout: 246 seconds]
+18:37 -!- Luxun [uid13676@gateway/web/irccloud.com/x-hpciylfdceuniyfy] has quit [Quit: Connection closed for inactivity]
+18:37 -!- SCChen [24e14f57@gateway/web/cgi-irc/kiwiirc.com/ip.36.225.79.87] has joined #g0v.tw
+18:48 -!- andyisman [uid15105@gateway/web/irccloud.com/x-hckwccczalxnoova] has quit [Quit: Connection closed for inactivity]
+18:52 -!- chihchun is now known as chihchun_afk
+18:54 -!- wonder_ [uid14149@gateway/web/irccloud.com/x-fixivuofolyyupgi] has quit [Quit: Connection closed for inactivity]
+18:55 < ipa> Drop?
+18:55 < ipa> Ddio ?
+18:56 < ipa> 忘記跟他說我們在哪裡吃
+19:06 -!- pm5 [~pm5@1.171.51.234] has quit [Ping timeout: 272 seconds]
+19:17 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Leaving]
+19:31 < yhsiang> tkirby: orz ... 快要硬幹出來了 -_-
+19:36 < ETBlue> 自我介紹時間，等一下在這裡共筆 https://g0v.hackpad.com/CGIWfeyAG5r
+19:36 < kcwu> ETBlue's url: [民怨商品化？從德國國會觀察網站談起 - g0v.hackpad.com]
+19:44 < ipa> 這邊 wifi 密碼是？
+19:45 < clkao> ipa:  0223920381
+19:46 -!- hychen_ [uid12518@gateway/web/irccloud.com/x-ofkunyafsirselmz] has joined #g0v.tw
+19:47 -!- ddio [uid13869@gateway/web/irccloud.com/x-ouvrlzwjbvrffhna] has quit [Quit: Connection closed for inactivity]
+19:51 -!- aitjcize [~aitjcize@140.112.16.140] has joined #g0v.tw
+19:56 -!- aitjcize [~aitjcize@140.112.16.140] has quit [Ping timeout: 244 seconds]
+19:56 -!- simonpai_ [uid23131@gateway/web/irccloud.com/x-cbmkkjktbpxjcmic] has quit [Quit: Connection closed for inactivity]
+20:02 -!- Phoenixmiss [~Miss@114-38-96-42.dynamic.hinet.net] has quit [Quit: Leaving]
+20:06 -!- johnny__ [uid19482@gateway/web/irccloud.com/x-xsqoitfoqpfqkdcu] has quit [Quit: Connection closed for inactivity]
+20:09 -!- douplus [uid14155@gateway/web/irccloud.com/x-fhavavbownmqhukx] has quit [Quit: Connection closed for inactivity]
+20:10 -!- ronnywang__ [uid15193@gateway/web/irccloud.com/x-dpfsuzpwucoxuprb] has joined #g0v.tw
+20:11 -!- RSChiang [~rschiang@wl055.cc.ntu.edu.tw] has joined #g0v.tw
+20:11 -GitHub77:#g0v.tw- [twlyparser] clkao pushed 1 new commit to master: https://github.com/g0v/twlyparser/commit/d6c4d83cab5e66f8171255ab2ae3207bb4158a23
+20:11 -GitHub77:#g0v.tw- twlyparser/master d6c4d83 Chia-liang Kao: remove BOM
+20:12 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+20:18 -!- RSChiang [~rschiang@wl055.cc.ntu.edu.tw] has quit []
+20:24 -!- lyanchih_ [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+20:27 -!- ymow [~Adium@1-171-56-124.dynamic.hinet.net] has quit [Quit: Leaving.]
+20:27 -!- ymow__ is now known as ymow
+20:35 < clkao> mad 影片好像出現了
+20:36 < clkao> https://www.youtube.com/watch?v=qv2UxsjlkGc
+20:36 < kcwu> clkao's url: [MaD 2014 高嘉良：零時政府 ── 從開放源碼、開放數據到開放政府 KAO Chia-Liang : GOV.TW Part 1/2 - YouTube]
+20:40 -!- FourDollars [uid12544@gateway/web/irccloud.com/x-qwsmcvbmtxnzbppm] has quit [Quit: Connection closed for inactivity]
+20:44 -!- sb-avespe [24E14F57@conference/jsconf/x-jnemczbkcprmpqit] has joined #g0v.tw
+20:44 < sb-avespe> Hi, 我是早上做過新手報到的慈濟大學陳紹慶
+20:44 -!- sb-avespe is now known as sb-avespe1
+20:44 < clkao> !!
+20:44 < clkao> sb-avespe1: hi!
+20:44 < sb-avespe1> 很久沒玩IRC 要向大家多學習
+20:45 < ipa> 陳老師好！
+20:45 -!- yyhuang [uid13204@gateway/web/irccloud.com/x-eggcxkiwkinwstzx] has joined #g0v.tw
+20:51 < hychen_> 場地看起來很贊
+20:52 -!- sb-avespe1 is now known as sb-avespe2
+20:54 -!- sb-avespe2 is now known as sb-caused
+20:55 -!- SCChen [24e14f57@gateway/web/cgi-irc/kiwiirc.com/ip.36.225.79.87] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+20:55 -!- sb-caused is now known as sb-avespe3
+20:59 < clkao> 是一個劇院
+21:27 -!- jimyhuang [uid12523@gateway/web/irccloud.com/x-xgeybjxyhknrrweh] has quit [Quit: Connection closed for inactivity]
+21:27 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+21:28 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has joined #g0v.tw
+21:28 -!- pm5 [~pm5@111-248-218-253.dynamic.hinet.net] has joined #g0v.tw
+21:31 -!- phao [8c701923@gateway/web/freenode/ip.140.112.25.35] has joined #g0v.tw
+21:31 -!- phao [8c701923@gateway/web/freenode/ip.140.112.25.35] has quit [Client Quit]
+21:34 < sb-avespe3> 看過萌典已經有的坑  覺得坑可以再挖深一些
+21:34 -!- douplus [uid14155@gateway/web/irccloud.com/x-qorvzlwhczbdlosh] has joined #g0v.tw
+21:37 < sb-avespe3> 若最近還有萌典松 可以交流談談
+21:40 < douplus> 台南2/28有小松，如果有連假回台南過的來+1吧
+21:40 -!- LCfunPlay [~chatzilla@111-250-17-66.dynamic.hinet.net] has joined #g0v.tw
+21:41 < au> sb-avespe3: 3/22 或 3/29 會有一場
+21:41 < tkirby> yhsiang: 喔喔
+21:41 < au> sb-avespe3: 哪個日期對你比較方便?
+21:42 < sb-avespe3> au-: 週六都OK
+21:45 < sb-avespe3> 拿"聯想詞"這個坑  是草根版的wordnet
+21:45 -!- bugbug777 [8c76e955@gateway/web/freenode/ip.140.118.233.85] has joined #g0v.tw
+21:46 < sb-avespe3> 有學術理論的wordnet  http://lope.linguistics.ntu.edu.tw/cwn2/#
+21:46 < au> sb-avespe3: 有看過 a-tsioh poga 做的 https://www.moedict.tw/lab/tmuse/?坑 嗎?
+21:46 < kcwu> sb-avespe3's url: [中文詞彙網路 | Chinese Wordnet]
+21:46 < au> # https://www.moedict.tw/lab/tmuse/?%E5%9D%91
+21:50 < sb-avespe3> au-: yes, 中心詞和相關詞是依辭典詞條分類對嗎?
+21:51 < au> 是依照相似詞的 markov chain random walk 的步數做叢集
+21:52 < au> =Proxemy ( http://www.audreyt.org/newdict/tmuse.pdf )
+21:53 -!- Phoenixmiss [~Miss@114-38-96-42.dynamic.hinet.net] has joined #g0v.tw
+21:55 -!- Stark [72208EF3@conference/jsconf/x-bactqcapjmtmdvcd] has joined #g0v.tw
+21:56 < Stark> 要怎麼在g0v登記project啊?
+21:56 < sb-avespe3> au-: great, 也許可以和wordnet的分類做比較
+21:56 < Stark> 我想把核電翻譯機登記上去
+21:57 < au> sb-avespe3: 是的，sounds like a fine project! 我下周確定萌典松日期後會寫封信跟陳老師說，也會 post 在 FB 後勤中心 etc，期待見面討論
+21:58 < sb-avespe3> Chinese Wordnet有釋出原始碼  可以做做看
+21:59 < au> *nod* 之前有看過 sqlite dump
+21:59 < au> 還沒有認真研究
+21:59 < sb-avespe3> 還需要向你們多學學 這陣子我做一下筆記 整理可以挖的坑
+22:00 < au> Stark: 在 github project root 加上 g0v.json https://g0v.hackpad.com/g0v.json-spec-c07sSfauWSc 
+22:00 < kcwu> au's url: [g0v.json spec - g0v.hackpad.com]
+22:01 < Lee1092> sb-avespe3 ++    #  ++ 是案讚的意思
+22:01 < au> Stark: 然後到 hack.g0v.tw/people 登入後，點選 hack.g0v.tw/projects 按右邊「新增專案」即可。
+22:07 -!- kcliu [uid12402@gateway/web/irccloud.com/x-beeiqutuvohqwiil] has quit [Quit: Connection closed for inactivity]
+22:08 < Lee1092> au 應該沒 s http://hack.g0v.tw/project  XD    不過新增專案的按鈕好像被隱藏起來了   
+22:08 < Lee1092> 搜尋欄  搜尋不到既有的專案時  才會跳出來   0.0
+22:10 -!- RSChiang [~rschiang@wl055.cc.ntu.edu.tw] has joined #g0v.tw
+22:11 < au> yeah, hidden feature
+22:11 < au> 要先在 hack.g0v.tw/project 搜尋框打 xyzzy 才會看到新增專案的按鈕
+22:12 -!- simonpai_ [uid23131@gateway/web/irccloud.com/x-jsnshjgdojtwzxdg] has joined #g0v.tw
+22:13 < RSChiang> 黑魔法（？
+22:13 < Lee1092> 搜尋坑的時候  叫你挖坑!?   
+22:14 -!- RSChiang [~rschiang@wl055.cc.ntu.edu.tw] has quit [Client Quit]
+22:15 -!- sb-avespe3 is now known as sb-espace
+22:19 -!- ronnywang__ [uid15193@gateway/web/irccloud.com/x-dpfsuzpwucoxuprb] has quit [Quit: Connection closed for inactivity]
+22:24 < simonpai_> http://www.youtube.com/watch?v=_P9HqHVPeik
+22:24 < kcwu> simonpai_'s url: [Stephen Wolfram's Introduction to the Wolfram Language - YouTube]
+22:25 -!- chihchun_afk is now known as chihchun
+22:27 -!- lcamel [~lcamel@114-45-57-85.dynamic.hinet.net] has joined #g0v.tw
+22:35 -!- jimyhuang [uid12523@gateway/web/irccloud.com/x-rnhiccbmnmpionng] has joined #g0v.tw
+22:39 -!- lcamel [~lcamel@114-45-57-85.dynamic.hinet.net] has quit [Remote host closed the connection]
+22:40 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+22:41 < jimyhuang> ipa ... 看來開頭是底線得資料夾，github page會找不到 ... ( _public )
+22:45 -!- caasih [~caasiHuan@59-126-250-201.HINET-IP.hinet.net] has joined #g0v.tw
+22:47 < simonpai_> jekyll _config.yml 裡可以設 include
+22:49 < ttcat_> 今晚好玩嗎
+22:52 < Stark> 加上去了，感謝說明~
+22:53 -!- bugbug777 [8c76e955@gateway/web/freenode/ip.140.118.233.85] has quit [Quit: Page closed]
+22:59 -!- LCfunPlay [~chatzilla@111-250-17-66.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.87-rdmsoft [XULRunner 1.9.2.19/20110707195905]]
+23:09 -!- aeil [~Adium@111-251-184-81.dynamic.hinet.net] has joined #g0v.tw
+23:14 -!- icman [~icman@123.240.150.80] has joined #g0v.tw
+23:22 < ttcat_> github 上原始的 Airesis 有更新了我再試試看能不能拉下來架在自己電腦上
+23:23 < ttcat_> 剛剛先整理了現在我知道的狀況 http://hack.g0v.tw/don-democracy/lhUMItDUIZw
+23:28 -!- omar002 [daa4befd@gateway/web/cgi-irc/kiwiirc.com/ip.218.164.190.253] has joined #g0v.tw
+23:32 -!- kiang [uid25350@gateway/web/irccloud.com/x-zfixbazpjpdqjgoj] has quit [Quit: Connection closed for inactivity]
+23:38 -!- Luxun [uid13676@gateway/web/irccloud.com/x-iwttamiuvomnobrv] has joined #g0v.tw
+23:47 -!- omar002 [daa4befd@gateway/web/cgi-irc/kiwiirc.com/ip.218.164.190.253] has quit [Remote host closed the connection]
+23:51 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 264 seconds]
+23:51 -!- AceLan__ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+23:52 < hychen_> douplus: 你覺得28那場需不需要有人介紹一下vagrant?
+23:53 < hychen_> douplus: 我現在在凹一些苦主介紹一下g0v常用的tech stack
+23:53 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Write error: Broken pipe]
+23:59 -!- Stark [72208EF3@conference/jsconf/x-bactqcapjmtmdvcd] has left #g0v.tw []

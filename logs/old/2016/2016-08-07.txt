@@ -1,0 +1,56 @@
+--- Day changed 日  8月 07 2016
+00:07 < slackbot2> <ben196888> @peggylo: @yutin 我更新上去了！
+00:07 < slackbot2> <ben196888> <https://g0v.github.io/npratio/>
+00:07 < kcwu> slackbot2's url: [台灣護病比查詢]
+00:48 < slackbot2> <jackymaxj> @tkirby: 很可惜只能支援可以信任的，全部開放 iframe 一定會有人 XSS 之類的 XD
+01:20 < slackbot2> <superbil> 目前手機版的 hackmd 不能貼東西在編輯介面上
+07:41 < slackbot2> <etblue> chucklee: wowodo: 結果我直接在一般日下面加一行 XD （非例假日因突發事變加班）
+07:42 < slackbot2> <etblue> tkirby: 我改了一下標題 s/Bluepa/Blupa  XD
+07:53 < slackbot2> <peggylo> @ben196888: +++++++++
+08:34 < slackbot2> <tkirby> etblue: 原來我一直打錯字.... XDDD
+08:35 < slackbot2> <etblue> 真的很容易打錯 www
+08:36 < slackbot2> <tkirby> jackymaxj: iframe 應該是不至於有xss 的問題才對... 不過是有可能拿來詐欺？
+08:36 < slackbot2> <tkirby> 這反而是要看用戶而不是看被嵌入的網站...
+09:56 < slackbot2> <jackymaxj> @superbil: 我發現可以，但是要先選一段文字才會出現選單
+09:58 < slackbot2> <jackymaxj> @tkirby: <https://www.owasp.org/index.php/Cross_Frame_Scripting>
+09:58 < kcwu> slackbot2's url: [Cross Frame Scripting - OWASP]
+10:18 < slackbot2> <tkirby> @jackymaxj: 這感覺是要這兩個情形下才會有問題 ：1. hackmd 允許跑 script 或2. 被 iframe 的網站有 xss 漏洞(這不用 iframe 問題也很大了) 
+10:20 < slackbot2> <jackymaxj> @tkirby: 之前是遇過被 iframe 的網站就是駭客自己弄得，準備XSS 拿使用者 cookie
+10:21 < slackbot2> <jackymaxj> 然後雖然有禁止使用 script ，但是 iframe 2k7
+10:22 < slackbot2> <jackymaxj> 這兩個 attribute 要是過濾掉了 iframe 就沒用了，所以乾脆禁止 XD
+10:24 < slackbot2> <tkirby> src 裡允許 script 的話 其實就是一個XSS 漏洞了   如果允許置入 tag 但沒檢查屬性的話，我甚至也可以寫在 <img src> 中，或是任何 tag的 onclick 裡
+10:25 < slackbot2> <jackymaxj> 對阿，所以答案是，全部的 attribute 都會檢查有沒有 script ，而且只有部分 attribute 可以使用
+10:25 < slackbot2> <jackymaxj> hackmd 有使用很嚴格的 XSS 過濾
+10:26 < slackbot2> <jackymaxj> 或許 iframe 可以過濾 script 跟 javascript 就好
+10:27 < slackbot2> <jackymaxj> 但是還有 clickjacking 問題
+10:33 < slackbot2> <davisfreeman> 尋找立委投票指南的Johnny ～
+10:33 < slackbot2> <jackymaxj> @tkirby: 我再研究看看能不能開放
+10:33 < slackbot2> <tkirby> ok~ 你再研究看看囉～
+10:34 < slackbot2> <jackymaxj> clickjacking 使用者不要亂點似乎就沒問題
+10:34 < slackbot2> <jackymaxj> = =
+10:34 < slackbot2> <clkao> yutin: 平均是直接把數值平均嗎？因為醫院權重不同 應該是要找到他原始的三班數數量 分別乘回去再一起當分母
+10:36 < slackbot2> <yutin> 是的直接數值平均. 原來還有三班數的數量 研究研究 感謝
+10:37 < slackbot2> <clkao> 他的計算說明有說~ 不過目前沒看到原始的分母
+11:17 < slackbot2> <yutin> @ben196888: 現在的平均 要不要先放本院平均
+11:17 < slackbot2> <yutin> 必定這個平均值 我們還沒精確計算
+11:17 < slackbot2> <ben196888> yutin 可以啊
+11:18 < slackbot2> <ben196888> 那我先改
+11:18 < slackbot2> <yutin> ^^ 交給你 rollback 哩
+11:20 < slackbot2> <ben196888> 不過 本院是不是也有一樣的問題
+11:20 < slackbot2> 分母可能不同？
+11:55 < slackbot2> <clkao> 話說本院是誰.. ?  如果剛點進去
+12:36 < slackbot2> <yutin> 目前第一次進去 會顯示成大醫院（因為他剛好陣列的第一筆）
+12:37 < slackbot2> <yutin> @ben196888: 也這樣說沒錯 但至少是該醫院的1~12月平均＠＠？
+12:37 < slackbot2> <yutin> 第一次進去 所有的資料 目前是抓陣列的第一筆
+12:39 < slackbot2> <ben196888> 我把`本院平均`改成`XX醫院年度平均`了
+12:39 < slackbot2> <yutin> ^^
+13:14 < slackbot2> <peggylo> @yutin @ben196888 @clkao ：三班資料我來問問~~
+13:50 < slackbot2> <clkao> 哦哦 就是現在看的那家的全年平均對嗎？ 那我建議用一個三角形箭頭在 y 軸上，然後延伸虛線出來 讓 style 差距大一點
+17:50 < slackbot2> <johnny> @davisfreeman: 你好~
+19:27 -!- tonghuix_ is now known as tonghuix
+20:13 < slackbot2> <jackymaxj> @tkirby: 現在允許 iframe 了，不過當然 attribute 都有過濾跟限制
+20:14 < slackbot2> <tkirby> @jackymaxj: :+1: 賀～
+21:18 < slackbot2> <peggylo> @yutin: @ben196888 @iflin 有關為啥1-2月護病比會急升或急降，問有經驗的同事，有個滿可能的解釋：
+21:18 < slackbot2> 「護病比1-2月劇烈變動，依經驗有以下原因有：過年前後時段，選擇性開刀會減少，外科病床多的醫院，護病比會降低；過年後是護理人員離職高峰（年終獎金已領、準備7月的各種考試等），護病比會攀升。」
+23:18 < slackbot2> <davisfreeman> @johnny: 我私訊你:)
+23:30 < slackbot2> <michael_li> 請問一下　我們有沒有「台電變電箱」所在位置的的開放資料　　//我絕對不是在玩寶可夢（Pokemon GO）

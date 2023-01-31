@@ -1,0 +1,306 @@
+--- Day changed 三 12月 23 2015
+00:13 -!- Charl is now known as Guest80281
+00:20 < Guest80281> 有人在嗎
+00:20 < Guest80281> anyone here?
+00:21 < caasih> Guest80281: 很多
+00:21 < caasih> 掛久一點
+00:21 < Guest80281> 能否請教個問題
+00:22 < slackbot13> <au> jimyhuang: 晶片身份證如果只是拿自然人憑證，卡面印上現行身份證紙本的資料，又沒有開 RFID，那安全程度應和現有的自然人憑證、身份證相當。「為什麼要結合健保卡」的問題就比較大了，attack vector 也變多。「提供空間給市民卡及縣民卡及悠遊卡儲存」scope 又更大...
+00:22 < Guest80281> er.mohw怎麼搭建
+00:22 < slackbot13> <au> 安全與否可能要分成好幾層來分別問
+00:22 < Guest80281> 依賴環境都裝好了
+00:38 < Guest45147> 有人在嗎
+00:38 < Guest45147> er.mohw 怎麼配置
+00:38 < Guest45147> 依賴環境都裝好了
+00:39 < Guest45147> 求救啊
+00:48 < caasih> Guest45147: 沒搭過，README 中 install dependencies 跟 Running 都做了還是不行？
+00:49 -!- charl is now known as Guest87623
+00:50 < Guest45147> node twer.js twer.csv --influxHost [yourHost] --influxDb [yourdatabase] --influxUser [youraccount] --influxPass [yourpass] > temp && ./backup.sh
+00:50 < Guest45147> ```
+00:50 < Guest45147> 發錯
+00:50 < caasih> README 說你要改 yourHost 那些成真的值
+00:51 < Guest45147> influxdb要這麼配置
+00:51 < Guest45147> 是先運行node再配置influxdb嗎
+00:51 < Guest45147> 怎麼
+00:51 < caasih> 看來是要先裝好 influxdb 再跑你貼的那行耶
+00:52 < Guest45147> 裝好了
+00:52 < Guest45147> 需要自己建立數據庫嗎？
+00:53 < caasih> Guest45147: 四小時後沒睡的話會試試看，手邊有別的事情。或看看線上有沒有裝過的前輩有空幫你...
+00:54 < Guest45147> 四小時後我估計睡覺了，請問還有其他聯繫方式嗎？不好意思這麼晚打擾你
+00:54 < slackbot13> <jimyhuang> au: 我仔細看了一下會議記錄，其中看來政府想換的理由，恰好是因為傳統身份證不安全（容易被盜用、重製）。
+00:54 < caasih> Guest45147: 可以用 join.g0v.today 進到 Slack ，跟 IRC 是連動的
+00:55 < caasih> Guest45147: 或是偶爾看看 http://logbot.g0v.tw/channel/g0v.tw/today ，搞不好會有人回應 0rz
+00:55 < kcwu_> caasih's url: [Logbot | #g0v.tw]
+00:55 < au> Guest45147: 要建一個空的 db, user 和 pass，然後理論上就可以自動寫入了。但是我也沒有架設過。
+00:56 < au> 可以考慮到 https://g0v.hackpad.com/vtLwiUfYgcc 登入後留下你的問題，有人回時會收到 email
+00:56 < kcwu_> au's url: [全國重度級急救責任醫院急診即時訊息 - g0v.hackpad.com]
+00:56 < Guest45147> 好
+00:56 < Guest45147> 我試試
+00:56 < au> 或是如果有 github 帳號的話， https://github.com/g0v/er.mohw/issues/new 也可以聯繫到開發者。
+00:56 < kcwu_> au's url: [Sign in to GitHub · GitHub]
+00:56 < caasih> au++
+00:56 < Guest45147> 現在我在配置
+00:57 < slackbot13> <jimyhuang> au: 台權會明諠問的角度我覺得不錯，說想問技術專家（我不是 XD），政府應該要公佈什麼樣的技術規格和細節，讓整體安全度可受到公評。
+00:58 < Guest45147>  Cannot find module 'csv'
+00:58 < Guest45147> 運行nodejs的時候出現了這樣的問題
+00:59 < slackbot13> <au> `npm i` 就會裝了
+00:59 < au> Guest45147: npm i 之後還有 git submodule init && git submodule update --init . # README 裡寫的 XD
+01:00 < Guest45147> 好 謝謝大家這麼關照我
+01:00 < Guest45147> 我試試
+01:06 < slackbot13> <johnny> clkao: 議案我先重寫一個crawler去抓了，可以不用急著修apily了
+01:07 < slackbot13> <clkao> johnny++
+01:07 < slackbot13> <clkao> 從新的 open data endpoint 嗎？
+01:07 < slackbot13> <johnny> 立法院開放資料部分，議案的部分我找不到審議進度，所以還是得寫爬蟲
+01:07 < slackbot13> <clkao> 進度還是得從國會圖書館？
+01:07 < slackbot13> <clkao> 還是綜合查詢？
+01:08 < slackbot13> <johnny> 我臨時的用國會圖書館每個立委的問政資訊去爬的
+01:10 < slackbot13> <johnny> 但缺點是有點沒效率，多人提案的議案就會重複抓，好處是他有一到八屆的
+01:10 < slackbot13> <johnny> 法律提案審議進度系統只看到五到八屆
+01:10 < slackbot13> <clkao> y
+01:15 < slackbot13> <johnny> 條文對照看起來是可以用立院開放資料平台的<http://data.ly.gov.tw/getds.action?id=19>
+01:37 < Guest45147> npm install
+01:48 < Guest45147> npm i 執行不了啊 好煩
+01:49 < caasih> Guest45147: 方便把錯誤貼到 gist 或 pastebin 再貼上來嗎？
+01:51 < Guest45147> http://pastebin.com/Ju95QKPj
+01:51 < kcwu_> Guest45147's url: [[Power Shell] [root@localhost er.mohw-master]# npm install npm WARN deprecated This version o - Pastebin.com]
+01:53 < Guest45147> 能看到嗎
+01:54 < caasih> Guest45147: 可以
+01:54 < slackbot13> <charl> 嗷嗷 我用slack說話好了
+01:54 < slackbot13> <charl> 這是啥錯誤
+01:54 < slackbot13> <caasi> charl: 喔喔，歡迎
+01:55 < slackbot13> <charl> 謝謝
+01:55 < slackbot13> <caasi> 你打 `node -v` 結果是？
+01:56 < slackbot13> <caasi> 看來像是 node 跟 npm 太舊，更新一下。
+01:57 < slackbot13> <charl> 0.10.41
+01:57 < slackbot13> <caasi> 更新一下。如果你需要同時用到不同版本的 node ，試試 nvm
+01:58 < slackbot13> <charl> 好我去更新
+02:30 < slackbot13> <charl> 編譯怎麼要這麼久啊
+02:45 < slackbot13> <charl> undefined
+02:45 < slackbot13> <charl> 咋回事啊
+02:47 < slackbot13> <charl> 是不是網絡問題
+03:07 < slackbot13> <caasi> 你的 npm 有少東西、壞掉了嗎？
+03:08 < slackbot13> <charl> 剛剛npm i 成功了
+03:08 < slackbot13> <charl> 但是執行re mohw的時候出問題
+03:09 < slackbot13> <charl> undefined
+03:11 < slackbot13> <charl> shell已經有了
+03:12 < slackbot13> <charl> `-- shell@0.3.2  extraneous
+03:12 < slackbot13> <charl> `-- shell@0.3.2  extraneous
+03:12 < slackbot13> <caasi> `npm i` 時有別的錯誤訊息嗎？
+03:14 < slackbot13> <caasi> 譬如跟 node-gyp 有關的
+03:14 < slackbot13> <charl> [root@localhost er.mohw-master]# npm i
+03:14 < slackbot13> er.mohw@0.0.3 /mohw/er.mohw-master/er.mohw-master
+03:14 < slackbot13> `-- shell@0.3.2  extraneous
+03:14 < slackbot13> npm WARN er.mohw@0.0.3 No license field.
+03:14 < slackbot13> [root@localhost er.mohw-master]#
+03:14 < slackbot13> <charl> 如果不在mohw下執行就一點錯誤也沒有
+03:25 < accout1> macpaul: https://gist.github.com/anonymous/1ed2016228e189a492c0#file-projectlist-js 撈其中的GHID 前面加入github網址 後面加入/issues就可以了
+03:25 < kcwu_> accout1's url: [專案池網頁 20151120 · GitHub]
+03:27 < slackbot13> <charl> 我在試
+03:31 < slackbot13> <charl> macpaul是什麼
+03:32 < slackbot13> <caasi> charl: 不知道你為什麼跑不起來。另外 macpaul 是人名。
+03:32 < slackbot13> <caasi> account1 在跟 macpaul 講話
+03:33 < slackbot13> <charl> 嗷嗷
+03:34 < slackbot13> <charl> 我多試試
+03:34 < slackbot13> <charl> 4點要是弄不好我就得睡覺了 早上還有課
+03:40 < slackbot13> <charl> 是不是execsync
+03:40 < slackbot13> <charl> 的問題喔
+03:41 < slackbot13> <charl> 要不我把服務器開放到外網 你們幫我看看
+03:41 < slackbot13> <caasi> 你打 `gcc -v` 或 `g++ -v` 有東西嗎？
+03:42 < slackbot13> <caasi> 哎，不見得有人有空啊，怕你白期待一場
+03:42 < slackbot13> <charl> gcc version 4.8.5 20150623 (Red Hat 4.8.5-4) (GCC)
+03:42 < slackbot13> <charl> gcc version 4.8.5 20150623 (Red Hat 4.8.5-4) (GCC)
+03:42 < slackbot13> <charl> 都有東西
+03:42 < slackbot13> <charl> 兩個的最後一行都是這個
+03:45 < slackbot13> <caasi> 你跑 `npm i execSync` 會看到 `Native code compile failed!!` 嗎？
+03:46 < slackbot13> <caasi> 看來是這個問題 :confused: <https://github.com/mgutz/execSync/issues/38>
+03:46 < kcwu_> slackbot13's url: [Troubles with Node 0.12 · Issue #38 · mgutz/execSync · GitHub]
+03:47 < slackbot13> <charl> 我試試
+03:52 < slackbot13> <charl> :astonished:半天沒反應
+03:53 < slackbot13> <charl> 之前運行npm i execsync的時候是404 錯誤
+03:53 < slackbot13> <caasi> S 大寫？
+03:53 < slackbot13> <charl> 嗯嗯
+03:53 < slackbot13> <charl> 大寫
+03:59 < slackbot13> <charl> 謝謝你啊 我先睡覺了 還要上課 你也早點休息
+04:00 < slackbot13> <caasi> charl: 晚安～
+07:22 -!- accout1 [guest-acco@ec2-52-11-63-83.us-west-2.compute.amazonaws.com] has left #g0v.tw []
+08:37 < slackbot13> <miaoski> jimyhuang: 開 RFID 的話，問台大的鄭振牟老師就對了 :simple_smile:
+08:41 < slackbot13> <rschiang> 大家在 Safari 上寫 Hackpad 會遇到問題嗎？我發現 Safari 沒辦法正確的觸發 `// ` 和 `*` 的語法 o___o)
+09:02 -!- linpc_ is now known as linpc
+09:59 < slackbot13> <fumi> 大松基金和待用咖啡目前募款還好嗎?
+10:04 < slackbot13> <clkao> 目前應該是 cover 上次的跟咖啡的 這次餐費還沒募到 XD
+10:08 < slackbot13> <fumi> 收到！
+10:29 < slackbot13> <au> charl: `execSync` 的問題修好了，改用 `sync-exec` 就可以了，請 `git pull` 再 `npm i` 一次看看。
+10:32 < slackbot13> <t0mst0ne> @au:  ++   er 升級到 livescript 1.4.x (不過我還不敢動local )
+10:33 < slackbot13> <au> t0mst0ne: 我看了 gen 出來的 diff，沒有差別
+10:52 < slackbot13> <mrorz> rschiang: 我在 Firefox 上也有問題，看來一些進階互動都只有針對 Chrome
+11:52 < slackbot13> <charl> au:從gihub上重新下載嗎?
+11:52 < slackbot13> <charl> @au:
+11:54 < slackbot13> <caasi> charl: 你是用 `git clone` 抓的嗎？那 `git pull` 看看。
+12:00 < slackbot13> <charl> 奧 好
+12:23 < slackbot13> <jimyhuang> miaoski: 看來目前是沒開，謝謝資訊
+12:52 < slackbot13> <charl> @au:  node twer.js twer.csv --influxHost [127.0.0.1] --influxDb [ER] --influxUser [admin] --influxPass [admin] > temp &amp;&amp; ./backup.sh
+12:52 < slackbot13> /er.mohw/twer.js:116
+12:52 < slackbot13>           throw "wtf " + dir;
+12:52 < slackbot13>           ^
+12:52 < slackbot13> wtf crawlers/1434020015
+12:52 < slackbot13> <charl> 在嗎 這是啥情況
+13:48 < slackbot13> <au> charl: 這表示你沒有跑完 `git submodule init &amp;&amp; git submodule update --init .`
+13:49 < slackbot13> <charl> 奧 不好意思 我是新手 太麻煩您了
+13:49 < slackbot13> <charl> 我再試試
+13:58 < slackbot13> <rschiang> @mrorz: 真是太困擾了，我還一直以為是 Safari 壞了QQ
+13:58 < slackbot13> <mrorz> rschiang hackpad 目前幾乎是 abandonware 狀態嘛 沒辦法 xd
+13:59 < slackbot13> <rschiang> 聽說 @yhsiang 要把它發展成 Lypad！（亂挖坑
+14:00 < slackbot13> <mrorz> \lypad/ \lilypad/
+14:00 < slackbot13> <rschiang> 不過好像還沒有辦法正常匯出XDD
+14:00 < slackbot13> <caasi> 哩呸～
+14:00 < root___> 
+14:02 < slackbot13> <mrorz> 管你小眾 大眾  哩呸～:microphone:
+14:02 < slackbot13> <charl> git submodule init &amp;&amp; git submodule update --init . 的結果好像是443 error 禁止訪問
+14:03 < slackbot13> <charl> 是我網絡問題嗎
+14:10 < slackbot13> <caasi> charl 你在 proxy 後面嗎？
+14:11 < slackbot13> <charl> 我在習魔王的統治下
+14:12 < slackbot13> <caasi> charl: 欸呀，我沒翻過牆，不知道怎樣設定才對
+14:13 < slackbot13> <charl> shadowsocks
+14:14 < slackbot13> <charl> 這個很簡單的
+14:15 < slackbot13> <caasi> 不確定你得到 443 是因為在牆內，還是 git 沒設好
+14:20 < slackbot13> <charl> git要设置的吗
+14:20 < slackbot13> <charl> 我改了下hosts
+14:20 < slackbot13> <charl> undefined
+14:20 < slackbot13> <charl> 結果是這樣的
+14:25 < slackbot13> <hanksudo> github沒被擋
+14:25 < slackbot13> <hanksudo> <http://但是gist.github.com|xn--gist-4k6fn72j.github.com> 有被擋
+14:25 < slackbot13> <caasi> hanksudo++
+14:26 < slackbot13> <au> undefined
+14:26 < slackbot13> <caasi> 欸，好快
+14:26 < slackbot13> <caasi> au++
+14:27 < slackbot13> <charl> 嗷嗷
+14:27 < slackbot13> <charl> 謝謝au大大
+14:27 < slackbot13> <au> charl: 原來是 `買高鐵送防火牆` 地方的朋友 XD 那我先把 `crawlers/` 壓縮放在這裡，但是 crawlers 連到的各醫院可能有些被牆，這就沒辦法了，可能要改成牆內的 data source
+14:27 < slackbot13> <charl> 哈哈 幽默
+14:28 < slackbot13> <charl> 愛你 麼麼噠
+14:30 < slackbot13> <yhsiang> @rschiang: 你跳的坑沒補好前，我不跳！哼哼 XD
+14:31 < slackbot13> <rschiang> yhsiang: 欸欸還沒補完嗎o___o)” 我之前打開要填坑的時候發現沒有人已經填完了（？
+14:32 < slackbot13> <charl> @au: AU大大 node twer.js需要在後台運行嗎
+14:33 < slackbot13> <au> charl: 對，其實這個 repo 只是取得資料的後台的示例。前台就是 Grafana (我記得沒有特別改前台的程式，如果記憶有誤請指正)
+14:37 < slackbot13> <charl> Server returned error: error parsing query: found INTO, expected SELECT, DELETE, SHOW, CREATE, DROP, GRANT, REVOKE, ALTER, SET at line 1, char 18
+14:37 < slackbot13> Unable to fetch list of databases.
+14:38 < slackbot13> <charl> influxdb執行出錯 :sob:
+14:40 < slackbot13> <au> charl: try double quote
+14:40 < slackbot13> <au> `select * from "ER" into "ER.[hospital_sn]"`
+14:42 < slackbot13> <charl> 好像不行
+14:44 < slackbot13> <au> `select * from ER into "ER.[hospital_sn]”`   ? (沒用過 influxdb，可能只能猜到這裡)
+14:45 < slackbot13> <charl> 搭建<http://er.mohw.g0v.tw/用的是什麼數據庫>
+14:46 < slackbot13> <au> Grafana on InfluxDB
+14:47 < slackbot13> <charl> influxdb不需要怎麼配置的嘛?只需要配置帳號密碼執行select語句就行了是吧
+14:47 < slackbot13> <au> 是，grafana 應該也是架起來就長這樣。
+14:48 < slackbot13> <charl> ER這個數據庫需要自己建立表嗎
+14:50 < slackbot13> <au> 然後剛才的 `select` 是 continuous query <https://influxdb.com/docs/v0.9/query_language/continuous_queries.html> 表示定期執行查詢（而不是前台每個人看就查詢一次）。 `ER` 應該是要自己建立庫，裡面就是一系列的鍵值列（沒有 schema）
+14:51 < kcwu_> slackbot13's url: [Continuous Queries | InfluxDB]
+14:59 < slackbot13> <charl> event_counts_per_10m_by_type
+15:10 < slackbot13> <charl> influxdb的8086端口是404錯誤嗎
+15:11 < slackbot13> <charl> undefined
+15:13 < slackbot13> <au> API 是`:8086/db/` — 瀏覽器要用 `:8083`
+15:14 < slackbot13> <charl> "/db"也是404錯誤
+15:15 < slackbot13> <au> `/ping` 呢？
+15:15 < slackbot13> <charl> 跳轉到/db 然後404
+15:16 < slackbot13> <au> `/query` 和 `/write` ? `/db/ER/` ? 也許用 8083 探索看看 XD
+15:16 < slackbot13> <au> 抱歉我電腦快沒電了，稍晚再上線
+15:19 < slackbot13> <charl> 嗯嗯 好
+15:19 < slackbot13> <charl> 謝謝你
+19:31 < slackbot13> <lanf0n> 看完 log 覺得很妙 XD
+19:34 < slackbot13> <lanf0n> charl: hihi, 我來救你了
+19:36 < slackbot13> <lanf0n> charl: 可以確認一下你 influxdb 的 status &amp; version 嗎? try `service influxdb status` and `influxdb -v` (in linux
+19:57 < slackbot13> <lanf0n> t0mst0ne:  er目前用的 influxdb 是最新版的嗎 O_O? 還是 0.8.x?
+20:00 < slackbot13> <t0mst0ne> 舊的吧，包成docker 就沒去動它了ㄟ
+20:01 < slackbot13> <lanf0n> t0mst0ne: O_Q 貢獻一下已經包好的 docker 出來R.......
+20:04 < slackbot13> <t0mst0ne> 0.8.8
+20:12 < slackbot13> <clkao> liz: 申論區好像剩下這個沒有逐字 我猜是因為打台文太難 XD # <https://g0v.hackpad.com/--2wdoEC2GhLO#:h=B1-4----台聯>
+20:12 < kcwu_> slackbot13's url: [國會改革政黨辯論會 逐字稿 - g0v.hackpad.com]
+20:14 < slackbot13> <au> 可以聽聲音打相近漢字的火星文，liz 是火星文對台文的專業翻譯
+20:27 < slackbot13> <t0mst0ne> @lanf0n: 試試看 docker pull t0mst0ne/influx-er
+20:37 < slackbot13> <t0mst0ne> 啊，push fail ; 好像上次卡住後就沒再試了
+20:38 < slackbot13> <lanf0n> fail......
+20:58 < slackbot13> <charl> 我现在没法用电脑 站晚点回复你哈
+21:05 < slackbot13> <miaoski> clkao: 那個 hackpad 超大的，好卡 @@
+21:06 < slackbot13> <clkao> lol
+21:12 < slackbot13> <charl> @lanf0n: 在嗎
+21:13 < slackbot13> <miaoski> clkao: 我去 FB 上呼叫一下苦主 XDDDD
+21:15 < slackbot13> <charl> influx --version
+21:15 < slackbot13> InfluxDB shell 0.9.6.1
+21:15 < slackbot13> <charl> influxdb.service - InfluxDB is an open-source, distributed, time series database
+21:15 < slackbot13>    Loaded: loaded (/usr/lib/systemd/system/influxdb.service; enabled)
+21:15 < slackbot13>    Active: active (running) since Wed 2015-12-23 16:05:02 CST; 5h 9min ago
+21:15 < slackbot13>      Docs: <https://influxdb.com/docs/>
+21:15 < slackbot13>  Main PID: 4003 (sh)
+21:15 < kcwu_> slackbot13's url: [InfluxDB Documentation | InfluxDB]
+21:15 < slackbot13>    CGroup: /system.slice/influxdb.service
+21:15 < slackbot13>            ├─4003 /bin/sh -c /usr/bin/influxd -config /etc/influxdb/influxdb.co...
+21:15 < slackbot13>            └─4004 /usr/bin/influxd -config /etc/influxdb/influxdb.conf
+21:15 < slackbot13> Dec 23 16:05:02 localhost.localdomain systemd[1]: Starting InfluxDB is an open....
+21:15 < slackbot13> Dec 23 16:05:02 localhost.localdomain systemd[1]: Started InfluxDB is an open-....
+21:15 < slackbot13> Hint: Some lines were ellipsized, use -l to show in full.
+21:34 < slackbot13> <lanf0n> charl:  hihi, 開看看 `<http://localhost:8083>` 應該可以進 influxDB 的 web畫面
+21:38 < slackbot13> <charl> 可以啊
+21:39 < slackbot13> <lanf0n> 那... 有開 database and write continuous query 了嗎?
+21:40 < slackbot13> <charl> 怎麼看呢
+21:41 < slackbot13> <lanf0n> 0.9 之後的 influx 似乎有內建 cli , 試試 `influx` then `show databases` ?
+21:41 < slackbot13> <charl> 有
+21:41 < slackbot13> <charl> show databases;
+21:41 < slackbot13> name: databases
+21:41 < slackbot13> ---------------
+21:41 < slackbot13> name
+21:41 < slackbot13> _internal
+21:41 < slackbot13> twer
+21:42 < slackbot13> <lanf0n> ok, 那你原本 command `node twer.js twer.csv --influxHost [yourHost] --influxDb [yourdatabase] --influxUser [youraccount] --influxPass [yourpass] > temp &amp;&amp; ./backup.sh`
+21:42 < slackbot13> 裡面的 `[yourdatabase]` 要改成 `twer`
+21:42 < slackbot13> <charl> 改了的喲
+21:43 < slackbot13> <charl> root     11249 30.4  1.9 940880 28496 pts/0    Sl   21:40   0:17 node twer.js twer.csv --influxHost [10.2.4.152] --influxDb [twer] --influxUser [admin] --influxPass [admin]
+21:43 < slackbot13> <lanf0n> `[]` 不用 O___O
+21:43 < slackbot13> <charl> 嗷嗷
+21:45 < slackbot13> <charl> 好了啊
+21:45 < slackbot13> <lanf0n> 這樣應該就可以 work 了 剩下 continuous query
+21:46 < slackbot13> <charl> github上的sql語句?
+21:47 < slackbot13> <charl> 還是不行哦
+21:48 < slackbot13> <charl> undefined
+21:48 < slackbot13> <charl> 改成twer也不行
+21:48 < slackbot13> <lanf0n> 它不是這樣O_Q
+21:49 < slackbot13> <charl> :dizzy_face:
+21:50 < slackbot13> <lanf0n> influx 0.8 的版本是在 web 介面做的... 0.9 應該可以直接進 cli 之後下 command
+21:50 < slackbot13> `CREATE CONTINUOUS QUERY influx-ER ON  twer BEGIN
+21:50 < slackbot13>   select * from ER into ER.[hospital_sn]
+21:50 < slackbot13> END`
+21:51 < slackbot13> <lanf0n> 這部份其實應該要參考 influxdb document ....( ref: <https://influxdb.com/docs/v0.8/api/continuous_queries.html> )
+21:51 < slackbot13> 不過文件也沒寫清楚就是了:sweat_smile:
+21:51 < kcwu_> slackbot13's url: [Continuous Queries | InfluxDB]
+21:52 < slackbot13> <lanf0n> continuous query 建完之後可以用 ` SHOW CONTINUOUS QUERIES ` 看一下你有沒有建進去
+21:52 < slackbot13> ((因為你用的版本是 v0.9.x , 請參考 <https://docs.influxdata.com/influxdb/v0.9/query_language/continuous_queries/>
+21:52 < kcwu_> slackbot13's url: [InfluxData | Documentation | Continuous Queries]
+21:52 < Charl> 咋辦呢
+21:53 -!- Charl is now known as Guest58225
+21:55 < Guest58225> 我去試試降級
+21:55 < Guest58225> ER需要什麼版本的influxdb
+21:56 < Guest58225> slack突然連不上了
+21:57 < Guest58225> 好的 謝謝各位 我看到之前的消息了
+23:06 < slackbot13> <liz> 我來了，我看到了，打台語漢字逐字稿是嗎?
+23:08 < slackbot13> <liz> @clkao @au @miaoski 我目前打怪中，明天來打台語逐字稿。請問要翻譯嗎？
+23:12 < slackbot13> <au> 有的話很好，沒有也沒關係
+23:14 < slackbot13> <liz> 所以要以台語漢字為主??  那太好了~~~
+23:33 < slackbot13> <charl> 用繁體字 對中華文化的尊重
+23:34 < slackbot13> <charl> 用殘體是迫不得已
+23:39 < slackbot13> <charl> @lanf0n: 在嗎
+23:39 < slackbot13> <charl> Shard Spaces應該怎麼填
+23:41 < slackbot13> <lanf0n> hi
+23:42 < slackbot13> <lanf0n> 哪裡的 shared spaces  .......
+23:54 < slackbot13> <au> <https://influxdb.com/docs/v0.8/advanced_topics/sharding_and_storage.html> (sharding)
+23:54 < kcwu_> slackbot13's url: [Underlying Storage And Sharding | InfluxDB]
+23:55 < slackbot13> <charl> 那個
+23:56 < slackbot13> <charl> influxdb上
+23:56 < slackbot13> <charl> 需要填嗎 還是默認
+23:56 < slackbot13> <lanf0n> 沒有用到哪個 o_o
+23:56 < slackbot13> <lanf0n> charl:  你 influxdb 降回 v0.8 了@@?
+23:57 < slackbot13> <charl> 嗯嗯
+23:59 < slackbot13> <charl> 這樣的對吧
+23:59 < slackbot13> <charl> undefined
+23:59 < slackbot13> <lanf0n> 那就.... web 打開之後進去建好 db 之後開進 db 在 query 那欄把 `continuous query` 的那行丟進去............就好了 (無誤)
+23:59 < slackbot13> 要確定 `continuous query` 有沒有寫入成功的話可以直接 query  `list continuous queries`
+23:59 < slackbot13> <lanf0n> yes

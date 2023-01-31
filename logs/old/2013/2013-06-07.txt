@@ -1,0 +1,648 @@
+--- Day changed 五  6月 07 2013
+00:02 < a-tsioh> in fact I'm still a bit confused with github
+00:02 < a-tsioh> au: should I work directly on the main repository, or re-fork it ?
+00:04 < au> just commit to main repo
+00:10 < tkirby__> 阿! 要改的東西被 clkao 搶先了!
+00:10  * tkirby__ (羞)
+00:12 < clkao> tkirby__: 為了讓你可以直接衝 project list :p
+00:12 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 240 seconds]
+00:13 < hychen> clkao, 用 pgrest 跟用mongodb的差別是?
+00:15 < hychen> 可以把postgrest 當mongoddb用?
+00:15 < au> clkao: http://lqfb-test.g0v.tw/pf/argument/show/6.html
+00:15 < kcwu> au's url: [每個人一張票太少，容易造成只投自己的專案 - 論點#6 - 「動民主」 - g0v.tw]
+00:15 < au> 底定期不能加建議... ?
+00:15 < au> 所以只好提反方論點
+00:17 < hychen> 有興趣非支持者之評價指的是什麼? 
+00:18 < hychen> 少打幾個字, 我指的是"平衡"
+00:18 < au> 意思是「加總」
+00:18 < au> Balance 誤譯
+00:18 < au> hychen++
+00:19 < hychen> 原來是淨值
+00:19 < clkao> au: 可以新增一個方案
+00:20 < au> 好吧，來試投票
+00:23 < a-tsioh> 好了，真的不需要很長的時間
+00:24 < tkirby__> XD
+00:26 < au> 提了 http://lqfb-test.g0v.tw/pf/initiative/show/7.html
+00:26 < kcwu> au's url: [客廳工廠黑客松最佳專案獎採「複數按讚投票」制 - 方案 i7 - 「動民主」 - g0v.tw]
+00:27 < clkao> 還有 36 分[!
+00:29 < au> 光速投票 #2
+00:31 -!- haroldwu [~user@118-170-186-137.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+00:35 < clkao> 半數凍結
+00:36 < clkao> .... 最後的快照
+00:36 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+00:37 < ipa> 快照....我以為是像pchome買完東西會有個screenshot
+00:37 < au> 大致底定?
+00:39 -!- haroldwu [~user@118-170-194-248.dynamic.hinet.net] has joined #g0v.tw
+00:39 < au> all fixed
+00:39 < au> 半數凍結 => 大致底定, 最後的快照 => 更新時間
+00:39 < au> 平衡 => 合計
+00:40 < hychen> 合計++
+00:44 < au> Source 來源 => 原文
+00:53 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 248 seconds]
+00:55 -!- ymow [01aba93f@gateway/web/freenode/ip.1.171.169.63] has quit [Ping timeout: 250 seconds]
+00:56 < a-tsioh> au: do you want us to clean the building procedure now ?
+00:57 < a-tsioh> I'm still doing `make offline; make translation ; cp .... ; make offline`
+00:57 < a-tsioh> that's ugly
+00:57 < au> a-tsioh: if possible at all please make it part of the main procedure
+00:57 < au> so we only maintain one corpus going forward
+00:58 < au> thanks!
+00:58 < a-tsioh> and somehow it seems to break the completion in the latest version of the code
+00:58 < a-tsioh> the translation data is ok
+00:58 < au> ok. I'll look during the weekend
+00:58 < a-tsioh> but the searchbox is broken
+00:58 < au> is a/index.json intact?
+00:59 < au> you can compare it to a built version in https://moedict.tw/a/index.json
+01:00 < a-tsioh> when is ./moedict-data/dict-revised.json created ?
+01:00 < a-tsioh> let me check
+01:00 < au> it's a checkout from kcwu's repo
+01:01  * a-tsioh just `ls a/` wooow
+01:02 < au> it's a filesystem stress test
+01:02 < a-tsioh> I don't have any a/index.json
+01:04 < au> alright, please pull
+01:04 < au> added it at 2410099
+01:04 < a-tsioh> wait a minute, the dict-revised.json exists before one `make offline` ?
+01:04 < au> yes, it's our upstream data
+01:04 < au> er 
+01:05 < au> "make offline" depends on "make moedict-data"
+01:05 < au> which depends on "make checkout"
+01:05 < au> which checks out moedict-data and dict-revised.json in it
+01:05 < au> see Makefile for details
+01:06 < au> 投好票了喔耶 # (Condorcet preferential voting)++
+01:06 < clkao> (!)
+01:06 < au> i7 > i3 > 0
+01:07 < clkao> 不直接投票 不是改了
+01:07 < au> 這是改過的
+01:07 < au> 原先是「請勿直接投票」
+01:08 < clkao> 首頁: 1 個項目投票中 (0 位尚未投票) 
+01:09 < au> fixed N 位尚未投票 => N 項尚未投票
+01:10 < au> Condorcet voting 是祕密投票，所以我好像不小心進行了一個在 IRC 上亮票的動作
+01:11 < clkao> ...
+01:11 < clkao> 所以最後無法檢視 delegation?
+01:11 < au> 好像是這樣
+01:12 < au> 所以跑票了會頭 (delegatee) 也不知道是誰跑的
+01:12 < au> 這很合理
+01:12 < clkao> l10n polled # au++
+01:12 < clkao> pulled
+01:22 < a-tsioh> the Taiwanese -> Mandarin is here but not the other way
+01:23 < au> a-tsioh: pull 5079a57
+01:23 < au> thx for the catch
+01:23 < au> (bbiab)
+01:23 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+01:26 < a-tsioh> \o/
+01:28 < a-tsioh> I just put the make translation before the offline rule and that should do it
+01:30 < a-tsioh> (answer in 10mn)
+01:31 < au> cool, please push at your convenience
+01:31 < clkao> hychen: 對了 後來 g0v box 有改嗎？
+01:32 < clkao> hychen: 11.4 有個大 bug.. 會讓 lqfb 相關的 recipe 爆炸。還是可以手動 patch:                https://github.com/opscode/chef/commit/451b7fb16fbc36b8a6391fec54474fc7d26f160c ?
+01:32 < kcwu> clkao's url: [Merge branch 'CHEF-4123' · 451b7fb · opscode/chef · GitHub]
+01:32 < hychen> clkao, 沒耶, 裝了chef 10.0, 我ruby弄不太起來
+01:32 < clkao> 噢
+01:32 < hychen> clkao, 需要ruby 1.93 專家火力支援
+01:32 < clkao> 不過今天 pm5 裝的還是 11
+01:32 < clkao> 還是 url 改了？
+01:32 < hychen> clkao, 是berkshelf裝不起來, 不是ruby裝不起來
+01:33 < clkao> 噢 你說外面？
+01:33 < hychen> 不是, 是box裡面
+01:33 < clkao> 裡面需要裝嗎？
+01:33 < clkao> 不是裝那個 vagrant plugin 他會自己想辦法解決
+01:33 < hychen> 是啊
+01:34 < hychen> 如果不需要的話, 那我明天重傳一個box有chef 0.10的上去
+01:36 < clkao> 或者原來的 chef 11 + 剛才那個 patch?  chef 10 不知道我現在的 setup 會不會又踩到什麼雷
+01:37 < hychen> clkao, chef 11+剛才那個patch好了? 因為你測過了
+01:44 < clkao> hychen: 是
+01:45 < hychen> clkao, roger 
+01:52 < clkao> hychen++
+01:52 < clkao> https://g0v.hackpad.com/MO2091Fi3fq # 先起個頭
+01:52 < kcwu> clkao's url: [「動民主」介紹及文案 - g0v.hackpad.com]
+01:58 < a-tsioh> au: done
+01:58 < a-tsioh> I mean pushed 01ecbd3
+01:58 < a-tsioh> tw, en,de,fr all fine
+01:59 < a-tsioh> except a weird thing
+01:59 < a-tsioh> english "title" is changed for "t" somehow
+02:01 < a-tsioh> I think it has to do with your indexing process for the webservice
+02:02 < a-tsioh> (the json outputed by my script looks just fine)
+02:06 < a-tsioh> I'm leaving the lab, good night !
+02:06 -!- a-tsioh [~pierre@nat-rech-216.net.univ-paris-diderot.fr] has quit [Quit: WeeChat 0.3.8]
+02:24 -!- hychen [~hychen@host-219-68-123-136.dynamic.kbtelecom.net] has quit [Quit: Leaving]
+02:30 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+02:57 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 248 seconds]
+03:06 -!- poga [~poga@1-171-126-84.dynamic.hinet.net] has quit [Remote host closed the connection]
+03:53 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+04:05 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+04:46 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+04:50 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+05:07 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Connection reset by peer]
+05:35 -!- Supaplextw [~Lucky@114-25-207-218.dynamic.hinet.net] has joined #g0v.tw
+05:36 -!- Supaplextw1 [~Lucky@1-164-212-112.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+06:13 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+06:36 -!- Netsplit *.net <-> *.split quits: tka_, idlecafe, walkingice, Jcrt
+06:48 -!- tka_ [~tka_test@li381-115.members.linode.com] has joined #g0v.tw
+06:48 -!- idlecafe [idlecafe@li475-173.members.linode.com] has joined #g0v.tw
+06:48 -!- walkingice [~walkingic@114-32-34-65.HINET-IP.hinet.net] has joined #g0v.tw
+06:48 -!- Jcrt [~Jcrt@ec2-54-248-221-251.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+07:01 -!- Netsplit *.net <-> *.split quits: tka_, idlecafe, walkingice, Jcrt
+07:04 -!- Netsplit over, joins: Jcrt, tka_, idlecafe, walkingice
+07:14 < thschee_> Global spending party - open up city spending / When: 20-21 July - weekend of spending https://docs.google.com/document/d/1Zh-TPxgMiFDrzk-rNJqL9CmCbbtlZmp2xjWlZ6T20TA/edit
+07:14 < kcwu> thschee_'s url: [Global spending weekend - July 20-21 - Google 雲端硬碟]
+07:15 -!- poga [~poga@1-171-126-84.dynamic.hinet.net] has joined #g0v.tw
+07:16 -!- poga [~poga@1-171-126-84.dynamic.hinet.net] has quit [Remote host closed the connection]
+07:16 -!- poga [~poga@1-171-126-84.dynamic.hinet.net] has joined #g0v.tw
+08:35 -!- Neson_ [~Neson@dex.tw] has quit [Ping timeout: 264 seconds]
+08:35 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has quit [Ping timeout: 264 seconds]
+08:36 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+08:36 -!- Neson [~Neson@dex.tw] has joined #g0v.tw
+08:42 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+08:52 -!- ETBlue [~chatzilla@175.182.237.104] has joined #g0v.tw
+08:57 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 276 seconds]
+09:11 -!- miaout17_ [~miaout17@miaout17.net] has quit [Ping timeout: 276 seconds]
+09:12 -!- miaout17 [~miaout17@miaout17.net] has joined #g0v.tw
+09:17 -!- pm5 [~pm5@111-248-213-191.dynamic.hinet.net] has joined #g0v.tw
+09:23 -!- rad [~anonymous@112.104.29.122] has joined #g0v.tw
+09:27 -!- MnO2 [~MnO2@nat/yahoo/x-brgdbnbtpthbupef] has joined #g0v.tw
+09:39 -!- FourDollars [~sylee@114-35-96-16.HINET-IP.hinet.net] has joined #g0v.tw
+09:53 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+09:55 -!- rad [~anonymous@112.104.29.122] has quit [Ping timeout: 260 seconds]
+09:59 -!- miaout17 [~miaout17@miaout17.net] has quit [Ping timeout: 276 seconds]
+09:59 -!- dryman [~dryman@www.ihatevocab.net] has quit [Ping timeout: 256 seconds]
+10:00 -!- miaout17 [~miaout17@miaout17.net] has joined #g0v.tw
+10:00 -!- dryman [~dryman@www.ihatevocab.net] has joined #g0v.tw
+10:15 < au> hlb_: 八角形 logo 還蠻上鏡頭的 http://www.ctitv.com.tw/news_video_c13v129376.html
+10:15 < kcwu> au's url: [擋不住民意！　鎖境外網站　智財局喊卡｜政治．財經｜中天電視-CtiTV.com]
+10:23 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: 881]
+10:23 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:24 < hlb_> au: 噢耶
+10:26 -!- chihchun_afk is now known as chihchun
+10:43 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+10:45 -!- rad [~anonymous@101.12.88.107] has joined #g0v.tw
+10:47 -!- Ken_ [72206c7a@gateway/web/freenode/ip.114.32.108.122] has joined #g0v.tw
+10:48 -!- Ken_ is now known as Guest68290
+10:56 -!- Guest68290 is now known as KenNaiLo
+11:14 < ETBlue> hlb++
+11:14 -!- rad [~anonymous@101.12.88.107] has quit [Ping timeout: 264 seconds]
+11:14 -!- MnO2 [~MnO2@nat/yahoo/x-brgdbnbtpthbupef] has quit [Quit: MnO2]
+11:14 < ETBlue> 雖然智財局只是個幌子  = =
+11:18 < au> 也不能這樣說，目前三套法案裡只有智財局的管境外
+11:24  * au @ 聯合星際總部一樓餐飲部
+11:25 -!- pm5 [~pm5@111-248-213-191.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+11:27 -!- pm5 [~pm5@111-248-213-191.dynamic.hinet.net] has joined #g0v.tw
+11:29 < KenNaiLo> Hi all, 我是新人
+11:29 < au> hi KenNaiLo
+11:29 < KenNaiLo> 最近想到個專案 想跟大家討論討論
+11:30 -!- rad [~anonymous@114-43-110-191.dynamic.hinet.net] has joined #g0v.tw
+11:31 < KenNaiLo> 我對於公共議題很有興趣，也有參與一些討論
+11:32 < KenNaiLo> 但我發現最大的問題在於 幾乎所有的討論對於現實似乎沒有什麼影響力
+11:34  * au is listening
+11:34 -!- pingooo [~pingooo@li582-242.members.linode.com] has quit [Remote host closed the connection]
+11:35 < KenNaiLo> 我在想 有沒有可能讓這些真正成為國家的決策
+11:36 < KenNaiLo> 簡單說 組政黨 參選不分區立委
+11:36 < clifflu>  路人亂入：法源；有政黨願意推，又或者能成立政黨推的話才可行
+11:36 < KenNaiLo> 是的 我正是這樣打算
+11:38 < KenNaiLo>  現有的政黨我認為已經是利益團體的結構
+11:38 < KenNaiLo> 根本無法改變這種情況
+11:38 < au> KenNaiLo: 這個專案需要哪些支援呢？
+11:39 < KenNaiLo> 我的具體想法是
+11:39 < clifflu> 如果資訊未過時 ( http://www.wretch.cc/blog/jackiehuang1/15724168 ) => [
+11:39 < kcwu> clifflu's url: [如何籌組一個政黨 - 黃山不敗 - 無名小站]
+11:40 < KenNaiLo> Thanks^^
+11:40 < clifflu> 1. 召開大會, 2. 300 人以上名冊, 3. 150 以上參加 1. 之大會
+11:40 < clifflu> ]
+11:40 < KenNaiLo> 黨是一個討論區 列了許多議題 透過評分機制得到最後的決策
+11:41 < KenNaiLo> 應該說透過評分及投票方式
+11:41 < au> KenNaiLo: 像是 http://lqfb-test.g0v.tw/pf/initiative/show/7.html 這樣?
+11:41 < kcwu> au's url: [客廳工廠黑客松最佳專案獎採「複數按讚投票」制 - 方案 i7 - 「動民主」 - g0v.tw]
+11:42 < au> ( 註冊、登入、投票方式見 https://twitter.com/audreyt/status/342694216268390400 )
+11:42 < kcwu> au's url: [Twitter / audreyt: 「動民主」真好玩。到 ...]
+11:43 < KenNaiLo> 類似 但投票及評分的資格是有嚴格的限制
+11:43 < clifflu> KenNaiLo: 設計制度是一回事，但怎麼去推行設計出來的制度，我覺得會是這個 Scenario 裡更大的問題 O.o
+11:43 < au> 如何限制黨員資格呢？
+11:43 < KenNaiLo> 資格本身沒有限制
+11:44 < KenNaiLo> 但投票及評分本身有限制
+11:44 < KenNaiLo> 所以任何人都可以討論某個議題
+11:44 < KenNaiLo> 但評分需要本身累積一定的credit
+11:44 < KenNaiLo> 想法來自 stackoverflow
+11:46 < KenNaiLo> 網路上有許多人發的文其實都有一定的水準 但缺乏一個整合的地方
+11:47 < KenNaiLo> 散在各blog或論壇中
+11:47 < clifflu> KenNaiLo: 我想過類似的題目，但有個問題是，自動分析有其限制 (怕 spammer)；引入人工分析就失去決對客觀性
+11:47 < KenNaiLo> 又如ptt 問題在於發文及評論制度太鬆散 無法突顯真正討論的議題
+11:47 < KenNaiLo> 但這題目我打算依靠人工分析 XD
+11:47 < clifflu> 這套系統必然 filter 很多訊息；要是有人能左右結果，遲早會向媒體一樣被錢買通
+11:48 < clifflu> s/向/像
+11:48 -!- rad [~anonymous@114-43-110-191.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+11:49 < KenNaiLo> 若左右結果的是一定的人呢
+11:49 < KenNaiLo> 一定數量
+11:49 < clifflu> s/pay him/pay them/
+11:49 < clkao> 題外化，德國海黨黨回信中提到，他們通過了一個「可以把線上投票搬到線下的提案」。還有一個議案如果 5% 的人同意，就改為秘密投票。
+11:50 < clkao> 海盜黨
+11:50 < KenNaiLo> 好奇 這是你寄信去問的嗎
+11:50 < clifflu> 以 clkao 的威光，他想到的問題，答案會自動 mail 到他信箱裡 (誤)
+11:51 < clkao> KenNaiLo: 隨便亂想：「科技科學救國黨（簡稱科科黨）民意代表、公職人員需推動 lqfb 上決議之提案」
+11:51 < KenNaiLo> lgfb是蛇？
+11:51 < clkao> KenNaiLo: 因為在跟他們討論一個 pirate feedback 的問題，就是上面的動民主系統。
+11:52 < CindyLinz> 自動分析... 想到昨天 FB 上面看到一堆分享 stackoverflow 上面, 推荐用 jquery 來算數字加法的討論串 XD
+11:52 < au> KenNaiLo: 可以參考 http://charlesc.ilovemeow.net/blog/20130110/1202
+11:52 < kcwu> au's url: [德國海盜黨的流動式民主 | Nothing But Net]
+11:52 -!- rad [~anonymous@114-43-110-191.dynamic.hinet.net] has joined #g0v.tw
+11:52 < clkao> 『科科黨民意代表、公職人員需推動「動民主」上決議之提案』
+11:52 < au> (流動式民主（簡稱動民主）)
+11:53 < au> 民意代表（簡稱「民意代表的簡稱」） #誤
+11:53 < KenNaiLo> wow really cool
+11:54 < hlb_> au, clkao: 你們有在辦公室嗎 :p
+11:54 < au> hlb_: 我在，並誤觸約 12 秒的警鈴
+11:54 < clkao> hlb_: 快要過去了
+11:54 < au> 抱歉造成困擾
+11:54 < hlb_> au, clkao: 對，我一直收到警報 XD
+11:54 < au> 可是要怎麼解除呢
+11:55 < au> 按 Home, Unlock, RFID 感應都無效
+11:55 < hlb_> KenNaiLo: 要組科科黨了嗎
+11:55 < hlb_> au: unlock 按久一點到燈亮起來再按掉
+11:55 < hlb_> au: 遙控器有誤觸 delay
+11:56 < au> done
+11:57 < KenNaiLo> 我是在想這件事得可行性
+12:00 < hlb_> KenNaiLo: 要先找到一個聽話的帥哥
+12:01 < KenNaiLo> XD 難道靠理想沒人會投你票嗎
+12:01 < clkao> 上次不是決定 allenown 了嗎? 累的時候還可以由 evenwu 代打
+12:01 < clifflu> hlb_: 這政黨應該會以宅人為主體，大神與正妹對這個社群比較有吸引力
+12:01 < clkao> (又同時符合大神形象)
+12:02 < hlb_> clkao: allenown 上次簽了 "只要不當那個帥哥，做什麼都可以" 的支票
+12:02 < hlb_> clkao: 所以應該是負責剷除敵人的
+12:02 < hlb_> 放完假該上班了 ~"~
+12:03 < KenNaiLo> 正在研究動民主 ...
+12:03 < clkao> KenNaiLo: 這邊有一份共筆 http://hack.g0v.tw/meta/Bee14qTnjgX
+12:03 -!- rad [~anonymous@114-43-110-191.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+12:03 < clkao> 有什麼心得或想法歡迎寫在上面
+12:03  * clkao -> 上班去
+12:04 < KenNaiLo> 大家都12點上班嗎~~
+12:07  * au 正在上班當 barista 幫大神煮咖啡增強威光
+12:08 -!- rad [~anonymous@114-25-44-21.dynamic.hinet.net] has joined #g0v.tw
+12:08 < clifflu> 話說這篇 ( http://openlife.cc/blogs/2012/october/how-delegated-voting-works-and-how-extend-it-secret-voting ) 有人翻了嗎 ? 沒的話我這週日可以處理。
+12:09 < au> clifflu++
+12:10  * clifflu soho && 待業中
+12:10 < au> 可能可以加一條譯按：「在 Pirate Feedback (g0v 動民主) 系統裡，委任不能多層。而是設定一個偏好列表，按照上面順序，將我的票給列表上有表示意見的人。」
+12:13 < KenNaiLo> 這個動民主系統目前有打算拿來做什麼用途嗎
+12:14 < clifflu> au: done; 翻譯我會用 evernote 處理文稿，然後再放上 blog (留 pingback 給原文，如果他們有收)。參考 https://www.evernote.com/shard/s77/sh/bcb0b8ff-7d23-4e91-85a1-b9bbd4c0e79c/23c56f95494023779863c3259fe8748b?noteKey=23c56f95494023779863c3259fe8748b&noteGuid=bcb0b8ff-7d23-4e91-85a1-b9bbd4c0e79c
+12:14 < kcwu> clifflu's url: [[翻譯] how delegated voting works and how extend it secret voting]
+12:14 < au> KenNaiLo: 像是「 COSCUP 捐給 g0v 黑客松的票要怎麼分 」這種公共議題
+12:14 < clifflu> feedback 請 mail 給我，週末我去顧小孩，應該會漏 irc 訊息 ˇˇ
+12:14 < au> 就很適合（也許下次黑客松要準備哪些食物也很適合...）
+12:15 < KenNaiLo> 似乎拿來討論公共議題很有趣
+12:17 < KenNaiLo> 有沒有長篇大論的討論範例之類的？
+12:17 < au> 這套系統昨天才中文化完成上線所以還沒有 XD
+12:17 < clifflu> KenNaiLo: just start one ? 我可以幫你唱反調 XD
+12:18 < au> 可能可以找到德/奧的例子
+12:18 < KenNaiLo> good
+12:18 < KenNaiLo> 那直接在上面進行囉~應該我在架ㄧ個吧
+12:19 < KenNaiLo> 應該不用
+12:19 -!- rad [~anonymous@114-25-44-21.dynamic.hinet.net] has quit [Quit: rad]
+12:19 < KenNaiLo> irc 有沒有蛇推薦的 mac app
+12:19 < clifflu> 有人家架好的測試機 當然是想辦法把它打掛啊 >///<
+12:20 < au> KenNaiLo: Colloquy? 或是 Adium IRC mode
+12:21 < KenNaiLo> i try
+12:23 -!- kf013099 [~kf013099@114-32-108-122.HINET-IP.hinet.net] has joined #g0v.tw
+12:26 < clkao> clifflu++
+12:26 -!- kf013099 [~kf013099@114-32-108-122.HINET-IP.hinet.net] has quit [Client Quit]
+12:27 < clkao> KenNaiLo: 直接在 沙箱 進行即可
+12:28 < KenNaiLo> 我試試看
+12:31 < clkao> KenNaiLo: 登記鄉民列表記得幫自己加關鍵字 :)
+12:34 < KenNaiLo> done
+12:39 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+12:39 -!- tkirby__ [b88039@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+12:39 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+12:39 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:39 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:39 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:44 < KenNaiLo> 為什麼上面顯示的是一般討論#2,3,4
+12:44 < KenNaiLo> 不是議題的名字啊？
+12:45 < au> KenNaiLo: 因為方案名稱會改，也會有新的方案
+12:45 < au> 所以議題本身只有編號，以免預設立場
+12:46 < au> # 這顯然是 FAQ
+12:46 < au> 舉例說，你提了 方案 i9: 核四興建
+12:47 < au> 別人可以在同一個討論下提
+12:47 < au> 方案 i10: 核四原地成立博物館，永不啟用
+12:47 < au> 方案 i11: 核四改裝成太空梭
+12:47 < au> etc
+12:47 < au> 然後在這些方案之中投票。
+12:48 < KenNaiLo> ok, 所以一個討論中可以提數個方案
+12:48 < au> 是的
+12:51 < au> 我提了 http://lqfb-test.g0v.tw/pf/initiative/show/11.htm
+12:51 < KenNaiLo> 看來是每個方案都可以有建議、正方論點及反方論點
+12:51 < au> 是的
+12:51 < au> 「大致底定」期之前都可以建議
+12:51 < au> 之後只能提新方案
+12:52 < au> 開始投票後就不能改也不能加方案了（當然）
+12:52 < KenNaiLo> 不過感覺論點應該以展開的方式顯示
+12:52 < au> 同意
+12:52 < KenNaiLo> 只看得到標題讓人很沒勁
+12:53 < au> 心得寫進 http://hack.g0v.tw/meta/Bee14qTnjgX 的「心得」區吧
+12:53 < au> 明天黑客松可以進一步討論
+12:56 < pm5> 
+12:59 < KenNaiLo> 恩恩
+13:15 -!- MnO2 [~MnO2@nat/yahoo/x-xgyjwdmmxmmyeayr] has joined #g0v.tw
+13:16 < hlb_> KenNaiLo: 要開政黨的話可以先在 Registrano 統計
+13:17 < KenNaiLo> 我看看
+13:18 < au> 「你每次要創辦政黨的時候，都在煩惱怎麼製作黨員名冊、處理大會事宜嗎？在 Registrano 建立政黨是如此簡單，一切都可以在彈指之間輕鬆完成。」
+13:19 < hlb_> 衝了吧...
+13:19 < hlb_> 不過現在是 300 還是 30 人？
+13:19 < au> 有沒有 47 秒組黨完成的八卦
+13:21 < Jedi_> KD
+13:23 < KenNaiLo> 30人＝＝
+13:23 < clkao> au lunch is taking longer than expected. should be there in 10
+13:23 < hlb_> KenNaiLo: 活動開好給我 URL :)
+13:24 < au> 「一百人以上黨員簽名或蓋章之名冊」/「大會之召開,應有五十人 以上之黨員參加
+13:24 < au> 」
+13:24 < au> # http://www.ey.gov.tw/News_Content5.aspx?n=875F36DB32CAF3D8&sms=7BD79FE30FDFBEE5&s=2C88AD147490196A
+13:24 < kcwu> au's url: [政黨法草案]
+13:26 < KenNaiLo> 沒問題的 不過好像還少了什麼- -
+13:30 -!- chuiyi [~Chuiyi@123-204-62-144.static.seed.net.tw] has joined #g0v.tw
+13:31 < au> KenNaiLo: 建議可以反對... 只是自己提的建議，沒有剛提就反對的道理
+13:31 < au> （之後可以改成反對/非常反對)
+13:32 < au> 可以在 http://lqfb-test.g0v.tw/pf/suggestion/show/8.html 改
+13:32 < kcwu> au's url: [建議怎麼只有同意及非常同意 - 建議 #8 - 「動民主」 - g0v.tw]
+13:34 < KenNaiLo> 了解
+13:37 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+13:47 < hychen> 政黨++
+13:54 < ipa> @@ 寫code主義 吾黨所宗
+14:02 -!- KenNaiLo [72206c7a@gateway/web/freenode/ip.114.32.108.122] has quit [Quit: Page closed]
+14:03 < ETBlue> or 開源主義... XD
+14:05 < hlb_> 自由主義
+14:06 < hlb_> 遙尊 Stallman 為精神領袖
+14:06 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+14:06 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+14:07 < hlb_> 不自由，毋寧死
+14:07 < hlb_> 如果 project 不開源，那就從結案日死去了
+14:08 < au> 這個哏不錯，可以用來接「開站是一時的」
+14:20 < clifflu> 話說 ET Wu 明天沒法去；我昨天有問他轉播方面的事，預定需要 win 筆電一台，usb webcam 兩隻，有人手邊有多餘設備嗎 ?
+14:21 < clifflu> webcam 我可能能向 ETWu 借到；但我家閒置的筆電沒有 adaptor，無法保證可用 ˇˇ
+14:26  * au 明天下午 ~4pm 才會到會場... 只有多一台舊型 macbook air (不一定跑得動 windows)
+14:27 -!- pm5 [~pm5@111-248-213-191.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+14:28 < clifflu> ETWu 回覆：需要筆電的話我這台借你XDDD 看來設備就全靠他了 !
+14:28 < au> ETWu++
+14:32 -!- rad [~anonymous@210.242.90.198] has joined #g0v.tw
+14:39 -!- cibs [~cibs@60-251-40-253.HINET-IP.hinet.net] has quit [Quit: leaving]
+15:08 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has joined #g0v.tw
+15:38 -!- poga [~poga@1-171-126-84.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+15:42 -!- MnO2 [~MnO2@nat/yahoo/x-xgyjwdmmxmmyeayr] has quit [Quit: MnO2]
+15:45 -!- MnO2 [~MnO2@nat/yahoo/x-zzvsixcnqxivmxzi] has joined #g0v.tw
+15:49 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:49 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:49 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+15:49 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+15:52 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:53 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+15:54 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has joined #g0v.tw
+15:57 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+15:58 -!- wHisKy- [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+15:59 -!- lcamel_ [~lcamel@corp-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 252 seconds]
+15:59 -!- lcamel [~lcamel@corp-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+16:05 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+16:05 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has joined #g0v.tw
+16:21  * clifflu 已經取得來自 ETWu 的筆電與兩台 webcam；希望明天運作順利。另外徵人今天試玩 hangout !
+16:25 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+16:32 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has joined #g0v.tw
+16:43 < ipa> clifflu++
+16:45 -!- Goddamn_ is now known as Goddamn
+16:46 < clkao> clifflu++
+16:48 < clifflu> 我先把軟體跟環境弄一下，大約 5:15 O.o 預定踹 google hangout 為主；另外 g0v 有官方 google 帳號嗎 ?
+16:50 < ipa> 我等一下要移動 八點半以後才會歸位哩
+16:50 < ipa> 有沒人等下可以幫測？
+16:51 < clifflu> XD 那我就趕一下吧，5min 左右可以上 hangout
+16:54 < ipa> 我發現我根本沒裝hangout 趕快來裝
+16:55 < clifflu> 我好像把 manycam 搞掛了.... 那就晚上九點吧
+17:01 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+17:02 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has joined #g0v.tw
+17:06 -!- ltroot_ [~a9903089@140.127.182.55] has quit [Read error: Connection reset by peer]
+17:08 < clifflu> http://youtu.be/UAkl8irnbvE 能看到東西嗎 @@
+17:08 < kcwu> clifflu's url: [test - YouTube]
+17:17 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+17:18 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has joined #g0v.tw
+17:22 -!- a-tsioh [~pierre@nat-rech-218.net.univ-paris-diderot.fr] has joined #g0v.tw
+17:42 < clifflu> 我試不出 google hangout 怎麼搞；但用 Adobe Media Live Encoder 輸出到 twitch 沒問題
+17:45 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+17:49 < clkao> clifflu: hangout 開始的時候要選 public 然後就可以 publish to youtube
+17:52 -!- dryman [~dryman@www.ihatevocab.net] has quit [Ping timeout: 246 seconds]
+17:52 -!- dryman [~dryman@www.ihatevocab.net] has joined #g0v.tw
+17:59 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+18:00 -!- MnO2 [~MnO2@nat/yahoo/x-zzvsixcnqxivmxzi] has quit [Quit: MnO2]
+18:04 -!- pm5 [~pm5@111-248-213-191.dynamic.hinet.net] has joined #g0v.tw
+18:07 < clifflu> clkao: 在嗎 ? 我開了一個公開的 hangouts 派對，看來應該是這東西
+18:07 < clifflu> https://plus.google.com/hangouts/_/42200248e68cf7a1f6f19e6c991a77ec658d4d60
+18:07 < kcwu> clifflu's url: [Google+]
+18:08 < clifflu> 結果是奇怪外國裸男子加入了
+18:09 < clkao> orz
+18:09 < clifflu> closed
+18:09 < clkao> wtf
+18:10 -!- MnO2 [~MnO2@nat/yahoo/x-occvtcqrnoqlmlhl] has joined #g0v.tw
+18:10 < Jedi_> ...
+18:10 < clifflu> google hangout 沒有比較不公開，例如用 url 的型式嗎 ˇˇ
+18:13 -!- cibs [~cibs@118-163-170-73.HINET-IP.hinet.net] has joined #g0v.tw
+18:13 < clifflu> 然後剛拿 ETWu 電腦測的結果，壓 800kbps VP6 15fps 上 ustream 就很吃力了 ˇˇ
+18:15 < clifflu> 有有 google 帳號，且沒有與我互圈的人願意試試能否加入嗎 ? clkao 我有圈你，猜想會可以
+18:15 < clifflu> https://plus.google.com/hangouts/_/8e036d375b02994f1b42c699dd34e5e0e0ea122a
+18:24 < clkao> clifflu: joining
+18:24 < clkao> clifflu: 可以 invite only 吧 但是還是 public
+18:24 -!- pm5 [~pm5@111-248-213-191.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+18:24 < clifflu> clkao 我聽到你的鍵盤聲與笑聲了 ˇˇ
+18:27 -!- Dennisc1401 [~Dennis_Ch@210.61.193.66] has left #g0v.tw []
+18:30 < clifflu> 剛 hangout 我權限是選社交圈，$4 沒被我圈但能從這邊點 uri 進去；這樣明天應該可行。如果搞不定再 fallback 成 twitch.tv
+18:32 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 246 seconds]
+18:37 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:38 -!- chuiyi [~Chuiyi@123-204-62-144.static.seed.net.tw] has quit [Quit: Leaving.]
+18:49 -!- rad [~anonymous@210.242.90.198] has left #g0v.tw []
+18:55 -!- FourDollars [~sylee@114-35-96-16.HINET-IP.hinet.net] has quit [Quit: leaving]
+18:58 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: 881]
+19:10 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+19:18 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+19:18 < clkao> clifflu++
+19:18 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+19:19 < clkao> orz 又要來準備 slides 了
+19:21 -!- MnO2 [~MnO2@nat/yahoo/x-occvtcqrnoqlmlhl] has quit [Quit: MnO2]
+19:26 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:26 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:26 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+19:26 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+19:26 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:26 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+19:31 < thschee_> liquid feedback retweeted by @zuola and his got some 40000+ followers
+19:31 < thschee_> but it's approaching weekend so might not get many tractions, i am not sure
+19:36 -!- poga [~poga@1-171-126-211.dynamic.hinet.net] has joined #g0v.tw
+19:38 -!- poga [~poga@1-171-126-211.dynamic.hinet.net] has quit [Remote host closed the connection]
+19:38 -!- poga [~poga@1-171-126-211.dynamic.hinet.net] has joined #g0v.tw
+19:39 < clkao> thschee_: yes we met a few weeks ago discussing lqfb
+19:40 -!- poga [~poga@1-171-126-211.dynamic.hinet.net] has quit [Remote host closed the connection]
+19:41 -!- poga [~poga@111-241-136-154.dynamic.hinet.net] has joined #g0v.tw
+19:41 < thschee_> nice. he's old friend.
+19:50 < clifflu> 直播測試中，歡迎測試：youtube: http://www.youtube.com/watch?v=SX_voNF8aQg ; 結果我反而找不到 hangout 要怎麼貼過來了 ˇˇ
+19:50 < kcwu> clifflu's url: [g0v test - YouTube]
+19:52 < clifflu> 影片比實際狀況慢約 40 秒 囧rz
+20:38 < ipa> blah
+20:39 < clkao> thschee_: so what do you do in swiss pirate party?  anything interesting to share?
+20:50 < clkao> clifflu: 對了，你有認領那個 lqfb 翻譯嗎？那在 hackpad 上簽一下吧
+20:50 < au> clkao: 0Ak0j8_vTJFGUdEFCWHVQX0pnNkszNHJjUUJqVS1mc3c needs to be public
+20:50 < au> # 專案報告登記
+20:51 < clkao> au++
+20:51 < clkao> 用太多 hackpad 忘了有 access control 這回是... 
+20:51 < clkao> 我的 open 人生.... orz
+20:52 < au> 加了 G17 專案成員需要 COSCUP 門票數 (可不填)
+20:53 < au> should make fallthrough/tiebreak easier
+20:54 < clkao> aui++
+20:55 < clkao> 我來弄一下 avatar integration 好了 (yak shaving)
+20:57 < clkao> what's the mime content type of a url string
+21:00 < clkao> 還是先把 keynote 開起來好了... 
+21:04 < cpyang> w
+21:05 < clkao> cpyang!
+21:05 < au> clkao: probably text/x-uri for lack of a iana registry
+21:05 < au> or text/x-url (same idea)
+21:06 < clifflu> clkao: 已在 lqft-test hackpad 加註 O.o/ 謝提醒
+21:06 < Jcrt> ETBlue: ipa: 明天我那個學妹會去參加 g0v ，要麻煩兩位照顧一下～
+21:07 < clkao> Jcrt: 有登記 hub 了嗎 :D
+21:07 < Jcrt> ETBlue: 因為他說不知道參加可以做什麼，我就直接請他去找你 XD 拜託你了～
+21:07 < Jcrt> clkao: not yet, i tell her now
+21:07 < clkao> Jcrt++
+21:07 < Jcrt> thanks for reminder
+21:08 < clifflu> 另外下午玩過 Google Hangout / twitch.tv，延遲 40 / 5 s，有點難決定
+21:08 < ipa> Jcrt: 好啊 
+21:08 < clkao> clifflu: 是噢，上次 hangout 好像沒那麼慘... 中研院網路應該超快 XD
+21:09 < clifflu> 感覺不是網速問題 XD 應該是 hangout 與 youtube 中間又多做了什麼吧
+21:09 -!- hychen [~hychen@host-219-68-127-55.dynamic.kbtelecom.net] has joined #g0v.tw
+21:09 < clifflu> 如果中間可能斷網，twitch 優先；因為 media encoder 可以存一份本地 flv，之後再上傳 youtube 正好。
+21:11 < Jcrt> clkao: hub 現在正常嗎？
+21:11 < Jcrt> clkao: 唔好像是我網路比較不正常…
+21:11 < Jcrt> 奇怪我看到都是破圖
+21:12 < Jcrt> 咦？ http://avatars.io/ 掛了？
+21:12 < kcwu> Jcrt's url: [Avatars.io by Chute]
+21:12 < hychen> 我也是看到破圖
+21:12 < clifflu> Jcrt: 你指的是那頁 (avatars.io) 開不出來 ? 我看正常耶 @@ 
+21:13 < Jcrt> http://avatars.io/twitter/wildjcrt?size=large
+21:13 < au> 破圖大約十秒中才開始出現
+21:13 < Jcrt> 我自己的頭像就跑不出來
+21:14 < clifflu> <-- 秒出，with cache disabled @@
+21:15 < clifflu> (avatars.io/twitter, wait=222ms) -302-> (api.twitter.com, wait=331ms) -302-> /profile_images (wait=102ms)
+21:20 < clkao> 怪怪的
+21:20 < clkao> hychen: box 更新了嗎
+21:21 < hychen> clkao, 還沒, 我的機器vm有點問題
+21:26 < clkao> hychen: 對了 ruby 爛掉可以問 Jcrt 
+21:27  * a-tsioh 才發現明天的活動是這邊時間凌晨３點就開始orz
+21:27 -!- KenNaiLo [722ad3d2@gateway/web/freenode/ip.114.42.211.210] has joined #g0v.tw
+21:31 < clkao> orz avatars.io dns 整個不見? 不會倒了吧
+21:34 < Jcrt> clkao: 我剛剛就是整個連不到啊，才會問說 avatars.io 是不是掛了…
+21:34 < clifflu> 8.8.8.8 查不到了 XD
+21:34 < clkao> in /etc/hosts: 23.21.124.27    avatars.io
+21:35 < clkao> 奇怪 我自己 whois 去看 他 ns 在 aws, 然後自己 dig 也有
+21:37 < KenNaiLo> g0v hub好像掛了?
+21:38 -!- haroldwu [~user@118-170-194-248.dynamic.hinet.net] has quit [Remote host closed the connection]
+21:38 -!- haroldwu [~user@118-170-194-248.dynamic.hinet.net] has joined #g0v.tw
+21:42 < clkao> KenNaiLo: oh?
+21:43 < clkao> ok, 現在用 hub 登入 lqfb 會把 avatar 帶過去了
+21:43 < clkao> 但是 avatars.io 爛掉了 要等他好才會看得到
+21:43 < KenNaiLo> 登不進 lqfb
+21:44 < KenNaiLo> 難道是我 browser 的問題?
+21:44 < clkao> KenNaiLo: 有什麼錯誤訊息嗎?
+21:44 < KenNaiLo> 啊 我搞錯了
+21:45 < KenNaiLo> 要先在 g0v.tw 選登入 再到 lqfb 
+21:45 < clkao> KenNaiLo: 明天會來黑客松？
+21:45 < clkao> KenNaiLo: 是 還沒寫 hub 未登入時的處理
+21:45 < KenNaiLo> 看來是
+21:45 < KenNaiLo> 我想去啊 不過腦袋空空
+21:46 < ipa> 來了就不空了 XD
+21:46 < clkao> KenNaiLo: 我看到你的 avatar 了
+21:46 < clkao> 成功
+21:47 < clkao> 不過 size 沒讓他固定... 先不管了..
+21:48 < clkao> avatars.io 有時查得到 有時查不到... 推測是 awsdns 的問題
+21:48 < KenNaiLo> cool I saw it
+21:49 < clkao> 來吧你 現在每個人可以獲得一個坑
+21:49 < Jcrt> ipa: 明天也要拜託你了 <(_ _)>
+21:49 < KenNaiLo> 什麼坑XD
+21:56 < clkao> 不知道耶 看想進什麼坑？把 lqfb 
+21:56 < clkao> 玩熟然後寫一些正常人看得懂得介紹？
+21:56 < clkao> 和 etblue 討論如何調整他的介面？
+21:57 < clkao> 只要有心 處處都是坑？
+21:58 < KenNaiLo> 了解
+21:58 < KenNaiLo> 報名了 不過 hackpad一直要我登入- -
+21:58 < KenNaiLo> 我明明就登了
+21:58 < KenNaiLo> 搞什
+21:58 < clkao> 再按一次? 因為 g0v hackpad 是自己一個 instance
+22:03 < clkao> 慘了，google 「動員戡亂」, g0v 不再第一頁了
+22:05 -!- chuiyi [~Chuiyi@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+22:10 -!- chuiyi1 [~Chuiyi@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+22:10 -!- chuiyi [~Chuiyi@220-135-178-174.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+22:22 < KenNaiLo> 下午再去 ok嗎
+22:22 < KenNaiLo> 早上家裡有事- -
+22:24 < KenNaiLo> 有沒有辦法在動民主加一些比較看得懂的主題呢?
+22:25 -!- icman [~icman@123.240.147.165] has joined #g0v.tw
+22:25 < KenNaiLo> 如教育、國防之類的東東
+22:28 < clkao> 可以啊 要沿用立法院的委員會名稱嗎？
+22:29 < hlb_> clkao: 我用 incogito window 還是耶 :p
+22:29 < clkao> hlb_: 還是啥？
+22:30 < clkao> KenNaiLo: 開好了
+22:35 < KenNaiLo> wow  好快- -
+22:35 < hlb_> clkao: incognito sorry.
+22:35 < KenNaiLo> 所以開主題是要有挺高的權限XD
+22:35 < hlb_> clkao: 無痕視窗(?)
+22:37 < clkao> hlb_: i know, 我是說，用無痕還是啥?
+22:37 < hlb_> clkao: 無痕
+22:37 < hlb_> clkao: google 「動員戡亂」, g0v 不再第一頁了
+22:37 < hlb_> clkao: 我的還是啊 :p
+22:37 < clkao> 噢，我剛也開無痕 變成第二頁了
+22:38 < clkao> KenNaiLo: 是。理想上應該有一個特殊程序是用來提議開主題的，通過就開 之類。
+22:41 < KenNaiLo> 所以似乎立法院的委員比較像是組織?
+22:44 < clkao> 對，單一組織的成員是固定的。但對我們來說，他們應該只是個別主題。因為並沒有要有不同群人參加不同委員會，大家加入有興趣的主題即可
+22:47 < KenNaiLo> 嗯嗯 對了 下午才能到場會不會有什問題- -
+22:47 < KenNaiLo> 明天的活動
+22:49 < clkao> 可以啊
+22:50 < clkao> hackpad 上有 n+1 個議題追蹤類... 顯然許多人被氣到
+22:59 -!- ymow [01aba93f@gateway/web/freenode/ip.1.171.169.63] has joined #g0v.tw
+23:13 < ETBlue> Jcrt: clkao ipa : 收到，沒有問題，本單位 100% 歡迎正妹 XD
+23:13 < ETBlue> 睡個覺醒來 IRC 就暴走了...
+23:17 < KenNaiLo> 這樣算爆走嗎~~
+23:17 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+23:18 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:19 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+23:19 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:20 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+23:23 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:25 -!- hychen [~hychen@host-219-68-127-55.dynamic.kbtelecom.net] has quit [Quit: Leaving]
+23:29 < tkirby> 回頭翻了好久才看完
+23:29 -!- VoidChen [~VoidChen@114-45-246-219.dynamic.hinet.net] has joined #g0v.tw
+23:37 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has joined #g0v.tw
+23:38 < clkao> 鋪梗中 請大家提供「乍聽之下不可能，但是被做出來的事情」
+23:39 -!- chitsaou [~chitsaou@36-231-20-215.dynamic-ip.hinet.net] has joined #g0v.tw
+23:39 < chitsaou> 大家好 我是鴨七 <(_ _)>
+23:39 < clkao> 如：四千年前，蓋出 150m 高的金字塔、把世界上每條街道都拍照、即時語音翻譯軟體、在家地下室做出核融合反應器
+23:41 < ETBlue> chitsaou: hihi 鴨七 <- 社會議題追蹤網發起人
+23:41 < chitsaou> ETBlue hihi
+23:41 < CindyLinz> clkao: 要不要避開政治性的?
+23:41 < clkao> CindyLinz: 譬如說？
+23:42 < ETBlue> KenNaiLo: clkao au 今日 irc 上的動民主 FAQ 暫貼在這 http://hack.g0v.tw/meta/MO2091Fi3fq
+23:42 < CindyLinz> clkao: 例如說總統好像有點不太夠聰明... @@"
+23:43 -!- chhsiao1981 [~chhsiao@114-43-149-21.dynamic.hinet.net] has joined #g0v.tw
+23:43 < CindyLinz> 感覺不好.. 算了 :Q
+23:43 < clkao> 最好是科技相關的 
+23:43 < S3p_lin> 說總統笨會被討厭
+23:43 < CindyLinz> 我已經開始覺得討厭了 orz
+23:44 < chhsiao1981> 明天我有想要討論如何對立法院公報做 error checking/verification 的機制.
+23:45 < clkao> 微軟市佔率的崩毀
+23:46 < chhsiao1981> 有可能是 recaptcha 那樣子的方式. 也有可能是 forum 類的方式. 也有可能是某種遊戲類記 karma 的方式.
+23:47 < tkirby> clkao: 電腦戴在臉上?
+23:48 < ETBlue> chitsaou: 現在議題追蹤的有好幾個，不過方向不太一樣，昨天 prehack 時也有聊到這個， clkao 好像是說就先切小塊開幹... XD
+23:48 < superbil> 請問明天要用到的 webcam 有夠嗎？若不夠我可以帶一台
+23:48 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+23:48 < tkirby> 虛擬偶像演唱會 # http://www.youtube.com/watch?v=fQyBYnqhUuY
+23:48 < kcwu> tkirby's url: [初音ミク2012/10/6台灣ミクパ720p(繁日字幕) - YouTube]
+23:48 < ETBlue> superbil！ XD
+23:48 < clifflu> superbil: 我這邊有從 ETWu 拿到兩台，要直播一組應該是夠，但帶了應該也 ok
+23:49 -!- KenNaiLo [722ad3d2@gateway/web/freenode/ip.114.42.211.210] has quit [Ping timeout: 250 seconds]
+23:50 < superbil> clifflu: ok got it
+23:51 < chhsiao1981> (這兩個月很忙. 一直很沒有時間 follow. 不過明天是有想要做點事情.)
+23:51 < chitsaou> ETBlue: 我也是看到好幾個類似的…XD
+23:54 < ipa> http://ipaway.org/?p=2679
+23:54 < kcwu> ipa's url: [ipaway » Blog Archive » 網路公民的進擊]
+23:55 < clkao> shit... keynote 好像當了
+23:55 < ipa> 搶在黑客松前一天貼文 自我拖稿太久的最後deadline
+23:55 < tkirby> xD
+23:55 < clkao> 復活了
+23:55 < tkirby> clkao: 應該沒有放在 /tmp ?
+23:56 < clkao> 科科 是在 /tmp
+23:56 < clkao> 趕快般一下
+23:57 < tkirby> XDDDDDDDDDDDD
+23:57 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:58 < clifflu> clkao: 問下，明天你幾點會到 ? 另外有人對轉播用 webcam 的架設方式 (限定膠帶 XD) 有建議嗎 ? 例如場地裡有高架子
+23:59 < ETBlue> chitsaou: people watch / 失憶政府 / 鄉民關心你 / 化憤池 / 社會議題懶人包 / 社會議題追蹤網 / 這幾個專案對於新聞整理、tag 的部分是類似的，但各自面對的族群和使用情境也不是完全一樣

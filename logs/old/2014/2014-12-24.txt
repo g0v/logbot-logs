@@ -1,0 +1,207 @@
+--- Day changed 三 12月 24 2014
+00:08 < clkao> ronnywang: orz 這太威了: https://github.com/mapbox/geojson-vt
+00:08 < kcwu> clkao's url: [mapbox/geojson-vt · GitHub]
+00:13 < yhsiang> 這樣可以用slack看irc log了 :D
+00:13 < yhsiang> (如果不要太多的話 XD)
+00:18 < nchild> a0kman 上週日在關鍵數據小組農業議題工作坊介紹超農域的影片 http://youtu.be/ACzCCdw9ffA
+00:18 < kcwu> nchild's url: [農業議題工作坊 - g0v專案超農域介紹 - YouTube]
+00:19 < jimyhuang_> clkao: 效能有這麼好..? (geojson-vt)
+00:20 < clkao> 看起來相當驚人啊
+00:46 < ronnywang> clkao: 我剛把他跑起來看看，還滿威的
+00:47 < clkao> mapbox 真是超展開... 今天還看到 turfjs
+00:47 < clkao> 這也很離譜: https://www.mapbox.com/blog/turf-gis-for-web-maps/
+00:47 < kcwu> clkao's url: [Turf: GIS for web maps | Mapbox]
+00:50 < ronnywang> 我覺得處理 GeoJSON 最大的瓶頸是在 JSON.parse( json_string )
+00:51 < ronnywang> 我在 Linux 上面處理 80MB 的 GeoJSON 用 node js JSON.parse 或是 php json_decode 都會炸...
+00:51 < au> https://github.com/mapbox/geojson-stream ?
+00:51 < kcwu> au's url: [mapbox/geojson-stream · GitHub]
+00:55 < ronnywang> 這個底層是用 json-stream ，我不太確定我有沒有試過 json stream ，明天來試試看
+00:56 < ronnywang> 之前都是拿我自己在 https://github.com/ronnywang/twgeojson/blob/master/twvillage2010.json 轉出來的 70MB 的 GeoJSON 來測試，用 node js JSON.parse 和 PHP json_decode 都炸
+00:56 < kcwu> ronnywang's url: [twgeojson/twvillage2010.json at master · ronnywang/twgeojson · GitHub]
+00:57 < ronnywang> 剛剛用 geojson-vt 測這個檔，是沒有炸，不過開 chrome:memory 他吃了 700MB
+00:57 < jimyhuang_> XD 
+00:57 < jimyhuang_> 今年不是5倍而已嗎
+00:57 < ronnywang> geojson-vt 還是用 JSON.parse ，所以如果在我的 linux 上的 node js 應該還是會炸
+00:58 < au> 五倍是去年了 XD
+00:58 < jimyhuang_> ronny 不過你是用傳說中的6歲 thinkpad?
+00:58 < ronnywang> 再過幾天五倍就是兩年前了
+00:59 < ronnywang> 我 6 歲的 thinkpad 跑的 win8 + chrome 可以跑 geojson-vt ，不過開 70MB 的 GeoJSON 會吃掉 700MB Ram
+01:00 < jimyhuang_> 那表示 6 歲 thinkpad 完勝 Linux server (誤)
+01:00 < _slack_bot1> <gasolwu> fork 來玩玩看~
+01:02 < ronnywang> 6歲 thinkpad x61 2G Ram, Linode Linux 1G Ram.. 立足點不公平啊 XD
+01:03 < ronnywang> 之前有考慮要不要花錢把 6歲 thinkpad x61 升到 4g ram ，不過現在 ddr2 好貴...
+01:03 < jimyhuang_> au: 真的是去年..（抱頭
+01:14 < yhsiang> clkao: turfjs ... 太威了吧
+01:32 < clkao> ronnywang: 有興趣寫篇英文 guest blog 講政治獻金數位化的一些東西嗎? :p sunlight 邀稿
+01:32 < clkao> 好像也可以共筆 :p
+01:34 < ronnywang> clkao: 我英文太菜了 XD
+01:35 < clkao> 只好拖 muyueh 跟 CTBlue 下水
+04:50 < t0mst0ne_> 現在好像一提到空污, 就會連到 env.g0v https://www.facebook.com/leon.dai/posts/10203478282540889
+04:50 < kcwu> t0mst0ne_'s url: [戴立忍 - 中南部朋友請注意！ ================================ 《 空襲警報!... | Facebook]
+09:44 < _slack_bot1> <kiang> <https://gist.github.com/kiang/9224e139320c230fedc5> 開始塞檔案到 github 了
+10:00 < t0mst0ne_> kiang: 是指仿單檔嗎 ?
+10:02 < _slack_bot1> <kiang> t0mst0ne_: yes, 76GB 的資料 XD
+10:04 < t0mst0ne_> kiang: wow ... 難不成真的要來 OCR , 還在等有沒有已經現成, verified 的資料
+10:05 < _slack_bot1> <kiang> t0mst0ne_: 現在只是先備份而已，畢竟食藥署網站感覺不是很穩
+10:06 < t0mst0ne_> 如果沒有結構化仿單, 應該push gov 做;  之後再連結
+10:07 < t0mst0ne_> 如果沒有公開釋出的結構化仿單
+10:22 < _slack_bot1> <kiang> 目前感覺上傳速度比下載速度快，食藥署網站真的是很糟糕...
+10:24 < _slack_bot1> <kiang> @undefined: here
+10:27 < _slack_bot1> <kiang> t0mst0ne: 這邊聊就會丟到 logbot 去了
+10:27 < _slack_bot1> <t0mst0ne> @undefined hihi
+10:28 < t0mst0ne_> _slack_bot1: test
+10:32 < miaoski> kiang: 好暴力 (指) (Github 哭哭)
+10:32 < miaoski> kiang: 那個解析度要做 OCR 大概要自己來做...
+10:33 < _slack_bot1> <kiang> miaoski: 目前就先備份，然後等看看有沒有更好的資料源囉 XD
+10:37 < _slack_bot1> <t0mst0ne> <http://dailymed.nlm.nih.gov/dailymed/spl-resources-all-drug-labels.cfm>  US files , 如果直接by pass 中文仿單 , 就這個吧
+10:37 < kcwu> _slack_bot1's url: [DailyMed]
+10:38 < _slack_bot1> <t0mst0ne> 只是又要parse 國內有的 ....
+10:38 < _slack_bot1> <kiang> t0mst0ne: 已經先塞到 <https://g0v.hackpad.com/72TVP8zYYfs>
+10:38 < Lee1092> 有種 兩個世界 聊天的感覺  XD
+10:39 < _slack_bot1> <kiang> Lee1092: slack 互動功能比較完整吧 :simple_smile:
+10:40 < _slack_bot1> <t0mst0ne> slack 打出來的 URL,  link 後面會多一個 &gt;
+10:41 < _slack_bot1> <kiang> t0mst0ne: 是啊，在 irccloud 倒是可以正確解析
+10:42 < miaoski> Lee1092: +1 ... 我其實蠻討厭 slack_bot, 不過目前看來得和它和平相處
+10:42 < _slack_bot1> <kiang> 重點是， slack 目前沒有 irccloud 2 小時斷線問題
+10:42 < miaoski> 在 #startups.tw 我就直接放棄，改用 slack 了 (可是 slack 不付錢 log 就只能捲一萬行)
+10:43 < _slack_bot1> <kiang> miaoski: 搭配 logbot 就無敵啦
+10:43 < miaoski> kiang: irccloud 搭配 logbot 也是無敵啊 :
+10:43 < miaoski> 其實 logbot 才是無敵星星 (咦)
+10:44 < _slack_bot1> <kiang> miaoski: 是這樣說沒錯，但離線之後 slack 還是會通知 tag 的人大勝 XD
+10:46 < miaoski> kiang: 噗. 我喜歡 irc 的另一個理由是，它是開放標準...
+10:47 < _slack_bot1> <kiang> miaoski: 是啊， slack 沒有 open source
+10:47 < miaoski> kiang: 可以理解，他們需要賺錢... 
+10:47 < miaoski> 我很懷疑 irccloud 可以賺多少
+11:08 < a0kman> http://technews.tw/2014/12/24/taiwan-new-the-prime-minister-talks-about-tech-policy/
+11:08 < a0kman> XD"
+11:09 < kcwu> a0kman's url: [毛治國祭出科技三箭：開放資料、大數據、群眾外包 | TechNews 科技新報]
+11:49 < ipa> a0kman: 我爸早上寄了這個連結來，說「張善政要弄零時政府喔」 XDD
+11:49 < a0kman> ipa: XDDDDDDDDDDDDDDDDDDDDD
+11:49 < ipa> tuiry+++ 憲餅廚娘 http://hackfoldr.org/cckitchen/
+11:50 < a0kman> tuiry++++
+11:50 < a0kman> ipa: 知道小魚的頭頭嗎 小魚廣告網
+11:51 < a0kman> @@"
+11:51 < a0kman> http://tkutimes.tku.edu.tw/dtl.aspx?no=27477
+11:51 < kcwu> a0kman's url: [淡江時報 Tamkang Times--小魚廣告網 負責人賴治怡 廣告教育向下扎根 將青年創意送上國際舞臺]
+11:51 < a0kman> 這個人
+11:52 -!- chihchun_afk is now known as chihchun
+11:53 < ipa> 不知道耶 @@
+11:55 < _slack_bot1> <kiang> 弄零時政府 不知道是 build 還是 kill XD
+11:55 < caasihuang> tuiry++ #憲餅
+12:13 < ipa> http://env.g0v.tw/air/ 有人跟我一樣 load 不出這頁嗎？
+12:13 < miaoski> ipa: 台灣 render 不出來
+12:13 < miaoski> loading ... 這樣
+12:14 < clkao> env.g0v 用的 cors proxy 好像又 gg 了
+12:14 < clkao> 看誰有空弄個 influx 吧
+12:19 < kcwu> cors proxy 大概只有 90% 的時間會動
+13:02 < isacl> 這次好像是 opendata.epa.gov.tw gg 了？
+13:23 < isacl> env.g0v.tw/air 現在好了
+14:13 < a0kman> ipa:  XD剛剛在搶機票沒搶到，回到中午前提到的，之前因為割闌尾的事件和她認識到，她想辦關於創意週之類的活動，她自己正在籌措中，有在問g0v有沒有相關可以一起互動的地方
+14:25 < _slack_bot1> <kiang> <http://linkedlifedata.com/about> - 看到這種網站就會覺得台灣很落後 XD
+14:45 < spanta> @slack-bot1
+15:14 -!- spanta [guest-span@gateway/web/scrollback.io/x-hsmujmqlphzzaosc] has left #g0v.tw []
+15:20 < hychen> ipa++++
+15:21 < hychen> ipa: 馬上無縫接軌
+15:25 < ipa> hychen: huh?
+15:34 < _slack_bot1> <kiang> @undefined: 在這兒討論就可以囉，並沒有特定群組
+15:35 < _slack_bot1> <kiang> mega: <https://github.com/kiang/drugs> &lt;-&gt; <http://drugs.olc.tw/> ，只是不確定你對哪一塊感興趣
+15:38 < yhsiang> XD 沒有定期更新列表會出現undefined XDD
+15:50 < _slack_bot1> <mega> hi  各位請多指教
+15:51 < _slack_bot1> <mega> 可是我不會寫程式    可以嗎
+15:51 < AceChen> 我也不會 ._./
+15:52 < _slack_bot1> <moon_c> 可以呀～我也不會
+15:52 < _slack_bot1> <yhsiang> 我也不會 \._.
+15:52 < _slack_bot1> <moon_c> 樓上不要裝嫩
+15:52 < _slack_bot1> <yhsiang> 樓上不要裝嫩
+15:52 < AceChen> 沒有人會ya~ \._./ 
+15:52 < _slack_bot1> <mega> 樓上久仰大名
+15:53 < _slack_bot1> <yhsiang> 久仰 Acechen 大名～
+15:53 < tkirby> ....
+15:53 < _slack_bot1> <yhsiang> tkirby: XD 怎麼了
+15:53 < AceChen> 久仰 _slack_bot1 大名 XD
+15:54 < _slack_bot1> <tkirby> 大家都在裝嫩！
+15:55 < gugod> tkirby 怎麼 teleport 去 slcak 了
+15:55 < tkirby> gugod!
+15:55 < yhsiang> gugod!
+15:56 < AceChen> gugod!
+15:56 < tkirby> 人生不相見 動如參與商
+15:56 < _slack_bot1> <moon_c> 只好放個蟲洞
+15:58 < _slack_bot1> <acechen> 一個與另一個時空對話的概念
+16:05 < _slack_bot1> <kiang> mega: 程式設計不會是必要條件的，只是你覺得自己想要或適合怎麼參與呢？
+16:06 < _slack_bot1> <mega> @kiang:   看來我好像也只能幫忙整理資料(?)
+16:07 < _slack_bot1> <kiang> mega: 目前還沒有做到能夠開放編輯的界面，不妨先參考 <https://github.com/kiang/drugs/issues> 裡面一些前輩提到的資訊，幫忙試試那些參考網站，提供一些意見？ :wink:
+16:15 < _slack_bot1> <yhsiang> discourse docker build真久 ...
+16:15 < tkirby> docker!
+16:15 < _slack_bot1> <yhsiang> kiang: 其實 slack 本來就支援highlight 所以不一定要特別做mention 功能 :smile:
+16:16 < tkirby> 測試 :smile:
+16:16 < Lee1092> yhsiang:  怎麼跳來跳去的~  XDDD
+16:16 < tkirby> 那 :D 呢?
+16:16 < yhsiang> Lee1092: 自己的bot自己測試的概念!
+16:17 < yhsiang> tkirby: 可以做把:D 轉成 :smile: 這樣slack上面就看得到emoji XD
+16:18 < tkirby> 是個互轉的概念
+16:37 < nchild> au g0v hackpad 有兩個重複「媒體採訪共筆」collection，有個空的在最上方常點錯，可否請你刪除？
+16:37 < nchild> 連結是 https://g0v.hackpad.com/ep/group/Dm1hpCqd4YU
+16:37 < kcwu> nchild's url: [媒體採訪共筆 - g0v.hackpad.com]
+16:42 < Lee1092> nchild: 已刪
+16:51 < _slack_bot1> <kiang> 有沒有食藥署今天開外掛又丟一堆資料出來的八卦啊？
+16:52 < _slack_bot1> <kiang> <http://data.fda.gov.tw/frontsite/news/newsAction.do?method=doNewsDetail&amp;contentId=70|data.fda.gov.tw/frontsite/news/newsAction.do?method=doNewsDetail&amp;contentId=70> 原來有新聞
+16:52 < kcwu> _slack_bot1's url: [::: Error :::]
+17:02 < kcwu> _slack_bot1 丟來的 url 怎麼長這樣
+17:07 < pm5> kcwu 的抱怨好可愛
+17:07 < _slack_bot1> <kiang> kcwu: 問 @yhsiang ?
+17:09 < tkirby> _slack_bot1 是用什麼寫的
+17:10 < kcwu> tkirby: https://github.com/g0v/slack-irc-plugin
+17:10 < kcwu> kcwu's url: [g0v/slack-irc-plugin · GitHub]
+17:14 < kcwu> 看起來 plugin 沒做什麼怪事, 怪 url 似乎是 slack 弄的
+17:17 < _slack_bot1> <yhsiang> kcwu: slack本身把message轉成他們自己的message format
+17:17 < _slack_bot1> <yhsiang> kcwu; 也可以在plugin上面再把link 的&lt; &gt; replace掉
+17:32 < kcwu> 感覺起來若 url 中有 &, 會變成 <encoded_url|url>
+17:34 < _slack_bot1> <kiang> trying: <https://github.com/kiang/data.fda.gov.tw/commits/master> ,  <http://data.fda.gov.tw/frontsite/data/DataAction.do?method=doList&amp;groupType=tag&amp;id=%E5%8C%96%E7%B2%A7%E5%93%81>
+17:34 < kcwu> _slack_bot1's url (2/2): [食品藥物開放資料平臺]
+17:35 < yhsiang> kcwu: 他的message format是這樣寫沒錯
+17:36 < kcwu> 疑, 這次沒有 | 後面的部分
+17:50 < t0mst0ne_> kiang: remote: warning: packfile objects/pack/pack-0b2f56fc02ac8a856612c985e80d1cc6ac416ae8.pack cannot be accessed  git pull https://github.com/kiang/data.fda.gov.tw/  之後 出現的message, 正常嗎 ?
+17:50 < kcwu> t0mst0ne_'s url: [kiang/data.fda.gov.tw · GitHub]
+17:51 < _slack_bot1> <kiang> t0mst0ne: 上傳作業還在進行中，不過理論上不會出現這種訊息才對
+17:56 -!- yogira_nexus5 [~yogira_ne@111-240-159-192.dynamic.hinet.net] has left #g0v.tw ["Leaving"]
+18:14 < _slack_bot1> <kiang> <http://aqicn.org/city/taiwan/tainan/> - 這個網站做的真廣 -&gt; <http://aqicn.org/sources/>
+18:14 < kcwu> _slack_bot1's url (1/2): [Tainan, Taiwan Air Pollution: Real-time PM2.5 Air Quality Index (AQI)]
+18:14 < kcwu> _slack_bot1's url (2/2): [World-wide Air Quality Monitoring Data Coverage]
+18:21 < yhsiang> kcwu++ XD
+18:34 < kcwu> yhsiang: ? 我什麼都沒做
+18:35 < _slack_bot1> <kiang> 應該是有 &amp; 參數的網址才會有狀況吧
+19:12 -!- chihchun is now known as chihchun_afk
+19:20 -!- chihchun_afk is now known as chihchun
+19:30 < _slack_bot1> <lanf0n> 看起來是沒有可以串起來的資料集..... ((生物藥品檢驗封緘資料集 感覺有點謎
+20:15 -!- chihchun is now known as chihchun_afk
+20:26 < H2SO4> w clkao
+20:30 < H2SO4> Anybody here...
+20:32 < _slack_bot1> <kiang> It's nobody's zone.
+20:33 < _slack_bot1> <kiang> well, nobody nobody nobody nobody
+20:33 < _slack_bot1> <kiang> 機器人不夠認真
+20:35 < kiang> H2SO4: 您已經進入了語音留言系統，如不留言請掛斷，快速留言…請打字
+20:37 < kiang> 機器人的訊息不會同步發到 IRC ，所以我好像自言自語
+20:41 < kiang> https://i.imgur.com/XhQJbCb.jpg 還原真相
+20:45 < isacloud_> lol 這隻是什麼機器人? 用什麼語庫或AI 的?
+20:59 < _slack_bot1> <kiang> isacloud_ 就遇到 nobody 或 沒有人 會自動醒來吧？詳細規則要問 yhsiang 囉
+21:27 < _slack_bot1> <moon_c> 沒有人是機器人
+21:36 < _slack_bot1> <kiang> 看樣子只吃英文，沒有人中文不吃
+21:41 < _slack_bot1> <moon_c> 可惡（？
+21:45 < caasihuang> poga!
+21:51 < poga> ？
+21:59 < caasihuang> poga: 只是想叫一下你的名字... （繼續做 colorpicker
+22:05 < poga> ..
+22:12 < tkirby> (y)
+22:39 < pipi_> 喵嗚
+22:39 < pipi_> 好久沒喵一下了
+22:41 < _slack_bot1> <kiang> <https://github.com/kiang/drugs/issues/9> call for comments
+22:41 < kcwu> _slack_bot1's url: [也許可以開發個人藥單記錄功能 · Issue #9 · kiang/drugs · GitHub]
+22:41 < pipi_> 每次都想呼喊你的名字～告訴你心中的話～
+23:03 < tkirby> 喵嗚？
+23:19 < t0mst0ne_> 紀錄一下 open.fda.gov API 使用方法 https://github.com/kiang/drugs/issues/1#issuecomment-68057481
+23:19 < kcwu> t0mst0ne_'s url: [將藥物連結到 open.fda.gov , 可以看(1)藥物副作用 (2)藥物交互作用 · Issue #1 · kiang/drugs · GitHub]
+23:21 < _slack_bot1> <kiang> t0mst0ne++
+23:36 < t0mst0ne_> kiang: 其實有藥物名，就等於可以撈英文仿單 json （1G) 然後因為已經JSON ,所以只要在藥物頁面show 幾個項目就可以交差了 xd
+23:44 < yhsiang> isacloud_: 純粹設slackbot response 遇到特定字串回特定字串
+23:44 < yhsiang> 沒有什麼特別的
+23:44 < yhsiang> 預設應該是人人都可以設

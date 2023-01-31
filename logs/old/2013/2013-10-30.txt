@@ -1,0 +1,688 @@
+--- Day changed 三 10月 30 2013
+00:05 -!- seudo_tw_ [r01944023@linux5.csie.ntu.edu.tw] has joined #g0v.tw
+00:06 -!- seudo_tw [r01944023@140.112.30.36] has quit [Ping timeout: 240 seconds]
+00:09 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+00:09 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+00:14 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+00:14 < jimyhuang> pofeng_: 付錢就拿的到嗎，還是付錢還不一定拿的到
+00:15 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+00:15 < pofeng_> jimyhuang: 一定拿的到, 但是很多人遊說都沒去申報
+00:16 -!- pm5 [~pm5@111-248-202-107.dynamic.hinet.net] has joined #g0v.tw
+00:21 -!- pm5 [~pm5@111-248-202-107.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+00:21 < clkaoud> yhsiang: 不過如果 clip play 改成去 load individual clip, time 應該就沒問題了 :p
+00:21 < jimyhuang> 驚，萌典要出日語版啦??
+00:22 < yhsiang> 喔喔
+00:23 < yhsiang> 逐字稿...太快了吧
+00:27 < jwjeng> 之前小弟也去提案做原住民語版本，不過看來好像無疾而終了
+00:31 < au> jwjeng: 不是耶，為了原住民語還規劃了 https://github.com/audreyt/moedict-webkit/issues/26#issuecomment-26612039 
+00:31 < M00sUltraB0t> [ wish: separate network permission as plugin · Issue #26 · audreyt/moedict-webkit · GitHub ] - github.com
+00:31 < au> 但是這周在弄筆劃和 csld 2.0 兩岸詞典，所以還沒有抓 excel 檔轉檔。
+00:31 < jwjeng> 那個遊說登記簿冊真是詭異，難以想像遊說的人會乖乖去登記的說
+00:32 < au> 有空的話可以先做 XD
+00:32 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+00:33 -!- Jcrt [~Jcrt@192.241.233.133] has quit [Client Quit]
+00:33 < au> clkaoud: 日語目前看來只有 wiktionary... 需要更結構化的 open data 資料集
+00:33 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+00:34 < jwjeng> au: 原來如此，因為專案那邊好像沒下文了，又看到出現兩岸辭典，想說可能火力集中到那邊去了吧
+00:34 < au> jwjeng: csld (兩岸) 是第一次試做拆開來（但保留互連可能）的 app 所以可能會久一點。
+00:35 < au> 但做完了就有七萬多詞的 CC license 資料可以用，不用一直遊走在法律邊緣了 XD
+00:35 < clkaoud> au: http://www.wikidata.org/wiki/Wikidata:Wiktionary
+00:36 < M00sUltraB0t> [ Wikidata:Wiktionary - Wikidata ] - www.wikidata.org
+00:36 < clkaoud> there's a plan (tm)
+00:36 < au> clkaoud: yeah I know :) just need to wait for it to happen (tm)
+00:36 < Michael_LI> 在看昨晚的公視晚間新聞錄影，旺旺仙貝食品表示問題的質詢還算有點篇幅。
+00:39 < jwjeng> 期待中
+00:40 < jwjeng> 還有這個「關箱小幫手」https://g0v.hackpad.com/0hzIFc3qCIM
+00:40 < M00sUltraB0t> [ 關箱小幫手 - g0v.hackpad.com ] - g0v.hackpad.com
+00:41 < jwjeng> 不過這個在FB g0v.tw 後勤中心那邊大家反應好像不是很需要的樣子，都說可以直接用新聞小幫手實作出來
+00:41 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+00:41 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+00:42 < jwjeng> 可能真的是我自己想得太複雜吧?
+00:43 < Michael_LI> PS.一般人大概不知道自己吃的泡麵用什麼油來炸麵條～用的是棕櫚油。旺旺財團也不是省油的燈，一定會壓制下來這種新聞發效的。#鐵口直斷
+00:44 -!- ypwong [~anthony@173.192.170.114-static.reverse.softlayer.com] has quit [Ping timeout: 272 seconds]
+00:45 < Michael_LI> 關箱小幫手很難搞定就是法律上的舉證責任問題。
+00:46 < jwjeng> 真的做出來應該會有很多人跳起來，然後開始抗議吵架，說是有心人在抹黑他
+00:49 < jwjeng> 就算真的做出文意分析系統，可以把各網站不同帳號同類宣傳文章全兜在一起，也很難當證據吧?
+00:54 < Michael_LI> 像我很用心寫維基三星寫手條目，追好多個月，對於看不到證據的X論壇有無對價關係，我就完全不會去描繪它。再說放過這家小公司也是比較厚道，三星財團被罰一千萬不痛不養，中小企業被罰會倒閉。
+00:58 < jwjeng> 真弄出關箱小幫手或許反而會害到人，畢竟對小商家來說，總是希望能想辦法宣傳自己，於是家裡小孩幫忙到各論壇註冊宣傳打廣告，這應該也是可以體諒的事情。但若因此被檢查出來標上記號，反而成了十惡不赦，那好像也有點可憐...
+01:01 < Michael_LI> 確實是這類型的考量
+01:03 < jwjeng> 那... 需要撤銷那個提案嗎? 就當沒這回事...
+01:04 < yhsiang> jwjeng: 就放著吧 說不定那天又有需要了
+01:05 < jwjeng> 恩，那我把這些考量也加上去好了
+01:05 < Michael_LI> 把顧慮寫上去
+01:06 < Michael_LI> ～愛困～用手機打字慢，晚安
+01:12 < jwjeng> OK 我加上去了
+01:12 < jwjeng> 大家晚安
+01:16 -!- jwjeng [01aed9ee@gateway/web/cgi-irc/kiwiirc.com/ip.1.174.217.238] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+01:23 < clkaoud> 終於有 issue 可以推 kcliu 了: https://github.com/g0v/ly.g0v.tw/issues/51
+01:24 < M00sUltraB0t> [ bill page - options to display relevant articles of proposed amendments · Issue #51 · g0v/ly.g0v.tw · GitHub ] - github.com
+01:24 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+01:24 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+01:34 < kcliu> clkaoud: XDDD
+01:34 < kcliu> clkaoud: 不是一直都有在推嗎XD 只是我打工太多了Orz
+01:35 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+01:35 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+01:49 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has joined #g0v.tw
+02:03 < clkaoud> yhsiang: FYI 真的有必要搞到這樣嗎 XD # http://zh.wikipedia.org/wiki/Bilibili#.E5.BC.B9.E5.B9.95.E7.B3.BB.E7.BB.9F
+02:03 < M00sUltraB0t> [ bilibili - 维基百科，自由的百科全书 ] - zh.wikipedia.org
+02:24 -!- lcamel [~lcamel@114-45-59-159.dynamic.hinet.net] has quit [Remote host closed the connection]
+02:24 -!- lcamel [~lcamel@114-45-59-159.dynamic.hinet.net] has joined #g0v.tw
+02:29 -!- lcamel [~lcamel@114-45-59-159.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+02:42 < kcliu> clkaoud: 我週末來弄好了 
+02:45 -!- Rplus [~rplus_tw@114-24-65-162.dynamic.hinet.net] has left #g0v.tw []
+02:47 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Read error: Connection reset by peer]
+02:48 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+03:09 < ETBlue> clkaoud: 弄到一半，繼續努力中 http://etblue.github.io/semantic-ui-experiment/ly-monitor.html
+03:09 < M00sUltraB0t> [ 立院監視器 ] - etblue.github.io
+03:12 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Read error: Connection reset by peer]
+03:12 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+03:14 -!- a-tsioh [~pierre@54.217.103.84.rev.sfr.net] has joined #g0v.tw
+03:17 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+03:17 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+03:19 < ETBlue> 等 progress bar 的資料出來以後就可以用在 sittings 清單的 label 了，使用同一組 color set 識別該案目前進度
+03:44 < CAA51> bilibili XDDDD
+03:57 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+03:58 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+04:25 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+04:25 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Operation timed out]
+04:27 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+04:28 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Quit: leaving]
+04:28 -!- caasiHuang [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+04:30 -!- caasiHuang [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+04:30 -!- caasiHuang [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+04:47 -!- caasiHuang is now known as caasih
+04:54 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit []
+04:54 -!- mhs1n [~mhsin@114-32-9-83.HINET-IP.hinet.net] has quit [Ping timeout: 268 seconds]
+04:59 -!- reChing|afk [~chatzilla@host-61-70-233-22.static.kbtelecom.net] has joined #g0v.tw
+04:59 -!- mhsin [~mhsin@114-32-9-83.HINET-IP.hinet.net] has joined #g0v.tw
+05:00 -!- juiz_ [uid12562@gateway/web/irccloud.com/x-bvwcjkigqgagvzyn] has joined #g0v.tw
+05:00 -!- zaeneas_ [uid14129@gateway/web/irccloud.com/x-qpqrugavosskijww] has joined #g0v.tw
+05:00 -!- mikecheng_ [uid14785@gateway/web/irccloud.com/x-kdwvkckybhmrvkab] has joined #g0v.tw
+05:01 -!- clscloud_ [uid12722@gateway/web/irccloud.com/x-tefwkiudsipdphul] has joined #g0v.tw
+05:01 -!- yurenju__ [uid13071@gateway/web/irccloud.com/x-kfntwjvgdftbpsln] has joined #g0v.tw
+05:02 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+05:03 -!- caasih [~caasiHuan@59.126.194.108] has joined #g0v.tw
+05:05 -!- WhoInMoon [97e10612@gateway/web/cgi-irc/kiwiirc.com/ip.151.225.6.18] has joined #g0v.tw
+05:07 -!- zaeneas_ [uid14129@gateway/web/irccloud.com/x-qpqrugavosskijww] has quit []
+05:07 -!- Netsplit *.net <-> *.split quits: clscloud, juiz, shhu, zaeneas, isacl, yurenju_, ij1iao, Goddamn, ensky, seudo_tw_,  (+5 more, use /NETSPLIT to show all of them)
+05:07 -!- mikecheng_ is now known as mikecheng
+05:07 -!- clscloud_ is now known as clscloud
+05:08 -!- yurenju__ is now known as yurenju_
+05:08 -!- juiz_ is now known as juiz
+05:08 -!- zaeneas [uid14129@gateway/web/irccloud.com/x-vpkwxrlzgffvgafm] has joined #g0v.tw
+05:10 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+05:10 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+05:14 -!- Netsplit over, joins: isacl, KylinWu, ychsiao, seudo_tw_, ij1iao, shhu, ensky, Goddamn
+05:16 -!- frouscy [uid13088@gateway/web/irccloud.com/x-epnlulsfkamgqjlc] has joined #g0v.tw
+05:40 -!- WhoInMoon [97e10612@gateway/web/cgi-irc/kiwiirc.com/ip.151.225.6.18] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+05:41 -!- caasih [~caasiHuan@59.126.194.108] has quit [Remote host closed the connection]
+05:56 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+05:56 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+06:05 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+06:07 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Client Quit]
+06:09 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+06:10 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+06:12 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has quit [Quit: fntsrlike]
+06:13 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has joined #g0v.tw
+06:35 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 246 seconds]
+06:36 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has quit [Quit: fntsrlike]
+06:52 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+06:53 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+06:55 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+06:55 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+07:01 -!- mno2 [~mno2@218-161-2-92.HINET-IP.hinet.net] has joined #g0v.tw
+07:01 -!- mno2 [~mno2@218-161-2-92.HINET-IP.hinet.net] has quit [Client Quit]
+07:03 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Read error: Connection reset by peer]
+07:03 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+07:06 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+07:06 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+07:14 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+07:22 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+07:22 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+07:29 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+07:31 < yhsiangCloud> clkaoud: 其實我有找到一組彈幕算法 還在找時間實做
+07:38 -!- lcamel [~lcamel@114-45-59-159.dynamic.hinet.net] has joined #g0v.tw
+07:46 -!- Guest53103 is now known as dirty__
+--- Log opened 三 10月 30 07:53:38 2013
+07:53 -!- ronnywan1 [~ronnywang@ec2-54-249-42-170.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+07:53 -!- Irssi: #g0v.tw: Total of 225 nicks [0 ops, 0 halfops, 0 voices, 225 normal]
+07:53 !adams.freenode.net [freenode-info] channel flooding and no channel staff around to help? Please check with freenode support: http://freenode.net/faq.shtml#gettinghelp
+07:53 -!- astro^_ [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+07:54 -!- tubaxeno2 [~xenor@duo.rhack.net] has joined #g0v.tw
+07:54 -!- Irssi: Join to #g0v.tw was synced in 46 secs
+07:58 -!- Netsplit *.net <-> *.split quits: caasih, c9s_, astro^, watersu, yurenju_, TaiZai, ronnywang, ddio, scyen_, kentwelcome,  (+1 more, use /NETSPLIT to show all of them)
+07:58 -!- watersu_ is now known as watersu
+07:58 -!- ddio_ is now known as ddio
+07:58 -!- kentwelcome_ is now known as kentwelcome
+07:58 -!- yurenju__ is now known as yurenju_
+08:04 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+08:12 -!- walkingice_zz is now known as walkingice
+08:19 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+08:19 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+08:30 -!- caasi [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+08:30 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+08:30 -!- pm5 [~pm5@111-248-202-107.dynamic.hinet.net] has joined #g0v.tw
+08:31 -!- lcamel [~lcamel@114-45-59-159.dynamic.hinet.net] has quit [Remote host closed the connection]
+08:32 -!- lcamel [~lcamel@114-45-59-159.dynamic.hinet.net] has joined #g0v.tw
+08:35 -!- pm5 [~pm5@111-248-202-107.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+08:36 -!- lcamel [~lcamel@114-45-59-159.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+08:46 -!- TaiZai_ is now known as TaiZai
+08:48 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has joined #g0v.tw
+08:50 -!- mno2 [~mno2@218-161-2-92.HINET-IP.hinet.net] has joined #g0v.tw
+08:59 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has quit [Quit: fntsrlike]
+09:07 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+09:07 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+09:21 < yhsiang> http://chinese.engadget.com/2013/10/29/motorola-project-ara-phonebloks/ 
+09:21 < M00sUltraB0t> [ Motorola 計畫推出「Project Ara」智慧型手機，Phonebloks 的拼裝概念要實現了？（影片） ] - chinese.engadget.com
+09:27 -!- fntsrlike [~fntsrlike@140.120.19.3] has joined #g0v.tw
+09:34 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+09:35 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+09:36 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+09:43 -!- lcamel [~lcamel@2406:2000:efa5:9:41f8:536d:84b0:6904] has joined #g0v.tw
+09:53 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+09:53 -!- juiz [uid12562@gateway/web/irccloud.com/x-bvwcjkigqgagvzyn] has quit [Changing host]
+09:53 -!- juiz [uid12562@unaffiliated/yungyuc] has joined #g0v.tw
+09:53 -!- juiz [uid12562@unaffiliated/yungyuc] has quit [Changing host]
+09:53 -!- juiz [uid12562@gateway/web/irccloud.com/x-bvwcjkigqgagvzyn] has joined #g0v.tw
+09:53 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:53 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+09:53 -!- BG_ [b7506059@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+09:53 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+09:53 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:53 -!- BG_ [b7506059@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:58 -!- ypwong [~anthony@207.126.93.2] has joined #g0v.tw
+10:07 -!- fntsrlike [~fntsrlike@140.120.19.3] has quit [Quit: fntsrlike]
+10:08 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+10:10 -!- fntsrlike [~fntsrlike@140.120.19.3] has joined #g0v.tw
+10:16 -!- lcamel_ [~lcamel@nat/yahoo/x-sgffupylnftfmsqd] has joined #g0v.tw
+10:17 -!- lcamel [~lcamel@2406:2000:efa5:9:41f8:536d:84b0:6904] has quit [Ping timeout: 245 seconds]
+10:27 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Read error: Connection reset by peer]
+10:28 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+10:29 < jimyhuang> yhsiang: 可惜 ubuntu edge沒成...
+10:30 -!- Dennisc140 [~Dennis_Ch@114-32-173-73.HINET-IP.hinet.net] has joined #g0v.tw
+10:32 < yhsiang> jimyhuang: !! 我後來沒關心 orz
+10:46 < clkaoud> yhsiang: https://github.com/m13253/danmaku2ass XD
+10:46 < M00sUltraB0t> [ m13253/danmaku2ass · GitHub ] - github.com
+10:49 < yhsiang> 喔 有 這個我有看到 XD
+10:50 < yhsiang> https://github.com/greensea/ytplayer # 我後來找到的算法 是這個人寫的 XD
+10:50 < M00sUltraB0t> [ greensea/ytplayer · GitHub ] - github.com
+10:52 < clkaoud> yhsiang: player 的話應該那天那個 niconico effect 就行了？主要是要 continous load... 也許切成每分鐘的 range, get+subscribe (期間如果有人在訂閱中的 range comment 才會跳出)
+10:54 < clkaoud> 原來他連 backend 也有了... 只是 code 中變數都是中文... orz
+10:54 < clkaoud> "class 数据库灭意思类 extends 数据库类{" ..... 
+10:57 < yhsiang> niconico effect 在那 @@
+10:58 < yhsiang> 很給力的中文變數 XD
+10:59  * walkingice LOL
+11:00 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+11:03 < yhsiang> 我是想除了continous load還有一個就是play control
+11:04 < weitsai> 新聞小幫手可以一次檢舉多個 url 嘛？ （相關新聞）
+11:05 < clkaoud> yhsiangCloud: play control 就是... 現開始不要 load 、 load 某段.. ?
+11:05 < clkaoud> yhsiang: https://github.com/supercaracal/niconicoeffect
+11:05 < hychen> 我覺得我人生要開始超展開了.... 又有一個人也是要從台北返鄉弄co-working space的, 認識一些朋友在德國弄co-working space.
+11:05 < M00sUltraB0t> [ supercaracal/niconicoeffect · GitHub ] - github.com
+11:05 < yhsiang> clkaoud: 使用者可以關掉? XD
+11:05 < clkaoud> ya 不過那就是 frontend 而已
+11:06 < yhsiang> 我本來是想backend直接接firebase XD
+11:06 < clkaoud> yhsiang: 對了，這個可以幫 iamblue_cloud 看看嗎，再另外一個 branch: https://github.com/g0v/ly.g0v.tw/issues/46
+11:06 < M00sUltraB0t> [ replace ng-bind-html-unsafe with $sce · Issue #46 · g0v/ly.g0v.tw · GitHub ] - github.com
+11:10 -!- tubaxeno2 is now known as tubaxenor
+11:19 -!- MnO2_ [~MnO2@218-161-2-92.HINET-IP.hinet.net] has joined #g0v.tw
+11:22 < clkaoud> yhsiang: http://asciinema.org/a/5623 這個 player control 好宅好酷 XD
+11:22 < M00sUltraB0t> [ Hello Trema (Ruby 2.0.0) - asciinema ] - asciinema.org
+11:25 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+11:27 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 248 seconds]
+11:27 -!- tonyhusky [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 272 seconds]
+11:38 < ipa> hychen: 嗨董好!
+11:40 < hcchien> co-working space 正夯
+11:42 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+11:43 < walkingice> hychen: 嗨董午安，請喝茶 (遞)
+11:43 < hychen> ....
+11:43 < yhsiang> clkaoud: 我對這個repo好像有點印象 XD
+11:44 < hychen> 我是工程師.. 本業是寫程式....
+11:45 < clkaoud> 莫名其妙的送了 PR
+11:47 < yhsiang> XDDDD
+11:48 < hychen> 好像也說得通
+11:48 < hychen> 要加feature, 先自己寫
+11:57 -!- fntsrlike [~fntsrlike@140.120.19.3] has quit [Quit: fntsrlike]
+12:01 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 268 seconds]
+12:12 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+12:13 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+12:26 < au> 立院彈幕影城++ # survey 進度一日千里
+12:27 < yhsiang> hmm.. angular 1.2 的filter 好像不吃 filter:{status: status}
+12:27 < au> tkirby__: btw 後來因為看到 http://www.mrdoob.com/lab/javascript/threejs/css3d/periodictable/ 所以決定棄暗投明改投 Three.js 陣營
+12:27 < M00sUltraB0t> [ three.js css3d - periodic table ] - www.mrdoob.com
+12:27 < yhsiang> au: 喔 對阿 我就記得我在那裏也看過 XD
+12:30 < au> XD 主要是不會像 famo.us 太靠近就點陣化... 但是 particle 不能太多，太多就只能用 WebGL
+12:34 -!- whyjaster [~whyjaster@mail.iwant-in.net] has joined #g0v.tw
+12:34 < yhsiang> 太靠近就點陣化 是怎麼看出來的 @@
+12:35 < tkirby__> au: !!!
+12:37 < yhsiang> clkaoud: 現在filter: {status: status} 是work的嗎? 可以怎麼測
+12:37 < clkaoud> yhsiang: 如果某 angular service 需要先被 init, route 那邊可以給一個 promise object 讓他先 resolve 再跑... # 剛修了有時 resolveParty 會失敗 因為 mly.json 還沒 load 完的 issues
+12:39 < clkaoud> yhsiang: 1.1.5 會 work, 不過 walkingice 好像沒把 ui 從就的m otion page 搬過來... 所以可以先拿掉 XD
+12:39 < yhsiang> ok
+12:39 < clkaoud> au: 要拿 three 來做什麼
+12:40 < clkaoud> 新的 3d moetris 嗎
+12:41 < au> yhsiang: 到 famo.us demo 的 wall layout，按某個元素 zoom in，再來回按旁邊的元素，可以看到 famo.us 在背景重新畫了一個 vector 版本換上
+12:41 < clkaoud> 用 ls 超爽: (in route) resolve: _init: <[LYService]> ++ (.init!)
+12:41 < au> kerning 不一樣 (但是差異很輕微)
+12:41 < yhsiang> 我試看看 XD
+12:41 < clkaoud> 應該要用 retina 才看得出 
+12:43 < yhsiang> windows 旁邊的元素 都是糊的
+12:43 < yhsiang> 其實看的出來 只不過沒去注意就不會發現 XD
+12:44 < au> clkaoud: 還在想... poga 試做了改錯字，caasi 做了筆劃部件，miau 想做立體版型, 加在一起...
+12:44 < au> 只好做 3D 星際錯字擊破傳? # 大誤
+12:45 < clkaoud> 好嗨
+12:45  * au 自從看了 Gravity 之後想像力頗受影響
+12:45 < yhsiang> 是變豐富了嗎 XD
+12:46 < au> 變立體了 XD
+12:47 < yhsiang> 糟糕 結果1.2 difflines全炸了 orz..
+12:47 < clkaoud> yhsiang: 應該也是 bind-unsafe 要 $sce ?
+12:48 < yhsiang> ya! 正在修 XD
+12:57 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has joined #g0v.tw
+12:58 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+12:59 < yhsiang> 搞定~ XD
+12:59 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has quit [Client Quit]
+13:07 < kcliu> czchen: commit early commit often, how about pull request?
+13:08 < kcliu> oops, wrong channel XD
+13:11 < clkaoud> google.com/+G0vTw
+13:12 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+13:16 < clkaoud> hackpad 左邊出現 user 頭像 表示游標在那邊!
+13:17 -!- fntsrlike [~fntsrlike@140.120.19.3] has joined #g0v.tw
+13:35 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+13:41 < jimyhuang> au: 讓我想到angry bird space
+13:46 < au> 搜尋 "angry words space" 找出一張很有擊破傳風格的圖... http://random-ness.wikia.com/wiki/Angry_Words_Space
+13:46 < M00sUltraB0t> [ Angry Words Space - Random-ness Wiki ] - random-ness.wikia.com
+13:47 < yhsiang> XD
+13:47 < clkaoud> 應該是部件撞在一起就會組字
+13:47 < clkaoud> 好難喔
+13:48 < au> 太難了，還是先把背景的部首周期表、形音義proxemy星系什麼的畫出來看看好了
+13:49 -!- whyjaster [~whyjaster@mail.iwant-in.net] has quit [Remote host closed the connection]
+13:54 < clkaoud> yhsiang: merged
+13:54 < clkaoud> 星艦注音號的任務.... 
+13:54 < billy3321> 等等，為什麼部首會和週期表連在一起，後面那個星系又是怎樣XDDD
+13:55 < clkaoud> to boldly go no characters have gone before
+13:55 < yhsiang> good, 剛好吃完午餐XD
+13:55 < yhsiang> XD 為了要撞出 新的字 XD
+13:57 < clkaoud> 高能部件加速器
+14:02 < au> billy3321: 詞義叢集星系是 a-tsioh 的論文 (也就是為什麼剛好有英法德文版的資料給萌典用) ... http://naviprox.net/tmuse/zhen_N?q=%E6%99%82  http://naviprox.net/tmuse/MOEunionCWN_V?q=%E5%B7%B4
+14:02 < M00sUltraB0t> [ Synonymy translation : zhen_N ] - naviprox.net
+14:02 < M00sUltraB0t> [ Synonymy exploration : MOEunionCWN_V ] - naviprox.net
+14:02 < billy3321> au: 沒有啦，我只是開玩笑的 :)
+14:02 -!- marlboromoo [~marlborom@111.235.215.237] has quit [Ping timeout: 248 seconds]
+14:03 < au> (拖曳=旋轉，二指捲動=縮放，三指=平移)
+14:03 < au> billy3321: 就說看了 gravity 之後想像力頗受影響, 其名其妙的東西都連到一起了 XD
+14:04 < billy3321> 我怎麼覺得腦袋把東西連到一起可能是喝過酒的症狀XDD
+14:04  * billy3321 突然想到自己很久沒喝酒了
+14:04 < billy3321> 上次好像看到有文章說，需要根性的時候要喝咖啡，需要靈感要喝酒XD
+14:05 -!- fntsrlike [~fntsrlike@140.120.19.3] has quit [Quit: fntsrlike]
+14:05 < billy3321> 據說，對於男性而言，大腦之間的腦區區隔比較大。如果喝過酒以後，這些障壁會被打破，男性會突然變得很會聊天
+14:05 < billy3321> 然後就會說出很多小秘密，然後交換了許多小秘密以後就會變成好朋友......
+14:06 < yhsiang> billy3321: 喝酒以後能(和女性)聊天 我只會想到big bang的raj XDD
+14:06 < hcchien> (Y)
+14:07 < billy3321> 下次為了促進靈感，黑客松場地要放一點雞尾酒（？）
+14:07 < billy3321> 不過我們是台灣人，放什麼西式的雞尾酒！我們要放薑母鴨！XDD
+14:08 < hcchien> 雞尾酒太弱了，葡萄酒好一點
+14:08 < hcchien> 或是葡萄酒+高粱
+14:09 < yhsiang> au: 看到那個圖就想到我學長做的 "詞義相似度的社會網路分析研究" XD
+14:10 -!- jwjeng [7a79c8bb@gateway/web/cgi-irc/kiwiirc.com/ip.122.121.200.187] has joined #g0v.tw
+14:15 < au> yhsiang: 看完了... 用 co-occurence 找同義詞，滿有趣的
+14:15 < ETBlue> ipa: 一畝園的菜冰五天微波還是很好吃耶（嚼嚼）
+14:17 < clkaoud> ETBlue: orz.. 話說我又來到 tutti
+14:17 < yhsiang> au: 另一個同時畢業的女生是做這個 "以字詞共現網絡探勘情歌歌詞中的情感隱喻"
+14:17 < yhsiang> clkaoud: 貓好可愛 XD # tutti
+14:18 < yhsiang> ETBlue: ... 是我們上次打包的嗎 0.0
+14:18 < clkaoud> ETBlue: 不過最近都盡量吃當餐的.... 隔餐還是不大好
+14:19 < clkaoud> 新一輪的議案要上了... queued jobs 應該 12 分鐘後會開始衝 libreoffice... api-beta.ly 將會變很慢
+14:20 < au> yhsiang: corpus=441 lexeme=695 樣本好少啊 XD
+14:20 < ETBlue> yhsiang: clkaoud 對呀上次打包的…這樣好像隔了 N 餐 = =bbb
+14:23 < yhsiang> au: 選情歌歌詞就整個悲劇 orz..
+14:23 < yhsiang> au: 不過最後她就是用人工去做分析 XD
+14:24 < au> 對啊，p27-p28 充份展現工人智慧
+14:24 < Michael_LI> billy3321 #喝酒　　我只想到在台灣吃過原著民自釀小米酒，馬來西亞印度人自釀椰子酒，在大陸每次應酬一堆人都喝的亂七八遭（白酒）茅台或是五糧液...不過就算是北方的陜西人也喜歡喝58度金門高粱酒（實驗確認）
+14:25 < billy3321> 大陸的白酒根本就是藥用酒精+香精=.=
+14:25  * yhsiang 看看最近的大統米酒 XD
+14:25 < Michael_LI> billy3321 呵呵～佛曰：不可說不可說
+14:25 < billy3321> yhsiang: 差不多就是那樣
+14:26 < Michael_LI> _//所以自己私釀酒比較好，GMP工廠大量生廠請客用的即可。
+14:27 < hcchien> 上次去山上喝原住民的小米酒，真讚。不過據說現在很多小米酒也都是仿冒的   lol
+14:27 < au> yhsiang: 但話說回來，拿萌典的例句做 co-occurence 好像不錯，至少有 corpus>50k lexeme>100k
+14:27 < Michael_LI> s/生廠/生產
+14:27 < M00sUltraB0t> Michael_LI meant to say: _//所以自己私釀酒比較好，GMP工廠大量生產請客用的即可。
+14:27 < au> yhsiang++ # 感謝提供0感... bbiab, 午餐後來做看看
+14:30 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+14:30 < yhsiang> au: 這corpus數量實在太棒了 XD
+14:31 < ETBlue> yhsiang: 只好加入萌典團了 https://plus.google.com/communities/105039150630966592524
+14:31 < M00sUltraB0t> [ g0.0v 萌典團 - 社群 - Google+ ] - plus.google.com
+14:32  * ETBlue 自己不敢加拖別人一起加
+14:32 < yhsiang> 加了XD
+14:33 -!- lcamel_ [~lcamel@nat/yahoo/x-sgffupylnftfmsqd] has quit [Ping timeout: 246 seconds]
+14:33 < clkaoud> ETBlue: http://ly.g0v.tw/bills/1455L15523 右邊 corner 蓋住自了
+14:37 -!- fntsrlike [~fntsrlike@140.120.19.3] has joined #g0v.tw
+14:42 -!- fntsrlike [~fntsrlike@140.120.19.3] has quit [Client Quit]
+14:43 -!- fntsrlike [~fntsrlike@140.120.19.3] has joined #g0v.tw
+14:46 -!- fntsrlike [~fntsrlike@140.120.19.3] has quit [Client Quit]
+14:53 < hcchien> 結果才發現志工要八點到公司，我決定還是放棄了   lol
+14:55 < clkaoud> ETBlue: 又開了 issue 給你
+14:55 < yhsiang> hcchien: 志工沒有排班嗎 ?
+14:55 < ETBlue> clkaoud: 救命啊 orz 我只有改 bill 那個 sass 但…怎麼上面全是我沒改的 QAQ
+14:55 < ETBlue> clkaoud: https://github.com/g0v/ly.g0v.tw/commit/7e70c54247f0c2069b7e66eb526b39e5ec212b5d
+14:55 < M00sUltraB0t> [ Merge branch 'master' of https://github.com/g0v/ly.g0v.tw · 7e70c54 · g0v/ly.g0v.tw · GitHub ] - github.com
+14:56 < clkaoud> ETBlue: 那沒差 因為是 merge (你改的時候有人改了其他）
+14:56 < yhsiang> lol,
+14:56 < clkaoud> github client 不知道能不能 rebase?
+14:57 -!- fntsrlike [~fntsrlike@140.120.19.3] has joined #g0v.tw
+14:57 < ETBlue> clkaoud: oh... this one is what i did https://github.com/g0v/ly.g0v.tw/commit/176d6300121b9641d652c864ebc25398f7fce989
+14:57 < M00sUltraB0t> [ fix right margin and top padding for uilawdiff segment · 176d630 · g0v/ly.g0v.tw · GitHub ] - github.com
+14:57 < clkaoud> ETBlue: 要改跟 commit 前先 sync 可以避免這樣
+14:58 < ETBlue> i am not using git client... github for windows is broken
+14:58 < ETBlue> i am using command line in ubuntu vm
+14:59 < clkaoud> ETBlue: oh, so next time try git pull --rebase
+14:59 < clkaoud> before git push 
+14:59 < ETBlue> roger
+15:00 < ETBlue> clkaoud: btw 現在這樣應該不會蓋住字了，我縮右邊 XD
+15:01 < clkaoud> 有看到了 :D ETBlue++
+15:01 < clkaoud> 覺得相同是不是只要出現一次就好？如果連續都相同的話
+15:01 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+15:02 < hcchien> yhsiang: 有啊，早班就是 8-12
+15:03 < yhsiang> hcchien: 喔喔 真早 XD
+15:06 < clkaoud> 呃.. 老闆拿出了 whisky
+15:07 < yhsiang> drink scotch whiskey all night long ~
+15:08 < yhsiang> 邊喝邊配deacon blues :p
+15:11 < hcchien> whisky!!  # clkao 已經進入熟客模式了
+15:13 -!- fntsrlike [~fntsrlike@140.120.19.3] has quit [Quit: fntsrlike]
+15:13 -!- jwjeng [7a79c8bb@gateway/web/cgi-irc/kiwiirc.com/ip.122.121.200.187] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+15:14 -!- marlboromoo [~marlborom@111.235.212.31] has joined #g0v.tw
+15:18 < tkirby__> 所以... 週日的燒肉有要吃嗎
+15:18 < tkirby__> ETBlue: 交給你訂位了 (推坑)
+15:19 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+15:19 < ETBlue> clkaoud: 那要把相同的全部塞到同一個 segment？
+15:19 < ETBlue> tkirby__: 訂哪家 @@
+15:19 < tkirby__> ETBlue: 恩.. 哪家呢...
+15:19 < tkirby__> (思)
+15:19 < clkaoud> 應該不用 弄個.. angular 那邊加一下 condition 應該就可以了
+15:20 -!- fntsrlike [~fntsrlike@42.77.171.134] has joined #g0v.tw
+15:21 < clkaoud> yhsiang: diffstate 跟 difftxt 應該可以在 diffentry 裡面跑一次就好，改成不是用 scope function
+15:21 < clkaoud> (scope function 每次 apply 會遭到重算比較 很苦)
+15:21 < clkaoud> (然後是否和前一行的一樣狀態 就可以在那邊判斷)
+15:23 < iamblue_cloud> clkao明年一月有空嗎  請你在來ng小聚分享route & SEO?
+15:23 < iamblue_cloud> XD
+15:24 < yhsiang> clkaoud: ok!
+15:24 < yhsiang> 我也是想他應該脫離scope function會比較好 XD
+15:24 < clkaoud> iamblue_cloud: 一月要去香港... 而且 seo 還沒動
+15:27 -!- fntsrlike [~fntsrlike@42.77.171.134] has quit [Read error: Connection reset by peer]
+15:28 -!- fntsrlike [~fntsrlike@42.77.171.134] has joined #g0v.tw
+15:28 < iamblue_cloud> 那二月....XD
+15:30 -!- fntsrlike [~fntsrlike@42.77.171.134] has quit [Read error: Connection reset by peer]
+15:31 -!- fntsrlike [~fntsrlike@42.77.171.134] has joined #g0v.tw
+15:33 -!- fntsrlike [~fntsrlike@42.77.171.134] has quit [Read error: Connection reset by peer]
+15:34 -!- fntsrlike [~fntsrlike@42.77.171.134] has joined #g0v.tw
+15:35 < ipa> macpaul: 請問youtube帳號要如何多人使用？
+15:37 -!- fntsrlike [~fntsrlike@42.77.171.134] has quit [Read error: Connection reset by peer]
+15:39 -!- fntsrlike [~fntsrlike@42.77.171.134] has joined #g0v.tw
+15:41 -!- fntsrlike [~fntsrlike@42.77.171.134] has quit [Read error: Connection reset by peer]
+15:42 -!- fntsrlike [~fntsrlike@42.77.171.134] has joined #g0v.tw
+15:44 -!- fntsrlike [~fntsrlike@42.77.171.134] has quit [Read error: Connection reset by peer]
+15:45 -!- fntsrlike [~fntsrlike@42.77.171.134] has joined #g0v.tw
+15:46 < yhsiang> fntsrlike: what's wrong @@
+15:47 < Michael_LI> youtube 帳號指能
+15:47 -!- fntsrlike [~fntsrlike@42.77.171.134] has quit [Read error: Connection reset by peer]
+15:48 < Michael_LI> youtube 帳號只能1個電郵對應1個頻道。
+15:49 -!- fntsrlike [~fntsrlike@42.77.171.134] has joined #g0v.tw
+15:51 -!- fntsrlike [~fntsrlike@42.77.171.134] has quit [Read error: Connection reset by peer]
+15:52 -!- fntsrlike [~fntsrlike@42-77-171-134.dynamic-ip.hinet.net] has joined #g0v.tw
+15:54 -!- fntsrlike [~fntsrlike@42-77-171-134.dynamic-ip.hinet.net] has quit [Read error: Connection reset by peer]
+15:58 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+15:58 -!- fntsrlike [~fntsrlike@42.77.171.134] has joined #g0v.tw
+15:59 < fntsrlike> 歹勢
+15:59 < fntsrlike> 網路不穩
+15:59 < fntsrlike> 我先離開好了，避免洗頻
+15:59 < fntsrlike> 真不好意思>____<
+15:59 -!- fntsrlike [~fntsrlike@42.77.171.134] has left #g0v.tw []
+16:09 -!- ymow [~Adium@1-171-182-240.dynamic.hinet.net] has joined #g0v.tw
+16:27 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+16:28 < ETBlue> tkirby__: 週日晚上一般來說會幾點吃飯？tuiry 那天又值班了，七點才下班 = =|||
+16:32 < a0kman> 從這篇文章可以大略知道 公務人員(事務官群體意識)/ 政務官 / 民眾 之間所出現的互動落差 這一篇寫的算不差了 要再詳細的我可以說一些些 
+16:32 < a0kman> http://ninjiatext.blogspot.tw/2013/10/blog-post_29.html
+16:32 < M00sUltraB0t> [ 人渣文本 Ninjia Text : 體制內丟鞋 ] - ninjiatext.blogspot.tw
+16:33 < a0kman> 另外 OPEN DATA
+16:33 < a0kman> http://law.rdec.gov.tw/law/NewsContent.aspx?id=218
+16:33 < M00sUltraB0t> [ 行政院研究發展考核委員會-最新訊息內容(外部版) ] - law.rdec.gov.tw
+16:34 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+16:34 -!- tonyhusky [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+16:34 < a0kman> 這個文案理論上以公務體系來說各單位應該都會收到 並且請各單位給意見或是可以用的  至於會有甚麼成效 不知道
+16:35 < yhsiang> ETBlue: 表定是到5點 然後上次貼的燒肉店 大概都是6點或6點半開 
+16:36 < yhsiang> tuiry老師 七點下班的話 還要估算一下他到餐廳交通時間 
+16:36 < ETBlue> yhsiang: 理解 XD tuiry: 世界上最遙遠的距離又出現了…
+16:37 < tuiry> ETBlue: （茶
+16:37 < yhsiang> 好像有五間店 tuiry老師可以看一下 那間離你上班的地方比較近 ? XD
+16:37 < yhsiang> http://wonderwoman4567.pixnet.net/blog/post/9183635-%E4%BA%8C%E5%8D%81%E8%A8%AA-*%E8%83%A1%E5%90%8C*-%E5%8F%B0%E5%8C%97%E6%9C%80%E5%A5%BD%E5%90%83%E7%9A%84%E6%97%A5%E5%BC%8F%E7%87%92%E8%82%89-
+16:37 < M00sUltraB0t> [ 二十訪 *胡同* 台北最好吃的日式燒肉 @ Wonder Woman女超人*s blog :: 痞客邦 PIXNET :: ] - wonderwoman4567.pixnet.net
+16:38 < hcchien> 胡同!!
+16:39 < S3p_lin_> 胡同的份量好少啊 :~
+16:40 -!- M00sUltraB0t [~r0b0t@118-163-90-205.HINET-IP.hinet.net] has quit [Quit: Closing]
+16:40 -!- M00sUltraB0t [~r0b0t@118-163-90-205.HINET-IP.hinet.net] has joined #g0v.tw
+16:40 < hcchien> S3p_lin_: 你除了二兩以外，份量都很少吧   lol
+16:41 < yhsiang> S3p_lin_: 只好幫長輩注意附近有沒有幼稚園了 :p
+16:42 < tuiry> yhsiang老師大家還是早點吃完休吧
+16:43 -!- wolfenstein [3cfa8712@gateway/web/cgi-irc/kiwiirc.com/ip.60.250.135.18] has joined #g0v.tw
+16:43 -!- mno2 [~mno2@218-161-2-92.HINET-IP.hinet.net] has quit [Quit: mno2]
+16:51 -!- scourgen [~scourgen@116.226.50.16] has joined #g0v.tw
+16:56 < Michael_LI> 禮拜天不會下班塞車可能還好
+16:59 < Michael_LI> --這人挺不挑食的-->不管吃什麼店我都配合（流口水貌）　（哀～餓了～午餐沒吃，現在去吃池上便當店剛好出菜）
+17:10 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+17:20 < ij1iao> 二十訪 ! 好驚人的數字...
+17:21 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+17:25 < S3p_lin_> 二兩我都吃超過二十次了... XD
+17:25 < hychen> 我覺得應該也可以設計一套做城市發展政策的協作工具
+17:28 < hcchien> S3p_lin_: 你應該是用二十為一個單位吧
+17:29 < tkirby__> ETBlue: 就 yhsiang 講的那樣, 五點結束之後.. 打屁跟通勤的時間加一加, 再看店幾點開...
+17:35 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+17:37 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+17:48 < yhsiang> niconicoeffect不錯耶, 不過好像要研究一下怎麼用, 然後綁上資料流 XD
+17:52 < kcwu> is niconicoeffect ok for mobile?
+17:52 < yhsiang> kcwu: 我試試看
+18:07 -!- i3n [~icman@118-232-177-139.dynamic.kbronet.com.tw] has quit [Ping timeout: 272 seconds]
+18:07 -!- i3n [~icman@118-232-177-139.dynamic.kbronet.com.tw] has joined #g0v.tw
+18:12 < clkaoud> yhsiang: i experimented wiring pgrest with socketio
+18:23 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+18:33 -!- wolfenstein [3cfa8712@gateway/web/cgi-irc/kiwiirc.com/ip.60.250.135.18] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+18:35 -!- Dennisc140 [~Dennis_Ch@114-32-173-73.HINET-IP.hinet.net] has left #g0v.tw []
+18:35 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:36 -!- scourgen [~scourgen@116.226.50.16] has quit [Ping timeout: 245 seconds]
+18:39 < yhsiang> niconicoeffect mobile 上好像ok, 但是一開始window size好像有抓錯 可能要研究一下
+18:40 < yhsiang> kcwu: yhsiang.github.io/niconicoeffect/ # try here
+18:40 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 245 seconds]
+18:40 < yhsiang> clkaoud: !! 
+18:41  * yhsiang 先吃飯 & 
+18:42 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+18:49 < ronnywan1> 今天去經濟部商業司開工商資料 open data 的推廣說明會
+18:49 < ronnywan1> 一點都不 open 啊....
+18:49 < CAA51> yhsiang++ # niconicoeffect
+18:50 < yhsiang> CAA51: XD 只是直接跑起來而已 還沒改裝 
+18:50 < ronnywan1> 11月 http://data.gcis.nat.gov.tw/ 會上線，會提供 API 可以線上用統一編號 query 公司資訊
+18:50 < ronnywan1> 但是 API要申請..約要審查三個工作天
+18:52 < ronnywan1> 那請大家還是使用 http://gcis.nat.g0v.tw/api/show/22099131 就好了，免申請 XD
+18:53 < ronnywan1> 後面加上 ?callback=xxx 可以變成 jsonp ，歡迎自由使用
+18:55 < Michael_LI> ronnywan1   看樣子也是中央集權制度下的產物
+18:56 < ronnywan1> 另外也不會提供資料打包帶回家
+18:56 < ronnywan1> 對了，關於資料打包帶回家，大家對於政府會不會有甚麼建議啊
+18:57 < ronnywan1> 我是個人，我可以把資料丟到 dropbox 給大家下載，但是政府這麼做我覺得有點怪 XD
+18:57 < yhsiang> 丟到市政府雲呢 ? ;p
+18:57 < ronnywan1> 我是有建議可以先丟一份加上 md5 出來，然後歡迎大家分流
+18:58 < Michael_LI> 建議～～我想到一個不準確的案例
+18:58 < ronnywan1> 應該很多 edu.tw 的大學是可以幫忙分流的
+18:58 < ronnywan1> 市政府雲給市民 5G XD
+18:58 < ronnywan1> 我把公司資料丟上去好了 XD
+18:58 < ronnywan1> ㄟ不對，我不是天龍國民
+19:04 < kcwu> yhsiang: oh, 我以為已經跟 youtube integrate 了
+19:05 < Michael_LI> 李惠仁導演弄防疫署官員很強烈，所以後來提案修法，一般民眾不可以送雞隻檢驗也不可以公布檢驗報告，都要有政府官員說的才算數。
+19:05 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+19:06 < kcwu> ronnywan1: 申請有沒有規定不能再散布之類? 政府的 open data 很喜歡搞這套
+19:08 < Michael_LI> g0v以後面對『國家機器』反撲的時後，要注意這個借鏡。
+19:09 < yhsiang> ronnywan1: http://www.citycloud.taipei.gov.tw/ct.asp?xItem=54527197&CtNode=65793&mp=10017 # 是"網路"市民耶
+19:09 < M00sUltraB0t> [ 臺北雲 ─ 市民雲 ] - www.citycloud.taipei.gov.tw
+19:11 -!- SupaplexTW___ [~Adium@wlan3.cc.ntu.edu.tw] has joined #g0v.tw
+19:11 -!- SupaplexTW___ [~Adium@wlan3.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:12 < yhsiang> 登入進去的介面怎麼跟iNCCU好像 ...
+19:14  * yhsiang 獲得市民雲 10G
+19:15 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+19:16 < tuiry> 10G get 什麼時候開了這個服務真不錯
+19:16 < Michael_LI> 恭賀成為天龍國雲深不知處市民(誤)
+19:20 -!- SupaplexTW___ [~Adium@wlan70.cc.ntu.edu.tw] has joined #g0v.tw
+19:24 < ronnywan1> kcwu: 我沒仔細看到他的 license ，不過照他所說應該連使用方式都有限制..更不要說散布了
+19:28 -!- SupaplexTW___ [~Adium@wlan70.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:29 -!- SupaplexTW___ [~Adium@wlan90.cc.ntu.edu.tw] has joined #g0v.tw
+19:36 -!- SupaplexTW___ [~Adium@wlan90.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:37 -!- SupaplexTW___ [~Adium@wlan46.cc.ntu.edu.tw] has joined #g0v.tw
+19:37 < clkaoud> ronnywan1: orz
+19:37 < clkaoud> ronnywan1: 對了，要去政大演講嗎
+19:44 -!- SupaplexTW___ [~Adium@wlan46.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:45 -!- SupaplexTW___ [~Adium@wlan25.cc.ntu.edu.tw] has joined #g0v.tw
+19:50 -!- a-tsioh [~pierre@217.179.119.80.rev.sfr.net] has joined #g0v.tw
+19:51 -!- SupaplexTW___ [~Adium@wlan25.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:51 < yhsiang> clkaoud: 是說pgrest要支援websocket ?
+19:51 -!- SupaplexTW___ [~Adium@wlan40.cc.ntu.edu.tw] has joined #g0v.tw
+19:52 < clkaoud> yhsiang: that's the idea
+19:59 -!- SupaplexTW___ [~Adium@wlan40.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:59 -!- SupaplexTW___ [~Adium@wlan75.cc.ntu.edu.tw] has joined #g0v.tw
+20:07 -!- SupaplexTW___ [~Adium@wlan75.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:12 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+20:14 < yhsiang> ETBlue: 贏滷肉飯的機會來了 # https://github.com/blog/1674-github-game-off-ii
+20:14 < M00sUltraB0t> [ GitHub Game Off II · GitHub ] - github.com
+20:15 < yhsiang> 還是大碗滷肉飯!
+20:15 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+20:19 < yhsiang> 新手村或moetris 可以參賽了 XD
+20:25 -!- icman [~icman@123.240.172.7] has joined #g0v.tw
+20:25 -!- icman__ [~icman@123.240.172.7] has joined #g0v.tw
+20:31 -!- icman__ [~icman@123.240.172.7] has quit [Quit: 明天天氣晴]
+20:35 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+20:35 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+20:37 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+20:37 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+21:02 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+21:02 < caasih> yhsiang: 喔喔？是第二屆！
+21:03 < caasih> Fabric.js 完全不理我...
+21:16 < clkaoud> walkingice: 對了，現在 api 可以 match string 了，要來寫 frontend 嗎？
+21:17 < clkaoud> api-beta.ly.g0v.tw/v0/collections/bills?q={"summary":{"$matches":"軍事審判法"}}
+21:25 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+21:32 < walkingice> clkaoud: cooooool!
+21:39 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+21:53 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+22:02 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+22:02 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Read error: Connection reset by peer]
+22:03 -!- aeil [~Adium@pb6abe080.tokyff01.ap.so-net.ne.jp] has joined #g0v.tw
+22:09 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+22:13 < yhsiang> CAA51: 組隊打怪嗎 XD
+22:18 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+22:19 < jimyhuang> clkaoud: 要來寫文件
+22:19 < CAA51> yhsiang: ggo2013 嗎？您有什麼好點子了嗎？
+22:20  * CAA51 還在跟 Fabric.js 打架中...
+22:21 < yhsiang> 前陣子才看到有人說 不要用Fabric.js 會死人 XD
+22:23 < yhsiang> CAA51: 好點子的話 是還沒 QQ
+22:24 -!- lcamel [~lcamel@114-45-59-159.dynamic.hinet.net] has joined #g0v.tw
+22:27 < CAA51> yhsiang: 啊， Fabric.js 很好，是我犯了低級錯誤XDD
+22:36 < t0mst0ne> 友人都用這個輸入法在FB chat , 速度很快, 辨識度高
+22:36 < t0mst0ne> 異想天開, 如果聲音檔, 撥給手機, 手機裝這個語音輸入法, 會不會比較容易 音轉字 ?
+22:36 < t0mst0ne> https://play.google.com/store/apps/details?id=com.iflytek.inputmethod&hl=zh_TW
+22:36 < M00sUltraB0t> [ 讯飞输入法手机版 - Google Play Android 應用程式 ] - play.google.com
+22:38 < t0mst0ne> 不知道有沒有非 MIC app/software, 可以語音輸入, 讓立院video 可以轉成 文字檔, 方便閱讀
+22:41 -!- a-tsioh [~pierre@217.179.119.80.rev.sfr.net] has quit [Quit: WeeChat 0.3.8]
+22:45 -!- pm5 [~pm5@111-248-202-107.dynamic.hinet.net] has joined #g0v.tw
+22:48 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has joined #g0v.tw
+23:07 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has quit [Quit: fntsrlike]
+23:08 < ronnywan1> 我回 g0v-talks 那邊了 XD # 19:37 < clkaoud> ronnywan1: 對了，要去政大演講嗎
+23:09 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+23:10 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+23:14 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has joined #g0v.tw
+23:20 < billy3321> 請問一下
+23:20 < billy3321> http://ly.g0v.tw/sittings/08-04-YS-09
+23:20 < billy3321> 這邊正常嗎？
+23:21 < billy3321> clkaoud: 召喚村長~
+23:21 < clkaoud> billy3321: 你從哪裡連到 09 的？
+23:21 < billy3321> 自己改網址@@
+23:21 < clkaoud> 禮拜五才要開 08 而已，你是搭時光機來的嗎？
+23:21 < billy3321> XD
+23:21 < billy3321> clkaoud: 感謝說明XD
+23:21 < clkaoud> ....
+23:22 < clkaoud> 如果是治國週記可以這樣改網址沒錯喔
+23:23 < yhsiang> 所以應該要噴404給他 ...順便說你是搭時光機來的嗎 orz...
+23:24 < clkaoud> yhsiang: good idea XD
+23:24 < walkingice> 埋個彩蛋進去好了 XD
+23:26 < yhsiang> Jedi_: https://github.com/LindseyB/starwars-dot-gif XD
+23:26 < M00sUltraB0t> [ LindseyB/starwars-dot-gif · GitHub ] - github.com
+23:27 < clkaoud> billy3321: 不過你在找啥?
+23:28 < billy3321> 周五要一讀的草案列表
+23:28 < clkaoud> 上面「會議」不就是了嗎？
+23:29 < billy3321> Y
+23:29 < billy3321> clkaoud: 感謝~
+23:29 < clkaoud> np
+23:33 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has quit [Quit: fntsrlike]
+23:33 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+23:34 < ETBlue> clkaoud: yhsiang tkirby__ 我的想法大概是這樣 XD" http://etblue.github.io/semantic-ui-experiment/ly-monitor.html
+23:34 < M00sUltraB0t> [ 立院監視器 ] - etblue.github.io
+23:34 < clkaoud> walkingice: 話說 sitting page 上那個 video link 不見了
+23:35 < ETBlue> 想說以內容為中心，而不是以形式為中心，所以把預報、會議、質詢合併在同一個介面裡
+23:36 -!- fntsrlike [~fntsrlike@114-46-210-65.dynamic.hinet.net] has joined #g0v.tw
+23:36 < ETBlue> 目標是在同一頁內可以自由運用任何 filter 找出想看的內容
+23:37 -!- dfccc [d39b71f3@gateway/web/cgi-irc/kiwiirc.com/ip.211.155.113.243] has joined #g0v.tw
+23:39 < ETBlue> 另外，想把第幾會期、第幾次會議，轉成用一般的日期表示，那些立法院內專用的 meta 在議案頁面可以找到，但不在清單中顯示，因為對我們來說那個好像沒什麼意義
+23:39 -!- whitglint [~whitglint@122-117-208-238.HINET-IP.hinet.net] has joined #g0v.tw
+23:41 < clkaoud> ETBlue: 當選擇日期時，跟只有選擇委員會，好像會有不同的意思
+23:41 < ETBlue> 如果 progress 資料出來，清單頁面就可以顯示各法案目前的狀態
+23:41 < clkaoud> 阿阿 遭到催稿 XD
+23:42 < ETBlue> clkaoud: 先選日期，跟那天有交集的委員會會變成 active，反過來說，先選委員會，該委員會開會的那幾天日期會變成 active
+23:42 < clkaoud> 如果某提案是將要處理但還沒排入的，只要選了日期就不會出現，對吧？
+23:43 < ETBlue> 是的
+23:43 < ETBlue> 日期是用來追蹤當天立委們在做什麼
+23:44 < ETBlue> 委員會則是用來追蹤這群立委這陣子以來都在做什麼 XD
+23:44 < yhsiang> 一打開來就覺得有種一目了然的感覺 ...
+23:44 < ETBlue> ㄟ，所以可以看得懂嗎 @@"
+23:44 < clkaoud> date 好像也可變成用 date range 喔
+23:45 < ETBlue> date 目前有三種模式，日期、月份、會期
+23:45 < clkaoud> 太強了
+23:45 < yhsiang> 經濟 跟外交國防 是正在開的兩個 
+23:45 < ETBlue> 日期用來給某一天剛好有空可以去抗議的人
+23:45 < yhsiang> 是這個意思嗎
+23:46 < ETBlue> 月份用來給社運團體安排當月抗議行程
+23:46 < clkaoud> ETBlue: 不過委員會可能會是「經濟、內政聯席」
+23:46 < ETBlue> 會期就是…就會期 XD
+23:46 < clkaoud> 所以選兩個的時候有 「經濟」 or 「內政」 和 「經濟內政聯席」兩種意思
+23:46 < ETBlue> yhsiang: active 的是被 filter 出來的
+23:47 < yhsiang> 喔 那個是filter 我要 經濟 跟外交國防 
+23:47 < clkaoud> (而且聯席是有順序的)
+23:47 < ETBlue> clkaoud: 聯席的話不管選哪個都會被 filter 出來
+23:47 < ETBlue> yhsiang: 是的 XD 是你要的
+23:47 < clkaoud> ok that works
+23:47 < yhsiang> 看到這filter 有種動民主 1.0 filter的感覺
+23:47 < yhsiang> 再進化的filter ...
+23:47 < ETBlue> clkaoud: 目的是，我是經濟學者，我想追蹤經濟委員會的所有舉動
+23:48 < clkaoud> yhsiang: 衝了吧 上面那個 filter 可以立刻套給目前的 /sittings 用
+23:48 < ETBlue> 真的耶跟動民主的filter超像，而且項目是固定的，所以更好做
+23:48 < clkaoud> 要產生 state variable & transition 就是了，才能有 permalink
+23:48 < yhsiang> permalink 是影片 還是?
+23:48 < ETBlue> 說到影片 XD
+23:48 < clkaoud> ETBlue: 完全不一樣，這是直接加上 angular 就會動的 mockup, 不是圖檔
+23:49 < clkaoud> ETBlue++ # 曲速前進即將抵達全端工程師
+23:49 < ETBlue> 每個 bill 除了 json word 那些的，會有影片片段的 link 嗎？希望以內容為中心整合所有格式的資料
+23:49 < yhsiang> 曲速前進 XD
+23:50 < clkaoud> yhsiang: 不見得，應該是任何使用這個 filter 的 component 都需要有對應的 permalink
+23:50 < yhsiang> clkaoud: 喔喔! 那就是url path要想好?
+23:50 < ETBlue> 有些沒寫到，套上去可能還要橋一下就是了（抓頭
+23:50 < yhsiang> 等於直接path就是filter下去
+23:50 < ETBlue> 大家看得懂真是太好了（淚
+23:50 -!- Moo [~marlborom@101.3.42.201] has joined #g0v.tw
+23:51 < yhsiang> 這樣 item也很好做active XD
+23:51 < clkaoud> ETBlue: 不會有很細的，會有該議案出現在某次會議的，要對應過去。但是會有誰發言過的資料，所以也可以查到對應的影像
+23:51 -!- Moo is now known as Guest73684
+23:51 -!- dfccc [d39b71f3@gateway/web/cgi-irc/kiwiirc.com/ip.211.155.113.243] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+23:52 < clkaoud> yhsiang: ya 基本上可能要發明一個 filter stirng, 改動的話就 transition to current state with composed filter string (as state var)
+23:52 < clkaoud> 然後 watch state var 產生真的 filter variable (繞一圈回來 XD)
+23:52 < clkaoud> 不過這樣可以保證 two-way
+23:54 -!- marlboromoo [~marlborom@111.235.212.31] has quit [Ping timeout: 245 seconds]
+23:56 < yhsiang> hmm 這要想一下, 我傾向於 permalink是可以辨識人腦能記的 XD
+23:58 < clkaoud> 這不衝突 :p
+23:59 < tkirby__> 到齊了!
+23:59 < ETBlue> tkirby__!!
+23:59 < yhsiang> ETBlue: 你的意思是說 委員會 也可以變成primary filter嗎 ?
+23:59 < ETBlue> yhsiang: 是的
+23:59 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+23:59 < ETBlue> yhsiang: 因為有追蹤特定委員會的需求

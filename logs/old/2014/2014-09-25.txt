@@ -1,0 +1,329 @@
+--- Day changed 四  9月 25 2014
+00:00 < a0000778> xsoameix: Docker好像是用lxc來著 會改正常吧
+00:01 < xsoameix> linux container 跟網路有關嗎？
+00:02 < a0000778> xsoameix: ifconfig看看 應該會多出幾個裝置給lxc用的
+00:02 < xsoameix> 有阿，我很好奇為何 lxc 需要這些東西
+00:03 < a0000778> xsoameix: 會用iptables轉發封包到lxc用的網路裝置
+00:04 < xsoameix> 喔，原來是這樣
+00:04 < a0000778> xsoameix: 你可以把lxc當成是虛擬機來理解 會比較快 雖然他不是虛擬機
+00:05 < xsoameix> 恩，lxc 比較像 os
+00:05 < a0000778> xsoameix: OS?
+00:05 < xsoameix> 作業系統
+00:06 < a0000778> xsoameix: 他就是在核心裡開個空間跑阿...
+00:07 < a0000778> 你要在裡面弄個作業系統還是直接跑程序都行 就是要同核心就是了XD
+00:08 < xsoameix> 我對 lxc 還不熟，明明不是 vm 但是卻像是 vm，不好理解
+00:08 < a0000778> 我是在 COSCUP 之後開始接觸的
+00:09 < CindyLinz> xsoameix: 那先了解一下 chroot 好了?
+00:09 < xsoameix> 最近這次 coscup 好像有某場演講有提到
+00:09 < a0000778> CindyLinz: 好開頭XD
+00:10 < CindyLinz> xsoameix: FourDollars 講的 :D
+00:11 < a0000778> xsoameix: http://fourdollars.github.io/lxc-intro/
+00:11 < kcwu> a0000778's url: [&#x6DFA;&#x8AC7; Linux Containers]
+00:13 < xsoameix> chroot ? 我在修復 linux 和 windows 雙系統的開機選單時記得用過一次
+00:14 < xsoameix> 很神奇的指令
+00:15 < CindyLinz> xsoameix: chroot 是 lxc 的一個重要功能
+00:15 < CindyLinz> 然後, chroot 本身也可以是一個獨立的應用程式, 表示它可以獨立出來理解
+00:16 < CindyLinz> 能獨立拆出來的東西, 希望是有可能會比較好懂.. ^^
+00:17 < a0000778> lxc 是把現有的隔離功能整合在一起 這樣應該比較對吧:D
+00:17 < CindyLinz> 喔.. 我不知道, 我不知道其他部分也是原本就有的 ^^|
+00:18 < CindyLinz> 像是 process 隔離, 還有 CPU 使用量隔離 @@"
+00:18 < xsoameix> 意思是說 chroot 有辦不到的事情囉？
+00:18 < CindyLinz> chroot 只有 CHange ROOT 啊 ^^|
+00:18 < a0000778> chroot只有檔案系統
+00:19 < xsoameix> 網路算是檔案系統嗎？
+00:20 < a0000778> mount上去的話也算...
+00:20 < CindyLinz> 不算呀~ 檔案系統指的是有 path 的那些東西
+00:20 < CindyLinz> mount 的話就會跟檔案系統有關了, 因為有 path 了 XD
+00:21 < xsoameix> 我想說像 tty0 之類的 io 都會以檔案的形式放在檔案系統裡，所以也一起被 chroot 保護了
+00:22 < xsoameix> 然後網路也是
+00:22 < CindyLinz> 這部分的確是有啦.. ^^|
+00:22 < a0000778> chroot後的目錄 如果裡面有建關聯的話 還是可以用就是
+00:32  * FourDollars 有人找我？ o_O
+00:32 < CindyLinz> FourDollars: :p # 00:09 < xsoameix> 最近這次 coscup 好像有某場演講有提到
+00:32 < CindyLinz> lxc
+00:32 < FourDollars> CindyLinz: 有看到 XD
+00:33 < a0000778> 話說 總覺得lxc內建的IP分配各種問題
+00:34 < CindyLinz> FourDollars: 出來面對! (大誤)
+00:34 < a0000778> 我現在跑 DHCP都沒返回資料
+00:35 < miaoski> CindyLinz: 我今天見到 cibs 大大
+00:36 < CindyLinz> 花蓮?
+00:36 < FourDollars> LXC 又不是我寫的，我也只是一般使用者啊！>_<
+00:37 < FourDollars> a0000778: 可能要先建好什麼 bridge 之類的東東
+00:37 < FourDollars> a0000778: 你使用哪個 Distribution 的 LXC？
+00:37 < a0000778> FourDollars: Ubuntu 14.04, br一直都有
+00:38 < FourDollars> a0000778: LXC 裡面安裝的是什麼 distribution?
+00:38 < a0000778> debian
+00:38 < FourDollars> Debian 的哪個版本？
+00:41 < a0000778> 我來去找找怎看Debian的版本... 裝的時候沒設版本號
+00:42 < miaoski> CindyLinz: 在公司啦
+00:42 < FourDollars> a0000778: 我 LXC 裡面跟外面都用 Ubuntu 正常的很～ :P
+00:42 < a0000778> FourDollars: 那我現在來裝裝看有沒有正常...
+00:44 < a0000778> 目前只有Debian系的才能正常阿...
+00:44 < FourDollars> 我記得 Debian unstable 好像有遇到 systemd 會炸掉的問題
+00:44 < FourDollars> 因為主要開發者都是用 Debian 系的啊~ >_<
+00:44 < a0000778> 我看到還是用init...
+00:45 < FourDollars> Debian stable 不曉得會不會有太過老舊導致無法使用的問題
+00:46 < a0000778> 剛剛確認了 跑2k7是 Debian
+00:46 < FourDollars> 不過我也很久沒有在使用 LXC 囉～ 只有 COSCUP 前後有在用而已。 (eyeroll)
+00:47 < a0000778> 跑的是 Debian 7
+00:47 < FourDollars> 試試看 Debian testing
+00:48 < a0000778> 裝好ubuntu DHCP一樣死
+00:50 < FourDollars> Err... @_@a
+00:50 < FourDollars> 怎麼會？
+00:53 < FourDollars> a0000778: 你用哪個版本的 lxc ？
+00:53 < a0000778> FourDollars: 1.0.5
+00:54 < FourDollars> 我也是啊～ @_@a
+00:55 < a0000778> 各種奇妙問題
+00:55  * FourDollars 執行 sudo lxc-create -t ubuntu -n precise -- -r precise -F 來建一個看看
+00:56 < a0000778> 我覺得DHCP應該跟實體有關就是了
+00:56 < a0000778> (安裝中
+00:57 < a0000778> 現在都直接固定IP解決=.=
+00:58 < FourDollars> 不曉得跟 /usr/share/debootstrap/functions 有沒有關係？ 我現在都用我自己改過的版本 http://paste.ubuntu.com/8419376/
+00:58 < kcwu> FourDollars's url: [Ubuntu Pastebin]
+01:00 < a0000778> 多一個--tries=10 應該沒關係吧
+01:03 < FourDollars> 對我來說有關係... 因為我家的網路會突然有幾個 wget 會失敗，然後整個 debootstrap 就要重來...
+01:03 < FourDollars> 改成這樣後就沒有再遇過啦！哈哈！ :D
+01:03 < a0000778> 我沒失敗過 不過最近有遇到lxc裡有些網站連不上這種神奇情況...
+01:04 < a0000778> 比如說mongodb的載點...
+01:06 < a0000778> 剛剛想 會不會跟防火牆有關... 因為我防火牆會重新用自己的腳本跑一次
+01:07 < FourDollars> a0000778: 我剛建出來的 Ubuntu precise 是可以正常使用的～
+01:07 < a0000778> FourDollars: 我還在建
+01:08 < FourDollars> a0000778: 可能跟你的網路環境有關
+01:10 < a0000778> FourDollars: 有可能 裝了好幾種虛擬機的後果...
+01:10 < FourDollars> a0000778: 哈哈～ 也有可能～ :D
+01:11 < a0000778> FourDollars: 裝好了 DHCP還是死
+01:11 < FourDollars> ^^b
+01:14 < a0000778> 有機會再來看是啥問題... 今晚感覺暈暈的
+08:37 < clkao> tkirby: https://github.com/g0v/summit.g0v.tw/issues/21 可以幫忙一下嗎 :p 用兩個分開的檔案一定會 out of sync :p
+08:37 < kcwu> clkao's url: [merge schedule i18n into same json · Issue #21 · g0v/summit.g0v.tw · GitHub]
+09:09 < lafin> miaoski: 吳明義說，給我demo看一下，我才能寫喔，還有我電腦很爛，不知道跑不跑得動!
+09:16 < miaoski> XDDDDD
+09:17 < miaoski> 就給他 http://ckhis.ck.tp.edu.tw/~ljm/moedict/#;kacep 然後看你要不要挑個例句多一點的字 XD
+09:17 < kcwu> miaoski's url: [萌典]
+09:18 < miaoski> 我發現老師們的第一印象，決定他們接下來幾個月怎麼看待我們的需求 (無誤)
+09:18 < miaoski> lafin: 比方說... 明明重點在推字典，可是陳金龍老師以為我們要追的是喉塞音... 這真的誤會很大 XD
+09:21 < lafin1> @miaoski 他不是要藉機了解，書寫符號的起源嗎？因為書寫問題困擾他們很久，他們一直想要突破，也一直開會（無給職）的！！
+09:22 < miaoski> lafin1: 可是我覺得那是永遠無解的議題啊。書寫符號和發音不一定對得起來。你還記得我們和 a-tsioh 在萌典松聊過？
+09:23 < miaoski> 十年後發音又變了，不可能一直改字的寫法。所以其實只要用的人覺得舒服就好了，然後同時會有很多寫法，最後會慢慢固定下來... 像我們打阿美語萌典的時候，不是很多中文的寫法和現在就不一樣？
+09:23 < lafin1> @miaoski 有啊！但看到那些阿公都還在奮鬥，好感動喔
+09:23 < miaoski> 不可能說教育部先開幾年的會，決定中文標準寫法，然後才讓大家開始寫... 
+09:24 < lafin1> @miaoski 也是啦
+09:24 < miaoski> 我不知道怎麼讓 baki 們都了解... 有人教小孩從小開始講，語言才活得下來，寫法根本不重要...
+09:24 < lafin1> @miaoski 恩恩
+09:25 < lafin1> @miaoski 我剛剛試一下，中文還沒ok?
+09:25 < miaoski> 對，中文還沒 ok ... 
+09:25 < lafin1> @miaoski ok
+09:25 < miaoski> 最近打工比較忙，只有 a-tsioh 一個人在坑裡 (默默填土)
+09:26 < lafin1> 了解
+09:27 < lafin1> @miaoski 那我繼續聯絡神父，神父行蹤飄渺不定，電話都沒接＠＠
+09:28 < miaoski> 啊咧咧咧咧
+09:28 < miaoski> 感謝~~
+10:07 < tkirby> clkao: 是說怕改了 zh 忘了改 en 嗎
+10:14 < clkao> Ya.. its also easier to do sync translation
+10:20 < tkirby> ok
+10:38 < miaoski> bash 的漏洞請大家快補...
+10:38 < miaoski> CVE-2014-6271
+10:47 < miaoski> 有人去試了教育部國語字典. 可攻破 orz
+10:52 < lafin1> @@
+11:30 < pcchen> miaoski: 你們說的「老師們」是哪些人？
+11:31 < pcchen> 有書寫系統可能會讓語音的變異變慢，但是書寫跟語音不可能完全 in sync
+11:42 < lafin1> @miaoski ok，神父說10/4 ok 他沒手機噢，所以我們必須一直打電話碰運氣＾＾
+12:00 < miaoski> pcchen: 年紀比較大的阿美族族語教師、發音人、編寫字典的人。
+12:00 < miaoski> lafin1: OK.... 這。直接殺去教堂？XD
+12:00 < miaoski> a-tsioh: 10/4 OK 嗎？可以的話我就來訂火車票囉
+12:01 < ipa> 昨天看到很多組要擺攤，好期待有「鐵口直斷，講個秘訣」的旗子 XD # summit 
+12:01 < lafin1> @miaoski 對，東豐天主堂
+12:01 < miaoski> ipa: 來做一個 XD
+12:01 < ipa> clkao: tkirby 我前天不知道schedule改抓 ls，想說簡介說明都不見，還硬去 develop 拷回來（sorry）
+12:02 < ipa> miaoski: 要穿江湖術士衣
+12:03 < hcchien> miaoski: 台語算是有寫法嗎？
+12:03 < miaoski> hcchien: 有啊
+12:03 < miaoski> 我們有 TLPA, POJ, 通用 各種標準
+12:03 < hcchien> miaoski: 好吧，我不會寫，但我會講   orz
+12:04 < tkirby> ipa: XD
+12:05 -!- edwardc_ is now known as edwardc
+12:13 -!- chihchun_afk is now known as chihchun
+12:18 < tkirby> ipa: 你的那個 revert 除了多加了 pierre ˙ˋ  之外還有其他的變更嗎?
+12:19 < ipa> tkirby: 應該沒有 看 log 是沒有
+12:23 < a-tsioh> miaoski: ok
+12:30 < a-tsioh> miaoski: lafin1  其實我現在在想，學POJ比較好
+12:30 < a-tsioh> （看log）
+12:32 < a-tsioh> 學其他的就看不懂前人寫的文章（或是看得很辛苦）
+12:32 < a-tsioh> （除非有conversion 的系統)
+12:41 < pcchen> 學POJ/台羅
+12:41 < pcchen> 多查萌典就會寫台語了
+12:41 < a-tsioh> hcchien: 加上臺語還有漢字，漢字並不是爲了專門寫國語才創造
+12:41 < a-tsioh> pcchen++
+12:42 < lafin1> @a-tsioh ＋＋
+12:42 < pcchen> 漢字可以overlap的概念XD
+12:42 < pcchen> 漢字可以overload的概念
+12:43 < a-tsioh> (我發現很多人以為漢字＝國字）
+12:43 < a-tsioh> pcchen: 你覺得漢字太over嗎？
+13:05 -!- chihchun is now known as chihchun_afk
+13:07 -!- lafin1 [lafin@conference/jsconf/x-gpotdaptawtpasbc] has left #g0v.tw []
+13:12 < raejin___> @clkao 's ignite talk @ San Francisco http://youtu.be/Oyk28Mn4llM
+13:12 < kcwu> raejin___'s url: [g0v ignite talk at code for America @ San Francisco - YouTube]
+13:14 < raejin___> it just happened. was awesome. share to the world
+13:14 < pcchen> 因為學校老師都這麼教「漢字＝國字」
+13:15 < pcchen> http://zh.wikipedia.org/zh-tw/%E8%87%BA%E7%81%A3%E6%BC%A2%E5%AD%97 
+13:15 < kcwu> pcchen's url: [臺灣漢字 - 維基百科，自由的百科全書]
+13:15 < pcchen> 官方名稱「國字」、「正體字」，僅在與滿、蒙、藏等其他族群區分時，方用「漢字」一名）
+13:21 < pcchen> a-tsioh: 漢字有好處也有缺點。重點是根據你的語言，好好的來使用它。
+13:23 < pcchen> 漢字的範圍也無法嚴格定義，越南語使用的字喃算不算是漢字？台灣可能很多人認為不是，但這要怎麼定義界線在哪裡
+13:24 < a-tsioh> raejin___++ !
+13:26 < a-tsioh> pcchen: 我覺得就想英文用的羅馬字沒有é,ß，ï等等(他們就不會拼Taïwan!，而印出英語的"cliché"或"déjà vu"有困難)
+13:28 < a-tsioh> 不過在臺灣人會問我「你們法國是不是用英文字？」　（我會控制自己不會生氣:)就想說漢字是國語的國字一樣
+13:36 < pcchen> a-tsioh: 台灣人的世界只有兩個東西：正體中文跟美國英文XD
+13:38 < a-tsioh> (T.T)
+13:40 < a-tsioh> si án-ne，ná guá beh khi tsia̍h-pn̄g̀
+13:41 < kiang> ??
+13:41 < kiang> 天宙和平統一家庭黨 的候選人好像都退出選舉了，不知道發生什麼事情
+13:45 < pcchen> chia̍h-pn̄g hông-tè tōa!
+13:45 < kiang> 而且中選會針對資料做異動都不會做公告...
+13:48 < lafin1> @pcchen 吃飯皇帝大？
+13:53 -!- glll4678__ is now known as glll4678
+13:57 < pcchen> lafin1: yes :)
+14:01 < clkao> raejin___++
+14:11 < clkao> tkirby: i think you used the en one as base for dev/i18n/merge. should see latest zh changes.. also might be easier to do incremental udpate if we use title_zh/title_en which defaults to title if not found
+14:22 < tkirby> clkao: ok i'll patch it later
+14:30 < ipa> tkirby: clkao summit 英文版在哪裡改啊？
+14:30 < ipa> tkirby: clkao schedule 要更新，但找不到該在哪個檔
+14:30 < clkao> Wait for tkirbys patch
+14:30 < ipa> oh
+14:31 < clkao> Otherwise its going to conflict
+14:32 < tkirby> you can still commit, if i use the latest json to merge later?
+14:34 < ipa> is there an index-en.jade?
+14:35 < ipa> 找到了 在 layout/en.jade
+14:48 < ipa> jimyhuang__!
+14:48 < jimyhuang__> ipa: !!
+14:49 < tkirby> 阿然後因為 schedule.jade 被還原了,如果能先幫我把schedule.ls 更新到最新的狀況我會比較省事
+14:49 < tkirby> 在 develop branch 做就好了, 我再 cherry-pick
+14:50 < ipa> tkirby: 現在我這邊看起來 schedule.ls 已經還原成你先前弄的
+14:51 < ipa> （schedule.jade 只有時間，說明放到 schedule.ls）
+14:52 < jimyhuang__> speaker.jade 我先加上去，之後還會再排，對吧？
+14:57 < jimyhuang__> ipa: tkirby 現在講者的頭像，打算怎麼處理呢？
+14:58 < ipa> jimyhuang__: 順序還要再排，你覺得分議程放一區好嘛？
+14:58 < jimyhuang__> ipa: 怕一行三個放不下。但這樣其實比較直觀
+14:58 < ipa> jimyhuang__: 要請講者提供，放到這裡 https://drive.google.com/?usp=docs_home&authuser=0#folders/0BzGJ4qvz2D3EUmlCRThZY19zR2M
+14:58 < jimyhuang__> ipa: 排序也不會有什麼奇怪的聯想
+14:58 < kcwu> ipa's url: [Redirecting...]
+14:59 < clkao> 之前有想說用 popit 來弄
+14:59 < clkao> http://g0v-summit-2014.popit.mysociety.org/
+14:59 < clkao> 因為這樣 profile 也可以放在一樣的地方
+14:59 < jimyhuang__> 那我先把圖片上傳上去...
+15:01 < ipa> jimyhuang__++  放上去 mary 看到就會去更新頭像
+15:02 < ipa> clkao: popit 可以排序？現在speaker頁可能要手動排序有點苦？
+15:02 < jimyhuang__> clkao: 我打算快速先補一下，之後再說  XD
+15:03 < clkao> no, 重點是用 popit 存資料 然後用他的 json api dump 出來 比照 schedule.json 使用
+15:11 < jimyhuang__> tkirby: ipa deploy 需要誰來進行嗎？還是我直接弄下去？
+15:15 < tkirby> ipa: 我是說像是你有更新 pierre 之類的資訊到 schedule.jade 但應該沒有同時更新到 schedule.ls, 這樣我得一個一個去撈出來重建 schedule.ls 
+15:16 < ipa> tkirby: ！ 改了兩個地方，一個是加 pierre, 一個是 code4hk 換講者
+15:16 < tkirby> jimyhuang__: 照 clkao 的構想 speaker 這邊我們要弄段 gulp 來抓 popit 的資料下來產生 json 餵給 jade 然後實作細節還沒確認
+15:16 < tkirby> ipa: ok 看起來不多應該我來改就可以了
+15:16 < clkao> tkirby: 我有改到 zh schedule
+15:16 < tkirby> (y) 
+15:17 < jimyhuang__> tkirby: 感謝解答，我加的speaker bio先commit到develop branch，之後看是有人要review後merge master / deploy，再說 https://github.com/g0v/summit.g0v.tw/issues/22 （不然都邀請人家了沒bio，很失禮）
+15:17 < kcwu> jimyhuang__'s url: [補上缺少的講者資訊（彭、鄧） · Issue #22 · g0v/summit.g0v.tw · GitHub]
+15:29  * a-tsioh 有被更新的感覺
+15:29 < ipa> pierre! 
+15:30  * lafin1 感覺好難
+15:37 < mrorz> miaoski: CVE-2014-6271 好像目前還沒 patch 可以用的樣子？ @@
+15:39 < miaoski> mrorz: ubuntu / raspbian / debian 應該都有了
+15:39 < au> mrorz: 有啊，各大 distro 都出了 update (during embargo)
+15:39 < au> moedict/ethercalc/logbot/etc 昨天就更新了
+15:40 < au> 重編國語詞典可能是全網路最多人用的 bash cgi script 之一了... 
+15:40 < au> 遭到 Metasploit 真慘 :/
+15:43 < au> 希望網管能及時 sudo apt-get update && sudo apt-get install --only-upgrade bash 一下
+15:44 < clkao> GG
+15:45 < mrorz> "UPDATE (Wed Sep 24 20:59:46 PDT 2014): At the current time, there are reports the initial bash patch deployed by most OS vendors does not fully mitigate the vulnerability. "
+15:45 < mrorz> https://blog.cloudflare.com/bash-vulnerability-cve-2014-6271-patched/
+15:45 < kcwu> mrorz's url: [Bash vulnerability CVE-2014-6271 patched]
+15:45 < au> mrorz: 是的，但 surface 變小了，現在"只"能讀檔
+15:46 < mrorz> 喔喔喔原來如此！  （其實還是不懂 XD）
+15:46 < miaoski> au: () ; cat /etc/passwd 
+15:46 < miaoski> 雖然沒什麼用 XDD
+15:46 < au> shadowed XD
+16:35 < kiang> http://k.olc.tw/elections/candidates/view/540b56d6-f050-4604-825f-1926acb5b862 - 這個人的名字應該是故意的...
+16:35 < kcwu> kiang's url: [2014 > 縣市長 > 嘉義縣 > 黃宏成台灣阿成世界偉人候選人 @ 選舉黃頁]
+16:38 < jimyhuang__> 所以 [這個網頁無法使用]  <--- dict.revised.moe.edu.tw  是因為 CVE-2014-6271 ?
+09:07 < au> jimyhuang__: 對，慘遭 metasploit 了，現在查什麼字都是 500.
+09:07 < jimyhuang__> XD 恐怖爺... 
+17:27 < pm5> wow
+17:47 < a-tsioh> pcchen: 臺羅和教羅真是的差不多，現在用臺羅輸入教羅，感覺huh感覺沒有用XD
+17:55 -!- a-tsioh is now known as a-chioh
+17:56 < pcchen> a-chioh: 台羅教羅本一家～
+17:57 < a-chioh> :)
+18:27 < a-chioh> pcchen: how would you call the string outputed by the IME
+18:27 < a-chioh> to select the romanisation mode used in input and output
+18:27 < pcchen> a-chioh: in English?
+18:27 < a-chioh> "輸入羅馬字方式" ?
+18:27 < a-chioh> nop
+18:28 < a-chioh> 漢字,mandarin or taiwanese
+18:28 < a-chioh> ambiguous reading would be better
+18:28 < a-chioh> for the 設定panel of the IME
+18:29 < pcchen> I think FHL uses "羅馬字ê款式" or something like that
+18:32 < a-chioh> ok
+18:32 < a-chioh> and how to distinguish input and output
+18:32 < a-chioh> (or is it totally useless to allow mixed use)
+18:33 < pcchen> a-chioh: in FHL ime, it accept both POJ and TL input. So only has options for output
+18:34 < pcchen> But for a single input string, has to be totally POJ or totally TL (especially for multi-syllable )
+18:35 < a-chioh> oh
+18:35 < a-chioh> I was doing something different that need an explicit setting
+18:35 < pcchen> example: ouchhenn (POJ) or ootshinn (TL) but NOT outshinn
+18:36 < pcchen> If you need, I think "羅馬字ê款式" works for both input and output
+18:36 < a-chioh> 輸入／表示？
+18:37 < a-chioh> 表現
+18:37 < a-chioh> ？
+18:38 < pcchen> 輸入ê羅馬字ê款式 顯示ê羅馬字ê款式 ？
+18:39 < a-chioh> ok
+18:39 < a-chioh> 2x ê ? :p
+18:45 < pcchen> 就像是中文會有很多的「的」
+19:35 -!- lafin1 [lafin@conference/jsconf/x-ovivytbzbnzsrunu] has left #g0v.tw []
+19:40 -!- pcchou__ is now known as pcchou
+20:24 -GitHub125:#g0v.tw- [g0v.tw] ipaaa pushed 1 new commit to master: https://github.com/g0v/g0v.tw/commit/7fee2ab8dd0775819e09c302401e118b2bbd90a4
+20:24 -GitHub125:#g0v.tw- g0v.tw/master 7fee2ab ipa: add summit segment
+20:27 -GitHub49:#g0v.tw- [g0v.tw] yhsiang pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/57e51da563f1d8554dbf1bd173c07d0ed48a8cbc
+20:27 -GitHub49:#g0v.tw- g0v.tw/gh-pages 57e51da g0v general (via TravisCI): regen for 7fee2ab
+20:37 -GitHub48:#g0v.tw- [g0v.tw] ipaaa pushed 1 new commit to master: https://github.com/g0v/g0v.tw/commit/bb623b3f9e201cb4d1851e3c239be394d56bd080
+20:37 -GitHub48:#g0v.tw- g0v.tw/master bb623b3 ipa: remove 的
+20:40 -GitHub53:#g0v.tw- [g0v.tw] yhsiang pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/923bd5e74893d33cce0a9dcde66bbd362a0acf7e
+20:40 -GitHub53:#g0v.tw- g0v.tw/gh-pages 923bd5e g0v general (via TravisCI): regen for bb623b3
+22:09 < miaoski> lafin: 你的 R 我終於放上去了 @@ http://ckhis.ck.tp.edu.tw/~ljm/moedict/#;rimadac # 阿美語萌典 R 上線了!
+22:09 < miaoski> 只剩 S ... orz 我只做了 30%
+22:09 < lafin> miaoski: ++
+22:10 < miaoski> lafin: ++
+22:11 < lafin> miaoski: 我假日再做，你沒做完的
+22:11 < a-tsioh> ++啥? :P我遲到了
+22:11 < miaoski> lafin: 假日我也能做 ^^; 哈哈...
+22:11  * a-tsioh 去看logbot
+22:11 < miaoski> a-tsioh: 沒事 R 字頭上線了
+22:11 < a-tsioh> :)
+22:11 < a-tsioh> 那　lafin++
+22:17 < lafin> miaoski: 呵呵，目前能力只能做這個
+22:17 < miaoski> 我也是，最近打工太忙，把精力都吸光了 @@
+22:19 < a-tsioh> miaoski 看到了這個嗎？　https://g0v.hackpad.com/TaigiLex
+22:19 < kcwu> a-tsioh's url: [TaigiLex - g0v.hackpad.com]
+22:20 < a-tsioh> I love when someone say "我這邊的資料，基本上都可以提供。
+22:21 < a-tsioh> (Ún-giân) 
+22:41 < pcchen> (Ún-giân)++
+22:50 < miaoski> 楊允言++
+22:54 < a-tsioh> poj android IME 差不多了
+22:54 < pcchen> cool!
+22:54 < a-tsioh> 雖然我覺得我preference window 很難看
+22:54 < a-tsioh> （應該是說，我follow clkao 的意見 XD)
+22:55 < pcchen> android's font can fully support POJ? (8th tone, combining dot above right, etc)
+22:55 < pcchen> I should get some android device.
+22:57 -!- raejin___ is now known as raejin
+22:58 < pcchen> http://udn.com/NEWS/BREAKINGNEWS/BREAKINGNEWS9/8959633.shtml
+22:58 < kcwu> pcchen's url: [科技部：上傳論文要按「確定是我寫的」 | 生活 | 即時新聞 | 聯合新聞網]
+23:17 < a-tsioh> pcchen: 最新的可以，但是不是所有的APP都接受
+23:17 < a-tsioh> 所以我還不太確定怎麼處理o͘
+23:18 < a-tsioh> 還有nn
+23:25 < pcchen> has an option to use "ou" and "nn"??
+23:29 < a-tsioh> 'ou' rather than 'oo' ?
+23:33 < pcchen> "oo" is TL, POJ people use "ou"
+23:34 < a-tsioh> ok
+23:34 < a-tsioh> oyo沒電了
+23:35 < a-tsioh> android studio 和 emulator 吃太多
+23:49 < caasih> miaoski++
+23:54 -!- levichen [uid44911@gateway/web/irccloud.com/x-nznonisxsgtwhgco] has left #g0v.tw []

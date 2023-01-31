@@ -1,0 +1,109 @@
+--- Day changed 五  2月 22 2013
+00:01 < clkao> pushed
+00:05 < clkao> au: what do you think about a small scraper toolkit with plv8x?  it's tedious to fetch->(cache)->parse-> generate more items to fetch->(cache)->parse
+00:07 < au> I think it's a great idea
+00:08 < au> fixed pushed
+00:13  * au likes the "ok <- fn -> fail" pattern
+00:20 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+00:20 < clkao> well _ is requiredthen
+00:23 < au> yeah, but not too bad in general
+00:23 < au> ok <- $.getJSON url .fail -> err # this too
+00:24 < au> ok <- $.getJSON url, _ .fail -> err # er, oops.
+00:28 < miaout17> ls
+00:28 < miaout17> sorry wrong tab :(
+00:29 < favonia> mno2: 現在 css 是伺服器自動生成了...
+00:31 < favonia> miaout17: 我把 mno2 產生 css 的程式碼直接嵌到伺服器裡面 xD 自從我知道我們有（計劃要）用 reverse proxy 就沒在擔心了 xD
+00:31 < miaout17> favonia: mno2: 用Clay稍微擔心沒啥人可以maintain CSS，FE現在幾乎都在SASS/SCSS/LESS/CSS
+00:32 < favonia> miaout17: 我以為 Clay 語法是抄 LESS/SASS 的 @_@
+00:34 < clkao> au: build broken?  also please close #1 once fixed ;)
+00:34  * clkao -> zz
+00:35 < au> no idea what broke it
+00:36 < au> pushed a try
+00:40 < favonia> miaout17: 這樣好了，你看看現在 WebUi.hs 的語法算不算好懂 orz
+00:40 < favonia> miaout17: 對不起剛才忘記 push
+01:01 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: Leaving]
+02:25 -!- KNY [~Adium@118-170-66-67.dynamic.hinet.net] has quit [Quit: Leaving.]
+02:43 -!- a2n [~a2n@unaffiliated/a2n] has quit [Ping timeout: 276 seconds]
+02:43 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+03:54 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 272 seconds]
+06:52 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+07:51 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 255 seconds]
+07:54 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+08:08 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 260 seconds]
+09:44 -!- evan3rd [~mac@114-47-23-252.dynamic.hinet.net] has joined #g0v.tw
+09:50 -!- mno2 [~mno2@nat/yahoo/x-lknttllgmralnwas] has joined #g0v.tw
+10:09 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+10:29 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:35 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+10:46 -!- KNY [~Adium@111-253-159-192.dynamic.hinet.net] has joined #g0v.tw
+11:11 -!- zz_chihchun is now known as chihchun
+11:27 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+11:46 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+12:06 -!- ck_ [~ck@60-251-163-24.HINET-IP.hinet.net] has joined #g0v.tw
+12:09 -!- wHisKy- [whisky@111-250-50-98.dynamic.hinet.net] has joined #g0v.tw
+12:10 -!- wHisKy [whisky@114-24-79-166.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+12:17 -!- ck_ [~ck@60-251-163-24.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+13:41 -!- KNY [~Adium@111-253-159-192.dynamic.hinet.net] has quit [Quit: Leaving.]
+13:51 -!- Sorry [~admin@mail.cna.ccu.edu.tw] has quit [Ping timeout: 255 seconds]
+13:54 -!- Sorry [~admin@mail.cna.ccu.edu.tw] has joined #g0v.tw
+13:59 < hychen> https://github.com/le-moulin-studio/bike-friend
+13:59 < kcwu> hychen's url: [le-moulin-studio/bike-friend · GitHub]
+13:59 < hychen> 一個h4的法國人做的https://play.google.com/store/apps/details?id=com.lemoulinstudio.bikefriend
+13:59 < kcwu> hychen's url: [自行車朋友 - Google Play Android 應用程式]
+14:38 < thschee> hychen: I think he's coming to open data day at taipei to share his experience. ;)
+14:54 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Ping timeout: 264 seconds]
+14:56 -!- ck_ [~ck@220-132-124-192.HINET-IP.hinet.net] has joined #g0v.tw
+15:11 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+15:26 -!- ccn [~ccn@staff.kkbox.com.tw] has quit [Ping timeout: 256 seconds]
+15:27 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+15:32 -!- thschee_strada [~AndChat25@114-42-16-115.dynamic.hinet.net] has joined #g0v.tw
+15:35 -!- ccn [~ccn@staff.kkbox.com.tw] has joined #g0v.tw
+15:48 -!- ck_ [~ck@220-132-124-192.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+15:50 -!- wHisKy [whisky@1-160-244-125.dynamic.hinet.net] has joined #g0v.tw
+15:53 -!- wHisKy- [whisky@111-250-50-98.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+16:06 -!- KNY [~Adium@111-253-159-192.dynamic.hinet.net] has joined #g0v.tw
+16:08 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+16:10 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: 881]
+16:12 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+16:14 < miaout17> favonia: 我覺得很好懂，不過不見得能要求frontend engineer要略懂haskell就是..
+16:16 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+16:24 -!- chihchun is now known as zz_chihchun
+16:30 -!- dylandy [8c7a2a6c@gateway/web/freenode/ip.140.122.42.108] has joined #g0v.tw
+16:32 -!- zz_chihchun is now known as chihchun
+16:45 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+16:47 -!- dylandy [8c7a2a6c@gateway/web/freenode/ip.140.122.42.108] has quit [Quit: Page closed]
+17:21 < mikimoto> 最近 evan3rd 跟我討論要不要作一個油價監測與資料收集的網站，不知道 g0v 是否已經有同性質的專案在動作了？
+17:28 < clkao> mikimoto: 尚未聽說哩
+17:29 < clkao> 不過... 原油期貨報價我有收 :p
+17:29 < mikimoto> clkao: ok, 那我們就開始收集資料動工了 XD (懇請惠賜資料接口 XDDD)
+17:41 < mno2> miaout17: 我同意你說的。不過這個 project 一開始就帶有實驗性質，想抓使用現在 haskell 的工具的感覺。如果 js 的部份評估有可能的話，也會想嘗試用 fay  (任性)
+17:44 -!- thschee_strada [~AndChat25@114-42-16-115.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+18:05 -!- thschee_strada [~AndChat25@114-42-16-115.dynamic.hinet.net] has joined #g0v.tw
+18:09 -!- thschee_strada [~AndChat25@114-42-16-115.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+18:17 -!- chihchun is now known as zz_chihchun
+18:19 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+18:25 -!- KNY [~Adium@111-253-159-192.dynamic.hinet.net] has left #g0v.tw []
+18:32 -!- zz_chihchun is now known as chihchun
+18:58 -!- Sorry [~admin@mail.cna.ccu.edu.tw] has left #g0v.tw []
+19:14 -!- mno2 [~mno2@nat/yahoo/x-lknttllgmralnwas] has quit [Quit: Leaving]
+19:15 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 248 seconds]
+19:17 -!- KNY [~Adium@111-253-159-192.dynamic.hinet.net] has joined #g0v.tw
+19:17 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+19:53 -!- evan3rd [~mac@114-47-23-252.dynamic.hinet.net] has quit [Quit: evan3rd]
+19:54 -!- evan3rd [~mac@114-47-23-252.dynamic.hinet.net] has joined #g0v.tw
+20:08 -!- KNY [~Adium@111-253-159-192.dynamic.hinet.net] has quit [Quit: Leaving.]
+20:21 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+20:39 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+20:47 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+20:53 -!- KNY [~Adium@111-253-159-192.dynamic.hinet.net] has joined #g0v.tw
+20:55 -!- evan3rd [~mac@114-47-23-252.dynamic.hinet.net] has quit [Quit: evan3rd]
+20:55 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+21:15 -!- antliu [0122de46@gateway/web/freenode/ip.1.34.222.70] has joined #g0v.tw
+21:40  * clkao 得了一種每次要搭高鐵到高雄都會趕不上的病
+22:05 -!- chihchun is now known as zz_chihchun
+22:16 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+22:34 < thschee> http://techcrunch.com/policy/leaderboard/
+22:34 < kcwu> thschee's url: [Leaderboard | TechCrunch]
+22:35 < thschee> "WELCOME TO TECHCRUNCH’S TECHNOLOGY POLICY LEADERBOARD FOR CONGRESS"
+23:36 -!- MindosCheng [~mindos@223-140-243-172.dynamic.hinet.net] has joined #g0v.tw
+23:52 -!- icman [~icman@123.240.140.81] has joined #g0v.tw

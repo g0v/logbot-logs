@@ -1,0 +1,446 @@
+--- Day changed 四  9月 18 2014
+00:07 < tkirby> clkao: !!!!!!
+00:09 < tkirby> 他這是把 svg 丟到軟體裡 render
+00:09 < tkirby> 不過類似的效果應該用 WebGL 有辦法做到才對
+00:09 < tkirby> 要結合 d3 的話就用 x3dom 
+00:48 < caasih_> au: 正在找資料，準備 24 號的簡報，
+00:48 < caasih_> 目前打算按時間列出萌典開發的重要時刻，
+00:49 < caasih_> 並標出解決了什麼問題（如果剛好是開放資料五星之一更好）
+00:49 < caasih_> 好達到 24 號主辦單位要求的：
+00:49 -!- Nalant__ is now known as Nalant
+00:50 < au> caasih_: 好呀，在萌典松 hackpad 寫一下？周末來短講+共筆~
+00:50 < caasih_> 1. 產品構想緣由(當初發現了什麼問題，因此有了這個構想) 2. 產品的特色及功能 3. 產品解決了什麼問題
+00:50 < au> *nod*
+00:50 < caasih_> 好的，我整理到 hackpad 上
+00:50 < au> caasih++
+00:51 < caasih_> 目前大概是複習你的演講再去翻 github 還有 plurk 與 twitter
+00:51 < caasih_> 如果 scope 太大我再調整
+00:51 < au> 樓上考古專業，不會有問題的 XD
+00:52 < caasih_> 想考古也想創新啊 XDD
+00:52 < au> ++
+00:54 < au> 然後今天弄了一天的 Source Han Sans ttf subsetting... 大致知道為什麼 justfont 不能瞬間變出思源黑來了。 小林劍的 otf 用了一字多碼等奧妙的技術
+00:55 < au> 但無論如何是修好了... WIP 放在 https://github.com/ChineseCubes/react-odp/blob/gh-pages/epub3/Makefile#L24 ，萌典松時再來把它變成 web service.
+00:55 < kcwu> au's url: [react-odp/Makefile at gh-pages · ChineseCubes/react-odp · GitHub]
+00:56 < hychen> caasih_: 考古專業!!
+00:56 < caasih_> au++ react render to xhtml 那邊我才做到一半 0rz
+00:58 < caasih_> slimerjs 的做法很有意思，但我想把多的 element 也清掉 XD
+00:58 < au> sure，要解決閃退還是要用 server side render, 像 phantom/slimer/prerender.io 這種方式只是擋著用
+00:59 < caasih_> XD iPad 讀一頁閃退一次
+01:00 < au> <- 都在用 iOS8 所以沒有踩到雷
+01:02 < pipi> 慢慢等ios8
+01:03 < au> 事實上已經出了
+01:04 < pipi> 過12點才出現QQ
+01:05 < hychen> ios8! 多了一個晚睡的理由....
+01:05 < CindyLinz> 晚睡哪需要理由 ><
+01:06 < hychen> 靠腰.. 要wireless 才能更新..
+01:06  * hychen 只有iphone的3g可用
+01:07 < pipi> 有hy/hc/ace Chen 會搞混欸
+01:07 < CindyLinz> hychen: 只要你有兩台 iphone....
+01:07 -!- yan is now known as Guest93801
+01:07 < CindyLinz> hychen: 一台 3G 連線, 然後 Wifi share 給另一台.. :p
+01:07 < au> 這樣 3g 要下載 2g 還是很可能 gg :p
+01:08 < CindyLinz> 記得插電 XD
+01:08 < hychen> 明天再更新好了...
+01:09 < hychen> 去台南某神秘透天宅更新
+01:10 < caasih_> CindyLinz: 請云許我用從 @wildjcrt 那邊看到的數學遊戲拐騙你的注意力
+01:10 < caasih_> https://github.com/wildjcrt/one_nine_game
+01:10 < kcwu> caasih_'s url: [wildjcrt/one_nine_game · GitHub]
+01:11 < caasih_> 我們不知道怎證明對所有排列方法，都能找到解
+01:12 < CindyLinz> @_@"
+01:13 < au> 181k 個排列似乎可以用硬算的
+01:13 < CindyLinz> caasih_: 寫一個程式, 對 9! 種初始排列都找出解 :D
+01:14 < caasih_> 嗯嗯，想說手邊事情告一段落來做看看 XD
+01:14 < au> 感覺上適合練 SMT 或 stream-monad
+01:15 < caasih_> 另外注意到這似乎是個阿貝爾群？不知道沒有辦法從這部份著手瞭解這類型的遊戲 #數學程度只有科普等級
+01:15  * caasih_ 筆記 #SMT #stream-monad
+01:16 < CindyLinz> 數字合計這樣的計算方式可以視為取除以9的餘數
+01:16 < CindyLinz> 然後剛好有9張牌.. 不知道, 也許.. 有點關係
+01:17 < caasih_> CindyLinz: !!! 今天 poga 有提到 mod 但沒發現是 9
+01:17 < CindyLinz> 把 9 這一張看成 0 好了..
+01:17 < caasih_> wildjcrt 有發現 9 是單位元
+01:18 < CindyLinz> 嗯嗯剛好 9≡0(mod 9)
+01:22 < Lee1092> 6+9 可以製造無窮迴圈  (疑
+01:23 < CindyLinz> Lee1092: 任意數和 9 都可以欸 ^^|
+01:25 < Lee1092> CindyLinz:  對耶  深夜腦袋運轉不靈
+01:28 -!- lafin [lafin@conference/jsconf/x-dgnrgzgcptmumahk] has left #g0v.tw []
+01:48 < au> CindyLinz: mutable 的解法的話，似乎是定義一個 9!*9 的 bitmap，然後從 end state ([1,2,3,4,5,6,7,8,9],*) 填上該 bit，逐項更換逆推把 reachable state 也都填上（重複的 state prune 掉省略），沒多久就可以知道填不填得滿了
+01:51 < CindyLinz> *9 是什麼啊?
+01:51 < au> 上次留下來的 restriction (one of i and j)
+01:51 < CindyLinz> 不過要成為證明的話.. 接下來需要證明這個程式是對的? XD
+01:52 < CindyLinz> 喔喔~~
+01:53 < au> state 都有紀錄，窮舉也是證明啊~
+01:53 < CindyLinz> 是.. 要證明寫的程式沒有 bug XD
+01:54 < CindyLinz> 來用 haskell 試試 @@"
+01:55 < au> 正著寫在 https://gist.github.com/audreyt/d0ad978462da9554981b
+01:55 < kcwu> au's url: [perm.hs]
+01:55 < au> 逆著可能要重寫，但是當參考吧 :p
+02:02 < Michael_LI> 今天國際大事預報
+02:03 < Michael_LI> 請大家注意英國的蘇格蘭獨立公投有沒有過關！！！
+02:07 < Michael_LI> 2:06:44 Michael_LI YouTube 20140917公視有話好說可以稍為當懶人包複習一下。 END
+02:49 < CindyLinz> caasih_, au: 覺得應該找到建構性的證明了 ^^  不過這樣建的不會是最短步數就是
+02:51 < caasih_> au++ CindyLinz++ 速度也太快！ wildjcrt 說這是他一位桌遊設計師朋友想的，作者當時口頭講過證明，但當下沒聽懂，只好自己想辦法重建 XD
+02:53 < au> 窮舉逆推也寫完了，留著跑一晚上
+02:53 < caasih_> au++ XDDDD
+02:53 < caasih_> 現在演講中沒有特別提到的進展有：
+02:53 < au> https://gist.github.com/audreyt/12f23f672f00af7bc3e9
+02:53 < kcwu> au's url: [permute.ls]
+02:53 < CindyLinz> caasih_: 我先在 gist 試試看把證明寫下來, 你玩夠了想看再看...
+02:54 < CindyLinz> gist 太邪惡了, 害人家都不能宣稱已想到絕妙證明, 只是篇幅不夠寫下來 (誤
+02:55 < caasih_> 3du 時期、啄木鳥、萌典娘、德法字典，大概要開始翻 repo 跟公報了 XD
+02:55 < au> cool
+02:56 < caasih_> CindyLinz: 設計對白：「想到一個絕妙的 demo ，但是 1kjs 寫不下所以...」
+02:56 < caasih_> 沒有在玩啦 QQ
+02:56 < CindyLinz> 1kjs 是什麼鬼 XD
+02:56 < caasih_> http://js1k.com/
+02:56 < kcwu> caasih_'s url: [js1k.com - the JavaScript code golfing competition]
+02:57 < CindyLinz> ..........||
+02:58 < CindyLinz> 還不需要 golfing 的 js 就已經很噁了... OAO
+02:58 < caasih_> 今天終於看了這演講 https://www.youtube.com/watch?v=Zkx1aKv2z8o
+02:58 < kcwu> caasih_'s url: [Making things with maths - Steven Wittens - YouTube]
+02:59 < caasih_> 看了以後好想更深入瞭解 bezier 跟投影幾何什麼的
+03:00 < hychen> 1
+03:00 < caasih_> 講者做過很酷的 1kjs 。然後晚上又聽 godfat 講 reactive functional programming ，講到時間讓我想到 path ，但還沒用過 RFP 的 lib
+03:01 < hychen> caasih_: !!!
+03:01 < hychen> caasih_: 有投影片嗎?
+03:02 < caasih_> godfat 那部份？那是口頭聊的，不是很精確，也沒有投影片
+03:02 < caasih_> Making things with maths 的話用 1.5 倍快快看，沒特別找投影片
+03:02 < hychen> caasih_: rfp
+03:03 < hychen> caasih_: 我最近在看data flow programming
+03:03 < caasih_> 沒，只是口頭提到 0rz
+03:03  * caasih_ 筆記 #data-flow-programming
+03:08 < yhsiangCloud____> hychen標準越夜戰力越高XD
+03:08 < hychen> yhsiangCloud____: ?????????
+03:09 < yhsiangCloud____> hychen: 沒啊  上次去找你也是越聊越high XD
+03:09 < hychen> yhsiangCloud____: 噢. 那是處於神經病發作的狀態
+03:10 < caasih_> 今天的契機是，跟 godfat 說 yhsiangCloud____ 常提到 RFP XDDDDD
+03:10 < yhsiangCloud____> caasih_: ……誤會啊！！
+03:11 < hychen> yhsiangCloud____: I .. just can not shutdown my fucking brain which is running in super fast mode....
+03:17 < caasih_> hychen: "my brain is open"? XD
+03:19 < clkao> hychen 跑個秘腦
+03:19  * clkao zzz
+03:24 < clkao> tkirby: mary 是直接改純 html 嗎? 這樣要編輯更新議程覺得好苦啊 XD
+03:25  * hychen zzz
+03:30 < CindyLinz> caasih_, au: 建構式(?)證明 https://gist.github.com/CindyLinz/046e4ef5e226ffeaf7ea
+03:30 < kcwu> CindyLinz's url: [one_nine_construct]
+03:31 < au> CindyLinz++
+03:31 < caasih_> CindyLinz++ <(_"_)> 繼續考古中，早上才會看
+03:32 < au> 窮舉才跑到 222000, 還有 3043920 待跑
+03:32 < au> -> zzz &
+03:32 < CindyLinz> caasih_: 應該是玩膩了不想自己想的時候才看 XD
+03:33 < caasih_> au: o|~/ 晚安
+03:33 < CindyLinz> au: 晚安 XD
+03:33 < caasih_> CindyLinz: 原來玩是這個意思。沒錯，自己要先玩過 XDDDD
+03:39 < CindyLinz> :D
+03:39 < CindyLinz> 原來你那句是回應我 XD # 02:56 < caasih_> 沒有在玩啦 QQ
+03:40 < caasih_> XDDDD
+05:37 -!- kkkk123123_ is now known as kkkk123123
+07:37 < miaoski> Conrad: you got it. 我看到 FourDollars 的 FB 有人給推，就開戶了
+07:38 < miaoski> au: telegram 原作是 VK 的創辦人，在資安領域的名聲不太好…
+07:39 < miaoski> 雖然原始碼在 git 上，理論上我們可以自己檢查 xd
+08:37 < Michael_LI> 天才啊！～　　https://www.youtube.com/watch?v=KYWeEnYdIDM
+08:37 < kcwu> Michael_LI's url: [[MC美江] 千本櫻 feat.美江 - 千本美江 - YouTube]
+08:39 < Michael_LI> 另外一位天才～　　https://www.youtube.com/watch?v=2jVuRfO9WB0&index=23&list=PLn7CPpVp9BT2fjZ9g14xpQIEQiZMH0MW_
+08:39 < kcwu> Michael_LI's url: [進擊的美江 OP 紅蓮的鑽石 - YouTube]
+08:57 < Jcrt> caasih_, CindyLinz, au: 其實我睡一覺起來還沒看 logbot，就覺得好像想到解法，但還不是公式 XD https://gist.github.com/wildjcrt/c68b463d38e0e2ace740
+08:57 < kcwu> Jcrt's url: [gist:c68b463d38e0e2ace740]
+08:58 < Jcrt> 我實驗了幾次，都可以順利的解決 XD （終於想起來我之前怎麼收斂的）
+09:07 < Michael_LI> ［通知］我開了一個純粹網路貼文活動，有興趣的人可以共襄盛舉。「向山崎豐子老師致敬（9月29日忌日）」　　https://www.facebook.com/events/816143138419927/?context=create&source=49
+09:07 < kcwu> Michael_LI's url: [向山崎豐子老師致敬（9月29日忌日） | Facebook]
+09:13 < miaoski> Jcrt: ++
+09:23 < Michael_LI> 有問題發表https://www.facebook.com/groups/g0v.general/permalink/682624188480657/
+09:23 < a0000778> Google雲端硬碟掛了耶XD
+09:25 < caasih_> Jcrt++ XDD
+09:41 < Michael_LI> 備註：聽「邱文達（衛服部部長）」說媒體產業太關心「餿水油」，所以才有食安風暴，如果有其他資訊就可以轉移注意了！
+09:55 < tkirby> clkao: 我一直以為他有用什麼 template system... XD 我找時間跟他 sync 一下這個問題好了 
+10:55 < Jcrt> caasih_: 我覺得重點在一次要交換兩組，當初應該是卡在這一步。因為一次換一組非常簡單。
+10:56 < Jcrt> caasih_: 還有每個數字其實都有兩個正確位置可以去
+10:56 < caasih_> Jcrt: 哭哭，朋友說他連進階都做掉了，我還沒時間問他...
+10:57 < Jcrt> 請問 CindyLinz 有 twitter account 嗎？
+10:57 < caasih_> Jcrt: 他說「我沒看劇透   只是發現一個之前沒注意到的操作」，搞不好跟你發現的一樣
+10:57 < Jcrt> caasih_: 神人好多啊…… 解出來後就是開始寫 reactjs 了 XD
+10:58 < caasih_> Jcrt++ <(_"_)>
+11:29 < yhsiang> Jcrt: 強
+11:34 < Jcrt> yhsiang: 並沒有啊，這個問題困擾了我一年耶……
+12:04 < clkao> tkirby: 現比較需要的是更新議程和改一下大軌說明的 layout
+12:05 < clkao> 有些講者有變動
+12:31 -!- shhu_cloud_ is now known as shhu_cloud
+12:36 < CindyLinz> caasih_, au, Jcrt: 剛剛補了進階部分的證明
+12:36 < CindyLinz> Jcrt: 搶不到自己的 ID, 所以就不太想用了 QQ
+12:37 < caasih_> CindyLinz++ #證明
+12:38 < hlb_> au: 議題忽然出現了個叫與談的東西 o_o
+12:45 -!- amatecha_ is now known as amatecha
+12:49 < au> hlb_: 等於是把三個講題的 Q&A 一次移到後面
+12:56 < hlb_> au: 噢 ._.
+13:19 -!- vanjuggl1r is now known as vanjuggler
+14:14 < au> caasih_, Jcrt, CindyLinz: 醒來把窮舉 port 到 rust, 19 秒就做完了
+14:14 < au> https://gist.github.com/audreyt/372559f5b58d188adab0
+14:14 < kcwu> au's url: [permute.rs]
+14:15 < au> Total bits set to true (should be 3265920 = 9!*9): 3265920
+14:15 < au> user0m19.046s
+14:16 < au> 6 seconds with rustc --opt-level 3
+14:21 < johnny__> 今天很多人在看這個表決 http://vote.ly.g0v.tw/vote/08-04-YS-11-013/
+14:21 < kcwu> johnny__'s url: [立委投票指南:(2013-11-22)第013個表決]
+14:28 < kiang> johnny__: 就 FB 轉載吧，很多人用這個表決指責民進黨反對食安法修法
+14:30 < kiang> Rust is a systems programming language that runs blazingly fast, prevents almost all crashes*, and eliminates data races.  ... 軟海無涯...
+14:35 < au> 年底就要 1.0 了，進場正是時候 :p
+14:41 < au> Jcrt: 如果 permute.rs 加上 linked list 的話，就可以對每個位置提供最短解了... 已知大部份可以在 12 步解完，另有 3280 個位置需要 13 步
+14:54 < CindyLinz> au: QQ
+14:55 < caasih_> au++, rust++ XDDD
+14:59 -!- chihchun_afk is now known as chihchun
+15:03 < Lee1092> 0.0  第一次聽到 rust   # 實在太廣大啦
+15:04 < johnny__> kiang: 越來越多討論了 https://www.ptt.cc/bbs/PublicIssue/M.1411019533.A.044.html
+15:04 < au> 是 mozilla 開發用來寫下一代多核瀏覽器 servo 的語言
+15:06 < au> 主要特色是有現代的型別系統... 可以想成是編譯器比較聰明的版本的 golang  XD
+15:09 < dirty_> 現在 script lang 的對稱是 system lang?
+15:09 < au> yeah
+15:10 < dirty_> 有點不直覺, 不能用 script lang 開發 system 嗎?
+15:10 < au> 可以，但是就要綁定特定的 vm
+15:10 < au> system lang 通常是 vm-free + minimal runtime
+15:11 < au> (這裡的「system」經常也就是 "vm system for scripting languages" 的意思)
+15:12 < dirty_> 有沒有比較正式的文件? 我腦袋看到 vm-free 會自動往 compilation 想
+15:12 < au> https://en.wikipedia.org/wiki/System_programming_language  http://doc.rust-lang.org/guide.html
+15:15 < dirty_> ok, system 的定義不同, 我把 application 也視為 system ^^ 所以 ^system lang 比 script lang 廣, 只是大部分(還是所有)的 script lang 不能當 system lang
+15:17 < dirty_> 再請教, wiki 中 Java 因為有 vm 沒列入 system lang, 那麼如果我想大略解釋 perl, python, php 這種跟 c, java 之間的不同, 應該怎麼講比較好?
+15:17 < dirty_> lightweight vs. heavy? script vs. generic?
+15:17 < au> perl python php java 是 managed memory, c 和 java 是 static typing，大致這樣
+15:18 -!- ychsiao_ is now known as ychsiao
+15:18 < au> (c 是 static weak typing, java 是 static ok-not-very-weak typing)
+15:19 < dirty_> typing 這種概念對沒有程式底子的(例如設計師)接受度還行嗎?
+15:20 < dirty_> 我之前最常講 light vs. heavy 吧, 看來誤導了不少人 :p
+15:20 < au> 應該可以吧，舉例 sqrt("hello, world")
+15:21 < CindyLinz> dirty_: 行的~ C 語言是絕大部分都是沒有程式底子的人學的.. :D
+15:22 < au> 不給跑的叫 static strong typing，跑了爆炸的叫 dynamic strong typing，不會爆炸的叫 weak typing
+15:23 < au> weak dynamic typing 的例子如 perl
+15:23 < tkirby> (y)
+15:23 < au> $ perl -MCGI -e 'die sqrt new CGI'
+15:23 < au> 11851592.5041331
+15:23 < CindyLinz> 另一個角度.. 爆炸的時候連一點渣渣都不剩讓你搞不清楚狀況的常常是 static typing; 爆炸的時候留下一堆跡證讓你可以驗屍的常常是 dynamic typing
+15:23 < CindyLinz> (只能用常常.. 因為例外有點多..)
+15:23 < au> (取物件指標的開平方)
+15:25 < pipi> ipa 加了幾個邀請名單 請看看囉
+15:27 < CindyLinz> au: 對了, 前一陣子我跟 suhorng 發現在 Haskell 可以用 unsafePerformIO 作出 unsafeCoerce.. XD
+15:27 < CindyLinz> au: 我們都覺得好難過 XD
+15:28 < CindyLinz> 又興奮又難過 (咦
+15:31 < au> 用 IORef undefined 來 cast? cool XD
+15:32 < CindyLinz> 沒那麼壞 XD  我們是用 IORef (Maybe a) 的 unsafePerformIO (newIORef Nothing)
+15:32 < au> k
+15:32 < CindyLinz> 可惡~ au 的語氣看起來只有興奮沒有難過 ><
+15:40 < hychen> au跟cindy的內容宅度這麼深... 會不會嚇到人
+15:40  * hychen 被嚇到了~~~~~
+15:43 < CindyLinz> 什麼宅度 ><
+15:43 < hychen> CindyLinz: HaHa~~s~kell
+15:45 < S3p_lin_> CindyLinz: 明明是 basic  # CindyLinz> dirty_: 行的~ C 語言是絕大部分都是沒有程式底子的人學的.. :D
+15:47 < hychen> dirty_: 有沒有可能在成大開一下PL的課 XD
+15:47  * hychen 想上
+15:49 < dirty_> afk 一下, 回來看到宅翻的對話 XD
+15:50 < CindyLinz> S3p_lin_: 我那句不是要比先學 basic 的人多還是先學 c 的人多, 而是在比學 c 的人裡面, 是第一次學程式語言的人多還是已經會別的程式語言的人多嘛 :p
+15:50 < S3p_lin_> CindyLinz: XD
+15:51 < dirty_> hychen: PL 有趣歸有趣, 但急迫性跟 ds, algo 不能比啊, 要開也是先開這種
+15:51 < dirty_> CindyLinz: 其實我是想推學 c 的人去學 perl
+15:51 < CindyLinz> dirty_: 也要先會個 PL, 才有辦法玩 ds, algo 啊 :D
+15:52 < hychen> 以自幹程式語言的過程中，來教ds跟algo就可以了(誤)
+15:52 < dirty_> 就講 script lang 的好處, 但是還是得解釋為什麼 c 這種還是很重要
+15:54 < dirty_> 我現在好像就是說寫遊戲(大作), 還是得用 c, 看來以後可以改推 rust?
+15:54 < CindyLinz> 最近額外發現一個 perl 特色..  RAII 這樣的特性好像只有 C++ 和 perl 的 (偽)GC 模型可以用.. 適合 GC 卡住恐懼症患者使用 XD  (rust 太新了我不熟, 不知道是怎樣 model.. ^^|)
+15:54 < CindyLinz> dirty_: minecraft 是 Java... (淚)
+15:54 < dirty_> system lang with systax candies
+15:55 < dirty_> CindyLinz: 那畫面不能稱之為大作啊 :p
+15:55 < tkirby> 小作
+15:55 < CindyLinz> dirty_: 世界很大 (?
+15:55 < CindyLinz> 有圖型包嘛 :p
+15:55 < tkirby> 裝 mod 的話可以把畫面弄得很美
+15:57 < CindyLinz> dirty_: rust 應該還不太適合一般人用.. 它還在改來改去, 雖然說有期限要出 1.0 了, 但這個期限會不會推遲仍是個 undefined behavior @@"
+15:58 < kcwu> rust 寫遊戲?
+15:59 < au> https://github.com/sebcrozet/kiss3d ?
+15:59 < kcwu> au's url: [sebcrozet/kiss3d · GitHub]
+16:06 < Jcrt> CindyLinz: 我有個朋友少林也是這樣，因為 twitter 搶不到 shaolin，但是 FB 有搶到，所以他習慣用 FB XD
+16:08 < CindyLinz> XD
+16:08 < Jcrt> au: 太強了…… 我其實沒有看很懂 hs QQ 我自己測試想出來的解法，我只有感覺約 20 步以內可以解完 ＠＠
+16:09 < Jcrt> au: 等 AI 寫完，我來來看看步數是多少
+16:15 < Lee1092> minecraft 不是要變 .net 了嗎?  XDD
+16:16  * Lee1092 今天討論串好深澳
+16:17 < CindyLinz> QQ
+16:17 < CindyLinz> 變 .Net 只影響 mod 開發者.. 以後如果新版 Minecraft 鎖定 Windows 版本就... 也不意外(?
+16:18 < CindyLinz> 微軟: 哼哼~ 你們這些 Mac, Linux, 以及 Win7(含) 以下玩家..
+16:31 < pipi> Lee1092: 深澳在基隆八斗子旁邊XD
+16:35 < CindyLinz> O___A___O
+16:50 < tkirby> 今天討論串好八斗子旁啊
+16:56 < hychen> lol
+16:57 < moon_c__> 有人用過這個嗎～基本上跟irc好像https://slack.com/
+16:57 < kcwu> moon_c__'s url: [Slack: Be less busy]
+16:57 < moon_c__> 可是界面感覺比較優
+16:57 < Jcrt> moon_c__: 我覺得 hipchat 比較像 irc
+16:58 < moon_c__> 哪種好用啊？
+16:59 < Jcrt> moon_c__: 看需求耶，個人觀點是，一般使用的話推薦 slack，工程師多的話推薦 hipchat。
+17:02 < Lee1092> g0v 有時在深坑  有時在深澳~  
+17:03 < CindyLinz> g0v(後)庭院深深深幾許
+17:05 < S3p_lin_> 排列組合的題目嗎? XD
+17:05 < Jcrt> 囧，突然被戳到該升級 discourse 了 ><
+17:06 < S3p_lin_> 後院坑坑坑幾許
+17:06 < cibs> 這是埋了多少人...XD
+17:06 < S3p_lin_> s/後院/後庭^H勤/
+17:06 < cibs> S3p_lin_: 你好糟糕
+17:06 < pipi> 後庭坑坑坑幾許
+17:07 < moon_c__> 埋了多少人聽起來超亂葬崗的感覺
+17:07 < S3p_lin_> cibs: 不是我糟啊, 你看看 https://www.ptt.cc/bbs/StupidClown/M.1410782755.A.8BE.html
+17:07 < kcwu> S3p_lin_'s url: [今天的「張大春泡新聞」 - 看板 StupidClown - 批踢踢實業坊]
+17:07 < Lee1092> g0v 從沒有人 進化到 不是人
+17:07 < miaoski_bot> Lee1092: 先承認你就是沒有人
+17:08 < cibs> S3p_lin_: 這...好吧我錯怪你了
+17:08 < S3p_lin_> cibs: 你對我有錯誤的刻板印象啊~
+17:09 < CindyLinz> cibs: 立論有誤, 但結論無誤.. (逃
+17:09 < moon_c__> 先承認你就是不是人，你就成為沒有人
+17:09 < miaoski_bot> 先承認你就是不是人，你就成為沒有人: 先承認你就是沒有人
+17:10 < Lee1092> 出現 bug XDD
+17:10 < cibs> S3p_lin_: 是刻板印象但是沒有錯誤吧 XDDD
+17:10 < cibs> CindyLinz++
+17:10 < Lee1092> miaoski:  bot 有 bug XD
+17:10 < pipi> YA 有bug
+17:11 < CindyLinz> 是用 : 判斷的 XD
+17:11 < CindyLinz> 耶 這次不是 XD
+17:11 < pipi> 沒有人：沒有人
+17:11 < miaoski_bot> pipi: 先承認你就是沒有人
+17:11 < Lee1092> __ 判斷錯誤?  沒有人
+17:11 < miaoski_bot> Lee1092: 先承認你就是沒有人
+17:11 < pipi> 沒有人:沒有人
+17:11 < miaoski_bot> pipi: 先承認你就是沒有人
+17:11 < CindyLinz> pipi: 全型冒號不一樣啊 XD
+17:12 < pipi> 嗚嗚 都一樣
+17:12 < CindyLinz> 承認 沒有人
+17:12 < miaoski_bot> 承認 沒有人: 先承認你就是沒有人
+17:12 < Lee1092> CindyLinz++
+17:13 < pipi> 沒有入 沒有人
+17:13 < miaoski_bot> pipi: 先承認你就是沒有人
+17:13 -!- tonytonyjan [~tonytonyj@p88057-ipngnfx01marunouchi.tokyo.ocn.ne.jp] has left #g0v.tw []
+17:13 < CindyLinz>  miaoski_bot: 承認 沒有人
+17:13 < miaoski_bot>  miaoski_bot: 先承認你就是沒有人
+17:13 < CindyLinz> (Y)
+17:13 < pipi> 沒有入 沒有人: 
+17:13 < miaoski_bot> pipi: 先承認你就是沒有人
+17:13 < pipi> 偏心QQQQ
+17:15 < Lee1092> miaoski_bot: 先承認 沒有人
+17:15 < miaoski_bot> 你才是沒有人!
+17:16 < Lee1092> 可惡
+17:16 -!- CelloCello [~Cello@180.218.2.253] has left #g0v.tw []
+17:16 < CindyLinz> XD
+17:19 < adedie> 沒 有 人 沒有 人沒 有人
+17:19 < adedie> 看來要黏在一起就對了...
+17:22 < adedie> 以後大家要徵求 有 沒 有 人 的時候要塞空白 沒 有 人 機 器 人 就不會找上你了XD (?
+17:22 < ipa> RU FU4BP6RUP4CJ84KX7
+17:22 < ipa> 機器人進化了？@@
+17:23 < lafin> ＠＠，好強大喔
+17:23 < a0000778> 然後機器人就會進化了XD
+17:24 < pipi> 嗚嗚 我討厭 miaoski_bot 
+17:25 < CindyLinz> pipi, 不要討厭人家嘛~ : 承認 沒有人
+17:25 < miaoski_bot> pipi, 不要討厭人家嘛~ : 先承認你就是沒有人
+17:26 < Lee1092> CindyLinz++  XDDDDDD
+17:26 < a0000778> XD
+17:27 < CindyLinz> miaoski_bot 是大笨蛋~ : 承認 沒有人
+17:27 < miaoski_bot> miaoski_bot 是大笨蛋~ : 先承認你就是沒有人
+17:27 < CindyLinz> 漏餡惹 XD
+17:28 < CindyLinz> 下次還是用黑的好 : 承認 沒有人
+17:28 < miaoski_bot> 下次還是用黑的好 : 先承認你就是沒有人
+17:29 < adedie> 嵌入式logbot出現BUG了....
+17:29 < a0000778> 背景不是全黑的表示 還是漏餡了
+17:30 < hlb_> 沒有機器人
+17:30 < Stranger_1980> 没有人
+17:30 < CindyLinz> 偷換字 XD
+17:31 < Stranger_1980> no people
+17:31 < lafin> 呵呵
+17:32 < Lee1092> irc cloud 也可以上色嗎 ? QQ
+17:33 < adedie> 如果 沒 有 人 不小心貼電話email等之類個資的話也順便在logbot黑掉好了(?
+17:33 < CindyLinz> 如果你看得到顏色, 我猜它應該也會做出上色功能吧..
+17:33 < CindyLinz> adedie: 網路蜘蛛還是會看到啊
+17:35 < a0000778> 其實 logbot 在輸出記錄時 隨機在文字間插入大小為0的白色字串不就好了?
+17:36 < a0000778> 雖然會讓搜尋引擎不能搜尋聊天記錄XD
+17:37 < CindyLinz> 如果哪天要動用鄉民切豆腐的方式來搜尋 g0v irc log 就太瞎惹 XD
+17:43 < a0000778> CindyLinz: 不過可以讓logbot內建搜尋功能
+17:55 < ipa> hackpad 掛了，但g0v hackpad 沒掛？
+17:56 < a0000778> ipa: g0v的聽說是獨立主機?
+17:57 < hychen> g0v高端上
+17:58 < hychen> 尊爵不凡專案...
+17:58 -!- lafin [lafin@conference/jsconf/x-fvblhypnkmozugpu] has left #g0v.tw []
+18:00 < clkao> cdn 第一排 十五ms直達各大骨幹.. 
+18:02 < clkao> 100ms 進入 prism 資料庫
+18:10 < lanf0n> 高端大氣上檔次...
+18:12 < lanf0n> 啊.... 最近在找大四實習的工作 如果各位有相關的資訊請提供給我 m(_ " _)m
+18:13 < tkirby> 要找大四的來實習, 還是想實習
+18:14 < tkirby> 專長是...?
+18:15 < lanf0n> tkirby: 想實習QQ 專長....呃可能也只能填 java / python 囧>
+18:15 < hychen> lanf0n: KeKeKe?
+18:15  * lanf0n 可是我算 python新手...還是填 java 好了QAQ
+18:26 < adedie> 普查資料"道路施工通報"全數建立完成
+18:29 -!- chihchun is now known as chihchun_afk
+18:31 < adedie> clkao: 建立資料時"資料是否存在"選擇"不確定"並且寫入網址，在全部一覽表的地方，點擊該地區資料狀態只會給你"Data does not exist"而沒有網址
+18:31 < clkao> adedie: 噢，我看一下，不確定的是哪個地方的？
+18:32 < adedie> 台東 連江 (狀態全都是藍色的)
+18:32 < clkao> adedie: ok, 看來他有記錄 url, 但是沒有顯示
+18:33 < clkao> adedie: 你有 github 帳號嗎？
+18:35 < clkao> adedie: 在 detail 裡面還是有，只是首頁的 popup 沒有
+18:41 < caasih_> lanf0n: 公報加連結的說明提到 Insert -> Link -> External Web Page ，但 Insert 下面沒有 Link 了，
+18:42 < caasih_> 現在直接加就好？
+18:47 < Lee1092> 阿..  提醒我  好幾天沒更新公報了  囧>
+18:48 < Lee1092> caasih_:  現在都把字框起來  就可以 insert link 了 XD
+18:48 < caasih_> Lee1092++ 了解
+18:49 < clkao> 太強了... 之前回報 sayit 的 avatar 歪掉 (https://github.com/mysociety/sayit/issues/363#issuecomment-56017471) 為了解這個居然用 facial recognition 去自動找照片中的臉.... 
+18:49 < kcwu> clkao's url: [avatar sizing · Issue #363 · mysociety/sayit · GitHub]
+18:54 < au> 找不到就保留長方形... 真不錯
+19:05 < caasih_> au: Noto 那篇文章我可以轉給 Johnson Lin 嗎？（當機苦主 XD）還是說沒有公開？
+19:15 < adedie> clkao: 點進去details是有 但是還要點進去就有些麻煩 如果能直接在popup出現網址就比較方便了
+19:29 < tkirby> lanf0n: 剛好我們是用 python (?!)
+20:08 < au> caasih_: 可以啊
+20:08 < au> 不要營利就可以 lol
+20:08 < clkao> polis++ # 花哄了！！ http://g0v2014.herokuapp.com/
+20:09 < caasih_> au
+20:09 < au> polis++ # 喔喔喔 g0v.summit.local
+20:09 < caasih_> au: roger that
+20:11 < clkao> 好像無法 local... 因為還是 embed pol.is
+20:18 -!- taichunmin[R0] is now known as taichunmin
+21:05 < ipa> polis++ 真的花烘了
+21:06 < ttcat_> 跟謝國樑坐在同一間 NY BAGELS 的時候該怎麼辦
+21:09 < clkao> 打開他的立委投票指南頁面？
+21:10 < hlb_> (Y)
+21:11 < ttcat_> 好想叫他來 10/5 彩虹圍城
+21:35 < clkao> jung__: !!
+21:42 < miaoski> CindyLinz: 黑心地 (指)
+21:43 < miaoski> 其實不是用 : ... irc 的 protocol 是這樣: user = user.split('!', 1)[0]
+21:43 < miaoski> 不過哪裡爛掉了，不管怎樣都應該要回 CindyLinz : 先承認你就是... 這樣
+21:45 < xsoameix> clkao: 這個損石坑要從哪裡開始呢？
+21:46 < ipa> pipi: 有時間可以把 unconf 規劃一下，還有很多細節要橋，先把這個弄好吧
+21:49 < miaoski> 那個 bug 其實是為了這樣用.... :
+21:49 < miaoski> CindyLinz: 承認妳就是沒有人吧!!!
+21:49 < miaoski_bot> CindyLinz: 先承認你就是沒有人
+21:58 < lanf0n> tkirby: !!
+21:58 < CindyLinz> miaoski: 你比較黑啦~ 人家只是路過.. (鏡
+21:58 < xsoameix> Jcrt: 請問你有關於法規資料庫的 id 嗎？
+22:12 < CindyLinz> miaoski: 你有個 patch 已經很久了, 可是好像 bot 一直沒有上 @@"
+22:13 < CindyLinz> 有沒有人
+22:13 < CindyLinz> 看來是上了 XD
+22:26 < pipi> XD
+22:56 < caasih_> au: 剛剛才把逆推（rust 版）讀完，還沒看 CindyLinz 的建構式劇透
+22:57 < caasih_> 強者我朋友說：「XD 我之前沒想好 解答比我想的簡單很多，我沒看劇透 只是發現一個之前沒注意到的操作」
+22:57 < caasih_> 可惡，不想問他 XD
+22:57 < caasih_> 等等繼續追萌典重要時刻，打算做得可以輕鬆在時間軸上捲動之類的
+22:57 < CindyLinz> 我寫得超長的, 不會給任何人有折辱感 :D
+22:58 < caasih_> timeline.js 這邊跑不太動 0rz
+22:58 < caasih_> CindyLinz: :DDDDD
+22:59 < clkao> Lee1092: http://g0v-tw.kktix.cc/events/g0v-summit-2014-g0ver-vip 好像只有說 unconf 10/1 開始 沒說一般票也是 10/1
+22:59 < kcwu> clkao's url: [g0v Summit 2014 - g0v Contributor Registration (社群貢獻票專案)]
+23:09 < pipi> 圖片寫錯過就等10/1搶票算嗎@@？
+23:13 < Lee1092> clkao:  已加註~  
+23:16 < miaoski> CindyLinz: 我把它關掉了啦... XD
+23:16 < miaoski> 今天聽說講個秘訣拉 bar 不能用了... 怪
+23:18 < CindyLinz> miaoski: 咦, 直接關掉喔? 那 miaoski_bot 還上線幹什麼 XD
+23:18 < miaoski> CindyLinz: 可以講個秘訣啊 XD
+23:18 < CindyLinz> miaoski_bot: 沒有人
+23:21 < miaoski> miaoski_bot: funslots
+23:21 < miaoski_bot> 我想主要的原因，就像我上次說的，我稍候會作個分析釋出
+23:29 < au> caasih_: 我剛想到 rust 版解的是比建構式稍強的版本... 是「先指定某張牌必需於第一步移動（如 7），再任意發牌」的情況 max 13 steps
+23:31 < CindyLinz> 建構式要把第一步起手式改成: 如果指定的牌不是 9, 那麼拿這個 k 跟 (9-k) 先交換一下
+23:31 < au> yeah
+23:31 < CindyLinz> 喔, 那如果第一步不指定的話.. 一定都 12 步內嗎?
+23:34 -!- pcchou__ is now known as pcchou
+23:35 < au> 似乎是這樣
+23:35 < au> (懶得改程式了 XD)
+23:36 < CindyLinz> XD 好
+23:49 < au> 好吧，還是證明了 :p gist updated

@@ -1,0 +1,395 @@
+--- Day changed 二  6月 02 2015
+00:33 < slackbot1> <kiang> 這次公佈的政治獻金帳戶數量爆炸多，然後監察院主機又很慢...
+00:49 < slackbot1> <clkao> 科科
+00:50 < slackbot1> <clkao> 今天去行政院開放資料諮詢小組開會的摘要： <https://g0v.hackpad.com/LZPfa7PA0Px#:h=行政院諮詢小組第一次會議-2015/06/01>
+00:50 < kcwu> slackbot1's url: [政府資料開放諮詢 - g0v.hackpad.com]
+00:57 < slackbot1> <yhsiang> 沒有立法院可以填嗎 QQ
+01:05 < slackbot1> <kiang> 立法院不是行政部門吧，我也想填台南市議會 XD
+01:06 < slackbot1> <kiang> 話說有人處理過 文字方塊 的 word 檔案嗎？ 103 年轉出來的所有報表都是用文字方塊格式，沒辦法直接切出需要的資料...
+01:07 < slackbot1> <kiang> 監察院政治獻金報表
+01:09 < slackbot1> <johnny> kiang: 可以看一下你說的資料格式嗎？我是抓pdf檔去轉
+01:11 < slackbot1> <kiang> johnny: 你提醒我了，我把所有 pdf 都轉成 doc 格式 XD
+01:11 < slackbot1> <kiang> 所以打開來看都是文字方塊
+01:11 < slackbot1> <johnny> kiang: 了解，我是轉成xml去抓格子內資料
+01:12 < slackbot1> <kiang> 目前拿到的最新清單： <https://raw.githubusercontent.com/kiang/sunshine.cy.gov.tw/master/reports.csv>
+01:12 < slackbot1> <johnny> 後來覺得轉html應該更好，xml有遇到一些難解的
+01:13 < slackbot1> <yhsiang> 請愛用 unoconv :smile:
+01:14 < slackbot1> <kiang> 剛剛用 unoconv 會失敗，不過是用 doc 格式，踹踹
+01:17 < slackbot1> <kiang> 一樣，一直跳 ErrCode 3088
+01:19 < slackbot1> <johnny> 開放資料諮詢有興趣的立法院、議會、監察院都沒有Orz
+01:21 < slackbot1> <kiang> 沒辦法，五權分立...
+01:28 < slackbot1> <yhsiang> <https://github.com/coolwanglu/pdf2htmlEX/wiki/Try-Your-Own-Files>
+01:28 < kcwu> slackbot1's url: [Try Your Own Files · coolwanglu/pdf2htmlEX Wiki · GitHub]
+01:28 < slackbot1> <yhsiang> 這個好像不錯
+01:48 < slackbot1> <kiang> http://k.olc.tw/bulletin/54773ba2-22d0-4ef6-ac6d-1915cf91e152/54773ba2-22d0-4ef6-ac6d-1915cf91e152.html 之前用 PDF2htmlex 轉的
+01:49 < slackbot1> <kiang> http://k.olc.tw/bulletin/54773ba2-22d0-4ef6-ac6d-1915cf91e152/54773ba2-22d0-4ef6-ac6d-1915cf91e152.html 之前用 PDF2htmlex 轉的
+02:36 < slackbot1> <kiang> johnny: 硬拆出來了 - <https://github.com/kiang/sunshine.cy.gov.tw/blob/master/report2csv.csv> ，不過數字順序有沒有亂掉就沒有把握了
+02:36 < kcwu> slackbot1's url: [sunshine.cy.gov.tw/report2csv.csv at master · kiang/sunshine.cy.gov.tw · GitHub]
+02:44 < slackbot1> <johnny> kiang: 之前用議員的有一些有問題，好像有跟你講過 e.g. <https://github.com/g0v/councilor-voter-guide/blob/master/data/political_contribution/councilors.csv#L190>
+02:44 < kcwu> slackbot1's url: [councilor-voter-guide/councilors.csv at master · g0v/councilor-voter-guide · GitHub]
+05:39 < gugod> http://storage.googleapis.com/amsterdam_open_data/index.html 
+05:40 < kcwu_> gugod's url: [Amsterdam Smart City Hackathon]
+08:09 < dirty_> 唉, 決定要來開新專案學東西. 如果今天我有一組 open data, 假設是 json 格式好了, 要根據內容呈現網頁
+08:10 < dirty_> 需要有前端 load 的功能, 最好也要可以後端產生 static page
+08:11 < dirty_> 這樣的話, 有沒有推薦什麼? 我現在前端會用 jQuery 硬刻吧, 後端會用 gulp + LiveScript
+08:11 < dirty_> + Jade + Stylus
+08:11 < dirty_> 改用 react + ES6 + webpack?
+08:13 < dirty_> react 的 template 有辦法很漂亮的改用 jade 嗎?
+08:21 < dirty_> or angularJS (好像有點冷下來的技術)
+08:24 < caasihuang> React 要這樣做需要 Jade to HTML to JSX ，不如直接寫 LS 或 ES6 + JSX
+08:24 < caasihuang> Angular 的話不清楚
+08:27 < dirty_> 我覺得 JSX 好醜啊, 很輕易的就會寫出很複雜的東西
+08:56 < slackbot1> <yhsiang> dirty: 這樣會更麻煩而已
+08:57 < dirty_> 也是, 正在看 react-webpack-cookbook
+08:58 < slackbot1> <yhsiang> 想用jquery + ls +jade 就用啊 沒什麼不好
+09:00 < slackbot1> <mrorz> 開新專案學東西的話，我覺得 react 與 webpack 可以先挑一個學，這樣比較沒壓力 XD
+09:01 < slackbot1> <mrorz> 咦等等，如果用 react 的話，不搭配個 webpack 來處理 commonjs 好像怪怪的⋯⋯
+09:01 < slackbot1> <yhsiang> 可以用browserify
+09:02 < slackbot1> <mrorz> 嗯總之就是要弄 commonjs
+09:02 < slackbot1> <yhsiang> 不是必要不過非常建議Xd
+09:02 < slackbot1> <mrorz> XDD
+09:03 < slackbot1> <yhsiang> 另外 react webpack cookbook 不錯但想更快就直接看pete hunt的howto就對了
+09:03 < slackbot1> <mrorz> 我覺得 dirty 的專案可以 jquery + ls + jade + webpack，只有 webpack 是要新學的，可以專心玩玩看 webpack 這樣
+09:03 < dirty_> 其實已經看完了 :p
+09:04 < dirty_> 我覺得都還好(兩個一起用的話), 但就是很不熟, 裡頭一定一堆需要經驗的小眉角
+09:05 < slackbot1> <mrorz> 沒關係，有問題都可以上來問 ly
+09:05 < slackbot1> <mrorz> (咦
+09:06 < dirty_> 我的意思是, 需不需要開個新專案來學 ^^
+09:06 < caasihuang> 像是 sourcemap 超好用， livescript 1.4 已有 sourcemap 好棒棒，在 webpack 記得開？這類的？
+09:06 < dirty_> 像 webpack 對我來說是取代 gulp 的, 可是... 有必要嗎
+09:06 < slackbot1> <yhsiang> 有很多專案你可以直接contribute 
+09:07 < caasihuang> resolve: extensions: ['', '.js', '.ls'] 也好棒棒，請一定要設定好
+09:07 < dirty_> yhsiang: 我本來想挑一個來玩的, 但發現裡頭的 react 都已經很肥了, 才想說玩自己的好了
+09:07 < slackbot1> <yhsiang> 對我來說 webpack 不是取代 gulp 啊 XD
+09:07 < slackbot1> <mrorz> webpack 是 bundler 喲，和 gulp 這個 task runner 不太一樣
+09:08 < slackbot1> <mrorz> 前者是 gcc 後者是 Makefile
+09:08 < dirty_> 因為我拿 gulp 來 bundle 啊 XD dependency 要自己處理就是
+09:08 < slackbot1> <mrorz> 有一派人提出用 package.json 裡的 script 取代 gulp 
+09:08 < slackbot1> <http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/>
+09:08 < caasihuang> webpack 比較像 linker ？
+09:08 < kcwu_> slackbot1's url: [Why we should stop using Grunt & Gulp]
+09:09 < slackbot1> <mrorz> webpack 的 loader 也算是一種 compiler
+09:09 < slackbot1> 剛好 g++ 會 compile 又會 link (?
+09:09 < dirty_> 之前才有 why gulp is better than grunt 之類的文章...
+09:09 < slackbot1> <yurenju> 我現在的專案也是只有 package.json
+09:10 < slackbot1> <caasi> mrorz: loader 都麻外包 XD
+09:10 < slackbot1> <yhsiang> 我只能說webpack 是想當llvm XD
+09:11 < slackbot1> <mrorz> webpack 的 compile 是採取 build-transfer 的 BT 模式，請承包商 build 之後將成品 transfer 給 webpack (咦)
+09:11 < dirty_> 我喜歡 webpack dependency 的處理(也是它本來就要解決的), 但其他部分又還好
+09:12 < dirty_> mroz: 都是這樣啊, gulp 也是靠 plugin, 剛那篇文章就在講這樣會有問題 Relying on plugins
+09:12 < slackbot1> <yhsiang> 所以你就browserify吧。沒什麼好煩惱啊 Xd
+09:13 < dirty_> yhsiang: 我還正在暗自開心跳過 browserify 呢
+09:15 < dirty_> 算了, 先不要管 bundler 好了, JSON => html 這邊都沒差是嗎? react, angularJS, jQuery
+09:16 < slackbot1> <yhsiang> 其實不太懂你主要問題是？
+09:16 < slackbot1> <yhsiang> 就通通都可以啊 也可以用d3js
+09:17 < dirty_> 也是, 就是想問問有沒有特別適合的, 不然就會用自己最順手的
+09:18 < slackbot1> <yhsiang> 這個問題太廣泛當然答案是都可以XD
+09:18 < dirty_> 先問個蠢問題好了, 選 react 的話, 一開始 json 要怎麼來? 在 getInitialState 用 jQuery.getJSON 嗎 XD
+09:19 < slackbot1> <yhsiang> 再didMount 用xhr
+09:19 < slackbot1> <mrorz> (離題一下)
+09:19 < slackbot1> 沒用過 browserify 的話，我覺得可以直接跳學 webpack
+09:19 < slackbot1> 我之前就是這樣，直接從 (rails) asset pipeline 換到 webpack XD
+09:20 < dirty_> $.getJSON 就是比較好用的 xhr 啊 :p
+09:20 < slackbot1> <yhsiang> 看你喜歡用什麼重點是在 didmount lifecycle
+09:21 < slackbot1> <yhsiang> 要學新的理論上是 fetch XD
+09:22 < dirty_> https://facebook.github.io/react/tips/initial-ajax.html # 也是用 jQuery?
+09:23 < kcwu_> dirty_'s url: [Load Initial Data via AJAX | React]
+09:24 < dirty_> yhsiang: you meant this one? https://www.npmjs.com/package/react-fetch
+09:24 < slackbot1> <caasi> HTML fetch API?
+09:25 < slackbot1> <mrorz> HTML fetch API~~ polyfill 在這裏：
+09:25 < slackbot1> <https://github.com/github/fetch>
+09:25 < dirty_> 呃, 了解
+09:25 < kcwu_> slackbot1's url: [github/fetch · GitHub]
+09:27 < slackbot1> <mrorz> HTML fetch API 要 then 兩次有點煩就是
+09:27 < dirty_> 大家真的都沒事一直在學這些新技術就是了 orz
+09:42 < slackbot1> <caasi> 那麼，不管 fetch 或 xhr 的話，覺得如果喜歡把 React component 當 function ，就從外面靠改 props 跟 children 來操作，不管從那邊拿到 JSON ，塞給 props 就好了。
+09:43 < slackbot1> <caasi> 如果喜歡把 React Component 當 object ，就從改 state ，在 didMount 跟 didUpdate 時改 this.state 也很方便。
+09:57 < slackbot1> <zx1986> <http://technews.tw/2015/06/01/government-wild-home-page-campaign-the-winner-might-get-contract/>
+09:57 < kcwu_> slackbot1's url: [政院也來玩「野生官網」！網站競賽優勝還能獲得政府合約 | TechNews 科技新報]
+10:05 < slackbot1> <mrorz> 競賽活動指定平臺 (http://wdc.gov.tw) 限定參賽團隊使用 Linux 作業系統 <--- 突然覺得莫名地感動 (感動點太低了吧)
+10:06 < dirty_> 時程有夠短的
+10:06 < slackbot1> <zx1986> 至少有在弄了 哈
+10:06 < slackbot1> <yurenju> 有人要衝嗎 XDD
+10:07 < slackbot1> <mrorz> 對呀 7/20 就要上，真的超短 XDD
+10:10 < slackbot1> <yhsiang> freebsd 錯了嗎 ...
+10:12 < slackbot1> <mrorz> xddd
+10:13 < slackbot1> <yhsiang> solaris 表示 T_T
+10:15 < slackbot1> <hychen> dirty: 我現在用typescript, 覺得比livescript好用, 又type checking 就是爽
+10:16 < slackbot1> <hychen> 不用在寫一堆ensured*** function
+10:17 < dirty_> hychen: 本來就沒在寫 ensured 了 :p
+10:17 < slackbot1> <mrorz> 參賽類別裡面沒有戶政民政的網站 QQ
+10:19 < slackbot1> <mrorz> 我剛進戶政事務所服替代役
+10:19 < slackbot1> 上次我幫民眾找線上辦戶籍謄本的網站找了 10 分鐘，
+10:19 < slackbot1> 顯示為超落漆 QQ
+10:21 < dirty_> mrorz: 你替代役的工作竟然不是幫他們重寫網站
+10:23 < slackbot1> <mrorz> 做網站算是「輔助性作業」嗎 XD
+10:24 < dirty_> 物盡其用啊 XD
+10:28 < slackbot1> <hychen> 要跟小Q一樣上了嗎?
+10:31 < slackbot1> <timdream> 不會到時候被 call 回去維護 call 到手軟吧 ...
+10:35 < dirty_> path.resolve(__dirname, 'app/main.js'), # 為什麼都這樣, 如果直接 __dirname + 'app/main.js' 會怎樣?
+10:37 < slackbot1> <hychen> 因為會用到path.jon
+10:38 < slackbot1> <hychen> 主要是有的平台用 / , 有的平台用 \ 當分割
+10:41 < dirty_> 很好, 也就是 linux 愛好者就不用那麼麻煩了 XD
+10:57 -!- KGJ_tonypai is now known as tonypai
+11:02 -!- tonypai is now known as KGJ_tonypai
+11:24 < slackbot1> <kiang> 已經報名，但是還沒收到 <https://wdc.gov.tw/> 帳號
+11:24 < kcwu_> slackbot1's url: [Login - Cloud Convertible]
+11:25 < slackbot1> <kiang> johnny: 後來有問題的我都直接修正了，可以更新一下。不過擔心的只是數字位置漂移，因為是硬拆的，並不是精準的欄位比對
+11:28 < slackbot1> <kiang> <http://www.fnp.gov.tw/opendata/folder.php> - 希望有想要看到的柴
+11:28 < kcwu_> slackbot1's url: [國有財產資料開放平臺]
+11:31 < dirty_> 我發現 webpack 要弄出一個 index.html 不簡單啊...
+11:35 < slackbot1> <kiang> 收到通知了，全英文 XD
+11:59 -!- uniray7 [3de64053@gateway/web/cgi-irc/kiwiirc.com/ip.61.230.64.83] has left #g0v.tw []
+12:22 -!- chihchun_afk is now known as chihchun
+12:23 < caasihuang> dirty_: https://github.com/g0v/chikage/blob/master/webpack.config.ls #野人獻曝
+12:23 < kcwu_> caasihuang's url: [chikage/webpack.config.ls at master · g0v/chikage · GitHub]
+12:24 < caasihuang> 把 'webpack/hot/dev-server' 跟 new webpack.HotModuleReplacementPlugin 拿掉應該可直接 webpack
+12:41 < dirty_> 竟然是用 ls ^^
+12:51 < dirty_> 我把 index.html 放在 app/ 下, 用 copy-loader 的話, 它會 copy 到 build/app/index.html, 有什麼辦法讓它 copy 到 build/index.html 就好?
+12:51 < dirty_> 雖然我看很多人都把 index.html 直接放到 src 的上一層
+12:54 < slackbot1> <yhsiang> 建議用htmlwebpack plugin 不是用 copy loader
+12:59 < dirty_> 竟然還有這種東西
+13:00 < dirty_> 我剛是用 file-loader 解決就是了
+13:01 < slackbot1> <yhsiang> File loader.......
+13:08 < dirty_> 怎麼, 太原始了嗎 ^^
+13:09 < dirty_> htmlwebpack plugin 預設的 template 沒有給 id 這點很討厭
+13:09 < slackbot1> <yhsiang> 不是。展現了webpack flexible XD
+13:10 < slackbot1> <yhsiang> 只能說思維不同
+13:22 < dirty_> yhsiang: 那如果你要加上 webpack-dev-server.js 怎麼辦? 就自己寫 template 嗎? # for html-webpack-plugin
+13:27 < yhsiang> dirty_: 為什麼需要加上 webpack-dev-server.js ?
+13:33 < dirty_> 我以為這樣才能 livereload
+13:33 < dirty_> https://christianalfoni.github.io/react-webpack-cookbook/Automatic-browser-refresh.html
+13:33 < kcwu_> dirty_'s url: [Automatic browser refresh | React Webpack cookbook]
+13:34 < slackbot1> <yhsiang> 直接加在 entries 裡面就可以了
+13:34 < slackbot1> <yhsiang> `entry: ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')],`
+13:35 < slackbot1> <yhsiang> 所以我說 webpack cookbook 並不適合 beginner 看 XD
+13:36 < dirty_> 呃... 有加啊
+13:39 < slackbot1> <yhsiang> 那就不需要再 index.html 加
+13:40 < slackbot1> <yhsiang> 我說錯了 實際上是要加上這兩個
+13:40 < slackbot1> <yhsiang> ['webpack-dev-server/client?<http://localhost:3000>', 'webpack/hot/only-dev-server’]
+13:40 < slackbot1> <yhsiang> 在你的 entry 之前
+13:44 < dirty_> no luck...
+13:46 < slackbot1> <kiang> 有人順利透過 ssh 進去 http://wdc.gov.tw 開的主機了嗎？看起來網路並沒有如預期那樣運作（有種當白老鼠的感覺 XD ）
+13:46 < kcwu_> slackbot1's url: [Login - Cloud Convertible]
+13:47 < dirty_> yhsiang: 沒事, 我解了
+13:56 < au> dirty++ # welcome to the future :p
+14:00 < slackbot1> <mitsunchieh> welcome to theTomorrowland
+14:09 < slackbot1> <kcliu> yhsiang: 那 webpack beginner 要看什麼 XD
+14:10 < dirty_> 我覺得那些文件就很好了, 一開始本來就不該用怪招 XD
+14:10 < dirty_> 文件算是好的了
+14:12 < dirty_> 雖然我已經在弄了, 還是問一下好了, 讀 json 檔總該是用 json loader 了吧?
+14:13 < au> 是
+14:13 < dirty_> 呃, 也是有這種 plugin https://github.com/sporto/assets-webpack-plugin XD
+14:13 < kcwu_> dirty_'s url: [sporto/assets-webpack-plugin · GitHub]
+14:15 < slackbot1> <yhsiang> <http://webpack.github.io/docs/loader-conventions.html>
+14:15 < kcwu_> slackbot1's url: [loader conventions]
+14:17 < au> dirty_: 另外 json fetch 如果綁定特定 component，可以用 react-transmit 直接從 promise 換算成 props... 多來源時還不錯用。
+14:17 < au> e.g. https://github.com/audreyt/ethercalc-log/blob/master/scripts/App.js#L136 https://github.com/g0v/react.vtaiwan.tw/blob/dev/src/Category/Category.jsx#L299
+14:17 < kcwu_> au's url (1/2): [ethercalc-log/App.js at master · audreyt/ethercalc-log · GitHub]
+14:17 < kcwu_> au's url (2/2): [react.vtaiwan.tw/Category.jsx at dev · g0v/react.vtaiwan.tw · GitHub]
+14:17 < slackbot1> <yhsiang> dirty: 那個是產生 json for assets hash, 不過 webpack 本來就有 stat json 可以使用 XD
+14:18 < slackbot1> <yhsiang> au: 我考慮來換成 react-nexus XD
+14:18 < au> yhsiang: 好，就不用自己橋接了
+14:18 < dirty_> yhsiang: 嗯嗯, i know
+14:18 < dirty_> 不過我現在在用 livescript-loader, 這比 json 再好看一點
+14:19 < dirty_> 只是之後要 build static json 出來可能又會痛苦一點...
+14:20 < slackbot1> <yhsiang> au: 你上次是說 react issue 裡面關於 sideway data loading 的討論嗎 ?
+14:20 < slackbot1> <au> 3398 <https://github.com/facebook/react/issues/3398>
+14:20 < kcwu_> slackbot1's url: [Implement Sideways Data Loading · Issue #3398 · facebook/react · GitHub]
+14:20 < slackbot1> <yhsiang> ya
+14:20 < slackbot1> <yhsiang> 昨天把他看完了 超長的討論 orz ...
+14:20 < caasihuang> 不知道 loader 可不可以串？ .json.ls => json!livescript! 之類的？
+14:21  * caasihuang 還在處理 IE8 不方便馬上試
+14:23 < slackbot1> <yhsiang> caasi: 你這樣感覺順序錯誤 XD
+14:23 < dirty_> caasihuang: 何必串? 直接 livesript! 出來的就是你要的吧
+14:23 < dirty_> (因為我現在就這樣用啊)
+14:24 < caasihuang> 那就不用管 static json 了？ resolve 那邊寫好，就只要寫名字就好了？
+14:25 < dirty_> 呃, 現在 json-loader 跟 livescript-loader 回傳的都是 ojbect, 不是 json string
+14:26 < dirty_> 設好的話, 就應該是你要的了?
+14:27 < caasihuang> 是好奇為什麼會想要 JSON string ？要再處理過嗎？
+14:29 < dirty_> nono, 我也不要 json string, 我要的是 object. 但是之後希望是由前端的程式用 ajax 讀這個 json 檔
+14:29 < dirty_> 所以, 也要 build 一個 static json 檔放在 server 上
+14:30 < dirty_> 現在 json 的內容都 bundle 在 js 裡啦
+14:32 < caasihuang> 記得 au 喜歡開類似叫 www.target-server.com 的資料夾，然後仿 API 的結構把 JSON 放進去，這樣用 request/fetch/xhr 去拉時只要改 path 就好了？
+14:32 < slackbot1> <yhsiang> 此時你就需要 copy loader or gulp :stuck_out_tongue:
+14:34 < dirty_> 總之是要另外處理就是了, webpack 不太適合
+14:34 < dirty_> copy-loader 的話, 就真的得跟 livescript-loader 串了 orz
+14:35 < slackbot1> <yhsiang> dirty: 問題在 build static json 的需求是？
+14:35 < slackbot1> <yhsiang> bundle.js 不打算更新 只會更新 json ?
+14:36 < dirty_> 是
+14:36 < dirty_> 應該說, 在我的設計中, 這個 bundle.js 跟 json 應該比較接近兩個專案吧
+14:37 < slackbot1> <yhsiang> 這個通常就不放在 webpack 裡面
+14:37 < dirty_> 嗯嗯, 邏輯上也是這樣比較合理
+14:38 < dirty_> 只是, 亂搞會學比較多東西啊 :p
+14:41 < slackbot1> <yhsiang> au: transmit 作者不打算 merge 那個 PR ...
+14:42 < slackbot1> <yhsiang> 看起來是要用 DI  的方式解決 XD
+14:42 < slackbot1> <au> yhsiang: 已經解了 + released <https://github.com/RickWong/react-transmit/commit/6c5048d98#diff-23eae221c2b08edef15b7d23a378b0e2R11>
+14:42 < kcwu_> slackbot1's url: [Allow optional substitution of the Promise implementation. Defaults t… · RickWong/react-transmit@6c5048d · GitHub]
+14:43 < slackbot1> <au> 考慮到 Promise 萬碼奔騰的情況，也是合理啦
+14:43 < slackbot1> <yhsiang> 我剛剛看到了 XD
+14:46 < slackbot1> <hychen> 現在promise 要用哪一套lib比較好XD
+14:46 < slackbot1> <yurenju> q?
+14:46 < slackbot1> <yurenju> @hychen: browser 嗎？
+14:47 < slackbot1> <hychen> yurenju: backend
+14:47 < slackbot1> <hychen> yurenju: 不過我要找typescript版的
+14:47 < slackbot1> <yurenju> @hychen: backend 我通常都是用 async module 不過那不是 promise
+14:47 < slackbot1> <au> hychen: <https://github.com/TypeStrong/atom-typescript/blob/master/lib/typings/bluebird.d.ts> ?
+14:48 < kcwu_> slackbot1's url: [atom-typescript/bluebird.d.ts at master · TypeStrong/atom-typescript · GitHub]
+14:48 < slackbot1> <hychen> au: cool!
+14:48 < slackbot1> <yurenju> @hychen: 你現在用什麼 editor 啊？
+14:48 < slackbot1> <hychen> sublime
+14:48 < slackbot1> <yhsiang> hychen: 要不要送一個大 PR XD
+14:48 < slackbot1> <yurenju> @hychen: 要不要試試看 visual studio code 阿？反正都用 typescript 了
+14:48 < slackbot1> <yhsiang> 開啟查克拉嗎
+14:49 < slackbot1> <yhsiang> hychen: typescript support jsx :stuck_out_tongue:
+14:49 < slackbot1> <hychen> yurenju:改天吧
+14:49 < slackbot1> <hychen> 不太想一直換環境
+14:50 < slackbot1> <yurenju> @yhsiang: 裡面應該還是裝 v8 引擎，應該不是裝查克拉 XDDD
+14:50 < slackbot1> <hychen> yurenju: visual studio code is based on atom?
+14:50 < slackbot1> <yurenju> 其實我也是想聽別人說心得，目前還是用 sublime XDD
+14:50 < slackbot1> <yurenju> @hychen: yeah
+14:50 < slackbot1> <hychen> yurenju: 那那個會很慢
+14:50 < slackbot1> <yhsiang> 正要來換回 atom .. 為了 nuclide XD
+14:50 < slackbot1> <yurenju> atom 剛開始的時候真的很慢，不知道現在有沒有好一點
+14:52 < slackbot1> <poga> 據說 atom 下一版會突破天際... XD <https://discuss.atom.io/t/performance-of-atom-205-7c96854-is-amazing/17350>
+14:52 < kcwu_> slackbot1's url: [Performance of atom 205-7c96854 is amazing - Atom Discussion]
+14:52 < slackbot1> <yurenju> @poga: 突破表格的頂端嗎 XDD
+14:55 < slackbot1> <yurenju> 好像很厲害
+15:09 < dirty_> JSX render() 中, return <h1>hello world</h1> 正常, return <h1>hello world</h1>a 就掛掉是什麼巫術?
+15:09 < slackbot1> <au> 最外面必須是單一 tag （think XML fragment）
+15:11 < dirty_> 我猜到了
+15:11 < dirty_> 好像... 合理, 我剛把裡頭當一個字串在想了
+15:53 < slackbot1> <t0mst0ne> 想問一下有辦法讓  private IP 的 port forward 到 public IP 的 port 並且讓非public IP 上的 機器能夠 access public IP的 port 嗎 ? ( exp:  port 9000)
+15:53 < slackbot1> <t0mst0ne> 2台都是 linux
+15:57 < slackbot1> <yhsiang> 你要做 DMZ ?
+15:57 < slackbot1> <au> `tcpxd 9000 10.0.0.1 9000` ?
+15:57 < slackbot1> <au> # <http://quozl.netrek.org/tcpxd/>
+15:57 < kcwu_> slackbot1's url: [Quozl's TCP/IP Relay]
+16:02 < slackbot1> <t0mst0ne> @au on ubuntu ?
+16:03 < slackbot1> <t0mst0ne> I ca n : ssh -N -f -L localhost:9000:localhost:9000 machineA , but other computer can't telnet machineA 9000
+16:04 < slackbot1> <au> tcpxd 不曉得有沒有 package，可能要自己 build
+16:04 < slackbot1> <au> 如果是本機 port 9000，`tcpxd 9999 127.0.0.1 9000` 之後 `telnet machineA 9999` 就可以了
+16:45 < slackbot1> <mrorz> 請問 http://react.vtaiwan.tw 是不是每一個 conponent 都包了 react-transmit 呢？ 因為我做 server-side rendering 時發現 Transmit.renderToString 好像不這麼作就不會動 QQ
+16:46 < slackbot1> <mrorz> 等等，好像有人之前在這裡問過相同的問題  #dejavu
+17:18 < slackbot1> <au> 是的，每一個 conponent 都包了 react-transmit
+17:18 < slackbot1> <mrorz> 好的感謝
+17:20 < slackbot1> <mrorz> 剛剛正在思考用類似 alt-resolver ( <https://github.com/iam4x/isomorphic-flux-boilerplate/blob/master/app/utils/alt-resolver.js> ) 的機制，用一個獨立於 react component 的東西來蒐集所有 promise 比較好，還是交給 react-transmit 的做法比較好
+17:20 < kcwu_> slackbot1's url: [isomorphic-flux-boilerplate/alt-resolver.js at master · iam4x/isomorphic-flux-boilerplate · GitHub]
+20:17 -!- chihchun is now known as chihchun_afk
+20:31 < slackbot1> <clkao> … 苗栗縣副縣長說想邀請演講... 我說我再 email 給她... 不過她的名片上沒有 email (!!)
+20:57 < slackbot1> <yhsiang> XD
+20:57 < slackbot1> <yhsiang> 副縣長信箱？
+21:48 < slackbot1> <mrorz> 請問 http://react.vtaiwan.tw 有做 server-side rendering 嗎
+21:48 < slackbot1> 熊熊發現雖然 src/index 有 renderToString，但是卻找不到呼叫那個 renderToString 的人，而且 URL path 是 hash based 的
+21:50 < slackbot1> <mrorz> 我剛剛翻了一下 react-transmit 的 code，看起來 react-transmit 的 server-side rendering 是不會等待深層 component 的 promise 的，所以就算 http://react.vtaiwan.tw 的每個 component 都包了 react transmit container，呼叫
+21:50 < slackbot1> <mrorz> `Transmit.renderToString` 時仍然只會等待最上層 Handler 的 promises
+21:58 < slackbot1> <yhsiang> mrorz: we will change in the next version
+21:59 < slackbot1> <mrorz> 不過就算有了 server-side rendering，
+21:59 < slackbot1> react-transmit 似乎還是不會等待裡層的 container 的
+22:00 < slackbot1> <mrorz> promise
+22:01 < slackbot1> <yhsiang> 等待深層 component promise 不是一個好的做法
+22:02 < slackbot1> <mrorz> 例如說，依照 <https://github.com/g0v/react.vtaiwan.tw/blob/dev/src/index.js> 的 router 設定，我們餵給 `Transmit.renderToString` 的「`Handler`」，應該 always 是 `App` 吧
+22:02 < kcwu_> slackbot1's url: [react.vtaiwan.tw/index.js at dev · g0v/react.vtaiwan.tw · GitHub]
+22:04 < slackbot1> <mrorz> 那麼 `<Category>` 的那些 query，像是 gitbook 呀的，`renderToString` 可能會在這些 query 的 promise 都還沒 resolve 時就先吐 html 出去了
+22:04 < slackbot1> <yhsiang> 就 react 本身的 renderToString 設計 無論如何都是會這樣發生
+22:05 < slackbot1> <mrorz> 嗯，所以 React-transmit 才蓋了一個 `Transmit.renderToString`，透過呼叫 `React.renderToString` 兩次 + 等待 promise，來解決這個問題。
+22:05 < slackbot1> 只是它只等你傳給 `Transmit.renderToString` 的那個 component 的 promise QQ
+22:06 < slackbot1> <mrorz> 還是以後不打算使用 `Transmit.renderToString` 呢
+22:08 < slackbot1> <yhsiang> 有興趣 週五來小松囉 XD
+22:08 < slackbot1> <mrorz> 替代役男 GG
+22:09 < slackbot1> <mrorz> 發現 `Transmit.renderToString` 無論如何只會等待第一層 container 的 promise 之後，我想把 political promise tracker 的 react-transmit 拆了 orz
+22:10 < slackbot1> <yhsiang> 問題不在於 promise XD
+22:10 < slackbot1> <yhsiang> 應該說 問題不在於 要等多深層的 promise resolve XD
+22:11 < dirty_> 寫慣 ls 之後, 很常出現沒加 ; 的 compile 錯誤 orz
+22:11 < dirty_> 然後 v ?= {} 這種, ES6 一定得寫成 if (!v) v = {} 是嗎?
+22:12 < slackbot1> <mrorz> dirty: `v` 前面有定義嗎
+22:12 < CindyLinz> dirty_: 應該可以寫成 ||= {}  (如果你用 if (!v) v = {} 的話)
+22:13 < CindyLinz> dirty_: 老式 JS 也可以用 XD
+22:13 < dirty_> 我是有個 obj, 不確定他有沒有某個 key
+22:13 < slackbot1> <yhsiang> <http://g0v-jothon.kktix.cc/events/g0v-hackath14n> # 大松有名額釋出 要搶要快！
+22:13 < kcwu_> slackbot1's url: [g0v.tw hackath14n | 台灣零時政府第拾肆次野百合黑客松]
+22:14 < slackbot1> <mrorz> dirty: 沒事，看錯 XD
+22:14 < dirty_> let v = obj[k] || obj.zhTW[k] || obj.enUS[k]; # 這是我想寫的
+22:14 < dirty_> 但是有時 obj.enUS 整個都沒有, 就會爛掉
+22:15 < dirty_> 所以我先寫一個 normalize function, 裡頭會把 null 的 obj.enUS 設成 {}, 這樣後面就比較簡潔
+22:15 < CindyLinz> dirty_: let v = obj[k] || obj.zhTW && obj.zhTW[k] || obj.enUS && obj.enUS[k];
+22:15 < slackbot1> <mrorz> 恩，就是瘋狂地加 `&amp;&amp;` XD
+22:15 < slackbot1> <mrorz> guard operator
+22:15 < CindyLinz> dirty_: 我承認有比較累 XD
+22:16 < dirty_> CindyLinz: 我就是覺得醜啊,  我幾秒前的 code XD
+22:16 < CindyLinz> dirty_: 不覺得有 排比 與 層遞 的美感嗎? XD
+22:16 < dirty_> 排比是什麼鬼啦
+22:16 < CindyLinz> 中文修辭學有教.. (逃
+22:17 < slackbot1> <mrorz> 剛剛才發現原來 `&amp;&amp;` 的 operator precedence 比 `||` 高 (掩面)
+22:17 < dirty_> 問題是, 之後語言可能更多啊, 每個要打兩次不符合我的 codeing style
+22:17 < dirty_> and 一直比 or 高
+22:17 < CindyLinz> C 就有的陋習 (誤
+22:17 < dirty_> ||= 不行
+22:18 < CindyLinz> 咦!?
+22:18 < slackbot1> <mrorz> es6 有 `||=` 嗎
+22:18 < CindyLinz> v = v || {}; ^^|
+22:19 < slackbot1> <mrorz> 嗯就只能這樣
+22:19 < CindyLinz> dirty_: 尋尋覓覓，冷冷清清，淒淒慘慘戚戚
+22:19 < dirty_> 我正在感受 ls => es6 code size * 1.5 的感覺
+22:20 < CindyLinz> ls * 1.5... 聽起來還好嘛 XD
+22:22 < slackbot1> <mrorz> yhsiang: 我要用 [altResolver](<https://github.com/iam4x/isomorphic-flux-boilerplate/#async-data-fetching>) 的方式來處理深層 promise 的問題惹
+22:22 < kcwu_> slackbot1's url: [iam4x/isomorphic-flux-boilerplate · GitHub]
+22:22 < slackbot1> <mrorz> 咦原來 slack 沒有 `[...](...)`
+22:25 < dirty_> CindyLinz: 10 => 15 還好, 100 => 150 就相當痛苦了
+22:25 < CindyLinz> dirty_: 來寫寫 Java 或 C# 吧~~ (招
+22:26 < CindyLinz> 會有打 code 如飛的快感.....
+22:26 < caasihuang> 背 patterns 的快感？
+22:26 < CindyLinz> 覺得好像沒做什麼事, 可能也真的沒做什麼事, 看一看已經不小心接近 1000 行了....
+22:29 < CindyLinz> 其實蠻難過的 orz
+22:29 < dirty_> 很久沒寫非 script lang 了 :p code 也很少超過 500 ln, ls 連 200 都很少超過
+22:30 < dirty_> 坐等 script lang compiler 編出效能起越 c 的程式就好
+22:30 < CindyLinz> c-script.. (咦
+22:43 < slackbot1> <t0mst0ne> 不知道 MERS 之後, 來台觀光人數會增加還是減少 
+22:43 < slackbot1> <http://www.immigration.gov.tw/ct.asp?xItem=1296419&amp;ctNode=29699&amp;mp=1>
+22:46 < slackbot1> <clkao> yhsiang: 你還有在用 unoconv 轉東西嗎？
+22:48 < slackbot1> <clkao> yhsiang: 有空的話可以幫忙看看 <https://bugs.documentfoundation.org/show_bug.cgi?id=61094> 和 <https://bugs.documentfoundation.org/show_bug.cgi?id=61096> 嗎？
+22:48 < kcwu_> slackbot1's url (1/2): [Bug 61094 – headless requires RENDER extension when converting doc file with image to html]
+22:48 < kcwu_> slackbot1's url (2/2): [Bug 61096 – FILESAVE: XHTML export of doc with image broken]
+22:48 < slackbot1> <clkao> . o O (想有好用的 unoconv docker image)
+22:50 < slackbot1> <yhsiang> 我有 而且就是在轉 立法院的 doc orz ...
+22:50 < slackbot1> <clkao> 那這兩個 bug 就交給你了 :stuck_out_tongue: 看案能否 reproduce 就好了
+23:03 < slackbot1> <yhsiang> 升級完 libreoffice ..unoconv 就 GG 了
+23:05 < slackbot1> <kiang> 有人認識台中或台南專業的網路直播廠商嗎？（雙向互動式直播）
+23:12 < slackbot1> <au> mrorz: 用 transmit 橋接的方式在 <https://github.com/RickWong/react-isomorphic-starterkit/issues/29#issuecomment-105071602> 有寫... 周五看上游的情況，一個可能是走 react-router 1.0 (rackt + RickWong) 另一個是走 react-nexus (elierotenberg) … Alt 當然也是好方法，哪個省力就哪個嘍。
+23:12 < kcwu_> slackbot1's url: [(Transmit) Nested Transmit containers and server-side rendering · Issue #29 · RickWong/react-isomorphic-starterkit · GitHub]
+23:16 < slackbot1> <mrorz> au++
+23:16 < slackbot1> 看到現在突然覺得一般 flux 似乎還單純些 orz
+23:17 < slackbot1> <mrorz> 等 Relay 等到海枯石爛 (遠目
+23:17 < slackbot1> <au> 看 data flow 和 dev flow 吧，像 react.vtaiwan 是 read-only + 四個人各寫一份 component，再拼起來
+23:18 < slackbot1> <au> (有專門寫的 api server 的話 Relay GraphQL 當然比較沒有昇級問題...)
+23:19 < slackbot1> <mrorz> :+1:
+23:23 < slackbot1> <yhsiang> mrorz 你要用 alt 就是要用 flux
+23:24 < slackbot1> <yhsiang> mrorz: 所以要搞清楚需求 我想才這是最重要的
+23:24 < slackbot1> <mrorz> ppt 其實大部份也都是從 api 撈資料，但是一次會撈很複雜的結構
+23:24 < slackbot1> 例如說
+23:25 < slackbot1> <mrorz> 要「政府」LEFT JOIN「政策」 LEFT JOIN 「承諾」LEFT JOIN「承諾進度」這種
+23:26 < slackbot1> <mrorz> 然後現在 server api 可以 handle 這種 query，只要在 URL 指定要 join 哪些表， server api 就可以吐 join 好的巢狀資料出來
+23:26 < slackbot1> <mrorz> 這看起來一整個就是很適合 react-transmit / relay + GraphQL
+23:29 < slackbot1> <mrorz> 因為前端界面要顯示跨很多資料表的資訊（執政者頁面，同時要該執政者的所有承諾，還有每個承諾的進度評比），所以由 react component 決定要撈的資料是合理的做法；然後又剛好搭配上一個可以撈任何東西的後端 API
+23:30 < slackbot1> <mrorz> 就只差 react-transmit 的 server-side rendering 是壞的 QQ
+23:32 < slackbot1> <au> mrorz: <https://github.com/RickWong/react-transmit/blob/master/src/example/Main.js#L16> `onQuery={this.onQuery}` 和 <https://github.com/RickWong/react-transmit/blob/master/src/example/Newsfeed.js#L65> `getQuery` 視需求搭配看看，說不定就好了 XD
+23:32 < kcwu_> slackbot1's url (1/2): [react-transmit/Main.js at master · RickWong/react-transmit · GitHub]
+23:32 < kcwu_> slackbot1's url (2/2): [react-transmit/Newsfeed.js at master · RickWong/react-transmit · GitHub]
+23:44 < slackbot1> <mrorz> au: 或者是，因為 `Transmit.renderToString` 是用 `onQuery` 實做的 （ <https://github.com/RickWong/react-transmit/blob/master/src/lib/renderToString.js#L31> ），
+23:44 < slackbot1> 所以如果最外層 container 把 `Transmit.renderToString` 傳進來的 `this.props.onQuery` 往下塞給 child container 的 `onQuery` property
+23:44 < kcwu_> slackbot1's url: [react-transmit/renderToString.js at master · RickWong/react-transmit · GitHub]
+23:45 < slackbot1> <mrorz> 或許 child container 做完事情，`Transmit.renderToString` 也可以知道 (?)
+23:45 < slackbot1> <yhsiang> clkao: Bug 61094 修好了, Bug 61096 還在 LibreOffice 4.4.3.2
+23:47 < slackbot1> <yhsiang> mrorz: 我覺得不是欸 你的情況明顯是要 flux 然後 store 要 fit database table XD
+23:47 < slackbot1> <yhsiang> 也許參考這幾天 flux 的討論 XD
+23:47 < slackbot1> <au> mrorz: 嗯在 `componentWillMount` 裡 (react-transmit/src/lib/createContainer.js line 83) 會檢查 this.props.onQuery
+23:47 < slackbot1> <mrorz> store fit database table 好噁呀，每個 table 都要蓋個 store 嗎 XD
+23:48 < slackbot1> <yhsiang> <https://gist.github.com/jhorneman/c35f48d8c66d1c96e4db#comment-1463805>
+23:48 < kcwu_> slackbot1's url: [How to combine the Flux pattern with large hierarchical data]
+23:49 < slackbot1> <kiang> 剛想要推坑人使用就看到 ... Google Moderator is shutting down on June 30, 2015.
+23:49 < slackbot1> <au> immutable / guid / cursor 也是一派。
+23:49 < slackbot1> <au> 四種解法都寫過一遍就知道了 \diy/
+23:50 < slackbot1> <yhsiang> au: 看完 3398 是這種感覺沒錯
+23:54 < slackbot1> <clkao> yhsiang: can you comment on those bugs?
+23:55 < slackbot1> <yhsiang> ok .. 不過我是 bugzilla 苦手 XD
+23:56 < slackbot1> <clkao> 真的很復古

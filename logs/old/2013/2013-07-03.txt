@@ -1,0 +1,293 @@
+--- Day changed 三  7月 03 2013
+00:00 < clkao>  /api/chars/all => for a given collection
+00:00 < favonia> 當時顯然沒有考慮到這個 orz
+00:00 < clkao> ideally i want to POST /api/collections/land.moi.gov.tw/fromTTF
+00:00 < clkao> with the ttf file
+00:01 < clkao> and it gets all the defined PUA chars ;)
+00:02 < clkao> frontend can use webfont to render, if we know where to access the ttf from metadata returned from  /api/collection/land.moi.gov.tw 
+00:02 < favonia> clkao: 問一下， http://land.moi.gov.tw/ 是幹嘛用的？
+00:02 < clkao> collection name 
+00:02 < clkao> ly.gov.tw => 立法院的字集
+00:02 < clkao> land.moi.gov.tw => 地政司的字集
+00:03 < favonia> clkao: 當時的考量是字型圖檔分開放
+00:03 < clkao> *nod* 也可以前端處理
+00:03 < favonia> clkao: 前端自己決定要去哪裡抓圖（所以才需要「註冊」）
+00:03 < clkao> 可能就是有個 metadata field
+00:04 < clkao> 也許註冊路徑可以避免用 '/' ? 這樣 api 要對那個 collection 操作可以避免需要 escape 之類的?
+00:05 < clkao> 是稱為「來源」嗎... ?
+00:05 < favonia> 關於 metadata 我想當時（其實已經忘了當時到底在想啥）是因為根本不知道有多少奇怪的狀況（例如搞不好沒有 HTTP?!）所以就放棄了
+00:05 < favonia> 喔那個斜線... 反正是放在 JSON 裡面應該沒差 xD
+00:06 < clkao> puadb.org is available
+00:06 -!- whitglint [~whitglint@122-117-208-238.HINET-IP.hinet.net] has quit [Quit: 暫離]
+00:06 -!- whitglint [~whitglint@122-117-208-238.HINET-IP.hinet.net] has joined #g0v.tw
+00:07 < favonia> clkao: 我猜你是希望可以用 api/blah/blah/直/接/存/取
+00:07 < favonia> clkao: 是嗎？
+00:08 < clkao> yeah - ideally GET /api/collection/ly.gov.tw/all 就是 https://github.com/g0v/twlyparser/blob/master/src/charmap.ls 那個 map
+00:08 < kcwu> clkao's url: [twlyparser/src/charmap.ls at master · g0v/twlyparser · GitHub]
+00:09 < clkao> 噢 說到這 還有討厭的一對多超展開: （一○○）
+00:10 < clkao> 原來的字是 「括號 100」 全部在一起
+00:10 < favonia> clkao: 我忘記到底當時在想啥了... 可能是沒有好用的分隔線。這不影響系統設計啦，資料庫更新一下就好。
+00:11 < favonia> clkao: 喔這樣不是沒救了嗎
+00:13 < clkao> 對啊 如果 first class accessor 是 unicode char 的話 就 GG 了
+00:13 < favonia> 之前有這種狀況時都是特別處理掉對嗎？
+00:14 < favonia> 喔你說 unicode
+00:14 < favonia> 組不出來嗎 @@
+00:15 < clkao> 就展開... 應該是可以組 只是沒去研究 :p
+00:15 < clkao> 還有圓圈圈裡面有 100 的
+00:18 < favonia> clkao: 如果組的出來可以用 `uni: strng or null` 之類的。當時選 string 有考量到需要多個 code points 之類的
+00:18 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+00:24 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Quit: swem]
+00:26 < favonia> clkao: 所以總結來說，你覺得 (1) namespace 和 (2) path 問題比較大這樣嗎？
+00:28 < clkao> right. 因為存取好像主要會是 per 來源, 除非要作考古才會去看單一 unicode char 共有哪些字集用到... ? ie /api/collections/unicode/:XXXX/xref
+00:30 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+00:31 < favonia> clkao: 了解。當時的想像比較像是前端自己處理 xD 一開始就把整個資料庫 dump 出去這樣
+00:34 -!- poga [~poga@220-137-163-149.dynamic.hinet.net] has joined #g0v.tw
+00:39 < favonia> clkao: 我現在大概沒空改 orz
+00:39 < favonia> clkao: BTW, 全部字一起對校不行嗎 xDDDD
+00:41 < clkao> 也... 是可以啦 只是前端比較累... 至少要有列出單一字集的未對應字碼吧 :P
+00:42 < favonia> clkao: 好像是當時不知道怎樣比較好的東西就丟給前端了 orz
+00:48 -!- poga [~poga@220-137-163-149.dynamic.hinet.net] has left #g0v.tw []
+00:50 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 240 seconds]
+00:52 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+00:54 -!- a-tsioh [~pierre@nat-rech-218.net.univ-paris-diderot.fr] has quit [Quit: WeeChat 0.3.8]
+01:05 -!- g0vznc [~g0vznc@180-177-13-52.dynamic.kbronet.com.tw] has quit [Remote host closed the connection]
+01:56 -!- chihchun_afk [~chihchun@114-34-10-226.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+01:58 -!- chihchun_afk [~chihchun@114-34-10-226.HINET-IP.hinet.net] has joined #g0v.tw
+01:58 -!- chihchun_afk is now known as chihchun
+02:27 -!- a-tsioh [~pierre@81.179.119.80.rev.sfr.net] has joined #g0v.tw
+04:08 -!- ETBlue [~chatzilla@112-104-122-211.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 246 seconds]
+04:31 -!- Supaplextw [~Lucky@114-36-236-82.dynamic.hinet.net] has joined #g0v.tw
+04:34 -!- Supaplextw1 [~Lucky@114-36-243-232.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+05:21 < rich1iu> clkao: XD
+06:54 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+07:00 -!- a-tsioh [~pierre@81.179.119.80.rev.sfr.net] has quit [Quit: WeeChat 0.3.8]
+07:16 -!- rich1iu [richliu@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+07:16 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+07:44 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Quit: swem]
+07:44 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+08:05 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+08:11 -!- Howar31 [~howar31@Autumn.cs.ccu.edu.tw] has quit [Ping timeout: 260 seconds]
+08:12 -!- Howar31 [~howar31@Autumn.cs.ccu.edu.tw] has joined #g0v.tw
+08:13 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+08:17 -!- jlnr [~jlnr@lurado.com] has quit [Quit: ZNC - http://znc.sourceforge.net]
+08:18 -!- jlnr [~jlnr@lurado.com] has joined #g0v.tw
+08:47 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+08:55 -!- FourDollars [~sylee@114-35-96-16.HINET-IP.hinet.net] has joined #g0v.tw
+08:56 -!- Howar31 [~howar31@Autumn.cs.ccu.edu.tw] has quit [Ping timeout: 256 seconds]
+08:56 -!- ijliao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+08:59 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 248 seconds]
+09:03 -!- yhsiang_ [~yhsiang@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+09:04 -!- Howar31 [~howar31@Autumn.cs.ccu.edu.tw] has joined #g0v.tw
+09:04 -!- tka__ [~tka_test@li381-115.members.linode.com] has joined #g0v.tw
+09:04 -!- Neson__ [~Neson@173.224.218.87] has joined #g0v.tw
+09:06 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has joined #g0v.tw
+09:09 -!- thschee_ [thschee@gateway/shell/ircrelay.com/x-cngdgvyatwnnvijh] has quit [Ping timeout: 256 seconds]
+09:10 -!- Netsplit *.net <-> *.split quits: tka_, Neson_, yhsiang, chhsiao1981, kanru
+09:11 -!- thschee_ [thschee@gateway/shell/ircrelay.com/x-zmomazhftyesdpwi] has joined #g0v.tw
+09:17 -!- MnO2 [~MnO2@nat/yahoo/x-ezqutbxycubtokfq] has joined #g0v.tw
+09:24 -!- neoesque [~neoesque@210.242.17.242] has joined #g0v.tw
+09:31 -!- scyen [~scyen@118-163-58-205.HINET-IP.hinet.net] has joined #g0v.tw
+09:35 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+09:45 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+09:47 -!- scyen [~scyen@118-163-58-205.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+09:48 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+09:49 -!- ETBlue [~chatzilla@112.104.122.211] has joined #g0v.tw
+09:52 -!- superbil_ [3cfbd182@gateway/web/freenode/ip.60.251.209.130] has joined #g0v.tw
+10:01 -!- ETBlue_ [~chatzilla@112-104-122-211.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+10:03 -!- ETBlue [~chatzilla@112.104.122.211] has quit [Ping timeout: 246 seconds]
+10:03 -!- ETBlue_ is now known as ETBlue
+10:06 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+10:09 -!- scyen [~scyen@4.53.154.230] has quit [Ping timeout: 240 seconds]
+10:16 -!- yhsiang_ is now known as yhsiang
+10:23 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+10:23 -!- hasher [~hasher@1.34.23.44] has quit [Quit: WeeChat 0.4.1]
+10:25 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:32 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:33 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has joined #g0v.tw
+10:42 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:50 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+11:10 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+11:30 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 246 seconds]
+11:30 -!- scyen_ [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Read error: Connection reset by peer]
+11:30 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+11:30 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+11:31 -!- scyen [~scyen@122.146.84.72] has joined #g0v.tw
+11:48 -!- t3e [~tonie@114-32-217-236.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+11:48 -!- t3e [~tonie@114-32-217-236.HINET-IP.hinet.net] has joined #g0v.tw
+11:49 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+11:51 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Client Quit]
+12:05 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has left #g0v.tw []
+12:14 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 240 seconds]
+12:49 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+13:16 -!- scyen [~scyen@122.146.84.72] has quit [Remote host closed the connection]
+13:22 -!- scyen [~scyen@122.146.84.72] has joined #g0v.tw
+13:29 -!- hychen [~hychen@175.41.48.77] has quit [Quit: 暫離]
+13:37 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 256 seconds]
+13:40 -!- chihchun is now known as chihchun_afk
+14:01 -!- scyen [~scyen@122.146.84.72] has quit [Remote host closed the connection]
+14:02 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+14:08 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 248 seconds]
+14:29 -!- g0vznc [~g0vznc@180-177-13-52.dynamic.kbronet.com.tw] has joined #g0v.tw
+14:33 -!- g0vznc [~g0vznc@180-177-13-52.dynamic.kbronet.com.tw] has quit [Client Quit]
+14:34 -!- g0vznc [~g0vznc@180-177-13-52.dynamic.kbronet.com.tw] has joined #g0v.tw
+14:34 -!- g0vznc [~g0vznc@180-177-13-52.dynamic.kbronet.com.tw] has left #g0v.tw []
+14:38 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+14:38 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+14:38 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+14:38 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+14:38 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+14:38 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+14:54 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+14:54 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+14:54 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+14:54 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:03 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Quit: leaving]
+15:08 -!- tkirby [b88039@linux2.csie.ntu.edu.tw] has joined #g0v.tw
+15:33 -!- S3p_lin_ [slzzp@li475-173.members.linode.com] has joined #g0v.tw
+15:33 -!- S3p_lin_ [slzzp@li475-173.members.linode.com] has quit [Client Quit]
+15:37 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+15:52 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 256 seconds]
+16:02 -!- tkirby [b88039@linux2.csie.ntu.edu.tw] has quit [Quit: Changing server]
+16:14 -!- chihchun_afk is now known as chihchun
+16:59 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+17:03 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 246 seconds]
+17:22 -!- a-tsioh [~pierre@nat-rech-216.net.univ-paris-diderot.fr] has joined #g0v.tw
+17:31 -!- ymow [~Adium@1-171-173-109.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+17:35 -!- chihchun is now known as chihchun_afk
+17:41 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+17:42 -!- chihchun_afk is now known as chihchun
+17:46 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+17:47 -!- FourDollars [~sylee@114-35-96-16.HINET-IP.hinet.net] has quit [Quit: leaving]
+18:27 -!- thschee_ [thschee@gateway/shell/ircrelay.com/x-zmomazhftyesdpwi] has left #g0v.tw ["Leaving..."]
+18:39 -!- thschee_ [thschee@gateway/shell/ircrelay.com/x-zmomazhftyesdpwi] has joined #g0v.tw
+18:42 -!- i3n_ [~icman@118-232-177-139.dynamic.kbronet.com.tw] has quit [Ping timeout: 246 seconds]
+18:42 -!- i3n [~icman@118-232-177-139.dynamic.kbronet.com.tw] has joined #g0v.tw
+18:45 -!- chihchun is now known as chihchun_afk
+18:48 -!- astro [r94010@linux3.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+18:48 -!- astro [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+18:57 -!- superbil_ [3cfbd182@gateway/web/freenode/ip.60.251.209.130] has quit [Quit: Page closed]
+18:57 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 240 seconds]
+19:06 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has quit [Quit: leaving]
+19:06 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has joined #g0v.tw
+19:15 -!- scyen_ [~scyen@122.147.15.66] has joined #g0v.tw
+19:18 -!- scyen [~scyen@4.53.154.230] has quit [Ping timeout: 256 seconds]
+19:22 -!- scyen_ [~scyen@122.147.15.66] has quit [Remote host closed the connection]
+19:23 -!- scyen [~scyen@122.147.15.66] has joined #g0v.tw
+19:27 -!- scyen [~scyen@122.147.15.66] has quit [Ping timeout: 256 seconds]
+19:35 -!- ymow [~Adium@111.235.228.3] has joined #g0v.tw
+19:58 < clkao> ronnywan1: 想到一個有趣的公司集團 cluster 的方式... 資金有「XXX基金會」 通常是大集團的頭.. 共有 122 筆
+20:03 -!- whitglint [~whitglint@122-117-208-238.HINET-IP.hinet.net] has quit [Quit: 暫離]
+20:03 < clkao> superbil: 咦 你找到下線啦? XD
+20:06 -!- whitglint [~whitglint@122-117-208-238.HINET-IP.hinet.net] has joined #g0v.tw
+20:16 -!- icman [~icman@123.240.147.165] has joined #g0v.tw
+20:28 -!- icman [~icman@123.240.147.165] has quit [Quit: 明天天氣晴]
+20:28 -!- icman [~icman@123.240.147.165] has joined #g0v.tw
+20:30 -!- kaxing [~kaxing@175.41.48.77] has quit [Read error: Operation timed out]
+20:34 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+20:49 -!- MnO2 [~MnO2@nat/yahoo/x-ezqutbxycubtokfq] has quit [Quit: MnO2]
+20:57 -!- ymow1 [~Adium@111.235.228.3] has joined #g0v.tw
+20:57 -!- ymow [~Adium@111.235.228.3] has quit [Read error: Connection reset by peer]
+21:00 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+21:16 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+21:17 -!- hychen [~hychen@175.41.48.77] has quit [Quit: 暫離]
+21:38 -!- lijung [~lijung@36-231-169-5.dynamic-ip.hinet.net] has joined #g0v.tw
+21:48 -!- ymow1 [~Adium@111.235.228.3] has quit [Ping timeout: 245 seconds]
+22:26 -!- chihchun_afk is now known as chihchun
+22:29 < yhsiang> clkao: 新增了能create znc user的script 0.0
+22:30 < clkao> yhsiang!
+22:31 < yhsiang> clkao: 為什麼我覺得直接用nodejs cookbook 整個安裝過程變長好多 orz...
+22:31 < clkao> yhsiang: 後來發現 subway 好像內建 bouncer
+22:31 < yhsiang> XD
+22:31 < yhsiang> 不是說 沒支援bouncer 是內建?
+22:32 < clkao> 有 但有些小問題
+22:32 < clkao> 不過看起來都很 active 在開發
+22:33 < clkao> 可以先把他弄起來 反正也是需要 UI... 在看要直接用他的 bouncer, 或者接 znc ?
+22:33 < yhsiang> 好的
+22:34 < clkao> 上次用... 好像離線期間的 private message, 上線後不會直接 reply.. 其他感覺沒蛇嘛問題
+22:34 < clkao> 要 create account 才會 enable bouncer
+22:34 < clkao> 所以可以 auth -> create subway account
+22:34 < clkao> (sqlite)
+22:35 < clkao> 我要來準備禮拜五的 angularjs talk 了 一片空白中... . XD
+22:47 < yhsiang> XD 加油！！
+22:56 < ETBlue> clkao: 義大利人在嘗試用視覺語言跟我們溝通 OoO https://docs.google.com/folder/d/0B0NsS2a-Qx8ZV0ZGVEJLRHUtSk0/edit?docId=1WFLszwi1_a1ORwoxGoBP5axAgXwm9H9JDTL4CQ7KUl0
+22:56 < kcwu> ETBlue's url: [mockups - Google 雲端硬碟]
+22:57 < ETBlue> clkao: 啊，你去忙吧 XD
+23:00 < yhsiang> ETBlue: 好可愛的蛋糕塔 XD
+23:01 < ETBlue> yhsiang: 就是說 XD
+23:07 < ETBlue> hlb: 報告長官 happy designer mini 的投影片長這樣，應該還會加入 gdoc presentation 和 jade template< @@ 每張投影片五句話以內帶過有興趣的人自己細看，應該可以很快講完 XD https://docs.google.com/presentation/d/1kA3jf0pQbPF87mRidkp0ChlAiztGw8eOYYTasfU0yQ0/present#slide=id.p
+23:07 < kcwu> ETBlue's url: [Mockup 人生 - Google 雲端硬碟]
+23:08 < ETBlue> hlb: 到時候動民主進度做到哪裡投影片就更新到哪裡 ^^b
+23:08 < clkao> ETBlue: ....... 第二頁... XD
+23:09 < ETBlue> clkao: 你不是在做投影片 XDXD
+23:09 < clkao> 我在寫範例城市
+23:09 < ETBlue> 喔喔
+23:10 < clkao> 「為了學習如何使用 Fire.app, 只好跟作者結婚.. 但這樣的機會全世界只有一次」... 太閃了
+23:10 < yhsiang> clkao: 真的!!我也是看到這段
+23:10 < yhsiang> 咦 其實什麼都沒看到吧 0.0
+23:11 < clkao> 我快校死了
+23:11 < Jedi_> .............
+23:12 < ETBlue> XDXDXD
+23:16 -!- lijung [~lijung@36-231-169-5.dynamic-ip.hinet.net] has quit [Ping timeout: 260 seconds]
+23:17 -!- lijung_ [~lijung@61-231-9-37.dynamic.hinet.net] has joined #g0v.tw
+23:18 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 256 seconds]
+23:25 < clkao> lijung_: 對了，首頁可能要順便考慮一下 en/zh 切換... 看 jekyll 有沒有什麼現成的 i18n plugin
+23:25 -!- hychen [~hychen@host-219-68-126-236.dynamic.kbtelecom.net] has joined #g0v.tw
+23:26 < hychen> ETBlue, 你的投影片是空白的...
+23:27 < ETBlue> hychen: 這一定是 google docs 的嚴重 bug
+23:27  * hychen 最近事情好多 =.=
+23:28 < lijung_> clkao: OK! sure!
+23:29  * hychen 也在做投影片...
+23:30 < a-tsioh> hi
+23:32 -!- chihchun is now known as chihchun_afk
+23:33 < yhsiang> a-tsioh: hi
+23:34 < a-tsioh> 我的CKY parser差不多寫完了
+23:34 < a-tsioh> 臺語輸入就會接受 ambiguous input
+23:35 < a-tsioh> 有人在作介面的部分嗎？
+23:38 < clkao> hychen: what slides are you working on?
+23:38 < au> a-tsioh: not yet... 我還沒和 pcchen 做 mockup
+23:38 < au> a-tsioh: ambiguous input 的 API 和原本相同嗎?
+23:38 < a-tsioh> 恩
+23:38 < au> OK shouldn't be too hard then
+23:39 < hychen> clkao, Arrow 101 
+23:39 < a-tsioh> 也可以複雜化一點
+23:39 < au> 我上周末試著做了 https://index.docker.io/u/audreyt/su-lip/ (docker service)
+23:39 < kcwu> au's url: [audreyt/su-lip Repository | Docker Index]
+23:39 < hychen> clkao, to introduce haskell arrow roughly
+23:39 < au> a-tsioh: 如果是同一個 repo 的話，我周末可以來更新，然後試試跑在 moedict.tw 同一台上
+23:40 < a-tsioh> 應該可以明確要不要什麼fuzzy的功能
+23:40 < a-tsioh> 是的（雖然還沒commit)
+23:41 < au> a-tsioh: 不然的話，你的測試 server 有可能先加上 CORS header 嗎?
+23:41 < au> by which I mean something like https://github.com/audreyt/ethercalc/blob/master/nginx/conf/cors.conf
+23:41 < kcwu> au's url: [ethercalc/nginx/conf/cors.conf at master · audreyt/ethercalc · GitHub]
+23:41 < a-tsioh> CORS是啥物？
+23:41 < au> 這樣才能跨網域從 moedict.tw 調用
+23:42 < au> # https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+23:42 < kcwu> au's url: [Cross-origin resource sharing - Wikipedia, the free encyclopedia]
+23:42 < a-tsioh> 意思是說要加一個OPTION method ?
+23:42 < au> that returns 204 with Access-Control-Allow-Origin: *
+23:42 < au> and the same header for GET requests
+23:42 < au> 是
+23:44 < a-tsioh> never heard of it but I'll check it out
+23:44 < a-tsioh> shouldn't be too hard
+23:45 < au> that'd make it much easier to experiment
+23:45 < au> a-tsioh++
+23:47 < au> e.g. to see the headers in action:
+23:47 < au> curl -X OPTIONS -D - https://ethercalc.org/demo.html
+23:47 < au> curl -X GET -D - https://ethercalc.org/demo.csv
+23:47 < au> etc
+23:47 < a-tsioh> hey I was wondering (absolutely unrelated question), are the logs from the logbot destroyed or are they available somewhere ?
+23:47 < au> this instance only goes back to June 29
+23:48 < au> I'm afraid earlier records was not kept, unless of course a bot from kcwu (or someone else) kept them
+23:49 < a-tsioh> I was thinking of trying to segment the channel for my dissertation :)
+23:50 < au> heh nice. iirc @mjhsieh did something like that (#osxchat logs? not sure) for https://github.com/mjhsieh/McBopomofo
+23:50 < kcwu> au's url: [mjhsieh/McBopomofo · GitHub]
+23:51 < au> sorry, gotta run for now... happy hacking & I'll check the su-lip commits soon
+23:51 < au> &
+23:51 < a-tsioh> oki bye !
+23:52 < au> a-tsioh: btw, for segmentation exercises, https://twlyreader-prototype.herokuapp.com/ and/or https://github.com/victorhsieh/tw-law-corpus may be fun too
+23:52 < kcwu> au's url (1/2): [公報 READER 網頁雛形設計]
+23:52 < kcwu> au's url (2/2): [victorhsieh/tw-law-corpus · GitHub]
+23:52 < au> & for realz
+23:55 < kcwu> I have irc logs (saved by irssi) for this channel.
+23:55 < a-tsioh> kcwu: 酷！多大？
+23:59 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]

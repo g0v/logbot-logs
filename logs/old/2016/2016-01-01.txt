@@ -1,0 +1,42 @@
+--- Log opened 五  1月 01 00:00:57 2016
+00:03 < slackbot4> <billy3321> 大家新年快樂啊～～
+00:06 < caasih> 新年快樂
+00:14 < a0000778> 新年快樂~~
+00:42 < slackbot4> <c9s> 新年快餓~~
+00:45 < slackbot4> <yhsiang> c9s: 剛剛有 00:00 commit 嗎
+01:04 < slackbot4> <fumi> 新年快樂喔！ :confetti_ball: 
+12:06 < slackbot4> <clkao> johnny: 中選會的上線了 有照片喔
+12:17 < slackbot4> <fumi> @mrorz: 不好意思，請問總統大選承諾一覽表統計得到使用者數量嗎?
+12:17 < slackbot4> 上次數位藝術節德國記者有問到這個問題，我答不出來，最近還有來信聯絡到，想問問看能不能知道這個數據?像議員投票指南那樣..
+12:19 < slackbot4> <mrorz> fumi: 請私訊給我你的 google email，我來把你加進 google analytics~
+12:26 < slackbot4> <clkao> 要研究一下 18f 做的跨機關 analytics 整合顯示工具嗎 :stuck_out_tongue:
+12:27 < slackbot4> <clkao> 願意的 project 可以 open 一下自己的流量資訊 彙整起來 :stuck_out_tongue:
+14:56 < slackbot4> <johnny> clkao: API 看起來沒有照片
+16:44 -!- heron [01aba355@gateway/web/cgi-irc/kiwiirc.com/ip.1.171.163.85] has left #g0v.tw []
+17:30 < slackbot4> <c9s> @yhsiang: 我昨天有在想這件事耶 XDD 可是後來覺得太宅了就作罷 XDDD
+17:31 < slackbot4> <c9s> clkao: 18f?
+17:44 < slackbot4> <au> c9s: <https://en.wikipedia.org/wiki/Analytics.usa.gov>
+17:44 < kcwu> slackbot4's url: [Analytics.usa.gov - Wikipedia, the free encyclopedia]
+17:44 < slackbot4> <c9s> @au: thanks!
+20:35 < slackbot4> <charl> 新年快樂 各位
+20:37 < slackbot4> <charl> :relaxed:
+22:27 < slackbot4> <yurenju> @johnny: 跟 docker 不太熟，我照著這邊的步驟做的時候在 `docker-compose run django python manage.py migrate` 遇到錯誤... <https://github.com/g0v/twly-voter-guide#run-docker>
+22:27 < kcwu> slackbot4's url: [g0v/twly-voter-guide · GitHub]
+22:29 < slackbot4> <yurenju> 錯誤訊息 <https://gist.github.com/yurenju/9bde29bd9476f74d2afc>
+22:29 < kcwu> slackbot4's url: [gist:9bde29bd9476f74d2afc · GitHub]
+22:34 < slackbot4> <johnny> yurenju: 可以試試 migrate 那行不做，因為 dump檔應該有包含最新的 db schema了
+22:38 < slackbot4> <yurenju> @johnny: 要怎麼換 port 阿？我猜應該是因為我不是用 root
+22:39 < slackbot4> <yurenju> 阿我找到了
+22:40 < slackbot4> <yurenju> docker-compose.yml
+22:40 < slackbot4> <johnny> 你應該是想換80 port?  <https://github.com/g0v/twly-voter-guide/blob/master/docker-compose.yml#L51>
+22:40 < kcwu> slackbot4's url: [twly-voter-guide/docker-compose.yml at master · g0v/twly-voter-guide · GitHub]
+22:41 < slackbot4> <yurenju> 對我想換成 8080
+22:42 < slackbot4> <johnny> 了解，那45行的最後也要改一下
+22:49 < slackbot4> <yurenju> 看起來好像是 django 的那個 docker image 沒起來
+22:49 < slackbot4> <yurenju> rom django.forms import fields, util
+22:49 < slackbot4> ImportError: cannot import name util
+22:49 < slackbot4> <yurenju> 用 docker logs 進去看是這樣
+22:50 < slackbot4> <johnny> 可惡，是升上django 1.9 的遺毒，我看一下
+22:51 < slackbot4> <yurenju> 我覺得用乾淨的環境應該可以複製，你可以再起一個完全新的環境看看
+22:54 < slackbot4> <yurenju> 意外發現 docker compose 好像很好用
+23:51 < slackbot4> <johnny> yurenju: 先暫時修好了，請git pull後，run pg_restore那行，再docker-compose up就好了

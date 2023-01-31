@@ -1,0 +1,75 @@
+--- Day changed 四  8月 06 2015
+01:43 < gugod> 問卷答題嗎？一個可能偵測/消除的手段，是要能改變題目次序 (處理 positional bias)，看是 A/B test 或是就隨機（ A/B/隨機 也行 )，然後在問卷間相互比較
+01:44 < gugod> 使每個人拿到的問題次序不一樣，但要能正確追蹤 session 和問卷 id 
+01:46 < gugod> 不這樣做的話也就只能從 http header 中的資料 (browser,os,ip) 去做 segementation ，看看有沒有那一組人的答案都特別不同
+01:55 < gugod> 或也可以用 unsupervised machine learning (knn/k mean) 去找出目前分組狀況，缺點是必需假設資料中有 N 組。
+01:57 < gugod> 另外，單一問卷內就是設計多組問題，其答案應為正好相反的，用來過濾掉沒認真做答的人。
+07:02 < dirty> 用 complete link 之類的可以不用先假設資料有 N 組
+08:25 < slackbot7> <mrorz> t0mst0ne: 有一招是把 google form 的 html 整個複製下來塞進自己的網站，只要最後 submission 是送 post 就 ok。Google form 的送出並沒有做 CSRF protection。
+08:25 < slackbot7> <http://stackoverflow.com/questions/4902813/use-google-analytics-to-track-google-form-submissions>
+08:25 < kcwu> slackbot7's url: [Use Google Analytics to track Google Form submissions - Stack Overflow]
+08:25 < slackbot7> <mrorz> 然後就可以在 form 上面插自己的 ga code
+08:26 < slackbot7> <mrorz> 你也可以掛一個 form submit handler 來送 ga event
+08:30 < slackbot7> <mrorz> 也可以在 google form 多開一個欄位裝 referrer，然後在自己的 html 裡將那個欄位填入 document.referrer，隨著表單送出
+08:41 < slackbot7> <t0mst0ne> @mrorz: ++ 
+08:43 < slackbot7> <t0mst0ne> @gogud ++
+08:45 < slackbot7> <t0mst0ne> 還可以用Lynn
+08:45 < slackbot7> <t0mst0ne> Knn 
+08:58 < slackbot7> <pofeng> @clkao: <http://www.cdnews.com.tw/cdnews_site/docDetail.jsp?coluid=108&amp;docid=103324157>
+09:08 < slackbot7> <clkao> 下週要 CFP 了....
+10:35 -!- bigcat is now known as bigcat[brb]
+12:03 -!- chihchun_afk is now known as chihchun
+13:14 < slackbot7> <lydian> @clkao:  need support, how do I feed the json to billab?
+13:26 < slackbot7> <mrorz> lydian: 噢他目前沒有上傳功能，要自己 fork 一份，把 json 放進 /app/assets/data。
+13:26 < slackbot7> 假設 json 檔名叫做 abc.json 請按照 readme 的說明打開 dev server 後瀏覽 <http://localhost:3333/arbitary_string/abc>
+13:27 < slackbot7> <lydian> 我在研究那個arbitary_string是什麼
+13:27 < slackbot7> <mrorz> 那個 arbitary_string 是預計要擺 user name，像 github 那樣
+13:27 < slackbot7> <mrorz> 但是目前沒有作用
+13:27 < slackbot7> <mrorz> <https://github.com/clkao/billab/blob/master/app/app.ls>  $stateParams.user 從來沒有被用到
+13:27 < kcwu> slackbot7's url: [billab/app.ls at master · clkao/billab · GitHub]
+13:27 < slackbot7> <lydian> that make sense, thanks!
+13:28 < slackbot7> <mrorz> 啊其實有用到
+13:28 < slackbot7> <https://github.com/clkao/billab/blob/master/app/partials/proposal.jade#L2>
+13:28 < slackbot7> 就顯示在一個 `<h2>` 裡面⋯⋯ XD
+13:28 < kcwu> slackbot7's url: [billab/proposal.jade at master · clkao/billab · GitHub]
+13:29 -!- chihchun is now known as chihchun_afk
+13:30 < slackbot7> <lydian> ok
+13:38 < slackbot7> <lydian> 發現我content少包了一個[]，所以一直讀不出來 囧
+14:08 < slackbot7> <clkao> 今天在中選會討論選舉資料流程還有選舉專區雛形 ，即將開始# <https://g0v.hackpad.com/N5RsLraNd15>
+14:08 < kcwu> slackbot7's url: [中選會選舉資料流程暨網站選舉專區意見蒐集 - g0v.hackpad.com]
+14:26 < slackbot7> <clkao> 2016 總統大選的選舉專區會全部改版，登記時的資料蒐集也會都變成數位化，所以會有數位公報
+14:27 < slackbot7> <hcchien> (Y)
+14:27 < slackbot7> <mrorz> 覺得猛 (正在看 hackpad
+14:35 < slackbot7> <hcchien> 問：政治獻金資料中選會管的到嗎
+14:36 < slackbot7> <hcchien> 還是只有監察院可以拿？
+14:41 < slackbot7> <clkao> hcchien: 我記得是對內政部申報 然後監察院保管
+14:45 < slackbot7> <hcchien> 所以中選會看來主要還是候選人資料跟投票結果
+14:46 < slackbot7> <hcchien> 不過各選區可以投票的人數應該會公布？
+14:50 < slackbot7> <clkao> 對的
+14:51 < slackbot7> <clkao> hcchien: 有，這個事前就會發布
+14:51 < slackbot7> <hcchien> (Y)
+14:52 -!- a0000778_ is now known as a0000778
+15:23 < slackbot7> <hcchien> api 的流量應該加 ats 就可以擋的住吧
+15:25 < slackbot7> <clkao> ats ?
+15:25 < slackbot7> <hcchien> apache traffic server
+15:25 < slackbot7> <hcchien> 其實也就 cache
+15:44 < slackbot7> <clkao> ronnywang: 中選會的數位選舉登記系統叫做「候選人登記小幫手」 XD
+15:45 < slackbot7> <ronnywang> 不知道用什麼名字的時候，用小幫手就對了 XD
+15:50 -!- chihchun_afk is now known as chihchun
+15:52 < slackbot7> <hcchien> LOL
+15:54 < kcwu> 有沒有取名小幫手
+16:33 < CindyLinz> 取名繽紛樂
+17:57 < slackbot7> <clkao> kcwu 其實我有要寫取名小幫手
+18:00 -!- chihchun is now known as chihchun_afk
+18:01 -!- chihchun_afk is now known as chihchun
+18:16 -!- chihchun is now known as chihchun_afk
+19:04 < slackbot7> <t0mst0ne> <https://twitter.com/RyanMaue/status/628309261530099712>    Top 1% during past 60+ years
+19:04 < kcwu> slackbot7's url: [Ryan Maue on Twitter: "1950-2014 historical Typhoon archive: 172 track points of Typhoons ≥ 155-knots out of total of 17800 = 1% Most extreme subset of winds."]
+19:25 < slackbot7> <clkao> 居然在路上遇到 @mrorz 
+19:30 < slackbot7> <yhsiang> XDDD
+19:34 < slackbot7> <mrorz> 準備過馬路時發現對面是 @clkao
+20:19 -!- chihchun_afk is now known as chihchun
+20:53 < slackbot7> <clkao> mrorz: 你們是約在哪裡呀
+22:57 -!- chihchun is now known as chihchun_afk
+23:07 -!- chihchun_afk is now known as chihchun
+23:29 -!- chihchun is now known as chihchun_afk

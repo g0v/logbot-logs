@@ -1,0 +1,129 @@
+--- Day changed 六  2月 07 2015
+00:08 < slackbot3> <wildsky> 來問一下，g0v 用的 invityoself 之類的東西，可以讓其他人拿去其他地方使用嗎？
+00:09 < slackbot3> <timloo> au:請問:moedict--webkit, 因為deps.js  中斷點沒法下的很準確，我new 一個 myindex.html , 貼上這塊，   <script src="js/jquery-ui-1.10.4.custom.min.js" charset="utf-8"></script>
+00:09 < slackbot3>     <script src="js/jquery.hoverIntent.js" charset="utf-8"></script>
+00:09 < slackbot3>     <script src="main.js" charset="utf-8"></script>
+00:09 < slackbot3>     <script src="js/bootstrap/dropdown.js" charset="utf-8"></script>
+00:09 < slackbot3>     <script src="js/simp-trad.js" charset="utf-8"></script>
+00:09 < slackbot3>     <script src="js/phantomjs-shims.js" charset="utf-8"></script>
+00:09 < slackbot3>     <script src="js/console-polyfill.js" charset="utf-8"></script>
+00:09 < slackbot3>     <script src="js/es5-shim.js" charset="utf-8"></script>
+00:09 < slackbot3>     <script src="js/es5-sham.js" charset="utf-8"></script><!--<![endif]-->
+00:09 < slackbot3>   </body>
+00:09 < slackbot3> <http://把main.ls|xn--main-pp6h.ls>，http://view.ls  轉成對應的js， make, 在browser 下<http://127.0.0.1:8888/myindex.html，|http://127.0.0.1:8888/myindex.html，> main.js就卡住下不去了 ，請問，如果要能中斷在main,ls, 一般都怎麼做呢??謝謝
+00:10 < au> wildsky: 請在 https://github.com/shulusama/inviteyoself-g0v/issues/new 開個 issue 問子姓網友要選用哪種授權，補上 LICENSE 或 README.md 的內容之後，就可以拿去別處用了
+00:10 < kcwu> au's url: [Sign in · GitHub]
+00:11 < slackbot3> <wildsky> 感謝你！！
+00:11 < au> timloo: "make dev" 然後在 .ls 裡手動下 debugger 指令。 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger
+00:11 < kcwu> au's url: [debugger - JavaScript | MDN]
+00:12 < au> 目前沒有 source map 所以只好用手動 debugger
+00:21 < slackbot3> <timloo> au:感謝，我研究一下。原來不是我想的那樣。再請問: "目前 API 已有 7 個端點，分別是 /a/, /t/, /h/, /c/, /raw/, /uni/, /pua/"，source code 裏 a, t, h, c 4個目錄，沒有，raw, uni, pua, 這些目錄，這3個是什麼規則呢?而static-here.js 裏好像不會提供jsond的服務，這7個服務是 那枝程式提供的??  謝謝!!
+00:24 < au> timloo: raw uni pua 是由 https://github.com/g0v/moedict.tw 裡的程式產生的，萌典前端並未用到。
+00:24 < kcwu> au's url: [g0v/moedict.tw · GitHub]
+00:24 < au> jsonp 是由 nginx https://github.com/g0v/moedict.tw/blob/master/nginx.conf#L31 提供的。
+00:24 < kcwu> au's url: [moedict.tw/nginx.conf at master · g0v/moedict.tw · GitHub]
+00:26 < au> 現行的 moedict.tw 是 moedict-webkit (靜態檔案) + server.js (字圖) + g0v/moedict.tw (jsonp) 三層疊加來提供服務。
+00:26 < au> moedict.org 則是只有靜態檔案的分站，源碼在 https://github.com/g0v/moedict-app gh-pages branch。
+00:26 < kcwu> au's url: [g0v/moedict-app · GitHub]
+00:32 < slackbot3> <timloo> au: 謝謝，先抄下來，再慢慢體會。不好意思，再請問 server.js   是怎麼被觸發的? grep 這個關鍵字，好像沒被引用到，謝謝!!
+00:36 < au> timloo: 目前是用 "forever server.js" 來執行，再用 nginx proxy_pass 到 localhost:3000。
+00:37 < au> (實在應該整份用 Docker 包起來的 (當時還沒有 Docker 就是了))
+00:42 < slackbot3> <timloo> au:謝謝, 解了疑惑，這段有放在Makefile裏嗎?  forever 是https://github.com/foreverjs/forever  這個嗎?
+00:42 < kcwu> slackbot3's url: [foreverjs/forever · GitHub]
+00:43 < au> 沒有放在 Makefile 裡。是的。因為 server 相對簡單所以選用 forever，不然一般會用 pm2。
+00:46 < slackbot3> <timloo> au:謝謝
+01:37 < pipi_> 祝募款餐會順利(忘記報名可以改報現場招待嗎XD)
+01:38 < pipi_> QQ
+01:38 < slackbot3> <yhsiang> pipi: 你穿女僕裝來 可能可以？ (誤
+01:40 < slackbot3> <yhsiang> wildsky: 你講的是外觀還是程式碼 ?
+01:42 < slackbot3> <wildsky> 其實我講的是程式碼XD
+01:42 < slackbot3> <yhsiang> https://github.com/seabre/inviteyoself/blob/master/LICENSE # 從這裡 fork 是 MIT
+01:42 < kcwu> slackbot3's url: [inviteyoself/LICENSE at master · seabre/inviteyoself · GitHub]
+01:42 < slackbot3> <yhsiang> 只是 fork 到 g0v/inviteyoself 並且套用子龍的設計
+01:43 < slackbot3> <wildsky> 哦哦 原本是想說要用的話再開 issue 問XD
+01:43 < slackbot3> <wildsky> 感謝你!!
+01:43 < slackbot3> <yhsiang> 基本上g0v/inviteyoself 也保留原本的 README XD
+01:44 < slackbot3> <yhsiang> 不過 目前g0v跟bj4 一個月的收費大概在 1.7 美元
+01:44 < slackbot3> <yhsiang> 一個 service 的scheduler 可能會收你 1.7 美元  要注意 :simple_smile:
+01:44 < slackbot3> <wildsky> bj4 是...@@?
+01:44 < slackbot3> <yhsiang> bj4 是 台南的 創業community
+01:44 < slackbot3> <yhsiang> 也有slack 跟跑 inviteyoself
+01:44 < slackbot3> <wildsky> 哦哦了解~~
+01:45 < slackbot3> <yhsiang> 我不知道php-tw 的狀況
+01:45 < slackbot3> <wildsky> 我要寫學校學生會的東西，也有用 slack 想說未來可能會用到所以先問問避免侵權還是什麼其他的問題
+01:46 < slackbot3> <yhsiang> 目前收費情況是這樣  scheduler1X	33.416 hours	$0.05/hour	$1.67
+01:47 < slackbot3> <yhsiang> wildsky: 我想除了授權 你可能還要注意這個收費問題 XD
+01:47 < slackbot3> <wildsky> 對XD 你提了我才想到
+01:48 < slackbot3> <yhsiang> wildsky: 但是我想 DO 應該也是跑得起來 XD
+01:48 < slackbot3> <yhsiang> 也許可以用github的學生方案 :simple_smile:
+01:48 < slackbot3> <wildsky> 恩恩恩
+01:49 < slackbot3> <wildsky> 覺得獲益良多XD
+02:09 < pipi_> Ly你好過份QQ
+02:09 < slackbot3> <yhsiang> pipi: 為什麼 ?? @@
+02:10 < pipi_> 女僕
+02:10 < pipi_> QQ
+02:12 < slackbot3> <yhsiang> pipi: 還好吧 (轉頭
+02:13 < slackbot3> <seadog007> 好像 @kiang 給我權限之後我都沒有解過issue了(抹臉
+02:13 < pipi_> ..............
+02:13 < slackbot3> <seadog007> pipi_ LY不過分就不是LY了喔
+02:13 < slackbot3> <yhsiang> seadog007: 天才駭客您好 :simple_smile:
+02:13 < slackbot3> <seadog007> 你看吧XDDD
+02:14 < slackbot3> <yhsiang> seadog007: 最近又駭了幾家大公司啊 :stuck_out_tongue:
+02:14 < slackbot3> <seadog007> 沒有!!!!
+02:14 < slackbot3> <seadog007> 我到底哪裡黑了QAQ
+02:16 < slackbot3> <seadog007> 去睡覺 無視 @yhsiang
+02:16 < pipi_> 有種誤交ㄙ。。友的感覺XD
+02:16 < slackbot3> <yhsiang> pipi: 記得要穿女僕裝喔
+02:16 < CindyLinz> 會出現多少女僕啊... XD
+02:17 < pipi_> 有別的選項嗎XD
+02:17 < CindyLinz> pipi_: 黑執事? :D
+02:18 < slackbot3> <yhsiang> CindyLinz: 應該就 shia shia + pipi ?
+02:18 < pipi_> 問題是我不帥又不正啊 @@
+02:18 < slackbot3> <yhsiang> pipi: 這是心意問題 :simple_smile:
+02:20 < pipi_> 到時候害大家吃不下飯就不好了XD
+02:20 < slackbot3> <yhsiang> pipi: 沒有人 擔心這個問題
+02:23 < pipi_> 我是不是上了賊船惹
+02:23 < pipi_> 抖抖
+02:23 < CindyLinz> pipi_: 沒有 沒有人 擔心這個問題 :D
+02:23 < CindyLinz> (generator 又要出來惹)
+02:25 < pipi_> (逃)
+06:47 < miaoski> @timloo: 是 8 個... 還有阿美語的 /p/ 只是不在 master trunk
+06:49 < miaoski> 對耶今天 yhsiang 要穿女僕裝見客!!! 你不說我都快忘惹!
+06:49 < miaoski> @pipi: 原本的規畫是蝦蝦 + LY 穿女僕裝。
+06:49 < miaoski> 別被 LY 唬住了 XD
+09:46 < slackbot3> <kangxi> Mark Chang
+12:20 < CindyLinz> 哇 channel 好安靜 XD
+12:41 < slackbot3> <c9s> 都在吃山豬這樣嗎 -_-
+12:51 < slackbot3> <fntsrlike> XD
+13:38  * FourDollars 已被餵食
+13:39 < FourDollars> 好吃～
+13:46 < FourDollars> Taiwan Open Data Center
+13:51 < ehwh> test
+13:51 < ehwh> 中文測試
+13:52 < tonyq_____> 靠，睡醒就這時候了
+13:52 < tonyq_____> 我的山豬QQQQ
+14:12 < FourDollars> https://sheetdb.com/
+14:12 < kcwu> FourDollars's url: [SheetDB.com]
+14:17 < FourDollars> ask@sheetdb.com
+14:18 < FourDollars> "百分之八十的宅男都有兩台以上的筆電" XD
+14:21 < FourDollars> 台灣無國界工程師協會 Sam Lu
+14:22 < FourDollars> http://www.ewb-twn.org/
+14:54 < Michael_LI> 開源工場最後一位專案經理
+15:03 < tonyq_____> 我這時候到好像有點晚，市民大道還在塞XD
+15:06 < tonyq_____> 總之我快到了QQ
+16:02 < slackbot3> <wildsky> 原來 slack 還可以跟 scrollback 同步...
+16:05 < slackbot3> <wildsky> 不對，看起來是 slack 和 irc 同步，然後 irc 再和 scrollback 同步
+16:20 -!- veloci85_ is now known as veloci85
+16:59 < chihchun> 超安靜。
+19:07 < slackbot3> <c9s> fourdollars: 還好我只有一台 XD
+19:11 < slackbot3> <c9s> Mojo::DOM 好用...
+19:12 < slackbot3> <c9s> (在用 pQuery 調用幾個 method 全都 undefined 之後才發現...)
+19:12 < slackbot3> <c9s> 吐血
+19:21 -!- seadog007_ is now known as seadog007
+19:55 -!- superbil_ is now known as superbil
+20:43 -!- veloci85_ is now known as veloci85
+21:12 < gugod> 大家都去吃山豬了？
+21:24 -!- veloci85_ is now known as veloci85
+21:44 < slackbot3> <c9s> gugod: 好像吃完了
+23:01 < slackbot3> <yhsiang> miaoski: 你的情報才是錯的 XDD
+23:06 -!- veloci85_ is now known as veloci85

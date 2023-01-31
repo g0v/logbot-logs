@@ -1,0 +1,593 @@
+--- Day changed 日  8月 31 2014
+00:04 < lanf0n> t0mst0ne_: https://gist.github.com/lanfon72/52b849b834dfd73a8738
+00:04 < kcwu> lanf0n's url: [longService.tw]
+00:05 < lanf0n> t0mst0ne_: 收容對象跟人數的資料蠻亂的XD...(用 json 的話應該會對應成 list, 要額外 parse)
+00:06 < au> Lee1092: set C2 value n 12321
+00:06 < Lee1092> au !  好~  n 是有什麼意思嗎? 
+00:07 < au> set C2 text t 12321
+00:07 < au> n 是數值 t 是文字
+00:07 < au> 可以在試算表上操作後去 Audit 頁籤看對應的指令
+00:08 < Lee1092> au:  !!!!!!!!!!!   原來可以看指令!!!!    我還在那邊看原始碼XD
+00:11 < Lee1092> au:   大感謝~~
+00:11 < au> np~ README.md 好像應該加幾行字放上 apiary
+00:12 < au> (現成的 api blueprint)
+00:17 < johnny___> ipa: 人生苦短，為國走冰
+00:20 < CindyLinz> miaoski: 暫時好惹 QQ # https://github.com/CindyLinz/StripPhotoIntoRows
+00:20 < kcwu> CindyLinz's url: [CindyLinz/StripPhotoIntoRows · GitHub]
+00:20 < miaoski> CindyLinz: 好強大 (woot)
+00:21 < CindyLinz> miaoski: 上面放的參數在我的筆電上面跑一張圖約要50秒
+00:22 < miaoski> @@
+00:22 < miaoski> 好喲我會抓下來研究.........
+00:23 < clkaoud> CindyLinz 居然沒用 haskell
+00:24 < johnny___> 買了消夜想說來繼續黑客松，但吃完想睡了...
+00:24 < CindyLinz> 掃 bytes 還是閃開讓 C 來比較好...orz
+00:25 < CindyLinz> miaoski: 4 thread 改成 1 thread 是 125 秒.. 應該是記憶體比較集中的關係..
+00:25 < CindyLinz> 然後 GUESS_ARG_TIMES 現在是 100, 它正比於花的時間, 我覺得改成 30 的結果也還能接受
+00:26 < miaoski> okie...... 
+00:26 < CindyLinz> 如果紙都放得蠻正的, 那可以把 GUESS_MAX_ARG 調小, 那麼因為要猜的範圍小了, GUESS_ARG_TIMES 就可以再更小
+00:26 < miaoski> OpenCV 一定是用別的方式。我跑一張圖大概 10 秒....
+00:27 < CindyLinz> GUESS_OFFSET_SEP_TIMES 是 inner loop, 不過這個很快, 可能改小也沒什麼賺頭
+00:27 < miaoski> 不過它是用好幾種做法。先找 edge 再用 edge 去算橫線(或直線) 壓到的點的最小/最大值... blah blah
+00:28 < CindyLinz> 嗯嗯, 我這邊是亂猜一組角度行距偏移量, 掃一遍圖, 這樣看是 10000 遍 XD
+00:28 < miaoski> www
+00:28 < CindyLinz> 沒有找 edge 那麼高級的方法 XD
+00:29 < miaoski> 好喲。腦汁不夠了。明天來看一下 code ...
+00:29 < miaoski> OpenCV 我找不到好的參數，平常沒用臨時抱佛腳的下場....
+00:31 < CindyLinz> 蛤~ 會去看 code 裡面喔? 那要害羞惹, 剪貼的痕跡有點重 ._.
+00:32 < miaoski> 妳還有一個晚上可以 refactor (大誤)
+00:32 < clkaoud> orz https://github.com/slap-editor/slap
+00:32 < kcwu> clkaoud's url: [slap-editor/slap · GitHub]
+00:33 < CindyLinz> O___O
+00:33 < miaoski> CindyLinz: 別在意了，暗黑程式界哪有在介意剪貼的
+00:33 < CindyLinz> 不暗黑啊.... OAO
+00:33 < xsoameix> diablo g0v
+00:39 -!- sh-hu_ is now known as sh-hu
+00:42 < macpaul> CindyLinz++ 一上線就看到厲害的tool
+00:47 < Lee1092> au:  下 command 是有限定時間內 限定次數的嗎??  有時會發生 已封鎖跨來源請求  要啟用 CORS  的錯誤 @@
+00:48 < au> Lee1092: 沒有限定
+00:48 < au> 換 browser 試試？
+00:49 < Lee1092> !!  我知道了..  download csv 太慢  還沒載回來之前， 再下 command 會發生這個錯誤
+00:51 < Lee1092> 耶  好像不是   我來研究一下~ 
+00:52 < macpaul> 說個秘訣：今天疑似有人用了比場務人員提早進入會場的bug呆了一整天 ＊誤＊
+00:53 < macpaul> 其實扣掉便當問題只是要溜進來寫code看來真的沒什麼影響
+01:04 < CindyLinz> macpaul: 咦 :p
+01:18 < t0mst0ne_> lanf0n: 動作好快，求code? 然後是否有地址後就可以轉到map(google or osm)layer ? 還是說需要gps比較ok? 
+01:20 < lanf0n> t0mst0ne_: 呃...我用工人智慧直接在 excel 上操作...((之前學過office 就有點懶得寫code...艸
+01:20 < lanf0n> t0mst0ne_: xls 可以直接轉存csv
+01:23 < t0mst0ne_> lanf0n: csv ！ 對厚， csv 直接整理完用vim + regrex 也很快說 ....
+01:24 < lanf0n> t0mst0ne_:  map layer 完全不會...這可能要問有在玩 map 的大大們...:3
+01:26 < hychen1> CindyLinz++
+01:28 < au> https://maps.googleapis.com/maps/api/geocode/json?address=%E4%B8%AD%E7%A0%94%E9%99%A2 可以 geocoding 從地址取得經緯度
+01:28 -!- lwhsu_ is now known as lwhsu
+01:29 < t0mst0ne_> au: ++
+01:39 < mingtsay> 今天 Webthon 成果：https://github.com/moztw/www.moztw.org/pull/76 與大家共襄盛舉
+01:39 < kcwu> mingtsay's url: [MozTW Webthon #1 by mingtsay · Pull Request #76 · moztw/www.moztw.org · GitHub]
+01:42 < Lee1092> au 有些頁面.. 不知名原因 csv 壞掉了，  https://ethercalc.org/Pca0RM6ApBo  可以 set command 但 拿取 csv 就 502 (看來是被我玩壞了 = ="" 
+01:42 < kcwu> Lee1092's url: [EtherCalc - Share the URL to your friends and edit together!]
+01:50 < au> Lee1092: ok 手動修好了... command 不能執行時有時會變這樣
+01:50 < au> 之後應該要加個 validator 的
+01:53 < Lee1092> au++  還有這頁 https://ethercalc.org/DcZvOcci3Lg   原來是下錯 command 惹的禍  ~"~
+01:54 < Lee1092> 應該不會再下錯了    目前是在測試這個   XD   http://jessy1092.github.io/coVerbatim/#/Pca0RM6ApBo
+01:55 < Lee1092> 點 label 可以切換  youtube 起始跟結束時間  當作打逐字稿的工具  XD
+01:57 < au> ok fixed too
+01:57 < Lee1092> au thanks a lot
+01:59 < CindyLinz> Lee1092: maluser XD
+02:00 < au> np -- 之前打逐字稿是用 amara.org ( amara 的 code 在 https://github.com/pculture/unisubs )
+02:00 < kcwu> au's url: [pculture/unisubs · GitHub]
+02:01 < au> coVerbatim 很輕量~ 看來不錯
+02:02 < Lee1092> CindyLinz: 那是什麼?  @@?
+02:02 < Lee1092> au  還在測試  感覺還有 bug   XD
+02:03 < CindyLinz> Lee1092: 嗚嗚只是個爛玩笑 -- malware: 惡意程式, 改一下 maluser: 惡意使用者...
+02:04 < Lee1092> XDDDDD   我可能還會用壞 ethercalc 多次   orz..
+02:06 < CindyLinz> XD
+02:06 < au> 沒關係，後端每個 spreadsheet 各自是獨立的 posix thread，不會互相影響，請儘量玩
+02:08 < shuhua_> Lee1092: 什麼什麼！！
+02:09 < shuhua_> 話說我看到au提到了關鍵字「逐字稿」，我錯過了什麼嗎？
+02:11 < Lee1092> shuhua_:  等明天再給妳完   我先測試測試  XD
+02:12 < shuhua_> Lee1092: XDXDXD 好！
+02:16 < CindyLinz> miaoski: 加快一點點.. 50s -> 36s
+03:27 < CindyLinz> miaoski: 又再加快一點點.. 36s -> 23s
+03:32 -!- chihchun is now known as chihchun_afk
+03:33 < CindyLinz> miaoski: 喔喔! 再加一個.. 23s -> 11s :D
+04:10 < CindyLinz> miaoski: 11s -> 9s
+04:12 < CindyLinz> 越來越醜了 orz   refactor 方向反惹 orz
+05:16 < mingtsay> CindyLinz: 是在快什麼啦XDDDDDDDD
+07:14 < Michael_LI> 大家早
+07:15 < Michael_LI> 補昨天的資訊／請大家多多支持鄉民科學及保護我們的地球！／https://www.facebook.com/lihsingyu/posts/912397185440587
+07:15 < kcwu> Michael_LI's url: [Hsingyu Li - 請大家多多支持鄉民科學及保護我們的地球！... | Facebook]
+07:15 < Michael_LI> https://www.facebook.com/twdsconf/posts/1550496381839144
+07:15 < kcwu> Michael_LI's url: [台灣資料科學愛好者年會 - Dali Lin 研究員實踐鄉民科學的方式 ... :-) | Facebook]
+07:21 -!- iMac [~iMac@cm61-10-83-5.hkcable.com.hk] has left #g0v.tw ["Leaving"]
+07:46 < miaoski> CindyLinz: orz... 妳還真的半夜 anti-refactor ...
+07:47 < miaoski> 還好現在應該睡著了吧？XD
+08:35 < ipa> 早安
+08:44 < pipi_> R1 setting完成
+08:46 < pipi_> 早安，歡迎光臨R1
+08:50 < miaoski> 早安，我快到了
+08:51 < a0kman> 甜點慵懶症候群
+08:51 < a0kman> SLS
+08:57 < pipi_> 點心還沒到～
+08:59 < miaoski> 好餓了…
+09:10 < Michael_LI> 我也好餓／８點半就到／搶個好位置／
+09:10 < Michael_LI> 今天帶網路線是個　Ｚ＞Ｂ　的行為
+09:22 -!- coldsleep [8c6d7f02@gateway/web/cgi-irc/kiwiirc.com/ip.140.109.127.2] has left #g0v.tw []
+09:25 < ipa> kcwu: 今天要來嗎
+09:25 < ipa> isabel 臨時又不能來
+09:27 < Michael_LI> 資料科學年會／原來有共筆筆記呦／
+09:27 < Michael_LI> https://hackpad.com/2014--yoCSWnghDWb
+09:27 < kcwu> Michael_LI's url: [2014 資料科學愛好者年會 - hackpad.com]
+09:34 < miaoski> CindyLinz: 竟然用 libgd 刻... 好辛苦說
+09:35 < clkaoud> 潮爽der
+09:35 < clkaoud> http://openvisconf.com/ 這裡的 talk 太驚人了
+09:35 < kcwu> clkaoud's url: [Bocoup OpenVis Conf]
+09:35 < clkaoud> 還沒看完就驚呆了
+09:38 < a0kman> 感動了1千萬人的talk
+09:47 < pipi_> \點心setting中/
+09:47 < ddio_> 關刀面前耍關公 XDD
+09:51 < Michael_LI> 高義銘　<--鄉民啊！
+09:54 < ipa> 突然發現超農域的農藥資料庫整合其實是「你被服貿了嗎」農藥版 ....「你被服藥了嗎？」
+09:55 < ipa> 可以召開巴拉黑客松
+09:56 < clkaoud> XD 服藥
+10:12 < Michael_LI> 巴拉松黑客松　ＸＤＤＤ　　好讀（毒）
+10:18 < tkirby> 告白了
+10:25 < johnny___> walkingice: http://blog.yurenju.info/mlymap/#/  https://github.com/yurenju/mlymap
+10:25 < kcwu> johnny___'s url (1/2): [立委選票地圖]
+10:25 < kcwu> johnny___'s url (2/2): [yurenju/mlymap · GitHub]
+10:26 < bobchao_> [工商服務] 歡迎幫忙翻譯剩下的+補中文世界的東西 https://zh.wikipedia.org/wiki/%E8%87%AA%E7%94%B1%E6%96%87%E5%8C%96%E9%81%8B%E5%8B%95
+10:26 < kcwu> bobchao_'s url: [自由文化運動 - 维基百科，自由的百科全书]
+10:27 < clkaoud> tkirby: !!!
+10:36 < juanna> 今天晚上吃磚窯，要吃的人喊"磚窯+1"，我晚點訂位~~~~~
+10:37 < clkaoud> 專搖+2
+10:38 < juanna> 收到~~
+10:40 < miaoski> ronnywang: 我在這裡 (揮手)
+10:43 < miaoski> lafin: https://g0v.hackpad.com/moedict-no-pangcah--R2LBqjAdMwM
+10:43 < kcwu> miaoski's url: [moedict no pangcah 阿美語萌典 - g0v.hackpad.com]
+10:49 < ronnywang> miaoski: 給我你的 gmail ，我開帳號給你
+10:49 < miaoski> ronnywang: lin.zhemin@gmail.com 感謝~
+11:02 < a0kman> 服藥QAQ
+11:05 < jimyhuang__> 一覺醒來就....趕不上點心時間了
+11:06 < ch0upi_bsd> https://gist.github.com/choupi/32fd095d67c965128bfe
+11:06 < kcwu> ch0upi_bsd's url: [from http://e-dictionary.apc.gov.tw/Index.htm]
+11:10  * walkingice 把第八次選舉立委選舉每個投票所的資料砍下來了
+11:17 < Lee1092> shuhua_:  差不多了  現在應該可以玩玩看  XD  http://jessy1092.github.io/coVerbatim/#/DcZvOcci3Lg
+11:20 < basety> 請問
+11:21 < basety> 我現在還可以參加第十次黑客松嗎 (我沒報名)
+11:23 < Michael_LI> 氣象博士／現在在分析雞蛋蛋價／結論是／跟天氣沒關係／可能跟蛋蟲有關／
+11:25 < lanf0n> basety: 要有票才能進去XD
+11:25 < basety> @@
+11:26 < basety> 謝謝回應
+12:03 < ipa> basety: 其實可以來....
+12:05 < basety> @ipa 真的嗎XD
+12:08 < ipa> basety: ya 有多的票 過來到R1找我
+12:09 < ipa> isabel 的票給你用
+12:12 < pipi_> \發便當囉/
+12:21 < shuhua_> Lee1092: 你在哪？
+12:39 < CindyLinz> miaoski: 早安 (艸)
+12:39 < CindyLinz> mingtsay: 早安 (艸)
+12:39 < miaoski> CindyLinz: 早安 ^^;
+12:40 < miaoski> CindyLinz: 好用，而且其實程式不會很噁心啊..... 
+12:40 < miaoski> CindyLinz: (以暗黑界的標準的話)
+12:41 < CindyLinz> ...............||
+12:56 -!- basety [guest-base@conference/jsconf/x-ayugsslvpsbjlhui] has left #g0v.tw []
+13:04 < miaoski> ipa: 成果秀要和妳借電腦了 >////<
+13:34 < hychen1> clkaoud: 這太high了
+13:44 < pipi_> 成果發表還有兩組的quota喔
+13:51 -!- lkkgeniu1 is now known as lkkgenius
+13:59 < mingtsay> CindyLinz: 早哦ㄕ/
+14:18 < ipa> miaoski: ok
+14:22 < numbes> 短講， 「公有土地議題」與「群眾規劃」探究，提供參考 http://www.slideshare.net/MikLiu/20140831-38523899
+14:22 < kcwu> numbes's url: [20140831 公有地短講]
+14:26 < ipa> numbes++
+14:28 < miaoski> CindyLinz: ++  還有 ronnywang ++
+14:28 < miaoski> http://ckhis.ck.tp.edu.tw/~ljm/amis-toufu/index.php
+14:28 < kcwu> miaoski's url: [阿美語萌典]
+14:28 < a-tsioh> hi !
+14:28 < miaoski> 可以開始鄉民 OCR 了。雖然我現在才想起來... 有一行一行切好的，或許可以直接丟進 OCR ... 然後鄉民校對
+14:29 < miaoski> 有沒有好用的 OCR T_T
+14:29 < miaoski> a-tsioh: 一起來玩這個....
+14:29 < a-tsioh> miaoski++
+14:29 < superbil> miaoski: ++
+14:30 < superbil> 看來是新的 OCR 可以玩了阿 (遠目)
+14:30 < miaoski> superbil: 這個比較難玩... 其實 xd
+14:31 < a-tsioh> 我對這個很有興趣
+14:32 < ronnywang> miaoski ++
+14:32 < a-tsioh> 我下一個工作就是跟OCR（非鄉民的，而且作法文的）有關
+14:34 < a-tsioh> 昨天有萌典的進步嗎？
+14:35 < miaoski> a-tsioh: 這次只有我們做萌典相關的
+14:36 < miaoski> ronnywang: 真的感謝~ !
+14:36 < a-tsioh> 我現在不得不面對“教育部有，萌典沒有”這個問題（臺語）
+14:36 < miaoski> 雖然最後偷懶用 SQLite3 + TANET 上的主機... 反正這是學術專案 (咦)
+14:36 < ronnywang> 磚窯+1
+14:36 < miaoski> a-tsioh: 為什麼?
+14:37 < a-tsioh> 有改變輸入法了，現在是用萌典的json當data source
+14:37 < a-tsioh> 使用者在抱怨XD
+14:37 < ZUZ> 嗨 貪污判決書專案需要簡單明瞭的名稱 有沒有好建議？
+14:37 < ipa> 這是什麼妖術
+14:38 < ipa> 阿美詞典OCR
+14:38 < clkaoud> miaoski++
+14:38 < miaoski> clkaoud: 村長到時候要拗你募資買版權，哈
+14:38 < kang1> 我跟 ZUZ 想請教大家: 關於 貪汙案件查詢網站 , 網域如何命名 , 請大家給意見
+14:38 < miaoski> a-tsioh: 所以是有新柴沒砍的意思....
+14:38 < kang1> 高村長說 :  discorruption  .g0v.tw 太長了
+14:38 < ronnywang> miaoski: 有沒有剩下幾行還沒打完的資料可以看 XD
+14:39 < a-tsioh> miaoski: 新柴沒砍？　好像是
+14:39 < a-tsioh> 也不是新的
+14:40 < juanna> ronnywang:收到你的磚窯+1
+14:41 < ddio_> 剛剛民啥米主投影片 XD https://docs.google.com/presentation/d/1VPLG4u98K1jzVEadSNiGIvI_2KoQtE87Cm91hP-76Ss/edit#slide=id.p
+14:41 < kcwu> ddio_'s url: [g0v 短講 | 網路可以民啥米主？ - Google 簡報]
+15:01 < macpaul> http://youtu.be/Z4qqdmW2B2I
+15:01 < kcwu> macpaul's url: [g0v tw hackath10n 中場短講 線上剪接平台webmaker使用心得與新聞共編功能比較 台灣零時政府第拾次資料科學黑客松 - YouTube]
+15:02 < macpaul> http://youtu.be/FH9GwDfKiCI
+15:02 < kcwu> macpaul's url: [g0v tw hackath10n 中場短講 「公有土地議題」與「群眾規劃」探究 台灣零時政府第拾次資料科學黑客松 - YouTube]
+15:02 < macpaul> http://youtu.be/gH8Vu9tYF8I
+15:02 < kcwu> macpaul's url: [g0v tw hackath10n 中場短講 網路可以民啥米主？ 台灣零時政府第拾次資料科學黑客松 - YouTube]
+15:02 < macpaul> 這兩天的中場短講 的play list 
+15:02 < macpaul> https://www.youtube.com/playlist?list=PLdwQWxpS513CiFPEfWwH6WS-qiy3wkhE4
+15:02 < kcwu> macpaul's url: [g0v.tw hackath10n - 中場短講 - YouTube]
+15:03 < caasih> macpaul++
+15:07 < a-tsioh> macpaul++ 
+15:11 < a-tsioh> moedict-data-twblg 沒有什麼CREATE DATABASE的script ? ( au 在嗎？)
+15:11 < au> 在
+15:12 < au> createdb twblg ; pgrest twblg # 應該這樣就可以了
+15:12 < a-tsioh> 不用create什麼tables 嗎？
+15:13 < au> make import 時 pgrest 會自動生成 tables
+15:13 < CindyLinz> miaoski: !
+15:13 < CindyLinz> miaoski: 那時就在想這是什麼神祕的生字書 XD
+15:14 < a-tsioh> pgrest有那麼好用？
+15:14 < a-tsioh> (還沒安裝)
+15:27 < CindyLinz> miaoski: 欸欸 XD # 第 182 頁, 第 44 行 已經有undefined人填寫確認了，目前答案：[這是空白]
+15:28 < CindyLinz> miaoski: 「undefined人」是「沒有人」的javascript翻譯嗎? XD
+15:28 < miaoski_bot> CindyLinz: 先承認你就是沒有人
+15:28 < CindyLinz> wwww
+15:28 < pipi_> lololol 呢＠＠
+15:28 < miaoski> CindyLinz: XDDDDD 
+15:29 < pipi_> lololol快來R0測試
+15:32 < CindyLinz> 發現原文有錯字耶....
+15:32 < CindyLinz> 還是應該照打哄 ^^|
+15:32 < CindyLinz> 原文: 2. to wear glasses 帶眼鏡
+15:33 < CindyLinz> page 191, line 8
+15:34 < miaoski> CindyLinz: 對啊.... 照打 XD
+15:35 < miaoski> undefined 大概是變數被我改爛了 xd
+15:46 < miaoski> http://bit.ly/mikasoy
+15:46 < kcwu> miaoski's url: [阿美語萌典]
+15:49 < buganini> 連印刷本中英文混雜的地方都歪的不一樣的感覺@@
+15:49 < buganini> miaoski: 有整頁的圖嗎?
+15:49 < miaoski> buganini: 有哦
+15:49 < miaoski> buganini: http://ckhis.ck.tp.edu.tw/~ljm/amis/
+15:49 < kcwu> miaoski's url: [方敏英: 阿美語字典]
+15:53 < au> a-tsioh: 我剛 release 了 pgrest 0.1.2 和 connect-csv 新版，moedict-data-twblg 裡的 "make all" 稍微看一下應該就會動了
+15:53 < a-tsioh> 哦
+15:53 < a-tsioh> 好我試試看
+15:56 < CindyLinz> 真好奇這一頁切出來會變什麼樣.. XD # http://ckhis.ck.tp.edu.tw/~ljm/amis/index.php?p=449
+15:58 < aftect> ?
+15:58 < aftect> @a-tsioh
+15:58 < CindyLinz> 變成這樣 XD # http://ppt.cc/a5Yw
+15:58 < kcwu> CindyLinz's url: [來個 PPT 短網址 :: 縮圖剪剪樂!]
+15:58 < buganini> miaoski: 有可以整包下載的嗎?
+15:59 < miaoski> buganini: 自己爬吧 :P
+15:59 < buganini> orz
+15:59 < a-tsioh> aftect ?
+15:59 < a-tsioh> psql -U postgres -c "create extension plv8"
+15:59 < a-tsioh> ERREUR:  n'a pas pu ouvrir le fichier de contrôle d'extension « /usr/share/postgresql/9.1/extension/plv8.control » : Aucun fichier ou dossier de ce type
+15:59 < miaoski> a-tsioh: 要切成英文啦...
+15:59 < aftect> @a-tsioh 有可以整包下載的嗎?
+16:00 < a-tsioh> oops法文，就是打不開file,沒有這個檔案
+16:00 < miaoski> CindyLinz: 沒切到那邊，哇哈哈... 我只切了字典的部份
+16:01 < au> a-tsioh: need to install plv8 first perhaps from apt-get
+16:01 < au> e.g. https://launchpad.net/ubuntu/trusty/+package/postgresql-9.3-plv8
+16:01 < kcwu> au's url: [postgresql-9.3-plv8 : Trusty (14.04) : Ubuntu]
+16:02 < a-tsioh> debian沒有
+16:02 < CindyLinz> buganini: for i in `perl -e 'for(1..449){ printf "%03d\n", $_ }'`; do wget http://ckhis.ck.tp.edu.tw/~ljm/amis/$i.jpg; done
+16:03 < au> a-tsioh: pgxn install plv8 ? # http://blog.endpoint.com/2013/11/using-javascript-in-postgresql.html
+16:03 < kcwu> au's url: [Using JavaScript in PostgreSQL | End Point Blog]
+16:03  * buganini 正在下載了
+16:03 < CindyLinz> ^^
+16:03 < buganini> 其實source複製到sublime text取代一下就好了xd
+16:04 < superbil> juanna +1 
+16:05 < ipa> juanna: +1 clkao +1
+16:10 < miaoski> au: 我發現我的 local repo 和萌典已經離太~~~~遠了 T_T
+16:11 < au> miaoski: 主要是 react 的關係... 
+16:11 < miaoski> CindyLinz: 我堅決使用 for n in `seq ...`
+16:12 < miaoski> au: 嗯，要重新研究起了... 
+16:13 < CindyLinz> miaoski: 不知道要怎麼補0 @@"
+16:14 < CindyLinz> 喔, 有 command line 程式 printf
+16:16 < miaoski> CindyLinz: seq -f%03g 1 449
+16:16 < CindyLinz> 哼哼..   perl -e 'for(1..449){ system sprintf "wget http://ckhis.ck.tp.edu.tw/~ljm/amis/%03d.jpg", $_ }'
+16:16 < CindyLinz> 哦 -f 學起來 :p
+16:16 < CindyLinz> 雖然 -f 這種參數通常很恐怖.... OAO
+16:17 < kcwu> 用 bash 的話直接 wget http://ckhis.ck.tp.edu.tw/~ljm/amis/{001..449}.jpg 就好了
+16:17 < miaoski> CindyLinz: 莫慌，沒有這種參數怎麼 hack ... 
+16:17 < miaoski> kcwu: 哦哦哦哦哦不愧是小光
+16:17 < kcwu> curl 也有內建
+16:18 < CindyLinz> 不是說好 do one thing 的嘛.... # 看看 curl
+16:27 < ipa> g0v.tw 的 gulp 好像壞了
+16:28 < ipa>  tag 一下 yhsiang_ XD
+16:28 < miaoski> clkaoud: 村長等一下我在你前一個短講，可以借你的電腦播 speakerdeck ?
+16:28 < clkaoud> sure you have the url in sheet?
+16:34 < miaoski> clkaoud: 有喲~ 不過還在改投影片 @@
+16:36 < juanna> ipa: 磚窯我用你名字訂好二桌七點
+16:36 < juanna> 我六點就先閃了,七點有約
+16:38 < ipa> juanna: ok \o/
+16:44 < macpaul> http://youtu.be/ebuvRzoGJaM
+16:44 < kcwu> macpaul's url: [g0v tw hackath10n 成果報告 自動新聞議題探勘 台灣零時政府第拾次資料科學黑客松 - YouTube]
+16:48 -!- chihhsin_ is now known as chihhsin
+16:53 -!- kang1 [kang@conference/jsconf/x-psbwxocmdxaoigeb] has left #g0v.tw []
+16:53 < Michael_LI> jimyhuang__／之後再看看／https://g0v.hackpad.com/NPO-aJwh3udTLL4
+16:53 < kcwu> Michael_LI's url: [［坑］NPO給問嗎？（公益組織財務透明化） - g0v.hackpad.com]
+16:57 < pipi_> 要報告的大大們請到面對舞台的右手邊來準備喔
+16:59 < a-tsioh> au: make pgrest的pgres --db twblg fail
+16:59 < a-tsioh> Error: fe_sendauth: no password supplied
+16:59 < a-tsioh> at Connection.<anonymous> (/usr/lib/node_modules/plv8x/node_modules/pg/lib/native/index.js:202:17)
+16:59 < a-tsioh> (but I can login into `psql -d twblg`)
+17:00 < ipa> R0閃電準備中
+17:02 < pipi_> ronnywang還沒到～
+17:03 < pipi_> lololol gilbert miaoski還沒到
+17:03 < miaoski> pipi_: 喵?
+17:03 < au> a-tsioh: try change md5 to trust in pg_hba https://stackoverflow.com/questions/17971101/how-do-i-start-enterpisedb-postgresql-on-mac-osx-10-6-8/18007600#18007600
+17:03 < miaoski> 對不起我偷偷在左邊找了一個位子...
+17:03 < kcwu> au's url: [ruby on rails 4 - How do I start enterpiseDB PostgreSQL on Mac OSX 10.6.8? - Stack Overflow]
+17:03 < au> (and restart postgresql)
+17:04 < pipi_> 那你自己過來右邊準備XD
+17:04 < ipa> 等下用麥克風呼叫 gilbert？ 
+17:05 < au> a-tsioh: sudo vim /etc/postgresql/9.0/main/pg_hba.conf # with...
+17:05 < au> host all all 127.0.0.1/32 trust
+17:05 < au> host all all ::1/128 trust
+17:05 < ipa> lolol 來了 跟 johnny___ 下去了
+17:05 < a0kman> Au!  QAQ
+17:05 < miaoski> 該怎麼用一頁投影片帶過 ronnywang 的政治獻金數位化...
+17:06 < pipi_> 嗯 只剩gilbert還沒到
+17:06 < ipa> miaoski: http://www.slideshare.net/ipachiu/20140425-flyingv/19
+17:06 < kcwu> ipa's url: [【虛擬世界。需你世界】 鍵盤救台灣，創造新世代公民運動]
+17:07 < ipa> gilbert 剛在後面 hacking 要呼叫一下
+17:07 < ipa> pipi_: 跟村長講一下請 gilbert 過去？
+17:07 < Michael_LI> 沒有人，加油！
+17:07 < miaoski_bot> Michael_LI: 先承認你就是沒有人
+17:08 < a-tsioh> au: seems to work, now it's json type not found
+17:09 < miaoski> clkaoud: 投影片改好上傳好了，感謝! 
+17:09 < miaoski> 我來過去右邊^^;
+17:09 < clkaoud> miaoski: make sure its "published"
+17:10 < clkaoud> this one/; https://speakerdeck.com/miaoski/a-mei-yu-meng-dian-kan-chai-pian-at-2014zi-liao-ke-xue-ai-hao-zhe-nian-hui ?
+17:10 < kcwu> clkaoud's url: [阿美語萌典 砍柴篇@2014資料科學愛好者年會 // Speaker Deck]
+17:10 < miaoski> yes
+17:10 < miaoski> done :)
+17:13 < ipa> gilbert 來了，先去上廁所了
+17:14 < pipi_> 好 請他到舞台前
+17:16 < ronnywang> http://newstrend.g0v.ronny.tw/
+17:16 < miaoski> ronnywang: ++
+17:17 < wereld> ronnywang:++
+17:18 < mindos_> ronnywang++
+17:18 < miaoski> wereld: spreekt u nederlandse?
+17:19 < ronnywang> 竟然有人輸入 '!@#$%^&*()_+=-[]'... 太機車了
+17:19 < ronnywang> 還好我應該有擋
+17:20 < suensummit> 馬上有人做壓力測試XD
+17:20 -!- wereld [guest-were@conference/jsconf/x-xqcepgyffqoaacyd] has left #g0v.tw []
+17:20 < macpaul> 犯規！ 竟然放一蘭拉麵得照片 XDD
+17:21 < macpaul> 看了就餓....XD
+17:21 < clkaoud> XD
+17:21 < CindyLinz> ronnywang: XD
+17:21 < CindyLinz> ronnywang: 會怎樣嗎? XD
+17:23 < ronnywang> 我是用做 escape 啦，應該找不到任何東西 XD
+17:23 < mrbigmouth_> 新聞啄木鳥http://ec2-54-92-66-45.ap-northeast-1.compute.amazonaws.com:9090/
+17:26 < miaoski> clkaoud: 可以再幫我 reload 一次? 又改了... 謝謝 >////<
+17:27 < clkaoud> ok
+17:27 < clkaoud> CindyLinz: 就是你！
+17:27 < CindyLinz> 冤枉啊~~~~~~~~
+17:27 < CindyLinz> 我根本不知道 link 啊 OAO
+17:28 < miaoski> 未看先猜的概念? XDDD
+17:28 < CindyLinz> miaoski: 你一直抹黑我啊 Q_______Q
+17:29 < miaoski> CindyLinz: 冤枉啊~~~剛剛明明是村長
+17:29 < miaoski> CindyLinz: 我最喜歡暗黑界了，幹嘛抹黑妳~~ (咦)
+17:30 < a0kman> https://i.imgur.com/J7jiHvV.jpg
+17:30 < a0kman> 濃郁
+17:30 < CindyLinz> miaoski: 你一直說我暗黑, 蠱惑村長的心靈.. Q_____Q
+17:30 < mindos_> 農域
+17:31 < miaoski> CindyLinz: 那是事實 (攤手)
+17:31 < miaoski> 不錯耶，大會的場務可以解決 presentation 問題
+17:39 < Michael_LI> ronnywang／今天算你你正式公開這個系統／會來亂的人恐怕不少／
+17:40 < macpaul> 啊 沒拔到插頭 XD
+17:41 < miaoski> 系統不公開也是可以亂的 xddd
+17:41 < aaronlin_> 剛剛 demo 的 repo 在哪？
+17:42 < aaronlin_> 或者負責的人要怎樣聯絡？
+17:42 < ipa> aaronlin_: 可以找 Lee1092 和 shuhua_ 
+17:43 < aaronlin_> thanks
+17:43 < CindyLinz> miaoski: 黑! # 17:41 < miaoski> 系統不公開也是可以亂的 xddd
+17:43 < ipa> aaronlin_: http://hackfoldr.org/sunflowerDocumentary/http%253A%252F%252Fjessy1092.github.io%252FcoVerbatim%252F
+17:44 < ipa> https://github.com/suensummit/timeSlicer/tree/master/20140829_g0v
+17:44 < kcwu> ipa's url: [timeSlicer/20140829_g0v at master · suensummit/timeSlicer · GitHub]
+17:45 < aaronlin_> ipa: thanks
+17:46 < miaoski> CindyLinz: 我被妳精神污染了 Q.Q
+17:47 < CindyLinz> miaoski: 我是清白的啊~~~~~ ><  駭客闖官遊戲什麼的也從來沒玩過耶 ><
+17:47 < CindyLinz> 闖關
+17:48 < shuhua_> aaronlin_: 我在
+17:49 < ronnywang> miaoski: newsdiff 的話，沒有 input 可以讓一般人來亂啊.. 除非是各家媒體針對我的網址故意噴錯的內容
+17:49 < suensummit> Lee++ http://jessy1092.github.io/coVerbatim/
+17:49 < ronnywang> Michael_LI: newsdiff 的話，沒有 input 可以讓一般人來亂啊.. 除非是各家媒體針對我的網址故意噴錯的內容
+17:49  * ronnywang 丟錯人
+17:51 < CindyLinz> ronnywang: miaoski 會對你的 80 port 塞奇怪der東西
+17:52 < Lee1092> suensummit:  經由你的啟發~   不會 R  只好重寫  XD
+17:52 < suensummit> @aaronlin_: Lee++ http://jessy1092.github.io/coVerbatim/
+17:53 < suensummit> 接下來就是把資料庫建起來惹XDD
+17:53 < a-tsioh> au: I managed to have it ~running with the postgres user but then the `make import` stall and pgrest yield some warnings
+17:53 < yutin> 剛剛成果的案子是？
+17:54 < Lee1092> aaronlin_:  demo repo https://github.com/jessy1092/coVerbatim/
+17:54 < kcwu> Lee1092's url: [jessy1092/coVerbatim · GitHub]
+17:54 < Lee1092> suensummit:  後台是 ethercalc 可以直接用 ethercalc api 抓資料  :p
+17:55 < shuhua_> yutin: 剛剛是我的專案 http://hackfoldr.org/sunflowerDocumentary/
+17:55 < yutin> shuhua_ 應該不是 
+17:55 < yutin> 我聽到有人要ios的key
+17:56 < Lee1092> yutin:  Rhozan_  的 除黴計劃?  XD
+17:56 < yutin> Rhozan_ 除霉需要ios憑證？
+17:57 < Lee1092> miaoski: ++
+17:58 < jimyhuang__> clkaoud: 總結時偷 lighting talk :P
+17:59 < Lee1092> jimyhuang__:  上電視了 XD
+17:59 < jimyhuang__> 我剛剛有發現 .. 所以現在可以不斷 tag 就可以上電視
+18:01 < au> a-tsioh: weird. it'll take some time I guess to import but shouldn't take too long
+18:01 < au> a-tsioh: try pull and: 
+18:01 < au> xzcat dump.sql.xz  | psql twblg
+18:02 < a-tsioh> actually after some time `make import` fail saying that "no data received from server"
+18:02 < au> that's the post-import datadump and so "make index" should run after importing it
+18:03 < a-tsioh> ok I'm trying
+18:04 < Rhozan_> yutin: Lee1092 yes,用在cordova轉譯成ios
+18:06 < ipa> jimyhuang__: 要去吃磚窯嗎
+18:06 < jimyhuang__> ipa: 好啊
+18:06 < ipa> 還有誰要去啊？
+18:07 < a-tsioh> au: make index works this way
+18:07 < a-tsioh> (with user postgres)
+18:07 < au> a-tsioh: ok then -- we can fix import later or change it to a regular plv8x (non-pgrest) script
+18:12 < ipa> yhsiangCloud__!
+18:17 < yhsiang_> au: 應該把票給你的 XD
+18:18 < yhsiang_> 昨天半夜和朋友喝到4點 今天就沒去了 orz ...
+18:18 < yhsiang_> ipa: sorry QQ
+18:18 < au> yhsiang_: 沒關係，我今天本來就只能遠端看直播~
+18:19 -!- numbes [guest-numb@conference/jsconf/x-cbqzoftpstmnosir] has left #g0v.tw []
+18:25 -!- kuanyui [~kuanyui@118-166-99-251.dynamic.hinet.net] has left #g0v.tw []
+18:57 < ipa> yhsiang_: 沒關係啊 幫我看gulp是不是壞掉 XD
+19:34 -!- aftect [guest-afte@conference/jsconf/x-kecjxbfvqatkgvmz] has left #g0v.tw []
+19:43 < lanf0n> 有人有 fb api error 613 的處理經驗嗎QQ...
+19:59 < yhsiang_> ipa: g0v.tw?
+19:59 < yhsiang_> lanf0n: 呼叫太多次?
+20:03 < pipi_> 真是天生生來搞場務的QQ
+20:27 < lanf0n> yhsiang_: 查文件是這樣寫...但reply 的 error msg 是寫 exceed the rate of 600 calls per 600 seconds
+20:28 < lanf0n> 照理上(err_msg)來說 應該 是不會超過才對啊QAQ... ((而且是有時候有噴 err 有時候又可以抓-.-
+20:30  * lanf0n 一定鬼月沒買乖乖回來拜... 到處都在出包 囧rz
+20:30 < yhsiang_> lanf0n: 你乖乖要放在那裏拉 XD
+20:31 < lanf0n> 至少放主機上啊...最近連 irccloud 都卡卡的QQ
+20:50 < lanf0n> 啊啊啊啊啊 是 checker 的關係!!
+20:51 < yhsiang_> lanf0n: checker 呼叫太頻繁?
+20:51 < lanf0n> yhsiang_: checker 會對 feeds table 裡面的每個 feed 做一次 request.... 量大的話就會超額了 囧>
+20:51 < lanf0n> 難怪之前沒有 囧囧...
+20:51 < clkaoud> yhsiang_: 她說 g0v.tw site gulp 有問題
+21:25 < clkaoud> au: 那天說什麼毒蛇毒性研究跟鴆鳥的有 reference 嗎
+21:25 < kiang> 恩， PHP 不是什麼好東西，我也不是，所以負負得正剛好可以搞出一些東西，就騙吃騙喝十多年了 XD
+21:25 < clkaoud> kiang: 賀賺翻！
+21:26 < miaoski> kiang: PHP 不是什麼好東西 +1
+21:26 < miaoski> kiang: 所以可以玩很多 vulnerability /flee
+21:27 < CindyLinz> miaoski: 喵黑黑~
+21:27 < miaoski> CindyLinz: 被妳帶壞了 Q.Q
+21:28 < CindyLinz> miaoski: 不關我的事 = 3=
+21:31 < pipi_> miaoski: 喵（逃）
+21:31 < tompol> 某人說irc上可以求職是真的嗎@@
+21:32 < tompol> @pipi 那位...  好吧  我正在求職...  iOS或Django(流口水
+21:32 < lanf0n> XDD
+21:33 < miaoski> tompol: 先承認你就是 lololol
+21:34 < a0000778> 據說會先被推入無底深坑
+21:34 < ipa> tompol: 應該是有機會歐 要不要趁空檔找個坑作點事情？
+21:34 < ipa> tompol: 已經不少人在社群轉職或求職
+21:35 < tompol> 奇怪  為什麼是tompol???
+21:35 < tompol> 這是lololol沒錯
+21:36 < tompol> 被附身了
+21:36 < CindyLinz> l, l o l, (l o l) o (l o l), ((l o l) o (l o l)) o ((l o l) o (l o l))
+21:37 < tompol> lololol<-這是以前的網遊帳號
+21:37 < yaopo> Hi
+21:37 < yaopo> 想請問projectV的問題
+21:38 < CindyLinz> tompol: 喔 ^^|
+21:38 < tompol> @cindylinz 等等
+21:38 < CindyLinz> tompol: ?_?
+21:38 < tompol> tompol是某人的id嗎
+21:38 < yaopo> 我在hackpad上沒找次相關的page
+21:38 < lanf0n> yaopo: 它是隱藏版 project...XD
+21:39 < yaopo> 想了解與幫忙，不知可以與誰連絡？
+21:39 < yaopo> lanf0n: 難怪找不次相關訊息XD
+21:40 < lanf0n> yaopo: project 簡介應該是這個 https://g0v.hackpad.com/V-NMUKAD9OBI8
+21:40 < kcwu> lanf0n's url: [割闌尾V計畫 - g0v.hackpad.com]
+21:41 < lanf0n> 不過組頭(?)好像沒在 irc 上 囧... ly 應該可以協助轉介... cc yhsiang_ 
+21:41 < lololol> XP
+21:41 < lololol> lolololololololol
+21:41 < CindyLinz> wwww
+21:42 < yutin> Rhozan_ hi 新聞松 或看哪天約一下
+21:42 < yutin> 我可以幫你處理憑證
+21:42 < miaoski> lololol: 你應該叫 mrorz 幫你介紹一下工作的 XDDDD
+21:42 < lololol> 他似乎在忙論文
+21:43 < yaopo> lanf0n: 嗯，謝謝。
+21:43 < lololol> 而且我被推坑但沒做事感到很愧疚XP
+21:48 < lololol> mrorz可能快畢業了?
+21:48 < lololol> 先恭喜他
+21:49 < lololol> 啊  對了  那時候在台前準備的時候
+21:49 < lololol> 開了可以讓手機投影到筆電的程式
+21:49 < lololol> 結果突然間被3~4個人ddos投進來...
+21:50 < lololol> 看到別人螢幕在我的桌面上...  然後後面的疑似工作人員在偷笑...XDDDD
+21:50 < lololol> 然後就不敢用投影了
+21:53 < lololol> 以前的con似乎有規定不能開類似AP的...
+22:02 < CindyLinz> COSCUP 這種的是人太多, 如果大家 AP 開下去打架了, 就大家都出不去了; 然後 HITCON 這種的是太髒了, 會假設開 AP 的都是壞人 XD
+22:02 < Jedi_> CindyLinz: 說錯了吧
+22:03 < CindyLinz> 唔?
+22:03 < Jedi_> HITCON 這種的是太髒了, 會假設開 AP 的都是在發邀請函（意味不明）
+22:03 < CindyLinz> HITCON 主持人會要大家舉報 AP XD
+22:06 -!- lololol [lololol@conference/jsconf/x-xxybxhodzgmkditg] has left #g0v.tw []
+22:09 < pipi_> tompol: g0v也算是幫我找到工作的推手之一
+22:09 < pipi_> 而且認識越來越多人真的很開薰～
+22:10 < a0000778> 找工作+1...
+22:12 < CindyLinz> g0v 不只幫你救國家, 還幫你找工作
+22:12 < CindyLinz> 好像弱掉了..ww
+22:12 < lololol> @cindylinz @cindylinz 其實他開的是honey  是來釣攻擊手法的
+22:13 < CindyLinz> lololol: 你說誰啊? XD
+22:13 < lololol> 假想劇情
+22:14 < yhsiang_> lanf0n: 阿?
+22:14 < CindyLinz> XD
+22:14 < lanf0n> yhsiang_: yaopo 想跳 projectV.... XD
+22:14 < macpaul> https://www.youtube.com/playlist?list=PLdwQWxpS513CBdo6AK6vOoDewCP7S-xKWhttps://www.youtube.com/playlist?list=PLdwQWxpS513CBdo6AK6vOoDewCP7S-xKW
+22:14 < yhsiang_> lanf0n: 為什麼是找我?
+22:14 < kcwu> macpaul's url: [糟糕！發生錯誤。 - YouTube]
+22:14 < macpaul> https://www.youtube.com/playlist?list=PLdwQWxpS513CBdo6AK6vOoDewCP7S-xKW
+22:14 < kcwu> macpaul's url: [g0v.tw hackath10n - Closing and Demo 成果報告 - YouTube]
+22:15 < lanf0n> yhsiang_: 林祖儀沒上 irc 的樣子... 想說有在草辦看過他  應該可以就近連絡得到XD
+22:15 < yhsiang_> lanf0n: 那是去連絡他 不是來找我吧 ...
+22:15 < lanf0n> macpaul++
+22:17 < yhsiang_> yaopo: http://appy.tw/ # 請直接和下面的email聯繫吧 
+22:17 < kcwu> yhsiang_'s url: [Appendectomy Project 割闌尾計畫]
+22:18 < lanf0n> yhsiang_: 噢喔sorry QQ
+22:20 < yhsiang_> lanf0n: 因為他們後來不是open的計畫了, 所以我無法幫上忙 XD
+22:23 < lololol> 如果他們想做ios的話或許有機會...
+22:23 -GitHub37:#g0v.tw- [g0v.tw] yhsiang pushed 1 new commit to master: https://github.com/g0v/g0v.tw/commit/da131d3d70c1dd441db890d053e96b90125542b3
+22:23 -GitHub37:#g0v.tw- g0v.tw/master da131d3 Yuan Hsiang Cheng: remove tiny-lr
+22:24 < yhsiang_> ipa: 欸 再測試看看?
+22:24 < lololol> @preepe
+22:24 < lololol> 手殘
+22:28 < lololol> 手機上傳割闌尾書可能有搞頭
+22:36 < yhsiang_> 想幫忙割闌尾的請向facebook/zuyi.lin 聯絡 謝謝
+22:41 < lololol> (got
+22:42 -GitHub74:#g0v.tw- [g0v.tw] yhsiang pushed 1 new commit to master: https://github.com/g0v/g0v.tw/commit/54a61ed9397c41e0b1ec07a9a49c8b7a6df15347
+22:42 -GitHub74:#g0v.tw- g0v.tw/master 54a61ed Yuan Hsiang Cheng: use change event
+22:44 -GitHub103:#g0v.tw- [g0v.tw] yhsiang pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/2ec541888011b25564fccda7dc0a414fbdd2028d
+22:44 -GitHub103:#g0v.tw- g0v.tw/gh-pages 2ec5418 g0v general (via TravisCI): regen for 54a61ed
+22:58 < ipa> pipi_++ 俐落場務
+22:59 < ipa> yhsiang_: 跑了npm start 還是會出現 gulp dev error，明天再看，go zz 
+22:59 < yhsiang_> ipa: ok,刪掉node_modules 重新npm i ?
+22:59 < yhsiang_> ipa: 明天再試看看吧 XD
+23:00 < walkingice> yaopo: github 上面的 projectV 嗎？
+23:00 < walkingice> 今天才長出來，熱騰騰的
+23:02 < miaoski> 打廣告... http://bit.ly/mikasoy 剛剛順手加了 progress bar
+23:02 < kcwu> miaoski's url: [阿美語萌典]
+23:02 < yhsiang_> walkingice: 講一下入坑方式? XDD
+23:03 < walkingice> miaoski: 順手就可以加 feature！！
+23:05 < walkingice> yhsiang_: 在 live 直播拜託大家保密的案主好像想要暫時保持一點神秘感 XD
+23:13 < pipi_> 沒有到俐落啦 Orz
+23:13 < pipi_> 但經過這次更深刻的體會到自己到底是做什麼的料
+23:14 < yhsiang_> walkingice: hmm XD
+23:14 < pipi_> 專做'沒錢賺'的料
+23:16 < yhsiang_> walkingice: 先開花菱屋燒肉團拉~
+23:19 < mx> miaoski: 對照正確的對話框太小，可以再放大一點
+23:36 < miaoski> walkingice: ronnywang 都說了，寫案子就是愈快愈順手愈好
+23:40 < ipa> miaoski: 要不要在那頁加個大標 阿美語萌典 ocr 
+23:40 < ipa> 這樣貼出去比較容易一看就知道在幹嘛
+23:40 -!- mark_____ [uid39536@gateway/web/irccloud.com/x-ioqzqzlioakgwpkl] has left #g0v.tw []
+23:41 < miaoski> ipa: 考慮一下 :P 因為當初 ronnywang 有考慮在手機上使用的人
+23:41 < miaoski> 不過這和政治獻金不一樣，這個用手機打蠻痛苦的，所以應該可以加... ← 掙扎
+23:41 < miaoski> mx: 好喲~ 正在改
+23:41 < ipa> 恩？http://campaign-finance.g0v.ctiml.tw/ 這頁還是有寫政治獻金數位化啊
+23:42 < ipa> http://ckhis.ck.tp.edu.tw/~ljm/amis-toufu/index.php 現在連這個打開只知道要輸入，不知道是什麼
+23:43 < \gugod> crowd ocr 正夯?
+23:47 < Rhozan_> pipi_: 公關~~
+23:48 < ETBlue> 原來 hangee + 萌典松已經開始報名了 XD http://han-gee.kktix.cc/events/hangeehackathon201409
+23:48 < kcwu> ETBlue's url: [HanGee Hackathon 國民機黑客松]
+23:49 < ETBlue> kcwu: 謝謝 XDDD
+23:49 < ipa> ETBlue: 萌典松好像是另一場同天
+23:51 < miaoski> ipa: 可以幫看? 
+23:52 < miaoski> ipa: 政治獻金數位化按下 +1 >> 之後，就沒有這個 title 囉
+23:52 < ipa> miaoski: 好耶 這樣可以來分享了
+23:52 < miaoski> ipa: 其實是 <title>根本沒有用</title> 造成的... 
+23:52 < ipa> 喔 LOL
+23:53 < miaoski> \gugod: 其實 au 幫我用 acrobat PDF 已經很好了，但每一行都要調整 4、5 個 chars.... 
+23:54 < miaoski> mx: 改好囉。下次你遇到有打過的，就會看到新的介面，到時候再麻煩你和我說覺得好不好
+23:54 < mx> OK
+23:58 < pipi_> Rhozan_: 最好把你想到可以塞給我的職稱通通寫出來！！

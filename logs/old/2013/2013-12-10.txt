@@ -1,0 +1,713 @@
+--- Day changed 二 12月 10 2013
+00:00 < pcchen> citation form 是哪個腔口-->無法決定 
+00:00 < ljm> orz...
+00:00 < pcchen> 因為台灣的優勢腔是very mix.....
+00:00 < ljm> pcchen: 我以為只有在台北 mix @@
+00:00 < pcchen> 可以選 string 最短的.
+00:01 < pcchen> 就是 mix 的程度跟角度有連續性的變化XD
+00:01 < ljm> 不行喲. ke-kue 和 kue-ke 是兩種方言
+00:01 < ljm> 一個方言裡不會 ke-ke 也不會 kue-kue
+00:02 < ljm> 可是台北受到國語影響太多，會 kue-ke 卻會 hue-tshia / tsai-hue
+00:02 < ljm> (載貨)
+00:02 < pcchen> 是沒錯，所以我們只會收 ke-kue and kue-ke 的詞條但不收 ke-ke, kue-kue
+00:03 < ljm> WeSay 這時候好痛苦 XD
+00:03 < pcchen> 我已經奮戰很久了
+00:04 < pcchen> 不過我還是相信，自己寫一套沒有比較快（尤其是當語料庫越來越複雜的時候）
+00:04 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+00:04 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+00:04 < ljm> pcchen: 你知道我是純文字檔愛好者 XD
+00:04 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+00:04 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+00:05 < pcchen> ljm: XML 算是純文字黨嗎？
+00:05 < ljm> pcchen: 不算!
+00:05 -!- marlboromoo [~marlborom@101.3.42.48] has quit [Ping timeout: 264 seconds]
+00:05 < ljm> 看要不要借 base form 來用。可是在 WeSay 它一樣是 relation to a single entry (像 xref 一樣)
+00:05 < pcchen> 當初會尋找wesay這種solution是考慮到很多懂台語的人對電腦不是那麼熟習。
+00:06 < pcchen> 還沒想透怎麼用base form
+00:06 < pcchen> 這裡設計還要看轉萌典時候的方便
+00:06 < ljm> 也就是說，其實本質上還是只有 text in input system, choice from a list, multiple choice, picture, relation to a single entry 這幾篇
+00:06 < ljm> 不用擔心轉萌典，只要格式一致，都可以轉
+00:07 < pcchen> yes
+00:07 < ljm> 寫程式的人痛苦比輸入的人痛苦好一點
+00:07 < ljm> base form 其實是這樣: word = ran, base form = run 
+00:08 < ljm> 所以我們就算借它來當 xref, 最後還是得規定一個腔口當主要的詞條
+00:09 < pcchen> wait...
+00:09 < pcchen> 開一個cross -ref filed 叫做 優勢腔？
+00:10 < ljm> ke_雞: base form = kue_雞 類似這樣。kue_雞: 輸入意思和例句. 目前這是我能想到最好的辦法
+00:10 < pcchen> dame...只能有一個confer?
+00:10 < ljm> 也可以。然後意思和例句通通丟進那個優勢腔
+00:10 < ljm> pcchen: 對! 只能有一個。所以我才會開 xref1, xref2, ... 
+00:10 < pcchen> 你的 xref1 跟 xref2 在不同等地位
+00:11 < ljm> 因為 xref1 = 舊的 cross reference ... *sigh*
+00:11 < pcchen> 那我寧可把confer保留給優勢腔（因為只有一個），
+00:11 < ljm> OK 可以移位置
+00:11 < pcchen> rename xref1 to 優勢腔？
+00:11 < ljm> OK... 那 等我一下，我來改 :)
+00:11 < pcchen> xref2->xref1, xref3->xref2, etc?
+00:12 < pcchen> make sense?
+00:12 < ljm> no.
+00:13 < ljm> rename xref1 to 優勢腔.  add xref1 XD
+00:13 < ljm> 然後排列一下順序。我搞定了。等上傳。
+00:13 < pcchen> 等sync
+00:15 -!- icman [~icman@123.240.140.154] has quit [Quit: 明天天氣晴]
+00:16 < ljm> 我剛改了。然後 kha-tah-tshia 那邊的 xref1, xref2 重設了一下
+00:16 < ljm> 優勢腔那邊改成 kue_街 -> ke_街 (我不知道對不對，當個範例)
+00:16 < ljm> sync 好了
+00:18 < ljm> pcchen: 準備來睡。阿美語字典慢慢刻，才到 p.35 ... 一週刻 12 頁。
+00:18 < pcchen> ljm: 阿美語不是有ocr?主要需要校對？
+00:19 < pcchen> ljm: 晚安。我會看看你最後這個commit
+00:21 < ljm> pcchen: 對, OCR 需要重新整理一下，英語和中文的 OCR 都蠻準，但阿美語的不夠準
+00:21 < pcchen> ljm: 檢查完畢，很優。
+00:21 < ljm> 而且要邊看邊修一些小錯誤，一頁還是需要約 20~30 分鐘
+00:21 < ljm> pcchen: 加油~!
+00:22 < pcchen> ljm: 但是我現在深深覺得正確的資料的重要，不然error會一直傳播
+00:22 < pcchen> 只剩design 異用字了！
+00:22 < ljm> release early release often 囉 :P 讓大家幫忙修改錯誤
+00:22 < ljm> 啊啊啊啊~~~ 真頭痛
+00:23 < ETBlue> yukiko: 海報是嗨董 hychen 要的，另外最近服貿也會需要新的插圖，賴律師那邊還在整理資料 cc tuiry 
+00:23 < pcchen> 可能只能用note了～
+00:23 < pcchen> 明天再說吧～
+00:23 < ljm> 忘了剛剛有沒有開 alsoWriteAs 這個欄位了
+00:23 < pcchen> 好像沒有
+00:23 < yukiko> ETBlue: 謝謝ETBlue ^^/ 
+00:24 < ljm> 有耶
+00:24 < ljm> displayName = 異用字
+00:24 < ETBlue> yukiko: 加入文化部了嗎？ https://groups.google.com/forum/#!forum/g0v-moc XD
+00:24 < kcwu> ETBlue's url: [Google 網上論壇]
+00:24 < M00sUltraB0t> [ Google 網上論壇 ] - groups.google.com
+00:25 < pcchen> let me see
+00:25 < pcchen> 真的有！
+00:25 < ljm> (我回 Linux 了，沒辦法敲範例... Q.Q)
+00:25 < pcchen> 解決了！
+00:25 < ljm> 敲敲看，看能不能輸入兩個以上的異用字
+00:25 < ljm> 不行的話只好 (?) 用逗號分開?
+00:26 < pcchen> 用逗號就好
+00:26 < ljm> ok ok 太棒了... 來睏
+00:26 < ljm> 9 9
+00:26 < pcchen> bye
+00:26 < pcchen> 99
+00:29 < yukiko> ETBlue: 請問加入文化部 日後可以再依興趣轉調嗎~XD 
+00:30 < ETBlue> yukiko: 不用轉，跨就好了 XD
+00:31 < yukiko> 喔喔^^/ 感謝
+00:31 < ETBlue> yukiko: 這邊首先每個人都是零時總統，其中有些總統會兼文化部長，技術部長，或美術班長之類的…
+00:31 < yukiko> 有帽子亂飛的感覺!___! （我當小螺絲就好)
+00:32 < ETBlue> yukiko: 所以要兼什麼部門當然是總統自行批准…
+00:32 -!- Ti_W_B114 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 260 seconds]
+00:32 < yukiko> 爽的咧XDD
+00:40 -!- Ti_W_B114 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+00:42 -!- Ti_W_B114 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+00:45 < jimyhuang> hychen++
+01:00 < hychen> yukiko: 那個海報大概不需要了, 可能超過deadline raejin好像忙翻了,no response XD
+01:00 < yukiko> 收到@@
+01:00 < yukiko> 感謝
+01:00 -!- WeiHung [~chatzilla@s101002506.CHING-ABC.ab.nthu.edu.tw] has quit [Quit: ChatZilla 0.9.90.1 [Firefox 25.0.1/20131115105702]]
+01:28 < jimyhuang> hychen: 我補上了實際的數據來源
+01:28 -!- mno2 [~mno2@bb116-15-44-14.singnet.com.sg] has quit [Quit: mno2]
+01:37 -!- mno2 [~mno2@bb116-15-44-14.singnet.com.sg] has joined #g0v.tw
+01:37 -!- Phoenixmiss [~Miss@114-41-122-27.dynamic.hinet.net] has quit [Quit: Leaving]
+01:39 -!- mno2 [~mno2@bb116-15-44-14.singnet.com.sg] has quit [Client Quit]
+01:39 -!- SupaplexTW___ [~Adium@114-36-246-61.dynamic.hinet.net] has quit [Quit: Leaving.]
+01:50 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has quit [Quit: Leaving.]
+02:49 < ETBlue> 賀 g+ 專頁管理員 venev 成功報名黑客松之動民主公民列表頁面完成 XD http://g0v.github.io/don-republic/users.html
+02:49 < M00sUltraB0t> [ 公民列表 | 動民主 ] - g0v.github.io
+03:10 < yhsiangCloud> 好嚇人. ...
+03:10 < yhsiangCloud> ETBlue++
+03:22 -!- AceChen_ [~AceChen@140.109.113.100] has joined #g0v.tw
+03:24 -!- AceChen [~AceChen@140.109.113.100] has quit [Ping timeout: 245 seconds]
+03:50 < poga> ETBlue++
+04:19 -!- markwu [~markwu@116.50.34.246] has quit [Quit: 暫離]
+04:44 -!- Guest17190 [Guest17190@220-129-0-193.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+04:45 -!- Guest17190 [Guest17190@220-129-5-127.dynamic.hinet.net] has joined #g0v.tw
+05:03 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+05:04 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+05:56 -!- taililee [uid18521@gateway/web/irccloud.com/x-swspndueohxuzrnj] has quit [Quit: Connection closed for inactivity]
+06:55 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+06:59 -!- AceChen [~AceChen@140.109.113.100] has joined #g0v.tw
+07:01 -!- AceChen_ [~AceChen@140.109.113.100] has quit [Ping timeout: 260 seconds]
+07:08 < mindos_cloud> ETBlue++
+07:21 -!- lcamel [~lcamel@114-45-54-43.dynamic.hinet.net] has joined #g0v.tw
+07:44 -!- aeil [~Adium@111-243-170-76.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+08:27 -!- walkingice_zZ is now known as walkingice
+08:33 -!- CindyLinz [~cindy_utf@112-121-80-249.mwsrv.com] has quit [Ping timeout: 252 seconds]
+08:33 -!- CindyLinz [~cindy_utf@112-121-80-249.mwsrv.com] has joined #g0v.tw
+08:42 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has joined #g0v.tw
+08:42 -!- tkirby_ [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+08:46 -!- sb-amests2 [7227B841@conference/jsconf/x-efdehzfzpreumzvf] has quit [Ping timeout: 250 seconds]
+08:46 -!- shhu_ [~shhu@bsd2.cs.nctu.edu.tw] has quit [Ping timeout: 250 seconds]
+08:46 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 250 seconds]
+08:46 -!- M00sUltraB0t [~r0b0t@118-163-90-205.HINET-IP.hinet.net] has quit [Ping timeout: 250 seconds]
+08:46 -!- ijliao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 250 seconds]
+08:46 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+08:47 -!- lcamel [~lcamel@114-45-54-43.dynamic.hinet.net] has quit [Remote host closed the connection]
+08:47 -!- rich1iu [richliu@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+08:50 -!- rich1iu [~richliu@140.113.22.92] has joined #g0v.tw
+08:51 -!- c9s_ [sid15100@gateway/web/irccloud.com/x-zjgwrlgwriwirdsu] has joined #g0v.tw
+08:52 -!- Guest17190 [Guest17190@220-129-5-127.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+08:57 -!- Netsplit *.net <-> *.split quits: c9s
+08:57 -!- a2n [~a2n@unaffiliated/a2n] has quit [Ping timeout: 252 seconds]
+08:57 -!- c9s_ is now known as c9s
+08:57 -!- a2n [~a2n@219.85.185.194] has joined #g0v.tw
+08:57 -!- a2n [~a2n@219.85.185.194] has quit [Changing host]
+08:57 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+08:59 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Quit: leaving]
+08:59 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:02 -!- Guest17190 [~SilentAss@60-250-207-166.HINET-IP.hinet.net] has joined #g0v.tw
+09:06 -!- LCfunPlay_op [~LC@111-250-7-253.dynamic.hinet.net] has joined #g0v.tw
+09:11 < mikimoto> hello, 想必大家都注意到最近 Apple 的 iBeacon 消息吧
+09:11 < mikimoto> 小弟服務公司前一陣子完成 Apple iBeacon 整套服務的實作與 Demo
+09:11 < mikimoto> 並且榮獲台灣 Apple 目前在台灣唯一指定推薦提供 iBeacon Solution 廠商
+09:11 < mikimoto> 如果有 g0v 朋友，打算用 iBeacon 做一些應用的，可以聯絡小弟
+09:11 < mikimoto> 我可以努力幫大家申請試用 Sample
+09:12 < mikimoto> Sample 應該是包含 硬體與 SDK, 只要是 BT 4.0 以上都可以運用
+09:16 < edwardc> mikimoto: 聯絡方式？ XD
+09:24 < clkao> mikimoto++
+09:24 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+09:25 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Connection reset by peer]
+09:26 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+09:30 -!- willard-lin [8c8705a1@gateway/web/cgi-irc/kiwiirc.com/ip.140.135.5.161] has joined #g0v.tw
+09:39 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has joined #g0v.tw
+09:41 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has quit [Client Quit]
+09:55 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has joined #g0v.tw
+09:59 -!- lcamel [~lcamel@2406:2000:efa5:9:bd3c:77c3:6d17:fdb9] has joined #g0v.tw
+10:00 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has quit [Client Quit]
+10:01 < tkirby_> 拿來用在 hackathon 上! 不過 BLE 的普及率..?
+10:04 < edwardc> android 4.3 以上都有
+10:05 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has joined #g0v.tw
+10:06 < tkirby_> XD
+10:16 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+10:16 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+10:17 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+10:17 -!- mno2 [~mno2@49.128.60.52] has quit [Client Quit]
+10:17 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+10:22 < pcchen> 神奇的計畫 http://fiti.stpi.narl.org.tw/index.jsp
+10:22 < kcwu> pcchen's url: [創新創業激勵平台(計畫)]
+10:24 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+10:30 -!- lcamel_ [~lcamel@nat/yahoo/x-igmlhmqxiezgfotd] has joined #g0v.tw
+10:30 < hcchien> mikimoto: 賺翻，來贊助 osdc 吧   lol
+10:31 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+10:32 -!- lcamel [~lcamel@2406:2000:efa5:9:bd3c:77c3:6d17:fdb9] has quit [Ping timeout: 240 seconds]
+10:33 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+10:36 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+10:37 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+10:38 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Remote host closed the connection]
+10:40 < clkao_> hcchien: 接的好順啊
+10:40 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+10:41 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+10:41 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+10:45 -!- SupaplexTW___ [~Adium@210.61.193.66] has joined #g0v.tw
+10:57 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:57 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+11:03 -!- chihchun_afk is now known as chihchun
+11:05 < kcwu> au: what's original (mp3?) size?
+11:06 -!- chihchun is now known as chihchun_afk
+11:09 -!- chihchun_afk is now known as chihchun
+11:13 < mikimoto> hcchien: 哪裡賺翻啊，我怎麼都不知道 :p
+11:16 < mikimoto> edwardc: 可以跟業務吳先生 danny (at) peripower (dot) com 或是我的 Email :p
+11:17 < hcchien> mikimoto: 唯一認證了還不賺翻
+11:17 < hychen> 獨佔市場!
+11:17 < mikimoto> hcchien: 過幾個月就有人 clone 了啦
+11:18 < mikimoto> 所以我們想說先有先釋出給台灣開發者們，不過老是被國外廠商整碗端走
+11:20 < mikimoto> 所以先放消息出來給大家，看看能不能讓有能力的團隊浮出檯面
+11:21 < mikimoto> 拋磚引玉，對相框做一點改變，不然台灣電子業真的看不到什麼未來
+11:22 < mikimoto> hychen: 最好是能獨占市場，規格制定權根本不在台灣廠商手上，是沒辦法沾到什麼甜頭的 :p
+11:29 < mikimoto> 小弟Email: mikimoto (dot) c (at) gmail (dot) com 
+11:30 < mikimoto> 吳先生電話 02-89111133 / 0921766116
+11:34 -!- SupaplexTW___ [~Adium@210.61.193.66] has quit [Quit: Leaving.]
+11:35 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+11:36 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+11:37 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+11:39 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+11:53 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+11:53 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has joined #g0v.tw
+12:01 -!- DonaldIsFreak [76a67393@gateway/web/cgi-irc/kiwiirc.com/ip.118.166.115.147] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+12:01 -!- pm5 [~Adium@101.8.44.40] has joined #g0v.tw
+12:12 -!- pm5 [~Adium@101.8.44.40] has quit [Read error: Connection reset by peer]
+12:21 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Quit: leaving]
+12:21 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:27 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+12:29 < edwardc> mikimoto: got it, thanks XD
+12:30 < edwardc> 是說國外已經有人在賣產品了阿 XD
+12:30 < ETBlue> au: 最適合發表進度更新的地方是 google+ 社團嗎？
+12:30 < edwardc> 台灣廠商應該最強的是推出 turnkey 的能力 XD
+12:37 < mikimoto> XD
+12:38 < mikimoto> edwardc: 各家 Solution 原理差不多，但是機制上巧妙各有不同，看消費者怎麼買單囉
+12:41 -!- flter [~Albert@Heyayayay.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+12:45 < tkirby_> turnkey.. 好懷念的字眼 XD
+12:45 -!- rich1iu [~richliu@140.113.22.92] has quit [Ping timeout: 260 seconds]
+12:46 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+12:53 -!- pm51 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+12:53 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+12:57 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has quit [Ping timeout: 256 seconds]
+13:05 < au> kcwu: original is .wav, 單字部份共 8GB (.wav.gz = 3.2GB), mp3 = 2.5GB, ogg vorbis = 363MB, opus = 107M
+13:06 < au> ETBlue: 要看給誰看啊... 如果需要討論的話，G+ 和 FB 後勤中心都不錯？
+13:07 < au> re emscripten, 還真的有 opus.js，但是 web audio (aurora.js) 支援度並不好，在手機上 decode 成 wav 存到 sd 再讀取要看看夠不夠快，還需要再想想。
+13:08 < ETBlue> au: 想說給開發團隊跟感興趣的人看+討論，討論完又容易回頭找的…好像還是像萌典團那樣最適合 www
+13:10 < ETBlue> au: 所以正在開g+動民主團，看看用起來怎樣 XD
+13:17 < jimyhuang> 最近日月相關的很紅，看到就心情不好
+13:18 -!- pm51 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+13:21 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+13:22 < yhsiang> jimyhuang: 日月神教，千秋萬載，一統江湖
+13:22 < au> 一醒來發現 hackath6n 增額到 110 人了
+13:22 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Client Quit]
+13:28 < jimyhuang> au: 感覺在預期內... XD
+13:28 < au> XD
+13:28 < jimyhuang> yhsiang: 對啊很不爽 XD
+13:29 < jimyhuang> 決定這週要去看哈比人來消消氣
+13:29 < yhsiang> jimyhuang: 要趕緊背熟口號，不然教主知道要罵人了
+13:29 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+13:29 < yhsiang> XD 有多少人要去看哈比人
+13:30 < jimyhuang> yhsiang: 不知道耶...
+13:31 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+13:38 < ETBlue> yhsiang: jimyhuang: 你們在討論的是新聞嗎…（狀況外
+13:41 < yhsiang> ETBlue: XD 日月X功阿 ...
+13:41 < ronnywang> 日月神教在高雄後勁排放廢水，讓政府需要花數十億元清污，遭到重罰 60 萬元
+13:41 < yhsiang> 另外哈比人 本周五 12/13上映
+13:41 < ETBlue> 噢噢………感謝解說
+13:41 < yhsiang> 剛剛又一個日月X了 
+13:53 -!- chihchun is now known as chihchun_afk
+13:56 < clkao_> 想說回山上認真打工一下，可是空氣好差心情不好，來弄一下空氣污染 viz 好了... epa++ # http://opendata.epa.gov.tw/Data/Details/AQX/
+13:56 < kcwu> clkao_'s url: [OpenData.epa 行政院環境保護署 環境資源資料開放平台]
+13:57 < yhsiang> clkao_: aqicn ?
+13:59 < clkao_> yhsiang: ??
+13:59 < clkao_> oh the beijing one
+13:59 < yhsiang> clkao_: 可以查台灣
+14:00 < yhsiang> XD
+14:00 -!- chihchun_afk is now known as chihchun
+14:01 < clkao_> yhsiang: 查不是問題 想用雨量圖那個畫畫看
+14:01 < yhsiang> ya, 畫起來再搭配aciqn那種表格 做crossfilter 
+14:02 < clkao_> *nod*
+14:02 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+14:02 < yhsiang> yukiko: 有d3坑了! XD
+14:04 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+14:05 < clkao_> aqicn 沒提供 data download ?
+14:08 < yhsiang> 好像沒有 正在看有趣的FAQ
+14:08 < yhsiang> 還有推薦口罩 ...
+14:08 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+14:08 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+14:09 -!- nikkki [uid20054@gateway/web/irccloud.com/x-efhztkmkkoknwshh] has joined #g0v.tw
+14:14 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+14:15 < clkao_> 空氣真的很慘 山上很少這樣... 好難過啊
+14:17 < hychen> 苦...
+14:18 < yhsiang> 他github上面有code 不過好像是for 微粒偵測的
+14:19 < yhsiang> 正在看要不要買來玩
+14:19 < yhsiang> 結果好貴 ...
+14:21 < yhsiang> ...taobao才2000不到 ..
+14:21 < yhsiang> 喔 換算是一樣-_-
+14:22 < jimyhuang> clkao_: 你居然去補血去囉！？
+14:32 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has joined #g0v.tw
+14:34 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has joined #g0v.tw
+14:37 < clkao_> jimyhuang: 本來想昨天衝回來 結果弄太晚了
+14:38 < jimyhuang> clkao_: 補血好啊，不過滿冷的
+14:45 -!- elvisfb [uid19230@gateway/web/irccloud.com/x-eeuahffdnqqoegee] has left #g0v.tw []
+14:50 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+14:51 < ronnywang> w
+14:51 < hcchien> 他應該不怕冷吧   lol
+15:00 < clkao_> w
+15:12 -!- lcamel_ [~lcamel@nat/yahoo/x-igmlhmqxiezgfotd] has quit [Read error: Connection reset by peer]
+15:12 -!- lcamel [~lcamel@2406:2000:efa5:9:bd3c:77c3:6d17:fdb9] has joined #g0v.tw
+15:17 -!- pm5 [~Adium@101.8.44.40] has joined #g0v.tw
+15:25 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has joined #g0v.tw
+15:26 -!- raejin [uid12959@gateway/web/irccloud.com/x-skdpfonvduuounhf] has joined #g0v.tw
+15:27 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+15:42 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 246 seconds]
+15:47 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+15:48 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+15:49 < edwardc> mikimoto: 找不到吳先生？ XD 
+15:52 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+16:00 < hychen> jimyhuang: 我也想要補血... 台北好苦
+16:01  * walkingice 突然好想泡湯
+16:01 < pm5> ETBlue: g+ 動民主團在哪?
+16:01 < ETBlue> pm5: https://plus.google.com/communities/114108909405606736641
+16:02 < kcwu> ETBlue's url: [g0v eDemocracy - 社群 - Google+]
+16:02 < ETBlue> 忘了貼…剛才一直在拉 css 百葉窗 = =|||
+16:02 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+16:06 < pm5> ETBlue: 已加 XD
+16:08 < S3p_lin>  /win 28
+16:08 < ETBlue> pm5: moderator 設好了 XD 不能多人 owner 有點討厭 =3=
+16:09 < yukiko> yhsiang 哇 d3坑 在哪 XD
+16:10 < hychen> 我覺得g+很頓ㄟ
+16:13 -!- pm5 [~Adium@101.8.44.40] has quit [Quit: Leaving.]
+16:13 -!- tonytony1an [whchien@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 240 seconds]
+16:13 -!- pm5 [~Adium@101.8.44.40] has joined #g0v.tw
+16:13 < yhsiangCloud> yukiko: 空氣污染 viz 好了... epa++ # http://opendata.epa.gov.tw/Data/Details/AQX/ 
+16:13 -!- yhsiang [yhsiang@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 265 seconds]
+16:13 < kcwu> yhsiangCloud's url: [OpenData.epa 行政院環境保護署 環境資源資料開放平台]
+16:14 -!- tonytonyjan [whchien@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 246 seconds]
+16:14 < ETBlue> hychen:  g+自從換肥碩的新版面以後就變鈍了，我現在都切單欄，有比較好看，但一樣頓 XD
+16:14 < mikimoto> edwardc: 沒回應嗎？ 我的信箱那一封是您寄的嗎？
+16:16 -!- pm5 [~Adium@101.8.44.40] has quit [Read error: Connection reset by peer]
+16:17 < jimyhuang> hychen: 是因為太冷嗎... XD
+16:19 < hychen> jimyhuang: 是啊, 心很冷.....
+16:19 < jimyhuang> yhsiangCloud: viz 在哪兒
+16:27 -!- yhsiang [yhsiang@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+16:28 < ETBlue> hychen: 失主的問題並非台北所導致…（推眼鏡）不過這裡人口密度真的太高了，超討厭出門啊
+16:31 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has quit [Ping timeout: 256 seconds]
+16:37 -!- cataska [~cataska@210.64.6.233] has joined #g0v.tw
+16:40 < mikimoto> edwardc: 確認過了，剛剛去台灣Apple 開會，所以現在可以用電話攻勢了，上 ＸＤ
+16:47 < hcchien> 結果現在東京只能訂到 12/21 出發的機票，看來不能去尾牙了
+16:47 < dirty__> semantic ui 的對比好低, 有點傷眼
+16:47 < yhsiang> dirty__: inverted ?
+16:50 < dirty__> yhsiang: ?
+16:51 < ETBlue> dirty__: .inverted 模式對比比較高，不過我自己很少用
+16:51 < yhsiang> dirty__: 加個inverted 會不會好點 XD
+16:51 < ETBlue> 因為對比低比較漂亮！XDDDDDDD
+16:52 < ETBlue> 看久了還會有一種穿越 pm2.5 的感覺
+16:53 < yhsiang> pm2.5 ?
+16:53 < yhsiang> 所以變成pm5 ?
+16:53 < poga> 我也覺得semantic看久了眼睛好累orz
+16:53 < yhsiang> poga: 所以我喜歡用inveted XD
+16:53 < ETBlue> 原來 pm5 是這樣來的
+16:54 < yhsiang> 額...是這樣嗎 orz...
+16:54 < walkingice> XD
+16:56 < ETBlue> 恭喜人在日本的 tuiry 趁黑客松加開名額之際隔海報名成功
+16:56 < yhsiang> tuiry++
+16:56 < dirty__> 我是在看 動民主 啊, 所以不是我加 .inverted :p
+16:58 < ETBlue> dirty__: 噢噢……那我把一些不必要的 opacity 拿掉（被毆
+16:58 < ETBlue> dirty__: 你的眼睛壞掉一半是 semantic ui的關係，另一半是我的關係（挺
+16:58 < yhsiang> XD $('.ui').addClass('inverted')  #結果menu整個炸咧 ..
+16:58 < poga> XDDD
+17:01 < ETBlue> 可能先把 html 的 font-color 改回 #000 就治好一半 XDD
+17:02  * ETBlue 本機修改中
+17:02 < ETBlue> 前天也被 tkalu 抱怨對比低，那時候連背景都是灰的… XDDD
+17:03 < clkao_> datapipes.okfnlabs.org++ # 瞬間幫別人的 csv 加 cors header
+17:03 < ipa> 名額到底多少最好啊? 開到110有怕太擠
+17:04 < ETBlue> ㄟ，改 html 的 font-color 沒差耶，原來那真的是他設的顏色…
+17:04 < ETBlue> ipa: 反正當天有的人會來來去去… www 上次開多少啊？
+17:04 < ipa> 上次110
+17:05 < ETBlue> ipa: 喇賽的人不要用桌子可能就很寬敞了 XDDDDD
+17:05 < dirty__> inverted 是真的 invert, 不是單純加對比 XD
+17:05 < yhsiang> 喔 對阿
+17:05 < edwardc> mikimoto: 對，那個吳先生說 sample 送完了，然後 SDK iOS only, Android 不清楚，似乎不太給力 ...
+17:06 < ETBlue> 對壓是真的 invert… ㄟ，那我要加對比不就得一個一個手動覆蓋掉嗎囧
+17:06 < ETBlue> ………
+17:06 < ETBlue> QQ
+17:06 < Custom> 咳咳
+17:06 < dirty__> ETBlue: 你可以加個 .high-contrast 然後一個一個設完後送給 semantic-ui
+17:06 < yukiko> 我又蹲回電腦前了  謝謝 yhsiangCloud 那我先study空污網頁的資料
+17:07 < Custom> mikimoto: 剛剛打去找貴公司同事的是我...
+17:07 < dirty__> 是 semantic-ui 的問題, 我剛有去看它們網站(有比動民主好一點啦), 乍看之下很好看(很柔), 但看久了真的傷眼
+17:07 < ETBlue> dirty__: 這大工程……我剛好知道有個人在寫 semantic ui 的 patch （轉頭望 yhsiang 
+17:08 < yhsiang> 好像是semantic secondary的inverted有問題吧
+17:08 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+17:10 < yhsiang> 我還在等作者回信
+17:11 < clkao_> http://g0v.github.io/twgeojson/air.html
+17:11 < clkao_> zzz 不過 opendata.epa.gov.tw 似乎 delay 兩小時
+17:12 -!- Phoenixmiss [~Miss@114-38-98-170.dynamic.hinet.net] has joined #g0v.tw
+17:13 < hcchien> 真的耶
+17:13 < hcchien> http://taqm.epa.gov.tw/pm25/zh-tw/PM25A.aspx 已經是17:00
+17:13 < kcwu> hcchien's url: [行政院環保署-細懸浮微粒]
+17:14 < mikimoto> edwardc: 我不太清楚現在業務團隊的規劃與狀況，不過我們實作的 Demo 是有包含 Android 就是了，不過要不要推出是業務團隊說了算 :p
+17:14 < mikimoto> Custom: 希望我們的業務在狀況內，有幫上你的忙 :p
+17:16 < jimyhuang> air.html 好橘啊！！
+17:16 < jimyhuang> 看起來挺恐怖... 
+17:16 < ipa> 今天走在路上一直咳
+17:17 < yhsiang> jimyhuang: acqin根本就是紅色警戒 XD
+17:18 < ipa> clkao_: 空污這可以貼粉絲頁了?
+17:19 < ipa> 用手機看不到數據
+17:19 < yhsiang> ipa: 沒有數據阿 XD
+17:19 < clkao_> 手機沒辦法.. 因為是 hover.. 要想想看 UX
+17:19 -!- miaout17_ [~miaout17@miaout17.net] has quit [Quit: leaving]
+17:19 < clkao_> 寫信給環保署反應資料時間差了
+17:19 -!- miaout17_ [~miaout17@miaout17.net] has joined #g0v.tw
+17:20 < yhsiang> 把縣市做成能夠click ?
+17:20 < yhsiang> 做一個list可以click
+17:20 < clkao_> 好像可以來弄個 dashboard.g0v.tw ? 整合空氣/雨量什麼鬼的查詢... 還可以加上交通狀況啥的.. 類似 http://citydashboard.org/london/
+17:20 < kcwu> clkao_'s url: [CityDashboard: London]
+17:22 < yhsiang> hmm 台北也有youbike 
+17:26 < hcchien> 所以要先改抓即時資料嗎？
+17:27 < clkao_> 還要砍站太苦了吧
+17:28 < clkao_> http://taqm.epa.gov.tw/taqm/zh-tw/HourlyData.aspx # 這裡有一個慢一小時的
+17:28 < kcwu> clkao_'s url: [行政院環保署－空氣品質監測網]
+17:28 < jimyhuang> clkao_: 把 data.g0v.tw 改成 http://data.gov.uk/ ？
+17:33 < clkao_> jimyhuang: whatdo you mean?
+17:33 < au> OSQA => Drupal 7?
+17:34 < jimyhuang> dashboard.g0v.tw 的想法跟 data.gov.uk 現況不曉得相去多遠 ( http://data.gov.uk/data/map-based-search )
+17:34 < kcwu> jimyhuang's url: [Map Based Search | data.gov.uk]
+17:35 < jimyhuang> 想像相去不遠的話，就可以照 data.gov.uk 來做一份 XD
+17:37 < jimyhuang> au: 也沒這想法，只是覺得 dashboard的想法跟國外 data.xx.xxx得想法好像有點接近 
+17:38 < clkao_> jimyhuang: 噢！我本來想的是顯示一些重要資訊（然後如果有特殊異常就跳過去那一項） 不是 data catalog
+17:39 < clkao_> （譬如今天突然通過了很多法案的話 就顯示 ly.g0v 上的資訊 XD）
+17:39 < jimyhuang> clkao_: soga.. dashboard監測板概念！
+17:39 < clkao_> yea
+17:39 < clkao_> so today will be the air quality
+17:41  * ETBlue 逐步加強動民主對比中（握拳
+17:42 < pm5> https://github.com/pm5/env-dashboard
+17:42 < clkao_> 若要去 mad.asi 可以參考: 凡於2013年12月02日至06日以及12月09日至13日在台灣國泰官網訂購台灣 - 香港來回機票者 可有機會獲得免費7天內香港無限行動數據服務
+17:42 < kcwu> pm5's url: [pm5/env-dashboard · GitHub]
+17:42 < pm5> 我這邊也有個 dashboard 正在進行中
+17:42 < clkao_> pm5: orz 我 lag 了媽
+17:42 < pm5> clkao: 沒啦我才剛開始做
+17:42 < ETBlue> dirty__: clone me! https://github.com/g0v/don-republic/tree/gh-pages
+17:42 < kcwu> ETBlue's url: [g0v/don-republic · GitHub]
+17:43 < clkao_> pm5: not on gh-pages?
+17:43 < poga> 之前也想做類似dashboard的東西...  不過是想排成facebook那類feed的排法
+17:44 < pm5> 正在環保署的 opendata 平台上挑資料集來做 正在弄焚化爐的
+17:44 < pm5> clkao: 還沒耶
+17:44 < ETBlue> clkao_: pm5: 看來你們會做出一組 dashboard 家族…總 board 跟分 board XD
+17:44 < clkao_> pm5: epa.g0v.tw 了媽
+17:44 < pm5> clkao: 我想是 moer.g0v.tw # 環境資源部
+17:44 < hcchien> 環境資源部++
+17:45 < clkao_> LOL pm5++ # 環資部長
+17:45 < pm5> 還有些農委會林務局的 也想加進來
+17:46 < pm5> 看看能不能在行政院改組之前做出來 XD
+17:49 < ETBlue> 字黑一點真的比較看得清楚（點頭
+17:51 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has joined #g0v.tw
+17:51 < pm5> http://citydashboard.org/london/
+17:51 < kcwu> pm5's url: [CityDashboard: London]
+17:51 < yhsiangCloud> 不愧是超越pm2.5的pm5
+17:52 < pm5> yhsiangCloud: !!!
+17:55 < jimyhuang> 快要變成 pm6 了
+17:55 < hcchien> 還有 pm10
+17:55  * jimyhuang 突然想到 perl 6
+17:57 < dirty__> ETBlue: 我剛有想, 不過說明有點少. 現在是直接用 gh-pages? 裡頭竟然還有 bootstrap-version XD
+17:57 < dirty__> 真歡樂的架構
+17:57 < jimyhuang> pm5: opendata.epa.gov.tw 的資料如何？
+17:58 < pm5> jimyhuang: 感覺可以做出不少東西
+17:59 < pm5> jimyhuang: 然後再回頭要他們更新快一點 現在很多標示「即時更新」的資料集都只有到九月 = =
+17:59 < pm5> jimyhuang: 一起來練習 D3.js 吧
+17:59 < jimyhuang> pm5: 環資有人在追這資料嗎？
+18:00  * pm5 對 jimyhuang 招手
+18:00  * jimyhuang 有練習...但...
+18:00 < yhsiang> 環資部長已經開始抓下線了 XD
+18:00 < pm5> yhsiang: 據說最近 D3 坑很多...
+18:01 < clkao_> jimyhuang: 其實覺得 quality 還不錯 搭配 datapipes 就瞬間有 cors csv 了 XD
+18:01 < pm5> jimyhuang: 環資同仁運用資料的程度還沒到這邊 我還在努力推動哩
+18:01 < jimyhuang> pm5++ clkao *nod*
+18:02 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Remote host closed the connection]
+18:02 < jimyhuang> 我之前看完看見台灣，有在研究 http://246.swcb.gov.tw/ 
+18:02 < kcwu> jimyhuang's url: [土石流防災資訊網 - 行政院農業委員會水土保持局]
+18:02 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+18:07 < jimyhuang> clkao_: 我覺得缺一些對該數據的背景知識... 懸浮微粒不知道多少以上算是危險
+18:08 < clkao_> jimyhuang: 我是參考環保署的 legend 畫
+18:10 < pm5> jimyhuang:  http://e-info.org.tw/node/76784
+18:10 < kcwu> pm5's url: [列管PM2.5細懸浮微粒 即日起生效 | 台灣環境資訊協會-環境資訊中心]
+18:10 < pm5> http://e-info.org.tw/taxonomy/term/4304
+18:10 < kcwu> pm5's url: [懸浮微粒 | 台灣環境資訊協會-環境資訊中心]
+18:10 < jimyhuang> pm5: thanks 
+18:11 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has left #g0v.tw []
+18:12 < jimyhuang> clkao_: 所以是寫在這裡？ https://github.com/g0v/twgeojson
+18:12 < kcwu> jimyhuang's url: [g0v/twgeojson · GitHub]
+18:12 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+18:13 < pm5> http://e-info.org.tw/special/wed/2004/we04060201.htm
+18:13 < kcwu> pm5's url: [懸浮微粒為什麼算是空氣污染？]
+18:13 < pm5> 好古早的文章
+18:13 < clkao_> jimyhuang: right, for the moment... 之後看要不要另外搬去 moer.g0v.tw (既然 cwb 也要被 merge 進去了... )
+18:15 < jimyhuang> pm5: 我以前小屁孩的時候，不大會parse html，所以就沒轉進去環資的drupal資料庫了，可惜
+18:18 < jimyhuang> clkao_: got it，晚上上課時一邊看看怎麼加入基礎資訊... 
+18:18 < jimyhuang> pm5: 有報名hackthon吧？
+18:19 < pm5> jimyhuang: 有哇
+18:19 < jimyhuang> pm5: 那epa.g0v.tw趕快來去提案？
+18:20 < pm5> jimyhuang: 啊… 打完工就來提 orz
+18:22 -!- lcamel [~lcamel@2406:2000:efa5:9:bd3c:77c3:6d17:fdb9] has quit [Remote host closed the connection]
+18:23 < jimyhuang> clkao_: 看不懂 firebase的用途耶 (air.html) 
+18:23 < yhsiang> jimyhuang: store data
+18:24 < yhsiang> jimyhuang: 他註解掉了阿 XD
+18:24 < yhsiang> 那個是rainfull的data source瘩
+18:24 < yhsiang> s/瘩/吧
+18:24 < jimyhuang> XD 
+18:25 < jimyhuang> soga ... 
+18:25 < yhsiang> 要不要刷codepen呢..好猶豫 XD
+18:26 -!- lcamel [~lcamel@2406:2000:efa5:9:2075:4bcf:3697:6ef9] has joined #g0v.tw
+18:28 -!- lcamel_ [~lcamel@2406:2000:efa5:9:2543:2de6:2a08:dbf4] has joined #g0v.tw
+18:29 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+18:30 < dirty__> ETBlue: 現在是怎麼 compile, make? 我執行會有 warning
+18:31 -!- lcamel [~lcamel@2406:2000:efa5:9:2075:4bcf:3697:6ef9] has quit [Ping timeout: 240 seconds]
+18:37 < poga> yhsiang: 喔喔喔喔codepen看起來好棒啊
+18:38 < yhsiang> poga: 對阿 可以寫jade +sass +ls ...在想要不要刷下去 就可以multiple resource XD
+18:40 < clkao_> w
+18:43 < poga> yhsiang: 心動qwq
+18:45 < yhsiang> poga: 一起行動吧 !!
+18:46 -!- Guest17190 [~SilentAss@60-250-207-166.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+18:47 < yhsiang> orz 結果不能刷 悲劇 
+18:48 < poga> yhsiang: 囧？
+18:48 < yhsiang> 郵局卡限制多多 QwQ
+18:48 < poga> 唔qq
+18:51 < clkao_> yhsiang: hmm? you can use jsbin ;) i have a fork that does livescript
+18:54 < yhsiang> clkao_: where and also support sass?
+18:55 -!- pingchange [7bc2b450@gateway/web/cgi-irc/kiwiirc.com/ip.123.194.180.80] has joined #g0v.tw
+18:57 < yhsiang> XD 我看到PR了
+19:01 -!- lcamel [~lcamel@nat/yahoo/x-eseocztgaqxhssrz] has joined #g0v.tw
+19:01 -!- lcamel_ [~lcamel@2406:2000:efa5:9:2543:2de6:2a08:dbf4] has quit [Ping timeout: 240 seconds]
+19:07 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+19:07 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+19:07 -!- Guest17190 [Guest17190@220-129-5-127.dynamic.hinet.net] has joined #g0v.tw
+19:11 < ipa> 今天跟朋友吃飯，朋友說她想來提國有地相關的專案，要開始做功課，還順便催促我寫非技術人如何提案的文章
+19:13 < ipa> 朋友社運圈的 # ddio 你也認識，先tag你（幫她抓下線）
+19:13 -!- WeiHung [~chatzilla@42-72-205-101.dynamic-ip.hinet.net] has joined #g0v.tw
+19:14 -!- mutolisp [~mutolisp@61-62-206-66-adsl-tpe.dynamic.so-net.net.tw] has joined #g0v.tw
+19:16 < WeiHung> 想請問有沒有辦法可以避免google 表單被機器人惡意灌票（不支援javascript）：https://sites.google.com/site/acatwsignformarr/
+19:16 < kcwu> WeiHung's url: [學界支持婚姻平權連署]
+19:20 < clkao_> WeiHung: http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html
+19:20 < kcwu> clkao_'s url: [How to Create a CAPTCHA-enabled Custom Google Drive Form]
+19:22 < ddio> ipa:  該不會是小塔 XD
+19:24 -!- chihchun is now known as chihchun_afk
+19:25 < WeiHung> clkao_: 謝謝！
+19:32 < ipa> ddio: ya~ 
+19:32 < WeiHung> clkao_: 但是google site 好像不支援 js 語法...
+19:35 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+19:35 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has joined #g0v.tw
+19:37 < ETBlue> dirty__: 你有裝 jade 嗎
+19:37 < ETBlue> dirty__: 現在是 sass + jade，我的 sass 是 fire.app 幫我 compile，jade 是用 readme 裡面那個指令
+19:38 -!- Ti_W_B110 [~Ti_W_B@112.105.206.130] has joined #g0v.tw
+19:38 < ETBlue> dirty__: bootstrap version 是 tkirby_ 一開始寫的，因為我看不懂……只好換成我看得懂的（被毆
+19:39 < ETBlue> dirty__: 對壓是直接用 gh-pages ，我切到這 branch 以後都沒換過惹 XD
+19:42 < ddio> 我們有在火盟一起弄東西，我也幫忙充當一下翻譯～
+19:42 -!- amatecha [sid10006@gateway/web/irccloud.com/x-zqzorrnwfdeennkr] has quit [Ping timeout: 240 seconds]
+19:43 < ETBlue> ipa: 教他們用 moqups！ # 非技術人提案
+19:43 < yhsiang> WeiHung: 可是你的form是從google drive生的不是嗎?
+19:43 -!- amatecha [sid10006@gateway/web/irccloud.com/x-svcdehbhrvgdagna] has joined #g0v.tw
+19:44 < ddio> ETBlue:  我們現在有中文的 airesis 可玩嗎？我幫火盟問一下
+19:44 < ETBlue> dirty__: 不過 gh-pages 裡面那個 bootstrap version 是被我搞爛過的，master 裡的東西才是 tkirby_ 原本弄好的…
+19:44 < ETBlue> ddio: 目前好像只在 yhsiang 的本機
+19:45 < ETBlue> dirty__: 更恐怖的是我也不知道搞爛了什麼（捻鬚）基本上如果那架構裡有任何奇怪之處…那都不是我能控制的… 
+19:46 < ipa> ddio: 翻譯++ 火盟的概念跟動民主有像，的確可以試試看   
+19:47 < WeiHung> yhsiang: 可是他的教學似乎是要把這個表單用html語法貼上，然後在裏面放一個 CAPTCHA ，但是那一段都是js寫的
+19:48 < jimyhuang> 前幾天有一個類似舉牌小人的服務誕生了，那也是g0v做的... by nchild
+19:50 -!- lcamel [~lcamel@nat/yahoo/x-eseocztgaqxhssrz] has quit [Remote host closed the connection]
+19:50 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has quit [Quit: Leaving.]
+19:51 < yhsiang> WeiHung: http://productforums.google.com/forum/#!topic/docs/MiS-ZqNYQNU
+19:51 < kcwu> yhsiang's url: [Google 網上論壇]
+19:51 < ipa> jimyhuang: nchild演講？
+19:52 < jimyhuang> ipa: right~~ 懶人包課程最後一堂
+19:52 -!- chihchun_afk is now known as chihchun
+19:57 < WeiHung> yhsiang: 4選1嗎...
+19:58 < yhsiang> WeiHung: 重點應該是page的轉換
+19:58 < WeiHung> 哦
+20:03 < dirty__> ETBlue: fire.app, 怪不得, 因為我沒有 compass/css3
+20:04 < ETBlue> dirty__: 噢噢……對喔 sass 之外還要 compass
+20:05 < ETBlue> 用 compass 寫 box-shadow 什麼的超懶人的 XD
+20:07 < yhsiang> dirty__: gem install compass 
+20:07 -!- markwu [~markwu@116.50.34.246] has joined #g0v.tw
+20:20 -!- tpa [poan@123.110.8.25] has quit [Ping timeout: 246 seconds]
+20:20 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has joined #g0v.tw
+20:24 -!- Sony [~Adium@61-230-98-130.dynamic.hinet.net] has joined #g0v.tw
+20:26 -!- tpa [poan@123.110.8.25] has joined #g0v.tw
+20:28 -!- Sony [~Adium@61-230-98-130.dynamic.hinet.net] has quit [Client Quit]
+20:29 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+20:30 < hychen> 有人之到公民之眼圖片的license是什麼嗎?
+20:31 -!- pingchange [7bc2b450@gateway/web/cgi-irc/kiwiirc.com/ip.123.194.180.80] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+20:31 -!- pingchange [7bc2b450@gateway/web/cgi-irc/kiwiirc.com/ip.123.194.180.80] has joined #g0v.tw
+20:33 < ipa> hychen: 也許billy3321 WeiHung or pofeng_ 知道？
+20:35 -!- mno2 [~mno2@bb116-15-44-14.singnet.com.sg] has joined #g0v.tw
+20:36 < pofeng_> hychen: 圖庫買的, 可用, 但是好像不能再販賣, 作成 T-shirt 用於商標 (授權有點複雜)
+20:39 -!- pingchange [7bc2b450@gateway/web/cgi-irc/kiwiirc.com/ip.123.194.180.80] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+20:45 -!- tpa [poan@123.110.8.25] has quit [Ping timeout: 272 seconds]
+20:52 -!- willard [afb59fc8@gateway/web/cgi-irc/kiwiirc.com/ip.175.181.159.200] has joined #g0v.tw
+20:53 < clkao_> pofeng_: orz 這樣不會很麻煩嗎？應該去文化部徵一個 clean room 版本
+20:53 < pofeng_> clkao_: 有他們後來有做一個 clean room 版, 我要找一下 
+21:11 -!- chihchun is now known as chihchun_afk
+21:13 < pofeng_> ETBlue:  突然想到, 我在想 1985 多媒體組和 g0v 文化部應該交流一下 ... 
+21:19 -!- WeiHung [~chatzilla@42-72-205-101.dynamic-ip.hinet.net] has quit [Ping timeout: 272 seconds]
+21:42 < jimyhuang> clkao_: http://imgur.com/MqOKIVL 硬是加了legend，但我的page不知道為啥沒作用，來merge?
+21:42 < kcwu> jimyhuang's url: [imgur: the simple image sharer]
+21:45 < yhsiang> jimyhuang: gh-page嗎?
+21:46 < jimyhuang> yhsiang: 對啊， gh-page不作用 http://jimyhuang.github.io/twgeojson/air.html
+21:47 < yhsiang> 有拉
+21:47 < yhsiang> 應該是cache吧 ?
+21:51 < ipa> jimyhuang: 可以加對健康危害程度嗎？
+21:51 -!- markwu [~markwu@116.50.34.246] has quit [Quit: 暫離]
+21:59 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+22:04 < clkao_> jimyhuang++
+22:05 -!- LCfunPlay_op [~LC@111-250-7-253.dynamic.hinet.net] has quit [Quit: LCfunPlay_op]
+22:06 -!- FourDollars1 [0122A0E7@conference/jsconf/x-lmcghjjxjuttfgmo] has quit [Ping timeout: 246 seconds]
+22:06 -!- FourDollars2 [FourDollar@conference/jsconf/x-alhkjcyrtsmfvecd] has joined #g0v.tw
+22:08 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has quit [Ping timeout: 246 seconds]
+22:08 -!- seudo_tw [r01944023@linux5.csie.ntu.edu.tw] has quit [Ping timeout: 246 seconds]
+22:09 < jimyhuang> ipa: sure. 來試試
+22:09 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+22:09 -!- FourDollars [uid12544@gateway/web/irccloud.com/x-ojyuoluxqvghyupt] has quit [Ping timeout: 246 seconds]
+22:09 -!- Goddamn [~goddamn@218-161-44-5.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+22:09 -!- Goddamn [~goddamn@218-161-44-5.HINET-IP.hinet.net] has joined #g0v.tw
+22:09 -!- seudo_tw [r01944023@linux5.csie.ntu.edu.tw] has joined #g0v.tw
+22:09 -!- scrollback [scrollback@conference/jsconf/x-cjaweheyqvwvzlxm] has quit [Ping timeout: 246 seconds]
+22:09 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+22:09 -!- scrollback [scrollback@conference/jsconf/x-sfrepetwtzupjzwt] has joined #g0v.tw
+22:10 -!- tkalu [~tka@li381-115.members.linode.com] has quit [Ping timeout: 246 seconds]
+22:10 -!- tkalu_ [~tka@li381-115.members.linode.com] has joined #g0v.tw
+22:11 -!- mutolisp [~mutolisp@61-62-206-66-adsl-tpe.dynamic.so-net.net.tw] has quit [Ping timeout: 246 seconds]
+22:12 -!- mutolisp [~mutolisp@61-62-206-66-adsl-tpe.dynamic.so-net.net.tw] has joined #g0v.tw
+22:12 -!- FourDollars_ [uid12544@gateway/web/irccloud.com/x-dsafkehfbaavanci] has joined #g0v.tw
+22:13 < clkao_> jimyhuang: can you not push directly to g0v/twgeojson ? ;)
+22:13 -!- tkirby__ [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+22:14 -!- tkirby_ [b88039@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 253 seconds]
+22:15 -!- Guest17190 [Guest17190@220-129-5-127.dynamic.hinet.net] has quit []
+22:15 < jimyhuang> clkao_: 喔我不熟悉的repository習慣先clone. 你意思是我直接push到g0v? 
+22:17 < pcchen> ljm: ping
+22:24 -!- Ti_W_B111 [~Ti_W_B@111-242-77-19.dynamic.hinet.net] has joined #g0v.tw
+22:25 < clkao_> jimyhuang: ya :p 這樣弄壞了才有動力修 XD XD
+22:25 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has joined #g0v.tw
+22:26 < clkao_> http://bl.ocks.org/nrabinowitz/4246925#index.html # 好讚的判斷 point in polygon (actually multiple geojson features) 方式
+22:26 < kcwu> clkao_'s url: [Raster geocoding with D3.js]
+22:28 -!- Ti_W_B110 [~Ti_W_B@112.105.206.130] has quit [Ping timeout: 260 seconds]
+22:30 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+22:42 < tkirby__> XDDDD
+22:46 < clkao_> au: is there webworker wrapper library that makes inline function worker not painful (for browsers) the asyncEval example in mdn doc
+22:46 < clkao_> *like the
+22:47 < au> clkao_: https://github.com/cheprasov/jThread
+22:47 < kcwu> au's url: [cheprasov/jThread · GitHub]
+22:47 < clkao_> grr no license file
+22:48 < au> it's 50 lines, what do you expect :p
+22:49 < dirty__> ETBlue: http://zoro.ee.ncku.edu.tw/don/index.html # some refinement
+22:49 < kcwu> dirty__'s url: [首頁 | 動民主]
+22:51 < au> clkao_: https://github.com/cheprasov/jThread/issues/1 
+22:51 < kcwu> au's url: [License file? · Issue #1 · cheprasov/jThread · GitHub]
+22:53 < au> clkao_: meanwhile just <script src="//raw.github.com/cheprasov/jThread/master/jThread.js"> bah... no licensing needed for that
+22:55 < clkao_> ha
+22:56 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has quit [Ping timeout: 256 seconds]
+23:00 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+23:02 -!- willard [afb59fc8@gateway/web/cgi-irc/kiwiirc.com/ip.175.181.159.200] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+23:05 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has joined #g0v.tw
+23:06 -!- willard-lin [8c8705a1@gateway/web/cgi-irc/kiwiirc.com/ip.140.135.5.161] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+23:07 -!- willard-lin [8c8705a1@gateway/web/cgi-irc/kiwiirc.com/ip.140.135.5.161] has joined #g0v.tw
+23:07 -!- Ti_W_B111 [~Ti_W_B@111-242-77-19.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+23:10 -!- Ti_W_B111 [~Ti_W_B@112.105.206.130] has joined #g0v.tw
+23:11 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has quit [Quit: Leaving.]
+23:14 < clkao_> jimyhuang: 來個 PR 吧，順便自 merge # legend :p
+23:16 < ETBlue> dirty__: !!!
+23:16 < ETBlue> dirty__: 你怎麼知道 @@
+23:17 < ETBlue> dirty__: 我原本要做那個 android style 的 navbar 效果...
+23:17 < ETBlue> dirty__: navbar 可以 push 一下嗎謝謝 XD
+23:18 < clkao_> ETBlue: 人家是成大知名張教授耶
+23:18 < ETBlue> dirty__: 我這邊看底色變黃的了
+23:18 < ETBlue> clkao_: 教授真好用呀（被毆
+23:21 < ETBlue> dirty__: 我剛弄的proposal頁面先push了，有conflict的話可以順便幫我修嗎…我怕搞爛 ^^b
+23:22 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has joined #g0v.tw
+23:22 < clkao_> pm5!!
+23:23 < pm5cloud> clkao_: yeah?
+23:23 < ETBlue> pofeng_: 是可以交流一下…互為下線（？）他們有要來黑客松嗎
+23:24 < clkao_> pm5cloud: 好想看 moer.g0v 的 mockup
+23:26 < pm5cloud> 咦我現在是在坑裡嗎
+23:27 < clkao_> jimyhuang: 突然發現 pm10 的 scale 和 psi 不同: http://taqm.epa.gov.tw/taqm/zh-tw/PollutantMap.aspx
+23:27 < kcwu> clkao_'s url: [行政院環保署－空氣品質監測網]
+23:29 < ipa> pofeng_: 還有一些名額，要請他們來同歡嗎？
+23:29 < dirty__> ETBlue: 什麼 android style? (搔頭) 我就只是想加強對比, 就亂調的
+23:30 < dirty__> 底色喔是有變淡黃, 因為無色調真的很難調對比
+23:30 < dirty__> anyway, 我先 push, 想改什麼都可以
+23:32 < ETBlue> dirty__: 就像這種的 android style https://docs.google.com/file/d/0B0NsS2a-Qx8ZMlJtRmVmR1BsdFk/edit XD
+23:32 < kcwu> ETBlue's url: [en-00-landing-page-v2.png - Google 雲端硬碟]
+23:33 < dirty__> 巧合 XD
+23:34 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 272 seconds]
+23:42 < ETBlue> dirty__: yay! 收到 lol
+23:46 < jimyhuang> clkao_: 這表示座標有偏差囉？
+23:46 < jimyhuang> pm5cloud++ mockup (伸手 XD)
+23:47 -!- WeiHung [~chatzilla@s101002506.CHING-ABC.ab.nthu.edu.tw] has joined #g0v.tw
+23:51 < clkao_> jimyhuang: 是說他圖例顏色不同... 要更大才會變紅
+23:52 < jimyhuang> clkao_: 喔喔喔看懂了
+23:52 -!- Phoenixmiss [~Miss@114-38-98-170.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:52 -!- Phoenixmiss [~Miss@114-38-98-170.dynamic.hinet.net] has joined #g0v.tw
+23:52 -!- Phoenixmiss [~Miss@114-38-98-170.dynamic.hinet.net] has quit [Client Quit]
+23:55 < clkao_> jimyhuang:  [0, 50, 100, 200, 300] 可以用 color-of.domain!
+23:55 < jimyhuang> !!! 我在那邊試很久，原來是這樣用
+23:56 < clkao_> jimyhuang: 然後那個 for 可以用 d3 的 select + enter() 取代... 弄通了就搞懂 d3 的奧義了
+23:56 < jimyhuang> clkao_: tks，我再試試看～順便把ipa說的加上去
+23:56 < clkao_> :DD
+23:57 < clkao_> jimyhuang: 不過 pm10 好像沒有寫健康影響... 只好加上 button 讓他選擇顯示 PSI 了? XD
+23:57 -!- Ti_W_B111 [~Ti_W_B@112.105.206.130] has quit [Quit: Nettalk6 - www.ntalk.de]
+23:57 < jimyhuang> clkao_: 所以原始資料我看應該是pm2.5對吧？
+23:58 < clkao_> jimyhuang: right now it's using \pm10
+23:58 < clkao_> search for PM10
+23:58 < ipa> 喔我以為那排是PSI 
+23:58 < clkao_> there are other fields
+23:59 < ipa> http://taqm.epa.gov.tw/taqm/zh-tw/b0201.aspx
+23:59 < kcwu> ipa's url: [行政院環保署－空氣品質監測網]
+23:59 < clkao_> will need to make the current d3.csv callback a function (redraw), then call it whenever desired field changes

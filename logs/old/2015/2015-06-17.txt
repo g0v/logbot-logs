@@ -1,0 +1,172 @@
+--- Day changed 三  6月 17 2015
+04:52 -!- chihchun is now known as chihchun_afk
+10:06 -!- chihchun_afk is now known as chihchun
+10:25 < tkirby> 有人有在 chrome extension 裡做 authentication 的經驗嗎？
+11:10 < slackbot2> <motionman> oauth?
+11:10 < tkirby> yeah... use oauth or sth like that
+11:11 < slackbot2> <motionman> shameless plug from google, <https://developer.chrome.com/extensions/tut_oauth>
+11:11 < kcwu> slackbot2's url: [Tutorial: OAuth - Google Chrome]
+11:12 < slackbot2> <motionman> 要注意endpoint和scope最近更新了
+11:12 < tkirby> how do you prevent from giving client secret in extension?
+11:14 < slackbot2> <motionman> afaik you have to do it on server side
+11:15 < tkirby> 這樣的話似乎無法認明 extension 正身?
+11:16 < slackbot2> <motionman> 嗯,老實說很矛盾的問題
+11:16 < slackbot2> <motionman> 有心人都能作假
+11:16 < tkirby> (y)
+11:24 < slackbot2> <motionman> @tkirby: 如果google oauth可以把責任卸給chrome <https://developer.chrome.com/extensions/identity>
+11:24 < kcwu> slackbot2's url: [chrome.identity - Google Chrome]
+11:25 < tkirby> 可是我現在是要自己做 oauth server... XD
+11:26 < tkirby> 話說回來，這個是拿 chrome user 的那個 identity 嗎
+11:27 < slackbot2> <hychen> tkirby: client 要用什麼當identity?
+11:27 < slackbot2> <hychen> ga 裡面好像有一個User ID 可用
+11:27 < slackbot2> <motionman> @tkirby: 嗯
+11:27 < slackbot2> <motionman> @tkirby: 裝extension的那個user
+11:28 < tkirby> hmmm
+11:29 < slackbot2> <hychen> 我也想在我的extension 放identitiy
+11:29 < tkirby> hychen 的應該用 chrome identity 就好了
+11:30 < tkirby> 我現在要做的事情 exnteion 只是其中一部份，所以得自己弄 oauth server... 
+11:30 < tkirby> 或者是將 chrome user 與 oauth 連結?
+11:30 < tkirby> 這樣的話 firefox 要做 extension 的話....
+11:42 < slackbot2> <hychen> tkirby: 你是要做匿名identity?
+11:43 < tkirby> hychen: 不太懂，你的意思是?
+11:45 < slackbot2> <hychen> tkirby: 就是by app的identity, 使用者不需要註冊, 但是你可以區分data是屬於哪個user
+11:45 < slackbot2> <hychen> 喔, 你要弄oauth , 那是需要user 註冊的那種
+11:46 < tkirby> yeah
+11:48 < slackbot2> <motionman> 但也不想把client secret放在extension裡頭
+11:57 < tkirby> indeed
+11:59 < tkirby> 連結 google identity 也許可行... 要再調查一下，而且應該有些限制
+12:03 < slackbot2> <motionman> 看你能放開多少吧,如果完全是server side方面可以供給jwt
+13:01 -!- chihchun is now known as chihchun_afk
+13:42 -!- chihchun_afk is now known as chihchun
+15:05 -!- caasihuang is now known as _|_
+15:05 -!- _|_ is now known as caasihuang
+15:36 < slackbot2> <mrorz> tkirby: 我之前有在 google api
+15:36 < slackbot2> <mrorz> 在 Chrome extension 內用 google api 做「上傳到 google drive」
+15:37 < slackbot2> <mrorz> 還是 tkirby 其實不用操作 google api 呢
+15:38 < tkirby> mrorz: 你有在 extension 裡面放 client secret 嗎？
+15:39 < slackbot2> <mrorz> 我找一下
+15:42 < slackbot2> <mrorz> 沒有，我沒放 client secret
+15:42 < slackbot2> <mrorz> <https://github.com/MrOrz/SeeSS-Reload/blob/master/src/global-chrome.coffee>
+15:42 < slackbot2> `gapi` 是透過 manifest 餵進去的 google api client js lib
+15:42 < kcwu> slackbot2's url: [SeeSS-Reload/global-chrome.coffee at master · MrOrz/SeeSS-Reload · GitHub]
+15:45 < slackbot2> <mrorz> code 大致跟這個一樣 <https://developers.google.com/api-client-library/javascript/start/start-js>
+15:45 < kcwu> slackbot2's url: [Getting Started   |   API Client Library for JavaScript (Beta)   |   Google Developers]
+15:54 < tkirby> hmm 你知道背後的機制是什麼嗎，是透過 chrome identity ?
+15:58 < slackbot2> <mrorz> 不知道椰，Facebook javascript client library 也是不用 secret 的
+16:00 < slackbot2> <mrorz> 我突然發現我的 code 跟  <https://developers.google.com/api-client-library/javascript/start/start-js> 一點都不像⋯⋯ XD"
+16:00 < tkirby> start-js 那個例子好像有提供 secret (apikey) ?
+16:02 < slackbot2> <mrorz> 我的 code 應該跟這個比較像
+16:02 < slackbot2> <https://developers.google.com/drive/web/quickstart/quickstart-js>
+16:02 < kcwu> slackbot2's url: [Quickstart: Run a Drive app in JavaScript   |   Drive REST API   |   Google Developers]
+16:02 < slackbot2> <mrorz> 一個 gapi.auth.authorize 之後就很神奇地什麼都搞定了
+16:04 < tkirby> 我想想看
+16:05 < tkirby> 看起來這樣是任何人都可以使用
+16:06 < slackbot2> <mrorz> 是說 apikey 不等於 secret 的喲
+16:06 < tkirby> 就有點像是大家都用同一個 secret 的感覺?
+16:06 < tkirby> apikey 是個適合給大家看的東西嗎？
+16:09 < slackbot2> <motionman> TIL
+16:09 < slackbot2> <mrorz> 以前會要 `apikey` 的服務，都是一些無關個資的服務
+16:09 < slackbot2> 像舊的 imgur data
+16:10 < slackbot2> <mrorz> 現在 google 好像也是OAuth, Public API access兩種併行
+16:10 < slackbot2> <mrorz> <https://developers.google.com/api-client-library/javascript/features/authentication> 分成「Simple」與[]
+16:10 < kcwu> slackbot2's url: [Authentication using the Google APIs Client Library for JavaScript   |   API Client Library for JavaScript (Beta)   |   Google Developers]
+16:10 < slackbot2> <mrorz> 「Authorized」
+16:10 < slackbot2> <mrorz> 前者不能拿 private user data，但後者可以
+16:11 < slackbot2> <mrorz> 我那個 project（<https://github.com/MrOrz/SeeSS-Reload/blob/master/src/global-chrome.coffee> ）因為會上傳東西到使用者的 google drive，會存取到 private user data，因此屬於「Authorized」的 API access
+16:11 < kcwu> slackbot2's url: [SeeSS-Reload/global-chrome.coffee at master · MrOrz/SeeSS-Reload · GitHub]
+16:11 < tkirby> 我可能有點混用詞彙了，不過我不僅是想拿 private data, 我還希望只有自己的 extension 可以拿, 所以不光是要做 auth, 還要確認來源
+16:11 < slackbot2> <mrorz> 不過神奇的是，我不知道為什麼我沒給 API key 也不會出事情
+16:12 < slackbot2> <mrorz> 可是 google api 應該都是拿使用者自己的 drive data gji
+16:12 < slackbot2> <mrorz> 說
+16:12 < slackbot2> <motionman> @mrorz: google少用api key了,rate limit都是跟ip或服務綁定
+16:12 < slackbot2> <mrorz> 更正，使用者自己的 google data
+16:13 < slackbot2> <mrorz> @motionman: 難怪 api console 在我們申請新 client ID 時，都一定要我們設定 redirect URI 與 origins
+16:14 < slackbot2> <motionman> 話說也對有oauth client secret或id沒有正確的domain也是沒有用哈哈哈
+16:14 < slackbot2> <motionman> @tkirby: 不好意思,剛腦殘了一下
+16:14 < tkirby> 嘎？
+16:14 < slackbot2> <motionman> 其實secret給人拿了也沒用
+16:15 < slackbot2> <mrorz> @tkirby 我發現我傳圖在 IRC 好像看不到
+16:15 < tkirby> yeah 我在 irc XD
+16:15 < slackbot2> <mrorz> 我有傳我 API console 的設定
+16:15 < slackbot2> <mrorz> 裡面其實會要設定 redirect url 之類的東西
+16:15 < slackbot2> <motionman> 剛記得google enterprise api的api key也是這麼放在html裡
+16:16 < slackbot2> <motionman> 現在api都要在console裡做domain或app id的綁定,給人拿了也沒有用
+16:17 < tkirby> api key 是確認api user 的身份，如果放出來就是讓大家都可以用這個身份存取?
+16:17 < slackbot2> <mrorz> API key 要設定 Referrers
+16:17 < slackbot2> <mrorz> 你可以選 any referrer allowed
+16:17 < slackbot2> <mrorz> 這樣就算是大家都能用這個身份存取了
+16:17 < tkirby>  比方說用 api key 做 HTTP Get, 用 curl 就可以避掉 domain 綁定的問題了
+16:18 < slackbot2> <mrorz> // 是說只用 apikey ，不走 oauth 的話，能拿到什麼資料呀 @@
+16:19 < tkirby> 不是啦， api key 是限制 api user 的意味, oauth 是 end user grant permission 的意味
+16:20 < slackbot2> <mrorz> 喔喔喔喔
+16:20 < tkirby> 比方說 api 限制用量一天5000 次，那我們就要先拿個 api key, 然後用 api key 存取
+16:20 < slackbot2> <mrorz> 如果是說會擔心 api key quota 的問題
+16:20 < slackbot2> <mrorz> 那確實是 api key 一旦流出去，大家就都能用你的 quota XD
+16:21 < slackbot2> <motionman> extension不清楚但至少我記得enterprise的api key的quota是跟domain的
+16:21 < slackbot2> <motionman> 就好像analytics的一個短id
+16:22 < tkirby> 如果沒搞錯的話 extension 執行的 context 是 chrome://extensions/ (popup)  跟 tab 的 url (content), 好像沒有特定網址
+16:23 < slackbot2> <motionman> 嗯,但我覺得用chrome的identity應該就夠了
+16:25 < slackbot2> <motionman> extension有app id綁定
+16:26 < slackbot2> <motionman> 不好意思,早上腦殘
+16:26 < slackbot2> <motionman> @tkirby: <https://i.imgur.com/v60sznH.png>
+16:29 < tkirby> 你是說拿 app id 來當 oauth 的 client secret 嗎
+16:31 < tkirby> 我現在是自己要架 oauth server, 並不是要使用 google api
+16:32 < slackbot2> <mrorz> ! 為什麼我會把問題看成「在 extension 裡面做 google 的 authentication」
+16:32 < slackbot2> <mrorz> （跪
+16:33 < tkirby> XD
+16:33 < tkirby> 拿 app id 好像也不行.. 那人家知道 app id 以後也可以寫一個一樣的 extension 了
+16:33 < tkirby> 看來還是要用 chrome identity 想辦法連結 oauth server account 
+16:41 < slackbot2> <motionman> 哈哈哈腦殘x2,我也以爲這個了...
+16:41 < slackbot2> <https://g0v-tw.slack.com/archives/general/p1434529944002834>
+16:41 < kcwu> slackbot2's url: [Slack]
+16:42 < tkirby> XDD
+16:44 < slackbot2> <motionman> 如果說是去第三方的網站(你的oauth server)先登入然後利用browser的這個session拿access token/jwt來跟你的服務溝通如何?
+16:46 < slackbot2> <motionman> just paper crafting, not sure how viable that is
+16:46 < tkirby> 感覺還是沒辦法避免別人做一樣的事
+16:46 < slackbot2> <mrorz> 現在 tkirby 的問題好像是，其他人也可以蓋一個 client 來做一模一樣的事情
+16:47 < tkirby> yeah
+16:47 < slackbot2> <mrorz> 不過在瀏覽器發生的東西
+16:47 < slackbot2> <motionman> 嗯,怎麼都能spoof
+16:47 < slackbot2> <motionman> 到最後看你的取捨
+16:47 < slackbot2> <motionman> #廢話
+16:47 < tkirby> XD
+16:47 < slackbot2> <mrorz> 例如說用 activeX 或 java applet (喂)
+16:48 < tkirby> 記得 ptt 曾經有個 ActiveX 版 
+16:48 < slackbot2> <motionman> chrome斷了npapi
+16:48 < tkirby> 我好像當過版主... XDDDDDD
+16:50 < slackbot2> <motionman> NaCl吧
+16:51 < slackbot2> <motionman> ^很蠢的答案
+--- Log opened 三  6月 17 17:53:21 2015
+17:53 -!- Irssi: #g0v.tw: Total of 160 nicks [0 ops, 0 halfops, 0 voices, 160 normal]
+17:53 -!- Irssi: Join to #g0v.tw was synced in 16 secs
+18:04 < slackbot2> <yhsiang> tkirby: 主要是 redirect uri
+19:17 -!- macpaul [macpaul@gateway/web/scrollback.io/x-cmzwgxcgjgqeilhh] has left #g0v.tw []
+19:17 -!- cittim [guest-citt@gateway/web/scrollback.io/x-riktjgeozilylgjg] has left #g0v.tw []
+19:17 -!- doesia2 [guest-does@gateway/web/scrollback.io/x-xuezdlmhgdidamet] has left #g0v.tw []
+20:29 -!- chihchun is now known as chihchun_afk
+20:35 -!- chihchun_afk is now known as chihchun
+21:55 -!- chihchun is now known as chihchun_afk
+23:12 < slackbot2> <etblue> yhsiang: soidid: 我今天把議程表接上了官方 api （大誤） <http://etblue.github.io/wild.coscup.org/public/program>
+23:12 < kcwu> slackbot2's url: [議程 | 開源人年會 COSCUP.org 野生官網]
+23:14 -!- veloci85_ is now known as veloci85
+23:18 -!- veloci85_1 is now known as veloci85
+23:20 < V1ctor> tkirby: Google (as a identity provider) 限制其他 extension 使用的做法是，原作者必須先到 Developers Console 註冊 extension id 跟 client id.  但這是有 Chrome 幫忙驗證，我不確定你的 identity provider 要怎麼做
+23:22 -!- veloci85_1 is now known as veloci85_
+23:22 -!- veloci85_ is now known as veloci85
+23:23 < V1ctor> tkirby: 啊 一樣 你的 redirect URL 要指定 extension id 
+23:23 < V1ctor> https://developer.chrome.com/apps/identity#method-launchWebAuthFlow
+23:23 < kcwu> V1ctor's url: [chrome.identity - Google Chrome]
+23:27 -!- veloci85_1 is now known as veloci85
+23:28 < slackbot2> <clkao> V1ctor!!
+23:28 < slackbot2> <clkao> V1ctor: 有看到 rschiang 的 LF2.0 project 嗎？
+23:28 < V1ctor> 沒有 那是什麼 XD
+23:29 < V1ctor> clkao: 你在加州了嗎
+23:30 < slackbot2> <rschiang> Law Formation 2.0, 在討論要用什麼方式存法規比較不用每個專案都重複造輪子(○'ω'○)
+23:31 < slackbot2> <clkao> v1ctor, ya, 這幾天都在 palo alto
+23:32 < V1ctor> rschiang: 聽起來要研究很多國家的 use case? :p
+23:35 < tkirby> V1ctor: 喔喔, 是說 chrome 會代理 extension 認證的部份嗎
+23:35 < tkirby> (y)
+23:37 < V1ctor> tkirby: 對，但當然要 server 的配合
+23:38 < V1ctor> rschiang: 我覺得這很值得做，有 github 還是什麼文件嗎
+23:43 -!- veloci85_ is now known as veloci85
+23:55 -!- veloci85_1 is now known as veloci85

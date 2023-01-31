@@ -1,0 +1,125 @@
+--- Day changed 一  6月 15 2015
+00:30 < slackbot3> <yhsiang> muka: <https://share.inside.com.tw/posts/17212> # 今天講的 XD
+00:30 < kcwu> slackbot3's url: [Soylent：省略三餐，讓工作狂只顧維持生命營養的選擇 - Inside 網摘]
+00:36 < slackbot3> <agrozyme> 我有一個問題想問，就是 g0v 裡面有關台灣行政區的編碼，是依照 ISO 3166-2 來的
+00:36 < slackbot3> 唯二有問題的是金門跟連江，這兩個在 ISO 3166-2 沒有定義，是拿對岸的編碼直接用
+00:36 < slackbot3> 目前在台灣的公部門也都是這樣處裡的嗎？
+00:37 < slackbot3> <agrozyme> 比如說這個：
+00:37 < slackbot3> <https://github.com/g0v/twlyparser/blob/master/mly.ls>
+00:38 < kcwu> slackbot3's url: [twlyparser/mly.ls at master · g0v/twlyparser · GitHub]
+09:48 < slackbot3> <kiang> @agrozyme: <https://github.com/g0v/twgeojson/blob/master/village-list.csv> 裡面的 ID 是主計處用的編碼，另外還有一種編碼（忘記在哪裡），但基本上都不是照著 ISO 走，因為我們沒有參與 ISO 吧
+09:48 < kcwu> slackbot3's url: [twgeojson/village-list.csv at master · g0v/twgeojson · GitHub]
+10:44 < slackbot3> <miaoski> @acechen: DN7C3CA006 到貨囉 (就說順豐根本是中資不用通關)
+11:03 < slackbot3> <agrozyme> @kiang: 主計處那個編碼很怪，看文件名猜測應該是某種地理編碼，但是跟經緯度和郵遞區號似乎無關～
+11:03 < slackbot3> ISO 3166-2 我們台灣的行政區有標準編碼唷，只是獨缺那兩個縣～
+11:03 < slackbot3> <https://zh.wikipedia.org/wiki/ISO_3166-2:TW>
+11:03 < kcwu> slackbot3's url: [ISO 3166-2:TW - 维基百科，自由的百科全书]
+11:05 < slackbot3> <agrozyme> 而且不只 ISO 那邊有標準編碼，聯合國地理位置代碼我們台灣的地區也有標準編碼，只是跟 ISO 3166-2 有不小的差異就是
+11:05 < slackbot3> <http://www.unece.org/fileadmin/DAM/cefact/locode/tw.htm>
+11:05 < kcwu> slackbot3's url: [UNLOCODE (TW) - TAIWAN, PROVINCE OF CHINA]
+11:05 < slackbot3> <kiang> 我意思是國內行政單位沒有用 iso 編碼的習慣吧
+11:06 < slackbot3> <kiang> Iso 3166 把台灣劃為中國的一個省
+11:06 < slackbot3> <kiang> 所以金門連江放在福建省是可以預期的
+11:07 < slackbot3> <agrozyme> 這我就不清楚，今天他們有上班，我會發信去問問看
+11:07 < slackbot3> 不過我要做的東西希望能和國際標準一致，地址的行政區這個部分就是參考 ISO 3166 這個是確定的，目前我只是想解決這兩個縣的編碼而已～
+11:08 < slackbot3> <agrozyme> 金門連江用大陸那邊的編碼我個人其實也可以接受，只是想知道 g0v 對這個部份當初是怎麼做決定的？
+11:10 < slackbot3> <yhsiang> commit 的人自己決定 XD
+11:10 < slackbot3> <kiang> 是啊，g0v 沒有人的
+11:12 < slackbot3> <agrozyme> 那讓我先問問業主跟其他社群，看看能不能找到一個想法來支持用大陸那邊的編碼～
+11:13 < slackbot3> <agrozyme> 這個問題對我來說不大，但對這兩個縣的人民或許會造成一些困擾：
+11:13 < slackbot3> <https://www.youtube.com/watch?v=YQoZ7T1XXAk&amp;feature=youtu.be&amp;app=desktop>
+11:13 < kcwu> slackbot3's url: [AIT好扯 金門馬祖人辦美簽 護照歸中國籍 - YouTube]
+11:16 < slackbot3> <kiang> 很多歷史因素吧，這也是中國的目的，當大家採用 ISO 3166 普遍後，台灣就是它的了 XD
+11:19 < slackbot3> <kiang> http://taiwanmatters.blogspot.tw/2010/05/how-iso-helps-china-change-taiwans.html
+11:19 < kcwu> slackbot3's url: [Taiwan Matters!: How the ISO helps China change Taiwan's status quo]
+11:20 < slackbot3> <motionman> ^ TIL
+11:25 < slackbot3> <agrozyme> 現實的無奈啊～
+11:25 < slackbot3> 有時候發現問題時已經造成困擾了～
+11:26 < slackbot3> <kiang> 我是還在掙扎啦，有注意到就發個信建議，偶爾還是會遇到正面回應
+11:27 < slackbot3> <motionman> 好奇問一下,對臺灣歷史不熟悉,但臺灣不是也是中國(中華民國)嗎? vs PRC中華人民共和國,我覺得國號對我這些外來人來說有點衝突和造成理解的混亂
+11:27 < slackbot3> <motionman> 問題有點蠢,請見諒
+11:28 < slackbot3> <yurenju> @motionman: 簡單的說中華民國原本是中國的政府，但是內戰之後退守到台灣，所以目前會有中華人民共和國（就是現在的中國）還有中華民國（目前有效領地是台灣跟其他小島）
+11:28 < slackbot3> <yurenju> 但是這樣的觀點不見得正確就是了...
+11:28 < slackbot3> <yurenju> 其實問題很複雜
+11:29 < slackbot3> <yhsiang> 要先看你想從那個史觀看 XD
+11:29 < slackbot3> <yurenju> 因為有些人主張中華民國只是代管台灣，但是不是合法的政府，但是這實在太複雜我自己也搞不清楚 XDD
+11:30 < slackbot3> <motionman> 因爲國號都是China,現在大家都認爲是PRC,讓PRC好辦事,這點臺灣很吃虧
+11:31 < slackbot3> <yurenju> @motionman: 所以護照上才會加註「台灣」
+11:31 < slackbot3> <yurenju> 畢竟講中華民國 Republic of China 實在很容易跟中國搞混
+11:32 < slackbot3> <motionman> 嗯
+11:32 < CindyLinz> yurenju: 不管是不是合法政府, 也許不能代表台灣, 但總歸是個政府.... 而且是個和 PRC 不一樣的政府.   這部分應該沒有問題吧 :p
+11:32 < slackbot3> <yurenju> CindyLinz 這倒是沒問題～
+11:33 < slackbot3> <yurenju> 實際上來看，中國的有效領土沒包含台灣，中華民國的有效領土只有台灣澎湖金門馬祖 <=== 這個應該也是正確無誤的
+11:34 < CindyLinz> 如果台灣不要這個 ROC 自組政府 (啊, 好脫離現實的感覺 QQ) 的話, 這個台灣政府要管到金門馬祖嗎?
+11:34 < CindyLinz> (有澎湖嗎?)
+11:34 < slackbot3> <yurenju> CindyLinz, 應該沒有
+11:34 < slackbot3> <yurenju> 有包含澎湖吧？沒包含金門馬祖
+11:35 < slackbot3> <agrozyme> 有澎湖～
+11:35 < slackbot3> 政治上的問題先放一邊，我個人是傾向拿聯合國地理位置代碼來填補這兩個縣
+11:35 < slackbot3> 不過還是要看大家有沒有共識～
+11:35 < slackbot3> <yurenju> 我最近看了幾次住民自決的文章，大概瞭解他們的意思不過很難實現...
+11:35 < CindyLinz> 澎湖應該是有被日本統治的吧~ 我外公(澎湖人)以前一直很想念日本的統治
+11:36 < CindyLinz> 噢 我剛剛有看錯句子 :p
+11:36 < slackbot3> <agrozyme> 如果要走正式管道，可以在有共識以後，看一下這個網頁的資料，上面有聯絡信箱，可以嘗試聯絡看看
+11:36 < slackbot3> <http://www.iso.org/iso/home/standards/country_codes.htm>
+11:36 < kcwu> slackbot3's url: [ISO 3166 - Country codes - ISO]
+11:37 < CindyLinz> 金門馬祖人會希望自治還是歸到中國或台灣呢?
+11:38 < slackbot3> <yurenju> 依照倡議住民自決的論調，其實是兩個政府，但是如果住民自決的結果不願意給中華民國管，那就會有第三個政府
+11:39 < slackbot3> <yurenju> 問題會變成金門馬祖人會希望給中華民國管、歸到中國或是歸到新政府 XDDD
+11:39 < slackbot3> <yurenju> @motionman: 其實台灣人也弄不太清楚，所以你不太清楚是很正常的....
+11:41 < slackbot3> <muka> 問個問題，南海的主權要怎樣算？
+11:43 < slackbot3> <yurenju> 我不知道誒.... 有人有想法的嗎
+11:43 < CindyLinz> 完美的話當然是盡量貪心點 XD  現實的話可能要拿來討好南海週圍國家.... :/
+11:44 < slackbot3> <motionman> 這個我們有受影響,這些年PRC就憑着South China Sea的語義嘗試宣稱主權,也是很模糊的話題
+11:45 < slackbot3> <yurenju> @motionman: 冒昧請問一下請問你來自哪個國家呢？
+11:45 < slackbot3> <agrozyme> 這個牽扯到一些很微妙的歷史問題
+11:45 < slackbot3> 比如說國家主權的觀念，在一戰前後發生了巨大的變化
+11:45 < slackbot3> 一戰前的領土主權，是可以由君主透過條約割讓他國的～
+11:45 < slackbot3> 而台灣是在一戰前被大清國割讓給日本(精確的說是日本天皇，因為當是大正奉還，二戰後現在的日本政府才成立)
+11:45 < slackbot3> 所以二戰後有可能並不是日本故意耍裱，造成台灣主權未定，很有可能是當時的日本天皇不想表態～
+11:45 < slackbot3> 那如果說以二戰後的主權觀念，要住民自決，那台灣目前的主權是屬於台灣人民，只是台灣人民沒有正式決定主權交由哪個政府持有～
+11:45 < slackbot3> <motionman> @yurenju: 馬來西亞
+11:45 < slackbot3> <yurenju> @motionman: 你好，歡迎  :smile:
+11:45 < slackbot3> <motionman> 東南亞一直以來都有海域爭議
+11:46 < slackbot3> <motionman> @yurenju: 謝 :simple_smile: 我是馬來西亞Sinar Project來的
+11:46 < slackbot3> <agrozyme> 不過我要討論的問題沒有那麼嚴重，只是務實的要找個共識的解法而已～
+11:46 < slackbot3> <yurenju> @motionman: 其實我想起來我好像有跟你打過招呼 XDD
+11:46 < slackbot3> <motionman> @yurenju: 嗯
+11:46 < slackbot3> <yurenju> 這個頻道人太多了，haha..
+11:47 < slackbot3> <motionman> 沒關係,招呼不嫌多哈哈哈
+12:06 < slackbot3> <clkao> agrozyme: hi, 的確因為我國沒有更新 iso 3166-2 的行政區（連六都新制都沒有），只好自己發明
+12:07 < slackbot3> <clkao> 不過跟 TW 有關的是 iso 3166, 不是 3166-2, 應該跟你要問的無關。這個一般會建議使用 ISO3166 的代碼，加上 GENC 的名稱
+12:08 < slackbot3> <clkao> 或者直接使用 <https://github.com/150/Elbb>
+12:08 < kcwu> slackbot3's url: [150/Elbb · GitHub]
+12:09 < slackbot3> <clkao> 另外官方有在用的英文縮寫，我後來發現有一個貿易通關的編碼，有在 UN registry 裡面，裡面就有金門跟馬祖
+12:10 < slackbot3> <agrozyme> 有網址嗎？讓我看看那邊的編碼～
+12:11 < slackbot3> <agrozyme> 剛剛看了 ISO 那邊標註的更新日期還是 1972 年
+12:11 < slackbot3> <https://www.iso.org/obp/ui/#iso:code:3166:TW>
+12:13 < slackbot3> <clkao> <http://www.unece.org/fileadmin/DAM/cefact/locode/tw.htm>
+12:13 < kcwu> slackbot3's url: [UNLOCODE (TW) - TAIWAN, PROVINCE OF CHINA]
+12:13 < slackbot3> <clkao> UN/LOCODE KNH => 金門; MFK => Matsu
+12:14 < slackbot3> <clkao> 如果大家覺得這個比較適當，我們可以先把我們常用的 code 改成這個，再建議政府單位採用
+12:15 < slackbot3> <clkao> (不過那個 MFK  的 FK 到底是哪來的... )
+12:16 < slackbot3> <yhsiang> 福建?
+12:16 < slackbot3> <clkao> ! 果然是專家
+12:18 < slackbot3> <agrozyme> 這個跟我最初想要編的是一致的，可以參考這串討論
+12:18 < slackbot3> <https://www.facebook.com/groups/drupaltaiwan/permalink/896015983774010/>
+12:18 < kcwu> slackbot3's url: [登入 Facebook | Facebook]
+12:33 < slackbot3> <kiang> 由於過去中華民國二戰時代表同盟國從日本手上接收台灣與澎湖，但沒有任何文件顯示同盟國將台灣與澎湖交給中華民國，所以有人會說台灣與澎湖主權未定、有人說台灣與澎湖屬於同盟國，法理上的爭議很多
+12:35 < slackbot3> <kiang> 我們目前用來參與國際活動的名稱之一， Chinese Taipei ，有人說是 Chinese exile government in Taipei 的縮寫，意思是在台北的中國流亡政權
+12:37 < slackbot3> <kiang> <https://en.wikipedia.org/wiki/Taiwan_after_World_War_II> - 這篇其實講得很詳細
+12:37 < kcwu> slackbot3's url: [Taiwan after World War II - Wikipedia, the free encyclopedia]
+12:38 < slackbot3> <motionman> @kiang: 謝 0/
+12:49 < slackbot3> <agrozyme> 這個問題要解決需要分兩個層面：
+12:49 < slackbot3> 對內，台灣的居民要進行住民自決，用台灣的術語講就是公民投票，決定我們的國家跟政府是什麼
+12:49 < slackbot3> 對外，美中日三方需要簽訂類似大英國協憲章之類的國際法律文件，一次解決兩次世界大戰以後遺留下來的歷史問題
+12:49 < slackbot3> 這樣台灣才能走向正常國家～
+17:20 < slackbot3> <yhsiang> clkao: Akoma Ntoso  要有 conference 了 XD # <http://www.akomantoso.org/akoma-ntoso-conference/>
+17:20 < kcwu> slackbot3's url: [Akoma Ntoso Conference | Akoma Ntoso]
+18:34 < slackbot3> <junsuwhy> 請問一下有人認識之前 123 打道掛的立委資料格式嗎~?
+18:34 < slackbot3> <https://github.com/chilijung/ly-tel/blob/gh-pages/data/mly-8.json>
+18:34 < kcwu> slackbot3's url: [ly-tel/mly-8.json at gh-pages · chilijung/ly-tel · GitHub]
+18:35 < slackbot3> <junsuwhy> 在 616 憲動盟的憲改打道掛我要更新立委的資料，不知道有沒有比較快的方法~?
+18:37 < slackbot3> <yhsiang> junsuwhy: <https://github.com/g0v/twlyparser#if-you-want-to-parse-legislator-information-to-json>
+18:37 < kcwu> slackbot3's url: [g0v/twlyparser · GitHub]
+18:45 < slackbot3> <junsuwhy> 感謝!!!

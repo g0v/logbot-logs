@@ -1,0 +1,132 @@
+--- Day changed 四  2月 14 2013
+00:00 -GitHub61:#g0v.tw- [twlyparser] chhsiao1981 opened pull request #19: improve parse-list (branch directly from 251972b38154d30494bad237746ac07... (master...parse-list2)  https://github.com/g0v/twlyparser/pull/19
+00:07 -!- ck_ [~ck@61-31-166-245.dynamic.tfn.net.tw] has quit [Remote host closed the connection]
+00:16 < clkao> liquid feedback 搬到 digitalocean 了: http://lqfb-test.g0v.tw/g0v/
+00:16 < kcwu> clkao's url: [LiquidFeedback - g0v.tw]
+00:29 < clkao> chhsiao1981++ # how did you come up with the table of fixupHtml ?
+01:09 -!- lxb [cbc2808e@gateway/web/freenode/ip.203.194.128.142] has quit [Ping timeout: 245 seconds]
+01:11 -!- KNY [~Adium@36-232-95-80.dynamic-ip.hinet.net] has quit [Quit: Leaving.]
+01:30 < favonia> miaout17: 我又擺了一些東西orz
+01:38 < favonia> chhsiao1981: '\uE8E4' => '崐' 這是造字嗎
+01:39 < favonia> &\#63508; 這個又是怎麼回事...
+01:49 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+02:21 -!- mno2 [~mno2@1.34.43.236] has quit [Ping timeout: 276 seconds]
+03:33 -!- Supaplextw [~Lucky@114-36-232-201.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+07:28 < favonia> clkao: 關於發音（押韻小幫手之類的）我想可能要以一字多音審查表為主。重編國語辭典有講說他因為年代較舊沒有完全遵照審查表
+07:44 < favonia> miaout17: 我把timestamp完全廢掉了，改用hash
+07:57 -!- logbot___ [~cinch@140.122.183.158] has joined #g0v.tw
+07:57 -!- logbot_ [~cinch@140.122.183.158] has quit [Remote host closed the connection]
+09:19 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+09:23 -!- ck_ [~ck@61-31-160-75.dynamic.tfn.net.tw] has joined #g0v.tw
+09:41 -!- ck_ [~ck@61-31-160-75.dynamic.tfn.net.tw] has quit [Remote host closed the connection]
+09:42 -!- ck_ [~ck@61-31-160-75.dynamic.tfn.net.tw] has joined #g0v.tw
+09:44 -!- ck_ [~ck@61-31-160-75.dynamic.tfn.net.tw] has quit [Remote host closed the connection]
+09:59 < clkao> favonia: \uEXXX 是立法院用的 PUA :/
+10:00 < favonia> clkao: 全立法院統一嗎？
+10:10 < clkao> 公報中的
+10:11 < clkao> favonia: https://hackpad.com/%E7%AB%8B%E6%B3%95%E9%99%A2%E5%85%AC%E5%A0%B1-PUA-RgvhhdaHoDL
+10:11 < kcwu> clkao's url: [立法院公報 PUA - hackpad.com]
+10:18 < favonia> clkao: 我猜不出來 lci 代表什麼 orz
+10:51 < chhsiao1981> clkao: check by my eyes XD. 
+10:51 < chhsiao1981> clkao: 參考 .pdf 找出來的.
+10:51 < clkao> chhsiao1981: 太強
+10:52 < clkao> favonia: ly communique internet? :P
+10:55 < favonia> clkao: er... 是這樣嗎 o_O
+10:58 < clkao> 亂猜的 正只是網址.. 不是太重要吧 :p
+10:58 < chhsiao1981> clkao: fixupHtml 目前是只有 index.json 限定而已. (大部分是萬惡的(一),(二),(三) XD)
+10:58 < favonia> clkao: 對照表是看 PDF 找出來的嗎
+10:59 < chhsiao1981> 不過除了(一),(二),(三)以外. 其他的還算可以參考. (像是銓敘部/錫堃/WT0之類的.)
+11:00 < clkao> favonia: 據 chhsiao1981 說是的... 原來 src/util.ls 下的就是看到哪自己手動對一下... 似乎找不出什麼跟 cns/big5e 的規律 所以應該不是 unoconv 轉錯的
+11:00 < chhsiao1981> favonia: 官方版的 pdf 的字都有呈現出來. 
+11:01 < chhsiao1981> 有些是 .doc 本身的字就怪怪的 (很可能我們的機器本身沒有那些 PUA. (萬惡的 .doc XD))
+11:02 < clkao> chhsiao1981: 對了，那 pdf 把那個字 copy paste 出來，是正確的 unicode 嗎？
+11:02 < chhsiao1981> favonia: 官方版的 pdf 的字好像也是只有肉眼可以看得出來的樣子. 用 copy/paste 也還是爛掉. 
+11:02 < favonia> chhsiao1981: orz
+11:02 < clkao> 出來是和 doc 一樣的 pua ?
+11:02 < favonia> chhsiao1981: 內嵌字體如果可以抓出來
+11:02 < favonia> chhsiao1981: 可能有救（？）
+11:02 < clkao> 就放上 mashup server 一起救? :p
+11:03 < favonia> clkao: y
+11:03 < favonia> 我剛才在思考現在的架構能不能處理這種詭異的狀況
+11:03 < favonia> 連圖片都不確定在哪裡
+11:04 < clkao> 用上下文 + source url 當作填空題 context? 
+11:06 < favonia> 目前好像做不到這樣 Q_Q
+11:07 < chhsiao1981> 是可以先把 pua 區濾出來. 估計把現在已知的 apply 上去以後. 剩下還沒找到的應該已經不會太多了. 
+11:08 < chhsiao1981> 另外是 100 年以後的 pua 的機率好像是趨近於 0 了. 
+11:08 < clkao> chhsiao1981: 剛才那個 hackpad 上面的就是所有的列表了
+11:08 < clkao> 應該是 102 年後吧 終於行政院長沒有怪字了 :P
+11:08 < favonia> chhsiao1981: 喔喔。總之我想問有沒有把字體從 PDF 中弄出來，變成簡單圖片的方法
+11:09 < favonia> 這樣就可以擺到裡面去
+11:09 < clkao> 「行政院長出現 big5 外字機率」為何？
+11:09 < clkao> XD
+11:10 < clkao> favonia: seems doable: http://stackoverflow.com/questions/3488042/how-can-i-extract-embedded-fonts-from-a-pdf-as-valid-font-files
+11:10 < kcwu> clkao's url: [How can I extract embedded fonts from a PDF as valid font files? - Stack Overflow]
+11:10 < favonia> clkao: 嗯不過顯然我現在沒空了 xD 看有誰要弄
+11:10 < clkao> fontforge 可以直接開 pdf ? 奧義
+11:11 < favonia> 只要變成圖片就可以加入到現在還在改 API 的系統
+11:11 < chhsiao1981> clkao: 有陳冲和游錫堃 XD. 
+11:11 < chhsiao1981> clkao: XD. 
+11:20 < clkao> chhsiao1981: is it possible to merge fixhtml into src/util ? so we have just one table
+11:25 < chhsiao1981> clkao: no problem.
+11:28 < chhsiao1981> clkao: currently I'll just directly mv fixupHtml to src/util. (It's better that we just have one table for both fixupHtml and fixup, but maybe it will be the future work.)
+11:34 < clkao> you can use something like .replace /&#(\d+);/g (_, _1) -> String.fromCharCode(_1) to decode html entities..... assuming the it's the same set of mapping
+13:25 -!- tianhua [d3983032@gateway/web/freenode/ip.211.152.48.50] has joined #g0v.tw
+13:37 -!- awaw [73508d28@gateway/web/freenode/ip.115.80.141.40] has joined #g0v.tw
+15:51 -!- awaw [73508d28@gateway/web/freenode/ip.115.80.141.40] has quit [Ping timeout: 245 seconds]
+15:52 < miaout17> favonia: 我覺得沒問題，對更新機制有些comment寫在hackpad了，但唯持現狀也OK。 reply>希望你可以檢查一下
+16:28 < chhsiao1981> clkao: now there is fix_up_map in util. util.fixupHtml use eval to eval fix_up_map to regex (maybe there is a better way to do so.) I did not modified fixup yet. but having a unified map is easy to implement. 
+16:50 -!- yurenju [~yurenju@118.232.255.40] has joined #g0v.tw
+17:30 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:42 -!- yurenju [~yurenju@118.232.255.40] has quit [Quit: Computer has gone to sleep.]
+19:52 -!- clkao [~clkao@59-126-64-204.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+20:05 < favonia> miaout17: mno2: 主要是因為我覺得 timestamp 不太可靠 xD
+20:06 < favonia> miaout17: mno2: 怕執行時間超過一秒，造成有些更新永遠沒辦法發現之類的
+20:13 -!- chhsiao1981 [chshou@linux15.csie.ntu.edu.tw] has quit [Quit: leaving]
+20:14 -!- chhsiao1981 [chshou@linux15.csie.ntu.edu.tw] has joined #g0v.tw
+20:19 < mno2> favonia: 所以你 etag 打算用 hash(content + timestamp) ?
+20:19 < favonia> mno2: 沒有，只有 content.
+20:23 < mno2> favonia:  OK
+20:28 < favonia> mno2: 大概會用 Skein 256/512 http://hackage.haskell.org/packages/archive/cryptohash/0.8.3/doc/html/Crypto-Hash-Skein512.html 因為不錯又快
+20:28 < kcwu> favonia's url: [Crypto.Hash.Skein512]
+20:30 < favonia> mno2: 喔這個好像更可行 xD http://hackage.haskell.org/packages/archive/skein/0.1.0.11/doc/html/Crypto-Skein.html
+20:30 < kcwu> favonia's url: [Crypto.Skein]
+20:30 -!- clkao [~clkao@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+20:37 -!- Supaplextw [~Lucky@114-36-244-156.dynamic.hinet.net] has joined #g0v.tw
+20:41 < favonia> miaout17: mno2: 好吧那就動工吧 xDDDD
+20:41 < mno2> favonia: http://packdeps.haskellers.com/reverse/cryptohash,  http://packdeps.haskellers.com/reverse/skein , clientsession 是用後者
+20:41 < kcwu> mno2's url (1/2): [Reverse dependencies for cryptohash]
+20:41 < kcwu> mno2's url (2/2): [Reverse dependencies for skein]
+20:41 < mno2> favonia: 其實我不是很清楚後者比前者多了哪些? 
+20:41 < favonia> 都差不多啦
+20:42 < favonia> 只是第二個可能最佳化得更徹底
+20:42 < favonia> 既然 snap 用 skein 那當然我們也用 skein. 這樣就不用再多裝什麼東西
+20:43 < mno2> favnonia: 恩
+20:44 < clkao> http://ehash.iaik.tugraz.at/wiki/The_SHA-3_Zoo # hash 之奧義
+20:44 < kcwu> clkao's url: [The SHA-3 Zoo - The ECRYPT Hash Function Website]
+21:08 < favonia> mno2: miaout17: 禮拜六我會把 Haskell 的型態全換掉
+21:11 < mno2> favonia: 我好像要等你型態確定才能下筆，我先熟悉一下 pg sql 好了 (極度不熟）
+21:12 < mno2> favonia: 你要不要先把改後端的 branch 切出去？
+21:12 < favonia> mno2: 我沒意見～只是現在沒空（反正還沒開始改）
+21:14 < favonia> mno2: 歡迎亂 branch
+21:23 -!- KNY [~Adium@36-232-95-80.dynamic-ip.hinet.net] has joined #g0v.tw
+21:38  * clkao ponders... 應該可以用證券商的交易憑證或自然人憑證做連署或表態的 uniqueness 確認... 但要隱蔽身分證字號又有點麻煩... 
+21:57 -!- icman [~icman@123.240.140.81] has joined #g0v.tw
+22:01 < clkao> 原來 ronnywang 早就完過了 只能讀出後四碼: http://ronnywang.pixnet.net/blog/post/13003952-%E7%94%A8%E8%87%AA%E7%84%B6%E4%BA%BA%E6%86%91%E8%AD%89%E5%8A%A0%E5%AF%86%E4%B8%8A%E7%B6%B2
+22:04 < kcwu> 姓名+四碼+卡的序號... 
+22:07 < clkao> 不過重新發卡的話... 
+22:19 -!- tianhua [d3983032@gateway/web/freenode/ip.211.152.48.50] has quit [Ping timeout: 245 seconds]
+22:31 -!- i3n [~icman@118-232-177-139.dynamic.kbronet.com.tw] has quit [Quit: leaving]
+22:32 -!- i3n [~icman@118-232-177-139.dynamic.kbronet.com.tw] has joined #g0v.tw
+22:57 -!- ck__ [~ck@61-31-163-70.dynamic.tfn.net.tw] has joined #g0v.tw
+23:11 -!- wHisKy- [whisky@1-160-246-98.dynamic.hinet.net] has joined #g0v.tw
+23:14 -!- wHisKy [whisky@1-160-228-108.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+23:15 -!- KNY [~Adium@36-232-95-80.dynamic-ip.hinet.net] has quit [Quit: Leaving.]
+23:25 -!- KNY [~Adium@36-232-95-80.dynamic-ip.hinet.net] has joined #g0v.tw
+23:39 < clkao> 13" mbpr 更新了
+23:39 < au> 而且變便宜了
+23:39 < au> 買了吧
+23:43 -!- ck__ [~ck@61-31-163-70.dynamic.tfn.net.tw] has quit [Remote host closed the connection]
+23:46 -!- icman [~icman@123.240.140.81] has quit [Quit: 明天天氣晴]
+23:48 < clkao> 出貨:  暫無供應
+23:48 < clkao> zzz
+23:49 < clkao> 不過 15" 的是 quad core.. 就會讓人覺得 13" dual 好像虧到.. XD

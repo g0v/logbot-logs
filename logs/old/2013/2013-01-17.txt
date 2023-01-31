@@ -1,0 +1,713 @@
+--- Day changed 四  1月 17 2013
+00:30 < smileshou> 我弄的 db code 初步放到 github 上了. https://github.com/chhsiao1981/tw_ly_cassandra_db
+00:30 < kcwu> smileshou's url: [chhsiao1981/tw_ly_cassandra_db · GitHub]
+00:31 < smileshou> REAMD.md 裡有寫一個 quick start.
+00:31 < smileshou> s/READM/README
+00:32 < clkao> smileshou++ # add a license file?
+00:33 < smileshou> 我不知道要如何在 github show 正常的 doc https://github.com/chhsiao1981/tw_ly_cassandra_db/blob/master/doc/dynamic/html/index.html 
+00:33 < kcwu> smileshou's url: [tw_ly_cassandra_db/doc/dynamic/html/index.html at master · chhsiao1981/tw_ly_cassandra_db · GitHub]
+00:33 < clkao> you need to use github pages... create a branch gh-pages
+00:35 < smileshou> clkao: thanks! (license and pages)
+00:48 -!- MindosC [~MindosC@115.80.26.240] has quit [Quit: Bye]
+01:10 < smileshou> license 是個非常奧妙的東西! 先用個 MIT License 好了. 希望 MIT License 是如我想像的那樣子單純 XD.
+01:11 < MindosCheng_> MIT License 是大家都可以拿去改來用，但要公開你原來提供的部份（大致上）。
+01:12 < tka> http://en.wikipedia.org/wiki/WTFPL 最單純的應該是這個？
+01:12 < kcwu> tka's url: [WTFPL - Wikipedia, the free encyclopedia]
+01:12 < favonia> smileshou: 擔心不夠自由的話可以多 license 授權 xD
+01:19 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 245 seconds]
+01:33 -!- walkingice [~walkingic@114-46-251-228.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+01:40 -!- MnO2 [~mno2@1.34.43.236] has quit [Quit: Leaving]
+01:45 -!- MindosCheng_ [~chatzilla@115.80.26.240] has quit [Ping timeout: 256 seconds]
+01:51 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+02:04 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 276 seconds]
+03:28 -!- KNY [~Adium@118-170-70-86.dynamic.hinet.net] has joined #g0v.tw
+03:48 -!- KNY [~Adium@118-170-70-86.dynamic.hinet.net] has left #g0v.tw []
+03:51 -!- smileshou [dc882167@gateway/web/freenode/ip.220.136.33.103] has quit [Ping timeout: 245 seconds]
+04:02 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+04:15 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+04:16 < S3p_lin> http://www.appledaily.com.tw/realtimenews/article/life/20130116/161722  # 類似這種民生資訊適不適合放在 g0v ?
+04:16 < kcwu> S3p_lin's url: [自燃又11件12牌46型除濕機持續召回 | 即時新聞 | 20130116 | 蘋果日報]
+04:30 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+05:16 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+05:59 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+06:20 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has quit [Quit: leaving]
+06:20 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has joined #g0v.tw
+07:02 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+07:24 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has joined #g0v.tw
+07:24 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has left #g0v.tw []
+07:37 -!- smileshou [dc882167@gateway/web/freenode/ip.220.136.33.103] has joined #g0v.tw
+07:48 < smileshou> 我有點不太清楚 github 是怎樣子產生 page 的. gh-pages 裡已經有 https://github.com/chhsiao1981/tw_ly_cassandra_db/blob/gh-pages/_search_index_8php.html. 但是 http://chhsiao1981.github.com/tw_ly_cassandra_db/_search_index_8php.html 會是 404. 
+07:51 < smileshou> 原來是因為是 leading underscore 的關係.
+07:54 < smileshou> http://chhsiao1981.github.com/tw_ly_cassandra_db/_search_text_8php.html # 裝 search result 的 structure. 
+07:54 < kcwu> smileshou's url: [dynamic: dynamic/SearchRelated/SearchText.php File Reference]
+07:54 < smileshou> 可以看到說 key 是由 prefix 和 substring (query 的 string) 組成的.
+07:57 < smileshou> prefix 的用途是在於針對不同種類的 doc (像是"全立法院的會議記錄"跟"某個立委說過的話的紀錄") 可以放在同一個 column family (table). 來做 query.
+08:00 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Remote host closed the connection]
+08:00 -!- ledia [r92012@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+08:00 -!- ch0upi_bsd [r96006@bsd1.csie.ntu.edu.tw] has quit [Quit: Lost terminal]
+08:01 < smileshou> 然後 "score" 是用來 sort 的分數. cassandra 是 sorted linked list. 拿到的結果會是根據 score 來做排序. 由於我懶得管 type 的問題 (XD). 所以目前設定都是根據 utf-8 character 排. 所以會有 "1" "10" "2" 這種問題. 對於數字類的排序的簡單的 work around 是預先定義好 precision. 
+08:06 < smileshou> 然後就是 text_id (可以 access 到真正 text 的 key. 目前就是先用 filename). 然後相對應的 row/col.
+08:08 < smileshou> 可以從 https://github.com/chhsiao1981/tw_ly_cassandra_db/blob/master/GetSearchText.php 知道.
+08:08 < kcwu> smileshou's url: [tw_ly_cassandra_db/GetSearchText.php at master · chhsiao1981/tw_ly_cassandra_db · GitHub]
+08:09 < smileshou> 大致上 access 的方式就是先對 key 做 serialization. 然後就可以拿 serialized key 問有多少個 (GetCountSearchText) 和 list (GetSearchText)
+08:13 < smileshou> 目前是先有如此的 php client 的 access 的方式. 在 hackath1n 時會有把這個轉成 RESTful (或是一般 http get) 的 access 方式. 
+08:19 < smileshou> 雖然都是使用 cassandra. 但是這裡的 code (search) 完全是在 hackath0n 那天 dev 出來的. 某網路 k 歌公司應該是不能告我的 XD. (search 設定的方式完全不一樣.)
+08:21 < smileshou> http://chhsiao1981.github.com/tw_ly_cassandra_db/_search_index_8php.html #用來知道說整個 db 裡有哪些 keyword. 
+08:21 < kcwu> smileshou's url: [dynamic: dynamic/SearchRelated/SearchIndex.php File Reference]
+08:33 -!- MindosC [~MindosC@115.80.26.240] has joined #g0v.tw
+08:38 < smileshou> 對於 php 實在是又愛又恨 XD. 愛的是它的簡單讓我容易上手. "array 其實是 linked list" 這個概念跟 cassandra 還蠻相符而先進的. 恨的是它的簡單讓我的 code 變成這樣. 
+08:39 < smileshou> s/array 其實是 linked list/array 其實是 hash/
+08:48 -!- neoesque [~neoesque@210.59.147.232] has joined #g0v.tw
+08:58 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+09:04 -!- MnO2 [~mno2@nat/yahoo/x-cfaffhvsrbvsqsuc] has joined #g0v.tw
+09:17 < MindosC> How about Livescript :)
+09:20 < tkirby_> smileshou: 其實不太懂你在幹嘛耶, 也許 README.md 裡可以說明一下?
+09:36 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+09:37 -!- walkingice [~walkingic@114-46-251-228.dynamic.hinet.net] has joined #g0v.tw
+09:49 < smileshou> tkirby_: 非常謝謝提出! 我會儘快加上去!
+09:52 -!- timdream [~timdream@123-204-174-155.adsl.dynamic.seed.net.tw] has quit [Quit: timdream]
+09:52 < smileshou> (其實對於 livescript 還在觀望中 XD. 是很希望有 {} 或是 begin/end 能夠讓我在 edit 能夠真的 auto-indent. 
+09:53 < tkirby_> from __future__ import braces: not a chance.
+09:53 -!- thschee [~thschee@114-36-10-173.dynamic.hinet.net] has joined #g0v.tw
+09:53 < tkirby_> 無法 import 的話... 可以用這招 http://stackoverflow.com/questions/1936190/is-it-true-that-i-cant-use-curly-braces-in-python
+09:53 < kcwu> tkirby_'s url: [Is it true that I can't use curly braces in Python? - Stack Overflow]
+09:54 < tkirby_> i think it works in livescript too... XD
+09:55 < smileshou> tkirby_: 大致上就是 preprocess 是用 doc 轉換以後的 txt. 然後可以 query 某個 substring. 就回傳那個 substring 有出現在哪些 .txt 裡的那個 row. 
+09:55 < smileshou> 目前的功能大致上是如此. 
+09:56 < smileshou> 然後也可以算說 across .txt 有出現這個 substring 多少次.
+09:57 < tkirby_> .... 阿? XD
+09:57 < smileshou> 所以以我之前 build 的從 101-01 到 101-74 為止. 可以知道說"禮貌"出現了 105 次.
+10:00 < tkirby_> 你的意思是說... 你分析了整個 txt 然後建立了常出現的字的 DB 嗎
+10:00 < tkirby_> 一開始還在想說 "原來 smileshou 是 group 的作者!" XDDD
+10:00 < tkirby_> s/group/grep/
+10:01 < smileshou> XD. 
+10:01 -!- mkfsn_ [~mkfsn@mkfsn.CDPA.nsysu.edu.tw] has quit [Ping timeout: 276 seconds]
+10:01 < smileshou> 揪竟~我要叫啥名字呢? XD. smileshou 好像是 10 年前的事情了 XD. chhsiao 又會跟蕭老搞混 XD. 
+10:02 < smileshou> 又或者是 chhsiao1981 呢？XD. 
+10:02 < smileshou> tkirby_: 不只是常出現的字. 是所有曾經出現過的字 XD. 
+10:02 -!- mkfsn_ [~mkfsn@mkfsn.CDPA.nsysu.edu.tw] has joined #g0v.tw
+10:02 < smileshou> 目前是設定 11-gram Chinese characters.
+10:02 -!- smileshou is now known as chhsiao1981
+10:03 < chhsiao1981> (以前取名字沒有取好 XD. 現在有很多困擾 XD)
+10:06 < chhsiao1981> tkirby_: 大致上是如此. 至於 input/output. 又或者是 DB 裡還想要存什麼額外的資訊. 是很希望能夠跟大家討論的. 
+10:07 < chhsiao1981> 另外是目前是最簡單的分析方式. 就是 n-gram characters. 至於要用什麼更高級的分析方式. 也是很希望能夠跟大家一起討論的. 
+10:08 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:09 < chhsiao1981> 原本做這個的目的是想要做趨勢圖. 看看可不可以看到說立法院. 或是某個立委. 在某一段時間裡那些字的頻率會出現比較高.
+10:10 < chhsiao1981> 也一樣是可以做跨時間的趨勢圖. 
+10:15 < chhsiao1981> tkirby_: 關於 livescript + bracket. 我希望的是 emacs 可以 support 透過 {} 來幫我 auto-indent XD. 只要 emacs 可以這樣子 support. 我就一定會轉到 livescript XD. (聽起來是我去看一下 livescript-mode.el XD)
+10:15 -!- acer [acer@newelite.bshellz.net] has left #g0v.tw []
+10:18 -!- ch0upi_bsd [r96006@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+10:21 < ipa> billy3321: good idea, 有空可以弄，不過是想立院功能真的整合起來再寫一篇
+10:22 < ipa> 或歡迎提供原始資料截圖連結 XD （我很懶得去迷宮找檔案截圖）
+10:24 < ipa> 現在想多花時間找電力資料 or 幫忙想立院功能整合，現在都只是prototype....還是要弄出user可玩才是王道
+10:25  * ipa brunch &
+10:33 -!- timdream [~timdream@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:39 -!- zz_chihchun is now known as chihchun
+10:50 -!- Al_Cho [al_cho@nat/novell/x-wijqwqwwhzoxtztj] has quit [Remote host closed the connection]
+11:00 -!- chihchun is now known as zz_chihchun
+11:02 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+11:03 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+11:19 < billy3321> MindosC: 那不是perl版javascript吗？(爆)
+11:19 -!- hothero [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+11:19 < billy3321> MindosC: @@
+11:19 < hothero> 請問禮拜五12點會再開放10張入場券是嗎？？
+11:19 < hychen> 台電大樓附近有什麼咖啡店可以待? 
+11:20 < hychen> walkingice, when will you arrive taipei?
+11:22 < ipa> insomnia cafe or saltie peanut
+11:22 < walkingice> hychen, 中午吃完飯就出門？
+11:23 < walkingice> insomnia 好久沒去了 :D
+11:23 < hychen> walkingice, 大概幾點到? 
+11:23 < walkingice> 我想應該是兩三點
+11:23 -!- chhsiao1981 [dc882167@gateway/web/freenode/ip.220.136.33.103] has quit [Ping timeout: 245 seconds]
+11:24 < tkirby_> insomnia!
+11:24 < hychen> walkingice, ok
+11:24 < hychen> ipa, thx
+11:24 -!- antliu [~anthony@220-132-89-132.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+11:24 < hychen> 那我等下就到insomnia
+11:24 -!- antliu [~anthony@220-132-89-132.HINET-IP.hinet.net] has joined #g0v.tw
+11:24 < walkingice> hychen, 如果提早到我應該會去 insomnia 坐坐
+11:24 < hychen> walkingice, 關於做立法院手機app, 我有點想法
+11:25 < hychen> walkingice, 也許等下可來討論
+11:25 < walkingice> hychen, 好呀，那我們見面的時候討論一下
+11:25 < tkirby_> chhsiao1981: 咦跑掉了
+11:31  * thschee [半廣告] 小弟今年進到 http://www.aec.at/prix/en/kategorien/digital-communities/ 當 committee，如果有人想把 g0v 報名可以參考。之前 http://ccc.de 有得過獎。胖卡 puncar.tw 也被特別提名過一次。
+11:31  * thschee The “Digital Communities” category is open to political, social, cultural and artistic projects, initiatives, groups, and scenes from all over the world that are effectively utilizing digital technology to further society and to promote social responsibility.
+11:33 -!- chhsiao1981 [dc882167@gateway/web/freenode/ip.220.136.33.103] has joined #g0v.tw
+11:43 < chhsiao1981> 我剛剛突然想起科比大師的 grep 梗是啥了 XD. 我做的事情好像其實用 grep 就可以做到了 XD. 
+11:44 < clkao> hothero: 是低
+11:45 < chhsiao1981> 跟 grep 的差別在於我除了有記某個 keyword 有出現在哪裡以外. 還有一個 column family (table) 叫做 search_index. 是記有哪些 keyword. 
+11:45 -!- mutolisp [~mutolisp@1-162-68-185.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+11:46 -!- antliu [~anthony@220-132-89-132.HINET-IP.hinet.net] has quit [Quit: Leaving]
+11:47 < chhsiao1981> 所以可以知道說有哪些 keyword 是可以拿來做 query. 然後就可以根據這些 keyword 來做 statistics. 而不會因為 keyword 是 infinite 而無法做 statistics. 
+11:53 -!- chhsiao1981 [dc882167@gateway/web/freenode/ip.220.136.33.103] has quit [Quit: Page closed]
+11:54 -!- chhsiao1981 [chshou@linux15.csie.ntu.edu.tw] has joined #g0v.tw
+11:59 -!- zuxfoucault [~zuxfoucau@123-192-4-28.dynamic.kbronet.com.tw] has joined #g0v.tw
+12:00 -!- Sorry [~admin@mail.cna.ccu.edu.tw] has joined #g0v.tw
+12:00 -!- walkingice [~walkingic@114-46-251-228.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+12:01 -!- wen [8c705aa7@gateway/web/freenode/ip.140.112.90.167] has joined #g0v.tw
+12:02 -!- zuxfoucault [~zuxfoucau@123-192-4-28.dynamic.kbronet.com.tw] has left #g0v.tw []
+12:05 -!- hothero [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 256 seconds]
+12:08 -!- KNY [~Adium@118-170-70-86.dynamic.hinet.net] has joined #g0v.tw
+12:09 -!- KNY [~Adium@118-170-70-86.dynamic.hinet.net] has left #g0v.tw []
+12:15 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 276 seconds]
+12:16 -!- walkingice [~walkingic@1-168-46-17.dynamic.hinet.net] has joined #g0v.tw
+12:20 < wen> hi
+12:23 < clkao> hi wen
+12:25 < wen> 請問你是黑客松的創始人嗎?
+12:26 < clkao> 算是吧
+12:26 < ipa> 本屆值日生 XD
+12:27 < ipa> wen: 有什麼想做的專案嗎？
+12:28 < wen> 我視聽別人介紹 才發現這社群的 所以還不是很了解有什麼專案 囧
+12:29 < clkao> 應該是說 有什麼本來就關心或想推動的事情嗎 ;)
+12:30 < wen> 不過我覺得你們超酷的 ipa 是搶救國軍大軍的創始人嗎~
+12:30 < ipa> https://hackpad.com/ZYU6qiYaQLo 可以參考這頁，先到處逛逛 
+12:30 < kcwu> ipa's url: [我是... 如何參與黑客松 - hackpad.com]
+12:31 < ipa> 我是寫文值日生 
+12:31 -!- wHisKy [~whisky@114-34-52-19.HINET-IP.hinet.net] has joined #g0v.tw
+12:31 -!- wHisKy- [whisky@114-34-52-19.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+12:32 < ipa> wen: 有空也來當值日生，看到什麼功能有趣就試用寫寫小心得
+12:33 < wen> 嗯嗯 我會去看看的 以往都只看報章雜誌 不然就是新聞 只覺得社會很亂 但是覺得自己也做不了什麼事 所以也沒想到推動什麼這類的問題 0.0
+12:33 < wen> 喔喔 好阿 要怎麼用
+12:34 < ipa> 突然覺得，g0v推出新功能可以請大家來寫試用文 XD （美妝部落格路線）
+12:37 < tkirby_> 還有開箱文.. XD (讓我們來打開這個網頁 [圖] 第一次登入,版面大方又簡單 [圖]
+12:37 < clkao> tkirby_++
+12:38 < ipa> wen: 啊都還沒正式上線，先逛逛工廠吧：https://hackpad.com/rPdI5FVmgtZ
+12:38 < kcwu> ipa's url: [g0v.tw 台灣零時政府相關連結 - hackpad.com]
+12:39  * walkingice 準備出發上台北
+12:39 < wen> ipa 你貼的那個網頁 有說怎麼分工 可是各個角色目前有哪些人 就沒有透漏了
+12:40 < wen> 聊天室右側的人都在分工裡面嗎?
+12:44 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+12:46 -!- walkingice [~walkingic@1-168-46-17.dynamic.hinet.net] has quit [Quit: 暫離]
+12:46 < ipa> 有興趣的就自己去討論區認領，簽自己的名字
+12:47 < ipa> 有想法就提專案出來，列出需要幫忙的項目，等人來認領（完全自主開放分散式....）
+12:47 < chhsiao1981> wen: ¨º­¶¤ñ¸û¬O¤¶²Ð»¡¤£¦Pªº¤H¥i¥H°µ­þ¨Ç¤£¦Pªº¨Æ±¡. ¦Ü©ó³o¦¸ hackath1n ¨ì©³·|°µ¤°»ò. ­þ¨Ç¤H¤w¸g initiate ­þ¨Ç¤u§@©M­þ¨Ç¤H¹ï©ó­þ¨Ç¤u§@¦³¿³½ì. «ÜÅwªï¨ì³o­Ó irc channel ªº hackpad link ¸Ì¬Ý.
+12:47 < clkao> chhsiao1981: big5
+12:47 < clkao> you should use utf-8
+12:47 -!- zz_chihchun is now known as chihchun
+12:47 < chhsiao1981> sorry. long time not using irssi. trying to adapt.
+12:51 < clkao> momiz1: 趕快教他一下 那天怎改的 XD
+12:52 < ipa> wen: https://hackpad.com/lIoCjaeMWzC 到這裡簽，不過現在大家簽最多的都是餐點 XD
+12:52 < kcwu> ipa's url: [g0v hackath1n |  台灣零時政府第壹次公地放領黑客松 - hackpad.com]
+12:53 < chhsiao1981> ´ú¸Õ
+12:53 < chhsiao1981> ´ú¸Õ
+12:54 < tkirby_> 不知不覺 hackath1n 的 hackpad 也長得這麼長了
+12:54 < chhsiao1981> ´ú¸Õ (³o­Ó¬O big5 ÁÙ¬O utf-8 ©O?)
+12:54 < clkao> chhsiao1981: this is still big5
+12:54 < wen> 那 吃午餐前最後一問 0.0  請問 facebook 的臨時政府和後勤中心等網頁  哪個才是這個社群的入口網站呢?  就是能從該網站就能了解這社群過去做的事 未來現在做的事
+12:54 < clkao> just remove all recode in your irssi config... assuming your terminal is utf8
+12:55 < chhsiao1981> ok.
+12:55 -!- chhsiao1981 [chshou@linux15.csie.ntu.edu.tw] has quit [Quit: leaving]
+12:55 < clkao> 目前好像還沒有這樣的東西 因為也才一個多月 正在進行的就忙不完了
+12:56 -!- chhsiao1981 [chshou@linux15.csie.ntu.edu.tw] has joined #g0v.tw
+12:56 < chhsiao1981> 測試 (現在是 big5 還是 utf-8 呢?)
+12:56 < clkao> works now
+12:57 < chhsiao1981> thanks!
+12:59 < wen> 嗯嗯 可是推廣也蠻重要的~  若我想試看看做入口網站 不知道 o 不 ok
+12:59 < tkirby_> 也許可以弄一個 github statistics 跟 自動 google 關鍵字分析的 site 
+12:59 < tkirby_> wen: 我們其實是有一些頁面正在雛型.. dev.g0v.tw 跟 blog.g0v.tw
+13:00 < wen> 喔喔 可以給網址看看嗎?
+13:00 < tkirby_> wen: dev.g0v.tw 跟 blog.g0v.tw
+13:01 < wen> 了解 3q
+13:01 < tkirby_> dev 應該是來自 github   blog.g0v.tw host 在 tumblr
+13:02 < tkirby_> 可以把想法寫在 hackpad 上,  hackath1n 會有 designer 來, 可以抓人來 cowork
+13:21 -!- Ben_chou [Ben_chou@nat/novell/x-hatonfrtkcfwuola] has joined #g0v.tw
+13:23 < tkirby_> ipa: 忽然想到一個方向
+13:24 < tkirby_> ipa: 你以前都是拍紀錄片嗎... 有.. 拍過微電影^H^H^H廣告短片嗎 XD
+13:29 < momiz1> clkao: 我看到太晚了 XD (正想找小抄說)
+13:30 < ipa> tkirby_: 現在還是拍紀錄片，也拍過劇情片
+13:30 < momiz1> clkao: big5→utf8 有需要的話可以放在網站上做為教學之一
+13:30 < tkirby_> 劇情片!
+13:30 < tkirby_> ipa: 你的職業.. 其實是導演嗎
+13:30 -!- Ben_chou [Ben_chou@nat/novell/x-hatonfrtkcfwuola] has quit [Ping timeout: 255 seconds]
+13:32 < ipa> 導演、製片，平常在做Discovery、NatGio頻道的紀錄片
+13:32 < billy3321> blog現在是誰在管呢？
+13:32 < billy3321> ipa: Discovery紀錄片！！！
+13:32 < billy3321> ipa: 請受小弟一拜
+13:32 < tkirby_> ipa: Discovery紀錄片！！！
+13:32 < billy3321> <(_ _)>
+13:32 < tkirby_> ipa: 請受小弟一拜
+13:32 < tkirby_> <(_ _)>
+13:33 < ipa> @@
+13:33 < clkao> ipa: 請受小弟一拜
+13:33 < clkao> <(_ _)>
+13:33  * ipa 飛踢clkao
+13:33 < tkirby_> ipa: (回到正題) 你覺得.. 未來替 g0v 拍短片之類的有搞頭嗎 
+13:34 < tkirby_> 忽然想起世界上最強的人的梗..
+13:34 < clkao> tkirby_: 你以為他上次那那麼大機器是要幹嘛 XD
+13:34 < tkirby_> 世界上最強的人是孫悟空他老婆
+13:34 < tkirby_> clkao: 原來如此.. 已經在進行了嗎 XD
+13:35 < billy3321> 加速進行中(無誤)
+13:35 < tkirby_> 快轉中 (有誤)
+13:35 < billy3321> 結果拍出來的影片愈放愈快，因為加速進行(大誤)
+13:35 < ipa> tkirby_: 有啊，其實我有想紀錄這件事情，但可能會是長期一點的計畫
+13:35 < clkao> 應該是先取材吧 這題目應該蠻難的 要醞釀
+13:35 < tkirby_> 了解..
+13:35 < tkirby_> ipa++
+13:36 < clkao> tkirby_: 要跨行變成影像工作者了嗎
+13:36 < clkao> 全能 kirby
+13:36 < billy3321> ipa: 有沒有興趣加入COSCUP紀錄組(大誤)
+13:36  * billy3321 推坑中
+13:36 < billy3321> 我是覺得說真的
+13:36 < ipa> http://wearelegionthedocumentary.com/  這兩天要來看這部片
+13:36 < kcwu> ipa's url: [We Are Legion | The Story of the Hacktivists Official Website.]
+13:37 < billy3321> 我希望COSCUP可以有紀錄片
+13:37 < tkirby_> clkao: 我可以跑龍套.. XD
+13:37 < billy3321> 這樣我就可以放給大陸朋友看
+13:37 < tkirby_> 所以要拍電影了嗎
+13:37 < billy3321> 另外一方面
+13:37 < tkirby_> 瞿導
+13:37 < billy3321> 以後要傳承給未來台灣的自由軟體工作者
+13:37 < billy3321> 也很方便
+13:37 < ipa> billy3321: 上次hcchien拉我去osdc當工作人員，但我是說比較想當講者眷屬 XD
+13:38 < tkirby_> 那些年我們一起開放的資料 之類的...
+13:38 < tkirby_> 然後就可以成立零傳媒了
+13:38 < tkirby_> 耶
+13:39 < billy3321> ipa: OSDC我不知道怎麼組織起來的，不過似乎跟COSCUP比較不一樣。
+13:39 < momiz1> 如果還有人需要設定 big5→utf8 就參考看看吧 http://momizi.tumblr.com/post/40745445045/irc
+13:39 < billy3321> 另外一種是HITCON，這個也很精彩
+13:40 < billy3321> 因為有Wargame，一堆人當場在那邊攻擊XD
+13:40 < tkirby_> !
+13:40 < tkirby_> ....  需要攝影師嗎 XD
+13:40  * momiz1 弱者悄悄去牆角
+13:40  * tkirby_ 把 momiz1 拉回來
+13:40 < billy3321> 台灣的Hacker精神絕對值得拍攝。我覺得這是大陸絕對需要加強的東西。
+13:41 < momiz1> tkirby_: 喵~
+13:41 < tkirby_> momiz1: 汪 汪汪
+13:41 < tkirby_> momiz1: 我們需要專業的文字工作者!
+13:41 -!- ETBlue [~chatzilla@123-204-142-108.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 245 seconds]
+13:42  * billy3321 寫不出規格
+13:42 -!- Sorry [~admin@mail.cna.ccu.edu.tw] has quit [Remote host closed the connection]
+13:42 < tkirby_> 呃忽然發現 ignore 了一個問題
+13:42 -!- mutolisp [~psilotum@inventory16.fo.ntu.edu.tw] has joined #g0v.tw
+13:42 < momiz1> tkirby_: :P
+13:42 < tkirby_> billy3321: blog 現在是.. 有 admin 的人都可以管 (比方說你)
+13:45 -!- Sorry [~admin@gais4.cs.ccu.edu.tw] has joined #g0v.tw
+13:45 < ipa> billy3321: 要不要先來貼一下舊文到blog.g0v? 
+13:50 < ipa> tkirby_: 攝影師需要啊！但我要先想一下腳本～ 不然拍來拍去都是一堆人黏在電腦前 xd
+13:51 < tkirby_> XDD
+13:54 < billy3321> ipa: 好啊，我要怎麼貼@@
+13:54 < billy3321> 晚上在貼好了，lman在旁邊盯我，要我寫規格
+13:54 < billy3321> Q_Q
+13:55 < clkao> 看來大家都是逃避正事然後就來弄 g0v
+13:55 < ipa> billy3321: 笨方法是進入dashboard重貼一次（我打算這樣做），另一個方法是tumblr user可以reblog
+13:55 < billy3321> clkao: ++
+13:55 < billy3321> clkao: 你看最近我文章寫那麼多XDDD
+13:56 < ipa> 我有空會把我那兩篇貼過去，你的也貼一貼
+13:57 < ipa> 最近也想寫一篇黑客松體驗文，但......我正經工作進度落後！
+14:04 -!- seudo_tw [r01944023@linux8.csie.ntu.edu.tw] has joined #g0v.tw
+14:09 < clkao> http://dev.g0v.tw/Project%20ChildNotFound.tw.html # 這頁不見了
+14:09 < clkao> 失蹤兒童協尋失蹤了... 可以顯示失蹤兒童的畫面了!
+14:10 < billy3321> ipa: ++
+14:10 < tkirby_> child not found is not found... but did you see him/her? (爆炸)
+14:10 < billy3321> 正經工作進度落後XD
+14:11 < MindosC> 需要一個 hackpad 放這些初心者文件。
+14:11 < MindosC> 可以先幫忙開一個嗎？
+14:12 < MindosC> 我晚上回家也幫忙加一些。
+14:13 < ipa> MindosC: what is 初心者文件？
+14:13 < MindosC> 像是如何設定 UTF-8
+14:14 < momiz1> MindosC: 剛才我有寫...http://momizi.tumblr.com/post/40745445045/irc
+14:14 < billy3321> MindosC: UTF-8是指哪方便的設定？
+14:14  * momiz1 弱者很需要
+14:14 < MindosC> 目前有沒有首頁，有沒有介紹用文件
+14:15 -!- phosphocus [7579f16c@gateway/web/freenode/ip.117.121.241.108] has joined #g0v.tw
+14:15 < phosphocus> 測試
+14:15 < ipa> https://hackpad.com/rPdI5FVmgtZ 我整理了一個連結大全 
+14:15 < kcwu> ipa's url: [g0v.tw 台灣零時政府相關連結 - hackpad.com]
+14:15 < billy3321> 我覺得
+14:15 < billy3321> irssi太難了
+14:16 < billy3321> 教他們用webchat.freenode.net吧
+14:16 < clkao> yeah.  i put the link in already
+14:16 < MindosC> 這些剛加入的人會問的問題。
+14:16 < MindosC> 我是用 chatzilla
+14:17 < clkao> kcwu: 所以除了 stats 外有 log 嗎？
+14:17 < billy3321> 我建議拿mabbit
+14:17 < billy3321> http://epttformosa.conic.me/interaction/irc
+14:17 < kcwu> billy3321's url: [IRC 簡單教學 - ePTT Formosa 《電子共和國台灣支援站》]
+14:17 < billy3321> 像這個
+14:18 < MindosC> 我想說每次都要貼一次教學文件，不如集中在一個 hackpad 來放。
+14:18 < clkao> 這電子共和國是.... 
+14:19 < clkao> MindosC: 就開吧
+14:19 < billy3321> 咦
+14:19 < billy3321> mibbit好像不能連irc.freenode.net
+14:19 < MindosC> 人在手機上，回家才能開。
+14:19 < billy3321> clkao: 我以前玩過的網頁遊戲，遊戲大宗是用irc聯絡的
+14:20 < billy3321> 所以他們對於新手的IRC教學文很詳細
+14:20 < wHisKy> xchat - http://xchat.org/
+14:20 < kcwu> wHisKy's url: [XChat: Multiplatform Chat Program]
+14:22 < billy3321> 遊戲用的是rizon.net
+14:22 < billy3321> 不過mibbit不能連freenode，可惜了
+14:22 < billy3321> http://blog.mibbit.com/?p=306
+14:22 < MindosC> 人多少，溝通成本也是我們要降低的。
+14:22 < kcwu> billy3321's url: [Freenode has blocked the Mibbit client. | Mibbit blog]
+14:23 < clkao> zzz
+14:23 -!- ETBlue [~chatzilla@221-120-64-163.dynamic.hinet.net] has joined #g0v.tw
+14:23 < MindosC> ET!
+14:23 < billy3321> http://blog.freenode.net/2009/06/new-freenode-webchat-and-why-to-use-it/
+14:23 < kcwu> billy3321's url: [New freenode webchat (and why to use it) | staffblog]
+14:24 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+14:25 -!- phosphocus [7579f16c@gateway/web/freenode/ip.117.121.241.108] has quit [Quit: Page closed]
+14:26 < MindosC> billy3321 : Livescript 應該算 Ruby -> Coffescript -> Livescript
+14:28 < clkao> 那個 webchat 很不賴啊
+14:28 < clkao> 我貼上前有測試一下
+14:29 < MindosC> :)
+14:34 < MindosC> 紀錄片很不錯耶，不早點拍就沒有了。
+14:35 < MindosC> 像 SJ 的 NextStep 就有拍下來
+14:45 -!- MindosCC [~MindosC@115.80.29.99] has joined #g0v.tw
+14:46 -!- Sorry [~admin@gais4.cs.ccu.edu.tw] has quit [Ping timeout: 255 seconds]
+14:47 -!- MindosC [~MindosC@115.80.26.240] has quit [Ping timeout: 256 seconds]
+14:50 -!- MindosC [~MindosC@115.82.28.74] has joined #g0v.tw
+14:52 < billy3321> MindosC: mail何时打算寄出呢？
+14:52 -!- MindosCC [~MindosC@115.80.29.99] has quit [Ping timeout: 264 seconds]
+14:52 < MindosC> 今晚？
+14:53 < billy3321> MindosC: 其实大家没意见就OK了
+14:53 < billy3321> 不必等晚上
+14:53 < MindosC> clkao, ipa 覺得如何呢？
+14:54 < MindosC> 晚上才會有電腦 :-D
+14:54 < clkao> 沒什麼特別想法耶 眼前太多事情要處理了
+14:56 < clkao> https://hackpad.com/g0v.tw-%E7%AB%8B%E6%B3%95%E9%99%A2%E7%9B%B8%E9%97%9C%E5%B0%88%E6%A1%88-XuPwD3GqV11 # ly 相關弄到另一頁整理中
+14:56 < kcwu> clkao's url: [g0v.tw 立法院相關專案 - hackpad.com]
+14:59 -!- thschee [~thschee@114-36-10-173.dynamic.hinet.net] has quit [Remote host closed the connection]
+15:00 -!- thschee [~thschee@114-36-10-173.dynamic.hinet.net] has joined #g0v.tw
+15:01 < MindosC> 那我晚上來寄 :)  還是 billy3331 先幫忙寄？
+15:02 < ipa> 對外國open data沒想法，眼前g0v太多事想做+1 
+15:03 -!- Sorry [~admin@gais4.cs.ccu.edu.tw] has joined #g0v.tw
+15:04 < billy3321> 那我寄吧
+15:05 -!- thschee [~thschee@114-36-10-173.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+15:07 < MindosC> 好啊
+15:08 < ipa> billy3321: MindosC: 其實我不太清楚....為何要聯絡ai?
+15:09 < billy3321> ipa: 主要是想了解大陸有沒有需要open的東西
+15:10 < billy3321> ipa: 或是他對這件事情有沒有什麼看法
+15:10 < billy3321> 記得當初好像初衷是這樣
+15:11 < ipa> billy3321: 要開專案去解放中國資料了嗎？XD
+15:12 < billy3321> ipa: 其實中國有朋友跟我說，做是沒問題，但是要做什麼就是問題了
+15:12 < billy3321> 又什麼是該做的
+15:12 < billy3321> 有
+15:13 < billy3321> 沒關係，我先留著草稿，看ipa您怎麼想
+15:14 < billy3321> 隱藏的想法是，如果這件事情吸引到aiww的注意，或許可以引發中國某些程序員的行為改變
+15:14 < S3p_lin> GFW 過濾關鍵字? XD  # billy3321> ipa: 主要是想了解大陸有沒有需要open的東西
+15:14 < billy3321> 畢竟aiww的關注者有很大一部份是程序員。他們有能力翻牆
+15:15 < billy3321> S3p_lin: 那個已經有人在做啦
+15:15 < billy3321> http://chinadigitaltimes.net/chinese/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E6%90%9C%E7%B4%A2%E6%95%8F%E6%84%9F%E8%AF%8D%E5%88%97%E8%A1%A8/
+15:15 < kcwu> billy3321's url: [新浪微博搜索敏感词列表 - 中国数字时代]
+15:16 < billy3321> 中國今年評選最佳開源項目：goagent
+15:16 < billy3321> lol
+15:16 < clkao> 其實我覺得想寄就寄 就是說這邊有這麼一件事情 然後後續的聯繫可能也就要有人 follow... 我自己大概是還沒空多了解那塊 還有很多 priority 比較高的事情
+15:16 < clkao> 所以... 跟 open source project 一樣... 想做就去吧 然後看有沒有人有興趣/力氣幫忙
+15:17 < billy3321> clkao: 不過隱藏的一點是，寄出代表你們授權我或mindosC代表g0v.tw
+15:17 < billy3321> 被代表，有很多人不一定高興
+15:17 < billy3321> so
+15:17 < clkao> 不然就.. 說有在參與這件事情... 就沒什麼代不代表的 一切 decentralize
+15:18 < billy3321> 啊啊，突然覺得這種問題再問下去就不用做事了(被巴頭)
+15:21  * billy3321 決定晚一點再來想
+15:22 < ipa> ya 每個人都是首謀 
+15:32 < MindosC> 那文氣可能要修一下。
+15:32 < billy3321> 來改好了，g0v.tw是由一群不想做正事，想逃避正經事的人做出來的專案。(大誤)
+15:33 < billy3321> MindosC: 請修正吧 :)
+15:33 -!- thschee [~thschee@114-36-10-173.dynamic.hinet.net] has joined #g0v.tw
+15:34 < MindosC> billy3321 : 上吧！ 不然就要等我晚上修。
+15:34 < billy3321> MindosC: 等....等5點以後我才能比較方便動XD
+15:35 < MindosC> 大家都是上班族啊 (握)
+15:44 < clkao> billy3321: 找人跟 lman 聊天轉移他的注意力
+15:49 < billy3321> clkao: lman要是知道我寫出來的文章50%以上是上班時間搞定的，應該會想殺了我XD
+15:52 -!- johanzhou [770fc274@gateway/web/freenode/ip.119.15.194.116] has joined #g0v.tw
+15:53 < tkirby_> billy3321: lman 是誰呢
+15:53 -!- johanzhou [770fc274@gateway/web/freenode/ip.119.15.194.116] has quit [Client Quit]
+16:00 < billy3321> tkirby_: 我主管XD也是台湾open source界大老 梁枫
+16:01 < tkirby_> billy3321: 嗚阿, 剛剛還想說"把他也抓來 g0v 就沒困擾了" 說 XD
+16:04 < MindosC> tkirby++ # 把他也抓來 g0v 就沒困擾了
+16:14 < billy3321> 把他抓来困扰就大了XD
+16:15 -!- neoesque [~neoesque@210.59.147.232] has quit [Quit: Bye!]
+16:28 -!- ETBlue [~chatzilla@221-120-64-163.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+16:31 < opop> 地震好大！！
+16:34 -!- KNY [~Adium@114-38-141-63.dynamic.hinet.net] has joined #g0v.tw
+16:35 -!- KNY [~Adium@114-38-141-63.dynamic.hinet.net] has left #g0v.tw []
+16:39 -!- KNY1 [~Adium@118-170-70-86.dynamic.hinet.net] has joined #g0v.tw
+16:40 < billy3321> 自从我来上海以后，就忘记地震的感觉了.....
+16:54 -!- Custom_ is now known as Custom
+16:55 -!- ij1iao [~ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 276 seconds]
+16:55 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Ping timeout: 256 seconds]
+16:56 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+16:56 -!- cls_bsd [~cls_bsd@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 248 seconds]
+16:56 -!- liic_ [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+16:56 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+16:56 -!- liic [~liic@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+16:56 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 240 seconds]
+16:56 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+16:58 < kcwu> clkao: /n
+16:58 < kcwu> s/.*//
+16:58 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has joined #g0v.tw
+16:59 < kcwu> clkao: 有 log file, 不過要怎麼 share? 現在是一堆 .bz2 檔, 一天一個
+17:00 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+17:02 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+17:19 -!- ETBlue [~chatzilla@114-26-165-79.dynamic.hinet.net] has joined #g0v.tw
+17:21 -!- thschee [~thschee@114-36-10-173.dynamic.hinet.net] has quit [Remote host closed the connection]
+17:35 -!- Johnny5TW [~johnny5tw@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+17:36 < ETBlue> MindosC: 有！我現在才在追今天的irc進度， ipa 導請受我一拜...
+17:41 -!- KNY1 [~Adium@118-170-70-86.dynamic.hinet.net] has quit [Quit: Leaving.]
+17:44 < MindosC> Discovery 的 ipa 導請受我一拜
+17:44 -!- MindosC [~MindosC@115.82.28.74] has quit [Quit: Bye]
+17:50 -!- XDDDD [~XDDDD@118-163-211-62.HINET-IP.hinet.net] has joined #g0v.tw
+17:54 -!- XDDDD [~XDDDD@118-163-211-62.HINET-IP.hinet.net] has left #g0v.tw []
+17:57 -!- KNY [~Adium@118-170-70-86.dynamic.hinet.net] has joined #g0v.tw
+17:58 -!- mutolisp [~psilotum@inventory16.fo.ntu.edu.tw] has quit [Quit: leaving]
+18:28 < billy3321> MindosCheng: 您看OK了跟我说一下，我就寄出罗
+18:29 -!- chihchun is now known as zz_chihchun
+18:32 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+18:42 < tkirby_> 再這樣下去 irc stat 名言錦句就要變成 ipa 導請受我一拜 了
+18:46 -!- MnO2 [~mno2@nat/yahoo/x-cfaffhvsrbvsqsuc] has quit [Quit: Leaving]
+19:06 < billy3321> http://blog.g0v.tw/post/40755632158/open-data
+19:06 < billy3321> 貼上去了
+19:11 -!- ETBlue [~chatzilla@114-26-165-79.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+19:19 -!- ETBlue [~chatzilla@123-204-142-108.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+19:31 -!- KNY [~Adium@118-170-70-86.dynamic.hinet.net] has left #g0v.tw []
+19:34 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 255 seconds]
+19:44 < ETBlue> clkao ipa mikimoto : 確認一下 sample@email.tst 這個報名人要刪掉對嗎？今天電腦開開關關之前的對話不見了... irc還不太熟 @@"
+19:47 < ETBlue> clkao ipa mikimoto : 然後有人把 email 打成 gmial.com ，這種的會有影響嗎？ @@"
+19:49 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has quit [Quit: leaving]
+19:50 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has joined #g0v.tw
+20:02 -!- timdream [~timdream@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: timdream]
+20:36 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+20:42 -!- shenghsiu [~shenghsiu@64-121-94-53.c3-0.smt-ubr1.atw-smt.pa.cable.rcn.com] has joined #g0v.tw
+20:43 -!- shenghsiu [~shenghsiu@64-121-94-53.c3-0.smt-ubr1.atw-smt.pa.cable.rcn.com] has quit [Client Quit]
+20:47 -!- shenghsiu [~shenghsiu@64.121.94.53] has joined #g0v.tw
+20:48 -!- shenghsiu [~shenghsiu@64.121.94.53] has quit [Client Quit]
+20:49 -!- shenghsiu [~shenghsiu@64.121.94.53] has joined #g0v.tw
+20:52 -!- soidid [~IceChat77@118-165-222-177.dynamic.hinet.net] has joined #g0v.tw
+20:55 -!- soidid_ [~soidid@118-165-222-177.dynamic.hinet.net] has joined #g0v.tw
+20:55 -!- shenghsiu [~shenghsiu@64.121.94.53] has quit []
+20:57 -!- soidid [~IceChat77@118-165-222-177.dynamic.hinet.net] has quit [Remote host closed the connection]
+20:57 -!- soidid_ [~soidid@118-165-222-177.dynamic.hinet.net] has quit [Remote host closed the connection]
+21:00 -!- soidid [~chatzilla@118-165-222-177.dynamic.hinet.net] has joined #g0v.tw
+21:04 -!- MnO2 [~mno2@1.34.43.236] has joined #g0v.tw
+21:09 -!- Johnny5TW [~johnny5tw@114-33-113-125.HINET-IP.hinet.net] has quit [Quit: Leaving]
+21:13 -!- User___ [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+21:13 -!- User___ is now known as Johnny5TW
+21:18 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+21:19 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+21:20 < Johnny5TW>  /msg NickServ identify hms99999999
+21:21 -!- User_Johnny5tw [~johnny5tw@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+21:23 < au> Johnny5TW: you may wish to change a password soon :)
+21:23 < Johnny5TW> 我知道，剛語法打錯了～呵
+21:24 < au> :p
+21:24 -!- thschee [~thschee@219.84.208.159] has joined #g0v.tw
+21:24 < Johnny5TW> 正在找變更密碼的語法
+21:25 < au> /msg nickserv SENDPASS Johnny5TW
+21:26 < au> 然後會有 key 寄到信箱
+21:26 -!- User_Johnny5tw [~johnny5tw@114-33-113-125.HINET-IP.hinet.net] has quit [Quit: Leaving]
+21:27 < au> 再 /msg nickserv SETPASS Johnny5TW key newpassword
+21:27 -!- MindosC [~MindosC@115.82.28.74] has joined #g0v.tw
+21:28 < Johnny5TW> 嗯 了解，感謝au～
+21:28 < au> np
+21:29 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has quit [Quit: ChatZilla 0.9.89 [Firefox 18.0/20130104151925]]
+21:29 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+21:29 -!- KNY [~Adium@118-170-70-86.dynamic.hinet.net] has joined #g0v.tw
+21:32 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has left #g0v.tw []
+21:32 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+21:34 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has quit [Client Quit]
+21:41 -!- hychen [~hychen@host-58-114-176-120.dynamic.kbtelecom.net] has joined #g0v.tw
+21:41 < clkao> ETBlue: email 打錯... 應該是收不到通知信而已.. XD
+21:51 -!- swem [~Thunderbi@host-61-70-225-70.static.kbtelecom.net] has joined #g0v.tw
+21:53 < ETBlue> clkao : 瞭解，那我就不理他 XD 那請問用假資料報名的那個要刪除嗎 @@
+21:53 < clkao> yeah please
+21:55 < ETBlue> clkao : done XD
+21:58 < mikimoto> clear
+21:58 -!- hychen [~hychen@host-58-114-176-120.dynamic.kbtelecom.net] has quit [Ping timeout: 248 seconds]
+21:59 < mikimoto> ETBlue: sample@email.tst 刪了吧
+21:59 < mikimoto> ETBlue: 如果打錯可能要先取消再重新報名
+21:59 -!- Johnny5TW [~chatzilla@111-246-78-253.dynamic.hinet.net] has joined #g0v.tw
+22:00 < ETBlue> mikimoto: roger, done XD
+22:04 < soidid> 我是莉婷 今天討論的一些東西 要編輯在討論的hackpad 還是 立法院相關專案 的hackpad?
+22:04 -!- hychen [~hychen@host-58-114-176-120.dynamic.kbtelecom.net] has joined #g0v.tw
+22:05 < soidid> 立場的討論和這個「選票成分分析」也有點像
+22:09 < hychen> soidid, 沒錯
+22:09 < hychen> soidid, 但他這範圍太大了，一開始開能做不太來
+22:10 < soidid> 但是不是要放在一起?
+22:10 < soidid> 或者放在立法院專案?
+22:11 < MindosC> ETBlue++ # 場地資訊
+22:12 < hychen> 可以放在一起
+22:12 < hychen> 先做brainstorming再break down成working item.
+22:12 < MindosC> 來做些 mockup 說明專案 (First time)
+22:12 < clkao> hychen! liquidfeedback 根本就有中文版
+22:13 < hychen> clkao, where where
+22:13 < clkao> http://dev.liquidfeedback.org/lf2/index/register.html
+22:13 < kcwu> clkao's url: [LiquidFeedback - 2.1]
+22:13 < MindosC> 下次來玩 popapp
+22:13 < clkao> 選擇語言 有繁體中文
+22:13 < clkao> 邀請馬:  please send your request to test20120629@public-software-group.org and we send you an invitation code with further instructions.
+22:13 < hychen> clkao, cool!
+22:13 < ipa> cool
+22:14 < hychen> clkao, 直接寄email到那個位置? 要寫什麼?
+22:15 < clkao> yeah. i just sent it.. .不知道他是自動還是手動
+22:15 < clkao> dunno. just say request invitation code i guess
+22:15 < hychen> ok
+22:15 < clkao> 不過我有 graylist.. 不知道多久才會收到... orz
+22:15 < hychen> let me try try
+22:17 < hychen> clkao, 剛看了hackpad, 大家的idea還滿多重疊的, 不知道要怎麼整合 XD
+22:18 -!- howard_ [d34adc4b@gateway/web/freenode/ip.211.74.220.75] has joined #g0v.tw
+22:20 < ipa> soidid++ #馬上畫了mockup
+22:20 < ipa> https://moqups.com/soidid/bWm0QVhK
+22:20 < kcwu> ipa's url: [Moqups Viewer]
+22:21 < hychen> soidid++
+22:21 < clkao> hychen: 慘了: http://www.libertytimes.com.tw/2011/new/oct/11/today-center13-2.htm
+22:21 < kcwu> clkao's url: [自由電子報 - 手續繁雜 合法蓋廟不容易]
+22:22 < clkao> soidid++
+22:22 < hychen> 哇...
+22:22 -!- Johnny5TW [~chatzilla@111-246-78-253.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.89 [Firefox 18.0/20130104151948]]
+22:23 < clkao> soidid: 立場不一和不表態 應該可以用 所以事件數值的標準差
+22:23 < clkao> 或者 那個 y 軸 background 有事件數值 range?
+22:25 < hychen> github 的 assignee 不能多個啊..
+22:25 < ipa> 選票成份分析、pressure your 立委、防止印象票應該是一樣的出發點
+22:25 -!- howard_ [d34adc4b@gateway/web/freenode/ip.211.74.220.75] has left #g0v.tw []
+22:26 < hychen> soidid, http://boothead.github.com/d3/ex/bullet.html
+22:26 < kcwu> hychen's url: [d3.js ~ Bullet Charts]
+22:26 < hychen> soidid, 那個提案進度表應該也可以用這種方式列出來吧
+22:27 < soidid> 可以
+22:27 < hychen> soidid, working item burndownchart 的範例 http://status.ubuntu.com/ubuntu-raring/
+22:27 < kcwu> hychen's url: [Status for all teams]
+22:27 < hychen> soidid, 你可以看到todo越來越多....
+22:27 < soidid> XD
+22:27 < hychen> todo+inprogress
+22:28 < hychen> hmmm. 幫立法院弄一張這個表好像不錯....
+22:29 < soidid> 我把這個寫在「g0v.tw 立法院相關專案」？
+22:29 < soidid> 還是其他地方有這個的討論了
+22:30 < clkao> soidid: 
+22:30 < hychen> soidid, http://dev.g0v.tw/Project-TWLY.html
+22:30 < kcwu> hychen's url: [Project TWLY]
+22:30 < hychen> soidid, 這是立院的開發頁面
+22:31 < clkao> hychen: 不過 黑客松 還是先用那個 hackpad 作準備...? 到時候在搬進 dev wiki? 
+22:31 < hychen> soidid, 你先放hackpad好了
+22:31 < soidid> 好
+22:31 < hychen> clkao, 似乎還要寫一個文件管理方式....
+22:31 < clkao> hychen: github assignee... 為何要多個呀？用 tag 就好？
+22:31 < hychen> clkao,  github怎麼用
+22:32 < clkao> 你是說 github issues?
+22:32 < clkao> or ?
+22:32 < hychen> clkao, github issues
+22:32 < hychen> clkao, 用tag? 你是說加一個nick的tag ?
+22:33 < clkao> yeah
+22:33 < clkao> 應該可以吧
+22:33 < hychen> clkao, got it
+22:41 -!- Johnny5TW [~johnny5@111-246-78-253.dynamic.hinet.net] has joined #g0v.tw
+22:41 < Johnny5TW> identify
+22:51 -!- Johnny5TW [~johnny5@111-246-78-253.dynamic.hinet.net] has quit [Quit: 暫離]
+22:53 -!- johnny5tw [~johnny5@111-246-78-253.dynamic.hinet.net] has joined #g0v.tw
+22:53 < ipa> 「一個開放原碼的幽靈，盤據在台灣的上空」
+22:53 -!- thschee [~thschee@219.84.208.159] has quit [Remote host closed the connection]
+22:54 -!- KNY [~Adium@118-170-70-86.dynamic.hinet.net] has left #g0v.tw []
+22:54 < ipa> g0v宣言第一句來寫這個好了 XD
+22:55 < S3p_lin> 有一種嬰靈的感覺 XD
+22:55 < hychen> 我看到怨念籠罩在鬼島
+22:56 < billy3321> hychen: 還好啦，你看那北京怨念之深，都不能呼吸了
+23:00 -!- johnny5tw is now known as Johnny5TW
+23:01 < momiz1> 原來 S3p_lin 也有在這邊 XD
+23:02 < S3p_lin> momiz1: :P
+23:03 -!- seudo_tw_ [r01944023@linux8.csie.ntu.edu.tw] has joined #g0v.tw
+23:04 -!- MindosCC [~MindosC@115.82.28.74] has joined #g0v.tw
+23:04 < hychen> billy3321, 幫忙寫一篇怎麼用github issue tracker吧
+23:05 < hychen> billy3321, 還有怎麼用github wiki
+23:05 < MindosCheng> ipa++
+23:06 < hychen> clkao, 草稿要用wiki寫還是hackpad寫?
+23:06 -!- Johnny5TW [~johnny5@111-246-78-253.dynamic.hinet.net] has left #g0v.tw ["暫離"]
+23:06 < momiz1> "世界脫序了，我們的code 為了糾正它而生"
+23:06  * momiz1 快跑
+23:06 -!- chihchun [~chihchun@114-34-10-226.HINET-IP.hinet.net] has joined #g0v.tw
+23:07 < billy3321> hychen: 好
+23:07 < billy3321> 我找時間寫一篇
+23:07 < billy3321> 目前專案的github是哪一個？
+23:07 < hychen> ipa, http://www.debian.org/social_contract
+23:07 < kcwu> hychen's url: [Debian Social Contract]
+23:07 -!- Netsplit *.net <-> *.split quits: MindosC, MnO2, seudo_tw, zz_chihchun
+23:07 < hychen> ipa, 我今天提到的宣言(契約)
+23:08 < hychen> billy3321, https://github.com/g0v/dev/issues
+23:08 < kcwu> hychen's url: [Issues · g0v/dev · GitHub]
+23:08 -!- Johnny5TW [~johnny5@111-246-78-253.dynamic.hinet.net] has joined #g0v.tw
+23:08 < hychen> billy3321, 目前先放這裡吧
+23:10 -!- Netsplit over, joins: MnO2
+23:12 -!- Johnny5TW [~johnny5@111-246-78-253.dynamic.hinet.net] has left #g0v.tw ["暫離"]
+23:14 < clkao> hychen++ # 動作超快
+23:14 < MindosCheng> 初心者 pad 有了嗎? 沒有的話我建一下
+23:14 < ipa> hychen++ 
+23:16 < hychen> https://github.com/g0v/dev/wiki/g0v-%E6%96%B0%E9%80%B2%E4%BA%BA%E5%93%A1%E6%89%8B%E5%86%8A
+23:16 < hychen> 大綱
+23:16 < kcwu> hychen's url: [g0v 新進人員手冊 · g0v/dev Wiki · GitHub]
+23:16 < hychen> 不過我想hackpad比較好co-work
+23:17 < hlb> 話說敝公司最近在用 http://www.hipchat.com/
+23:17 < kcwu> hlb's url: [Private group chat and IM, business and team collaboration - HipChat]
+23:17 -!- walkingice [~walkingic@1-168-46-17.dynamic.hinet.net] has joined #g0v.tw
+23:17 < MindosCheng> hychen++
+23:18 < hlb> 避免新進實習生需要學習 irc
+23:18 < MindosCheng> 技術性問題也放這嗎
+23:18 < hychen> 怎麼的技術性問題?
+23:19 < MindosCheng> irc
+23:19 < hlb> 也許可以考慮找個 web based chat solution
+23:19 < hychen> 那個列在如何與其他人溝通
+23:19 < MindosCheng> encoding / hackpad
+23:19 < hychen> hlb, 不是有irc的web界面?
+23:19 < hlb> # 如果希望讓新手加入
+23:19 < hlb> hychen: well, 你知道... IRC 這件事情就很難 :p
+23:19 < hychen> hmmmm
+23:19 < hychen> 也是
+23:20 < MindosCheng> 我怕技術性問題吃掉大部份版面
+23:20 < hychen> MindosCC, 放個連結就好
+23:20 < hychen> MindosCC, IRCSetup就放別的地方...
+23:21 < MindosCheng> 所以還是要開個 hackpad 放技術性問題
+23:22 < MindosCheng> 我開一下好了
+23:22 < hychen> 線上共筆, h4用這個http://sync.in/
+23:22 < kcwu> hychen's url: [Sync.in]
+23:23 < S3p_lin> 這是好事啊, 至少一般小白不會那麼容易進來鬧  # hlb> hychen: well, 你知道... IRC 這件事情就很難 :p
+23:23 < hychen> sync.in有chat room
+23:23 < hychen> 比較接近google doc的功能
+23:24 < billy3321> hlb: 但是基本上這個議題需要許多面向不同專長的人來參與
+23:25 < billy3321> hlb: 我之前玩erep也是想盡辦法讓很多人開始學會用IRC，基本上IRC只要稍微習慣一下是可以克服的。
+23:25 < hychen> clkao, ipa, 光是工具選用就需要投票了  XD
+23:25 < MindosCheng> hlb 是無辜的
+23:25 -!- CarterTsai [~Thunderbi@218-173-158-57.dynamic.hinet.net] has joined #g0v.tw
+23:26 < clkao> lol
+23:27 < billy3321> XD
+23:27 < hychen> clkao, 你有用過sync.in嗎?
+23:27 < hychen> ibus輸入法一樣會爛掉
+23:27 < hychen> orz
+23:28 < au> IRC 的好處是中文輸入都不會爛掉耶 (XD)
+23:28 < MindosCheng> 因為其它頁面還是在 hackpad 我就在 hackpad 開。除非要 migrate 到別的地方
+23:29 < hychen> MindosCC, 在hackpad就好了
+23:29 -!- swem [~Thunderbi@host-61-70-225-70.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+23:30 < clkao> hychen: yeah... 他是 ep based.. 也是一樣有無 table, 無 h1 的問題 ><
+23:30 < MindosCheng> 我的床離我只有幾步 QQ
+23:31 < MindosCheng> 世界上最遙遠的距離
+23:32 < hychen> MindosCheng, 開好了? 開好了我把wiki上的東西放過去
+23:34 < MindosCheng> 我在開技術的那頁
+23:34 < MindosCheng> https://hackpad.com/PGAV6P6hb3N
+23:34 < kcwu> MindosCheng's url: [g0v hackath1n |  技術問題看這邊 - hackpad.com]
+23:35 < hychen> MindosCheng, oh
+23:36 < MindosCheng> 大家用喜歡的平台弄文件，可以連結就好。這樣對吧 :P
+23:36 < hychen> MindosCC, yes
+23:36 < hychen> MindosCheng, yes
+23:39 < MindosCheng> https://hackpad.com/qlMMTiNuRl6 # 功能介紹
+23:40 < kcwu> MindosCheng's url: [10 Reasons Hackpad is Better than Google Docs - hackpad.com]
+23:44 -!- ipaaa [722a0945@gateway/web/freenode/ip.114.42.9.69] has joined #g0v.tw
+23:44 < clkao> ipaaa!!
+23:44 < ipaaa> 你好大，我ipaaaa
+23:44 < clkao> .....
+23:44 < MindosCheng> ipaaaa~~~~
+23:45 < hlb> ...
+23:45 < hlb> 今天有寒流已經夠冷了 T_T
+23:46 < ipaaa> （小的告退）
+23:46 -!- ipaaa [722a0945@gateway/web/freenode/ip.114.42.9.69] has left #g0v.tw []
+23:46 < MindosCheng> hey, 最後有什麼結論嗎？關於 irc best practice for beginners
+23:47 < ipa> web 介面蠻好用的啊
+23:48 < MindosCheng> 這個嗎? http://webchat.freenode.net
+23:48 < kcwu> MindosCheng's url: [freenode Web IRC (qwebirc)]
+23:49 < hychen> http://webchat.freenode.net/?channels=g0v.tw
+23:49 < hychen> 這樣就會連到IRC
+23:49 < hychen> 這個channel
+23:49 < ipa> 剛剛我就用那連進來，打中文也都沒問題
+23:50 < MindosCheng> Cool
+23:50 -!- forgov [721904dc@gateway/web/freenode/ip.114.25.4.220] has joined #g0v.tw
+23:50 < ipa> 這irc連結好像一直都在hackpad上？
+23:50 -!- forgov [721904dc@gateway/web/freenode/ip.114.25.4.220] has quit [Client Quit]
+23:51 -!- CarterTsai [~Thunderbi@218-173-158-57.dynamic.hinet.net] has quit [Quit: CarterTsai]
+23:52 < MindosCheng> 我現在發現了 :)
+23:55 < tkirby_> clkao: multi-polygon + simple z-order + 北縣 ft. 北市 # http://bl.ocks.org/4539556
+23:56 < MindosCheng> Cool
+23:56 -!- johnny5tw [~johnny5@111-246-78-253.dynamic.hinet.net] has joined #g0v.tw
+23:57 -!- johnny5tw [~johnny5@111-246-78-253.dynamic.hinet.net] has quit [Quit: 暫離]

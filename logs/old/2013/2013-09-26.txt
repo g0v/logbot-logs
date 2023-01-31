@@ -1,0 +1,401 @@
+--- Day changed 四  9月 26 2013
+00:06 -!- haroldwu_cloud [uid13653@gateway/web/irccloud.com/x-dcdxttzbqoewykgj] has joined #g0v.tw
+00:08 < hychen> clkao: 我在想pgres.tcolumnof 要怎樣在user建一個新table後自動update-cache
+00:09 < hychen> clkao: s/pgres.tcolumnof/pgret.columnOf/
+00:10 < clkao> hychen: 你說再 db 新建 table ? 還是用 rest endpoint 建 table?
+00:11 < hychen> clkao: both
+00:11 < hychen> clkao: 前者目前不會重新update cache
+00:11 < clkao> 前者的話 9.3 好像可以 trigger on create table. 再看怎樣被 notify. 後者不是再 route handler 裡面直接塞進去就好？
+00:11 < clkao> hychen: 不然就是多一個 endpoint force refresh table caches
+00:11 < hychen> clkao: 對, 我是要講前者
+00:12 < hychen> clkao: 這樣也有點奇怪, test case不會去碰endpoint
+00:12 < clkao>  /runCommand/refresh
+00:13 < clkao> 順便把 #23 解掉
+00:13 < clkao> (model-route 通通 remount
+00:13 < hychen> clkao: 9.3 會有event trigger
+00:13 < hychen> clkao: 這樣前者就可解掉了
+00:14 < hychen> clkao: 後者就是要加endpoint
+00:14 < clkao> 但那是 db level event, 可能要變成 notify, 然後 pgrest connection 要 subscribe.. 也是有點鳥 :p
+00:14 < clkao> 而且通常是 dev env 才會需要這功能... 感覺有點 overkill.
+00:15 < hychen> clkao: 要不然就是columinfoOf 猜出來成單獨得plv8 function, 讓db level的code 可以call
+00:15 < hychen> 這樣應該就夠了 
+00:16 < hychen> 我看一下#23是什麼
+00:18 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 240 seconds]
+00:18 < clkao> post create 後新 table 無法 route 到, 因為 app.all() 順序問題
+00:21 < hychen> hmm, 我這幾天先解#12
+00:21 < hychen> 23感覺不太急 XD
+00:22 < clkao> 應該是沒 double quote
+00:26 -!- aLlia [~blah@60-234-155-32.bitstream.orcon.net.nz] has quit [Ping timeout: 256 seconds]
+00:30 -!- chihchun is now known as chihchun_afk
+00:30 < Michael_LI> http://deepsound-twfuture.podomatic.com/entry/2013-09-24T21_58_44-07_00
+00:30 < kcwu> Michael_LI's url: [PodOmatic | Best Free Podcasts]
+00:31 < Michael_LI> 這一集深音由酥餅擔任主持人，特別邀請到1985公民行動聯盟的發起人，針對1985的組織、活動、理念，百無禁忌無所不談。
+00:45 -!- wayne930242_p [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has quit [Remote host closed the connection]
+00:46 -!- mno2 [~mno2@218-161-2-92.HINET-IP.hinet.net] has quit [Quit: mno2]
+00:50 -!- wayne930242_p [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has joined #g0v.tw
+00:53 -!- chhsiao1981 [~chhsiao@li494-193.members.linode.com] has quit [Ping timeout: 264 seconds]
+00:53 -!- chhsiao1981 [~chhsiao@li494-193.members.linode.com] has joined #g0v.tw
+00:54 -!- reChing [~chatzilla@host-61-70-233-22.static.kbtelecom.net] has quit [Ping timeout: 256 seconds]
+00:54 -!- alliao [~blah@2001:0:4137:9e76:3cb0:11e5:c315:64df] has joined #g0v.tw
+00:57 -!- reChing [~chatzilla@host-61-70-233-22.static.kbtelecom.net] has joined #g0v.tw
+01:00 < Michael_LI> 聽到 23:10  中華民國之春　　～我笑出來了
+01:26 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+01:54 -!- Rplus [~rplus_tw@114-24-66-192.dynamic.hinet.net] has joined #g0v.tw
+01:55 -!- Rplus [~rplus_tw@114-24-66-192.dynamic.hinet.net] has quit [Client Quit]
+02:05 < Michael_LI> 56:44 ~ E04人才庫，登記關心議題，公民團體再來找人……
+02:05 -!- wayne930242_p [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has quit [Ping timeout: 240 seconds]
+02:24 -!- Rplus [~rplus_tw@114-24-66-192.dynamic.hinet.net] has joined #g0v.tw
+02:52 -!- reChing [~chatzilla@host-61-70-233-22.static.kbtelecom.net] has quit [Max SendQ exceeded]
+03:00 -!- reChing [~chatzilla@host-61-70-233-22.static.kbtelecom.net] has joined #g0v.tw
+03:10 -!- Rplus [~rplus_tw@114-24-66-192.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+03:37 -!- afu [afu@60-199-248-185.static.tfn.net.tw] has quit [Read error: Connection reset by peer]
+03:37 -!- ieon [ieon@60-199-248-185.static.tfn.net.tw] has quit [Read error: Operation timed out]
+03:39 -!- xdite_ [~Kydd@60-199-208-208.static.tfn.net.tw] has quit [Ping timeout: 256 seconds]
+03:39 -!- edwardc [~edwardc@60-199-248-174.static.tfn.net.tw] has quit [Ping timeout: 264 seconds]
+03:43 -!- afu [afu@60-199-248-185.static.tfn.net.tw] has joined #g0v.tw
+03:44 -!- ieon [ieon@60-199-248-185.static.tfn.net.tw] has joined #g0v.tw
+03:44 -!- edwardc [~edwardc@60-199-248-174.static.tfn.net.tw] has joined #g0v.tw
+03:47 -!- xdite_ [~Kydd@60-199-208-208.static.tfn.net.tw] has joined #g0v.tw
+04:36 -!- chhsiao1981 [~chhsiao@li494-193.members.linode.com] has quit [Ping timeout: 248 seconds]
+04:37 -!- chhsiao1981 [~chhsiao@li494-193.members.linode.com] has joined #g0v.tw
+04:37 -!- Supaplextw [~Lucky@1-164-208-103.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+04:39 -!- Supaplextw [~Lucky@114-36-247-2.dynamic.hinet.net] has joined #g0v.tw
+04:53 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 245 seconds]
+04:54 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+07:02 -!- a-tsioh [~pierre@78.202.136.41] has quit [Quit: WeeChat 0.3.8]
+07:54 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+07:58 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+09:23 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+09:25 -!- Dennisc140 [~Dennis_Ch@114-32-173-73.HINET-IP.hinet.net] has joined #g0v.tw
+09:49 -!- andre [~andre@125-227-154-97.HINET-IP.hinet.net] has joined #g0v.tw
+09:49 -!- andre is now known as Guest72921
+10:00 -!- seudo_tw [r01944023@linux5.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+10:19 -!- lcamel_ [~lcamel@nat/yahoo/x-wbxumgnztshhsgvw] has joined #g0v.tw
+10:19 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Read error: Connection reset by peer]
+10:20 -!- lcamel_ [~lcamel@nat/yahoo/x-wbxumgnztshhsgvw] has quit [Remote host closed the connection]
+10:21 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+10:38 -!- whyjaster [~whyjaster@61-220-205-84.HINET-IP.hinet.net] has joined #g0v.tw
+11:09 -!- chihchun_afk is now known as chihchun
+11:14 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+11:39 -!- wayne930242_p [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has joined #g0v.tw
+11:50 -!- Guest72921 [~andre@125-227-154-97.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+11:51 -!- andre [~andre@1.34.114.249] has joined #g0v.tw
+11:51 -!- andre is now known as Guest69727
+11:53 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Remote host closed the connection]
+11:53 -!- lcamel_ [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+11:54 -!- mno2 [~mno2@218-161-2-92.HINET-IP.hinet.net] has joined #g0v.tw
+12:01 -!- lcamel_ [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Remote host closed the connection]
+12:01 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+12:01 -!- lcamel [~lcamel@2406:2000:efa5:9:44a8:7312:6f17:c145] has joined #g0v.tw
+12:06 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+12:28 -!- wayne930242_p [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has quit [Ping timeout: 246 seconds]
+12:34 -!- lcamel_ [~lcamel@nat/yahoo/x-wuigzmrpzxzxvgpc] has joined #g0v.tw
+12:34 -!- lcamel [~lcamel@2406:2000:efa5:9:44a8:7312:6f17:c145] has quit [Ping timeout: 245 seconds]
+12:39 -!- Guest69727 [~andre@1.34.114.249] has quit [Remote host closed the connection]
+12:48 -!- ArvinH [~ArvinH@host-176.247-185-111.static.totalbb.net.tw] has joined #g0v.tw
+13:01 -!- scyen [~scyen@122.146.84.72] has joined #g0v.tw
+13:02 -!- scyen__ [~scyen@122.146.84.72] has joined #g0v.tw
+13:02 -!- scyen [~scyen@122.146.84.72] has quit [Read error: Connection reset by peer]
+13:03 -!- ArvinH [~ArvinH@host-176.247-185-111.static.totalbb.net.tw] has quit [Remote host closed the connection]
+13:05 -!- scyen_ [~scyen@118-163-58-205.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+13:23 -!- lcamel_ [~lcamel@nat/yahoo/x-wuigzmrpzxzxvgpc] has quit [Remote host closed the connection]
+13:40 < clkao> kcwu: 在想 youtbue 是否有 api 能 batch 取得所有 video 的觀看次數？
+13:44 -!- Seiken [~Scepticus@111-253-92-192.dynamic.hinet.net] has quit []
+13:44 -!- andre [~andre@125-227-154-97.HINET-IP.hinet.net] has joined #g0v.tw
+13:44 -!- andre is now known as Guest52132
+13:44 -!- Scepticus [~Scepticus@111-253-92-192.dynamic.hinet.net] has joined #g0v.tw
+13:47 < kcwu> clkao: 我記得有
+13:55 -!- Scepticus is now known as Seiken
+14:02 -!- lcamel [~lcamel@2406:2000:efa5:9:bc56:204b:e064:9a1] has joined #g0v.tw
+14:34 -!- lcamel_ [~lcamel@nat/yahoo/x-azjxpwsfpqgatogo] has joined #g0v.tw
+14:35 -!- lcamel [~lcamel@2406:2000:efa5:9:bc56:204b:e064:9a1] has quit [Ping timeout: 264 seconds]
+14:54 -!- louielu_ [uid13501@gateway/web/irccloud.com/x-hfjngycwpdffogkr] has quit [Ping timeout: 245 seconds]
+14:54 -!- iamblue_cloud [uid13120@gateway/web/irccloud.com/x-klcvaxtmpzhsxikn] has quit [Ping timeout: 260 seconds]
+14:54 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+14:54 -!- haroldwu_cloud [uid13653@gateway/web/irccloud.com/x-dcdxttzbqoewykgj] has quit [Ping timeout: 245 seconds]
+14:55 -!- haroldwu2 [uid14053@gateway/web/irccloud.com/x-exextjvbhcawhuua] has quit [Ping timeout: 245 seconds]
+14:57 -!- lcamel_ [~lcamel@nat/yahoo/x-azjxpwsfpqgatogo] has quit [Ping timeout: 260 seconds]
+14:58 -!- michaelli [~androirc@111.235.203.74] has joined #g0v.tw
+15:12 -!- Al_Cho [al_cho@nat/novell/x-zohxvfddnsyupzqo] has quit [Remote host closed the connection]
+15:29 -!- wayne930242_p [~wayneh@mn6106.wlan.nthu.edu.tw] has joined #g0v.tw
+15:31 -!- wayne930242_p [~wayneh@mn6106.wlan.nthu.edu.tw] has quit [Remote host closed the connection]
+15:31 -!- wayne930242_p [~wayneh@mn6106.wlan.nthu.edu.tw] has joined #g0v.tw
+15:31 -!- michaelli [~androirc@111.235.203.74] has quit [Ping timeout: 264 seconds]
+15:33 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+15:34 -!- mmmmmhuang [uid14482@gateway/web/irccloud.com/x-itlmodosmexhdfja] has joined #g0v.tw
+15:39 -!- alliao [~blah@2001:0:4137:9e76:3cb0:11e5:c315:64df] has quit [Read error: Connection reset by peer]
+15:39 -!- alliao [~blah@2001:0:4137:9e76:3cb0:11e5:c315:64df] has joined #g0v.tw
+15:48 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+16:01 -!- scyen__ [~scyen@122.146.84.72] has quit [Remote host closed the connection]
+16:04 -!- Al_Cho [al_cho@nat/novell/x-uvktkzwsjhytpsoa] has joined #g0v.tw
+16:14 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+16:21 -!- scyen [~scyen@122.146.84.72] has joined #g0v.tw
+16:23 -!- a-tsioh [~pierre@78.202.136.41] has joined #g0v.tw
+16:52 -!- haroldwu2 [uid14053@gateway/web/irccloud.com/x-uucluvxjmovqhfef] has joined #g0v.tw
+16:52 -!- scyen_ [~scyen@122.146.84.72] has joined #g0v.tw
+16:52 -!- scyen [~scyen@122.146.84.72] has quit [Read error: Connection reset by peer]
+16:53 -!- scyen_ [~scyen@122.146.84.72] has quit [Remote host closed the connection]
+16:54 -!- louielu_ [uid13501@gateway/web/irccloud.com/x-zrybzcnnwvkquers] has joined #g0v.tw
+16:55 -!- iamblue_cloud [uid13120@gateway/web/irccloud.com/x-abceghauabrugvdq] has joined #g0v.tw
+16:55 -!- haroldwu_cloud [uid13653@gateway/web/irccloud.com/x-gksuylnkiktjrsat] has joined #g0v.tw
+16:55 -!- Dennisc140 [~Dennis_Ch@114-32-173-73.HINET-IP.hinet.net] has left #g0v.tw []
+17:12 -!- SupaplexTW___ [~Adium@210.61.193.66] has joined #g0v.tw
+17:15 -!- Seiken [~Scepticus@111-253-92-192.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+17:15 -!- ddio [uid13869@gateway/web/irccloud.com/x-fdpjprvqhfbjopsv] has quit [Ping timeout: 264 seconds]
+17:15 -!- ca^ [~ca@220-133-60-215.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+17:16 -!- ddio [uid13869@gateway/web/irccloud.com/x-bvpuobepbgvaiyvp] has joined #g0v.tw
+17:16 -!- WanCW [uid12647@gateway/web/irccloud.com/x-kktejellcdkzkckb] has quit [Ping timeout: 264 seconds]
+17:16 -!- Linmic [uid13351@gateway/web/irccloud.com/x-vlqfyzfhiozkxrxf] has quit [Ping timeout: 264 seconds]
+17:16 -!- ca^ [~ca@220-133-60-215.HINET-IP.hinet.net] has joined #g0v.tw
+17:16 -!- Linmic [uid13351@gateway/web/irccloud.com/x-kperolkueltarvju] has joined #g0v.tw
+17:16 -!- WanCW [uid12647@gateway/web/irccloud.com/x-kuxmqafyhcytndre] has joined #g0v.tw
+17:23 -!- scyen [~scyen@122.147.15.66] has joined #g0v.tw
+17:23 -!- scyen [~scyen@122.147.15.66] has quit [Read error: Connection reset by peer]
+17:23 -!- scyen [~scyen@122.147.15.66] has joined #g0v.tw
+17:33 < mikimoto> pofeng_: clkao: 幾個壞消息，MOPCON 這邊議程表草稿出爐，3 軌全滿，無法挪出 g0v 發表會空間
+17:34 < mikimoto> pofeng_: clkao : 然後我被公關組警告，因為 MozTW 不想贊助，但是想來現場 ShowCase
+17:35 < pofeng_> mikimoto: 有空間可以一起 hack 嗎 ?
+17:35 < bobchao> mikimoto: just to clarify: 一般我們叫公司 MoCoTW :P 
+17:36 < mikimoto> pofeng_: clkao : 所以其他空間可能都不能挪作他用，不然到時會被抗議 *無言*
+17:36 < pofeng_> bobchao: BTW, 你有註冊 MozTW (TM) 嗎 ?
+17:36 < pofeng_> mikimoto: 所以你建議取消 ? ( it' ok for me )
+17:36 < bobchao> pofeng_:  nope
+17:36 < mikimoto> bobchao: (踢) 你們怎麼不贊助啦，搞這什麼東西
+17:37 < pofeng_> mikimoto: 你搞錯 MozTW 和 Mozilla Taiwan 了
+17:37 < bobchao> mikimoto: 我現在啥也不能做 XD 不過據稱他們會轉往每年只贊助一兩個研討會、其他盡量參與的方向走
+17:37 < mikimoto> pofeng_: 看這情況，為了避免閒言閒語，我建議是取消，大家單純享受 Conf 就好了 (看著空地，覺得好可惜)
+17:38 < mikimoto> pofeng_: bobchao : sorry :p
+17:39 < pofeng_> mikimoto: 那我可能就不下去了 sorry
+17:39 < bobchao> MozTW 現在的財力，可能只能贊助兩百塊吧 (被踢飛)
+17:39 < mikimoto> 改成會後來邀約大食團，大家覺得如何？
+17:39 < mikimoto> pofeng_: (淚眼汪汪)不要走
+17:40 < pofeng_> mikimoto: COSCUP 都有免費的社群攤位喔
+17:40 < hcchien> OSDC 也有喔
+17:40 < pofeng_> hcchien++
+17:40 < au> mikimoto: 大家都有免費的社群攤位喔
+17:40 < pofeng_> au++
+17:41 < hcchien> 遭到輿論壓力
+17:41 < cls_bsd> hcchien++
+17:42  * mikimoto (也好想要有免費的社群攤位) , 不過當初是通通要保留給 g0v , 沒想到被 Mozilla Taiwan ... 然後贊助商都來關切....
+17:43 < hcchien> 好複雜，看不懂
+17:43 < mikimoto> 大家都想要免費 Show case .... Or2
+17:43 < mikimoto> hcchien: 有機會再仔細跟長輩解釋
+17:43 < pofeng_> bobchao: COSCUP 怎麼跟廠商解釋免費的社群攤位 ?
+17:44 < hcchien> 需要解釋嗎
+17:44 < au> mikimoto: 所以是說 MozTW 已經確定好了要免費 show case 然後場地不夠用，還是 MozTW 已經確定不能免費 show case 所以場地現在要贊助才能用?
+17:44 < pofeng_> hcchien: 對啊 (?)
+17:44 < bobchao> pofeng_: 有預想過說辭，沒人來要解釋就是了
+17:45 < mikimoto> au: 不，是因為我們一位工作人員在溝通過程中透露，我們現場有提供額外桌椅，
+17:46 < hcchien> 就說給社群用的？！
+17:46 < bobchao> 不過現在會有 Mozilla Taiwan / MozTW 及 Canonical / Ubuntu-tw.org 及 OpenSUSE / Novell 的狀況，可能多少都會有模糊地帶就是 （M 及 U 都有過同場雙攤位、一個贊助一個社群的狀況）
+17:46 < mikimoto> 到時會給社群跟會眾使用 (原先是想保留給 g0v 的)
+17:46 < pofeng_> mikimoto: 對啊, 免費社群攤需要解釋嗎 ? 就是有啊 ? 
+17:47 < mikimoto> 結果 Mozilla Taiwan 就說那他們不贊助，純粹來 Show case，他們打算在現場佔據一個攤位
+17:48 < bobchao> 那應該可以不理他吧 XDD
+17:48 < mikimoto> 然後不知道怎麼的，這消息走漏給其他贊助商知道了
+17:48 < mikimoto> 這下完了，為了收拾善後
+17:49 < mikimoto> 我只好出面跟贊助商說明，並且保證不會有這件事發生 ... 不然人家要抽銀根了
+17:49 < au> 所以是「場地現在要贊助才能用」。
+17:50 < mikimoto> au: 以目前的現況來講，是的
+17:50 < au> OK 感謝說明
+17:50 < pofeng_> 反正有地方寫程式我才會下去 (雖然我不太會寫) 
+17:51 < hcchien> 那就保留台北場就好了
+17:51 < pofeng_> 台北是幾號啊 ?
+17:51 < mikimoto> 所以空了一大片的空地，還不能作預定用途，實在是.... 先跟大家說聲抱歉，如果大家還有意願下來，就讓小弟做東吧
+17:51 < pofeng_> 我班再換一下好了
+17:52 < au> mikimoto: 所以 Kimu, Kalug, Cocoaheads, KSDG, Mosut 也都沒有攤位?
+17:52 < pofeng_> (不太合理)
+17:52 < mikimoto> 是的，全部取消
+17:52 < pofeng_> orz
+17:52 < pofeng_> 好吧, 可憐
+17:52 < mikimoto> 只是單純協辦
+17:52 < au> 辛苦了 # 多少有一種削足適履的感覺
+17:53 < pofeng_> 新苦了
+17:53 < au> pofeng_: 台北是 10/19 
+17:54 < pofeng_> au: 謝謝 ( 來換班 )
+17:54 < mikimoto> 感謝大家諒解，前幾天跟公關組協商完，我情緒到現在還是很激動，哎，
+17:55 < mikimoto> 我也是第一次遇到會這樣吃人家豆腐的廠商 T_T
+17:55 < pofeng_> mikimoto: 辛苦了 ( 抱歉不下去了 )
+17:55 < kanru> O_O
+17:56 < mikimoto> pofeng_: 抱歉，有機會來高雄的話，我介紹道地的小吃給你，我做東
+17:56 < pofeng_> mikimoto: 說實話, 要平衡 與會者 / 講師 / 廠商 / 社群 的利益的確很辛苦
+17:56 < hcchien> 哈，10/19 才回台北，這次要 skip
+17:56  * au 忽然想到好像要找一天去 MoCoTW 拿萌典的 phone4apps 開發機
+17:58 -!- jiz [uid13988@gateway/web/irccloud.com/x-ahntiprzrcvzpzvs] has joined #g0v.tw
+18:02 -!- hcchien changed the topic of #g0v.tw to: irccloud邀請信: http://goo.gl/YZwI9O | irc log:http://logbot.g0v.tw | 如何參與:http://g0v.tw/join.html | 注意:這裡有log | 黑客松10/19
+18:05 -!- SupaplexTW___ [~Adium@210.61.193.66] has quit [Quit: Leaving.]
+18:06 < dirty> 所以現在 Mozilla Taiwan 跟 MozTW 是差在哪, 誰在吃豆腐? 搞得我好亂啊~
+18:06 < dirty> google 出來的東西一模一樣 orz
+18:06 < bobchao> mozilla.com.tw and moztw.org
+18:06 < yhsiang> dirty: Mozilla Taiwan 是公司 , MozTW是社群 應該是這樣?
+18:07 < yhsiang> dirty: https://etherpad.mozilla.org/moztw-issue-on-mocotw
+18:07 < kcwu> yhsiang's url: [MoPad: moztw-issue-on-mocotw]
+18:07 < au> 謀智是公司，摩茲是社群 (?)
+18:10  * dirty 從來不知道有個公司的存在 @@
+18:11  * hcchien 筆記：不用再找 Mozilla Taiwan 贊助
+18:11 < dirty> mozilla 是基金會, 這公司是用 mozilla 基金會的錢運作嗎, 還是?
+18:12 < dirty> http://zh.wikipedia.org/wiki/Mozilla%E5%9F%BA%E9%87%91%E6%9C%83 # 這裡可信的話, 好像是基金會下的東西
+18:12 < kcwu> dirty's url: [Mozilla基金會 - 维基百科，自由的百科全书]
+18:17 < ipa> 那個....台北場可能會改為 10/20 
+18:17 < hychen> C社跟U台灣社群基本上沒有交集
+18:17 < ipa> 因為10/19是中研院開放日，等clkao上線再確認一次
+18:17 < au> 那這樣 hcchien 可以來了 XD
+18:18 < ipa> hcchien: 來吧你
+18:18 < hychen> dirty: y
+18:19 < hychen> kanru: 現身說法一下?
+18:19 -!- au changed the topic of #g0v.tw to: irccloud邀請信: goo.gl/YZwI9O | 注意-這裡有log: logbot.g0v.tw | 如何參與: g0v.tw/join.html
+18:25 < ipa> mikimoto: 辛苦了！
+18:26 < mikimoto> ipa: 真是抱歉，我原本的出發點是像幫忙散佈 g0v 的種子，南部很需要，不過現在出了這種狀況，心裡很難過
+18:28 < ipa> mikimoto: 放輕鬆別抱歉啊 10/5好像台南會有黑客松（望向牛肉湯）
+18:29 < mikimoto> ipa: ++ , 那我一定要去捧場的啊 ^^
+18:30 < ipa> billy3321要辦 不知道是5是6 
+18:30 < hcchien> 捧場消滅牛肉湯
+18:30 < billy3321> 10/5
+18:30 < billy3321> 阿，好像應該來個投票
+18:30 < mikimoto> billy3321: ++ , 地點確定了嗎？
+18:32 < hcchien> 我只想消滅牛肉湯   (誤
+18:33 < wayne930242> 啊對 牛肉湯是哪一天啊？
+18:33 < wayne930242> （又聽到食物的聲音）
+18:33 -!- whyjaster [~whyjaster@61-220-205-84.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:39 < ipa> wayne930242: 感覺是10/6早上六點？ XD
+18:39 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+18:39 < wayne930242> 早上喔~
+18:39 < hcchien> 牛肉鍋就可以晚上了
+18:39 < wayne930242> 6點也太早了吧！
+18:39 < wayne930242> 這樣我不是凌晨就要出發
+18:41 < hcchien> 我現在比較期待牛肉鍋   XD
+18:41 < ipa> http://carp0729.pixnet.net/blog/post/149525154
+18:41 < kcwu> ipa's url: [【台南】六千牛肉湯~一定要早起才吃得到的美食!! @ 美食魚樂誌 :: 痞客邦 PIXNET ::]
+18:41 < ipa> hcchien: 好啊（盲目點頭）
+18:42 < clkao> mikimoto: 辛苦了!
+18:43 < wayne930242> 6千也太貴了
+18:43 < billy3321> 來個意見調查
+18:43 < billy3321> https://docs.google.com/forms/d/17XT8gzfvsETyAwlPdas_ihNjLF3tuV9g74iAnuRwywU/viewform
+18:43 < kcwu> billy3321's url: [G0V台南場黑客松意見調查]
+18:43 < wayne930242> ㄜ 是店名喔
+18:43 < clkao> hdmini 開場前衝刺 slides 中... 居然一邊在撥半澤
+18:43 < clkao> wayne930242: 誤很大
+18:48 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+18:49 < wayne930242> 小吃餵食秀也是黑客松的內容嗎
+18:49 -!- scyen [~scyen@122.147.15.66] has quit [Remote host closed the connection]
+18:49 < wayne930242> 還不確定能去，我就先不參與投票了
+18:50 < mikimoto> clkao: T_T
+19:02 -!- wayne930242_p [~wayneh@mn6106.wlan.nthu.edu.tw] has quit [Quit: Leaving.]
+19:03 -!- wayne930242_p [~wayneh@mn6106.wlan.nthu.edu.tw] has joined #g0v.tw
+19:10 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 260 seconds]
+19:40 -!- Guest52132 [~andre@125-227-154-97.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+20:10 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+20:11 -!- wayne930242_p [~wayneh@mn6106.wlan.nthu.edu.tw] has quit [Ping timeout: 260 seconds]
+20:13 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:13 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:13 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+20:16 < billy3321> hack自己的身體啊
+20:16 < billy3321> XD
+20:16 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:16 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+20:16 < billy3321> wayne930242: 你先填吧，在意見那裡說不方便就好
+20:17 < billy3321> mikimoto: 你有交通工具嗎？
+20:24 < ETBlue> mikimoto++ 辛苦了，辦活動真是眉角很多（抖
+20:25  * ETBlue 關注了雞排妹粉絲專頁 XD
+20:26 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+20:27 < ETBlue> 不過現在每年的研討會都好多啊... 贊助商大概也很頭大 XD
+20:28 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+20:29 -!- wayne930242_p [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has joined #g0v.tw
+20:29 < ttcat> 反核生活節名稱確定：「2013 零核時代：不核作運動！」
+20:29 < ttcat> OH YA
+20:31 < clkao> 突然想到 ly.g0v 好像也可以叫做 c0ngress
+20:33 < mikimoto> billy3321: 我自己開車 
+20:33 < billy3321> thx!!
+20:34 < mikimoto> ETBlue: T_T 是啊，心酸不足為外人道矣 
+20:36 < yhsiang> ETBlue: 色
+20:37 < yhsiang> ttcat: 還不錯喔 XD 
+20:37 < ttcat> 你們會組隊參加 yahoo hack 嗎
+20:38 < yhsiang> 不知道現在誰想參加, ETBlue 有表示意願 XD
+20:39  * yhsiang 徵求收留中 XD
+20:39  * ETBlue 可以冒充 designer
+20:39  * ttcat 可以幫忙吃雞排
+20:40 < ETBlue> 但沒想到主題... 可能喊一喊之後就不了了之吧 XDXD
+20:40 < ipa> ttcat: 「不核作」不賴喔！
+20:40 < ipa> ttcat: 恭喜恭喜終於有結果 XD
+20:41 < ETBlue> ttcat: 不核作++
+20:42 < ttcat> 主題有限制嗎
+20:43 < ipa> clkao: http://www.sinica.edu.tw/openhouse/2013/pdf/guide6.pdf 資訊所一樓好像開放日會用到
+20:44 < yhsiang> ttcat: http://survey.bnext.com.tw/events/2013yahoo/index.html # 沒限制吧
+20:44 < kcwu> yhsiang's url: [Yahoo Hack Taiwan 2013]
+20:45 < clkao> 現在是說 10/20 好像可以 等最後確認
+20:48 < billy3321> http://shuchuan7.blogspot.jp/2013/09/blog-post_26.html?spref=fb
+20:48 < kcwu> billy3321's url: [環境報導: 轉身--被進退兩難的人生]
+20:48 < billy3321> 這篇有timeline
+20:48 < billy3321> 有興趣的可以看看wiki那邊要不要修改
+20:48 < yhsiang> CAA51: 所以你看了演講了嗎 XD
+20:50 -!- icman [~icman@123.240.172.7] has joined #g0v.tw
+20:58 -!- ljm [~ljm@gateway/tor-sasl/ljm] has joined #g0v.tw
+21:01 -!- starsdog [dc87c628@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.198.40] has joined #g0v.tw
+21:08 < Michael_LI> ［NCC網路管制］蠻有趣的，最後一次資料只到７月份，電信黑名單是89個。　「WIN 網路單e窗口」2013年07月申訴案件統計報表https://www.win.org.tw/cap/tw/outcome/monthly_report/c-monthly_report_201307.html
+21:08 < kcwu> Michael_LI's url: [申訴統計月報]
+21:10 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+21:13 -!- starsdog [dc87c628@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.198.40] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+21:14 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+21:15 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has joined #g0v.tw
+21:16 -!- ca^ [~ca@220-133-60-215.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+21:17 -!- ca^ [~ca@220-133-60-215.HINET-IP.hinet.net] has joined #g0v.tw
+21:24 -!- Stranger_1980 [~Stranger_@1.34.223.58] has quit [Remote host closed the connection]
+21:24 < Lee1092> 六千牛肉湯超有名   只是太早....   
+21:24  * Lee1092 連我自己台南人都還沒吃過
+21:28 < CAA51> yhsiang: promise 那個嗎？之前看過了XDD
+21:31 < yhsiang> CAA51: 喔 他提到的好像是Carl Hewitt 提出來的future
+21:40 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+21:41 < Jedi_> 六千...六點去有點晚了
+21:41 < chihchun> mikimoto: 為什麼不直接打槍 mozilla taiwan 就好？:P
+21:42 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+21:44 < ipa> Jedi_: @@ 我們好幾次快七點吃到最後幾碗.....
+21:44 < Lee1092> http://www.youtube.com/watch?v=XJKVUVrwqrI   劉櫂豪立委質詢黃世銘檢察總長
+21:44 < kcwu> Lee1092's url: [20130925劉櫂豪立委質詢黃世銘檢察總長 - YouTube]
+21:45 < Lee1092> 瘋狂打臉   看得有點爽XD
+21:47 < ipa> Lee1092: 這段看得我都想念法律了.... http://ocw.aca.ntu.edu.tw/ntu-ocw/index.php/ocw/cou/101S117 查到這課程 ._.
+21:47 < kcwu> ipa's url: [臺大開放式課程 (NTU OpenCourseWare)]
+21:48 < yhsiang> ipa: 可以念阿 但是考試很痛苦而已 要寫一堆字 XDD
+21:49 < Jedi_> 強者我太太的朋友念法律系，去日本玩五天，回來遊記寫了十萬字
+21:49 < Jedi_> 完全是職業病  //flee
+21:49 < yhsiang> Jedi_: XD
+21:49 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+21:50 < yhsiang> 比的都是卷宗高度 XDD
+21:50 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has joined #g0v.tw
+21:51 < Lee1092> ipa:  法律文字上的嚴謹   可以堪比程式語言啊～  （暈
+21:52 -!- Stranger_1980 [~Stranger_@1.34.223.58] has joined #g0v.tw
+21:53 < yhsiang> Lee1092: 可是我覺得程式語言不一定很嚴謹耶 XD
+21:54 -!- buganini [~buganini@61-221-51-22.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+21:54 < Lee1092> yhsiang: 也是啦，嚴格來說還是有漏洞可以躦   法律也是XD
+21:55 -!- buganini [~buganini@61-221-51-22.HINET-IP.hinet.net] has joined #g0v.tw
+21:58 < Michael_LI> 請教一下，跟預算書有關，就是NCC預算裡頭，能夠看到細項開支嗎？我想查查　iWIN網路內容防護機構　投資多少稅金。
+22:00 < yhsiang> http://www.appledaily.com.tw/realtimenews/article/new/20130829/250713/ # 按照這篇新聞的說法
+22:00 < kcwu> yhsiang's url: [NCC：不會管部落等網路溝通平台內容 | 即時新聞 | 20130829 | 蘋果日報]
+22:00 < yhsiang> 他是四個單位一起出的預算 ?
+22:01 < Michael_LI> CC  2013-08-29　國家通訊傳播委員會_活動花絮　http://www.ncc.gov.tw/chinese/content_field_detail.aspx?site_content_sn=1609&is_history=0&pages=0&sn_f=687
+22:02 -!- lcamel [~lcamel@114-45-64-185.dynamic.hinet.net] has joined #g0v.tw
+22:07 < Michael_LI> PS.如果有人知道2007年12月27日開始的：很黃很暴力　　就去維基百科上查吧，讓我們拭目以待這個防護機構吧 :-)
+22:07 < yhsiang> Michael_LI: 推動促進兒少上網安全2,000千元 # http://www.ncc.gov.tw/chinese/files/13083/2227_30198_130830_1.pdf
+22:09 < yhsiang> Michael_LI: NCC 兩百萬 其他的呢? 加起來有一千萬才符合新聞 XD
+22:09 < Michael_LI> 2百萬～　沒錯吧
+22:09 < Michael_LI> yhsiang++　　謝謝你的超鏈接
+22:10 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+22:14 < Michael_LI> 其他部會分攤　（政府預算書外行人：十幾年前聽過，美國CIA預算有些必須放在其他部會，避免金額太高受到重視）
+22:27 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Quit: Leaving]
+22:28 < Michael_LI> 稍微估算一下，有興趣可以看這份筆記　NCC出　200萬+250萬+200萬=650萬　　g0v／［臨時用］表列資料https://michael_li.hackpad.com/g0v-Fb8vKEdCn8s
+22:28 < kcwu> Michael_LI's url: [- michael_li.hackpad.com]
+22:44 -!- t3e_ [~tonie@114-32-217-236.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+22:45 -!- t3e [~tonie@114-32-217-236.HINET-IP.hinet.net] has joined #g0v.tw
+22:49 -!- Rplus [~rplus_tw@114-24-68-51.dynamic.hinet.net] has joined #g0v.tw
+22:55 -!- ypwong [~anthony@64.34.151.178] has joined #g0v.tw
+23:03 -!- taichunmin [~root@59-126-176-106.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+23:04 -!- taichunmin [~root@59-126-176-106.HINET-IP.hinet.net] has joined #g0v.tw
+23:17 -!- taichunmin [~root@59-126-176-106.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+23:18 -!- CJarek [kvirc@61-224-53-152.dynamic.hinet.net] has quit []
+23:25 < yhsiang> ETBlue: 我抓到一個野生的Designer ...
+23:26 -!- taichunmin [~root@59-126-176-106.HINET-IP.hinet.net] has joined #g0v.tw
+23:27 -!- CJarek [kvirc@61-224-41-231.dynamic.hinet.net] has joined #g0v.tw
+23:30 < 17SADE6GS> @clkao @lijung @ipa tisa now will restart after pushing to github 
+23:30 -!- 17SADE6GS is now known as shelling_
+23:30 < shelling_> @clkao @lijung @ipa https://github.com/g0v/tisa-map/issues/36
+23:30 < kcwu> shelling_'s url: [make it live · Issue #36 · g0v/tisa-map · GitHub]
+23:57 < yhsiang> ETBlue: 我開了個invision的靈感區 把野生的designer加進去了 XD

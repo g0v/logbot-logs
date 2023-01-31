@@ -1,0 +1,528 @@
+--- Day changed 五  2月 08 2013
+00:01 < clkao> http://stpc00601.taipower.com.tw/loadGraph/loadGraph/load_fueltype.html
+00:01 < kcwu> clkao's url: [用電曲線圖(依能源別)]
+00:04 < ck_> clkao: why are you interested in that power generation chart?
+00:25 -!- mutolisp [~mutolisp@1-162-67-24.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+00:26 < clkao> ck_: good question.  why are you interested in open data? ;)
+00:30 < ck_> that's not an answer \./
+00:30 < ck_> why are you interested in that particular dataset?
+00:31 < ck_> from my perspective, this dataset is more interesting. http://stpc00601.taipower.com.tw/loadGraph/loadGraph/genshx.html
+00:31 < kcwu> ck_'s url: [機組發電量]
+00:35 < clkao> because energy is important?
+00:35 < ck_> doggy...
+00:35 < ck_> dodgy...
+00:36 < ck_> that dataset is not importnat
+00:36 < ck_> if you want to understand the energy situation
+00:36 < ck_> doesn't tell much of a story
+00:37 < clkao> sure.  i just haven't seen the chart made by taipower until just now.  the link is the raw data before aggreagation, but just a snapshot.
+00:38 < ck_> now you are talking :)
+00:38 < billy3321> @@
+00:38 < clkao> (?)
+00:39 < ipa> @@?
+00:39 < ck_> @@?
+00:39 < billy3321> 好多人
+00:39 < billy3321> 大家晚安
+00:39 < ck_> hahaha!
+00:39 < ipa> 晚安各位大家
+00:41 < ck_> 不知道 ipa 那句話是打招呼還是說拜拜？
+00:44  * tkirby o/` 晚安~ 晚~安~  再說一聲~~~  明天~ 見~~~ o/`
+00:44 < ipa> 可能可能是在說應該應該
+00:44 < clkao> ck_: perhaps you would share your insights about the energy situation?
+00:44 < clkao> ipa: (?)
+00:44 < ipa> 輸入法爛了
+00:45 < ck_> not insights...just personal opinions
+00:45 < ipa> 我是在說相聲：各位朋友晚安 晚安朋友各位 XD
+00:46 < clkao> tkirby!
+00:46  * clkao -> zzz
+00:46 < tkirby> clkao!
+00:46 < tkirby> 阿, zzz 了
+00:46 -!- MindosCheng [~mindos@115.80.8.213] has joined #g0v.tw
+00:46 < tkirby> 終於要放假了
+00:47 < clkao> tkirby: 過年去爬山嗎？
+00:47 < ck_> clkao: maybe we can consider focusing on "energy economics" and "energy efficiency".
+00:47 < tkirby> clkao: 過年要帶小孩... XD
+00:48 < ipa> ck_: 那兩個表是同樣資料 不同呈現？
+00:48 < ck_> ipa: 個別機組 vs. 按燃料類別之加總
+00:51 < ck_> ipa: 個別機組的資料很有意思，有可能設法 correlate 出來 load factor
+00:52 < clkao> ck_: perhaps you can elaborate more on energy economics and efficiency?  zzz for now and check back for logs laterzz
+00:52 < ck_> i am zzz, too
+00:52 < tkirby> 大家都 zzz
+00:52 < ck_> just throwing a topic for later discussions
+00:56 < tkirby> genshx.html  那個是即時的 有歷程資訊嗎?
+00:56 < ipa> ck_++ # zzz
+00:56 < tkirby> load_fueltype 那個 flash 的資料來源應該也藏在某處?
+00:57 < tkirby> hmm.. 既然要摸政府的資料,  flash decompiler 應該要準備好 XDDD
+00:58 < ck_> clkao: maybe it can be another project for the next g0v hackathon.
+00:59 < ck_> clkao: to prepare data-based arguments of energy policy. 
+01:01 < ck_> just done my last reading of the day, and found a catchy phrase: "Build for government, not developers"
+01:01 < ck_> http://govfresh.com/2013/02/funding-open-government/
+01:01 < kcwu> ck_'s url: [Funding open government]
+01:04 -!- KNY [~Adium@111-253-144-95.dynamic.hinet.net] has quit [Quit: Leaving.]
+01:18 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+02:11 -!- MindosCheng [~mindos@115.80.8.213] has quit [Ping timeout: 276 seconds]
+02:16  * wenpei 花了兩個晚上弄成了 Windows 8 App... 但是好像沒啥屁用 XDD
+02:17 < wenpei> 前天晚上還沒看到 kcwu 有弄出 JSON 格式的離線資料庫，不然我昨天晚上就不用在那邊研究怎麼讀 SQLite 了....... Orz
+02:17 -!- wenpei is now known as Sars
+02:18 -!- Sars is now known as Guest24025
+02:19 -!- Guest24025 is now known as SarsTW
+02:20 < SarsTW> 喔對了... 是萌典 @@
+02:23 < au> SarsTW: 當然有用啊，url 請加到 http://3du.tw/ 
+02:24 < au> 是用 ericsk 的 moedict-rt 嗎?
+02:31  * au 覺得寫一個萌典可以學到十幾種平台的開發方式實在很棒
+02:32 < au> -> zz too
+02:36 < SarsTW> au: OK~ 再改些小細節後就可以傳上 github 了~  來想想要不要也弄上 Windows Store... XD
+02:37 < SarsTW> 一開始想說就用 moedict-rt ...... 但是看了一個晚上發現我還是看不懂微軟的 C++ 也看不懂 SQLite 的 C++ interface ......  
+02:38 < SarsTW> 後來發現有人已經做出來可以讓 JavaScript 存取 SQLite... 就直接拿來用了...
+02:39  * SarsTW zzz three
+02:40 -!- markwu [~markwu@116.50.34.246] has joined #g0v.tw
+03:38 -!- tonytonyjan [~tonytonyj@218-166-168-63.dynamic.hinet.net] has quit [Quit: Lost terminal]
+04:39 -!- seudo_tw [r01944023@linux8.csie.ntu.edu.tw] has quit [Quit: leaving]
+04:42 -!- seudo_tw [r01944023@linux8.csie.ntu.edu.tw] has joined #g0v.tw
+05:02 -!- Supaplextw [~Lucky@114-36-224-114.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:02 -!- Supaplextw [~Lucky@114-36-251-149.dynamic.hinet.net] has joined #g0v.tw
+06:11 < favonia> 歡迎大家提意見 xD https://hackpad.com/3du.tw-Encoding-Mashup-Design-ozYEnChzp5w
+06:11 < kcwu> favonia's url: [3du.tw Encoding Mashup Design - hackpad.com]
+06:53 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has joined #g0v.tw
+08:32 -!- MindosCheng [~mindos@115.82.3.171] has joined #g0v.tw
+08:32 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+08:33 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has joined #g0v.tw
+08:37 -!- Supaplextw [~Lucky@114-36-251-149.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+08:37 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+08:37 -!- Supaplextw1 [~Lucky@114-36-251-149.dynamic.hinet.net] has joined #g0v.tw
+08:38 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has joined #g0v.tw
+08:46 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has quit [Quit: Leaving.]
+09:09 -!- freedomtw [~freedom@114-37-161-94.dynamic.hinet.net] has joined #g0v.tw
+09:10 -!- MindosCheng [~mindos@115.82.3.171] has quit [Ping timeout: 255 seconds]
+09:18 -!- zz_chihchun is now known as chihchun
+09:22 -!- jpsun [~jpsun@114-32-218-77.HINET-IP.hinet.net] has joined #g0v.tw
+09:23 -!- jpsun [~jpsun@114-32-218-77.HINET-IP.hinet.net] has quit [Client Quit]
+09:30 -!- mutolisp [~mutolisp@1-162-67-24.dynamic.hinet.net] has joined #g0v.tw
+09:38 < thschee> open data day 有沒有其他人在不同的城市想要響應的？http://wiki.opendataday.org/2013/City_Events
+09:38 < kcwu> thschee's url: [2013/City Events - wiki.opendataday.org]
+09:40 -!- jpsun [~jpsun@114-32-218-77.HINET-IP.hinet.net] has joined #g0v.tw
+09:41 -!- mutolisp [~mutolisp@1-162-67-24.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+09:41 < thschee> 把台北送上 w3c 網頁了，雖然是遺愛 opendata.tw http://www.w3.org/2013/04/odw/
+09:41 < kcwu> thschee's url: [Open Data on the Web, 23 - 24 April 2013, London (Home)]
+09:48 -!- chihchun is now known as zz_chihchun
+09:53 -!- Ben_chou [Ben_chou@nat/novell/x-punliymdlnnvzpws] has joined #g0v.tw
+09:55 -!- zz_chihchun is now known as chihchun
+10:16 -!- MnO2 [~mno2@nat/yahoo/x-avljtgizziafleqg] has joined #g0v.tw
+10:22 -!- ck_ [~ck@220-135-67-181.HINET-IP.hinet.net] has joined #g0v.tw
+10:22 -!- chihchun is now known as zz_chihchun
+10:25 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:41 -!- yllan_ [~yllan@114-45-181-84.dynamic.hinet.net] has joined #g0v.tw
+10:54 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+10:55 -!- freedomtw [~freedom@114-37-161-94.dynamic.hinet.net] has quit [Quit: freedomtw]
+11:06 -!- Netsplit *.net <-> *.split quits: miaout17, i3n, ch0upi_b1d, dunhill, KN16H7_, yllan, aar0ntw, mikimoto, linmic_, CindyLinz,  (+91 more, use /NETSPLIT to show all of them)
+12:27 -!- xdite [~Kydd@60-199-208-208.static.tfn.net.tw] has joined #g0v.tw
+12:27 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+12:27 -!- knight [~knight@60-199-248-174.static.tfn.net.tw] has joined #g0v.tw
+12:27 -!- kcwu [fakeidkcwu@kcwu.csie.org] has joined #g0v.tw
+12:27 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+12:27 -!- dannvix [~dannvix@ec2-54-241-13-108.us-west-1.compute.amazonaws.com] has joined #g0v.tw
+12:27 -!- hSATAC [~cat@221.169.252.14] has joined #g0v.tw
+12:27 -!- Jcrt [~Jcrt@ec2-54-248-221-251.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+12:27 -!- bency [~bency@jccf.com.tw] has joined #g0v.tw
+12:27 -!- locy [~star@60-251-149-160.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- tonyq__ [~root@li255-16.members.linode.com] has joined #g0v.tw
+12:27 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- linmic_ [~linmic@cooplex.cc] has joined #g0v.tw
+12:27 -!- ericyu [ericyu@216.237.113.237] has joined #g0v.tw
+12:27 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has joined #g0v.tw
+12:27 -!- kcwu_mobile [quasselcor@kcwu.csie.org] has joined #g0v.tw
+12:27 -!- pingooo [~pingooo@li582-242.members.linode.com] has joined #g0v.tw
+12:27 -!- cibs [~cibs@218.211.32.194] has joined #g0v.tw
+12:27 -!- hcchien [~hcchien@li414-130.members.linode.com] has joined #g0v.tw
+12:27 -!- S3p_lin [slzzp@li475-173.members.linode.com] has joined #g0v.tw
+12:27 -!- poying [~root@108.171.254.121] has joined #g0v.tw
+12:27 -!- edwardc [~edwardc@60-199-248-174.static.tfn.net.tw] has joined #g0v.tw
+12:27 -!- aar0ntw [~ubuntu@ec2-204-236-166-4.us-west-1.compute.amazonaws.com] has joined #g0v.tw
+12:27 -!- pct [~pct@220-134-39-129.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- mikimoto [~mikimoto@59-125-136-88.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- dm4 [~dm4@ec2-54-251-97-226.ap-southeast-1.compute.amazonaws.com] has joined #g0v.tw
+12:27 -!- copyleft [~copyleft@utcr.org] has joined #g0v.tw
+12:27 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:27 -!- clkao [~clkao@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- Sorry [~admin@mail.cna.ccu.edu.tw] has joined #g0v.tw
+12:27 -!- gdx_ [~gdx@staff.kkbox.com.tw] has joined #g0v.tw
+12:27 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+12:27 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:27 -!- zonble [~zonble@ec2-50-18-49-144.us-west-1.compute.amazonaws.com] has joined #g0v.tw
+12:27 -!- t3e [~tonie@114.34.217.3] has joined #g0v.tw
+12:27 -!- clifflu_ [~clifflu@ec2-175-41-242-207.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+12:27 -!- pcchen [~pcchen@ec2-54-248-90-227.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+12:27 -!- juanna [~juanna@114-43-101-187.dynamic.hinet.net] has joined #g0v.tw
+12:27 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+12:27 -!- ch0upi_b1d [r96006@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:27 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+12:27 -!- liic [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+12:27 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+12:27 -!- SarsTW [~wenpei@nw188.csie.ncu.edu.tw] has joined #g0v.tw
+12:27 -!- KN16H7_ [knight@saturn.stu.edu.tw] has joined #g0v.tw
+12:27 -!- MnO2 [~mno2@nat/yahoo/x-avljtgizziafleqg] has joined #g0v.tw
+12:27 -!- KNY [~Adium@111-253-144-95.dynamic.hinet.net] has joined #g0v.tw
+12:27 -!- ipa [~ipa@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+12:27 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+12:27 -!- zz_chihchun [~chihchun@114-34-10-226.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- jftsai [~jftsai@li565-27.members.linode.com] has joined #g0v.tw
+12:27 -!- seudo_tw [r01944023@linux8.csie.ntu.edu.tw] has joined #g0v.tw
+12:27 -!- superbil [~superbil@114-34-221-169.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has joined #g0v.tw
+12:27 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has joined #g0v.tw
+12:27 -!- CindyLinz [~cindy_utf@112-121-80-249.mwsrv.com] has joined #g0v.tw
+12:27 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has joined #g0v.tw
+12:27 -!- miaout17 [~miaout17@li494-208.members.linode.com] has joined #g0v.tw
+12:27 -!- shawnwang [~shawn@163.16.5.181] has joined #g0v.tw
+12:27 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+12:27 -!- jpsun [~jpsun@111-251-221-221.dynamic.hinet.net] has joined #g0v.tw
+12:27 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+12:27 -!- mhsin_bsd [b7506043@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:27 -!- chhsiao1981 [chshou@linux15.csie.ntu.edu.tw] has joined #g0v.tw
+12:27 -!- mhs1n [~mhsin@114-32-9-83.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+12:27 -!- ccn [~ccn@staff.kkbox.com.tw] has joined #g0v.tw
+12:27 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- albb0920 [~albb0920@140.115.82.240] has joined #g0v.tw
+12:27 -!- Goddamn [~goddamn@114-34-87-138.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- itsZero [~itszero@itszero.xen.prgmr.com] has joined #g0v.tw
+12:27 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+12:27 -!- allenown [~allenown@devstd.in] has joined #g0v.tw
+12:27 -!- f0rth [~f0rth@ubuntu.amersen.com.tw] has joined #g0v.tw
+12:27 -!- idlecafe [idlecafe@li475-173.members.linode.com] has joined #g0v.tw
+12:27 -!- othree_ [~othree@li379-129.members.linode.com] has joined #g0v.tw
+12:27 -!- i3n [~icman@118-232-177-139.dynamic.kbronet.com.tw] has joined #g0v.tw
+12:27 -!- ypcat [~ypcat@li565-27.members.linode.com] has joined #g0v.tw
+12:27 -!- LHD [~lhd@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+12:27 -!- gugod [~gugod@master.openjsan.org] has joined #g0v.tw
+12:27 -!- TigerHuang [~tiger@2001:288:6004:34:99cc:e369:ab8c:5888] has joined #g0v.tw
+12:27 -!- thschee [thschee@2a00:dcc0:eda:88:245:71:872b:8f0b] has joined #g0v.tw
+12:27 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+12:27 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- yllan_ [~yllan@114-45-181-84.dynamic.hinet.net] has joined #g0v.tw
+12:27 -!- markwu [~markwu@116.50.34.246] has joined #g0v.tw
+12:27 -!- yllan [~yllan@122-116-177-245.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- Silmarils [~wHisKy@114-36-68-216.dynamic.hinet.net] has joined #g0v.tw
+12:27 -!- dryman [~dryman@OpenISDM.iis.sinica.edu.tw] has joined #g0v.tw
+12:27 -!- dunhill [~dunhill@ec2-54-248-99-1.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+12:27 -!- Guest50796 [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+12:27 -!- ca^ [~ca@220-133-60-215.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- logbot_ [~cinch@140.122.183.158] has joined #g0v.tw
+12:27 -!- mjhsieh [~mjhsieh@unaffiliated/mjhsieh] has joined #g0v.tw
+12:27 -!- jase [dc8286dd@gateway/web/freenode/ip.220.130.134.221] has joined #g0v.tw
+12:27 -!- jase is now known as 19WAA4R94
+12:27 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+12:27 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+12:27 -!- adaam [~adaam@2001:288:5009:1390:219:b9ff:fe08:260d] has joined #g0v.tw
+12:27 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:27 -!- walkingice [~walkingic@114-32-34-65.HINET-IP.hinet.net] has joined #g0v.tw
+12:27 -!- cpyang [~cpyang@nerv.siraya.net] has joined #g0v.tw
+12:28 < clkao> provision is a vision
+12:29 -!- 19WAA4R94 [dc8286dd@gateway/web/freenode/ip.220.130.134.221] has left #g0v.tw []
+12:30 < au> imagineering++
+12:35 -!- markwu [~markwu@116.50.34.246] has quit [Quit: 暫離]
+12:41 -!- chihchun [~chihchun@175.41.48.77] has joined #g0v.tw
+12:42 -!- chihchun [~chihchun@175.41.48.77] has quit [Read error: Connection reset by peer]
+12:42 -!- zz_chihchun is now known as chihchun
+12:44 < SarsTW> kcwu: 了解~ 感謝~~
+12:53 < au> favonia: Mashup Design 很不錯啊
+12:54 < au> favonia: 「使用多欄同時顯示很多字」的字全是圖嗎 (避免使用者字形不一)?
+12:55 < favonia> au: 都是用圖顯示
+12:55 < au> ++
+12:55 < favonia> au: 啊那個多欄是... 一個字算一欄
+12:55 < au> 懂了
+12:55 < favonia> 下面那個彩色框框算一欄
+12:55 < favonia> 可是螢幕實在太寬了
+12:56 < favonia> 再想說要怎麼辦
+12:56 < favonia> 不過我想先亂寫再說
+12:56 < au> 寬螢幕右側可以放 related info?
+12:56 < favonia> 我目前打算先放註解
+12:56 < favonia> 不知道要放什麼 info 耶
+12:57 < au> Unicode 的如 http://www.fileformat.info/info/unicode/char/9368/index.htm ，cns11643 的 metadata etc?
+12:57 < kcwu> au's url: [Unicode Han Character 'U+9368' (U+9368)]
+12:57 < au> Google Spreadsheet 目前卡在「思考中」
+12:59 < favonia> au: 嗯可以擺
+12:59 < favonia> au: （就是因為這樣所以我一直想把他換掉...）
+12:59 < au> *nod*
+13:00 < au> 真不錯，這是去年 4 月 jeffhung+lunastorm hackathon ( https://gist.github.com/audreyt/3985324#-socialcalc ) 以來第一次 ethercalc 作為 backend REST storage
+13:01 < au> 我來把 CORS 打開讓你可以 cross-website post update.
+13:02 < favonia> au: 原來現在有這保護？那之前的 API 為什麼可以用 @@
+13:03 < au> 因為 curl/wget 不管 CORS 啊
+13:03 < au> 現在你要寫的是 web context 就要管了
+13:04 < favonia> au: 喔喔... 這應該會是從 server 發出去啦，所以不開這個應該可以
+13:05 -!- ck_ [~ck@220-135-67-181.HINET-IP.hinet.net] has joined #g0v.tw
+13:06 < au> oh ok
+13:06 < favonia> 我了解你的意思了，但我現在暫時還不會純用 client 端送 request xD
+13:06 < au> cool :)
+13:06 < favonia> 主要是我希望 server 自己有 cache 定期寫回 ethercalc 就好
+13:06 < au> server 打算用什麼寫呢
+13:07 < favonia> 不知道耶。沒人反對的話我會用 Haskell + snap library
+13:07 < favonia> 不過我現在在看別的東西 lol
+13:07  * au 好像很久以前幫 snap 寫了一個 Sinatra clone 叫 snapper # https://github.com/audreyt/snapper
+13:08 < au> 不過 Snap 一日千里現在應該用不上這個了 :p
+13:08 < au> favonia++ # rock on
+13:08 < favonia> au: 哈哈
+13:09 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+13:10 -!- ck_ [~ck@220-135-67-181.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+13:10 < favonia> 我唯一比較的擔心的是 Haskell 實在很不主流，如果要丟給別人維護會比較困難一點。後來我想一下，覺得 JavaScript 的介面才是最麻煩的地方 server 端根本什麼事情也沒做，就釋懷了（意思是 server 端沒人維護也無所謂）
+13:10 < favonia> 效率等等來講應該都不是問題
+13:10 < favonia> 我是說 server
+13:12 < au> sure
+13:12 < au> 多寫就變主流了
+13:12 < au> node.js 幾年前不但不主流，甚至不存在 xD
+13:13 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+13:14 < hcchien> node.js 這幾年不寫就跟不上主流了    XD
+13:31 < tkirby> 很久以前曾經看過 js compiler, 覺得很有意思.. 但是沒人愛所以沒用
+13:34 < tkirby> 有些事要發展起來感覺都是人類社會背後有某種隱含的集體意識造成的 (!?)
+13:36 < clkao> tkirby: resistance is futile
+13:37 < tkirby> 其實人類群體是有超意識的, 只是身為腦細胞的我們無法理解大腦在想什麼... (!?!?)
+13:37 < au> ...本來就是這樣
+13:38 < tkirby> 比方說高速公路的塞車其實是一種波動, 但身為粒子的我們不會注意到 (?!!)
+13:38 < SarsTW> ask... hackpad 有沒有登入後但是進入唯讀模式？ (狀態顯示為：常常不小心手殘亂改到 Orz
+13:38  * SarsTW 後來乾脆就每次改好就登出
+13:39 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Ping timeout: 245 seconds]
+13:39 < au> SarsTW: 登出是好辦法
+13:40 < tkirby> 但這樣想的話會不會變成萬物皆有意志, 只是我們無法理解呢? 我跟石頭又有什麼不一樣呢?
+13:41 < SarsTW> 嗯嗯 覺得一直叫你登入的彈出視窗很惱人就是了 Orz
+13:43 < au> tkirby: 仁者自生分別什麼的最有趣了
+13:43 < au> SarsTW: 啊那個我都用 adblock 擋掉
+13:45 < SarsTW> 對耶... (立刻加
+13:45 < au> http://images.plurk.com/48kedrRlrxnz9sRT74TWEs.jpg
+13:48 < SarsTW> Thanks!
+13:52 -!- jase_ [~jase@220-130-134-221.HINET-IP.hinet.net] has joined #g0v.tw
+13:55 -!- jase_ [~jase@220-130-134-221.HINET-IP.hinet.net] has left #g0v.tw []
+13:55 -!- yllan_ [~yllan@114-45-181-84.dynamic.hinet.net] has quit [Quit: yllan_]
+13:56 -!- jasechen [~jasechen@220-130-134-221.HINET-IP.hinet.net] has joined #g0v.tw
+13:57 -!- Sorry [~admin@mail.cna.ccu.edu.tw] has left #g0v.tw []
+14:00 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+14:02 -!- yllan_ [~yllan@114-45-181-84.dynamic.hinet.net] has joined #g0v.tw
+14:10 < clkao> au: heh https://stripe.com/blog/announcing-mosql
+14:10 < kcwu> clkao's url: [Announcing MoSQL]
+14:10 < clkao> nelhange++
+14:11 < clkao> (using _extra_props for additional attributes)
+14:11 < au> yup, saw that
+14:11 < au> seems entirely complementary
+14:12 < au> the useful thing to pgrest is the colmap implementation
+14:12 < clkao> indeed
+14:16 -!- yllan__ [~yllan@114-45-181-243.dynamic.hinet.net] has joined #g0v.tw
+14:18 -!- yllan_ [~yllan@114-45-181-84.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+14:41 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+14:41 -!- jasechen [~jasechen@220-130-134-221.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+14:42 -!- jasechen [~jasechen@220-130-134-221.HINET-IP.hinet.net] has joined #g0v.tw
+14:42 < ipa> http://www.facebook.com/photo.php?fbid=548288028522872&set=a.106692912682388.12236.100000250384112&type=1&theater
+14:42 < kcwu> ipa's url: [Allo Lin 的相片 | Facebook]
+14:43 < ipa> 這總統府公報內容，是立院預算通過之後出的？所以是立院意見？（公報的迷宮世界）
+14:43 -!- jasechen [~jasechen@220-130-134-221.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+14:44 -!- jasechen [~jasechen@220-130-134-221.HINET-IP.hinet.net] has joined #g0v.tw
+14:53 < au> ipa: 是的
+14:54 < au> ipa: 你引的那一頁是 http://www.ly.gov.tw/02_introduce/0204_comm/legList.action?comtcd=26&itemno=02082600 審的
+14:54 < kcwu> au's url: [立法院全球資訊網－認識立法院－各委員會]
+14:55 < au> 所以應是社福衛環委員會的意見
+14:57 -!- mhs1n [~mhsin@114-32-9-83.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+14:57 -!- mhsin [~mhsin@114-32-9-83.HINET-IP.hinet.net] has joined #g0v.tw
+15:00 -!- jasechen [~jasechen@220-130-134-221.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+15:01 -!- jasechen [~jasechen@220-130-134-220.HINET-IP.hinet.net] has joined #g0v.tw
+15:19 -!- jasechen [~jasechen@220-130-134-220.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+15:20  * tkirby @ taipei
+15:20 < tkirby> 放假啦~ XD
+15:20 < walkingice> tkirby: 賀！
+15:21 < tkirby> walkingice: 賀！
+15:54 -!- yllan__ [~yllan@114-45-181-243.dynamic.hinet.net] has quit [Quit: yllan__]
+15:54 -!- yllan_ [~yllan@114-45-181-243.dynamic.hinet.net] has joined #g0v.tw
+15:54 -!- yllan_ [~yllan@114-45-181-243.dynamic.hinet.net] has quit [Client Quit]
+16:09 < SarsTW> http://apps.microsoft.com/windows/zh-TW/app/81eb2795-0f64-45ab-b420-3c0d3b1ab13a
+16:09 < kcwu> SarsTW's url: [Windows 市集 中 Windows 適用的 萌典 應用程式]
+16:10 < SarsTW> https://github.com/wenpei/moedict-win8-app
+16:10 < kcwu> SarsTW's url: [wenpei/moedict-win8-app · GitHub]
+16:10 < au> SarsTW++
+16:12 < au> WinJS.UI 看來不錯
+16:13 < hychen> 準備放假hackthon了...
+16:14 < au> http://www.moedict.tw/ 加上部首和漢語拼音
+16:14 < kcwu> au's url: [3du.tw 萌典測試版]
+16:14 < au> 下次有空來加上部首檢索。
+16:29 < jpsun> au++
+16:31 -!- jpsun [~jpsun@111-251-221-221.dynamic.hinet.net] has quit [Quit: Leaving.]
+16:48 -!- Ben_chou [Ben_chou@nat/novell/x-punliymdlnnvzpws] has quit [Quit: Leaving]
+16:49 -!- MnO2 [~mno2@nat/yahoo/x-avljtgizziafleqg] has quit [Quit: Leaving]
+16:55 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+16:56 -!- hychen [~hychen@175.41.48.77] has quit [Remote host closed the connection]
+16:57 < kcwu> au: dotcloud 在不加錢的情況下, 有多少 storage 可以用?
+16:58 < au> kcwu: RAM 的十倍
+16:58 < au> usd$4.32/mo per 32MB RAM + 320MB storage
+16:59 < au> 主要的好處是可以 ssh 和 rsync
+17:00 < au> 然後 horizontal scaling 滿容易的 (現在 ethercalc 和 moedict 都是 instances=2)。
+17:03 < kcwu> au: 現在一個詞條切成一個檔, 應該超過 320mb 了?
+17:03 < au> kcwu: 一樣大小啊
+17:03 < kcwu> 疑, 沒有低消 1kb 還是 4kb 之類的
+17:04 < kcwu> 什麼 fs?
+17:05 < kcwu> 所以現在用了大約 80mb*3 ?
+17:05 < au> ext4
+17:05 < au> 只有 uni/pua 不同時會存 json
+17:05 < au> pua 往 uni 相容時是 symlink
+17:05 < au> 其他是用 nginx 的 try_files
+17:05 < au> pua 沒存的在 raw 裡重找一次。
+17:12 < kcwu> 發現 moedict 舊版的查詢系統還在, 沒有下線... http://140.111.34.46/cgi-bin/dict/GetContent.cgi?Database=dict&DocNum=156316&GraphicWord=yes
+17:12 < kcwu> DocNum 可以換...
+17:13 < au> ++
+17:13 < V1ctor> ++
+17:13 < V1ctor> 明
+17:14 < au> :D
+17:16 < au> kcwu: 5.5M (uni, pua) + 82M (raw) = ~88M
+17:17 < au> 還有很多加資料的空間 :p
+17:20 < kcwu> au: 我是在想作 static html page 讓 google index 是不是個好主意
+17:22 < au> kcwu: render 過的，或是直接 json serving as text/html ?
+17:23 < kcwu> 不曉得 google indexer 喜不喜歡後者
+17:24 < au> 也許可以前後加上 <html><body> ... </body></html>
+17:24 < au> 不過這樣沒有 <title> info
+17:25 < kcwu> nginx 除了 prepend/append 之外, 還有其他東西可以玩嗎?
+17:25 < au> 有很多 :p
+17:26 < au> substitution, rewrite, echo, etc
+17:26 < SarsTW> 如果可以弄個 sitemap 之類的東西，把所有的詞弄成連結放進去， Google 蟲蟲們應該就會乖乖的全部吃掉？
+17:26 < au> SarsTW: 是的
+17:27 < kcwu> substitution 是對 context 作?
+17:27 < au> 在特定 context 下對 response body 做
+17:28 < kcwu> 聽起來可以玩很多東西
+17:28 < kcwu> au: 發現 moedict.tw 沒有標詞性
+17:30 < kcwu> 不過我記得有看到詞性的 code 
+17:30 < au> ah, "pos" => "type"
+17:31 < kcwu> http://140.111.34.46/cgi-bin/dict/GetContent.cgi?Database=dict&DocNum=19346&GraphicWord=yes
+17:32  * kcwu 在想這個版本到底背後 db 是不是跟新版相通
+17:34 < au> 查「鬧魔」就可以知道
+17:35 < au> 新版是「怎麼哄也不肯睡。」舊版的「不」作「也{[fcf2]}肯睡」
+17:36 < kcwu> "舊版" 指的是我之前 2006 抓的?
+17:37 < kcwu> http://140.111.34.46/cgi-bin/dict/GetContent.cgi?Database=dict&DocNum=45890&GraphicWord=yes
+17:38 < au> 對
+17:38 < au> 所以這是舊版
+17:38 < au> 然後詞性加回去了 kcwu++
+17:39  * SarsTW (dance)
+17:39 < kcwu> au++
+17:40 < au> -> dinner, bbiab &
+17:48 < kcwu> au: 內建的 sub module 只能吃一個 rule, subs 可以吃多個, dotcloud 有 subs 嗎?
+17:52 < kcwu> 我在想也許可以把 json 的 '}, 之類的符號都換成換行字元, 然後用 <pre> 包起來, 這樣也許比較簡單
+17:56 -!- ck__ is now known as CK__
+17:57 -!- CK__ is now known as ck__
+18:06 -!- cataska [~user@210.64.6.233] has quit [Quit: ERC Version 5.3 (IRC client for Emacs)]
+18:06 < CindyLinz> kcwu: json 轉 yaml?
+18:06 < billy3321> 這邊有javascript的re專家嗎？
+18:07 < billy3321> 我希望可以做到這樣的效果
+18:07 < billy3321> http://stackoverflow.com/questions/2817646/javascript-split-string-on-space-or-on-quotes-to-array
+18:07 < kcwu> billy3321's url: [regex - javascript split string on space or on quotes to array - Stack Overflow]
+18:07 < CindyLinz> billy3321: 這邊高手太多, 所以沒人敢自稱專家.. 這是群眾效應 XD
+18:07 < billy3321> 但是我發現這個re不能支援utf8
+18:08 < billy3321> 我有找過xregexp來用(我用nodejs)
+18:08 < billy3321> 但是\P{L} 好像還是有問題
+18:08 < CindyLinz> billy3321: 你的字串是一堆 utf8 的 byte, 而不是 unicode 的字串?
+18:08 -!- thschee_autobahn [~AndChat51@49.216.69.92] has joined #g0v.tw
+18:09 < billy3321> CindyLinz: 就是IRC的對話內容
+18:09 < kcwu> CindyLinz: 要轉成 google indexer 喜歡的, 我想純文字它應該比較喜歡
+18:10 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+18:12 < CindyLinz> billy3321: 你是在 node.js 裡面開檔案讀進來的?
+18:13 < billy3321> CindyLinz: nodejs的irc module直接讀irc聊天內容
+18:13 < billy3321> 我試過console.log可以印出來
+18:14 < billy3321> 我的需求是：要用空白分開，但若過長，可以用""或''來把它串起來
+18:14 < CindyLinz> 可以先把 utf8 轉成 unicode, 然後再去 regex
+18:14 < billy3321> 比如 '你好 "今天 天氣真好" 早安'
+18:15 < CindyLinz> 轉成 unicode 以後, 一個中文字會變成一個字, 轉之前一個中文字會變成三個字, 比較麻煩
+18:15 < billy3321> 希望可以得到 ["你好","今天 天氣真好","早安"]
+18:15 < billy3321> 那英文呢？
+18:16 < CindyLinz> billy3321: 英文半形的話轉之前轉之後都是一個字
+18:16 < CindyLinz> billy3321: 英文全型的話應該轉之前是兩個字
+18:16 < billy3321> 理解。我試試看
+18:19 < billy3321> 好像沒辦法
+18:19 < billy3321> 先去吃飯，晚上再來想辦法
+18:19 < billy3321> CindyLinz: 謝謝！
+18:20  * billy3321 覺得unicode真是博大精深，感謝python讓我不用這麼煩惱XD
+18:28 < tkirby> unicode++
+18:36 < clkao> 看了悲慘世界後 又熱血沸騰了
+18:39 -!- seudo_tw [r01944023@linux8.csie.ntu.edu.tw] has quit [Quit: leaving]
+18:40 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:40 -!- seudo_tw [r01944023@linux8.csie.ntu.edu.tw] has joined #g0v.tw
+18:44 < clkao> unicode++
+18:44 < clkao> unicode明
+18:45 < tkirby> http://g0v.github.com/twstat/  # 把縣市的 PC-AXIS 都抓下來了..
+18:47 < clkao> tkirby++ # 未成年就這麼優；剛放假就這麼衝
+18:47 < tkirby> 未成年是怎樣 xD
+18:48 < clkao> premature optimization! XD
+18:48 < tkirby> XD
+18:59 -!- tonytonyjan [~tonytonyj@218-166-155-202.dynamic.hinet.net] has joined #g0v.tw
+19:00 -!- seudo_tw [r01944023@linux8.csie.ntu.edu.tw] has quit [Ping timeout: 240 seconds]
+19:02 -!- seudo_tw [r01944023@linux8.csie.ntu.edu.tw] has joined #g0v.tw
+19:03 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:08 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has joined #g0v.tw
+19:17 -!- chihchun is now known as zz_chihchun
+20:34 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+20:37 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has quit [Client Quit]
+21:14 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has joined #g0v.tw
+21:58 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+21:58 -!- chihchun [~chihchun@111-243-88-224.dynamic.hinet.net] has joined #g0v.tw
+21:58 -!- chihchun [~chihchun@111-243-88-224.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+22:00 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+22:37 -!- kaxing [~kaxing@114-37-193-85.dynamic.hinet.net] has joined #g0v.tw
+22:38 -!- kaxing [~kaxing@114-37-193-85.dynamic.hinet.net] has quit [Client Quit]
+22:39 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+22:45 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has joined #g0v.tw
+22:52 < billy3321>  
+22:54 < clkao> billy3321!
+22:59 < billy3321> clkao: 大大可以幫我看看之前的問題嗎？(指指)
+23:01 < clkao> js regex?  node or browser? twlyparser 裡面用好像沒啥問題呀
+23:14 < kcwu> http://stroke-order.learningweb.moe.edu.tw/instructions_5.jsp#37 標準筆順圖檔 CC-BY-NC-ND
+23:14 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:14 < kcwu> kcwu's url: [常見問題集]
+23:15 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has joined #g0v.tw
+23:22 < kcwu> 筆順的 flash 動畫也是 CC-BY-NC-ND
+23:23 < billy3321> clkao: node.js
+23:23 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:24 < billy3321> clkao: 我是要拿來解析irc訊息的
+23:24 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has joined #g0v.tw
+23:24 < clkao> billy3321: paste a broken test case?
+23:25 < clkao> kcwu: parse 成其他格式不知道算不算 derived work?
+23:25 -!- awaw [cb4d4895@gateway/web/freenode/ip.203.77.72.149] has joined #g0v.tw
+23:26 < clkao> 現在看到 鄭明典 貼氣象相關訊息 都會覺得是萌典... orz
+23:35 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has quit [Quit: Leaving.]
+23:36 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has joined #g0v.tw
+23:37 < billy3321> clkao: OK
+23:39 < billy3321> clkao: 目前work的長這個樣子
+23:39 < billy3321> textArray = text.match(/\w+|"[^"]+"/g);
+23:39 < billy3321> 但是不能解析中文字
+23:39 < billy3321> 我需要可以解析中文字
+23:40 < clkao> \w 當然不行摟... 
+23:40 < clkao> 換成 \S+ ?
+23:45 < yllan> w 是 alphanumeric + underscore
+23:47 < billy3321> Y
+23:47 < billy3321> 我之前有嘗試用\\u之類的
+23:47 < billy3321> 可是失敗
+23:48 < billy3321> 然後加上xregexp
+23:48 < billy3321> 用\L{P}
+23:48 < billy3321> 也沒用
+23:48 < clkao> so \S+ ?
+23:48 < billy3321> like this textArray = XRegExp(/[\w|\p{L}]+|"[^"]+"/g).exec(text)
+23:49 < billy3321> 我試試看
+23:51 < billy3321> 可以，不過""中間的內容還是被分開了
+23:51 < clkao> 那要把 | 前後對掉一下
+23:51 < clkao> 先 match 有 quote 的
+23:51 < billy3321> > text = "你好 test  \"測試 早安\""
+23:51 < billy3321> '你好 test  "測試 早安"'
+23:51 < billy3321> > textArray = text.match(/\S+|"[^"]+"/g);
+23:51 < billy3321> [ '你好', 'test', '"測試', '早安"' ]
+23:52 < billy3321> OK
+23:52 < billy3321> COOL
+23:52 < billy3321> > textArray = text.match(/"[^"]+"|\S+/g);
+23:52 < billy3321> [ '你好', 'test', '"測試 早安"' ]
+23:52 < billy3321> 搞定！
+23:52 < clkao> $ lsc -pe '"你好 test  \"測試 早安\"".match /"[^"]+"|\S+/g'
+23:52 < clkao> [ '你好', 'test', '"測試 早安"' ]
+23:53 < billy3321> 然後再手動把"去掉就好了
+23:53 < billy3321> clkao: 果然是高手
+23:53 < clkao> http://xkcd.com/208/
+23:53 < kcwu> clkao's url: [xkcd: Regular Expressions]
+23:53 < billy3321> clkao: <(_ _)>
+23:54 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:55 < clkao> billy3321: 過年要忙啥？
+23:55 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has joined #g0v.tw
+23:56 < billy3321> clkao: 我在寫答應hychen的irc bot
+23:56 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:56 < billy3321> 會把idea貼到trello的board上面
+23:56 < billy3321> 大致上完成，差在這裡
+23:57 < billy3321> 不過code很醜，我在想想怎麼美化比較好
+23:57 -!- jpsun [~jpsun@114-37-128-144.dynamic.hinet.net] has joined #g0v.tw
+23:57 < billy3321> 目前board id是寫死的，應該要動態偵測比較妥當

@@ -1,0 +1,81 @@
+--- Day changed 五  5月 08 2015
+00:01 -!- chihchun is now known as chihchun_afk
+00:17 < slackbot2> <t0mst0ne> 公務人員民單有open data 嗎？
+00:46 < slackbot2> <yhsiang> t0mst0ne: 有公報～
+01:31 < yhsiang> 有木有 ES 神人可以求救 ~~
+01:31 < slackbot2> <clkao> ES 語言還是期貨？
+01:31 < yhsiang> elasticsearch XD
+01:32 < slackbot2> <clkao> 那當然是 gugod 了
+01:32 < yhsiang> 我其實有偷偷 PM 他
+01:32 < slackbot2> <clkao> 這樣公開講出來就已經不偷啦
+01:32 < yhsiang> https://gist.github.com/yhsiang/b83e0bbf33cee7541819 # 這樣打一個 index 還是把 conversations 拆開打 index 比較好?
+01:32 < kcwu> yhsiang's url: [立法院第8屆第1會期外交及國防委員會第2次全體委員會議紀錄 http://lci.ly.gov.tw/LyLCEW/jsp/ldad000.jsp?irKey=&htmlType=communique&fileName=/communique1/final/html/101/05/LCIDC01_1010501_00002.htm]
+01:33 < yhsiang> 如果想要搜尋的是 conversations 裡面的內容的話 
+01:33 < slackbot2> <clkao> yhsiang: 要匯入 sayit 了嗎
+01:34 < yhsiang> clkao: sayit 的搜尋還是要自己做是嗎 ?
+01:34 < slackbot2> <clkao> 我怎麼有印象他有 index…
+01:35 < yhsiang> 喔喔! 那我來研究一下 sayit 
+01:35 < slackbot2> <clkao> 好奇如果用質詢語料幫忙作 autocompletion 會怎樣...
+01:39 < yhsiang> 是說做 moretext 那種嗎？ XD
+01:40 < slackbot2> <clkao> no, 要給他一點 hint…. 如「我想... 」接下來最容易出現的字詞...
+01:40 < yhsiang> XD 等我整理完 可以來試看看
+01:48 < slackbot2> <clkao> 你在整理全部質詢嗎？
+01:49 < yhsiang> 算是，目前先進攻委員會，然後是會議名稱有提到質詢的，也就是忽略預算審查或程序發言那種 ...
+01:49 < yhsiang> 然後只切質詢內容出來 忽略處理提案跟書面質詢 orz ...
+01:50 < yhsiang> 從立院 open data 的會議 csv -> 下載 html -> 轉 markdown 來處理 XD
+01:51 < slackbot2> <clkao> csv 只是那個 公報的index 對吧
+01:51 < slackbot2> <clkao> 後面還是跟 twlyparser 幾乎一樣 :stuck_out_tongue:
+01:51 < yhsiang> 是啊 有參考 twlyparser XD
+01:52 < yhsiang> csv 裡面大概有六千筆資料 orz ..
+01:52 < slackbot2> <clkao> 快點 release 然後 deprecate twlyparser 吧
+01:52 < slackbot2> <clkao> 就是本來那個 gazette.json 的內容吧
+01:52 < yhsiang> ya! 還在努力 ... 質詢的變化太多種 ...
+01:53 < yhsiang> 那種突然變更議程的 -_-..
+01:53 < slackbot2> <clkao> 委員會超混亂 我後來想 先轉出來切段後，應該是再一層 metadata annotate semantics
+01:54 < yhsiang> ya 其實我有整理一部分的 metadata annotate semantics XD
+01:54 < slackbot2> <clkao> 可以先程式大部分判斷一次 然後讓大家手動編輯.. 譬如說質詢段落起訖點
+01:54 < yhsiang> https://www.icloud.com/keynote/AwBWCAESEBOX8wM-SWxE0KryfMM92EwaKtY1eNZM4NS4kJk9qcKejsC1kX46YeaTkdVgk2fXGB_uBC3ODRuMRBScAQMCUCAQEEIEzZhgRaFGJTzxGxco6Bfuoz30ixRaWwxPuSRyC8eio2#structure_ly_gazette
+01:54 < yhsiang> 類似這樣 XD
+01:54 < yhsiang> clkao: 我現在就在做有點類似的事情 XD
+02:05 < slackbot2> <gugod> Crowd parsing ++
+02:08 < slackbot2> <hychen> crowd parsing++
+06:13 < gugod> yhsiang: 關於你的問題... 我覺得 "phrase" 那層是不錯的選項。只要再把一部份上層的資料（會期日期、期數編號等等）全部 copy 下來，就可以做到不錯的效果（計算本期某某某發言次幾次之類的）。另外，也可再額外計算出 phrase 位於原文件中的位置 (char offset) ，以便一般檢索時做 highlighting
+06:13 < gugod> 或顯示摘要之類的目的。
+06:14 < gugod> yhsiang: 也可以參考一下 http://www.elastic.co/guide/en/elasticsearch/guide/current/parent-child-mapping.html
+06:14 < kcwu> gugod's url: [Parent-Child Mapping]
+06:16 < gugod> yhsiang: 但我個人感覺是... 這個 parent-child feature 的適用範圍很不明確，優劣處很不明顯
+06:20 < gugod> yhsiang: 定義 parent-child 的一個作用是把每份 document 視為 normalized data，所以各欄位都只出現一次。而有個副作用是 ES 會把相關連的文件存在同一個 shard 裡，不然它無法保證 server side join 的結果會正確。
+06:26 < gugod> yhsiang: 但除了「資料的長相好看」這個優點之外，由於多了條 shard routing 的潛規則，實際也會影響到 distributed scoring 的結果 （phrase 數量較少的會期內容可能會因此稍微變得高分一點點）
+06:28 < gugod> yhsiang: 當然通常 scoring 是在搜尋做出來之後才需要擔心的事 :p （通常選用 ES 的話也無法擔心，能調的部份並不太多 XD）
+08:55 < slackbot2> <t0mst0ne> 請問一下大大關於資料庫單一欄位字數長度的問題 :
+08:55 < slackbot2> Oracle 似乎最大長度不得超過4000 bytes (VARCHAR2) , 不知道其使用他的資料庫是否可以更長 ?
+08:58 < slackbot2> <t0mst0ne> 啊, 也許該用 clob / nclob 就可以解決問題
+09:18 < slackbot2> <t0mst0ne> @yhsiang: @gugod ++ 
+09:18 < slackbot2> Crowd parsing 投一票！
+09:18 < slackbot2> 這樣參與者會更想瞭解會議是怎樣喬事情的
+10:43 < slackbot2> <yhsiang> gugod: 結果sayit就是用es 然後他就是把speech都做index 跟你建議的phrase一樣 
+10:44 -!- chihchun_afk is now known as chihchun
+10:56 < slackbot2> <miaoski> t0mst0ne: 要不要改用 ElasticSearch
+13:51 < slackbot2> <clkao> 蜂巢又出現了 cc @tkirby # <http://www.theguardian.com/politics/ng-interactive/2015/may/07/live-uk-election-results-in-full>
+13:51 < kcwu> slackbot2's url: [Live UK election results - in full | Politics | The Guardian]
+14:30 < slackbot2> <johnny> 請問 linode 有像 amazon 的 elastic ip 嗎？情況是我目前只有一台最小的 server，如果年底需要加 balancer 時希望有個比較順暢的轉移
+14:32 < slackbot2> <miaoski> au: <http://www.openwall.com/lists/oss-security/2015/05/07/10>
+14:32 < kcwu> slackbot2's url: [oss-security - Docker 1.6.1 - Security Advisory [150507]]
+14:37 < slackbot2> <yhsiang> johnny: linode 有 自己的 load balancer 功能
+14:37 < slackbot2> <yhsiang> johnny: <https://www.linode.com/docs/platform/nodebalancer/getting-started-with-nodebalancers>
+14:37 < kcwu> slackbot2's url: [Getting Started with NodeBalancers - Linode Guides & Tutorials]
+14:37 < slackbot2> <johnny> yhsiang: 恩恩我知道，只是想知道有沒有機會之後加balancer時不需要再重指ip位址
+14:38 < slackbot2> <yhsiang> johnny: 應該是現在先設好 balancer XD
+14:39 < slackbot2> <johnny> yhsiang: 可是一設定就開始算錢了
+14:41 < slackbot2> <johnny> amazon 是可以有一個 ip 彈性置換，不知 linode有沒有？
+14:43 < slackbot2> <yhsiang> johnny: linode 好像是要做 ip failover
+16:27 -!- chihchun is now known as chihchun_afk
+16:43 < slackbot2> <au> miaoski: http://ethercalc.org 已昇級 docker，感謝通知
+16:43 < kcwu> slackbot2's url: [EtherCalc - Share the URL to your friends and edit together!]
+16:56 -!- chihchun_afk is now known as chihchun
+19:31 < slackbot2> <t0mst0ne> <http://www.bbc.com/news/election/2015/results>  UK
+19:31 < kcwu> slackbot2's url: [Election 2015 - BBC News]
+20:09 < slackbot2> <yhsiang> Bot alias echo 是啥 XD
+20:26 < slackbot2> <mevernom> 對不起按錯了... <(_ _)> 以為是在另一個 team...
+22:30 -!- chihchun is now known as chihchun_afk
+23:29 -!- miaoski_ is now known as miaoski

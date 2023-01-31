@@ -1,0 +1,173 @@
+--- Day changed 六  2月 23 2013
+00:45 -!- KNY [~Adium@111-253-159-192.dynamic.hinet.net] has quit [Quit: Leaving.]
+00:51 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+01:20 -!- antliu [0122de46@gateway/web/freenode/ip.1.34.222.70] has quit [Ping timeout: 245 seconds]
+01:26 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: Leaving]
+01:34 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+01:40 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+02:17 -!- icman [~icman@123.240.140.81] has quit [Quit: 明天天氣晴]
+02:33 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+02:36 -!- Supaplextw [~Lucky@114-36-238-101.dynamic.hinet.net] has left #g0v.tw []
+02:46 -!- Supaplextw [~Lucky@114-36-238-101.dynamic.hinet.net] has joined #g0v.tw
+03:18 -!- walkingice is now known as zzz_walkingice
+05:33 -!- Supaplextw [~Lucky@114-36-238-101.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:33 -!- Supaplextw [~Lucky@114-25-196-190.dynamic.hinet.net] has joined #g0v.tw
+05:35 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Operation timed out]
+06:36 -!- thschee [thschee@2a00:dcc0:eda:88:245:71:872b:8f0b] has quit [Remote host closed the connection]
+06:46 -!- KNY [~Adium@111-253-159-192.dynamic.hinet.net] has joined #g0v.tw
+06:49 -!- KNY [~Adium@111-253-159-192.dynamic.hinet.net] has quit [Client Quit]
+08:27 -!- ck_ [~ck@111.235.249.234] has joined #g0v.tw
+08:30 -!- ck_ [~ck@111.235.249.234] has quit [Remote host closed the connection]
+08:34 -!- ck_ [~ck@111.235.249.234] has joined #g0v.tw
+08:34 -!- ck__ [~ck@114-42-88-212.dynamic.hinet.net] has joined #g0v.tw
+08:37 -!- MindosCheng [~mindos@223-140-243-172.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+08:37 -!- MindosCheng [~mindos@223-140-243-172.dynamic.hinet.net] has joined #g0v.tw
+08:38 -!- ck_ [~ck@111.235.249.234] has quit [Ping timeout: 246 seconds]
+08:38 -!- ck__ [~ck@114-42-88-212.dynamic.hinet.net] has quit [Remote host closed the connection]
+09:19 -!- vanjuggler [~lukec@luk.ec] has joined #g0v.tw
+09:19 < vanjuggler> \o
+09:19 < vanjuggler> happy open data day
+09:19 < vanjuggler> i'm just reading about 3du.tw
+09:27 < clkao> this now works: http://api.ly.g0v.tw/collections/bills?q={"proposal":{"$contains":["吳育昇"]}}}
+09:28 < mjhsieh> clkao++
+09:31 -!- evan3rd [~mac@114-47-23-252.dynamic.hinet.net] has joined #g0v.tw
+09:44 < mjhsieh> it works... curl -s -L http://api.ly.g0v.tw/collections/bills -d 'q={"proposal":{"$contains":["吳育昇"]}}}'
+09:45 < clkao> mjhsieh: explore around a bit ;)
+09:50 < mjhsieh> clkao: putting the json in the query string + URL is very painful...
+09:50 < mjhsieh> (with cURL of course)
+09:52 -!- mno2 [~mno2@nat/yahoo/x-chpcloejhujyimfa] has joined #g0v.tw
+09:53 -!- ck_ [~ck@114-42-88-212.dynamic.hinet.net] has joined #g0v.tw
+10:03 -!- ck_ [~ck@114-42-88-212.dynamic.hinet.net] has quit [Remote host closed the connection]
+10:06 -!- ck_ [~ck@114-42-88-212.dynamic.hinet.net] has joined #g0v.tw
+10:22 < clkao> want to write a client helper?  there could be something already... this is similar to https://support.mongolab.com/entries/20433053-rest-api-for-mongodb
+10:22 < kcwu> clkao's url: [REST API for MongoDB : MongoLab Support]
+10:24 < mjhsieh> how about just use mongodb ? XD
+10:24 < mjhsieh> s/use mongodb/using mongodb/
+10:25  * mjhsieh 常常經過 mongo 門口...
+10:25 < cls_bsd> ...
+10:29 < clkao> mjhsieh: tried that. not very good for very relational data.  no cheap population of heavily linked data
+10:29 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+10:34 -!- ck_ [~ck@114-42-88-212.dynamic.hinet.net] has quit [Remote host closed the connection]
+10:34 < mjhsieh> clkao: basically I am doing the samething by day, so I should be able to come up with something if the feature request is well defined. (科學家轉業)
+10:35 < mjhsieh> (所以有老狗變新把戲的感覺)
+10:37 < clkao> same thing = storing relational data in mongo or ?
+10:37 < opop> clkao: 有人在問天氣的API
+10:37 < clkao> opop: 啊啊啊 荒廢很久了... ><
+10:37 < opop> XD 所以不能用嗎
+10:37 < opop> 那我就不回他了
+10:38 < clkao> opop: 不過東西都在 github 上
+10:38 < clkao> 年久失修中
+10:38 < clkao> 上禮拜有想要整一下 不過太多事情了
+10:38 < opop> 然後他會用在商業用途, 可以付費
+10:39 < opop> 我等下把資訊轉給您, 看您有沒有想法 :P
+10:49 -!- g0v_idea_bot [~nodebot@mx.xen16.node6516.gplhost.com] has quit [Remote host closed the connection]
+10:49 -!- g0v_idea_bot [~nodebot@mx.xen16.node6516.gplhost.com] has joined #g0v.tw
+10:55 -!- zz_chihchun is now known as chihchun
+10:59 -!- TigerHuang [~tiger@2001:288:6004:34:8445:7e6a:f326:a857] has quit [Quit: leaving]
+11:00 < billy3321> @_@
+11:13 < clkao> 更新了，應該所有的提案法條 diff 都在裡面了。
+11:13 < clkao> 晚點在更新 web ui 接上上次的 diff viewer
+11:17  * clkao &
+11:18 < billy3321> clkao: 有文件需要幫忙的嗎？
+11:24 -!- cataska [~user@210.64.6.233] has quit [Remote host closed the connection]
+11:31 < mjhsieh> clkao: rest API
+11:33 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has quit [Ping timeout: 264 seconds]
+11:36 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+11:41 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+11:44 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+11:52 -!- chihchun is now known as zz_chihchun
+12:00 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+12:06 -!- thschee [thschee@bird.c.ircrelay.com] has joined #g0v.tw
+12:08 -!- thschee [thschee@bird.c.ircrelay.com] has quit [Client Quit]
+12:08 -!- thschee [thschee@bird.c.ircrelay.com] has joined #g0v.tw
+12:19 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has joined #g0v.tw
+12:31 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+12:31 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+12:32 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+12:33 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+12:33 < MindosCheng> 去玩回來了！
+12:37 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+12:42 < opop> MindosCheng: :D ca 想你 XD
+13:00 < MindosCheng> opop : 謝謝 >////<
+13:00 < opop> MindosCheng: 的 kindle XDDDD
+13:22 < billy3321> XDDDD
+13:29 < clkao> billy3321 有 不過可能還要等一會
+13:32 < billy3321> OK
+13:48 -!- icman [~icman@123.240.140.81] has joined #g0v.tw
+13:51 -!- MindosCheng [~mindos@223-140-243-172.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.89 [Firefox 18.0.2/20130201065344]]
+13:54 -!- MindosCheng [~mindos@223-140-243-172.dynamic.hinet.net] has joined #g0v.tw
+14:06 -!- mhsin [~mhsin@114-32-9-83.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+14:14 -!- mhsin [~mhsin@114-32-9-83.HINET-IP.hinet.net] has joined #g0v.tw
+14:28 < pcchen> mjhsieh: blah
+14:57 -!- MindosCheng [~mindos@223-140-243-172.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+16:43 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:43 -!- nono [afb6891e@gateway/web/freenode/ip.175.182.137.30] has joined #g0v.tw
+16:43 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 256 seconds]
+16:44 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+16:46 -!- ch0upi_b1d [r96006@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 260 seconds]
+16:47 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:47 -!- chhsiao1981 [chshou@linux15.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+16:47 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+16:48 -!- wens [wens@mirror2.csie.ntu.edu.tw] has quit [Ping timeout: 255 seconds]
+16:49 -!- tkirby [~tkirby@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+16:49 -!- mhsin_bsd [b7506043@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+16:51 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 276 seconds]
+16:53 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Remote host closed the connection]
+16:53 -!- tkirby [~tkirby@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 256 seconds]
+16:56 -!- nono [afb6891e@gateway/web/freenode/ip.175.182.137.30] has quit [Ping timeout: 245 seconds]
+16:56 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has joined #g0v.tw
+16:57 -!- ch0upi_bsd [~r96006@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+16:57 -!- tkirby [~tkirby@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+17:00 -!- chhsiao1981 [~chshou@linux15.csie.ntu.edu.tw] has joined #g0v.tw
+17:01 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:01 -!- ch0upi_bsd [~r96006@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 248 seconds]
+17:01 -!- tkirby [~tkirby@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 245 seconds]
+17:03 -!- tkirby [~tkirby@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+17:04 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has joined #g0v.tw
+17:04 -!- ch0upi_bsd [~r96006@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+17:05 -!- chhsiao1981 [~chshou@linux15.csie.ntu.edu.tw] has quit [Ping timeout: 245 seconds]
+17:05 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:06 -!- chhsiao1981 [~chshou@linux15.csie.ntu.edu.tw] has joined #g0v.tw
+17:06 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+17:06 -!- wens [wens@mirror2.csie.ntu.edu.tw] has joined #g0v.tw
+17:07 -!- tkirby [~tkirby@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 260 seconds]
+17:08 -!- tkirby [~tkirby@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+17:10 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has joined #g0v.tw
+17:10 -!- chhsiao1981 [~chshou@linux15.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+17:11 -!- wens [wens@mirror2.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+17:12 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:13 -!- tkirby [~tkirby@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 246 seconds]
+17:13 -!- wHisKy [whisky@1-160-244-125.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+17:14 -!- tkirby [~tkirby@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+17:15 -!- wHisKy [whisky@1-160-227-144.dynamic.hinet.net] has joined #g0v.tw
+17:15 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+17:15 -!- mhsin_bsd [b7506043@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+17:15 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+17:16 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has joined #g0v.tw
+17:17 -!- chhsiao1981 [chshou@linux15.csie.ntu.edu.tw] has joined #g0v.tw
+17:17 -!- wens [wens@mirror2.csie.ntu.edu.tw] has joined #g0v.tw
+17:29 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 255 seconds]
+17:30 -!- evan3rd [~mac@114-47-23-252.dynamic.hinet.net] has quit [Quit: evan3rd]
+17:37 -!- thschee_autobahn [~AndChat51@180.204.11.186] has joined #g0v.tw
+18:22 -!- mno2 [~mno2@nat/yahoo/x-chpcloejhujyimfa] has quit [Quit: Leaving]
+18:53 -!- thschee_autobahn [~AndChat51@180.204.11.186] has quit [Ping timeout: 256 seconds]
+20:08 -!- thschee_autobahn [~AndChat51@49.217.71.17] has joined #g0v.tw
+20:08 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+20:46 < clkao> created ly mailing list: https://groups.google.com/forum/?fromgroups=#!forum/g0v-ly
+20:59 -!- MindosCheng [~mindos@223-140-243-172.dynamic.hinet.net] has joined #g0v.tw
+21:10 < kcwu> 感覺 http://www.aec.gov.tw/ 的資料有些可以拿來視覺化...
+21:10 < kcwu> kcwu's url: [行政院原子能委員會全球資訊網]
+21:11 < kcwu> 譬如 http://www.aec.gov.tw/controlreport/violation.html
+21:11 < kcwu> kcwu's url: [核能安全-電廠違規處罰案件-核子設施違規事項查詢 - 行政院原子能委員會全球資訊網]
+21:12 < gugod> 做成資訊圖？
+21:15 < clkao> au: 結果果然還是沒有 bill_id 的... 被臨時插入的(報告、討論事項)議案沒有 bill_id
+21:17 < au> I see
+21:39 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+21:54 < thschee> 明天 #opendataday 有個 track 做台電資料分析 lead by ck_https://docs.google.com/spreadsheet/ccc?key=0Av429gOA1lgzdFNfMWZkdUxkVUZxQ0tCRXZTUGpUY2c#gid=0 
+21:54 < thschee> radiation 應該也會有一組，歡迎遠端參加
+21:55 < thschee> https://docs.google.com/spreadsheet/ccc?key=0Av429gOA1lgzdFNfMWZkdUxkVUZxQ0tCRXZTUGpUY2c#gid=0
+22:10 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+22:56 -!- nchild [~nchild@111-243-91-125.dynamic.hinet.net] has joined #g0v.tw
+23:36 < billy3321>  
+23:38 -!- nchild [~nchild@111-243-91-125.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:38 -!- nchild [~nchild@111-243-91-125.dynamic.hinet.net] has joined #g0v.tw

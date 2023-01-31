@@ -1,0 +1,837 @@
+--- Day changed 一 11月 25 2013
+00:00 < Missphoenix> 那是什麼東西....
+00:01 < yhsiang> glll4678: 感覺可以參考其他拼音的作法, 先繼續survey XD
+00:01 < tuiry> Ti_W_B :D 晚安 :D 謝謝
+00:03 < glll4678> 有辦法寫個程式讓它轉換嗎? (挖坑中
+00:04 < yhsiang> glll4678: 有現成其他的拼音程式 套用通用拼音的資料就很快
+00:05 -!- icman [~icman@123.240.173.168] has quit [Quit: 明天天氣晴]
+00:05 < au> a-tsioh: http://logbot.g0v.tw/channel/g0v.tw/2013-11-24/229 看來是 plain js, 但是 cin_parser 才 100 行
+00:05 < M00sUltraB0t> [ Logbot | #g0v.tw | kcwu> https://code.google.com/p/jscin/source/browse/src/jscin/gen_inp2.js 用到 table[] 的地方都要改, parser 也要動 https://code.google.com/p/jscin/source/browse/src/jscin/cin_parser.js ] - logbot.g0v.tw
+00:05 < au> 好像還改得動 (要是真的很害怕, 我明天來改看看 XD)
+00:06 < glll4678> @yhsiang: https://github.com/localvar/zhuyin 注音跟漢語拼音的互換
+00:06 < M00sUltraB0t> [ localvar/zhuyin · GitHub ] - github.com
+00:06 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 265 seconds]
+00:06 < yhsiang> go!
+00:07 < glll4678> @@?
+00:08 < a-tsioh> au: 那我做個ibus-table吧
+00:08 < yhsiang> glll4678: 看到golang很興奮 XD
+00:08 < a-tsioh> 我也要用！
+00:08 < glll4678> yhsiang: 為什麼@@?
+00:09 < au> a-tsioh: ok go for it :D
+00:10 < yhsiang> glll4678: 謝謝 我研究一下這個, 最近剛好想寫go XD
+00:12 < yhsiang> clkao: 是 馬上來解issue orz..
+00:12 < glll4678> yhsiang: 太棒了~~~ 加油~~~ (把它變成"通用<>注音" 用注音轉比較不會頭昏眼花)
+00:12 < yhsiang> glll4678: 應該也是要從注音下手比較簡單 XD
+00:15 < ETBlue> 好不容易追完 log 了 XD 不過又一直生新的出來 www
+00:15 < ETBlue> jimyhuang: 謝謝前天幫我計時跟錄影 XD
+00:15 < au> glll4678, yhsiang 寫好了 ping 我一下，這樣萌典按左方的注音可以 (go2js?) 轉別的拼音系統 (如通用、白話字等)，仍保留右方的漢語/臺羅作為對照
+00:16 < ETBlue> ipa: 大松的錄影收音是用什麼收的？剛才比對才發現大松的收音好清晰，連背景聊天都收得很清楚耶
+00:18 < glll4678> au: 收到
+00:20 < au> (據 2013 共識，增加顯示新系統，不隱藏原有系統，比較沒有破壞萌部規範性的問題)
+00:21 < clkao> ETBlue: 昂貴的家私
+00:21 < ETBlue> clkao: 原來如此
+00:24 -!- imwithye [~imwithye@116.251.209.247] has joined #g0v.tw
+00:28 -!- Stranger_1980 [~Stranger_@1.34.223.58] has quit [Quit: Leaving]
+00:31 -!- imwithye [~imwithye@116.251.209.247] has quit [Ping timeout: 252 seconds]
+00:31 -!- Missphoenix [~Miss@114-38-109-194.dynamic.hinet.net] has quit [Quit: Leaving]
+00:39 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has quit [Quit: mno2]
+01:00 < ipa> ETBlue: 但我覺得小機器錄發表好方便，馬上可上傳。家私要轉進去輸出來很花時間....
+01:02 < ETBlue> ipa: 的確，攜帶也方便，適合不那麼正式的小松 www
+01:02 < ETBlue> ipa: 你覺得小 ipad 的收音是否需要加強？用外接麥克風啥的…
+01:02 < ETBlue> 不過帶外接的東西就不那麼輕便了 XD
+01:03 < clkao> 可以用中等貴的無線 mic ?
+01:03 < ETBlue> 我有在想說下次要不要帶一根長柄的雨傘當作腳架靠著
+01:03 < ETBlue> 中等貴是什麼等級
+01:03 < ipa> 聽得都蠻清楚的，無線mic沒有接頭吧
+01:04 < ETBlue> 是呴，我自己也是聽得清楚
+01:04 -!- people [42b7cb41@gateway/web/cgi-irc/kiwiirc.com/ip.66.183.203.65] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+01:04 < ETBlue> 不過我木耳所以不太確定這樣是否足夠
+01:05 < ipa> clkao: ipad只有mini phone jack，mini mic 要接梅花頭
+01:05 < ETBlue> mic 的話好像又自己需要一個腳架？放在桌上會被噪音吵死…不然就要找個沒人碰到的架子
+01:06 < ipa> 是覺得方便就好 目前聽起來ok.....跟 iPad 分開的話要對同步很麻煩
+01:07 < CAA51> ETBlue: 之前查到過一個神秘的 ipad 配件，翻找中...
+01:07 < ETBlue> 不過 ipad import 到 premiere pro 好像有 bug，問狗據說可能是浮動 frame rate 導致影音不同步
+01:07 < yhsiang> import到final cut pro應該沒問題吧?
+01:07 < ipa> 不然就弄一條長一點的mic接到麥克風
+01:07 < ETBlue> 但奇怪的是我錄三段，第一段同步，第二三段卻不同步 XD 所以我後兩段是用 iMovie 剪
+01:08 < ETBlue> 到 mac 系統的應該沒問題我想
+01:08 < ipa> ETBlue: http://www.ixymic.com/
+01:08 < M00sUltraB0t> [ RØDE iXY Stereo Microphone for iPhone, iPad & iPod touch ] - www.ixymic.com
+01:08 < ETBlue> 還好活動紀錄只需要剪開而已，ios 上的 iMovie 是堪用的，頂多無法批次 render
+01:09 < CAA51> ETBlue: http://thepadcaster.com/
+01:09 < M00sUltraB0t> [ The Padcaster ] - thepadcaster.com
+01:10 < ipa> CAA51: 挖這個好扯 大坑
+01:11 < yhsiang> 這個好像也看過 xDD
+01:11 < CAA51> ipa: 對啊，它只有框XDD
+01:12 < ETBlue> ipa: 看起來好方便
+01:12 < ETBlue> CAA51: 這根本變形金剛，完全看不出來是 ipad XDDD
+01:13 < au> http://blackbettycameras.com/first-camera/ # iPad -> Mac Mini
+01:13 < M00sUltraB0t> [ Our First Camera | Black Betty Cameras ] - blackbettycameras.com
+01:13 < au> 只有 4.5 公斤，不曉得怎麼辦到的
+01:13 < clkao> orz
+01:14 < ipa> my goodness
+01:14 < clkao> 輸了
+01:14 < yhsiang> au: 好棒啊!!!!
+01:14 < kcwu> ETBlue: 我發現我的 android pad 錄音效果比 android phone 還差, 不曉得 ipad 會不會有類似的現象
+01:15  * kcwu 只好回家再 denoise
+01:15 < kcwu> s/只好//
+01:15 < M00sUltraB0t> kcwu 回家再 denoise
+01:15 < yhsiang> kcwu: android錄音效果 差異很大
+01:16 < ETBlue> kcwu: ！！我手上沒 iphone，目前是無法比較…（原本是果黑）
+01:16 < ETBlue> kcwu: 你的 android phone 跟 pad 同一廠牌嗎
+01:16 < yhsiang> 上次光是sony, htc, samsung 比就差很多了 orz..
+01:17 < ETBlue> 對喔 android 廠牌差異也很大
+01:17 < yhsiang> defaullt的錄音格式都不一樣
+01:17 < ETBlue> au: 這個比變形金剛還誇張 = =|||
+01:17 < yhsiang> s/ll/l
+01:17 < M00sUltraB0t> yhsiang meant to say: default的錄音格式都不一樣
+01:18  * yhsiang 手上的new one錄音稍微勝出
+01:18 < au> ETBlue: 據說是「貧民百萬富翁」這部片的二號攝影機
+01:18 < ETBlue> ......
+01:19 < yhsiang> cinema camera也好吸引人 XDD
+01:19 < yhsiang> tkirby: 心動惹嗎 
+01:19 < kcwu> samsung galaxy nexus (兩年前出的 phone) > asus nexus 7 新版(最近,pad) >  asus nexus 7 (一年前,pad)
+01:20 < ETBlue> ipa: 我剪接時有把聲音 volumn 調大，還好調大後背景沒有嗡嗡叫
+01:21 < clkao> 從蝦蝦那聽到好多八卦啊！原來今天晚上的便當還是她幫忙張羅的，差點就要吃麥當勞了 m(_ _)m
+01:22 < ETBlue> 喔喔 samsung 跟 asus .. 我手機是 sony
+01:25 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 272 seconds]
+01:27 < ETBlue> 手持 ipad 錄影的話，一定得橫著拿，且打橫時左右邊框都要放手掌，用兩手拇指 zoom 畫面或指定對焦
+01:27 < ETBlue> 這樣看來如果外接麥克風要是可以無線應該最理想
+01:29 < ETBlue> ……想想長柄雨傘大部分時候其實也不夠長，還是找柱子靠比較實在 www
+01:29 < yhsiang> ETBlue: 腳架拉~
+01:30 < ETBlue> 腳架我就要多帶一個大東西了
+01:31 < ETBlue> 反正下次萌典松還有兩個月…慢慢想好了 @@
+01:32 < au> 也可以各聲道用有線麥克風分開錄，開場時隨便敲個東西，用後製對齊聲紋?
+01:32 < ETBlue> 打板！ XD
+01:32 < au> XD
+01:32 < ETBlue> g0v 劇組！ XD
+01:33 < yhsiang> 好棒啊 我有個導演的夢 QQ
+01:33 < ETBlue> yhsiang: 你連導演夢都有？！
+01:33 < kcwu> 如果只是要架 ipad, 腳架可能可以用迷你折疊的就夠了
+01:34 < yhsiang> ETBlue: 有, 而且是相當做職業那種 XD
+01:35 < ETBlue> 啊，可以用曬衣服的伸縮棒，夠長，雖不能遮雨但很輕 XDDDD
+01:35 < ETBlue> yhsiang: 那先從瞿導的助理開始吧 XDDDD
+01:36 < yhsiang> ETBlue: 伸縮棒感覺不行 承受的方向好像不一樣
+01:36 < ETBlue> 一壓就縮起來嗎
+01:36 < yhsiang> 有可能 @@
+01:37 < au> yhsiang: 有看過 DJI Phantom 拍的市景短片嗎
+01:37 < au> http://www.ubergizmo.com/2013/08/phantom-quadcopter-drone-used-to-create-beautiful-short-film-of-new-york-city/
+01:37 < M00sUltraB0t> [ Phantom Quadcopter Drone Used To Create Beautiful Short Film Of New York City | Ubergizmo ] - www.ubergizmo.com
+01:37 < au> 永遠不用腳架喔
+01:37 < ETBlue> 好吧反正這次手持也還ok，以前在開刀房懸空拿DV一兩個小時都沒問題啊，這種的算什麼 XD
+01:38 < clkao> 摔了就 GG 了
+01:38 < au> (而且當然不能在室內用)
+01:39 < ETBlue> au: 這………這等級…
+01:40 < ETBlue> 看開頭差點以為有3D實景合成！還好沒有，不然我就嚇死了 XD
+01:41 < yhsiang> 怎麼感覺這個要出動jserv了 XDD
+01:41 < ETBlue> 開源社群的特色就是歪樓速度跟挖坑一樣快
+01:43 < yhsiang> 看來jserv的直升機不只要寫字還要能拍影片
+01:43 < ETBlue> 分開收音的話我倒是有現成的，作曲錄 demo 用的是 sony 錄音筆，效果應該比 ipad 好，立體聲
+01:44 < ETBlue> 或許下次同時用錄音筆收看看，回來再視情況採用
+01:45 < yhsiang> 其實這次場地有麥克風 應該可以從設備那邊收音才對
+01:45 < ETBlue> ㄟ對喔
+01:48 -!- superbil^^ [~superbil@1.34.97.68] has quit [Quit: WeeChat 0.4.0]
+01:50 < ETBlue> 整理文件清單時 http://hack.g0v.tw/3du 疑似被我搞爛 = =bbbbb
+01:50 < au> yhsiang++ # 下次會問店家，也許掛一分二音頻線上去就 ok 了
+01:51 < clkao> 真的要兩個月在那邊辦一次嗎？不過地下室空氣有點差
+01:52 < yhsiang> 恩 地下有點悶, 而且是不是會吵到樓上所以要關門, 這樣導致網路訊號不太穩定
+01:52 < ETBlue> 我比較在意直播的網路訊號有點差
+01:52 < au> ETBlue: fixed
+01:53 < au> 我真的覺得 naer 場地還不錯...
+01:53 < ETBlue> au: 是因為第一行沒放東西嗎
+01:53 < au> ETBlue: A8 前面多打了一個 '
+01:54 < au> 變 ''，hackfoldr angular 就爆炸了
+01:54 < ETBlue> 噢噢…………原來如此 @@"
+01:55 < yhsiang> 嘖嘖escape injection XD
+01:56 < clkao> naer 可以外借嗎？
+01:56 < au> 不然 gacc.org.tw 也有場地，但是是辦公室+會議室，比較難重新排列。會再問問看。
+01:57 < clkao> 靠 boris 好嗨
+01:57 < au> clkao: 這次電話裡 naer 是說該場地會有很多單位用，所以要提早講，但沒說不能外借。
+02:00 < ETBlue> 原來余伯伯是這個余
+02:03 < a-tsioh> ibus-table的TRS差不多了。但是碰到了一個很奇怪的bug,有一些字它就不接受比如「會」
+02:03 < au> a-tsioh: cin2ibus 跑一下比對結果看看?
+02:04 < a-tsioh> 我直接寫ibus table
+02:04 < a-tsioh> 我試試看
+02:04 < a-tsioh> 哦我沒有cin2ibus
+02:07 < au> a-tsioh: http://audreyt.org/newdict/TRS.ibus-table.txt
+02:07 -!- ymow [~Adium@1-171-53-227.dynamic.hinet.net] has quit [Quit: Leaving.]
+02:08 -!- ymow [~Adium@1-171-57-49.dynamic.hinet.net] has joined #g0v.tw
+02:08 < kcwu> ETBlue: 我在想你手按到收音孔時, 聽到的聲音可能是你的脈搏 XD
+02:09 < yhsiang> 人若衰，種匏仔生菜瓜 XD
+02:12 < ETBlue> kcwu: 好像很有可能…囧b
+02:29 < a-tsioh> au: 感謝，可是這樣子連一個字也不會顯示:(
+02:40 < a-tsioh> 会使啦
+02:40 < a-tsioh> o_O
+02:40 < a-tsioh> wtf
+02:40 < a-tsioh> 這個
+02:42 < a-tsioh> 我的i-bus　table是跟繁體字我問題呃
+02:42 < a-tsioh> 怎麼會這樣
+02:42 < a-tsioh> XD
+02:46 < ETBlue> a-tsioh 的中文句子感覺好可愛 XD
+02:49 < a-tsioh> 會曉
+02:51 < a-tsioh> 我本來開始寫「他媽的，我輸入法無法輸入繁體字」可是後來覺得不夠可愛
+02:54 < ETBlue> XDDDD
+02:54 < a-tsioh> 會使啦
+02:55 < a-tsioh> 我个電腦會曉寫台語
+02:56 < ETBlue> 電腦++ ... reason: 會曉寫台語 
+02:56 < a-tsioh> XD
+02:57 < a-tsioh> 問題是我本人不太會XD
+02:58 < a-tsioh> 現在只能回去學，沒有藉口了
+02:58 < a-tsioh> 先git push一下
+03:05 < a-tsioh> et voilà https://github.com/a-tsioh/TRS.cin
+03:05 < M00sUltraB0t> [ a-tsioh/TRS.cin · GitHub ] - github.com
+03:07 -!- superbil^^ [~superbil@1.34.97.68] has joined #g0v.tw
+03:13 -!- rx [uid14902@gateway/web/irccloud.com/x-bcnxcpydhaoslbkf] has quit [Killed (rothfuss.freenode.net (Nickname regained by services))]
+03:20 -!- haroldwu_ [~haroldwu@219.85.185.194] has quit [Remote host closed the connection]
+03:20 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Remote host closed the connection]
+03:21 -!- haroldwu [~haroldwu@219.85.185.194] has joined #g0v.tw
+03:21 -!- haroldwu [~haroldwu@219.85.185.194] has quit [Changing host]
+03:21 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+03:49 < a-tsioh> 這馬是食飯个時陣！
+03:49 -!- a-tsioh is now known as a-tsioh_afk
+04:58 -!- Jarek [kvirc@1-165-119-156.dynamic.hinet.net] has joined #g0v.tw
+04:59 -!- Jarek is now known as Guest64324
+05:01 -!- CJarek [kvirc@1-165-118-240.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+05:29 -!- a-tsioh_afk is now known as a-tsioh
+05:38 -!- Michael_Thunderb [~Thunderbi@111-240-156-151.dynamic.hinet.net] has joined #g0v.tw
+06:19 -!- opop [~opop@220-135-163-184.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+06:41 -!- opop [~opop@220-135-163-184.HINET-IP.hinet.net] has joined #g0v.tw
+08:08 -!- ymow [~Adium@1-171-57-49.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+08:17 < glll4678> 怎麼讓電腦寫台語呀？
+08:43 < a-tsioh> 安裝ibus-table
+08:43 -!- Michael_Thunder1 [~Thunderbi@106.186.115.223] has joined #g0v.tw
+08:43 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+08:44 < a-tsioh> glll4678: 然後把https://github.com/a-tsioh/TRS.cin/raw/master/ibus/taigi-trs.db 放在/usr/share/ibus-table/tables/
+08:44 < a-tsioh> glll4678: 然後把https://github.com/a-tsioh/TRS.cin/raw/master/ibus/TaigIME.png 放在/usr/share/ibus-table/icons
+08:44 -!- Michael_Thunderb [~Thunderbi@111-240-156-151.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+08:45 < a-tsioh> ibus的設定就可以加臺語的table
+09:01  * a-tsioh 唔唔睏
+09:07 -!- a-tsioh [~pierre@78.202.136.41] has quit [Quit: WeeChat 0.3.8]
+09:07 < glll4678> 晚上來試試
+09:23 -!- ypwong [~anthony@206.225.134.1] has joined #g0v.tw
+09:26 < Guest61903> yhsiang++ # golang  ;D
+09:26 -!- Guest61903 is now known as marlboromoo
+09:33 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 272 seconds]
+09:38 -!- ypwong [~anthony@206.225.134.1] has quit [Ping timeout: 240 seconds]
+09:40 -!- ypwong [~anthony@125.227.212.140] has joined #g0v.tw
+09:44 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+09:46 -!- dryman [~dryman@www.ihatevocab.net] has quit [Ping timeout: 252 seconds]
+09:46 -!- miaout17_ [~miaout17@miaout17.net] has quit [Ping timeout: 272 seconds]
+09:51 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+09:59 < Michael_Thunder1> 想請教一下，資訊系統（生命週期中），維謢人力的成本，是否有IT界常用的計算公式？
+10:01 -!- ypwong [~anthony@125.227.212.140] has quit [Ping timeout: 252 seconds]
+10:17 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+10:18 -!- ypwong [~anthony@124.248.207.76] has joined #g0v.tw
+10:52 -!- keanu [~keanu@118-163-61-157.HINET-IP.hinet.net] has joined #g0v.tw
+11:09 -!- chihchun_afk is now known as chihchun
+11:15 -!- imwithye [~imwithye@116.251.209.247] has joined #g0v.tw
+11:21 -!- imwithye [~imwithye@116.251.209.247] has quit [Quit: Leaving...]
+11:28 < edwardc> 好像都是靠 PM 用經驗法則拉 ? XD 因為根據專案性質還有團隊組成都會有顯著差異 .. 至少對我來說是這樣 # 09:59 < Michael_Thunder1> 想請教一下，資訊系統（生命週期中），維謢人力的成本，是否有IT界常用的計算公式？
+11:28 < edwardc> <亂入>要不然就公道價八萬一</亂入>
+11:33 < jimyhuang> au: 3du.tw 要進去 edu.tw hackday嗎 XD
+11:37 < au> jimyhuang: why not XD 
+11:37 < au> iis.sinica.edu.tw 也是 edu.tw 啊
+11:37 < jimyhuang> 到時後門口阿姨又會不曉得該如何報告... 
+11:44 < ETBlue> hcchien: 據說 Ijs 捐出具有不動產家一枚給台灣炒地皮地圖 www https://g0v.hackpad.com/Idea-Pool-d3UYGxZtxw2#:h=台灣炒地皮地圖 # 看起來是 kuku ？
+11:44 < M00sUltraB0t> [ 國民大會黑客松專案構想（Idea Pool） - g0v.hackpad.com ] - g0v.hackpad.com
+11:45 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+11:48 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+11:49 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+11:49 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+11:52 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+11:52 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+11:55 < jimyhuang> 請教各位... 這張圖好懂嗎？會不會看不懂在幹啥？ http://jimmyhub.net/d3js/homework2.html
+11:56 < walkingice> jimyhuang: 綠色是募款收入，紅色是支出？
+11:57 < jimyhuang> walkingice: 哈，顯然是（幸好）
+11:57 < jimyhuang> walkingice: 看了之後有啥觀感？覺得帶給你什麼訊息？
+12:02 < walkingice> jimyhuang: 挺清楚的呀 :D
+12:02  * jimyhuang 資訊圖表課的回家作業...
+12:03 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+12:14 -!- cataska [~cataska@210.64.6.233] has joined #g0v.tw
+12:21 < ipa> diff 配色 XD
+12:23 < jimyhuang> ipa++ ly.g0v 中毒嗎... 
+12:30 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+12:39 -!- wayne930242 [~wayne9302@198.199.118.114] has joined #g0v.tw
+12:40 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+12:40 < walkingice> jimyhuang: 如果區塊長度已經從視覺上告知量的多寡，好像不用那麼多顏色？
+12:41 < walkingice> 顏色少一點，上方的說明許可以更直覺？
+12:44 < yhsiang> 這個顏色有點不直覺耶 
+12:44 < walkingice> 如果這些數字是實際情況，慈濟那一行字應該要鍍金吧 XD
+12:44 < yhsiang> 尤其是深淺的變化比較難看得出來
+12:44 < yhsiang> 到底差了多少 
+12:47 < yhsiang> 覺得支出可以做 是勸募的百分之多少 
+12:47 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+12:47 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:47 -!- wayne930242 [~wayne9302@198.199.118.114] has quit [Quit: http://www.kiwiirc.com/ - A hand-crafted IRC client]
+12:47 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+12:47 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:50 -!- wayne930242 [~wayne9302@198.199.118.114] has joined #g0v.tw
+12:50 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+13:08 -!- ypwong [~anthony@124.248.207.76] has quit [Ping timeout: 245 seconds]
+13:11 -!- keanu [~keanu@118-163-61-157.HINET-IP.hinet.net] has quit [Quit: Leaving]
+13:12 < yhsiang> http://www.evolutionoftheweb.com/ # 這個好讚 還有中文  XD
+13:12 < M00sUltraB0t> [ The Evolution of the Web ] - www.evolutionoftheweb.com
+13:16 -!- ballII [dc88e6eb@gateway/web/cgi-irc/kiwiirc.com/ip.220.136.230.235] has joined #g0v.tw
+13:17 < ETBlue> 挖賽慈濟真的是鍍金了 XD
+13:17 < ballII> ipa: 「唱歌？」是要當ETBlue的合音天使嗎？XD  我也唱歌喔～（<-偽裝新人貌）
+13:17 < yhsiang> 原來之前就有了  孤陋寡聞 orz
+13:18 < ETBlue> jimyhuang: 這圖表有正式發佈版的嗎？感覺可以下個標題叫做…「別再捐了，慈濟不需要你的錢」 XDDDD
+13:19 < yhsiang> ETBlue: 不愧是中肯不入 ...
+13:19 < ETBlue> ballII: 要幫忙編曲嗎？ XDXD
+13:20 < ballII> ETBlue: 你下次有作品時，我當你合音XD
+13:21 < ETBlue> ballII: 編好聲部以後就可以給合唱團去練習，不然現在只有旋律，團練不能 XD
+13:21 < ETBlue> hychen: 設計書單好了…其實想推薦的也只有兩本 XD https://g0v.hackpad.com/cLdEEDW5Xzx#:h=平面設計-/-視覺傳達
+13:21 < M00sUltraB0t> [ 自學工具箱 - g0v.hackpad.com ] - g0v.hackpad.com
+13:23 -!- S3p_lin_ [slzzp@linode64.slzzp.net] has joined #g0v.tw
+13:23 -!- S3p_lin_ [slzzp@linode64.slzzp.net] has quit [Client Quit]
+13:24 -!- Stranger_1980 [~Stranger_@1.34.223.58] has joined #g0v.tw
+13:24 < ballII> ETBlue: 我也編過曲 例如 http://giddens.twbbs.org/cddemo/demo.htm   那個「姆奈」就是我
+13:25 < ballII> 我彈鋼琴 可以幫 ETBlue 伴奏 :)
+13:27 < ETBlue> ballII: ㄟ，你是球球嘛！
+13:27 < ballII> ETBlue: 對啊 你現在才知道？？XD
+13:29 < ETBlue> ballII: 是的… XD
+13:29 < ETBlue> ballII: 你有在用編曲軟體嗎？我只會用 garageband
+13:29 < yhsiang> ETBlue: id 就是球2 -> 球球阿 XD
+13:29 < ETBlue> yhsiang: 你好敏銳 www
+13:30 -!- wayne930242 [~wayne9302@198.199.118.114] has quit [Quit: http://www.kiwiirc.com/ - A hand-crafted IRC client]
+13:30 < ballII> ETBlue: 我都是用五線譜軟體編mid吔，不然就直接用鋼琴彈。garageband只用來錄音。
+13:31 < ETBlue> ㄟ所以有 midi 格式的檔案囉？
+13:31 < ETBlue> 最近在煩惱怎麼把編曲的工作檔 open source
+13:31 -!- wayne930242 [~wayne9302@198.199.118.114] has joined #g0v.tw
+13:31 < jimyhuang> walkingice: ETBlue: 這圖表還沒公開，想做好一點再公開。主要這圖有一些問題沒呈現，例如1.慈濟其實只公佈了1年其他有些單位看來很多，其實是很多年加總... 
+13:31 < ETBlue> jimyhuang: 原來如此
+13:31 < ballII> 對啊，都是mid，像這樣： http://mkhere.blogspot.tw/2008/07/my-happiness.html
+13:31 < M00sUltraB0t> [ 《姆奈》MKnight: 錦繡二重唱〈我的快樂〉鋼琴譜 ] - mkhere.blogspot.tw
+13:32 < yhsiang> CAA51: https://moot.it/riotjs/ 上次說的比ember和angular更精簡的東西
+13:32 < M00sUltraB0t> [ Moot | Forums and commenting re-imagined ] - moot.it
+13:32 < jimyhuang> 2.而資料上，支出很多為0的，想特別突顯這些不全數字，還沒做好圖形化。這表示政府完全沒有監督能力..
+13:33 < yhsiang> ETBlue: 是midi檔嗎?
+13:34 < walkingice> jimyhuang++
+13:34 < ETBlue> 額
+13:34 -!- Ihc [8c712e43@gateway/web/cgi-irc/kiwiirc.com/ip.140.113.46.67] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+13:35 < ETBlue> windows 下的 chrome 李的 quicktime player 發生了悲劇
+13:35 < ETBlue> jimyhuang: 原來沒支出的是這意思…
+13:36 < jimyhuang> walkingice: yhsiang 感謝建議了 XD
+13:36 < ETBlue> ballII: midi 檔有辦法輸入 garageband 嗎？
+13:36 < jimyhuang> ETBlue: 對啊，現在圖形完全沒表達清楚 XD
+13:36 < ETBlue> jimyhuang: 所以 0 其實是 ? 的意思 XD
+13:36 < jimyhuang> ETBlue: 對啊
+13:37 < yhsiang> 就剛剛那張圖表的感想是 如果要表慈濟  完全做到了 XD
+13:37  * ETBlue 點頭
+13:38 < jimyhuang> 其實還沒有完全做到，因為慈濟只有一年就超越了全部... XD 圖上看不出來（以為是很多年總和）
+13:38 < ETBlue> ballII: 如果可以找出音樂工作檔的協作模式，我們就可以把開源之道推廣到音樂領域了
+13:39 < ETBlue> ballII: 現在美術的幾乎已經可以了，因為 adobe 統一天下 XD
+13:40 < yhsiang> ETBlue: 可惡的splice還在private beta ...
+13:40 < ETBlue> yhsiang: 哩供蝦？googel 上好多東西都叫 splice ><
+13:41 < yhsiang> https://splice.com/ 
+13:41 < M00sUltraB0t> [ Splice ] - splice.com
+13:41 < yhsiang> 主打音樂協作的服務 ..
+13:42 < ballII> ETBlue: mid 可以import入garageband，而且可編輯。但是我看慣五線譜。garageband展示mid的介面，我看不懂是好用還是不好用。
+13:43 < ballII> mid的音質，與音效卡(?)很有關係。每台電腦聽同首mid，聽起來會不太一樣。如果要求音質，那麼這會是一個關卡。
+13:44 < Jedi_> mid 的音質...就是看音色庫/音源啦...
+13:45 < Jedi_> 想要自己包音色取樣的話，就是 mod 類的音樂檔案了
+13:47 -!- ballII [dc88e6eb@gateway/web/cgi-irc/kiwiirc.com/ip.220.136.230.235] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+13:49 < ETBlue> 啊 ballll 斷線
+13:49 < ETBlue> 我還想問 gb 能否輸出成 midi... 我只有 ios 版的
+13:50 < ETBlue> 話說回來 gb 的音源好像蠻好聽的
+13:51 < ETBlue> 如果可以自由輸入輸出 midi 的話，那把 midi 檔 commit 到 github 上就可以跟程式碼一樣地管理了
+13:52 < yhsiang> ETBlue: 可以output midi
+13:52 < ETBlue> yhsiang: !!! hooray!
+13:52 < yhsiang> ETBlue: 還可以來弄midi.js讓你play阿
+13:52 < ETBlue> 那我只要抓個有桌面版 garageband 的人幫我轉 midi 就可以了哈
+13:53 < yhsiang> ETBlue: garageband 對新買mac的人都是free的
+13:53 < ETBlue> 我的小黑還要跟著 win 版 adobe cs6 服役一陣子 www
+13:53 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+13:54  * ETBlue 不像某魔法生物有本錢囤積一堆閒置的裝備
+13:54 -!- wolfenstein [~chatzilla@60-250-73-121.HINET-IP.hinet.net] has joined #g0v.tw
+13:56 < yhsiang> ETBlue: 那衝一下 香港一線通吧 :p
+13:56 < ETBlue> 額
+13:57 < ETBlue> 話說回來，我好像該衝一下打工的進度（抓頭
+14:01 -!- ljm_tw [db578e12@gateway/web/freenode/ip.219.87.142.18] has joined #g0v.tw
+14:02 < hychen> poga++
+14:02 < ljm_tw> 午安... 借問一下。萌典的 json 格式在哪裡有設明呢? 剛看了一下 Github, 乍看 /t/ 和 /pua/ (例) 的格式不同
+14:03 -!- Seiken [~Seiken@198.199.118.114] has joined #g0v.tw
+14:04 < ljm_tw> Pokgoan 說要搞一下台語，然後我也順便想把阿美語字典搞成萌典-compatible 的格式
+14:07 < yhsiang> ljm_tw: 你是看moedict-webkit的readme 嗎?
+14:08 < ljm_tw> yhsiang: 對
+14:09 < ljm_tw> 雖然可以猜 t = title, h = heteronyms, 不過 T (TLPA?) s  _ 各是表示什麼呢? 
+14:09 < poga> hychen: 唔... ci說test沒過... 我看看...
+14:10 < ljm_tw> f = def, e = example?
+14:11 < yhsiang> T 應該是 台語發音吧 
+14:11 -!- chihchun is now known as chihchun_afk
+14:12 < ljm_tw> yhsiang: 嗯，我也猜這樣 :)
+14:13 < yhsiang> s應該是相似
+14:14 < yhsiang> synonyms
+14:14 < yhsiang> ljm_tw: https://www.moedict.tw/#!發穎 
+14:14 < M00sUltraB0t> [ 萌典〔教育部國+臺+客語有聲辭典〕（民間線上版） ] - www.moedict.tw
+14:16 < ljm_tw> 感謝.. 剩下範例的 _: 8778 不知道是什麼了 
+14:18 < yhsiang> ljm_tw: 應該是發音檔案
+14:19 < ljm_tw> hmm 那字根用斷詞標示應該可以相容現在的系統... e.g., `miki~`'am'am~ <== miki + 'am'am 
+14:19 < ljm_tw> yhsiang: ok :)
+14:19 < yhsiang> https://1763c5ee9859e0316ed6-db85b55a6a3fbe33f09b9245992383bd.ssl.cf1.rackcdn.com/08778.ogg
+14:20 -!- chihchun_afk is now known as chihchun
+14:25 < ljm_tw> yhsiang: Thanks
+14:28 < hychen> yhsiang: http://imoncloud.com/en/node/15 # 昨天聽到這個, 也是想讓人可以快速開發連線遊戲
+14:28 < M00sUltraB0t> [ 關於 ImonCloud | Imoncloud ] - imoncloud.com
+14:28 < hychen> yhsiang: 不過db 是mongodb.
+14:29 < Michael_Thunder1> edwardc++　謝謝您，正在構思如何寫newshelper的作業手冊，其實也是只靠個人經驗而已。　#上午 11:28:26提供的回答
+14:29 < yhsiang> hychen: mongodb我有用阿 :D
+14:30 < yhsiang> hychen: 現在我們有poga, pgrest也可以開發連線遊戲了 
+14:30 < hychen> yhsiang: 我好像傳錯人了 orz...
+14:30 < yhsiang> orz 
+14:30 < hychen> yhsiang: 我應該是要傳給poga.
+14:31  * hychen 也曾有個做遊戲的夢 XD
+14:33 < poga> hychen: CI的db是mongodb?
+14:33 < hychen> poga: ci???
+14:34 < poga> hychen: 喔我是看到這個https://travis-ci.org/clkao/pgrest/builds/14473331 說test沒過
+14:34 < M00sUltraB0t> [ Travis CI - Free Hosted Continuous Integration Platform for the Open Source Community ] - travis-ci.org
+14:34 < poga> 以為你在講那個
+14:34 < hychen> poga: no,
+14:34 < yhsiang> 可是這網頁沒甚麼進一步資訊耶 ...
+14:34 < hychen> poga: 有時後會有timeout test 的問題
+14:35 < hychen> poga: 之前滿常發生的, 不確定是什麼問題...
+14:36 < poga> hychen: hmm... 三個錯裡面有一個是我不知道是啥的timeout
+15:06 < yhsiang> 默默地就找到drupal4gov的hackpad ..
+15:07 -!- wolfenstein_ [~chatzilla@211.72.195.139] has joined #g0v.tw
+15:09 -!- wolfenstein [~chatzilla@60-250-73-121.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+15:09 -!- wolfenstein_ is now known as wolfenstein
+15:27 < au> ljm_tw: 那是 keyMap 簡寫省空間... 詳見 https://github.com/audreyt/moedict-webkit/blob/master/main.ls#L507
+15:27 < M00sUltraB0t> [ moedict-webkit/main.ls at master · audreyt/moedict-webkit · GitHub ] - github.com
+15:28 < ljm_tw> au: 收到，感謝
+15:28 < clkao> poga: 可以 force restarrt test
+15:29 < clkao> cloudcore 又 gg 了
+15:29 < ljm_tw> au: 之後可能會需要加 root 或 stem ，不過等字典打完再說吧 :)
+15:31 < au> ljm_tw: 請儘量加, 然後你的 github id 是? 
+15:31 < poga> clkao: 我只有regenerate key可以選@@?
+15:32 < clkao> poga: 齒輪下面的有一個 reload 圖示，有看到嗎？我剛暗了
+15:32 < poga> clkao: 沒有耶，我的齒輪下面沒有reload
+15:33 < poga> 好像是因為我不是project所有者之類的
+15:33 < clkao> 那可能他只有給 owner 沒給 collaborator
+15:33 < clkao> 或者是我加入你後她沒 refresh membership
+15:34 < poga> hmmm
+15:37 < poga> 又不一樣了 XD 還有test沒過可是build pass的 XDD
+15:38 < poga> 我還是試試能不能在我電腦上重現...
+15:40 < poga> clkao: 喔喔，我的reload button出現了，我來玩玩看，謝啦 XD
+15:42 < ljm_tw> au: miaoski 謝謝
+15:45 < au> ljm_tw: 歡迎加入 g0v dev team, 可以開 moedict-data-LANGNAME 放資料 (see -twblg, -csld, -hakka for examples)。json 請用完整的 key，不用手動做 keyMap compression。
+15:45 -!- ypwong [~anthony@125-227-212-140.HINET-IP.hinet.net] has joined #g0v.tw
+15:45 < au> ljm_tw: 另外如果有空，可以直接按 Edit 改 https://github.com/audreyt/moedict-webkit/blob/master/README.md 加上相關說明，有新的語種時也歡迎直接加在 Makefile 裡。
+15:46 < M00sUltraB0t> [ moedict-webkit/README.md at master · audreyt/moedict-webkit · GitHub ] - github.com
+15:47 < clkao> jimyhuang: 結果發現信用卡有 $188 的機場接送... 但是要三天前預約，已經太遲了... XD
+15:47 < au> ETBlue: 後來想想，一月底是過年，二月我在法國，moed2ct 還是三月再開始好了 :p
+15:48 < ljm_tw> au: 了解。感謝。
+16:01 < tkirby> jimyhuang: 你是去哪上的資訊圖表課呢
+16:06 < clkao> lijung: ly.g0v.tw 裡面的 cordova 好像 build 不起來？
+16:20 -!- ypwong [~anthony@125-227-212-140.HINET-IP.hinet.net] has quit [Quit: cya]
+16:22 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Read error: Connection reset by peer]
+16:24 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+16:27 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Read error: No route to host]
+16:28 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+16:35 < yhsiang> clkao: need help check issue #72!
+16:35 < clkao> yhsiang: hmm? it's done? see if  V1ctor can help reviewing ;)
+16:36 < yhsiang> V1ctor: help reveiew #72 orz
+16:37 < clkao> text1.match text 怪怪的... 是要 substr ?
+16:38 < yhsiang> http://i.imgur.com/pRVgQW5.png 目前看起來是這樣
+16:39 < yhsiang> 主要是因為在中間新增的 原本的寫法會不知道 ..
+16:41 < yhsiang> clkao: 是說如果和原本的有match 才把 difflines + 1這樣
+16:42 -!- wolfenstein_ [~chatzilla@60-250-73-121.HINET-IP.hinet.net] has joined #g0v.tw
+16:43 -!- wolfenstein [~chatzilla@211.72.195.139] has quit [Ping timeout: 245 seconds]
+16:43 -!- wolfenstein_ is now known as wolfenstein
+16:48 < yhsiang> hmm 但是這樣好像就沒換行 
+16:50 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:50 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+16:50 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:50 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+16:55 -!- marlboromoo [~marlborom@111.235.209.87] has quit [Remote host closed the connection]
+16:55 -!- marlboromoo [~marlborom@111.235.209.87] has joined #g0v.tw
+17:00 -!- wolfenstein [~chatzilla@60-250-73-121.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+17:03 -!- wolfenstein [~chatzilla@60-250-73-121.HINET-IP.hinet.net] has joined #g0v.tw
+17:14 < lijung> clkao: which step?
+17:17 < clkao> can i use cordova from npm i -g ? (which installs 3.2)
+17:17 -!- Guest64324 [kvirc@1-165-119-156.dynamic.hinet.net] has quit []
+17:17 -!- CJarek [kvirc@1-165-119-156.dynamic.hinet.net] has joined #g0v.tw
+17:22 < lijung> clkao: 我上次無法 install cordova through npm ，剛剛成功了！我試試晚點更新 readme
+17:22 < clkao> lijung++
+17:22 -!- wayne930242 [~wayne9302@198.199.118.114] has quit [Quit: http://www.kiwiirc.com/ - A hand-crafted IRC client]
+17:24 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 240 seconds]
+17:24 < yhsiang> clkao: 你是說 應該用 is substr這種方式嗎 ? @@
+17:25 < clkao> 因為 .match 應該是 regexp
+17:25 < yhsiang> 喔 我是想用regexp @@
+17:25 < yhsiang> 疑 我想想
+17:26 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+17:38 < yhsiang> sorry 改掉match了 orz
+17:40 < jimyhuang> tkirby: 獨立媒體學院
+17:42 < jimyhuang> clkao: 疑，我趕快看看信用卡...
+17:47 < jimyhuang> tkirby: 前四堂李怡志的圖表，孝先也有教後兩堂懶人包。
+17:49 -!- Missphoenix [~Miss@ZJ059033.ppp.dion.ne.jp] has joined #g0v.tw
+17:51 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+17:54 < Ti_W_B> 開電腦第一件事，開IRC.....
+18:01 < Michael_Thunder1> tkirby／補充 jimyhuang 對話／http://logbot.g0v.tw/channel/g0v.tw/2013-11-06#124
+18:01 < M00sUltraB0t> [ Logbot | #g0v.tw ] - logbot.g0v.tw
+18:06 < Ti_W_B> 今天在學校努力推廣g0v.....
+18:08 < yhsiang> jsconf.asia checklist好溫馨 XD
+18:10 < yhsiang> Ti_W_B: :)
+18:10 < yhsiang> Ti_W_B++ 
+18:10 < clkao> 結束 0.25 個回合的打工 orz
+18:13 < clkao> yhsiang: bills/1574L14924#original-1030-3 still looks weird
+18:14 < clkao> we need to make it very expensive for diff engine to add/remove newlines, so individual lines stays close together
+18:14 < Ti_W_B> 像各老師說明g0v(順帶推坑)，還借課跟班上說明......
+18:14 < clkao> yhsiang: 不如趁這個機會加一點 unit test? :P 還好有 LYModel 現在應該可以產生 mock response 了? :P
+18:14 < Ti_W_B> 但.....大家反應.....
+18:14 < clkao> Ti_W_B: 可能要從比較有切身相關的議題切入
+18:15 < Ti_W_B> 我試試.....
+18:15 < Ti_W_B> 目前打算做張海報
+18:16 < yhsiang> clkao: 有再想用indexedb做pgrest client endpoint?
+18:16 < clkao> yhsiang: 之前 V1ctor 好像有偷插入海量 newlines
+18:17 < clkao> yhsiang: 科科 邪惡啊 eventually :p
+18:17 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has quit [Ping timeout: 256 seconds]
+18:18 < yhsiang> 感覺更邪惡的是應該可以一次寫angular, 可以做網站也可以做chrome extension ..
+18:23 < hcchien> 單純介紹 g0v 真的有可能會感覺很虛無飄渺
+18:23 < jimyhuang> Ti_W_B: 反應 ...是指沉默嗎XD
+18:24 < Ti_W_B> 不，是玩手機.....呃，沉默也是啦
+18:25 -!- Missphoenix [~Miss@ZJ059033.ppp.dion.ne.jp] has quit [Quit: Leaving]
+18:26 < yhsiang> Ti_W_B: 不要灰心! 有可能是沒有打中要害 XD
+18:27 < Ti_W_B> 貌似有人在聽，但事後詢問......答:你剛剛在講啥?
+18:28 < Ti_W_B> 看來我的技巧有待加強
+18:28 < Ti_W_B> yhsiang: 要害?
+18:30 < yhsiang> 就是產生共鳴之類的感覺
+18:31 -!- wolfenstein [~chatzilla@60-250-73-121.HINET-IP.hinet.net] has quit [Quit: ChatZilla 0.9.90.1 [Firefox 25.0.1/20131112160018]]
+18:32 < Ti_W_B> 唔唔.....
+18:32 < Ti_W_B> 我跟他們貌似何不太來啊
+18:32 < clkao> 學生的點應該蠻不同的，譬如還沒繳稅應該就不會對於稅金加速燃燒有什麼煩躁感 XD
+18:34 < clkao> poga++ # 太強了吧! PgBase
+18:36 < clkao> poga: ref.js 是 generated 的話，看能不能 ignore 掉
+18:38 < clkao> jimyhuang: 挖坑: https://github.com/g0v/ly.g0v.tw/issues/87
+18:38 < M00sUltraB0t> [ use ngsocial for share buttons · Issue #87 · g0v/ly.g0v.tw · GitHub ] - github.com
+18:39 < kcwu> Ti_W_B: 先推薦使用新聞小幫手吧
+18:40 < clkao> kcwu++
+18:48 < clkao> dk dk 
+18:49 < clkao> mysociety 寄 email 來說我們這邊好像很嗨，希望知道一下我們在搞什麼 XD
+18:51 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+18:52 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+18:53 < lijung> clkao: https://github.com/g0v/ly.g0v.tw#cordova---mobile
+18:53 < M00sUltraB0t> [ g0v/ly.g0v.tw · GitHub ] - github.com
+18:58 < clkao> lijung: 咦，現在是整個包 webview http://ly.g0v.tw, 不是把她包成 local package?
+18:58 -!- a-tsioh [~pierre@15.21.90.92.rev.sfr.net] has joined #g0v.tw
+19:01 < lijung> clkao: 被你一問我才發覺
+19:01 < clkao> lijung: 可以參考一下 moedict-webkit 的包法
+19:01 < a-tsioh> 逐个好！
+19:02 < yhsiang> clkao: 你不是有發推給mysociety?
+19:02 < clkao> ya 不過不是回關於那個主題
+19:03 < lijung> clkao: 我知道，那是舊版的會產生出那些檔案
+19:03 < lijung> 我剛剛是造 official site 去用的 https://github.com/apache/cordova-cli#project-commands
+19:03 < M00sUltraB0t> [ apache/cordova-cli · GitHub ] - github.com
+19:03 < yhsiang> 喔喔 g0v x mysociety -> mys0ciety 
+19:04 < lijung> 等等我覺得有點詭異
+19:04 < lijung> ㄏㄏ
+19:04 < lijung> 可是他可以在 ios 上運行耶
+19:05 < lijung> emulator 可以跑出這個 app
+19:05 < clkao> cordova emulate ios => '[Error: Current working directory is not a Cordova-based project.]'
+19:05 < lijung> 要到 contrib/ly_ios在那個 folder跑
+19:06 < clkao> 更新後有了, 不過還是 error:  /Users/clkao/src/st/stconfig/git/g0v/ly.g0v.tw/contrib/ly_ios/platforms/ios/cordova/build
+19:06 < lijung> 我後來有補在 readme
+19:06 < clkao> lijung: 下回可以 pull --rebase 一下 :p
+19:07 < yhsiang> au: 開一個hackpad記錄女書的狀況 還是繼續寫在之前的hackpad ?
+19:08 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+19:08 < lijung> clkao: ok #我沒用過 rebase...好弱的感覺ㄏㄏ
+19:09 < yhsiang> 我以前也不會用 rebase, 直到YHT 2013 ...
+19:10 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Quit: leaving]
+19:11 -!- haroldwu [~haroldwu@219.85.185.194] has joined #g0v.tw
+19:11 -!- haroldwu [~haroldwu@219.85.185.194] has quit [Changing host]
+19:11 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+19:11 < lijung> clkao: 我發現新版的他把它放在資料夾裡面 https://github.com/g0v/ly.g0v.tw/tree/master/contrib/ly_ios/platforms/ios
+19:11 < M00sUltraB0t> [ ly.g0v.tw/contrib/ly_ios/platforms/ios at master · g0v/ly.g0v.tw · GitHub ] - github.com
+19:12 < clkao> lijung: 還是如果是 generated files 看是 document 一下如何產生？
+19:12 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+19:13 < lijung> 我發覺他的 generated files 就是在 https://github.com/g0v/ly.g0v.tw/tree/master/contrib/ly_ios/platforms/ios
+19:13 < M00sUltraB0t> [ ly.g0v.tw/contrib/ly_ios/platforms/ios at master · g0v/ly.g0v.tw · GitHub ] - github.com
+19:14 < lijung> 我在 https://github.com/g0v/ly.g0v.tw/tree/master/contrib/ly_ios # 路徑下的 www 會更新到那邊
+19:14 < M00sUltraB0t> [ ly.g0v.tw/contrib/ly_ios at master · g0v/ly.g0v.tw · GitHub ] - github.com
+19:14 < lijung> clkao: 你試試看 cordova build ios
+19:17 < lijung> clkao: 可以嗎？
+19:17  * lijung 我想出去吃點晚餐
+19:17 -!- a-tsioh [~pierre@15.21.90.92.rev.sfr.net] has quit [Ping timeout: 248 seconds]
+19:18 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+19:18 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+19:21 -!- a-tsioh [~pierre@110.26.90.92.rev.sfr.net] has joined #g0v.tw
+19:22 < clkao> lijung: later
+19:22 -!- SupaplexTW___ [~Adium@1-162-99-60.dynamic.hinet.net] has joined #g0v.tw
+19:23 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+19:24 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+19:25  * Ti_W_B Nettalk¤£©w®É±Y¼ì
+19:25 < yhsiang> Ti_W_B: try irccloud?
+19:26 < Ti_W_B> 有非網頁版嘛....?
+19:27 < yhsiang> Ti_W_B: 網頁版 跟 app
+19:27 < Ti_W_B> yhsiang: Googleing
+19:31 -!- chihchun is now known as chihchun_afk
+19:33 -!- a-tsioh [~pierre@110.26.90.92.rev.sfr.net] has quit [Quit: WeeChat 0.3.8]
+19:36 -!- Missphoenix [~Miss@ZJ059033.ppp.dion.ne.jp] has joined #g0v.tw
+19:40 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 248 seconds]
+19:43 < clkao> lijung: Compiling app on platform "ios" via command "/Users/clkao/src/st/stconfig/git/g0v/ly.g0v.tw/contrib/ly_ios/platforms/ios/cordova/build"
+19:43 < clkao> { [Error: spawn ENOENT] code: 'ENOENT', errno: 'ENOENT', syscall: 'spawn' }
+19:53 < lijung> clkao: 好詭異阿我的電腦上有 build 這個檔案但是 github上沒有
+19:53 < lijung> 可是也不再 gitignore 清單裡面不知為什麼無法 git add 這個檔
+19:55 < lijung> @@ 發現 cordova https://github.com/g0v/ly.g0v.tw/blob/master/contrib/ly_ios/platforms/ios/.gitignore # ignore 掉
+19:55 < M00sUltraB0t> [ ly.g0v.tw/contrib/ly_ios/platforms/ios/.gitignore at master · g0v/ly.g0v.tw · GitHub ] - github.com
+20:01 < ETBlue> au: roger ^o^ # moed2ct
+20:01 < ETBlue> 剛好補血…戴上矯正器後感覺好虛弱
+20:05 < lijung> clkao: 可以了！
+20:07 -!- Stranger_1980 [~Stranger_@1.34.223.58] has quit [Ping timeout: 245 seconds]
+20:08 < clkao> lijung: 還是說有什麼指令可以 regen 那些 generated files?
+20:08 < clkao> lijung: 因為那些塞進去 version control 好像很多餘?
+20:11 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+20:14 < lijung> clkao: 我覺得是他的 .gitignore file 寫錯，因為他其實想 ignore 的 build 應該是 ignore build/*, CordovaLib/build/ 這兩個資料夾，但是他也不小心把 build execute file 也 ignore 掉
+20:14 < ipa> 收到 fumi 一個月前寄的明信片
+20:14 < lijung> clkao: https://github.com/g0v/ly.g0v.tw/commit/b3acc5799f0d8632755c28adcb35bd13932b2540
+20:14 < M00sUltraB0t> [ add build file · b3acc57 · g0v/ly.g0v.tw · GitHub ] - github.com
+20:15  * ipa 平均一個月看一次實體信箱 XD
+20:15 < ipa> fumi 表示，irc 的話題常常不懂但是會看 XD
+20:16 < lijung> ++
+20:17 -!- Missphoenix [~Miss@ZJ059033.ppp.dion.ne.jp] has quit [Quit: Leaving]
+20:17 -!- chihchun_afk is now known as chihchun
+20:17 -!- Missphoenix [~Miss@114-38-109-194.dynamic.hinet.net] has joined #g0v.tw
+20:17 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+20:18 -!- chihchun is now known as chihchun_afk
+20:18 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+20:21 < poga> clkao: ok, ignore client/ref.js了
+20:22 < poga> clkao: 後來我大概找到怎麼重現travis上的test error了... 我只要先開兩個實況網站再跑test就會出現 -_-... 還在想怎麼修
+20:26 < tuiry> ETblue 一般畫畫跟做圖有些差異，這單子有點難寫
+20:27 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has joined #g0v.tw
+20:33 < tuiry> 如果只是要學PS或AI，找本中文介紹全工具的書其實也可以學的七七八八，不要太誇張應該都可以用吧
+20:36 < ETBlue> tuiry: 我原本的沒有插畫類，好像該獨立一個分類 www
+20:37 < tuiry> 插畫設計 視覺傳達，很多都是相通的
+20:37 < lijung> clkao: 我把 platform 全部 remove 掉了這樣似乎才是對的？ 讓他重新下 command regenerate files  # https://github.com/g0v/ly.g0v.tw#cordova---mobile
+20:38 < M00sUltraB0t> [ g0v/ly.g0v.tw · GitHub ] - github.com
+20:38 < tuiry> vofan的教學還有談到互補色 對比色 構圖等等的，應該都可以用道
+20:41 < ETBlue> 所以認真來說有通用的、設計專用的、插畫專用的…
+20:41 < ETBlue> 是有點難寫www
+20:42 < tuiry> 應該也不需要寫深?
+20:43 < ETBlue> tuiry: 你自學是看什麼，還是沒機會自學就已經會了
+20:43 < ipa> hcchien: 有確定時間了嗎？
+20:43 < tuiry> ETBlue: 電腦繪圖嗎?
+20:44 < ETBlue> tuiry: 全部…包括電腦繪圖XD
+20:44 < tuiry> 我大學念的是美術系，算有一點底吧
+20:44 < tuiry> 念美術系之前都是自己畫圖
+20:44 < ETBlue> tuiry: 有沒有那種特別適合沒老師教、沒上學校、完全自學的
+20:45 < tuiry> 電腦繪圖，就先買板子，一開始是看Vofan教學，後面都自己硬上，有問題再問
+20:46 < ETBlue> tuiry: 看來你的路線很適合 hychen 
+20:46 < tuiry> ETBlue: vofan教學 XD 他真的是個很親切有趣的人
+20:46 < tuiry> 嗨董的畫不錯阿
+20:46 < ETBlue> tuiry: 嗨董最近也在學畫圖 lol
+20:46 < ETBlue> 喔喔你看過啦
+20:46 < tuiry> 有些還蠻喜歡的
+20:47 < ETBlue> ㄟ你在哪看到的啊
+20:47 < tuiry> facebook
+20:47 < ETBlue> ……我去逛逛
+20:49 < clkao> yhsiang: 要來幫加 tests 嗎？ czchen 好像有幫 hack.g0v.tw 加上一些 skeleton, 應該可以偷過來用
+20:50 < ETBlue> tuiry: 看到惹…根本畢卡索
+20:50 < tuiry> 批咖批咖 批咖秋~
+20:51 < ETBlue> tuiry: 嗨董前幾天萌典松的時候在煩惱如何在 ipad 上畫圖，因為電容式筆頭都很粗
+20:51 < Ti_W_B> 雷~邱~
+20:51 < tuiry> ETBlue: 是喔 好想看嗨董現場作畫喔
+20:52 < Ti_W_B> 話說我們學校有間電腦教室一人一塊繪圖板......不知花了多少錢?
+20:52 < ETBlue> tuiry: 不曉得你對嗨董這類型的畫家有何建議？他目前都用紙筆
+20:52 < ETBlue> Ti_W_B: 你有 irccloud 了嗎？
+20:53 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has quit [Quit: mno2]
+20:53 < Ti_W_B> 等待irccloud回應中....
+20:53 < Ti_W_B> 他說把我排進等待名單
+20:53 < tuiry> ETBlue: 繼續畫 畫久你就是master了
+20:53 < ETBlue> tuiry: 那下次小松時找 hychen 跟 tkirby 他們，美術班來跟團畫畫吧
+20:53 < poga> Ti_W_B: 直接invite你好像會比較快
+20:53 < ETBlue> poga++ 
+20:53 < tuiry> 好阿~先祈禱我有空~~~
+20:54 < poga> Ti_W_B: msg你的email給我 :p?
+20:54 < ETBlue> tuiry: 對喔你是美術班開班瓶頸所在… XD
+20:54 < tuiry> 人家也不是故意的(哭
+20:54 < ETBlue> 辛苦惹 (拍拍 XD
+20:55 < tuiry> 嗨董之前貼的那個什麼筆，是要來畫圖用得嗎
+20:55 < clkao> Ti_W_B: 你可以到 topic 那個 link 填一下，就會有人 invite 你了
+20:56 < Ti_W_B> 0.0
+20:57 < Ti_W_B> 謝謝各位~收到了~
+20:58 -!- Missphoenix [~Miss@114-38-109-194.dynamic.hinet.net] has quit [Remote host closed the connection]
+20:58 -!- Missphoenix [~Miss@114-38-109-194.dynamic.hinet.net] has joined #g0v.tw
+20:59 -!- SupaplexTW___ [~Adium@1-162-99-60.dynamic.hinet.net] has quit [Quit: Leaving.]
+21:00 -!- Ti_W_B_ [uid16542@gateway/web/irccloud.com/x-mghxsqfqomzzwjrt] has joined #g0v.tw
+21:01 < Ti_W_B_> 進來了~
+21:02 < Ti_W_B_> irccloud設定OK~感謝~
+21:03 < ETBlue> tuiry: paper 的筆嗎？對啊，但好粗
+21:03 < tuiry> Ti_W_B 大手筆..
+21:03 < tuiry> ETBlue: 沒有感壓?
+21:04 < ETBlue> tuiry: 萌典松時 tkirby 有帶一隻透明塑膠片頭的筆，但貌似沒有 wacom 的好用
+21:04 < ETBlue> tuiry: ipad 好像趕鴨不能
+21:04 < tuiry> 如果這年頭有比wacom好用的技術，他就不會貴成這副德性了
+21:05 < Ti_W_B> tuiry 還有另一間是一人一台電子琴，創作音樂用
+21:06 < tuiry> 貴校學術科比例如何?
+21:06 < ETBlue> tuiry: tkirby 還推坑嗨董買這個 http://cintiqcompanion.wacom.com/CintiqCompanion/en/
+21:06 < M00sUltraB0t> [ Cintiq Companion | Wacom ] - cintiqcompanion.wacom.com
+21:07 < tuiry> tkirby買了借我畫看看~~~~~~~~~~
+21:09 < Ti_W_B> 我們是普通高中，只是有些特殊課程
+21:09 < tuiry> Ti_W_B> 真有趣ww
+21:12 < Ti_W_B> 某人表示目前只用過PS和滑鼠，繪圖板/繪圖完全不行......
+21:15  * Ti_W_B_ 開始K書，irc掛網中........(話說用irccloud好像不用掛?)
+21:16 < yhsiang> tuiry: 是因為ipad是用電容式 這是先天限制
+21:16 < yhsiang> ipad一定的是肥頭筆 ..
+21:17 < Ti_W_B> 電容式吧.....先天不支援感壓?
+21:17 < Ti_W_B> 之前看過有人用iPad連PC的PS
+21:17 < Ti_W_B> 可以當作輔助工具....
+21:18 < Ti_W_B> 詳情忘了，在PCADV某期內有
+21:19 < CAA51> 看了 ETBlue 的影片， 23 沒去真可惜 XDD ETBlue++
+21:19 < yhsiang> Ti_W_B: 一定有感壓 只是感壓的原理不同
+21:20 < Ti_W_B> 但iPad想當繪圖板應該是有難度.....至少專業的肯定不行
+21:20 < Ti_W_B> 我記得iPad的觸控只有0和1兩種強度?
+21:20 < CAA51> 巴黎有下線，帶一隻馬頭過去 XDDDD
+21:21 < yhsiang> CAA51: 這你都聽到了 XD
+21:21 < Ti_W_B> 對歐
+21:21 < Ti_W_B> 那只是螢幕
+21:21 < ETBlue> CAA51: 好認真啊你搞不好是唯一看完全程的 XD
+21:21 < Ti_W_B> 抱歉才疏學淺
+21:22 < CAA51> yhsiang: 整個播放清單還在撥...
+21:22 < Ti_W_B> https://www.wacom.asia/tw/wacom-ipad
+21:22 < M00sUltraB0t> [ Wacom於iPad上帶來最棒的創作樂趣 | Wacom | Wacom 台灣 ] - www.wacom.asia
+21:22 < CAA51> ETBlue: 才看到一半，有幾則收音真的囧，懂大家昨天討論的問題了。
+21:23 < Ti_W_B> 沒有細點的頭?http://www.books.com.tw/products/N000416900
+21:23 < M00sUltraB0t> [ 博客來-Wacom Intuos Creative Stylus ★ iPad專用專業感壓素描觸控筆 ★ ] - www.books.com.tw
+21:23 < ETBlue> CAA51++ 花時間整理影片超值得 XD
+21:25 < yhsiang> Ti_W_B: adobe可能不同意你的說法 # 當繪圖板, 至少他2014會推出一支筆跟一隻尺 XD
+21:25 < Ti_W_B> 是喔.....
+21:26 < yhsiang> http://whiteappleer.tw/2013/05/07/adobes-mighty-bluetooth-stylus-works-with-ipad-apps-and-stores-settings-in-the-cloudread-more-at-httpwww-cultofmac-com226355adobes-mighty-bluetooth-stylus-works-with-i/
+21:26 < M00sUltraB0t> [ Adobe發表iPad用藍牙感壓觸控筆「Mighty」與數位尺規「Napoleon」 | wa+er. 白蘋果急救室 ] - whiteappleer.tw
+21:28 < CAA51> 現在聽到關貿署。 ronnywang++
+21:31 < Ti_W_B> 貌似不錯
+21:31 < Ti_W_B> 但沒iPad..........
+21:34 < Ti_W_B> adobe跑來做筆.....
+21:34 < Ti_W_B> 話說之前nvidia也跑去做遊戲機
+21:34 < Ti_W_B> microsoft去作平板
+21:38 < tuiry> yhsiang: 這樣阿XP 長知識 謝謝
+21:38 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has joined #g0v.tw
+21:40 -!- CJarek [kvirc@1-165-119-156.dynamic.hinet.net] has quit [Read error: Connection timed out]
+21:41 -!- CJarek [kvirc@1-165-119-156.dynamic.hinet.net] has joined #g0v.tw
+21:53  * Ti_W_B ¬Ý¨ìPCMark¤À¼Æ´d¼@¤¤
+21:57 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+21:59 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 248 seconds]
+21:59 -!- Ti_W_B_ is now known as Ti_W_B
+22:00 -!- Ti_W_B2 [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+22:01 < glll4678> yshiang: 我打不開那網頁耶 @@
+22:03 < yhsiang> glll4678: no idea, 該站目前有問題吧
+22:04 < nchild_> Hi，請問各位一個問題，「推動網路中立性立法」想仿 g0v 之前翻譯幾份文件的做法，使用 hackpad 翻譯網路中立性的文件，但是有人提到 hackpad 有中文輸入的問題（我自己是還沒碰到過），所以應該使用 Google Docs，請問各位有碰過什麼 hackpad 的問題嗎？或是有無其他建議？謝謝。
+22:05 -!- icman [~icman@123.240.173.168] has joined #g0v.tw
+22:06 < yhsiang> nchild_: 的確偶爾因為輸入法無法選字, 但我會透過notepad等其他軟體輔助複製貼上, 所以不構成問題 XD
+22:07 < ETBlue> nchild: 就打字太多、打太快的時候，輸入法會走經，還沒組成字就跑到 hackpad 上
+22:07 < ETBlue> nchild: etherpad 更嚴重… hackpad 還好，只有拿來做現場紀錄時比較困擾，因為要打很快
+22:08 < ETBlue> nchild: 慢慢打的話就不會
+22:08 < ETBlue> 應該是說，邊想邊打的話就不會 XD
+22:10 < clkao> ETBlue: etherpad 也會嗎？
+22:11 < nchild_> Hi，請問各位一個問題，「推動網路中立性立法」想仿 g0v 之前翻譯幾份文件的做法，使用 hackpad 翻譯網路中立性的文件，但是有人提到 hackpad 有中文輸入的問題（我自己是還沒碰到過），所以應該使用 Google Docs，請問各位有碰過什麼 hackpad 的問題嗎？或是有無其他建議？謝謝。
+22:12 < nchild_> yhsiang: ETBlue: 原來是我打太慢⋯⋯所以聽起來的確有問題，但應該不會有決定性影響。
+22:12 < nchild_> 抱歉剛不小心按出重複的問題，實在不太熟 IRC client。
+22:13 < yhsiang> 我是不覺得這種小問題能影響我去用hackpad XD
+22:13 < jimyhuang> ETBlue: etherpad是最新版的嗎？
+22:15 < nchild_> yhsiang: 那如果跟 Google Docs 比較呢？是不是有什麼更好的理由使用 hackpad？
+22:16 < nchild_> 剛又有朋友說「如果想知道是誰貢獻的，hackpad比較好」。
+22:17 < clkao> yes
+22:18 < nchild_> 實際上我無法比較的原因是，知道 hackpad 之後，已經很少用 Google Docs，所以不知道那邊的進展，只大概知道整合進 Google Drive。
+22:19 -!- Ti_W_B2 [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 245 seconds]
+22:19 < nchild_> 但是我的 Dropbox 同步參與的 hackpad。
+22:20 < nchild_> 所以這部分算打平。
+22:21 -!- Ti_W_B2 [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+22:24 < ETBlue> clkao: etherpad 之前使用的經驗是即使打慢也會，我用 windows - chrome - 自然輸入法
+22:24 < ETBlue> jimyhuang: 是兩三個月（？）前用的，中間如果更新的話我沒用到新的 XD
+22:25 < clkao> ETBlue: 是我弄的那個版本嗎？
+22:25 < ETBlue> clkao: 是之前在 prfb 裡面的那個版本 XD 不曉得誰弄的（抓頭
+22:25 < clkao> ya.... 那就是了 :p
+22:26 < clkao> 有 hackpad authorship style 的
+22:26 < ETBlue> clkao: 你是 fork 誰的嗎？搞不好原版就有？只是沒用過不曉得狀況
+22:26 < clkao> ya 應該是本來就有的問題
+22:26 < ETBlue> clkao: 好像在你改成 hackpad style 之前就有惹
+22:27 < clkao> 不過既然連 angularjs 的 compositionstart 都修了，這個應該也可以修一下吧？
+22:28 < ETBlue> nchild: google docs 的作者太難找了，即時聊天好像也不會保存…還是像 hackpad 全部攤開比較單純
+22:28 < dirty__> hackpad 網路是個問題
+22:28 < yhsiang> 可以吧, 覺得之前autocomplete也碰到這個問題 XD
+22:29 -!- Ti_W_B2 [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 272 seconds]
+22:30 < nchild_> dirty__: 問題是指？
+22:30 < clkao> yhsiang: 想要送 PR 進 3k+ star 的 github project 嗎？
+22:31 < clkao> yhsiang: autocomplete 現在應該自動解掉了吧？上 1.2.2 後
+22:32 < yhsiang> 等等來測看看 XD 當初因為這個問題所以直接改成local 就不怕query太多
+22:33 < dirty__> nchild_: 不穩(不像 g社 資本雄厚?) 我這邊常常會有連不到, 或是中間全白的狀況
+22:35 < walkingice> @o@
+22:35 < hychen> 打工好忙啊....
+22:36 < lijung> clkao: 你跑 cordova 的時候沒有跳出 ly.g0v.tw的畫面嗎？
+22:36 < clkao> lijung: 有，可以了
+22:36 < clkao> lijung: 現在是直接包一個 webview 連到 http://ly.g0v.tw 對吧？應該是改成 local version bundle 進去
+22:36 < clkao> lijung: 剛開 issue 給你了 :P
+22:37 < yhsiang> 我看issue好像有人解過了 https://github.com/ether/etherpad-lite/pull/999
+22:37 < M00sUltraB0t> [ Fixed international composition issues (e.g., Japanese Input method) by lepidum · Pull Request #999 · ether/etherpad-lite · GitHub ] - github.com
+22:37 < clkao> yhsiang: 那可能太久遠了，後來又出現不同的
+22:37 < lijung> clkao: i know, ok 我看看
+22:39 < yhsiang> oh, 應該來測看看
+22:40 < lijung> clkao: sorry 我不太了解為什麼要 local version bundle 進去？
+22:41 < clkao> lijung: 因為以後也許可以 provide static info for offline, 雖然現在資料是都從 api.ly 來
+22:41 < clkao> lijung: 或者等 pgrest sync 做好，data 可以 from local cache... static page 整個在 local 有一份的話就可以直接用了
+22:42 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+22:42 < clkao> lijung: btw, 如果開了一個 pdf 關係文書的話，會無法 back
+22:42 < lijung> @@ cool!! ok 了解了
+22:42 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+22:42 < clkao> |D
+22:43  * lijung 恍然大悟，剛剛一直在狀況外 ...
+22:43 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+22:43 -!- nchild__ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+22:43 -!- nchild__ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Client Quit]
+22:46 -!- Ti_W_B2 [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+22:54 < Michael_Thunder1> 介紹一個超強的圖資系統／安全臺灣平台／http://www.safetaiwan.tw
+22:54 < M00sUltraB0t> [ SafeTaiwan ] - www.safetaiwan.tw
+22:55 < Michael_Thunder1> 除了比較敏感的資料，一般使用者可以看到93%部分。
+22:59 -!- wayne930242 [~wayne9302@198.199.118.114] has joined #g0v.tw
+22:59 < yhsiang> au: 我還加了那個作者的qq號 XD
+23:00 < CAA51> ETBlue: 嘿嘿
+23:02 < CAA51> 試著讓萌典娘長大一點： https://plus.google.com/+caasiHuang/posts/dWd2geXoMXW
+23:02 < M00sUltraB0t> [ caasi Huang - Google+ - unhealthy imagination of g0v 0: moedict-tan … ] - plus.google.com
+23:03 < clkao> ...那是光劍嗎？
+23:03 < au> yhsiang++ XD
+23:04 < au> ...那好像就是傳說中的 two-by-four
+23:05 < CAA51> clkao: 我也搞不清楚自己畫得那隻是什麼 0rz
+23:05 < kcwu> https://www.moedict.tw/笏 ?
+23:05 < M00sUltraB0t> [ 萌典〔教育部國+臺+客語有聲辭典〕（民間線上版） ] - www.moedict.tw
+23:06 < CAA51> au: two-by-four 打到人看來會很痛 XDDD
+23:07 < au> 和港版的最終兵器摺凳有異曲同工之妙 XD
+23:07 < CAA51> kcwu: XDDDD # 笏
+23:08 -!- marlboromoo [~marlborom@111.235.209.87] has quit [Ping timeout: 246 seconds]
+23:10 < wayne930242> 萌典娘有換人嗎（驚
+23:13 -!- Missphoenix [~Miss@114-38-109-194.dynamic.hinet.net] has quit [Quit: Leaving]
+23:13 < CAA51> wayne930242: 沒抓到本來的氣質 0rz
+23:14 < poga> 那就當反派好了
+23:15 < wayne930242> 表情變成熟了
+23:15 < wayne930242> 反派來幹嘛的XD
+23:16 < au> lsc -v
+23:17 < au> poga: 為什麼要管 lsc 1.1  :p
+23:17 < yhsiang> CAA51: 你這個長大的速度比較慢 XD
+23:17 < au> poga: ( i.e. package.ls & package.json 改成 LiveScript: \1.2.x 會不會比較快? )
+23:17 < poga> au: 因為pgrest depends on lsc 1.1, 我跑npm run prepublish的時候他好像會去用1.1而不是我的1.2
+23:18 < CAA51> poga: 反派...是要用來跟原本的萌典娘送做堆嗎？
+23:18 < au> poga: 那還是趁機昇級吧
+23:18 < poga> au: 也對 XD
+23:18 < CAA51> yhsiang: 喔喔？當天已經有很多長大的版本了嗎？
+23:18 -!- chihchun_afk is now known as chihchun
+23:18 < poga> au: 好我升一下
+23:18 < au> poga++
+23:20 < poga> CAA51: 一個白臉一個黑臉好了
+23:21 < poga> 「別怕... 這是笏的解釋」「我...我才不是想讓你學到東西才給你解釋呢」 (疑好像搞錯了
+23:23 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 272 seconds]
+23:23 < CAA51> 真糟糕，連這個都不知道，難道要我幫你查嗎？（一邊遞出查好的結果）
+23:23 < poga> XDDD
+23:25 < wayne930242> XD
+23:25 < wayne930242> 所以之後萌典會推出萌典娘互動版嗎
+23:26 < clkao> walkingice: 挖坑自跳？
+23:27 < CAA51> sakura script... 結果這些坑都是連在一起的...
+23:28 < CAA51> http://en.wikipedia.org/wiki/Ukagaka
+23:28 < M00sUltraB0t> [ Ukagaka - Wikipedia, the free encyclopedia ] - en.wikipedia.org
+23:32 < yhsiang> lmmtfy ? # let me moedict that for you ...
+23:32 < hcchien> ipa: 柯導說星期四才有空，剛剛回信「又」把 google group 加回去了   XD
+23:38 -!- wayne930242 [~wayne9302@198.199.118.114] has quit [Quit: http://www.kiwiirc.com/ - A hand-crafted IRC client]
+23:39 -!- wayne930242 [~wayne9302@198.199.118.114] has joined #g0v.tw
+23:43 < CAA51> yhsiang: XDDD # lmmtfy
+23:44 -!- Ti_W_B2 [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 272 seconds]
+23:45 < CAA51> wayne930242: 如果小時候就有萌典娘互動版...，加上她應該可以用跟 moedict 一樣的方式處理中文斷詞！
+23:46  * wayne930242 居然開始研究 CAA51 剛丟出來的東西
+23:47 < CAA51> wayne930242: 偽春菜對話再多還是會覺得孤單，不知道現在發展得如何了？
+23:48 < wayne930242> CAA51: 如果我成功安裝再告訴你XD
+23:57 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw

@@ -1,0 +1,111 @@
+--- Day changed 日  6月 21 2015
+00:01 < slackbot2> <miaoski> @acechen: 可以喲。只要是 ESP8266 都可以刷，不管它是 ESP-01, 03, 12 ...
+00:01 < slackbot2> <miaoski> @acechen: 對。打算來抄這裡的做法: <https://github.com/yangbo1979/esp8266/tree/master/EasyWebConfig>
+00:01 < kcwu> slackbot2's url: [esp8266/EasyWebConfig at master · yangbo1979/esp8266 · GitHub]
+00:02 < slackbot2> <miaoski> 然後也不需要 esp8266 arduino lib, 讓它去送資料，arduino 負責丟 lua 進去幫變數賦值就好。
+00:03 < slackbot2> <miaoski> 真不知道做出 ESP8266 的這家公司要怎麼賺錢...
+00:07 < slackbot2> <acechen> 其實如果用 <https://www.sparkfun.com/products/13231> 就可以扔掉 Arduino 了，把 sensor 直接連上去
+00:07 < kcwu> slackbot2's url: [SparkFun ESP8266 Thing - WRL-13231 - SparkFun Electronics]
+00:21 < slackbot2> <miaoski> @acechen: 需要 ADC 呀。印象中 ESP8266 沒支援這個。
+00:25 < slackbot2> <miaoski> @acechen: ESP-12 板子上有一個 ADC/TOUT. 不過我們需要讀 MQ9 + Sharp 的話，就需要一個 multiplexer? 或是外掛這個
+00:26 < slackbot2> <miaoski> "Read more than one analog voltage with the ESP8266 using the I2C MCP3021 ADC converter breakout board.” (竟然在 YouTube 上找到的)
+00:27 < slackbot2> <miaoski> 啊。上面的解法不好..
+00:29 < slackbot2> <miaoski> 淘寶上類似的板: <http://tw.taobao.com/item/44753076827.htm?spm=a1z3o.7406521.101.39.oaz7NQ&amp;abtest=_AB-LR492-LR501-LR517-PR492-PR501-PV517_1274>
+00:29 < kcwu> slackbot2's url: [NodeMcu Lua WIFI 物聯網 開發板 基於ESP8266 ！！-淘寶台灣，萬能的淘寶]
+00:49 < slackbot2> <miaoski> @acechen: 用一個多工器就好了。有沒有推薦的型號... 我不是唸電子的，Google 半天找不到 sel 應該用哪一種
+04:15 -!- sharity__ is now known as sharity_
+04:15 -!- j100002ben______ is now known as j100002ben___
+04:15 -!- LKK_Cloud_ is now known as LKK_Cloud
+04:15 -!- othree______ is now known as othree_____
+04:15 -!- NewCliCker_ is now known as NewCliCker
+04:15 -!- mindos_______ is now known as mindos______
+04:15 -!- tonghuix_ is now known as tonghuix
+04:21 -!- clode____ is now known as clode___
+04:30 -!- timdream_ is now known as timdream
+04:48 -!- zea1_bsd is now known as zeal_bsd
+04:48 -!- zea1ancer is now known as zealancer
+04:48 -!- KuoE0_ is now known as KuoE0
+04:48 -!- ychsiao_ is now known as ychsiao
+04:49 -!- ychsiao is now known as Guest18956
+05:18 -!- a0000778_ is now known as a0000778
+05:20 -!- clode____ is now known as clode___
+05:22 -!- clkao_ is now known as clkao
+07:53 -!- Jedi__ is now known as Jedi_
+08:36 -!- nyli_ is now known as nyli
+08:36 -!- othree______ is now known as othree_____
+08:36 -!- V1ctor_ is now known as V1ctor
+08:37 -!- _bobchao_ is now known as _bobchao
+08:37 -!- NewCliCker_ is now known as NewCliCker
+08:37 -!- lhtseng_ is now known as lhtseng
+08:38 -!- elocmai_ is now known as elocmai
+08:39 -!- caasihuang_ is now known as caasihuang
+08:40 -!- amatecha_ is now known as amatecha
+08:41 -!- clkao_ is now known as clkao
+08:49 -!- clode____ is now known as clode___
+11:21 < slackbot2> <dustinul6> @ronnywang: hihi ronny,  請教一下台灣公司資料庫有可以用的API嗎?  我跟幾夥伴想要弄監督在台陸資的網站，我們想算陸資對所投資的台灣公司之持股比例、第幾大股東等，需要台灣公司的資料庫。不曉得有沒有API能讓我們自動把資料抓出來？感謝感謝！  我是coding 新手，還請多多指教，感激！^^"
+11:28 -!- lkkgeniu1 is now known as lkkgenius
+11:48 < slackbot2> <kiang> @dustinul6 網站上方就有整包下載的連結？
+11:50 < slackbot2> <kiang> 搜尋結果上方也會看到 Api 位置
+12:02 < slackbot2> <dustinul6> @kiang: 感謝感謝，我看到了，這樣應該知道怎麼做了，其實之前就有看到，不過因為實在太菜看到分很多json檔案就傻了，現在想一想應該是知道怎麼做了，真是見笑了^^
+12:03 < slackbot2> <ronnywang> @dustinul6: 如果你已經確定需要公司資料的範圍以及公司的統一編號，就透過 API 一個一個公司拉就好了，API 網址在每個公司查詢頁上面都有，把統一編號換掉就好了
+12:10 < slackbot2> <dustinul6> @ronnywang: 感謝感謝，不過我看到的似乎中文字都變成這樣"\u516c\u53f8\u72c0\u6cc1":"\u6838\u51c6\u8a2d\u7acb” 這事正常的嗎？
+12:11 < ronnywang> dustinu16: 這是正常的，這是 json encode 之後的字，你用任何程式語言的 json 函式庫去讀他都可以把他還原回來
+12:13 < ronnywang> 用 chrome 的話，可以裝 JSONView 這個 extension ，他會幫你把 JSON 轉成較易閱讀的格式
+12:16 < slackbot2> <dustinul6> @ronnywang: 喔喔，那這樣我懂了！感謝感謝！
+12:24 -!- John_mobile is now known as John_lin
+12:34 -!- privism_ is now known as privism
+17:00 < slackbot2> <nchild> 剛出爐的佳節翻譯坑，希望下次大松能應景完成，請大家踴躍參與！<http://bit.ly/data-design-zh>
+17:00 < kcwu> slackbot2's url: [Data + Design 資料＋設計 中文版翻譯 - g0v.hackpad.com]
+17:01 < slackbot2> <moon_c> @nchild: 要參與的人是要邀請進gitbook嗎～剛剛看到有點興趣兒
+17:29 < slackbot2> <nchild> @moon_c: 要用 Gitbook 編輯器才需要 Gitbook 帳號，不然會用 Github，直接編輯原始碼也行。
+17:29 < slackbot2> <nchild> 對了，還有另一個 channel 也要發。
+17:57 < [1]Rex> ¦w¦w
+17:57 < [1]Rex> ¦³¤H¦b£v
+17:58 < [1]Rex> £z´e²@
+18:00 < [1]Rex> .....
+18:00 < [1]Rex> ®g·S
+18:00 < [1]Rex> ¤j®a³£¦b¤W¯Z£v
+18:01 < [1]Rex> ¶Ù  ­¯¥Í¤H _1980
+18:01 < caasihuang> [1]Rex: can you read this?
+18:01 < kcwu> 不是每個人隨時都盯著這裡
+18:01 < [1]Rex> damn
+18:02 < caasihuang> [1]Rex: what's your encoding?
+18:02 < [1]Rex> i think i cant type chinese when i am using HydraIRC
+18:03 < [1]Rex> i am not sure avt my encpdoing but i think the problem may from HydraIRc
+18:03 < [1]Rex> somebody teach me how to setup?
+18:04 < [1]Rex> sorry, I am nood on IRC
+18:04 < [1]Rex> *noob
+18:05 < caasihuang> [1]Rex: I have 0 experience with HydraIRC. I am googling it.
+18:06 < [1]Rex> thank you bro, i am also googling
+18:06 < [1]Rex> :D
+18:07 < kcwu> looks like you are using big5 (i can read your chinese), but this channel use utf-8 encoding.
+18:09 < [1]Rex> ¥u¦³§A¬Ýªº¨ì¶Ü¡H
+18:09 < caasihuang> [1]Rex: http://svn.hydrairc.com/hydrairc/trunk/Reference%20Docs/ctcp2_2.txt check if chapter 2.10 helps or not
+18:09 < caasihuang> kcwu++ 0rz
+18:10 < caasihuang> [1]Rex: oops, please ignore the link
+18:10 < [1]Rex> hmm, okay
+18:10 < caasihuang> I don't think it is helpful in this case 0rz
+18:11 < [1]Rex> its fine, thanks for ur help
+18:11 < [1]Rex> still googling :D
+18:12 < [1]Rex> http://oucmsc.blog.163.com/blog/static/1263403282010916104613848/
+18:12 < [1]Rex> damn
+18:12 < kcwu> [1]Rex's url: [使用irc - 零点钟的日志 - 网易博客]
+18:12 < [1]Rex> * HydraIRC ¤£¤ä«ù UTF-8
+18:19 < [1]Rex> which IRC program you guys are using?
+18:19 < [1]Rex> a little hand please, thank u
+18:19 < kcwu> i'm using irssi (on FreeBSD, not windows)
+18:20 < [1]Rex> uhhh, dunno anything about unix :(((
+18:20 < caasihuang> irssi+1 and IRCCloud(a web app)
+18:22 -!- linpc_ is now known as linpc
+18:28 < [1]Rex> guys, i will change into MIRC
+18:28 < [1]Rex> see you later
+20:07 -!- lwhsu_ is now known as lwhsu
+21:08 -!- blackca_ is now known as blackca
+21:08 -!- linpcc_ is now known as linpcc
+21:08 -!- LKK_Cloud_ is now known as LKK_Cloud
+21:08 -!- alex_lu_ is now known as alex_lu
+21:09 -!- czchen_ is now known as czchen
+21:09 -!- ETBlue_ is now known as ETBlue
+21:10 -!- c9sould___ is now known as c9sould__
+21:16 -!- pcchou___ is now known as pcchou__
+22:07 -!- icemango_ is now known as icemango

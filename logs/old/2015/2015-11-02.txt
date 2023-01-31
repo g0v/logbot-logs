@@ -1,0 +1,47 @@
+--- Day changed 一 11月 02 2015
+07:34 < dirty_> 我上次好像問過, 哪裡有台灣一天所有的新聞列表啊?
+11:23 -!- caasih is now known as world
+11:23 -!- world is now known as caasih
+13:48 < slackbot2> <chihao> 11/22秋鬥遊行，有人想到現場幫忙轉播嗎？
+15:03 < slackbot2> <peggylo> 剛拿上次大松做的【開放資料公務機關常見格式錯誤hackpad】&amp;Ronny慕約做的部會資料格式友善度排行，跟部內資訊單位討論，幾個觀察：
+15:03 < slackbot2>  　　
+15:03 < slackbot2> 1.對公務機關來說，會認為這些社群的看法是「很主觀的」，例如合併儲存格的問題，同事會覺得這不是格式問題，因為業務用的資料本來就是要這樣做。
+15:03 < slackbot2>  　
+15:03 < slackbot2> 2.同事會覺得開放資料的執行原則是「不增加新的業務」，並說明這是國發會給的準則。
+15:03 < slackbot2>  　
+15:03 < slackbot2> 3.同事理解不照社群建議的走法，會造成「資料釋出了，但因為格式有瑕疵，導致無法達到開放資料的目的」，但他們依然會這樣做，因為依據的是國發會給的原則。
+15:03 < slackbot2>  　
+15:03 < slackbot2> --
+15:03 < slackbot2> 我可以理解同事的為難，我想要push部內開放資料很根源的要先解決這個問題。國發會給的開放資料原則可能是60分的格式(for讓量先起來)，但現在公務員就會以「已達到60分」拒絕往更高分走。
+15:03 < slackbot2>  　
+15:03 < slackbot2> (我在想，國發會如果可以發一個函，說明60分只是及格，鼓勵部會往更高分走(社群建議格式)，我覺得會有幫助)
+15:04 < slackbot2> <peggylo> 這裡有沒有其他公務員啊？好奇其他部會開放資料應該也會碰到這樣的問題？
+15:05 < slackbot2> <peggylo> ref : <https://hackpad.com/Lesson-1-ver1.0-XdDvvmJJ6Zf#:h=常見錯誤一：合併欄位>
+15:05 < kcwu> slackbot2's url: [公務員開放資料Lesson 1 (ver1.0) - hackpad.com]
+15:06 < slackbot2> <kiang> peggylo: 其實現階段來說能夠達到 60 分的的確就已經是高標，在地方單位可能還努力追著 60 分的目標 XD
+15:06 < ronnywang> 也許回到國發會給各機關的準則部份，放出原始 excel 算 60 分，轉成乾淨的 CSV 算 80 分，但是把合併儲存格或是排版 excel 直接轉成 csv 只能算 40 分了
+15:07 < slackbot2> <peggylo> 【開放資料定義】vs【國發會給的開放資料執行準則】，目前是後者完勝。
+15:08 < slackbot2>  @kiang  總要跟比自己好的比較吧Q____Q
+15:09 < slackbot2> <peggylo> @ronnywang: 喔~我覺得這個角度有可能有突破口。我下次用這個說法試試看。(正在要到底國發會完整的guideline跟過去發過的函文)
+15:10 < slackbot2> <kiang> 理想上是可以有一組人針對固定資料格式開發資料轉換系統，讓原本操作的人只要定時上傳就好；其實直接開發系統取代 Excel 才是上策，但可能規模太大了些
+15:15 < slackbot2> <au> 之前國發會只允許 CSV，很費了一番工夫才說服他們保留原始 Excel XML 是比較好的主意（當然有 ODS 就更好了）。我同意 Ronny 的角度。
+15:26 < slackbot2> <a0kman> @a0000778:   @clkao    發現很好的EXCEL黨 應該可以直接把進度爆推
+15:26 < slackbot2> <a0kman> <http://www.tactri.gov.tw/wSite/public/Attachment/f1388466981268.xls>
+15:26 < slackbot2> <a0kman> 因為正在整理增加超農域的藥劑分類
+15:27 < slackbot2> <a0kman> 所以發現的檔案  檔案品質不賴
+15:27 < slackbot2> <a0kman> 卡西測試過後 可以直接轉CSV
+15:27 < slackbot2> <a0kman> 主名 以及俗名 分類都有了
+15:29 < ronnywang> @a0kman: 這個 excel 超乾淨
+15:29 < slackbot2> <peggylo> @au: 目前我們部內顯然還沒接收到「excel xml更好」的訊息QQ
+15:43 < slackbot2> <au> 單從「建立資料以開放格式(如XML、JSON、CSV 等)為標準」這句話確實看不出來 QQ
+15:55 < slackbot2> <kiang> <https://www.ptt.cc/bbs/Gossiping/M.1446446573.A.1DB.html> - 這應該也可以做產生器，只是那個彩虹顏色有點麻煩 XD
+15:55 < kcwu> slackbot2's url: [[問卦] 明年是要選作業系統還是要選總統？ - 看板 Gossiping - 批踢踢實業坊]
+18:04 < ronnywang> CSV 最前面放入 BOM 字元算不算有問題呢?
+18:05 < ronnywang> 我用 PHP 的 fgetcsv 處理 BOM CSV 需要額外動作先把前面 BOM 拿掉，要不然有時欄位會判斷錯誤 ，查了一下 python 好像也要把 encode 從 utf-8 改成 utf-8-sig 才會正常
+18:06 < ronnywang> 在思考包含 BOM 的 CSV 要不要被列入 data.gov.tw 的髒資料範圍內 XD
+18:07 < slackbot2> <kiang> Bom 的清除應該簡單很多啦 XD
+18:08 < ronnywang> BOM 的清除算滿小的問題，對資料使用者來說就是踩過痛過一次，下次就知道問題在哪了 XD
+18:11 < slackbot2> <kiang> Bom 的清除應該簡單很多啦 XD
+22:22 -!- ffjjfjjf [01ab7692@gateway/web/freenode/ip.1.171.118.146] has left #g0v.tw []
+23:37 -!- isacloud_ is now known as isacloud
+23:45 -!- amatecha_ is now known as amatecha

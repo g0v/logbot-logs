@@ -1,0 +1,95 @@
+--- Day changed 六  1月 03 2015
+00:16 -!- seadog007_ is now known as seadog007
+10:51 -!- maximum_ is now known as maximum
+11:08 -!- tuccuay [~Adium@104.224.159.170.16clouds.com] has left #g0v.tw []
+12:12 -!- evelit_ is now known as evelit
+12:13 < pm5> au yhsiang 你們在弄 https://github.com/g0v/gitbook-plugin-discourse 嗎？
+12:13 < kcwu> pm5's url: [g0v/gitbook-plugin-discourse · GitHub]
+12:32 < slackbot> <yhsiang> pm5: 我在弄怎麼了?
+12:33 < hcchien> clkao: 對了一下，好像就行銷組那些輸出品有點細，沒辦法 mapping. 其他的應該就跟 lloyd 寫的一樣了
+12:34 < pm5> yhsiang: 找事情做 XD
+12:35 < clkao> hcchien++
+12:39 < AceChen> hcchien: clkao: 外租桌椅還沒付款的樣子
+12:42 < clkao> AceChen: 有，我看到x7
+12:42 < au> pm5: https://github.com/pm5/gitbook-plugin-lexicon/issues/1 ?
+12:42 < kcwu> au's url: [CSS3 Tooltip? · Issue #1 · pm5/gitbook-plugin-lexicon · GitHub]
+12:43 < au> pm5: 然後 clkao 建議的 GLOSSARY.md 我試了一下，在 gitbook build 和 gitbook pdf 都沒有作用... 但也許還是可以從 json 產生一下
+12:45 < au> pm5: 然後看一下如何 build https://github.com/g0v/crowdfunding-gitbook 進同個 repo 的 gh-pages? 之前有看到 grunt task，也許可以做成 post-commit hook?
+12:45 < kcwu> au's url: [g0v/crowdfunding-gitbook · GitHub]
+12:45 < au> 以上 XD
+12:46 < pm5> au okay XD
+12:48 < au> pm5++ # tickets created
+12:49 < kcwu> 這句提到 "這篇" # 我發現用 OruxMap, layer=-1 的繪製會有問題
+12:49 < kcwu> 譬如大甲溪的 layer=-1, 在比較上游的地方跟 forest 疊在一起, 大甲溪就被 forest 蓋掉看不到了.
+12:50 < kcwu> s/.*//
+12:50 < kcwu> 這句提到 "這篇", 可是沒看到 link?  # 18:36 < slackbot> <iflin> 人藥要注重對人毒性，跟農藥的佐劑不同。這篇有農藥的佐劑分類，與可能對人毒性。
+12:51 < kcwu> 是 slackbot 漏了嗎?
+12:54 < kcwu> 有誰在用 slack 的可以幫忙看一下?
+12:56 < a0000778> kcwu: IRC 上的對話原本也沒有阿
+12:58 < a0000778> kcwu: 喔 理解錯誤 slack 上也沒有
+12:59 < a0000778> kcwu: slack 上面接著是一個附件檔
+13:00 < kcwu> err.. 附件檔 @@
+13:16 -!- tuccuay [~Adium@104.224.159.170.16clouds.com] has left #g0v.tw []
+13:56 -!- tuccuay_ is now known as tuccuay
+13:58 -!- seadog007_ is now known as seadog007
+13:59 -!- tuccuay1 [~Adium@104.224.159.170.16clouds.com] has left #g0v.tw []
+15:31 < slackbot> <yhsiang> kcwu: 上傳的檔案似乎不會trigger message, 猜想可能要用slack api 來處理
+16:01 < yhsiang> au: pm5: https://github.com/g0v/gitbook-plugin-discourse # 可能要加promise 
+16:01 < kcwu> yhsiang's url: [g0v/gitbook-plugin-discourse · GitHub]
+16:03 < au> yhsiang++ # promise 是說 rsvp 或 bluebird 這類的 api 嗎
+16:10 < yhsiang> au: 應該是, 因為現在完全沒判斷callback回來的東西 XD
+16:11 < yhsiang> 或者我應該直接 patch discourse-api 會更好 XD
+16:11 < yhsiang> 像是他沒有實作category的部分
+16:15 < au> yhsiang: 贊成 patch XD # 我昨天剛送了 https://github.com/discourse/discourse_docker/pull/119 修好中文搜尋
+16:15 < kcwu> au's url: [Set default encoding UTF8, not ASCII by audreyt · Pull Request #119 · discourse/discourse_docker · GitHub]
+16:18 < yhsiang> au++ 之前剛好是看到pg encoding hmm
+16:20 < au> 對耶， community.g0v 和 community.citizenedu 好像也還沒  update pg_database set encoding 到 utf8
+16:20 < yhsiang> 我對於community.citizenedu要 update很苦惱 XD
+16:26 < clkao> ity.g0v 不是有手鄧i4gk6ia7gu4f/6
+16:27 < clkao> community.g0v 不是有手動作什麼事情 ?
+16:27 < au> 有，但昇級之後似乎掉了
+16:27 < au> (至少現在不能中文搜尋)
+16:27 < clkao> orz
+16:40 < yhsiang> 要問 Jcrt 了~
+16:46 < au> 新 po / edit 的可以... 所以只是需要 reindex
+16:46 < au> (community.g0v)
+16:47 < au> # cd /var/docker  ; ./launcher ssh app ; rake search:reindex
+16:48 < au> Jcrt: 有空時 rake search:reindex 一下？
+16:52 < clkao> 這是用 https://github.com/discourse/discourse_docker ?
+16:52 < kcwu> clkao's url: [discourse/discourse_docker · GitHub]
+16:54 < au> 是，不過手動昇 1.2.0 也是一樣， rake search:reindex 即可
+16:55 < trunin> hello
+16:56 < au> trunin: hi
+16:56 < trunin> @au-  i am new guy
+16:57 < trunin> hello every body
+17:33 < yhsiang> trunin: hi
+17:33 < yhsiang> 公民學院升級上去 但是現在 css GG hmm...
+17:39 -!- trunin [guest-trun@gateway/web/scrollback.io/x-uhgcynayfqkwblcq] has left #g0v.tw []
+18:23 < yhsiang> 呼 .. 終於修好了 XD
+18:50 < uppoth> 請為一下 S = `ls -l`
+18:50 < uppoth> echo $LS
+18:50 < uppoth> 會一直說 command not found
+18:50 < uppoth> 到底是為甚麼呢...
+18:51 < uppoth> LS = `ls -l`
+18:51 < uppoth> echo $LS
+18:53 < hychen> uppoth:看 /bin/ls 在不在
+18:54 < uppoth> ~$ which ls
+18:54 < uppoth> alias ls='ls --color=auto'
+18:54 < uppoth>         /bin/ls
+18:54 < uppoth> y在喔
+18:54 < uppoth> 在喔
+18:58 < kcwu> LS 是如何指定為 `ls -l` 的?
+18:58 < kcwu> 你用的是什麼 shell?
+18:58 < uppoth> @kcwu 我script 是 直接LS = `ls -l`
+18:58 < uppoth> 我用 bash
+18:59 < kcwu> = 前後不要加空白
+18:59 < pikehuuk> \\
+18:59 < pikehuuk> 這不是網頁版嗎
+19:00 < pcchou_lt> 用$()比較標準吧
+19:02 < uppoth> @kcwu 感謝 成功了
+19:02 < uppoth> 這bug太誇張了吧.... = =根本google不到
+19:03 < kcwu> 其實 error message 就要線索了, 它有說 LS command not found
+19:03 < kcwu> s/就要/就有/
+19:03 < uppoth> @kcwu  感恩
+20:04 < uppoth> mm
+20:40 -!- pcchou___ is now known as pcchou_lt

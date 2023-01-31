@@ -1,0 +1,73 @@
+--- Day changed 二  2月 17 2015
+00:02 < slackbot3> <yurenju> @clkao: 有遇到根本就連不進去機器的問題嗎？ (http)，我的 Docker 本地跑是沒問題的，上 tutum 就不行了
+00:05 < slackbot3> <clkao> 是把自己的機器裝他的 agent 嗎？之前是測 azure/digial ocean
+00:31 < slackbot3> <yurenju> 沒，node 是用它提供的，container image 是用我放在 docker hub 上的
+00:31 < slackbot3> <yurenju> 不過我改用 CoreOS + docker 就好了，想說先這樣，放著 = =
+00:31 < slackbot3> <yurenju> 先不用 tutum
+01:06 < slackbot3> <yhsiang> yurenju: 有設 forward port ?
+01:07 < slackbot3> <yurenju> yhsiang: 有誒
+01:07 < slackbot3> <yurenju> 感覺是個低級錯誤，但是目前鬼打牆看不出來  = =
+01:09 < slackbot3> <yhsiang> yurenju: express 是 `server.listen(port, 'localhost', ()=>{})` ... ?
+01:10 < slackbot3> <yurenju> yhsiang: 我用 loopback, 聽3000
+01:10 < slackbot3> <yurenju> 所以在 tutm 那邊的設定成 3000 => 80 這樣
+01:10 < slackbot3> <yhsiang> 同一台機器沒跑其它的 service ?
+01:10 < slackbot3> <yurenju> 沒～
+01:11 < slackbot3> <yurenju> port public 勾起來應該就好了啊啊啊啊啊啊～～
+01:12 < slackbot3> <yhsiang> 不知道 XD
+01:30 < yhsiang_> ronnywang: 後來查到少什麼參數了 XD
+01:31 < yhsiang_> 除了useragent, ctl00$ScriptManager1, eventtarget,eventargument,viewstate,eventvalidation 外
+01:31 < yhsiang_> 還要把你戳的那個 ctl00$ContentPlaceHolder1$GridView1$ctl02$HF_LNo 加進去
+10:27 < slackbot3> <kiang> 看起來蠻像是 http://asp.net 的防盜機制...
+10:27 < kcwu> slackbot3's url: [ASP.NET | The ASP.NET Site]
+10:32 -!- silice_ is now known as silice
+10:48 -!- seadog007_ is now known as seadog007
+10:49 -!- goddamn is now known as Goddamn
+11:11 < tonyq_____> 上週開放資料白皮書，影片檔根據眾夥伴齊力打好的逐字稿...FYI 
+11:11 < tonyq_____> https://hackpad.com/--is2kMEwkWVN
+11:11 < kcwu> tonyq_____'s url: [網路智慧新臺灣─透明治理構面分組實體會議- 逐字 - hackpad.com]
+11:25 < slackbot3> <yurenju> 問一下，一般來說，如果 production 的時候需要新增一些帳號密碼的檔案進去 docker container 通常都怎麼做啊？
+11:27 < slackbot3> <yurenju> 我只需要在 CMD ["npm", "start"] 前丟一個檔案進去，不過看起來如果寫進 Dockerfile 然後 push 的話就會外洩了
+11:50 < slackbot3> <yhsiang> ADD xxx ?
+11:51 < slackbot3> <yhsiang> yurenju:  有人拉了container 不是一樣外洩? XD
+11:51 < slackbot3> <yurenju> 對啊 haha... 我在想要怎麼解決，用環境變數傳進去好了
+11:53 < slackbot3> <yhsiang> 就ENV XD
+12:16 < slackbot3> <clkao> 一般是 env 或者 etcd :stuck_out_tongue:
+12:16 < slackbot3> <clkao> 歡迎來到 12fa 時代 XD
+12:25 < slackbot3> <yurenju> 12fa 又是什麼 XDD
+12:34 < slackbot3> <clkao> <http://12factor.net/>
+12:34 < kcwu> slackbot3's url: [The Twelve-Factor App]
+15:25 < slackbot3> <clkao> au: https://ethercalc.org/g0v-hackath12n 似乎空了... 忘記 backup 在哪裡了
+15:25 < kcwu> slackbot3's url: [EtherCalc - Share the URL to your friends and edit together!]
+15:35 < pm5> CMS 一般要怎麼進化到 12-factor app? 一堆檔案 (好多 state) 不知道怎麼處理
+15:39 < au> clkao: 在 https://ethercalc.org/static/history/g0v-hackath12n/
+15:39 < kcwu> au's url: [Index of /g0v-hackath12n/]
+15:39 < au> 我剛在 docker host 上跑 curl https://ethercalc.org/static/history/g0v-hackath12n/1423882501853.txt | redis-cli -x set snapshot-g0v-hackath12n 
+15:39 < slackbot3> <yhsiang> pm5: <http://roots.io/twelve-factor-wordpress/>  ? :stuck_out_tongue:
+15:39 < kcwu> slackbot3's url: [Twelve-Factor WordPress App | Roots]
+15:39 < au> 應該已回覆 (這件事實在需要一個 ui)
+15:40 < au> *回復
+15:43 < slackbot3> <clkao> lightning talks => 閃電秀 ignite talks => (被)閃電(打到)著火秀
+15:43 < pm5> yhsiang_: 好像看過這個, 還有底下關於 Drupal 的. 看起來都是建議架 NFS 或用 S3.
+15:47 < slackbot3> <pofeng> 燃
+15:47 < slackbot3> <clkao> 其實 clearly defined volume 以後 docker 相關工具 volume management 比較成熟後應該都還好
+15:48 < slackbot3> <clkao> 閃電燃眉秀
+15:49 < slackbot3> <pofeng> 萌典 => 燃典 (誤)
+15:49 < slackbot3> <pofeng> 閃燃講 好像不錯
+15:50 < slackbot3> <clkao> 燃Moe 炭火燒肉 ?
+15:50 < slackbot3> <pofeng> 對
+15:50 < slackbot3> <clkao> 閃燃講++
+15:50 < slackbot3> <hlb> 要放靜電產生器？
+15:50 < slackbot3> <hlb> 來不及講完就放電
+15:54 < slackbot3> <clkao> orz
+16:11 < pm5> clkao: 如果 volume 可以輕鬆搬來搬去就好了. kubernetes
+16:11 < pm5> 有這類功能嗎?
+16:28 < slackbot3> <clkao> pm5: 還沒, flock 有神秘的 zfs send/receive 5/3ck6
+17:09 < slackbot3> <clkao> 3/19 開放資料閃燃講 call for talks: <http://ocftw.kktix.cc/events/ignite-od-cft>
+17:09 < kcwu> slackbot3's url: [Ignite Open Data: Call for Talks]
+17:34 < slackbot3> <pofeng> 東波報了真快
+22:53 < slackbot3> <kiang> https://github.com/kiang/drugs/issues/29 - 有人來問就匯出目前狀態了 :simple_smile:
+22:53 < kcwu> slackbot3's url: [資料庫匯出檔 · Issue #29 · kiang/drugs · GitHub]
+23:37 < slackbot3> <kiang> "後面有個一直打字沒空理我們的人" <https://hackpad.com/2015.02.16--EKS4IWt96aG> - etblue++
+23:37 < kcwu> slackbot3's url: [2015.02.16 好食機年終尾牙大會 - hackpad.com]
+23:41 < ETBlue> kiang 賀顧門口………你 slack 了 orz
+23:56 < slackbot3> <clkao> tkirby: geoevent 寫篇英文 blog 吧

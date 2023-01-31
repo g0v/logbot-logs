@@ -1,0 +1,497 @@
+--- Day changed 日 12月 29 2013
+00:01 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has quit [Quit: Closing]
+00:01 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has joined #g0v.tw
+00:02 < ipa> ETBlue: 還有一些哩哩摳摳的東西要修 ._.
+00:03 < clkao_> poying: 對了，如果 tibet domain 放在 g0v."tw" 下會不會怪怪的(蒙藏委員會 XD)? 我剛發現原來有 .ti TLD, 而且可以申請 g0v.ti 耶
+00:04 < kcwu> caa51++ 
+00:05 < clkao_> poying: orz 根本是假的 tld: http://www.new-nations.net/site/rtyc-belgium.ti
+00:05 < kcwu> clkao_'s url: [New Nations - http://www.rtyc-belgium.ti]
+00:06 < ipa> 圖博g0v！特殊政府與政府關係～
+00:07 < au> tibet.g0v.asia 好像也不錯
+00:09 < clkao_> ++
+00:14 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has quit [Quit: lyanchih]
+00:25 < chhsiao1981> 如果 tibet 要在 g0v.tw 下. 建議是在外交部. 而不是蒙藏委員會 XD. 
+00:34 < kcwu> javascript 如果要寫一個 loop, 每個 iteration 都 sleep 一下, 可以改寫用 setTimeout 串起來. 但如果是 nested loop, 有建議的寫法嗎?
+00:36 < clkao_> kcwu: 你指的串起來是用 async.js 之類的方式串起來嗎？
+00:36 < clkao_> kcwu: 如果是的話, 就一樣 nested loop push 進去 那個 func array
+00:37 < kcwu> 我想做這樣的效果 for (i in p) { func1(i); sleep(1000); for (j in q) { func2(j); sleep(1000); }
+00:40 < au> kcwu: Wind.js 和 TameJS 都可以直接寫
+00:40 < au> $await(Wind.Async.sleep(1000))
+00:40 < au> await { setTimeout (defer (), 100); }
+00:40 < au> https://github.com/JeffreyZhao/wind/ and https://github.com/maxtaco/tamejs respectively
+00:40 < kcwu> au's url (1/2): [JeffreyZhao/wind · GitHub]
+00:40 < kcwu> au's url (2/2): [maxtaco/tamejs · GitHub]
+00:42 -!- pm5_ [~pm5@111-248-204-3.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+00:43 -!- ipa [sid12333@gateway/web/irccloud.com/x-wdnmirklbogtfvjm] has quit [Ping timeout: 260 seconds]
+00:44 -!- ipa [sid12333@gateway/web/irccloud.com/x-vfcrgysnzjjcyehe] has joined #g0v.tw
+00:44 < kcwu> thanks, 我來看看. 若在 livescript 也是一樣去用 wind.js/tamejs 嗎? 還是有其他解法?
+00:48 < au> 如果用 livescript 的話，打 function 不用打那麼多字，是以用 Q.delay 也不會比較麻煩
+00:48 < au> https://github.com/kriskowal/q/wiki/API-Reference
+00:48 < kcwu> au's url: [API Reference · kriskowal/q Wiki · GitHub]
+00:48 < pm5cloud_> jimyhuang++
+00:50 -!- pm5 [~Adium@111-248-204-3.dynamic.hinet.net] has quit [Quit: Leaving.]
+00:50 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+00:52 -!- pm5 [~Adium@111-248-204-3.dynamic.hinet.net] has joined #g0v.tw
+00:53 -!- rich1iu [richliu@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+00:53 -!- rich1iu [richliu@richliu.Math.NCTU.edu.tw] has joined #g0v.tw
+01:02 -!- pm5 [~Adium@111-248-204-3.dynamic.hinet.net] has quit [Quit: Leaving.]
+01:07 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit []
+01:15 < kcwu> 雖然我沒遇到那麼複雜的狀況, 還是很好奇 async bubble sort 用 livescript 寫會變怎麼樣? http://windjs.org/cn/docs/async/samples/browser/sorting-animations/
+01:15 < kcwu> kcwu's url: [排序动画（异步模块示例） - Wind.js]
+01:17 < au> kcwu: Q + livescript 如果不用 helper 的話, 你剛才的範例長這樣:
+01:17 < au> https://gist.github.com/audreyt/8161697
+01:17 < kcwu> au's url: [delay.ls]
+01:20 < kcwu> au: 我想看對應的 js code, 是這樣用嗎? lsc -c delay.ls
+01:20 < kcwu> Error: Parse error on line 4: Unexpected 'IN'
+01:22 < clkao_> for let 好像需要更新的 livescript
+01:22 < au> lsc -cp z.ls
+01:22 < au> 要 1.2.0
+01:23 < clkao_> kcwu: fyi: https://github.com/kriskowal/q#sequences
+01:23 < kcwu> clkao_'s url: [kriskowal/q · GitHub]
+01:25 < clkao_> caa51: 對了，上次改的 bill page PR 為何 close 了呢?
+01:26 < au> kcwu: https://gist.github.com/audreyt/8161697#comment-976342 too
+01:29 < clkao_> au: 感覺正寫然後叫 Q.foreach 比較好讀?
+01:31 < au> clkao_: ok https://gist.github.com/audreyt/8161697#comment-976344
+01:31 < kcwu> au's url: [delay.ls]
+01:32 < clkao_> qeach? XD
+01:33 < au> whatevs :p
+01:35 < kcwu> thanks, got it
+01:37 < caa51> clkao_: 打算連 scroll spy 做好再一起送XD
+01:38 < clkao_> caa51: 那那.. 記得那個 issue assign 一下自己 :p
+01:38 -!- mno2 [~mno2@bb116-15-39-197.singnet.com.sg] has quit [Quit: mno2]
+01:39 < caa51> clkao_: 好的！
+01:50 < clkao_> gugod: 如果想把 api.ly 的資料倒入 elasticsearch, 是不是直接用 postgresql river 最好呢？
+01:51 < au> clkao_: lolz http://i.imgur.com/ADorO1Q.jpg
+01:51 -!- mno2 [~mno2@bb116-15-39-197.singnet.com.sg] has joined #g0v.tw
+01:54 < clkao_> XD
+01:54 < kcwu> XD
+01:57 -!- icman [~icman@123.240.140.154] has quit [Quit: 明天天氣晴]
+01:58 < clkao_> kcwu: 在用 js 寫什麼?
+01:59 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 240 seconds]
+01:59 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+02:01 < kcwu> clkao_: josm scripting plugin 的 script. default javascript, 雖然有 python engine 不過在我電腦上壞掉我懶得修, 就開始寫 js 了
+02:09 -!- Phoenixmiss [~Miss@114-38-105-109.dynamic.hinet.net] has quit [Quit: Leaving]
+02:09 < clkao_> 原來是中了地圖毒 XD
+02:10 < kcwu> 然後就開始重學 js 跟 java...
+02:15 -!- mno2 [~mno2@bb116-15-39-197.singnet.com.sg] has quit [Quit: mno2]
+02:25 < chhsiao1981> clkao_: thanks # https://www.facebook.com/g0v.tw/posts/10202893665692419
+02:25 < kcwu> chhsiao1981's url: [g0v.tw 台灣零時政府 - 您好，想請問有人可以做出一個公益網站來監督類似案件嗎?上傳網站依照時間序、回溯監督嗎?... | Facebook]
+02:26 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+02:26 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+04:02 -!- TheKK [~kk@140.116.111.12] has quit [Quit: WeeChat 0.4.0]
+04:12 -!- kk [~kk@140.116.111.12] has joined #g0v.tw
+04:23 -!- superbil_ [~superbil@1.34.97.68] has quit [Ping timeout: 240 seconds]
+04:36 -!- superbil_ [~superbil@1.34.97.68] has joined #g0v.tw
+05:01 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+05:01 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+05:29 -!- kk [~kk@140.116.111.12] has quit [Ping timeout: 240 seconds]
+05:30 < ethantw> au: 我會那麼寫是為了把「`斷詞~」留下來，方便做假的詞條連結，沒想到居然成了記錄簿不能用的元凶啊…… 
+05:30 -!- kk [~kk@140.116.111.12] has joined #g0v.tw
+07:18 -!- lyanchih [~lyanchih@220.134.193.4] has joined #g0v.tw
+07:22 -!- kk [~kk@140.116.111.12] has quit [Ping timeout: 252 seconds]
+07:47 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has joined #g0v.tw
+07:49 -!- pm5 [~Adium@111-248-204-3.dynamic.hinet.net] has joined #g0v.tw
+07:49 -!- pm5 [~Adium@111-248-204-3.dynamic.hinet.net] has quit [Client Quit]
+08:10 -!- lcamel [~lcamel@114-45-52-169.dynamic.hinet.net] has joined #g0v.tw
+08:25 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+08:30 -!- pm5 [~Adium@111-248-204-3.dynamic.hinet.net] has joined #g0v.tw
+08:52 -!- mei9g [~george@36-231-21-138.dynamic-ip.hinet.net] has joined #g0v.tw
+09:03 -!- pm5 [~Adium@111-248-204-3.dynamic.hinet.net] has quit [Quit: Leaving.]
+09:03 -!- alicekey [~alicekey@host-219-68-9-207.dynamic.kbtelecom.net] has joined #g0v.tw
+09:07 -!- alicekey [~alicekey@host-219-68-9-207.dynamic.kbtelecom.net] has quit [Client Quit]
+09:22 -!- Mathealot [~admin@24-246-26-72.cable.teksavvy.com] has joined #g0v.tw
+09:24 -!- Mathealot [~admin@24-246-26-72.cable.teksavvy.com] has left #g0v.tw []
+09:58 -!- aeil1 [~Adium@114-24-169-152.dynamic.hinet.net] has joined #g0v.tw
+09:58 -!- aeil [~Adium@114-24-157-140.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+09:59 -!- aeil1 [~Adium@114-24-169-152.dynamic.hinet.net] has quit [Client Quit]
+10:02 -!- Ti_WB119 [~Ti_W_B@36-237-225-75.dynamic-ip.hinet.net] has joined #g0v.tw
+10:03 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has quit [Quit: Just time]
+10:12 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 272 seconds]
+10:13 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+10:18 -!- Ti_WB119 [~Ti_W_B@36-237-225-75.dynamic-ip.hinet.net] has quit [Ping timeout: 272 seconds]
+10:20 -!- pm5 [~Adium@42-70-111-222.dynamic-ip.hinet.net] has joined #g0v.tw
+10:20 -!- mno2 [~mno2@bb116-15-39-197.singnet.com.sg] has joined #g0v.tw
+10:22 -!- lyanchih [~lyanchih@220.134.193.4] has quit [Quit: lyanchih]
+10:29 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Quit: swem]
+10:29 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+10:42 < tkirby> kcwu: 你竟然寫 js 了!
+10:42 < tkirby> 以後有坑可以推了
+10:52 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+11:09 < hcchien> 結果好像要請到普立茲得主來 osdc.tw
+11:13 < ipa> hcchien: @@ 普立茲得主寫程式？
+11:13 -!- mei9g [~george@36-231-21-138.dynamic-ip.hinet.net] has quit [Read error: Connection reset by peer]
+11:13 -!- mei9g [~george@36-231-21-138.dynamic-ip.hinet.net] has joined #g0v.tw
+11:18 < hcchien> ipa: 沒，講 open government 
+11:19 < hcchien> government transparency
+11:19 < ipa> 好耶
+11:19 < yhsiang> hcchien: 誰啊~
+11:20 < hcchien> 第一次接洽中，他正表示有興趣
+11:20 < ipa> 那....speaker dinner吃什麼(誤)，是說是哪位得主？
+11:20 < hcchien> yhsiang: Martha Mendoza from AP
+11:22 < hcchien> ipa: 目前構想中是寒舍食譜
+11:22  * yhsiang 已follow XD
+11:23 < hcchien> 他在 TED 講過類似主題
+11:23  * ipa 也花樓 XD
+11:26 < hcchien> 之前本來要找跟 liquid feedback 的 developer 被婉拒  XD
+11:32 < clkao_> kcliu_: are you on twitter?
+11:33 < jimyhuang_> hcchien++
+11:54 < pm5cloud_> hcchien++
+12:08 < ipa> tkirby++ g0vis越來越讚 http://g0v.github.io/g0vis/
+12:18 -!- pm5 [~Adium@42-70-111-222.dynamic-ip.hinet.net] has left #g0v.tw []
+12:22 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 272 seconds]
+12:36 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+12:48 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Quit: swem]
+12:48 -!- wolfenstein [~Thunderbi@220-137-62-35.dynamic.hinet.net] has joined #g0v.tw
+12:49 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+13:00 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 272 seconds]
+13:01 < Lee1092> tkirby ++  忍不住找小圈圈看自己在哪裡  XDDD
+13:02 < kcwu> tkirby: 要補點一些技能點數趕上流行...
+13:35 -!- soidid_ [~soidid@36-229-172-174.dynamic-ip.hinet.net] has joined #g0v.tw
+13:37 < kcliu_> clkao_: yes?
+13:39 -!- soidid_ [~soidid@36-229-172-174.dynamic-ip.hinet.net] has quit [Quit: leaving]
+13:41 -!- cyb3r [~cyb3r_lol@58.38.176.30] has joined #g0v.tw
+13:45 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+13:49 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+13:52 -!- Phoenixmiss [~Miss@114-38-105-109.dynamic.hinet.net] has joined #g0v.tw
+14:01 -!- wolfenstein [~Thunderbi@220-137-62-35.dynamic.hinet.net] has quit [Quit: wolfenstein]
+14:01 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit []
+14:17 -!- ballII [76a0a7f2@gateway/web/cgi-irc/kiwiirc.com/ip.118.160.167.242] has joined #g0v.tw
+14:17 -!- ballII [76a0a7f2@gateway/web/cgi-irc/kiwiirc.com/ip.118.160.167.242] has quit [Read error: Connection reset by peer]
+14:27 -!- joyqul [~joyqul@140.113.27.39] has quit [Ping timeout: 246 seconds]
+14:27 -!- MrQ [~M157Q@140.113.27.39] has quit [Ping timeout: 252 seconds]
+14:27 -!- susu [~cwshu@140.113.27.39] has quit [Ping timeout: 264 seconds]
+14:52 < kcwu> js 裡 async,promise,CPS, 相關的 library, framwork 真是多
+14:56 < gugod> clkao_: es river 是頂方便的，但良萎不一，如果有有能跑 cronjob 的機器，多半我對選擇自已寫個程式搬資料。
+14:57 < gugod> 良莠不一( 
+15:01 < gugod> clkao_: 主要是如果有需要自行調整 analyzer 的話，就沒那麼好用。這部份好像是寫在 river plugin 裡的，如果 plugin 沒把它變成設定，就沒辨法了
+15:08 -!- ballII [76a0a7f2@gateway/web/cgi-irc/kiwiirc.com/ip.118.160.167.242] has joined #g0v.tw
+15:09 < poying> https://www.irccloud.com/pastebin/FDsgceZB
+15:09 < kcwu> poying's url: [Pastebin: FDsgceZB | IRCCloud]
+15:26 < pm5cloud_> jimyhuang_: ping
+15:30 < ballII> ETBlue: 我們音樂松之後可以來個舞蹈松嗎？好想找人跳這支: https://www.youtube.com/watch?v=CLRPH3nFf8w   >///<
+15:30 < kcwu> ballII's url: [Keone & Mariel Madrid :: "Cups (When I'm Gone)" by Anna Kendrick :: Urban Dance Camp - YouTube]
+15:49 < jimyhuang_> pm5cloud_: 啊
+16:05 -!- aeil [~Adium@114-24-151-214.dynamic.hinet.net] has joined #g0v.tw
+16:06 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+16:07 < kcwu> 結果發現 au 以前已經寫過 sorting-animations 了
+16:17 < yhsiang> kcwu: 以後是直接內建
+16:17 -!- joyqul [~joyqul@140.113.27.39] has joined #g0v.tw
+16:19 -!- mno2 [~mno2@bb116-15-39-197.singnet.com.sg] has quit [Ping timeout: 240 seconds]
+16:20 < ETBlue> tkirby: 你一整個見獵心喜… XD # 小光學 js
+16:20 < kcwu> 不過我沒點 html 跟 css 點數
+16:20 < ETBlue> hcchien!! 好大咖的感覺 @o@ # 普立茲得主
+16:23 < ETBlue> tkirby: 疑？！這個 g0vis.... 可以把授權中心直接包進來嗎？用跟這頁一樣的 layout XD 然後 meta data 可以用 semantic ui 的 shape，點一下縮圖翻面顯示
+16:23 < ETBlue> tkirby: 喔喔我說這頁 http://g0v.github.io/g0vis/#
+16:24 < ETBlue> tkirby: 因為授權中心原本有一頁軟體中心 http://g0v.github.io/moc-license-center/software.html
+16:25 < kcwu> ETBlue's url: [g0v 技術部軟體中心]
+16:25 < ETBlue> tkirby: 是要把已上線專案整理起來的，這樣可以直接併到 g0vis 裡面
+16:26 < ETBlue> tkirby: 然後在 g0vis 裡面可以預設顯示已經上線可以用的，但有一個按鈕可以展開其他進行中的
+16:28 < ETBlue> tkirby: 嗯還是你這個是打算給開發者看的？授權中心是打算給非開發者看的…
+16:28 < kcwu> yhsiang: 你說內建什麼?
+16:29 < yhsiang> kcwu: promise
+16:29 < ETBlue> ballII: 舞蹈松的問題在於場地……目前看起來他無法跟任何其他松合併舉行（抓頭）
+16:30 < ETBlue> ballII: 所以就要專門獨立一個松，ㄟ，就是快閃團
+16:30 < kcwu> yhsiang: 現在有哪個 proposal 比較被接受嗎? http://wiki.commonjs.org/wiki/Promises 我看一兩年前的文章說還不明朗
+16:30 < kcwu> kcwu's url: [Promises - CommonJS Spec Wiki]
+16:31 < ETBlue> ballII: 對喔，練舞的事情要請教專業的 soidid XD
+16:31 < ballII> ETBlue: 場地...？哈，那我當天大概也不需要表演舞蹈了嗎（搔頭）
+16:31 < yhsiang> kcwu: http://www.html5rocks.com/en/tutorials/es6/promises/ # 這篇看過嗎  最近才出來的
+16:31 < kcwu> yhsiang's url: [JavaScript Promises: There and back again - HTML5 Rocks]
+16:32 < ETBlue> kcwu: html 跟 css 對你來說只是一片蛋糕屑 = = 那根本稱不上程式語言…（淚奔）
+16:32 < kcwu> yhsiang: thanks, 真新鮮的文章
+16:32 < ETBlue> ballII: 表演不用鏡子，但松要啊
+16:33 < ballII> ETBlue:說的也是。不過我們可以面對筆電攝影機跳，直接投影在布幕上啊XD
+16:33 < kcwu> ETBlue: 啃下去會掉牙齒的蛋糕屑嗎
+16:34 < tuiry> 投影++  
+16:35 < ETBlue> ballII: 這… XD
+16:35 < ETBlue> ballII: 技術上是可行的沒錯啦 XD
+16:35 < ballII> ETBlue: http://www.youtube.com/watch?v=GzLD2ibKozI  這是個音樂松+舞蹈松+婚友松  XD    我看得好羨慕啊～
+16:35 < kcwu> ballII's url: [REMIXED: KEONE MADRID & MARI MARTIN & CHRISTINA GRIMMIE [DS2DIO] - YouTube]
+16:36 < ETBlue> kcwu: 是啃下去連牙縫都塞不滿就不小心融化在口水裡的蛋糕屑（捻鬚
+16:36 < ETBlue> 嗯被我一講感覺有點噁心，把口水帶換成唾液不曉得會不會好一點
+16:36 < tuiry> 還是很噁心
+16:36 < ETBlue> 口腔分泌物呢？
+16:38 < tuiry> 越來越仔細了，不想想像那個場景阿阿阿
+16:38 < tuiry> 就叫他涎糕吧
+16:39 < ETBlue> ballII: 那來想想看怎麼跟 g0v 產生關連好了
+16:39 < ETBlue> ballII: 開源舞蹈示範區？
+16:39 -!- mei9g [~george@36-231-21-138.dynamic-ip.hinet.net] has quit [Ping timeout: 245 seconds]
+16:40 < ETBlue> tuiry: 我覺得涎糕好像………把噁心內建到蛋糕裡面了耶
+16:41 < tuiry> ETBlue: 那龍涎糕呢  有沒有高級一咪咪
+16:41 < ETBlue> tuiry: 因為是在小光的口腔裡，所以該叫光涎糕？
+16:41 < tuiry> !
+16:42 < yhsiang> 其實我在想  啃下去會掉牙齒的蛋糕屑 是甚麼概念 ....
+16:42 < tuiry> 笑到眼淚都流出來了
+16:42 < ETBlue> yhsiang: 就是已經變成化石的蛋糕屑，堅硬無比
+16:43 < ETBlue> yhsiang: 或者是被誤認為蛋糕屑的牙結石，你知道，牙結石的多孔構造跟蛋糕非常類似
+16:43 < ballII> yeah~ soidid 會來新年松吔！
+16:43 < yhsiang> ...
+16:44 < tuiry> 原來是牙結石阿，還以為是光涎糕呢
+16:44 < yhsiang> ETBlue: 感謝你精闢的講解 ...
+16:44 < ETBlue> yhsiang: 哪裡、哪裡
+16:45 -!- kk [~kk@140.116.111.12] has joined #g0v.tw
+16:46 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 272 seconds]
+16:49 < ETBlue> ballII: 可以跟 soidid 研究一下舞步是否有辦法 code 化，可以的話開源舞蹈就有望了
+16:50 < kcwu> 舞步 code 化不是已經有很宅的解法了嗎
+16:50 < ETBlue> 理論上一些基本的動作都有命名，基於這些命名，也許有編碼的可能
+16:50 < ETBlue> kcwu: 有辦法像譜一樣給人讀嗎？
+16:50 < S3p_lin> http://www.youtube.com/watch?v=lyZQPjUT5B4  # 這樣跳嗎? XD
+16:50 < kcwu> S3p_lin's url: [Bubble-sort with Hungarian ("Csángó") folk dance - YouTube]
+16:51 < kcwu> 大概不行...
+16:52 < yhsiang> http://www.youtube.com/watch?v=qQyALIEydbc  # 應該是這個吧 XDD
+16:52 < kcwu> yhsiang's url: [Contemporary Dance How-To HILLARIOUS - YouTube]
+16:52 < ETBlue> S3p_lin: 這什麼啊超宅的 XDDD
+16:56 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+16:56 < tuiry> yhsiang XDDDDDDDDDD 這好讚
+16:57 < ETBlue> yhsiang: 靠邀笑死我了
+16:58 < tuiry> 設計G0V手勢，以後聚會靠這個辨識身分
+16:59 < tuiry> 越來越像邪教組織了
+16:59 < yhsiang> 我們是瓦肯人嗎 
+17:00 < tuiry> 生生不息，昌榮繁盛
+17:02 < ETBlue> kcwu: 要是頭、肩、肘、腕、掌、胸、腰、臀、膝、踝，每個關節的角度都有辦法編碼，然後一個基本動作（function）就等於一串編碼（code），也就是說，可以光看抽象化的 function 名稱辨認某個動作，看不懂也可以往底層追他的 source code
+17:02 < ETBlue> kcwu: 這樣最終也許有辦法創造出一套舞蹈的文字化語言？
+17:03 < S3p_lin> 所以兩個人見面就要先跳舞交換 key 驗證雙方身份  ref: 火焰之舞, 舞王 vs 挑戰者
+17:03 -!- mno2 [~mno2@bb116-15-39-197.singnet.com.sg] has joined #g0v.tw
+17:04 < tuiry> ETblue 好像parapara
+17:06 < ETBlue> S3p_lin: 不知不覺中跳舞這件事變得很宅…… XD
+17:07 < tuiry> ETblue http://www.youtube.com/watch?v=RWuCmjpvXmE
+17:07 < kcwu> tuiry's url: [【PV】 spending all my time -　Perfume - YouTube]
+17:10 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has joined #g0v.tw
+17:10 < ETBlue> tuiry: perfume 這種的寫成語言的話應該會很精簡，因為動作很機械化 XD
+17:10 < ETBlue> ㄟ，還有多人舞蹈的互動問題…
+17:11 < tuiry> 單一動作很簡單，組合起來很複雜
+17:12 < ETBlue> 啊還有時間軸的問題……
+17:12 < ETBlue> …………
+17:13 < ETBlue> 算了，這不是我的智力範圍內的東西，擺一邊去 XD
+17:14 < tuiry> 有機器可以讓動作跟音樂/畫面互動
+17:15 < ETBlue> 用攝影鏡頭的嗎？或是像xbox 人體感應器
+17:16 < tuiry> 都有
+17:16 < caa51> sorting animation *_*
+17:16 < tuiry> 有像mocap那樣的，也有視覺感應的
+17:16 < ETBlue> 讀入的資料比較接近code的是mocap
+17:18 < tuiry> http://www.youtube.com/watch?v=fOqUU796Es0
+17:18 < kcwu> tuiry's url: [「floating，。」- A - - YouTube]
+17:18 < ETBlue> 或是直接用mocap資料的格式當source code格式 XD
+17:18 < tuiry> 一個科藝所學姐的作品
+17:19 < tuiry> http://www.youtube.com/watch?v=NMfW-WcP-dY 這部有裝置解說
+17:19 < kcwu> tuiry's url: [「floating，。」- B - - YouTube]
+17:22 < tuiry> http://www.youtube.com/watch?v=JNgiUgkLPZ8
+17:22 < kcwu> tuiry's url: [台北當代藝術館_地下實驗‧創意秀場_字變相01 - YouTube]
+17:23 < tuiry> 這種作品，目前我看過的都比較像是技術展示，不過新媒體藝術本身就是比較新的東西，就期待未來有沒有結合地更好的創作了 XD
+17:24 < ETBlue> hmmm... 看來比較接近舞蹈程式化的是mocap了
+17:26 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Quit: swem]
+17:26 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+17:27 < tuiry> Perfume去年開全球版網站的時候，放出過一段mocap資料給大家玩
+17:27 < clkao_> kcwu: 不需要點 html 跟 css .. 可以直接 jade & sass :p
+17:27 < ETBlue> 讀mocap要用……maya 或 max？
+17:29 < tuiry> 不知道耶~ 應該都可以?
+17:29 < tuiry> http://perfume-dev.github.io/
+17:29 < kcwu> tuiry's url: [Perfume global site project]
+17:31 < ETBlue> 額還上 github
+17:33 < ETBlue> 看不懂 QQ
+17:33 < tuiry> Perfume本身就是一種集體創作XD 開放很多東西給大家玩
+17:34 < ETBlue> 看來要裝額外的東西才能讀惹…
+17:36 < tuiry> 跟3D不熟 XD
+17:36 < tuiry> 但我記得有code以外的檔案可以下阿
+17:37 < ETBlue> 我跟3D更不熟……… QQ
+17:42 < tuiry> ETblue http://perfume-global.com/project.html 別人玩的成果
+17:42 < kcwu> tuiry's url: [Perfume official global website]
+18:01 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+18:02 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+18:02 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+18:02 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+18:11 -!- ballII [76a0a7f2@gateway/web/cgi-irc/kiwiirc.com/ip.118.160.167.242] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+18:20 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has quit [Ping timeout: 256 seconds]
+18:44 -!- yoyosoco [uid22304@gateway/web/irccloud.com/x-kuehzxraydodhxht] has joined #g0v.tw
+18:47 < clkao_> au++ # 酸民和鹼民 http://pugs.blogs.com/pugs/2013/12/advent-ventures.html 
+18:47 < kcwu> clkao_'s url: [Pugs: Perl 6：冒險的降臨]
+18:59 < kcwu> fact checking XD
+19:02 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 272 seconds]
+19:04 < clkao_> Xd XD
+19:19 -!- lyanchih_ [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has joined #g0v.tw
+19:49 -!- LCfunPlay [~chatzilla@111-250-18-234.dynamic.hinet.net] has joined #g0v.tw
+19:54 -!- cyb3r is now known as cyb3r_ddd
+20:04 -!- cyb3r_ddd [~cyb3r_lol@58.38.176.30] has quit [Ping timeout: 245 seconds]
+20:10 -!- cyb3r [~cyb3r_lol@101.228.223.241] has joined #g0v.tw
+20:21 -!- a-tsioh [~pierre@60-248-176-205.HINET-IP.hinet.net] has joined #g0v.tw
+20:35 -!- cyb3r_ddd [~cyb3r_lol@101.228.223.241] has joined #g0v.tw
+20:38 -!- cyb3r [~cyb3r_lol@101.228.223.241] has quit [Ping timeout: 245 seconds]
+20:43 -!- lcamel [~lcamel@114-45-52-169.dynamic.hinet.net] has quit [Remote host closed the connection]
+20:43 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+20:47 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+20:52 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+21:04 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+21:06 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+21:06 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+21:06 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+21:06 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+21:07 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 272 seconds]
+21:22 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+21:43 < tkirby> ETBlue: g0vis 想放的是視覺化的東西, 延伸為容易理解的資訊.. 可以說是給一般人看的  授權中心說起來也算是視覺的東西就是了
+21:51 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+21:58 < ETBlue> tkirby: 授權中心只是給人家抓檔案方便……裡面最視覺化的就是 tuiry 的作品集了 XD
+22:01 < ETBlue> 「瞭解g0v」跟「抓圖庫」的使用情境可說是有點相似又不太相似…該怎麼整合好呢
+22:04 < tkirby> ETBlue: 這樣的話也許分開比較好  但可以用特殊的形式互連.. 比方說單純秀授權中心最近的更新
+22:05 < tkirby> ETBlue: 進一步想, 也可以像是由 g0v artist 定期提供插畫或資訊圖, 在 g0vis 呈現, 作為 g0v 新聞部之類的...
+22:05 < ETBlue> tkirby: 廣宣組！
+22:06 < tkirby> 前幾天去新聞所, 覺得有機會可以弄個新聞部.. 專門發資料視覺化新聞, 成為台灣第一個也是最專業的資料視覺新聞網站
+22:06 < tkirby> 零傳媒!
+22:06 < ETBlue> tkirby: 看來得趕快把授權中心修好，不然又要趕不上 g0vis 的進度了 = =
+22:06 < tkirby> ETBlue: 授權中心 backend 有人在做嗎?
+22:06 < ETBlue> 零傳媒++ !
+22:07 < ETBlue> tkirby: 那個東西沒有 backend ><
+22:07 < ETBlue> tkirby: 目前只是單純的我手動整理大家的圖 QQ
+22:07 < ETBlue> tkirby: 黑客松時 ddio 完成了自動化的 script，但我還沒整理那個 script 需要的 meta 資料 @@
+22:08 < ETBlue> tkirby: 所以目前內容大多是壞的……
+22:08 < tkirby> XDDDD.... 需要的話我可以幫忙 XD
+22:09 < ETBlue> tkirby: 零傳媒好耶，要怎麼起頭呢
+22:09 < ETBlue> tkirby: 我需要！！！！ QAQ
+22:09 < ETBlue> tkirby: 救命啊 QAQ
+22:09 < tkirby> ETBlue: 首先要抓一堆下線... 大概也是最困難的
+22:09 < ETBlue> 噢噢……新聞部的下線 @@"
+22:09 < tkirby> ETBlue: 有這麼嚴重嗎 XD
+22:10  * ETBlue 冒煙
+22:10 < tkirby> 就是 data journalist ...
+22:10 < ETBlue> 獨立媒體學院不曉得有沒有下線
+22:10 -!- Ti_WB119 [~Ti_W_B@111-242-62-38.dynamic.hinet.net] has joined #g0v.tw
+22:11 < tkirby> 大概需要幾種角色.. 整理資料(like ronnywang) / 呈現 (like me) / 講故事 (??)
+22:11 < ETBlue> 地球公民基金會之前好像辦過公民媒體什麼課程，也許裡面的學員有人可以當下線
+22:11 < tuiry> 視覺化新聞XDD 我怎麼想到錢公司阿
+22:11 < tkirby> tuiry: 哪間 XD
+22:11 < ETBlue> 講故事 -> nchild ? XD
+22:11 < tuiry> 捧夠
+22:11 < walkingice> 零煤
+22:11 < ETBlue> XD
+22:11 < ETBlue> 一枚
+22:12 < tkirby> 原來是令狗.. XD
+22:12 < tkirby> 他們已經超越視覺化了 XD
+22:12 < ETBlue> 他們已經到達故事化的境界
+22:12 < tkirby> tuiry: 有沒有興趣來幫忙 g0vis
+22:12 < tuiry> tkirby: 那是什麼(伸
+22:12 < tkirby> tuiry: http://g0v.github.io/g0vis
+22:13 < ETBlue> 零媒 XDXD
+22:13 < tkirby> 零沒 XDDD
+22:13 < tkirby>   媒
+22:13 < ETBlue> 突然有點寒冷
+22:13 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+22:13 < tuiry> 捧夠的美編水準很高喔，閱報率第一不是只有賣肉的XD
+22:13 < tkirby> tuiry: 最近有些構想.. 但是接下來可能會需要插畫
+22:14 < hcchien> 零傳媒++
+22:14 < tuiry> OK阿
+22:14 < tuiry> 有空就可以畫
+22:14 < ETBlue> tkirby: 零傳媒太帥了快開 hackpad 
+22:14 < tkirby> 令狗的動畫之前不是還跟國外媒體槓上,超帥的 XD
+22:14 < tkirby> ETBlue: 遙想前幾天才提案了 diy.g0v.tw, 現在又要開 news.g0v.tw 了嗎 XD
+22:14 < tuiry> tkirby: 要不要把專案都弄成圓形，然後統一文字?_?
+22:15 < tkirby> tuiry: 你說的統一文字是說全都寫字就好嗎
+22:15 < ETBlue> tkirby: 不是叫 leve1up XD
+22:15 -!- Ti_WB119 [~Ti_W_B@111-242-62-38.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+22:15 < tkirby> ETBlue: 你看我一時都把名字搞混了 XD
+22:15 < tuiry> 最上層是文字，hover後才是圖片
+22:16 < tuiry> 這樣進去的視覺才能統一
+22:16 < tkirby> tuiry: 原來如此! 
+22:16 < ETBlue> tuiry: 你說首頁？
+22:16 < tuiry> ETBlue:  g0vis
+22:17 < ETBlue> tuiry: 噢噢……意思是跟現在相反嗎？現在是先有圖，hover有字
+22:17 < tuiry> 是阿
+22:18 < ETBlue> 現在這樣還蠻適合隨便逛逛的……像櫥窗 XD
+22:18 < tuiry> 先是單純的東西，再來是複雜的東西，這樣比較有期待感吧
+22:19 < tkirby> tuiry: 我是在想說各個專案進去以後, 想要用插畫呈現他們需要的人力, 像是工程師, 設計師, 律師, PM 之類的
+22:19 < ETBlue> 或者AB test 一下 XD
+22:19 < tuiry> tkirby: 應該可以從排版設計去改良呈現
+22:20 < ETBlue> tuiry: 只好畫 wireframe 了
+22:20 < tkirby> tuiry: 各個專案可能會有獨立的一頁.. 還在思考中
+22:21 < tkirby> 話說其實專案很多, 光是 hack.g0v.tw/project 就記載了 33 個
+22:21 < tkirby> 不過有些是同一個大專案拆成很多小塊..
+22:21 < cyb3r_ddd> 不好意思..
+22:21 < tkirby> cyb3r_ddd: yo
+22:22 < ETBlue> tkirby: 說到各專案的獨立頁面，有各專案的上線網址資料的話軟體中心也要接... XD
+22:22 < cyb3r_ddd> 為什麼http://g0v.github.io/g0vis/上面的很多專案的url好像都有問題？
+22:22 < tkirby> ETBlue: hack.g0v.tw/project 有, 不過似乎是沒 api ... XD
+22:22 < ETBlue> cyb3r_ddd: 因為還沒做完？ XD
+22:22 < cyb3r_ddd> 都是像http//newshelper.g0v.tw/#這樣
+22:22 < cyb3r_ddd> http後少了:
+22:23 < tkirby> cyb3r_ddd: hmm 昨天我有改, 可能是忘了 commit
+22:23 < ETBlue> cyb3r_ddd: !!!! 原來是這樣！
+22:25 -!- ca3rine [~ca3rine@122-116-183-176.HINET-IP.hinet.net] has joined #g0v.tw
+22:25 < tuiry> tkirby: 可以把分類分更詳細一點
+22:25 < tuiry> 或是增加標籤
+22:26 < tkirby> tuiry: 你是說專案嗎
+22:26 < tuiry> 教育部 立法院 內政部 等等等等之類的
+22:26 < tuiry> 是
+22:27 -!- cyb3r [~cyb3r_lol@101.228.223.241] has joined #g0v.tw
+22:27 < tkirby> great idea.. 我目前是先做一個 landing page, 大概先放幾個比較完整的專案.. 完整的部分可以放在另一頁, 分類呈現..
+22:28 < tkirby> 不過還是以視覺化為主, 不然功能就跟 hack.g0v.tw/project 一樣了
+22:29 < tkirby> 比方說將各專案貢獻人數, 最近活躍程度, commit 數等等畫出來
+22:29 < tuiry> 我覺得是介面設計的問題XD
+22:29 -!- cyb3r_ddd [~cyb3r_lol@101.228.223.241] has quit [Ping timeout: 246 seconds]
+22:30 -!- cyb3r is now known as cyb3r_ddd
+22:32 < ipa> 感覺g0vis好適合當project頁！
+22:32 < tkirby> 隱約感覺前方有一個坑
+22:32 < ipa> g0vis可以當「成果」，hack.g0v.tw/project可以當開發中專案
+22:32 < tkirby> hmm, 抑或者事先從 hack.g0v.tw/project 來著手
+22:33 < tuiry> tkirby ipa ++
+22:36 < tkirby> tuiry 提的也蠻適合套到 hack.g0v.tw/project 去的
+22:37 < tkirby> ETBlue: 話說剛剛看授權中心, 還真的按了上傳作品打算送東西上去
+22:38 < cyb3r_ddd> tkirby: 喔~了解! 我本來以為是被GFW擋了= =開了全局proxy才發現的
+22:39 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+22:39 < cyb3r_ddd> 剛剛莫名的Ping值飆高
+22:40 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 272 seconds]
+22:41 < tkirby> XD
+22:43 -GitHub138:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/f563bf1d9618bead9f0e2a84f24d850f6e86f037
+22:43 -GitHub138:#g0v.tw- g0v.tw/gh-pages f563bf1 g0v general (via TravisCI): regen for d39b883
+22:44 < cyb3r_ddd> G0VIS 感覺很不錯~
+22:44 < clkao_> 發現新玩具: https://sourcegraph.com/github.com/g0v/g0v.tw
+22:44 < kcwu> clkao_'s url: [Sourcegraph]
+22:44 < clkao_> tkirby: contributor graph 也許可以從這邊偷？ XD
+22:46 -!- cyb3r_ddd [~cyb3r_lol@101.228.223.241] has quit [Quit: Leaving]
+22:46 < clkao_> ipa++ # 首頁更新到 semantic-ui branch 了!
+22:46 -!- cyb3r_ddd [~cyb3r_lol@101.228.223.241] has joined #g0v.tw
+22:47 < tkirby> clkao_: 噢噢噢! xD
+22:48 < ipa> clkao_: 咦 about頁壞了 orz
+22:48 < clkao_> 不過 menu item 還不會隨著變色的樣子
+22:48 < tkirby> 美麗的首頁! ipa++
+22:50 -GitHub133:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/50a9208d1d99d59c6c0820732838c971f2d0397b
+22:50 -GitHub133:#g0v.tw- g0v.tw/gh-pages 50a9208 g0v general (via TravisCI): regen for 927b741
+22:52 < ipa> 耶 about好了 
+22:52 < tkirby> ++
+22:54 < ipa> 越弄越弄不完，決定還是release early, release often，期待小精靈 XD
+22:54 -!- ca3rine [~ca3rine@122-116-183-176.HINET-IP.hinet.net] has quit [Quit: ca3rine]
+22:55 < clkao_> semantic-ui 的 menu 好像沒有內建 responsive... 窄的時候改用 collapsed
+22:58 -!- Ti_WB119 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+22:58 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+23:02 < clkao_> tkirby: 不如順手幫 semantic-ui 的 doc site 加上顯示 jade 的功能? :p
+23:02  * clkao_ 已經看好地方了... server/files/javascript/semantic.js createCode 那邊
+23:09 -!- Ti_WB119 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 246 seconds]
+23:17 < caa51> ipa++
+23:19 < tkirby> clkao_: 你是說在那邊把 html 轉成 jade 再出來嗎 XD
+23:19 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+23:20 -!- wHisKy- [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+23:20 -!- LCfunPlay [~chatzilla@111-250-18-234.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.87-rdmsoft [XULRunner 1.9.2.19/20110707195905]]
+23:22 < tkirby> 這樣也許要改成按三下, 在 developer, designer, jade 間切換.. 不曉得 ui 有沒有更好的做法
+23:22 -!- cyb3r_ddd [~cyb3r_lol@101.228.223.241] has quit [Read error: Connection timed out]
+23:22 -!- icman [~icman@123.240.140.154] has quit [Quit: 明天天氣晴]
+23:23 -!- cyb3r_ddd [~cyb3r_lol@101.228.223.241] has joined #g0v.tw
+23:26 -!- eternnoir_ [quassel@2400:8900::f03c:91ff:fe70:b8b2] has joined #g0v.tw
+23:26 -!- unayung_ [uid22593@gateway/web/irccloud.com/x-bqggympuvqqbgxqn] has joined #g0v.tw
+23:27 -!- dirty__ [uid13417@gateway/web/irccloud.com/x-reqlksoszuqpkfew] has joined #g0v.tw
+23:27 -!- billy3321 [uid12904@gateway/web/irccloud.com/x-lmnvecofyeuklahg] has joined #g0v.tw
+23:27 -!- lcamel_ [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+23:27 -!- nchild__ [uid16194@gateway/web/irccloud.com/x-poxmklisgmsjzdnj] has joined #g0v.tw
+23:27 -!- zea1ancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+23:28 -!- lijung__ [uid13080@gateway/web/irccloud.com/x-eadephgesznzmieq] has joined #g0v.tw
+23:28 -!- ychsiao__ [ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+23:29 -!- chhsiao2081 [~chhsiao@li494-193.members.linode.com] has joined #g0v.tw
+23:32 -!- juiz- [~juiz@solvcon.net] has joined #g0v.tw
+23:33 -!- Netsplit *.net <-> *.split quits: eternnoir, juiz, lcamel, dirty_, lijung_, zealancer, nchild, ychsiao, chhsiao1981, unayung,  (+1 more, use /NETSPLIT to show all of them)
+23:33 -!- ychsiao__ is now known as ychsiao
+23:33 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has quit [Quit: leaving]
+23:33 -!- nchild__ is now known as nchild
+23:33 -!- lijung__ is now known as lijung_
+23:33 -!- unayung_ is now known as unayung
+23:33 -!- zea1ancer is now known as zealancer
+23:33 -!- billy3321 is now known as billy3321_
+23:33 -!- dirty__ is now known as dirty_
+23:37 -!- LCfunPlay [~chatzilla@111-250-18-234.dynamic.hinet.net] has joined #g0v.tw
+23:44 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+23:45 -!- lyanchih_ [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]

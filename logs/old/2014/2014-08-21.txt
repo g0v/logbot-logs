@@ -1,0 +1,357 @@
+--- Day changed 四  8月 21 2014
+00:01 < yhsiang> lanf0n: 就直接用 ?
+00:01 < yhsiang> lanf0n: 看你要不要sails + sequelize
+00:03 < clkao> 還是要 strongloop
+00:04 < yhsiang> strongloop也不錯耶  最近正在看它們寫的profiling XD
+00:05 < lanf0n> clkao: yhsiang 囧....
+00:05 < yhsiang> lanf0n: strongloop蠻完整的喔
+00:06 < lanf0n> yhsiang: strongloop 看起來像是做成 api 啊...?
+00:08  * lanf0n 跳錯坑的感覺
+00:09 < yhsiang> lanf0n: http://docs.strongloop.com/display/LB/client+directory # loopback
+00:09 < kcwu> yhsiang's url: [client directory - LoopBack 2.0 - Documentation]
+00:09 < xsoameix> strongloop 跟 api.ly 有甚麼關聯嗎？
+00:12 < xsoameix> api.ly 現有的架構好像不適合這麼做...
+00:12 < lanf0n> yhsiang: 等級不夠...只好慢慢研究 ((幾乎看不懂XD
+00:58 -GitHub15:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/e3e53fc6321f2da69acf9f2a8a9c8299ff3195b9
+00:58 -GitHub15:#g0v.tw- g0v.tw/gh-pages e3e53fc g0v general (via TravisCI): regen for a45dceb
+01:07 -!- DannyLan [~DannyLan@114-42-16-230.dynamic.hinet.net] has left #g0v.tw []
+01:15 < Lee1092> ipa:  好了 有 sticky menu 了 http://g0v.tw/zh-TW/projects.html XD
+01:19 -GitHub151:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/c2447709999b71561027dc299d6056b2a066c97c
+01:19 -GitHub151:#g0v.tw- g0v.tw/gh-pages c244770 g0v general (via TravisCI): regen for 556fe99
+01:25 < clkao> Lee1092: !!!
+01:27 < lanf0n> Lee1092++ ((一直以為 image 可以點...
+01:29 < min9tsay> Lee1092++ 原來 image 原本不能點…
+01:30 < clkao> Lee1092: 為什麼我只看到「建設」
+01:31 < clkao> lanf0n: 對了，poliwhoops 加個 rss support 吧 因為行政院現在有 aggregate 所有不會的新聞稿了... 如果有改過或刪除的應該也蠻有趣的
+01:32 < lanf0n> clkao: 後面那句理解不能 囧
+01:33 < min9tsay> lanf0n: 應該意思是指有修改或刪除的時候也列在 rss 裡面
+01:33 < lanf0n> 其實我看不懂的是 所有不會的新聞稿 QQ
+01:33 < au> 意思是 http://www.ey.gov.tw/unitRSS_ey.aspx 來源監測
+01:33 < au> s/不會/部會/g
+01:33 < kcwu> au's url: [部會新聞]
+01:33 < clkao> XD 不會 XD
+01:33 < lanf0n> 囧囧囧囧
+01:33 < min9tsay> 原來是部會XD
+01:33  * clkao 白癡 typo
+01:34  * min9tsay 對不起我笑到連我妹都抗議了…肚子好痛QAQQQ
+01:35 -!- tommyl___ is now known as tommyliu__
+01:37 < au> ( 所有不會的新聞稿 rss support 在 https://www.facebook.com/feeds/page.php?format=rss20&id=426692564058367 )
+01:37 < kcwu> au's url: [NONEws 不新聞的 Facebook 塗鴉牆]
+01:40 < clkao> XD
+01:42 < Lee1092> clkao: !!   跑到太左邊了嗎?  XD 應該是縮小就會看到  
+01:43 < Lee1092> 現在沒做 RWD  囧>
+01:44 < Lee1092> 部會 XDDD
+02:07 < lanf0n> 問個 jade 問題... p= 和 p. 之間要怎麼用QQ
+02:13 < au> p= 後面跟的是變數或算式，p. 後面是文字區塊。
+02:18 < lanf0n> 所以如果存變數的話一定得用 = 就是了...囧
+02:22 < au> 可以用 #{} 來安插算式。
+02:23 < au> $ echo 'p. The answer is #{6*7}' | jade
+02:23 < au> <p>The answer is 42</p>
+02:23 < lanf0n> !
+02:27 < xsoameix> lanf0n: 這裡有參考資料：http://jade-lang.com/reference/code/
+02:27 < kcwu> xsoameix's url: [Jade - Template Engine]
+02:34 < jimyhuang__> 不會的新聞稿.... 肚子痛
+03:03 -!- dirty is now known as Guest45672
+03:23 < lanf0n> clkao: 好惹~ http://128.199.192.102:3000/
+03:23 < kcwu> lanf0n's url: [Testing]
+03:24  * lanf0n 真的覺得超醜der...
+03:25 < clkao> lanf0n++
+03:25 < lanf0n> 不過發現第二階段用 url 的判定的確有點問題....囧
+05:19 < carylorrk> ／j #angularjs
+05:19 < carylorrk> 囧...打錯 拍謝
+05:51 -!- ofy_ is now known as ofy
+06:03 -!- ZALin_ is now known as ZAL
+07:18 < mutolisp> kiang: 處理 self-intersecting 我通常會用 postgis 去處理 st_buffer(geometry, buffer parameter)
+07:20 < mutolisp> buffer parameter 設 0 或是很小的值，或是用 st_makevalid(geometry)
+08:18 < caasih> lanf0n++
+09:24 < kiang> mutolisp++, 感謝，我試試 :)
+09:27 < Lee1092> lanf0n++   可以直接釋出 API 了~  XD
+09:28 < kiang> lanf0n++, fb 訊息聯播？
+09:32 < pm5> lanf0n++
+09:32 < Lee1092> kiang: 紀錄政治人物自刪的 po 文  XD
+09:33 < kiang> Lee1092++, 好像挺有趣的 XD
+09:34 < Lee1092> kiang:  昨天  lanf0n  期中報告的投影片~ http://www.slideshare.net/lanfon/politwoopstw-36122309
+09:34 < kcwu> Lee1092's url: [Politwoops.tw]
+09:58 < ronnywang> 講個秘訣， https://kktix.com/events/dsc2014/registrations/new 有名額出現了
+09:58 < kcwu> ronnywang's url: [2014 台灣資料科學愛好者年會 報名 - KKTIX]
+10:10 < tonyq> 撿到一個野生柯文哲官網 api  http://unlimited.kptaipei.tw/
+10:10 < kcwu> tonyq's url: [柯文哲野生官網 unlimited - 野生柯P官網，你來打造]
+10:11 < clkao> 動畫頭好暈 XD
+10:12 < tonyq> 還不小心撿到一個野生官網零號機 http://tonyq.org/kp-wild/base/
+10:12 < kcwu> tonyq's url: [柯文哲文章集]
+10:12 < tonyq> 後來還碰到爆走的初號機 http://tonyq.org/kp-wild/freelancer/
+10:12 < kcwu> tonyq's url: [柯文哲野生網站 by TonyQ]
+10:16 < kiang> https://www.youtube.com/watch?v=4q1XL9B77rQ - 這個演講很短，但是還不錯看，適合當 g0v 演講的開頭 XD
+10:16 < kcwu> kiang's url: [她4分44秒的演讲，却让整个世界都沉默了 - YouTube]
+10:18 < kiang> tonyq: 開頭的動畫會讓人忘記注意下面還有內容，因為都覺得內容會跟著動畫浮出來，然後就一直盯著動畫... XD
+10:18 < kiang> 也許設定 5 秒畫面沒有移動就自動往下捲會比較好
+10:20 < evenwu> XDDD
+10:20 < superbil> 發現有台筆電的水果竟然是香蕉!
+10:20 < evenwu> 第一位發現者！
+10:23 < tonyq> XDDDD
+10:24 < tonyq> 還真的有人會發現啊
+10:24 < tonyq> (逃
+10:24 < clkao> 我也有看到 XD
+10:25 < yhsiangCloud__> lanf0n: repo?
+10:32 < pcchou> tonyq: 安安(X
+10:33 < pcchou> 這個是朋友做的：
+10:33 < pcchou> 
+10:33 < pcchou> https://github.com/g0v/Logbot/pull/14
+10:33 < kcwu> pcchou's url: [Added color using md5ed nickname's first 6 letters (Hex color code) to the Web interface, by ifTNT by pcchou · Pull Request #14 · g0v/Logbot · GitHub]
+10:33 < pcchou> 拿MD5後的暱稱ID當成Hex的顏色代碼來上色…
+10:33 < pcchou> 想說貼過來XDDDD
+10:34 < pcchou> https://camo.githubusercontent.com/b4a8cfd38e674bba7d6ebbae4922bcab9f9b572a/687474703a2f2f692e696d6775722e636f6d2f397750735641562e706e67
+10:40 < barry54007> au:因為場地是DOIT提供，我們協辦單位會掛DOIT喔～ 
+10:40 < kiang> https://www.facebook.com/groups/taiwanese.in.europe/permalink/844992975520943/ - 不知道外交部要什麼時候才會看報紙知道...
+10:40 < kcwu> kiang's url: [Facebook]
+10:42 < a0000778> pcchou: 等等剛好#FFFFFF就爽XD
+10:43 < pcchou> a0000778: XDDDDD
+10:43 < pcchou> a0000778: 不太可能吧
+10:46 < a0000778> pcchou: 自己先hash一次所有組合看看 以防萬一XD
+10:48 < a0000778> pcchou: 最少太亮的都會悲劇
+10:54 < ipa> Lee1092++ #sticky menu
+10:55 < ipa> 可是好像跑到左邊外面去了
+10:55 < ipa> 晚點來看一下
+11:00 < miaoski> 原來村長也來 hitcon
+11:01 -!- chihchun_afk is now known as chihchun
+11:07 < clkao> stylus 好像有 sourcemap support 了！
+11:09 < yhsiang> 9小時前才merge的 XD
+11:10 < clkao> 我有訂那個 issue, 只是常常收到 update notification 都是 +1 的 XD 沒想到突然就解了
+11:21 < yhsiang> lanf0n: xsoameix: 請把匯款帳號寄到我的信箱 XD
+11:24 < xsoameix> lanf0n: 寄好了~
+11:24 < xsoameix> 發錯人...
+11:24 < xsoameix> yhsiang: 寄好了~
+11:25 < yhsiang> 收到！
+11:27 < yhsiang> 剩下快要斷糧的lanf0n了 :p
+11:35 < clkao> 有馬來西亞朋友在問 summit 的旅館了.. XD
+11:40 < yhsiang> 手腳好快 ...
+11:50 < kiang> 均一教育平台的新介面 - http://beta-dot-junyiacademy.appspot.com/
+12:07 < jimyhuang__> 名額消失了 ... 
+12:34 < twWatch> miaoski: newsemail.pixnet.net/blog/post/386453405
+12:34 < twWatch> http://newsemail.pixnet.net/blog/post/386453405
+12:34 < kcwu> twWatch's url: [[推薦] 其實媒體生態圈 不是不能改變 @ 伊湄兒的生活新鮮事 :: 痞客邦 PIXNET ::]
+12:37 -!- jerome__ is now known as jeromewu
+13:06 < t0mst0ne_> clkao: 本來想把提供長照機構服務的機構, 放在map 上, 但是剛聽同事講, 官最近要盤點所有data , 不止機構, 還有日托站, 個托 ...（不確定要不要放上網), 然後發包給oo professor 做一個類似標記map 的功能 ; 我的問題是: 既然已有發包, 那我們就不一定要做重複的吧 ?!  
+13:08 < chihchun> t0mst0ne_: 誰說他們會做的好？XD
+13:10 < t0mst0ne_> chihchun: 我想應該會做到官方要求, 我比較關心的是, 是否data都"完整" 呈現, 還是避重就輕, 有呈現, 但不完整.... (至少被要求提供data的單位表示: 資料要求的很詳盡 )
+13:11 < t0mst0ne_> 不過出發點是好的, 方便民眾就近找到可以服務家中長者的單位, 並且一整個spectrum 都出來, 不是只有護理之家或外勞
+13:11 < chihchun> t0mst0ne_: 是說，有能力跳坑就不須問鄉長意見？:P
+13:12 < t0mst0ne_> chihchun: 不懂?!  我只是想問看看, 既然官要做, 是否就等他做完再說. 除非data不夠open
+13:12 -!- Phantas__ is now known as Phantas
+13:16 < a0kman> (蠕動)
+13:16 < miaoski> 村長看起來很累
+13:18 < miaoski> twWatch: 等它哦～
+13:18 < chihchun> miaoski: 等到天荒地老了。
+13:18 < miaoski> chihhsin_cloud: xddd
+13:18 < miaoski> chihchun: xddd
+13:25 < Lee1092> t0mst0ne_:  個人比較想要  官 釋出 data 就好~  不用再花錢做map~  民間自己會做加值應用，  當然  如果 professor 是要做更深入的 醫療資源分配的問題，那就另當別論  XD
+13:27 < Lee1092> 不然到時  map 出來，如果要做其他加值應用，不就還是一樣要做 crawler 抓資料，到不如一開始就開放資料 XD
+13:35 < a0kman> clkao: 村長有在嘛?XD?
+13:35 < clkao> a0kman: ?
+13:36 < a0kman> 大松應該是周日
+13:36 < a0kman> 那天
+13:36 < a0kman> 之前和你討論到稅務相關內容的人 我有請他來一下XD
+13:37 < a0kman> 如果有其他國家預算  稅甚麼有的沒的
+13:37 < a0kman> 或許到時候可以在互動一下 或是進一步拉坑他XD
+13:37 < t0mst0ne_> Lee1092: 我努力讓參與的人要求公佈門至少做到opendata , 不過初步看來, 欄位相當多...
+13:37 < clkao> a0kman++
+13:37 < kiang> tonyq: 看起來沒有 accessToken 一樣可以存取 api.kptaipei.tw 的資料 XD
+13:38 < a0kman> 因為他要照顧孩子  所以會比較沒時間XD 這次總算挖他來了
+13:38 < a0kman> 如果可以讓他覺得不錯 可以合作 甚至建議提案  或許政府財政那一塊 也會有一些新東西出現(?
+13:39 < a0kman> :Q 總之 那天再來看看 因為週日應該也是下午出現
+13:40 < clkao> miaoski: no coffee... 只好請布丁大大待會來解救
+13:42  * Goddamn 捕獲野生村長.
+13:43 < Lee1092> t0mst0ne_++  open data 5 star 可以參考  http://5stardata.info/tw/
+13:43 < kcwu> Lee1092's url: [開放資料的五顆星]
+13:43 < kiang> 網路直播 | 2014 台灣教育科技博覽會 - 城市領航 - http://www.tetx.org.tw/2014/index.php/live
+13:44 < t0mst0ne_> Lee1092: ++
+13:45 < clkao> 這邊的翻譯比較好: https://g0v.github.io/5stardata.info/tw/
+13:46 < t0mst0ne_> 目前聽到, 工部門都被MS綁架, data 交換都要轉成 doc/excel ; 大家怨聲載道, 光把OO轉成doc , 又要版本正確, paper work 就耗時
+13:46 < Lee1092> clkao++  剛一時 沒找到 XD
+13:47 < t0mst0ne_> 公佈門的系統很難用, 地方單位登錄資料粉複雜, 聽說也是MS的關係
+13:49 < t0mst0ne_> 想想看1個公務人員要負責600個需要長期照顧的患者, 評估且提供適當的服務, 將來還要和保險掛鉤 ....光填表就暈了
+13:49 < kiang> 嚴格來說也不是 M$ 的關係，只是公部門懶得自己研究， M$ 經常提供整套的方案，所以公部門就採用了...
+13:51 < t0mst0ne_> 聽說公佈門都發包, 所以系統也是外包 ....外包的結果 ...
+13:52 < t0mst0ne_> 所以不大確定未來長照這一塊data輸出會以什麼形式處理
+13:54 < tkirby> D/win 1
+13:55 < miaoski> hlb: ++ 咖啡 please~~
+13:58 < mjhsieh> s/公佈門/公部門/
+13:58 -GitHub80:#g0v.tw- [g0v.tw] ipaaa pushed 1 new commit to master: https://github.com/g0v/g0v.tw/commit/c9499d5593799cadf659aee7554bdfd04eae3dbe
+13:58 -GitHub80:#g0v.tw- g0v.tw/master c9499d5 ipa: fix stick menu position
+14:01 -GitHub86:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/d380b6e31dd5c7bdcec09b9e9b8713b164ea9e26
+14:01 -GitHub86:#g0v.tw- g0v.tw/gh-pages d380b6e g0v general (via TravisCI): regen for c9499d5
+14:02 < xsoameix> 大家怨聲載道是指公務員嗎？
+14:04 < t0mst0ne_> 應該是被要求提供data的地方單位(提供長照服務的各級機構單位) ...因為登錄資料有個平台....
+14:05 < yhsiang> clkao++ # 這邊翻譯比較好 XD
+14:05 < t0mst0ne_> 不大確定平台上的data是否將來都能即時publish到網路
+14:06 < t0mst0ne_> 想請問一個問題, 除了opensource的code可以在GIT上做複雜的版本控制, windows的code也可以嗎 ? 
+14:07 < yhsiang> t0mst0ne_: sure
+14:07 < yhsiang> t0mst0ne_: .NET也有在git上open source
+14:07 < yhsiang> github
+14:08 < kiang> 只要有純文字格式，版本系統就幫的上忙吧（雖然編譯也行，但就只是備份，意義不大）
+14:08 < t0mst0ne_> 了解, 所以如果不放到github, 至少local 嫁一個github 應該可以輔助版本控制 ?
+14:08 < yhsiang> t0mst0ne_: gitlab
+14:09 < yhsiang> t0mst0ne_: https://about.gitlab.com/
+14:09 < kcwu> yhsiang's url: [GitLab | Open source software to collaborate on code]
+14:09 < yhsiang> t0mst0ne_: 其實你local不用架啊 git本身就是版本控制 XD
+14:09 < xsoameix> 地方單位會去用 git 把資料公開出來嗎？
+14:10 < t0mst0ne_> xsoameix: 大哉問 !!
+14:10 < xsoameix> 如果不會的話，你們要怎麼拿到他們的資料或 code 呢？
+14:11 < yhsiang> xsoameix: 也不一定要用git 才能公開資料跟code吧 XD
+14:12 < t0mst0ne_> 問gitlab 是幫敝公司問的, 因為前一陣子改版出包, 不同人寫的衝突;  汗剛才公佈門沒關係; 不過xsoameix 一問, 好像很有意思
+14:13 < kiang> xsoameix: 通常是有人手滑把資料塞進去吧， g0v 專案有相當多範例 XD
+14:13 < xsoameix> 我覺得地方單位如果不把 code 或資料公開出來的話，要怎麼用 git 去做版本控管呢？
+14:13 -GitHub122:#g0v.tw- [g0v.tw] ipaaa pushed 1 new commit to master: https://github.com/g0v/g0v.tw/commit/eb0eb3902caafc42f8dbd8a70a70f4515f6830b9
+14:13 -GitHub122:#g0v.tw- g0v.tw/master eb0eb39 ipa: project css fix
+14:15 < xsoameix> 公務部門會不小心把資料塞進 git？
+14:15 < kiang> xsoameix: 就 "沒有人" 會寫程式把資料塞進 git ，像是 https://github.com/g0v/twhgis
+14:16 < kcwu> kiang's url: [g0v/twhgis · GitHub]
+14:17 < xsoameix> 阿，抱歉，剛剛 t0mst0ne_ 說 git 跟公務部門沒有關係，我誤會了
+14:17 < Lee1092> t0mst0ne_:  公司內部的話  可以自己架 git server
+14:17 -GitHub149:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/44ca283447dbc35bc245ff4fc7a5d6b9eeaf7dcc
+14:17 -GitHub149:#g0v.tw- g0v.tw/gh-pages 44ca283 g0v general (via TravisCI): regen for eb0eb39
+14:18 < kiang> 我都沒有特別架 git server ，大部分就 git over ssh 就用得很開心（因為大多就自己一個...）
+14:21 < lanf0n> yhsiang: repo https://github.com/lanfon72/twpolitwoops-collector
+14:21 < kcwu> lanf0n's url: [lanfon72/twpolitwoops-collector · GitHub]
+14:22 < yhsiang> lanf0n: 我是問nodejs那個?
+14:22 < lanf0n> yhsiang: 那個沒有XDDDDDDD
+14:22 < yhsiang> xsoameix: 我覺得你講的是兩件事情 XD
+14:23 < yhsiang> lanf0n: 那弄個吧?
+14:23 < clkao> t0mst0ne_: 長照的部份是醫事司？還是資訊處呢？
+14:23 < yhsiang> lanf0n: 還是這邊需要幫忙？
+14:29 < xsoameix> 我剛剛以為公務部門會用 git，或者把 code 給我們，然後我們把他丟到 github 上
+14:29 < lanf0n> yhsiang: 等下傳....剛在追log...XD (因為其實很簡單只是加了 route/view 的幾行 code ...艸
+14:30 < yhsiang> lanf0n: 你是直接連db ?
+14:30 < t0mst0ne_> clkao: 現在是衛服步在統籌. 因為以前是這樣分: 醫療單位:衛生署, 社福單位:內政部, 但是中間有許多地方需要聯結, 現在衛服步整併後, 要將NGO, 醫療, 等等相關的統籌盤點.  而剛才說的資料登入就是盤點的過程, 平台不好用....
+14:30 < lanf0n> 嗯啊...
+14:30 < yhsiang> lanf0n: 還是把db dump成sql 放在repo裡面？
+14:30 < lanf0n> yhsiang: 咦 那這樣要怎麼連 sql...
+14:30 < t0mst0ne_> xsoameix: 對不起, 我跳太快了; 不過公佈門upload 資料用git, 好像也不錯, 直接省去中間一大堆步驟 XD
+14:31 < clkao> t0mst0ne_: right, 是說你知道衛服部的哪個單位嗎？
+14:31 < t0mst0ne_> clkao: 我來問看看
+14:31 < lanf0n> update 在 github 上方便快速又立馬公開...XD
+14:31 < yhsiang> lanf0n: 額  你這樣要把你的sql server密碼貼出來囉? XD
+14:31 < lanf0n> yhsiang: 當然是...改掉啊QQ
+14:32 < yhsiang> lanf0n: 有個sql檔案就可以自己建立local server
+14:33 < lanf0n> yhsiang: good hint...let me google it (艸
+14:33 < yhsiang> lanf0n: 其實就只是mysqldump 而已@@
+14:34 < lanf0n> yhsiang: 其實我不瞭怎麼建 local server 連到 .sql 裡面 囧>
+14:34 < xsoameix> 如果可以用工具解決的，就不需要設計制度來解決 :D
+14:35 < clkao> ronnywang: https://github.com/google/cayley/issues/25 神秘的 cayley 支援 postgresql
+14:35 < kcwu> clkao's url: [Postgres backend! · Issue #25 · google/cayley · GitHub]
+14:35 < yhsiang> lanf0n: 就建立local server把sql restore進去拉 XD
+14:36 < lanf0n> yhsiang: 所以還是要問一下 google 嘛...QAQ
+14:38 < kiang> cayley 好神奇的感覺... Written in Go ，不知道跟 Neo4j 比起來如何 （還沒真的直接用過 graph db ... ）
+14:40 -GitHub182:#g0v.tw- [g0v.tw] ipaaa pushed 1 new commit to master: https://github.com/g0v/g0v.tw/commit/47cbba86518c0a8d30f8af4691ff1c2ce21fa209
+14:40 -GitHub182:#g0v.tw- g0v.tw/master 47cbba8 ipa: fix project width
+14:42 < clkao> neo4j 好像有聽說 scale 後很慘的故事
+14:43 -GitHub177:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/48c7d1a9461b6c15f4e3336167108b7740eade7a
+14:43 -GitHub177:#g0v.tw- g0v.tw/gh-pages 48c7d1a g0v general (via TravisCI): regen for 47cbba8
+14:52 < kiang> http://stackoverflow.com/questions/20198982 - 翻譯： 用 neo4j 最好不要奢望 sharding XD
+14:52 < kcwu> kiang's url: [bigdata - What is the status on Neo4j's horizontal scalability project Rassilon? - Stack Overflow]
+14:55 < lanf0n> yhsiang: 咦 dbdump 出來還要密碼嘛...?
+14:57 < t0mst0ne_> clkao: http://www.mohw.gov.tw/cht/DONAHC/
+14:57 < kcwu> t0mst0ne_'s url: [護理及健康照護司]
+14:57 < kiang> 內鬥檯面化ing - http://www.appledaily.com.tw/livechannel/subject/58
+14:57 < kcwu> kiang's url: [《蘋果Live》張顯耀新聞事件現場｜Apple Daily｜直播蘋道]
+15:11 < ronnywang> clkao: 好像不錯耶，有空來玩玩看
+15:11 < clkao> ronnywang: 應該可以高速 traverse 公司關係
+15:11 < clkao> 不過我只有之前快速看過 他好像沒有 edge property, 要自己另外存
+15:19 < jimyhuang__> why 高速？
+15:20 < jimyhuang__> 疑..我看到 go 了... 
+15:28 < t0mst0ne_> clkao:  https://g0v.hackpad.com/eX7IO2HhUZW  長照的spectrum , data 待收集
+15:28 < kcwu> t0mst0ne_'s url: [長期照顧形態 - g0v.hackpad.com]
+15:31 < xsoameix> 之前曾經為了寫 LL 1 table builder 用 go，但是後來為了學 C，就改用 C 了
+15:37 < Michael_LI> 請幫我看一下，不知道為何　tag　上不去／tag.新聞松　NEWShackatho／https://g0v.hackpad.com/2014-10-04-tHGyDDrkC7y
+15:37 < kcwu> Michael_LI's url: [2014-10-04／第一次新聞松／ - g0v.hackpad.com]
+15:48 < miaoski> 感謝 hlb  長輩～～
+15:48 < hlb> miaoski: 送愛心到非洲 (?)
+15:48 < miaoski> Neo4j 超過 1m nodes 還是別用吧
+15:49 < twWatch> miaoski: 參考資料之一 XD 不知道他們開發團隊的運作是如何
+16:15 < Michael_LI> NewCliCker／指導／關於電視牆的背景，最好越素越好，這樣人的眼睛才不會累，長時間要看直播才看得下去。END／http://j.mp/1nVeIWd
+16:15 < kcwu> Michael_LI's url: [G8V.TV 電視牆]
+16:18 < a0kman> http://www.wetalk.tw/thread-15986-1-1.html  @@
+16:18 < kcwu> a0kman's url: [新一代媒體巨獸成形! 壹電視工會要罷工被年代資方修理! - 政治新聞八卦版 - WeTalk 論壇 - Let's Talk]
+16:46 -GitHub9:#g0v.tw- [g0v.tw] ipaaa pushed 1 new commit to master: https://github.com/g0v/g0v.tw/commit/43cd16252e216a6d6e15542a4f6a391ff157e241
+16:46 -GitHub9:#g0v.tw- g0v.tw/master 43cd162 ipa: add project img
+16:49 -GitHub186:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/68ecc448fa1a0e1fbb56deff812f88cfab63a159
+16:49 -GitHub186:#g0v.tw- g0v.tw/gh-pages 68ecc44 g0v general (via TravisCI): regen for 43cd162
+16:55 < lanf0n> yhsiang: https://github.com/lanfon72/woopsMVP
+16:55 < kcwu> lanf0n's url: [lanfon72/woopsMVP · GitHub]
+16:58 < yhsiang> lanf0n++
+18:01 < caasih> 喔喔喔喔，好像很酷： https://github.com/g0v/Logbot/pull/14 ifTNT++
+18:01 < kcwu> caasih's url: [Added color using md5ed nickname's first 6 letters (Hex color code) to the Web interface, by ifTNT by pcchou · Pull Request #14 · g0v/Logbot · GitHub]
+18:05 < pcchou> caasih: 他現在沒上線… 哭哭
+18:06 < caasih> XD
+18:10 < pcchou> seadog007: 海豹大安
+18:10 < seadog007> 安 不過你怎麼在g0v w
+18:10 < pcchou> seadog007: 不知道w
+18:14 < pcchou> caasih: 
+18:28 < caasih> pcchou: maho?
+18:28 < caasih> ifTNT++ XD
+18:30 < caasih> au: 求發佈 ifTNT 加的 nickname color
+18:31 < ifTNT> caasih: 好阿
+18:31 -!- CelloCello [~Sero@1.34.191.8] has left #g0v.tw []
+19:46 < pipi_> 剛剛發現下週六黑客松的票還有欸
+20:47 -!- chihchun is now known as chihchun_afk
+20:50 < hexual> 有人在嗎
+20:52 < miaoski> pipi_: 有朋友退票了說 (該不會還剩很多 @@)
+20:57 < clkao> hexual: hi
+20:58 < hexual> hi 請問這邊要提專案是在後勤中心嗎
+21:00 < Lee1092> 我看  jimyhuang__   有在詢問?   # 黑客松的票
+21:04 < clkao> hexual: 建議用 hackpad 共筆，可以寫的比較詳細。這邊有空白模版 http://hack.g0v.tw/g0v-hackath10n/aCZGg48I5pX
+21:06 < hexual> got it, 研究一下
+21:07 < hexual> 我很久以前就想提出筆戰系統了，也就是進化版的討論區
+21:09 < clkao> hexual: 看過 polis 了嗎？
+21:09 < hexual> 沒
+21:10 < Michael_LI> 今天我看到幾個新聞標題，從「你不可不知的從未被揭發的新聞全場的觀眾都崩潰了！」開始看起吧／https://www.facebook.com/lihsingyu/posts/907673099246329
+21:10 < kcwu> Michael_LI's url: [Hsingyu Li - 今天我看到幾個新聞標題︰ 你不可不知的從未被揭發的新聞全場的觀眾都崩潰了！... | Facebook]
+21:12 < clkao> hexual: https://pol.is/8bfzc9
+21:12 < kcwu> clkao's url: [Polis]
+21:13 < hexual> 概念還滿像的耶
+21:16 -!- hexual [7a760eb1@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.14.177] has left #g0v.tw []
+21:16 < jimyhuang__> Lee1092: 我有票，感謝啦
+21:31 < clkao> iris 說沒票.. 
+21:33 < xsoameix> 學姊 gg ...
+22:02 < hcchien> clkao: 還有 FCI 跟 mysociety, pokr, loomio 要寫信
+22:03 < hcchien> ipa: 你要認領統計預算跟整理工作人員的卡嗎
+22:04 < hcchien> AceChen: 把場務的預算整理一下吧
+22:07 < yhsiang> http://aftg.kktix.cc/events/aftg1 # 開給女孩們的課，當過前端松助教們開的課~
+22:07 < kcwu> yhsiang's url: [AFTG : 慢燉HTML佐CSS拌RWD經典三重奏 - 前端女孩嘗鮮限定]
+22:07 < xsoameix> docker 裡的 ubuntu 的 terminal 打「中文」，會出現「--------」，有熟悉 ubuntu 的高手知道是甚麼問題嗎？
+22:08 < clkao> yhsiang: !!
+22:08 < xsoameix> 我是 mint 連進 ubuntu 的...
+22:09 < clkao> xsoameix: hychen 跟 chihchun_afk 都是熟悉 ubuntu 的高手 XD
+22:10 < xsoameix> hychen, chihchun_afk: 請問大大知道是甚麼問題嗎？
+22:12 < yhsiang> ETBlue大概衝定了? :p
+22:12 < xsoameix> 原本 locale 的設定是 POSIX
+22:12 < xsoameix> 我執行過 locale-gen zh_TW.UTF-8
+22:15 < yhsiang> 不過報名人數限定12人 XD 競爭激烈阿
+22:18 < xsoameix> 用 docker 裝 mint ...
+22:20 < a0000778> xsoameix: ubuntu 下用 lxc 裝 ubuntu 顯示正常
+22:21 < a0000778> docker 會不會對中文支援性不佳?
+22:21 < xsoameix> a0000778: 疑，那就奇怪了，有可能是 docker 的問題
+22:28 < jimyhuang__> xsoameix: 同樣連線非 docker 的 box 就沒問題？
+22:29 < xsoameix> jimyhuang__: 非 docker 的 box？
+22:29 < xsoameix> jimyhuang__: 有其他的 box 可以測嗎？
+22:30 < jimyhuang__> digitalocean 去試用一個？
+22:32 < xsoameix> 好，我去試試看
+22:34 < xsoameix> (感覺跳進奇怪的坑了
+22:36 < yhsiang> caasih: au merged拉~~
+22:36 < yhsiang> logbot有顏色了 au++
+22:36 < xsoameix> 他要 credit card 耶？
+22:37 < xsoameix> 沒錢 orz
+22:37 < yhsiang> xsoameix: 可以去twitter上面找promo code
+22:37 < yhsiang> xsoameix: 郵局有換成visa卡是可以用的
+22:41 < xsoameix> 感謝 :)
+22:41 < yhsiang> xsoameix: 然後credit 用完之後 droplet記得要刪光 XD
+22:42 < Lee1092> logbot 看到顏色啦~~~~~  cool
+22:43 < jimyhuang__> 或是自己裝local virtualbox 
+22:45 < a0000778> xsoameix: 也可以用 Linode 印象中不用看信用卡 但只有幾十分鐘
+22:47 < caasih> au++ ifTNT++
+23:06 < yhsiang> gitter要收費了 XD
+23:44 -!- chihchun_afk is now known as chihchun
+23:51 < hcchien> clkao: sunlight 跟 mysociety 的介紹文案
+23:53 < clkao> hcchien: yes
+23:54 < t0mst0ne_> http://www.chinatimes.com/newspapers/20140814000285-260210 Wow ...
+23:54 < kcwu> t0mst0ne_'s url: [工業局軟體採購辦公室 啟動 - 中時電子報]

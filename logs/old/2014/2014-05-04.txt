@@ -1,0 +1,169 @@
+--- Day changed 日  5月 04 2014
+00:00 < tkirby> kcwu: 我覺得這要深究一下原因.. 我之前試了幾次就連不上了, 結果換個 browser 就又行了
+00:01 < kcwu> tkirby: 下次清 cookie 試試
+00:01 < tkirby> 他應該是不至於送個幾十個 request 就爛掉
+00:01 < tkirby> kcwu: 有清過..
+00:01 < hcchien> 可是就算一切順利，要全部跑完也是要很久
+00:02 < tkirby> 應該不是說清過, 而是我有用 incognito mode 試
+00:03 < yhsiang> isacl: 放在body前面就可以啦 :o
+00:03 < hcchien> 而且我現在只用 for loop 跑，要看看怎麼讓他斷掉還可以從正確的地方繼續
+00:03 < yhsiang> hcchien: phantomjs ?
+00:03 < tkirby> hmmm
+00:03 < mingtsay> isacl: 放在</body>前面也可以www
+00:03 < isacl> tkirby: hmm. 但是當地一個 select 就沒東西時，接下來的 append 不是也沒意義嗎？
+00:04 < yhsiang> hcchien: 需要phantomjs才能抓嗎?
+00:04 < yhsiang> 其實還有另一個叫zombie # https://github.com/assaf/zombie
+00:04 < kcwu> yhsiang's url: [assaf/zombie · GitHub]
+00:04 < hcchien> yhsiang: 現在的 code 是用 phantomjs + casperjs   # 除非有人重寫
+00:06 < tkirby> isacl: 也是沒錯啦, 不過也許有人會用這樣方式來檢查標籤是存在, 發 error 的話就得加 try & catch 來處理了
+00:06 < isacl> yhsiang, mingtsay: 是阿太大意了，一般情況下這樣會吐錯誤的。所以直覺沒想到是這問題。 d3 就算 selector 沒選到東西，還是會吐回 d3 object 可以繼續 "." 下去
+00:07 < yhsiang> isacl: 因為做casade 所以 必須這樣啊 XD
+00:07 < isacl> yhsiang: yeah :)
+00:09 < hcchien> 是說 xls 要放上 github 嗎
+00:09 < tkirby> 好阿, 有 license 的問題嗎?
+00:10 < tkirby> 順便轉個 csv? 用 xlsjs
+00:10 < tkirby> 到時候應該會很多
+00:10 < hcchien> 這....，先交給其他人。我應該想辦法把其他的抓下來   lol
+00:11 < tkirby> hcchien++
+00:11 < yhsiang> hcchien: 是doh-caner那個repo嗎 ?
+00:11 < hcchien> yhsiang: 剛剛貼的
+00:12 < hcchien> # https://github.com/hcchien/doh-cancer
+00:12 < kcwu> hcchien's url: [hcchien/doh-cancer · GitHub]
+00:12 < yhsiang> 所以那個phantom.js 是patch過的 @@a
+00:12 < tkirby> 要怎麼讓他跑不同癌症
+00:13 < hcchien> tkirby: https://github.com/hcchien/doh-cancer/blob/master/loop.pl
+00:13 < kcwu> hcchien's url: [doh-cancer/loop.pl at master · hcchien/doh-cancer · GitHub]
+00:13 < hcchien> yhsiang: 對，那個 binary 在 osx 上應該要可以跑   XD
+00:14 < hcchien> casperjs --ignore-ssl-errors=true tree.js --kind=$d --point=$p --sex=$s --type='".$t."' --dist=$di
+00:14 < tkirby> hcchien: 感覺得出來他在窮舉全部.. XD 可是如果我也跑的話, 會抓到跟你之前跑過的一樣的東西?
+00:15 < hcchien> tkirby: 那可以把 @type 改成用 perl 參數
+00:16 < hcchien> 一次跑一種癌症
+00:16 < hcchien> # 不過其實鄉鎮才是最大問題   orz
+00:16 < tkirby> XD
+00:16 < tkirby> 一時也不知道怎樣改, 你有空 patch 一下 README 好了 XD
+00:17 < tkirby> 該睡了, 明天得早起~
+00:17 < hcchien> k
+00:30 < clkao> http://www.meetup.com/betanyc/events/180777552/ 突然變成會路過紐約
+00:30 < kcwu> clkao's url: [BetaTalk - Civic Hacking Taiwan - #betaNYC, a Code for America Brigade for NYC (New York, NY) - Meetup]
+00:31 < yhsiang> wwww 路過的好 :o
+00:33 < hcchien> clkao: 順便看誰可以來台灣吧
+00:33 < hcchien> clay 都不回信
+00:34 < yhsiang> 去路過看誰可以路過台灣 
+00:34 < clkao> hcchien: 等我到雪梨寫信一下....  mysoc 的 tom/paul, fci 的 fheusser 都有興趣
+00:36 < hcchien> cool
+00:37 < clkao> johnny__: 無聊的話玩玩這個吧 https://github.com/granoproject/grano :p
+00:37 < kcwu> clkao's url: [granoproject/grano · GitHub]
+00:38 < clkao> ronnywang: news archive 好像可以接這個 # https://github.com/Code4SA/mma-dexter/wiki
+00:38 < kcwu> clkao's url: [Home · Code4SA/mma-dexter Wiki · GitHub]
+01:12 < mingtsay> 有誰推薦不錯的SSL？
+01:38 < kiang> mingtsay: http://www.neo.com.tw/archives/866 ?
+01:38 < kcwu> kiang's url: [台幣萬元以下 SSL 憑證選購指南 : Neo 's Blog]
+01:44 < mingtsay> kiang: 看過但還是不知道該選哪一家
+01:52 < mingtsay> 而且不知道該買 Single Host 還是 Wildcard
+01:57 < NewCliCker> mingtsay: 還沒追log所以不知道你的SSL用途呢，如果考量省錢的話還是Starter SSL吧？ 不知道以你的用途Starter夠不夠用呢？
+01:57 < NewCliCker> http://www.neo.com.tw/archives/444
+01:57 < kcwu> NewCliCker's url: [便宜的 SSL 憑證 : Neo 's Blog]
+01:57 < mingtsay> NewCliCker: 我目前是用 StartSSL # https://www.startssl.com
+01:58 < kcwu> mingtsay's url: [StartSSL™ Certificates & Public Key Infrastructure]
+01:58 < mingtsay> NewCliCker: 是由 IL （以色列）提供的免費 SSL 憑證
+01:58 < mingtsay> NewCliCker: 但聽說 Class 1 不適合拿來長期使用OAO?
+01:59 < NewCliCker> mingtsay: 不適合長期使用？怎麼說啊？
+02:03 < mingtsay> NewCliCker: Class 1 只有 Common Name?
+02:09 < NewCliCker> mingtsay: 其實我只是好奇想問說甚麼用途使你要開始申請更高級的SSL憑證，商務金流？
+02:11 < mingtsay> NewCliCker: 我想知道如果我的 domain 開始變成工作室的網站，需要換掉現在的 SSL 改用付費的嗎？
+02:12 < S3p_lin> 用不著吧? 除非這個網站有個資/金流之類的通訊, 那應該去找強度比較夠的 ssl cert
+02:13 < S3p_lin> 錢夠多的話, 可以用 verisign, 台灣的代理商是 hitrust, 可以開發票, 出事可以告上法院求償的
+02:15 < NewCliCker> mingtsay: 同S3p_lin ，你的工作室如具備完整證明文件等等，你就有能力可以為你的工作室申請通過更高等級的SSL認證。但是你可以有需要時再做就好。
+02:16 < mingtsay> S3p_lin: NewCliCker: 所以 SSL 主要是為了買保險這樣的感覺？
+02:18 < S3p_lin> mingtsay: 如果你沒用 ssl, 個資/金流在網路上是明碼傳送, 被竊聽竊取走的話, 依目前個資法會認定網站負責人未盡保管之責任, 然後就刑事了
+02:19 < mingtsay> S3p_lin: 那如果只用 Class 1 也算 ok 嗎？
+02:19 < NewCliCker> mingtsay: 簡單說SSL憑證是你這個網站如果要說服大家在你這裡輸入個資帳號、信用卡、金錢交易時的信賴保證。
+02:19 < mingtsay> S3p_lin: 範例： https://mt.rmstudio.tw
+02:19 < kcwu> mingtsay's url: [小喵の網誌 | 程式設計與心情隨筆。]
+02:20 < S3p_lin> mingtsay: 我沒在看 class 1 的, 我看的是這個 ssl cert 強度夠不夠, 很明顯現在這個是夠的
+02:21 < mingtsay> S3p_lin: 所以我可以不用擔心囉？
+02:21 < pofeng> hcchien: 癌症統計我記得可以跟國衛院(?)買, 如果抓不下來, 記得告訴我, 我去買 ...
+02:21 < mingtsay> S3p_lin: 不過有時候我會遇到「OCSP 伺服器沒有憑證狀態。」這個問題，代碼是 sec_error_ocsp_unknown_cert
+02:21 < S3p_lin> mingtsay: 理論上目前不用擔心, 除非你要搞大事業
+02:22 < NewCliCker> mingtsay: 舉例，你開了一個網拍平台，大家在這邊輸入信用卡，金錢交易等動作，大家質疑你的網站安全性，你可以用越高等級的SSL蘋正來證明你的財力，公信力等等
+02:22 < NewCliCker> 蘋正(X) 憑證(O)
+02:24 < S3p_lin> mingtsay: 看起來像是 firefox 某個認證機制的問題, 遇到被 mitm 再去理它
+02:33 < mingtsay> S3p_lin: NewCliCker: 感謝兩位！
+02:33 < NewCliCker> mingtsay: no problem :)
+11:22 < favonia> Hello 有沒有人想要幫忙 visualize 公投審議會的投票紀錄 xD
+11:59 < Lee1092> favonia:  有資料了嗎??  或許丟出來就有人做了  XD
+12:00 < Lee1092> !!  八月的黑客松要跟 料科學愛好者年會 一起!?  # http://twconf.data-sci.org/
+12:00 < kcwu> Lee1092's url: [台灣資料科學愛好者年會 2014 — Exploring the Potentials of Real-world Data Analytics]
+12:07 -!- mac__ is now known as cades
+12:09 < favonia> Lee1092: 我不知道這張表格應該怎麼呈現
+12:09 < favonia> https://docs.google.com/spreadsheets/d/1omdmDHw9ZrM2Gg3w0JwbJHLwtB7_VwljEMJw-6YFTu8/edit?usp=sharing
+12:09 < kcwu> favonia's url: [ECFA 公投案封殺紀錄 - Google 試算表]
+12:29 < favonia> 我發現到我漏資料了
+12:29 < favonia> 正在補 xD
+12:47 < favonia> 補完了
+13:23 < eyes1971> http://www.ustream.tv/channel/nurse201454 台灣基層護理產業工會 向血汗醫院挖糞吧！北車LIVE
+13:23 < kcwu> eyes1971's url: [USTREAM: nurse201454: .]
+14:10 < togepy> G0V那台直播有沒有登入nonuke.today呀?
+14:16 < Rhozan> 大家好，[APP4AM除黴計畫] 想徵插畫稿，希望有熱寫畫師能協助繪製，要求及文案在這裡  https://docs.google.com/document/d/15-gieJZw8ucg5j7PBSXaXyVmIOQe8_zJbGyeF0YrRS8/edit?usp=sharing
+14:16 < kcwu> Rhozan's url: [APP4AM除黴計畫 | 源由插畫徵稿 - Google 文件]
+15:06 -!- susu__ is now known as susu
+16:40 < exFREEzy> 嗯？這邊有人關心今日信義區割闌尾 ing 活動嗎？
+16:40 < exFREEzy> 人在外面網速不穩  需要情報更新
+16:54 < exFREEzy> 好吧看來連 togepy 都不在   我自己努力
+16:56 < alan5281> relay.network.ssl_cert_key "%h/ssl/relay.pem"
+17:05 < ipa> Lee1092: ya! 八月跟資料科學一起（剛看成科科學 XD）
+17:07 < ipa> favonia: 我前陣子有問台灣社會變遷計畫前任召集人問，他說資料都公開只要申請就可用，在社會所網站上
+17:09 < favonia> ipa: 可是如果我們把資料抓下來，擺在自己的 server 上，別人用我們的服務，難道不用跟社會所回報？
+17:10 < favonia> ipa: 我知道資料在那，我自己都有完整的一份，但他們並沒有清楚的給授權讓我做這些事情
+17:11 < ipa> favonia++ 他們可能沒有授權概念，請繼續催促他們
+17:12 < favonia> ipa: 舉例來說，這份資料是不能用做商業用途的，但 g0v 有哪個服務禁止商業用途？這是要怎麼限制？
+17:13 < favonia> ipa: 簡單來說我覺得現在的使用規定...很像把對方當作一個苦命的(?)社會所研究生...不是我提的這種用途
+17:14 < ipa> 請他們使用cc? 
+17:15 < favonia> ipa: 我比較關心的是，他們為什麼要讓使用者登記才能下載資料？用 cc 不就代表使用者不需要透過那個介面嗎？
+17:16 < ipa> favonia: good point, 那要跟社會所提出疑問嗎？
+17:16 < favonia> ipa: 我把他當作一個技術問題問他們，但還沒得到答案
+17:17 < favonia> ipa: 簡單來，可以用的授權很多，但沒有一個可以讓他們登記使用者。可能要先了解為什麼要登記使用者。
+17:18 < favonia> 簡單來=>簡單來說
+17:18 < ipa> 或參考萌典作法(?) 先作再回頭迫使他們思考授權問題
+17:18 < favonia> ipa: orz 這樣好嗎 orz
+17:19 < exFREEzy> 看到資料引用的討論才想到
+17:19 < ipa> 細節可問 au XD  
+17:20 < exFREEzy> 最近除了 yutin's APP： LiveTW 可以通知直撥及預定排程外
+17:20 < ipa> 政治獻金也是採取這種作法？只是更麻煩 
+17:20 < favonia> ipa: 政治獻金有很多方法可以 argue 這是正當的。因為真的很難拿到資料
+17:21 < exFREEzy> 目前有接收到兩三個會議討論都有提到  想將 全國路過資訊中心（概念網站）  作個通知型 APP
+17:21 < ipa> favonia: 當然這取決專案主的想法， take your time
+17:21 < favonia> ipa: 可是中研院這個是資料基本上擺在那裡，只是用很跟 g0v 很不合的步驟授權
+17:21 < favonia> ipa: 可是中研院這個是資料基本上擺在那裡，只是用跟 g0v 很不合的步驟授權
+17:22 < ipa> 大部分 g0v 專案使用的資料都是用很不合的授權啊 XDDD
+17:23 < favonia> ipa: 你的意思是說 反正先把他當作 CC-BY 用（？）再說嗎
+17:23 < exFREEzy> 路過通知 APP 目的可能在於 快閃行動 跟 資料散佈管道   不知道目前有人有這類型的 APP 實作經驗或 引用資料來源供參考嗎  因為有一組人馬正在做  (我也不知道他來過沒有  想說幫忙打個招呼)
+17:25 < ipa> 先以「僅作學術使用，不得作其他商業用途」並註明出處應該是ok的？萌典的授權就我所知 open foundry有協助，也許也可以問問看？
+17:27 < ipa> exFREEzy: 路過通報系統嗎？好像沒有，但有想做通報直播連結系統
+17:28 < ipa> exFREEzy: https://www.facebook.com/groups/1400778433534133/ 不知道算不算
+17:28 < kcwu> ipa's url: [Facebook]
+17:30 < exFREEzy> http://disp.cc/b/163-7DRb
+17:30 < kcwu> exFREEzy's url: [[討論] 一個小網站　讓九成德國議員「踹共」 - Gossiping板 - Disp BBS]
+17:30 < exFREEzy> 感謝 ipa++  我先參考看看
+17:34 < favonia> ipa: 我想這樣是不行的。因為他不是要擺一大段聲明
+17:34 < favonia> ipa: 而且「並於發表後將論文兩份寄交中央研究院社會學研究所「社會變遷計畫」」
+17:35 < favonia> ipa: 總之現在很不 g0v-friendly 啦 xD 可以擺 attribution 可是要寄論文回去這個嘛...
+17:42 -!- pm51 is now known as pm5
+19:14 -!- HappySC [~chatzilla@122-116-34-78.HINET-IP.hinet.net] has left #g0v.tw []
+19:22 < johnny__> clkao: 呵呵看起來可以用在有趣的地方
+19:23 < mingtsay> 唉…免費的最貴…
+19:23 < mingtsay> 註冊 .tk 免費域名常常自己消失
+19:23 < mingtsay> 然後按新增說已經被註冊走了
+20:45 -!- BV1AL_ is now known as BV1AL
+23:04 < NewCliCker> IRC上寧靜的夜晚，讓人不禁以為自己掉進netsplit XD 
+23:08 < kiang> 休息是為了走更長遠的路，呼叫 S3p_lin 麻煩再來手滑一下 ;)
+23:08 < S3p_lin> 呃....
+23:11 < S3p_lin> 那是意外啊 XD
+23:11 < kiang> S3p_lin: 難得有讓人期待的意外？ XD
+23:12 < S3p_lin> 囧roz
+23:15 < hcchien> 剛剛看到這個，不知道是什麼  XD   # https://g0v.hackpad.com/olpdF7Qq3hu
+23:15 < kcwu> hcchien's url: [組織部業務分工 - g0v.hackpad.com]
+23:17 < kiang> hcchien: 我猜是台灣民政府的成員？ XD
+23:17 < kiang> 台北大學社會系學生許恩恩 XD
+23:20 < hcchien> kiang: soga. 好陌生的組織，頁面上也只寫組織部，沒寫什麼組織  lol
+23:21 < kiang> 應該是把頁面開錯地方吧

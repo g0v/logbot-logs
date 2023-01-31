@@ -1,0 +1,248 @@
+--- Day changed 三 10月 15 2014
+01:23 < pm5> clkao: sorry, forgot to ask today.  should be okay.  will check with colleagues first thing tomorrow.
+01:33 < Michael_LI> 轉　https://fightforsilence.herokuapp.com/
+01:34 < Michael_LI> 「為沉默發聲」網站　南部某國立特教學校在2011年爆發大規模性侵案　10 / 16 之後，我們將永遠無能為力...... 
+01:34 < ETBlue> post 給 ethercalc 的 hash 跟 array 不知道怎麼處理好 http://g0v.github.io/project-hub-mockup/public/submit
+01:35 < kcwu> ETBlue's url: [g0v project hub mockup]
+01:39 < kiang> Michael_LI: http://zh.wikipedia.org/zh-tw/%E5%9C%8B%E7%AB%8B%E8%87%BA%E5%8D%97%E5%A4%A7%E5%AD%B8%E9%99%84%E5%B1%AC%E5%95%9F%E8%81%B0%E5%AD%B8%E6%A0%A1
+01:39 < kcwu> kiang's url: [國立臺南大學附屬啟聰學校 - 維基百科，自由的百科全書]
+01:39 < a0000778> ETBlue: 沒懂，JSON不好嗎？
+01:40 < Michael_LI> 我知道（我一直有注意這件事情的進度）剛剛看到資訊感整理下來貼給各位用／　https://www.facebook.com/lihsingyu/posts/937496239597348
+01:40 < kcwu> Michael_LI's url: [Hsingyu Li - 南部某國立特教學校在2011年爆發大規模性侵案 「為沉默發聲」網站... | Facebook]
+01:41 < ETBlue> a0000778: 架在 gh-pages 上的話應該是無法直接修改 json 檔案，所以想拿 ethercalc 當收單櫃臺
+01:41 < ETBlue> a0000778: 因為不會串後端，所以是純靜態站…XD
+01:43 < kiang> ETBlue: 就直接塞 json 資料到 ethercalc 儲存格？
+01:43 < ETBlue> a0000778: 所以只好拿 ethercalc 收即使用者送過來的資料，之後再不定期手動整理到 .json
+01:43 < ETBlue> kiang: 直接塞有些符號會導致資料不見， { 跟 [ 都是
+01:44 < a0000778> ETBlue: 直接把資料存在ethercalc不好嗎
+01:44 < ETBlue> a0000778: 好像需要經過某種轉換才能讓 ethercalc 吃進去以後還能保持 json 格式的字串
+01:45 < ETBlue> 我目前是先把 { 跟 [ 用 .replace 換掉
+01:45 < ETBlue> 但裡面還是有些東西怪怪的，像是 " 也會不見…
+01:45 < a0000778> 我來去試試...
+01:46 < ETBlue> hooray
+01:46 < ETBlue> 可以安心去洗澡了 XD
+01:47 < ETBlue> a0000778: repo 在此 https://github.com/g0v/project-hub-mockup 請 commit 在 master branch XD
+01:47 < kcwu> ETBlue's url: [g0v/project-hub-mockup · GitHub]
+01:47 < ETBlue> a0000778: 改這邊 ^O^ https://github.com/g0v/project-hub-mockup/blob/master/views/index.jade#L616
+01:47 < kiang> 塞了 30 萬筆新聞資料後小主機更容易被打掛了，所以換到大一點的主機... http://k.olc.tw/elections/ 現在可以看到候選人相關新聞囉
+01:48 < kcwu> ETBlue's url: [project-hub-mockup/index.jade at master · g0v/project-hub-mockup · GitHub]
+01:48 < kcwu> kiang's url: [2014行政區 @ 選舉黃頁]
+01:48 < lanf0n> 用 json to string? ethercalc 應該可以吃 " { .... } " 之類的格式
+01:49 < ETBlue> lanf0n: 目前丟給 ec 的是 JSON.stringify() 後的字串
+01:49 < kiang> ETBlue: https://developer.github.com/v3/git/ 看起來可以寫耶？
+01:49 < kcwu> kiang's url: [Git Data | GitHub API]
+01:50 < ETBlue> kiang: 不用登入也可以嗎 @@
+01:50 < kiang> ETBlue: 應該不會是這樣的，你繼續 XD
+01:50 < a0000778> kiang: 直接寫入GitHub有點不妙 感覺會變成可以改程式
+01:51 < kiang> 另外開一個 repo 存資料就好了，只是認證會比較麻煩些
+01:51  * lanf0n jade 完全不行啊...(死
+01:52 < ETBlue> kiang: a0000778: 如果可以的話幫我改成寫入到這個檔案 XDDD https://github.com/g0v/project-hub-mockup/blob/master/public/json/project-list.json
+01:52 < kcwu> ETBlue's url: [project-hub-mockup/project-list.json at master · g0v/project-hub-mockup · GitHub]
+01:52 < Michael_LI>  <kiang>　再次更新了，延伸閱讀加了在韓國同樣的一件事情　《熔爐》（韓語：도가니，英語：Silenced）　當年公視新聞做了很多專題報導
+01:55 < ETBlue> kiang: a0000778: 我目前是改在 master 然後跑 deploy.bat 讓它生檔案在 gh-pages 
+01:57 < ETBlue> kiang: a0000778: 用 local server 看的話這兩行橋一下 history.pushState 才能正常運作…但不橋也無妨，不影響表單本人 https://github.com/g0v/project-hub-mockup/blob/master/views/index.jade#L313 , https://github.com/g0v/project-hub-mockup/blob/master/views/index.jade#L320
+01:57 < kcwu> ETBlue's url (2/2): [project-hub-mockup/index.jade at master · g0v/project-hub-mockup · GitHub]
+01:57 < ETBlue> 額，我洗完澡來更新 readme ><
+02:25 < kiang> http://www.appledaily.com.tw/realtimenews/article/politics/20140909/466214/ - 我剛剛才知道有報導 XD
+02:25 < kcwu> kiang's url: [10人搶當金門縣長　史上最大規模選戰　 | 即時新聞 | 20140909 | 蘋果日報]
+02:30 < a0000778> ETBlue: 想了想 這不是 " 跟 "" 的問題麼 已Pull Requests
+02:58 < ETBlue> a0000778: !!! 好快速 @o@
+02:59 < a0000778> ETBlue: bat我沒跑 Linux系統
+02:59 < ETBlue> a0000778: 這種雜事我做就好了 ^O^
+03:00 < ETBlue> done ^O^
+03:02 < ETBlue> a0000778: 可以了耶！！！ @o@
+03:05 < a0000778> 炸了好多表情符號出來...
+03:09 < ETBlue> 太感動了
+03:09 < ETBlue> 我今天試好久……QQ
+06:14 < Michael_LI> 早安　
+06:15 < Michael_LI> ［食安］剛剛配了一個大頭圖，配合封面照　今天給各位參考一下　https://www.facebook.com/lihsingyu
+09:33 -!- Michael_LI_ is now known as Michael_LI
+09:33 -!- czchen_ is now known as czchen
+09:33 -!- othree_____ is now known as othree____
+09:33 -!- V1ctor_ is now known as V1ctor
+09:33 -!- lancetw_ is now known as lancetw
+09:33 -!- gavin-^^_ is now known as gavin-^^
+09:33 -!- pofeng_ is now known as pofeng
+09:33 -!- shhu_cloud_ is now known as shhu_cloud
+09:33 -!- chihao_ is now known as chihao
+09:33 -!- ipa_ is now known as ipa
+09:33 -!- swem__ is now known as swem_
+09:34 -!- FourDollars_ is now known as FourDollars
+09:42 -!- timdream_ is now known as timdream
+09:43 -!- zea1_bsd is now known as zeal_bsd
+09:43 -!- Michael_LI_ is now known as Michael_LI
+09:43 -!- poga_ is now known as poga
+09:54 < bachre> ETBlue: 請問 Project-Hub-Mockup json 中的 participant 指的是 contributor (專案貢獻者) ?
+09:54 < bachre> ETBlue: 呈上， homepage 和 achievement 裡面的 url 各指的是 ?
+09:56 -!- hjh [86d01685@gateway/web/cgi-irc/kiwiirc.com/ip.134.208.22.133] has left #g0v.tw []
+10:03 -!- bachre [guest-bach@conference/jsconf/x-kxakqdskbvzijykv] has left #g0v.tw []
+10:11 -!- chusiang is now known as chusiang-
+10:11 -!- chusiang- is now known as Guest48844
+10:51 < ETBlue> bachre: participant 指的是簽名跳坑的人，原本構想是可以登入hub，然後在上面表示跳坑意願，
+10:52 < ETBlue> bachre: 但因為這些原因 https://twitter.com/ETBlue/status/522114305919967232 現在傾向不做登入，所以 participant 這欄位可能會棄用 ^^b
+10:52 < kcwu> ETBlue's url: [ETBlue on Twitter: "原本構想是 project + people hub，但深入思考 g0v 哲學後，覺得不應有 people hub 這種東西，因為 1. 參與社群的重點在專案，而不在人 2. 網路中立飽受威脅的時代，每個人必須有匿名參與的權利 3. 多一個 profile 要維護，覺得很煩"]
+10:53 < ETBlue> bachre: homepage url 是在專案列表中按下縮圖會連到的地方，如果專案本身有做 landing page 就可以放，但只有少部分專案會有，比方說新聞小幫手
+10:54 < ETBlue> bachre: achievement 是現有成果的網址，不管是 idea wireframe mockup ……都算現有成果
+10:57 < ETBlue> bachre: btw，編輯資料要邊這個 .ls https://github.com/g0v/project-hub-mockup/blob/master/livescripts/projectlist_20141009.json.ls ，json 是自動轉出來的，會被覆寫
+10:57 < kcwu> ETBlue's url: [project-hub-mockup/projectlist_20141009.json.ls at master · g0v/project-hub-mockup · GitHub]
+11:00 < caasihuang> archivement 相當於 package.json 的 repository 欄位嗎？
+11:01 -!- f0rth_ is now known as f0rth
+11:03 < ETBlue> caasihuang: 如果是 github repo url，那通常是歸類在 workspace，除非 api 類型的專案可能 github repo 本身等於他的產出成果
+11:04 < ETBlue> caasihuang: 我吃完早午餐過去 XD
+11:10 < Lee1092> ETBlue:  我可以加 travis-ci 後   deploy 到 gh-page 的根目錄就好嗎?  就不用再一層到 public  XD
+11:12 < ETBlue> Lee1092: 喔喔喔當然好 XD 那好像要同時改一下這兩處 https://github.com/g0v/project-hub-mockup/blob/master/views/index.jade#L314 , https://github.com/g0v/project-hub-mockup/blob/master/views/index.jade#L321
+11:12 < kcwu> ETBlue's url (1/2): [project-hub-mockup/index.jade at master · g0v/project-hub-mockup · GitHub]
+11:15 < Lee1092> ETBlue:  好   下班弄~  :p    需要 repo 權限~
+11:18 < Lee1092> ETBlue:  對了  我想整理  hackfoldr-2.0 把 jade 都移到 views foldr ，目前看起來有點雜亂  XD
+11:20 < ETBlue> Lee1092: 忘記把專案加到 team 了，已加 XD hackfoldr 2.0 .jade 求整理 XDDDD
+11:21 < Lee1092> ETBlue:  OK    不過移動之後 Fire.app  設定可能要修改~  這部分就要麻煩你了~  XD
+11:22 < esedes> ETBlue: 只能直接編輯LS啊...看來另寫Excel然後再來轉出來就比較困難了
+11:26 < ETBlue> esedes: 因為用 ethercalc 收單，所以將來一定得做一個 csv -> json 的自動化轉檔，只是還沒做 ^^b
+11:26 < ETBlue> esedes: 講錯，csv -> ls
+11:27 < ETBlue> esedes: 我原本其實也打算用試算表編輯，但因為資料結構有多層，用試算表太眼花
+11:27 < ETBlue> esedes: 所以最後還是乖乖回去 ls -> json 這樣的路線…
+11:31 < esedes> 了解..不過我還是先試試看建立試算表資料..
+11:31 < esedes> 不過 如果 workspace_type 和 workspace_url 有兩個含以上的話 Json (ls) 會怎麼呈現?
+11:32 < ETBlue> 會用一個 array 呈現
+11:33 < ETBlue> workspace: [ {type: blah, url: blah} , {type: blah, url: blah} ]
+11:34 < esedes> 現有成果 (achievement) 似乎也可能會發生 不過有想打算分別建立 例如 WEB 網頁呈現 和手機APP 就各別建立專案
+11:35 -!- hcchien1 is now known as hcchien
+11:43 < ETBlue> esedes: ya 也可以，然後彼此填在 related 欄位
+11:45 < ETBlue> esedes: achievement 放在一起通常是像新聞小幫手那種，跨瀏覽器但應該大多是同一套程式
+11:45 < ETBlue> esedes: 而且專案名稱完全一模一樣
+11:50 < ETBlue> esedes: 開發人員還是同一個的那種…… XD 萌典變異性就比較大，動民主家族則根本是完全不同專案
+11:51 < ETBlue> 目前沒有想好的是 related 欄位該如何表示
+11:51 < ETBlue> 因為目前沒有專案 id，所以可能就用專案中文名稱去抓
+12:16 < kcwu> http://cdcb.judicial.gov.tw/abbs/wkw/WHD6K00.jsp 司法院有法人資料庫, 不知道跟公司資料庫比對能不能發現什麼有趣的東西 # tag ronnywang 
+12:16 < kcwu> kcwu's url: [法人及夫妻查詢系統]
+12:20 < ronnywang> 法人資料之前有人爬過嗎?
+12:21 -!- petercom1and is now known as petercommand
+12:21 < ronnywang> 好像 jimmy 有爬過?
+12:32 < pm5> clkao: okay I'll bring projector
+12:35 < pofeng> kcwu: ronnywang , 有 jimyhuang__ 有抓, 網站也好了, 但是還沒放出來, 應該可以先問他一下
+12:36 < jimyhuang__> kcwu: ronnywang 我整理一下釋出？
+12:40 < ronnywang> jimyhuang__ ++
+12:41 < ronnywang> 那來跟 company.g0v.ronny.tw 來 linked data 一下好了
+12:47 < pofeng> jimyhuang__ ++
+13:00 < letrange`> Who *
+13:01 < letrange`> msg timdream hi
+13:06 < timdream> letrange`: ?
+13:18 -!- timdream_ is now known as timdream
+13:18 -!- letrange` is now known as letranger`
+14:24 < ipa> clkao: https://www.facebook.com/photo.php?fbid=10152410978716762&set=a.379919151761.156863.519366761&type=1 你是不是已經抓完了？
+14:24 < kcwu> ipa's url: [張之豪 - 動態時報相片 | Facebook]
+14:28 < johnny___> 終於復活了......給server 被打掛的人，可以去試試elb
+14:31 < kiang> johnny___: elb 要另外付費嗎？
+14:32 < pm5> ipa: 太忙了... 我先把用到的資料連結丟到妳開的 pad 上. thx
+14:32 < johnny___> kiang: 要，小貴，但真的很穩 http://aws.amazon.com/cn/elasticloadbalancing/pricing/
+14:32 < kcwu> johnny___'s url: [定价]
+14:33 < kiang> johnny___++, 那免費服務就會掙扎要不要用了 XD
+14:35 < johnny___> kiang: 本來是自己用 haproxy架 load balance，只能稍微好轉，但還是常常連不上，cpu也都100%
+14:35 < kiang> $0.027 / hour + $0.008 / GB , 遇到 DDOS 信用卡帳單應該有機會爆 XD
+14:37 < kiang> johnny___: 可以請人看看 haproxy 設定，我只知道有些情況下高手調過就 pass 了， phpconf 這屆總召 johnpupu 比較熟這方面的(推坑) ;)
+14:40 < johnny___> kiang: 哈哈 setting真的好難調又難懂
+14:42 < clkao> johnny___: 是真的 query 多 loading 大, cdn 無法處理？不過這樣的話我以為 heroku 可以自己多開 drone?
+14:43 < johnny___> clkao: 喔喔沒有是打工用的，用ec2，100k request / min 
+14:43 < clkao> soga!
+14:43 < clkao> 公司這麼嗨
+14:45 < johnny___> 超嗨，嗨到凌晨才回家XD
+14:45 -!- pierre1 is now known as a-tsioh
+14:51 < yhsiang_> johnny___: 賀賺翻
+14:53 < johnny___> 這好好玩，回答問題幫你做logo  https://www.tailorbrands.com/
+14:53 < kcwu> johnny___'s url: [Tailor]
+14:54 < clkao> ronnywang, kcwu 我記得這個 jimyhuang__ 好像砍過了
+14:55 < clkao> johnny___: 果然是發爐
+14:57 < kiang> http://www.appledaily.com.tw/realtimenews/article/life/20141015/488298/ - 開始下注了，怎麼跟台南某議員一樣愛賭...
+14:57 < kcwu> kiang's url: [​【更新】南僑董座保證安全　若說謊明天關廠 | 即時新聞 | 20141015 | 蘋果日報]
+14:57 < johnny___> yhsiang_ clkao 都一些垃圾訊息，應該沒啥賺頭XD
+14:58 < kiang> 希望南僑真的沒事，義美缺貨缺超大...
+14:59 < yhsiang_> 就不要慈濟的棕櫚油是跟南橋買的 XD
+15:01 < kiang> 不過南僑老董的頭髮真是白到發亮呢（看錯重點）
+15:01 < CindyLinz> 我第一間看成張忠謀.....
+15:05 < kiang> yeah, 剛說完義美就來電說預約的豬油出現了 (有種家庭主夫的味道)
+15:06 -!- kinda [~kinda@1-171-50-125.dynamic.hinet.net] has left #g0v.tw ["WeeChat 1.0"]
+15:20 -!- kindalu [~ubuntu@ec2-54-65-9-142.ap-northeast-1.compute.amazonaws.com] has left #g0v.tw []
+15:53 < jimyhuang__> ronnywang: kcwu clkao 稍等我一下囉...瘋狂打工
+16:17 < kiang> 想請問， cloudflare 預設開啟的 "On CloudFlare" 是 proxy 的意思嗎？
+16:21 < kiang> 找到答案了： http://webmasters.stackexchange.com/questions/56723/how-does-a-cdn-like-cloudflare-work ，不知道為什麼 cloudflare 那麼佛心...
+16:21 < kcwu> kiang's url: [proxy - How does a CDN like CloudFlare work? - Webmasters Stack Exchange]
+16:21 < clkao> ronnywang: 晚上要來 dat 嗎
+16:50 < kiang> http://www.ptt.cc/bbs/Gossiping/M.1413360904.A.A1A.html - 這個比較像事實，所以即使南僑的產品品質無虞，投機取巧的作法依然需要譴責...
+16:50 < kcwu> kiang's url: [批踢踢實業坊]
+16:51 < kiang> 但，真的品質無虞嗎...（聽說吃好多年了...）
+16:51 < au> kiang: 他們是要 disrupt cisco，所以只要 cisco 的用戶有十分之一去用 cloudflare 就很夠了
+16:52 < au> 佛心 cdn 是建立可以和 cisco 相提並論的信用的方式
+16:52 < kiang> au++, 感謝說明，只是以前一直刷卡的東西突然變免費會不習慣吧 XD
+16:52 < au> 連 SSL+SPDY 都因為 ecdsa 的關係變免費了
+17:04 -!- privism_ is now known as privism
+17:31  * pm5 -> 聞山
+18:06 -!- esedes [guest-esed@conference/jsconf/x-kofldycoocpphwpl] has left #g0v.tw []
+18:35 < lanf0n> requests 早上遇到 SSL error 炸掉了...QQ twpolitwoops 有一批圖沒抓到...
+20:49 < BV1AL> http://www.appledaily.com.tw/realtimenews/article/local/20141015/487986/ <---黑心商這兩台飛機都是在中國註冊，明顯是連飛機的稅都不願繳給台灣
+20:49 < kcwu> BV1AL's url: [防「落跑」　頂新私人飛機還在松機 | 即時新聞 | 20141015 | 蘋果日報]
+20:50 < BV1AL> 台灣是B+5位數字, 中國是 B+4位數字, 像郭台銘的飛機是B-99888, 長榮的是B-16xxx, 華航的是B-18xxx 都是B+5位數
+20:51 < dirty_> 有人記得之前紫龍的一個漂亮投影片嗎?
+21:05 < dirty_> https://www.youtube.com/watch?v=DcZvOcci3Lg # 只找到影片
+21:05 < kcwu> dirty_'s url: [g0v tw hackath10n 中場短講 今天 聊外貌 台灣零時政府第拾次資料科學黑客松 - YouTube]
+21:06 < johnny___> dirty_: 但我打不開 Orz  https://www.icloud.com/iw/#keynote/BAI6JxU-T3yrFD3bCMaBzaV-mLLEGVFLe-KF/grid_runner
+21:08 < dirty_> johnny___: thx anyway
+21:09 < dirty_> 可能是子龍刪了?
+21:09  * dirty_ 後悔之前沒偷存
+21:18 -!- james58899 [~james5889@111-253-92-19.dynamic.hinet.net] has left #g0v.tw ["Leaving"]
+22:05 < jimyhuang__> clkao: ping!!
+22:13 < jimyhuang__> lanf0n: 你是多久抓一次圖？
+22:21 < lanf0n> jimyhuang__: phantomjs嗎XD 要回去看一下
+22:46 < jimyhuang__> lanf0n: https://github.com/g0v/grabejs/blob/master/app.js#L18 應該是這個參數 :P
+22:47 < kcwu> jimyhuang__'s url: [grabejs/app.js at master · g0v/grabejs · GitHub]
+22:47 -!- CelloCello [~Cello@119.77.223.31] has left #g0v.tw []
+23:09 < lanf0n> jimyhuang__: 似乎是30 ...XD https://github.com/g0v/twpolitwoops-collector/blob/master/bin/feeds-screenshot.py#L259
+23:09 < kcwu> lanf0n's url: [twpolitwoops-collector/feeds-screenshot.py at master · g0v/twpolitwoops-collector · GitHub]
+23:20 < lanf0n> 不過 requests 更新之後都抓到空白...(不知道是不是 ssl 更新後 phantomjs 沒辦法開QAQ...debuging
+23:27 < ETBlue> 簡易搜尋完成 http://g0v.github.io/project-hub-mockup/public/
+23:27 < kcwu> ETBlue's url: [g0v project hub mockup]
+23:28 < au> ETBlue++ # 可以隨打隨找嗎？不用再按 enter?
+23:28 < ETBlue> au:  keyup?
+23:29 < ETBlue> 我研究一下XD
+23:29 < kiang> ETBlue: http://jqueryui.com/autocomplete/
+23:29 < kcwu> kiang's url: [Autocomplete | jQuery UI]
+23:31 < hychen> ETBlue+++
+23:34 < jimyhuang__> 這個宇宙已經沒有人可以阻擋 ETBlue 了 XD
+23:36 < ipa> ETBlue++++
+23:36 < ETBlue> 應該可以隨打隨找了，果然是 keyup
+23:37 < ETBlue> kiang: auto complete 想用啥當資料？
+23:39 < kiang> ETBlue: 可以用網站名稱直接產生 autocomplete 提示？
+23:39 < ETBlue> 目前是搜全文，把完整資料塞進每個專案的隱藏文字 div 以後應該可以找得更到
+23:39 < ETBlue> kiang: 專案名稱嗎
+23:41 < a0000778> ETBlue: 選單裡面所有的分類項如何 或者只用tag
+23:42 < kiang> ETBlue: 用 autocomplete 操作會比較細膩，舉例來說，我快速輸入 "2014" 的過程，畫面會閃動 4 次，但 autocomplete 會只在鍵盤停下時搜尋
+23:42 < yhsiang_> hmm ... 入選sunlight exchange 下一階段了 orz.. 
+23:42 < kiang> yhsiang_++
+23:43 < yhsiang_> lanf0n: 我記得phantomjs 可以看喷出來html是甚麼
+23:44 < kiang> yhsiang_: g0v.global 就靠你了
+23:44 < yhsiang_> kiang: 你知道那裏有2006以前的台北市里長資料嗎 XD
+23:44 < ETBlue> kiang: 原來如此……所以即使沒有建議資料清單，也可以改善體驗？我研究下
+23:44 < lanf0n> yhsiang_: 目前看到可辨識的大概是  " because SSL handshake failed\nWill render in 2 secs\nRendering success for about:blank  " ....抓蟲中QQ
+23:45 < ETBlue> yhsiang_: 賀坑變大XD
+23:45  * lanf0n 結果有一批截到的圖都空白...QAQ
+23:45 < kiang> yhsiang_: https://github.com/kiang/bulletin.cec.gov.tw - OCR 大挑戰 XD
+23:45 < kcwu> kiang's url: [kiang/bulletin.cec.gov.tw · GitHub]
+23:46 < kiang> 不過 2006 的公報應該還拆得出文字
+23:47 < yhsiang_> kiang: 沒有里長阿
+23:48 < kiang> yhsiang_: 喔，我忘了里長的選舉公報是各地選委會處理的，所以請 mirror 一下地方選委會吧 XD
+23:49 < yhsiang_> kiang: 我是要選舉結果清冊 XD
+23:49 < yhsiang_> GG
+23:49 < kiang> yhsiang_: 就坑變大而已啊，還是找得到的，只要有心...XD
+23:50 < yhsiang_> 我只有找到台北縣的 ...
+23:50 < yhsiang_> wiki上面的是很粗的 只有到區
+23:50 < clkao> walkingice: you there?
+23:51 < clkao> yhsiang_: nice!!
+23:52 < kiang> yhsiang_: 用 "第十九屆里長選舉選舉公報" 可以找到一些
+23:52 < poga> dirty_: http://www.slideshare.net/shulusama29/grid-runnerlets-talk-about-visual
+23:52 < kcwu> poga's url: [Grid runner,let&#x27;s talk about visual]
+23:54 < yhsiang_> kiang: XD 我是要"台北市第10屆里長選舉結果清冊" or 歷屆台北市里長選舉結果清冊 orz..
+23:55 < kiang> yhsiang_: 看錯了，以為你要做全台灣的 XD
+23:55 < clkao> 有誰想來 unconf 還沒報到的嗎？ walkingice /
+23:57 < yhsiang_> kiang: yaya 坑太大了 試點中..
+23:57 < yhsiang_> kiang: 而且是要選舉結果 不是公報 QQ
+23:58 < kiang> yhsiang_: 目前只找得到公報資料吧，選委會對於個資的保護相當用心
+23:58 < yhsiang_> 選舉結果 應該不是個資吧 囧a

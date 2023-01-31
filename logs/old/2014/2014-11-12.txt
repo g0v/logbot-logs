@@ -1,0 +1,529 @@
+--- Day changed 三 11月 12 2014
+00:00 < kiang> (伸)
+00:00 < jimyhuang> kiang: 感覺你最近頗清閒... @@"
+00:01 < kiang> jimyhuang: 沒耶，就做一些無聊的工作，做到很無聊就會改做些其他的 XD
+00:02 < jimyhuang> kiang: 你現在經緯度加到哪裡去？json？
+00:03 < kiang> jimyhuang: 目前是先把 google 查詢結果快取起來，還沒塞進去
+00:03 < jimyhuang> kiang: 居然用他的url做index key ... Orz
+00:03 < jimyhuang> 我只好全部掃一遍塞進去了
+00:03 < kiang> jimyhuang: 我掃過一遍，發現那個 key 是唯一的
+00:04 < jimyhuang> 嗯嗯 got it
+00:08 < t0mst0ne_> 有人會把 crawler 說成 turk 嗎 ? http://en.wikipedia.org/wiki/The_Turk 非常不宅的講法 ?
+00:08 < kcwu> t0mst0ne_'s url: [The Turk - Wikipedia, the free encyclopedia]
+00:10 < kiang> yeah, posland 也 OVER_QUERY_LIMIT 了 XD
+00:13 < jimyhuang> kiang: 我發覺合併有點困難
+00:13 < kiang> jimyhuang: 直接 dump 一份你的格式？
+00:14 < ronnywang> kiang: 可以丟到 fusion table 然後給大家用 google map api 分工一下 XD
+00:14 < jimyhuang> 因為我後來用法人名稱為主來 index
+00:14 < jimyhuang> 但目前你的應該是全掃～我整併後大概是 20k 基金會
+00:14 < jimyhuang> 你現在掃應該是...80k record ?
+00:15 < ronnywang> 之前好像是你被服貿了嗎有寫一隻程式可以讓大家分工用不同的 IP 去 google map 把地址轉成經緯度?
+00:15 < kiang> jimyhuang: 在 http://foundations.olc.tw/foundations/view/544137a5-fec4-4a8d-a621-2b20acb5b862 可以看到呈現的樣子，基本上保留各年度的資料
+00:15 < kcwu> kiang's url: [社團法人中國國民黨 @ 社團/財團法人資料檢索]
+00:15 < kiang> ronnywang: 有 repo ？
+00:16 < jimyhuang> kiang: 所以我的 geo daata 只有最新的～ 沒有 http://foundations.olc.tw/foundations/view/5460a9bf-7740-43ae-be92-7e7eacb5b862
+00:17 < kiang> 我的作法是全部紀錄擋塞進去，再用 名稱+創立日期 去產生集合資料，基本上集合資料會使用固定的網址，紀錄擋則是依附在下面
+00:18 < au> t0mst0ne_: Turk 在現代可能不是指 crawler 而指的是 https://en.wikipedia.org/wiki/Amazon_Mechanical_Turk
+00:18 < kcwu> au's url: [Amazon Mechanical Turk - Wikipedia, the free encyclopedia]
+00:18 < au> (crowdsourcing)
+00:18 < kiang> jimyhuang: 其實只要 dump 一份 住址 <=> 座標 的資料，我跑一次匯進去？
+00:18 < jimyhuang> kiang: 也行～
+00:18 < jimyhuang> kiang: http://foundations.olc.tw/ 加一下 repository 網址？
+00:18 < kcwu> jimyhuang's url: [法人一覽 @ 社團/財團法人資料檢索]
+00:19 < kiang> 嗯，還沒塞 about page
+00:20 < jimyhuang> 其實沒什麼問題的話， http://cdcb.judicial.gov.tw/abbs/wkw/WHD6K00.jsp 應該也得寫出來較佳
+00:20 < kcwu> jimyhuang's url: [法人及夫妻查詢系統]
+00:21 < t0mst0ne_> au: 本文在這, https://www.evernote.com/shard/s56/sh/dd38c6cf-754c-435d-92be-a8a17dfd625d/be5728cf42a41e56f4e53e3caa0216dd 不知道作者是誰 ...
+00:21 < kcwu> t0mst0ne_'s url: [How g0v.tw do it]
+00:21 < au> 作者是馬來西亞來的訪客 Ng Swee Meng
+00:23 < t0mst0ne_> au: wow, 短短時間, 觀察入微 .  
+00:28 < kiang> jimyhuang: done - http://foundations.olc.tw/pages/about
+00:28 < kcwu> kiang's url: [Pages社團/財團法人資料檢索]
+00:36 < jimyhuang> kiang: https://dl.dropboxusercontent.com/u/12852670/field_data_field_geofield.zip
+00:37 < kiang> jimyhuang: 收到
+00:37 < jimyhuang> kiang: 不過還是我之前的低級錯誤
+00:38 < jimyhuang> 斗6市，3峽鎮 Orz
+00:38 < kiang> 嗯，我把它轉回來不知道會出什麼情況
+00:39 < kiang> 雙0路 XD
+00:45 < jimyhuang> kiang: 我錯了 Q_Q
+00:47 < yhsiang> au: sinar project那位?
+00:48 < yhsiang> note, go to github.com/clkao wwwww
+00:51 -!- CelloCello1 [~Cello@119.77.223.31] has left #g0v.tw []
+00:54 < clkao> .... ??
+00:54 < clkao> 還好我的下一個 5050 是 11/25
+00:54 < clkao> 感覺後繼無力 大家都脫稿了 ><
+00:55 < clkao> yhsiang: DC 下禮拜 -2 ~ 4 度.... 
+00:55 < clkao> 從新加坡過去衣服好難啊... XD
+00:56 < jimyhuang> haha
+00:57 < ipa> 5050 需要彙整出一個編輯短文...
+00:58 < yhsiang> clkao: 我也這麼覺得 orz
+00:58 < clkao> yhsiang: 算了，去再買好了
+00:58 < yhsiang> XDDD
+01:00 < jimyhuang> yhsiang: 只好再募一件goretex
+01:00 < jimyhuang> 5050後來成果集中在哪？
+01:00 < ipa> 5050 粉絲頁 https://www.facebook.com/50d50v?fref=ts
+01:00 < kcwu> ipa's url: [50 天 50 張選舉圖表 | Facebook]
+01:01 < yhsiang> jimyhuang: beta.hackfoldr.org/5050
+01:02 < ipa> jimyhuang: 需要story，保證金議題不錯
+01:02 < jimyhuang> project 現在還有要用之前得嗎？要不要直接刪掉我那些測試啊 XD
+01:03  * jimyhuang 後悔貼了一個測試
+01:03 < ipa> jimyhuang: project hub 就用 ETBlue 改的？
+01:03 < jimyhuang> I agree!!
+01:11 < jimyhuang> for backup previous sheet: https://docs.google.com/spreadsheets/d/1MGPMjlEr6qdFLmATShlaXhjjhSwApJvMil5R-xMVyoM/edit?usp=sharing
+01:11 < kcwu> jimyhuang's url: [backup for g0v project - Google 試算表]
+01:19 < kiang> jimyhuang++ 已知座標都塞進去了
+01:20 < ETBlue> clkao: CTBlue Lee1092 我想到了，有聲公報松也許可以在星際遺址的會議室錄音？
+01:20 < yhsiang> ETBlue: 記得錄英文版 XD
+01:21 < ETBlue> clkao: CTBlue Lee1092 不過 lee 可能要跟 tammy 解釋一下公報的內容… yhsiang yes tammy 應該要錄雙語 XD
+01:21 < yhsiang> 先睡了 zzZz
+01:21 < ETBlue> nite
+01:22 < RSChiang> ETBlue: 推雙語 owo)//
+01:23 < ETBlue> RSChiang: 你可以跟 CTBlue 對話聊 Lee1092 的公報內容
+01:23 < RSChiang> 好噢好噢XDDD
+01:24 < jimyhuang> ipa:  http://beta.hackfoldr.org/5050/http%253A%252F%252Fg0v.github.io%252Fd3visualization%252F 這個已替換成5050專用
+01:24 < ETBlue> 可以由 CTBlue 發問引言， RSChiang 回答，這樣 Lee1092 只要跟 RS 解釋公報內容就好，可能比較容易 XD
+01:30 < tkirby> ETBlue: 哪裡可以試錄 g0v jingle 是指..?
+01:30 < hychen> what is g0v jingle?
+01:30 < kiang> g0v jingle = g0v podcast
+01:30 < ETBlue> tkirby: 沒，在思考錄音地點，後來覺得星際遺址那個辦公室不錯
+01:31 < tkirby> ETBlue: souka
+01:31 < ETBlue> hychen: 就這個 https://blend.io/project/546194b94bd873ee25000bb6 想說讓 CTBlue 唱中間的 solo，幫她錄個音
+01:31 < kcwu> ETBlue's url: [Jingle by ETBlue on Blend]
+01:32 < hychen> CTBlue正在進行一個靈的出道
+01:33 < hychen> ETBlue: 媽啊! 這是g0v地下電台臺呼嗎?
+01:33 < hychen> ETBlue: 和聲有點太大聲
+01:33 < ETBlue> hychen: 原來 jingle 叫台呼啊
+01:34 < ETBlue> hychen: 的確…我調一下音軌聲量
+01:34 < clkao> hychen: ... 你不是 retweet 了、
+01:35 < hychen> clkao: 這是一種看見g0v就要retweet的概念, 先retweet，有空再看是什麼..
+01:36 < hychen> 很好聽誒
+01:36 < kiang> ...射後不理 XD
+01:37 < clkao> 未看先推
+01:40 < Lee1092> ETBlue:  可歐~   我跟 lanf0n  都可以解釋~  XD  該不會到時候還要解釋  g0v 黑話~  XD
+01:42 < clkao> 可以想像 CTBlue 正經的問「什麼是 GG 呢?」「那什麼又是公報呢？」 好像效果不賴
+01:45 < hychen> 還要抑揚頓挫的問~~~
+01:45 < ETBlue> Lee1092: 而且只能解釋給 rs 聽，這樣 CTBlue 才會問出有趣的問題 XD
+01:45 < jimyhuang> RS有誘發的效果
+01:46 < jimyhuang> clkao: slack 你都一次開很多個 window?
+01:46 < ETBlue> hychen: 自從去年被你啟發以後開始寫歌，我的作曲功力有慢慢進步 XD
+01:47 < jimyhuang> ETBlue 未免也太全能
+01:48 < hychen> ETBlue: 我啟發??????
+01:48 < ETBlue> 自從我參與了 g0v，突然就會寫 code 了～自從我參與了 g0v，突然就會寫歌了～
+01:49 < hychen> ETBlue++++
+01:49 < jimyhuang> 腦袋都便聰明了，考試都考100分
+01:49 < hychen> 糟糕我好像都沒什麼長進 :| 
+01:50 < ETBlue> hychen: 我的處女作是 kuansim 啊 XD 這個 https://soundcloud.com/etblue/kuansim-vocal-20130808
+01:50 < kcwu> ETBlue's url: [鄉民關心你主旋律-Kuansim-vocal-20130808 by ETBlue - Hear the world’s sounds]
+01:50 < clkao> jimyhuang: i use irc integration
+01:51 < jimyhuang> 果然有秘訣！！
+01:51 < hychen> slack 有 slack sync
+01:51 < hychen> 把兩個team 的 channel sync 起來
+01:53 < hychen> ETBlue: 可是這跟我沒關係啊, 歌是你自己去寫的啊~~ XD
+02:02 < ETBlue> hychen: 是因為看到你一臉衰樣覺得太有趣了所以才產生零感… XDDDD
+02:03 < jimyhuang> XD 樓上好直白
+02:04 < hychen> ETBlue: orz
+08:13 < CTBlue> ETBlue: 雙語是 一遍英文 一遍中文嗎
+08:13 < CTBlue> 我們應該比較會 雙語夾雜
+08:14 < CTBlue> ETBlue: 星際遺址，這聽起來有點酷⋯那部新的電影很像也是叫做星際什麼的
+08:15 < CTBlue> ETBlue: 我覺得這個 概念很好，一種大家 透過我在學習g0v的過程 也跟著學習。
+08:16 < CTBlue> 我變成那個大家可以follow,可以relate to的 新人，希望可以做出 這種效果
+08:17 < CTBlue> 聲公報 會有 non-g0ver 聽嗎？
+08:31 < yhsiangCloud____> CTBlue: sure why not?
+08:32 -!- yhsiangCloud____ is now known as yhsiangCloud
+08:36 < CTBlue> yhsiang: 因為g0ver和non-g0ver想聽的東西 會不一樣吧，想確認一下 audience. 雖然當然希望能做到 老少（g0ver資歷）閒宜
+09:03 -!- ctf_ [~ctf_@gateway/tor-sasl/ctf/x-48556045] has left #g0v.tw []
+09:34 < clkao> 強者我朋友說: g0v.nyc 註冊下來了
+09:37 < Lee1092> CTBlue: 星際效應!!  (y)
+09:38 < Lee1092> CTBlue++   CTBlue 的進化史~  
+10:11 < ETBlue> CTBlue: 中文公報可以設定成給不瞭解開源文化或不懂程式的人，英文公報因為是寫給 cfa 的，可以設定成給懂程式也懂開源，只是沒有參與台灣社群的人
+10:13 < ETBlue> CTBlue: 可以先錄中文的，在錄中文的同時透過跟 RS 對談瞭解公報內容，然後再錄英文的，就可以自己單獨一人做簡要報導了
+10:13 < CTBlue> ETBlue: 所以是要做兩個版本啊。
+10:14 < CTBlue> ETBlue: 可是 我不懂程式 怎麼講給懂的人聽 哈哈哈
+10:14 < ETBlue> CTBlue: 對啊我覺得其實比較急迫需要的是英文版公報，因為有跟 cfa 合作
+10:15 < ETBlue> CTBlue: 所以可以先錄中文的，讓 RS 協助你搞懂，然後就可以講給懂的人聽了 XD
+10:15 < CTBlue> ETBlue: 所以中文 是比較輕鬆 娛樂性的，英文就專業一點嗎
+10:16 < CTBlue> Lee1092: 揪團看電影？
+10:18 < clkao> CTBlue: 其實我們約 13:00 美麗華
+10:19 < clkao> 今天吳姓網友生日
+10:21 < CTBlue> clkao: … 哈哈哈哈，這麼好
+10:25 < yhsiangCloud> CTBlue: 其實可以先不用想這麼多 XD
+10:30 < CTBlue> yhsiangCloud: 那我就 先隨意錄 哈哈哈
+10:31 < yhsiangCloud> Ya!!
+10:32 < yhsiangCloud> 妳隨意效果就很好了
+11:03 < kiang> 收到警局通知了 - http://k.olc.tw/2014/11/%E9%81%B8%E8%88%89%E9%BB%83%E9%A0%81%E6%94%B6%E5%88%B0%E4%BA%86%E7%AC%AC%E4%B8%80%E5%80%8B%E5%A6%A8%E7%A4%99%E5%90%8D%E8%AD%BD%E7%9A%84%E6%8C%87%E6%8E%A7/
+11:03 < kcwu> kiang's url: [選舉黃頁收到了第一個妨礙名譽的指控 | 江明宗 . 政 . 路過]
+11:04 < moon_c__> 妳隨意效果就很好了
+11:06 < ronnywang> 說到同名同姓，昨天去商業司open data推廣會我有問是否能提供代表人和董監事姓名以外再加上一個身份證其中三碼之類的資訊
+11:07 < kiang> ronnywang++, 我也丟過中選會，看起來難度很高
+11:08 < ronnywang> 不過以商業司資料來說，目前 gcis.nat.gov.tw 和 data.gcis.nat.gov.tw 兩個是不同承包商，然後 data. 的資料是從 gcis. 定時倒過去的
+11:08 < ronnywang> data. 有說倒過去的資料就拿掉董監事名單了，所以他們 api 無法提供這資訊
+11:09 < kiang> 嗯，所以只能靠 http://gcis.nat.g0v.tw/ 了 XD
+11:09 < kcwu> kiang's url: [台灣公司資料]
+11:11 < kiang> 現在的情況變成 data portal 百花齊放，然後同樣的資料被放在多個地方，而且資料跟資料之間還不一定完全相同...
+11:12  * shelling 5050 拖稿 +1
+11:18 < tkirby> shelling: 拖稿!
+11:32 < shelling> tkirby: 哭哭，明天希望交得出來
+11:32 < shelling>  還欠 ronny 東西
+11:37 < tkirby> 哼哼... 果然當初排在後面是正確的選擇 XD
+11:43 < ronnywang> shelling: 結果我發現商業司不會去更新營業代碼
+12:46 < lumber1> ronnywang: newstrend 10月中開始至今 單日新聞統計出現了null和infinity的回傳值
+12:57 < lumber1> 前日LOG # 326 關於g0v音樂松...工具軟體 LMMS 這個如何 (或者說有沒有人用過)
+13:04 < a0kman> 公務單位有一神秘的外島缺 http://marine.cpami.gov.tw/chinese/index.php?option=com_content&view=article&id=1229&Itemid=142
+13:04 < kcwu> a0kman's url: [約聘研究員職缺徵才 | 海洋國家公園管理處]
+13:27 < Lee1092> CTBlue:  可以錄完再揪一團  哈哈哈哈
+13:27 < Lee1092> CTBlue: 隨意很好+1
+13:31 < CTBlue> Lee1092: 似乎應該 先約出來錄約成 哈哈哈
+13:33 < moon_c__> 你們要開錄囉～～～！！！
+13:41 < a0kman> 如果有關心台灣國際協定的人 也可以順便關注一下談很久的台紐 http://www.moea.gov.tw/TNE/main/content/SubMenu.aspx?menu_id=3628
+13:41 < kcwu> a0kman's url: [臺紐經濟合作協定(ANZTEC)相關資訊 - 協定內容 ANZTEC Contents]
+13:45 < kiang> 八卦版突然變得很文學，大家都在詩詞競賽是怎樣 XD
+13:46 < a0kman> 痔瘡炸破血漿倂  鐵騎突出刀槍鳴
+13:47 < kiang> http://www.ptt.cc/bbs/Gossiping/M.1415769691.A.D8E.html - 這個比較強 XD
+13:47 < kcwu> kiang's url: [批踢踢實業坊]
+13:53 < moon_c__> 痔瘡.....真是太驚悚了
+13:57 < e9t> To all at g0v: thanks for inviting us to Taipei! (I'm sorry if I'm interrupting a conversation)
+13:57 < e9t> I'm Lucy Park by the way :)
+13:57 < shelling> ronnywang: yes, 像上次跟你提到的，有些早期公司都用純文字描述營業內容
+13:57 < e9t> I'm having my last cup of coffee at 101 building, and heading to the airport in about an hour
+13:58 < e9t> Hope to meet up again!
+13:58 < hcchien1> e9t: thank you for coming to taiwan and share the experiences 
+13:58 -!- hcchien1 is now known as hcchien
+13:59 < shelling> 在 tisa 查詢結果就不ㄧ定準
+14:00 < shelling> tkirby: XDDD
+14:01 < e9t> hcchien: was glad to share! I'm planning on stealing a lot of g0v's ideas and import them to Korea XD
+14:02 < Lee1092> e9t++  have a nice trip!
+14:09 < e9t> Thanks ^____^
+14:11 < au> e9t: take care and thanks for the counter-interview!
+14:12 < e9t> au: I'm looking forward so much for the video :) Thanks for the inspiring answers
+14:12 < e9t> oh by the way, the men and women are all so beautiful here ㅋㅋ i'd have to comeback!
+14:13 < au> ^_^ anytime!
+14:23 < moon_c__> e9t: 감사합니다!!! ᄏᄏsee you next time:-)
+14:27 < lumber1> 徵求沒有人編輯公報 http://www.inside.com.tw/2014/11/11/g0v-summit-2014
+14:27 < kcwu> lumber1's url: [來自不同國家，擁抱相同的開源精神——g0v 零時政府 2014 年會精彩落幕 - Inside 硬塞的網路趨勢觀察]
+14:32 -!- ddd is now known as Guest53723
+14:34 < learld> hi
+14:36 -!- learld [guest-lear@conference/jsconf/x-zoppxqtpnswewywf] has left #g0v.tw []
+14:58 < a0kman> 自己寫的   也算是OPEN概念?(吧?)  http://a0kman.blogspot.tw/2014/11/blog-post.html
+14:58 < kcwu> a0kman's url: [交替和重疊: 政策資訊的透明與中性(國際)]
+15:27 < lanf0n> lumber1: added
+15:42 < lanf0n> AceChen: 印桌牌 跟 寄tutorABC設備的收據可以讓場務組一起報帳嗎 >< (( 攤位組實際支出應該只有印桌牌 但和報到處的桌牌一起印所以收據是同一張...
+17:01 < clkao> e9t: have a safe trip home!
+17:03 < a0kman> ..............
+17:03 < a0kman> damn
+17:04 < a0kman> 剛才去和某農業單位最高長官敲時間
+17:04 < a0kman> 得到了我預想中的的幾個結果的"最糟"預想
+17:04 < a0kman> 1.農藥是很專業的，別人不一定會懂，都是專業的人要用，萌典那個是學者學子大家都會用到 和農藥不一樣
+17:04 < a0kman> 2.你去找那個誰誰誰和誰誰誰討論一下，我們所裡有專業的人會做這些業務
+17:05 < a0kman> 3.你這個系統做好以後，然後就給別人營利?
+17:05 < a0kman> 4.該給農民用的系統我們十多年來都在建設了，都在改進和建設，我們對外應該是沒有需求，應該是外面對我們有需求
+17:05 < a0kman> 我: .........................................
+17:09 < lumber1> 這時候要推這個了嗎.....http://g0v.github.io/agriculture/
+17:09 < kcwu> lumber1's url: [超農域系統]
+17:10 < au> a0kman: 聽起來 #2 可以真的去找人討論 然後 #3 #4 比較不是可以討論的，而是心情/心態
+17:10 < au> 就一步一步來嘍，也許要等超農域真的好用到上了新聞再來談。
+17:10 < a0kman> 2的部分
+17:11 < a0kman> 其實是他們想做目前還沒有完成的東西
+17:11 < a0kman> 然後似乎想做一些不明所以的資訊系統@@
+17:12 < a0kman> 就我聽起來是這樣  可能要待我去跟他們討論  目前就可能先押著
+17:12 -!- Jedi__ is now known as Jedi_
+17:12 < a0kman> 以單位論的話 這個系統也很符合防檢局的需要  甚至更符合
+17:12 < a0kman> 防檢局有技正看過農藥系統這個區塊  表示介面他很喜歡 也很好用
+17:13 < a0kman> 所以或許之後慢慢來的時候 可以從防檢局區塊著力  也有機會開放更多資料  因為那邊是行政單位
+17:16 < a0kman> 其實專業單位有自己依賴的資訊公司  所以遇到這類事情的時候 都不覺得有多重要就是了  要看的是共識了
+17:20 < a0kman> 我腦子裡目前都是這張圖 http://imgur.com/ehae5nX    XDDDD"  
+17:20 < kcwu> a0kman's url: [imgur: the simple image sharer]
+17:28 < moon_c__> 化憤怒為力量，我夢到這禮拜UI可能不小心畫完了
+17:28 < au> moon_c__++
+17:28 < a0kman> 我要想起傻密松時候
+17:29 < a0kman> 憤怒的時候 有時候會有重要的訊息
+17:29 < a0kman> om~~~~~~~~~~~~~~~~~~~~
+17:30 < a0kman> 子姓網友辛苦你了XD
+17:30 < moon_c__> 我在想等一下要去默契看電影還是回家割闌尾XD
+17:32 < a0kman> 看星際效應
+17:32 < a0kman> au: 化悲憤為力量XD  M project 我要盡力試試看變成台日版本XDDDDDDDD
+17:33 < a0kman> 還有g0v.jp 的可能性
+17:33 < au> ++
+17:33 < moon_c__> 默契播放《活在三里塚》
+17:33 < moon_c__> 導演之一的大津幸四郎是小川紳介拍攝《三里塚之夏》時的攝影師。
+17:33 < moon_c__> 感覺很好看
+17:37 < a0kman> 我要去吃美食  怒吃XD"
+17:43 < a0kman> lumber1: 對啊 本來要講了
+17:49 -!- lumber1 [guest-lumb@conference/jsconf/x-gegfmekpblvxuhva] has left #g0v.tw []
+17:52 < yhsiang> e9t: have a nice trip!
+18:11 < miaoski> e9t:  ㅋㅋ = 科科? (I know it's pronounced as k, k)
+18:13 < au> =科科 =けけ =keke
+18:13 < miaoski> ETBlue: 我不知道為什麼最近看到你們的暱稱就會想... CTBlue -> DTBlue -> ETBlue ... 
+18:13 < miaoski> au: ++
+18:13 < miaoski> 原來科科是國際共通語 XD
+18:14 < au> miaoski: 之前 log 上的討論是說這是 base26 low-endian encoding... -> ZTBlue -> AUBlue -> ...
+18:15 < au> *little-endian
+18:15 < miaoski> 所以 AU 就 Blue? (誤)
+18:15 < au> XDD
+18:20 < moon_c__> miaoski: ㅋㅋ = 科科，他的發音跟ㄎ一樣唷～愛用ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ 
+18:24 < moon_c__> ᄒᄇᄒ覺得韓文可愛
+18:29 < Lee1092> ㅋㅋ
+18:53 < jimyhuang> Blue 也快變成國際共通語 
+19:15 < moon_c__> 套上blue就有超展開的可能
+19:20 < kcwu> 原來 au 外星人是這樣進化的, 先從很利害的 CT 變成 ET, 再升很多級...
+19:24 < miaoski> moon_c__: 我知道 ^^; 我會唸 jamo 只是都不知道是什麼意思
+19:28 -!- seadog007_ is now known as seadog007
+19:29 < pofeng> 台權會的網路透明計畫歡迎大家關注, 也請多多協助, 謝謝 https://hackpad.com/wGWFEeOmYIG
+19:29 < kcwu> pofeng's url: [網路透明計畫（台權會） - hackpad.com]
+19:31 < jimyhuang> kcblue 也不錯，跟 kcwu 很像
+19:35 < kanru`> 要如何加入 Blue 家族？
+19:42 < pofeng> monday blue 誤
+19:43 < clkao> au: pkg is downstairs along with invoices
+19:44 < au> clkao: got it. thx!
+19:45 < pipi_> 正在香港參加code4hk的workshop,跟資料視覺化有關
+19:46 < a0kman> ㅋㅋㅋㅋㅋㅋㅋㅋ
+19:46  * pipi_ 但都講粵語跟本聽攏無
+19:47 < johnny__> 新竹市東區候選人「楊志翔」在中選會的資料仍是綠黨，但已遭綠黨開除黨籍，目前的規定似乎是過了報名期間（9/1~9/5）即不再更改。阿端今天問我後發現這個問題，留個備份上來
+19:52 < pipi_> 看到台灣的經驗跟技術能幫助到香港真的很感動QQ
+20:04 < ymow> http://www.poverty-action.org/
+20:04 < kcwu> ymow's url: [Innovations for Poverty Action | More Evidence, Less Poverty]
+20:40 -!- OtomeSound [~root@140.120.31.211] has left #g0v.tw []
+20:41 < kiang> johnny__: 綠黨的人有主動要我修改資料的說
+20:43 < johnny__> kiang: 這邊目前還是跟著中選會，如果制度有bug也就是呈現出來
+20:43 < dirty_> a0kman: 3.你這個系統做好以後，然後就給別人營利? # 這有什麼問題?
+20:43 < kiang> johnny__++
+20:43 < a0kman> 他一開始覺得 g0v把一些公務系統弄好以後 就是把技術技轉給別人賣錢
+20:44 < a0kman> 我解釋g0v並沒有這種營利的目的
+20:44 < a0kman> 不過反正後來~~~
+20:44 < a0kman> 他連看超農域或是了解的意思都沒有
+20:44 < a0kman> 就噴出前面提到的一堆畫
+20:44 < a0kman> 然後送我出去了
+20:44 < johnny__> a0kman: 蠻好奇長官的這個技術轉給別人賣錢的概念怎麼產生的
+20:45 < a0kman> 這就和summit那天的故宮類似
+20:46 < a0kman> 公務員很多想法會 防弊  而非興利
+20:46 < a0kman> 遽聞以前故宮和日方合作 也拍了一些高畫素的文物 結果相關檔案被對岸A走
+20:46 < a0kman> 還出了精選本
+20:47 < a0kman> 大大小小一些想謀利的中小企業 有時候很愛吃公部門豆腐
+20:47 < a0kman> 所以讓很多公部門的人第一個動作就是"你來幹嘛? 賺錢喔?"
+20:49 < dirty_> 太極積的確會嚇到人 XD
+20:49 < au> 不想讓人賺錢的話，選用 CC BY-NC 授權就好了
+20:49 < au> 或 BY-SA 之類的
+20:49 < a0kman> 說到授權
+20:49 < a0kman> 非常多 可能大多數公務單位
+20:49 < a0kman> 並不聽過CC授權系列
+20:50 < a0kman> 我也老實說 我是加入g0v才接觸到CC的概念
+20:50 < kiang> 但是科層結構最厲害的就動員吧，不信在 kpi 裡面放入 cc 試試 XD
+20:50 < a0kman> 跟他們講CC這兩個字眼  會想到的是 電子郵件副本
+20:51 < a0kman> XD
+20:51 < a0kman> KPI現在越來越詭異了
+20:51 < a0kman> 表單越來越長 越來越多
+20:51 < kiang> 是啊，我比較在意學校訂的一堆奇怪 KPI ，導致老師沒辦法好好教書...
+20:51 < a0kman> 可能光是要填一份公物KPI 認真填就需要好幾天
+20:51 < a0kman> (藥東翻西找打電話)
+20:53 < a0kman> 1月大松的短講原本就要講類似的短講  這下有更多題材了XD
+20:53 < dirty_> kiang: 教書有 kpi 囉~
+20:53 < dirty_> 例如有沒有幫課程拍影片 XD
+20:54 < kiang> dirty_: 可是為了 kpi 反而失去了適性調整的空間吧
+20:55 < a0kman> 目前學校和政府單位 因為混亂的KPI
+20:55 < a0kman> 很多時後只能亂定目標
+20:55 < dirty_> kiang: yes, 我並不樂見教學也有 kpi 了, 有些課程就不適合拍影片啊
+20:55 < dirty_> 但為了選優良教師, 公平性 blah blah, 你懂的
+20:57 < miaoski> pipi_: 該學一門新語言了! 不要只會喵喵叫 (大誤)
+20:58 < a0kman> au: 之後有和行政院那邊聊到的時後，應該可以不需要馬賽克了XDDDD 反正我都已經講了
+20:58 < dirty_> a0kman: kpi 是為了那些審別人的人方便(通常就是高官啦), 轉嫁審核的工作給被審的人
+20:58 < a0kman> 不過其實通常還是不太看KPI
+20:59 < a0kman> 那是沈無可審的時後拿來評分用的
+20:59 < dirty_> 這很好理解, 想一想我審碩士班入學...
+20:59 < a0kman> 大多數還是報告+嘴砲就有很大的效果
+20:59 < a0kman> 越老的越是  因為大家都是好同事XD"
+20:59 < dirty_> KPI 最好的理由就是公平性, 因為看其他任何東西個人主觀的成份一定會比較大
+21:00 < a0kman> 其實如果有好理解的KPI模式 又有準確的教學  會更好
+21:00 < a0kman> 我記得公部門的KPI就是 突然出現了  然後就要你填
+21:00 < a0kman> XD
+21:01 < kiang> 是啊，漸進的才有辦法發揮成效吧，有點揠苗助長了
+21:01 < dirty_> a0kman: 對他們來說那的確是最佳化流程啊
+21:01 < dirty_> 要類比的話, 有點像這邊想叫大家把專案填 g0v.json 一樣?
+21:01 < a0kman> 承辦人: 乎  弄完惹
+21:02 < dirty_> 說到 g0v.json, 有乖乖填的專案比例不高吧 XD
+21:02 < kiang> <= 嗯，好像沒仔細看過 g0v.json ， g0v kpi 應該很糟
+21:08 < caasihuang> 需要 0pm init 之類的 helper XD
+21:24 -!- mireille09 [7de0c4f4@gateway/web/cgi-irc/kiwiirc.com/ip.125.224.196.244] has left #g0v.tw []
+21:26 < kcwu> 還有人記得 g0v.json 啊 XD https://github.com/g0v/hack.g0v.tw/issues/35 "執行率" 約 1/3 吧 XD
+21:26 < kcwu> kcwu's url: [ask projects to add g0v.json · Issue #35 · g0v/hack.g0v.tw · GitHub]
+21:30 < mireille092> 晚上好~
+21:32 < johnny__> chhsiao1981: hcc 稍微修改，加選區、職稱等欄位，FYR  https://github.com/g0v/councilor-voter-guide/commit/c8a3a835bb065761957e0cb2a39d348dee07ba84#diff-3
+21:32 < kcwu> johnny__'s url: [replenish hcc councilors crawler · c8a3a83 · g0v/councilor-voter-guide · GitHub]
+21:32 < Lee1092> mireille092: 你好~
+21:33 < clkao> I'm
+21:34 < mireille092> lee1092 請問議員投票指南的南投區該如何加入呢
+21:35 < Lee1092> mireille092:  johnny__  剛好在線~  XD
+21:35 < Lee1092> 問作者最快~
+21:36 < johnny__> mireille092: 你好！可先試著跑這段  https://github.com/g0v/councilor-voter-guide#for-crawler-scrapy-0244
+21:37 < reswind> johnny__: 你好 XDDD 請問一下，政見那個欄位是把這次的選舉政見加上去嗎？
+21:37 < johnny__> mireille092: 如果週六有空的話，可以直接現場來參與 http://www.meetup.com/Taipei-py/events/218592523/
+21:37 < kcwu> johnny__'s url: [議員投票網站 Sprint! - Taipei.py - Taipei Python User Group (Taipei) - Meetup]
+21:38 < reswind> johnny__: 所以如果這次沒有參選的，那個欄位就是空的就好了？
+21:39 < johnny__> 是花蓮的 reswind 嗎 XD  中選會那邊的選舉公報找民國98年花蓮縣的議員，就是他們當年的政見了
+21:41 < reswind> yes 是花蓮的 reswind 雖然我不住花蓮 XDDD 不過我喜歡那個地方 ...
+21:42 < reswind> 喔喔，了解～～ 感謝，那我晚點把他加上去，bills 的部份也快好了
+21:42 < clkao> reswind++
+21:42 < johnny__> reswind++  (++ 讚的意思)
+21:42 < reswind> 真是太貼心了 XDD 竟然有即時翻譯 ~
+21:43 < mireille092> johnny 我不會寫程式..我可以用其他東西補充南投區嗎? 像excel或記事本
+21:43 < reswind> 不過花蓮真的有點慘，完全找不到類似會議記錄的東西 ...
+21:43 < dirty_> 1/3!? 比我想像中的高了, 我以為是 1/10 這個等級
+21:44 < johnny__> mireille092: 因為我曾經google ++是啥意思查不到XD
+21:46 < johnny__> mireille092: 剛好南投縣議會可以抓的也不多，如果可以的話，可到中選會 98年 南投縣，將議員資料複製到 excel http://bulletin.cec.gov.tw/Communique_QueryResult.aspx?ID=131
+21:46 < kcwu> johnny__'s url: [【中選會】選舉及公民投票公報查詢系統]
+21:48 < johnny__> mireille092, reswind : 選舉公報，複製的時候再請稍微注意除了表格內的資料，也請再加一欄第x選區
+21:49 < mireille092> johnny是把議員資料key到excel嗎?
+21:49 < johnny__> reswind: sorry，你的程式已經抓出選區了，請忽略XD
+21:50 < mireille092> github用firefox開會有小圖不能顯示/用chrome不會
+21:50 < reswind> johnny__: XDD 收到，不過格式的確是問題，請問一下有沒有哪個縣市的可以當標準參考？
+21:50 < Lee1092> reswind:  這時候  g0v 黑話就派上用場了 https://g0v.hackpad.com/g0v--MI7fGNIdygb
+21:50 < kcwu> Lee1092's url: [g0v 黑話及語錄 - g0v.hackpad.com]
+21:51 < johnny__> mireille092: 恩恩，或是也可以幫忙看網頁使用上哪邊可以改進
+21:52 < johnny__> reswind: 可參考台北市 https://github.com/g0v/councilor-voter-guide/blob/master/data/pretty_format/tcc/councilors.json#L73-L87
+21:52 < kcwu> johnny__'s url: [councilor-voter-guide/councilors.json at master · g0v/councilor-voter-guide · GitHub]
+21:53 < mireille092> johnny請問今年的南投議員還需要建檔excel嗎? 建檔完給你?
+21:53 < reswind> Lee1092: 哈哈，感謝～這個超實用的
+21:53 < reswind> johnny__: OK 收到，我會參考台北市的再去調整花蓮縣產生出來的格式
+21:58 < johnny__> mireille092: 剛貼的那個中選會 98年的議員就是現任的議員，如果不會太麻煩的話就麻煩你了 Orz，因為公報上的資料議會官網幾乎都沒有
+22:00 < mireille092> 不麻煩. 全部欄位嗎? 需要ps我可以幫忙. 今年的不用/
+22:00 < mireille092> ?
+22:02 < mireille092> 這是台北調CD曲目 有些不錯聽 https://drive.google.com/file/d/0BwPaHSTiwhagWWFGTlBxQVNMMFU/view?usp=sharing
+22:02 < kcwu> mireille092's url: [台北調.rar - Google 雲端硬碟]
+22:02 < Lee1092> johnny__:  後勤有議員投票指南的回饋 XD https://www.facebook.com/groups/g0v.general/permalink/709984179077991/
+22:02 < kcwu> Lee1092's url: [Facebook]
+22:03 < johnny__> mireille092: 號次、照片不用，感謝
+22:03 < mireille092> 這個開到幾點阿?
+22:04 < mireille092> 弄好檔案怎麼給你
+22:04 < kiang> 新竹縣議員資料有人在整理嗎？
+22:05 < kiang> 有新手網友表示要跳坑，看看有沒有人要帶囉？
+22:08 < johnny__> mireille092: 這個聊天室嗎？ 這個聊天室會一直開著，可直接上來貼連結 tag johnny__  即可
+22:09 < johnny__> kiang: 新竹縣的議員基本資料 chhsiao1981 處理差不多了，不過議案還沒 XD  http://www.hcc.gov.tw/06board/03porposal.asp
+22:09 < kcwu> johnny__'s url: [各年度議事錄]
+22:09 < mireille092> ok
+22:10 < kiang> johnny__: 看起來新手打算從需要手工處理的部份開始 XD
+22:10 < mireille092> 我不會寫程式...我只會PS...
+22:11 < kiang> mireille092: 這兒最缺的就是 PS 了 ;)
+22:12 < mireille092> 真的假的我以為這都是程式跑的
+22:13 < kiang> mireille092: 因為大部分都熟後端，導致前端界面慘不忍睹，很多新手都被嚇跑，所以其實使用者界面的部份最需要加強了吧
+22:14 < mireille092> KIANG你說的很對 不過PS跟程式要怎麼結合好像也很深奧
+22:14 < johnny__> 話說是我知道的PS嗎? 例：請大大幫我把旁邊的路人P掉
+22:15 < mireille092> phtotshop的ps
+22:15 < kiang> PS => FrontEnd Engineer 是漫長的路 XD
+22:15 < kiang> 但 PS 可以畫出漂漂的 prototyping
+22:16 < mireille092> ps畫的東西很好看
+22:17 < kiang> mireille092: 基本就 http://helpx.adobe.com/photoshop/using/html-options-slices.html 吧，長期來說會需要慢慢因應網頁的特性調整設計習慣
+22:17 < kcwu> kiang's url: [Photoshop Help | HTML options for slices]
+22:18 < kiang> 現在光是 photoshop => html + css 的需求就多到爆炸
+22:18 < thea> 安... @@/ 南投議會的部分  之前已經ＫＥＹ好本屆的人名了  是excel
+22:19 < kiang> thea: 放 google drive 後分享出來？
+22:19 < thea> OK, 我上傳一下
+22:20 < kiang> thea: 不過人名資料其實已經有了？有包括其他資訊嗎？
+22:23 < clkao> johnny__ 這次號召好強啊 週末記得問一下大家是從哪邊看到資訊的 :DD
+22:24 < ymow> http://coca-colafounders.com  
+22:24 < kcwu> ymow's url: [Coca-Cola Founders]
+22:25 < thea> 我之前是看hackpad沒寫，加上檔案不多，所以先用key的
+22:25 < johnny__> clkao: OK
+22:25 < thea> https://docs.google.com/spreadsheets/d/1akk-svh7rVGC7m2OVrqCwikPzFuVwzKgpYo_FETAmK8/edit?usp=sharing
+22:25 < kcwu> thea's url: [南投市議員list - Google 試算表]
+22:25 < kiang> thea++
+22:26 < thea> 我第一次來這邊所以不懂XD
+22:27 < johnny__> thea++ 可否開放權限給 mireille092，他正work on 選舉公報上的資訊，可合併進去
+22:27 < johnny__> thea: ++ 是讚的意思
+22:27 < thea> done 開放編輯了
+22:28 < thea> 我資料是從這邊來的 http://www.ntcc.gov.tw/3_0.html  不是中選會
+22:28 < kcwu> thea's url: [南投縣議會]
+22:31 < johnny__> thea: 恩恩，五年前的選舉公報上有政見、學經歷、黨籍等還蠻有用的資訊
+22:31 < mireille092> 用thea的就可以了對嗎? 沒選上的不用?
+22:32 < thea> 對了，話說python ->  anaconda跟cryptography套件有小bug  第一天安裝卡一陣XD
+22:33 < kiang> mireille092: 如果是上一任沒當選的應該暫時不用吧
+22:34 < mireille092> kiang了解
+22:39 < johnny__> reswind: 請問 contact_details 裡的 value如果需要直接是 str不是 list，是改這行嗎？ https://github.com/g0v/councilor-voter-guide/blob/master/crawler/hlcc/hlcc/spiders/councilors.py#L35
+22:39 < kcwu> johnny__'s url: [councilor-voter-guide/councilors.py at master · g0v/councilor-voter-guide · GitHub]
+22:40 < reswind> johnny__: XDDDD  我想想喔，如果是直接要 str 的話我應該會用 FieldHandler
+22:40 < reswind> johnny__: 也就是 handler_map 那邊對應的 handler 換掉就好了
+22:41 < reswind> johnny__: 所以 contact_details 應該要是 str ?
+22:41 < johnny__> reswind: 恩恩，哦那我試試看
+22:42 < reswind> johnny__: FieldHandler 就是直接 assign, 然後 ListFieldHandler 則是會讓他初始值為一個 [] 然後在 append 上去
+22:43 < clkao> johnny__: 對了，是在 clbc 新館還舊館？今天路過新館感覺不賴
+22:43 < reswind> johnny__: 所以如果你 FieldHandler 宣告時候的第一個參數有重複的話，後面的就會被覆蓋過去了 XD
+22:43 < johnny__> reswind: 了解，寫法有點高級XD
+22:44 < reswind> johnny__: 不好意思 XDDD 如果程式碼風格有要改的可以跟我說一下. 因為寫得很隨性 ...
+22:46 < johnny__> reswind: 看來我需要救援XD，目前其他縣市格式長這樣 https://github.com/g0v/councilor-voter-guide/blob/master/data/pretty_format/tcc/councilors.json#L93-L114
+22:46 < kcwu> johnny__'s url: [councilor-voter-guide/councilors.json at master · g0v/councilor-voter-guide · GitHub]
+22:47 < reswind> johnny__: 喔喔我看懂了，真是不好意思 XDD 我常常會忘記把 list 去掉
+22:49 < reswind> johnny__: 改好了，我重新跑一次，等等送新的 merge request 給你？
+22:49 < johnny__> reswind: 恩麻煩了
+22:49 < Thea> crawler有哪一個縣市的可以正常執行  想參考一下... 試了tcc(停住)跟tccc(out of range)
+22:50 < johnny__> !!
+22:50 < Thea> 還是tcc是ok的
+22:50 < johnny__> tcc 的 councilors嗎
+22:50 < kiang> https://github.com/kiang/tncc 應該還活著
+22:50 < kcwu> kiang's url: [kiang/tncc · GitHub]
+22:51 < Thea> 我試一下 <= 也許是我的問題~
+22:52 < reswind> johnny__: 請問一下，我要怎麼驗證我的資料格式是正確的比較好呢？實際讓他轉到 database 一次？
+22:53 < johnny__> reswind: 恩恩 parser那，不過我README還沒寫好 Orz  https://github.com/g0v/councilor-voter-guide/blob/master/parser/councilors/councilors.py
+22:53 < kcwu> johnny__'s url: [councilor-voter-guide/councilors.py at master · g0v/councilor-voter-guide · GitHub]
+22:53 < jung__> kiang: 您好，我今天收到一件案件我看id猜是您的建議
+22:53 < Thea> johnny__: 恩恩，對 scrapy crawl councilors
+22:54 < kiang> jung__: ?? 台南嗎
+22:54 < jung__> kiang:是的
+22:55 < kiang> jung__: 你是承包商還是公部門啊？ XD
+22:55 < johnny__> Thea: 剛在crawl/tcc/   scrapy crawl councilors  大概15秒跑完
+22:56 < jung__> kiang:我是公部門，不過我晚上都會逛一下這裏
+22:56 < kiang> jung__: 王石獅？
+22:56 < johnny__> Thea: 可看一下 log.txt 有沒有什麼error嗎? 位置應該在 crawl/tcc/
+22:57 < clkao> kiang: 的同事 XD
+22:57 < reswind> johnny__: OK 收到 XD ~
+22:57 < ipa> jung__!!
+22:57 < kiang> clkao++
+22:58 < clkao> jung__: summit 有沒有什麼心得呀 抱歉沒空多聊
+22:59 < kiang> 我是這樣寫的... https://gist.github.com/kiang/813182f78f20b4f71a79
+22:59 < kcwu> kiang's url: [gist:813182f78f20b4f71a79]
+23:00 < jung__> kiang:之後有什麼建議或需求可直接在這給我，或是之前開的pad https://g0v.hackpad.com/-opendata--XUCEk87ljVZ
+23:00 < kcwu> jung__'s url: [臺南市政府 opendata 平台意見回饋 - g0v.hackpad.com]
+23:01 < Thea> johnny__: 原來少裝了這個  UserWarning: You do not have the service_identity module installed.
+23:01 < Thea> 裝完後順利跑完了！
+23:01 < Thea> 3Q!!
+23:01 < kiang> jung__++, 台南人狀況外 XD
+23:02 < jung__> clkao: 沒關係，我知道那兩天一定很忙
+23:02 < johnny__> Thea++
+23:05 < jimyhuang> Thea: !!!
+23:05 < jung__> clkao: 不只summit,光這邊逛就有很多想法，如果只是和興趣相關的還好就只是多學學，和業務相關的想法較麻煩，要思考在組織中如何進行
+23:06 < Thea> hi ~~ Jimmy~~  XD
+23:06 < Thea> 終於碰到了這樣
+23:07 < jimyhuang> Thea: <--宅
+23:08 < jimyhuang> jung__: 看到有公部門願意花時間在此交流，真是開心
+23:10 < jung__> jimyhuang: 謝謝，公部門只是一個角色，還有個人興趣
+23:11 < jimyhuang> jung__++ 對什麼部分有興趣呢
+23:12 < jung__> jimyhuang: 寫程式，尤其是處理資料的
+23:12 < reswind> johnny__: 修正後的議員資料跟議會資料我合在同一個 merge request 給你了～
+23:12 < kiang> jung__: 什麼語言啊？
+23:14 < reswind> johnny__: 對不起，你先不要收那個 merge request 好了 T_T
+23:14 < reswind> johnny__: 花蓮縣議會那個不固定的格式我怎麼弄都有錯 T_T 在讓我重新調整一下 ...
+23:17 < jung__> kiang: 我老人了，以前處理資料的是perl,autoit,後來在民間公司是c,進來公部門反而比較少機會，不過因為最近我們平臺用ckan,所以想學python
+23:19 < kiang> jung__++ ，python + data = https://github.com/g0v/councilor-voter-guide
+23:19 < kcwu> kiang's url: [g0v/councilor-voter-guide · GitHub]
+23:22 < Thea> mireille092
+23:22 < Thea> mireille092
+23:22 < Thea> mireille092
+23:22 < Thea> mireille092
+23:22 < Thea> mireille092: 動作好快  是不是本次選舉公報都上去了?!  :D
+23:22 < Thea> (抱歉手殘洗版Orz)
+23:23 < mireille092> 我剛剛不在
+23:24 < mireille092> thea我是用你做的在改的
+23:25 < Thea> 我的只有第一頁（現任這屆的list
+23:25 < kiang> 3D設計師可以幫什麼忙啊？後勤中心有人問，不知道回覆說幫忙製作公仔會不會被打 XD
+23:31 < mireille092> thea 後面那些是用你的複製的
+23:36 < mireille092> 我要換成下面的ID A_A
+23:37 -!- mireille092 [7de0c4f4@gateway/web/cgi-irc/kiwiirc.com/ip.125.224.196.244] has left #g0v.tw []
+23:39 < johnny__> reswind: 還是先 merge了，議員資料的我可以先接下去走
+23:42 < Miheille> 溫度下降了有感冒前兆請多喝溫水
+23:42 < reswind> johnny__: OK 好了，有趕上嗎？
+23:46 < johnny__> reswind: 有，處理後續中
+23:48 < Miheille> .............選舉公報可以用複製der....................
+23:48 < Miheille> 我竟然用key的....
+23:48 < a0000778> 你當成練打字速度吧XD
+23:49 < Miheille> 我也沒有打幾個字
+23:49 < johnny__> reswind: 有兩位沒有官網就沒有黨籍，可開 issue回報官方  http://www.hlcc.gov.tw/councillor-data.php?index_no=17  http://www.hlcc.gov.tw/councillor-data.php?index_no=26
+23:49 < kcwu> johnny__'s url (2/2): [王議員 燕美 個人資料]
+23:49 < kcwu> johnny__'s url (1/2): [張議員 峻 個人資料]
+23:50 < reswind> johnny__:  喔喔，我看到了。我剛剛查了一下選舉公報
+23:52 < reswind> johnny__: 選舉公報上面就是空白的了 Orz , 所以那個我要填個預設值，無黨籍之類的？

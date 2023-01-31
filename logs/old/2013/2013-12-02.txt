@@ -1,0 +1,783 @@
+--- Day changed 一 12月 02 2013
+00:01 -!- Ti_W_B10 [~Ti_W_B@111-242-47-206.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+00:04 < au> cloudflare purged, fixed
+00:08 < au> 進電影院前 deploy 實不可取，下次不會了 @@"
+00:08 < mindos_cloud> 在 GeoJSON 首頁的 mymap.ls 是要 demo 什麼? 沒有頭緒...
+00:09 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+00:10 < mindos_cloud> 想把它修一修
+00:12 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has quit [Ping timeout: 260 seconds]
+00:12 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+00:12 -!- tonytony2an [whchien@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 248 seconds]
+00:12 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 246 seconds]
+00:12 -!- chyeh [~chyeh@linux3.cs.nctu.edu.tw] has quit [Ping timeout: 246 seconds]
+00:12 -!- tonytonyjan [whchien@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 272 seconds]
+00:12 -!- yhsiang [yhsiang@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+00:12 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+00:13 -!- rich1iu [richliu@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+00:13 -!- Ihc [8c712e43@gateway/web/cgi-irc/kiwiirc.com/ip.140.113.46.67] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+00:13 -!- Ihc [8c712e43@gateway/web/cgi-irc/kiwiirc.com/ip.140.113.46.67] has joined #g0v.tw
+00:15 < clkao> mindos_cloud: 本來只是簡單的 render 出來而已.. 好像加上以前的 cartogram simulation 讓他拖拉時會連動
+00:20 < au> pcchen: 文白俗替 commit 了嗎?
+00:20 < au> s/commit/push/
+00:20 < M00sUltraB0t> au meant to say: pcchen: 文白俗替 push 了嗎?
+00:22 -!- Ti_W_B11 [~Ti_W_B@112.105.206.130] has quit [Ping timeout: 264 seconds]
+00:27 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 246 seconds]
+00:33 < mindos_cloud> clkao : 看來是 library 改版 就偏掉了
+00:34 < hychen> http://www.nukeador.com/14/04/2013/community-workflow-reboot-to-task-centric-approach/
+00:35 < M00sUltraB0t> [ Community workflow reboot to task-centric approach - El Rincón del Tio Nuke ] - www.nukeador.com
+00:37 < hychen> mozilla西語區社群挖坑填坑的管理方式
+00:38 < au> kanban + timetracking 看起來不賴
+01:00 -!- PhilChen [8c779d5a@gateway/web/cgi-irc/kiwiirc.com/ip.140.119.157.90] has joined #g0v.tw
+01:02 -!- tomchentw [76a9d644@gateway/web/cgi-irc/kiwiirc.com/ip.118.169.214.68] has joined #g0v.tw
+01:03 -!- cylee is now known as oyster
+01:07 -!- tomchentw [76a9d644@gateway/web/cgi-irc/kiwiirc.com/ip.118.169.214.68] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+01:15 -!- WeiHung [~chatzilla@s101002506.CHING-ABC.ab.nthu.edu.tw] has quit [Quit: ChatZilla 0.9.90.1 [Firefox 25.0.1/20131115105702]]
+01:53 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has quit [Quit: mno2]
+02:04 -!- CindyLinz [~cindy_utf@112-121-80-249.mwsrv.com] has quit [Ping timeout: 252 seconds]
+02:06 < yhsiangCloud> clkao: 從臉書或萌典等外連碰到No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://ly.g0v.tw' is therefore not allowed access. 的問題
+02:08 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+02:09 -!- chyeh [~chyeh@linux3.cs.nctu.edu.tw] has joined #g0v.tw
+02:13 -!- chyeh [~chyeh@linux3.cs.nctu.edu.tw] has quit [Ping timeout: 246 seconds]
+02:15 -!- chyeh [~chyeh@linux3.cs.nctu.edu.tw] has joined #g0v.tw
+02:16 -!- tonytonyjan [whchien@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+02:16 -!- tonytony1an [whchien@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+02:16 -!- yhsiang [yhsiang@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+02:17 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has joined #g0v.tw
+02:17 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+02:18 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+02:19 -!- rich1iu [richliu@richliu.Math.NCTU.edu.tw] has joined #g0v.tw
+02:19 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+02:20 -!- watersu [uid13503@gateway/web/irccloud.com/x-whepzursukfvcepr] has joined #g0v.tw
+02:28 -!- Zespre [uid12810@gateway/web/irccloud.com/x-wzhxymttvflamlop] has quit [Quit: Connection closed for inactivity]
+03:18 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 260 seconds]
+03:27 -!- PhilChen [8c779d5a@gateway/web/cgi-irc/kiwiirc.com/ip.140.119.157.90] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+03:41 -!- CindyLinz [~cindy_utf@112-121-80-249.mwsrv.com] has joined #g0v.tw
+04:51 -!- edwardc [~edwardc@60-199-248-174.static.tfn.net.tw] has quit [Ping timeout: 246 seconds]
+04:52 -!- allenown [~allenown@devstd.in] has joined #g0v.tw
+04:53 -!- i3n [~icman@118-232-177-139.dynamic.kbronet.com.tw] has quit [Ping timeout: 272 seconds]
+04:53 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+04:53 -!- edwardc [~edwardc@60-199-248-174.static.tfn.net.tw] has joined #g0v.tw
+04:54 -!- i3n [~icman@118-232-177-139.dynamic.kbronet.com.tw] has joined #g0v.tw
+05:05 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 272 seconds]
+05:46 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+06:01 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+06:14 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+06:27 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 245 seconds]
+08:38 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+09:06 < clkao> yhsiangCloud: hmmm ?
+09:07 -!- klandor [uid13157@gateway/web/irccloud.com/x-kuecdqdncpsshvtn] has joined #g0v.tw
+09:08 < yhsiangCloud> 我有開issue 我再多確認一下問題原因 orz
+09:13 < clkao> yhsiangCloud: you mean clicking link from https://www.moedict.tw/%E5%A9%9A%E5%A7%BB%E5%B9%B3%E6%AC%8A%EF%BC%99%EF%BC%97%EF%BC%92 errors but going to the ly.g0v uri directly works?
+09:13 < M00sUltraB0t> [ 婚姻平權９７２ - 萌典 ] - www.moedict.tw
+09:13 < clkao> there's a 404 error for report_of: $contains, but that's fine
+09:15 < yhsiangCloud> yes 主要是下面diff沒顯示
+09:17 < yhsiangCloud> 從外面連進來只看得到名稱，summary,和連署人
+09:18 < clkao> yhsiangCloud: 我看得到耶 只是手機上比較慢
+09:18 < yhsiangCloud> 我手機上也是
+09:19 < yhsiangCloud> 看得到
+09:19 < yhsiangCloud> 桌機還有用無痕也看不到
+09:19 < clkao> diff 也都沒問題
+09:19 < clkao> weird.. i just tried that and it works fine
+09:21 < yhsiangCloud> 恩 因為昨天在我電腦一直發生 才覺得怪XD
+09:26 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 245 seconds]
+09:28 -!- ljm [dad320c2@gateway/web/freenode/ip.218.211.32.194] has joined #g0v.tw
+09:29 < ljm> au: https://www.moedict.tw/tmp/amis/ 只有 23-49 50-79 有 HTML 耶?
+09:29 < M00sUltraB0t> [ 阿美族字典 OCR ] - www.moedict.tw
+09:31 < ljm> pcchen: 老師的觀念蠻難轉過來的... 正在努力中。他說他除了格式調半天(他不會用 CJK LaTeX，用的還是 DOS 下的其他 TeX包) 而且要不要用漢字、例句很多該怎麼取捨，都想很久
+09:42 < ronnywang> kcwu++ # https://github.com/g0v/newshelper-extension/commit/e06388f5a25bbcb2586f0aeb9a8927146200e762
+09:42 < M00sUltraB0t> [ update for facebook new layout · e06388f · g0v/newshelper-extension · GitHub ] - github.com
+09:43 -!- ypwong [~anthony@175.41.48.77] has joined #g0v.tw
+09:49 < mindos_cloud> 福利請聽出現這個 : 你將可能獲得最高 null元補助 & 1條辦法 & # http://listening.g0v.tw/#/index
+09:49 < M00sUltraB0t> [ 福利請聽 ] - listening.g0v.tw
+09:51 -!- Michael_Thunderb [~Thunderbi@106.186.115.223] has joined #g0v.tw
+09:52 -!- legist [8c6d16b3@gateway/web/freenode/ip.140.109.22.179] has joined #g0v.tw
+09:53 -!- Michael_Thunder1 [~Thunderbi@111-240-141-241.dynamic.hinet.net] has joined #g0v.tw
+09:54 -!- ymow1 [~Adium@host-111-184-227-73.dynamic.kbtelecom.net] has quit [Quit: Leaving.]
+09:55 < au> ljm: 表示有 TeX source? :D
+09:55 < clkao> jimyhuang: 對了 你那天做的 ivod tv 效果後來有了嗎？
+09:55 < clkao> au: 見 source code 就跟 ETBlue 一樣變成豬哥
+09:56 < au> XDDD
+09:56 < jimyhuang> clkao: not yet. 在想套什麼效果時就停住
+09:56 < clkao> 我貼了 kawasaki 的 bluescreen-less chromakey 給 brian :p
+09:56 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+09:57 < clkao> 在那之前就先弄爛電視？然後還可以拍電腦？ XD
+09:57 < clkao> chromakey 成功後 就可以依照音量 過大的時候背後變成火焰？ XD XD
+09:57 < jimyhuang> clkao: XD 拍電腦好像做不出來？
+09:57 -!- Michael_Thunderb [~Thunderbi@106.186.115.223] has quit [Ping timeout: 265 seconds]
+09:58 < clkao> jimyhuang: html5 device orientation api
+09:58 < clkao> jimyhuang: 你拍拍看
+10:07 < au> ljm: https://www.moedict.tw/tmp/amis/ HTML 全部上載了
+10:08 < M00sUltraB0t> [ 阿美族字典 OCR ] - www.moedict.tw
+10:08 < jimyhuang> clkao: 還有這種東西
+10:22 < ljm> au: 有。其實我也可以幫老師用 CLJ LaTeX 排好出版，看他願不願意 XD
+10:22 < ljm> 不然看到他的標調都是用自己的 macro (不是 UTF8!) 我其實很頭痛的...
+10:23 < ljm> au++
+10:23 < au> cool :)
+10:26 -!- chinghanho [~chh@1.34.44.182] has joined #g0v.tw
+10:26 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:28 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Read error: Connection reset by peer]
+10:29 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+10:32 < pcchen> ljm: 我可以理解老師的堅持.....
+10:33 < pcchen> ljm: 我覺得先把能做的東西做出來，讓他看到成果，比較有可能改變他的觀念。（容易散佈，容易維修）
+10:33 -!- chihchun_afk is now known as chihchun
+10:34 < OtomeSound> utf8最高，只是我玩latex basic時曾被utf8整好久...
+10:35 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+10:36 < pcchen> ljm: 我覺得在把方音差顯示的問題解決之後，就可以來開始aggregate data，再來的一些調整，可能有比較多data之後比較清楚會有什麼問題。
+10:42 < ljm> pcchen: 我拿信望愛當例子，要試著說服他。不過老人家總是比較堅持 (笑)
+10:43 < pcchen> ljm: 主要是堅持 pure POJ?
+10:43 -!- chihchun is now known as chihchun_afk
+10:43 < ljm> OtomeSound: CJK 後來支援 UTF8 之後，人生就是彩色的... ^^; 不然老師的論文集有藏文有日文有 TTF 檔造字 (哭哭)
+10:43 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+10:44 < ljm> pcchen: 不是。他這方面沒這麼堅持，或是說，反正可以寫程式轉。他比較堅持格式要一致 (漢/羅/用詞/拼法) 還有避頭點 (這個讓 CJK 去做就好啦!)
+10:45 < ljm> pcchen: 我也喜歡 POJ, 主要是白話字聖經是 POJ 寫的 (笑)
+10:45 < pcchen> ljm: 格式要一致其實是讓電腦去煩惱就好。
+10:45 < mindos_cloud> ljm++ au++
+10:46 < pcchen> ljm: 但是教會沒有人要出來維護POJ標準（苦）
+10:47 < pcchen> POJ 需要更完整的 spec 跟需要 extension....
+10:47 < ljm> pcchen: 對，我也是這樣勸他的... 電腦能做幹嘛用人工 (咦，那我們打字典是為什麼 T_T)
+10:47 -!- ymow [~Adium@36.238.39.134] has joined #g0v.tw
+10:47 < ljm> pcchen: POJ 哪些地方需要維護呢? 可以舉例嗎?
+10:48 < OtomeSound> 資料是人建立的，不然電腦會把人類取代掉的ww
+10:48 < pcchen> ljm: 例如沒有標調位置的規範，張教授的extension (漳州音，泉州音）固定輕聲，第九掉
+10:49 < pcchen> ljm: 在輸入法當都有實作一個 de facto 的 POJ spec...但是不算真的有 authority
+10:50 < pcchen> 台羅spec看政府，信望愛spec看我，POJ spec沒人管
+10:51 < pcchen> ljm: 常常有人抱怨信望愛沒有按照POJ spec，問題是每個人說的POJ spec都略為不同...
+10:52 -!- miaout17 [~miaout17@miaout17.net] has joined #g0v.tw
+10:52 < ljm> pcchen: POJ spec 我都按張老師的 (笑) 可是他的 extension 其實我覺得不重要。需要用 POJ 來拼「磁片」(北京語) 嗎? 學越南文那樣幾種文字夾雜，我覺得也很好...
+10:52 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+10:53 < ljm> pcchen: 還有第 6 調 XD
+10:53 < ljm> (我應該重新去翻老師的著作了... 第 6 調和第 9 調我都忘記是什麼東西)
+10:54 < pcchen> ljm: extension 對泉州，漳州是重要的
+10:55 < pcchen> "lir berh" v.s. "li beh", etc 
+10:55 < pcchen> ljm: 信望愛如果選用POJ模式，第6/9就會使用張老師的符號。
+10:57 < ljm> pcchen: 是指海口腔 or 瑞芳山上常聽到的  lï bëh? 
+10:57 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:58 < ljm> 教會沒人維護，就用老師的吧. 反正教會現在也很少在用 POJ 了 (哭)
+10:58 < pcchen> ljm: yes..而也我覺得終究要開拓台灣以外的市場，讓中國及東南亞講閩南語系的人也可以方便使用。
+10:59 < ljm> pcchen: 中國的話可能沒辦法了。本來的廈門音拼字，後來不是都被漢語拼音取代了嗎?
+10:59 < pcchen> 在臉書上有不少福建或是東南亞的網友，他們都有需要
+10:59 < ljm> 東南亞(像新加坡) 雖然沒什麼標準，但至少他們是寫 Tan (陳) 不是 Dan 
+10:59 < pcchen> ljm: 如果是我認識的中國的網友他們都是用白話字或是台羅＋傳統漢字XD
+11:00 < ljm> 他們想用 POJ 嗎? 還是漢字? 還是 TLPA?
+11:00 < ljm> 噫! 我以為中國都被漢語拼音統一了 (笑) 他們有用漢語拼音出教材耶... 
+11:01 < pcchen> ljm: 這樣說。福建母語人士在書寫方式上完全向台灣的標準靠攏。
+11:02 < ljm> 讚。那我誤會大了。:) 那我從 POJ spec 這方面下手，再和老師推銷一下好了
+11:02 < pcchen> ljm: 沒看過閩南人喜歡用漢語拼音寫閩南語的
+11:02 < ljm> 而且中國人要買到他的字典應該也不容易，當然要推線上...
+11:03 < pcchen> ljm: 例如這個 http://site.douban.com/108149/
+11:03 < M00sUltraB0t> [ 闽南语正字促进会的小站 ] - site.douban.com
+11:03 < ljm> pcchen++
+11:04 < pcchen> 完全在推銷台羅 http://site.douban.com/108149/room/42227/
+11:04 < M00sUltraB0t> [ 學堂 (闽南语正字促进会的小站) ] - site.douban.com
+11:05 < pcchen> 這大概是少數台灣 文化制度產業可以回銷中國的例子。
+11:05 -!- miaout17_ [uid13197@gateway/web/irccloud.com/x-gpatyhkmzokcyprh] has joined #g0v.tw
+11:05 < pcchen> 收過幾張福建朋友寄來純POJ的明信片 XD
+11:05 < ljm> pcchen: 有沒有看過我在臉書上推薦的《小國的靈塊》? 台灣可以回銷中國的東西其實蠻多的 :P ...
+11:06 < ljm> 前提是我們要保持獨立 (泣)
+11:06 < pcchen> 沒看過...找時間來看看
+11:07 < yhsiang> http://www.amazon.com/b?ie=UTF8&node=8037720011 # 太強大了 XDD
+11:08 < M00sUltraB0t> [ Amazon Prime Air ] - www.amazon.com
+11:08 < pcchen> 現在臉書上有形成一個 福建（泉漳廈）-台灣-東南亞（大馬，印尼）跨國家的 intra-southern-min 網絡。 
+11:08 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has quit [Quit: leaving]
+11:08 < ljm> pcchen: 有沒有群組可以加一下?
+11:09 < pcchen> ljm: 昨天才跟一人討論未來引入他編輯的 檳城福建話 詞庫
+11:09 < ljm> pcchen++
+11:09 < pcchen> 例如這個 https://www.facebook.com/groups/346362625448847/
+11:09 < M00sUltraB0t> [ Facebook ] - www.facebook.com
+11:11 < pcchen> ljm: 另外可加這人 https://www.facebook.com/kianhui.lim.5?fref=ts （福建閩南語教皇，精通泉因漳音，漢字POJ/TL）
+11:12 < M00sUltraB0t> [ 有閒來坐 | Facebook ] - www.facebook.com
+11:13 < ljm> 讚
+11:15 < pcchen> added your to 張全會館
+11:27 < clkao> yhsiangCloud: 要試試看 diff 改用這個會不會比較快嗎？ # https://github.com/pasvaz/bindonce
+11:27 < M00sUltraB0t> [ Pasvaz/bindonce · GitHub ] - github.com
+11:27 < clkao> (binding 部分)
+11:28 < yhsiang> wow!
+11:28 < yhsiang> 我看一下
+11:29 < clkao> 我們其實大部分的東西應該都是 bind-once
+11:30 -!- samleng [dc82959a@gateway/web/cgi-irc/kiwiirc.com/ip.220.130.149.154] has joined #g0v.tw
+11:32 < samleng> Hello all. Anyone interested in meeting Sir Nigel Shadbolt at a British Trade and Cultural Office (BTCO)/ODA event? http://seminars.tca.org.tw/D15d01702.aspx
+11:32 < M00sUltraB0t> [ 研討會報名 - 當大師遇見大師 2013年台英Open Data發展與合作論壇_En ] - seminars.tca.org.tw
+11:33 -!- lcamel [~lcamel@2406:2000:efa5:5:98f9:37bd:f0c:d590] has joined #g0v.tw
+11:33 < clkao> samleng: oh you are the sam @ odw last month!
+11:34 < samleng> Yes, from the BTCO. How are you?
+11:34 < samleng> Never got your email address to follow up.
+11:34 < yhsiang> 喔 所以有watch就不能用 # 剛剛差點打成swatch ...
+11:34 < clkao> samleng: aw sorry. you can reach me at clkao {@} clkao.org
+11:35 < clkao> the tca page doesn't load for me... 
+11:35 < samleng> Okay, I'll send you further details about the event.
+11:35 < clkao> samleng: if it's open to public, you can also write to g0v-general@googlegroups.com
+11:35 -!- ymow [~Adium@36.238.39.134] has quit [Ping timeout: 245 seconds]
+11:36 < samleng> Dr. Tom Heath recommended that we introduce you to Sir Nigel Shadbolt. Sir Nigel loves grassroots open data activism.
+11:36 < samleng> Sure, I'll post it to the public Google Group too.
+11:36 < clkao> fantastic!
+11:37 < samleng> Unfortunately I won't be able to attend the event myself, but I'll ask my colleagues to look out for you and introduce you to Sir Nigel on the day if you could attend.
+11:37 -!- scrollback [scrollback@conference/jsconf/x-vwbicwlzvapebamc] has quit [Remote host closed the connection]
+11:37 -!- scrollback1 [scrollback@conference/jsconf/x-rfhlbwiphvzthbla] has joined #g0v.tw
+11:37 -!- scrollback1 [scrollback@conference/jsconf/x-rfhlbwiphvzthbla] has quit [Remote host closed the connection]
+11:37 -!- scrollback1 [scrollback@conference/jsconf/x-ijglhparmakvdxxq] has joined #g0v.tw
+11:37 -!- ymow [~Adium@218-166-236-247.dynamic.hinet.net] has joined #g0v.tw
+11:38 < samleng> I'll be busy taking the rest of the Southampton Delegation (Vice Chancellor, Pro Vice Chancellor and Dame Wendy Hall amongst others) to Academia Sinica.
+11:40 < clkao> samleng: thanks! registered
+11:42 < yhsiang> clkao: 不過我在想他這個performance 怎麼測的 @@
+11:43 < clkao> samleng: btw is there something like moedict.tw (mostly for the interactivity) for english/gaelic?
+11:44 < ljm> clkao: I'm longing for English/Cymraeg
+11:44 < clkao> (the first few google hits are like plain old tradtitional dictionaries)
+11:44 < clkao> ljm: !!
+11:45 -!- ymow [~Adium@218-166-236-247.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+11:46 -!- Guest80202 [~marlborom@101.3.37.71] has quit [Remote host closed the connection]
+11:46 < samleng> I think Cymraeg is Welsh.
+11:47 < samleng> Probably different from Irish and Scottish Gaelic. Don't know enough about it to differentiate.
+11:47 -!- Guest80202 [~marlborom@101.3.37.71] has joined #g0v.tw
+11:48 < clkao> au: how to submit special-case links like https://www.moedict.tw/憲法實踐１３３ for http://law.moj.gov.tw/LawClass/LawSingle.aspx?Pcode=A0000001&FLNO=133 ?
+11:48 < M00sUltraB0t> [ 憲法實踐１３３ - 萌典 ] - www.moedict.tw
+11:48 < M00sUltraB0t> [ 中華民國憲法§133-全國法規資料庫入口網站 ] - law.moj.gov.tw
+11:49 < yhsiang> 喔 我忘了還有batarang 可以先來測看看performance ..orz
+11:51 < clkao> 收到一個奇怪的邀請... 「蔡玉玲政委想約您會談有關電子商務第三方支付相關事宜」
+11:51 < yhsiang> clkao: XD 你要做台灣paypal了嗎 
+11:52 < clkao> ....
+11:52 < Goddamn> (Y)
+11:52 -!- chihchun_afk is now known as chihchun
+11:52 < clkao> 我已經推坑 izero 一兩次不成了
+11:54 < yhsiang> BTW, clkao 你手機上的bill 裡面的icon有正確顯示嗎 ?
+11:54 < clkao> yhsiang: which icons?
+11:54 < yhsiang> like json, pdf word or progress bar
+11:56 < clkao> yhsiang: oops, not working in android
+11:57 < clkao> create an issue for tkalu ?
+11:57 < clkao> er, tkirby 
+11:57 < yhsiang> me too, chrome, ff fails
+11:57 < yhsiang> ok
+11:59 < samleng> I found this online. It seems to be aimed at existing Welsh speakers though. http://www.bbc.co.uk/cymru/cymraeg/dysgu/tudalen/dolenni_defnyddiol.shtml
+11:59 < M00sUltraB0t> [ BBC - Cymru - Cymraeg - Adnoddau - Dolenni defnyddiol / Useful links ] - www.bbc.co.uk
+12:00 -!- lcamel [~lcamel@2406:2000:efa5:5:98f9:37bd:f0c:d590] has quit [Ping timeout: 240 seconds]
+12:00 < samleng> If you ask me, the words are unpronounceable, at least using English rules.
+12:01 < clkao> samleng: this is is not bad, with recorded audio as well: http://learngaelic.net/dictionary/?abairt=water
+12:01 < M00sUltraB0t> [ The LearnGaelic Dictionary ] - learngaelic.net
+12:03 < ljm> samleng: Different rules :)  There's a nice book: Teach Yourself - Welsh
+12:04 < ij1iao> yhsiang: clkao 即將成為台灣政府 CIO (Y)
+12:05 < clkao> ........ 錢少事多離家遠？
+12:10 < hychen> CIO, CIO, CIO 洞算
+12:10 -!- imwithye [~imwithye@116.251.209.247] has joined #g0v.tw
+12:11 < hychen> 洞燭先機, 算無遺策 (誤)
+12:12 < ipa> 只有高中學歷克以嗎
+12:14 < ij1iao> 總統都沒有學歷限制了...
+12:17 < hcchien> 反正 CIO 也可以用耗材報帳   # 大誤
+12:18 -!- imwithye [~imwithye@116.251.209.247] has quit [Ping timeout: 252 seconds]
+12:21 < clkao> hychen: let's push pgrest 0.1.0 out today!
+12:21 < clkao> want to write a sample app with auth
+12:22 < samleng> Our resident language specialist is in Chonqing for this week and next, but I'll ask her if she knows about any Welsh learning resources when she's back and will get back to you.
+12:22 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+12:24 -!- chinghanho [~chh@1.34.44.182] has quit [Ping timeout: 264 seconds]
+12:30 -!- lcamel [~lcamel@101.8.59.235] has joined #g0v.tw
+12:40 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+12:46 -!- samleng [dc82959a@gateway/web/cgi-irc/kiwiirc.com/ip.220.130.149.154] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+13:02 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 246 seconds]
+13:04 < jimyhuang> clkao: 打工一段落後，再來研究一下拍電視效果 XD
+13:06 < jimyhuang> 萌典恢復了！！ ^^/
+13:11 < ij1iao> hcchien: CIO 可能還有特支費可以用 # 無誤
+13:18 < ljm> samleng++
+13:26 < yhsiang> clkao: bo-html好像跟$sce有衝突 XDD
+13:28 -!- ymow [~Adium@1-172-227-208.dynamic.hinet.net] has joined #g0v.tw
+13:28 < clkao> yhsiang: GG XD 有人開 issue 了嗎?
+13:29 < yhsiang> 還在看, 不過換過去感覺上差異不大 
+13:29 < yhsiang> watch tree有減少 就是了 XD
+13:31 < yhsiang> bo-name有開 但是bo-html沒人開issue, 然後我們需要bo-id-i 也沒有 XD
+13:31 -!- lcamel [~lcamel@101.8.59.235] has quit [Ping timeout: 246 seconds]
+13:32 < clkao> 那.... 先不理他好了 
+13:32 < yhsiang> 也不一定需要bo-id-i 拉 就用原本的id
+13:32 < yhsiang> hmm 好像不對 XD
+13:33 < yhsiang> clkao: 是說 先不用bindonce ?
+13:34 < clkao> 對啊 如果沒差太多的話 因為我猜目前是有兩三次 digest (load bill info, bill diff, related motions)
+13:34 < clkao> 我猜可能他去 digest 整個 content object, 讓他一開始卡一下
+13:36 < yhsiang> 主要是我們的ng-repeat list 目前沒有大到很誇張的樣子
+13:39 -!- lcamel [~lcamel@2406:2000:efa5:5:810a:af25:93e8:9fd4] has joined #g0v.tw
+13:41 < yhsiang> 是有比較快, 還是我branch push上去?
+13:42 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+13:51 -!- samleng [dc82959a@gateway/web/cgi-irc/kiwiirc.com/ip.220.130.149.154] has joined #g0v.tw
+13:53 < clkao> yhsiang: sure, if it works. 可以順便寫 bill view unit test ?
+13:53 < clkao> V1ctor++ # 已經寫了 diff util test
+13:53 < yhsiang> 對阿 他寫了 XD
+13:53 < yhsiang> oh oh bill view
+13:54 < yhsiang> V1ctor++ 
+13:54 < yhsiang> anyway 我先開了bo-html issue回去 orz..
+14:08 -!- lcamel_ [~lcamel@2406:2000:efa5:9:11ef:abea:1854:7763] has joined #g0v.tw
+14:08 -!- lcamel [~lcamel@2406:2000:efa5:5:810a:af25:93e8:9fd4] has quit [Ping timeout: 240 seconds]
+14:09 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+14:09 < Michael_Thunder1> 我剛才在畫地圖，發現到核四災變的時候，撤退圈內的雪山隧道有保護作用。
+14:12 < kcwu> 感覺是個沒選擇時的選擇
+14:13 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+14:17 < Michael_Thunder1> kcwu 等下我會公佈在hackpad　我是要進行民間防災指揮的資訊透明問題，直接要幹上中央政府了，心裡頭很沉重+些些害怕　//第一次使用這類圖資軟體，還有很多需要請教的地方。
+14:19 -!- ymow [~Adium@1-172-227-208.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+14:28 < iamblue_cloud> 我們公司可能在g0v那天尾牙  .....QQ
+14:29 < clkao> iamblue_cloud: 只好叫他們訂同一間餐廳了，就可以隔壁桌
+14:30 < iamblue_cloud> 聽起來不錯XD
+14:30 < yhsiang> XD
+14:30 < yhsiang> iamblue_cloud: 聯合尾牙 衝了阿 :p
+14:30 < legist> 把公司給 g0v 化, 多帶點人來 g0v 兼職這樣(無誤)
+14:31 < iamblue_cloud> 因為聯合，所以大家也可以順便捐獻一下  太好了 (y)
+14:38  * walkingice registered tca
+14:38 < Jedi_> legist: 所以就是馬上開 c0m 了嗎
+14:40 -!- lcamel [~lcamel@nat/yahoo/x-awnlbkqqlzofbipx] has joined #g0v.tw
+14:41 -!- lcamel_ [~lcamel@2406:2000:efa5:9:11ef:abea:1854:7763] has quit [Ping timeout: 240 seconds]
+14:44 < iamblue_cloud> wow 像達比修有的大神回應了!
+14:45 < yhsiang> iamblue_cloud: eiji kitamura san ?
+14:45 < iamblue_cloud> yes 
+14:45 < iamblue_cloud> 不過我不確定明年還有沒有jsdc....
+14:45 < iamblue_cloud> 有人有去問javascrip.asia願不願意來台灣辦嗎？
+14:46 < yhsiang> ryan wu
+14:46 < iamblue_cloud> 結果如何？
+14:46 < yhsiang> not sure
+14:46 < iamblue_cloud> not sure是Thomas not sure 還是你not sure  XD?
+14:47 -!- taihsiang_ [~taihsiang@175.41.48.77] has joined #g0v.tw
+14:47 < yhsiang> 我不知道狀況, 我只知道Ryan wu有問
+14:48 < yhsiang> 然後friday night是聽到 還是有可能在singapore
+14:48 -!- taihsiang_ [~taihsiang@175.41.48.77] has quit [Read error: Connection reset by peer]
+14:48 < iamblue_cloud> 哦哦哦
+14:48 -!- taihsiang_ [~taihsiang@175.41.48.77] has joined #g0v.tw
+14:48 < iamblue_cloud> good job!!!
+14:49 < legist> 明年有沒有 jsdc 要問 caesar chi
+14:49 < yhsiang> 不過好像是某個澳洲人說他問thomas的, so 我知道就這些 orz..
+14:50 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Ping timeout: 264 seconds]
+14:50 < au> clkao: re special case, please keep it to fullwidth numbers only, and just commit to: 
+14:50 < au> https://github.com/audreyt/moedict-webkit/blob/master/server.ls#L49
+14:51 < M00sUltraB0t> [ moedict-webkit/server.ls at master · audreyt/moedict-webkit · GitHub ] - github.com
+14:51 -!- ljm [dad320c2@gateway/web/freenode/ip.218.211.32.194] has quit []
+14:53 < iamblue_cloud> 強哥～～  如果要辦的話似乎現在就要開始籌備囉?
+14:53 -!- ljm [~ljm@219-87-142-18.static.tfn.net.tw] has joined #g0v.tw
+14:53 -!- ymow [~Adium@1-172-237-186.dynamic.hinet.net] has joined #g0v.tw
+14:54 -!- ljm [~ljm@219-87-142-18.static.tfn.net.tw] has quit [Client Quit]
+14:54 -!- ljm [~ljm@218.211.32.194] has joined #g0v.tw
+15:04 < othree> ethantw: 那個 markdown.tw 的 pull request 我後來發現有效能問題會造成頁面卡死，你別的地方有遇過嘛
+15:08 < mindos_cloud> 我和 Ryan 說的時候，他說有爭取。後續的結果就要問他了。
+15:11 -!- ymow [~Adium@1-172-237-186.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+15:18 < yhsiang> hmm ..今天好多join 後勤中心 notify 
+15:27 < clkao> 按到手酸了嗎？
+15:28 < yhsiang> 不會阿 有add all :p
+15:28 < walkingice> 一堆高挫折的人
+15:28 < yhsiang> 只是好奇怎麼今天特別多 這樣
+15:31 < au> 舉牌小人效應? http://goo.gl/WBdAcw
+15:31 < M00sUltraB0t> [ ◢███◣ █▂ ▂｜ 舉牌小人▊ｏ ｏ｜／ ＼－／ ︶ - 萌典 ] - goo.gl
+15:32 < yhsiang> au++ XD 這個好歡樂
+15:32 -!- chinghanho [~chh@1.34.44.182] has joined #g0v.tw
+15:32 < clkao> 瘋了
+15:33 < CindyLinz> 看到 xdite 的「炸你全家」.. XD
+15:33 < walkingice> LOL
+15:34 -!- gary_lai [uid13160@gateway/web/irccloud.com/x-ucvqzgbebrdtgnlq] has joined #g0v.tw
+15:37 -!- ymow [~Adium@218-164-104-121.dynamic.hinet.net] has joined #g0v.tw
+15:39 -!- lcamel [~lcamel@nat/yahoo/x-awnlbkqqlzofbipx] has quit [Read error: Connection reset by peer]
+15:40 -!- lcamel_ [~lcamel@2406:2000:efa5:9:11ef:abea:1854:7763] has joined #g0v.tw
+15:43 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:43 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:45 -!- ymow [~Adium@218-164-104-121.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+15:46 < ETBlue> 萌典 ASCII ………= =|||b
+15:46 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:47 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:51 < jimyhuang> 我剛剛發現萌典不吃英文..但吃ASCII!!!
+15:55 < au> 英文是因為會和目錄檔名衝
+15:56 < au> [A-Za-z/.] 之外的都接受
+15:56 < yhsiang> jimyhuang: 用全形
+15:56 < yhsiang> jimyhuang: https://www.moedict.tw/%EF%BC%AA%EF%BC%A9%EF%BC%AD%EF%BC%AD%EF%BC%B9%EF%BC%A8%EF%BC%B5%EF%BC%A1%EF%BC%AE%EF%BC%A7.png
+15:57 < jimyhuang> yhsiang: wow!!! 害羞... 
+15:59 < yhsiang> ETBlue: 我可以把sidebar merge 成ui.thin.sidebar.vertical.menu 嗎?
+16:00 < clkao> 可惜小叮噹出不來 ((̵̵ ̆͒˚̩̭ ̆͒)̵̵)
+16:00 < ETBlue> yhsiang: 好挖
+16:00 < ETBlue> yhsiang:  請隨便改 XD
+16:01 < yhsiang> 順便inverted 成黑底白字 ? :p
+16:01 < kcwu> 可以來做萌典 bbs movie 了
+16:01 < ETBlue> yhsiang++ 衝 XD
+16:01 < yhsiang> bbs movie 就要cc 給 aokman了
+16:01 < yhsiang> s/ok/0k
+16:01 < M00sUltraB0t> yhsiang meant to say: bbs movie 就要cc 給 a0kman了
+16:11 < walkingice> wow! bindonce branch!
+16:11 -!- chinghanho [~chh@1.34.44.182] has quit [Ping timeout: 245 seconds]
+16:11 < hlb> https://www.moedict.tw/%E2%97%A2%E2%96%88%E2%96%88%E2%96%88%E2%97%A3%E3%80%80%E3%80%80%E3%80%80%E3%80%80%E3%80%80%E2%96%88%E2%96%82%E2%89%A1%E2%96%82%EF%BD%9C%E3%80%80%E7%82%B8%E4%BD%A0%E5%85%A8%E5%AE%B6%E2%96%8A%E2%97%8E%EF%BC%8D%E2%97%8E%EF%BD%9C%EF%BC%8F%E3%80%80%E3%80%80%E3%80%80%E3%80%80%EF%BC%BC%E3%80%80%E7%9A%BF%EF%BC%8F%E3%80%80%E3%80%80%E3%80%80%E3%80%80%E3%80%80%E3%80%80%E3%80%80%E3%80%80%EF%B8%B6
+16:11 < M00sUltraB0t> [ ◢███◣ █▂≡▂｜ 炸你全家▊◎－◎｜／ ＼ 皿／ ︶ - 萌典 ] - www.moedict.tw
+16:11 < hlb> XD
+16:12 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+16:12 < walkingice> Boyo!  http://tinyurl.com/lyz7yw4
+16:13 < M00sUltraB0t> [ ◢███◣ █▂≡▂｜ 炸你全家▊◎－◎｜／ ＼ 皿／ ︶ - 萌典 ] - tinyurl.com
+16:13 -!- imwithye [~imwithye@155.69.179.62] has joined #g0v.tw
+16:22 -!- imwithye [~imwithye@155.69.179.62] has quit [Ping timeout: 260 seconds]
+16:23  * walkingice 結果現在看到 bo-show 會唸成 boyo-show
+16:24 < yhsiang> walkingice: angular-boyo # Support boyo in angular :p
+16:24 < iamblue_cloud> boyo?
+16:24 < iamblue_cloud> 這是@@?
+16:25 < yhsiang> iamblue_cloud: wait a minute
+16:25 -!- chinghanho [~chh@1.34.44.182] has joined #g0v.tw
+16:25 < walkingice> iamblue_cloud: yhsiang 正在導入 bindonce，其中會把 ng-show 換成 bo-show :D
+16:26 < yhsiang> 馬上寫個boyo給你 ..
+16:26 < walkingice> iamblue_cloud: https://github.com/Pasvaz/bindonce
+16:26 < M00sUltraB0t> [ Pasvaz/bindonce · GitHub ] - github.com
+16:26 < walkingice> LOL
+16:26 -!- chihchun is now known as chihchun_afk
+16:27 < iamblue_cloud> XD
+16:28 < au> clkao: do not tempt an unicoder
+16:28 < au> https://www.moedict.tw/%EF%BC%BC%28%28%CC%B5%CC%B5%CC%81%20%CC%86%CD%92%CD%9F%CB%9A%CC%A9%CC%AD%20%CC%86%CD%92%29%CC%B5%CC%B5%CC%80%29%EF%BC%8F%E5%B0%8F%E5%8F%AE%E5%99%B9%E8%AE%93%E4%BD%A0%E5%AF%A6%E7%8F%BE%E6%89%80%E6%9C%89%E7%9A%84%E5%A4%A2%E6%83%B3
+16:28 < M00sUltraB0t> [ ＼((̵̵́ ̆͒͟˚̩̭ ̆͒)̵̵̀)／小叮噹讓你實現所有的夢想 - 萌典 ] - www.moedict.tw
+16:28 < clkao> why didn't i see that coming ;)
+16:29 < au> 「是一隻來自未來世界的機器貓。其造型圓滾，全身藍色，但腹部白色，且有一百寶袋」
+16:29 < au> 原來有這個詞條
+16:30 < walkingice> 好棒的詞條
+16:31 < clkao> 可是 render 出還有點像 hello kitty
+16:31 < au> https://www.moedict.tw/憲法１３３ deployed too
+16:31 < M00sUltraB0t> [ 憲法１３３ - 萌典 ] - www.moedict.tw
+16:32 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+16:33 < yhsiang> iamblue_cloud: http://plnkr.co/edit/loRyofbu6nZKmPaGXTyE?p=preview XD
+16:33 < M00sUltraB0t> [ Plunker ] - plnkr.co
+16:33 -!- lcamel_ [~lcamel@2406:2000:efa5:9:11ef:abea:1854:7763] has quit [Remote host closed the connection]
+16:34 < iamblue_cloud> ....XD
+16:34 -!- chihchun_afk is now known as chihchun
+16:35 < walkingice> yhsiang: XD
+16:36 < hlb> 總覺得快可以畫動畫了
+16:36 < clkao> https://www.moedict.tw/%E6%86%B2%E6%B3%95%E5%AF%A6%E8%B8%90%EF%BC%91%EF%BC%93%EF%BC%93
+16:36 < M00sUltraB0t> [ 憲法實踐１３３ - 萌典 ] - www.moedict.tw
+16:36 < clkao> 上去了
+16:36 < ljm> https://github.com/miaoski/amis-data/blob/master/README.md 阿美語字典可以誠徵苦力了 ^^;
+16:36 < au> ++
+16:36 < M00sUltraB0t> [ amis-data/README.md at master · miaoski/amis-data · GitHub ] - github.com
+16:36 < clkao> ljm++
+16:37 -!- zeroplex_ [~zeroplex@li398-103.members.linode.com] has joined #g0v.tw
+16:37 < au> yhsiang: 後面可以補七個 %E3%80%80
+16:37 < au> (全形空白)
+16:38 < ljm> mindos_cloud: 我在這 ._./
+16:39 < mindos_cloud> 阿美族字典那件事啊，我想遇得到的人都不會用 github 有沒有人可以寫個群編系統做這件事
+16:39 < Jcrt> 現在 moedict.tw 是查的到的字會轉向 definition ，查不到的會轉向舉牌小人，這樣嗎？
+16:40 < ljm> mindos_cloud: 如果編純文字檔也不行嗎? 那... Hackpad? 
+16:40 < au> 是的。
+16:40 < au> Jcrt: 所以如果要把既有詞條轉成舉牌小人，可以後面補個句號之類
+16:41 < mindos_cloud> 就 crowdsourcing 
+16:42 < Jcrt> au: 喔喔！ ic ic
+16:42 < ljm> mindos_cloud: WeSay 是個(很慢的)群編系統 :P 
+16:43 -!- lcamel [~lcamel@2406:2000:efa5:5:81a2:34fb:3367:117f] has joined #g0v.tw
+16:45 -!- chihchun is now known as chihchun_afk
+16:47 < ljm> 大概有 420 頁 8000 個以上的詞條，所以如果要 hackpad 或另外寫系統的話，需要按字母分一下. 文字檔目前也是按字母分。
+16:47 < ljm> 不然光是 load 就要一段時間囉
+16:47 -!- chihchun_afk is now known as chihchun
+16:50 < yhsiang> au: done # 然後現在改成moegraph XD
+16:50 < au> XDD
+16:51 < au> yhsiang++
+16:52 < yhsiang> 他換行的依據是? 
+16:53 < au> 是萌典松時跟 kcwu 討論出來的，儘量保持 2:1
+16:53 < au> 因為是 FB 的主文縮圖的比例。四字詞以上，寬度 w = Math.ceil(len / Math.sqrt(len * 0.5))
+16:56 < yhsiang> soga! thx
+16:58 -!- ymow [~Adium@1-172-227-130.dynamic.hinet.net] has joined #g0v.tw
+17:01 < ipa> 萌典舉字排讓公督盟fb小編爆走了
+17:01 < yhsiang> 現在會padding了
+17:01 < ipa> https://www.facebook.com/ccw.org.tw/posts/10152043882803960
+17:02 < M00sUltraB0t> [ 公民監督國會聯盟 - 字表太有趣啦！！！（顯示為小編玩上癮XD） 快來選出立法院2013年度漢字吧！！！... | Facebook ] - www.facebook.com
+17:02 < CindyLinz> XDDDD
+17:02 < au> XDD
+17:04 < hcchien> 公督盟不是應該在忙著丟鞋!?   lol
+17:06 < au> 來到每秒 500 個 png # 還好絕大部份的頻寬都被分流走了
+17:08 < yhsiang> 來把angular-moegraph 上傳 github XDD
+17:12 -!- cpyang_ [~cpyang@nerv.siraya.net] has quit [Ping timeout: 264 seconds]
+17:12 -!- cpyang_ [~cpyang@nerv.siraya.net] has joined #g0v.tw
+17:14 -!- lcamel_ [~lcamel@nat/yahoo/x-zzozpuqziawfuwld] has joined #g0v.tw
+17:14 -GitHub156:#g0v.tw- [ly.g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/ly.g0v.tw/commit/5f7ca6cf5d5713eb051a567af11f46ff4ba2a520
+17:14 -GitHub156:#g0v.tw- ly.g0v.tw/gh-pages 5f7ca6c g0v ly (via TravisCI): regen for e0c21aa
+17:15 -!- ymow [~Adium@1-172-227-130.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+17:16 -!- ymow [~Adium@36.238.35.205] has joined #g0v.tw
+17:16 -!- lcamel [~lcamel@2406:2000:efa5:5:81a2:34fb:3367:117f] has quit [Ping timeout: 240 seconds]
+17:18 < clkao> ETBlue: ly.g0v.tw nav bar 在 1200 以下還是會變成兩行 可以幫忙看看嗎？
+17:22 < hcchien> 每秒 500 個還真多   # 是產生 500 個!?
+17:23 < au> 如果沒有寫 cache 和分流的話就是
+17:23 < au> 但因為有所以減到百分之一左右 :p
+17:23 < isacl> au: Cache 跟分流是 cloudflare 嗎？
+17:24 < au> isacl: cloudflare 一層，本機 nginx 再一層
+17:25 < isacl> au++
+17:25 < au> load average: 0.19, 0.23, 0.28 # node+canvas+cairo 表示完全不吃力 XD
+17:27 < hcchien> cache 直接 cache png?
+17:27 < au> 是，然後會視用戶的螢幕大小/解析度動態 lossless resize
+17:28 < au> 不會每個人都抓 1500x1500 png
+17:28 < hcchien> 喔，所以現在是看的人多很多，還沒真的很多人玩
+17:29 < au> 對。玩的人一分鐘只有不到 30 個 (google analytics)
+17:30 < hcchien> 大家朋友都很多   lol
+17:30 < au> XDD
+17:30 < isacl> 期待篆書版 XD
+17:31 < au> 說文解字 ttf 的字數太少了 XD
+17:31 < au> 找得到 ttf 就可以加
+17:31 < hcchien> 選字體聽來真好玩
+17:37 < walkingice> 選書法字體輸出大圖桌布
+17:38 < yhsiang> 一下就勝過shuowen.org 和印章生成系統了 XD
+17:38 -!- chihchun is now known as chihchun_afk
+17:42 < isacl> 看起來 og:url 跟 og:image 不用在同一個 domain，如果我是部落格主人或新聞站台，應該會很想自己組個 https://www.moedict.tw/{title}.png 作為 og:image 用 XD
+17:42 < M00sUltraB0t> [ 404 Not Found ] - www.moedict.tw
+17:43 < isacl> 所以考慮圖片加上萌典浮水印了嗎 XDD
+17:43 < au> CC0 不用浮水印喔 :)
+17:44 < yhsiang> hmm ...可以來弄產生gif 的動態文字 ...?
+17:44 < isacl> au: :)
+17:45 -!- chihchun_afk is now known as chihchun
+17:47 -!- lcamel_ [~lcamel@nat/yahoo/x-zzozpuqziawfuwld] has quit [Ping timeout: 272 seconds]
+17:49 -!- samleng [dc82959a@gateway/web/cgi-irc/kiwiirc.com/ip.220.130.149.154] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+17:49 -!- Ti_W_B11 [~Ti_W_B@112.105.206.130] has joined #g0v.tw
+17:50 -!- lcamel [~lcamel@nat/yahoo/x-ymopxhmxqusjiezk] has joined #g0v.tw
+17:51 < clkao> au: 發現 shell 裡頭 'http://localhost:3000/collections/foo?q={"_id":1}' 會 GG
+17:51 < clkao> curl 'http://localhost:3000/collections/foo?q={"_id":1}'
+17:53 -!- petercommand [~peter@unaffiliated/petercommand] has joined #g0v.tw
+17:53 < au> clkao: why?
+17:53 < clkao> hmm, works with wget
+17:53 < clkao> curl:   "error": "SyntaxError: Unexpected token :"
+17:54 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:54 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:54 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:54 < kcwu> curl 會想去 expand {}
+17:54 < clkao> curl -g
+17:54 < au> https://www.moedict.tw/%E9%9B%B6%E6%99%82%E6%94%BF%E5%BA%9C?font=ebas
+17:54 < M00sUltraB0t> [ 零時政府 - 萌典 ] - www.moedict.tw
+17:55 < au> https://www.moedict.tw/%E6%8B%86%E6%94%BF%E5%BA%9C%EF%BC%8C%E5%8E%9F%E5%9C%B0%E9%87%8D%E5%BB%BA?font=sung
+17:55 < M00sUltraB0t> [ 拆政府，原地重建 - 萌典 ] - www.moedict.tw
+17:55 < au> 目前只有全字庫 ebas, sung, kai(default) 三種
+17:55 < au> 前端 ui 有空再寫 :p
+17:59 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+18:00 -!- chinghanho [~chh@1.34.44.182] has quit [Ping timeout: 246 seconds]
+18:00 < pm5cloud> jimyhuang: http://timemapper.okfnlabs.org/okfn/open-knowledge-foundation-history
+18:01 < M00sUltraB0t> [ Open Knowledge Foundation History - TimeMapper - Make Timelines and TimeMaps fast! - from the Open Knowledge Foundation Labs ] - timemapper.okfnlabs.org
+18:01 < pm5cloud> jimyhuang: 政誌原先有些 geotag 的功能？是不是想做成這樣？
+18:02 < pm5cloud> jimyhuang: http://timemapper.okfnlabs.org/
+18:02 < M00sUltraB0t> [ Home - TimeMapper - Make Timelines and TimeMaps fast! - from the Open Knowledge Foundation Labs ] - timemapper.okfnlabs.org
+18:08 < isacl> au++ # 說文解字字體酷! 
+18:10 < au> UI 也 OK 了
+18:11 < isacl> au: 剛剛所謂的有空再寫就是十分鐘後嗎 XD
+18:12 < au> 是啊。
+18:12 -!- ymow [~Adium@36.238.35.205] has quit [Read error: Connection reset by peer]
+18:12 -!- ymow1 [~Adium@36.238.35.205] has joined #g0v.tw
+18:12 -!- Guest80202 [~marlborom@101.3.37.71] has quit [Ping timeout: 245 seconds]
+18:16 -!- Phoenixmiss [~Miss@114-38-111-159.dynamic.hinet.net] has joined #g0v.tw
+18:18 < hychen> 12/20會跟richard去成大
+18:19 < clkao> au: 有空幫忙看看 plv8js build error with v8 3.21 吧
+18:19 < hychen> 然後開始牛肉湯之旅 , oh ya!
+18:19 < clkao> hychen: !!
+18:19 -!- Ti_W_B11 [~Ti_W_B@112.105.206.130] has quit [Quit: Nettalk6 - www.ntalk.de]
+18:19 < au> clkao: ok. is 3.21 the brew version?
+18:19 < clkao> sadly yes
+18:19 < au> thought I worked around it with 4909c6f
+18:20 < clkao> that's probably 3.20
+18:20 < au> orz. will check
+18:22 < ETBlue> clkao: 噢噢，因為 .navbar .brand.g0v 的 padding 左右各設了 40px
+18:22 < ipa> hychen: 21日pass?
+18:25 < ETBlue> 新的 g0v logo 放上 ly navbar 好漂亮
+18:25 < hychen> ipa: ??
+18:26 < ipa> hychen: 黑客松pass?
+18:27 < clkao> ETBlue: push 吧你! |D
+18:28 < hychen> ipa: 對耶.. 又衝 orz
+18:28 < hychen> ipa: 那只好pass 21號的黑客松, online參加.
+18:28 < ETBlue> clkao: 正在找那個 code XD
+18:30 < hychen> ipa: 21號要在台南給talk
+18:30 < hychen> lijung_: 我們兩個自己g0v尾牙? 
+18:31 -!- Ti_W_B10 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+18:31 < hychen> lijung_: ohoho, 你要在台北
+18:32 < lijung_> 兩個人尾牙也太...ㄏㄏ
+18:32 < lijung_> hychen: 所以你要來台南了？
+18:34 < hychen> lijung_: 21號之前跟人約好了要在python.台南給talk.
+18:35 < lijung_> 哦哦...了解
+18:37 -!- Ti_W_B10 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has quit [Quit: Nettalk6 - www.ntalk.de]
+18:40 -!- lcamel [~lcamel@nat/yahoo/x-ymopxhmxqusjiezk] has quit [Ping timeout: 264 seconds]
+18:43 < ij1iao> /sb cl
+18:45 < kcwu> au: FYI, https://code.google.com/p/jscin/source/detail?r=a776a626ed63a124980f3490398a99625b0f0137
+18:45 < M00sUltraB0t> [ a776a626ed63 - jscin - Chinese Input Method Environment in JavaScript - Google Project Hosting ] - code.google.com
+18:45 -GitHub66:#g0v.tw- [ly.g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/ly.g0v.tw/commit/e4f34cf2e0bc44dbf7cc23b775444ec2291e9e48
+18:45 -GitHub66:#g0v.tw- ly.g0v.tw/gh-pages e4f34cf g0v ly (via TravisCI): regen for 4c52945
+18:46 < au> kcwu++ yay!
+18:47 < kcwu> thanks piaip++ , not me
+18:48 < au> piaip++
+18:48 < au> 所以 PHRASE_CHARDEF 要寫在 cin 的哪裡?
+18:49 -!- chinghanho [~chh@1.34.44.182] has joined #g0v.tw
+18:55 < kcwu> 很醜的寫一行 %PHRASE_CHARDEF, 像 https://code.google.com/p/jscin/source/browse/src/tests/test_ar30_xcin25.cin 那樣
+18:55 < M00sUltraB0t> [ test_ar30_xcin25.cin - jscin - Chinese Input Method Environment in JavaScript - Google Project Hosting ] - code.google.com
+18:56 < au> got it, thx
+18:58 -!- ypwong [~anthony@175.41.48.77] has quit [Ping timeout: 265 seconds]
+19:04 -!- taihsiang_ [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+19:05 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+19:08 -!- Ti_W_B10 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+19:20 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+19:23 -!- chihchun is now known as chihchun_afk
+19:24 -!- Ti_W_B10 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 245 seconds]
+19:29 -!- Ihc [8c712e43@gateway/web/cgi-irc/kiwiirc.com/ip.140.113.46.67] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+19:32 -!- Ti_W_B10 [~Ti_W_B@218-166-38-214.dynamic.hinet.net] has joined #g0v.tw
+19:36 -!- Phoenixmiss [~Miss@114-38-111-159.dynamic.hinet.net] has quit [Quit: Leaving]
+19:36 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+19:40 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+19:41 -!- Phoenixmiss [~Miss@181.109.30.125.dy.iij4u.or.jp] has joined #g0v.tw
+19:42 -!- chinghanho [~chh@1.34.44.182] has quit [Ping timeout: 264 seconds]
+19:44 -!- legist [8c6d16b3@gateway/web/freenode/ip.140.109.22.179] has quit [Quit: Page closed]
+19:44 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+19:45 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+19:56 -!- cpyang__ [~cpyang@nerv.siraya.net] has joined #g0v.tw
+19:57 -!- cpyang_ [~cpyang@nerv.siraya.net] has quit [Ping timeout: 240 seconds]
+19:57 -!- czchen [sid12445@gateway/web/irccloud.com/x-jercbjyimmmvucqg] has quit [Ping timeout: 240 seconds]
+19:59 -!- czchen [sid12445@gateway/web/irccloud.com/x-lpzoihxyjnyrbxxo] has joined #g0v.tw
+20:05 -!- Ti_W_B10 [~Ti_W_B@218-166-38-214.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+20:18 -!- ypwong [~anthony@61-220-26-223.HINET-IP.hinet.net] has joined #g0v.tw
+20:22 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+20:25 -!- legist [8c6d16b3@gateway/web/freenode/ip.140.109.22.179] has joined #g0v.tw
+20:28 -!- legist [8c6d16b3@gateway/web/freenode/ip.140.109.22.179] has quit [Client Quit]
+20:31 -!- icman [~icman@123.240.129.234] has joined #g0v.tw
+20:36 -!- Ti_W_B10 [~Ti_W_B@36.237.222.2] has joined #g0v.tw
+20:36 -!- legist [8c6d16b3@gateway/web/freenode/ip.140.109.22.179] has joined #g0v.tw
+20:44 -!- Phoenixmiss [~Miss@181.109.30.125.dy.iij4u.or.jp] has quit [Quit: Leaving]
+20:44 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+20:47 -!- Ti_W_B10 [~Ti_W_B@36.237.222.2] has quit [Ping timeout: 252 seconds]
+21:00 -!- Luxun [uid13676@gateway/web/irccloud.com/x-mvplgbhamqnmwxiw] has joined #g0v.tw
+21:06 < Jcrt> au: 我覺得 function b2g (str='') 和 simp-trad.js 應該可以獨立出來變成一個專案？ 需要用到的 repo 再去拿來用～
+21:06 < Jcrt> au: 覺得應該有很多人會需要簡轉繁 JS function
+21:06 -!- legist [8c6d16b3@gateway/web/freenode/ip.140.109.22.179] has quit [Ping timeout: 250 seconds]
+21:09 < au> Jcrt: 確實，不過 b2g 沒有做一對多/多對一/上下文/異體字處理... 新同文堂和 https://npmjs.org/package/opencc 做得比較完整
+21:09 < M00sUltraB0t> [ opencc ] - npmjs.org
+21:09 -!- ballII [76a0adb1@gateway/web/cgi-irc/kiwiirc.com/ip.118.160.173.177] has joined #g0v.tw
+21:09 < au> # http://tongwen.openfoundry.org/web.htm
+21:09 < M00sUltraB0t> [ 新同文堂 for Web ] - tongwen.openfoundry.org
+21:10 < ballII> jimyhuang: 我覺得衛福的募款與支出比較資料很棒，不知可以分享嗎？因為上次的連結沒資料了 http://jimmyhub.net/d3js/homework2.html
+21:11 < au> (rime/opencc 已經整併了萌典的資料)
+21:12 -!- ljm_ [~ljm@111-249-94-185.dynamic.hinet.net] has joined #g0v.tw
+21:12 < ljm_> au: https://www.moedict.tw/tmp/amis/050-079.html Cannot GET /tmp/amis/050-079.html
+21:13 -!- Phoenixmiss [~Miss@114-38-111-159.dynamic.hinet.net] has joined #g0v.tw
+21:13 -!- Ti_W_B10 [~Ti_W_B@218-166-37-161.dynamic.hinet.net] has joined #g0v.tw
+21:13 < au> ljm_: fixed
+21:14 < ljm_> au++
+21:15 < ljm_> 噫。砍不下來... 
+21:15 < au> ?
+21:15 < ljm_> 2/33B 剩下 31 秒 <-- Chrome ctrl-s
+21:15 < ljm_> 真詭異
+21:16 < ljm_> 明明顯示得出來的...
+21:17 < au> ljm_: https://www.moedict.tw/tmp/amis.tar.gz
+21:18 < au> 終於降到 250hit/sec 了。八點多時 CloudFlare 判定網站正在遭受 DDoS，還得手動關掉 challenger。
+21:18 < ljm_> cloudflare.min.js 那邊連接的 png 檔的關係
+21:18 < au> *nod*
+21:19 < ljm_> au: 哈 感謝 ^^ wget 真快~
+21:23 < ljm_> au: 請問 moedict.tw 是整個在 cloudflare 上? (www.moedict.tw)... 141.101.124.202, 108.162.207.202, 2400:cb00:2048:1::8d65:7cca
+21:23 < au> 是的。
+21:24 < Jcrt> au: 咦那這樣的話，何不直接用 新同文堂 or opencc 呢，是覺得太肥嗎？
+21:26 < au> 不是，而是有些字雖然是簡體，但萌典有條目。
+21:26 < au> 所以是用新同文堂的 subset
+21:26 < Jcrt> au: got it. 感謝釋疑 :)
+21:26 < au> glad to help :)
+21:27 -!- gary_lai [uid13160@gateway/web/irccloud.com/x-ucvqzgbebrdtgnlq] has quit [Read error: Connection reset by peer]
+21:27 < ljm_> au: 真的不用錢嗎? (嚇)
+21:28 -!- gary_lai [uid13160@gateway/web/irccloud.com/x-jjvekyghrdeshdfo] has joined #g0v.tw
+21:28 < au> ljm_: 對啊，佛心來的，很適合純發佈式的公開資訊網站
+21:28 < Jcrt> ljm_: 不用， cloudflare 很佛心，他們另外有許多要收費的項目
+21:29 < au> (如果有使用者提供的資訊，或 SSL 交易等，就不適合，因為等於是給人家 MITM)
+21:29 < ljm_> au: 好讚. man-in-the-middle 也無所謂 (大誤)
+21:29 < Jcrt> 還有 cloudflare 其實蠻常掛點的 >_<
+21:31 -!- chihchun_afk is now known as chihchun
+21:31 -!- chihchun is now known as chihchun_afk
+21:33 < Ti_W_B> 在高中推g0v好難推啊啊啊啊~
+21:33 < Ti_W_B> 推了半天沒人有興趣......
+21:34 < ljm_> Ti_W_B: 為什麼他們會有興趣? 要查法案還是看立院 mod? 
+21:34 < Ti_W_B> 至少
+21:34 < Ti_W_B> 社會運動之類的
+21:35 < Ti_W_B> 原以為應該會有點共鳴.....結果......
+21:35  * ljm_ 高中都在玩 H^H Game (逃)
+21:36 < Ti_W_B> 不懂樓上......
+21:36 < Jedi_> Ti_W_B: ^H = Backspace
+21:37 < ljm_> Ti_W_B: 我的意思是說，我高中都在打電動 (繞手指)
+21:37 < Jcrt> Ti_W_B: 我以為連大學都會很難推耶 （就更不要說高中了～）
+21:37 < Ti_W_B> 0.0
+21:39 < Ti_W_B> 唉~
+21:39 < ljm_> Ti_W_B: *拍拍* 
+21:40 < Ti_W_B> 就是有一種人，會一邊玩手機一邊跟你說:我沒時間........
+21:41 < ljm_> Ti_W_B: *拍拍*
+21:42 < Jcrt> au: https://www.moedict.tw/%E5%B0%8F%E8%9F%B9?font=ebas 蟹歪掉了 XDDDDDD
+21:42 < M00sUltraB0t> [ 小蟹 - 萌典 ] - www.moedict.tw
+21:42 -!- Ti_W_B11 [~Ti_W_B@112.105.206.130] has joined #g0v.tw
+21:42 < au> yeah, needs measure + fix
+21:42 < au> 加了 17 種字體
+21:42 -!- Ti_W_B11 [~Ti_W_B@112.105.206.130] has quit [Client Quit]
+21:42 < au> https://www.moedict.tw/%E5%B0%8F%E8%9F%B9?font=wt071
+21:42 < M00sUltraB0t> [ 小蟹 - 萌典 ] - www.moedict.tw
+21:42 < au> 突然 justfont 化
+21:43 < Jcrt> 超突然 XD
+21:43 < ljm_> au++ !!!
+21:43 < Jedi_> KD
+21:44 < Jcrt> au++
+21:45 -!- Ti_W_B10 [~Ti_W_B@218-166-37-161.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+21:46 < ljm_> justfont 的中明體的 render 好怪
+21:47 < ljm_> (啊 poka 不在這個頻道)
+21:48 < ljm_> 鋼筆行楷是 bitmap?
+21:48 < au> 顯然是
+21:49 < ljm_> 來去反映一下 XD
+21:57 < ljm_> au: 本來在網頁上看，覺得這下整理起來痛苦了。沒想到用 html2text 轉完，發現英文和漢文幾乎都是對的
+21:57 < ljm_> 好厲害 (Y)
+21:58 -!- ballII [76a0adb1@gateway/web/cgi-irc/kiwiirc.com/ip.118.160.173.177] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+22:02 < au> ljm_: great! 再參照 html 裡的 png 補上漏字即可
+22:02 < au> 這樣希望可以不用花到半年時間 :p
+22:05 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has joined #g0v.tw
+22:05 < ljm_> au++
+22:06 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has quit [Client Quit]
+22:07 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has joined #g0v.tw
+22:20 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has quit [Quit: mno2]
+22:22 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has joined #g0v.tw
+22:29 -!- lcamel [~lcamel@118-168-98-132.dynamic.hinet.net] has joined #g0v.tw
+22:30 < jimyhuang> ballII: 因為資料有很多爭議，我先下架一下。
+22:48 -!- Ti_W_B11 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+23:02 -!- ymow1 [~Adium@36.238.35.205] has quit [Quit: Leaving.]
+23:05 < clkao> au: 康熙字典體呢
+23:08 < au> clkao: typeland 沒有授權啊
+23:08 < au> 直接寫不可傳播了
+23:09 < clkao> 殘念
+23:09 < clkao> https://www.moedict.tw/不要再用康熙字典體了?font=wt028
+23:09 -!- Ti_W_B12 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+23:09 < M00sUltraB0t> [ 不要再用康熙字典體了 - 萌典 ] - www.moedict.tw
+23:09 < walkingice> clkao: 不是很懂 ly.g0v.tw #95
+23:10 < walkingice> server side 會跑什麼？
+23:10 -!- Ti_W_B11 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 272 seconds]
+23:11 -!- dylandy [~dylandy@host-61-70-242-211.static.kbtelecom.net] has joined #g0v.tw
+23:12 < clkao> walkingice: 有兩個選擇，一個是 phantomjs 取出最後 render result (html)
+23:12 < clkao> 一個是特製的 renderer (從 url 自己 render 出對應的資料，就不透過 angular)
+23:15 < walkingice> clkao: 所以要先選一個 server side framework?
+23:15 < clkao> walkingice: probably just simple express server .... like budget.g0v.tw
+23:15 -!- Ti_W_B12 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 248 seconds]
+23:16 -!- Ti_W_B12 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+23:17 < ljm_> au: 有個部份看不懂. 我有個 title = kalali'acaan 可是在 p/lenToRegex.4.json 裡沒看到 kala 這個 regex?
+23:18 < ljm_> au: hmm.. 應該說，「列出含有...」和直接打完整的字，對阿美語都 ok, 但不知道怎麼像漢語一樣 auto-complete
+23:18 < walkingice> clkao: got it! 那我來看看 budget 是怎麼作的
+23:18 < clkao> walkingice: 如果可以直接用 prerender.io 的話也不錯
+23:19 < clkao> budget 是自己 render fragment 的樣子，沒跑 phantom
+23:19 < walkingice> 好
+23:19 < clkao> walkingice: 還是要先弄出 embed representation 的樣子? like /embed/bills/XXXXX 出現單純的 fragement
+23:20 < au> ljm_: 那不是 lentoRegex 管... 是 line 608
+23:20 < au>       return cb [] unless term is /[^\u0000-\u00FF]/ or term is /[-,;]/
+23:21 < walkingice> clkao: 沒概念，還不是很懂 :P
+23:21 < au> 本來打英數字是不會搜尋的。可以試著在最後加上 or LANG is \p
+23:21 < mindos_cloud> hychen, lijung_ 兩人的尾牙感覺很甜蜜?
+23:21 < ljm_> au: Q.Q ... 
+23:21 < clkao> walkingice: 就是讓 /embed/bills/xxxx 出現不含 navbar blahblah 之類的，只有出現 diff
+23:22 -GitHub19:#g0v.tw- [ly.g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/ly.g0v.tw/commit/9dbb3f723ffd7dc056ce3c1d32119e815efa0372
+23:22 -GitHub19:#g0v.tw- ly.g0v.tw/gh-pages 9dbb3f7 g0v ly (via TravisCI): regen for 3f26e67
+23:22 < ljm_> au: will try. 另一個問題: link 如 `ma'acisay~ 加上 `...~ 後，可以自動跑出相關詞了，但是因為正在查的是 'acis, 所以它被斷成 ma-'acis-ay 所以在相關詞 click 會跑去 ma
+23:23 < walkingice> 但是 user 貼上 SNS 的時候，url 應該是 /bills/xxxx ?
+23:24 < au> ljm_: OK... 先開 issue 
+23:24 < ljm_> au: OK 我也先調查一下
+23:24 < au> cool. (bbl)
+23:24 < clkao> walkingice: ya 就自動偵測 UA 轉用 /embed/*
+23:24 < clkao> 反正不管怎樣需要先有那個 mode 會動
+23:25 -!- ymow [~Adium@host-111-184-227-73.dynamic.kbtelecom.net] has joined #g0v.tw
+23:26 < walkingice> clkao: 所以 server side 看見特定的 UA 就吐出專門給 embed 版本的 html
+23:27 < clkao> walkingice: right, 然後那個 embed 版本的 html 可以是直接生的，也可以是透過 phantom 去取
+23:27 < walkingice> I see, 這就是你說的「mode」
+23:28 < walkingice> "a global flag for angular to render in oembed mode" <--- 如果用 phantom 去取
+23:28 < clkao> *nod*
+23:29 -!- icman [~icman@123.240.129.234] has quit [Quit: 明天天氣晴]
+23:29 < walkingice> 了解，那我先搞懂 budget 的作法
+23:30 < yhsiangCloud> component做法挺有趣XD
+23:31 < ljm_> au: line 608 的問題是我白痴... body.width < 768 Q.Q
+23:32 -!- walkingice is now known as walkingice_zZ
+23:33 < ljm_> http://i.imgur.com/lvhNBY0.png 
+23:34 -!- lcamel [~lcamel@118-168-98-132.dynamic.hinet.net] has quit [Remote host closed the connection]
+23:35 -!- imwithye [~imwithye@155.69.179.67] has joined #g0v.tw
+23:40 < clkao> yhsiangCloud: 其實後來覺得有點多餘，只要另外有一個 html file entry (ng-app 可以用另外定義的一個， depend on 真正需要用的 controller/service/etc) 就搞定了
+23:41 < pcchen> 跟不上了
+23:41 < pcchen> 完全不知道ljm 超強進度到哪裡了
+23:41 < ljm_> au: issue #30 是 469 行的關係 `...~ -> <a href=' ... '> 結果阿美語有 ' XDDD
+23:41 < ljm_> pcchen: 我正在搞阿美語，so, ...
+23:42 < ljm_> pcchen: TWBLG 的文白那個部份，其實原始檔有 reading: "文" 不過因為 au 在 issue 裡面寫說還有錄音檔的問題，所以我就不敢碰 :P
+23:42 -!- imwithye [~imwithye@155.69.179.67] has quit [Ping timeout: 260 seconds]
+23:43 < ljm_> 為什麼 -> "<a href=\"#h#word\">#word</a>" 不行 Q.Q
+23:44 -!- phoebe__ [uid18220@gateway/web/irccloud.com/x-mjtsfvmxwzjwehwr] has joined #g0v.tw
+23:46 < pcchen> ljm_: amis 加油！
+23:46 < pcchen> ljm_: 會想要轉成wesay當後續維修嗎？
+23:47 < ljm_> pcchen: 會。最後會轉成 WeSay 的
+23:50 < ljm_> au: s/#30/#97/ 
+23:50 < ljm_> 自己的 issue 自己修
+23:51 < pcchen> ljm_: 這幾天在開workshop，暫時無戰力
+23:52 < ljm_> pcchen: 嘸問題
+23:53 -!- Ti_W_B12 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 240 seconds]

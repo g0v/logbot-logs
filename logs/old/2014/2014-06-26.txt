@@ -1,0 +1,445 @@
+--- Day changed 四  6月 26 2014
+00:07 < xsoameix> clkao: 我發現我缺少 pgq 的 schema，但是我確認過有安裝 skytools3
+00:08 < clkao> xsoameix: pgq requires some commands to init.. see the apiserver cookboko
+00:08 < clkao> londiste3 something something
+00:09 < xsoameix> clkao: 恩，我發現 init pgq 的部份需要 londiste3，所以我也要安裝這些東西嗎？
+00:09 < yhsiang> xsoameix: indeed
+00:10 < xsoameix> yhsiang: 謝謝 :)
+00:11 < clkao> xsoameix: 他應該是 skytools3 裡面的吧
+00:11 < xsoameix> clkao: 恩，是 skytools 裡的東西
+00:13 < xsoameix> clkao: 但是需要製作一些配置檔
+00:15 < clkao> xsoameix: see api.ly/cookbooks/ly.g0v.tw/templates/default/londiste.erb
+00:16 < xsoameix> clkao: 恩，看來我要手動複製過去
+00:17 < clkao> orz 文件好像完全沒寫這個嘛... ><
+00:18 < yhsiang> xsoameix: 來patch文件吧 XD
+00:18 < yhsiang> \xsoameix/
+00:19 < xsoameix> yhsiang: 好阿
+00:20 < yhsiang> xsoameix++
+00:20 < yhsiang> 考慮來從irc跟hackpad patch 一個專屬於SoC的評審機制 XDD
+00:21 < yhsiang> irc跟hackpad統計的repo
+00:31 < clkao> xsoameix++
+00:32 < yhsiang> 目前確定我跟mindos~ 明天在買票 對okfest還有興趣的可以++ -3 
+00:32 < johnny__> 有沒有人懂議會的議案，http://tccmis.tcc.gov.tw/OM/OM_SearchDetail.asp?sys_no=27261
+00:32 < johnny__> 疑問是為何收文和發文隔了七年
+00:34 < yhsiang> johnny__: 97年有開過會議
+00:34 < xsoameix> clkao: 請問 ys-misq.ls 和 app.ls 一樣可以利用 127.0.0.1 觀看結果嗎？
+00:35 < clkao> xsoameix: no, ys-misq 只是 worker
+00:35 < clkao> 他會去看有新的 sitting, 就會去抓對應的 misq 上的議案資訊
+00:36 < xsoameix> clkao: 所以 app.ls 會跟 ys-misq.ls 要資料囉？
+00:37 < johnny__> yhsiang: 我看到97年開會的是是另一個相關提案
+00:37 < clkao> 不是直接要資料 都是去 pg 裡面要
+00:37 < xsoameix> clkao: 恩，我懂了，兩個沒有交集
+00:45 < hychen> 我pass... 我好忙
+00:46 < yhsiang> hychen: 不愧是嗨董~
+00:46 < hychen> .....
+00:46 < clkao> hcchien: 話說英文版 summit 網頁何時會上呀
+00:51 < hcchien> "有看到一些英文資訊囉
+00:51 < hcchien> 這幾天會去update一下網頁"
+00:55 < xsoameix> clkao: 請問 ys-misq.ls 也就是 meeting agenda and proceeding 對應哪一個 api 呀？
+00:56 < clkao> motions
+00:56 < clkao> and bills
+00:59 < xsoameix> clkao: 疑，我網址打 /collections/bills 時，程式直接跟網路上的主機要資料了嗎？我另外開的的 ys-misq.ls 被忽略了
+01:04 < yhsiang> walkingice: http://blog.codeschool.com/post/89758324803/designing-characters-with-box-shadow
+01:04 < kcwu> yhsiang's url: [Code School Blog — Designing Characters with Box Shadow]
+01:29 < clkao> au: what should invitaiton email title be?  "Invitation to g0v Summit: 8 Nov 2014, Taiwan" ?
+01:30 < au> sounds good
+01:30 < clkao> i added a first paragraph so it sounds more personal ;)
+01:32 < au> cool
+01:35 < Michael_LI> 慘了～公公徹夜未眠
+01:36 < clkao> au: should i send to lukec as well? or do you want to do that?
+01:38 < au> clkao: go ahead and mail lukec - luke is also looking for some senior perl hackers to join recollect.net so if you have candidates, maybe append it to the mail as well :p
+01:51 < Lee1092> ipa:  從 hackpad history 來看的話  實際上的 有參與共筆編輯者 是 1122 人  http://g0v.github.io/g0vTxT/#/visualize
+01:51 < kcwu> Lee1092's url: [g0ver TxT]
+01:51 < Lee1092> 看到社群數字  忍不住統計了一下 XD
+01:58 < clkao> 寄出九封信 猜猜明天會收到幾封回信？
+01:59 < Lee1092> 我猜5封!
+02:05 < clkao> email 債幾乎還完了.... 好累
+02:24 < Michael_LI> clkao　王牌村長　第一集　／片段／　https://www.youtube.com/watch?v=_Ut8HupAxVY
+02:24 < kcwu> Michael_LI's url: [Bruce answering prayers - YouTube]
+02:57 < vanjuggler> hello
+03:00 < au> vanjuggler: hi - it's 3am in taipei and I'm _just_ about fading to sleep - nice to see you here
+03:00 < clkao> vanjuggler: !
+03:47 < dreamercountry> 大家好。。
+03:50 < dreamercountry> 請問ustream的irc要如何建立
+03:51 < dreamercountry> 因為不知道中文id確無法建立？？
+03:51 < caasihuang> ustream 的 irc 是指？
+03:52 < a0000778> 應該是指 ustream 的實況聊天室其實是 IRC 這件事吧
+03:52 < a0000778> 那部份細節我沒碰 不過某hackpad上好像有
+03:53 < dreamercountry> http://ustream-helpers.com/book/export/html/87
+03:53 < kcwu> dreamercountry's url: [How to setup an IRC client to connect and login to Ustream]
+03:53 < caasihuang> a0000778: 瞭解
+03:53 < dreamercountry> 因為英文的可以建立正常
+03:53 < dreamercountry> 但是中文就？？
+03:54 < dreamercountry> 我弄了好久
+03:54 < dreamercountry> 總不會叫我打掉重練吧
+03:54 < a0000778> 中文是指？
+03:57 < a0000778> 頻道名稱是中文的 這樣？
+03:58 < dreamercountry> Http://ustream.tv/channel/公民記者直播-daniel-chen
+03:58 < dreamercountry> Yes
+03:58 < dreamercountry> 可是我改了無法使用
+03:58 < dreamercountry> 網址一樣叫這個
+04:04 -!- chihchun is now known as chihchun_afk
+04:05 < a0000778> 我成功了
+04:06 < dreamercountry> 怎麼理理？？
+04:06 < a0000778> 應該是先把中文字元去掉 然後取前10個字作為頻道名稱吧
+04:06 < dreamercountry> ？？？
+04:06 < a0000778> 你可以看到該直播上我有發出test
+04:07 < dreamercountry> 有耶。。
+04:07 < caasihuang> a0000778++
+04:08 < dreamercountry> 所以我應該設成
+04:10 < dreamercountry> 那文源的呢?
+04:11 < a0000778> 我沒記頻道 丟個連結給我XD
+04:12 < dreamercountry> http://www.ustream.tv/channel/%E6%96%87%E6%BA%90
+04:12 < a0000778> 頁面不存
+04:13 < dreamercountry> http://www.ustream.tv/channel/%E9%BB%9E%E9%BB%9E%E8%A8%98%E9%8C%84
+04:14 < kcwu> dreamercountry's url: [USTREAM: 點點記錄: . 公民記者]
+04:14 < a0000778> 我去找了 看來例外很多
+04:14 < a0000778> 文源是 #文源live秀2
+04:14 < a0000778> 不知道為什麼有2 說不定還有同名的
+04:15 < a0000778> 點點記錄 是 #點點記錄2
+04:15 < dreamercountry> http://www.ustream.tv/channel/%E6%96%87%E6%BA%90live%E7%A7%80
+04:15 < kcwu> dreamercountry's url: [USTREAM: 文源LIVE秀: Call in或直播邀約：0970-495268 文源臉書：www.facebook.com/sleepyuan 歡迎各位加我個人臉書，未來將繼續為任何一場正當公共議題發聲！ 贊助一天 600 元，文源為你多守一天街頭！ 銀行名：臺灣企銀　新竹分行 帳　號：３２０６２８...]
+04:16 < a0000778> 我看的是這個沒錯
+04:16 < a0000778> (我是截HTML參數看的就是
+04:16 < dreamercountry> 所以。。
+04:16 < a0000778> 我看不到規律 你猜吧XD
+04:17 < a0000778> 直播頁面上
+04:17 < dreamercountry> 好像就是無法放諸四海皆準
+04:17 < a0000778> 切換到聊天分頁
+04:17 < a0000778> 上面應該有一行小小的字
+04:18 < a0000778> 那行字就是頻道名稱
+04:19 < dreamercountry> 疑。。
+04:20 < dreamercountry> 應該是可以打中文囉
+04:21 < a0000778> 當然...
+04:23 < dreamercountry> 可以文源和點點建立失敗
+04:28 < dreamercountry> 還是有其他可能
+04:34 < dreamercountry> 謝謝幫助
+04:34 < a0000778> 名稱只會有1個...
+04:35 < dreamercountry> 應該是這樣
+04:37 < dreamercountry> 試不出來。。
+04:38 < a0000778> 你用 irssi ?
+04:42 < dreamercountry> 我是手機板的andrchat
+04:42 < dreamercountry> Linux是用xchat
+04:42 < dreamercountry> Windows是用mirc
+04:43 < a0000778> 剛剛看你中文好像有問題 總之先試試都使用UTF8...
+04:44 < dreamercountry> 好。。。
+04:46 < dreamercountry> 我改成utf8
+04:46 < dreamercountry> 也是一樣耶
+04:47 < a0000778> ... 求助相關使用者... (irssi沒出問題 其他用戶端沒用過
+04:50 < dreamercountry> ？？
+04:50 < dreamercountry> Irssi??
+05:04 < Dreamercounry> 現啊正常了嗎。。
+05:05 < Dreamercounry> 把程式重裝就正常了
+05:11 < Michael_LI> 匯整資訊／請自取／http://goo.gl/EdcSRN
+05:11 < kcwu> Michael_LI's url: [張志軍來台　基本資料（2014-06-25起）]
+06:47 < Dreamercounry> 早安
+07:37 < Michael_LI>  <Dreamercounry>早安
+09:30 < Michael_LI> a0000778／回報／臉書影片需要支援／例如／https://www.facebook.com/photo.php?v=668178966586281
+09:30 < kcwu> Michael_LI's url: [反黑箱服貿協議 | Facebook]
+09:33 < Michael_LI> a0000778／指的是G8V／http://a0000778.github.io/g8v/index.html
+09:33 < kcwu> Michael_LI's url: [G8V.TV 電視牆]
+09:46 < tw_73541> a0000778: 請問 .goog-te-menu-frame 這個多出來的iframe是什麼
+09:48 < tw_73541> 另外點了"透"之後 要如何恢復成沒有透明化的樣子
+09:50 < tw_73541> 點了"標"之後 然後按下取消 原本標題名稱會整個消失不見
+10:07 < weihung> 有人想去參加內政部的開放資料"國際"研討會的嗎？ https://docs.google.com/file/d/0B7pUPWqgEs3qMmdveXZxOTlRYkk/edit
+10:07 < kcwu> weihung's url: [內政部開放資料國際研討會-報名資訊.pdf - Google 雲端硬碟]
+10:21 < Michael_LI> a0000778／回報／臉書頁面也許可以支援一下／例如／https://www.facebook.com/Sean32.tw/posts/10203206608663683
+10:21 < kcwu> Michael_LI's url: [謝昇佑 - 剛剛警察敲門說，航警局可以送餐給我們，也可以送我們離開飯店，但若要住下來，就得關在裡面，不能行使一般房客的... | Facebook]
+10:54 < clkao> ㄟ 我第一次看到這個資料 # http://data.moi.gov.tw/MoiOD/Data/DataContent.aspx?oid=16DB45A1-37BD-478E-BEE1-E44088B54CF5
+10:54 < kcwu> clkao's url: [內政部資料開放平臺｜MOI Open Data]
+10:54 < clkao> 「單一年齡性別人口數」
+11:12 < kiang> clkao++, 難得看到都是 csv 格式的資料 XD
+11:15 < hcchien> 結果下載了不知道怎麼解開   XD
+11:17 < kiang> hcchien: unzip?
+11:17 < tw_73541> 沒有副檔名耶!
+11:18 < tw_73541> 自行加上.zip或.rar就可以打開了
+11:18 < kiang> 我下載有耶： opendata-+10304_age_cityname.zip
+11:18 < kiang> 人品...？ XD
+11:18 < tw_73541> 我下載得到的是 opendata-  就這樣而已
+11:19 < kiang> 可能是 windows 不允許 + 號當檔名吧
+11:19 < tw_73541> +這個字可以
+11:20 < hcchien> 我下載的有 .zip
+11:20 < clkao> 科科
+11:20 < hcchien> 然後 mac 解了 zip 之後就變奇怪的附檔名
+11:20 < hcchien> 再解一次又變另一個 .zip
+11:21 < kiang> 該不會是 gz 網頁壓縮吧 XD
+11:21 < kiang> 我只有解壓縮一次，得到 opendata- 10304_age_cityname 目錄，裡面的檔名像 opendata-10304_age_09007.csv
+11:22 < tw_73541> 解壓縮版本:2.0 壓縮使用之作業系統:DOS
+11:22 < hcchien> 果然是人品問題!?
+11:22 < kiang> 難得有一次是 linux friendly XD
+11:22 < Lee1092> win7   winRaR 可以解   解出來跟 kiang  一樣 XD
+11:23 < hcchien> 我是拿人工海岸資料
+11:26 < tw_73541> 我把自製專案池加入了angularjs和搜尋專案功能 有人想要嗎
+11:27 < hcchien> twpaddy: 可以先幫忙把 proposal 生出來   
+11:28 < hcchien> kiang: 試試這個!?   :p   # http://data.moi.gov.tw/MoiOD/Data/DataDetail.aspx?oid=52910B4B-6209-4EE4-9664-394631CAC3B1
+11:28 < kcwu> hcchien's url: [內政部資料開放平臺｜MOI Open Data]
+11:30 < kiang> hcchien: 解出來是 20140110-ж█╡M╗PдHдuо№йд╜uе▄╖N╣╧.rar
+11:30 < kiang> 應該是 big5 檔名吧
+11:30 < hcchien> 咦，為什麼我解不出 rar...
+11:30 < kiang> 人品...
+11:31 < hcchien> 我解出來是 .cpgz
+11:31 < tkirby> XD
+11:31 < tw_73541> 首先轉到網頁"檔案壓縮中 請稍候" 然後得到"自然與人工海岸線示意圖.zip"這個檔案
+11:32 < kiang> 但是 unrar 之後又得到正確的檔名（可能是程式自動轉吧）， "102第一期馬祖海岸線.shp"
+11:32 < tw_73541> 打開之後裡面有一個RAR跟一個XML...
+11:33 < Lee1092> 自然與人工海岸線示意圖.zip -> 20140110-自然與人工海岸線示意圖.rar  -> 1030110-102年度海岸線數化檔  資料夾  XD
+11:34 < kiang> 又回到 windows friendly 了
+11:34 < tw_73541> 看來 內政部的opendata下載 還會判斷你用哪個OS 來決定丟給你哪種格式壓縮檔
+11:35 < tw_73541> 剛才那個壓縮檔我得到的是ZIP64 版本4.5 DOS
+11:35 < Lee1092> tw_73541:   你可以丟出來   我再把他 更新到 github 上  # 專案池  XD
+11:35 < kiang> 檔案格式像月亮，初一十五不一樣 XD
+11:43 < Lee1092> hcchien:  我剛解壓縮上傳dropbox了 http://goo.gl/FbuwFu  你需要的話  #人工海岸資料  XD
+11:43 < kcwu> Lee1092's url: [Dropbox - 自然與人工海岸線示意圖]
+11:55 < clkao> 突然想到 昨天發 international 信好像忘了講 summit 規模
+12:17 < miaoski> 有沒有人知道大安運動中心旁邊到底要蓋什麼，哪裡可以查到…
+12:22 < dz1984> http://www.uro.taipei.gov.tw/ct.asp?xItem=126155&ctNode=12886&mp=118011
+12:22 < kcwu> dz1984's url: [臺北市都市更新處 ─ 大安區]
+12:23 < dz1984> miaoski: 查查看是不是在都更
+12:30 < hcchien> Lee1092++
+12:34 < tw_73541> 上傳完成 https://gist.github.com/anonymous/5d72cea9da8554048e71
+12:34 < kcwu> tw_73541's url: [專案池網頁 20140626 大幅度修改 內含自寫JS(專案清單)可部分代替json 含網頁檢視教學 詳見readme]
+12:37 < Michael_LI> a0000778，NewCliCker／我針對G8V做了一個實驗，有空可以看看／張志軍來台，諾富特飯店破門事件，關鍵影片整理。（G8V.TV 電視牆）／http://bit.ly/G8V20140625
+12:47 -!- chihchun_afk is now known as chihchun
+13:00 < miaoski> dz1984: ++ 那個好像是政府自己蓋的。有空我繞去看工程銘板
+13:09 < twpaddy> @hcchien 好的，我試著作看看
+13:15 < a0kman> 原來g0v的構想也有在大陸嗎@@?
+13:15 < a0kman> http://error1.kuaibo.com/error_page/404/
+13:15 < kcwu> a0kman's url: [error抱歉，你请求的页面没找到！]
+13:15 < a0kman> 404
+13:16 < hcchien> twpaddy: 預估個時間來吧
+13:16 < A-Han> au 有伙伴幫我修改了給力啄木鳥介面 送出push 你已經merge了對嗎
+13:16 < A-Han> au 非常感謝！
+13:31 < au> 沒問題，也已經加到 dev team 了，之後可以直接改
+13:38 < A-Han> au 有的 我看到了 非常感謝！
+13:49 -!- 1JTAAPT0V [~leonwu@27.52.51.155] has left #g0v.tw []
+14:05 < jimyhuang__> yhsiang: 所以 SITCon 可以去了？
+14:10 < yhsiang> jimyhuang__: 決定跟mindos 私奔了 >///<
+14:10 < jimyhuang__> yhsiang: 了解，那我來回信
+14:11 -GitHub70:#g0v.tw- [ly.g0v.tw] zbryikt opened pull request #166: Update README.md (master...master) https://github.com/g0v/ly.g0v.tw/pull/166
+14:11 -GitHub197:#g0v.tw- [ly.g0v.tw] zbryikt closed pull request #166: Update README.md (master...master) https://github.com/g0v/ly.g0v.tw/pull/166
+14:15 < yhsiang> tkirby: XD 你在幹嘛
+14:16 < travis-ci> [travis-ci] g0v/ly.g0v.tw#349 (master - ac0cfc3 : zbryikt): The build passed.
+14:16 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/59c7c0bf4bfb...ac0cfc37eeda
+14:16 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/28473686
+14:16 -!- travis-ci [~travis-ci@ec2-54-87-245-34.compute-1.amazonaws.com] has left #g0v.tw []
+14:38 < tkirby> yhsiang: 剛剛在給 talk, 在 demo 怎麼做 pull request... xD
+14:39 < yhsiang> tkirby: XDDD
+14:39 < yhsiang> tkirby++ 
+14:40 < a0000778> tw_73541: .goog-te-menu-frame 程式本身並無此部份，不是整合進來的頁面內容，就是你自己的瀏覽器加進去的東西 #回覆早上09:46
+14:41 < a0000778> tw_73541: 透在透明度接近完全透明後，再點一次就會變回不透明 #回覆早上09:48
+14:41 < walkingice> 「請拉我一把」
+14:41 < walkingice> Pull request
+14:44 < yhsiang> walkingice: 有看到我貼給你的嗎 :p
+14:44 < tw_73541> 真神奇 不知道那個是從哪冒出來的 reload之後再去找也找不到..
+14:45 < walkingice> yhsiang: 現在看到了！！
+14:45 < a0000778> Michael_LI: 我在FB上看到了，已知的瀏覽器問題應該都已解，已測試過Chrome/FireFox/Opera/Safari #回覆下午12:37
+14:48 < Lee1092> tkirby++   XDD
+14:50 < tkirby> 有人 follow 到這個專案嗎 https://g0v.hackpad.com/9kiBcC1q2vy
+14:50 < kcwu> tkirby's url: [立法卡到陰 - g0v.hackpad.com]
+14:54 < a0000778> tw_73541: 已修正 #回覆早上09:50
+15:00 < tw_73541> tkirby: 該專案網址404
+15:02 -!- LeonWu1 [~leonwu@27.52.51.155] has left #g0v.tw []
+15:03 -!- LeonWu1 [~leonwu@27.52.51.155] has left #g0v.tw []
+15:19 < tkirby> 神秘, 我連得上說
+15:20 < a0000778> Michael_LI: 看了看 FB 的 API，要做只能從頁面HTML硬截...
+15:20 < tw_73541> 咦 可以耶 難不成是我這網路問題..
+15:28 -!- HI030 [721bbdab@gateway/web/cgi-irc/kiwiirc.com/ip.114.27.189.171] has left #g0v.tw []
+15:29 < kiang> 高雄市包辦了最大的跟最小的里 XD - 高雄市左營區復興里只有 53 人，高雄市左營區福山里41827人
+15:36 < Rhozan> tkirby++ 很想學
+16:04 < tkirby> 所以要開堂課教 github 了嗎 XD
+16:38 < jimyhuang__> clkao: 那個遊說法的邀請函，是對方自己翻譯成中文的吧？
+17:04 -!- caasihuang is now known as caasih_
+17:17 < kiang> 館舘腳脚濂濓檨檨 <== 地名資料裡一堆混淆的字 XD
+17:17 < clkaoud> jimyhuang__: yes, I think their intern speaks some mandarin 
+17:18 < xsoameix> clkao: 請問 event 是要自己產生嗎？我 grep 了 insert into，但是找不到類似的程式碼
+17:20 < kiang> au: 萌典出現問號了 https://www.moedict.tw/%F0%AF%A3%AB - 檨 <== 這個字找不到
+17:20 < kcwu> kiang's url: [檨 - 萌典]
+17:23 < au> kiang: https://www.moedict.tw/%E6%AA%A8
+17:23 < kcwu> au's url: [檨 - 萌典]
+17:24 < au> kiang: 2F8EB 你貼的那個是「檨」的右下角換成「次」(兩點水不是三點)
+17:25 < kiang> au: 那個字是從 http://data.moi.gov.tw/MoiOD/Data/DataContent.aspx?oid=16DB45A1-37BD-478E-BEE1-E44088B54CF5 挖出來的
+17:25 < kcwu> kiang's url: [內政部資料開放平臺｜MOI Open Data]
+17:26 < kcwu> U+2F8EB 在 CJK Compatibility Ideographs Supplement, 沒有也不意外
+17:26 < au> 算是異體寫法，試看看用 Normalization Form C 跑過一篇
+17:26 < au> *一遍
+17:27 < kiang> (googling...)
+17:28 < au> require('unorm'); console.log('\uD87E\uDCEB'.normalize('NFC'));
+17:28 < au> https://www.npmjs.org/package/unorm
+17:28 < au> NFC normalize 後會變成 U+6AA8 檨
+17:28 < au> 依 w3c 建議，最好都先 NFC normalize 後再處理可以省不少麻煩
+17:29 < kcwu> U+6AA8 看起來不同地區寫法不同, 有的兩點有的三點
+17:29 < kiang> au++, 找到 PHP 的了 http://www.php.net//manual/en/class.normalizer.php
+17:29 < kcwu> kiang's url: [PHP: Normalizer - Manual]
+17:29 < au> cool
+17:30 < kiang> 另外想問，在 UTF-8 環境遇到 UTF16 or UTF32 的文字你們會怎麼處理？
+17:30 < au> 先轉 utf8 再處理
+17:30 < kcwu> 轉成 UTF-8
+17:31 < kiang> 有些字沒辦法轉，會變成 磚󿾨里
+17:31 < au> 那是 PUA 造字區
+17:31 < au> 要配字型檔才看得到
+17:31 < kiang> 所以應該是轉好了，只是 UTF-8 不存在的字就看不到了
+17:32 < kiang> 恩， Ubuntu 中文字型好像都沒辦法（看樣子要去偷 M$ 的了）
+17:32 < kcwu> UTF* 是一一對應的不會沒辦法轉, UTF8 會看不到, 其他 UTF* 也是看不到的
+17:32 < au> kiang: 不是 M$... 應該是內政部自己發的延伸字集
+17:33 < au> (碼位是 U+FFFA8，看到 F 開頭五碼的就是一般字型檔裡沒有的造字了)
+17:33 < kiang> au: 所以目前延伸字集都沒有放出來？
+17:33 < au> kiang: http://pri.land.moi.gov.tw/query/wjfnt.asp 這個嗎
+17:34 < kcwu> au's url: [罕用字作業]
+17:34 < au> 我不確定耶，請手動對照看看
+17:34 < kiang> 恩...（略過好了 XD）
+17:35 < kcwu> 那個看起來像 big5 的造字
+17:36 < kiang> 可是字型能夠顯示
+17:37 < kiang> 檨 <== 你們看不到嗎？
+17:37 < kcwu> http://data.gov.tw/node/5961 這裡也有自造字 table, 不知道有沒有用
+17:37 < kcwu> kcwu's url: [CNS11643中文標準交換碼全字庫(簡稱全字庫) | 政府資料開放平臺]
+17:38 < tw_73541> 我有裝Unicode BMP Fallback SIL字型 看到的是一個框框裡面寫02F8EB
+17:39 < au> kiang: 我有裝花園明體所以一定看得到，但不能期待使用者有裝
+17:40 < kiang> 恩，看樣子地名的狀況很多，晚點先跑看看 normalizer 好了
+17:40 < clkaoud> 這個之前有做過一次耶
+17:41 < clkaoud> See twhgis project for normalized data
+17:41 < tw_73541> 對了我是用firefox看的 我猜用chrome看到的應該是框框不然就空白
+17:41 < au> https://github.com/g0v/twhgis/blob/master/TXG-2010.json etc
+17:41 < kcwu> au's url: [twhgis/TXG-2010.json at master · g0v/twhgis · GitHub]
+17:41 < xsoameix> clkao: 我文件更新了
+17:44 < xsoameix> clkao: 目前卡在不知道如何測試 ys-misq.ls
+17:49 < kiang> clkaoud: 所以是人工處理 http://www.dgbas.gov.tw/ct.asp?xItem=951&ctNode=5485 的資料後更新 twhgis ？像是 桃園縣蘆竹鄉 => 桃園縣蘆竹市 這樣的異動還沒進去的樣子（不過要送 PR 門檻頗高的感覺 XD ）
+17:49 < kcwu> kiang's url: [行政區域及村里代碼]
+17:50 < clkaoud> xsoameix: populate-calendar, then calender-sitting, then ys-misq
+17:51 < clkaoud> kiang: twhgis 應該有個修正 csv, 然後 apply 後會 regen 所有 tag
+18:02 < xsoameix> clkao: 恩，我開了3個 terminal 後，populate-calender.ls 抓了一些資料後就自己結束程式了，calendar-sitting.ls 和 ys-misq.ls 沒有動靜
+18:16 < kiang> 103年12月25日桃園縣更名為桃園市成為直轄市，那 11 月桃園選什麼咧？ XD
+18:29 < hcchien> 桃園市長？
+18:35 < kiang> 所以是現在的桃園縣還是桃園市出任新的桃園市長呢？ XD
+18:43 < pofeng> 桃園縣長 變 桃園直轄市長 吧 ? 桃園線轄市 變 桃園區
+18:49 < kiang> pofeng++, 只是整理資料想到的 :)
+18:51 < pofeng> kiang: 是阿, 我多嘴了 :p (誤)
+19:13 < clkao> xsoameix: calendar-sitting 和 ys-misq 要先跑著 （或至少跑過第一次） 再跑 populate-calendar
+19:25 < isacl> ronnywang: 前幾天 hackathon 聊的東西，有初步成果了 http://news-ckip.source.today/
+19:25 < kcwu> isacl's url: [NewsSeg 新聞每日詞頻統計]
+19:25 < clkao> !!!
+19:25 < clkao> isacl: .today 上癮 :p
+19:26 < isacl> XD 因為之前剛出來很好搶
+19:27 < isacl> 歡迎有興趣的朋友加入，視覺化呈現上應該有不少可以玩
+19:31 < ronnywang> isacl: cool!
+19:31 < isacl> ronnywang: 這是我修改的無 diff 版本的 NewsDiff (@@?) http://news.source.today/ , code 在   https://github.com/youchenlee/newsdiff
+19:31 < kcwu> isacl's url (2/2): [youchenlee/newsdiff · GitHub]
+19:31 < isacl> ronnywang: 感謝你的 crawler, 那是最麻煩的部份 (低調低調)
+19:32 < ronnywang> 話說這幾天蘋果抓失敗的比例好高
+19:32 < isacl> ronnywang: 我的台視跟華視都一直有問題，還沒去修
+19:33 -!- chihchun is now known as chihchun_afk
+19:33 < isacl> ronnywang: 但你的台視好像正常
+19:33 -!- CelloCello [~Sero@1.34.191.8] has left #g0v.tw []
+19:33 < ronnywang> 台視之前改版過，我一直忘了 push 到 github ，黑客松那天推的
+19:35 < isacl> ronnywang: ok thanks, 晚上來 merge.
+19:35 < clkao> xsoameix: 你平常人在哪裡... ?
+19:43 < nchild> au++ 延續 g0vers 的討論，我想接著問，g0v IRC channel 上的用戶算不算 g0v 參與者呢？
+19:45 < Lee1092> isacl++  cool~
+19:45 < nchild> 我本來的想法，是認為這裡都算是 g0v 參與者，所以放在這裡的邀請，自然對象就是 g0v 參與者。
+19:46 < nchild> 如果不是的話，或許以後表述上就會特別注意改用 g0v IRC channel 上的參與者，與 g0v 參與者做個區別。
+19:48 < yhsiang> clkao: 要弄個 見面松嗎 XD
+19:48 < isacloud__> Lee1092: 懶人看新聞法
+19:52 < moon_c_> 見面松是紅娘松的一種嗎ＸＤ
+19:52 < yhsiang> moon_c_: no for SoC students
+19:55 < clkao> 明天要去看醫生 可是打工取消了
+20:17 < Rhozan> isacl++ ronnywang++  有機會開放API嗎？除黴計畫有成果之後就可以交叉分析，知道出現什麼詞的新聞有多大的機率會是不客觀新聞
+20:27 < xsoameix> clkao: 不好意思，我剛去吃飯，我平常在台北
+20:29 < isacl> Rhozan: http://news-ckip.source.today/ 之後打算做個 hook, 當抓到新的新聞時去呼叫你的程式做後續處理。現在的斷詞與計算詞頻就是這樣做。
+20:29 < kcwu> isacl's url: [NewsSeg 新聞每日詞頻統計]
+20:30 < isacl> Rhozan: 至於 api，之前我們對於新聞著作權的討論似乎還沒有結論。
+20:31 < xsoameix> clkao: calendar-sitting 和 ys-misq 我先跑著，然後我再跑一次 populate-calendar.ls，這次沒有秀出類似「61027 '第8屆第5會期'」的資料就結束程式了
+20:31 < isacl> Rhozan: 你那邊會需要怎樣的資料呢?
+20:33 < isacl> 「張志軍」今天會超越「台北」嗎？ XD
+20:36 < isacl> BTW, 若想看過濾掉一些較無意義的詞句之前的排序，可在日期後加上 /all , 例如 http://news-ckip.source.today/2014-06-26/all
+20:37 < Rhozan> isacl: 我不是工程師，只是覺得這個資料還有應用空間，會再跟團隊裡的工程師討論能怎麼做，希望結果能讓民眾更懂的看新聞
+20:37 < au> nchild: ptt 八卦版鄉民當然都是 ptt 鄉民
+20:37 < au> nchild: 但是某個討論串只在八卦版 po 的時侯，稍微限縮一下，意義比較清楚 (imho)
+20:38 < isacl> Rhozan: 了解， 當需要時可討論看看
+20:41 < Rhozan> isacl: 著作權的部分我們可以一起去找司改會律師談談，好像常常卡在這邊，之前問過的結果是只要用在「評論」就不會有事，比較細節的部分，法律界可能也沒有定論，但他鼓勵我們可以試看看，萬一被告就可以釐清問題，二來他們也會全力支援
+20:42 < isacl> Rhozan: 請問用在評論的意思是？
+20:44 < Rhozan> isacl: 就是非單純將新聞內容用來侵犯智財權，而是分析或評論內容有沒有錯，像投書就是很正當的行為(人家還有稿費)
+20:44 < xsoameix> clkao: 我平常都會上線
+20:48 < isacl> 嗯，那是看使用 API 的人將資料那來做什麼而定。但把別人的著作拿來開放 API 似乎是另一回事了。
+20:51 < isacl> Rhozan: 如果你們想去找律師詢問，我很樂意加入。看 ronnywang 是否也有興趣。
+20:54 < Rhozan> 我很籠統的講一下之前問過的心得： 以g0v的出發點來說，只處理純文字、限於網路的話很難構成侵犯智財問題 (剛忘記講還有一種"研究"用途)
+20:56 < Rhozan> 圖片的話，只要不去修改就沒問題 ，  影片則是有公播權問題，最容易違反。參考 http://goo.gl/wKD4Zr
+20:56 < kcwu> Rhozan's url: [G8V.TV法律問題相關討論 - g0v.hackpad.com]
+21:00 < clkao> xsoameix: 你要明天中午到東區嗎.. .?
+21:00 < Rhozan> isacl: 有些地方就再慢慢釐清吧(要另外開個pad整理嗎？)，我很樂意直接幫忙mail去問，如果mail處理不了再約時間一起去深入瞭解
+21:00 < caasih_> clkao tkirby: 想問問這個選單按鈕出現的時機 https://github.com/hackfoldr/hackfoldr/blob/master/app/index.jade#L31
+21:00 < kcwu> caasih_'s url: [hackfoldr/app/index.jade at master · hackfoldr/hackfoldr · GitHub]
+21:01 < clkao> caasih_: 好像是 yhsiang 改的... ? 應該是 responsive 的那個 menu bar
+21:01 < xsoameix> clkao: 東區？有甚麼活動嗎？
+21:01 < caasih_> 這是目前改用 semantic ui 的進度： http://imgur.com/a/Wsa3F
+21:01 < kcwu> caasih_'s url: [hackfoldr with Semantic UI - Imgur]
+21:01 < clkao> caasih_: 啊 對了，你是改在 hack.g0v 還是 hackfoldr ?
+21:02 < caasih_> clkao: yhsiang 加的是 hack.jade 裡面的那個， index.jade 那段 blame 一下不是他改的
+21:02 < caasih_> clkao: hackfoldr
+21:02 < clkao> great
+21:02 < isacl> Rhozan: 我們等 ronnywang 的意見好了？畢竟是他砍的樹 :P
+21:02 < caasih_> clkao: branch semantic-ui
+21:03 < clkao> caasih_++
+21:03 < yhsiang> oh my god about streamqueue ..
+21:04 < caasih_> 謝謝，改完再請大家鞭看看哪邊修壞掉了... >w<
+21:04 < clkao> yhsiang: .. ?
+21:05 < yhsiang> 就新版的gulp + streamqueue會炸掉 XD
+21:05 < clkao> oh fail
+21:05 < Rhozan> isacl: 好的! 靜候佳音XD
+21:05 < yhsiang> task不會終止 ..
+21:05 < clkao> 多新的 gulp.. ?
+21:05 < yhsiang> 我不確定是不是因為 gulp支援gulp.src passthrough
+21:05 < yhsiang> 3.8.2 XD
+21:05 < yhsiang> streamqueue 0.1.1
+21:20 < xsoameix> clkao: 我明天有空阿，只是不知道東區有甚麼事
+21:21 -!- chihchun_afk is now known as chihchun
+21:24 < clkao> 來 hack api.ly :p
+21:30 < Lee1092> NewCliCker:  miaoski_home  剛看到朋友分享這個!! https://ovomedia.typeform.com/to/GZvLEU
+21:30 < kcwu> Lee1092's url: [定義台灣人的電視盒子]
+21:35 -!- chihchun is now known as chihchun_afk
+21:46 < nchild> Rhozan isacl 關於著作權問題，你們要找律師問的話，建議找熟智財領域的。
+21:46 < nchild> 因為智財法主要受英美法系影響，不同於主要受大陸法系（日德）影響的我國其他法律。
+21:47 < nchild> 我國法院還特別分出智財法院，所以智財是法律裡的特殊專業無誤。
+21:48 < nchild> 若是要透過 email 徵詢意見，也可以 cc g0v-general@googlegroups.com 留底兼討論。
+21:49 < xsoameix> clkao： 地點在哪裡呢？
+21:52 < Rhozan> nchild: 感謝建議！我還是先開個pad把一些討論整理下來好了
+22:00 < Rhozan> Lee1092: 看到ovo就想到馬桶
+22:03 < isacloud__> nchild: 謝謝!
+22:16 < ronnywang> 如果著作權沒問題的話我是很願意公開 API 的
+22:22 < yhsiang> hmm 又很神奇的好了
+22:23 < isacloud__> ronnywang++
+22:24 < Lee1092> ronnywang++
+22:26 < yhsiang> clkao: 最後問題是gulp-filter -_-|||
+22:26 < yhsiang> 0.5.0 會炸 orz
+22:26 < clkao> kiang: twhgis/raw/*.csv
+22:28 < kiang> ronnywang: 如果有獨立組織願意扛責任會比較好，否則感覺還蠻容易訴訟纏身的
+22:28 < kiang> clkao: 有看到，也許只能有空的時候再整理？先把應用生出來再說 XD
+22:35 < pofeng> ronnywang: isacl Rhozan 沒跟上前文, 新聞抓來分析應該是沒問題的, API 提供全文給人抓一定有爭議, 但是 API 提供摘要, 或分析結果, 全文指向原 link , 應該 ok 吧 (?) 我有抓對脈絡嗎 ?
+22:38 < Rhozan> pofeng: 沒錯，之前律師也是說若非用於研究或評論，只要內容完整並寫明出處，有提供來源資訊即可 (網址甚至不一定是要件)
+22:41 < Michael_LI> 今天很煩，要看在巴西踢足球，還是在美國踢手機(咦?!)
+22:45 -!- TestTYPE [3b7f33b6@gateway/web/cgi-irc/kiwiirc.com/ip.59.127.51.182] has left #g0v.tw []
+22:46 < Michael_LI> ！？新聞分析～吃個飯回頭追LOG，之前有資料可提供
+22:54 < ipa> caasih_++ #hackfoldr semantic-ui
+22:57 < Lee1092> caasih_++  semantic!!
+22:59 < Michael_LI> ronnywang,Rhozan／cc.nchild／之前問過法律專門人士，可先參考這個／https://groups.google.com/forum/?hl=zh-TW#!topic/csstaco-talk/gGmOqL1OO_g
+22:59 < kcwu> Michael_LI's url: [Google 網上論壇]
+23:01 < Rhozan> Michael_LI: 好清楚，感謝!
+23:02 < Michael_LI> Rhozan／明晚媒觀座談／有機會的話現在提這個問題／有機會的話...
+23:03 < Michael_LI> s/現在/現場
+23:11 < isacloud__> Michael_LI++ 很棒的筆記
+23:13 < clkao> hcchien: 新版的贊助文案可以用了嗎？要放上網頁嗎？
+23:16 < clkao> 結果只有收到一封回信 XD
+23:16 < clkao> vanjuggler: coming to TW?
+23:18 < clkao> kiang: https://github.com/rhymeswithcycle/represent-boundaries
+23:18 < kcwu> clkao's url: [rhymeswithcycle/represent-boundaries · GitHub]
+23:25 < miaoski> Lee1092: ++
+23:27 < miaoski> Lee1092: 所以他們到底要做什麼出來...
+23:28 < Lee1092> miaoski: 這..  我不知道  orz  我只是看到訊息    想到 或許可以連絡  討論技術或合作~
+23:29 < Lee1092> miaoski:  搭社運或許很有賣點阿阿~  (疑
+23:47 < Michael_LI> .//王牌村長（clkao）只收到一封回信，其實信箱常常塞爆，不知道有平時多少來信　ＸＤＤＤ
+23:50 < hlb> 喵
+23:50 < hlb> 新版贊助文案在哪
+23:51 < au> hlb: https://g0v.hackpad.com/g0v-summit-2014--3Ulg4cd3T9I 「version 2」「贊助效益」還在共筆中
+23:55 < hlb> 來補綴一下
+23:56 < hlb> > 贊助單位將獲得社群講師 2 小時演講/教學。（規則待訂）
+23:57 < hlb> 這個好威
+23:57 < hlb> 可以個人贊助，請 au 來辦 hackathon 嗎 O_O
+23:58 < au> 企業內部黑客松正夯

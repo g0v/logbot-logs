@@ -1,0 +1,100 @@
+--- Day changed 五  5月 13 2016
+01:03 < slackbot5> <kiang> 想請問，如果要把大量的中文姓名轉為英文，有推薦的詞庫嗎？ 類似 
+01:03 < slackbot5> <kiang> <http://name.longwin.com.tw/name2passport.php>
+01:03 < kcwu> slackbot5's url: [護照英文名字翻譯|翻譯網]
+01:06 < g0vtelegrambot> <JediLin> says, http://crptransfer.moe.gov.tw/pinyin_07.aspx ?
+01:06 < kcwu> g0vtelegrambot's url: [教育部終身教育司- 中文譯音轉換系統]
+01:06 < gugod> hm.... 萌典？ 
+01:06 < gugod> 裡面有漢語拼音資料
+01:06 < slackbot5> <yhsiang> 之前有做通用拼音做到一半的樣子 xD
+02:07 < slackbot5> <kiang> 感謝，先加到 <https://github.com/kiang/Panama_Papers_Taiwan/issues/2> ，這幾天如果有空來玩玩看 :slightly_smiling_face:
+02:07 < kcwu> slackbot5's url: [中文英譯參考 · Issue #2 · kiang/Panama_Papers_Taiwan · GitHub]
+02:21 -!- chihchun is now known as chihchun_afk
+07:34 < slackbot5> <clkao> johnny, soidid 後來是不是有做一個讓人編輯法案俗名的東西? 類似 <https://github.com/g0v/bill-nicknames>
+07:34 < kcwu> slackbot5's url: [GitHub - g0v/bill-nicknames: Table of popular nicknames and keywords for bills]
+07:45 < slackbot5> <ipa> summit 網站小地方要改，有沒有人想跳個小坑：<https://github.com/g0v/summit.g0v.tw/issues/305>
+07:46 < kcwu> slackbot5's url: [Day 1 Day 2 共筆連結合而為一 · Issue #305 · g0v/summit.g0v.tw · GitHub]
+07:50 < slackbot5> <konklone> @clkao: that's the biggest return on investment I ever got out of a tiny CSV
+07:51 < slackbot5> <clkao> konklone: it’s all your fault!  are there continuous efforts in the US for people to submit nicknames?
+09:17 < slackbot5> <konklone> No, it petered out
+09:17 < slackbot5> <konklone> Couldn't convince anyone else to put it in production
+09:30 < slackbot5> <yhsiang> ipa 那個是直接刪掉就好 因為第二天根本也沒放連結
+09:37 < slackbot5> <ipa> @yhsiang: sure
+09:40 < slackbot5> <ipa> @yhsiang: 所以就是你要刪囉？（我沒有要推坑你啊 XDDD）
+10:26 < slackbot5> <clkao> mrorz, johnny FYI <http://data.stanford.edu/dime/>
+10:38 < slackbot5> <yhsiang> ipa: done
+10:53 < slackbot5> <soidid> @clkao 只有畫了 template 草稿 :stuck_out_tongue:
+10:53 < slackbot5> <http://soidid.github.io/billNicknames/build/>
+10:53 < slackbot5> 資料抓 g sheet
+10:53 < slackbot5> <https://docs.google.com/spreadsheets/d/1I4lQPQj9Zvqn2rfS8kViNErCUnjRd2acz91pdbkGo5U/edit#gid=0>
+10:53 < kcwu> slackbot5's url: [BillNicknames - Google 試算表]
+10:55 < slackbot5> <clkao> 要來 reboot 一下了嗎？反正 summit 完應該就沒事了吧... important piece of the puzzle
+12:04 < slackbot5> <kiang> 自暴自棄去寫爬蟲問 <https://www.boca.gov.tw/sp.asp?xdURL=E2C/c2102-5.asp&amp;CtNode=677&amp;mp=1&amp;type=B> XD
+12:05 < slackbot5> <ttcat> @kiang: https 隱私發生錯誤 orz
+12:05 < slackbot5> <kiang> curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); &amp; curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); (逃)
+12:10 -!- chihchun_afk is now known as chihchun
+13:20 < ronnywang> gov.tw 的 https 問題，比較好的做法是 1. wget http://gca.nat.gov.tw/repository/Certs/GCA.cer; openssl x509 -inform der -in GCA.cer -out GCA.crt  轉出 GCA.crt   2. curl_setopt($curl, CURLOPT_CAINFO, __DIR__ . '/GCA.crt');
+13:20 < slackbot5> <kiang> ronnywang++ ，就有點懶 XD
+13:30 < slackbot5> <yhsiang> 幫忙場佈的人記得簽到！
+13:30 < slackbot5> <johnny> clkao: 我只知道 soidid 做的表決標籤，法案的沒看過
+13:31 < slackbot5> <johnny> 哦在上面我看到了
+13:35 < slackbot5> <johnny> soidid: 法案的我遲遲不敢套表決標籤的方式上去，自己覺得一個法條修正案很難用一個短標籤解釋，可能需要多個的時候的機制還沒想到，感覺需要polis 但又想要在簡單一點
+13:35 < slackbot5> <kiang> 345646 * 20000 次的比對不知道要跑到什麼時候（睡覺去）
+14:42 < slackbot5> <kiang> (放棄)
+14:59 < slackbot5> <kiang> 像是這樣的姓名翻譯： <https://github.com/kiang/Panama_Papers_Taiwan/blob/master/2016.json> 一般會怎麼比對呢？因為原始資料的姓名並沒有固定格式，或是有些翻譯可能造成大量符合 （例如 義 翻譯為 i ）
+14:59 < kcwu> slackbot5's url: [Panama_Papers_Taiwan/2016.json at master · kiang/Panama_Papers_Taiwan · GitHub]
+15:40 < slackbot5> <leonlin> @kiang try "locality-sensitive hashing"
+15:43 < slackbot5> <kiang> leonlin: 有實做的程式或指令可用嗎？（看到數學公式就跳過... XD）
+16:02 < slackbot5> <leonlin> @kiang 是哪兩個資料集在比對? 讓我研究一下.
+16:04 < slackbot5> <kiang> 跟這個 <https://github.com/kiang/Panama_Papers_Taiwan/blob/master/taiwan.json>
+16:04 < kcwu> slackbot5's url: [Panama_Papers_Taiwan/taiwan.json at master · kiang/Panama_Papers_Taiwan · GitHub]
+16:04 < slackbot5> <kiang> 就從候選人姓名的音譯去找可能出現在巴拿馬文件中的資料
+16:08 < slackbot5> <kiang> 原本的想法是掃 offshoreleaks_data-csv.zip
+16:08 < slackbot5> 解壓縮出來的 Officers.csv ，但是看起來一般電腦跑不完線性掃描 XD
+16:09 -!- chihchun is now known as chihchun_afk
+16:20 -!- chihchun_afk is now known as chihchun
+17:00 < g0vtelegrambot> <seadog007> 然後做快取?
+17:16 < slackbot5> <kiang> seadog007: 就看看能不能跑出報表囉？
+17:42 < slackbot5> <ipa> summit 支援前線，小坑又來了：<https://github.com/g0v/summit.g0v.tw/issues/307>
+17:42 < kcwu> slackbot5's url: [共筆連結放在最上面分頁或明顯處 · Issue #307 · g0v/summit.g0v.tw · GitHub]
+18:15 < slackbot5> <leonlin> @kiang 剛看了下資料，量蠻小的，頂多3k比7k，暴力法也能處理不是?
+18:18 < slackbot5> <leonlin> 還是我看錯資料? 2016.json跟taiwan.json，只比較姓名部份。
+18:50 < slackbot5> <miaoski> 我明後天沒辦法去 summit 了
+18:50 < slackbot5> <miaoski> 我的票有人要嗎
+18:51 < slackbot5> <lafin> @@
+19:12 < slackbot5> <pennyken> 現在口譯的首頁只有網頁伺服器預設的頁面
+19:12 < slackbot5> <http://i.summit.g0v.tw/>
+19:12 < kcwu> slackbot5's url: [Welcome to nginx!]
+19:12 < slackbot5> 需要有人協助製作口譯的專屬首頁
+19:12 < slackbot5> 下面是三軌口譯的串流網址
+19:12 < slackbot5> <http://i.summit.g0v.tw:8000/r0>
+19:12 < slackbot5> <http://i.summit.g0v.tw:8000/r1>
+19:12 < slackbot5> <http://i.summit.g0v.tw:8000/r2>
+19:13 < slackbot5> <miaoski> 明天會有直播嗎？我可以在家看  :stuck_out_tongue:
+19:16 < slackbot5> <pennyken> 會有
+19:16 < slackbot5> <pennyken> 請洽官網
+19:20 < slackbot5> <kiang> @leonlin: 暴力法還要考慮可能的姓名格式變化，如果覺得不大可以挑戰跑壓縮檔的
+19:41 < kcwu> kiang: 2016.json 是今年全部的候選人? 拼音來源是?
+19:56 -!- [[Qinyongr]] is now known as [[Qinyongr|onlin
+19:56 -!- [[Qinyongr|onlin is now known as [[Qinyongr]]
+20:00 < slackbot5> <soidid> @johnny 之前想是覺得，相較於法案的總數量，民眾會知道「短標籤」的法案，好像不會很多。所以原本只有想成一個簡單的查找服務，外連到法條，還沒想是不是要幫法案加上 meta data 或是一對多什麼的。
+20:00 < slackbot5> 我想的「短標籤」是大家會在新聞上看到的「修法名稱」，而不是解釋這個法案在幹嘛的一（數）個說明標籤。
+20:00 < slackbot5> 後來就暫時沒繼續想了 XP
+20:06 -!- chihchun is now known as chihchun_afk
+21:54 < slackbot5> <kiang> kcwu: 是全部候選人，拼音來源 
+21:54 < slackbot5> <kiang> <https://github.com/kiang/Panama_Papers_Taiwan/blob/master/translate.php>
+21:54 < kcwu> slackbot5's url: [Panama_Papers_Taiwan/translate.php at master · kiang/Panama_Papers_Taiwan · GitHub]
+22:00 < kcwu> 如果有 公開資訊觀測站 的人名來 match 應該更好玩
+22:04 < slackbot5> <kiang> kcwu: 可以挑戰看看登記公司資料庫，或是基金會董事也可以順便 (繼續下去就跑不完了 XD
+22:06 < kcwu> 資料量大我更有興趣玩 :D
+22:06 < slackbot5> <kiang> 那就請 @ronnywang 匯出一份來玩玩囉
+22:08 < slackbot5> <kiang> 基金會的可以找 <https://github.com/g0v/foundationtw>
+22:08 < kcwu> slackbot5's url: [GitHub - g0v/foundationtw]
+22:08 < slackbot5> <kiang> 麻煩來個大盤點吧 XD
+23:01 < slackbot5> <ttcat> <https://m.facebook.com/story.php?story_fbid=10154217892839243&amp;id=649914242>
+23:01 < kcwu> slackbot5's url: [找不到內容]
+23:02 < slackbot5> <ttcat> 致昕寫的選課指南 ++
+23:08 < slackbot5> <ttcat> Ipa 的選課指南++ <https://m.facebook.com/story.php?story_fbid=10209428777575509&amp;id=1207082906&amp;notif_t=close_friend_activity&amp;notif_id=1463152054519681&amp;ref=m_notif>
+23:37 < slackbot5> <fumi> 選課指南++
+23:58 < slackbot5> <yhsiang> ETBLue: 最後決定是 R1 R2 用 mac 直接收音 , R0 用你的 mic :simple_smile:
+23:58 < slackbot5> <yhsiang> etblue: 明天貓橘會搞定一切

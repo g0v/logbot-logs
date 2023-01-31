@@ -1,0 +1,29 @@
+--- Day changed 五  2月 20 2015
+13:07 < slackbot3> <lanf0n> t0mst0ne: ER 前端算 "暫時" 修好了QQ.... continuous query 不支援舊資料... 所以目前只會顯示今早之後的資料
+13:07 < slackbot3> <lanf0n> 再想想要怎麼把舊資料 dump 出來再 dump 回去 囧rz
+13:18 < slackbot3> <t0mst0ne> 請問是ㄧ開始db 設定的問題嗎？
+13:35 < slackbot3> <lanf0n> t0mst0ne: 也不算是...XD 可以用 .  的功能算是方便查詢吧.... 參考 <http://influxdb.com/docs/v0.8/api/continuous_queries.html#fanout-continuous-queries>
+13:35 < kcwu> slackbot3's url: [InfluxDB Documentation]
+13:35 < slackbot3> <lanf0n> 之前的版本好像有 backfill, 但後來改掉了的樣子QQ
+13:45 < slackbot3> <t0mst0ne> lanf0n: ++  ( 不過我還是看不懂 :p)
+13:47 < slackbot3> <lanf0n> t0mst0ne: ah...簡單的做法就是先 create ER 之後丟一筆資料進去，然後再下 " SELECT * FROM ER into ER.hospital_sn; "
+13:47 < slackbot3> <lanf0n> 之後存進去的資料就會被自動分類....
+13:47 < slackbot3> <t0mst0ne> "into"
+13:48 < slackbot3> <lanf0n> 但感覺每次都是 select all 有可能是炸掉的原因 囧rz ?...
+13:48 < slackbot3> <t0mst0ne> 下一次就好嗎?
+13:48 < slackbot3> <t0mst0ne> 對 , select * from ER 就炸了
+13:48 < slackbot3> <lanf0n> yes, 執行完之後會 完全沒有反應  XD，可以用 list continuous queries 查看
+13:50 < slackbot3> <t0mst0ne> 每write 一次, 都要 SELECT * FROM ER into ER.hospital_sn ?
+13:51 < slackbot3> <lanf0n> 目前先這樣讓它跑QQ... 等找到辦法把舊資料 dump 出來整理後再想想怎麼辦囧...
+13:51 < slackbot3> <lanf0n> 這我也....不知道(說明書沒寫囧/ )
+13:51 < slackbot3> <lanf0n> btw, 新年快樂XD
+13:52 < slackbot3> <t0mst0ne> 哈哈, 厲害厲害 新年快樂 !!
+15:24 -!- veloci85_1 is now known as veloci85
+15:29 -!- veloci85_ is now known as veloci85
+15:35 -!- veloci85_1 is now known as veloci85
+15:43 -!- veloci85_2 is now known as veloci85
+15:51 -!- veloci85_ is now known as veloci85
+19:43 -!- ttcat_______ is now known as ttcat______
+19:43 -!- tonghuix_ is now known as tonghuix
+19:43 -!- NewCliCker_ is now known as NewCliCker
+19:44 -!- lhtseng_ is now known as lhtseng

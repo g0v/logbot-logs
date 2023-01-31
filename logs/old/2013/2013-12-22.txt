@@ -1,0 +1,992 @@
+--- Day changed 日 12月 22 2013
+00:00 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+00:01 < lijung_> ronnywang: 好可惜都是 php 的 code 無法 contribute ...
+00:01 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has quit [Quit: Closing]
+00:01 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has joined #g0v.tw
+00:01 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 265 seconds]
+00:01 < lijung_> github-viewer 真厲害
+00:01 < clkao_> lijung_: 趁年輕多學幾種語言!
+00:02 < lijung_> clkao_: lol... hmmm... 好！
+00:03 < walkingice> 譬如說克林貢語之類的.......
+00:03 < lijung_> walkingice: XD
+00:08 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+00:10 -!- pivmi [~pivmi@61-231-3-140.dynamic.hinet.net] has joined #g0v.tw
+00:17 -!- jlhg2 [~user@greatbear.csie.ntu.edu.tw] has joined #g0v.tw
+00:21 < jimyhuang> ... 我也看錯了 pm5clyud
+00:22 < pm5> lyjung: 有興趣學克林貢文嗎?
+00:22  * kcwu 不會看錯(推眼鏡)
+00:26 < lijung_> pm5: 該不會有開班授課吧 XD
+00:26 < lijung_> 我其實滿好奇的哈哈
+00:27 < pm5> lyjung: 我也不知道有沒有時間做這件事 可能要等我掉進萌典克語坑?
+00:28  * ddio 結果不能 push 文化部授權中心 XD
+00:28 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has quit [Quit: lyanchih]
+00:37 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+00:38 < jimyhuang> pm5: stardog_ 在嗎
+00:38 < jimyhuang> 有人約採訪，要一起來嗎 XD
+00:39 < yhsiangCloud> hmm都ly化  XD
+00:40 -!- chihhsin is now known as pichuanq
+00:42 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+00:43 < tuiry> kcwu http://naturesys.com/ 有人做了 XD 而且好完整
+00:43 < kcwu> tuiry's url: [自然系圖鑑]
+00:43 < M00sUltraB0t> [ 自然系圖鑑 ] - naturesys.com
+00:44 < jimyhuang> tuiry: why need this?
+00:45 < tuiry> jimyhuang: 想做類似的東西，而且爬山帶這個不是很棒嗎
+00:45 < jimyhuang> 喔喔喔
+00:45 < jimyhuang> http://eol.taibif.tw/  中研院他們做得，圖片都有授權
+00:45 < M00sUltraB0t> [ 臺灣生命大百科 | Taiwan Encyclopedia of Life ] - eol.taibif.tw
+00:45 < kcwu> jimyhuang's url: [臺灣生命大百科 | Taiwan Encyclopedia of Life]
+00:47 < tuiry> 我的本意是從圖畫來認識世界，訓練觀察力 XD
+00:47 -!- icman [~icman@123.240.140.154] has quit [Quit: 明天天氣晴]
+00:47 < tuiry> jimyhuang: 謝謝
+00:47 < pm5> jimyhuang: 行啊
+00:48 < jimyhuang> pm5: 跟年輕學生聊聊天 ;)
+00:48 < jimyhuang> tkirby: 喔喔喔喔～～對啊超棒
+00:49 < jimyhuang> tkirby: 丟錯人. ..
+00:49 < jimyhuang> tuiry: 超棒 XD 攝影也是觀察力... 畫圖就更需要了
+00:50 < pm5cloud> jimyhuang: 喔好 再跟我說時間?
+00:50 < jimyhuang> pm5cloud: 你下週幾晚上沒有空的？
+00:52 < tuiry> jimyhuang: 觀察力應該是通用技能! 希望可以成為通用技能
+00:52 < yhsiangCloud> 自然系圖鑑之前看過
+00:52 < yhsiangCloud> 寫程式也是觀察力！
+00:55 < tkirby> jimyhuang: XD
+00:56 < kcwu> tuiry: 好讚~
+00:57 < tuiry> 原來是貓頭鷹出版社的書
+01:01 < ipa> ddio: 文化授權中心! 問etblue? Or fork first
+01:01 < pm5> jimyhuang: 目前只有拜四晚沒空
+01:01 < ETBlue> ipa: 他已經接收了自己的 pull request XD
+01:01  * ETBlue 追 log
+01:03 -!- pichuanq is now known as chihhsin
+01:07 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Operation timed out]
+01:08 < jimyhuang> pm5: 收到，我問問再確認
+01:13 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 260 seconds]
+01:14 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+01:20 -!- pm5 [~Adium@111-248-216-42.dynamic.hinet.net] has quit [Quit: Leaving.]
+01:23 -!- nchild_ [~nchild@111-243-110-211.dynamic.hinet.net] has quit [Remote host closed the connection]
+01:24 -!- nchild_ [~nchild@111-243-110-211.dynamic.hinet.net] has joined #g0v.tw
+01:24 -!- willard-lin [8c8705a1@gateway/web/cgi-irc/kiwiirc.com/ip.140.135.5.161] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+01:25 -!- willard-lin [8c8705a1@gateway/web/cgi-irc/kiwiirc.com/ip.140.135.5.161] has joined #g0v.tw
+01:27 -!- nchild__ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+01:29 -!- nchild_ [~nchild@111-243-110-211.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+01:32 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 260 seconds]
+01:34 < ttcat> Your bundle is updated!
+01:34 -!- nchild__ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+01:35 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+01:39 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+01:48 < jimyhuang> opop: 今天的芋頭西米露實在太厲害了！！！！吃到9：00還在吃第4碗！
+01:52 -!- sb-ficein [DC851DE3@conference/jsconf/x-pfkpytpmlgdabpng] has joined #g0v.tw
+01:52 < sb-ficein> 這個... 有些影片完成了要上傳哪裡？
+01:55 -!- caasih [~caasiHuan@114-46-147-37.dynamic.hinet.net] has joined #g0v.tw
+01:56 -!- willard-lin [8c8705a1@gateway/web/cgi-irc/kiwiirc.com/ip.140.135.5.161] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+01:56 -!- caasih [~caasiHuan@114-46-147-37.dynamic.hinet.net] has quit [Client Quit]
+01:58 -!- caasih [~caasiHuan@114-46-147-37.dynamic.hinet.net] has joined #g0v.tw
+01:59 -!- caasih [~caasiHuan@114-46-147-37.dynamic.hinet.net] has quit [Client Quit]
+02:04 -!- Bropheus [dc851de3@gateway/web/cgi-irc/kiwiirc.com/ip.220.133.29.227] has joined #g0v.tw
+02:06 -!- mno2 [~mno2@bb116-15-44-14.singnet.com.sg] has quit [Quit: mno2]
+02:12 < ETBlue> sb-ficein: 不曉得 ipa 還醒著嗎 XD
+02:14 < ETBlue> 今天回程 andrew_huang 想到一個原理有點像虛擬合唱團的有趣點子，像是服貿，可以讓大家上傳各自的觀點加上 tag 後丟 youtube，然後平台這邊專門收集 tag 做統計 XD cc nchild 
+02:14 < ETBlue> 虛擬公聽會 XDXD
+02:15 < ETBlue> andrew_huang: 可以先到這邊測試一下 hackpad http://hack.g0v.tw/g0vMOE/BouDGPIQ8yG
+02:15 < M00sUltraB0t> [ hack.g0v.tw ] - hack.g0v.tw
+02:16 < ETBlue> andrew_huang: hackpad 玩得熟以後就可以開新文件，複製這個空白模版去寫你的專案構想 http://hack.g0v.tw/g0v-hackath6n/aCZGg48I5pX
+02:16 < M00sUltraB0t> [ hack.g0v.tw ] - hack.g0v.tw
+02:16 -!- LCfunPlay [~chatzilla@111-250-25-138.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+02:18 -!- astro [r94010@linux3.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+02:19 -!- astro [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+02:22 -!- chihchun_afk is now known as chihchun
+02:22 -!- chihchun is now known as chihchun_afk
+02:23 < ETBlue> au 兼職 txt 以後大綱出現了 https://g0v.hackpad.com/TAHR-PAS--hmHV14IhfO2
+02:23 < kcwu> ETBlue's url: [TAHR-PAS: 零時政府的第一年 - g0v.hackpad.com]
+02:23 < M00sUltraB0t> [ TAHR-PAS: 零時政府的第一年 - g0v.hackpad.com ] - g0v.hackpad.com
+02:25 < ETBlue> 感覺有人一起寫就很來勁 =w= 來繼續寫奇幻旅程好了
+02:26 < ETBlue> 今天紀錄片組跟txt組都大爆發 XD
+02:26 < ETBlue> （但音樂班還是沒人 QQ）
+02:38 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+02:42 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+02:52 -!- pivmi [~pivmi@61-231-3-140.dynamic.hinet.net] has quit [Remote host closed the connection]
+02:56 -!- Hokila [uid18841@gateway/web/irccloud.com/x-evezqunukrugcnvn] has joined #g0v.tw
+03:16 -!- venev [dc851de3@gateway/web/cgi-irc/kiwiirc.com/ip.220.133.29.227] has joined #g0v.tw
+03:16 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+03:18 -!- venev [dc851de3@gateway/web/cgi-irc/kiwiirc.com/ip.220.133.29.227] has quit [Client Quit]
+03:21 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+03:26 -!- jlhg2 [~user@greatbear.csie.ntu.edu.tw] has quit [Quit: ERC Version 5.3 (IRC client for Emacs)]
+03:30 -!- diakopter [~M8YCjC56g@host06.appflux.net] has left #g0v.tw []
+03:35 -!- opop [~opop@220-135-163-184.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+03:52 -!- opop [~opop@220-135-163-184.HINET-IP.hinet.net] has joined #g0v.tw
+04:22 -!- Phoenixmiss [~Miss@114-41-127-185.dynamic.hinet.net] has quit [Quit: Leaving]
+04:39 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+04:43 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+05:01 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+05:01 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+05:05 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+05:09 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+06:40 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+06:44 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+06:52 < ethantw> 問一下，之前是不是有人討論過把ly.g0v.tw法規diff裡的中文數字轉成阿拉伯數字？
+06:52 -!- mutolisp [~mutolisp@61-62-206-66-adsl-tpe.dynamic.so-net.net.tw] has joined #g0v.tw
+06:53 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+06:57 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+07:08 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+07:24 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 240 seconds]
+08:05 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has joined #g0v.tw
+08:38 -!- ypwong [~anthony@124244232015.ctinets.com] has quit [Ping timeout: 265 seconds]
+08:40 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+08:41 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+08:45 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 250 seconds]
+08:45 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+08:46 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+08:58 -!- lcamel [~lcamel@114-45-48-207.dynamic.hinet.net] has joined #g0v.tw
+09:03 -!- lcamel [~lcamel@114-45-48-207.dynamic.hinet.net] has quit [Remote host closed the connection]
+09:03 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+09:12 < walkingice> 沒印象耶？如果釋出的文字就是中文數字，維持原樣比較好？
+09:14 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has quit [Ping timeout: 256 seconds]
+09:42 -!- mno2 [~mno2@bb116-15-44-14.singnet.com.sg] has joined #g0v.tw
+09:43 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+10:13 -!- venev [dc851de3@gateway/web/cgi-irc/kiwiirc.com/ip.220.133.29.227] has joined #g0v.tw
+10:29 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+10:34 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+10:38 < jimyhuang> ethantw: 法規亦毒氣?
+10:41 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 260 seconds]
+10:41 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+10:42 < yhsiangCloud> 條目有做轉換 文字描述 我覺得不是那麼有必要
+10:42 < yhsiangCloud> 全部都轉感覺有點走火入魔
+10:42 < ttcat> yhsiangCloud: 我發現這裡已經上去之前的版本了 XD
+10:42 < ttcat> http://www.airesis.cn/
+10:42 < kcwu> ttcat's url: [Airesis - Scegli di partecipare]
+10:42 < M00sUltraB0t> [ Airesis - Scegli di partecipare ] - www.airesis.cn
+10:43 < yhsiangCloud> 可是.cn ……
+10:43 < ttcat> yhsiangCloud: 真的要寫信去叫他改
+10:43 < ttcat> 不過我用他們提供的翻譯工具翻完後不能匯出誒 好過分噢
+10:45 < ttcat> 至少我等下可以 demo 一下 XD.. 
+10:46 < yhsiangCloud> ok :)
+10:46 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+10:47 -!- Mics [~mics@59-127-55-14.HINET-IP.hinet.net] has joined #g0v.tw
+10:48 < yhsiangCloud> ethantw: 還是有非得轉 不然會影響閱讀的例子？
+10:52 -!- Mics [~mics@59-127-55-14.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+10:56 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+10:56 -!- Mics [~mics@59-127-55-14.HINET-IP.hinet.net] has joined #g0v.tw
+10:56 -!- Mics [~mics@59-127-55-14.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+10:56 -!- Ti_W_B11110 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+10:57 -!- Mics [~mics@59-127-55-14.HINET-IP.hinet.net] has joined #g0v.tw
+10:57 -!- Mics [~mics@59-127-55-14.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+10:58 -!- SuperMics [~mics@59-127-55-14.HINET-IP.hinet.net] has joined #g0v.tw
+10:58 -!- LCfunPlay [~chatzilla@111-250-22-222.dynamic.hinet.net] has joined #g0v.tw
+10:59 -!- Ti_W_B11111 [~Ti_W_B@36-237-225-143.dynamic-ip.hinet.net] has joined #g0v.tw
+11:02 -!- Ti_W_B11110 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 272 seconds]
+11:03 -!- SuperMics [~mics@59-127-55-14.HINET-IP.hinet.net] has quit [Quit: SuperMics]
+11:05 -!- mno2 [~mno2@bb116-15-44-14.singnet.com.sg] has quit [Quit: mno2]
+11:06 -!- LCfunPlay [~chatzilla@111-250-22-222.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.87-rdmsoft [XULRunner 1.9.2.19/20110707195905]]
+11:06 -!- LCfunPlay [~chatzilla@111-250-22-222.dynamic.hinet.net] has joined #g0v.tw
+11:08 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+11:25 -!- Ti_W_B11112 [~Ti_W_B@36-237-225-143.dynamic-ip.hinet.net] has joined #g0v.tw
+11:25 -!- Ti_W_B11111 [~Ti_W_B@36-237-225-143.dynamic-ip.hinet.net] has quit [Ping timeout: 252 seconds]
+11:29 -!- Ti_W_B11113 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+11:32 -!- Ti_W_B11112 [~Ti_W_B@36-237-225-143.dynamic-ip.hinet.net] has quit [Ping timeout: 260 seconds]
+11:33 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has joined #g0v.tw
+11:56 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+11:59 < WeiHung> 哪邊可以載到自律歌啊？ http://khush.smule.com/autorap_52af0fc67c9a9&v2
+12:00 < kcwu> WeiHung's url: [Smule]
+12:00 < M00sUltraB0t> [ Smule ] - khush.smule.com
+12:03 < yhsiangCloud> 後面加.mp3應該可以載
+12:04 < yhsiangCloud> 不然用yhsiang.github.io/quick-timer/audio/ly/wang.mp3
+12:05 < yhsiangCloud> 要去掉&v2加.mp3的樣子
+12:13 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+12:14 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+12:15 < au> ethantw: 收到 Liz (教育部臺語辭典執編) 往 hanzi.co 的 patch 了 :p  https://github.com/ethantw/Han-Manual/pull/3
+12:15 < kcwu> au's url: [Fix autocorrect typo of TRS 攏咧 by audreyt · Pull Request #3 · ethantw/Han-Manual · GitHub]
+12:15 < M00sUltraB0t> [ Fix autocorrect typo of TRS 攏咧 by audreyt · Pull Request #3 · ethantw/Han-Manual · GitHub ] - github.com
+12:16 < au> ethantw++ # 用「歡迎來唱我的歌」這首 CC 授權的主題曲轉成推薦用字做 TRS 範例，真是恰當
+12:17 < au> (而且和直橫混排的範例「你敢有聽着咱的歌」曲名相應，簡直是九年一貫繼往開來什麼的 XD)
+12:18 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 250 seconds]
+12:21 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Quit: leaving]
+12:21 -!- haroldwu [~haroldwu@219.85.185.194] has joined #g0v.tw
+12:21 -!- haroldwu [~haroldwu@219.85.185.194] has quit [Changing host]
+12:21 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+12:22 -!- wolfenstein [~wolfenste@211.76.46.89] has joined #g0v.tw
+12:28 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has quit [Quit: lyanchih]
+12:31 -!- wolfenstein [~wolfenste@211.76.46.89] has quit [Remote host closed the connection]
+12:34 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+12:37 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+12:38 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+12:41 < WeiHung> 感謝~
+12:42 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+12:42 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+12:47 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 250 seconds]
+13:12 -!- lin [24e29fa1@gateway/web/cgi-irc/kiwiirc.com/ip.36.226.159.161] has joined #g0v.tw
+13:24 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 260 seconds]
+13:41 < macpaul> 成果發表 錄影上線： http://www.youtube.com/playlist?list=PLdwQWxpS513CyDrwhK2acRuKYHwz3pa-N
+13:41 < kcwu> macpaul's url: [g0v.tw hackath6n - Closing and Demo - YouTube]
+13:41 < M00sUltraB0t> [ g0v.tw hackath6n - Closing and Demo - YouTube ] - www.youtube.com
+13:42 < macpaul> 中場短講也上線 http://www.youtube.com/playlist?list=PLdwQWxpS513AoDjPFD-RkMpDt8ihzA7Fz
+13:42 < kcwu> macpaul's url: [g0v.tw hackath6n - Concept Sharing - YouTube]
+13:42 < M00sUltraB0t> [ g0v.tw hackath6n - Concept Sharing - YouTube ] - www.youtube.com
+13:43 -!- ballII__ [76a8ec08@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.236.8] has joined #g0v.tw
+13:43 < poga> macpaul++
+13:44 < ballII__> ETBlue: 音樂班要做什麼？是幫編曲嗎？
+13:47 -!- ypwong [~anthony@124244232015.ctinets.com] has joined #g0v.tw
+13:50 -!- lin [24e29fa1@gateway/web/cgi-irc/kiwiirc.com/ip.36.226.159.161] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+13:56 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+14:00 -!- lin [24e29fa1@gateway/web/cgi-irc/kiwiirc.com/ip.36.226.159.161] has joined #g0v.tw
+14:04 -!- yukiko [uid19137@gateway/web/irccloud.com/x-mdlmtokzeffjdtzw] has quit [Ping timeout: 260 seconds]
+14:04 -!- WeiHung [uid13045@gateway/web/irccloud.com/x-sswbdnsoqysrjicc] has quit [Ping timeout: 260 seconds]
+14:04 -!- weihung [uid13045@gateway/web/irccloud.com/x-nxsxuhunxaxkvxtb] has joined #g0v.tw
+14:04 -!- yukiko [uid19137@gateway/web/irccloud.com/x-socgaedxghbwcnps] has joined #g0v.tw
+14:08 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+14:20 < ETBlue> macpaul++
+14:20 < ETBlue> ballII__: 對壓幫編曲 QQ
+14:21 < a0kman> 熱唱風?
+14:21 < kcwu> 昨天真是很飽很累, 睡到下午還是不會餓
+14:22 < ballII__> ETBlue: 我覺得可能放寬些，廣告說任意歌曲創作都可以，不一定要完整編曲
+14:23 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+14:23 < a0kman> 讓我想到北海道為了推銷稻米 連應援歌也做了 還有一大票的優質廣告(2011年的系列我最愛) http://www.hokkaido-kome.gr.jp/
+14:23 < kcwu> a0kman's url: [トップページ｜北海道のお米]
+14:23 < M00sUltraB0t> [ トップページ｜北海道のお米 ] - www.hokkaido-kome.gr.jp
+14:23 < a0kman> 歌 https://www.youtube.com/watch?v=tu3w9ITHGjs
+14:23 < M00sUltraB0t> [YouTube] Title: 【お米】北海道米LOVEのうた【食べろっ！】 | Uploader: 的場隆久 | Uploaded: 04/10/2011, 14:41 | Duration: 4mins 6secs | Views: 2,012 | Comments: 1 | Likes: 6 | Dislikes: 0
+14:23 < ETBlue> ballII__: 是的任意創作改作啥鬼的都可以！
+14:23 < kcwu> a0kman's url: [【お米】北海道米LOVEのうた【食べろっ！】 - YouTube]
+14:23 < ballII__> 例如有的人很會抓一把吉他就即興唱完一首歌了，而且完整度也夠
+14:23 < kcwu> 音樂班長說了算
+14:24 < ethantw> walkingice, jimyhuang, yhsiangCloud: 感謝，我只是依稀有印象，想多了解一下 XD
+14:25 < ballII__> 那就找 tkirby 來拋轉引玉吧～他又會彈琴又會彈吉他又會創作
+14:26 < ballII__> 首先在音樂資料庫裡放上不同形式的創作，也許比較能吸引更多人
+14:27  * kcwu 看到有人跳坑了
+14:27 < CAA51> macpaul++
+14:27 < ballII__> 並沒有要辛苦的科比拔負責一堆創作的意思 :p  就只要一首短短不同風格的
+14:27 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+14:27 < ballII__> 與 ETBlue 清唱風格不同的
+14:28 < ethantw> au: 哈哈，當初用這首歌主要就是因為有現成的、而且是用推薦用字寫成的歌詞！
+14:28 -!- wolfenstein [~Thunderbi@220-137-62-44.dynamic.hinet.net] has joined #g0v.tw
+14:28 < ETBlue> kcwu: 賀 opop 餵食成功
+14:29 < ETBlue> ballII__: 能直些寫新歌更好！一開始說編曲只是因為想降低門檻而已
+14:29 < au> ethantw: 有推薦用字的全文歌詞 url 嗎？我在 YouTube 上看到的版本還是「阿凸仔」而不是規範字「阿啄仔」
+14:29 < ETBlue> ballII__: 沒錯沒錯越多風格越多曲子越多 remix 越好 >oM<
+14:30 < ETBlue> ballII__: 不同樂器也可以！
+14:30 < ballII__> ETBlue: 其實編曲門檻很高，因為受限於原曲。可是創作很多人都做過，因為很多人都會在浴室亂唱啊XD
+14:31 < ETBlue> ballII__: 原來如此！
+14:31 < ballII__> 不過「歌詞」是個門檻，也許可以請文字組的人負責寫詞，就會引來一些人譜曲
+14:31 < au> 不曉得 blend.io 的中文/Unicode 支援如何
+14:33 < au> Invite code: SONICBLEND
+14:37 < ETBlue> "Ableton Live, Pro Tools, Logic Pro, GarageBand and Native Instruments Maschine projects are currently supported" ?!?!?!?!?!?!
+14:37 < ETBlue> OMG
+14:37 < ipa> 在看昨天尾牙名單，isabel寫她參加的專案是 55688 (平常太常叫計程車了嗎）
+14:38 < ETBlue> ipa: XDDDDDDDDDDDDDDDDD
+14:38 < ethantw> au: 我記得我抓的是StreetVoice上朱頭皮發表的版本，「阿啄仔」應該是我後來改的（有點太久遠了 XD
+14:39 < au> ethantw: got it, cool XD
+14:39 < ETBlue> au: ethantw: 你們在說什麼？！？！？！ @Q@
+14:40 < ipa> ETBlue: 昨天有個scollback帳號問上傳影片？最懂得應該是macpaul ，目前就各自上傳，再用g0v帳號加playlist（的樣子）
+14:40 < ETBlue> ipa: 我 pm 了
+14:41 < clkao> Assad
+14:41 < au> ETBlue: 萌典新的臺羅標音是從 http://css.hanzi.co/manual/hanzi_biaozhun_geshi/hanzi_zhuyin 演化來的，而 ethantw 的舉例是當年的台灣創用CC主題曲 http://www.youtube.com/watch?v=0m5cBQGXVPM
+14:41 < M00sUltraB0t> [YouTube] Title: 『來唱我的歌』(CC授權)推廣主題曲-朱約信-豬頭皮 | Uploader: 朱頭皮 | Uploaded: 03/09/2012, 16:02 | Duration: 4mins 7secs | Views: 207 | Comments: 2 | Likes: 4 | Dislikes: 1
+14:41 < kcwu> au's url (2/2): [『來唱我的歌』(CC授權)推廣主題曲-朱約信-豬頭皮 - YouTube]
+14:41 < M00sUltraB0t> [ 漢字標準格式・使用手冊 ] - css.hanzi.co
+14:41 < clkao> Zzzzz
+14:42 < au> 昨晚教育部負責編臺羅的朋友發現 hanzi.co 標音有錯字，送了 patch 
+14:43 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+14:44 < clkao> 特殊政府對政府 pull req
+14:44 < kcwu> 反了?
+14:45 < au> 然後因為我們要在範例頁加上新的注音/拼音混排，剛好用的是九年後的「你敢有聽着咱的歌」，所以有一種承先啟後的感覺什麼的
+14:45 < au> 以上 :p
+14:45 < ETBlue> 那 open source 音樂就是…歡迎來 fork 我的歌！
+14:46 < au> ++
+14:47 < tuiry> ETblue 原來MC美江是OPEN先驅阿
+14:47 < au> ETBlue: 我 follow 你了，這樣可以測 Logic Pro 揪竟能不能透過中介平台和 GarageBand 協作
+14:47 -!- ballII__ [76a8ec08@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.236.8] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+14:47 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+14:48 < ETBlue> au: 原來如此…不小心又叫你講故事 ^O^
+14:48 < ETBlue> au: 對噢！！我來上傳
+14:48 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+14:50 < ETBlue> 額，他好像不認得 .band 資料夾
+14:50 < ethantw> ETBlue: XD 歡迎來fork我的歌++
+14:53 < ETBlue> ethantw: 決定了！就改寫這首中研院的曲子來當作開源音樂示範區推廣主題曲！ ^O^
+14:54 -!- Phoenixmiss [~Miss@114-41-127-185.dynamic.hinet.net] has joined #g0v.tw
+14:54 < ETBlue> ballII: 要做開源音樂示範區主題曲嗎？
+14:54 < au> ETBlue++ # 即知即行! (還可以順便正字化)
+14:55 < ETBlue> au: 你的電腦的 .band 檔案會被 blend.io 辨認嗎 QQ
+14:55 < ETBlue> au: 會不會他不認 windows 上的…
+14:56 < ETBlue> au: 正字化是把字幕用萌典裡面的正確文字重配一遍嗎
+14:57 < au> 是，如「阿凸仔 -> 阿啄仔」即是
+14:57 < au> 上次 kuansim song 好像有做過一次（小規模的)
+14:58 < ETBlue> au: 對噢你幫我弄的 ^O^
+14:58 -!- ballII__ [76a8ec08@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.236.8] has joined #g0v.tw
+14:59 < ballII__> au++ 正字化！
+14:59 < ETBlue> ㄟ，這麼說來，「歡迎來fork我的歌」或「你敢有fork著咱的歌」好像都很適合拿來當主題曲耶
+14:59 < ballII__> ETBlue: 什麼示範區@@
+14:59 < ETBlue> ballII__: 要做主題曲嗎
+15:00 < ETBlue> ballII__: 開源音樂示範區…主題曲就是慫恿別人來改歌的曲子… XD
+15:00 < au> ETBlue: worksforme -- 順序: 1. Create New Project Folder 2. 放 .band 進去
+15:00 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Quit: swem]
+15:00 < au> (不能在 toplevel，要在 folder 裡)
+15:00 < ETBlue> au: 啊………
+15:00 < ballII__> 「主題曲」聽起來門檻超高！應該交給玩音樂的人吧～（我來做「插曲」(?)之類的XD）
+15:00 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+15:01 < au> 3. 匯出 16bit 44.1khz preview.wav 放在同一個 folder 裡
+15:01 < ETBlue> ballII__: 想改編這個 http://www.youtube.com/watch?v=0m5cBQGXVPM 變成「歡迎來fork我的歌」
+15:01 < M00sUltraB0t> [YouTube] Title: 『來唱我的歌』(CC授權)推廣主題曲-朱約信-豬頭皮 | Uploader: 朱頭皮 | Uploaded: 03/09/2012, 16:02 | Duration: 4mins 7secs | Views: 209 | Comments: 2 | Likes: 4 | Dislikes: 1
+15:01 < kcwu> ETBlue's url: [『來唱我的歌』(CC授權)推廣主題曲-朱約信-豬頭皮 - YouTube]
+15:02 < ETBlue> au: 你怎麼知道我直接丟 .band 進去 orz
+15:02 < au> ETBlue: been there done that orz
+15:02 < ETBlue> pebcak QQ
+15:02 < ballII__> ETBlue: 改編那個，是指改詞還是改曲？需要把那首當源頭嗎？
+15:03 < ETBlue> ballII__: 詞至少要改一個字，其他隨便，曲子改不改看你高興 ^O^ 源頭…我找找看他授權是什麼
+15:03 < au> CC-SA 2.0
+15:04 < au> # http://creativecommons.tw/downloads/488
+15:04 < kcwu> au's url: [歡迎來唱我的歌 | 台灣創用CC計畫]
+15:04 < M00sUltraB0t> [ 歡迎來唱我的歌 | 台灣創用CC計畫 ] - creativecommons.tw
+15:04 < ETBlue> ballII__: whatever au says
+15:04 < au> 專輯著作財產權人為中央研究院資訊科學研究所，好像有聽過這個地方
+15:04 < kcwu> 想改什麼就改什麼, 想留什麼就留什麼
+15:05 -!- mno2 [~mno2@121.6.254.75] has joined #g0v.tw
+15:05 < ballII__> 老實說 我對那首歌不熟悉 所以對它並沒有愛甚至想改編它@@
+15:06 -!- swem1 [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+15:06 < ETBlue> ballII__: whatever kcwu says
+15:06 < ballII__> 做個從無到有、門檻低的插曲比較適合我XD
+15:06 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+15:06 < ETBlue> ballII__: whatever ballII sys
+15:06 < ETBlue> ballII__: 音樂班第一首插曲！
+15:06 < au> ballII__: https://www.youtube.com/watch?v=qT90jZP58jM #從無到有、門檻低、歌詞大眾化的例子
+15:06 < M00sUltraB0t> [YouTube] Title: Better Together • GitHub Guides Music Video | Uploader: GitHub | Uploaded: 28/10/2013, 16:06 | Duration: 1mins 30secs | Views: 14,380 | Comments: 34 | Likes: 354 | Dislikes: 4
+15:06 < kcwu> au's url: [Better Together • GitHub Guides Music Video - YouTube]
+15:07 < au> (但是歌詞宅到爆表(這還用說))
+15:07 < ballII__> [問題] 我用http://hack.g0v.tw/irc介面，有辦法把他人發文時的輕聲「達」的音效關掉嗎？（但發給我時的「噹」音效保留）
+15:07 < M00sUltraB0t> [ hack.g0v.tw ] - hack.g0v.tw
+15:07 < clkao_> ballII__: 已經被回報了 scrollback 的人說還沒寫這功能
+15:08 < ballII__> 以前沒有「達」音效的（只有「噹」）。不知為何「達」很容易嚇到我吔XD
+15:09 < clkao_> 如果把下面 scrollback signout 呢?
+15:10 < ballII__> clkao_: 我沒有sign in，我甚至在瀏覽器內把它block掉了（因為它之前擋我輸入區）
+15:10 -!- sb-whoped [722A1ADA@conference/jsconf/x-tyaslxuccrsyytmh] has joined #g0v.tw
+15:10 < sb-whoped> scoolback不用sign in?
+15:11 < kcwu> ballII__: 在 scrollback 上按右鍵, "inspect element", 然後在那個 tree 往上找到 scrollback-stream, 按 [delete]
+15:11 < au> ballII__: 試試看直接連到 https://kiwiirc.com/client/irc.freenode.net/#g0v.tw
+15:11 < kcwu> au's url: [Kiwi IRC]
+15:11 < M00sUltraB0t> [ Kiwi IRC ] - kiwiirc.com
+15:12 -!- ballII___ [76a8ec08@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.236.8] has joined #g0v.tw
+15:12 -!- ballII__ [76a8ec08@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.236.8] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+15:12 < ballII___> 我的尾巴越長越長了
+15:13 -!- CrazyRa [2a4fc514@gateway/web/cgi-irc/kiwiirc.com/ip.42.79.197.20] has joined #g0v.tw
+15:13 < au> XD
+15:13 < ballII___> au 的音樂範例完成度好高，太嚇人了啦我不敢做了XD
+15:14 -!- lin [24e29fa1@gateway/web/cgi-irc/kiwiirc.com/ip.36.226.159.161] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+15:15 < ETBlue> better together 好棒喔！！！超嗨啊 ^O^
+15:15 < ballII___> 誰可以叫我一下？讓我聽聽kiwi的音效
+15:16 < kcwu> ballII___: ping
+15:16 < ETBlue> ballII___: 
+15:16 < au> ballII___: 一下!
+15:16 < ballII___> 吔！（<-很受歡迎的感覺）
+15:16 -!- pm5 [~Adium@111-248-216-42.dynamic.hinet.net] has joined #g0v.tw
+15:16 < ETBlue> crowd calling
+15:17 < ballII___> 我喜歡kiwi~ :D
+15:17 < au> ETBlue: 你上傳完填 metadata + 按了 Publish Project 之後 ping 我一下，我再來 fork
+15:17 < au> (bbiab)
+15:18  * ETBlue 把 aif 轉成 wav 中
+15:19 < clkao_> 靠 popcorn 已經發生火箭了嗎？
+15:19 < clkao_> https://popcorn.webmaker.org/#&togetherjs=kygghtMDGd
+15:19 < kcwu> clkao_'s url: [Popcorn Maker]
+15:19 < M00sUltraB0t> [ Popcorn Maker ] - popcorn.webmaker.org
+15:19 < clkao_> 可以一起編輯一個 timeline
+15:19 < kcwu> ballII___: 你可以打 /nick ballII 來改 nick
+15:19 < clkao_> 還有別人的由邊
+15:19 < clkao_> 嗎呀
+15:19 < kcwu> 喔, click nick 就可以了
+15:20 -!- ballII___ is now known as ballII__
+15:20 < ballII__> 可是我想改回ballII，但都顯示already in use。ballII_也是already in use
+15:21 < ipa> 很多游標但沒辦法play
+15:22 < kcwu> 沒有尾巴的被 jsconf 占走, _ 被 irccloud 占走, 試試回去原本的網站看能不能 logout 之類的
+15:22 < clkao_> orz XD
+15:22  * ipa 是白癡，昨天忘記把教皇卡拿出來發放
+15:23 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+15:23 < au> popcorn fail
+15:25 < ipa> Bropheus: venev  我明天開始一週行程中南北飄忽，確定一點再約，去你們那裡拷
+15:25 < hychen> 這是什麼外星科技...
+15:25 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+15:25 < ballII__> kcwu: 有，我全部都logout了（自認為）
+15:26 < clkao_> hychen: popcorn + togetherjs 
+15:26 < hychen> 不過這個界面好複雜 
+15:26 < ETBlue> au: 我把滿頭的霧水寫在說明裡了 QQ 晚點來把其他做一半的曲子也上傳 http://blend.io/project/52b6957bbb61307e600002b2
+15:26 < kcwu> ETBlue's url: [Digger by ETBlue on Blend.io]
+15:26 < M00sUltraB0t> [ Digger by ETBlue on Blend.io ] - blend.io
+15:27 < ballII__> 話說我很期待g0v未來可以出現一個像這樣的神作（我都走熱血風啦XD）： http://www.youtube.com/watch?v=JCS0YTcfjqI
+15:27 < M00sUltraB0t> [YouTube] Title: 洛克人-打不倒的空氣人 | Uploader: 黃ＸＸ | Uploaded: 04/11/2007, 05:38 | Duration: 3mins 45secs | Views: 1,354,629 | Comments: 580 | Likes: 4,671 | Dislikes: 70
+15:27 < kcwu> ballII__'s url: [洛克人-打不倒的空氣人 - YouTube]
+15:27 < ETBlue> ipa: 對喔教皇卡 QQ
+15:28 < kcwu> ballII__: 找找有沒有 "leave" "part" 之類的功能. logout 怕只是 logout 該網站
+15:28 < kcwu> 或是 login 進去, 把 nick 改成其他的 :P
+15:28 < au> 開了新坑 https://g0v.hackpad.com/--2AnXVSAfNsj ，晚點來問問教育部的臺羅正字組有沒有空幫忙 ( 逆推坑，反了反了 )
+15:28 < kcwu> au's url: [歡迎來唱我的歌 (正字版) - g0v.hackpad.com]
+15:28 < M00sUltraB0t> [ 歡迎來唱我的歌 (正字版) - g0v.hackpad.com ] - g0v.hackpad.com
+15:32 < ballII__> kcwu: 我不清楚ballII是在哪個介面上登入的，因為我一開始都只有用http://hack.g0v.tw/irc，後來etblue告訴我irccloud時，就已經被迫顯示為ballII_了
+15:32 < M00sUltraB0t> [ hack.g0v.tw ] - hack.g0v.tw
+15:33 < ballII__> 也就是目前我無法在任何介面上使用ballII，當然也就無法改它了
+15:33 < ETBlue> ballII__: 這種的夠熱血嗎 https://soundcloud.com/etblue/hackerth0n-vocal-20131220
+15:33 < kcwu> ETBlue's url: [黑客頌主旋律-hackerth0n-vocal-20131220 by ETBlue on SoundCloud - Hear the world’s sounds]
+15:33 < M00sUltraB0t> [ 黑客頌主旋律-hackerth0n-vocal-20131220 by ETBlue on SoundCloud - Hear the world’s sounds ] - soundcloud.com
+15:33 < kcwu> 看錯了,  ballII 是被 scrollback 占走的
+15:34 < ETBlue> 遠端 debug 好難啊，看來只好盡快辦個小松來幫 ballII__ 的剪尾巴了！
+15:35 < ballII__> 哈沒關係啦，就當做是有尾巴比較萌好了XD
+15:36 < kcwu> ballII__: 回到 http://hack.g0v.tw/irc 把 scrollback 點開, 看裡頭的名字是什麼?
+15:36 < ballII__> ETBlue:果然需要有編曲，氣勢才會更強吔！
+15:36 < ETBlue> ballII__: 對壓 QQ 所以才求編曲 QQ
+15:36 < ballII__> kcwu: 那個，我把它擋掉之後，不知怎麼把它叫出來...  先別管它好了XD
+15:37 < clkao_> ETBlue: https://clkao.makes.org/popcorn/1nxp
+15:37 < kcwu> clkao_'s url: [test]
+15:37 < M00sUltraB0t> [ test ] - clkao.makes.org
+15:38 < clkao_> 可以 fork video sequence XD
+15:39 < ballII__> kcwu: http://scrollback.io/g0v-tw/ 顯示 guest-sb-knorge
+15:39 < kcwu> ballII__'s url: [G0v Tw]
+15:39 < M00sUltraB0t> [ G0v Tw ] - scrollback.io
+15:41 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+15:41 < ballII__> [請問] 台大校園裡有哪棟建築是落地窗/門很多、週末裡面偏暗、可以反射人影的嗎？因為我待會想去練舞，需要鏡子，可是台北地下街的鏡區已經被借走了⋯⋯
+15:41 < clkao_> 看到 fumi 留言差點噴湯
+15:41 -!- swem1 [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+15:42 < yhsiangCloud> Popcorn我之前有研究
+15:43 < kcwu> ballII__: 有用其他電腦或其他瀏覽器連過 hack.g0v.tw 嗎? 沒有的話, 大概只能等 expire 了 (or ask help from scrollback)
+15:43 < clkao_> 上一次看的時候感覺還很陽春 這次先進多了
+15:43 < ETBlue> clkao_: !!!
+15:44 < ETBlue> clkao_: 這表示可以一起剪接？！？！
+15:44 < ETBlue> clkao_: ㄟ還是只能 fork
+15:44 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+15:44 < ballII__> ETBlue: 編曲很強悍的人可能原曲也偏好自創，從無到有一氣呵成，保留自己的風格。我覺得 ETBlue 編曲也很強，我很鼓勵你完成編曲啊！
+15:45 < ethantw> 踍 -> 我原本以為是「笑」的文讀 -> 其實應該是「痟」https://www.moedict.tw/#!痟
+15:45 < kcwu> ethantw's url: [萌典]
+15:45 < M00sUltraB0t> [ 萌典 ] - www.moedict.tw
+15:46 < clkao_> ETBlue: 目前好像指能 fork. 但是架構上應該是可以做到一起剪接
+15:46 < ballII__> kcwu: 我有機會再去檢查辦公室那台電腦^^
+15:48 < ETBlue> ballII__: 我以為你要說，編曲很強悍的人早就自己開音樂工作室了，哪會來這邊跟我們廝混… 
+15:49  * ETBlue 認識的編曲強者都是職業的 QQ
+15:50 < ETBlue> tuiry: 用 popcorn 一起剪接動畫？不過要先在 AE 把特效做好才行的樣子
+15:51 < ballII__> ETBlue: 可是自創原曲的強者有很多是業餘的，所以我才覺得原曲自創門檻比較低（或者說較易引起動機）。而編曲部分可能要原創人自己完成，因為原創人會是所有人裡動機最高的之一⋯⋯
+15:55 < clkao_> tkirby++ # 帥 http://g0v.github.io/g0vis
+15:56 < pm5> tkirby++
+15:58 -!- wolfenstein [~Thunderbi@220-137-62-44.dynamic.hinet.net] has quit [Quit: wolfenstein]
+15:59 < tuiry> ETBlue: 沒用過爆米花說
+16:02 < ETBlue> tkirby: 這個版本好好看！
+16:02 < ETBlue> tkirby: 真的很亮很漂亮
+16:02 < ETBlue> x3
+16:03 < ETBlue> 我懂了，我應該先自己改編別人的曲子看看是什麼感覺，才知道怎麼推坑別人家入改編行列
+16:05 < ballII__> ETBlue: 唉呦你怎麼不先編自己的啦～我很想聽你的完成品吔！  不過之前不是有一位說要幫編鬍子科比了？
+16:06 < yhsiangCloud> 特效用seriously啊  
+16:06 < ETBlue> ひかり粉絲歌只好晚點再來寫了，畢竟這 commit log 實在太難懂…科比的 repo 比較接近前端，比較好填詞 XD https://github.com/kcwu?tab=activity
+16:06 < clkao_> ya
+16:06 < kcwu> ETBlue's url: [kcwu · GitHub]
+16:06 < M00sUltraB0t> [ kcwu · GitHub ] - github.com
+16:06 -!- Ti_W_B11114 [~Ti_W_B@111-242-74-243.dynamic.hinet.net] has joined #g0v.tw
+16:07 < yhsiangCloud> 之前就是在研究popcorn接seriously XD
+16:07 < ETBlue> yhsiangCloud: !!!
+16:08 < ETBlue> yhsiangCloud: 這樣就可以做卡拉ok影片了！
+16:09 < ETBlue> ballII__: 小花要編鬍子科比，不過她更忙，因為她真的是專業的創作歌手，還要駐唱的那種 XD
+16:09 < kcwu> 疑
+16:09 -!- Ti_W_B11113 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 264 seconds]
+16:11 < ballII__> ETBlue: 小花有上傳過她的作品嗎？好想看
+16:11 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+16:13 < ETBlue> ballII__: http://tw.streetvoice.com/PINKGUITAR/
+16:13 < kcwu> ETBlue's url: [徐小花 Hana Hsu - StreetVoice]
+16:13 < M00sUltraB0t> [ 徐小花 Hana Hsu - StreetVoice ] - tw.streetvoice.com
+16:14 < ETBlue> ballII__: https://www.facebook.com/PINKGUITARandTOBY/info XD
+16:14 < kcwu> ETBlue's url: [粉紅吉它拖比兔 - 關於 | Facebook]
+16:14 < M00sUltraB0t> [ 粉紅吉它拖比兔 - 關於 | Facebook ] - www.facebook.com
+16:15 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+16:16 < ETBlue> ballII__: 還有豬哥我最愛的介紹文… XD https://www.facebook.com/PINKGUITARandTOBY/info
+16:16 < M00sUltraB0t> [ 粉紅吉它拖比兔 - 關於 | Facebook ] - www.facebook.com
+16:16 < ETBlue> ballII__: 啊丟錯 ora http://ck101.com/thread-2862044-1-1.html
+16:16 < M00sUltraB0t> [ 最正工程師~徐幼庭 網友：有這種同事「爆肝」也甘願了！[圖+影] - 正妹美眉貼圖 - 卡提諾論壇 - 工程師,正妹,徐幼庭 ] - ck101.com
+16:17 < ballII__> 小花++  我認識的創作者也都是吉他底。（我不認識keyboard的，也不認識混音的）
+16:18 < ballII__> 哈我看過徐幼庭那篇，所以徐幼庭=小花嗎？
+16:18 < ballII__> 看到了，等於無誤～
+16:18 < ETBlue> ballII__: （點頭）我在 yahoo 有跟她合照…但照片還沒拿到 QQ
+16:26 < yhsiangCloud> ETBlue: 她前幾天是說要開始動工XD
+16:30 < ballII__> 說到正妹工程師，我立刻想到osf（新竹豆花妹，知道她是因為她以前常擔任九把刀簽書會主持），想說應該介紹給工程師們聞香一下，可是剛剛突然發現她要結婚了～XD
+16:31 < ballII__> 要^H已經
+16:32 < kcwu> tka = tkalu 嗎?
+16:39 < clkao_> kcwu: y
+16:40 < yhsiangCloud> 強者ETBlue室友
+16:43 < ETBlue> 其他編一半的曲子也都上傳了！ ^O^ http://blend.io/etblue
+16:43 < kcwu> ETBlue's url: [ETBlue on Blend.io]
+16:43 < M00sUltraB0t> [ ETBlue on Blend.io ] - blend.io
+16:44 -!- ballII__ [76a8ec08@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.236.8] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+16:44 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+16:47 -!- kcwu changed the topic of #g0v.tw to: irccloud邀請信: http://goo.gl/YZwI9O | 注意-這裡有log: http://logbot.g0v.tw | 如何參與: http://g0v.tw/join.html | g0v 行事曆 http://goo.gl/U7LvUK
+16:47 -!- LCfunPlay [~chatzilla@111-250-22-222.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.87-rdmsoft [XULRunner 1.9.2.19/20110707195905]]
+16:48 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+17:01 < ETBlue> 這正字化的進度真是光速…竟然已經完成了 XD https://g0v.hackpad.com/--2AnXVSAfNsj
+17:01 < kcwu> ETBlue's url: [歡迎來唱我的歌 (正字版) - g0v.hackpad.com]
+17:01 < M00sUltraB0t> [ 歡迎來唱我的歌 (正字版) - g0v.hackpad.com ] - g0v.hackpad.com
+17:08 -!- Ti_W_B11115 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+17:09 -!- Ti_W_B11114 [~Ti_W_B@111-242-74-243.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+17:10 < au> ETBlue: 對啊，執編超專業，第一次 hackpad 就上手! 而且已經送回上游了。想想如果是循官方流程教育部<->中研院，光是行文就要跑多久 XD
+17:11 < au> ...循 g0v 流程只要 30 分鐘
+17:12 < clkao_> au: 沒直接編成 webvtt ?
+17:13 < au> clkao_: 交棒給字幕組達人做好了，我得打一下工 XD
+17:13 -!- Ti_W_B11115 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+17:14 -!- Ti_W_B11115 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+17:16 < ETBlue> 那天 a0kman 訪問 au 
+17:17 < ETBlue> 那天聽 a0kman 訪問 au 才意會到 g0v 可以成為政府部門之間的快捷管道
+17:18 < clkao_> 某地方政府高層有次說：「1999 專線的成功，代表政府單位原本溝通管道的失敗」
+17:20 < ipa> 昨天 mindos_cloud___ 提到要整理printscreen，開了一頁：https://g0v.hackpad.com/2013-printscreen-4zbCipMarcu
+17:20 < kcwu> ipa's url: [2013 專案年度紀錄printscreen - g0v.hackpad.com]
+17:20 < M00sUltraB0t> [ 2013 專案年度紀錄printscreen - g0v.hackpad.com ] - g0v.hackpad.com
+17:20 < ipa> 一列才發現好多
+17:21 < clkao_> 話說 g0v.json 好像可以加一個 demo page url 的 entry, 這樣就可以一個 project 定期幫各專案 printscreen
+17:21 < clkao_> 專案列表的 thumbnail 也可以自動產生 XD
+17:22 -!- ballII__ [76a8ec08@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.236.8] has joined #g0v.tw
+17:22 < ipa> clkao_: 好啊（推）
+17:22 < walkingice> g0v 編曲活動看起來好歡樂 :D
+17:23 -!- lin [24e29fa1@gateway/web/cgi-irc/kiwiirc.com/ip.36.226.159.161] has joined #g0v.tw
+17:24 < yhsiangCloud> clkao_: 用jimmy寫的snapshot XD
+17:25 < jimyhuang> clkao_: yhsiangCloud 之前有想過，不過有些screenshot出來的狀態不大佳，例如ly.g0v.tw ...
+17:26 < clkao_> jimyhuang: ly 是因為要等 aync loading 嗎?
+17:28 < tuiry> a0kman au  ++ 從外面改造政府
+17:30 < ipa> clkao_: yhsiangCloud jimyhuang 那先手動? 有些小專案沒有g0v.json，雨量、綠盟call立委等等，screenshot自動化還是推一個
+17:38 < a0kman> 從外動作之前 要先不讓政府決得自己是在找麻煩的人 不然會很困難
+17:43 < a0kman> 編曲啊
+17:44 < a0kman> 為什麼我會覺得熱唱系的歌也很適合G0V啊XDDD
+17:44 < a0kman> 像就14秒開始的那首XD  https://www.youtube.com/watch?v=m5ZGvotud50  我好宅QAQ
+17:44 < M00sUltraB0t> [YouTube] Title: 天体战士桑雷德 TentaiSenshi Sunred[Astro Fighter Sunred] S2 - 10 | Uploader: Channel Fun | Uploaded: 26/07/2013, 19:50 | Duration: 13mins 1secs | Views: 435 | Comments: 0 | Likes: 1 | Dislikes: 0
+17:44 < kcwu> a0kman's url: [天体战士桑雷德 TentaiSenshi Sunred[Astro Fighter Sunred] S2 - 10 - YouTube]
+17:44 -!- lin [24e29fa1@gateway/web/cgi-irc/kiwiirc.com/ip.36.226.159.161] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+17:45 < a0kman> 歌詞(有中譯) 也可以寫的解救民眾的FU(?????)
+17:45 < ipa> 熱唱系++
+17:46 < au> a0kman: 這首的宅度和燃度都和 ballII__ 貼的「打不倒的空氣人」不相上下
+17:46 < a0kman> 打不島空器人 bbsmovie有經典之作喔
+17:47 < a0kman> 歐對 空器人也是熱唱系
+17:47 -!- Ti_W_B11115 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 260 seconds]
+17:47 < a0kman> 嗚嗚嗚 已經消失的歐弟的離別大做 https://www.youtube.com/watch?v=IoXs4daUeR8
+17:47 < M00sUltraB0t> [YouTube] Title: [動畫] 打不倒的空氣人-BBS與原作比較版 | Uploader: bobiscool0320 | Uploaded: 27/02/2008, 19:06 | Duration: 3mins 53secs | Views: 103,431 | Comments: 95 | Likes: 392 | Dislikes: 6
+17:47 < kcwu> a0kman's url: [[動畫] 打不倒的空氣人-BBS與原作比較版 - YouTube]
+17:47 < tkirby> yo!
+17:48 < tkirby> 我們需要億千萬的回憶!
+17:50 -!- Ti_W_B11115 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+17:51 < ballII__> 難怪我覺得 a0kman ID很眼熟，原來就是aokman？！
+17:52 < ETBlue> walkingice: 快來申請 blend.io 帳號 ^o^
+17:53 < a0kman> 哎~~~~~~被發現惹
+17:53 < ETBlue> a0kman: ballII__: 一起製作 g0v 熱唱系曲目！
+17:53 < tkirby> 我們都是看 ascii 動畫長大的!
+17:53 < a0kman> 我不懂音樂QAQ
+17:54 < a0kman> 歐不過填詞 以及 召喚填詞人我倒是有辦法
+17:54 < ETBlue> a0kman: 有 garageband 的話好像不用懂也可以隨便搞出音樂來… XD
+17:54 < ETBlue> a0kman: 喔喔對啊求各種歌詞
+17:55 < a0kman> 為什麼我總有一種參加完黑克松會出現很多新坑的感覺
+17:55 < ETBlue> a0kman: 是的就是這樣沒錯，以為是填坑其實是挖坑
+17:55 < a0kman> 太恐怖惹!
+17:56 < a0kman> 動畫都少少做了XD 
+17:57 < tkirby> 有了ascii-art, 就可以在 ptt 上做視覺化了
+17:57 < tkirby> 可惜 ptt 不支援 LUA
+17:57 < clkao_> 只好召喚 piaip
+17:57 < tkirby> 那個誰誰誰把 nodejs port 到 ptt 上吧
+17:59 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+17:59 < ETBlue> 那個 ascii 動畫真是有扯到…萌典等級的扯……
+18:01 < au> https://github.com/clkao/pttbbs/ # 謎樣的 repo
+18:01 < kcwu> au's url: [clkao/pttbbs · GitHub]
+18:01 < M00sUltraB0t> [ clkao/pttbbs · GitHub ] - github.com
+18:01 < au> pttrest?
+18:01 < tkirby> :e #0>
+18:01 < tkirby> <0>
+18:02 < clkao_> 那時在討論加上 0mq support
+18:03 < tkirby> 0mq!?
+18:03 < au> ptt <-> nanomsg <-> node ? # 這樣還真的可以接動畫引擎
+18:04 < tkirby> 如果在批踢踢上出現了誇張的東西, 效果應該會非常顯著... xDDDD
+18:04 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+18:04 < clkao_> 我忘了是在討論什麼 但是想先讓一部分的 service 移出 monolith process 變成用 mq
+18:04 < clkao_> 然後在看 0mq 的 footprint 是否可行
+18:04 < au> tkirby: interactive d3-ansi 嗎
+18:04 < tkirby> au: XDD
+18:06 < tkirby> 之前光是弄個 LUA 跳舞機就一堆轉貼了.. 震撼力很夠
+18:06 -!- Ti_W_B11116 [~Ti_W_B@111-242-47-252.dynamic.hinet.net] has joined #g0v.tw
+18:10 -!- Ti_W_B11115 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 272 seconds]
+18:11 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 264 seconds]
+18:11 -!- lin [24e29fa1@gateway/web/cgi-irc/kiwiirc.com/ip.36.226.159.161] has joined #g0v.tw
+18:16 < a0kman> 要誇張派ˋ系的化
+18:16 < a0kman> 我就要召喚一個正在成大念書的小朋友了
+18:17 < jimyhuang> clkao_: yep是得等angular render 完
+18:19 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+18:20 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+18:21 < yhsiangCloud> 進站畫面可以先用ansi moedict :p
+18:22 -!- mno2 [~mno2@121.6.254.75] has quit [Quit: mno2]
+18:28 -!- lin [24e29fa1@gateway/web/cgi-irc/kiwiirc.com/ip.36.226.159.161] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+18:29 < clkao_> lijung_: 最近在玩 annotator?
+18:30 < lijung_> clkao_: yep
+18:31 < lijung_> clkao_: 講到 annotator maybe you will interested in http://www.openvideoannotation.org/
+18:31 < kcwu> lijung_'s url: [Open Video Annotation Project: ucfirst(Home)]
+18:31 < M00sUltraB0t> [ Open Video Annotation Project: ucfirst(Home) ] - www.openvideoannotation.org
+18:37 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:38 -!- Ti_W_B11117 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+18:41 -!- Ti_W_B11116 [~Ti_W_B@111-242-47-252.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+18:45 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+18:48 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 240 seconds]
+18:50 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+18:54 < yhsiangCloud> 2月 bangalore有conf XD
+19:02 -!- lcamel [~lcamel@220-136-172-145.dynamic.hinet.net] has joined #g0v.tw
+19:03 -!- lcamel [~lcamel@220-136-172-145.dynamic.hinet.net] has quit [Remote host closed the connection]
+19:03 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+19:03 < walkingice> tkirby: 億千萬的回憶++   #每次都看得很惆悵
+19:06 -GitHub39:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/e6b7542dd7b3f69057ce9524dcf7679908f83d62
+19:06 -GitHub39:#g0v.tw- g0v.tw/gh-pages e6b7542 g0v general (via TravisCI): regen for 7090810
+19:10 -!- CrazyRa [2a4fc514@gateway/web/cgi-irc/kiwiirc.com/ip.42.79.197.20] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+19:21 -!- newbiettt [76a632de@gateway/web/cgi-irc/kiwiirc.com/ip.118.166.50.222] has joined #g0v.tw
+19:23 < newbiettt> 測試kiwi+scrollback，輸入列會被scrollback擋住（我是ipa）
+19:24 -!- newbiettt is now known as newbieipa
+19:41 -!- pm5_ [~pm5@111-248-216-42.dynamic.hinet.net] has joined #g0v.tw
+19:44 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+19:46 -!- ballII__ [76a8ec08@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.236.8] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+19:48 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+19:48 < clkao_> walkingice: 去跟 nodejitsu 要了一個 free drone 到時跑 ly express
+19:52 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+19:53 -!- ypwong [~anthony@124244232015.ctinets.com] has quit [Ping timeout: 265 seconds]
+20:13 < pm5> 覺得公害陳情案件可以做成這樣 http://maps.latimes.com/crime/
+20:13 < kcwu> pm5's url: [L.A. Crime Maps - Mapping L.A. - Los Angeles Times]
+20:13 < M00sUltraB0t> [ L.A. Crime Maps - Mapping L.A. - Los Angeles Times ] - maps.latimes.com
+20:15 < pm5> 我把 repo transfer 到 github.com/g0v/epa-data 以後，是不是就沒有 admin permission 了？
+20:16 -!- newbieipa [76a632de@gateway/web/cgi-irc/kiwiirc.com/ip.118.166.50.222] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+20:17 < clkao_> pm5: 把 epa-data 加入 dev team 看看？
+20:18 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+20:18 < pm5> clkao_: Hmm 怎麼加? XD
+20:19 < ETBlue> clkao_: done
+20:21 < pm5> clkao_: 我下次應該先把它加入 dev-team 再 transfer?
+20:22 -!- mno2 [~mno2@bb116-15-44-14.singnet.com.sg] has joined #g0v.tw
+20:23 < ETBlue> 不曉得能不能自動把新專案都加到 dev 裡面
+20:23 < ETBlue> 不然不就每次都要設定 @@
+20:24 -!- SupaplexTW___ [~Adium@59-120-142-81.HINET-IP.hinet.net] has joined #g0v.tw
+20:30 < macpaul> ipa: 問一下，g0v的youtube頻道還有誰在access嗎？想問一下今天上傳的有一些影片可能要過濾一下，確認一兩段不會被公開
+20:31 < macpaul> 所以要請今天早上10 點上傳的人再跟我聯絡一下，感謝
+20:35 -!- venev [dc851de3@gateway/web/cgi-irc/kiwiirc.com/ip.220.133.29.227] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+20:41 -!- macpaul [~macpaul@162.248.8.104] has left #g0v.tw []
+20:46 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+20:47 < ipa> macpaul: 應該是 venev Bropheus, plus page manager
+20:48 < ipa> 早上十點傳也太厲害了 我睡到下午三點
+20:50 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+20:59 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 264 seconds]
+21:06 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 264 seconds]
+21:14 -!- ballII__ [76a8ec08@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.236.8] has joined #g0v.tw
+21:21 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+21:22 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+21:26 < walkingice> clkao_: cool!!
+21:30 -!- lyanchih [~lyanchih@220-134-193-4.HINET-IP.hinet.net] has joined #g0v.tw
+21:33 -!- SupaplexTW___ [~Adium@59-120-142-81.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+21:34 < walkingice> ETBlue: 有 blend.io invite code 嗎？
+21:36 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+21:36 -!- Ti_W_B11118 [~Ti_W_B@111-242-247-104.dynamic.hinet.net] has joined #g0v.tw
+21:37 -!- nchild__ [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+21:37 -!- Ti_W_B11117 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 248 seconds]
+21:37 -!- nchild_ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+21:38 -!- Ti_W_B11118 [~Ti_W_B@111-242-247-104.dynamic.hinet.net] has quit [Client Quit]
+21:47 < yhsiang> 我也想要invite code QQ
+21:47 -!- ypwong [~anthony@124244232015.ctinets.com] has joined #g0v.tw
+21:49 < pm5> ETBlue: invite code +1
+21:50 < nchild__> macpaul: 不好意思，中場短講第一場「服貿與 g0v」裡面有張頭影片錯誤，不曉得是否可以用 Youtube 官方帳號標示在描述？
+21:51 < clkao_> SONICBLEND
+21:52 < yhsiang> ipa: 我記得venev 好像需要irccloud invitation 不知道她有了沒 不然我可以寄給她~ 但是需要email
+21:54 < nchild__> macpaul: 不對，是「你被服貿了嗎？」第二張，應該是：「40～85%不懂服貿」，昨天睡太少，趕到就要講，沒 review 到。 ><
+21:55 < nchild__> 線上簡報已經改了，但是 Youtube 要請有權限的人幫忙了。
+22:00 -!- LCfunPlay [~chatzilla@111-250-22-222.dynamic.hinet.net] has joined #g0v.tw
+22:01 < ipa> nchild__: 我加你，你直接改吧
+22:01 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 272 seconds]
+22:05 < ETBlue> walkingice: yhsiang: blend.io 的 invite code 就是 clkao 說的那個 SONICBLEND ，一開始 au 給的，應該可以用多次吧 @@
+22:06 < yhsiang> 真的耶~
+22:07 < yhsiang> clkao_++ au++ ETBlue++ # 成功取得blend.io XD
+22:08 -!- timfanda35 [01ab3325@gateway/web/freenode/ip.1.171.51.37] has joined #g0v.tw
+22:11 < yhsiang> ETBlue: 他是會在我dropbox建資料夾 還是我自己要建立阿 
+22:11 < yhsiang> 我找不到blend的資料夾 ...
+22:12 < pm5> yhsiang: 在 Apps/Blend ?
+22:12 < yhsiang> 我沒有Apps耶
+22:13 -!- Ti_W_B11118 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+22:13 < pm5> 登入的時候有 connect to Dropbox 嗎? 我的是 connect 以後它就自己建了
+22:13 < yhsiang> 有耶 
+22:13 < pm5> 怪了 XD
+22:14 < yhsiang> 感覺起來也是會自己建立
+22:14 < yhsiang> 但是我就是沒找到 所以才問 orz...
+22:14 -!- Ti_W_B11119 [~Ti_W_B@59-127-237-58.HINET-IP.hinet.net] has joined #g0v.tw
+22:14 -!- ballII__ [76a8ec08@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.236.8] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+22:14 < ETBlue> yhsiang: 我的也是自己建 @@
+22:14 < ETBlue> yhsiang: 再 connect 一次看看？
+22:15 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+22:15 < pm5> http://www.youtube.com/watch?v=RF0k4qV1I1Y&t=4m10s
+22:15 < M00sUltraB0t> [YouTube] Title: Klingons and Shakespeare | Uploader: boydclanvirginia | Uploaded: 19/11/2012, 16:52 | Duration: 23mins 5secs | Views: 13,539 | Comments: N/A | Likes: N/A | Dislikes: N/A
+22:15 < kcwu> pm5's url: [Klingons and Shakespeare - YouTube]
+22:15 < pm5> 第一次看到這麼完整的 To be, or not to be.
+22:17 -!- Ti_W_B11118 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 260 seconds]
+22:17 < yhsiang> 我找到了 orz ..
+22:19 -!- timfanda35 [01ab3325@gateway/web/freenode/ip.1.171.51.37] has quit [Quit: Page closed]
+22:20 < ipa> 剛google一下 semantic ui，看到一個semantic ui playground很開心，點下去結果是.....立院專案群介面mockup  XDD
+22:20 < yhsiang> ETBlue:  你的image 放太大就糊掉了 orz
+22:22 -!- Ti_W_B11119 [~Ti_W_B@59-127-237-58.HINET-IP.hinet.net] has quit [Quit: Nettalk6 - www.ntalk.de]
+22:22 < ipa> pm5: 這個klingon長得好秀氣
+22:23 < yhsiang> ipa: 它本身的playground好像還是半殘 ...
+22:25 < walkingice> blend.io 註冊成功！
+22:25 < yhsiang> walkingice: 已follow XD
+22:25 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 250 seconds]
+22:25 < walkingice> 而且剛註冊完第一次打開 dashboard 就看見 notification: LY followed you
+22:26 < walkingice> Big LY is watching you
+22:26 < ETBlue> ipa: XDDDDDDDDDDDDDD
+22:27 < yhsiang> walkingice: 她有個new blender
+22:27 < ETBlue> ipa: soldid 昨天也問 semantic ui 耶，好像可以小松時一起玩一下！
+22:27 < tkirby> we are the LY. resistance is futile
+22:27 < yhsiang> 所以立馬就花囉了
+22:27 < tkirby> 小松!
+22:27 < tkirby> komatsu!
+22:27 < yhsiang> tkirby: 所以團名叫甚麼 XD
+22:28 < ETBlue> tkirby: 團長請命名！
+22:28 < clkao_> tkirby: your gov, as it has been, is over.. ?
+22:29 < ipa> ETBlue: 好 # semantic ui
+22:29 < tkirby> XDDDDD
+22:30 < tkirby> 花生省魔術 XD
+22:30 < tkirby> 團名: 愛羅灣  (=LY)
+22:31 < yhsiang> XDD ... 我自己以前玩遊戲 是取叫 愛羅歪 ...
+22:31 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+22:31 < tkirby> XDDDDDDDDD
+22:32 < tkirby> clkao_: 這樣要改成 we are the g0v 才行
+22:33 < ETBlue> ipa: 動民主 semantic 婚友松要什麼時候好？soldid 現在應該都有空對吧…
+22:34 < ipa> g0v matchath0n? 這樣大家會害羞吧 
+22:34 < tkirby> XD
+22:34 < clkao_> ETBlue: 幹嘛把 soidid 賣了
+22:34 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+22:35 < tkirby> 一時想不起來 soidid 是哪位
+22:35 < ETBlue> ipa: 下週的話 tuiry 不行，他有跨年死線…
+22:35 < ETBlue> tkirby: 公督盟那位
+22:35 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+22:35 < tkirby> 唔.. 
+22:35 < yhsiang> tkirby: 立婷 # 不知道怎麼寫
+22:35 < ETBlue> tkirby: 資工畢業！剛從公督盟離職，要衝 g0v 專案，有上台報告呀
+22:35 < ETBlue> 莉婷？
+22:36 < tkirby> XDDDDDDD
+22:36 < nchild__> ipa: tkirby: 我改好影片描述了。
+22:36 < tkirby> 只記得莉婷 不記得 soidid XDDD
+22:36 < jimyhuang> 感覺g0v業務量爆增
+22:36 < ipa> nchild__++
+22:37 < yhsiang> ETBlue: 資工畢業阿 @@
+22:37 < ETBlue> tkirby: yhsiang: soldid 是這位 http://www.youtube.com/watch?v=Y9EMFH-WtAc
+22:37 < M00sUltraB0t> [YouTube] Title: g0v.tw hackath6n - 台灣零時政府第陸次勞動基準黑客松 - 海市蜃樓 | Uploader: g0v.tw 台灣零時政府 | Uploaded: 21/12/2013, 04:06 | Duration: 2mins 4secs | Views: 5 | Comments: 0 | Likes: N/A | Dislikes: N/A
+22:37 < kcwu> ETBlue's url: [g0v.tw hackath6n - 台灣零時政府第陸次勞動基準黑客松 - 海市蜃樓 - YouTube]
+22:37 < ETBlue> 啊是 soidid ...
+22:37 < yhsiang> 我知道阿 XD
+22:37 < yhsiang> so1d1d 
+22:37 < tuiry> ETblue ipa 可能要跨年過後再辦美術松喔~
+22:38 < pm5> http://www.moi.gov.tw/stat/gender.aspx
+22:38 < M00sUltraB0t> [ 性別統計專區-內政部統計處網站 ] - www.moi.gov.tw
+22:38 < kcwu> pm5's url: [性別統計專區-內政部統計處網站]
+22:38 < walkingice> https://github.com/soidid   <-- ETblue 就抓她去寫 semantic ui 吧 XD
+22:38 < kcwu> walkingice's url: [soidid (soidid) · GitHub]
+22:38 < M00sUltraB0t> [ soidid (soidid) · GitHub ] - github.com
+22:38 < ETBlue> yhsiang: 是的資工畢業，所以她會一邊畫 mockup 一邊思考資料結構
+22:38 < pm5> 婚姻狀況好像本來就在 gov 的工作項目中...
+22:38 < ipa> tuiry: 慢慢來~  大家都需要補血.... XD
+22:39 < tuiry> 好想辦一次阿....最近工作又學到好實用的技巧，好想分享
+22:39 < yhsiang> 有個soidid.tw的粉絲頁 是她的嗎 XD
+22:40 < yhsiang> tuiry: 求分享 Q_Q
+22:40 -!- LCfunPlay [~chatzilla@111-250-22-222.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.87-rdmsoft [XULRunner 1.9.2.19/20110707195905]]
+22:40 < ETBlue> 還有 https://plus.google.com/u/0/109438746750040639618/posts 跟 https://twitter.com/LiTingShirley ... fb 恕不分享（推眼鏡）
+22:40 < kcwu> ETBlue's url (1/2): [Li-Ting Shirley Huang - Google+]
+22:40 < kcwu> ETBlue's url (2/2): [soidid (LiTingShirley) on Twitter]
+22:40 < M00sUltraB0t> [ Li-Ting Shirley Huang - Google+ ] - plus.google.com
+22:40 < M00sUltraB0t> [ soidid (LiTingShirley) on Twitter ] - twitter.com
+22:41 -!- Ti_W_B111110 [~Ti_W_B@111-242-247-104.dynamic.hinet.net] has joined #g0v.tw
+22:42 < yhsiang> ETBlue: 身為小z9 我找到了 :p
+22:43 < ETBlue> clkao_: 沒啦，我怎麼會把她賣了呢，我只是想跟她交流 semantic ui 的美好
+22:43 -!- nchild__ [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit []
+22:43 < ETBlue> yhsiang: 不愧是人形 google
+22:43 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+22:44 < clkao_> ETBlue: 因為你剛打 soldid XD 
+22:45 < ETBlue> clkao_: XDDD
+22:45 < jimyhuang> 我一直以為是sold... 
+22:46 < ETBlue> 我也以為是 XD
+22:46 < tuiry> yhsiang: 等美術松><
+22:47 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+22:51 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+22:54 < yhsiang> ETBlue: 好像真的是她的 有粉絲頁好酷喔 ...
+22:54 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+22:57 -!- Ti_W_B111111 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+22:57 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+22:58 < yhsiang> "soidid" means "so i did". # 這樣大家有比較好記了嗎 XD
+22:58 -!- Ti_W_B111110 [~Ti_W_B@111-242-247-104.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+22:58 -!- Ti_W_B111112 [~Ti_W_B@111-242-247-104.dynamic.hinet.net] has joined #g0v.tw
+22:59 < clkao_> ya 我是這樣記的 XD
+22:59 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+22:59 < tkirby> XDDDD
+22:59 < tkirby> 莉婷還單身嗎
+23:01 < ipa> ....
+23:01 < tkirby> XD?
+23:02 -!- Ti_W_B111111 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 272 seconds]
+23:02 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+23:03 < ETBlue> soidid 的 blog 背景照片………該不會她彈吉他？ http://soidid.pixnet.net/blog
+23:03 < kcwu> ETBlue's url: [soidid :: 痞客邦 PIXNET ::]
+23:03 < M00sUltraB0t> [ soidid :: 痞客邦 PIXNET :: ] - soidid.pixnet.net
+23:04 < ETBlue> tkirby: 關於莉婷單身之謎，有必要特別舉辦一個小松來進行調查…
+23:04  * yhsiang 再看她的論文介紹
+23:04 < hychen> 藝術松!
+23:05 < jimyhuang> 好high啊
+23:05 < clkao_> 註冊了 g0v.asia... 可以幹嘛呢？
+23:05 < yhsiang> clkao_++ # XDDDD
+23:05 < tuiry> 傳說中的婚友松嗎
+23:05 < walkingice> 跨出臺灣
+23:05 < clkao_> 零時亞洲共榮圈？
+23:06 < yhsiang> tkirby: 快請她幫忙visualize阿!!
+23:06 < yhsiang> 不是有菲律賓和香港的朋友了嗎 XD
+23:06 < ETBlue> tkirby: 不用調查了，哭哭，請看部落格第二篇
+23:06 < clkao_> http://npl.ly.gov.tw/do/www/ministryReportList?blockId=3 # 這頁有「國立台灣大學國家發展研究所暨新聞研究所專任合聘教授、美國芝加哥大學法學博士、哈佛大學法學碩士劉靜怡」 XD
+23:06 < M00sUltraB0t> [ 部會報告 ] - npl.ly.gov.tw
+23:07 < yhsiang> ETBlue: 但是那是去年 
+23:07 < tkirby> 哭哭, 廣大的單身 g0ver 的福祉就這樣沒了
+23:07 < ETBlue> yhsiang: 剛才強者我室友表示……
+23:08 < yhsiang> ETBlue: 表示?
+23:08 < ipa> 別在公開頻道討論隱私吧....
+23:08 < ETBlue> 的確這樣不太好 XD
+23:09 < yhsiang> ipa: ok sorry 不過我只是對她資工背景很有興趣 XD
+23:09 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 246 seconds]
+23:09 < ETBlue> 趕快把樓扶正
+23:10 < pofeng_> ETBlue: 請問一下有個文化部上傳圖片的平台 url 是 ?
+23:10 < clkao_> pofeng_: 建國基金!
+23:10 < ETBlue> pofeng_: 現在還不能上傳 XD http://g0v.github.io/moc-license-center/
+23:10 < kcwu> ETBlue's url: [g0v 文化部授權中心]
+23:10 < M00sUltraB0t> [ g0v 文化部授權中心 ] - g0v.github.io
+23:10 < pofeng_> tuiry: ipa 共用圖庫已經有兩三個人有興趣了
+23:10 < tuiry> pofeng_++
+23:11 < pofeng_> clkao_: 好啦 *抱頭*
+23:11 < ETBlue> pofeng_: 嗯，是有興趣幫忙做授權中心網站嗎
+23:11 < ipa> 共用水母！
+23:11 < pofeng_> tuiry: 有沒有建議下一步 ? 是繼續找人還是先決定時間地點 ? 
+23:12 < yhsiang> ETBlue: 要不要授權中心直接接 dropbox 像blend.io這樣 ?
+23:12 < pofeng_> ETBlue: 不是, 是先建立共用圖形的元件
+23:12 < tuiry> 先找人蓋完網站，規定一下上傳規則就好了吧? (腦袋空空
+23:12 < ETBlue> yhsiang: 把我本機的 github repo 放在 dropbox 嗎
+23:12 -!- walkingice is now known as walkingice_zZ
+23:13 < yhsiang> ETBlue: 不是耶
+23:13 < ETBlue> tuiry: 你們現在講的東西跟授權中心有關嗎 ?_?
+23:13 < yhsiang> repo 就是架構 但是 是把圖檔 那些檔案放到dropbox
+23:13 < ETBlue> yhsiang: 噢噢你是說更深層的自動化…
+23:13 < yhsiang> yes 
+23:13 < tuiry> ETBlue: 阿，就是 ipa提了一個想法，讓各個公民團體可以共用圖片
+23:13 < ETBlue> 自助式 dropbox 上架法
+23:14 < tuiry> 雖然各家都有專用的畫者，但這樣要出圖的時候可以更省一點XD
+23:14 < pofeng_> tuiry: 我是覺得用 dropbox 就好了
+23:14 -!- Ti_W_B111113 [~Ti_W_B@112.104.36.97] has joined #g0v.tw
+23:14 < ETBlue> 目前的東西 google drive 都有一份就是了
+23:15 < ipa> tuiry: 是pofeng_ 想到的 \o/
+23:15 < tuiry> Pofeng ++ 
+23:15 < ETBlue> 好像 dropbox 會每個人都算空間，google drive 則是只算在檔案擁有者頭上
+23:16 < Ti_W_B111113> nick累積到111113是哪招XD
+23:16 < pofeng_> ETBlue: 也可, 但是 google drive 同步一直有小問題
+23:16 < tuiry> 我是覺得download link用dropbox就好，是我想得太簡單了嗎@@a
+23:16 -!- Ti_W_B111112 [~Ti_W_B@111-242-247-104.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+23:16 < ETBlue> tuiry: 可以啊 XD
+23:17 < ETBlue> tuiry: 不過比較不靠譜就是了，不小心刪掉就沒了
+23:17 < tuiry> 如果只是連結 好像用google drive或DB都可以
+23:17 < pofeng_> ETBlue: 所以我覺得大家要見面一下, 大致決定授權方式, 跟分享方式, 檔案格式,  還有共用的圖形元件 ( 還又線上產圖/編 的網站 )
+23:17 < Ti_W_B> 對岸的雲端空間都頗大，但穩定性不太好就是
+23:18 < tuiry> Ti_W_B 尾巴消失了!
+23:18 < clkao_> 非常驚人的薪水，不知道有沒有打錯？ # http://www.wealink.com/zhiwei/view/15389767/
+23:18 < kcwu> clkao_'s url: [北京某金融p2p平台招聘数据分析师|猎头发布职位-若邻网]
+23:19 < M00sUltraB0t> [ 北京某金融p2p平台招聘数据分析师|猎头发布职位-若邻网 ] - www.wealink.com
+23:19 < Ti_W_B> tuiry:不，用IRCcloud是沒尾巴，用另一台電腦的Nettalk有尾巴(持續增長中)
+23:19 < Ti_W_B111113> 尾巴再現~
+23:20 < clkao_> http://lci.ly.gov.tw/LyLCEW/communique1/final/pdf/102/74/LCIDC01_1027402_00003.pdf # 教育部預算有 635 項主決議.... 
+23:21 < Ti_W_B> 之前測試對岸雲端(360網盤)極度緩慢，Web操作介面延遲很大，下載速率大約10~20KB/s
+23:21 -!- willard [afb56774@gateway/web/cgi-irc/kiwiirc.com/ip.175.181.103.116] has joined #g0v.tw
+23:22 < kcwu> 不可靠或不可信賴的就不考慮了吧
+23:23 < yhsiang> Ti_W_B: nettalk 可以用/nick修改nick嗎 ?
+23:23 -!- Ti_W_B111113 is now known as Ti_WB
+23:23 < yhsiang> clkao_: 覺得多打了一個0吧 # 薪水
+23:24 -!- superbil_c is now known as superbil__
+23:24 -!- superbil^^ is now known as superbil_
+23:25 < Ti_WB> 尾巴消失..
+23:25 < tuiry> Ti_W_B: 突然覺得好可愛..就畫了 https://www.dropbox.com/s/u6xxj4pdne48sqi/TIWB.jpg
+23:25 < M00sUltraB0t> [ Dropbox - TIWB.jpg ] - www.dropbox.com
+23:26 < yhsiang> Ti_W_B: 恭喜你擁有個人頭像了 
+23:27 < tkirby> ETBlue: 所以動民主松要什麼時候來辦呢
+23:27 -!- superbil__ is now known as superbil^^
+23:27 -!- superbil^^ is now known as superbil_c
+23:27 < isacloud> 專輯封面有了，差主題曲了
+23:28 < clkao_> 1/4 ?
+23:29 < tkirby> 1/4?
+23:29 < clkao_> 一月四號？
+23:29 -!- superbil_ is now known as superbil
+23:29 -!- superbil is now known as superbil_
+23:30 < tkirby> 選那天的原因是..?
+23:30 < ipa> elixus尾牙前松？
+23:31 < clkao_> 吃不完的尾牙.......
+23:31 < tkirby> XDDD
+23:31 < ETBlue> pofeng_: 不曉得共用的圖形元件是像什麼？ icon 嗎？
+23:31 < jimyhuang> clkao_: 吃不完的尾牙too
+23:31 < ETBlue> tuiry: XDDDDDDDDDD 真的很可愛 XD
+23:34 -!- Ti_WB2 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+23:34 < tkirby> ETBlue: 那.. 就 1/4 嗎? xD
+23:34 < pofeng_> ETBlue: 向量圖 (  PSD or AI ? )  就是想一些基礎單元, 台灣, 服貿黑箱
+23:34 < pofeng_> 立法院, 斧頭, ... 一些元件 
+23:35 < ETBlue> tkirby: 好啊週六能來的人比較多 XD
+23:35 < yhsiang> 我可以~
+23:35 < yhsiang> 就直接kktix了 ?
+23:35 < tkirby> 地點的話...
+23:35 < pofeng_> ETBlue: 一開始的想法是要幫助一般人快速出圖 ...
+23:35 -!- Ti_WB [~Ti_W_B@112.104.36.97] has quit [Ping timeout: 246 seconds]
+23:36 < tkirby> ETBlue: 有要順便美術松嗎?
+23:36 < yhsiang> tuiry: 1/4 ok嗎? XD
+23:36 < tkirby> tuiry: 過完年了喲~
+23:37 < ETBlue> pofeng_: 喔喔喔…理解，如果是幾個公民團體內部，不用給一般使用者的話，上傳介面那些的也許可以先省略，開一個共用的 dropbox 或 google drive 就好
+23:37 < ETBlue> tkirby: 要，要找 hychen 跟 tuiry 來美術松 XD
+23:38 < tuiry> yhsiang  tkirby 好 在合多嗎
+23:38 < tkirby> hychen: 美術松! 不過你在台南..方便嗎
+23:38 < clkao_> ETBlue: 話說... ly 提案翰其他被 merge 要怎麼顯示，後來有想了嗎？
+23:38 < ETBlue> hychen: 1/4 人在台北否
+23:38 -!- Ti_WB [~Ti_W_B@111-242-247-104.dynamic.hinet.net] has joined #g0v.tw
+23:38 < clkao_> ETBlue:  如 http://ly.g0v.tw/bills/468G13016
+23:38 < hychen> ETBlue: 同事那兩天糾團去台南 ...
+23:38 < ETBlue> hychen: ...... 
+23:38 < clkao_> hychen: 你最近都一直待在台呢嘛
+23:38 -!- Ti_WB2 [~Ti_W_B@112-104-36-97.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 260 seconds]
+23:39 < clkao_> *台南嗎
+23:39 < hychen> clkao_: 待到27
+23:39 < hychen> clkao_: 節省交通費 =.=
+23:39 < tkirby> hmmmm
+23:39 < clkao_> 27 不是要吃阿狹
+23:39 < pofeng_> ETBlue: 好像有第三方的上傳界面可以接到 dropbox (要找一下)  
+23:39 < clkao_> *霞
+23:39 -!- Ti_WB [~Ti_W_B@111-242-247-104.dynamic.hinet.net] has quit [Client Quit]
+23:39 < hychen> clkao_: 對啊, 所以待到27
+23:39 < pofeng_> ETBlue: 不過人還是最重要,  工具大家都同意就好了
+23:41 < ETBlue> hychen: 你說你從 1/4 呆到 1/27 嗎…台南
+23:41 < hychen> ETBlue: i mean 待到12/27
+23:41 < ETBlue> hychen: 還是現在呆到 12/27 然後 1/4 又下去
+23:42 < yhsiang> ETBlue: 我想可以這樣 授權中心 接dropbox 然後用google drive 備份
+23:42 < hychen> clkao_: by the way, 昨天mosut有幾個人有問一下g0v
+23:43 < hychen> 看來之後可以辦台南場 XD
+23:43 < pofeng_> ETBlue: 好像 jotform 就可以上傳到 dropbox 
+23:43 < yhsiang> 就是大家利用dropbox 上傳到授權中心, 然後會透過google drive去備份 避免你剛剛講的誤刪問題
+23:43 < hychen> ETBlue: 待到27
+23:44 < ETBlue> pofeng_: 嗯嗯，我想幾個團體之間橋好授權應該就可以了，同步小事，反正一開始檔案也沒多少 XD 你們有要對外 release 的版本時我再收去授權中心
+23:44 < clkao_> hychen: 賀
+23:44 < pofeng_> ETBlue: 對, 我想授權最複雜
+23:45 < tkirby> clkao_: 1/4 那天和多那邊的空間方便嗎
+23:45 < clkao_> tkirby: 要問問 hlb
+23:45 < tkirby> hmm
+23:45 -!- Ti_WB2 [~Ti_W_B@111-242-247-104.dynamic.hinet.net] has joined #g0v.tw
+23:45  * ETBlue afk
+23:45 < tkirby> hlb: 戳
+23:45 < tkirby> ETBlue: 跑掉了!
+23:47 < yhsiang> asdfjkl90571 □  [閒聊] 有程式人在做志工的嗎?
+23:47 < yhsiang> 下面的人都推 g0v需要你 XD
+23:48 < tkirby> yhsiang: 這哪個板 XD
+23:48 < tkalu_> http://www.ptt.cc/bbs/Soft_Job/M.1386224500.A.21B.html
+23:48 < M00sUltraB0t> [ [閒聊] 有程式人在做志工的嗎? - 看板 Soft_Job - 批踢踢實業坊 ] - www.ptt.cc
+23:48 < Ti_W_B> 剛剛路由再次熱當，現在終於看到你的圖了，謝啦~
+23:48 < yhsiang> Soft_Job
+23:48 < yhsiang> #1Ie1jq8R (Soft_Job) [ptt.cc] [閒聊] 有程式人在做志工的嗎
+23:49 < yhsiang> tkalu_: 貼完才看到你秒回 XDD
+23:49 < Ti_W_B> 謝了，tuiry
+23:49 < tkalu_> yhsiang: :p
+23:49 < tuiry> Ti_W_B: 謝謝XD
+23:50 < yhsiang> 竟然是12/5的文章了 現在才看到 ...
+23:50 < tkalu_> kcwu: 找我？
+23:50 < clkao_> ETBlue 又要正名志工與貢獻者之不同了
+23:50 < clkao_> ETBlue: 沒回 ly 問題就跑了 嗚嗚
+23:51 < tkalu_> clkao_: 我想晚點他會回來 xd
+23:51 < tkirby> XD
+23:51 < yhsiang> 阿~ 早點看到說不定 可以抓來黑客松 ...
+23:51 < kcwu> tkalu_: 沒有, 只是在看 ircstat 把同一個人的 nick 合成一筆, 所以在問
+23:51 -!- icman [~icman@123.240.140.154] has quit [Quit: 明天天氣晴]
+23:52 < tkalu_> kcwu: 了解
+23:52 < Ti_W_B>  在ptt推坑XD
+23:52 < tkirby> kcwu: 你在研究什麼 XD
+23:55 < kcwu> tkirby: 沒有啊, 只是需要定期把一些 nick merge http://kcwu.csie.org/~kcwu/ircstat/g0v.html
+23:55 < kcwu> kcwu's url: [#g0v.tw @ IRCNet 由 kcwu 所統計]
+23:55 < kcwu> 像是 tkirby tkirly (誤)
+23:55 < tkirby> XD
+23:55 < yhsiang> kcwu++ # tkirly XD
+23:59 < tkirby> ETBlue: 先問好了.. 美術松要怎麼進行阿 XD
+23:59 < tkirby> 需要自備水彩跟水嗎 (逃)

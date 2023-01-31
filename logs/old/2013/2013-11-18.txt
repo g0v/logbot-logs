@@ -1,0 +1,452 @@
+--- Day changed 一 11月 18 2013
+00:02 -!- fntsrlike [~fntsrlike@114-26-165-157.dynamic.hinet.net] has joined #g0v.tw
+00:04 -!- Stranger_1980_ [~Stranger_@1.34.223.58] has joined #g0v.tw
+00:05 -!- fntsrlike [~fntsrlike@114-26-165-157.dynamic.hinet.net] has quit [Client Quit]
+00:07 -!- Stranger_1980 [~Stranger_@1.34.223.58] has quit [Ping timeout: 272 seconds]
+00:11 -!- ck [~ck@118-166-152-8.dynamic.hinet.net] has quit [Remote host closed the connection]
+00:16 -!- wayne930242 [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has quit [Ping timeout: 246 seconds]
+00:20 -!- anarchih [8c74742e@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.116.46] has joined #g0v.tw
+00:21 -!- ck [~ck@118-166-152-8.dynamic.hinet.net] has joined #g0v.tw
+00:23 -!- ck [~ck@118-166-152-8.dynamic.hinet.net] has quit [Client Quit]
+00:27 -!- anarchih [8c74742e@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.116.46] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+00:33 -!- Tunghua [~Tunghua@1.34.114.149] has quit [Quit: Textual IRC Client: www.textualapp.com]
+00:53 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has quit [Quit: mno2]
+01:53 -!- lcamel [~lcamel@114-45-63-19.dynamic.hinet.net] has quit [Remote host closed the connection]
+01:53 -!- lcamel [~lcamel@114-45-63-19.dynamic.hinet.net] has joined #g0v.tw
+01:55 -!- wayne930242 [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has joined #g0v.tw
+01:58 -!- lcamel [~lcamel@114-45-63-19.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+02:54 -!- mindos_cloud [sid13388@gateway/web/irccloud.com/x-fzvldeuazotpqgkl] has joined #g0v.tw
+02:55 < mindos_cloud> au : 無法三角化? 我不知道 geojson 上次的解法對妳們有沒有用。我換了一個三角化的 library
+02:56 < au> mindos_cloud: 換成 poly2tri 之後就好了
+02:56 < au> (ttf -> svg -> poly2tri = works)
+02:56 < mindos_cloud> 對啊，就那樣
+02:58 < au> mindos_cloud: 上周四 http://direct.moedict.tw/lab/ivod/frame.html demo 前剛弄好了，目前為止都沒問題
+02:58 < M00sUltraB0t> [ LHC ] - direct.moedict.tw
+02:59 -!- billy3321 [uid12904@gateway/web/irccloud.com/x-flwutylonlaqihwo] has quit [Ping timeout: 240 seconds]
+02:59 < mindos_cloud> 我 lag 很大 XDDD
+02:59 -!- lanf0n [uid13946@gateway/web/irccloud.com/x-uzmhhjwwofavdryg] has quit [Ping timeout: 240 seconds]
+02:59 -!- lanf0n [uid13946@gateway/web/irccloud.com/x-vnwbbefokczzyyif] has joined #g0v.tw
+03:00 -!- billy3321 [uid12904@gateway/web/irccloud.com/x-lgomjpkltnsszybs] has joined #g0v.tw
+03:01 -!- cataska_ [uid12717@gateway/web/irccloud.com/x-parbodzrtaegqkco] has quit [Ping timeout: 240 seconds]
+03:02 -!- cataska_ [uid12717@gateway/web/irccloud.com/x-gciwgktvytoxynrd] has joined #g0v.tw
+03:02 -!- raejin [uid12959@gateway/web/irccloud.com/x-xzozfwzbqaeudplb] has quit [Ping timeout: 240 seconds]
+03:03 -!- Jyny [uid13953@gateway/web/irccloud.com/x-gsmbrkgikmzwpebh] has quit [Ping timeout: 240 seconds]
+03:03 -!- Jyny [uid13953@gateway/web/irccloud.com/x-pnzrynxbgyoqxbrj] has joined #g0v.tw
+03:04 -!- raejin [uid12959@gateway/web/irccloud.com/x-fllmrjywcgypmswo] has joined #g0v.tw
+03:21 < au> 睡前發現，巴黎出現了野生的強者 @iclems 把 EtherCalc 移植到 Firebase 上了，寫書好像有點用 XD 這樣 pgrest firebase-compatible API 是不是也要加速進行了呢...
+03:21 < au> -> zzz
+03:45 < poga> au: 唔，剛好把pr送出去。我來繼續弄成firebase-compatible...
+03:46 < au> poga++ # awesome
+03:46 < hychen> poga++
+03:51 < mindos_cloud> poga++
+03:54 -!- CAA51 [sid13241@gateway/web/irccloud.com/x-ogjalodluqnepsfs] has quit [Ping timeout: 265 seconds]
+03:55 -!- CAA51_ [sid13241@gateway/web/irccloud.com/x-fsxkgthwmhnjsctk] has joined #g0v.tw
+04:22 -!- Guest81086 [~marlborom@111.235.209.169] has quit [Ping timeout: 246 seconds]
+04:23 -!- Guest81086 [~marlborom@111.235.209.169] has joined #g0v.tw
+04:57 < clkaoud> poga++ # 太威了
+04:58 < clkaoud> 超冷的
+05:01 < clkaoud> poga++ # 太強了，連 tests 都有了
+05:19 < clkaoud> yhsiangCloud: 我又修了一些，應該要 fold 進去. 然後 progress 跟 heading 也不見得完全一樣
+05:20 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Read error: Connection reset by peer]
+05:30 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+05:30 -!- pobontex [poan@123.110.8.25] has joined #g0v.tw
+05:31 -!- Michael_LI_ [uid13469@gateway/web/irccloud.com/x-rnttaeunqmpitjml] has joined #g0v.tw
+05:31 -!- yyhuang__ [uid13204@gateway/web/irccloud.com/x-dueptabdiyrkqkdd] has joined #g0v.tw
+05:33 -!- prelover [poan@123.110.8.25] has quit [Read error: Connection reset by peer]
+05:33 -!- Michael_LI [uid13469@gateway/web/irccloud.com/x-rlyrfcuecrnqrxju] has quit [Ping timeout: 252 seconds]
+05:33 -!- yyhuang [uid13204@gateway/web/irccloud.com/x-onqcpjgoxeogpwvn] has quit [Ping timeout: 252 seconds]
+05:33 -!- Michael_LI_ is now known as Michael_LI
+05:33 -!- yyhuang__ is now known as yyhuang
+05:33 -!- BVoneAL_ [~bmc@114-32-53-235.HINET-IP.hinet.net] has joined #g0v.tw
+05:33 -!- KylinWu_ [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+05:33 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 252 seconds]
+05:33 -!- BVoneAL [~bmc@220-135-151-143.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+05:34 -!- Jarek [kvirc@61-224-234-63.dynamic.hinet.net] has joined #g0v.tw
+05:34 -!- Jarek is now known as Guest87319
+05:34 -!- CJarek [kvirc@61-224-234-63.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+05:35 -!- Supaplextw [~Lucky@114-36-243-214.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+05:35 -!- yllan [uid13238@gateway/web/irccloud.com/x-beiyunxsiurcjhcq] has quit [Ping timeout: 252 seconds]
+05:35 -!- tuiry [uid12761@gateway/web/irccloud.com/x-fqnbepzndaqzefmk] has quit [Ping timeout: 252 seconds]
+05:35 -!- poga [sid13935@gateway/web/irccloud.com/x-iouhviwxffdqiblo] has quit [Ping timeout: 252 seconds]
+05:36 -!- Supaplextw [~Lucky@114-36-238-100.dynamic.hinet.net] has joined #g0v.tw
+05:36 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+05:36 -!- tuiry [uid12761@gateway/web/irccloud.com/x-npueefgdniwcvknm] has joined #g0v.tw
+05:36 -!- Michael_Thunderb [~Thunderbi@111-240-159-178.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+05:36 -!- poga [sid13935@gateway/web/irccloud.com/x-dygiizwoybrkvror] has joined #g0v.tw
+05:37 -!- yllan [uid13238@gateway/web/irccloud.com/x-ckdwurwcztazalau] has joined #g0v.tw
+05:37 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+05:38 -!- Michael_Thunderb [~Thunderbi@111-240-136-226.dynamic.hinet.net] has joined #g0v.tw
+05:47 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 264 seconds]
+05:48 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+05:57 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+05:58 -!- haroldwu [~haroldwu@118-170-142-218.dynamic.hinet.net] has joined #g0v.tw
+05:58 -!- haroldwu [~haroldwu@118-170-142-218.dynamic.hinet.net] has quit [Changing host]
+05:58 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+05:59 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Read error: Connection reset by peer]
+06:40 -!- aeil [~Adium@114-24-184-152.dynamic.hinet.net] has joined #g0v.tw
+06:41 -!- aeil [~Adium@114-24-184-152.dynamic.hinet.net] has quit [Remote host closed the connection]
+07:26 < clkaoud> yhsiang: 疑這新的？ # http://prerender.io/
+07:26 < M00sUltraB0t> [ Prerender - AngularJS SEO, BackboneJS SEO, or EmberJS SEO ] - prerender.io
+07:34 -!- lcamel [~lcamel@114-45-50-193.dynamic.hinet.net] has joined #g0v.tw
+07:42 -!- fntsrlike [~fntsrlike@114-46-202-53.dynamic.hinet.net] has joined #g0v.tw
+07:58 -!- fntsrlike [~fntsrlike@114-46-202-53.dynamic.hinet.net] has quit [Quit: fntsrlike]
+08:05 -GitHub135:#g0v.tw- [twlyparser] clkao pushed 1 new commit to master: https://github.com/g0v/twlyparser/commit/cf98cebcd3f9981456fe8c5aabba3c1691917afe
+08:05 -GitHub135:#g0v.tw- twlyparser/master cf98ceb Chia-liang Kao: more bill content matching
+08:08 -!- lcamel [~lcamel@114-45-50-193.dynamic.hinet.net] has quit [Remote host closed the connection]
+08:08 -!- lcamel [~lcamel@114-45-50-193.dynamic.hinet.net] has joined #g0v.tw
+08:13 -!- lcamel [~lcamel@114-45-50-193.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+08:25 < walkingice> 又有新東西了  囧rz
+08:26 < clkaoud> walkingice: 剛好用來治療 monday blue? :P
+08:33 < walkingice> clkaoud: 希望今天有時間看一下 XD
+08:33 < walkingice> 你不是在補 hp 嗎？怎麼都沒睡覺  囧
+08:34 < clkaoud> orz
+08:49 < clkaoud> ETBlue: 沒有 sidebar 時，bill page 還是有 padding-left: 8rem 是故意的嗎？
+08:51 -!- haroldwu [~haroldwu@118-170-142-218.dynamic.hinet.net] has joined #g0v.tw
+08:51 -!- haroldwu [~haroldwu@118-170-142-218.dynamic.hinet.net] has quit [Changing host]
+08:51 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+09:05 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+09:09 -!- haroldwu_ [~haroldwu@219.85.185.194] has joined #g0v.tw
+09:10 < clkaoud> tkirby: divider 收到 broken pipe 不會 exit... XD
+09:12 -!- fntsrlike [~fntsrlike@114-46-202-53.dynamic.hinet.net] has joined #g0v.tw
+09:13 -!- lcamel [~lcamel@2406:2000:efa5:9:7122:8d0c:4ecf:ff15] has joined #g0v.tw
+09:20 -!- ypwong [~anthony@206.225.134.1] has joined #g0v.tw
+09:24 -!- fntsrlike [~fntsrlike@114-46-202-53.dynamic.hinet.net] has quit [Quit: fntsrlike]
+09:24 -!- klandor [uid13157@gateway/web/irccloud.com/x-jnnpzyujxsiniarp] has joined #g0v.tw
+09:29 < yhsiang> clkaoud: thx, and 應該是新的喔 才兩個月 XD
+09:30 < yhsiang> 可是我記得我之前看過的樣子 好像網頁有改版
+09:31 < yhsiang> 對那個 prerender version switch有印象
+09:36 -!- wolfenstein [~chatzilla@60-250-73-121.HINET-IP.hinet.net] has joined #g0v.tw
+09:37 -!- fntsrlike [~fntsrlike@140.120.19.2] has joined #g0v.tw
+09:38 -!- fntsrlike [~fntsrlike@140.120.19.2] has quit [Client Quit]
+09:45 -!- lcamel_ [~lcamel@nat/yahoo/x-qfqaymjpkghtmuof] has joined #g0v.tw
+09:46 -!- lcamel [~lcamel@2406:2000:efa5:9:7122:8d0c:4ecf:ff15] has quit [Ping timeout: 240 seconds]
+09:54 -!- haroldwu1 [~haroldwu@219.85.185.194] has joined #g0v.tw
+09:54 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Quit: leaving]
+09:54 -!- haroldwu1 is now known as haroldwu
+09:54 -!- wolfenstein [~chatzilla@60-250-73-121.HINET-IP.hinet.net] has quit [Quit: ChatZilla 0.9.90.1 [Firefox 25.0.1/20131112160018]]
+09:54 -!- haroldwu [~haroldwu@219.85.185.194] has quit [Changing host]
+09:54 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+09:55 -!- void [~void@network-s04.cc.scu.edu.tw] has joined #g0v.tw
+09:57 < yhsiang> clkaoud: 後來看log應該是10月#angularjs有提到這個 剛好有印象
+10:10 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+10:12 -!- lcamel_ [~lcamel@nat/yahoo/x-qfqaymjpkghtmuof] has quit [Remote host closed the connection]
+10:12 -!- lcamel [~lcamel@nat/yahoo/x-czwlkcekdoubplmz] has joined #g0v.tw
+10:12 -!- mno2 [~mno2@49.128.60.52] has quit [Client Quit]
+10:13 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+10:14 -!- mno2 [~mno2@49.128.60.52] has quit [Client Quit]
+10:16 -!- lcamel [~lcamel@nat/yahoo/x-czwlkcekdoubplmz] has quit [Ping timeout: 252 seconds]
+10:17 -!- lcamel [~lcamel@2406:2000:efa5:9:c0e8:6f0:2f80:f0fd] has joined #g0v.tw
+10:21 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+10:35 < yhsiang> clkaoud: 有用過lime嗎 XD
+10:37 -!- Guest6665 [uid14902@gateway/web/irccloud.com/x-bcnxcpydhaoslbkf] has joined #g0v.tw
+10:37 -!- Guest6665 is now known as rx
+10:40 -!- void [~void@network-s04.cc.scu.edu.tw] has quit [Remote host closed the connection]
+10:43 < Guest81086> kcwu, redis 相容的意思是?
+10:43 -!- Guest81086 is now known as marlboromoo
+10:50 -!- lcamel [~lcamel@2406:2000:efa5:9:c0e8:6f0:2f80:f0fd] has quit [Ping timeout: 240 seconds]
+10:50 -!- lcamel [~lcamel@nat/yahoo/x-bqkopsprwukqsllz] has joined #g0v.tw
+10:51 -!- Stranger_1980_ [~Stranger_@1.34.223.58] has quit [Remote host closed the connection]
+11:17 < ETBlue> clkaoud: 不是，顯然是個錯誤，理論上兩者 media query 應該是搭配的 @ sidebar 跟 padding-left
+11:18 -!- anarchih [8c74742e@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.116.46] has joined #g0v.tw
+11:20 -!- Stranger_1980 [~Stranger_@1.34.223.58] has joined #g0v.tw
+11:27 < yhsiangCloud> ETBlue: substep文字長會擋到下一個
+11:35 -!- wayne930242 [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has quit [Quit: Leaving.]
+11:35 < kcwu> marlboromoo: 原本的 logbot 也是用 redis 存 log. 是否用相同的 db store
+11:36 -!- wayne930242 [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has joined #g0v.tw
+11:36 -!- mno2 [~mno2@49.128.60.52] has quit [Ping timeout: 272 seconds]
+11:41 < marlboromoo> kcwu, 相同的 db store 的意思是用同一個 redis service ?
+11:41 < marlboromoo> kcwu, 我是在 digital ocean 上開一個 droplet 來放置這個服務
+11:41 < ronnywang> https://github.com/ronnywang/portal.sw.nat.gov.tw/tree/master/goods/good_out # 關務署出口資料也爬完了
+11:41 < M00sUltraB0t> [ portal.sw.nat.gov.tw/goods/good_out at master · ronnywang/portal.sw.nat.gov.tw · GitHub ] - github.com
+11:43 < au> 哇，通用拼音的作者 boris 要帶學生來萌典松。#拭目以待
+11:43 < kcwu> marlboromoo: i mean, key&value 的定義一樣. 不過從你的回答, 我想不太可能那麼巧會一樣
+11:51 < marlboromoo> kcwu, redis db 的 structure 是參考原來的 logbot ;D
+11:54 < kcwu> marlboromoo: good, 所以可以直接互換嗎?
+11:55 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+11:58 -!- mno2 [~mno2@42.61.215.9] has joined #g0v.tw
+11:59 < marlboromoo> kcwu, 我確認一下 
+12:02 -!- anarchih [8c74742e@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.116.46] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+12:32 -!- wayne930242 [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has quit [Ping timeout: 272 seconds]
+12:43 -!- anarchih [8c74742e@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.116.46] has joined #g0v.tw
+12:49 -!- aLlia [~blah@60-234-155-32.bitstream.orcon.net.nz] has quit [Read error: Connection reset by peer]
+12:49 -!- cibs [~cibs@60-251-40-253.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+12:49 -!- alliao [~blah@2001:0:9d38:90d7:2c90:21b6:c315:64df] has joined #g0v.tw
+12:49 -!- cibs [~cibs@60-251-40-253.HINET-IP.hinet.net] has joined #g0v.tw
+12:55 < marlboromoo> kcwu, key 不一樣, 前面沒有 irclog:channel:, value 也不一樣, 我的 time 是用 unix epoch
+12:56 -!- mno2 [~mno2@42.61.215.9] has quit [Quit: mno2]
+12:57 -!- anarchih [8c74742e@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.116.46] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+13:14 -!- wayne930242 [~wayneh@wlib-a-055.lib.nthu.edu.tw] has joined #g0v.tw
+13:16 -!- ymow [~Adium@61-230-100-51.dynamic.hinet.net] has quit [Ping timeout: 241 seconds]
+13:16 -!- wayne930242 [~wayneh@wlib-a-055.lib.nthu.edu.tw] has quit [Read error: Connection reset by peer]
+13:16 -!- wayne9302421 [~wayneh@wlib-a-055.lib.nthu.edu.tw] has joined #g0v.tw
+13:19 -!- anarchih [8c74742e@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.116.46] has joined #g0v.tw
+13:23 < privism> cloudatcost 都還沒賣完
+13:24 < privism> 看來大家興趣缺缺?
+13:46 < a0kman> 多領域的專門用詞還是希望大家幫忙田一下喔喔喔喔~
+13:46 < a0kman> https://g0v.hackpad.com/CPpKKRhPkWs
+13:46 < M00sUltraB0t> [ 各領域專用語快速瀏覽 - g0v.hackpad.com ] - g0v.hackpad.com
+13:46 < a0kman> <(_ _)>
+14:03 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+14:20 < clkaoud> cloudcore 又 GG 了... 
+14:25 < walkingice> 慘
+14:26 < clkaoud> 看來完全不可信賴啊
+14:29 < clkaoud> ronnywang: newshelper 也和 cloudcore 一起 GG 了嗎？今天真是萬里無雲
+14:35 < walkingice> 論未來網站的 404 page 都用豔陽圖的可能性  (There is no cloud today)
+14:37 < ipa> walkingice: 會面前好像要印文件......你們把討論事項列完後，我會彙整成文件印幾份帶著
+14:40 < walkingice> ipa: ok！ 原本打算直接寄電子檔給委員助理
+14:44 < ronnywang> clkaoud: 我正在把他搬到 linode 中 XD
+14:45 < clkaoud> 受不了了.... XD
+14:46 < kcwu> 常看到有些 service 比我家的 server 還不穩, 無法理解...
+14:47 < ipa> walkingice: 好啊也寄給他們備份，但我也會多準備著以免手忙腳亂
+14:47 < clkaoud> kcwu: 真的非常不解
+14:48 < hychen> newsdiff.org目前沒有API.. orz
+14:49 < kcwu> 話說 newsdiff 常看到新聞變 404 之後又變回來, 很奇怪
+14:49 < clkaoud> 會不會是有 load balancer? 然後沒 sync 好? 
+14:50 < kcwu> 可能要提供 ui 讓 user 看 404 前後的內文有沒有 diff
+14:50 < hychen> ronnywang的版本完勝 XD
+14:51 < clkaoud> 話說... 12/21 黑客松完直接接尾牙好了？就還是在上次去的餐廳，他也有桌菜 # http://www.brick-kiln.com.tw/menu.php
+14:51 < M00sUltraB0t> [ 磚窯古早味懷舊餐廳::菜單介紹:: ] - www.brick-kiln.com.tw
+14:52 < clkaoud> 疑 還是桌菜只限敦南店？
+14:52  * kcwu 說完就 create issue https://github.com/ronnywang/newsdiff/issues/1
+14:54 < clkaoud> kcwu++
+14:55 < clkaoud> kcwu: 話說要玩一下 vagrant/chef/berkshelf 把 video fetch 整合進去了嗎? :p
+14:55 < clkaoud> api.ly 需要更多 bus number XD
+14:57 < kcwu> 整合進去會是怎麼 work... 從我的機器上 fetch video, 然後傳到某個 server (?)
+14:59 < kcwu> 我現在比較想 migrate 到 gearman, reduce the latency between fetch/process cycles
+14:59 < kcwu> bus number 是什麼意思?
+14:59 < clkaoud> kcwu: 整合進去就整個 progress 都 deploy 進 api.ly 那台
+14:59 < clkaoud> s/progress/process
+14:59 < M00sUltraB0t> clkaoud meant to say: kcwu: 整合進去就整個 process 都 deploy 進 api.ly 那台
+15:00 < kcwu> 包括 video storage?
+15:00 < ronnywang> 其實我這邊服務掛掉常常都是 memory 吃完，跟 hicloud 本身穩定度關係不大..唯一跟 hicloud 有關應該是上個月那次的 downtime 吧
+15:01 < clkaoud> kcwu: orz storage.. 本來想的是存放 meta data 相關的而已
+15:01 < clkaoud> ronnywang: ohh? 然後就再起不能？
+15:01 < clkaoud> kcwu: bus number 就是一個 project 中，多少人被公車撞到後，project 就會停擺... XD
+15:01 < kcwu> i see
+15:03 < hychen> orz
+15:03 < ronnywang> 我有些 cron 一分鐘跑一次，但是跑超過一分鐘，結果就越積越多最後 out of memory , linux 開始隨機殺人
+15:03 < clkaoud> kcwu 如果切給 gearman, 還是可以 storage 單獨為 worker, meta data 就可以直接進 api.ly, 在看中間用什麼 token authn
+15:04 < clkaoud> ronnywang: 要來走 docker 了嗎
+15:05 < clkaoud> kcwu: 另一個方式是 fetch upload 也進 api.ly cookbook, 然後看 storage 怎麼 rsync 回來 (可能上面只保留一週的之類)
+15:06 < ronnywang> 不過前幾天在 linode 上面跑了些東西覺得他的 1024 速度比 hicloud XS 快太多了..一個月還便宜四百元
+15:06 < clkaoud> ronnywang: 呃 那你會覺得 cloudcore 用飛的
+15:06 < au> linode++
+15:06 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has joined #g0v.tw
+15:06 < clkaoud> 只是他會像斷線的風箏 整個飛走拉不會來... reboot 還會卡在 ubuntu cd 安裝畫面
+15:07 < kcwu> docker 是說這個嗎 http://blog.gslin.org/archives/2013/11/13/3847/
+15:07 < M00sUltraB0t> [ 提供 Docker 服務的 Stackdock… (不要用！) | Gea-Suan Lin's BLOG ] - blog.gslin.org
+15:08 < au> no, this: http://coder1.com/articles/install-docker-linode-ubuntu-1204
+15:08 < M00sUltraB0t> [ Install Docker on Linode (Ubuntu 12.04) | Mike Milano ] - coder1.com
+15:11 < lwhsu> ronnywang: 這樣應該後面跑起來的發現前面還有人就不要跑了吧? # 15:03 < ronnywang> 我有些 cron 一分鐘跑一次，但是跑超過一分鐘
+15:13 < clkaoud> kcwu: 可以幫我看一下 api.ly/scripts/divider.py 如何讓他 broken pipe 時也自己 exit 掉嗎？就是不要 trap signals
+15:14 < clkaoud> cloudcore 回來了，原來是因為日本友人搞錯繳款期限 XD
+15:15 < kcwu> clkaoud: 不是要從 msdl 搞嗎
+15:15 < clkaoud> kcwu: 那邊已經都 ok 了
+15:15 < clkaoud> 現在是 output stream 關掉時，divider 收到 broken pipe 後就卡在那邊了
+15:16 < clkaoud> 原本的 behaviour 是就 exit... 那因為跑在 runit service 所以會自己重開
+15:16 < kcwu> 那現在還要 divier.py ?
+15:17 < clkaoud> 還是要, divider 是處理 input stream 不見得在第一個或第二個 stream
+15:17 < clkaoud> 現在是接收端 exception 不會 propagate, 就整個卡住
+15:18 < kcwu> 我想的是 12:02 < kcwu> 聽起來這 solution 比較好, ignore any stream with known length... 保證是 live XD
+15:18 < kcwu> 這樣就 always first stream ...
+15:20 -!- lcamel [~lcamel@nat/yahoo/x-bqkopsprwukqsllz] has quit [Remote host closed the connection]
+15:20 < clkaoud> kcwu: 這兩天發現 每天的 first stream 不一樣
+15:20 < clkaoud> 所以變成要像你說的 一定的 length 以下
+15:20 -!- lcamel [~lcamel@nat/yahoo/x-mpvzhnezewpmmylg] has joined #g0v.tw
+15:20 < clkaoud> 不過 broken pipe 是另一回事
+15:23 < kcwu> orz # 15:20 < clkaoud> kcwu: 這兩天發現 每天的 first stream 不一樣
+15:25 < kcwu> clkaoud: 你是說現在會在最後那個 loop run forever?
+15:26 < clkaoud> yes, 然後有 exception (write fail / broken pipe) 就 GG 了, 繼續 loop 然後做領乾薪
+15:26 < clkaoud> 應該要 exit 掉
+15:48 -!- wayne9302421 [~wayneh@wlib-a-055.lib.nthu.edu.tw] has quit [Quit: Leaving.]
+15:48 -!- wayne930242 [~wayneh@wlib-a-055.lib.nthu.edu.tw] has joined #g0v.tw
+15:51 -!- SupaplexTW___ [~Adium@114-32-173-73.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+15:55 -!- keanu [~keanu@118-163-61-157.HINET-IP.hinet.net] has joined #g0v.tw
+16:01 -!- lcamel_ [~lcamel@2406:2000:efa5:9:c0e8:6f0:2f80:f0fd] has joined #g0v.tw
+16:03 -!- lcamel [~lcamel@nat/yahoo/x-mpvzhnezewpmmylg] has quit [Ping timeout: 248 seconds]
+16:06 -!- keanu [~keanu@118-163-61-157.HINET-IP.hinet.net] has left #g0v.tw ["Leaving"]
+16:25 < kcwu> clkaoud: pushed, 不過我沒測過 :P
+16:32 -!- wayne9302421 [~wayneh@101.3.48.69] has joined #g0v.tw
+16:35 -!- wayne930242 [~wayneh@wlib-a-055.lib.nthu.edu.tw] has quit [Ping timeout: 246 seconds]
+16:53 < astro> hackpad是不是壞掉了？
+17:14 -!- ymow [~Adium@1-171-179-35.dynamic.hinet.net] has joined #g0v.tw
+17:26 -!- lcamel [~lcamel@2406:2000:efa5:9:853:d0b6:1c00:9d6b] has joined #g0v.tw
+17:29 -!- lcamel_ [~lcamel@2406:2000:efa5:9:c0e8:6f0:2f80:f0fd] has quit [Ping timeout: 240 seconds]
+17:32 -!- M00sUltraB0t [~r0b0t@118-163-90-205.HINET-IP.hinet.net] has quit [Quit: Closing]
+17:32 -!- M00sUltraB0t [~r0b0t@118-163-90-205.HINET-IP.hinet.net] has joined #g0v.tw
+17:40 -!- Stranger_1980_ [~Stranger_@1.34.223.58] has joined #g0v.tw
+17:43 -!- Stranger_1980 [~Stranger_@1.34.223.58] has quit [Ping timeout: 265 seconds]
+17:57 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has quit [Quit: Closing]
+17:57 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has joined #g0v.tw
+17:58  * marlboromoo .
+17:59 < ipa> hackpad down
+17:59 < ipa> astro: 你是要追e04進度嗎？@@
+17:59 -!- lcamel_ [~lcamel@nat/yahoo/x-dhjpatfekiavxshh] has joined #g0v.tw
+18:00 -!- lcamel [~lcamel@2406:2000:efa5:9:853:d0b6:1c00:9d6b] has quit [Ping timeout: 240 seconds]
+18:02 -!- superbil_lm [~superbil@111-251-193-20.dynamic.hinet.net] has joined #g0v.tw
+18:02 -!- superbil_lm [~superbil@111-251-193-20.dynamic.hinet.net] has quit [Client Quit]
+18:34 -!- lcamel_ [~lcamel@nat/yahoo/x-dhjpatfekiavxshh] has quit [Remote host closed the connection]
+18:35 -!- lcamel [~lcamel@2406:2000:efa5:9:853:d0b6:1c00:9d6b] has joined #g0v.tw
+18:39 -!- lcamel [~lcamel@2406:2000:efa5:9:853:d0b6:1c00:9d6b] has quit [Ping timeout: 240 seconds]
+18:57 -!- chihchun is now known as chihchun_afk
+18:59 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+19:06 -!- wayne9302421 [~wayneh@101.3.48.69] has quit [Ping timeout: 240 seconds]
+19:06 -!- a-tsioh [~pierre@nat-rech-218.net.univ-paris-diderot.fr] has joined #g0v.tw
+19:06 < a-tsioh> hi
+19:10 < a-tsioh> au: moedict-data-twblg.git 的json好像沒有所有.csv有的資料,對嗎？
+19:15 -!- alliao [~blah@2001:0:9d38:90d7:2c90:21b6:c315:64df] has quit [Ping timeout: 256 seconds]
+19:18 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+19:29 -!- anarchih [8c74742e@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.116.46] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+19:41 -!- a-tsioh is now known as a-tsioh_afk
+20:07 -!- pm5cloud [uid13333@gateway/web/irccloud.com/x-oviklfecovdrcrqc] has joined #g0v.tw
+20:20 -!- wayne930242 [~wayneh@101.3.48.69] has joined #g0v.tw
+20:24 < au> a-tsioh_afk: yeah, those without definitions are in -ext.json
+20:30 -!- aeil [~Adium@wlib-a-163.lib.nthu.edu.tw] has joined #g0v.tw
+20:41 -!- haroldwu_ [~haroldwu@219.85.185.194] has quit [Quit: leaving]
+20:42 -!- Luxun [uid13676@gateway/web/irccloud.com/x-snccnlrdzpthkvnf] has joined #g0v.tw
+20:43 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Quit: Lost terminal]
+20:43 -!- haroldwu [~haroldwu@219.85.185.194] has joined #g0v.tw
+20:43 -!- haroldwu [~haroldwu@219.85.185.194] has quit [Changing host]
+20:43 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+20:57 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+21:02 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Quit: Textual IRC Client: www.textualapp.com]
+21:05 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has joined #g0v.tw
+21:21 -!- soidid [24e5fb90@gateway/web/freenode/ip.36.229.251.144] has joined #g0v.tw
+21:23 -!- eternnoir [uid13219@gateway/web/irccloud.com/x-skhugrlmdgfqspxr] has quit []
+21:27 -!- Phil [8c779d5a@gateway/web/cgi-irc/kiwiirc.com/ip.140.119.157.90] has joined #g0v.tw
+21:30 -!- wayne930242 [~wayneh@101.3.48.69] has quit [Ping timeout: 240 seconds]
+21:30 -!- aeil [~Adium@wlib-a-163.lib.nthu.edu.tw] has quit [Ping timeout: 245 seconds]
+21:33 -!- Phil [8c779d5a@gateway/web/cgi-irc/kiwiirc.com/ip.140.119.157.90] has left #g0v.tw []
+21:42 -!- Guest87319 [kvirc@61-224-234-63.dynamic.hinet.net] has quit []
+21:42 -!- CJarek [kvirc@61-224-234-63.dynamic.hinet.net] has joined #g0v.tw
+21:49 -!- msmr [8c779d5a@gateway/web/cgi-irc/kiwiirc.com/ip.140.119.157.90] has joined #g0v.tw
+22:01 -!- ymow [~Adium@1-171-179-35.dynamic.hinet.net] has quit [Quit: Leaving.]
+22:02 -!- ymow [~Adium@1-171-181-57.dynamic.hinet.net] has joined #g0v.tw
+22:08 -!- wayne930242 [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has joined #g0v.tw
+22:11 < clkaoud> *yawn*
+22:31 < hychen> hp 快底了... 來睡 =.=
+22:32 -!- BVoneAL_ is now known as BVoneAL
+22:34 < clkaoud> hychen: 所以 pgrest branch ready 了？
+22:35 < hychen> clkaoud: not test yet .
+22:38 < hychen> clkaoud: 裝了plugin後應該是直接hook pgrest的功能, 我們需要獨立抽出來做pgrest-passport嗎? or just pgrest --actived-plugins passport
+22:39 -!- icman [~icman@123.240.173.168] has joined #g0v.tw
+22:40 -!- symis [70688bd4@gateway/web/cgi-irc/kiwiirc.com/ip.112.104.139.212] has joined #g0v.tw
+22:40  * hychen zzzz
+22:41  * symis slaps symis around a bit with a large trout
+22:43 < hychen> 不過之後如過要把express幹掉, 用哪個方式似乎都沒差.
+22:45 -!- symis [70688bd4@gateway/web/cgi-irc/kiwiirc.com/ip.112.104.139.212] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+22:47 -!- walkingice is now known as walkingice_zZ
+22:55 -!- wayne930242 [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has quit [Remote host closed the connection]
+22:58 < yhsiang> 要把express換成?
+23:02 -!- a-tsioh_afk is now known as a-tsioh
+23:03 -!- wHisKy [~whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+23:07 -!- lcamel [~lcamel@114-45-50-193.dynamic.hinet.net] has joined #g0v.tw
+23:07 < a-tsioh> au: ? I have missing entries in the -ext.json compared to the .csv
+23:07 < clkaoud> yhsiang: 直接 nginx_postgres
+23:07 -!- wHisKy [~whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+23:07 < a-tsioh> do I have to install plv8 to re-generate it ?
+23:07 < clkaoud> hychen: 抽出來是比較好 這樣不需要 passport 的人就不用裝那些... 雖然是 optionalDep, npm 還是會全裝
+23:09 < au> a-tsioh: no... give me a single counterexample?
+23:11 < au> a-tsioh: oic, we only keep 屬性 = 1,25 (dict-twblg) and 2,5 (-ext); we omit 3 (近反義詞不單列詞目者) and everything in the appendix
+23:11 < au> 3~22 in uni/詞目總檔.屬性對照.csv, to be exact.
+23:12 < a-tsioh> 配
+23:12 < a-tsioh> but it's in the online version
+23:13 < a-tsioh> maybe I'm on the wrong repository 
+23:13 < a-tsioh> it's online, in the csv, but not in the included json
+23:13 < au> % ag '"配"' dict-twblg.json
+23:13 < au> 260686:    "title": "配",
+23:15 < au> (there are two files in https://github.com/g0v/moedict-data-twblg -- 配 is in dict-twblg.json and not dict-twblg-ext.json)
+23:15 < M00sUltraB0t> [ g0v/moedict-data-twblg · GitHub ] - github.com
+23:19 -!- soidid [24e5fb90@gateway/web/freenode/ip.36.229.251.144] has quit [Quit: Page closed]
+23:20 < yhsiang> hmm.. 我女友傳了ly.g0v.tw的網址給我 
+23:21 -!- wayne930242 [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has joined #g0v.tw
+23:22 < a-tsioh> au: I don't quite get what is the split between -ext and non -ext
+23:22 < au> a-tsioh: -ext has no definitions, so we use revised.moe to fill them in
+23:22 < au> non -ext has definitions in the csv.
+23:22 < au> (note that the fill-in is rather non-canonical and may be replaced with csld definitions later.)
+23:23 < a-tsioh> csld ?
+23:23 < a-tsioh> and 3 has no def anywhere ?
+23:23 < au> # https://github.com/g0v/moedict-data-csld
+23:23 < M00sUltraB0t> [ g0v/moedict-data-csld · GitHub ] - github.com
+23:23  * a-tsioh likes 近反義詞
+23:24 < yhsiang> 結果goinstant出了chat widget XDD
+23:24 < au> a-tsioh: :D then by all means extract it out into a .json with any tool you wish
+23:25 < au> yhsiang: url?
+23:25 < a-tsioh> k
+23:26 < yhsiang> https://developers.goinstant.com/beta/widgets/chat.html
+23:26 < M00sUltraB0t> [ Chat - GoInstant docs: multiplayer, co-browse platform ] - developers.goinstant.com
+23:26 < au> a-tsioh: plz feel free to push back to g0v/moedict-data-twblg -- you're committer now
+23:26 < a-tsioh> I'm working on an interface of my own for french speakers for (partly) the same data but yep I'll push back some json and related scripts
+23:27 < au> yhsiang: 看來還不賴... 好像應該來加到 ethercalc 裡
+23:28 < au> (或是加到 firecalc 裡, 可是這樣有點太跨平台了)
+23:28 < au> a-tsioh++ awesome!
+23:29 -!- lcamel [~lcamel@114-45-50-193.dynamic.hinet.net] has quit [Remote host closed the connection]
+23:30 -!- lcamel [~lcamel@114-45-50-193.dynamic.hinet.net] has joined #g0v.tw
+23:30 -!- icman [~icman@123.240.173.168] has quit [Quit: 明天天氣晴]
+23:30 < a-tsioh> 目前萌典不表現方言差嗎？
+23:31 < clkaoud> yhsiang: 然後你說什麼? XD
+23:32 < au> a-tsioh: yeah, we have the data but not the UI -- if you have a wireframe/hand-drawn ui in mind please attach to https://github.com/audreyt/moedict-webkit/issues
+23:32 < M00sUltraB0t> [ Issues · audreyt/moedict-webkit · GitHub ] - github.com
+23:32 < a-tsioh> the thing is I'm designing a totally different data structure
+23:33 < a-tsioh> one dictionnary for many 漢字-related languages rather than many dictionnaries 
+23:34 -!- lcamel [~lcamel@114-45-50-193.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+23:34 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Operation timed out]
+23:36 < au> a-tsioh: sounds very promising! something like http://ctext.org/dictionary.pl?if=en&char=%E7%9F%B3 ?
+23:36 < M00sUltraB0t> [ 石 - Chinese Text Project ] - ctext.org
+23:36 < a-tsioh> so it should genuily handle local variation, and then have some api for IME
+23:36 < a-tsioh> yep kind of
+23:38 < a-tsioh> adding Taiwanese, Korean and maybe Japanese and Vietnamese 
+23:38 < a-tsioh> and more friendly to French students :p
+23:38 < au> nice :)
+23:39 < a-tsioh> It will come with JSON exporrts and APIs
+23:39 < yhsiang> clkaoud: 我問她在那裏看到的, 不過我之前有跟她說過
+23:39 < yhsiang> clkaoud: 她說尤美女fb XD
+23:39 < clkaoud> 顯然被 ignore XD
+23:40 -!- racklin [uid13103@gateway/web/irccloud.com/x-ytlliucvcxqqpkul] has quit [Read error: Connection reset by peer]
+23:40 -!- a0kman [uid15218@gateway/web/irccloud.com/x-woguhgjxbpcucsxj] has quit [Read error: Connection reset by peer]
+23:40 -!- racklin [uid13103@gateway/web/irccloud.com/x-dlybkldtxdmbqafg] has joined #g0v.tw
+23:40 -!- a0kman [uid15218@gateway/web/irccloud.com/x-ogczrwtaiqspewyh] has joined #g0v.tw
+23:41 < yhsiang> QQ 而且她念法律的 XD
+23:41 < a-tsioh> right now I'm have a lot of "fun" designing it in ocaml (it's eliom/ocsigen/pgsql based)
+23:41 < a-tsioh> having
+23:42 < au> a-tsioh: saw your work with Bootliom... looking forward to the code, maybe we can ocsigen into plv8x :)
+23:44 < a-tsioh> hehe
+23:45 < hychen> clkaoud: 我是指使用者裝了pgrest-passport後, pgrest便可以使用actived-plugins 參數去enable功能, 而不需要再多一個executable.
+23:46 < clkaoud> sure
+23:46 < a-tsioh> as I understand plv8x, it's close to PGOcaml, people working on ocsigen are designing  something more integrated to eliom but it sounds very experimental right now
+23:47 < yhsiang> 為什麼我找不到 尤美女fb上面的link ...
+23:48 < au> a-tsioh: PGOcaml is a binding to pg that runs in the db client; plv8x is JS/v8 stored procedure in pg that runs in the db server
+23:48 < a-tsioh> maybe a PgREST on top of the same db could help 
+23:48 < au> but we know JS/v8 is also an OCaml bytecode interpreter now :)
+23:48 < a-tsioh> oh ok
+23:48 < a-tsioh> :D
+23:48 < au> (PgREST builds upon plv8x)
+23:48 < a-tsioh> indeed
+23:49 < au> so you can write ocaml store procedures for pg by way of plv8x! #crazyButTrue
+23:49 < a-tsioh> so this means we can have ocaml code compiled into pg procedures for triggers inside the DB
+23:49 < a-tsioh> :D
+23:52 < a-tsioh> those guys working on ocsigen could be interested
+23:53 < jimyhuang> yhsiang: XD 表示她很認真看！
+23:54 < ipa> yhsiang: 她不知道你是幕後黑手？
+23:55 < a-tsioh> for now I'm not sure whether I actually need it but it sounds cool
+23:55 < ipa> 我們現在都在 hychen 夢中 XD 
+23:55 < yhsiang> 結果是這個 https://www.facebook.com/photo.php?fbid=573041922751747&set=a.573041919418414.1073741829.572214946167778&type=1
+23:56 < M00sUltraB0t> [ 動態時報相片 - 拒沉默！要真相！揭露民法972真面目 | Facebook ] - www.facebook.com
+23:56 < yhsiang> 剛剛還意外找到tkirby早期的mockup XD
+23:56 -!- Moo [~marlborom@101.3.46.195] has joined #g0v.tw
+23:56 < yhsiang> 還有這個 http://www.ptt.cc/bbs/transgender/M.1382673674.A.BD1.html
+23:56 < M00sUltraB0t> [ Fw: [情報] 先別管吸毒了,你知道伴侶法一讀過了嗎？ - 看板 transgender - 批踢踢實業坊 ] - www.ptt.cc
+23:56 < au> a-tsioh: you likely don't, just a nice thought :) I'm totally doing the same thing with ghcjs next month.
+23:56 < yhsiang> 看來正反方都用得很開心  XD
+23:56 -!- Moo is now known as Guest31425
+23:57 < yhsiang> ipa: 應該知道吧 QQ 我連丟鞋子都有給她看 
+23:57 -!- wayne930242 [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has quit [Remote host closed the connection]
+23:58 < au> yhsiang: 有反方在用嗎 XD
+23:58 < yhsiang> au: 我以為第一個是反對的耶
+23:58 < jimyhuang> yhsiang: 民間工程師製作了一套立法院修正案的比較系統，非常清楚地將「現有條文」及「修正草案條文」有差異的地方，用標色的方式突顯出來。因此修改了什麼文字，在這套比較系統下都無所遁形！
+23:58 < yhsiang> 因為剛剛google一堆類似title的粉絲頁 我都混亂了 ..
+23:59 < au> XDD
+23:59 < jimyhuang> 我剛剛也混亂了... 
+23:59 < yhsiang> 有另外一個粉絲頁叫拒沉默！要真相！反修民法972！
+23:59 -!- marlboromoo [~marlborom@111.235.209.169] has quit [Ping timeout: 248 seconds]
+23:59  * jimyhuang 恍然大悟

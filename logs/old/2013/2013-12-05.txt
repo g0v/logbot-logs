@@ -1,0 +1,611 @@
+--- Day changed 四 12月 05 2013
+00:01 < ljm> pcchen: 有保留 nan/nanlatn/en/cmn 不是嗎?
+00:01 < pcchen> ljm: let me see
+00:03 < ljm> pcchen: 我可能誤會你的意思。像「拍算」 nan = 台語解釋; nanLatn = 台語解釋羅馬字; cmn = 翻譯或不能翻譯; en = 和國語一樣
+00:06 < ljm> au: ckhis.ck.tp.edu.tw 是 FreeBSD 8.3-RELEASE-p3
+00:06 < ljm> 我苦...
+00:06 < clkao> hychen 最近真的很怒
+00:06 < pcchen> ljm: 對。所以需要的是（不一定可以的）單詞對照（翻譯）
+00:06 < pcchen> ljm: 這個可以到 configuration tool 那邊
+00:07 < pcchen> ljm: 切到 Fields
+00:08 < pcchen> ljm: 然後在 word 的 setup 中的 input system, 勾選Mandarin Chinese就會在詞條那邊出現一個 mandarin chinese 的欄位。（這算是work around的用法
+00:09 < ljm> pcchen: XD 我懂了
+00:09 < ljm> 這要怎麼合進萌典.. (思考中)
+00:10 < pcchen> ljm: 這算是abuse wesay的設計
+00:10 < pcchen> 應該是                <lexical-unit>
+00:10 < pcchen>                         <form
+00:10 < pcchen>                                 lang="nan">
+00:10 < pcchen>                                 <text>jiû-hî 鰇魚</text>
+00:10 < pcchen>                         </form>
+00:10 < pcchen>                 </lexical-unit>
+00:10 < ljm> 萌典底下有 English, German ... 當然也可以有 Mandarin (惡搞)
+00:10 < pcchen> 這裡會多出現<form lang="cmn"><text>魷魚</text></form>
+00:11 < pcchen> 在lexical-unit下面尋找對應即可
+00:11 < ljm> pcchen: 可是 definition.form("cmn") 大概也會寫「魷魚」吧?
+00:12 < ljm> 不會寫「一種像○○的魚，，沒骨頭又比較好吃，即魷魚」 
+00:12 -!- icman [~icman@123.240.129.234] has quit [Quit: 明天天氣晴]
+00:13 < pcchen> ljm: 可以寫一樣啊。
+00:13 < pcchen> ljm: 的確有可能寫一種像○○的魚，，沒骨頭又比較好吃，即魷魚」
+00:14 < ljm> pcchen: 也是。總之要的話，可以用「即魷魚」的方式來加，也可以用像底下的 English 那樣的方式來加
+00:14 < ljm> 有語料後怎麼惡搞都行 (喂)
+00:14 < pcchen> ljm: 在lexical-unit 應該寫動物名。軟體動物門頭足綱，身體為圓錐形的肉質外套膜，具側鰭，十足，外表無鞘，留存透明軟甲在體內。當外套膜擴張時，水流入體內；收縮時，水由頭下部的管狀漏斗噴出，藉噴水的力量前進，以觸腕的吸盤捕捉小魷類、甲殼類及魚類為食物。遇危險時，從肛門附近的墨囊噴出墨汁，趁機逃生。
+00:14 < pcchen> 或稱為「柔魚」。
+00:15 < pcchen> sorry, 在 definition.form("cmn")應該些如上的話（
+00:15 < pcchen> 才是正解
+00:15 < ljm> 嚇.....
+00:15 -!- macpaul [~macpaul@162.248.8.104] has quit [Ping timeout: 250 seconds]
+00:16 < pcchen> 萌典抄下來的
+00:17 < pcchen> ljm: 另一種可能是在 def 那邊的一定先寫簡單的對應，然後（如果有需要）才寫複雜的解釋。
+00:17 < pcchen> 我也該來睡覺了
+00:19 -!- Guest57800 [~marlborom@111.235.196.250] has quit [Remote host closed the connection]
+00:19 < ljm> pcchen: 暗安
+00:19 -!- racklin [uid13103@gateway/web/irccloud.com/x-zihiszqwvnjikmvc] has joined #g0v.tw
+00:19 < ljm> 來在我的 raspberry pi 上裝萌典好了
+00:19 -!- Guest57800 [~marlborom@111.235.196.250] has joined #g0v.tw
+00:19 < ljm> 我和 FreeBSD 太不熟 Q.Q
+00:20 < racklin> hi
+00:20 < pcchen> ljm: 你要不要玩玩wesay的錄音XD
+00:20 < pcchen> 你有raspberry pi !
+00:20 < pcchen> raspberry pi不是可裝linux?
+00:20 < yhsiang> pcchen: yes
+00:21 < ljm> pcchen: 我現在是在 RP 上面 IRC 的呀... ssh 回家裡的 RP 再 irssi
+00:22 < pcchen> ljm: 你可以在input system 那邊確定有 Min Nan Chinese (Voice) or some language(Voice)然後在word的input system上enable some language (voice)，就會出現錄音，播音鍵XD
+00:23 < ljm> pcchen: cool... 
+00:24 < pcchen> 真的來去睡
+00:28 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+00:34 < mindos_cloud> pcchen : night
+00:36 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+00:37 -!- ljm [~ljm@220-133-42-47.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+00:38 -!- ljm [~ljm@111-240-154-210.dynamic.hinet.net] has joined #g0v.tw
+00:39 < ljm> Raspberry Pi 好像 checkout 完熱當了 Q.Q ... 明日請早 ^^;
+00:39 < ljm> 9 9
+00:39 -!- ljm [~ljm@111-240-154-210.dynamic.hinet.net] has quit [Client Quit]
+01:02 < clkao> jimyhuang: fact.g0v.tw/wiki/同性婚姻 GG again
+01:06 < mindos_cloud> ronny is a nature born speaker, BTW.
+01:07 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 245 seconds]
+01:19 < jimyhuang> clkao: backed online ... 這個架構不好，這次換google doc deny ... 
+01:34 -!- wayne [~chatzilla@61-230-164-249.dynamic.hinet.net] has joined #g0v.tw
+01:40 -!- wayne [~chatzilla@61-230-164-249.dynamic.hinet.net] has left #g0v.tw []
+02:14 -!- haroldwu_ [~haroldwu@118-170-219-165.dynamic.hinet.net] has joined #g0v.tw
+02:17 -!- haroldwu_ [~haroldwu@118-170-219-165.dynamic.hinet.net] has quit [Client Quit]
+02:20 -!- a-tsioh [~pierre@nat-rech-217.net.univ-paris-diderot.fr] has joined #g0v.tw
+02:22 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+02:42 -!- mno2 [~mno2@121.6.15.139] has quit [Quit: mno2]
+03:09 -!- a-tsioh [~pierre@nat-rech-217.net.univ-paris-diderot.fr] has quit [Ping timeout: 246 seconds]
+03:19  * jimyhuang 瘋狂打工... zzz
+03:51 -!- superbil^^ [~superbil@1.34.97.68] has quit [Quit: WeeChat 0.4.0]
+03:52 -!- superbil^^ [~superbil@1.34.97.68] has joined #g0v.tw
+04:05 -!- ymow [~Adium@host-111-184-227-73.dynamic.kbtelecom.net] has joined #g0v.tw
+04:17 -!- Netsplit *.net <-> *.split quits: chyeh
+04:56 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+05:55 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+06:08 -!- ymow [~Adium@host-111-184-227-73.dynamic.kbtelecom.net] has quit [Quit: Leaving.]
+06:08 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 245 seconds]
+06:09 -!- ymow [~Adium@host-111-184-227-73.dynamic.kbtelecom.net] has joined #g0v.tw
+06:59 -!- AceChen [~AceChen@140.109.113.100] has joined #g0v.tw
+07:00 -!- AceChen_ [~AceChen@140.109.113.100] has quit [Ping timeout: 240 seconds]
+07:04 -!- lcamel [~lcamel@114-45-52-194.dynamic.hinet.net] has joined #g0v.tw
+07:07 -!- lcamel [~lcamel@114-45-52-194.dynamic.hinet.net] has quit [Remote host closed the connection]
+07:07 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+07:18 -!- ypwong [~anthony@61-220-26-223.HINET-IP.hinet.net] has quit [Quit: cya]
+08:00  * billy3321 clkao: 請問一下，立委聯絡資料可以加入作為g0v專案嗎？
+08:00  * billy3321 忘記加入專案要做哪些事情了
+08:33 -!- ymow [~Adium@host-111-184-227-73.dynamic.kbtelecom.net] has quit [Ping timeout: 246 seconds]
+08:52 -!- ymow [~Adium@36.238.35.205] has joined #g0v.tw
+08:53 < billy3321> 加入了 @@
+09:02 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 264 seconds]
+09:05 -!- ljm [~ljm@219-87-142-18.static.tfn.net.tw] has joined #g0v.tw
+09:29 < clkao> billy3321: 我看到你加了... 可是你不是把 repo transfer? 這樣在你原本的 repo 加上 g0v.json 就好了 不然會有兩個地方 很奇怪
+09:31 -!- ypwong [~anthony@175.41.48.77] has joined #g0v.tw
+09:41 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+09:55 < ipa> mindos_cloud++ ronnywang++ 
+10:00 < kcwu> ipa: http://blog.g0v.tw/posts/68155964880 最後一行太長, 用、隔開, browser 不知道斷行. blog 外圍又是黑底, 有些人的名字就隱藏起來了
+10:04 < ipa> kcwu: updated. thanks! 
+10:05 < ipa> 這篇還沒貼粉絲頁吼，要找個時間點貼
+10:07 < ljm> au: 本來要在 FreeBSD 上裝 node.js 的。抓下 0.10.22 compile 出現 libuv 的錯誤。爬文後發現作者 closed issue & fixed in 0.10.22 (What!!)
+10:07 < ljm> au: 善用學校資源果然不是這麼容易的 (苦笑)
+10:09 < ipa> 電話施壓立委之前還有綠盟版 http://gcaa.org.tw/callnow/#
+10:12 < pcchen> FreeBSD 上裝 node.js!
+10:13 < ljm> pcchen: 萌典其實可以不需要這樣做. 來寫個 rsync / deploy script 好了
+10:14 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+10:14 < ljm> pcchen: 昨天 au 有講做法... but 我昨天剛好在一個網路很慢的環境
+10:16 < pcchen> ljm: 不是很懂，怎樣的 rsync / deploy script？
+10:19 < ljm> pcchen: 只要仿造 ios/www/ 這個目錄的結構，把檔案 rsync 到遠端就可以了。
+10:19 < ljm> 我在學校已經有一台 apache (還是 lighttpd) 
+10:19 < ljm> 上傳到我自己的目錄，別人就可以用
+10:19 < ljm> 然後我繼續編字典、改程式，修一修再 rsync 把修過的地方傳上去就可以
+10:20 < ljm> 不需要在遠端的機器 make (local run)
+10:20 < pcchen> ljm: 所以這裡說的是如何在 server 上 deploy 
+10:20 < pcchen> ljm: 的確有這個需求
+10:20 < pcchen> 我也可以放一個在我學校的server上
+10:21 < ljm> pcchen: Makefile 有一個 make update 不過我猜那是 au 自己用的 :P
+10:22 < ljm> rsync -avzP --delete a about.html config.rb cordova.js fonts h images index.html js main.js sass styles.css t p n ljm@ckhis.ck.tp.edu.tw:public_html/moedict/
+10:22 < ljm> 我是這樣下的
+10:24 < pcchen> ljm: 完點來研究
+10:29 -!- chinghanho [~chh@1.34.44.182] has joined #g0v.tw
+10:32 < ronnywang> rsync 可以再加上 over ssh , 就可以加上簡單的認證機制了
+10:36 < ljm> ronnywang: 驚! -e ssh 現在應該是 default 了?
+10:37 < hcchien> BSD 的 node.js ports 好像是 pct maintain 的？
+10:38 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+10:45 -!- Phoenixmiss [~Miss@114-38-109-137.dynamic.hinet.net] has joined #g0v.tw
+10:51 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+10:51 < ljm> au: rsync 完了 http://ckhis.ck.tp.edu.tw/~ljm/moedict
+10:52 < ljm> 可是「請輸入欲查詢的字詞」沒作用... 
+10:53 < ljm> 嗯不對，不是沒作用，是它會寫 494 results are available ... 卻沒跳出 pop - up
+10:53 < ljm> 是不是少 copy 了什麼
+10:54 -!- aar0ntw [~ubuntu@ec2-204-236-166-4.us-west-1.compute.amazonaws.com] has quit [Remote host closed the connection]
+10:54 -!- chinghanho [~chh@1.34.44.182] has quit [Remote host closed the connection]
+10:56 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+10:56 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+10:57 < ljm> hcchien: 感謝. 我忘了先在 /usr/port make update. 現在 make install 的是 0.10.22 了
+11:00 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+11:04 < ljm> au: 然後有一些像這樣的錯誤: GET http://ckhis.ck.tp.edu.tw/~ljm/moedict/fonts/EBAS-Subset.woff 404 (Not Fou
+11:05 < ljm> (fonts/ 裡只有 EBAS-Subset.otf 和 .ttf)
+11:10 < ljm> au: Got it ... css/ 也要上去
+11:24 < ljm> 所以阿美語和信望愛的部份已經都在 ckhis.ck.tp.edu.tw/~ljm/moedict/ 了。請幫忙推坑 & 尋找苦力。感謝!
+11:33 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+11:52 < clkao> ljm: 好像可以寫個「如何加新語言」的 faq? 
+12:00 -!- Phoenixmiss [~Miss@114-38-109-137.dynamic.hinet.net] has quit [Quit: Leaving]
+12:02 < ljm> clkao: 哈哈. 對啊。應該是「如何加一本新字典」。
+12:02  * ljm 顯示為在坑裡顧左右而言他
+12:05 < clkao> ljm: 我只的是如何加一種新的程式語言到 build process (誤) XD
+12:11 < mno2> 加了 ptt 語典的話會不會紅呢? 
+12:12 < clkao> 會喔 XD
+12:12 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+12:14 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+12:14 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+12:16 < mno2> 如果有 gif  or webp animation 顯示在結果裡的話應該很有趣吧 :p
+12:16 < mno2> search boyo  ->  boyo dull animation
+12:16 < clkao> ronnywang: 有辦法把這個幹下來嗎？需要自然人憑證 # http://build.nantou.gov.tw:8080/bupic/xkms.jsp;jsessionid=9C3FA64BF32693795FE7AF9B58B0A726
+12:22 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+12:23 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has joined #g0v.tw
+12:23 < clkao> ETBlue, billy3321 要整合一下通訊錄進 ly.g0v 嗎？現在好多版本啊
+12:29 -!- c9sloud is now known as c9s
+12:31 < ronnywang> clkao: 我來試試看
+12:32 < ronnywang> 看起來系統跟 http://163.29.37.131/main.jsp 一模一樣，先試試看會不會同網址結構就可以抓了 XD
+12:41  * jimyhuang 一整個砍柴大隊
+12:44 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 272 seconds]
+12:45 < clkao> ronnywang++ 
+12:45 < clkao> 這樣就不用等內政部公布違法名單了，貼出來請合法業者自清就好了
+12:51 < clkao> ronnywang: 這裡有各縣市主管的 link: http://cpabm.cpami.gov.tw/twmap.jsp
+12:57 < Conrad> http://goo.gl/ATlqGI # 非法民宿、旅館.... 沒有地址 / 交通部觀光局 旅館業及民宿管理系統
+12:59 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+13:00 < ronnywang> 結果 build.nantou.gov.tw:8080 突然掛了？
+13:00 < clkao> .... 自爆？
+13:00 < jimyhuang> 斧頭太大根...
+13:00 < ronnywang> 我才剛裝好自然人憑證驅動程式，還沒開始動手砍啊
+13:01 < clkao> fail
+13:01 < jimyhuang> 噗，被氣勢下到了
+13:03 < poga> 偵測到12級斧頭波形，ronnywang回來了
+13:03 < ronnywang> 該不會有相關的公務人員在看這邊吧
+13:04  * jimyhuang 有沒有政府單位怕被砍，就加入irc的八卦
+13:04 < jimyhuang> s/砍/砍站/
+13:04 < ronnywang> 所以不是只有我連不上吧？
+13:05 < jimyhuang> ronnywang: 我也連不上
+13:06 < ronnywang> 好吧，只能晚點再試了
+13:06 < jimyhuang> 伺服器應該去吃中餐了，待會吃完就會好
+13:08 < ronnywang> 正在砍 102 年 11 月商業司公司更新清冊中
+13:09 < jimyhuang> 斧頭裝備爆表... （這個角色到底隨身帶了多少根）
+13:12 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 250 seconds]
+13:15 < clkao> ronnywang: 這個系統抓下來的好像是文字耶: https://play.google.com/store/apps/details?id=cpami.main&feature=more_from_developer#?t=W251bGwsMSwxLDEwMiwiY3BhbWkubWFpbiJd
+13:15 < clkao> ronnywang: 好像可以偷看她的 api endpoint
+13:17 < ronnywang> 我沒有 android device.. 有人可以幫我抓一下他的 apk 下來嗎？
+13:17 < clkao> theres also ios
+13:18 < ronnywang> 我想反組譯他的 .class XD
+13:21 < walkingice> XD
+13:21 < walkingice> which apk?
+13:21 < ronnywang> https://play.google.com/store/apps/details?id=cpami.main&feature=more_from_developer#?t=W251bGwsMSwxLDEwMiwiY3BhbWkubWFpbiJd
+13:21 < walkingice> one more second
+13:27 < clkao> 0xlab 出現了
+13:29 < yhsiang> XD walkingice++
+13:30 < ETBlue> 圈叉lab！
+13:30 < ronnywang> walkingice++
+13:32 < ETBlue> clkao: 通訊錄是該整合一下… billy3321 你的 repo 是這個？ https://github.com/g0v/ly-tel
+13:32 < ETBlue> billy3321: 目前就做到這邊嗎？資料在哪裡，跟綠盟的那份一樣嗎？
+13:33 < clkao> ETBlue: ya from mly-8.json
+13:34 < ETBlue> clkao: 那個網址在哪 QQ
+13:35 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+13:35 < clkao> https://github.com/g0v/twlyparser/blob/master/data/mly-8.json
+13:36 < ETBlue> 喔喔喔喔喔！！！！！
+13:36 < walkingice> ronnywang: https://dl.dropboxusercontent.com/u/9824121/r0nny.tar
+13:37 < ronnywang> walkingice++ !!!!!!
+13:37 < pm5cloud> XD walkingice++
+13:37  * walkingice 正好也在玩 smali  XD
+13:37 < ETBlue> walkingice 不愧是小綠人lab… /OoO/
+13:39 < ETBlue> 看起來立委資料的欄位跟之前的一樣沒什麼變，那我弄個 demo page 到 http://g0v.github.io/semantic-ui-experiment/ly-bill.html 的「立委」頁面（目前從缺）好了，再看看怎麼整合進 ly.g0v.tw
+13:40 < clkao> ETBlue: 不過現在有一些新的資料，整合委員會資訊跟招委
+13:40 < ETBlue> 就是把綠盟跟 tisa 地圖的 html 貼過去……XD
+13:40 < ETBlue> 喔喔喔
+13:40 < clkao> https://github.com/thewayiam/twly_crawler/blob/master/merged(pretty_format).json
+13:40 < ETBlue> 好，多兩欄
+13:41 < clkao> 還有學經歷什麼碗糕的
+13:41 < clkao> 但是遇到一個難題，章孝嚴以前叫做蔣孝嚴... XD
+13:41 < ETBlue> 啊，alias
+13:41 < ETBlue> XD
+13:41 < clkao> former-names
+13:42 < ETBlue> 好我想想
+13:48 < yhsiang> 說反了? XD
+13:50 < hcchien> 小綠人 lab....
+13:51 < jimyhuang> 改姓還真少見...
+13:51 < jimyhuang> walkingice+++
+13:54 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+14:01 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has left #g0v.tw []
+14:05 < yhsiang> au: 你申請privatebeta了嗎 @@ #famo.us
+14:06 < au> yhsiang: 有，一直有收到信，但是沒有 code
+14:07 < au> (except for Lightbox3D/Button3D/One2Many demo on codepen)
+14:07 < yhsiang> http://famo.us/privateBeta#application # this ?
+14:07 < au> 是，之前用字宙反應爐的主意 apply 過
+14:08 < au> ljm: .woff push 了，阿美語++
+14:08 < yhsiang> XD 只好寫信去炸 fetterman ?
+14:09 < au> yhsiang: 聽來不錯 XD 我看了一下 API，還滿乾淨的。
+14:09 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+14:11 < yhsiang> au: 你說codepen的demo嗎 還是有去偷看他的js XD
+14:13 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+14:13 < au> 是說 demo，CodePen Evaluation License 本來就可以 (internal, non-commercial, non-production) 看啊 XD
+14:14 < yhsiang> 他還有個with firebase的demo 
+14:14 < hychen> 改成pgbase? XD
+14:14 < au> minitwitter pgbase 化? XD
+14:14 < yhsiang> ya
+14:15 < clkao> !
+14:17 < poga> ！
+14:19 < jimyhuang> !
+14:19 < clkao> hychen: 偷看一下 meteor accounts-base 吧
+14:20 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+14:20 < hychen> clkao: sure
+14:23 < ronnywang> 讚...使用執照可以全爬出來了
+14:29 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+14:29 < yhsiang> ronnywang++ 
+14:30 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+14:30 < jimyhuang> ronnywang++ 果然吃完中餐就好了.. 
+14:32 < mindos_cloud> 阿美語++
+14:35 < pm5> ronnywang++
+14:35 < billy3321> clkao: 我原本的repo還有好幾個懶人包呢
+14:35 < billy3321> 連給馬英九的信都在裏面XD
+14:36 < billy3321> 還是拆出來吧
+14:36 < clkao> billy3321: I see so its not just lytel
+14:36 < clkao> ronnywang++
+14:36 < billy3321> clkao: yes :)
+14:37 < clkao> ronnywang: using old one or from android endpoint?
+14:38 < ronnywang> android
+14:38 < ronnywang> 不過 android 那邊資料好像不是很完整，我還在確認看看
+14:38 < walkingice> ronnywang++
+14:39 < ronnywang> android 那邊有些門牌打進去找不到資料
+14:43 < ETBlue> clkao: 為什麼立委 constituency 選區(?) 會有山東省、哈爾濱市這種的 ?_? 前幾個幾乎全都是匪區地名耶囧
+14:44 < yhsiang> ETBlue: 以前的吧 
+14:44 < yhsiang> ETBlue: 那邊也是算固有疆域 XD
+14:44 < ETBlue> yhsiang: 那……那算過期資料還是……
+14:47 < yhsiang> ETBlue: http://zh.wikipedia.org/wiki/%E7%AC%AC1%E5%B1%86%E4%B8%AD%E8%8F%AF%E6%B0%91%E5%9C%8B%E7%AB%8B%E6%B3%95%E5%A7%94%E5%93%A1%E5%90%8D%E5%96%AE
+14:48 < hcchien> 固有疆域++
+14:48 < ETBlue> 啊
+14:48 < ETBlue> 所以是很久以前已經作古的立委們
+14:49 < ETBlue> 噢，我想我是從第一屆的開始看所以才會看到一堆這些
+14:49 < yhsiang> XD
+14:49 < ETBlue> 可見這資料真是完整…… XD
+14:50 < ETBlue> ㄟ，這表示立委 filter 還要分屆
+14:51 < walkingice> 坑很大，別有洞天
+14:52 -!- WeiHung [~chatzilla@60.245.65.143] has joined #g0v.tw
+14:54 < ij1iao> 第一屆立委現在還有在世的 !! # http://zh.wikipedia.org/wiki/%E8%91%89%E5%8F%B6%E7%90%B9
+14:55 < yhsiang> 葉大哥 XD
+14:57 -!- OtomeSou1d is now known as OtomeSound
+14:59 < yhsiang> iamblue_cloud: 趕快先買domain? XDD
+15:00 < OtomeSound> 取domain是一門學問的說.....(?
+15:01 < ronnywang> 呃，結果他的 API 是噴 Big5 JSON
+15:01 < iamblue_cloud> ngconf.asia
+15:01 < iamblue_cloud> 沒人用耶XD
+15:01 < OtomeSound> 自架KiwiIRC之後才知NodeJS的偉大ww
+15:01 < iamblue_cloud> 立馬買？
+15:02 < yhsiang> 衝!
+15:02 -!- ypwong [~anthony@175.41.48.77] has quit [Ping timeout: 264 seconds]
+15:02 < yhsiang> 多少啊 @@
+15:02 < billy3321> ETBlue: 關於整合聯絡簿....現有聯絡簿是在哪裡呢？
+15:03 < iamblue_cloud> 6XX
+15:03 < yhsiang> 35鎂
+15:03 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Remote host closed the connection]
+15:03 < ETBlue> billy3321: 剛才村長貼這個 https://raw.github.com/thewayiam/twly_crawler/master/merged(pretty_format).json
+15:03 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+15:03 < yhsiang> iamblue_cloud: 疑 你這個比較便宜 XD
+15:03 < ETBlue> billy3321: 介面的話有好多種… XD
+15:04 < billy3321> @@
+15:04 < billy3321> 好多資料
+15:06 -!- ypwong [~anthony@175.41.48.77] has joined #g0v.tw
+15:06 < ETBlue> billy3321: 這個 http://g0v.github.io/gcaa-legislator-vs-nuke-ui-design/# 還有 tisa 也有做一組，網址不曉得在哪…
+15:06 < ETBlue> 然後我現在又在用 semantic ui 重寫一組 ui XD
+15:07 -!- ypwong [~anthony@175.41.48.77] has quit [Remote host closed the connection]
+15:07 < ipa> http://tisa.g0v.tw/
+15:07 < ronnywang> 開始爬了，先從南投縣開始爬起
+15:07 < ipa> https://github.com/g0v/tisa-map
+15:08 < ipa> 機器人奧紫了？
+15:08 < iamblue_cloud> 已買 ˊ_>ˋ
+15:08 < ETBlue> http://g0v.github.io/tisa-map 失效惹 QQ
+15:08 < ETBlue> 原來已經轉移到這
+15:08 < yhsiang> cool!
+15:09 < yhsiang> .karma
+15:09 < hychen> ronnywang+++
+15:09 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+15:10 < ETBlue> ㄟ  http://tisa.g0v.tw/ 下面的立委資料好像暫時拿掉了
+15:10 < yhsiang> ethantw++ # 直排注音
+15:13 < billy3321> ETBlue: 我那個會比較希望可以做一個common的就好
+15:13 < billy3321> 不過查詢功能還要做就是了.....
+15:13 < billy3321> ETBlue: 就是以後想要打電話施壓，就可以來我這邊查一下這樣。
+15:13 < yhsiang> 直接包成一個app ?
+15:14 < yhsiang> LY yellow page ..
+15:14 < yhsiang> 立院黃頁 
+15:17 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+15:18 < ipa> https://www.facebook.com/shenhornyen/posts/10200239942519600 違法民宿資料
+15:18 -!- chihchun_afk is now known as chihchun
+15:18 < ipa> 這是已經公開的吧？
+15:18 < yhsiang> 夏都 XD
+15:19 < billy3321> yhsiang: 有人有問我說他想做，要怎麼辦。我扔json給他了XD
+15:19 < yhsiang> billy3321: app嗎 ?
+15:19 < billy3321> yhsiang: 對，但是他只會做iOS的
+15:19 < billy3321> 所以Android還從缺XD
+15:19 < clkao> 現在公督盟那個就算是 yellow page 了吧？
+15:20 < yhsiang> ipa: http://hotelhomestay.tbroc.gov.tw/list_hp.jsp 應該從這邊就可以撈了
+15:21 < billy3321> 不過顏寬恆真的都沒有聯絡資料喔
+15:21 < billy3321> 這麼屌
+15:21 < clkao> 有吧，只是還沒更新
+15:21 -!- WeiHung [~chatzilla@60.245.65.143] has quit [Ping timeout: 240 seconds]
+15:21 < tkalu> 想問一下現在 AWS 上的 worker-kktix-1 跟 worker-kktix-2 已經有用 puppet 管理了嗎？
+15:22 < tkalu> 因為想要調整設定, 可是又看到好像安裝了 puppet
+15:23 < billy3321> clkao: http://www.ly.gov.tw/03_leg/0301_main/legIntro.action?lgno=00114&stage=8
+15:23 < billy3321> 恩，還沒更新。若是更新了請跟我說~
+15:23 < tkalu> 丟錯 channel Orz.....
+15:23 < poga> XDDD
+15:23 < tkalu> 囧...
+15:23 < clkao> tkalu: 如果還沒用 puppet 的話，改用 chef 好了 XD
+15:24 < tkalu> XD
+15:24 -!- pm5 [~Adium@115.80.127.25] has joined #g0v.tw
+15:29 < ETBlue> tkalu: 偷看 g0v channel 被發現了 XDDD
+15:30 < ETBlue> billy3321++ 衝！你介面打算用啥寫？先寫完的話我就可以抄你的了 XD
+15:31 < ronnywang> https://gist.github.com/ronnywang/14d27521b0f6adee5ac6 # 目前抓出來的使用執照資料長這樣
+15:33 < clkao> ronnywang++
+15:35 -!- Phoenixmiss [~Miss@114-38-109-137.dynamic.hinet.net] has joined #g0v.tw
+15:36 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+15:36 < mindos_cloud> ronnywang++
+15:40 -!- MarlboroMoo [~marlborom@101.3.34.156] has joined #g0v.tw
+15:44 -!- Guest57800 [~marlborom@111.235.196.250] has quit [Ping timeout: 272 seconds]
+15:48 -!- WeiHung [~chatzilla@60.245.65.216] has joined #g0v.tw
+16:00 < yhsiang> ronnywang++ 
+16:01 < billy3321> etblue：什麼東西的介面？
+16:02 < ETBlue> billy3321: 立委聯絡簿啊 @@
+16:02 < billy3321> 已經作完了不是嗎？@@
+16:03 < ETBlue> 啊，我跑到轉移的那個去了
+16:05 < ETBlue> billy3321: 網址在哪…找不到 QQ
+16:16 < clkao> ETBlue: 關於法案易懂名稱，也許可以先這樣幹：https://github.com/unitedstates/bill-nicknames
+16:16 < clkao> 直接一個 csv, 大家自己發 pull-req XD
+16:16 < clkao> 不然還要刻介面、搞 voting... 好累啊
+16:17 < yhsiang> hmm .. 就像972的mapping也可以這樣寫?
+16:17 < yhsiang> 然後moedict那邊直接參考這個mapping ? XD
+16:17 < ETBlue> 刻介面-- ... XD
+16:18 < clkao> yhsiang: 開幹了吧
+16:21 < ETBlue> 發現立委 list 需要有聯絡簿模式跟超級比一比模式… XD
+16:23 < billy3321> billy3321.github.io/lytelh
+16:26 < ETBlue> http://billy3321.github.io/lytel/
+16:27 < ETBlue> 多了一個 - 難怪找不到 www
+16:27 < ETBlue> semantic ui 的 table 有 sortable 耶真是太棒了
+16:28 < clkao> ETBlue 真幸運，沒多久就可以把第一個作品砍掉重練
+16:29 < ETBlue> XDXD
+16:30 < ETBlue> clkao: 自從認識 semantic ui 以後再也不怕砍掉重練 XD
+16:32 < yhsiang> hmm 其實可以寫個boostrap to semantic ui ?
+16:33 < yhsiang> clkao: bill type我們可以用甚麼 ?
+16:37 < clkao> yhsiang: we don't need that, because we have only one chamber. or just use LY
+16:37 -!- pm5 [~Adium@115.80.127.25] has quit [Quit: Leaving.]
+16:38 < yhsiang> bill_number,sitting,term,comments -> 1150L15359,08-04-YS-07,９７２, 
+16:41 -!- WeiHung [~chatzilla@60.245.65.216] has quit [Ping timeout: 240 seconds]
+16:41 < clkao> i don't need sitting i think... term => 8 (第八屆)
+16:42 < clkao> and the summary should probably be "婚姻平權"
+16:49 < ronnywang> 好怪，民國 91 年之後南投的建築使用執照都不到 1000 張或是 1000 出頭， 90 已經爬了 3000 張了
+16:49 < ronnywang> 不知道是不是 89 年或是 90 年建築法有修法過
+16:58 -!- pm5 [~Adium@115.80.127.25] has joined #g0v.tw
+17:00 < mindos_cloud> ls
+17:00 < mindos_cloud> sorry @.@
+17:00 < yhsiang> command not found
+17:00 < mindos_cloud> should be lsc
+17:04 -!- WeiHung [~chatzilla@60.245.65.130] has joined #g0v.tw
+17:12  * billy3321 ETBlue: 今天發現立院的專案都有 - ，所以把他加上去。
+17:13 < yhsiang> clkao: https://github.com/g0v/bill-nicknames # 加了吳育昇條款 XD
+17:14 < clkao> yhsiang: 不過的確提出時還沒人說要罷免吳育昇，也許還是中性一點好？「罷免需附身分證影本」案？
+17:18 < yhsiang> hmm 既然google的到這個term 那就改吧 XD
+17:19 -!- Phoenixmiss [~Miss@114-38-109-137.dynamic.hinet.net] has quit [Quit: Leaving]
+17:37 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Read error: Connection reset by peer]
+17:39 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+17:54 -!- chihchun is now known as chihchun_afk
+18:01 -!- chihchun_afk is now known as chihchun
+18:02 -!- kanru` [~kanru@114-32-24-38.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+18:07 -!- ypwong [~anthony@175.41.48.77] has joined #g0v.tw
+18:11 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+18:11 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+18:13 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has quit [Ping timeout: 256 seconds]
+18:17 < pcchen> 請問moedict如果是要在server上跑（非本機）最後還是 make run?
+18:20 < clkao> Yes
+18:20 < au> pcchen: 如果有現成的 http static file server 就用它即可
+18:21 < au> e.g. nginx, apache (dropbox 或 gh-pages 也行。)
+18:27 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+18:30 -!- pm5 [~Adium@115.80.127.25] has quit [Read error: Connection reset by peer]
+18:34 -!- chihchun is now known as chihchun_afk
+18:35 -!- WeiHung [~chatzilla@60.245.65.130] has quit [Ping timeout: 240 seconds]
+18:36 < pcchen> au: 真的可以耶
+18:38 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+18:39 < ljm> au++ woff rsync 了
+18:40 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Client Quit]
+18:41 -!- chihchun_afk is now known as chihchun
+18:42 < pcchen> http://qubit.phys.nthu.edu.tw/~pcchen/moedict-webkit/#;'afala
+18:42 < pcchen> http://qubit.phys.nthu.edu.tw/~pcchen/moedict-webkit/#@汫
+18:45 < au> pcchen++ # awesome
+18:46 < ljm> pcchen++
+18:46 -!- ljm [~ljm@219-87-142-18.static.tfn.net.tw] has quit [Quit: leaving]
+18:47 < pcchen> ljm 如果wesay/nan 的資料有update，只需要重跑make nan?
+19:12 < clkao> 在香港演講中如果要放影片，還要申請公開放映許可？
+19:13 -!- ljm [72200863@gateway/web/freenode/ip.114.32.8.99] has joined #g0v.tw
+19:14 < ljm> pcchen: make nan 然後 rsync 到遠端就好
+19:14 < ljm> 記得要 copy index.json 到 n/ (nan 應該比較沒這個問題... 因為所有的詞條都進 index 了)
+19:15 < pcchen> ljm: 我不用rsync因為我直接在server上make nan
+19:15 < ljm> cool. 那你確定 ln -sf nan/util/index.json n/index.json 和 ln -sf nan/util/dict-nan.json ./dict-nan.json
+19:16 < ljm> 這樣就 ok 了
+19:22 < pcchen> ljm: 你makefile裡面有作這一步
+19:24 -!- ljm [72200863@gateway/web/freenode/ip.114.32.8.99] has quit [Ping timeout: 250 seconds]
+19:32 -!- kmtu [~kmtu@v157-7-143-194.myvps.jp] has joined #g0v.tw
+19:39 -!- pm5 [~Adium@36-231-238-169.dynamic-ip.hinet.net] has joined #g0v.tw
+19:44 < kcliu> clkao: chef 比 puppet 好嗎?
+19:46 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:46 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+19:47 < t0mst0ne> 測試語音輸入法 iOS
+19:50 < ipa> 時間真快，下禮拜一就要開始報名黑客松了
+19:52 -!- chihchun is now known as chihchun_afk
+19:54 < clkao> kcliu: 我只用過 chef, puppet 後來好像改超多，以前看起來很不好用
+19:56 < kcliu> clkao: 喔喔因為敝社是寫 puppet，但我沒寫過 chef 不知如何
+19:59 -!- WeiHung [~chatzilla@36.231.238.169] has joined #g0v.tw
+20:03 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+20:05 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+20:11 -!- scrollback1 [scrollback@conference/jsconf/x-qsacqwsrlpbgwhnl] has quit [Remote host closed the connection]
+20:11 -!- scrollback1 [scrollback@conference/jsconf/x-zdekdqfclygsarnr] has joined #g0v.tw
+20:18 -!- scrollback1 [scrollback@conference/jsconf/x-zdekdqfclygsarnr] has quit [Remote host closed the connection]
+20:18 -!- scrollback [scrollback@conference/jsconf/x-aqvklcfczgasnjwj] has joined #g0v.tw
+20:19 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+20:19 -!- Phoenixmiss [~Miss@114-38-109-137.dynamic.hinet.net] has joined #g0v.tw
+20:23 -!- scrollback [scrollback@conference/jsconf/x-aqvklcfczgasnjwj] has quit [Remote host closed the connection]
+20:23 -!- 65MAAARQ6 [scrollback@conference/jsconf/x-ghexsajzangpvdmd] has joined #g0v.tw
+20:27 -!- ymow [~Adium@36.238.35.205] has quit [Quit: Leaving.]
+20:34 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 250 seconds]
+20:38 -!- ymow [~Adium@36.238.35.205] has joined #g0v.tw
+20:41 -!- ypwong [~anthony@175.41.48.77] has quit [Ping timeout: 272 seconds]
+20:49 -!- ljm [72200863@gateway/web/freenode/ip.114.32.8.99] has joined #g0v.tw
+20:49  * ljm 正在 functional Thursday. 哇現在在講 socket.io
+20:49 < ljm> 然後看到 CindyLinz 和 ch0upi_bsd 
+20:49 < ETBlue> clkao: 想說立委清單除了當聯絡簿以外還可以幫公督盟減輕一些負擔…用這種超級比一比的表格 XD http://g0v.github.io/semantic-ui-experiment/ly-legislator.html
+20:50 < ETBlue> 理論上那個是按表頭就可以排序的 sortable table
+20:50 < ETBlue> 但是我弄不出來，囧
+20:50 < ETBlue> 不過用jquery弄了toggle欄位的功能，不然可以拿來比的項目太多了
+20:51 < clkao> intriguing
+20:52 < ETBlue> 不過要等以後有資料才能用（聳肩
+20:59 < clkao> ETBlue: 看來 ly-monitor 有望了： https://github.com/g0v/ly.g0v.tw/issues/100
+21:00 < clkao> V1ctor++
+21:01 -!- ymow [~Adium@36.238.35.205] has quit [Quit: Leaving.]
+21:03 < ETBlue> V1ctor: 下線！
+21:04 -!- Ti_W_B12 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has joined #g0v.tw
+21:05 < ljm> pcchen: 有人建議阿美語字典要 support 原民會標準化過的拼字 (我個人..嗯..不批評)
+21:06 < ljm> 不知道哪裡可以找到字表? 有沒有什麼 idea? 感謝
+21:06 -!- pm5 [~Adium@36-231-238-169.dynamic-ip.hinet.net] has quit [Quit: Leaving.]
+21:09 -!- WeiHung [~chatzilla@36.231.238.169] has quit [Ping timeout: 240 seconds]
+21:10 < clkao> hack.g0v.tw 加上了 scrollback.io, 大家可以試試看右下角
+21:11 -!- clkao1 [722A089F@conference/jsconf/x-opxluhnffmqdekwl] has joined #g0v.tw
+21:11 < clkao1> zzz
+21:11 < clkao> 不過感覺 delay 蠻多的
+21:11 -!- sb-aftere [722A089F@conference/jsconf/x-pnklwxrblhhqsfdc] has joined #g0v.tw
+21:11 < sb-aftere> @@
+21:12 < clkao> sb-aftere: change nick
+21:12 < ipa> that's me XD
+21:12 -!- sb-aftere is now known as ipa_back
+21:13 -!- sb-nansel [650A6513@conference/jsconf/x-rlonxkzqjxvsgfuj] has joined #g0v.tw
+21:13 < sb-nansel> o/
+21:13 < clkao> seems kind of broken
+21:15 -!- Ti_W_B12 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+21:16 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+21:17 -!- Ti_W_B12 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has joined #g0v.tw
+21:20 -!- Ti_W_B13 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has joined #g0v.tw
+21:21 -!- Ti_W_B12 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+21:25 -!- ymow [~Adium@host-111-184-227-73.dynamic.kbtelecom.net] has joined #g0v.tw
+21:25 < clkao> 崩潰... "立法院第8屆第4會期司法及法制委員會「監聽調閱專案小組」第4次全體委員會議"
+21:26 < clkao> 委員會還可以有專案小組的會議... 整個錯亂
+21:27 < clkao> 要想辦法給他 id
+21:27 < walkingice> <囧>
+21:28 < walkingice> 乾脆把中文名字的拼音頭一個字母合併起來當 id 算了
+21:29 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has joined #g0v.tw
+21:30 < clkao> 你說 jtdyzaxz? XD
+21:31 < walkingice> 對！XDXDXDXDXD
+21:31 < clkao> walkingice: 那幫忙 patch 一下 populate-calendar 跟 populate-video 吧 :p
+21:31  * walkingice orz
+21:31 < clkao> 所以可能是 08-04-JUD.jtdyzaxz-04 ?
+21:31 < clkao> . 表示子小組
+21:32 < clkao> 可是 . 若是進了 firebase 會 GG
+21:32 < walkingice> 感覺好像不是很好讀
+21:32 < au> 08-04-JUD_監聽調閱專案小組-04 ?
+21:32 < clkao> harder to type in uri though... ?
+21:32 < clkao> but maybe it doesn't matter
+21:32 < clkao> we also need to generate unique id for hearing (公聽會)
+21:33 -!- ypwong [~anthony@61-220-26-223.HINET-IP.hinet.net] has joined #g0v.tw
+21:34 -!- Ti_W_B14 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has joined #g0v.tw
+21:35 -!- Ti_W_B13 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+21:35 -!- ypwong [~anthony@61-220-26-223.HINET-IP.hinet.net] has quit [Client Quit]
+21:36 -!- ypwong [~anthony@211.72.78.109] has joined #g0v.tw
+21:40 -!- ljm [72200863@gateway/web/freenode/ip.114.32.8.99] has quit []
+21:48 -!- chihchun_afk is now known as chihchun
+21:49 -!- Ti_W_B14 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+21:55 -!- chihchun is now known as chihchun_afk
+21:59 -!- Ti_W_B14 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has joined #g0v.tw
+22:06 -!- Ti_W_B14 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+22:08 -!- FourDollars_ [uid12544@gateway/web/irccloud.com/x-ojyuoluxqvghyupt] has joined #g0v.tw
+22:08 -!- icman [~icman@123.240.129.234] has joined #g0v.tw
+22:09 -!- BV1AL_ [~bmc@114-32-53-235.HINET-IP.hinet.net] has joined #g0v.tw
+22:10 -!- Ti_W_B15 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has joined #g0v.tw
+22:11 -!- Ti_W_B16 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has joined #g0v.tw
+22:12 -!- FourDollars [uid12544@gateway/web/irccloud.com/x-xbojkxwpyjcjyjke] has quit [Ping timeout: 252 seconds]
+22:12 -!- BV1AL [~bmc@220-135-151-143.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+22:12 -!- FourDollars_ is now known as FourDollars
+22:14 -!- Ti_W_B15 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+22:14 -!- BV1AL_ is now known as BV1AL
+22:19 -!- Ti_W_B17 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has joined #g0v.tw
+22:20 -!- Ti_W_B16 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+22:21 < V1ctor> 囧
+22:29 -!- Ti_W_B17 [~Ti_W_B@111-242-73-129.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+22:30 -!- Ti_W_B17 [~Ti_W_B@111-242-45-75.dynamic.hinet.net] has joined #g0v.tw
+22:31 -!- ETBlue1 [AFB6ED68@conference/jsconf/x-tkyptxzqpvzkihet] has joined #g0v.tw
+22:31 < ETBlue1> OMG
+22:32 < ETBlue1> hackfoldr右下角有聊天室好嗨啊
+22:32 < ETBlue1> 而且用起來好像gtalk，不會按到奇怪方向鍵打的字就不見…
+22:36 < yhsiang> ETBlue1: ya scrollback這次去jsconfasia的收穫 XD
+22:37 -!- WeiHung [~chatzilla@42-66-59-72.dynamic-ip.hinet.net] has joined #g0v.tw
+22:37 < clkao1> keke
+22:39 < jimyhuang> XD jtdyzaxz ....
+22:42 -!- Ti_W_B17 [~Ti_W_B@111-242-45-75.dynamic.hinet.net] has quit [Quit: Nettalk6 - www.ntalk.de]
+22:50 -!- ardy [uid17217@gateway/web/irccloud.com/x-oemqonqjixymasgw] has quit [Quit: Connection closed for inactivity]
+22:52 -!- pm5 [~Adium@111-248-200-166.dynamic.hinet.net] has joined #g0v.tw
+23:10 -!- WeiHung [~chatzilla@42-66-59-72.dynamic-ip.hinet.net] has quit [Ping timeout: 240 seconds]
+23:13 -!- ljm [~ljm@220-133-42-47.HINET-IP.hinet.net] has joined #g0v.tw
+23:25 < hychen> http://fossasia.org/
+23:25 < hychen> 有人約去這conference
+23:27 < hychen> 在柬埔寨, 有人要去嗎? XD
+23:29 < yhsiang> 不愧是嗨董 ...
+23:30 < yhsiang> 還有hack day耶 真嗨
+23:31 < hychen> yhsiang: 1000多人的event,  參與主要是學生妹^H
+23:31 < hychen> 妹是我亂寫的, 不過主要是學生沒錯
+23:33 < hychen> yhsiang: 是有人約我一起去
+23:34 < yhsiang> hychen: 阿 你不是要去當speaker ?
+23:34 -!- yukiko [uid19137@gateway/web/irccloud.com/x-rkliskivnskwkmot] has joined #g0v.tw
+23:34 < hychen> yhsiang: 就人家跟我說這個call for paper.
+23:35 < walkingice> hychen: 人帥真好
+23:35 < hychen> yhsiang: 他朋友辦的, 問說要不要一起去
+23:35 < hychen> walkingice: 阿就penk啊
+23:35 < yukiko> 歐耶 終於加入 g0v.tw IRC ...通過 IRC cloud 帳號等了快3各月T__T
+23:35 < yhsiang> 不揪也很帥的 walkingice 怎麼行
+23:36 < poga> penk!
+23:36 < yhsiang> yukiko: 疑... 你沒有要invitation嗎 ..
+23:36 < yukiko> @__@
+23:37 < yukiko> 有點 ...忘了 我記得去申請 IRC Cloud 已經是好久的事@@
+23:37 < walkingice> yukiko: 可以先用其他的 irc client  XD
+23:37 < yukiko> 今天才看到帳號下來 還是beta
+23:38 < yukiko> 可是之前的 client 怪怪的連不上 @@
+23:38 < yukiko> 這不是 G0V網站介紹的 Client嗎
+23:38 < walkingice> yukiko: anyway, welcome :D
+23:38 < yukiko> 謝謝 >\\\\\\<
+23:39 < yukiko> 我會每天掛在這^^/ 目前正在學習D3 ...D3 超級幼幼班   ...也希望可以幫點忙  請多指教 
+23:40 < poga> yukiko: 你好我也是新手（握
+23:41 < yukiko> （握)謝謝你 要學習的話實戰最快  ... 我的好友說來G0V這裡可以吸收很快 希望有成長
+23:42 < yhsiang> yukiko: 有很多d3的坑喔 歡迎跳 XD
+23:43 < clkao> yukiko: 有什麼有興趣的主題嗎? 視覺化坑很多喔
+23:45 < clkao> hychen: g0v 旅行團第二彈?
+23:45 < hychen> clkao: pgrest injection?
+23:46 < yukiko> 嗯@@  ... 因為是有各方向   跟國內中小企業申請專利有點關係 可是我不知道怎麼表達 ...可能還要study一下資料 ...有點抽象解釋不太好   先來蹲馬步 >\\\\\< 
+23:46 < hychen> "教育要從娃娃抓起" XD
+23:47 < mindos_cloud> 我想把 dev/talk 下的演講搬到 dev/talk/2013 大家覺得如何?
+23:47 < mindos_cloud> yukiko++
+23:49 < yukiko> 爬FAQ中~(左邊開網頁讀G0v 的資料 ）
+23:49 < mindos_cloud> hychen : 超酷
+23:49 < hychen> 明年主題是opne hardware耶
+23:51 < hychen> mindos_cloud: go?
+23:52 < mindos_cloud> hychen : 假日被我用乾了......
+23:53 < hychen> mindos_cloud: 是明年2月份的活動
+23:54 < hychen> "1400 participants and speakers from 24 countries."
+23:57 < mindos_cloud> @@
+23:58 < hychen> mindos_cloud: 可以搭配這個行程服用 #http://www.tct.org.tw/taiwanbicycle/indochina-2012
+23:59 < hychen> 中南半島腳踏車橫斷968公里

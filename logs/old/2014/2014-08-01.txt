@@ -1,0 +1,1195 @@
+--- Log opened 五  8月 01 00:00:33 2014
+--- Day changed 五  8月 01 2014
+00:00 < ETBlue> ... 突然想到要實現 ipa 的拖曳 reorder 功能還要能在 ethercalc 裡在指定地方插入/刪除列 @@!!!
+00:00 < ETBlue> orz
+00:01 < au> ETBlue: 寫好了
+00:01 < ETBlue> !!!
+00:01 < au> csv 在 POST /_/room?row=2 就可以了
+00:01 < au> 固定在 A2 作用
+00:01 < au> 但目前只能支援 post 一列，多列還要寫
+00:02 < ETBlue> 那原本的 A2 會被覆寫還是被擠下去？我試試看
+00:02 < au> 擠下去
+00:02 < au> a sec, upgrading ethercalc.org docker
+00:02 < ETBlue> ^O^
+00:05 < ETBlue> 好像不是這樣 XD url: "https://ethercalc.org/_/"+ethercalc_name+"/_/room?row=2"
+00:05 < Michael_LI> ［行前通知］第零次新聞松通知與會人員行前須知，已經張貼到「APP4AM 除黴研究室（ＦＢ社團），島嶼天光學潮實紀錄 工作組（ＦＢ社團）」之中了。
+00:05 < ETBlue> 還是要 "https://ethercalc.org/_/room?row=2/"+ethercalc_name
+00:06 < au> 前者
+00:06 < ETBlue> k
+00:06 < au> 但還沒更新，再等一下
+00:06 < ETBlue> 喔喔
+00:11 < au> ok 了
+00:12 < au> echo 'https://g0v.hackpad.com/0.g2ouozzcarp,我是可愛的新文件' | curl 'https://www.ethercalc.org/_/welcome-to-hackfoldr?row=2'  -H 'Content-Type: text/csv; charset=UTF-8' -X POST --data-binary @-
+00:17 < ETBlue> 插入指定列成功了，但我 post 的東西好像只在一個 cache 亞空間裡起作用，重新整理就失效惹 orz
+00:17 < au> fixing...
+00:17 < ETBlue> 這也能 fix?
+00:18 < lanf0n> XDDD
+00:19 < hcchien> ETBlue 的預算表都還沒開始弄
+00:19 < ETBlue> 額 XD 萌典松來弄好惹 ^^bbbb
+00:21 < au> ETBlue: 亞空間修好了
+00:22 < au> 發現用 jpetazzo 的 nsenter 進 docker 去用 patch 修最快 XD
+00:22 < ETBlue> ...
+00:24 < clkao> docker hub registry is broken...
+00:38 < au> ETBlue: 我反覆測了幾次應該 ok 了，先 afk 一下，有問題再和我說
+00:39 < ETBlue> au: ok :D :D
+00:50 < Michael_LI> 問個秘訣，外頭有人出租３Ｃ設備，例如：投影機
+00:51 < ETBlue> done, 現在會自動抓 titile row 的下一行插入新 hackpad 資料 http://hack.etblue.tw/welcome-to-hackfoldr/edit
+00:52 < Michael_LI> 其實是要問可靠的或是已經熟識的而已，有的跟偶說，沒有就算了
+00:52 < ETBlue> ipa: 妳要的 new pad in foldr 功能算是做好了 XD
+00:54 < ETBlue> 講個秘訣，雖然一直亂按 create and add to foldr 按鈕很方便，所以很容易被濫用…
+00:54 < ETBlue> 但是因為要等到實際點下那個 hackpad url 才會真的在 g0v.hackpad.com 產生新的 pad
+00:56 < ETBlue> 所以要是被亂按，清空 ethercalc 上的資料就好了
+00:57 < ETBlue> 不過那個 pad url 如果實際被點下去了，就得去 hackpad 上才能把新生出來的 pad 刪掉 www
+00:58 < ETBlue> 後來 pad id 用 js 生亂數處理，因為 hackpad api 需要登入才能取用
+01:00 < au> ETBlue: 講個祕訣，如果使用者把 row 2 拖到 row 4 的話，只要 moveinsert A2:F2 A5 就可以把 row 2 移成新的 row 4
+01:00 < au> POST 的 content type 設成 text/plain 就可以下指令了
+01:01 < au> 配上 jQuery UI Sortable 這樣拖放就寫完了。
+01:03 < ETBlue> ?!?!?!?!
+01:05 < au> 也就是 $.ajax({ contentType: 'text/plain', data: 'moveinsert A2:F2 A5', type: 'POST', processData: false }) 的意思
+01:05 < ETBlue> omg ethercalc 小藍點可以 move !!!!
+01:05 < pichuChen> 有什麼方法可以動態回報高雄爆炸的熱點媽?
+01:06 < au> ETBlue: 對，slide 就是 moveinsert
+01:06 < au> (小藍點 radial menu 的左下角)
+01:07 < ETBlue> 我出運了 XD
+01:07 < ETBlue> 先來看一下 jquery ui ^^b
+01:08 < Lee1092> 高雄發生氣爆   lol..    
+01:08 < Lee1092> pichuChen:  這裡有地圖 https://mapsengine.google.com/map/u/0/edit?mid=z1Pm7zQY-cpo.kYCosnL20JN0
+01:08 < kcwu> Lee1092's url: [高雄爆炸地點]
+01:08 < Lee1092> 網友超級迅速
+01:11 < S3p_lin_> 沒寫高雄的話, 還以為是加薩被炸的影片....
+01:18 < ETBlue> 挖好方便 http://jqueryui.com/sortable/
+01:18 < kcwu> ETBlue's url: [Sortable | jQuery UI]
+01:34 < Michael_LI> http://disp.cc/b/163-7YlM
+01:34 < kcwu> Michael_LI's url: [[情報] 目前高雄災區照片 持續更新中 (有其他照片請補上) - Gossiping板 - Disp BBS]
+01:37 -!- jxcode [~jxcode@123.240.53.101] has left #g0v.tw []
+01:41 < MouseMs> ping
+01:47 < Michael_LI> 新聞直播（G8V電視牆）／第一版／http://bit.ly/penghu-crash_G8VLIVE-01
+01:47 < kcwu> Michael_LI's url: [G8V.TV 電視牆]
+01:47 < gavin-^^> 如有災情回報系統的請 ping 一下.
+01:48 < gavin-^^> 要轉給 在消防 服務的人.
+01:49 < Michael_LI> gavin-^^> 你能接手這件事嗎？／因為我還在處理週六新聞松的事物沒有及時的能力／請我們參考上回弄得範例／（澎湖空難訊息統整）http://hackfoldr.org/penghu-crash
+01:50 < MouseMs> 線路組在台南服消防役的現在南下了，現場需要災情回報系統
+01:50 < Michael_LI> 沒有能力的話，至少幫忙寫個公告像這樣子／https://www.facebook.com/groups/g0v.general/permalink/655886364487773/
+01:51 < kcwu> Michael_LI's url: [Facebook]
+01:51 < Michael_LI> 找人跳坑
+01:52 < gavin-^^> 問題我是  這個工具 我不太會用 ^^
+01:52 < pipi_> 有專案是災害整合平台的嗎？88風災有，但不能每次都從頭來
+01:52 < a0000778> 感覺會有新的坑
+01:53 < lanf0n> 印象中沒....
+01:53 < Michael_LI> .//只獨不回
+01:53 < Rhozan> 下次問問陳順孝老師，災害整合平台好像是他推的
+01:53 < pipi_> 這個坑應該是最急迫的
+01:53 < Rhozan> 還是陳炳宏老師..忘了
+01:54 < pipi_> 你確認一下啦XD 如果可以我要聯絡看看
+01:55 < pipi_> 該叫什麼松呢。。。
+01:55 < FrankWu> 爆炸松
+01:56 < gavin-^^> 目前高雄台南無線電介接已經完成.  目前有 20 台救護車待命中, 誰可以 20 分鐘生一個救災資訊平台 
+01:56 < Rhozan> 執行是台灣數位文化協會  http://www.slideshare.net/chen328/ss-36922113 投影片第86張前後有相關資訊
+01:56 < kcwu> Rhozan's url: [我們就是媒體：網路時代的媒體素養教育]
+01:56 < gavin-^^> 線路組有人傳來的.
+01:59 < Michael_LI> （hackfoldr使用方法）http://hackfoldr.org/about
+02:00 < Lee1092> gavin-^^:  目前有網友編輯更新的災難地圖  https://mapsengine.google.com/map/u/0/edit?mid=z1Pm7zQY-cpo.kYCosnL20JN0
+02:00 < kcwu> Lee1092's url: [高雄爆炸地點]
+02:00 < S3p_lin_> 前鎮苓雅區停止上班上課
+02:00 < pipi_> 台灣數位文化協會是嗎
+02:01 < gavin-^^> Lee1092 這個 地圖有轉了.
+02:01 < lanf0n> http://hackfoldr.org/ks0801/
+02:01 < pipi_> 我來聯絡看看，但要怎麼作真的不太清楚
+02:02 < Rhozan> pipi_: 鄭國威好像也是裡面的人，都可以聯絡看看 (剛google查到)
+02:02 < pipi_> 萌典松來尋問大家
+02:02 < Lee1092> lanf0n++  
+02:03 < star_rain> 0,0偷偷近來
+02:04 < Rhozan> http://www.adct.org.tw/services-plans/morakot-disaster-information-center  莫拉克的掛了
+02:04 < kcwu> Rhozan's url: [莫拉克災難資訊中心 Morakot Disaster Information Center | 台灣數位文化協會]
+02:04 < tonyq> 有誰還醒著
+02:05 < Lista> 晚安@@~想來看看有沒有什麼可以幫忙的
+02:05 < tonyq> http://hackfoldr.org/Kaohsiung-explode-20140801 
+02:05 < tonyq> 我正在整理網友的資料
+02:05 < Lee1092> !!  lanf0n  慢了一步
+02:05 < Lee1092> XD
+02:05 < tonyq> (是說 google map engine 不支援 embed，未來要發個 feature request ) 
+02:05 < lanf0n> tonyq: 可以
+02:05 < isenea> 東X新聞現在有LIVE http://www.ustream.tv/channel/%E7%BE%9A%E7%BE%8A%E5%8F%B0
+02:05 < kcwu> isenea's url: [USTREAM: 羚羊台: http://zh-tw.justin.tv/edward21212005 本台在justin tv開的網址 RC語音群: 26303632 羚羊台line:jacky21212005 簡介 http://zh-tw.justin.tv/edward21212005 這是本台...]
+02:06 < lanf0n> tonyq: like https://mapsengine.google.com/map/embed?mid=z1Pm7zQY-cpo.kYCosnL20JN0
+02:06 < kcwu> lanf0n's url: [高雄爆炸地點]
+02:06 < tonyq> anyway 有醒著有能力得來幫忙整理 https://ethercalc.org/Kaohsiung-explode-20140801 
+02:06 < kcwu> tonyq's url: [EtherCalc - Share the URL to your friends and edit together!]
+02:06 < Michael_LI> tonyq++
+02:06 < Lee1092> tonyq:  要加上 embed 
+02:06 < tonyq> 目標是最新訊息要有一個獨立頁面隨時收集最新資料（開個 pad 來作）
+02:06 < tonyq> 然後盡量蒐集網路上的紀錄跟時間點
+02:06 < tonyq> 我來開個最新狀況的 hackpad
+02:06 < pichuChen> google不夠力XD
+02:06 < Lista> tonyq: 要怎麼幫忙?
+02:07 < Lee1092> lanf0n:   那用 tonyq  作的 hackfoldr 吧~  集中火力
+02:07 < tonyq> 編輯剛剛的 ethercalc
+02:07 < lanf0n> Lee1092: ok (不過可能得縮個短網址 lol....
+02:07 < pichuChen> http://ppt.cc/5S7A 一心光華， 一心南寧
+02:07 < kcwu> pichuChen's url: [1030731高雄氣爆事件 - YouTube]
+02:07 < tonyq> 不熟得人去找一下 hackfoldr 的作法
+02:07 < pichuChen> 因為現在似乎還沒有找到原頭
+02:07 < yutin> test
+02:08 < lanf0n> short it : http://bit.ly/ks0801
+02:09 < lanf0n> hackpad 太多人read會轉靜態, embed 的話看要不要先用靜態頁面
+02:10 < Lee1092> yutin++
+02:10 < gavin-^^> 這次 謝謝tonyq 先出手 
+02:10 < tonyq> lanf0n 交給你處理 embed 的部份
+02:11 < Lee1092> lanf0n:  分兩個吧  一個 read 一個回報用  跟上次文播一樣
+02:11 < Michael_LI> 後台標題先用上回的，先幫到這裡
+02:12 < clkao> tonyq++
+02:13 < star_rain> 台灣地區油氣管線圖資管理系統   沒看到有任何人開出來救災-.-
+02:14 < star_rain> 台灣好像有這東西-.-
+02:15 < lanf0n> 好可怕的速度=_=
+02:16 < Lista> http://www.justin.tv/puwu3 這裡有民視的新聞
+02:16 < kcwu> Lista's url: [puwu3 on Justin.tv]
+02:16 < pichuChen> 台灣地區油氣管線圖資管理系統需要帳號密碼
+02:17 < star_rain> 應該第一時間要有人開出來劃定範圍...QQ
+02:17 < star_rain> 結果那久沒一個出來   那系統見好看的喔-.-
+02:19 < tonyq> 我不太熟 hackpad ，誰幫忙建一個 readonly 的版本出來
+02:19 < tonyq> (在剛的 hackfoldlr 上)
+02:19 < lanf0n> tonyq: someone do it...
+02:19 < tonyq> ok
+02:19 < lanf0n> 貼上的link記得順手鎖....QQQ
+02:20 < tonyq> 鎖?
+02:20 < lanf0n> tonyq: 上面的 audit 上面有 lock 功能，避免被誤蓋
+02:20 < tonyq> got it
+02:20 < Rhozan> tonyq: 右上setting的地方點moderate
+02:21 < Lee1092> Michael_LI:  hackfoldr 使用說明在第一行是你貼的吧??  要不要移到最後   對目前來說不是重要資訊
+02:22 < tonyq> 是說地圖應該不是我們自己人在管對吧
+02:22 < Michael_LI> 恩～有人不會用怎辦？
+02:22 < tonyq> 大多數人是來看 folder 的
+02:22 < tonyq> 編輯的還好
+02:22 < Lee1092> Michael_LI:  現在很多人會用壓~  XD
+02:22 < lanf0n> tonyq: 地圖不是 但應該是public edit
+02:22 < tonyq> 我一直搶不到 edit right XD
+02:22 < tonyq> 太多人了
+02:23 < Michael_LI> 我好像一直略為分心，細細思考交給你們，我只是把舊的東西先COPY
+02:23 < gavin-^^> 現在 救護人員 希望有 純文字介面優先
+02:23 < lanf0n> Michael_LI: 寫一些 hint 在 ethercalc裡面吧
+02:23 < Michael_LI> 弄好就去搞新聞松
+02:24 < tonyq> @gavin 那我們來整理 hackpad，給他們 readonly 的 static 版這樣? 
+02:25 < Lee1092> Michael_LI:  我把說明移到最後面的其他了~  XD
+02:25 < FrankWu> [轉]需要有人把資訊等地點列為文字提供給救災人員觀看
+02:26 < gavin-^^> @tonyq 看是不是 要放在這>>http://hackfoldr.org/Kaohsiung-explode-20140801/S0z70k3PaP4
+02:26 < gavin-^^> @tonyq 正在請現場人員使用看看中
+02:27 -!- gaga5lala_ [uid37415@gateway/web/irccloud.com/x-mijzyltwhnungngc] has left #g0v.tw []
+02:27 < star_rain> 台灣地區油氣管線圖資管理系統  屬於經濟部的系統的QQ   經濟部的人沒開帳號給救災中心嗎0.0
+02:27 < tonyq> 現在需要的是什麼? 是哪邊需要救援還是? 
+02:28 < tonyq> hackpad 好頓 Orz
+02:30 < tonyq> 國防部出動了
+02:30 < isenea> 各位想要readonly版本Hackpad的，請在本機電腦新增一個HTML網頁檔，內容只要寫<script src="路徑"></script>，存檔後直接執行即可
+02:30 < yutin> 前鎮、苓雅區今（8／1）日停止上班上課，五權國小設立緊急醫療中心及前進指揮中心
+02:30 < star_rain> 國軍義務役都會出動吧0.0
+02:32 < Lista> https://www.facebook.com/kikuChen 陳菊粉絲團有官方公告......我還在研究怎麼編緝@@|||
+02:32 < kcwu> Lista's url: [陳菊 (花媽) 市長 | Facebook]
+02:32 < Lee1092> isenea:  直接 https://hackpad.com/ep/pad/static/ + padID  
+02:32 < Lee1092> like this:  https://hackpad.com/ep/pad/static/S0z70k3PaP4
+02:32 < kcwu> Lee1092's url: [/1$S0z70k3PaP4]
+02:33 < isenea> lee1092: 這個路徑我一直找不到哪裡可知道 剛才去看嵌入式語法，然後自己小研究一下就出來的
+02:34 < pipi_> 我聯絡上鄭國威了，他跟執行長剛聊完，可惜當時的系統沒被政府接受
+02:34 < pipi_> 政府不做只好我們自己作！！！！！！！！！
+02:35 < pipi_> 但兩位剛好一起在上海出差 orz
+02:35 < ensky> 陳菊API http://ensky.tw:5566/epacks/24
+02:36 < Lee1092> isenea:   XD  這算是小tips  
+02:36 < isenea> 停班停課的消息 還有鄉民有爆卦說凱旋路不要靠近的消息 要不要先寫到Hackpad呢
+02:36 < Lee1092> ensky++  好快
+02:38 < pichuChen> 需要捐血的那個情報有來源嗎?
+02:39 < lanf0n> justin 不知道要怎麼embed =_=
+02:40 < a0000778> lanf0n: http://www.justin.tv/swflibs/JustinPlayer.swf?channel={ID}
+02:40 < kiang> 可以直接用 RSS2.0 feed - https://www.facebook.com/feeds/page.php?format=rss20&id=232716627404
+02:40 < kcwu> kiang's url: [陳菊 (花媽) 市長的 Facebook 塗鴉牆]
+02:40 < lanf0n> a0000778: thx
+02:41 < ensky> kcwu: ++
+02:41 < pipi_> 如果叫災害松呢？
+02:42 < isenea> 越來越多人在看hackpad了..剛才100多個現在變300多個
+02:42 < pipi_> 災平 災害資訊整合平台 災整（混亂）
+02:43 < tonyq> 捐血那個是高雄版的資料
+02:43 < tonyq> 但剛看了一下應該是猜測
+02:43 < tonyq> 所以建議刪掉
+02:43 < lanf0n> server爆惹~~
+02:45 < pichuChen> 捐血不建議隨便發動，因為有CD限制~
+02:46 < Conrad> @@  # 504 Gateway Time-out 
+02:46 < lanf0n> 有cd是...
+02:46 < tonyq> 【最新緊急訊息彙整08010218】
+02:46 < tonyq> 1、因應氣爆全力救災，前鎮，苓雅區今（8／1）日停止上班上課。
+02:46 < tonyq> 2、巿府緊急應變中心已一級開設，並於「二聖醫院設立設立緊急醫療中心」、「五權國小設立前進指揮中心」。
+02:46 < tonyq> 3、將管制區民眾疏散到英明國中，光華國中，瑞祥高中，民權國小，中正高工，光華國小，獅甲國中。
+02:46 < tonyq> 4、請武慶路以西、二聖路以北、民權路以東、三多二路以南區域內居民請儘速至鄰近學校避難，社會局已急調社工及物資到場協助。
+02:46 < tonyq> 5、如需疏散至外地之民眾，請至福德三路、三多路口，交通局備有公車，提供民眾疏散他處。
+02:46 < tonyq> 6、市府目前以救災、安置、控制災情為優先任務。
+02:46 < tonyq> 是說 hackpad 快死掉的情況 用 google doc 會比較好嗎
+02:47 < kiang> 用 google doc 會比較好，至少承載能力是這樣沒錯
+02:47 < Lee1092> tonyq:  google doc 建議設權限， 不然超過 50 人    之後的人也無法編輯
+02:47 < Conrad> hackpad 可以 sync 到 dropbox... 也可以用這個弄成自動更新的靜態頁面
+02:47 < tonyq> 瞭
+02:48 < isenea> 連線至hackfoldr傳回連線被重設...看來也掛了?
+02:48 < pichuChen> 因為捐血後一段時間不能捐血
+02:48 < pichuChen> 所以舉例來說，澎湖空難的時候去捐過血，那這次就沒辦法捐了
+02:49 < pichuChen> 所以假如並不缺血然而這次去大量捐血的話，那一段時間內假如發生需要大量捐血的災難，會缺血。
+02:49 < yutin> 1985粉絲專頁上看到的 http://hackfoldr.org/Kaohsiung-explode-20140801/
+02:49 < kiang> http://www.ptt.cc/bbs/Gossiping/M.1406832075.A.37E.html - 所以罪魁禍首可能是中油，剛剛一直在找天然氣管線資料 -.-||
+02:49 < kcwu> kiang's url: [批踢踢實業坊]
+02:51 < Lee1092> yutin:  這剛剛從 g0v irc 開始的  XD
+02:51 < yutin> ok
+02:52 < ensky> static: 1分鐘更新一次 http://ensky.tw/hwama/info.json
+02:52 < lanf0n> 記得順手鎖cell~~ ((怕有人搞不清楚誤刪確切資訊...
+02:52  * lanf0n 出門買吃的
+02:54 < Rhozan> 蘋果完全把網站當部落格在洗板= =...
+02:57 < tonyq> hackpad 看起來完全失靈 我想移除聯結了
+02:57 < kiang> tonyq++
+02:57 < lanf0n> 流量的關係...
+02:58 < kiang> "中油今凌晨表示，發生氣爆路段有可能屬於中油前鎮所的油管，但相關負責人目前聯繫不上，必須找到前鎮所負責人，才能確認是否為中油管線出問題。" http://www.appledaily.com.tw/realtimenews/article/local/20140801/443833/
+02:58 < kcwu> kiang's url: [中油：氣爆路段有可能是中油管線 | 即時新聞 | 20140801 | 蘋果日報]
+02:58 < tonyq> 還沒弄懂怎麼解鎖， lanf0n 先幫我幹掉那兩個聯結
+02:59 < lanf0n> 短網址連到 hackfoldr 第一頁會是空白 看要不要把最新資訊移到最上面...((但流量...囧
+03:00 < au> lanf0n: 用 proxy
+03:00 < au> https://ethercalc.org/static/proxy/hackpad/S0z70k3PaP4
+03:00 < kcwu> au's url: [/683$S0z70k3PaP4]
+03:00 < lanf0n> tonyq: 我在外面找吃的QQ 上面有兩個鎖頭 點沒合起來的可以解鎖
+03:01 < lanf0n> au: 喔喔喔喔 au++
+03:01 < Lee1092> au++  還有這招!!
+03:05 < lanf0n> Lee1092: 編輯頁看要不要寫在hackpad裡面(不要放在foldr) 讓流量都集中在靜態頁面(有需要編輯的再引導到編輯頁
+03:05 < Lee1092> ETBlue: 用  hack.etblue.tw 看    Kaohsiung-explode-20140801      title 好像跑掉?
+03:05 < au> lanf0n: 已實作
+03:05 < Lee1092> lanf0n: 可阿 Go 
+03:05 < au> 然後 hackpad 編輯頁我移進 g0v.hackpad 了 https://g0v.hackpad.com/Kaohsiung-explode-20140801-S0z70k3PaP4 
+03:06 < kcwu> au's url: [Kaohsiung explode 20140801 - g0v.hackpad.com]
+03:06 < au> 因為 g0v 是自己的 instance，所以不會受到 hackpad.com 的流量影響
+03:06 < tonyq> 疑似還在繼續爆炸 (03:05)
+03:06 < tonyq> 住五甲，30秒前聽到外面還在爆!
+03:06 < tonyq> https://www.ptt.cc/bbs/Gossiping/M.1406833303.A.286.html
+03:06 < kcwu> tonyq's url: [[爆卦] 還在爆! - 看板 Gossiping - 批踢踢實業坊]
+03:06 < tonyq> 四維路廣東一街聽到了…
+03:07 < Lee1092> au++ 
+03:08 < ETBlue> Lee1092: fixed, 因為 hints 沒有加 # 造成
+03:08 < lanf0n> au++ Lee1092++
+03:08 < ETBlue> http://hack.etblue.tw/Kaohsiung-explode-20140801
+03:08 < isenea> 1新聞好像緊急開播了
+03:09 < Lee1092> ETBlue:  這樣會順便幫  hackfoldr 分流嗎?  XD
+03:09 < au> 完全不會 XD
+03:09 < au> (兩個都在 gh pages)
+03:09 < Lee1092> lol    原來如此~ 
+03:09 < lancetw> XD
+03:09 < jimyhuang__> 天哪...
+03:10 < au> http://hack.etblue.tw/Kaohsiung-explode-20140801 正常了
+03:10 < lanf0n> 不過github應該沒有流量問題吧lol
+03:11 < pipi_> 所有播早上第一班新聞的應該都要提早出動了
+03:11 < isenea> 更正一下 1新聞 現在是昨天單元節目重播 但是畫面全部轉成一般新聞播報的畫面
+03:11 < jimyhuang__> 感覺像終極警探4 ...
+03:13 < jimyhuang__> hack.etblue 超厲害的，感覺前幾天的熬夜都回來了
+03:13 < clkao> ETBlue: url 有 focus 的 item 若在 folder 裡不會自動展開... 
+03:15 < ETBlue> clkao: 對啊還在 to-tos 裡…www
+03:15 < ETBlue> 我今晚衝一下
+03:16 < pipi_> 我只好來作挖坑這件事了
+03:17 < Lee1092> ETBlue+++++
+03:17 < pipi_> 救災資訊整合平台初稿@萌典松
+03:19 < Michael_LI> 可以轉貼這個／標題：高雄氣爆事件訊息統整（時間：2014-08-01_03:00AM）／（本文短網址）http://bit.ly/Kaohsiung-explode
+03:19 < kcwu> Michael_LI's url: [廣告與宣傳 - 災難訊息統整 | Facebook]
+03:21 < tonyq> 目前有除了中天以外的新聞台有網路連接嗎
+03:21 < tonyq> 我打算一邊聽新聞一邊看 ptt 來更新公告
+03:23 < tonyq> 消防局有一個人失蹤
+03:23 < star_rain> 民視跟東森
+03:24 < kiang> 火勢已經控制,海軍陸戰隊剛剛正式進入災區 ...
+03:24 < kiang> 希望真的就此結束了 - http://www.ptt.cc/bbs/Gossiping/M.1406834029.A.392.html
+03:24 < kcwu> kiang's url: [批踢踢實業坊]
+03:24 < Lee1092> tonyq:  hackfoldr 上有 民視  東森  三立 的直播
+03:27 < tonyq> https://www.ptt.cc/bbs/Gossiping/M.1406834789.A.F17.html
+03:28 < kcwu> tonyq's url: [Fw: 現場消防車翻覆照片 - 看板 Gossiping - 批踢踢實業坊]
+03:29 < lanf0n> 當兵真辛苦....(希望自願役也有去啊不要每次都不願役=__=
+03:30 < Lee1092> 消防車..  QQQQ
+03:31 < tonyq> 03:29 中天報導七個人死亡，三多路民櫃(?)飯店前面有四具遺體，
+03:31 < tonyq> 三多站裡面找到一個手臂被炸斷的女性、三姓家商附近找到三句遺體。
+03:31 < tonyq> 三多福德兩男一女遺體。火勢逐步游海軍陸戰隊控制中，
+03:31 < tonyq> 稍後將對道路兩旁逐字開挖。目前死亡人數來到15人。
+03:31 < isenea> 高雄屏東上空有小又強的對流胞..
+03:33 < tonyq> 03:33 據傳高雄市消防局主秘 驚傳失蹤
+03:34 < isenea> 某社交串流有人說 其實9點(21點?)就炸一次了 可是當時各新聞台都只說大量冒出白煙而已 有八卦嗎
+03:35 < Lee1092> isenea:  我那時看到的消息是  說有瓦斯外洩 
+03:38 < pipi_> 瓦斯外洩
+03:39 < tonyq> 是說，這次不是瓦斯外洩
+03:39 < tonyq> 現場測到的是乙烯
+03:39 < pipi_> 15人裡有五名消防
+03:39 < tonyq> btw 我把我紀錄到的都寫在這 http://hackfoldr.org/Kaohsiung-explode-20140801/1yx8iv1gyaBBz2jD6WJm0u8iLQ3A2MAwVpkNGDIaFGyY
+03:40 < tonyq> 有人要 edit access 直接跟我說 gmail  
+03:40 < pipi_> 那時候是說瓦斯 現在說是油氣
+03:40 < tonyq> 我明天白天沒事，應該會至少撐到七點
+03:40 < Lista> https://docs.google.com/forms/d/1XDOPT8KmF_7s7VAXR_ArqxLX-NzRjHUV_2cCtQVkwuY/viewform
+03:40 < kcwu> Lista's url: [【助人者募集】7/31高雄市瓦斯氣爆]
+03:40 < tonyq> ptt 有現場測量員的彭有說乙烯
+03:40 < Lee1092> tonyq++ 
+03:41 < lanf0n> 回報區的兩個 link 不同，但點的時候好像會導向同一個頁面?
+03:41 < pichuChen> 接下來早上會需要的是義工人力需求
+03:41 < tonyq> 我覺得根據我的救災經驗，人力不是問題
+03:41 < tonyq> 調度才是
+03:41 < pichuChen> 恩恩
+03:41 < pichuChen> 是這個
+03:41 < tonyq> （八八風災的時候我人在林邊 體驗過一次）
+03:41 < pipi_> 所以是監看有啥新消息嗎
+03:41 < pichuChen> 看起來爆炸範圍沒有擴大了
+03:42 < tonyq> 台灣中油公司發言人張瑞宗剛剛受訪時表示，凌晨1時30分已在台北總公司成立緊急應變
+03:42 < tonyq> 中心，董事長總經理等高層已於2時抵達現場坐陣，目前初步掌握高雄大立加油站受氣爆
+03:42 < tonyq> 影響波及，起火燃燒，幸無人受傷
+03:42 < pipi_> 怕的是二次爆炸
+03:42 < tonyq> 加油站火勢已控制... http://ppt.cc/Es94
+03:42 < kcwu> tonyq's url: [鄭詒方 - 手機上傳 | Facebook]
+03:42 < Lista> 我先把上面表格加上@@~
+03:42 < pichuChen> 不過除了掃街以外，暫時還想不太到會有什麼地方需要人力
+03:43 < pipi_> tonyq: 是要有人監看新聞更新消息是嗎
+03:44 < tonyq> 現況就是保持資訊暢通
+03:44 < tonyq> 讓大家有地方可以查最新訊息
+03:44 < pichuChen> 了解
+03:45 < pipi_> 辛苦了
+03:45 < isenea> 另外可以到有直撥台的社交串流(聊天室) 作為最新消息來源的一部分
+03:45 < Michael_LI> .//Google Drive一直都很悲劇，這種事情都派不上用場　　#功能限制
+03:46 < gavin-^^> http://hackfoldr.org/Kaohsiung-explode-20140801/ << 蘋果放上去了.
+03:47 < gavin-^^> http://www.appledaily.com.tw/realtimenews/article/local/20140801/443849/%E7%B6%B2%E5%8F%8B%E8%87%AA%E8%A3%BD%E5%9C%B0%E5%9C%96%E6%A8%99%E7%A4%BA%E7%88%86%E7%82%B8%E9%BB%9E%E3%80%80%E5%BD%99%E6%95%B4%E6%95%91%E7%81%BD%E8%B3%87%E8%A8%8A
+03:47 < kcwu> gavin-^^'s url: [網友自製地圖標示爆炸點彙整救災資訊 | 即時新聞 | 20140801 | 蘋果日報]
+03:47 < tonyq> isenea: link 給我一下
+03:49 < isenea> tonyq: 羚羊台的 http://www.ustream.tv/socialstream/13908237?siteMode=1
+03:49 < kcwu> isenea's url: [Ustream.tv - Social Stream]
+03:49 < isenea> 嵌入式社交串流
+03:49 < tonyq> 收到
+03:49 < star_rain> g8v 不支援 veetle   778睡著了嗎QQ
+03:50 < lanf0n> tonyq: 最新公告的文件看要不要改成反序(新的在上) 這樣比較方便閱讀
+03:51 < Michael_LI> 阿～要監看臉書的各家媒體，請用這個／https://www.facebook.com/lists/886702544676718
+03:51 < a0000778> star_rain: 可以先用 頁面 功能頂著
+03:51 < kcwu> Michael_LI's url: [Facebook]
+03:51 < tonyq> 好
+03:51 < star_rain> QQ
+03:51 < lanf0n> tonyq: btw, 開頭可能要提醒一下觀看的人定時重整 hackfoldr  XD
+03:51 < Michael_LI> 還有這個／媒體界（公共媒體、獨立媒體、公民記者）https://www.facebook.com/lists/880278178652488
+03:51 < star_rain> http://veetle.com/index.php/channel/view/520c3ec32200c  <<中天的
+03:51 < kcwu> star_rain's url: [中天新聞線上直播 - Live Video Stream on Veetle]
+03:57 < a0000778> star_rain: 話說 那個直播沒有聲音
+03:58 < tonyq>  現在的最新消息文件以改為 新 > 舊
+04:00 < lanf0n> tonyq++
+04:08 < star_rain> 03:19分最新消息  錯字有點誤QQ
+04:08 < star_rain> 03:19 中天呼籲現場附近不要開伙
+04:09 < isenea> 有水果記者被波及
+04:10 < yukiko> >< 高雄遊子哭哭 我在轉發訊息到各高雄平台中 
+04:11 < tonyq> 03:46  幫忙召集調度手電筒、照明設備至三信隔壁消防隊(802台灣高雄市苓雅區三多一路166號) << 網友提供的但沒辦法確認訊息來源
+04:12 < Rhozan> 提醒一下，台灣記者和民眾都對科普知識很缺乏，在正式成因調查出來前不用太斷定和公佈引發事故的物質，許多報導寫疑似或是直接用肯定句描述，但都沒有寫明消息來源，顯示資訊還是很混亂。
+04:13 < yukiko> 收到
+04:15 < Rhozan> 皮皮剛剛提到引發的是油氣，我看到中天有電視畫面標題寫「消防局證實"疑"油氣釀災...」，但沒有其他家媒體報，類似的是「消防局研判可能是瓦斯或是油氣管線所造成，爆炸就沿著管線一路炸開沿線的道路」，顯然是下標用字不精確，又證實又疑似
+04:15 < yukiko> 剛才發現消防員死亡人數就有出入 ..有的報導5名 ..但最後應該還是2名
+04:17 < Michael_LI> .//死幾個不重要，重要的是醫院裡頭，跟醫院外頭的人要資訊銜接
+04:19 < tonyq> 醫院名單
+04:19 < tonyq> https://docs.google.com/spreadsheets/d/1OshWUVZ0X0a0Uw7gOsk_OhLkdlvNfeABlqtgRr39kmM/htmlview?usp=sharing&sle=true#
+04:19 < kcwu> tonyq's url: [hospital list]
+04:20 < Michael_LI> .//發生原因第一時間由政府單位去研究，其他人幫不上忙　　在地人要知道災難範圍，不要靠近或是遠離
+04:21 < Michael_LI> .//有能力寫ＳＯＰ的人私下先寫，Google Drive目錄，周六辦完活動可以協助之
+04:24 < isenea> 對流胞發展到台南去了 不知道重災區現場有沒有下雨
+04:25 < yukiko> 沒下雨 （剛聯絡家人）
+04:26 < tonyq> 現在好像暫時沒有什麼訊息進來？
+04:26 < tonyq> 我看到東森跑馬燈有死亡名單 但太快一直來不及記
+04:27 < ETBlue> ok, 會自動展開包含現有連結的 subfoldr 了 http://hack.etblue.tw/Kaohsiung-explode-20140801/http%253A%252F%252Fensky.tw%252Fhwama%252F
+04:28 -!- deddon [3ab08afa@gateway/web/cgi-irc/kiwiirc.com/ip.58.176.138.250] has left #g0v.tw []
+04:28 < isenea> ETBlue++
+04:28 -!- darkstar is now known as Guest80971
+04:31 < lanf0n> 後台開始有人亂搞惹...
+04:32 < yukiko> ~"~
+04:32 < ETBlue> lanf0n: 據說正版 hackfoldr 有支援 google spreadsheet
+04:33 < lanf0n> ETBlue: 咦咦?!!?
+04:33 < ETBlue> 盜版的還沒有… XD
+04:33 < lanf0n> 剛發現盜版的被亂搞會炸掉XD
+04:34  * lanf0n 其實是因為按一按炸掉才發現有人亂搞
+04:34 < ETBlue> 就…看是哪種類型的亂搞…XD
+04:35 < lanf0n> ETBlue: !! 盜版的可以辦識 /preview 跟 /edit 
+04:36 < ETBlue> ? 啥的 preview 跟 edit
+04:36 < ETBlue> 我沒特別做辨識…
+04:37 < ETBlue> 你是說 google docs?
+04:37 < lanf0n> 就回報區有兩個，一個是 read only (/preview)
+04:37 < lanf0n> 但正版的好像抓到 id 之後，後面的 /preview /edit 就不會讀了
+04:38 < ETBlue> 那是 feature XD
+04:38 < ETBlue> 盜版的只是沒有做任何處理… www
+04:39 < lanf0n> XDDD
+04:39 < ETBlue> 正版的會自動換成 preview版本，避免太多人進來佔位
+04:39 < clkao> lanf0n: 開 issue 吧
+04:40 < ETBlue> lanf0n: 我想正版這功能正好是你需要的 XD
+04:40 < ETBlue> 就不用特別開一個 preview 版的了
+04:40 < lancetw> 原來盜版是另外寫的？我還以為是加強版 XD
+04:40 < Michael_LI> .//這種災難的"好處"是如果瓦斯燒完，大概只要滅火救好，如果是颱風暴雨，那就沒完沒了
+04:40 < tonyq> 04:39 三立報導：國軍到三多福德路口現場挖出一個女性遺體，無法確認姓名。
+04:40 < tonyq> 唉....
+04:41 < clkao> orz :(
+04:42 < shadowcrow> http://umap.fluv.io/en/map/kaohsiung-explode-20140801_1984?scaleControl=false&miniMap=false&scrollWheelZoom=true&zoomControl=true&allowEdit=false&moreControl=true&datalayersControl=true&onLoadPanel=undefine#15/22.6127/120.3305
+04:42 < ETBlue> lancetw: 因為看不懂 ls 只好重寫… XD 努力補上原版功能中
+04:42 < kcwu> shadowcrow's url: [Kaohsiung explode 20140801 - uMap]
+04:43 < shadowcrow> 剛剛用open street map 畫了 google map 的分流
+04:43 < shadowcrow> 本來放在 foldr 上好像被拿掉了 :-/
+04:44 < ETBlue> shadowcrow++ ... 好像整個 ethercalc 都被亂搞了 www
+04:44 < shadowcrow> 囧
+04:44 < lanf0n> 嗯啊 被破壞惹....(只不過去洗個臉囧
+04:44 < shadowcrow> 反正就會一直是那個連結，可以麻煩 ETBLUE 幫忙嘛 ><
+04:45 < lancetw> 現在是壞掉的...
+04:45 < ETBlue> shadowcrow: 只好揪 au 恢復 ethercalc 的 history XD
+04:45 < tonyq> 04:44 從15人死亡下修 14 人死亡，244 受傷下修到 240 傷
+04:45 < ETBlue> 上次立院後新做了 history 功能 www
+04:45 < lanf0n> 還好我一開始有備份...lol
+04:45 < shadowcrow> 如果 google map 掛掉可以用上面的 OSM
+04:45 < a0000778> ETBlue: 其實 不能把 LiveScript 編成 JavaScript 直接改嗎
+04:46 < shadowcrow> 速度比不上 google 還請多包涵
+04:46 < ETBlue> a0000778: 會看不懂，因為我很菜 XD
+04:46 < ETBlue> shadowcrow: 幹嘛這樣 XD
+04:47 < ETBlue> a0000778: 而且他用 angular ... 我想要試試看跳過 angular，因為聽說很慢
+04:47 < shadowcrow> 因為我要去睡覺，所以要託孤給你 ((欸
+04:47 < ETBlue> XDDD
+04:47 < a0000778> ETBlue: 不用框架啥的最讚了 支持:D
+04:48 < lanf0n> 被洗光惹........囧
+04:48 < lancetw> 目前與其說是被破壞，不如說是熱心網友的各種輸入...
+04:48 < star_rain> 我也來趴   撐不住QQ
+04:48 < ETBlue> lanf0n: 備份貼到 google spreadsheet 看看吧
+04:49 < ETBlue> lanf0n: 據說正版 hackfoldr 會辨識那串 sheet id，超過某個長度會自動轉向 google spreadsheet
+04:49 < a0000778> 只剩看消息的精神了 為什麼 veetle 這直播網站要把 Embed 網址用 Blowfish 加密阿...
+04:50 < ETBlue> lanf0n: 所以網址就是 hackfoldr.org/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <- 超長的 google spreadsheer id
+04:50 < lanf0n> ETBlue: 剩一點點東西QAQ....(正試圖從 logbot 海中找出之前 history 功能的網址...
+04:51 < Michael_LI> .//人太多了，後台資訊也會亂
+04:52 < tonyq> 04:51 三立新聞報導：尊龍飯店免費供災民居住
+04:55 < FrankWu> 又被清掉了....
+04:55 < yukiko> https://www.facebook.com/b0002381/posts/10202388658060033 
+04:55 < kcwu> yukiko's url: [潘信維 - 高雄尊龍飯店提供30間客房給災區朋友免費住宿 有需要的朋友請至櫃檯說郭元泰（郭副總）的朋友即可！... | Facebook]
+04:57 < ETBlue> lanf0n: 我有個還沒 refresh 的分頁，裡面 html 長這樣 https://gist.githubusercontent.com/ETBlue/4fc088f3104794fb038c/raw/6dd20db57889261db4331f1227fc0d55a842ba2f/Kaohsiung-explode-20140801
+04:58 < lanf0n> ETBlue: !
+04:58 < ETBlue> lanf0n: 轉成 jade 以後應該就很好懂 XD
+05:00 < lanf0n> 打5566就知道是鄉民在亂了啊....(真的是..
+05:00 < ETBlue> lanf0n: https://gist.github.com/ETBlue/ddd2d19c172bd9c3ca54
+05:00 < kcwu> ETBlue's url: [a html snapshot converted to jade for Kaohsiung-explode-20140801]
+05:00 < yukiko>  有辦法知道亂的人IP嗎 集中BAN掉
+05:01 < lanf0n> yukiko: 額...依 au 以往的做法只會...轉靜態XD
+05:02 < yukiko> 謝謝 lan @_@
+05:05 < tonyq> 還是我們轉 spreadsheet?
+05:05 < yukiko> 請問如果要集中住宿等資訊 ... 放哪個項目較妥？
+05:06 < wHisKy> hackfoldr 可以用 google spreasheet 當資料來源，那就可限定編輯權限了
+05:06 < tonyq> 不對，那樣等於要重開一個
+05:06 < tonyq> 因為他 id 要改
+05:06 < tonyq> lanf0n 你有備份資料嗎
+05:06 < tonyq> 給我一份
+05:07 < yukiko> 我看到有人在臉書提供住宿 但第一時間沒寫地點跟電話 ..我就在臉書下補上飯店資訊  ..如果有集中整理也許能引起響應
+05:07 < ETBlue> lanf0n: 這個版本應該比較好懂 https://gist.github.com/ETBlue/683b6bc83ae5b8a6f763
+05:07 < kcwu> ETBlue's url: [a html snapshot converted to jade for Kaohsiung-explode-20140801 (hack.etblue.tw version)]
+05:07 < lanf0n> ETBlue: tonyq 我找到還原功能了 but....他吐給我 404....(QAQ
+05:08 < ETBlue> 兩個版本的內容可能不太一樣就是了
+05:08 < lanf0n> ETBlue++ 這個是完整有 link 的
+05:09 < ETBlue> lanf0n: 剛才那個也有，只是夾在一堆東西裡面很難撈
+05:10 < tonyq> 目前的 hackfoldr 看起來跟剛的資料完整程度沒得比
+05:10 < tonyq> Orz
+05:11 < a0000778_MB> ETBlue: 剛才那個 直接存成HTML檔就能從瀏覽器讀了
+05:13 < ETBlue> a0000778_MB: ok, 完整 html 版在這裡 https://gist.github.com/ETBlue/b3432cf0a277da859f4e
+05:13 < kcwu> ETBlue's url: [a html snapshot for Kaohsiung-explode-20140801 (hack.etblue.tw version)]
+05:14 < a0000778_MB> ETBlue: 我去整理出來好了...
+05:14 < isenea> 前幾個小時瀏覽還沒關 先備份(時效1日) http://pastebin.com/4t1xt23Z
+05:14 < kcwu> isenea's url: [備份_ethercalc20140801.json - Pastebin.com]
+05:18 < ETBlue> lanf0n: here you are http://hack.etblue.tw/Kaohsiung-explode-20140801.html
+05:18 < kcwu> ETBlue's url: [| hackfoldr]
+05:18 < ETBlue> a0000778_MB: ^^^
+05:21 < lanf0n> fixed
+05:21 < lanf0n> pasting
+05:23 < ETBlue> 直接從 chrome dev tool 存靜態 html 再發佈成備份是也蠻方便的… XD
+05:27 < Michael_LI> http://hackfoldr.org/　爛掉了～一片空白....
+05:28 < isenea> 發現高雄上空對流胞越來越大....
+05:31 < lanf0n> ok!!
+05:32 < lanf0n> 影片之後的沒補到 有記得的可能要補一下...囧
+05:33 < a0000778_MB> ethercalc 似乎有點問題... 編輯狀態沒有同步
+05:34 < lanf0n> btw, 我貼上之後全部鎖上了XD(右上角有紅點) 有需要可以自己打開...
+05:35  * lanf0n 來去研究自動backup..
+05:37 < ETBlue> 備份網址改到這裡 http://hack.etblue.tw/Kaohsiung-explode-20140801-backup0500 以免跟動態版的 http://hack.etblue.tw/Kaohsiung-explode-20140801 相衝 cc lanf0n a0000778_MB 
+05:37 < kcwu> ETBlue's url (1/2): [| hackfoldr]
+05:37 < lanf0n> ETBlue++
+05:44 < lanf0n> hackfoldr 備份的教學: https://g0v.hackpad.com/hackfoldr--b80fhUVlnBe
+05:44 < kcwu> lanf0n's url: [hackfoldr 使用說明 - g0v.hackpad.com]
+05:50 < Michael_LI> ［問坑］au 有辦法成為分流嗎？依據備份檔每１０分鐘更新一次　／02:01:47 lanf0n http://hackfoldr.org/ks0801/ 
+05:50 < lanf0n> Michael_LI: 噢那是我剛復原貼過去的backup XD
+05:52 < Michael_LI> lanf0n　你的網址比較短，我比較喜歡，可惜人類的錯誤歷史無法彌補了　　ＸＤＤＤ
+05:52 < lanf0n> Michael_LI: it's ok XD 有短網址可以用-> http://bit.ly/ks0801
+06:56 < lanf0n> 為什麼可以一直被玩壞....(覺得挫折
+07:15 < ETBlue> lol ethercalc is down
+07:16 < lanf0n> 炸掉惹 booooom....
+07:21 < ETBlue> 炸掉就暫用最新靜態備份 XD http://hack.etblue.tw/Kaohsiung-explode-20140801-backup0700
+07:21 < kcwu> ETBlue's url: [| hackfoldr]
+07:25 < Michael_LI> ETBlue　你這個當作分流適合嗎？
+07:28 < lanf0n> ! 有了 http://hackfoldr.org/1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4  (google doc 發佈版
+07:29 < ETBlue> hooray
+07:30 < ETBlue> 我也來支援一下 google spreadsheet 好了 XD
+07:30 < lanf0n> 編輯頁在這 https://docs.google.com/spreadsheets/d/1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4/edit#gid=0
+07:30 < kcwu> lanf0n's url: [ks0801 - Google 試算表]
+07:30 < ETBlue> 剛才做好了動態 page title 正想炫耀… ethercalc 就掛了 lol
+07:32 < lanf0n> XD
+07:33  * lanf0n 只好跑去ptt散佈link了...
+07:44 < Michael_LI> lanf0n／有分流的ＵＲＬ之後／Ping me／我要更新FB頁面
+07:49 < lanf0n> Michael_LI: http://bit.ly/ks-0801
+07:49 < lanf0n> 因為是連 google spreadsheets ，loading 會有點慢
+07:51 < Michael_LI> 嗯～這個做法可以穩定資訊供給嗎？　#流量多也靠得住？
+07:53 < lanf0n> 後台變成了 google... 應該是不會有問題(?  但編輯權限就...
+07:58 < Michael_LI> 編輯權限當然要限定，Google Drive只有50人
+07:59 < ETBlue> 奇怪，hackfoldr是怎麼處理 google spreadsheet 的 csv error 呢…
+08:01 < Michael_LI> lanf0n／我做了一了備份檔，只有你的gmail可以編輯，到時看看可以用就用，不然就不管它
+08:02 < lanf0n> Michael_LI: 後台本來就是 google 的 spreadsheets 了XD...(因為文件是我開的所以權限目前在我這 囧
+08:02 < lanf0n> 噢喔喔喔然後有一個重點是， """ 不能有留白的 row """
+08:03 < lanf0n> 不然會讀不到QQ
+08:03 < tonyq> hackfolder 被打爆了?
+08:04 < lanf0n> tonyq: 是後台流量爆了XD (我想說你睡了
+08:06 < tonyq> 我剛被某人電話挖起來 就順便來看看
+08:06 < lanf0n> 誰XD
+08:06 < lanf0n> ethercalc 的流量問題只能等 au 起床了QQ...
+08:08 < lanf0n> tonyq: ETBlue 的那個版本跟 hackfoldr 是相同後台(ethercalc)，只是因為是暫存頁還可以讀....(但不能編輯)
+08:09 < lanf0n> tonyq: ks-0801 的後台在 https://docs.google.com/spreadsheets/d/1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4/edit
+08:09 < kcwu> lanf0n's url: [ks0801 - Google 試算表]
+08:09 < lanf0n> 但用 google spreadsheets 的話不能有留白的row
+08:11 < tonyq> 嗯
+08:12 < ETBlue> 找到了，據說是用 Tabletop 什麼的 :D https://github.com/hackfoldr/hackfoldr/commit/ccb272a77cca4803accf83ff76893e035d14f3f8
+08:12 < kcwu> ETBlue's url: [* Initial implementation of GSheet-based hackfoldr · ccb272a · hackfoldr/hackfoldr · GitHub]
+08:13 < lanf0n> (還沒看就先投降了...)
+08:18 < tonyq> 頭好痛 XD
+08:20 < tonyq> 大稻程煙火節取消
+08:21 < ETBlue> 這教學寫得真好懂 http://www.mikeball.us/blog/using-google-spreadsheets-and-tabletop-as-a-back-end/
+08:21 < kcwu> ETBlue's url: [Mike Ball]
+08:21 < lanf0n> 我快不行惹...
+09:09 < NewCliCker> lanf0n 以及熬夜的人辛苦了，還沒休息的趕快去休息吧。
+09:12 < ipa> ethercalc 還是 down.... 
+09:13 < lanf0n> 啊啊啊啊....ethercalc 一炸掉 g0v 的hackfoldr 全部都炸了啊啊啊啊囧囧囧
+09:13 < ipa> http://hackfoldr.org/Kaohsiung-explode-20140801  名字好長啊.... 已經上了就沒辦法改短了嗎？ 
+09:15 < ipa> 例如改成 kh-explode
+09:16 < yurenju> hi
+09:16 < lanf0n> ipa: 就...沒辦法( tonq取der )
+09:16 < yurenju> hackfoldr 進不去，需要幫忙嗎？
+09:17 < lanf0n> 目前改成用 http://hackfoldr.org/1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4 了(更長XDDD) ((後台是google spreadsheet
+09:17 < NewCliCker> 因為ethercalc炸掉，所以目前只有這個是好的 http://bit.ly/ks-0801 #au當時做出支援google試算表的功能實在是洞見先機
+09:18 < lanf0n> yurenju: 有秘訣嗎XD
+09:18 < yurenju> lanf0n: 沒有阿 XDD 只是進不去想說上來看看有什麼需要幫忙的
+09:18 < ipa> yurenju: ethercalc 似乎要等 au 起來才能修
+09:18 < lanf0n> yurenju: 嗯啊 server 是 au 的...(總覺得 au 應該睡得很不安穩囧囧
+09:19 < yurenju> 了解
+09:22 < lanf0n> 完成! https://g0v.hackpad.com/hackfoldr-SOP-QXHns2XZrIo
+09:22 < kcwu> lanf0n's url: [hackfoldr 災況資訊整合 SOP - g0v.hackpad.com]
+09:25 < dz1984> lanf0n: ++
+09:26 < yurenju> lanf0n: 可以轉貼了嗎
+09:26 < lanf0n> yurenju: 咦 哪個?
+09:26 < yurenju> lanf0n: 喔沒事，我以為是救災相關
+09:29 < Lee1092> lanf0n++++  所以目前 google spreadsheet 後台是你在管理?  XD
+09:30 < lanf0n> Lee1092: 其實我權限是設 public XD...
+09:31 < lanf0n> 不過沒貼在 ptt 上以免又 5566 之亂 part 2...
+09:31 < Lee1092> 嗯嗯嗯~  
+09:36 < Michael_LI> Lee1092　有空，有重要的更新，臉書專頁那頁交接給你
+09:36 < Lee1092> Michael_LI:  上班ing  可能無法即時幫忙   lol
+09:37 < Michael_LI> ＸＤ　無所謂了，現在靠分流站了
+09:42 < chusiang> 因為這起事件放到假的工程師一枚，但不知可以幫到什麼，等等會想回公司一趟
+09:44 < lanf0n> 順手把後台縮了: bit.ly/ks-0801edit 
+09:44  * lanf0n bitly應該不會跟我要錢吧QQQQ
+09:45 < chusiang> lanf0n: 他應該會很高興您幫他打到廣告？！ XD
+09:48 < NewCliCker> lanf0n++++ 我想就算在 ptt 上如果只是散布 http://bit.ly/ks-0801 應該是沒問題啦，因為現在拜 ethercalc 被炸掉所賜，後台很難曝光 XD 
+09:48 < tonyq> 年代邀訪
+09:48 < tonyq> 我想紀錄昨晚到現在的分工
+09:49 < lanf0n> 那...維護世界^H^H後台和平的任務就交給你們了.... 我先去跟周公下棋了QQQQQQ
+09:50 < yurenju> lanf0n: 這可以轉貼了嗎 http://bit.ly/ks-0801
+09:50 < lanf0n> yurenju: 那個有po在 ptt 了XD
+09:50 < yurenju> lanf0n: ok
+09:50 < lanf0n> yurenju: 如果有看到舊的還是用半夜那個可能要提醒一下炸掉...(然後請他改連這個)
+09:51 < tonyq> 橘貓是整理連結，michael 負責訊息發布，g0v 專案是背後技術支援與技術平台。(etblue等)。線路組這次剛好有訊息來源。
+09:52 < tonyq> 我在聽訊息跟新聞轉達與整理現場情報，還有一些夥伴是現場直播。我有漏掉什麼工作嗎？
+09:52 < NewCliCker> lanf0n++ http://bit.ly/ks-0801 是貼在 ptt 哪一篇？我在八卦板沒找到 orz
+09:53 < lanf0n> tonyq: 我可以拒絕出現在媒體上嗎QQQ 寫 g0ver就好(? 不然寫強大的 ETBlue 好惹 (X)
+09:53 < lanf0n> NewCliCker: / hackfoldr
+09:53 < tonyq> 沒問題啊，應該也不會點名啦，畢竟對他們而言就是廣大的網友之一而已
+09:54 < tonyq> 我只是確定我理解的東西沒有錯
+09:54 < lanf0n> ya
+09:54 < tonyq> 畢竟媒體就是講錯了就會很尷尬
+09:58 < chusiang> 題外話，這一頁似乎掛了？ - http://g0v.tw/zh-TW/join.html
+09:58 < kcwu> chusiang's url: [如何參與]
+09:58 < NewCliCker> lanf0n++ 感謝 https://www.ptt.cc/bbs/Gossiping/M.1406850474.A.37B.html 
+09:58 < kcwu> NewCliCker's url: [[爆卦] 高雄氣爆資訊的 hackfoldr 炸了 - 看板 Gossiping - 批踢踢實業坊]
+09:59 < lanf0n> chusiang: 因為它好像也是連到 ethercalc.... :P
+10:00  * lanf0n 果然是 ethercalc 一炸 整個 g0v 到處都炸了...
+10:00 < chusiang> 原來如此，好險在下會用 IRC ... XDD
+10:00 < tonyq> 推 LYHA        :有分局朋友說大立加油站的油槽愈來愈熱 請不要靠近    08/01 09:54
+10:00 < tonyq> → LYHA        :地址凱旋三路657號 有發生大爆炸的可能性             08/01 09:55
+10:00 < tonyq> → LYHA        :市府已發稿籲民眾撤離 .....只能祈禱不會發生>"<      08/01 09:57
+10:01 < tonyq> 真希望有個情報窗口可以確認
+10:01 < Lee1092> lanf0n:  幸好這次 g0v.hackpad 還在
+10:01 < lanf0n> Lee1092: 真的QAQ!!! 還好 hackpad 還活著....
+10:02 < pipi_> tonyq: 還需要監看什麼的嗎？
+10:02 < S3p_lin_> 這不是凌晨兩三點的時候, 某個新聞台字幕提到的...  # 大立加油站的油槽愈來愈熱
+10:02 < tonyq> 目前還好 就是一些訊息的查認
+10:02 < chusiang> hackpad 現在背後有 Dropbox 撐腰，應該升級不少才是 XD
+10:02 < tonyq> 我決定來去打給縣政府
+10:02 < tonyq> 市政府講錯
+10:02 < tonyq> 這樣比較快
+10:03 < chusiang> 高雄縣市合併了 XD
+10:05 < tonyq> 接通市府
+10:06 < tonyq> 嘖嘖
+10:07 < tonyq> 社助科說他們不知道（怒）
+10:07 < tonyq> 好啦 我可以理解  他們說要打 1999 問
+10:08  * lanf0n zzz
+10:09 < chusiang> 1999 各個地區都不同吧？
+10:10 < chusiang> http://work1999.kcg.gov.tw/
+10:10 < kcwu> chusiang's url: [1999高雄萬事通]
+10:10 < pipi_> 要轉去高雄的
+10:10 < chusiang> 電話:886-7-336-8333 24小時服務專線:1999 、 886-7-3358080 地址:80203高雄市苓雅區四維三路2號
+10:25 < pipi_> 跳坑，推坑，到現在要挖坑，要怎麼寫比較好
+10:29 < caasih_> ETBlue: CSV parsing 有什麼可以幫得上忙的嗎？
+10:29 < tonyq> → hsuchunmay  :剛剛收到市府簡訊 〔高市府簡訊〕有關大立加油站地下  08/01 10:26
+10:29 < tonyq> → hsuchunmay  :油糟可能發生爆炸資訊，市府在接獲通報後，已立即調   08/01 10:26
+10:29 < tonyq> → hsuchunmay  :派消防車朝地面灑水，防止溫度繼續升高。目前狀況已   08/01 10:26
+10:29 < tonyq> → hsuchunmay  :掌握，消防局正在現場監控，也持續預防性灑水降溫。   08/01 10:26
+10:30 < pipi_> tonyq: 會來萌典松嗎
+10:30 < tonyq> 哪天啊
+10:30 < tonyq> 還沒安排
+10:31 < pipi_> 明天，以為你報了QQ
+10:31 < ETBlue> caasih_: 學原版 hackfoldr 使用 tabletop 失敗中 QQ https://github.com/hackfoldr/hackfoldr-2.0/blob/gh-pages/index.jade#L360
+10:31 < kcwu> ETBlue's url: [hackfoldr-2.0/index.jade at gh-pages · hackfoldr/hackfoldr-2.0 · GitHub]
+10:31 < pipi_> 滿了，想說可以見到傳說中的tonyq
+10:32 < tonyq> 明天我去陪偵的小松
+10:32 < tonyq> 死傷名單：基於個資法市府不予公布，而若民眾擔心親友，可向1999指名查詢，另也可撥衛生局查詢專線07-751-3105。
+10:33 < caasih_> ETBlue: cloning...
+10:33 < ETBlue> caasih_: 不知道為什麼用 ethercalc 的趴法會出現錯誤 Uncaught UNEXPECTED_END_OF_RECORD at char 5809 : th = 0 // if depth == 1, link should in accordion\n
+10:34 < caasih_> ETBlue: 你用來測的網址是？高雄氣爆的彙整頁嗎？
+10:34 < ETBlue> caasih_: 所以只好改用 tabletop，但 tabletop 出來的格式是 hash 不是 array QQ
+10:34 < ETBlue> caasih_: 我用 fire.app 跑 localhost 連 http://127.0.0.1:24681/1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4
+10:35 < caasih_> 啊，收到，請讓我先準備一下 fire.app 0rz
+10:43 < ETBlue> caasih_: 殺掉 index.html 跟 404.html 後 loclahost 就可以自動抓到 index.jade
+10:44 < caasih_> 收到...
+10:45 < tonyq> 幾件事情拜託
+10:45 < tonyq> 1. 行動電源的部分暫無需求，已協調中華電信協助
+10:45 < tonyq> 2. 民眾安置住宿陸續統計人數與進行中，暫勿主動到現場
+10:45 < tonyq> 3. 目前暫未開放捐款以及捐物資，先以市內調度為主
+10:45 < tonyq> 4. 如果有需要當志工的話，請與本局老福科聯繫07-3368333*2440-2442
+10:45 < tonyq> 5. 目前收容所物資尚足夠，有缺或需求的部分將再透過應變中心協助
+10:45 < tonyq> 以上，感謝各位（非官方與正式發言，僅就工作面上提醒）
+10:45 < tonyq> ^ 市府社工非官方訊息
+10:48 < clkao> tonyq++
+10:50 < caasih_> ETBlue: 這邊看到你 log 出來的 data 是array
+10:51 < ETBlue> caasih_: 最最最裡面那層
+10:52 < ETBlue> foldrexpand: ""
+10:52 < ETBlue> hints: "<<<<<<這行是title"
+10:52 < ETBlue> rowNumber: 1
+10:52 < ETBlue> tag: ""
+10:52 < ETBlue> title: "0801高雄氣爆資訊"
+10:52 < ETBlue> url: ""
+10:52 < ETBlue> 編輯註解: "不要移動"
+10:52 < ETBlue> 呃…抱歉洗版囧
+10:53 < ETBlue> caasih_: 我猜要是能變成 ["","0801高雄氣爆資訊",....] 也許就可以沿用趴 ethercalc 的 code 了
+10:54 < a0000778> ETBlue: 是說轉成csv格式？
+10:54 < caasih_> 收到，正在看本來應該要長怎樣
+10:55 < ETBlue> a0000778: 或者說加上字串引號的 csv 格式
+10:55 < a0000778> ETBlue: 給我完整的資料我轉轉看
+10:56 < ETBlue> a0000778: docs.google.com/feeds/download/spreadsheets/Export?key=1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4&exportFormat=csv&gid=0
+10:57 < ETBlue> a0000778: 我是先抓這個，但趴失敗後改用 tabletop，tabletop 的抓法就…就不確定是從哪的
+10:57 < a0000778> ETBlue: ...所以應該是CSV轉JSON才對?
+10:57 < ETBlue> au 寫的原版 hackfoldr gsheet 支援 https://github.com/hackfoldr/hackfoldr/commit/ccb272a77cca4803accf83ff76893e035d14f3f8
+10:57 < kcwu> ETBlue's url: [* Initial implementation of GSheet-based hackfoldr · ccb272a · hackfoldr/hackfoldr · GitHub]
+10:58 < ETBlue> a0000778: 要是可以直接轉更好 @@ 我是看到不懂的錯誤訊息所以放棄
+10:58 < a0000778> ETBlue: 瞭解終於知道是要幹嘛了
+10:59 < ETBlue> 放棄後嘗試學 au 用的 tabletop https://github.com/jsoma/tabletop 雖然也是失敗中… XD
+10:59 < kcwu> ETBlue's url: [jsoma/tabletop · GitHub]
+10:59 < yutin> 現在hackfolder 看來只剩 http://hack.etblue.tw/Kaohsiung-explode-20140801-backup0500/ 活著
+11:00 < ETBlue> yutin: google spreadsheet 版也活著 http://hackfoldr.org/1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4
+11:00 < ETBlue> yutin: 靜態備份的話還有一個更新版的 http://hack.etblue.tw/Kaohsiung-explode-20140801-backup0700/ 
+11:01 < yutin> 原來活著QQ google 版本 要讀比較久XD
+11:01 < ETBlue> ㄟ，應該沒斜線 XD http://hack.etblue.tw/Kaohsiung-explode-20140801-backup0700
+11:01 < kcwu> ETBlue's url: [| hackfoldr]
+11:01 < yutin> ETBlue ++
+11:01 < clkao> yutin: 要幫 index 加 local storage cache 出嗎？再 background 從 source sync 
+11:01 < clkao> s/出/住
+11:05 < yutin> clkao 這方法不錯
+11:06 -!- isenea [guest-isen@conference/jsconf/x-bipkzuhyymyzlqsp] has left #g0v.tw []
+11:08 < tonyq> 前里長氣爆後失蹤　遺體尋獲
+11:10 < clkao> 要衝嗎？應該幾行而已
+11:10 < yurenju> ...
+11:10 < yurenju> RIP
+11:11 < yurenju> clkao: 正在
+11:11 < yurenju> 不過比較熟的人改應該比較快...
+11:11 < a0000778> ETBlue: 剛剛想到... 這不是只是網址不同而已嗎...
+11:12 < yurenju> fork 完之後 npm i && bower i && npm start 之後一片空白...
+11:12 < ETBlue> a0000778: 撲揪
+11:13 < ETBlue> a0000778: 我也不知道為什麼網址改用 google 家的以後 csv.js 就會丟錯誤出來 @@
+11:13 < ETBlue> a0000778: 不要問我 csv.js 是哪來的，我也不知道，就看到它在 dev tool 裡面該該叫 ><
+11:14 < a0000778> 應該是csv轉array吧
+11:14 < caasih_> ETBlue: 好了，我 push 一下
+11:14 < ETBlue> ?!?!?!?!
+11:14 < clkao> yurenju: gulp 跑完了嗎？
+11:16 < caasih_> ETBlue: pushed, 你看一下
+11:17 < yurenju> clkao: fs.watch 丟出一些 execption
+11:17 < yurenju> clkao: https://gist.github.com/yurenju/85b2489f4783e9b9798a
+11:17 < kcwu> yurenju's url: [gist:85b2489f4783e9b9798a]
+11:18 < yurenju> 莫名其妙的錯了...
+11:19 < yurenju> 好了，原來是 sublime 咬住某些檔案，不過還是只有上面那調黑色的跟 git source
+11:20 < yurenju> jQuery not defined.
+11:21 < clkao> rm -rf bower_components 再 npm start 一次？他會在 background update bower... 可能還沒完成
+11:22 < ttcat> ethercalc.org 好像當了？
+11:22 < clkao> er, main-bower-files issue
+11:22 < a0000778> ETBlue: 剛剛測試 確實只是網址差異 Google文件可能還要多個API key
+11:23 < ETBlue> caasih_: it works!!!!
+11:23 < ETBlue> a0000778: omg 我把卡西的推上去看看
+11:23 < yurenju> clkao: module "ui" not found
+11:23 < caasih_> ETBlue:  a0000778 的方法可能比較好，我那個只是應急。
+11:25 < yurenju> 先回去工作...
+11:25 < clkao> yurenju: fixed
+11:26 < ETBlue> caasih_++ http://hack.etblue.tw/1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4
+11:26 < ETBlue> caasih_: 就應急吧 XD 其他等 a0000778 修… ^O^
+11:26 < a0000778> ETBlue: 問題應該是在如何調用 Google API 了...
+11:27 < kcwu> 現在有哪個 google 的 doc 之類的有流量太大不能用的問題嗎?
+11:27 < caasih_> a0000778: 請君入坑 :p
+11:27 < wctaiwan> 所以 http://hackfoldr.org/Kaohsiung-explode-20140801 裡面會 502 Bad Gateway 是已知問題?
+11:27 < a0000778> caasih_: 臨時查API中
+11:29 < caasih_> wctaiwan: 後台 ethercalc 過載是已知問題的樣子...
+11:30 < wctaiwan> OK 謝謝
+11:30 < a0000778> ETBlue: 我是英文能力低下 看 Google API 文件要看半天...
+11:31 < ETBlue> a0000778: 我是數理能力低下，不管文件還是程式都要看半天 = =
+11:33 < au> 後台 ethercalc 回來了
+11:33 < caasih_> au++++
+11:33 < barneybook_on> ls
+11:33 < chusiang---> Good job
+11:33 < a0000778> 看來不急了
+11:34 < a0000778> 繼續翻API...
+11:34 -!- XDDDD_ [~XDDDD@118-163-211-62.HINET-IP.hinet.net] has left #g0v.tw []
+11:40 < NewCliCker> tonyq++++ 看你從昨晚凌晨到現在都沒甚麼休息，辛苦了 <(_ _)>
+11:41 < ttcat> http://hack.etblue.tw/1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4
+11:41 < ttcat> @ETBlue 這個是可以貼出去的嗎？
+11:41 < NewCliCker> au++++ ethercalc 和 Hackpad 真的是 g0v 的兩大命脈，辛苦了 <(_ _)>
+11:41 < ttcat> 目前是以這個為主嗎？
+11:42 < tonyq> 有 我睡了兩小時被電話叫醒才又繼續弄的
+11:42 < tonyq> au ++
+11:43 < ttcat> tonyq: 辛苦了，現在是以哪個 hackfoldr 為主？
+11:43 < ETBlue> ttcat: yes 可貼，有三個版本供分流，詳 https://twitter.com/ETBlue/status/495051716371296258
+11:43 < au> 掛掉的原因看來是有人做奇怪的操作指令讓後台 infinite loop
+11:43 < kcwu> ETBlue's url: [Twitter / ETBlue: 高雄氣爆事件資訊彙整 ...]
+11:43 < ttcat> OK
+11:43 < au> 像是 set E7 formula sum(E1:E6) 之類的，可能是在試試算表功能
+11:43 < ttcat> au: 太白目了 ...
+11:44 < au> 這下要寫如果十秒鐘執行不完就要回退到上一版本之類的
+11:44 < ETBlue> 囧……這關頭還有人是試算表功能，也不換個表去試
+11:44 < au> 感覺上不是惡意，就是每個功能鈕都點看看
+11:45 < au> 是我後台沒寫好 XD
+11:45 -!- wctaiwan [~wctaiwan@wikipedia/wctaiwan] has left #g0v.tw ["Leaving"]
+11:45 < ETBlue> 覺得很新鮮很好玩這樣… = =b
+11:47 < NewCliCker> au: 其實是無聊的人永遠不嫌多www。 lanf0n 有追蹤到昨晚開始就一直有鄉民 5566 軍團的後台之亂 XD http://www.ptt.cc/bbs/Gossiping/M.1406850474.A.37B.html
+11:48 < kcwu> NewCliCker's url: [批踢踢實業坊]
+11:52 < a0000778> ETBlue: 其實直接請教 au 怎麼用 JS 取得 CSV 格式的資料 會不會比較快...
+11:54 < ETBlue> a0000778: 才怪，召喚醒著的人比較快 XD
+11:54 < ETBlue> 換我去睡覺了 www
+11:55 < clkao> cache implemented
+11:55 < a0000778> ETBlue: 感覺我等等也會睡死XD
+11:55 < ETBlue> clkao: 耶，又有新 feature 要抄 QQ
+11:56 < kcwu> https://www.facebook.com/pingooo/posts/10152331057303510
+11:56 < kcwu> kcwu's url: [Ping Yeh - 有人認識高雄爆炸地點地圖的編輯者嗎？https://mapsengine.google.com/... | Facebook]
+11:56 < Michael_LI> 從新媒體剛看到／蘋果日報今天用飛行器拍攝的高雄氣爆現場。新的設施帶來新的視野。／http://video.appledaily.com.tw/images/ReNews/20140801/444039_1_360.mp4
+11:57 < NewCliCker> ETBlue++++ 辛苦了，追 log 發現您深藏不露的戰力整個突破天際 #霸氣ETBlue 
+11:59 < ETBlue> jquery 好像真的比 angular 快，即使菜鳥亂寫也快 www
+12:00 < Michael_LI> .//快死掉了，寫電郵完工就要死（睡）
+12:00 < clkao> 當然, 只是複雜之後後不好 maintain... 
+12:01 < clkao> 不過其實原本慢是 angular 好像哪裡沒 digest... 
+12:01 < clkao> 話說 hackfoldr 是我第一個 angular app.... 不要太強求 XD
+12:01 < hcchien> 沒想到現在是需求量最大的
+12:02 < hcchien> 要不要 refactor 呢   lol
+12:02 < ETBlue> refactor 順便把 2.0 的 UI 合併進去？
+12:03 < ETBlue> 現在那個 ls 天書我實在沒辦法 pr … UI 要自己套 XD
+12:05 < clkao> initial load digest applied... 真是難為大家了... 每次  load 都會有好幾秒空白.... XD
+12:05 < au> 看起來整個修好了
+12:06 < au> 後台目前和 congressoccupied 一樣每分鐘更新，爛掉時後台保留上版本
+12:06 < au> 以後流量一大時應該要自動啟動這個機制的
+12:07 < yutin> ETBlue 高雄市府 問說可否貼hackfolder上官網
+12:07 < yutin> 所以我就把你的給他哩
+12:08 < yutin> 我給 http://hack.etblue.tw/1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4 & http://hack.etblue.tw/Kaohsiung-explode-20140801
+12:08 < au> yutin++
+12:08 < au> 這兩個應該都 ok
+12:09 < ETBlue> yutin: ok, 我醒著時會不定期手動備份成靜態頁面以防爛掉，像是 http://hack.etblue.tw/Kaohsiung-explode-20140801-backup1100 但不是每個小時都有 XD
+12:09 < kcwu> ETBlue's url: [救災地圖 | 0801高雄氣爆資訊 | hackfoldr]
+12:09 < au> 但是因為沒有做 response 所以手機會有點難以閱覽...  http://hackfoldr.org/Kaohsiung-explode-20140801 稍微比較 mobile friendly 一點
+12:10 < ETBlue> 額真的囧
+12:10 < ETBlue> yutin: 行動版可能要連到 hackfoldr.org 的那個
+12:11 < ETBlue> 除非我繼續不睡覺衝 responsive... XD
+12:11 < yutin> XD..
+12:12 < yutin> 不過 hackfoldr.org 讀 google 有點慢
+12:12 < yutin> au ... http://hackfoldr.org/Kaohsiung-explode-20140801 復活哩
+12:13 < clkao> yutin: 修好了 應該變快很多
+12:13 < yutin> 市府那邊好像有人要協助更新hackfolder 正在聯繫中
+12:14 < yutin> clkao ++
+12:14 < hcchien> ETBlue++; au++; yutin++; clkao++
+12:14 < au> clkao: safeApply... ok 我們同時修了
+12:14 < au> 用你的版本吧
+12:14 < clkao> 我已經在 travis 了
+12:15 < au> yeah saw it
+12:15 < clkao> 20s to deployt
+12:15 < clkao> deployt 跟 audreyt 是好朋友嗎？ (冷)
+12:15 < au> 冷
+12:17 < jimyhuang__> lol
+12:18 < ipa> yutin++
+12:19 < a0000778> ETBlue: 翻了翻可行的方法 似乎沒辦法只靠github pages...
+12:20 < clkao> 昨晚到現在 unique visitor 136k, page view 350k
+12:20 < a0000778> google api 卡在驗證...
+12:22 < au> clkao: cache 之後要怎麼 reload
+12:22 -!- Timmy is now known as Guest93998
+12:23 < ttcat> ETBlue 的版本是新的 hackfoldr 界面不一樣 ...
+12:23 < ttcat> 對嗎？
+12:23 < au> ttcat: 對
+12:23 < ttcat> au: ETBlue: ++
+12:24 < clkao> au: 他還是會在 background reload
+12:24 < jimyhuang__> ttcat: 友沒有一整個 upgrade 感覺
+12:24 < clkao> 只是先顯示 cache 過的版本而已
+12:24 < ttcat> jimyhuang__: 超強啊～～
+12:24 < clkao> jimyhuang__: 不然幫忙把 style merge rup4
+12:24 < clkao> 進來吧 XD
+12:25 < au> clkao: oh ok, 我被沒用到的 reload function 誤導了
+12:25 < au> clkao++
+12:27 < au> 結果 pingooo 把 高雄爆炸地點地圖 也 special-case 成不受流量管制了
+12:28 < clkao> au: 原本是有 reload 按鈕的 XD
+12:28 < au> XD
+12:30 < au> ETBlue: 那個啊，不用手動備份
+12:30 < ipa> 有誰知道志工資訊是誰在徵求嗎？
+12:30 < au> https://ethercalc.org/static/history/Kaohsiung-explode-20140801/
+12:30 < kcwu> au's url: [Index of /Kaohsiung-explode-20140801/]
+12:30 < au> 上次就寫好的... 真的爛掉可以 curl PUT 還原
+12:32 -!- chihchun_afk is now known as chihchun
+12:34 < ETBlue> au: ?!?!?!
+12:34 < au> ETBlue: 然後一直冒出我是可愛的新文件啦
+12:34 < au> 亂按更容易了 orz
+12:35 < ETBlue> au: 我一直從 chrome dev tool 裡面 copy as html 後開新 html 檔貼上… QQ
+12:35 < clkao> 為何可愛的新文件
+12:35 < ETBlue> ...果然很容易被濫用 = ="
+12:35 < au> clkao: ipa 請 etblue 寫了 new hackpad icon
+12:35 < au> 所以現在一堆人在按...
+12:35 < ETBlue> ..............
+12:35 < ETBlue> 我先拿掉？
+12:35 < au> 不用，我從後台擋住對該 pad 的 POST 操作
+12:36 < au> s/pad/spreadsheet/
+12:36 < ipa> ETBlue: 你知道志工是誰在徵求嗎？從文件上看不出來
+12:36 < ETBlue> au: 總之你需要的話自己改 @@ 我要打一下電動來幫助思考 responsive ui ...
+12:37 < ETBlue> ipa: 不曉得 lanf0n 還是 tonyq 從哪看到的資訊
+12:37 < ipa> 目前資料填好完全公布，這樣會不會有個資問題？
+12:37 < ipa> email 電話都有
+12:38 < ETBlue> ipa: ㄟ真的耶囧
+12:38 < ETBlue> 這……
+12:38 < ETBlue> lanf0n: tonyq 志工填表結果先隱藏囉
+12:38 < AC_OP2> http://goo.gl/FSIFYp
+12:38 < kcwu> AC_OP2's url: [Winnie Chen - Winnie Chen 分享了 BillyPan 潘建志醫師的相片。 | Facebook]
+12:38 < ETBlue> ipa: 請逕改
+12:38 < ipa> 可以不刪除只隱藏嗎？
+12:39 < ETBlue> ipa: 可以複製到自己電腦上… XD
+12:39 < AC_OP2> http://goo.gl/83P7Fm
+12:39 < kcwu> AC_OP2's url: [BillyPan 潘建志醫師 - 動態時報相片 | Facebook]
+12:39 < ipa> ETBlue: 我也是這麼想... done.
+12:39 < ETBlue> ipa: 不然一進編輯畫面一樣看到連結
+12:39 < ETBlue> ipa++
+12:41 < ttcat> ++
+12:41 < au> 可愛的新文件擋住了，不會實際進後台
+12:41 < ipa> ETBlue: 目前放了本站和你的分流，有靜態站要加嗎？http://goo.gl/JuJG79
+12:42 < kcwu> ipa's url: [g0v.tw 台灣零時政府 - 動態時報相片 | Facebook]
+12:42 < au> 可愛的新文件的操作者的前台還是會有，可以儘量玩（這個技巧的學名叫 hellban）
+12:43 < ETBlue> ipa: 最新靜態站，雖然好像用不到 XD 可能只有電腦很慢的人會需要連…？ http://hack.etblue.tw/Kaohsiung-explode-20140801-backup1100
+12:43 < kcwu> ETBlue's url: [救災地圖 | 0801高雄氣爆資訊 | hackfoldr]
+12:44 < ipa> ETBlue: 你留言貼的是後端分流吧？
+12:44 < ETBlue> au: ... 既然是你說的那應該是真的 = =b
+12:45 < ETBlue> ipa: 對壓，所以總共五種分流，兩個前端，兩個後端，一個靜態
+12:45 < au> ipa: 我把主 post 改成一前一後了
+12:45 < au> 靜態暫時用不上了
+12:45 < ipa> au++ 
+12:47 < au> g0v.tw 粉絲頁剛才一貼就出現一大堆可愛的新文件 (>10)
+12:47 < au> 看來日後 hackfoldr 2.0 普及有望 (?)
+12:47 < ipa> yay \o/
+12:51 < Lista> 我把 https://www.facebook.com/notes/tina-mandy/0731%E9%AB%98%E9%9B%84%E6%B0%A3%E7%88%86%E4%BA%8B%E4%BB%B6-%E5%BF%97%E5%B7%A5%E7%89%A9%E8%B3%87-%E4%BE%9B%E9%9C%80%E8%A1%A8%E5%96%AE%E5%A1%AB%E5%AF%AB%E5%8F%8A%E4%B8%80%E8%A6%BD%E8%A1%A8/536427576484592 這裡看到的物資表加到志工區囉
+12:51 < kcwu> Lista's url: [Facebook]
+12:52 < au> Lista++
+12:54 < ETBlue> orz
+12:55 < ETBlue> 那功能實在耐容易被濫用
+12:55 < ETBlue> 太
+12:55 < ipa> Lista: 請問物資是哪裡在徵求？
+12:57 < Lista> 我是看到有fb的在統整連結
+12:57 < Lista> 他上面志工的都已經在項目上了，所以把物資的也幫忙加上
+13:02 < tonyq> 我的那個最普遍
+13:02 < tonyq> 志工表是ptt 但不是我加
+13:02 < tonyq> 我建議隱藏+1
+13:02 < Lista> 物資的被拉掉了?
+13:04 < ipa> tonyq: 你建議隱藏徵求志工表，還是回覆表？
+13:07 < Lista> 物資的我先加回@@a
+13:09 < au> Lista: 網址前面要補空白才會加到目錄裡（我修了）
+13:09 < au> 明天萌典松絕對要來把這個 misfeature 解掉
+13:09 < clkao> 話說上次醫院候診候床有人開始動嗎？ # http://www.chihchih.net/2014/08/blog-post.html
+13:09 < kcwu> clkao's url: [一場大爆炸，粉碎吹牛官員的醫療謊言！ | 《外科失樂園》]
+13:10 < au> 例如像 foldr row 的 column A 加一個 # 號代表以下的連結自動都是 children
+13:12 < Lista> au: 喔喔，好
+13:12 < ETBlue> au: # 會不會跟第一行的註解混在一起
+13:13 < au> Lista: 單獨一個 # 後面不跟文字就不會
+13:13 < au> er
+13:13 < au> ETBlue: 單獨一個 # 後面不跟文字就不會
+13:13 < ETBlue> XD
+13:13 < ETBlue> 用刮號包起來好像蠻直覺的
+13:13 < au> 這樣以後有 nested subfolder 可以用 ## etc
+13:14 < ETBlue> 疑疑
+13:14 < ETBlue> nested ...（思） ui 應該可以
+13:14 < clkao> 還是 > ?
+13:14 < au> > 會變 wikitext
+13:14 < clkao> orz
+13:15 < ETBlue> 有沒有開始跟結束可以分辨的符號
+13:15 < au> 雖然也沒什麼不好 (?)
+13:15 < ETBlue> 外觀上可以知道現在包的是上面還下面
+13:15 < au> 確實 > >> 比較直觀
+13:16 < au> ETBlue: 用 > 開始然後用 < 結束
+13:16 < ETBlue> 疑，還是一律包上面就好，結束的地方就用下一個的開始來算
+13:17 < au> 是，我本來是這樣想
+13:17 < au> 但多支援一個 < 也不錯
+13:17 < ETBlue> 這樣就是 level 1 也要能夠標註
+13:17 < ETBlue> 不然會回不來…
+13:17 < au> >,folder-a
+13:17 < au> http://.../,label
+13:17 < au> http://.../,another child
+13:18 < au> <
+13:18 < au> http://.../,toplevel now
+13:18 < ETBlue> 不錯耶很直覺
+13:18 < au> 那明天來寫吧
+13:18 < ETBlue> ……這是坑嗎
+13:19 < ETBlue> 總之我今天先弄好 responsive = =b
+13:24 < ipa> http://www.ettoday.net/news/20140801/384915.htm?from=fb_et_news
+13:24 < kcwu> ipa's url: [快訊／物資充足　高雄市政府：請民眾改捐款協助　 | ETtoday政治新聞 | ETtoday 新聞雲]
+13:25 < hychen> 高雄好慘 ...
+13:28 < swem> clkao: 你好, 想問一下 ，現在hackfoldr.org 上的 Youtube Live 標籤出不來。我在想是不是deploy的機器上面 app/config.jsenv 沒有填寫好，或者是所屬專案的 Google APIs  (YouTube Data API v3) 沒有被打開
+13:28 < clkao> swem: 我看一下
+13:33 < clkao> swem: 現在有哪裡應該是 live 的嗎？
+13:35 < clkao> swem: 我看 developer tool 有 response 耶
+13:39 < au> 訊連 team 前兩天的 patch 來得真是時候，現在 ethercalc 不用先 refresh 再更新了
+13:40 < au> 看來都穩定了... bbiab lunch
+13:46 < Lee1092> au++
+13:46 < ttcat> 有可能能將  http://goo.gl/83P7Fm 這個跟 google map 比對嗎？
+13:46 < kcwu> ttcat's url: [BillyPan 潘建志醫師 - 動態時報相片 | Facebook]
+13:47 < ensky> 死傷名單會有個資法疑慮嗎? https://www.ptt.cc/bbs/Gossiping/M.1406867846.A.3BB.html
+13:47 < kcwu> ensky's url: [[爆卦] 呂秋遠律師FB (關於高雄氣爆救災) - 看板 Gossiping - 批踢踢實業坊]
+13:48 < au> ttcat: http://hackfoldr.org/Kaohsiung-explode-20140801 最下方的連結即是
+13:48 < ensky> 印象中今年coscup說法是 1.公開資訊可轉載公佈 2.當事人可撤除(須提供撤除管道) 不知是否有誤
+13:51 < ttcat> au: 謝謝 !!!!!!
+13:51 < ttcat> 地球公民等下開記者會所以在找資料
+13:51 < chusiang___> 高雄三信家商那邊開始停水了 ...
+13:52 < kcwu> 一定要在同一 column 嗎? 能不能直接用 column index 表示深度?
+13:53 < kcwu> # hackfoldr
+13:53 < au> kcwu: 也是一招
+13:55 < au> kcwu: 不過看來鄉民的習慣是在 column A 貼網址就結束了
+13:56 < au> 不過也可以把 column A 隱藏或縮很窄
+13:57 < au> 然後改 indent 時標籤也要跟著位移... hmm
+13:57 < swem> clkao: 看起來現在沒問題了，不過剛剛我看是沒有顯示Live tag
+13:57 < au> # 好像有一點麻煩
+13:57 < swem> clkao: 剛剛只有 ustream 的有正確顯示出來
+14:03 -!- tka_test is now known as tka
+14:07 < tkirby> hackathon 票開賣時間有延後?
+14:07 < au> 8/4 報名，今天預告
+14:08 < tkirby> (y)
+14:09 < hychen> http://www.nfa.gov.tw/main/List.aspx?ID=&MenuID=745&ListID=3382
+14:09 < kcwu> hychen's url: [內政部消防署全球資訊網]
+14:09 < hychen> 原來我們有救災雲誒
+14:09 < hychen> 裡面還有個給民眾用的入口網站
+14:14 < yhsiang> hychen: 我記得有 XD
+14:14 < dz1984> 只有說明文件?
+14:25 < isacl> http://hackfoldr.org/Kaohsiung-explode-20140801 我這邊會看不到選單跟內容，還在研究為什麼
+14:26 < ensky> isacl: disconnect ?
+14:27 < isacl>  curl -v http://hackfoldr.org/Kaohsiung-explode-20140801 會拿到 404, 但是有吐內容
+14:27 < clkao> ethercalc ethercalc parse error?
+14:28 < isacl> http://pastebin.com/9hiy8X5V
+14:28 < kcwu> isacl's url: [copyleft@androidnb:~ |$ curl -v http://hackfoldr.org/Kaohsiung-explode-20140801 - Pastebin.com]
+14:28 < isacl> 404 是 github 吐的嗎？
+14:29 < clkao> 404 is normal
+14:30 < clkao> title 空了的關係 被差了一個 column
+14:31 < isacl> oh 了解. 感謝 clkao / ensky.
+14:31 < clkao> 無法刪除 column 
+14:31 < clkao> au: can you take a look?
+14:31 < au> ok
+14:32 < isacl> BTW, 請問 404 是刻意的嗎？好處是什麼？
+14:32 < clkao> isacl: https://coderwall.com/p/kfomwa
+14:32 < kcwu> clkao's url: [Chia-liang Kao : angularjs html5Mode on github pages]
+14:33 < au> clkao:  修好了
+14:33 < au> curl https://ethercalc.org/static/history/Kaohsiung-explode-201401/1406872501315.txt | curl -i -X PUT --data-binary @-  https://ethercalc.org/_/Kaohsiung-explode-20140801
+14:34 < au> 就是去 https://ethercalc.org/static/history/Kaohsiung-explode-20140801/ 看上一個 A1/B1 而不是 A1/F1 的即可
+14:34 < kcwu> au's url: [Index of /Kaohsiung-explode-20140801/]
+14:34 < au> makes sense?
+14:34 < isacl> clkao: thanks. reading..
+14:34 < isacl> au++ thanks
+14:36 < isacl> au 改好後本來不行，清了幾次 cache 後就可以了. 不確定時需要時間還是 local cache.
+14:36 < au> local cache for 1min
+14:36 < isacl> au: got it!
+14:43 < clkao> swem: live seems working now.. probably referrer issue
+15:05 < ETBlue> hackfoldr 2.0 responsive http://hack.etblue.tw/1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4
+15:05 < au> ETBlue++ # 爆發
+15:06 < clkao> ETBlue++ # 好帥啊 還有動畫
+15:06 < ETBlue> 糟糕，越來越睡不著了囧
+15:07 < poga> ETBlue++
+15:08 < caasih_> ETBlue++
+15:10 < chihchun> ETBlue++
+15:10 < isacl> ETBlue++ !!
+15:11 < ipa> http://blog.g0v.tw/posts/212266/pick-up-time-hack-song-sign-up-for-reminders 黑客松報名提醒
+15:11 < kcwu> ipa's url: [第拾次黑客松報名提醒 « g0v.tw 台灣零時政府部落格]
+15:12 < ponize> ETBlue++!
+15:13 < hychen> ETBlue++
+15:13 < AceChen> ETBlue++
+15:13 < isacl> ipa: 報名網址好像錯了？
+15:13  * AceChen 見證
+15:14 < ipa> isacl: 沒錯啊 
+15:18 < ponize> 沒錯！
+15:18 < isacl> ipa: 噢噢, 誤會了.
+15:19 < isacl> 原來是合辦.
+15:19 < ponize> @isacl 是
+15:19 < ipa> 咦，那是不是還是開個 g0v kktix 頁面再導過去比較好.....
+15:20 < isacl> 糟糕，被發現脫節太久了 XD
+15:22 < jimyhuang__> ETBlue: 該睡了啦
+15:22 < ponize> ETBlue大爆發!~
+15:22 < ponize> 這次難得合辦，不是脫節
+15:23 < Lee1092> 我看見神蹟了  0.0  ETBlue++++
+15:24 < jimyhuang__> 剛剛差點以為報不到名了 @@"
+15:25 < ponize> 下周一8/4中午12:00 互相提醒
+15:25 < ponize> 我好緊張
+15:29 < NewCliCker> ETBlue++++ 超猛的啦！有夠厲害！ #霸氣ETBlue大爆發！
+15:32 < au> 來亂的太多，暫時改成手動 sync 了。目前以 https://ethercalc.org/static/history/Kaohsiung-explode-20140801/1406878261897.txt 為準，歡迎繼續更新，但是我會每小時看過再放到網站上。
+15:32 < au> (比照 g0v.today 模式)
+15:36 < isacl> 又要辛苦 au 了
+15:36 < isacl> g0v.today 時常常看到你半夜起來更新
+15:37 < au> 慢慢可以整理出一個模式
+15:37 < isacl> 是
+15:37 < au> 就是彙集資料時開放，然後發散時逐步收攏
+15:37 < au> 需要一鍵還原之外，還要 hackpad 這類的 visual diff
+15:40 < jimyhuang__> google sheet 的diff讓我每次都找不到diff哪些地方
+15:40 < ttcat> ETBlue: ++
+15:40 < ttcat> au: ++
+15:41 < au> jimyhuang__: http://share.find.coop/doc/spec_hilite.html
+15:41 < kcwu> au's url: [The COOPY Toolbox: The COOPY Toolbox: Specification of the highlighter diff format]
+15:41 < NewCliCker> au++++ 還能歸納出破壞者pattern，好厲害，下一步難道要開始建立自動化反制破壞者演算法嗎 XD 
+15:41 < au> 之前和 coopy 合作做
+15:41 < au> socialcalc visualize diff 但是一直沒整合進來
+15:41 < jimyhuang__> 原來還有這種東西！！！
+15:42 < au> jimyhuang__: 特點是 diff sheet1 sheet2 的結果也是一個 sheet
+15:42 < ttcat> ETBlue: 要不要考慮把 home 的 icon 變回回到這個 hackfoldr 第一頁，然後把 g0v 之類的連結收到 about
+15:42 < jimyhuang__> make sense ，不過之前沒想過可以這樣
+15:42 < ttcat> 因為之前一直有人 confuess 為什麼按了 home 跑去了別的地方
+15:42 -!- ponize [guest-poni@conference/jsconf/x-lxwgxuvuixwiwzwe] has left #g0v.tw []
+15:46 < NewCliCker> 為了大力推廣 a0000778 辛苦寫的 g8v 電視牆新功能，因此我把 高雄氣爆資訊整合站 裡面的 台灣各新聞台頻道 的影音實況整理成 g8v 電視牆選台器 http://j.mp/1n9IBx0 歡迎大家試玩 XD
+15:46 < kcwu> NewCliCker's url: [G8V.TV 電視牆]
+15:46 < NewCliCker> 右下角目前放的是 tonyq 的及時訊息 pad。如果沒甚麼大問題等一下就放進 高雄氣爆資訊整合站 接受鄉民蹂躪 XD
+15:48 < ipa> ttcat: home改為 hackfoldr id +1
+15:48 < ETBlue> ttcat: 這個版本應該不會按錯？因為 home 按了是選單，不會直接跑掉 http://hack.etblue.tw/1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4 
+15:49 < ETBlue> ttcat: 這個版本是按了 foldr 標題會回到 foldr 的首頁
+15:50 < ipa> ETBlue: 或，home icon連到該 hackfoldr，g0v 連結另外用g0v logo 連？
+15:51 < ipa> 目前home icon是連回 g0v 工作區，是以自黑區為基礎，但目前別的團體使用時就會很混淆
+15:51 < ETBlue> ipa: 啊，hackfoldr 最上游的適合不內建特定社群連結，內建的 g0v 連結的則適合放在 g0v 版的 hackfoldr
+15:51 < ipa> ya
+15:51 < ipa> 慢慢改吧，你要不要先去睡 XD
+15:51 < ETBlue> ipa: 我還沒想到怎麼設定各社群的 repo
+15:52 < ETBlue> 睡不著了囧b
+15:53 < au> ETBlue: 對啊，你 24 小時內弄了 tabletop responsive autoexpand dynamictitle newpad 
+15:53 < au> 是不是稍微休息一下比較好，散個步什麼的 XD
+15:53 < ETBlue> 只好去 tyria 把每日任務打完！
+15:53 < ipa> 烤個吐司打個遊戲然後去睡～
+15:53 < ETBlue> 剛才想 rwd 時已經完成三項，還差兩項… XD
+15:54 < jimyhuang__> 對啊，睡醒就可已吃麵包 ... 
+15:54 < isacl> 恭請 ETBlue 休息 m(_ _)m
+15:54 < ETBlue> yay 我去拯救 tyria 了 81
+15:54 -!- guest_hello [24e71d13@gateway/web/cgi-irc/kiwiirc.com/ip.36.231.29.19] has left #g0v.tw []
+16:07 -!- tester [722ce4cc@gateway/web/cgi-irc/kiwiirc.com/ip.114.44.228.204] has left #g0v.tw []
+16:14 < pipi_> 請問這次黑客松因為有合辦所以模式有點不一樣嗎?
+16:19 < ipa> pipi_: 就時間比較長吧 
+16:19 < ipa> 第一天沒做完，第二天回來繼續....這樣算模式不一樣嗎？XD
+16:28 < tonyq> 現在狀況怎樣
+16:28 < tonyq> 休息一下回來就好像有點脫節了
+16:28 < tonyq> 哈哈哈
+16:34 < hcchien> 今天粉絲團又爆衝囉
+17:02 < pipi_> 黑客松辦個三天五天我都可以XD
+17:12 < ETBlue> 我想到了，可愛新文件的按鈕應該要在按了鉛筆以後才出現，然後 submit 後就消失，因為理論上開完新文件應該要開始專心編輯
+17:13 < anstur1> @@
+17:13 < ETBlue> 看不懂綺羅生是啥有感… http://hack.etblue.tw/welcome-to-hackfoldr/Hackfoldr-2.0-7TMSpXasDWl
+17:23 < ipa> ETBlue: 你你你 又醒了
+17:24 < ETBlue> done!
+17:24 < ETBlue> 我打完每日又吃完早餐但還沒睡…^^b
+17:26 < ETBlue> 嗯嗯這樣新增按鈕的曝光度低很多，應該就不會那麼多可愛的新文件了
+17:40 -!- anstur1 [guest-anst@conference/jsconf/x-iyftoiajkdzordgt] has left #g0v.tw []
+17:48 < hychen> 爆肝人妻
+17:59 < S3p_lin_> pp/win 39
+18:03 < wrialt1> 這是聊天室嗎?
+18:04 < hychen> y
+18:06 -!- tka_test is now known as tka
+18:07 < superbil> 只能幫 ETBlue ++ 惹
+18:07 < Michael_LI> ETBlue 竟然還在爆肝！　我都睡了3.5小了
+18:09 < pipi_> #無敵人妻
+18:09 < pipi_> 犀利人妻
+18:09 -!- wrialt1 [guest-wria@conference/jsconf/x-xjwsbmulpgbqmguj] has left #g0v.tw []
+18:14 < Michael_LI> ＰＳ／有本奇妙的書名可以點綴目前的現象／人妻特務之外星人來襲！／http://stn.eslite.com/Article.aspx?id=951
+18:14 < kcwu> Michael_LI's url: [誠品站 Eslite Station - 駐站作家 > 人妻特務之外星人來襲！]
+18:20 < Goddamn> exit
+18:30 < jimyhuang__> tonyq: 後來受訪的有著落？
+18:31 < jimyhuang__> 剛好週日要講g0v相關的東西，想說可以直接拿案例來說明一下行動者如何自我組織
+18:48 < lanf0n> clkao++ au++ ETBlue++  #hackfoldr超進化
+18:49 < lanf0n> 又是個海量 log 的一天...
+18:55 < jimyhuang__> ipa: 這個可以借用一些slide嗎？ http://www.slideshare.net/ipachiu/ss-36835772
+18:55 < kcwu> jimyhuang__'s url: [網路參與@高中創意政策競賽說明會]
+19:08 -!- CelloCello [~Sero@1.34.191.8] has left #g0v.tw []
+19:33 -!- chihchun is now known as chihchun_afk
+20:00 < ipa> jimyhuang__: ok 我忘了標CC吼
+20:01 < ipa> jimyhuang__: 你要 keynote 檔嗎？
+20:09 < jimyhuang__> ipa: 我應該沒辦法開keynote
+20:10 < jimyhuang__> cc授權就好了
+20:21 < Michael_LI> ＦＹＩ　https://www.facebook.com/pnnpts/posts/10152666989658833?notif_t=notify_me
+20:21 < kcwu> Michael_LI's url: [PNN公視新聞議題中心 - 【還有多少未爆彈？---即刻公布全台石化地下管線】... | Facebook]
+20:27 < hcchien> 我要 keynote 檔!
+20:35 -!- chihchun_afk is now known as chihchun
+21:03 -!- chihchun is now known as chihchun_afk
+21:24 < moon_c_> hackpad是不是打不開？
+21:24 < au> 我看起來 ok
+21:24 < moon_c_> 恩好的～我再試試
+21:24 < NewCliCker> hackpad ok +1
+21:25 -!- chihchun_afk is now known as chihchun
+21:36 < NewCliCker> 話說這次高雄 hackfoldr 放入各家電視新聞頻道實況 & g8v 電視新聞選台器，對我而言有試水溫的意義 XD 
+21:36 < NewCliCker> 由於實況內容有的是來自電視台自己建立的直播，有的則是個人建立的直播，值得觀察是否會有版權擁有者主張個人建立的電視新聞直播侵害其公開播映權。
+21:36 < NewCliCker> 不知道大家意見如何 XD
+21:37 -!- tka_test is now known as tka
+21:59 -!- chihchun is now known as chihchun_afk
+22:10 < venev> 提醒一下：明天是 moedi5t 第五次萌典松 https://g0v.hackpad.com/8-moed5ct?r=0#8-moed5ct
+22:10 < kcwu> venev's url: [8 月萌典松: moed5ct(含直播及文字轉播) - g0v.hackpad.com]
+22:10 < venev> 報名小松的各位可以來 hackpad 寫一下想做的事
+22:12 < venev> 開了一個「救災松？」的 heading，有關支援高雄氣爆救災的 todos 或 topics 可以寫在那 
+22:17 < venev> au 不知道為何，我雖可進到 kktix 後台 event dashboard，但進不去 attendees 或 order 頁面（403 FORBIDDEN），所以簽到表可能要麻煩你
+22:20 < au> venev: try again
+22:20 < Michael_LI> .// <NewCliCker> 查廣電法　自行轉接訊號圖利，有徒刑
+22:22 < Michael_LI> 提醒一下明天是新聞松／大家昨天都收到行前通知了／https://g0v.hackpad.com/2014-08-02-t69q4dPjAI4
+22:22 < kcwu> Michael_LI's url: [2014-08-02／第零次新聞松／ - g0v.hackpad.com]
+22:31 < NewCliCker> Michael_LI: #圖利有徒刑 u got it :) 不過以高雄氣爆資訊 hackfoldr 這個 case 而言 1.無圖利事實 2.重大災害事件可主張基於公眾利益的合理使用。因此我認為就這件事而言值得討論 & 觀察。
+22:32 < Michael_LI> .//已讀不回
+22:38 < venev> au: attendees page works / orders page still 403（但這樣已經可以印簽到表了 ^^b）
+22:40 < au> venev: ok ^^ kktix 的權限真複雜
+22:52 < Rhozan> NewCliCker: 今天看到中央社網站很囂張的寫出了「未經授權禁止傳播本站文字」之類的字樣...很敢XD
+22:55 -!- Aaron is now known as Guest36565
+22:56 -!- Guest36565 [6ff0ad6f@gateway/web/cgi-irc/kiwiirc.com/ip.111.240.173.111] has left #g0v.tw []
+22:57 < lanf0n> 好生猛呢...
+23:06 < Lee1092> Rhozan:  陳述事實的文字報導   照理無法這樣限制吧~  XD
+23:07 < lancetw> 新聞要授權才能傳播 ＠＠？
+23:08 < clkao> orz GoInstant GG... 
+23:27 < jimyhuang__> venev: au 真是辛苦了... 不過這個松來的真是時候
+23:30 < johnny__> walkingice: 議員架站流程撰寫中... https://g0v.hackpad.com/uGplqkYholX
+23:30 < kcwu> johnny__'s url: [議員投票指南－架站流程 - g0v.hackpad.com]
+23:30 < au> ipa: 序號 #13 #14 #31 都是你耶，也就是說要來三個人嗎
+23:30 < NewCliCker> Rhozan: XD 至少法律有保障我們可以傳播「中央社網站很囂張的寫出了『未經授權禁止傳播本站文字』之類字樣」的報導權力。這就是現在問題的弔詭www
+23:32 < au> . o O { 簽到表列出 ipa、ipb、ipc }
+23:32 < clkao> XD 我應該是 ipc
+23:32 < au> cool
+23:32 < clkao> ipb 應該是徐老師
+23:32 < au> 收到
+23:33 < NewCliCker> by the way 對於前述法律問題有 興趣/意見 的朋友歡迎來這邊討論 :) https://g0v.hackpad.com/ajIrWkt5IY9 cc Michael_LI 
+23:33 < kcwu> NewCliCker's url: [G8V.TV法律問題相關討論 - g0v.hackpad.com]
+23:35 < ipa> 哈 怎麼變成ipb ipc XD 我填單的時候沒有這樣寫，可能是自動生成？@@
+23:36 < au> 「. o O {}」表示純屬幻想
+23:37 < xsoameix> clkao: 現在的進度：
+23:37 < xsoameix> clkao: 之後會有個指令叫作 npm run shot:calendar，之後還有 shot:sittings, shot:motions_and_bills，這個指令會把 fixtures shot 下來，存到 repository 裡
+23:38 < xsoameix> clkao: 現在在實作這個功能的工具
+23:44 < xsoameix> clkao: 現在有點分不清楚 jake 和 gulp 的分別，不知道用哪個好？
+23:50 < NewCliCker> 話說明天的 萌典松 和 新聞松 都好想去，可是得在自己的本業上留守，哪個都去不成 QAQ 連遠端參與都有困難，整個想念在 Bookshow 欺負兩隻店貓的快樂時光啊
+23:52 < Lee1092> ptt  氣爆事件  人工時間軸~   https://www.ptt.cc/bbs/Kaohsiung/M.1406899130.A.6E3.html
+23:52 < kcwu> Lee1092's url: [[問題] 自己的時間軸自己填。 - 看板 Kaohsiung - 批踢踢實業坊]
+23:53 < venev> au: 所以你印簽到表了？
+23:53 < venev> btw, 油錢箱經過 simonpai 改造，走起 neat 路線了，明天來記得拍照 :3
+23:54 < venev> （奇怪我認識的男子都好愛作手工藝）
+23:54 < clkao> xsoameix: gulp is the future
+23:55 < au> venev: 還沒有，剛只是確定一下 #14 是徐老師而 #31 是 clkao
+23:55 < au> #13 才是 ipa
+23:56 < xsoameix> clkao: 這樣嗎？那我有辦法把邏輯的程式碼分離開 gulp ，單獨成一個 ls 檔嗎？
+23:56 < au> simonpai++ # transformer
+23:57 < mrorz> 我們幫自經區開了一個 polis，不知道最後會長出什麼樣的立場分布 XD --> https://pol.is/7jhvwv
+23:57 < kcwu> mrorz's url: [Polis]
+23:57 < ipa> mrorz: 明天是自表松嗎？ XD
+23:58 < venev> au: got it. I'll print the form.
+23:58 < mrorz> ipa: 喔對呀，但其實沒要做什麼正事的感覺 XD"
+23:58 < clkao> xsoameix: sure. gulp is just normal javascript, you can require ./testlib/file
+23:59 < mrorz> 最大的自表大概就是發現
+23:59 < mrorz> polis 已經做完我們想做的事情了（默
+23:59 < Lee1092> XDDD  mrorz++
+23:59 < clkao> 自幹吧 XD

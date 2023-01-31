@@ -1,0 +1,530 @@
+--- Day changed 六 10月 19 2013
+00:09 -!- Supaplextw1 [~Lucky@114-36-230-98.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+00:10 < CAA51> yhsiang: 想學啊。本想偷懶用 jquery-oembed-all ，但
+00:11 < CAA51> 他會自作主張把網址餵給 yahoo API ，用 localhost 很不方便測試。
+00:11 < CAA51> 得自己寫 embed.js D:
+00:17 < clkao> CAA51: 先衝 https://github.com/leedo/noembed helper ? :p
+00:17 < M00sUltraB0t> [ leedo/noembed · GitHub ] - github.com
+00:18 -!- fntsrlike [~fntsrlike@114-46-216-136.dynamic.hinet.net] has quit [Quit: fntsrlike]
+00:32 -!- fntsrlike [~fntsrlike@114-46-216-136.dynamic.hinet.net] has joined #g0v.tw
+00:38 -!- fntsrlike [~fntsrlike@114-46-216-136.dynamic.hinet.net] has quit [Quit: fntsrlike]
+00:47 -!- clscloud [uid12722@gateway/web/irccloud.com/x-huyuskehwxcehlba] has quit [Read error: Connection reset by peer]
+00:48 -!- clscloud [uid12722@gateway/web/irccloud.com/x-efsgfgqeypswrerp] has joined #g0v.tw
+00:50 < clkao> hychen: 出現了劍橋大學動物系 programmer 幫改 pgrest :D
+00:51 < walkingice> (y)
+00:55 -!- Supaplextw [~Lucky@1-164-208-187.dynamic.hinet.net] has joined #g0v.tw
+00:56 < kcliu> (y)
+01:03 -!- pm5 [~pm5@111-248-218-112.dynamic.hinet.net] has joined #g0v.tw
+01:03 -!- lcamel [~lcamel@114-45-52-209.dynamic.hinet.net] has quit [Remote host closed the connection]
+01:04 -!- lcamel [~lcamel@114-45-52-209.dynamic.hinet.net] has joined #g0v.tw
+01:06 < hychen> clkao: coool
+01:08 -!- lcamel [~lcamel@114-45-52-209.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+01:08 -!- pm5 [~pm5@111-248-218-112.dynamic.hinet.net] has quit [Ping timeout: 265 seconds]
+01:32 < CAA51> clkao: Perl 耶，好想玩玩看XDD
+01:33 < CAA51> 如果到時 moedict 那邊用 noembed ，還是得做個 什麼.js 來把 embedData.html 畫出來？
+01:34 < CAA51> 劍橋大學動物系真是太奇妙了...，是來幫忙管推坑填坑動物園的嗎XD
+01:35 < yhsiang> CAA51: 應該是css就可以了 ?
+01:37 < yhsiang> 喔 我錯了 orz..
+01:39 < CAA51> yhsiang: 我也希望 CSS 就可以，這樣要 embed 的網頁只要多加一個 CSS
+01:40 < CAA51> 反正本來也得加個 js 才能得到資料了。
+01:40 < CAA51> 看 twitter 是拿到一個 blockquote 配他們的 widget.js ，
+01:41 < CAA51> 接著讓該 js 把 blockquote 換成 iframe...
+01:41 -!- ymow1 [~Adium@114-47-5-170.dynamic.hinet.net] has joined #g0v.tw
+01:41 -!- ymow [~Adium@114-47-5-170.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+01:41 < CAA51> 猜好處是 server-side 拿到結果也能靠 js 畫出來。
+01:42 < CAA51> 只是要是都在 client-side 做就有點多此一舉XD
+01:49 < ETBlue> 好像應該先轉成 jade 再套 angular ... 前者比較簡單 = ="
+02:13 -!- mno2 [~mno2@218-161-2-92.HINET-IP.hinet.net] has quit [Quit: mno2]
+02:29 -!- wHisKy- [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+02:29 -!- wHisKy- [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Client Quit]
+02:29 -!- wHisKy [~whisky@122-116-86-57.HINET-IP.hinet.net] has quit []
+02:50 -!- icman [~icman@123.240.172.7] has quit [Quit: 明天天氣晴]
+03:11 -!- taihsiang [~tai271828@64.34.151.178] has quit [Quit: Ex-Chat]
+03:12 -!- CJarek [kvirc@61-224-167-83.dynamic.hinet.net] has quit []
+03:13 -!- taihsiang [~tai271828@64.34.151.178] has joined #g0v.tw
+03:21 -!- CJarek [kvirc@1-165-124-228.dynamic.hinet.net] has joined #g0v.tw
+04:33 -!- ymow1 [~Adium@114-47-5-170.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+04:35 -!- ymow [~Adium@114-47-17-144.dynamic.hinet.net] has joined #g0v.tw
+04:35 -!- bot_name_here___ [~cinch@p54A43DA1.dip0.t-ipconnect.de] has joined #g0v.tw
+05:00 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+05:01 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+05:02 -!- a-tsioh [~pierre@19.179.119.80.rev.sfr.net] has joined #g0v.tw
+05:07 -!- bot_name_here___ [~cinch@p54A43DA1.dip0.t-ipconnect.de] has quit [Remote host closed the connection]
+05:27 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+05:31 -!- BG_ [b7506059@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+05:32 -!- BG_ [b7506059@linux1.csie.ntu.edu.tw] has quit [Client Quit]
+05:32 -!- BG_ [b7506059@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+06:01 -!- taihsiang [~tai271828@64.34.151.178] has quit [Quit: Ex-Chat]
+06:04 -!- AceChen_ [~AceChen@140.109.113.100] has joined #g0v.tw
+06:06 -!- AceChen [~AceChen@140.109.113.100] has quit [Ping timeout: 245 seconds]
+08:10 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 256 seconds]
+08:13 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+08:24 -!- a-tsioh [~pierre@19.179.119.80.rev.sfr.net] has quit [Quit: WeeChat 0.3.8]
+08:32 -!- mno2 [~mno2@218-161-2-92.HINET-IP.hinet.net] has joined #g0v.tw
+08:34 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has joined #g0v.tw
+09:09 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+09:10 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has quit [Remote host closed the connection]
+09:10 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+09:10 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has joined #g0v.tw
+09:14 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+09:18 -!- ymow [~Adium@114-47-17-144.dynamic.hinet.net] has quit [Quit: Leaving.]
+09:37 -!- jbytw [uid13105@gateway/web/irccloud.com/x-vjagunkmgasupnxc] has quit [Quit: Connection closed for inactivity]
+09:39 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has joined #g0v.tw
+10:12 -!- jslee [~jslee@60-251-67-57.HINET-IP.hinet.net] has joined #g0v.tw
+10:13 -!- jsleetw [uid14877@gateway/web/irccloud.com/x-dkumtvhaflealvzi] has joined #g0v.tw
+10:34 -!- pm5 [~pm5@111-248-218-112.dynamic.hinet.net] has joined #g0v.tw
+10:45 -!- icman [~icman@123.240.172.7] has joined #g0v.tw
+10:58 -!- mno2 [~mno2@218-161-2-92.HINET-IP.hinet.net] has quit [Quit: mno2]
+11:03 -!- lyen [7224d4e8@gateway/web/cgi-irc/kiwiirc.com/ip.114.36.212.232] has joined #g0v.tw
+11:12 -!- fntsrlike [~fntsrlike@114-46-214-97.dynamic.hinet.net] has joined #g0v.tw
+11:47 -!- fntsrlike [~fntsrlike@114-46-214-97.dynamic.hinet.net] has quit [Quit: fntsrlike]
+12:03 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+12:10 -!- fntsrlike [~fntsrlike@192.192.47.197] has joined #g0v.tw
+12:10 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+12:14 -!- fntsrlike [~fntsrlike@192.192.47.197] has quit [Client Quit]
+12:31 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 256 seconds]
+12:38 -!- mno2 [~mno2@218-161-2-92.HINET-IP.hinet.net] has joined #g0v.tw
+12:42 -!- mno2 [~mno2@218-161-2-92.HINET-IP.hinet.net] has quit [Client Quit]
+12:47 -!- weklhoi [7224d4e8@gateway/web/cgi-irc/kiwiirc.com/ip.114.36.212.232] has joined #g0v.tw
+12:47 -!- weklhoi [7224d4e8@gateway/web/cgi-irc/kiwiirc.com/ip.114.36.212.232] has quit [Client Quit]
+12:49 -!- lyen [7224d4e8@gateway/web/cgi-irc/kiwiirc.com/ip.114.36.212.232] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+13:13 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+13:51 < mindos_cloud> 剛看到這個 http://okfn.jp/2013/08/22/taiwan-open-data-alliance-founded/
+13:51 < M00sUltraB0t> [ 台湾、Open Data Alliance結成、150の企業・機関が参加 | オープンデータとオープンガバメントを推進する Open Knowledge Foundation Japan ] - okfn.jp
+13:51 -!- ypwong [~anthony@199.48.229.89] has quit [Ping timeout: 245 seconds]
+14:03 < ETBlue> Lee1092: 明天還會有新聞局專案嗎 :D
+14:07 < ETBlue> Lee1092: 上次採訪完後續完稿的動力有點弱，想說要不要讓採訪組成員各自以個人身份發表在自己的 sns 上，不要求完整，簡介就好，這樣活動當天就可以發，免得回去以後沒力完稿… XD
+14:08 < ETBlue> Lee1092: sns 上的短文有下 #g0v tag 的話 ipa 跟 venev 應該就可以直接轉載或彙整了
+14:09 < Lee1092> sns是...  @@
+14:10 < ETBlue> Lee1092: 啊，社交網站…
+14:10 < ETBlue> Lee1092: twitter, facebook, google+ 這種的.. XD
+14:10  * Lee1092 對撰稿動力偏弱 orz
+14:10 < Lee1092> ETBlue: 喔喔喔  了改
+14:11 < Lee1092> ETBlue:  就相關動態貼文加上  #g0v ?   還是  #g0v-hackath5n  XD 
+14:11 < tkirby> 明天應該沒辦法去了
+14:11 < ETBlue> tkirby: 賀
+14:12 < ETBlue> Lee1092: 問問看 ipa 好了 XD # 明天的 tag
+14:13 < ETBlue> Lee1092: 好像有些地方 - 號會讓 tag 斷掉
+14:13 < ETBlue> 噢，twitter 就是
+14:14 < ETBlue> tkirby: 所以明天兒童合唱團的新成員就會出現了嗎 :D :D
+14:15 < Lee1092> hmm...  
+14:23 < clkao> kcwu: ivod index 好多發言人是「無 委員」喔 XD
+14:24 < clkao> tkirby: 賀坐鎮～
+14:24 < clkao> tkirby: 還是因為炸雞換成雞排，你就不來了？
+14:28 < tkirby> 看起來還沒要生.. 可是亂跑沒的話老婆應該會怒.. XD
+14:28 < tkirby> s/沒//
+14:28 < M00sUltraB0t> tkirby meant to say: 看起來還要生.. 可是亂跑沒的話老婆應該會怒.. XD
+14:28 < clkao> XD XD
+14:29 < tkirby> s/沒(.+)沒/沒(1)/
+14:29 < clkao> LOL
+14:29 < clkao> 還要生
+14:29 < tkirby> xDD
+14:29 < ipa> fb的話 tag g0v粉絲頁可以，貼文小幫手群組會看到。或者貼到後勤。
+14:30 < tkirby> s/沒(.+)沒/沒$1/   這樣才對..orz
+14:31 < ipa> ETBlue: Lee1092 上次有人有寫嗎？
+14:31 < ipa> tkirby: 你在玩bot喔？XDD
+14:31 < tkirby> ipa: 沒有, 我不知道他會幫翻譯, 所以寫得不夠精確.. 可是認真寫以後他都不理我.. XD
+14:32 < ETBlue> ipa: Lee1092: google drive 裡有一些，但好像是寫到一半的 XD
+14:33 < ipa> tkirby: 那你要在後勤問一下誰要幫忙拍照片嗎？（抓個交替）
+14:34 < tkirby> 正要發文說
+14:34 < tkirby> 小朋友被約翰史特勞斯催眠了[C
+14:38 < Lee1092> ipa: 對.算一半，上次弄完.就沒碰過了，只有分類完，沒有專職寫手～
+14:42 < ETBlue> Lee1092: 我很能理解這種富奸的感覺…
+14:43 < ETBlue> 寫文章原本就是一件容易讓人沒力的事情（點頭
+14:47 < ipa> 噢噢 看了一下幾篇，還不錯啊。之前好像完全沒注意到 @@
+14:48 < clkao> 可以順便作為天下供稿庫... ?
+14:49 < ipa> ETBlue: Lee1092 明天討論一下怎麼樣弄，變成天下部落格供稿系統。有登出應該會有刺激寫作的動力
+14:51 < ETBlue> ipa: Lee1092: ++ # 天下供稿庫
+14:51 < ETBlue> ipa: 之前沒注意到應該是因為還沒完稿所以都沒發佈的關係 XD
+14:51 < ipa> 還有我發現貼在 hackpad比較容易有小精靈一起寫完，速度超快的。覺得再過一年等各個成果兜起來，說不定可以來發起一個g0v寫作出版計畫了。
+14:52 < ETBlue> 可能是因為 hackpad 左邊會顯示 id，有一種喇賽的感覺
+14:52 < ETBlue> gdoc 寫起來就比較孤單…
+14:53 < ipa> ETBlue: hackpad 的 comment 有 ptt 推文的 fu 
+14:57 < ETBlue> 真的XD
+15:01 < Lee1092> ipa:  對耶  有登出會有動力  (y) 
+15:02 < Lee1092> ETBlue: ipa  g0v每篇產出
+15:02 < Lee1092> 這樣 g0v 每篇產出  都是好幾位協作者xd
+15:05 -!- pm5 [~pm5@111-248-218-112.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+15:08 < yhsiang> ETBlue: dropdown的bug 在 0.7.0 會fix # https://github.com/jlukic/Semantic-UI/issues/256 
+15:08 < M00sUltraB0t> [ Dropdown links not working? · Issue #256 · jlukic/Semantic-UI · GitHub ] - github.com
+15:11 < ETBlue> yhsiang++ semantic ui 小幫手！
+15:11  * ETBlue 正在進行一個沒有產值的動作：把 html 轉成 jade
+15:14 < au> ETBlue: http://html2jade.aaron-powell.com/
+15:14 < M00sUltraB0t> [ HTML 2 Jade - a converter for HTML ] - html2jade.aaron-powell.com
+15:15 < ETBlue> ....對噢 @@"
+15:16 < tkirby> 當當當~當~當~當~~ ETBlue LV UP!
+15:16 < ETBlue> au: 天啊超快的！！！
+15:17 < ETBlue> 我剛才是一邊看 tkirby 的動民主 .jade 檔案一邊參考著改……
+15:17 < tkirby> XDD
+15:17 < Lee1092> 現在什麼都有自動化XDDD
+15:17 < ETBlue> 嗚嗚嗚還好有上 irc 抱怨 QAQ
+15:17 < au> 手動試過一遍練經驗，第二遍就交給電腦吧 XD
+15:17 < ETBlue> 好 \^o^/
+15:18 < tkirby> socal search++
+15:18 < tkirby> ...
+15:18 < tkirby> s/socal/social/
+15:18 < M00sUltraB0t> tkirby meant to say: social search++
+15:18 < ETBlue> ㄟ，原來可以用 | 當開頭，剛才不知道怎麼處理整行都是內文的…
+15:18 < tkirby> xD
+15:18 < yhsiang> | 或 \
+15:18 < ETBlue> 挖 bot 好可愛喔
+15:19 < ETBlue> yhsiang:  噢噢… 也就是說不小欣 capslock 也能通？！
+15:19 < ETBlue> s/欣/心
+15:19 < M00sUltraB0t> ETBlue meant to say: yhsiang:  噢噢… 也就是說不小心 capslock 也能通？！
+15:19 < ETBlue> 自從 tuiry 畫了欣文小幫手後，現在自然輸入法會自動跳小欣 = =" 
+15:20 < tkirby> s/欣/新/
+15:20 < yhsiang> ETBlue: 欸, 我還沒發現過這個耶 XDD
+15:20 < tkirby> 別人的不會幫修.. 
+15:20 < yhsiang> tkirby: 應該是抓你上一句說的
+15:20 < ETBlue> 自己的是不是要緊鄰的上一句才會修
+15:20 < tkirby> hmm
+15:20 < tkirby> 試試看
+15:20 < tkirby> s/hmm/hmmhmm/
+15:20 < M00sUltraB0t> tkirby meant to say: hmmhmm
+15:20 < tkirby> hmm
+15:21 < ETBlue> ㄟ兩句也行…
+15:21 < yhsiang> 喔喔 我在想s/,//g 
+15:46 < tkirby> s/m//g
+15:46 < M00sUltraB0t> tkirby meant to say: h
+15:49 < tuiry> ETBlue: 感謝au賜名
+15:59 < ETBlue> 天啊改用 jade 以後覺得結構一目了然，思緒都變清楚了…
+16:01 < clkao> 因為可以用更少符號代表在腦中操作的概念
+16:02 < ETBlue> tuiry: 說到這個，其實跟這個也沒什麼關係的是，明天…你用我的電腦好了，反正我每次都在喇賽，沒做事 orz
+16:02 -!- Rplus [~rplus_tw@114-24-42-100.dynamic.hinet.net] has joined #g0v.tw
+16:20 -!- lanfon72 [319e6ab1@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.106.177] has joined #g0v.tw
+16:22 < superbil> 幫忙測試一下 http://oid.nat.gov.tw/infobox1/personindex.jsp 下面的資料除了第一筆之外，是否可以看到其他的
+16:22 < M00sUltraB0t> [ 政府組織 ] - oid.nat.gov.tw
+16:28 -!- pm5 [~pm5@111-248-206-99.dynamic.hinet.net] has joined #g0v.tw
+16:34 < superbil> 好像伺服器掛點惹?!
+16:47 < clkao> orz
+16:52 < ipa> 還差六條延長線
+16:56 -!- aeil [~Adium@111-249-13-182.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+16:57 -!- Rplus [~rplus_tw@114-24-42-100.dynamic.hinet.net] has left #g0v.tw []
+17:01 -!- Rplus [~rplus_tw@114-24-42-100.dynamic.hinet.net] has joined #g0v.tw
+17:03 -!- Rplus [~rplus_tw@114-24-42-100.dynamic.hinet.net] has left #g0v.tw []
+17:04 < lanfon72> +2
+17:06 -!- Rplus [~rplus_tw@114-24-42-100.dynamic.hinet.net] has joined #g0v.tw
+17:08 -!- Rplus [~rplus_tw@114-24-42-100.dynamic.hinet.net] has left #g0v.tw []
+17:12 -!- i3n [~icman@118-232-177-139.dynamic.kbronet.com.tw] has quit [Remote host closed the connection]
+17:14 -!- Rplus [~rplus_tw@114-24-42-100.dynamic.hinet.net] has joined #g0v.tw
+17:18 -!- Rplus [~rplus_tw@114-24-42-100.dynamic.hinet.net] has left #g0v.tw []
+17:20 -!- c9s [~c9s@106.186.115.174] has quit [Ping timeout: 260 seconds]
+17:20 -!- c9s_ is now known as c9s
+17:20 -!- c9s_ [~c9s@106.186.115.174] has joined #g0v.tw
+17:21 -!- orbita [24e9081c@gateway/web/freenode/ip.36.233.8.28] has joined #g0v.tw
+17:31 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has quit [Remote host closed the connection]
+17:32 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has joined #g0v.tw
+17:33 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has quit [Remote host closed the connection]
+17:33 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has joined #g0v.tw
+17:47 -!- orbita [24e9081c@gateway/web/freenode/ip.36.233.8.28] has quit [Quit: Page closed]
+17:52 -!- pm5 [~pm5@111-248-206-99.dynamic.hinet.net] has quit [Ping timeout: 265 seconds]
+18:06 -!- pm5 [~pm5@111-248-206-99.dynamic.hinet.net] has joined #g0v.tw
+18:09 -!- jslee [~jslee@60-251-67-57.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:28 < walkingice> @o@
+18:30  * walkingice 認領一條延長線
+18:49  * mindos_cloud 看成 walkingice 認領一條領帶。
+18:50 -!- pm5 [~pm5@111-248-206-99.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+18:57 < walkingice> XD
+19:03 < ETBlue> jade 能不能呼叫另一個 jade 讓自己被包在對方的像是 yield 的區塊裡面？還是只能把別人 include 進來..
+19:07 < yhsiangCloud> extend ?
+19:09 < ETBlue> 我試試看 @@"
+19:13 < tuiry> ETblue O口O!!!!!
+19:13 < tuiry> 謝謝....不過明天也不知道要畫什麼吧，可能也會一起喇賽(?
+19:14 < ETBlue> tuiry: 一起喇賽++ XD
+19:14 < walkingice> hackathon 現場速寫！
+19:15 < ETBlue> yhsiang: 好像不太行的樣子，好在現在也沒幾頁，明天再看看 >"< 而且感覺這大量的插畫作品頁面用手動產生似乎不太對勁…
+19:16 -!- pm5 [~pm5@111-248-206-99.dynamic.hinet.net] has joined #g0v.tw
+19:22 < tuiry> XDDDDDDD 覺得會聊天聊到沒時間畫
+19:22 -!- nikkki [~nikktan@111-243-116-212.dynamic.hinet.net] has joined #g0v.tw
+19:24 -!- pm5 [~pm5@111-248-206-99.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+19:25 < walkingice> (y)
+19:32 -!- hoyentan [3a734240@gateway/web/cgi-irc/kiwiirc.com/ip.58.115.66.64] has joined #g0v.tw
+19:34 < hoyentan> 第一次上線，有點像bbs
+19:34 < hoyentan> 不清楚怎麼用？
+19:34 < walkingice> hoyentan: irc?
+19:35 < hoyentan> irc是什麼？
+19:35 < walkingice> internet relay chat，又稱聊天室 XD
+19:36 < hoyentan> 喔，了解，謝謝！
+19:38 < hoyentan> 目前網路使用頂多用gmail, facebook, 對gov很陌生
+19:39 < hoyentan> 打錯了，是g0v
+19:39 < tuiry> 只要會打字聊天就好啦XD(自以為
+19:40 < walkingice> irc 就是專門聊天的囉，差異只有阿宅比例極度高 XD
+19:41 < tuiry> hoyentan 最簡單就是 打某人的ID可以呼喚某人
+19:41 < hoyentan> tuiry
+19:42 < hoyentan> 是這樣嗎？
+19:42 < walkingice> 打 /help 會有指令，譬如說 /help me
+19:42  * tuiry 從山坡山輕輕地滾下來了
+19:42 < walkingice> tuiry++
+19:42 < hoyentan> tuiry++
+19:43 -!- mrmoneyc_ [~mrmoneyc@198.199.98.216] has quit [Quit: leaving]
+19:43 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+19:43 < tuiry> :)
+19:44 < hoyentan> 剛剛有成功呼喚嗎？
+19:48 < tuiry> 有的 :D
+19:50 < tuiry> hoyentan ++  XD
+19:50 < hoyentan> 是打tuiry++這樣就呼喚到了嗎？
+19:50 < tuiry> ++ = 讚 打ID就可以
+19:50 < M00sUltraB0t> IndexError: pop from empty list (file "/home/ircbot/.willie/modules/karma.py", line 56, in meet_karma)
+19:51 < ETBlue> gg 了，fire.app 不能 build jade
+19:52 < hoyentan> 對流動式民主感興趣，但有點被介面打敗
+19:53 < ETBlue> 只好把重感冒中的 fire.app 作者挖起床改 code（誤）
+19:53 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has quit [Remote host closed the connection]
+19:53 < hoyentan> tuiry 對流動式民主感興趣，但有點被介面打敗, 你有用過嗎？
+19:53 < ETBlue> hoyentan: 好消息， yhsiang 正在架可愛版的流動式民主系統 airesis
+19:53 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has joined #g0v.tw
+19:54 < tuiry> hoyentan 我的專長是畫圖，程式是天書XP
+19:55 < hoyentan> etblue 現在已經可以上去看了嗎？
+19:55 < hoyentan> tuiry  程式對我也是天書
+19:55 < ETBlue> hoyentan: 目前進度 http://hack.g0v.tw/meta/lhUMItDUIZw 應該是還沒…才剛翻譯完 XD
+19:56 < M00sUltraB0t> [ hack.g0v.tw ] - hack.g0v.tw
+19:56 < hoyentan> etblue 感謝
+19:57 < ETBlue> hoyentan: 據 ttcat 說上線後翻譯還要橋一下，可以問他需要啥幫忙
+19:58 < hoyentan> etblue 了解
+19:58 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+19:58 < ETBlue> hoyentan: 要不要加入文化部 XD
+19:59 < ETBlue> hoyentan: ipa 跟 Lee1092 那邊也很需要不寫程式的人 >o<
+20:00 < hoyentan> etblue 有興趣，但門檻會很高嗎？很不熟悉這種網路文化
+20:01 < ETBlue> hoyentan: 採訪組的主要門檻是…打嘴砲 XDXD 會打字就可以了 XD
+20:01 < CAA51> ETBlue: Fire.app 看來也可以自己寫 helper ，可能可以把每個作品頁面的資訊放 yml 中，
+20:02 < CAA51> 然後每一頁要它根據 yml 生？
+20:02 < ETBlue> CAA51: 聽起來好難……
+20:03 < hoyentan> 有事要先離線，如何離線？
+20:03 < ETBlue> hoyentan: 還有這種限定新朋友加入的專案 XD http://hack.g0v.tw/g0vMOE/AidRZhn8kzP
+20:03 < M00sUltraB0t> [ hack.g0v.tw ] - hack.g0v.tw
+20:03 < ETBlue> hoyentan: 關掉視窗？
+20:04 < hoyentan> 關掉視窗就可以了？
+20:04 < CAA51> hoyentan: 離開時的訊息可以到 http://logbot.g0v.tw/ 讀
+20:04 < M00sUltraB0t> [ Logbot | #g0v.tw ] - logbot.g0v.tw
+20:04 -!- Custom [custom@saturn.stu.edu.tw] has quit [Read error: Connection reset by peer]
+20:04 < ETBlue> hoyentan: 對壓
+20:04 < hoyentan> 了
+20:05 < hoyentan> etblue 謝謝
+20:05 < ETBlue> hoyentan: ^o^
+20:05 < hoyentan> logout
+20:05 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has quit [Ping timeout: 246 seconds]
+20:11 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+20:12 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+20:12 < ETBlue> github 獨角獸了
+20:13 < CAA51> ETBlue: 來更新一下我的 Fire.app ...XD
+20:13 < mindos_cloud> 遇到 superbil !!!
+20:14 < ETBlue> CAA51: fire.app 的 jade 支援正在產生中 XD
+20:14 < walkingice> ETBlue++
+20:14 < CAA51> ETBlue++ tkalu++
+20:14 < ETBlue> walkingice: 不是我弄的，是坐我對面那位弄的… XD
+20:14 < walkingice> 作者好心苦 XD
+20:15 < walkingice> 辛苦
+20:15 < walkingice> ETBlue: 對，我有感受到那種被 PM 追殺的感覺
+20:15 < ETBlue> XDDD
+20:16 < walkingice> 我家太座上次的一句「這個網頁不會有手機版嗎？」然後我就連續一週睡眠不足了 orz
+20:16 < ETBlue> walkingice++ 優良行為值得鼓勵 XD
+20:18 < CAA51> 我家的上次說新酷音不好用...XDDD # 還好不會寫輸入法
+20:18 < ETBlue> XDDDDDDDDDDD
+20:18 < superbil> mindos_cloud: 太巧！
+20:18 < ipa> 程式對我也是天書
+20:19 < clkaoud> walkingice: 手機版 哪個網頁
+20:20 < ipa> 我常問這個都沒xx功能嗎？只會得到"那只好看有沒有人跳坑"的答案。。。
+20:25 < mindos_cloud> walkingice : 尊夫人++
+20:28 < walkingice> clkaoud: 以前剛開始練習寫網頁的時候寫的一個電影筆記網站
+20:28 < walkingice> 最近從 jQuery base -> angular base  Q__Q
+20:29 < walkingice> CAA51: 可以跳進輸入法的坑 XD   # kanru 
+20:32 < clkaoud> walkingice: 我還以為是 hack.g0v.tw
+20:32 < CAA51> walkingice: 這坑太深，跳了會摔死...XD
+20:33 < walkingice> CAA51: 搞不好身高很夠，跳下去發現其實也沒多伸嘛！ *grin*
+20:33 < walkingice> clkaoud: 我還沒用手機開過 hack.g0v.tw 耶！ (窮苦孩子還在用 n1)
+20:36 < CAA51> !roll d20
+20:36 -!- lcamel [~lcamel@118-168-101-137.dynamic.hinet.net] has joined #g0v.tw
+20:36 < CAA51> !roll 1d20
+20:37  * CAA51 想說來做個意志檢定的說XD
+20:38 < au> CAA51: you rolled a natural 20
+20:38 < tkirby> ETBlue: 你如果仔細看 don-republic 的 master branch, 我裡面都是用 extend 在寫 jade...
+20:40 < CAA51> au: XDDDD
+20:40 < au> CAA51: http://i.imgur.com/HvEMpHH.jpg #有圖有真相
+20:42 < ETBlue> ipa: 你搞錯了，你才是那個填坑的啊 XDDDD
+20:43 < ETBlue> tkirby: 疑！！看到了 @@ 因為在第一行所以之前都沒注意………
+20:45 < ETBlue> tkirby: 看起來 jade 的 block 就是 erb 的 yield 的意思
+20:47 < ETBlue> tkirby: ... 還有什麼 var ... 我研究一下 orz
+20:49 < CAA51> au: 想到這個：
+20:49 < CAA51> ...you are faced with no threats or distractions,
+20:49 < CAA51> and the skill being attempted carries no penalties for failure,
+20:49 < CAA51> you can take 20...
+20:49 < au> yeah :)
+20:58 < au> #tweeted
+21:04 -!- dryman [~dryman@www.ihatevocab.net] has quit [Ping timeout: 260 seconds]
+21:05 -!- miaout17__ [~miaout17@miaout17.net] has quit [Ping timeout: 264 seconds]
+21:07 -!- aeil [~Adium@111-249-13-161.dynamic.hinet.net] has joined #g0v.tw
+21:12 < clkao> 又要做投影片了
+21:13 < clkao> tkirby: 呃啊～ ircstat 好像都沒有更新
+21:17 < clkao> ETBlue: 還沒填專案報告～
+21:17 < clkao> Lee1092: 還沒填專案報告～
+21:18 < ETBlue> 呃被推了
+21:18 < ETBlue> 是說我好像沒什麼好報告的 @@" 就每次都一樣是動民主，然後報告完以後都喇賽沒做事 orz
+21:19 < clkao> 說一下動民主現況跟需要幫忙處... ?
+21:19 < tuiry> 感覺有很多人有興趣阿，電腦給我玩，喇賽就交給你了(拍
+21:21 < ETBlue> Lee1092: ipa: txt 組要開一個專案嗎？
+21:21 -!- pm5 [~pm5@111-248-206-99.dynamic.hinet.net] has joined #g0v.tw
+21:22 < ETBlue> tuiry: 沒問題，我一定會認真喇賽…
+21:23 < ETBlue> clkao: 那我把動民主系列四個分支跟目前的坑主列出來好了 @@" 
+21:24 < tkirby> 糟
+21:24 -!- hansbobby [~hansbobby@111-243-26-68.dynamic.hinet.net] has joined #g0v.tw
+21:24 < ETBlue> tkirby: yhsiang: extends 真的很好用耶省了好幾個 .jade 檔案
+21:24 < clkao> ETBlue++
+21:25 < ipa> ETBlue: Lee1092 我開了一個天下部落格專案，把你們兩個也列入坑中了
+21:25 < clkao> ETBlue: Lee1092 明明就有立院人事部專案
+21:25 < clkao> 不過當然一人可以入多坑 XD
+21:25 < ETBlue> ipa: 你明天可以報告嗎？還是要錄影 @@
+21:25 < tkirby> tuiry: 其實你可以來幫忙設計 g0vis
+21:26 < ETBlue> ipa: 真是推坑於無形 orz
+21:26 -!- pm5 [~pm5@111-248-206-99.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+21:26 < tkirby> 超需要視覺設計!
+21:26 < tuiry> tkirby: 那是什麼
+21:27 < tkirby> tuiry: 視覺化表現 g0v 的一個基礎建設專案, 目前放在叫做 ircstat 的專案中: http://g0v.github.io/ircstat/
+21:27 < tkirby> tuiry: 事實上想做的有點像這樣: http://visual.ly/cat-person-vs-dog-person
+21:27 < M00sUltraB0t> [ Cat Person vs. Dog Person | Visual.ly ] - visual.ly
+21:27 < ETBlue> tuiry: 也有文件 XD http://hack.g0v.tw/meta/8ll51LhCloZ
+21:28 < M00sUltraB0t> [ hack.g0v.tw ] - hack.g0v.tw
+21:32 -!- hansbobby [~hansbobby@111-243-26-68.dynamic.hinet.net] has quit [Quit: leaving]
+21:32 < clkao> tkirby: 那我們是要 vs 什麼... ?
+21:32 < tkirby> 或者像這個.. 一時舉不到好例子 http://visual.ly/5-reasons-teach-kids-code
+21:32 < M00sUltraB0t> [ 5 Reasons to Teach Kids to Code | Visual.ly ] - visual.ly
+21:32 < clkao> tkirby: 承襲 ETBlue 大長篇... g0v vs cfT? XD
+21:32 < tkirby> clkao: 應該說.. vs g0v ? XD
+21:32 < tkirby> 咦 XD
+21:36 < ipa> ETBlue: 對啊，我會講一下，想順便把天下專案變成整理小成果的小組 XD
+21:36 < tuiry> tkirby: 
+21:36 < tuiry> 這個是在寫介紹阿
+21:37 < ipa> ETBlue: Lee1092 明天要討論一下，因為我沒follow到之前新聞部狀況
+21:37 < tuiry> 做成一個圓形，披薩的形狀怎樣
+21:38 < ETBlue> ipa: roger，其實我也沒 follow 到 XDDD
+21:38 < tuiry> 弄得很美味，開趴的感覺
+21:40 < Lee1092> 黑客鬆前一晚 瘋狂被cue, lanfon72 其實也可參與討論XD 
+21:40 < ipa> lanf0n 也可以
+21:41 < Lee1092> clkao: 剛做好投影片，決定改名g0v立法院風雲榜XDD
+21:41 < tuiry> 然後每開一個專案，像是加料一樣疊在披薩上(什麼鬼)
+21:42 < tkirby> tuiry: 這個主意不錯阿~
+21:42 < clkao> Lee1092++
+21:42 < tkirby> tuiry: 不過加料這個如果太多 project 是不是會變得比較難呈現
+21:49 < tuiry> tkirby: https://www.dropbox.com/s/3yhoollrpdkfbpc/pizza.jpg
+21:49 < M00sUltraB0t> [ Dropbox - pizza.jpg ] - www.dropbox.com
+21:52 -!- dryman [~dryman@www.ihatevocab.net] has joined #g0v.tw
+21:53 < tuiry> 披薩專案介紹
+21:53 -!- lyenliang [722a68b8@gateway/web/cgi-irc/kiwiirc.com/ip.114.42.104.184] has joined #g0v.tw
+21:53 -!- hansbobby [~hansbobby@111-243-26-68.dynamic.hinet.net] has joined #g0v.tw
+21:55 < ETBlue> yhsiang: ttcat: clkao: tkirby: 動民主家族目前狀態 https://g0v.hackpad.com/-The-Don-eDemocracy-Family-Ra62eyV02sC 不曉得有沒有理解錯誤… XD
+21:55 < M00sUltraB0t> [ 動民主家族 The Don-eDemocracy Family - g0v.hackpad.com ] - g0v.hackpad.com
+21:56 -!- miaout17__ [~miaout17@miaout17.net] has joined #g0v.tw
+21:59 < tkirby> tuiry: 動.. 動作真快
+22:01 < ETBlue> tkirby: 你不知道 tuiry 跟你一樣是光速系統的嗎
+22:02 < tuiry> tkirby: 畫幾個圈圈而已啦.   只是平面設計不算我的專長，也不知道好不好lol
+22:03 < tuiry> 旁邊可以放可樂或刀叉之類的當底圖
+22:05 -!- ck [~ck@61-231-166-124.dynamic.hinet.net] has joined #g0v.tw
+22:05 < tkirby> XD
+22:05 < ttcat> ETBlue: 所以明天會有動民主系列的團嗎
+22:07 < ETBlue> ttcat: 大概就 yhsiang 這樣… XD
+22:08 < ttcat> XD
+22:09 < clkao> yhsiang 不是要去喜酒
+22:09 < ttcat> !
+22:09 < ETBlue> !
+22:10 -!- Guest74486 [~marlborom@101.3.35.110] has quit [Remote host closed the connection]
+22:10 < tkirby> !
+22:10 -!- Guest74486 [~marlborom@101.3.35.110] has joined #g0v.tw
+22:11 < ipa> 驚嘆號是棒槌
+22:11 < ETBlue> 真的耶 yhsiang 明天不在，tkirby 也不在，動民主散團了 XD
+22:12 < clkao> 還是可以說一下，也許有人能 pickup airesis ?
+22:12 < ipa> ETBlue: tkirby 在家remote hack 說不定產量更高？
+22:13 < ETBlue> 登記惹 orz
+22:13 < ETBlue> 對噢科比是待命中嘛
+22:13 < tkirby> 因為有小孩在家所以...
+22:13 < tkirby> 阿都忘了把名額讓出來
+22:15 < clkao> 也可以待小孩一起來（疑？）
+22:15 < ttcat> clkao: 哈哈 babysitter 貼紙？
+22:15 < ETBlue> 還可以帶老婆一起來（找死行為） XD
+22:15 -!- MarlboroMoo [~marlborom@111.235.211.196] has joined #g0v.tw
+22:16 -!- ymow [~Adium@111-242-208-26.dynamic.hinet.net] has joined #g0v.tw
+22:17 < tkirby> 我其實有問.. 好像不太行 XD
+22:19 < ETBlue> 噢噢我看到有人跳坑幫科比拍照了…
+22:19 -!- pm5 [~pm5@111-248-206-99.dynamic.hinet.net] has joined #g0v.tw
+22:19 < ttcat> 看看晚上 yhsiang 會不會上來 也許還是可以遠端分配工作 這樣就可以丟 airesis 上去
+22:20 -!- Guest74486 [~marlborom@101.3.35.110] has quit [Ping timeout: 272 seconds]
+22:21 < ttcat> ETBlue: 9:43 好早噢
+22:21 < clkao> ttcat: 早上聽介紹才好玩啊
+22:22 < ttcat> 你們都好早睡早起 XD
+22:24 -!- pm5 [~pm5@111-248-206-99.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+22:24 < ETBlue> ttcat: 哪有，我明明是被逼的，平常那時候才綱要睡
+22:24 < Lee1092> lyenliang:  嗨依~
+22:25 < Lee1092> lyenliang:  有收到嗎?XD
+22:28 < ttcat> ETBlue: 真的阿我今天早上就是那時候剛睡 我現在有點擔心明天我該如何爬起來
+22:28 < yhsiangCloud> ttcat: 人在台南
+22:29 < yhsiangCloud> 沒辦法遠段參與
+22:29 < yhsiangCloud> 還在喝酒中  抱歉  orz
+22:29 < clkao> 喝酒！
+22:29 -!- ymow [~Adium@111-242-208-26.dynamic.hinet.net] has quit [Quit: Leaving.]
+22:30 < clkao> kcwu: 話說現在 ivod cron 是幾點跑呢？好像可以讓他晚上八九點跑，就會有當天開會所有的了
+22:30 < yhsiangCloud> 在新營
+22:30 < ttcat> yhsiangCloud: okok!! 那如果有徵到 coder 是可以從 Airesis 的 github 去工作嗎
+22:31 < yhsiangCloud> 可以 請用2.9.2
+22:32 -!- lyenliang_ [uid15158@gateway/web/irccloud.com/x-qdylzjobgxisxpjl] has joined #g0v.tw
+22:32 < lyenliang_> testing
+22:32 < yhsiangCloud> 有徵到 我把原作者給我的連結貼上來
+22:32 < ttcat> 是從這個： https://github.com/g0v/Airesis？
+22:33 < M00sUltraB0t> [ Page not found · GitHub ] - github.com
+22:33 < Lee1092> lyenliang_: 嗨
+22:35 -!- pm5 [~pm5@111-248-206-99.dynamic.hinet.net] has joined #g0v.tw
+22:36 < kcwu> clkao: 44 4,14,19 * * * 
+22:37 < clkao> cool
+22:39 < ETBlue> hooray 授權中心用 jade extend 改寫完成（灑花）不過 fire.app 還不能 compile...   先來繼續把 css 改寫成 sass 好惹
+22:39 < tkirby> ETBlue++
+22:39 < tkirby> 記得先 google css2sass
+22:40 < ETBlue> tkirby: 對噢！！！
+22:40 < tkirby> XD
+22:40 -!- pm5 [~pm5@111-248-206-99.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+22:41 < ETBlue> 差點又要呆呆開幹 orz
+22:41 < tkirby> XDDDD
+22:43 < Lee1092> ETBlue:  犯規啦  偷偷移到後面!!!!!  
+22:43 < ETBlue> Lee1092: 想說立法院的連在一起講比較有整體趕
+22:43 < ETBlue> 哈
+22:43  * Lee1092 在村長後頭會很緊張~~
+22:44 < ETBlue> Lee1092: 你需要多來幾次小松，習慣以後就不會緊張了
+22:45 < Michael_LI> 終於看到各提案排程了...
+22:46 < ETBlue> 疑 pm5cloud 也還沒登記專案報告
+22:47 < clkao> Lee1092: 別緊張 聽眾只有 10/10 的 0.15% 
+22:48 < ETBlue> clkao: 拿那個比只會讓人更緊張吧囧
+22:48 -!- Swl-test [722ed661@gateway/web/cgi-irc/kiwiirc.com/ip.114.46.214.97] has joined #g0v.tw
+22:49 < ETBlue> 9am 要到中研院，好像該睡了 orz
+22:50 < tuiry> ? 不是9:30開始嗎
+22:51 < Lee1092> clkao:  我想經過10/10應該任何場面都無所畏懼了  0.0
+22:53 < Swl-test> 是九點開始還是九點半開始＠＠
+22:53 -!- fntsrlike [~fntsrlike@114-46-214-97.dynamic.hinet.net] has joined #g0v.tw
+22:54 -!- lyenliang [722a68b8@gateway/web/cgi-irc/kiwiirc.com/ip.114.42.104.184] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+22:54 -!- lyenliang_ is now known as lyenliang
+22:56 < ETBlue> 這邊寫 9am http://hack.g0v.tw/g0v-hackath5n/kJy37HkTD6d 不過專案報告 9:40 才開始這樣
+22:56 < M00sUltraB0t> [ hack.g0v.tw ] - hack.g0v.tw
+22:56 < clkao> 9:00 報到... 9:30 開場, 9:40 專案報告
+22:56 < Swl-test> 感恩
+22:56 -!- Swl-test [722ed661@gateway/web/cgi-irc/kiwiirc.com/ip.114.46.214.97] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+22:58 -!- fntsrlike_ [722ed661@gateway/web/cgi-irc/kiwiirc.com/ip.114.46.214.97] has joined #g0v.tw
+23:02 -!- Jedi_ [~Jedi@jedi.org] has quit [Ping timeout: 248 seconds]
+23:03 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+23:06 -!- hansbobby [~hansbobby@111-243-26-68.dynamic.hinet.net] has quit [Quit: leaving]
+23:06 < ETBlue> 授權中心要專案報告嗎（抓頭）這應該算是基礎建設…
+23:09 < ipa> ETBlue: 授權中心也可以報短講，早上重點要糾人....但我也在想人力資源部要不要講一下
+23:09 < ipa> 坑坑坑好多坑
+23:10 < ETBlue> ipa: 授權中心目前好像不太需要糾人，那我就不登記早上的了
+23:10 < ETBlue> ipa: 人力資源部要糾人吧？
+23:12 < ETBlue> 說到人力資源部
+23:12 < ETBlue> 個人頁面好像可以有個推薦給我的工作之類的…
+23:13 < ETBlue> ……與其說要糾人，目前比較需要的是 mockup 吧我想 = ="
+23:13 < ipa> 翻譯過來，就是一個「被挖坑」的動作...
+23:14 < ETBlue> tag 越長越多以後好像不太能全部攤開了
+23:14 < clkao> #13 需要人修
+23:15 < ipa> ETBlue: bingo! 剛剛正想畫mockup，但好睏於是作罷 # 人力資源mockup
+23:15 < clkao> 天下 blog 炸掉了
+23:15 < clkao> 無法抓圖
+23:15 < ETBlue> 糟糕該真的睡覺了 @@" 洗澡先
+23:27 -!- fntsrlike_ [722ed661@gateway/web/cgi-irc/kiwiirc.com/ip.114.46.214.97] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+23:35 -!- fntsrlike [~fntsrlike@114-46-214-97.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+23:40 < lanfon72> Lee1092: ipa 發生啥事... 剛下班 囧rz
+23:43 < hychen> 該來作簡報了... orz 
+23:47 -!- orbita [24e9081c@gateway/web/freenode/ip.36.233.8.28] has joined #g0v.tw
+23:52 < walkingice> 明早似乎要比平常更早起 orz
+23:54 < clkao> walkingice: 辛苦了!
+23:55 < walkingice> clkao: 值得！ :D

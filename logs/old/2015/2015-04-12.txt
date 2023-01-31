@@ -1,0 +1,58 @@
+--- Day changed 日  4月 12 2015
+09:08 < slackbot5> <pofeng> @hlb: : 問一下, 能否直接 kktix 的 iframe 活動主頁,  eg: http://ocftw.kktix.cc/events/elc2015 ? 
+09:08 < slackbot5> @hlb: http://ocf.tw/events/elc2015/index.html 這裡嵌入(iframe) 訂票和活動 兩頁
+09:09 < slackbot5> @hlb: 訂票部份 ok, 但 活動頁失敗
+09:09 < kcwu> slackbot5's url: [Embedded Linux Conference 分享會 (臺北場)]
+09:09 < kcwu> slackbot5's url: [開放文化基金會::訂閱電子報]
+10:10 < slackbot5> <pofeng> @hlb 還有, 因為我想要算一下成功訂票的轉換率, 不知道有沒有可能, 完成刷卡後, 可以指定重導到自訂的網頁嵌入 "http://www.googleadservices.com/pagead/conversion.js" 像這樣 <https://github.com/ocftw/ocf.tw/blob/gh-pages/subscribe-confirm.html>
+10:10 < kcwu> slackbot5's url (2/2): [ocf.tw/subscribe-confirm.html at gh-pages · ocftw/ocf.tw · GitHub]
+10:10 < slackbot5> <pofeng> @hlb 不好意思, 問了一堆
+10:19 < slackbot5> <pofeng> 或許, 可以直接設定 google analytic 跨 domain 追蹤來看看 (還不會)
+11:48 < slackbot5> <billy3321> 哈囉，我有個問題想請教大家
+11:49 < slackbot5> <billy3321> 現在我手上有拿到公督盟的國會監督數據，他的數據以會期（ad_session）區分
+11:49 < slackbot5> <billy3321> 我想要把數據用api的方式開放出來
+11:49 < slackbot5> <billy3321> 可是我不知道路徑該怎麼命名比較妥當
+11:50 < slackbot5> <billy3321> 我應該用 /ccw/:ad_session_id/
+11:50 < slackbot5> <billy3321> 還是應該 /ad_sessions/:ad_session_id/ccw
+11:50 < slackbot5> <billy3321> 大家可以給點意見嗎？＠＠
+12:17 < pm5> billy3321: 妥不妥當可能要考慮比較多條件。這是 open source project 嗎？
+12:27 < slackbot5> <hlb> @pofeng: 目前活動頁不行 # same origin policy 的關係
+12:27 < slackbot5> <hlb> @pofeng: 如果你要看轉換率的話，可以在組織基本資料填入 GA
+12:28 < slackbot5> <hlb> @pofeng: 組織 > 一般資訊 > 編輯，填入你的 GA ID
+12:28 < slackbot5> <hlb> @pofeng: 有一些 event 可以 trace
+12:28 < slackbot5> <hlb> @billy3321: 先建議不要叫 ad_* 會被當成廣告 XD
+12:30 < slackbot5> <pofeng> @hlb: 好, 那我 http://ocf.tw 這邊就試著設定 GA 跨 domain 追蹤, 但是我擔心 kktix 那邊, 沒下 GA 參數沒辦法跨 domain 追蹤
+12:32 < slackbot5> <hlb> @pofeng: 應該是有 :stuck_out_tongue:
+12:33 < slackbot5> <hlb> @pofeng: 不過你真正的需求是想要看訂票完成的轉換率？
+12:33 < slackbot5> <pofeng> 對, 不過又卡付款
+12:33 < slackbot5> <hlb> # 據說似乎好像是有這麼一張票要做....
+12:37 < slackbot5> <pofeng> 完整說一下 story , 因為 google grants 贊助的 adword , 目標網址只能放在 http://ocf.tw ( 也不能用轉址) , 所以要先 iframe 進來, 然後我還要追蹤轉換率
+12:37 < kcwu> slackbot5's url: [開放文化基金會]
+12:38 < slackbot5> <pofeng> 目前 iframe http://neticrm.tw + 轉換追蹤是是成功的
+12:38 < kcwu> slackbot5's url: [netiCRM | 讓非營利組織的未來與每個支持者緊緊相連]
+12:38 < slackbot5> <pofeng> <http://ocf.tw/newsletter.html>
+12:42 < slackbot5> <pofeng> @hlb: 那有沒有可能讓活動說明, 可以藉由 https://kktix.com/tickets_widget 多個參數, 然後讓 http://ocf.tw iframe  嵌入, 這樣就不用維護兩邊的活動說明 ( 或者有別的簡單解法建議 )
+13:37 < slackbot5> <hlb> @pofeng: 活動說明放到你的網頁未必會顯示正確？
+13:41 < slackbot5> <pofeng> @hlb 也對 ...  唉 ...
+13:53 -!- Guest34157____ is now known as Guest34157___
+13:54 -!- c9sould___ is now known as c9sould__
+13:54 -!- j100002ben_____ is now known as j100002ben___
+13:54 -!- alex_lu_ is now known as alex_lu
+13:55 -!- elocmai_ is now known as elocmai
+13:55 -!- clkao_ is now known as clkao
+13:55 -!- coldturnip__ is now known as coldturnip_
+13:56 -!- caasihuang_ is now known as caasihuang
+13:57 -!- mno2_ is now known as mno2
+15:01 < slackbot5> <billy3321> pm5: 是喔，這是的
+22:05 < slackbot5> <johnny> @tkirby: 請問 fb 備份有什麼技巧可以拿到 feed 裡的大圖嗎？目前是縮圖
+22:30 < slackbot5> <tkirby> 沒研究過說，也許從圖片本身提供的原圖連結去看看？
+22:34 < slackbot5> <yhsiang> 把 “object_id" 裡面的東西拿去 query
+22:34 < slackbot5> <yhsiang> 就可以得到各種 size 的圖片
+23:00 < slackbot5> <johnny> tkirby, yhsiang : 感謝！
+23:25 < lin0413> Hi
+23:46 < lie0413> hi
+23:48 < slackbot5> <kiang> lie0413: hi
+23:51 < lie0413> Taiwan side anonymous?
+23:53 < slackbot5> <kiang> lie0413: yes or no. g0v works like anonymous, but not the anonymous trying to attack others.
+23:56 < lie0413> I would like to point effort contribution to society
+23:57 < slackbot5> <kiang> lie0413: if you are coming from Taiwan, why not using Chinese? If not, why you know here?

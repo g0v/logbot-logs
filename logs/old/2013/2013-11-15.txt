@@ -1,0 +1,636 @@
+--- Day changed 五 11月 15 2013
+00:00 < poga> 疑，reload後好像不太一樣了
+00:01 < clkaoud> 我猜可能是他 upgrade guest addition fail 了，然後就沒 mount 了?
+00:02 < poga> 有可能@@
+00:08 < clkaoud> 現在又卡在 node-gyp rebuild.. 他要去 nodejs.org 抓 source... 超慢
+00:09 < poga> 裝啊裝，風扇一直轉 XD
+00:13 < clkaoud> 至少現在只有裝 apisever, worker/stream/stream-worker 都暫時略過 :p
+00:13 < clkaoud> 不然還要裝巨無霸 libreoffice
+00:14 < poga> libreoffice XDD
+00:15 < clkaoud> hychen++ # https://twitter.com/debianjp/status/399113752114499584/photo/1
+00:15 < M00sUltraB0t> [ Twitter / debianjp: おっと、PgRESTでした ... ] - twitter.com
+00:17 < poga> 又炸了
+00:17 < clkaoud> orz
+00:18 < poga> FATAL: Chef::Exceptions::ChildConvergeError: Chef run process terminated by signal 9 (KILL)
+00:18 < poga> 好像pg爛了
+00:18 < clkaoud> memory 不夠？
+00:19 < poga> 前面有個pg gem編不過的訊息
+00:19 < clkaoud> 怪，我新弄一個目前是很順... 除了網路慢
+00:19 < poga> clkaoud: https://gist.github.com/poga/7469614
+00:19 < M00sUltraB0t> [ gist:7469614 ] - gist.github.com
+00:20 < clkaoud> chef gem 應該不是 fatal?
+00:20 < clkaoud> 這好像是本來就會出現的問題
+00:20 < poga> 是WARN
+00:20 < poga> hmm
+00:20 < clkaoud> ya.. i saw that too
+00:20 < clkaoud> probably needs to include_recipe postgresql::ruby
+00:20 < clkaoud> 不過既然可以繼續我就先不理他... XD
+00:21 < poga> https://gist.github.com/poga/7469642 死前遺言是這樣
+00:21 < M00sUltraB0t> [ gist:7469642 ] - gist.github.com
+00:21 < Michael_Thunder1> 國科會預算投資計劃分布不知道台灣有人是否興趣監督／過去的24hr這段討論的好熱烈／當然是陳鍾誠教授引發／https://www.facebook.com/groups/programmerMagazine/
+00:21 < M00sUltraB0t> [ Facebook ] - www.facebook.com
+00:26 -!- lijung [uid13080@gateway/web/irccloud.com/x-flitpethxqgujhom] has joined #g0v.tw
+00:27 -!- wHisKy [~whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+00:29 -!- yaopo [~yaopo@203.73.175.59] has joined #g0v.tw
+00:31 < Michael_Thunder1> 續上，URL準星調整／https://www.facebook.com/groups/programmerMagazine/permalink/748157538534298/
+00:31 < M00sUltraB0t> [ Facebook ] - www.facebook.com
+00:53 -!- raejin [uid12959@gateway/web/irccloud.com/x-xzozfwzbqaeudplb] has joined #g0v.tw
+00:56 -!- Tunghua [~Tunghua@1.34.114.149] has quit [Quit: Computer has gone to sleep.]
+00:57 -!- Tunghua [~Tunghua@1.34.114.149] has joined #g0v.tw
+00:58 < poga> clkaoud: 喔喔，把memory設成512後他終於成功跑起來啦！
+01:00 < clkaoud> ++
+01:11 < clkaoud> oooo Amazon RDS for PostgreSQL
+01:21 < yhsiangCloud> Poga
+01:21 < yhsiangCloud> 你一開始是給多少XD
+01:22 < clkaoud> 我現在在 vagrant file 裡面設定 1G 了 :p
+01:22 < clkaoud> 網路過於龜速.. bootstrap pg dump 好像沒 load 完
+01:23 < yhsiangCloud> ethantw: 這邊開發速度快 直接用master
+01:26 < clkaoud> yhsiangCloud: motions ok 嗎？
+01:28 < yhsiangCloud> 是不知道要shuffle的依據 orz
+01:28 < yhsiangCloud> 例如  退回院會 是提案還是一讀
+01:32 < clkaoud> yhsiang: 是一讀失敗
+01:33 -!- Tunghua [~Tunghua@1.34.114.149] has quit [Quit: Computer has gone to sleep.]
+01:33 < clkaoud> 這裡沒有被退回的 case # http://g0v.github.io/semantic-ui-experiment/bill-progress.html
+01:33 < M00sUltraB0t> [ 法案闖天關流程圖 ] - g0v.github.io
+01:33 < clkaoud> 可能和遭到復議一樣？也許可以有不同表達法... ETBlue 覺得... ?
+01:34 < yhsiangCloud> 對阿 所以 晚上討論就是放一讀
+01:35 < yhsiangCloud> ETBlue是說提案的資料(subatep)沒有的樣
+01:37 < clkaoud> 就... 先 improvise 吧 :p 之後再改 :p
+01:37 < yhsiang> ok 就日期照你說的 然後, 我把resolution都放到一讀下面去
+01:40 < clkaoud> ++
+01:44 -!- mno2 [~mno2@bb121-7-26-9.singnet.com.sg] has quit [Quit: mno2]
+01:51 < poga> yhsiangCloud: 一開始沒設，我不知道是多少耶 XD
+02:01 < clkaoud> 這到底在吵什麼，有人看得懂嗎？ # https://www.facebook.com/billy3321/posts/10202261101265915
+02:01 < M00sUltraB0t> [ 林雨蒼 - 有稍微碰過雲端運算的就知道，中國的級別根本跟台灣不一樣。台灣幾乎難有雲端運算的應用地方。許多的台灣資訊公司... | Facebook ] - www.facebook.com
+02:03 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Quit: Leaving]
+02:04 < hychen> 不知道... 還是看技術文件比較實在...
+02:06 < yhsiang> 感覺是一個人把樓弄歪了 XDD
+02:07 < yhsiang> 雨蒼很努力扶正, 但是明顯沒人理他, 繼續歪 ....
+02:07 < yhsiang> 不過好長, 我也是end ..
+02:09 < Michael_Thunder1> ／終於抓到榮尼王在R語言聚會的分享錄影／https://www.youtube.com/watch?v=cSEC1IBv-kE
+02:09 < M00sUltraB0t> [YouTube] Title: DSCN0077 | Uploader: TW use-R | Uploaded: 17/04/2013, 02:08 | Duration: 25mins 12secs | Views: 9 | Comments: 0 | Likes: N/A | Dislikes: N/A
+02:10 < wayne930242> clkaoud: 雨蒼提出台灣雲端運算技術比不上大陸，希望以後關係可以倒轉。有人以為這是要技術反傾銷的意思、又認為他提出的說法不夠有建設性，認為即使不需要把技術輸入大陸也沒關係。
+02:11 < wayne930242> 總之就是被政治怪纏上了
+02:11 < yhsiang> 是啊, 一開始樓就歪了啦 XD
+02:12 < yhsiang> 一旦被人扯到政治就是沒完沒了 ...
+02:12 < wayne930242> 然後樓就倒了
+02:12 < Michael_Thunder1> 我前天看了一遍，裡頭自然語言BUG大概只有：（１）跟中國學習　（２）台灣比中國落後
+02:13 < wayne930242> 雨蒼又很固執要回，就變成這樣
+02:13 < wayne930242> 他是想要把話說清楚啦，但就...
+02:13 < wayne930242> 回不去了XD
+02:13 < yhsiang> wayne930242: 沒人搞清楚他想表達什麼, 說再多也是白費 XD
+02:14 < wayne930242> 因為雨蒼太常和政治怪打架
+02:14 < yhsiang> 我的意思是 推文的人都沒搞懂他的意思 XD
+02:14 < wayne930242> 所以也會吸引政治怪來咬他
+02:14 < clkaoud> troll hugging 功力薄弱
+02:14 < clkaoud> 不過為何雨蒼有這麼多時間寫這些？
+02:14 < wayne930242> yhsiang: 沒錯
+02:15 < wayne930242> clkaoud: 我不知道他上班時都在幹嘛XD
+02:15 < Michael_Thunder1> 都馬這樣子～～目前沒有自動機器能夠語意分析，以後有空弄一個。
+02:15 < yhsiang> 先prototype一個..不過我看ui-step大概要寫成directive可能比較好
+02:15 < wayne930242> 這件事我也覺得很神奇
+02:15 < clkaoud> 更神秘的是... 而且他老闆也來回了
+02:15 < wayne930242> 真的假的
+02:16  * yhsiang 宵夜完睡覺 &
+02:16 < clkaoud> yhsiang++
+02:16 < clkaoud> 今天辛苦了 :DD
+02:16 < yhsiang> 現在只針對審查的 orz..
+02:16 < wayne930242> clkaoud: 他老闆是誰xd
+02:16 < yhsiang> 有方法可以看更多resolution嗎
+02:17 < yhsiang> 比較好和ETBlue的連連看 XD
+02:17 < Michael_Thunder1> _//題外資訊：週二上課，看圖表有張美國媒體最喜歡分析美國總統演講稿的字詞頻率。
+02:17 < clkaoud> one sec
+02:18 < clkaoud> yhsiang: https://gist.github.com/clkao/a38777b25cac4a860ea6
+02:18 < M00sUltraB0t> [ gist:a38777b25cac4a860ea6 ] - gist.github.com
+02:18 < clkaoud> 這邊應該都是報告事項的。討論事項的變化就很多了... orz
+02:18 < clkaoud> 所以主要是提案相關的，跟查照案
+02:19 < clkaoud> 不過 tts 進來之後，還會有另一個 dimension (進度) 到時應該比較好處理
+02:24 -!- lcamel [~lcamel@114-45-50-221.dynamic.hinet.net] has quit [Remote host closed the connection]
+02:24 -!- lcamel [~lcamel@114-45-50-221.dynamic.hinet.net] has joined #g0v.tw
+02:28 < CAA51> 晚安，我做的比較慢，覺得有必要把之後打算做啥列出來：
+02:28 < CAA51> https://gist.github.com/caasi/7471782
+02:28 < M00sUltraB0t> [ public TODO ] - gist.github.com
+02:29 -!- lcamel [~lcamel@114-45-50-221.dynamic.hinet.net] has quit [Ping timeout: 265 seconds]
+02:30 < CAA51> 跨了 repo ，還是說該開在 hackpad ？
+02:31 < CAA51> 除了這邊弄亂該負責整理的以外，歡迎劫坑 <(_"_)>
+02:31 < au> CAA51++ # https://g0v.hackpad.com/1123--qOZ7FM72G10
+02:31 < M00sUltraB0t> [ 11/23 萌典松 - g0v.hackpad.com ] - g0v.hackpad.com
+02:31 < au> 我複製過去了
+02:31 < au> 歡迎繼續列
+02:32 < hychen> 原來有人寫好了http://newsdiffs.org
+02:32 < M00sUltraB0t> [ NewsDiffs | Tracking Online News Articles Over Time ] - newsdiffs.org
+02:32 < CAA51> au++ 謝謝！
+02:36 < Michael_Thunder1> GOOD TooL！　hychen／臺灣的 ronny 也有一個呦／http://newsdiff.g0v.ronny.tw/
+02:36 < M00sUltraB0t> [ NewsDiff ] - newsdiff.g0v.ronny.tw
+02:39 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 246 seconds]
+02:41 < au> http://i.imgur.com/eRnjgIz.jpg 新新聞 g0v 報導的低解析度版，好像不要轉貼比較好
+02:42 -!- Stranger_1980_ [~Stranger_@1.34.223.58] has joined #g0v.tw
+02:43 < au> -> zzz too
+02:45 -!- Stranger_1980 [~Stranger_@1.34.223.58] has quit [Ping timeout: 240 seconds]
+02:50 -!- cpyang [~cpyang@nerv.siraya.net] has joined #g0v.tw
+02:50 -!- wayne930242 [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has quit [Quit: Leaving.]
+02:57 -!- cpyang [~cpyang@nerv.siraya.net] has quit [Ping timeout: 260 seconds]
+03:02 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+03:16 -!- ypwong [~anthony@206.225.133.128] has quit [Ping timeout: 248 seconds]
+03:26 -!- Stranger_1980 [~Stranger_@1.34.223.58] has joined #g0v.tw
+03:29 -!- Stranger_1980_ [~Stranger_@1.34.223.58] has quit [Ping timeout: 240 seconds]
+05:52 -!- Supaplextw [~Lucky@114-25-202-9.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:53 -!- Supaplextw [~Lucky@114-36-243-214.dynamic.hinet.net] has joined #g0v.tw
+06:24 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+06:32 < Michael_Thunder1> 呼～發稿完畢！／【本週精選新聞】聯合報製造假新聞，自盡老農長子呂文聰發表書面聲明駁斥不實內容。／https://www.facebook.com/photo.php?fbid=362233920589276&set=a.319235791555756.1073741826.317618105050858&type=1
+06:32 < M00sUltraB0t> [ 新聞小幫手 - 動態時報相片 | Facebook ] - www.facebook.com
+07:08 < Michael_Thunder1> <FYI>透過一位粉絲看到這篇文好文章／http://www.inside.com.tw/2013/04/16/news-is-bad-for-you?fb_action_ids=4176231424033&fb_action_types=og.likes&fb_ref=wp&fb_source=aggregation&fb_aggregation_id=288381481237582
+07:08 < M00sUltraB0t> [ 新聞有毒，勇敢戒斷你會更快樂 - Inside 硬塞的網路趨勢觀察 ] - www.inside.com.tw
+07:27 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 272 seconds]
+08:03 -!- lcamel [~lcamel@114-45-63-19.dynamic.hinet.net] has joined #g0v.tw
+08:06 -!- walkingice_zZ is now known as walkingice
+08:15 -!- lcamel [~lcamel@114-45-63-19.dynamic.hinet.net] has quit [Remote host closed the connection]
+08:15 -!- lcamel [~lcamel@114-45-63-19.dynamic.hinet.net] has joined #g0v.tw
+08:20 -!- lcamel [~lcamel@114-45-63-19.dynamic.hinet.net] has quit [Ping timeout: 244 seconds]
+08:51 -!- lcamel [~lcamel@2406:2000:efa5:9:7d1e:2066:f8d8:7bae] has joined #g0v.tw
+08:55  * ETBlue 昨晚停電早睡…現在追 log
+08:58 < walkingice> 話說下週有機會拜訪尤美女委員，談一些國會開放資料的議題
+08:59 < walkingice> 共筆在這裡 http://hack.g0v.tw/g0v-ly/XuPwD3GqV11
+08:59 < M00sUltraB0t> [ hack.g0v.tw ] - hack.g0v.tw
+09:00 < walkingice> 我希望至少讓委員理解，技術上我們需要哪一類的東西
+09:01 < walkingice> 或許有機會藉由委員產生一點推力 (推向未知結果？:P)
+09:02 < walkingice> 明天趁週末會作一點簡報，星期天剛好又會去台北 XD
+09:02 < walkingice> 週日下午若有人有興趣可以先一同聊天討論
+09:13 < billy3321> @@
+09:14 < Michael_Thunder1> 大家加油！～～開放國會好重要～～我這裡接觸到陳鍾誠教授關心12年國教，早上開始一直收到背後有大陰謀有商業集團綁架教育部政策，之後再回頭貼進度。
+09:14 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+09:18 -!- ypwong [~anthony@119.39.124.239] has joined #g0v.tw
+09:23 -!- lcamel_ [~lcamel@nat/yahoo/x-oszjnbpjhynzmzft] has joined #g0v.tw
+09:24 -!- chihchun_afk is now known as chihchun
+09:24 -!- lcamel [~lcamel@2406:2000:efa5:9:7d1e:2066:f8d8:7bae] has quit [Ping timeout: 240 seconds]
+09:25 < ETBlue> walkingice: 你要貼的是這份嗎？ https://g0v.hackpad.com/AfSW45uQo7o
+09:25 < M00sUltraB0t> [ 拜訪立委筆記 - g0v.hackpad.com ] - g0v.hackpad.com
+09:26 < walkingice> ETBlue: 對耶，我怎麼會貼到另外一份？哈哈哈哈哈哈
+09:26  * walkingice D'oh
+09:27 < ETBlue> AliceWei: 程序跟紀律委員會的 icon  可以多一個版本嗎？想看沒有齒輪的樣子 XD 到時候再叫科比視情況選用
+09:27 -!- superbil^^ [~superbil@114-34-221-169.HINET-IP.hinet.net] has quit [Ping timeout: 244 seconds]
+09:27 < ETBlue> walkingice: 沒睡飽呴…出門前打坐一下吧
+09:30 < ETBlue> walkingice: 週日下午我要去幫快閃團錄影一下，話說那天高村長好像不在台北
+09:33 < pofeng_> walkingice: 可不可以問一下 ivod 是否有機會錄全場, 或至少收台下 mic 的聲音
+09:34 < pofeng_> walkingice: 聽說上次公督盟爭取失敗, 所以只錄台上
+09:34 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has quit [Read error: Connection reset by peer]
+09:34 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+09:39 < walkingice> ETBlue: 是這樣把齒輪拿掉嗎？ https://plus.google.com/u/0/111787784022722324434/posts/G2DMubuEMGe
+09:39 < M00sUltraB0t> [ Walkingice Chu - Google+ - for +ET Blue ] - plus.google.com
+09:40 -!- superbil^^ [~superbil@1.34.97.68] has joined #g0v.tw
+09:40 < ETBlue> walkingice: 對耶
+09:40 < walkingice> pofeng_: 好呀，pofeng 就更新到 hackpad 上面，整理之後一併交給委員
+09:40 < ETBlue> walkingice++
+09:40 < pofeng_> walkingice: ok, processing
+09:40 < walkingice> pofeng_++
+09:40 < ETBlue> walkingice: 要怎麼給 tkirby ？
+09:41 < walkingice> ETBlue: 把東西砍掉還滿簡單的 XD
+09:41 < walkingice> 那我先 commit svg 到 git 上面好了
+09:41 < ETBlue> walkingice: 好，希望兩種版本都保留供將來選擇
+09:41  * walkingice 剛剛花最多時間是在上傳到 picasa，然後發現 url 好醜 =.=
+09:42 < ETBlue> XDD
+09:42  * walkingice 對 picasa 整合到 g+ 相當不滿 orz
+09:43 < Jcrt> au: moedict-extension 那邊，早上 merge 後我又再改了一點點東西，還有加上 icon 等等
+09:44 < Jcrt> au: 我有先 hack 兩個 css 並標注起來 FIXING in extension ，之後要整理時才知道怎麼做合併
+09:45 < walkingice> ETBlue: pushed
+09:45 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has quit [Ping timeout: 264 seconds]
+09:46 < Jcrt> au: 目前比較卡的是名、動這種紅底白字跑不出來，以及切好的字整條 a 會黏在一起，要繼續搬 moedict-webkit 的 css ～ 不過用到的部分大概只有這些了
+09:47  * walkingice 每次看到村長吹口哨那張圖，都會笑到顫抖不已  XDXDXDXDXD
+09:47 < Jcrt> au: 目前的效果 http://d.pr/i/BWyT
+09:47 < M00sUltraB0t> [ Droplr • 螢幕快照 2013-11-15 9.46.47.png ] - d.pr
+09:47 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+09:49 -!- ypwong [~anthony@119.39.124.239] has quit [Read error: Connection reset by peer]
+09:49 -!- a16g_ [~anthony@static-ip-140-73-134-202.rev.dyxnet.com] has joined #g0v.tw
+09:49 < au> Jcrt: 還有按框外或框內加一個[x]可以關閉?
+09:50 -!- a16g_ [~anthony@static-ip-140-73-134-202.rev.dyxnet.com] has quit [Remote host closed the connection]
+09:51 -!- a16g_ [~anthony@119.39.124.239] has joined #g0v.tw
+09:51 < au> 紅底白字改 styles.scss line 37 成紅色即可
+09:53 < au> Jcrt++ # 好像差不多可以上架了 XD
+09:53 < au> (bbl)
+09:58 < walkingice> yhsiang: 你是 vim 派還是 emacs 派呀？:D
+10:00 -!- a16g_ [~anthony@119.39.124.239] has quit [Ping timeout: 244 seconds]
+10:00 -!- a16g_ [~anthony@ds021.sg.gs] has joined #g0v.tw
+10:02 < yhsiangCloud> walkingice: vim 不過現在都用sublime 
+10:03 < walkingice> soga!
+10:05 -!- a16g_ [~anthony@ds021.sg.gs] has quit [Ping timeout: 260 seconds]
+10:11 -!- lcamel_ [~lcamel@nat/yahoo/x-oszjnbpjhynzmzft] has quit [Remote host closed the connection]
+10:11 -!- lcamel [~lcamel@nat/yahoo/x-xiantacjcnalexxl] has joined #g0v.tw
+10:14 -!- lcamel_ [~lcamel@nat/yahoo/x-eopxosgshifmfdzq] has joined #g0v.tw
+10:15 -!- lcamel [~lcamel@nat/yahoo/x-xiantacjcnalexxl] has quit [Read error: Connection reset by peer]
+10:15 -!- ymow [~Adium@1-171-50-88.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+10:17 -!- a16g_ [~anthony@static-ip-140-73-134-202.rev.dyxnet.com] has joined #g0v.tw
+10:19 -!- a16g_ [~anthony@static-ip-140-73-134-202.rev.dyxnet.com] has quit [Remote host closed the connection]
+10:19 -!- a16g_ [~anthony@static-ip-140-73-134-202.rev.dyxnet.com] has joined #g0v.tw
+10:23 < t0mst0ne> 想問一下, 立院的錄影雖然放到youtube, 但是美個質詢或會議其實時間蠻長的,  之前有想到用語音辨識軟體(https://play.google.com/store/apps/details?id=com.iflytek.inputmethod 有離線版)可以變成文字檔, 有文字檔以後更容易做 tag, metadata. 也減少閱讀時間 (大概很少有人願意花個2小時看),
+10:23 < t0mst0ne> 不知道有沒有其他替代方案? 
+10:23 < M00sUltraB0t> [ 讯飞输入法手机版 - Google Play Android 應用程式 ] - play.google.com
+10:24 < t0mst0ne> 因為自己也有其他上課的錄音檔, 想到要一字一字打, 好懶
+10:24 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:29 < walkingice> t0mst0ne: 國會有質詢的文字稿
+10:29 < walkingice> t0mst0ne: http://ly.g0v.tw/debates
+10:35 < Jcrt> au: 我有開 issue ，應該是點框以外的地方就會消失～
+10:36 < Jcrt> au: 其實還有一個是 trigger key ，應該要可以設定按著 ctrl / alt/ cmd 時才會觸發，不然選擇後就跳出其實是有點煩的～ 但這打算上架後再來弄 zzz
+10:40 -!- lanf0n [uid13946@gateway/web/irccloud.com/x-uzmhhjwwofavdryg] has joined #g0v.tw
+10:41 -!- a16g_ [~anthony@static-ip-140-73-134-202.rev.dyxnet.com] has quit [Remote host closed the connection]
+10:44 -!- a16g_ [~anthony@119.39.124.239] has joined #g0v.tw
+10:44 < clkaoud> t0mst0ne: 公報會有全文，其實公報初稿當天或隔天就會出現了，但是不對外釋出
+10:44 < AliceWei> ETBlue: walkingice 早上看到icon的事就做了無齒輪的更新 XD
+10:45 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+10:49 < walkingice> AliceWei: 我知道擅改設計師的設計是重罪  (跪)
+10:49 < clkaoud> AliceWei++ # 剩下 6 個委員會
+10:54  * ETBlue 亂睡設計師的肩膀，無罪 XD
+10:54 < AliceWei> walkingice: 阿不是啦 XDD 因為晚上沒來就看log發現就..就改著也順便放上去了..
+10:55  * ETBlue 出門
+10:55 < Jcrt> ronnywang: 為什麼我在 chrome webstore 搜尋「求職小幫手」找不到 extension ？ ＠＠ 
+10:56 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+10:56 < AliceWei> ETBlue: 是女孩不介意歡迎阿
+10:56 < AliceWei> clkaoud: 6個委員會？
+10:57 < t0mst0ne> walkingice: clkaoud 了解 ,thanks.  只是不知道有需要在youtube 檔說明中提供文字檔連接嗎? 不過不對外釋出的就沒辦法了
+10:57 < clkaoud> AliceWei: http://ivod.ly.g0v.tw/onair # 還有交通、司法等六個委員會的 icon :P
+10:57 < clkaoud> t0mst0ne: 是有打算這麼作，在公報出來後（一般會差三週）
+10:58 < AliceWei> clkaoud: 交通、司法、外交、國防、內政、教育？
+10:59 < clkaoud> 還有社會福利及衛生環境
+10:59 < Jcrt> ronnywang: （我搜尋的到連結，是想問 webstore 的搜尋結果）
+11:00 < ronnywang> Jcrt: 我看看
+11:01 < AliceWei> clkaoud: 意思是6委員會：交通、司法、外交、國防、內政、教育<--我有無打錯的？＋2：社會福利'衛生環境
+11:02 < clkaoud> AliceWei: 你看 onair 那頁的列表... 「外交及國防」是一個委員會喔
+11:03 < ronnywang> Jcrt: 我把地區從台灣 only 改成全部試試看
+11:04 < AliceWei> clkaoud: 喔，我看到下面修憲、程序委員會，想起來了，知道意思了
+11:04 < Jcrt> ronnywang: 哪裡可以改地區 XD
+11:05 < ronnywang> App 的設定那邊 XD
+11:06 < AliceWei> clkaoud: 嗯嗯，做好了我再放上來
+11:06 < Jcrt> ronnywang: 了改 XD 我截圖給你看我的結果
+11:07 < Jcrt> ronnywang: http://d.pr/i/pWEh
+11:07 < M00sUltraB0t> [ Droplr • 螢幕快照 2013-11-15 11.06.36.png ] - d.pr
+11:08 -!- a16g_ [~anthony@119.39.124.239] has quit [Ping timeout: 265 seconds]
+11:08 -!- a16g_ [~anthony@65.93.189.91.lcy-01.canonistack.canonical.com] has joined #g0v.tw
+11:09 < Michael_Thunder1> 被徵收土地的人好可憐／臺灣的黑箱作業好多／看過這集就清楚多了／https://www.youtube.com/watch?v=Q-lcc5T9FFU
+11:09 < M00sUltraB0t> [YouTube] Title: 20131113有話好說：政府徵地再添冤魂！桃園航空城惹爭議！ | Uploader: PTSTalk | Uploaded: 13/11/2013, 14:08 | Duration: 57mins 23secs | Views: 826 | Comments: 3 | Likes: 12 | Dislikes: 1
+11:11 < ronnywang> Jcrt: 我先試試看地區改完後過一會會不會出現
+11:14 < Jcrt> ronnywang: okay. 因為我剛好也要準備上架，想說來參考一下你的頁面 XDDD
+11:18 -!- ymow [~Adium@60.245.65.180] has joined #g0v.tw
+11:22 < hychen> ronnywang: 請問新聞小幫手跟newsdiff有API可用嗎?
+11:33 < ronnywang> hychen: 新聞小幫手 http://newshelper.g0v.tw/index/data
+11:33 < ronnywang> newsdiff 目前沒有 API, 你有想要什麼樣的 API 嗎?
+11:34 < hychen> ronnywang: 丟canonical url 去找到對應的回報資料
+11:36 < hychen> ronnywang: newsdiff的issue要回報在哪? 我想我直接開成issue描述.
+11:36 < ronnywang> https://github.com/ronnywang/newsdiff
+11:36 < M00sUltraB0t> [ ronnywang/newsdiff · GitHub ] - github.com
+11:37 < Michael_Thunder1> ronnywang 抵制小幫手您有接觸這位創始人嗎？
+11:38 -!- a16g_ [~anthony@65.93.189.91.lcy-01.canonistack.canonical.com] has quit [Remote host closed the connection]
+11:38 < Michael_Thunder1> 昨天就在草擬這件事情　https://g0v.hackpad.com/by--VxvHTEqJ5sc
+11:38 < M00sUltraB0t> [ 閱聽人抗議行動（by 新聞小幫手 + 網站抵&a ] - g0v.hackpad.com
+11:38 -!- a16g_ [~anthony@119.39.124.239] has joined #g0v.tw
+11:42 < Michael_Thunder1> 拋出來看看各位的想法
+11:44 < ronnywang> hychen: http://newsdiff.g0v.ronny.tw/api/news?url=http://www.ettoday.net/news/20131114/296057.htm
+11:44 -!- dylandy [~dylandy@host-61-70-242-211.static.kbtelecom.net] has joined #g0v.tw
+11:45 < dylandy> 話說我把 Airesis 的 branch 名字改正常了，可能跟主線那邊差異很大，還請見諒
+11:45 < dylandy> https://github.com/g0v/Airesis/tree/Dylandy-Work
+11:45 < M00sUltraB0t> [ g0v/Airesis · GitHub ] - github.com
+11:46 < dylandy> 看了一下主線，發現大家改了好多東西orz
+11:46 < ipa> 新新聞用了一張g0v有史以來女生比例最高的照片 XD
+11:47 < Michael_Thunder1> ipa ＸＤＤＤ
+11:52 -!- KylinWu_ [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+11:52 -!- privism_ [~priv@vps1.priv.tw] has joined #g0v.tw
+11:52 -!- edwardc_ [~edwardc@60-199-248-174.static.tfn.net.tw] has joined #g0v.tw
+11:52 -!- zea1_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+11:52 -!- hlb_ [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+11:52 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+11:52 -!- f0rth_ [~f0rth@ubuntu.amersen.com.tw] has joined #g0v.tw
+11:52 -!- tonytony1an [whchien@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+11:52 -!- Netsplit *.net <-> *.split quits: AceLan, privism, a16g_, tonytonyjan, edwardc, superbil^^, f0rth, tubaxenor, zeal_bsd, KylinWu,  (+1 more, use /NETSPLIT to show all of them)
+11:52 -!- zea1_bsd is now known as zeal_bsd
+11:54 -!- Netsplit over, joins: tubaxenor
+11:54 -!- tubaxenor is now known as Guest31624
+11:57 -!- dylandy [~dylandy@host-61-70-242-211.static.kbtelecom.net] has quit [Quit: leaving]
+12:03 -!- superbil^^ [~superbil@1.34.97.68] has joined #g0v.tw
+12:03 -!- edwardc_ is now known as edwardc
+12:04 < Jcrt> au: 好奇一下，為什麼 moedict.tw 是 https 啊？
+12:05 -!- ypwong [~anthony@119.39.124.239] has joined #g0v.tw
+12:05 < clkaoud> cloudflare 
+12:05 < clkaoud> http://ivod.ly.g0v.tw/cinema/DIS/live # 紀律委員會即將開播
+12:09 < Jcrt> 所以 moedict.org 不是 cloudflare? 
+12:17 -!- ypwong [~anthony@119.39.124.239] has quit [Ping timeout: 246 seconds]
+12:44 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+12:51 -!- AceLan_ is now known as AceLan
+13:01 < Jcrt> au: 有個 bug 不知道怎麼解 orz https://github.com/wildjcrt/moedict-extension/issues/9 所以先做 dirty hack
+13:01 < M00sUltraB0t> [ 避免在跳出的視窗內再次觸發搜尋萌典 · Issue #9 · wildjcrt/moedict-extension · GitHub ] - github.com
+13:01 -!- Guest31624 is now known as tubaxenor
+13:01 < Jcrt> au: 晚點來上架！ （總算）
+13:02 < ETBlue> au: 不方便轉貼是因為新新聞這篇還沒有全文上網對嗎？
+13:03 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has joined #g0v.tw
+13:03 < ETBlue> 新新聞++ thomas 介紹得真好，深入淺出，不愧是總主筆 :3
+13:05 < clkaoud> 我把 ivod 的 volume control 做到外面了 才不會被擋住
+13:05 < clkaoud> 段宜康質詢柯建民
+13:05 < clkaoud> XD
+13:07 < ipa> ETBlue: thomas 好像說不一定會全文上網
+13:07 -!- SupaplexTW___ [~Adium@210.61.193.66] has joined #g0v.tw
+13:09 < ipa> 還是應該鼓勵大家去買?  :/ 
+13:09 < ETBlue> XDXD
+13:09 < ETBlue> 那張照片的男女比例跟平常完全相反挖哈哈
+13:12 < ETBlue> AliceWei: 委員會的清單草稿文也有列出 https://plus.google.com/u/0/+ETBlue/posts/bNH2aTBiXiq
+13:12 < M00sUltraB0t> [ ET Blue - Google+ - 立法院專案，各委員會的 icon 構思中，第一彈 目前列出的有： - 院會 - 程序委員會 - 紀律委員會 -… ] - plus.google.com
+13:13 < ipa> 我先從fb後勤刪掉圖檔連結，好像該等販售期結束再分享
+13:14 < AliceWei> ETBlue: 嗯嗯
+13:16 < yhsiangCloud> 其實我一直想說thomas的名字   XD
+13:19 < clkaoud> ETBlue, yhsiang 結果後來還有討論退回程序的呈現方式嗎？還是就和復議一樣？概念上被檔的地方是有點不同
+13:20 < ETBlue> clkaoud: yhsiang 我以為你們得到結論了 XD 基本上在成功（已排程且已執行）進入委員會審查之前，我都把它算在一讀
+13:22 < clkaoud> 不過第一個勾勾目前似乎只好勾或沒勾
+13:22 < clkaoud> *只有
+13:22 < ETBlue> 其實我覺得都可以 @@" 看要切在哪個時間點當分界?
+13:22 < clkaoud> 也許可以變成驚嘆號表示被退？
+13:24 < ETBlue> 任何一個圈圈都可以變成驚嘆號
+13:24 < clkaoud> ya.. 我是說目前列出的沒有第一個變成驚嘆號的 case 
+13:24 < ETBlue> ㄟ你說的是 substep 還是...
+13:24 < clkaoud> 提案和一讀中間
+13:24 < ETBlue> 喔喔喔，對耶目前沒列出…（抓頭
+13:25 < ETBlue> 好像該把那個 sample 套 controler.ls 看看各種情況
+13:25 < ETBlue> 我有很多沒列出的
+13:26 -!- Moo [~marlborom@101.3.43.40] has joined #g0v.tw
+13:26 < ETBlue> 手動一個一個列太麻煩了囧
+13:26 -!- Moo is now known as Guest41785
+13:27 < ETBlue> 我先拉下來看你們現在寫到哪
+13:27 < clkaoud> ETBlue: 現在如果要 incremental release (先把一讀部分呈現出來)... 後面那些是不是可以半透明?
+13:27 < clkaoud> 不然無法 deploy 太痛苦了 XD
+13:27 < ETBlue> clkaoud: 可以，應該改一下 .not-yet 的 style
+13:28 < ETBlue> XDDDDD
+13:28 < ETBlue> ㄟ，現在你手上有的 progress 資料只到一讀？
+13:29 -!- marlboromoo [~marlborom@101.3.36.129] has quit [Ping timeout: 252 seconds]
+13:30 < clkaoud> ETBlue: 還有徑付二讀的
+13:30 < clkaoud> 因為正常程序後，委員會報告會有不同的 id, 那邊要先接起
+13:31 < clkaoud> 所以可以先弄一讀相關跟逕付二讀
+13:32 < clkaoud>  的逕付二讀的 mockup... 中間空白處是不是應該變成某種加速狀的紅色條紋？ XD
+13:36 -!- ymow [~Adium@60.245.65.180] has quit [Quit: Leaving.]
+13:46 < hychen> ronnywang: cool!
+13:46 < ETBlue> 目前「未執行」跟「應執行但未執行」同是白色，是可以考慮把後者區隔出來，不過因為紅色已經被 GG 用了，所以可能還是找黃綠色附近的顏色吧XD
+13:48 < clkaoud> 或者綠色的 stripe?
+13:50 < ETBlue> 用有加速感的箭頭 strip？不過可能就用圖檔，用純 css 做好像有點麻煩 XD
+13:52 < clkaoud> 不會啊 css stripe 可以參考 bootstrap 的 progress 元件 :p
+13:53 < clkaoud> 根本 semantic ui 也有 striped: http://semantic-ui.com/elements/progress.html 
+13:53 < M00sUltraB0t> [ Progress | Semantic UI ] - semantic-ui.com
+13:54 < clkaoud> ETBlue: ㄟ不過逕付二讀的 mockup 一讀也沒有背景... 好像應該還是有.. ?
+13:55 < clkaoud> 好卡喔 先來打工一下好了... ><
+13:56 < ETBlue> clkaoud: 如果有一讀、沒付委，那就該有背景，看他是在什麼時候被丟去捷徑上而定
+13:56 < clkaoud> 應該是還是有完成一讀
+13:58 < ETBlue> 有的話就會有顏色 XD 不過話說回來，那個 sample 不需要完全照抄，我只是想顯示各種可能的 style
+13:59 < ETBlue> 我把style規則寫一下好了 @@"
+14:01 -!- SupaplexTW___ [~Adium@210.61.193.66] has quit [Quit: Leaving.]
+14:04 -!- KylinWu_ [~kylin@netflow.csie.nfu.edu.tw] has quit [Quit: leaving]
+14:05 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+14:05 -!- ymow [~Adium@60.245.65.180] has joined #g0v.tw
+14:06 < Jcrt> ronnywang: 有了，搜尋的到了～
+14:10 < ETBlue> clkaoud: https://g0v.hackpad.com/-UI--UWNX2mDAnCc 最下面的 bill progress bar styling rules，這樣有涵蓋到所以 scenario 嗎？
+14:10 < M00sUltraB0t> [ 立院 UI 工作筆記 - g0v.hackpad.com ] - g0v.hackpad.com
+14:10 < ETBlue> s/所以/所有
+14:10 < M00sUltraB0t> ETBlue meant to say: clkaoud: https://g0v.hackpad.com/-UI--UWNX2mDAnCc 最下面的 bill progress bar styling rules，這樣有涵蓋到所有 scenario 嗎？
+14:10 < ronnywang> Jcrt: ok.. 所以分區還是要選全部不要只選台灣
+14:11 < ronnywang> 新聞小幫手還沒改
+14:12 < clkaoud> ETBlue: 我想一下... 復議的情況比較討厭，因為他是一讀完成後一段時間內可以提出... 所以變成一讀後的圓圈要依照復議期過了沒決定
+14:13 < ETBlue> clkaoud: 也就是說，即使已經排入委員會議程，在正式開會前都可以復議？
+14:14 < ETBlue> clkaoud: 如果這樣的話，我們就把圓圈打勾的時間點切在委員會正式開會？
+14:14 < ETBlue> clkaoud: 在那之前可以跟下個階段一起顯示為黑色
+14:17 < Jcrt> ronnywang: ic. will follow u~~
+14:19 < ETBlue> 最終要讓使用者看到綠色時就可以安心，看到黑色就安心一半，看到紅色就緊張，看到白色就放空…這樣
+14:24 < walkingice> ETBlue: 顏色++
+14:24 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+14:24 -!- ymow [~Adium@60.245.65.180] has quit [Read error: Connection reset by peer]
+14:24 -!- ymow1 [~Adium@60.245.65.180] has joined #g0v.tw
+14:27 -!- ypwong [~anthony@119.39.124.239] has joined #g0v.tw
+14:30 < clkaoud> ETBlue: 不，是有一個期限內可以復議，在期限內一般來說委員會不能直接排入議程
+14:30 < clkaoud> 但是也有一些例外，像是上次的軍審法
+14:30 < au> Jcrt: 用 https 是因為一開始的同時連線數較高，所以用 SPDY，而 SPDY 需要用 https
+14:30 < ETBlue> clkaoud: 原來如此，那就更單純了，就跟原本一樣，下一階段已經排程的圓圈才會變成綠色打勾
+14:31 < ETBlue> clkaoud: 例外就算了，只能把已經路色的圓圈改寫掉，反正不常見
+14:32 < clkaoud> ok ok
+14:35 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+14:42 -!- ymow [~Adium@60.245.65.180] has joined #g0v.tw
+14:42 -!- ymow1 [~Adium@60.245.65.180] has quit [Read error: Connection reset by peer]
+14:45 -!- zaeneas [uid14129@gateway/web/irccloud.com/x-jxzvkvmkudoyijto] has quit [Quit: Connection closed for inactivity]
+14:54 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+14:56 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has quit [Ping timeout: 256 seconds]
+14:57 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has joined #g0v.tw
+14:59 -!- privism_ is now known as privism
+15:00 -!- ymow1 [~Adium@60.245.65.180] has joined #g0v.tw
+15:00 -!- ymow [~Adium@60.245.65.180] has quit [Read error: Connection reset by peer]
+15:07 < Jcrt> au: 上架了～ https://chrome.google.com/webstore/detail/%E8%90%8C%E5%85%B8-moedict/aihifbidnaepclhnfppjnpbmeonhhloa
+15:07 < M00sUltraB0t> [ Chrome Web Store - 萌典 moedict ] - chrome.google.com
+15:09 < Jcrt> 萌典擴充套件資訊那邊，我需要一點幫忙～ 因為現在都是我自己隨便寫寫的 orz
+15:10 < Jcrt> 1. 詳細資訊, 2. 截圖我覺得不太明顯… 是不是把背景刷半透明黑比較好？ 或是把圖片放大
+15:11 < Jcrt> 3. 宣傳方塊圖片，我因為沒材料所以都沒處理，分三種 size: 440x280, 920x680, 1400x560
+15:51 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:51 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:51 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:55 < kcwu> au: logbot 的 web service 平常大概會吃多少 source? (cpu, ram...)
+15:56 < hcchien> :wq
+15:57 < edwardc> :q!
+16:01 -!- wolfenstein [~chatzilla@60-250-73-121.HINET-IP.hinet.net] has joined #g0v.tw
+16:04 < ychsiao> :rm
+16:04 < ychsiao> oops
+16:22 -!- lcamel [~lcamel@2406:2000:efa5:9:f171:b4d0:e5c6:71a2] has joined #g0v.tw
+16:22 -!- lcamel_ [~lcamel@nat/yahoo/x-eopxosgshifmfdzq] has quit [Read error: Connection reset by peer]
+16:37 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:37 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+16:58 < Guest41785> au, lumberjack 的 widget 搞好了, check: http://lumberjack.ultrab0t.net/channel/g0v.tw/today/
+16:58 < M00sUltraB0t> [ Willie-Lumberjack | #g0v.tw ] - lumberjack.ultrab0t.net
+16:58 -!- Guest41785 is now known as marlboromoo
+16:59 < marlboromoo> au, 點右邊的 widget -> get it
+17:01 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:02 < au> marlboromoo: 好棒! 如果 g0v.tw 首頁換成這個版本，~2req/sec 伺服器能負擔嗎
+17:02 < au> Jcrt: 好的，晚上手邊有電腦時會 pullreq with asset
+17:03 < marlboromoo> au, 可以試試看 :P lumberjack 需要起的 daemon 有兩隻, 一隻 irc logbot, 一個 bottlypy 的 web server, 另外依賴的 servier 是 redis
+17:04 < au> kcwu: linode 最小的機器，~200m ram, load ~0.40
+17:04 < clkaoud> 超相一回事的! :D
+17:04 < au> marlboromoo: 不介意的話我就直接連到 lumberjack.ultrab0t.net
+17:05 < marlboromoo> au, 沒問題, 我現在放在 digital ocean 上跑, 用最小的 droplet  :D
+17:05 < marlboromoo> au, 可以順便壓力測試一下 XD
+17:07 < au> marlboromoo++ ok deployed
+17:08 < marlboromoo> au, 看有需要幫忙改的都可以直接 github 開 issue :)
+17:09 < au> marlboromoo: xs 時 h2 也許隱藏? (see g0v.tw home page)
+17:09 < marlboromoo> clkaoud, 看之前的 .karma 功能要不要也弄個 web 出來 XD
+17:09 < hcchien> 有人遇過用 perl 寫檔，發生 Inappropriate ioctl for device 的 error 嗎
+17:09 < marlboromoo> clkaoud, 最近想來試試看這個 issue:  https://github.com/g0v/dev/issues/10
+17:09 < M00sUltraB0t> [ web irc integration on hack.g0v.tw · Issue #10 · g0v/dev · GitHub ] - github.com
+17:09 < marlboromoo> au, i'll fix it.
+17:22 < marlboromoo> au, fix & deployed .
+17:24 < au> marlboromoo++ 真不賴
+17:24 < ETBlue> marlboromoo++ 雖然我不知道你們在幹嘛，但看起來很厲害…
+17:26 -!- tonyhusky [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+17:26 < au> ETBlue: g0v.tw 首頁右側的「即時聊天」變成更新速度快、排版漂亮的新版 logbot 了
+17:26 -!- tonyhusky [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+17:27 < au> http://logbot.g0v.tw/channel/g0v.tw/today vs. http://lumberjack.ultrab0t.net/channel/g0v.tw/
+17:27 < M00sUltraB0t> [ Logbot | #g0v.tw ] - logbot.g0v.tw
+17:27 < M00sUltraB0t> [ Willie-Lumberjack | #g0v.tw ] - lumberjack.ultrab0t.net
+17:27 < ETBlue> 明天有人要跟 walkingice 橋立委行前松嗎？我下午要幫快閃團錄影，還是就約在車站附近，松完一起去看他們快閃（疑）
+17:27 < ETBlue> au: 噢噢……真的耶好可愛噢
+17:27 < ETBlue> marlboromoo++ 
+17:28 < walkingice> ETBlue: 我是星期天上去台北耶
+17:28 < ETBlue> walkingice: 啊講錯，是後天……快閃也是週日
+17:28 < ETBlue> 以為今天週六，囧
+17:28 < walkingice> ETBlue: 好歡樂～
+17:28 < clkaoud> marlboromoo++
+17:29 < ETBlue> walkingice: 你幾點在台北啊
+17:29 < clkaoud> 新新聞的全文貼出了：https://www.facebook.com/g0v.tw/posts/626396287401661
+17:29 < M00sUltraB0t> [ g0v.tw 台灣零時政府 - 本期新新聞有零時政府的介紹：... | Facebook ] - www.facebook.com
+17:29 < ETBlue> 新新聞++
+17:29 < ETBlue> 張維志是 whiskey嗎
+17:30 < clkaoud> y
+17:30 < walkingice> ETBlue: 我早上會到台北，預計中午過後會有空閒
+17:31 < clkaoud> 發現新新聞粉絲頁的貼文都蠻機車的 XD
+17:31 < clkaoud> 「曾經深情對望，曾經伏地挺身，一切都挽不回你的心。」
+17:34 < marlboromoo> ETBlue, XD
+17:36 < yhsiang> clkaoud: g0v.tw要上一下angular-seo嗎 ?
+17:37 < clkaoud> yhsiang: 應該要喔 不過現在是 github pages... 
+17:39 < clkaoud> yhsiang: 不然就是要搬到 cloudcore 然後上 cloudflare :p
+17:39 < marlboromoo> au, 我發現一個 bug,  放在 g0v.tw 首頁 widget 的 scroll bar 拉到最下面會消失 XD
+17:48 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+17:53 -!- pofeng_ [uid13024@gateway/web/irccloud.com/x-bjtwqtinxmbvgsdu] has quit [Read error: Connection reset by peer]
+17:53 -!- pofeng_ [uid13024@gateway/web/irccloud.com/x-ispgakjqpvayemen] has joined #g0v.tw
+18:00 -!- macpaul [~macpaul@162.248.8.104] has quit [Quit: leaving]
+18:07 -!- ymow [~Adium@60.245.65.180] has joined #g0v.tw
+18:07 -!- ymow1 [~Adium@60.245.65.180] has quit [Read error: Connection reset by peer]
+18:07 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+18:09 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+18:09 -!- wolfenstein [~chatzilla@60-250-73-121.HINET-IP.hinet.net] has quit [Quit: ChatZilla 0.9.90.1 [Firefox 25.0/20131025151332]]
+18:12 -!- ypwong [~anthony@119.39.124.239] has quit [Ping timeout: 260 seconds]
+18:14 -!- Stranger_1980_ [~Stranger_@1.34.223.58] has joined #g0v.tw
+18:16 < CAA51> Jcrt++
+18:16 < CAA51> marlboromoo++
+18:18 -!- Stranger_1980 [~Stranger_@1.34.223.58] has quit [Ping timeout: 260 seconds]
+18:28 < kcwu> marlboromoo: 這跟原本的 logbot 的 redis 相容嗎?
+18:31 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+18:39 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+18:39 < ETBlue> walkingice: 如果有人要松再通知我吧 XD 不然我下午應該會在快閃團那邊 www
+19:05 -!- chihchun is now known as chihchun_afk
+19:16 < walkingice> ETBlue: 好！如果沒有人的話，搞不好反倒是我去看一下快閃團 XD
+19:43 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+19:45 -!- ymow [~Adium@60.245.65.180] has quit [Quit: Leaving.]
+20:11 -!- lcamel [~lcamel@2406:2000:efa5:9:f171:b4d0:e5c6:71a2] has quit [Remote host closed the connection]
+20:12 -!- lcamel [~lcamel@2406:2000:efa5:9:f171:b4d0:e5c6:71a2] has joined #g0v.tw
+20:16 -!- lcamel [~lcamel@2406:2000:efa5:9:f171:b4d0:e5c6:71a2] has quit [Ping timeout: 240 seconds]
+20:18 < Michael_Thunder1> To.孝先／彭博社+中國=自我審查／http://www.bbc.co.uk/zhongwen/trad/china/2013/11/131114_nytime_bloomberg.shtml
+20:18 < M00sUltraB0t> [ 《紐約時報》：彭博社用編碼「自我審查」 - BBC中文網 - 兩岸 ] - www.bbc.co.uk
+20:26 -!- ymow [~Adium@61-230-99-5.dynamic.hinet.net] has joined #g0v.tw
+20:31 -!- wayne930242 [~wayneh@s101002506.CHING-ABC.ab.nthu.edu.tw] has joined #g0v.tw
+20:40 -!- dylandy [~dylandy@114-37-50-56.dynamic.hinet.net] has joined #g0v.tw
+20:46 < Michael_Thunder1> au／小學三年級／有想像力且結構完整的作文／https://www.facebook.com/photo.php?fbid=575342149211369&set=a.389702937775292.91082.100002067665064&type=1&theater
+20:46 < M00sUltraB0t> [ 郭顯煒 - 郭顯煒的相片 | Facebook ] - www.facebook.com
+20:47 < Jcrt> CAA51: tks~
+20:48 < Jcrt> au: 如果是早上說的紅底白字、文字連結效果等 css 效果，我已經解囉
+20:49 < Jcrt> au: js 的部份比較需要幫忙～ 還有文字
+20:49 < au> ok!
+21:06 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has joined #g0v.tw
+21:08 < Michael_Thunder1> ［分享］剛斷交的甘比亞，查看Google地圖，可以發現有趣的地方，整個國土都是沿著一條河流變長條形，國土利用根本被一分為二。
+21:25 < kcwu> github 會 warning 50mb 的檔案, reject 100mb ... https://help.github.com/articles/working-with-large-files
+21:25 < M00sUltraB0t> [ Working with large files · GitHub Help ] - help.github.com
+21:26 < clkaoud> !!
+21:26 < clkaoud> this is new?
+21:26 -!- louielu_ [uid13501@gateway/web/irccloud.com/x-krzjyceplrlhjbvd] has joined #g0v.tw
+21:26 < kcwu> Article last updated on 13-Aug-13
+21:26 -!- a0kman [uid15218@gateway/web/irccloud.com/x-woguhgjxbpcucsxj] has joined #g0v.tw
+21:26 < a0kman> ohohohohohohoohohoh
+21:27 < clkaoud> weird
+21:27 < a0kman> 我還以為去一趟日本就回不來了
+21:31 -!- yaopo [~yaopo@203.73.175.59] has quit [Quit: ZNC - http://znc.in]
+21:31 -!- yaopo [~yaopo@203.73.175.59] has joined #g0v.tw
+21:32 < kcwu> au: FYI, https://github.com/g0v/moedict-data/commit/fcf19d0aa0f5695bf23c3d86eafa99d81ec179db
+21:32 < M00sUltraB0t> [ update to 201311 version · fcf19d0 · g0v/moedict-data · GitHub ] - github.com
+21:34 -!- lcamel [~lcamel@114-45-63-19.dynamic.hinet.net] has joined #g0v.tw
+21:38 < Michael_Thunder1> a0kman 不錯啊　ＸＤＤＤ　／唉～老大您不在，甘比亞就跟我國斷交了！貓不在老鼠就做怪。／
+21:44 -!- soidid [24e5ae19@gateway/web/freenode/ip.36.229.174.25] has joined #g0v.tw
+21:44 < clkaoud> 何時會長到超過 100M? :p
+21:46 < au> kcwu++ thx
+21:47 < kcwu> moedict 嗎? 除非大改版不然應該不會長太大, 現在 80mb
+21:51 < a0kman> Michael_Thunder1: XDDDDD肝比啞喜歡大陸
+21:53 < Michael_Thunder1> 我正在抓新聞中，看到的資訊重點在於，是甘比亞總統一人獨斷決定，跟該國文官系統沒有關係。
+22:04 < Michael_Thunder1> a0kman 我看過ㄧ些紀錄片，其實中華民國的外交部，恐怕是世界上屬一屬二最厲害的文官系統（從世界上最衰的清朝末年就開始），一般民眾都不了解真相，其實也不會了解。
+22:09 -!- yaopo [~yaopo@203.73.175.59] has quit [Quit: ZNC - http://znc.in]
+22:11 -!- yaopo [~yaopo@203.73.175.59] has joined #g0v.tw
+22:11 -!- yaopo [~yaopo@203.73.175.59] has quit [Client Quit]
+22:12 -!- yaopo [~yaopo@203.73.175.59] has joined #g0v.tw
+22:13 -!- yaopo [~yaopo@203.73.175.59] has quit [Client Quit]
+22:19 -!- dylandy [~dylandy@114-37-50-56.dynamic.hinet.net] has quit [Quit: Lost terminal]
+22:20 < Lee1092> Startup weekend's boot camp 出現零時政府  關鍵字  # 小兔說參加Startup之前可以先去參考g0v使用的協作工具  XD
+22:21 < clkaoud> ETBlue: 在想資料的更新時程可能要想辦法圖解一下.... 新的法案會在週二被提出，週五被一讀，但是要等到隔週的週五，前一次議事錄確定後，才會進到資料庫
+22:21 < clkaoud> Lee1092: 你在 boot camp? :p
+22:21 < clkaoud> Lee1092: 有要參加嗎？
+22:22 < Lee1092> clkaoud  沒有  原本要去的，結果今天太晚下班  QQ  正在看線上轉播
+22:22 < Lee1092> clkaoud  有~  開放食庫團隊 XD
+22:23 < clkaoud> 這麼嗨！
+22:23 < clkaoud> 據說我是評審... XD
+22:24 < Lee1092> 有  追尋log途中有看到  這個據說  = =+ 
+22:25 < clkaoud> 加油！
+22:26 < Lee1092> clkaoud  賀! 先跟評審拜個馬頭  <(_ _)>  下禮拜見
+22:27 -!- yaopo [~yaopo@203.73.175.59] has joined #g0v.tw
+22:27 < clkaoud> err.. cloudflare dns 炸了嗎？
+22:28 < clkaoud> g0v.tw 跟 moedict.tw 都 GG 了.....
+22:29 < au> clkaoud: 一小時了，似乎是香港機房
+22:29 < clkaoud> saw that on twiiter status update
+22:29 < au> (但是 203.133.1.1 我目前都連得上)aa
+22:30 < ipa> soidid!
+22:31 < clkaoud> epic fail
+22:33 < tuiry> ETblue 老是參加不了O_o 
+22:33 < ronnywang> cloudflare dns 炸了好多東西都爛了.. imgur.com 看不到.. stackoverflow 被脫衣服
+22:34 < clkaoud> 雲散的時候，就知道誰在裸泳？
+22:36 < ipa> ETBlue: wHisKy 也是醫轉資  @@ 醫生背景的還真多
+22:39 < a0kman> Michael_Thunder1: 這個也有機會跟民眾傳播嗎? 我覺得有很多單位其實都很努力做事情，但是都不被看見
+22:40 -!- ypwong [~anthony@ds021.sg.gs] has joined #g0v.tw
+22:41 < Lee1092> clkaoud:  我目前 g0v.tw 跟 moedict.tw 都連得上耶~
+22:41 < clkaoud> 似乎慢慢恢復了
+22:42 < Michael_Thunder1> 內政的大概可以（還沒想到方式），外交很難，因為跟五湖四海的江湖人士打交道，裡頭必須有黑暗的檯面下交易。
+22:42 < OtomeSound> 種花到cloudfare還有一段路要走（嘆
+22:46 < au> kcwu: 3du.tw 現在的 hackpad redirect 有一點難以親近... 我在想萌典松時也許可以做一個簡單的 landing page，除了各 app store 裡的 port 之外，也讓比較難找到/安裝的平台（如 yllan 的 OSX Dictionary ）、API docs，和新的應用可以浮現。
+22:46 < clkaoud> danvvix 做的小幫手頁面直接套用？ XD
+22:47 < au> 好主意 XD
+22:48 < au> Jcrt: Android 上的宣傳圖片是這張，也許可以 resize 直接用? https://lh5.ggpht.com/pmEE7-8xId4jdm0Mou_F-ctGnQoAwT9uTnVoFPIFACUYcDlj919KdGortAwEMTYa3A
+22:53 < walkingice> Li-Ting 在拜訪立委的筆記 comment 大爆發 ++
+22:55 < ipa> soidid: 下週一起去嗎？
+22:55 < ipa> walkingice: soidid 就是 li-ting 
+22:56 < soidid> 下週不知行不行 看狀況 可以就會過去
+23:00 < walkingice> soidid++
+23:10 < Jcrt> cloudflare 實在炸太多次了 QQ
+23:10  * Jcrt 受災戶
+23:10 < Michael_Thunder1> <FYI>wayne930242／新禮貌運動正夯／http://angatou.blogspot.tw/2013/11/blog-post_13.html?m=1
+23:10 < M00sUltraB0t> [ 畫漫畫．話漫畫: [畫] 沒禮貌 ] - angatou.blogspot.tw
+23:12 < Jcrt> au: 沒問題～ （其實本來想放萌典娘 XD）
+23:12 < Jcrt> au: 還是我自己組合起來用 XDDDD
+23:13 < au> 請盡量即興創作 XD
+23:15 < clkaoud> 回來了，倒是換 cdnjs.cloudflare.com GG 了
+23:15 < Jcrt> au: yes, sir!
+23:16 -!- Moo [~marlborom@101.3.46.31] has joined #g0v.tw
+23:17 -!- Moo is now known as Guest84896
+23:17 < au> cool :) # 結果晚上沒寫程式，都在 txt 組幫 fumi 感人的天下部落格共筆潤稿... fumi++
+23:17 < au> -> zzz, 明天繼續 &
+23:17 < clkaoud> !!!
+23:18 < yhsiang> au++ # 剛剛都有看到 XD
+23:20 -!- marlboromoo [~marlborom@101.3.43.40] has quit [Ping timeout: 244 seconds]
+23:20 < clkaoud> fumi++
+23:20 < clkaoud> au++
+23:26 -!- soidid [24e5ae19@gateway/web/freenode/ip.36.229.174.25] has quit [Quit: Page closed]
+23:27 -!- lcamel [~lcamel@114-45-63-19.dynamic.hinet.net] has quit [Remote host closed the connection]
+23:27 -!- lcamel [~lcamel@114-45-63-19.dynamic.hinet.net] has joined #g0v.tw
+23:30 < walkingice> au: 如果萌典那張 Android 宣傳圖片沒有 svg 檔，我可以轉一張出來
+23:31 -!- lcamel [~lcamel@114-45-63-19.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+23:32 < Jcrt> walkingice: 我應該也只能用簡單的影像處理程式，轉出 svg 也無法弄出更清晰的圖 orz
+23:33 -!- Tunghua [~Tunghua@1.34.114.149] has joined #g0v.tw
+23:34 < jimyhuang> http://cn.nytimes.com/world/20131115/c15relief/dual/ 
+23:34 < M00sUltraB0t> [ 救援菲律宾折射亚洲地缘政治博弈 - 纽约时报中文网 国际纵览 ] - cn.nytimes.com
+23:35 < au> walkingice: 感謝，剛好手邊有，上傳了: http://www.audreyt.org/newdict/banner.svg
+23:36 < walkingice> au++
+23:36 < Jcrt> au: 長輩現在是夢話狀態嗎 XD （剛剛看到 &）
+23:36 < walkingice> Jcrt: XDXDXD ++
+23:37 < walkingice> 是我們在夢裡
+23:37 < clkaoud> 話說 style-guide 下面有新 logo 了
+23:37 < clkaoud> walkingice++
+23:38 < Jcrt> walkingice: Inception……
+23:39 < Jcrt> clkaoud: where is style-guide?
+23:40 < walkingice> Jcrt: git@github.com:g0v/style-guide.git
+23:40 < clkaoud> Jcrt: https://github.com/g0v/style-guide/tree/master/logo
+23:40 < M00sUltraB0t> [ style-guide/logo at master · g0v/style-guide · GitHub ] - github.com
+23:40 < Jcrt> clkaoud: orz 原來我剛剛手殘打錯字… 想說怎麼 github.com/g0v 找不到
+23:46 < jimyhuang> 有新的favicon嗎？
+23:49 -!- yurenju [~yurenju@1-172-48-201.dynamic.hinet.net] has joined #g0v.tw
+23:51 < jimyhuang> fumi++
+23:52 < clkaoud> jimyhuang: ico/
+23:52 < jimyhuang> tks
+23:55 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Quit: leaving]
+23:56 < clkaoud> yhsiang: 你有在動 LYBills controller 嗎？我想拆去別的檔案

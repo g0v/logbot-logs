@@ -1,0 +1,543 @@
+--- Day changed 一  2月 11 2013
+00:12 < favonia> 跟大家報告一下，現在寫到一半的程式搬到 https://github.com/g0v/encoding-mashup-server 了
+00:12 < kcwu> favonia's url: [g0v/encoding-mashup-server · GitHub]
+00:12 < favonia> 還不能用，不要太興奮 xD
+00:30 -!- ck__ [~ck@61-31-165-41.dynamic.tfn.net.tw] has quit [Remote host closed the connection]
+00:32 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+00:43 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+00:44 -!- lxb [dcf68658@gateway/web/freenode/ip.220.246.134.88] has joined #g0v.tw
+01:10 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Quit: Leaving.]
+01:30 -!- tonytonyjan [~tonytonyj@218-166-170-51.dynamic.hinet.net] has quit [Quit: Lost terminal]
+01:40 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+01:48 < Supaplextw1> http://opensource.com/business/13/2/open-source-app-for-journalists
+01:48 < kcwu> Supaplextw1's url: [DocHive saves journalists time spent on data extraction from PDFs | opensource.com]
+01:49 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Ping timeout: 255 seconds]
+01:53 < mno2> favonia: repository 搬到 g0v 我不是 member ，我沒辦法 push
+01:54 < au> mno2: 你的 github ID 也是 @mno2?
+01:55 < mno2> au: MnO2
+01:56 < au> OK added
+01:56 < au> welcome aboard
+01:56 < mno2> au: thanks
+02:07 < lxb> hihi
+02:10 < au> o/
+02:45 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+02:50 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Ping timeout: 276 seconds]
+03:31 -!- lxb [dcf68658@gateway/web/freenode/ip.220.246.134.88] has quit [Ping timeout: 245 seconds]
+03:32 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: Leaving]
+03:38 < favonia> au: 不知道為什麼，搬家以後連我都不能 push 了
+03:39 < favonia> au: 可能我搬家時哪裡設定錯了 @@ 要怎麼改呢？
+03:40 < au> checking
+03:41 < au> 要加 dev team
+03:41 < au> 修好了
+03:41 < au> please try push again
+03:43 < favonia> au: 每次搬家都要用 g0v 設定這樣嗎？
+03:43 < au> 是。好像是要在 https://github.com/g0v/encoding-mashup-server/settings/collaboration 加 dev team
+03:43 < favonia> au: 了解。謝謝。
+03:44 < au> favonia++ # mashup server looking good
+03:44 < favonia> 不對，我剛才好像連這頁都連不進去... xD
+03:44 < au> 那可能是因為你不在 owner team
+03:45 < favonia> au: 嗯的確是這樣
+03:46 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+03:48 < favonia> au: 我想現在就夠用了。如果以後又出狀況再說 xD
+03:50 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Ping timeout: 244 seconds]
+03:51 < au> cool
+03:55 < favonia> au: 對了，我們目前先用 sqlite 當後端（偷懶 xD）
+03:57 < au> 很 OK 啊 :p
+03:57 < au> whatever works works
+04:34 -!- Supaplextw [~Lucky@114-36-232-201.dynamic.hinet.net] has joined #g0v.tw
+04:34 -!- Supaplextw1 [~Lucky@114-36-251-149.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+04:34 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has quit [Ping timeout: 252 seconds]
+04:35 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has joined #g0v.tw
+04:46 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+04:50 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Ping timeout: 252 seconds]
+05:04 -!- awaw [cb4d4895@gateway/web/freenode/ip.203.77.72.149] has quit [Ping timeout: 245 seconds]
+05:46 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+05:51 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Ping timeout: 252 seconds]
+06:47 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+06:51 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Ping timeout: 256 seconds]
+07:47 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+07:51 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Ping timeout: 255 seconds]
+08:33 -!- lxb [db4f5b97@gateway/web/freenode/ip.219.79.91.151] has joined #g0v.tw
+08:41 < lxb> 給個參考，這是香港大學學生為反抗親中勢力扼殺大學生選舉學生會內閣權利而製作的：
+08:41 < lxb> http://i.cs.hku.hk/~khmok/
+08:41 < kcwu> lxb's url: [一分鐘看透港大周年大選]
+08:47 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+08:52 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Ping timeout: 276 seconds]
+09:28 < chhsiao1981> favonia: 我剛剛看到 github 上說"目前暫時全部統一成 INTEGER 或 Int64（採用 UNIX 時間）"
+09:29 < favonia> chhsiao1981: 嗯。
+09:29 < chhsiao1981> 我對於"或"這種事情有 concern. 古代的經驗有讓我感覺到"或"這種東西就是讓系統開始分歧的開始 XD. 
+09:29 < chhsiao1981> 不過有個共同的決定是"採用 unix epoch"
+09:29 < favonia> 原因是像 SQLite 只有 INTEGER
+09:30 < chhsiao1981> 如果是 follow "採用 unix epoch" 的話. 是 integer 或 int64 好像也不是那麼重要. 
+09:30 < favonia> 但 Haskell 用 Integer 實在沒意義
+09:30 < favonia> 是
+09:30 < favonia> 那是重點
+09:30 < favonia> 嗯我應該寫清楚一點
+09:30 < chhsiao1981> (所以那句話的重點是 "時間目前暫時全部統一成'採用 unix epoch'"
+09:31 < chhsiao1981> )
+09:31 < chhsiao1981> ?
+09:31 < favonia> 對
+09:31 < favonia> 我們找不到一個統一個時間表示法大家都有支援
+09:32 < favonia> 統一*的
+09:33 < chhsiao1981> 也就是說. 只要是能夠 represent 成 unix epoch (http://en.wikipedia.org/wiki/Unix_time) 的方式. 這樣子就 ok 了. 
+09:33 < chhsiao1981> 至於是怎樣子的方式達到這樣子的 representation 方式. 不用定義在裡面. 
+09:34 < favonia> 不太確定你的意思。我的意思是說所有操作，儲存一律轉成 UNIX time 再說
+09:35 < chhsiao1981> 如果使用 int32 的 system 在 100 年後 overflow 了. 是那個 system 要想辦法 improve/upgrade 繼續 represent unix epoch. 而不是說因為 int32 就讓他 overflow.
+09:35 < favonia> 喔對
+09:35 < chhsiao1981> favonia: 我知道我想要講什麼了. 那句話大方向是 ok 的. 就是 unix time representation. 
+09:36 < chhsiao1981> 但是不用把要怎樣子儲存/represent 的方式也定義下去. 
+09:36 < favonia> 喔喔
+09:36 < favonia> 我還是想要註解一下，為了 binary compatibility
+09:37 < chhsiao1981> (這是我自己看到那段話之後的感覺. 不過大致上 dev 們也應該都會知道那句話是要講什麼.)
+09:37 < favonia> SQL 和 Haskell 和其他東西都有很多型態表示整數
+09:37 < favonia> 必須要統一 @@
+09:38 < favonia> chhsiao1981: 嗯嗯我把句子改了
+09:38 < favonia> 謝啦
+09:38 < chhsiao1981> favonia: ok. thanks! 原來如此 XD. 是為了 SQL/haskell 的關係 XD. 
+09:39 < favonia> 像是那個 .sql 檔啊，就要用 INTEGER 不能用 NUMERIC 之類的
+09:39 < favonia> 杜絕各種奇怪問題 orz
+09:40 < chhsiao1981> favonia: (我原本以為是要訂 general 的時間的 representation 的規範 XD)
+09:41 < favonia> chhsiao1981: 喔喔當然這個也就順便定死了
+09:48 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+09:50 < chhsiao1981> favonia: 新版的那個句子就非常 ok! 重點是在於 unix time representation. 並且輔助說明目前 SQL 是使用int32. haskell 是使用 int64.
+09:50 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Read error: Connection reset by peer]
+09:50 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+09:51 < favonia> chhsiao1981: SQLite 目前可以存到 64bits
+09:51 < favonia> 比較大的數字他會花到 8bytes
+09:56 < chhsiao1981> favonia: (我本身是不太 care SQLite/SQL system 到底怎樣子做 XD. 我比較 care 的是這個 system follow unix time representation. 這樣子大家以後如果想要 upgrade SQL system. 或是 upgrade 其他部分. 都可以有個依據. 而不會被 int32/int64/int128 這種事情綁住.)
+09:57 < favonia> 嗯嗯
+09:58 < favonia> 老實講我覺得還有很多東西 spec 還沒有寫清楚 orz 改善中...
+09:59 < favonia> 像是目前用 URI moe:revised/9320 代表教育部重編國語字典中用的造字 9320
+09:59 < chhsiao1981> (寫 spec/doc 很可能是目前大家都很懶惰的部份 XD. 以大家目前的寫法. 很可能會覺得說 rtfc 可能比 rtfm 簡單 XD)
+10:00 < chhsiao1981> favonia: 可以提供一下你說的那個例子的 link 嗎?
+10:00 < favonia> https://hackpad.com/3du.tw-Encoding-Mashup-Design-ozYEnChzp5w
+10:00 < kcwu> favonia's url: [3du.tw Encoding Mashup Design - hackpad.com]
+10:01 < chhsiao1981> favonia: 關於那個 link. 你的 concern 是?
+10:02 < chhsiao1981> 關於那個例子. 你的 concern 是?
+10:02 < favonia> 我怕別人忘記 escape 之類的 xD
+10:04 < lxb> 啊才剛在外邊聊古代曆法問題，這邊廂就有數字時代的曆法的議論了 orz
+10:04 < favonia> 在 Haskell 裡面我比較不擔心，因為就像 Python3 一樣編碼後 bytes 和編碼前 text 是不同的東西
+10:04 < favonia> 可是我有種一不小心 JavaScript 就會寫錯的感覺 xD
+10:05 < favonia> 喔我講說寫錯包含我自己寫錯（雖然我一直儘量很小心...）
+10:06 < lxb> JavaScript 很簡單啦，就是 Unix_timestamp * 1000 
+10:06 < chhsiao1981> favonia: 就剛剛的例子. 我試了一下. moe:revised 應該是指 http://dict.revised.moe.edu.tw. 9270 是指? (某個詞? 不知道有沒有實際的例子?)
+10:06 < kcwu> chhsiao1981's url: [教育部重編國語辭典修訂本－主站]
+10:06 < lxb> 沒看到 ES6 有沒有提乃 micro sec ...
+10:06 -!- wens [wens@mirror2.csie.ntu.edu.tw] has quit [Ping timeout: 256 seconds]
+10:07 < favonia> chhsiao1981: http://140.111.34.46/dict/fonts/94db.gif
+10:08 < chhsiao1981> lxb: 可能是指 new Date().getTime() / 1000? # 如果要拿到 unix time epoch 的話. 
+10:08 < favonia> http://dict.moe.gov.tw/dict/fonts/94db.gif
+10:08 < favonia> 問題是之前好像有各種不同字典用不同字
+10:08 < favonia> 所以先加上 revised
+10:09 < favonia> 如果發現純屬誤會，實際上 moe:94db 之類的就夠了
+10:09 < favonia> 喔天啊大小寫忘記講...
+10:09 < chhsiao1981> favonia: 是指說就"兌頁"這個字. 各家不同字典呈現的方式不同? 
+10:10 < chhsiao1981> favonia: 現在似乎同時在討論著很多個小話題 XD.
+10:10 < favonia> 是說上次閩南語的字典好像有自己的造字
+10:10 < favonia> 我不太清楚
+10:10 < favonia> 就先留個 namespace
+10:10 < chhsiao1981> favonia: 就 "URI moe:revised/9320" 這件事情而言. 目的是說如何放進 json 裡. 
+10:11 < favonia> JSON 簡單
+10:11 < chhsiao1981> 目的是有一個 URI. 
+10:11 < favonia> 對
+10:11 < favonia> 但也可以放在 URI
+10:11 < favonia> 打錯
+10:11 < favonia> URL
+10:11 < chhsiao1981> (還有定義 URL? XD)
+10:11 < favonia>  /api/char/:uri
+10:11 < favonia> 那邊要 escape
+10:12 < chhsiao1981> 所以 URL = /api/char/:{URI}?
+10:12 < favonia> 這個接口（存取單字）應該寫完了，只是目前資料庫是空的
+10:12 < favonia> 嗯
+10:13 < favonia> 找不到應該會是 404 xDD
+10:13 < chhsiao1981> 我知道發生什麼事情了. URI 是定義在 json 裡. URL 是真的 URL XD. 
+10:13 < favonia> 應該這樣說
+10:13 < favonia> URI 跟 JSON 一點關係也沒有
+10:14 < favonia> 他就是這個字的唯一定位方式
+10:14 < favonia> 打錯
+10:14 < favonia> 統一定位方式
+10:14 < favonia> 然後 JSON 很簡單啊
+10:14 < chhsiao1981> favonia: ok! 了解. 定義在 json 是呈現 URI 的一種方式. 
+10:14 < favonia> "moe:revised/9320"
+10:14 < favonia> 這個字串好好的
+10:14 < favonia> 可以當 key
+10:15 < chhsiao1981> URL 是把 URI 的表示成 link 讓大家 access 的方式. 
+10:15 < lxb> About URI / URL / URN http://stackoverflow.com/questions/176264/whats-the-difference-between-a-uri-and-a-url
+10:15 < favonia> 嗯，上面用的 "URL" 是這個意思沒錯
+10:15 < kcwu> lxb's url: [http - What's the difference between a URI and a URL? - Stack Overflow]
+10:16 < favonia> lxb: 是的，嚴格來說 moe:xxx 這種我們惡搞的格式，是 URN
+10:16 < chhsiao1981> 然後現在的 concern 是害怕 URI 沒定好. 會造成各個程式 implement 時的困擾. 
+10:17 < chhsiao1981> (是如此嗎?)
+10:17 < favonia> chhsiao1981: 還有就是怕名字格式太爛，以後很難實作 xD
+10:17 < lxb> 沒有惡不惡搞，SPDY 也是惡搞舊物出來的。
+10:18 < favonia> chhsiao1981: 我們想給所有可能要對校的字系統內統一命名的方法
+10:18 < favonia> 我覺得 URI 格式可以參考一下
+10:19 < favonia> 但把 URI 放到另一個 URI 裡面要 escape
+10:19 < favonia> 感覺好像常識可是... xDDD
+10:19 < chhsiao1981> favonia: 原來還有要訂 uri 放到另外一個 uri XD. 
+10:19 < favonia> 剛才 /api/char/... 是 URL
+10:20 < favonia> server 上要如何存取到這個字的資訊
+10:20 < favonia> 是 locator
+10:21 < favonia> 然後就是把字直接塞進 URL. 字本身用 URN 寫。兩個都用 URI 常用的分隔符號所以會打架 xD
+10:21 < chhsiao1981> favonia: 我以為我們使用 json. 就是直接用 json 的優點 XD. # json 的優點就是做 escape 還蠻完整的 XD. 
+10:21 < favonia> chhsiao1981: 也有 json 啊
+10:21 < favonia> 應該說都是 JSON
+10:21 < favonia> 這個只是方便而已
+10:22 < chhsiao1981> 我目前看到 "moe:revised/9320" 這樣子的形態. 感覺上是還蠻 extensible 的. 9320 那個部分代表著字. moe:revised 代表著存取的地方. 也就是到 moe:revised 下的 9320 應該是可以找得到 source 的. 
+10:23 < chhsiao1981> 然後 "moe" 是主要的地方. "revised" 是 "moe" 下的 extension. 
+10:23 < favonia> 但願很 extensible 囉... 希望以後不要爆炸 xD
+10:25 < chhsiao1981> 在訂 spec (json 表示方式) 的時候. 主要所考慮的比較是能不能 extensible/名字夠不夠 trivial/合理. 至於 escape 這種問題. 比較是各家程式在 implement 時需要處理的. 
+10:26 < lxb> 我看不懂，9320 是轉出漢字來（抱歉，我新來的，而且不是台灣人）
+10:27 < lxb> 是怎的轉換？
+10:27 < favonia> lxb: 教育部用 Big5 編碼來寫字典，遇到這個編碼沒有的字就自己造字
+10:27 < chhsiao1981> (我還是不清楚 9320 到底是什麼 XD. 我只知道 moe:94db XD)
+10:27 < favonia> lxb: 造字放在使用者造字區，所以有編碼
+10:28 < lxb> .... BIG5 還有在用嗎？
+10:29 < lxb> 既然是改革，何不改到 Unicode 體系（呃，請當作外星人的提案，因為一改就會扯很大…）
+10:29 < chhsiao1981> lxb: favonia 所提的那個 URI 比較像是我們定義這個字的原因. 
+10:29 < chhsiao1981> (我以為是如此 XD)
+10:30 < chhsiao1981> 如果 uri 是指統一的存取這個字的資訊. 是要直接使用 unicode 體系是比較好的. 
+10:30 < chhsiao1981> 不過好像是有些字是 unicode 沒有的?
+10:31 < chhsiao1981> 這個時候 uri 也只能先暫時做 ref refer 到我們知道這個字的原因. 
+10:31 < favonia> chhsiao1981: lxb: 我們要做的事情是把造字圖對應成 unicode 或 cns11643
+10:32 < favonia> chhsiao1981: lxb: 話說現在程式還很小還有機會亂改。我正在確定我們有遵守 RFC
+10:32 < lxb> （完全題外話） 昨天 recompile pttbbs 時就在想，幹啊…我第一樣要做的本該是轉全 ucs2 ，天殺的還有其他 bug 。BIG5 的唯一亮點只是一字雙色吧（誤很大我知道…）
+10:33 < chhsiao1981> favonia: 所以那個 uri 是指我們找到的不同家字典所表示的 resource 的表示法. 然後有個 exact 是指對應到的 unicode 或 cns1164. 
+10:33 < favonia> chhsiao1981: 對
+10:36 < lxb> 基本上就是在 db 層次做 column index 或做 set 的東東吧…能把一具 uri 轉吐出一支順𣈱的 query / dict 那真是大德。
+10:38 < chhsiao1981> lxb: BIG5 唯一亮點是 ptt default setting XD. 造成在臺灣做 terminal 一定要有 big5 XD. 
+10:40 < favonia> chhsiao1981: 我現在對 moe:revised/xxxx 猶豫的點是
+10:40 < chhsiao1981> favonia: 這個是很棒的 project! 把那堆混亂的 extension encoding 整理回歸到 unicode/cns1164. 
+10:40 < chhsiao1981> favonia: 是?
+10:41 < favonia> 嚴格來說應該是 mash://moe/revised/xxxx
+10:41 < favonia> 或是 mashup://moe/revised/xxxx 之類的 xD
+10:42 < favonia> chhsiao1981: 這個現在已經有人做啦，只是我個人嫌現在系統太不穩而已...
+10:42 < chhsiao1981> 是擔心xxxx 跑出 ':' 或是 '/'. 然後就炸爛了? 
+10:42 < favonia> 不可能。這個一開始定義就要處理掉
+10:42 < chhsiao1981> favonia: 所以擔心的點是?
+10:42 < favonia> 儘量只能用 URI 非保留字元
+10:42 < favonia> 太長 xD
+10:42 < chhsiao1981> 是害怕 1024 的限制? XD. 
+10:42 < favonia> 而且 mashup 當 scheme 我不確定對不對
+10:43 < favonia> 文件翻來翻去沒有什麼想法 xD
+10:43 < favonia> 這好像是說「喔我們對校系統本身建立了一套文字索引，方法就叫作 mashup 好啦」
+10:43 < chhsiao1981> favonia: "太長"在目前來說應該不是很需要 concern 的. 
+10:44 < clkao> lxb++ # timelinejs
+10:44 < favonia> chhsiao1981: 沒錯，所以我比較在乎第2點
+10:45 < chhsiao1981> favonia: "mashup"這個字也都是可以再換的. 我們也可以叫 favonia://moe/revised/xxxx XD. 
+10:45 < chhsiao1981> (是在說這種事情嗎? XD)
+10:45 < favonia> au: 忘了問，台語字典的造字是什麼
+10:45 < favonia> chhsiao1981: 對... er 就不要擺 favonia 啦
+10:48 < favonia> chhsiao1981: 講到這個，有些 scheme 用法像 things:add?title=Buy%20milk&notes=Low%20fat&dueDate=2011-12-24
+10:48 < favonia> unreal://<server>[:<port>]/
+10:48 < favonia> 這麼說來還是叫 favonia 最安全
+10:48 < favonia> xD
+10:48 < chhsiao1981> favonia: 如果是 wording 的問題的話. 都是可以再討論的. 不過重點會是希望先有個 prototype 大家可以試試. 試了以後就會知道可以再做什麼了.
+10:49 < favonia> 喔現在可以列出字啦
+10:49 < favonia> 不過還沒有把資料自動抓下來
+10:49 < chhsiao1981> 除非說這個 wording 會非常影響到之後開發的情形. 像是叫 mashup 可能會讓我們必須要 follow 某些 rule 之類的. 
+10:49 < favonia> 有 script 可以轉 然後擺在適當的位置就會動
+10:50 < favonia> chhsiao1981: "follow 某些 rule" 的意思是什麼
+10:50 < chhsiao1981> favonia: 像是講 RESTful. 就是要 follow RESTful 的 rules. 
+10:50 < chhsiao1981> favonia: 我不清楚所謂的"mashup"到底有沒有啥 rule. 我一直以為那個只是個概念而已 XD. 
+10:51 < lxb> 嗯，要下線進入大陸國境了，改天見。 //bye~
+10:51 < favonia> chhsiao1981: 其實我不確定有沒有完全遵守，因為原版論文根本只有講概念而已啊
+10:51 < favonia> er 我是說 thesis
+10:51 -!- lxb [db4f5b97@gateway/web/freenode/ip.219.79.91.151] has left #g0v.tw []
+10:51 < favonia> chhsiao1981: 就... 大概遵守一下
+10:52 < favonia> chhsiao1981: "mashup" 是我們自己的名稱啦
+10:52 < favonia> 我當初只是覺得這個很酷
+10:52 < chhsiao1981> favonia: 我知道 mashup 這件事情. 是從 Ben Shneiderman 的 paper/talk 那邊知道的. 也是覺得很酷的 XD. 
+10:53 < favonia> 我們只是用這個字當作 server 的名字
+10:53 < favonia> 取 "整合不同編碼" 的意思
+10:59 < chhsiao1981> favonia: anyways, 目前應該是你對於"mashup"的 concern 是在於 wording 的部份. 這件事情還算容易解決. 你甚至可以在 code 裡先替那部分取個你喜歡的 variable (favonia? XD). 然後弄出來以後. 如果有人有對於那部分有意見的話. 也是很可以容易更換的. 
+11:01 < chhsiao1981> 我對於 mashup 的認知是他是一個 IBM 的 project. 然後這個 project 裡主要目的是對於所拿到的 data 的再整合/再利用. 
+11:02 < chhsiao1981> 然後就有很多 programming by demo 的 people 寫關於 browser 的 extension. 讓一般人可以容易的對於所拿到的 data 再整合/再利用. 
+11:03 < chhsiao1981> 也有其他人是想 tasks/visualization 讓一般人可以一起對 data 再整合/再利用. 
+11:05 < chhsiao1981> s/mashup 是一個 IBM 的 project/mashup 一開始是一個 IBM 的 project/
+11:06 < favonia> chhsiao1981: 喔喔原來是 IBM 的 project xD
+11:10 < clkao> http://en.wikipedia.org/wiki/IBM_Mashup_Center # 這應該是 mashup 已經被廣泛使用之後才推出的產品?
+11:10 < kcwu> clkao's url: [IBM Mashup Center - Wikipedia, the free encyclopedia]
+11:12 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Quit: Leaving.]
+11:15 < kcwu> favonia: FYI, educode 不知道是不是正式的名稱 http://dict2.variants.moe.edu.tw/variants/rbt/word_attribute.rbt?educode=A03509
+11:15 < kcwu> kcwu's url: [教育部異體字字典]
+11:16 < chhsiao1981> clkao: hmm. 我的資訊很有可能是錯誤的. 我是因為 2009 年時看到 IBM 出了很多相關的 paper. 所以以為是從他們開始的. 
+11:16 < favonia> 這是異體字字典，我會希望用 kcwu://moe/variants/A03509 xD
+11:17 < clkao> (!)
+11:17 < favonia> kcwu: 我的意思是說有些造字到底是哪個字都不知道
+11:17 < clkao> 第一個萌的異體字顯然就是這個這個字典的名字了 :D
+11:17 < clkao> http://dict2.variants.moe.edu.tw/variants/tmp/f50bc.png 典
+11:18 < clkao> 萌囧典
+11:19 < clkao> http://dict2.variants.moe.edu.tw/variants/rbt/sword/sworda/sa03509/001.jpg 還有他的小篆版本... http://dict2.variants.moe.edu.tw/variants/rbt/sword/sworda/sa03509/001_a.jpg
+11:20 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+11:27 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Quit: Leaving.]
+11:36 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+11:42 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Quit: Leaving.]
+11:47 < chhsiao1981> clkao++ # http://dict2.variants.moe.edu.tw/variants/tmp/f50bc.png
+12:02 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+12:06 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+12:44 < miaout17> favonia: 搬到g0v後我也不能push encoding-mashup-server了，不過我先走pull request流程吧
+12:44 -!- wens [wens@mirror2.csie.ntu.edu.tw] has joined #g0v.tw
+12:44 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Quit: Leaving.]
+12:44 < favonia> miaout17: 囧 我先把你加到 dev team (應該不會有人反對...)
+12:45 < miaout17> 「有通同字，但沒有精確字
+12:45 < favonia> miaout17: 總之現在有很多狀況，例如有疑問，缺字，沒有精確 cns 碼等等等等
+12:46 < favonia> miaout17: 我希望全部統一用清楚的顏色表示
+12:46 < miaout17> 通同字 與 認同字 是同一件事嗎？
+12:46 < favonia> 然後重複的欄位全部去掉
+12:46 < favonia> 不是
+12:46 < miaout17> 願聞其詳
+12:47 < favonia> 「認同字」是 Unicode 的術語，代表 Unicode 認為好多字都長得差不多，意思又一樣，就給他編個碼
+12:47 < favonia> PS: 意思一樣很重要... 不然「土」和「士」大概就變成同一個字了 xDDDDD
+12:48 < miaout17> mm
+12:49 < miaout17> 那「通同字」呢？
+12:49 < favonia> 通同字是 3du.tw 自己發明的...
+12:49 < favonia> 按照最新 spec 應該定義為「顯示在螢幕上專用的字」
+12:49 < favonia> 應該改成「顯示用字」比較對 orz
+12:50 < favonia> （趕快偷改）
+12:51 < miaout17> 所以紅框的出現條件是 !display.uni && !exact.cns && !exact.manualUni 嗎？
+12:51 < favonia> miaout17: 就是 display 屬性
+12:51 < favonia> 不是
+12:51 < miaout17> 我想把這種規則找整理出來，列在五個rule上，到時候就照著coding
+12:51 < favonia> 是 display 全部都沒有
+12:51 < favonia> cns 沒有
+12:51 < favonia> 了解了我寫一下
+12:51 < miaout17> !display.uni && !display.ids && !display.pua && !exact.cns
+12:51 < favonia> yes
+12:51 < favonia> 我的錯。我應該要寫下來
+12:52 < miaout17> No probelm. 現在的討論是有建設性的 :)
+12:53 < favonia> miaout17: manualUni 永遠不是該判斷的東西
+12:53 < favonia> 真正的名字應該是「hackUni」 xDDD
+12:53 < favonia> 在對照表失敗時用的
+12:53 < favonia> 如果最後發現你整理的最新對照表根本沒有失敗的例子....
+12:53 < favonia> 丟掉也無所謂
+12:55 < miaout17> 對了，我想問…原本google doc用的外部資料還要抓來用嗎？(Ex. unihan)
+12:56 < favonia> 不知道耶
+12:56 < favonia> 完蛋了我發現目前 protocol 巨大 bug 了
+12:57 < favonia> client 怎麼知道有沒有 match orz
+12:58 < miaout17> XD 要我那張 cns<->unicode 的表嗎？
+12:59 < favonia> 有好多 hack 方法，我不知道怎樣比較好
+12:59 < miaout17> 對了，問一下喔，這個界面最多就是編輯一兩千個造字對嗎？
+13:00 < favonia> 我條件寫完了
+13:00 < favonia> 對
+13:00 < favonia> 目前是這樣
+13:00 < miaout17> 現在實作很暴力，全部的字一次拉下來。如果要編輯到15xxx或十萬可能會爆炸。
+13:00 < miaout17> 嗯嗯
+13:00 < favonia> 對
+13:01 < favonia> 但我不很確定怎樣可以符合 RESTful 而不會有這麼多問題
+13:01 < favonia> 有些很明顯的作法都不 100% RESTful
+13:02 < favonia> 簡單來講現在的架構是先確定不會有漏字啦之類的問題
+13:03 < favonia> 一個比較天真的方法是每次傳 1000 個之類的，可是如果傳的途中有人加字就會 shift xD 目前先保證正確性
+13:04 < favonia> miaout17: 對了雖然 svg 看起來很漂亮，實驗用的 html 看起來卻很醜
+13:04 < miaout17> 一般來說沒那麼複雜，靠auto-increment key或created time就好
+13:05 < favonia> miaout17: 也是啦。你可以說我都想到一些極端狀況
+13:06 < miaout17> 對了，API現在有哪些不能動啊？
+13:06 < miaout17> 問哪些能動好了
+13:06 < favonia> 都可以動啊，反正還沒有人用 xD
+13:06 < miaout17> OK
+13:07 < favonia> 我現在在想那個 unicode 的問題怎麼辦
+13:07 < favonia> 最後兩個狀態根本沒辦法區辨
+13:07 < miaout17> 拿我那張 cns<->unicode 的表來對的話？
+13:07 < favonia> 可是那張表不會太大嗎？
+13:07 < miaout17> 不過要處理 utf8 string -> unicode編碼
+13:07 < favonia> 整個塞給 JavaScript?
+13:07 < favonia> 那個還好吧
+13:08 < favonia> 因為 uni 那個欄位
+13:08 < favonia> 是直接用字
+13:08 < favonia> 例如 "萌"
+13:08 < favonia> 而不是 "U+XXXX"
+13:09 < miaout17> 嗯嗯，說的對
+13:09  * miaout17 AFK一下
+13:11 < favonia> 之所以不用 Char
+13:11 < favonia> 是因為以後可能要用 ivd
+13:11 < favonia> 所以就乾脆允許好多個 "Char"
+13:11 < favonia> 看來目前API有兩個東西要改
+13:11 < favonia> 一個是這個unicode對照表不知道要怎麼餵給client, 一個是我在想，當 server 傳給 client 時，是不是應該把 timestamp 全部換成 server 送出去的時間
+13:13 < favonia> 為了更新保證正確（先不管一秒內好多更新或SQLite自己的同步問題...），一切都要以server為準，而不能以client端為準，免得有字更新了卻不知道xD
+13:13 < favonia> 這個是很好寫啦
+13:14 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+13:32 < favonia> miaout17: mno2: 對了剛才有討論字的 URN... 後來我在想要不要用 mashup://moe/revised/xxxx 之類的
+13:35 < miaout17> favonia: 我沒有太多意見，但我覺得最好簡單短一點
+13:37 < favonia> 嗯
+13:38 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Quit: Leaving.]
+13:44 < favonia> miaout17: 那這樣： moe-revised:xxxx scheme代表編碼原則。所以還有 unicode:XXXX 和 cns:X-XXXX
+13:44 < favonia> 異體字 moe-variants:A00001 之類的
+13:44 < miaout17> favonia: 我對design還是有疑問。例如display如果三個都有(uni, ids, pua)，要怎麼顯示？
+13:44 < favonia> 理論上有第一個就不會有第二個
+13:44 < favonia> 不過如果全都有
+13:45 < favonia> 一定要挑一個的話
+13:45 < favonia> 我會挑 pua
+13:45 < miaout17> 給個順序吧 pua -> uni -> ids ?
+13:45 < favonia> 然後用奇妙的方法把那個特別字型載入
+13:45 < favonia> 對
+13:45 < favonia> 以後比較成熟點我希望下面有些圖案可以顯示還有很多版本
+13:45 < favonia> xD
+13:46 < favonia> pua 代表我們自己畫圖
+13:46 < miaout17> 另，ids要怎麼顯示？直接顯示字串會破壞版面？
+13:47 < miaout17> exact.cns就是直接拉cns的圖過來顯示囉？
+13:47 < favonia> ids 就是把框框變大。除此之外我想不出其他好方法
+13:48 < favonia> 其實那些字應該都有 pua 了
+13:48 < mno2> favonia, miaout17: 我比較喜歡 mashup://moe/revised/xxxx
+13:48 < favonia> 只是還沒填進去
+13:49 < miaout17> 好，先把爆醜但功能正確的做出來好了
+13:52 < favonia> mno2: 我個人也喜歡清楚的，不過我猜 miaout17 的問題像這樣：你希望我們的 API 變成 /api/char/moe%2Frevised%2Fxxxx 還是 /api/char/mashup%3A%2F%2Fmoe%2Frevised%2Fxxxx 還是... 也許我們可以做成 /api/char/moe/revised/xxxx 不過要花一點功夫
+13:52 -!- itsZero [~itszero@itszero.xen.prgmr.com] has quit [Ping timeout: 245 seconds]
+13:53 -!- itsZero [~itszero@itszero.xen.prgmr.com] has joined #g0v.tw
+13:54 < favonia> mno2: miaout17: 正在努力的遵守 RFC 3986 不過不確定到底誰算 scheme 誰算 authority
+13:58 < mno2> favonia: 那就要看 mashup :// 你究竟期望他發揮的作用是什麼了
+13:58 < favonia> 我們系統發明的圖檔來源編碼？
+13:59 < favonia> 其實//代表後面接authority...也許應該把//去掉
+14:00 < favonia> 這樣也比較短... :O
+14:01 < favonia> 這樣就是 mashup:moe/revised/xxxx
+14:01 < favonia> 我想可以 hack 現在的 web framework 讓他支援 /api/char/moe/revised/xxxx
+14:01 < mno2> favonia: 那有會需要 host 其他發明的編碼嗎？ 如果沒有就只是交換資料用?
+14:02 < favonia> 應該不會有吧
+14:02 < favonia> 應該說，任何圖檔都要按照我們的方法分類一下
+14:03 < mno2> favonia: 沒有 host 應該 API 層跟資料存取就是分開的，就只是要改寫現有 code ..
+14:05 < favonia> mno2: 你說「API 層跟資料存取就是分開的」是什麼意思？
+14:09 < miaout17> 其實我原本沒有對這件事有問題耶 XD > 不過我猜 miaout17 的問題像這樣
+14:10 < favonia> mno2: miaout17: 我想一下。我目前暫時的喜好是這樣：在傳回的表格用 "moe/revised/xxxx" 當 index. 在 API 呼叫實用 /api/char/moe%2Frevised%2Fxxxx
+14:10 < favonia> 簡單來講不是完整的 URI
+14:10 < miaout17> 不過這幾個URL要選當然是 '/api/char/moe/revised/xxxx' 其他framework都可以輕鬆做到，snap應該也可以
+14:11 < favonia> miaout17: 這唯一的問題是後面加一些詭異的東西像是
+14:11 < favonia> /api/char/moe/revised/xxxx?a=b
+14:11 < favonia> 這樣子 ?a=b 算是其中一部份嗎 orz
+14:13 < miaout17> 「其中一部份」是指？
+14:13 < mno2> favonia, miaout17: 我也覺得先用 "在傳回的表格用 "moe/revised/xxxx" 當 index. 在 API 呼叫實用 /api/char/moe%2Frevised%2Fxxxx"
+14:14 < favonia> miaout17: 應該這樣說，一旦經過 urlencode 那麼我保證不管 index 如何奇怪都不可能炸掉
+14:14 < miaout17> OKOK
+14:15  * miaout17 離開一下喔
+14:16 < favonia> mno2: 改天應該來加個測試... 我在想該不該過慮掉空字串 index xD 雖然我相信目前系統的設計是絕對沒問題 xD 意思是說如果有 index 是空字串也無所謂
+14:17 < favonia> mno2: 以後應該多用 mashup protocol 多講話 xD
+14:28 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+14:46 < favonia> mno2: miaout17: 我發現到 SQLite 對 INTEGER 用 CURRENT_TIME 也可以動耶。所有時間函式都可以用。
+14:46 < favonia> 就是用 UNIX time
+14:49 < au> favonia: 菏典完全是另一套 http://twblg.dict.edu.tw/holodict_new/fontPics/F39A.gif
+14:50 < favonia> twblg 是什麼意思？
+14:50 < kcwu> sqlite 其實沒有 type, 全部那可以亂用
+14:51 < favonia> kcwu: 是，但好像之前以為 INTEGER 就不能用那些時間函式 xD
+14:52 < au> favonia: Taiwan Bân-lâm-gi
+14:53 < au> # http://twblg.dict.edu.tw/holodict_new/
+14:53 < kcwu> au's url: [臺灣閩南語常用詞辭典]
+14:53 < kcwu> au: moedict.tw 有 feature request 要發到哪呢? https://github.com/audreyt/moedict-webkit/issues 這裡嗎
+14:53 < kcwu> kcwu's url: [Issues · audreyt/moedict-webkit · GitHub]
+14:54 < au> kcwu: 看是前端還是後端
+14:54 < au> 前端是 moedict-webkit/issues，後端是 moedict.tw/issues
+14:56 < favonia> 所以現在已經"註冊"的可以說有三種了 moe/twblg/xxxx moe/revised/xxxx moe/variants/xxx
+14:56 < kcwu> hmm, 假設是前端好了 XD
+14:58 < au> favonia: 客語也是自己一套喔
+14:58 < au> http://hakka.dict.edu.tw/hakkadict/koupng/F307.png
+14:58 < favonia> moe/hakka/xxxx xD
+14:58 < kcwu> 有幾部字典就可以假設有幾套 XD
+15:02 < au> http://citing.hohayan.net.tw/ 好像還沒看到造字
+15:02 < kcwu> au's url: [臺灣原住民歷史語言文化大辭典網路版]
+15:02 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Quit: Leaving.]
+15:18 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+15:18 < miaout17> favonia: UI三個字自左到右分別是「moe造字」「精確字」「顯示用字」對吧？
+15:19 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Client Quit]
+15:41 < miaout17> favonia: mno2: 我把該show的資訊都show在頁面上了 (第一個字拉font圖，第二個字是unicode，第三個字拉cns11643明體)
+15:42 < miaout17> IMHO, 我覺得使用者會搞不清楚那三個字的意思，還是簡單做成表格如何？當然用顏色表示校對狀態這件事可以保留。
+15:43 < mno2> miaout17, favonia: 我也覺得要加上簡單範例說明，最好是有幾個代表性範例擺在旁邊。
+15:47 -!- hSATAC [~cat@221.169.252.14] has quit [Remote host closed the connection]
+16:43 < kcwu> 發現 unicode -> 異體字字號 是一對多... 
+16:43 < kcwu> 譬如丣
+16:44 < kcwu> 是 酉 的異體字 http://dict2.variants.moe.edu.tw/variants/rbt/word_attribute.rbt?educode=A04225-001
+16:44 < kcwu> kcwu's url: [教育部異體字字典]
+16:44 < kcwu> 也是 卯 的異體字 http://dict2.variants.moe.edu.tw/variants/rbt/word_attribute.rbt?educode=A00448-010
+16:45 < au> ...卯的異體字是 戼 吧?
+16:45 < au> iirc
+16:46  * au 懷疑異體字典有誤
+16:48 < kcwu> au: see 第二個 link 的研訂說明
+16:49 < au> *nod*
+16:50 < au> 所以是四聲篇海/彙音寶鑑的寫法
+16:50 < kcwu> anyway, 我發現 unicode -> 異體字號 一對多的狀況相當多
+16:51  * kcwu 留給 favonia 傷腦筋
+16:51 < au> kcwu: 對了，連回 revised.moe 部份要 server support (除非整份 big5.txt + sym.txt 要放到瀏覽器裡)
+16:52 < au> 這個需求是怎麼來的?
+16:52 < au> # https://github.com/audreyt/moedict-webkit/issues/1
+16:52 < kcwu> au's url: [link back to moe dict official site · Issue #1 · audreyt/moedict-webkit · GitHub]
+16:53 < kcwu> 希望能夠對照我們做的跟教育部的版本,看有沒有弄錯(?)
+16:53 < au> 瞭解
+16:54 < au> 我想想怎麼從 static 改成 node.js 轉碼 (或是加上 json 的原 big5/pua URIEncoding 欄位)
+16:55 < kcwu> 我正在生異體字 & unicode list, 希望也可以加到 moedict.tw. 這應該會比連回原本字典有用一點
+16:55 < miaout17> favonia: mno2: curl -X PUT -H 'Content-Type: application/json' -d '{}' 'localhost:8000/api/char/moe:revised/90ce' 這樣會json decode fail
+16:56 < au> kcwu++
+16:58 < mno2> miaout17:  你最新塞資料的 db 放在哪裡？ 我下載來測一下？
+16:58 < miaout17> 啊，我壓一下給你
+16:58 < mno2> miaout17: 還有 moe:revised 中 : 是不是要 encode ?
+17:00 < miaout17> mno2: https://www.dropbox.com/sh/t71bd0pkehd2jqs/n7yRp9Oa13
+17:01 < miaout17> 好像是，我等下修正
+17:01 < mno2> miaout17: thanks
+17:01 < miaout17> 啊，我隨意塞了{}進去，但是不是要正確的格式才可以decode成功 o.o
+17:02 < miaout17> ls -al
+17:02 < miaout17> oops
+17:03 < miaout17> mno2: 我確認是我欄位不夠，但給對的參數後變SQL那邊error，這我可以自己解解看
+17:15 < mno2> miaout17: 對，照目前的寫法是一定要型別百分之百正確才能解出來。favonia 直接寫 fromMaybe error  ，沒有處理 Nothing，所以解不出來就直接丟 error 了
+17:20 < miaout17> favonia: mno2: Fixed. https://github.com/g0v/encoding-mashup-server/commit/07586bf73f8b21cbd3ec47822f5bedbfa667850f
+17:20 < kcwu> miaout17's url: [Bugfix for CharDatabase.hs · 07586bf · g0v/encoding-mashup-server · GitHub]
+17:23 < mno2> oops, 多打一個 )    , Orz
+17:30 < miaout17> 還有上面少一個tabled
+17:30 < mno2> miaout17: yeah, thanks
+17:41 -!- KNY [~Adium@118-170-68-208.dynamic.hinet.net] has joined #g0v.tw
+17:41 -!- KNY [~Adium@118-170-68-208.dynamic.hinet.net] has quit [Client Quit]
+17:43 -!- KNY [~Adium@118-170-68-208.dynamic.hinet.net] has joined #g0v.tw
+17:55 < miaout17> favonia: mno2: 雖然介面很醜code很髒，但現在可以save了，我推上github囉
+17:55 < mno2> miaout17: cool
+19:55 -!- tonytonyjan [~tonytonyj@114-47-58-59.dynamic.hinet.net] has joined #g0v.tw
+20:27 < favonia> miaout17++
+20:28 < favonia> kcwu: unicode 對異體字本來就要一對多啊... 因為認同字又不太管相似的異體字 xD
+21:06 -!- Custom_ is now known as Custom
+21:24 -!- ck__ [~ck@111.235.250.147] has joined #g0v.tw
+21:38 -!- ck___ [~ck@61-31-172-114.dynamic.tfn.net.tw] has joined #g0v.tw
+21:39 -!- ck___ [~ck@61-31-172-114.dynamic.tfn.net.tw] has quit [Remote host closed the connection]
+21:40 < miaout17> favonia: 有些問題。1.讓user可以改所有資料不知道合不合理2.server最好驗證一下格式，雖然client也可以擋...
+21:41 < favonia> miaout17: 關於格式問題，是要驗證 CNS 嗎？
+21:42 < miaout17> 是
+21:42 < favonia> 啊我想到 bug 了... 先讓我 Issues 記起來，現在暫時沒空orz
+21:42 -!- ck__ [~ck@111.235.250.147] has quit [Ping timeout: 276 seconds]
+21:42 < miaout17> 嗯嗯，OK
+21:44 < kcwu> http://kcwu.csie.org/~kcwu/tmp/moedict/variants-list.txt # 異體字碼列表
+21:45 < favonia> miaout17: 設定的時候應該要把 timestamp 和 checked 拿掉
+21:45 < favonia> 但現在 server 沒有遵守 protocol :/
+21:47 < kcwu> (中間有些跳號, 看起來是隱藏字.... link 可以連到, 但沒有內容也沒列在異體字表裡, ex http://dict2.variants.moe.edu.tw/variants/rbt/word_attribute.rbt?educode=A00010-004 )
+21:47 < kcwu> kcwu's url: [教育部異體字字典]
+21:48 < kcwu> 感覺像是待考/待處理
+21:51 < favonia> miaout17: 我先把嚴重的錯誤都記下來了
+21:51 < favonia> miaout17: 那個 Google 表格放在那邊也沒有人動 xD
+21:51 < favonia> miaout17: 所以我個人不是太擔心
+21:52 < favonia> miaout17: 但我想可以 undo 應該會比較好
+21:52 < favonia> miaout17: 格式驗證當然要做。不過我現在暫時沒空 orz
+22:09 < favonia> miaout17: 我有個新想法，就是把 timestamp 和 checked 從 API 中移除
+22:11 < favonia> 打錯，應該說從 CharInfo 中移除。另外改 API 加上時間
+22:15 < favonia> 我把想法寫在 github Issues 了
+22:22 -!- g0v_idea_bot [01ae053b@gateway/web/freenode/ip.1.174.5.59] has joined #g0v.tw
+22:25 -!- clkao [~clkao@59-126-64-204.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+22:44 -!- g0v_idea_bot [01ae053b@gateway/web/freenode/ip.1.174.5.59] has quit [Quit: Page closed]
+23:05 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+23:06 -!- zea1ancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+23:06 -!- juanna [~juanna@114-37-103-179.dynamic.hinet.net] has joined #g0v.tw
+23:06 -!- a2n_ [~a2n@ec2-54-248-151-13.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+23:07 -!- thschee [thschee@2a00:dcc0:eda:88:245:71:872b:8f0b] has quit [Ping timeout: 276 seconds]
+23:07 -!- a2n [~a2n@unaffiliated/a2n] has quit [Ping timeout: 276 seconds]
+23:07 -!- juanna_ [~juanna@114-37-103-179.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+23:07 -!- TigerHuang [~tiger@2001:288:6004:34:99cc:e369:ab8c:5888] has quit [Ping timeout: 276 seconds]
+23:07 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 276 seconds]
+23:07 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+23:07 -!- TigerHuang [~tiger@2001:288:6004:34:6546:48b4:ab01:6a97] has joined #g0v.tw
+23:07 -!- zea1ancer is now known as zealancer
+23:09 -!- clkao [~clkao@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+23:10 -!- awaw [73508d28@gateway/web/freenode/ip.115.80.141.40] has joined #g0v.tw
+23:11 -!- thschee [thschee@2a00:dcc0:eda:88:245:71:872b:8f0b] has joined #g0v.tw
+23:20 < miaout17> favonia: OK,就慢慢改吧
+23:24 -!- g0v_idea_bot [01ae053b@gateway/web/freenode/ip.1.174.5.59] has joined #g0v.tw
+23:37 -!- g0v_idea_bot [01ae053b@gateway/web/freenode/ip.1.174.5.59] has quit [Quit: Page closed]
+23:41 -!- lxb [cbc2808e@gateway/web/freenode/ip.203.194.128.142] has joined #g0v.tw
+23:45 < kcwu> 異體字字典字碼表說明 https://github.com/kcwu/moedict-variants/wiki
+23:45 < kcwu> kcwu's url: [Home · kcwu/moedict-variants Wiki · GitHub]
+23:46 < lxb> irc log 在哪？
+23:48 < kcwu> lxb: http://logbot.owo.tw/channel/g0v.tw/today
+23:48 < kcwu> kcwu's url: [Logbot | #g0v.tw]
+23:48 < lxb> kcwu: //bow
+23:50 < favonia> miaout17: 嗯嗯，我把細節放在 Issues 了 xD
+23:58 < lxb> 看完了，異體字的確應該有一字多正體的情況…其實那才是真義啊。不過卯酉那個例子舉不好吧。
+23:59 < lxb> 我在想有一種 API 可以把近似字以近似度的形度搜索

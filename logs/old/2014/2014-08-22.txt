@@ -1,0 +1,85 @@
+--- Day changed 五  8月 22 2014
+00:00 < jimyhuang__> t0mst0ne_: 不曉得有沒有推動 open source 網路服務應用想法
+00:08 < clkao> yhsiang: 昨天影片有了嗎
+00:14 < t0mst0ne_> 只是很好奇, 這採購最後的結果仍然是"非 open source " ?
+00:18 < hcchien> ipa: 然後，另外有個慢手名單的確定，你要整理嗎
+00:19 < hcchien> Lee1092: 然後 invite code 你可以幫忙發嗎
+00:19 < hcchien> 以上都有新的卡了
+00:19 < hcchien> 然後也都有 due date 喔
+00:31 < Lee1092> hcchien: OK~  寄 Email 形式就可以了吧
+00:36 -!- ifTNT [~john@host-113.69-234-182.cable.dynamic.kbtelecom.net] has left #g0v.tw []
+01:11 < jimyhuang__> t0mst0ne_: 應該不會太意外。不過 web based / cloud based 廠商，理論上比較有機會服務政府了
+01:46 < Michael_LI> 我來發佈一次新媒體　　［爆卦］全世界瘋傳冰桶挑戰與 ALS 捐款分析，令人傻眼的畫面讓鄉民都崩潰了！　　宣傳用短網址 http://bit.ly/201408ALS
+01:46 < kcwu> Michael_LI's url: [廣告與宣傳 - 相簿／社會公益／ | Facebook]
+10:18 -!- chihchun is now known as chihchun_afk
+10:30 < t0mst0ne_> lanf0n:  看書發現還有這個 from dateutil.parser import parse , 可以搞定大部份英文 date, tim格式 (可惜"上下午"還是要自己來)
+10:52 -!- Ti_W_B is now known as tiwb
+11:04 -!- coldnew` is now known as ccbot
+11:07  * ccbot 
+11:08  * coldnew` 
+11:32 -!- chihchun_afk is now known as chihchun
+11:44 < caasih> ETBlue!!
+11:56 < yhsiang> clkao: 應該是上傳中 XD
+11:56 < lanf0n> t0mst0ne_: !!
+12:00 < hcchien> Lee1092: 應該是用 kktix 的 invite 功能
+12:29 -!- allenown__ is now known as allenown_
+13:26 < min9tsay> a0000778: ping
+15:10 < caasih> clkao yhsiang: 發現新前端套件管理工具 http://duojs.org
+15:10 < kcwu> caasih's url: [Duo]
+15:26 < clkao> caasih: 前端好忙啊
+15:42 < yhsiang> caasih: 現在不都用webpack然後用npm管理嗎 :p
+15:43 < caasih> yhsiang++ 好像很有用，來試一下
+15:43 < clkao> 還有人在 bower
+15:44  * caasih bower 得很開心...
+15:48 < xsoameix> clkao: 我已經把所有的 case 找到了，唯讀委員會的那個沒辦法用
+15:48 < xsoameix> clkao: 復議 和 覆議
+15:48 < clkao> !
+16:34 -!- chwong_cloud [uid12814@gateway/web/irccloud.com/x-xawmlkuuhormacpc] has left #g0v.tw []
+16:41 < ipa> http://social.board.tw/?filter=%E5%85%AC%E6%B0%91%E5%9C%98%E9%AB%94
+16:41 < kcwu> ipa's url: [台灣社群排行榜]
+16:43 < ipa> 這是看g0v.tw流量？
+16:56 < yhsiang> ipa: 大概?對於林克傳說的排名都是不知道怎麼算出來的 XD
+17:02 < pofeng> yhsiang: ipa 那個又是黑饃的網站嗎 ? 他的網站特色就是排名公式很神秘, 以前還被爆料過偏袒自己人 :p
+17:06 < yhsiang> pofeng: 對 XD
+17:10 < kiang> ipa: http://social.board.tw/ 應該跟 http://link.que.tw/ 都是看 FB 轉載數量，樣本是來自有授權擷取資料的人
+17:10 < kcwu> kiang's url (2/2): [今日熱門話題 -- 林克傳說]
+18:09 < mrorz> 我要來看我的 ID 在 logbot 是什麼顏色～
+18:23 < jimyhuang__> kiang: pofeng 主要問題是，怎麼選出「社群」這件事，沒辦法自動吧 ... 
+18:58 < yhsiang> jimyhuang__: 突破盲腸阿
+19:15 -!- tommyl___ is now known as technommy
+19:24 < xsoameix> 請問有對 postgres 和 ubuntu 的用戶權限熟的大大嗎？我執行 su -l -c 'psql -c "create user ly with createdb password \'ly\';"' postgres，因為包了很多層級，所以 password \'ly\' 會 syntax 錯誤
+19:26 < xsoameix> 想搞定國會大代誌，得先搞定 docker 裡的 postgres orz
+19:28 < CindyLinz> xsoameix: 啊, 你需要能夠 escape shell quote 的寫法
+19:29 < CindyLinz> xsoameix: 在 '....' 裡面寫 ' 的方法是:  '.....'"'"'.....'
+19:29 < CindyLinz> 第一個 ' 先把前半結束掉, 然後緊接著改用 " 當 delimiter, 在裡面寫 ', 然後再用 " 結束掉, 然後再重新開始用 '...' 寫後半
+19:30 < xsoameix> 所以要 ly 的話，就是 '.....'"ly"'.....' 囉？
+19:30 < CindyLinz> "ly" 和 'ly' 在 postgres 裡面的意思應該不一樣
+19:30 < CindyLinz> 所以還是得用最後結果是 'ly' 的東西.. 用
+19:31 < CindyLinz> su -l -c 'psql -c "create user ly with createdb password '"'"'ly'"'"';"' 試試
+19:33 < CindyLinz> 也可以短一點.. su -l -c 'psql -c "create user ly with createdb password '"'ly'"';"'
+19:36 < xsoameix> 成功了！感謝 CindyLinz :)
+19:37 < CindyLinz> xsoameix: 真好 ^^
+20:02 < lanf0n> tkirby 計算捐款的 repo 上了蘋果 http://www.appledaily.com.tw/realtimenews/article/life/20140822/456665/ ... 不過說好的(?)挑戰影片呢XD
+20:02 < kcwu> lanf0n's url: [嚇死人！原來倒冰水後捐款金額這樣變化 | 即時新聞 | 20140822 | 蘋果日報]
+20:40 < min9tsay> CindyLinz: 感覺好饒舌～
+20:54 < Michael_LI> ［崩潰］在災難資訊系統小聚，高雄災難那天，有３０多個ＮＧＯ都不知道g0v～～～好慘！
+20:55 < Michael_LI> 沒有人下巴都掉下來了！！！
+21:25 < miaoski> Michael_li:  先承認你就是沒有人
+21:28 < xsoameix> 結論：Michael_LI 的下巴掉下來了
+21:37 < xsoameix> clkao: 這個議案 http://localhost:3333/bills/471G14754 很奇怪，為甚麼撤回後還會回到委員會審議呢？
+21:38 < xsoameix> clkao: 阿，是 http://ly.g0v.tw/bills/471G1475
+21:49 < tkirby> lanf0n: XDDD
+22:14 < Lee1092> Michael_LI:  他們接觸較少網路資訊?
+22:24 < miaoski> xsoameix: 原來這就是符號編程 (筆記)
+22:29 < xsoameix> ml?
+22:31 < CindyLinz> 字元密室逃脫的概念ww
+22:43 < Michael_LI> Lee1092 大致上是這樣
+22:58 -!- miaoski_1ome is now known as miaoski_home
+23:06 < Rhozan> 多數NGO的型態大概都不會太熟資訊領域(? 刻板印象)
+23:15 < pipi_> Rhozan: 你出現了
+23:17 < kiang> jimyhuang__: social.board.tw 應該是
+23:17 < kiang> jimyhuang__: social.board.tw 應該是有人工介入吧
+23:53 -!- chihchun is now known as chihchun_afk
+23:58 < Michael_LI> 有人開了hackpad，到時看看，愛睏　zzz
+23:58 < Michael_LI> https://g0v.hackpad.com/WMaKLjBljub
+23:58 < kcwu> Michael_LI's url: [民間救災系統交流小聚 - g0v.hackpad.com]

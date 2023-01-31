@@ -1,0 +1,33 @@
+--- Day changed 日  5月 03 2015
+08:16 < slackbot2> <c9s> shadowcrow 看成 shadowcat XD
+20:57 < gugod> 誰可以 deploy env.g0v.tw ?
+21:02 < gugod> 咦，突然發現我改的部份已經上線了，感謝沒有人 XD
+22:39 < c9sould__> auto-deployment ?
+22:55 < slackbot2> <clkao> gugod++
+22:55 < slackbot2> <clkao> 感謝 travis XD
+23:13 < slackbot2> <c9s> ah, 因為 http://g0v.github.io + CNAME 的關係 ? 所以 push 就自動 deploy 了吧?
+23:13 < slackbot2> <c9s> static html file
+23:14 < slackbot2> <clkao> no, travis build pushes to gh-pages on success
+23:14 < slackbot2> <c9s> !
+23:14 < slackbot2> <c9s> 原來有這個 feature
+23:15 < slackbot2> <clkao> see ./deploy.sh and .travis.yml
+23:15 < slackbot2> <c9s> 話說這邊有人超熟 css 的嗎? http://c9s.blogspot.tw/2015/05/sass_3.html # 遇到這個問題..
+23:15 < kcwu_> slackbot2's url: [c9s: SASS 吐槽第二彈]
+23:15 < slackbot2> <c9s> 我想要 compiler 在 property value 可以使用 expression 但是又要容許 font: 可以用 font-size/line-height 的寫法，好苦惱啊 XDDD
+23:36 < slackbot2> <au> c9s: <http://sass-lang.com/documentation/file.SASS_REFERENCE.html#division-and-slash>
+23:36 < kcwu_> slackbot2's url: [File: SASS_REFERENCE — Sass Documentation]
+23:36 < slackbot2> <c9s> au: 我就是參考這個詭異的 reference XDDD
+23:36 < slackbot2> <au> 意思是你不想實作它，還是...?
+23:37 < slackbot2> <c9s> 有點不太想照樣做 XD
+23:37 < slackbot2> <c9s> 剛剛有人提議用 @use strict 來區分
+23:37 < slackbot2> <c9s> XD
+23:37 < slackbot2> <c9s> 容許 property value expression
+23:38 < slackbot2> <c9s> 譬如說一定要 (...) 圓括號內的才會被當成運算元
+23:38 < slackbot2> <au> 也許。不然就左右不能留空，留空是算符，不留空是表達式 (significant whitespace)
+23:38 < slackbot2> <c9s> 沒有 @use strict 就繼續用 sass 的詭異邏輯 XD
+23:38 < slackbot2> <c9s> 好方法 :smile:
+23:42 < slackbot2> <c9s> 不過如果只有一邊留空呢?   14px/ 20px ?
+23:42 < slackbot2> <c9s> 好像有點雷 XD
+23:47 < slackbot2> <au> 只有一邊留空就視為錯誤？
+23:56 < slackbot2> <c9s> 看起來好像要在 lexer 把 ' / ' 當成單獨的 token
+23:56 < slackbot2> <c9s> 思考一下好了 @@

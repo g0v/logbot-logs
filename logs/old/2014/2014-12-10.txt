@@ -1,0 +1,363 @@
+--- Day changed 三 12月 10 2014
+01:08 < xsoameix> 看完這個教學，才發現國會大代誌我做的議案搜尋功能網址 query 的部份沒有做 xss 的防禦 orz ... http://www.wooyun.org/whitehats/%E5%BF%83%E4%BC%A4%E7%9A%84%E7%98%A6%E5%AD%90
+01:08 < kcwu> xsoameix's url: [白帽子信息_心伤的瘦子 | WooYun.org]
+01:10 < clkao> xsoameix: !!!!!
+01:11 < clkao> 開一下 issue ? 加上 minimum test case ?
+01:12 < xsoameix> clkao: 這個 branch bill-search 還沒被 merge 喔
+01:13 < clkao> ! orz
+01:13  * clkao sucks
+01:31 < xsoameix> xss 漏洞已經修復
+01:32 < au> xsoameix++
+01:40 < xsoameix> 我發現有用到 $state.params.xxx 都可能是漏洞，我輸入 ly.g0v.tw/calendar/<script>，$state.params.period 就會存 <script>
+01:42 < xsoameix> 太多 ls 檔都沒有對 $state.params 過慮，這樣子有太多洞可以打了 orz
+01:48 < travis-ci> xsoameix/ly.g0v.tw#31 (feature/bills-search - 842a74a : Lien Chiang): The build has errored.
+01:48 < travis-ci> Change view : https://github.com/xsoameix/ly.g0v.tw/compare/7de82234c900...842a74aab257
+01:48 < travis-ci> Build details : http://travis-ci.org/xsoameix/ly.g0v.tw/builds/43498638
+01:48 -!- travis-ci [~travis-ci@ec2-50-17-47-179.compute-1.amazonaws.com] has left #g0v.tw []
+01:52 < hychen> kiang: 他有一隻ruby的backend script, 我沒有定期跑
+01:53 < hychen> kiang: 然後聽說美東有新刻一個hub
+01:53 < hychen> 這是一個hub, 多種表述的概念
+02:00 < xsoameix> 抱歉，是我多慮了，angularjs 有做 render 的防護，就算 $state.params.xxx 或是 $scope 裡有不安全的標籤，到 render 時還是會被過慮掉
+02:09 < travis-ci> xsoameix/ly.g0v.tw#32 (feature/bills-search - bc710af : Lien Chiang): The build has errored.
+02:09 < travis-ci> Change view : https://github.com/xsoameix/ly.g0v.tw/compare/842a74aab257...bc710afba4ff
+02:09 < travis-ci> Build details : http://travis-ci.org/xsoameix/ly.g0v.tw/builds/43499361
+02:09 -!- travis-ci [~travis-ci@ec2-54-167-226-91.compute-1.amazonaws.com] has left #g0v.tw []
+02:13 < xsoameix> clkao: 不好意思，請你有空的時候看一下 bills-search 吧，我也快忘記了
+02:40 -!- amatecha_ is now known as amatecha
+10:04 < a0kman> 超古老coder  http://history.pansci.tw/post/104765288530/12-10-ada-lovelace
+10:04 < kcwu> a0kman's url: [科科史上的今天 - 【科學史上的今天】12/10——艾妲・勒芙雷斯誕辰（Ada Lovelace,...]
+10:36 -!- chihchun_afk is now known as chihchun
+11:07 -!- seadog007___ is now known as seadog007_
+11:30 < mrsign> clkao: 停車場、預算案 初次全部普查完成。無資料就是暫時找不到。
+11:31 < clkao> mrsign++
+11:43 < dirty> https://g0v.hackpad.com/WP2014--iucLG83kyOa # 希望大家幫忙!
+11:43 < kcwu> dirty's url: [WP2014 成大課程影片支援 - g0v.hackpad.com]
+11:44 < mrsign> kcwu: newsdiff出現很多"無法判斷的內容" 請問有沒有注意是哪個媒體特別容易出現此情況 # LOGBOT 12/05 21
+11:59 < kcwu> mrsign: 我印象中那時好幾個 source 都有這種現象
+12:00 < mrsign> kcwu: 了解 不過我只知道中開頭五個字媒體常會發生這種事
+12:06 < yhsiang> hychen: 可以用heroku 的worker 
+12:06 < yhsiang> hychen: 我來跑那隻script ?
+12:12 < ronnywang> mrsign: http://newsdiff.g0v.ronny.tw/index/raw/2394510 以這新聞為例，他的 HTML 噴了「很抱歉，您要進入的頁面發生錯誤」
+12:13 < kcwu> ronnywang's url: [NewsDiff]
+12:13 < ronnywang> 但是他的 http code 還是 200 OK
+12:13 < ronnywang> 所以我判斷也只能判斷他是 200 OK ，但是 parser 去抓標題內文時會無法判斷內容
+12:18 < jimyhuang_> kiang: 法人的部份，uniq id應該是「許可機關日期」
+12:18 < ronnywang> 有的時候是他的 HTML 可能總共 30000bytes ，結果只噴到 3000bytes 連線就斷了，又因為他的 header 沒有 Content-length 無法判斷這情況
+12:19 < jimyhuang_> kiang: 同一個法人無論怎樣更名，一開始的許可機關、許可字號不會改。但司法院的資料很難parse ... T_T
+12:19 < kiang> jimyhuang_: 可是那個欄位很亂...
+12:19 < jimyhuang_> kiang: 那個欄位是悲劇
+12:19 < jimyhuang_> 意圖使人無法對應...
+12:19 < kiang> 萬一同一天、同一個單位就真的悲劇了...
+12:20 < jimyhuang_> 通常會有字號。 http://cdcb.judicial.gov.tw/abbs/wkw/WHD6K05.jsp?ab=AAAdkxAAHAAAC0BAAI&bc=092&cd=%AA%6B%B5%6E%A5%4C++++++++++++++&de=001022&ef=TPD&fg=1
+12:20 < kcwu> jimyhuang_'s url: [法人及夫妻查詢系統]
+12:20 < kiang> jimyhuang_: http://foundations.olc.tw/foundations/view/544137aa-603c-454d-b215-2b20acb5b862 看起來還蠻多不通常的資料...
+12:20 < kcwu> kiang's url: [財團法人大寮教會聚會所 @ 社團/財團法人資料檢索]
+12:21 < jimyhuang_> kiang: 對，我意思是目前法人唯一的key，其實許可機關+字號（散落各單位），或是統一編號（財政部）。
+12:22 < kiang> dirty: 能讓同學有想試試看的欲望就成功了...(咦？)
+12:23 < kiang> jimyhuang_: 大部分是沒有申請統一編號的，可能先針對字號找看看好了
+12:23 < dirty> kiang: 對啊, 有不妥嗎?
+12:24 < jimyhuang_> kiang: 之前是想針對「許可機關日期」，parse 數字和機關來建index
+12:24 < hychen> yhsiang: cool!
+12:24 < kiang> dirty: 沒，剛好看到太陽花女王的新聞 XD
+12:24 < mrsign> ronnywang: 似乎好像中開頭的都這樣 我有好幾次點進首頁 結果幾乎一半都被中開頭的佔走了
+12:24 < kiang> jimyhuang_: 可能要比對看看欄位資料有多少是找不到字號的
+12:25 < jimyhuang_> yep true
+12:25 < dirty> kiang: 現在更新的新聞應該是阿基師 XD 如果能跟網頁扯上關係的話, 影片中有這些梗應該很有用喔
+12:29 < kiang> http://www.appledaily.com.tw/realtimenews/article/new/20141210/521320/ - 唉...，到底我們還有多少隱私呢
+12:30 < kcwu> kiang's url: [【壹週刊】晶片留後門程式危資安　威盛助中國打壓法輪功 | 即時新聞 | 20141210 | 蘋果日報]
+12:52 -!- chihchun is now known as chihchun_afk
+14:05  * hcchien 看 I-voting
+14:34 < kiang> clkao++, 用小秘訣錄影中
+14:34 < clkao> ??
+14:34 < clkao> 什麼秘訣
+14:34 < kiang> clkao: ffmpeg
+14:35 < kiang> clkao: http://logbot.g0v.tw/channel/g0v.tw/2014-04-16/505
+14:35 < kcwu> kiang's url: [Logbot | #g0v.tw | yhsiang> 正確的秘訣是: ffmpeg -i rtmp://h264media02.ly.gov.tw:1935/live07/300K_Live -vcodec libx264 -maxrate 700k -minrate 300k -r 30 -s 426x240 -g 1 -force_key_frames 2 -acodec libvo_aacenc -ab 128k -ac 1 -ar 44100 -f flv rtmp:youtube ..blah]
+14:35 < clkao> 科科
+14:36 < clkao> kiang: 政治獻金法嗎
+14:36 < kiang> clkao: yes
+14:36 < clkao> kiang: 有事沒空話文播一下吧 XD
+14:37 < kiang> clkao: 沃草有做 - http://goo.gl/JfZt6J
+14:37 < kcwu> kiang's url: [20141210內政]
+14:40 < clkao> kiang++
+14:42 < kiang> 是說 youtube rtmp 的進入點要在哪兒設定啊？我現在是存到檔案
+14:44 < clkao> 你要開一個 event
+14:44 < clkao> 然後他會給你 rtmp endpoint
+14:44 < kiang> ok, trying
+14:50 < dirty> ffmpeg 應該改用 avconf 了吧?
+14:51 < clkao> ya avconf seems more maintained
+14:53 < kiang> 目前在 youtube live & hangout on air 界面都看不到 rtmp 資訊
+14:54 < a0kman> 推翻譯坑，一秒上手 http://tatit.pixnet.net/blog/post/41760100
+14:54 < kcwu> a0kman's url: [【翻譯】台灣新的行政院長叫「毛治國」！！！ @ 他踢的 :: 痞客邦 PIXNET ::]
+15:01 < clkao> kiang: api
+15:02 < yhsiang> kiang: 我的blog有指令
+15:02 < yhsiang> kiang: 有rtmp資訊喔
+15:02 < kiang> yhsiang: url?
+15:03 < yhsiang> 你要選到FMS encoder
+15:03 < yhsiang> 他就會給你rtmp endpoint
+15:04 < yhsiang> kiang: http://yhsiang.logdown.com/posts/2014/04/16/stream-to-youtube-with-live-streaming-api
+15:04 < kcwu> yhsiang's url: [stream to youtube with live-streaming-api « Yuan Hsiang Cheng]
+15:05 < kiang> yhsiang++, 研究ing
+15:05 < yhsiang> 你選其他編碼器
+15:05 < yhsiang> 他就會給你url資訊
+15:06 < yhsiang> 內容擷取設定 -> 選位元率 -> 選好可以選編碼器 -> 選其他編碼器 就有了rtmp endpoint
+15:10 < yhsiang> kiang: 立院 你是用高清的那個endpoint嗎?
+15:11 < kiang> yhsiang: 沒耶，目前只是錄標準的
+15:12 < yhsiang> kiang: 可以選1M那個endpoint 
+15:12 < yhsiang> 高清～～
+15:13 < miaoski> kiang: 看來不少人盯著看，科科
+15:26 < kiang> Please set the video resolution to 1920 x 1080. The current resolution 426 x 240, is smaller than the expected, no video will be streamed. XD
+15:28 < yhsiang> kiang: 自己改參數啊
+15:30 < kiang> 大概看懂怎麼做了，感謝 yhsiang++ clkao++
+15:34 < kiang> 搞定： https://www.youtube.com/watch?v=cnOVBpqBYtc
+15:34 < kcwu> kiang's url: [ivod 12/10 - YouTube]
+15:36 < kiang> 還要三個月分析...，算了，至少通過非行政院版本
+15:39 < kiang> 這次 live streaming 只能從中間插入，不過之前已經放了一個錄影的串流，所以晚點用錄影的丟上去 :)
+15:45 < kiang> 即使網址用 1M_Live ，品質也只有 240p ，一旦 preview 之後就不能調整設定，只能重開 Event 。既然來源只有 240p ，硬改更高解析丟上去好像只是浪費資源吧？
+15:53 < kiang> 沃草的頻道時間好像延遲了 3 分鐘
+16:00 < kiang> 看起來沃草的直播是用桌面分享功能
+16:00 < yhsiang> kiang: 是你一開始就沒有開1080p的串流吧
+16:00 < yhsiang> 品質不止240p吧 XD
+16:01 < kiang> yhsiang: rtmp://h264media02.ly.gov.tw:1935/live07/1M_Live 拿到的只有 240p ?
+16:01 < kiang> 不過我沒仔細看參數 XD
+16:02 < kiang> avconv -i rtmp://h264media02.ly.gov.tw:1935/live07/1M_Live -vcodec libx264 -maxrate 700k -minrate 300k -r 30 -s 426x240 -g 1 -force_key_frames 2 -acodec libvo_aacenc -ab 128k -ac 1 -ar 44100 -f flv rtmp://a.rtmp.youtube.com/live2/kiange.xxx
+16:04 < yhsiang> kiang: -s 426x240 ...
+16:04 < yhsiang> kiang: 是你參數給錯拉 
+16:04 < kiang> yes, 就複製貼上吧 XD
+16:10 < kiang> 去掉 -s 可以拿到 Video: libx264, yuv420p, 720x480 [PAR 8:9 DAR 4:3], q=-1--1, 1k tbn, 30 tbc
+16:12 < hychen> ETBlue: https://bj4-community.github.io/om-hub/
+16:47 < kiang> http://blog.twpug.org/619 - 收工
+16:47 < kcwu> kiang's url: [在 Ubuntu 即時轉播 RTMP 影片到 Youtube Live | TWPUG::Kiang]
+17:58 < au> -> 移動前往 RS/CT 電臺松
+17:59 -!- mrsign [guest-mrsi@gateway/web/scrollback.io/x-menegibecdjtelnw] has left #g0v.tw []
+18:00 < clkao> ！！
+18:09 < moon_c__> 電台松！！！！
+18:10 < moon_c__> 是今天開播嗎？
+18:12 < Lee1092> !!!!!!!!   期待
+18:13 < Lee1092> 今晚無法去 QQ  只好線上發摟
+18:16 < moon_c__> 趕緊下班回家發摟
+18:56 -!- pcchou__ is now known as pcchou
+18:56 -!- pcchou___ is now known as pcchou__
+19:00 < au> 幫忙試聽一下音量 (flash required) http://mixlr.com/%E5%94%90%E9%B3%B3/
+19:00 < kcwu> au's url: [唐鳳 is on Mixlr. Mixlr is a simple way to share live audio online. ...]
+19:02 < caasihuang> RSChiang++ CTBlue++ au++
+19:02 < RSChiang> testing testing
+19:02 < caasihuang> live 了，聽得很清楚
+19:03 < au> cool... RS is setting up ... 節目即將在十分鐘左右(? 後開台
+19:05 < au> ...and we're live
+19:16 < Lee1092> RSChiang++  CTBlue++ au++
+19:21 < AceChen> au 都不講話 XD
+19:22 < au> 我只是技術支援~
+19:22 < nchild> 各位認為 g0v hackpad 適合開立法（法案）的坑嗎？
+19:22 < au> nchild: 先開/填了再問 XD
+19:23 < lanf0n> 先挖 +1 XD
+19:23 < nchild> 哈，正有準備，那就來動手了。
+19:29 < Lee1092> 本人說話不代表電台立場  只代表本人立場  (疑
+19:30 < AceChen> 音質真好 au++
+19:31 < au> :D
+19:34 < AceChen> 可惜沒有線上人數統計？
+19:35 < au> 8 guests (all from #g0v.tw)
+19:35 < au> 因為是試錄第一次，沒有大幅宣傳
+19:35 < au> 9 now
+19:37  * lanf0n 貼個後勤好了XD
+19:37 < au> ++
+19:37 < kcwu> how do you know all from #g0v.tw ?
+19:37 < au> 收播之後會立刻上傳 soundcloud
+19:37 < AceChen> 開放點歌和工商服務嗎？ ._./
+19:38 < au> kcwu: the link is only posted here
+19:38 < au> so either directly or indirectly from here
+19:38 < kcwu> ok
+19:38 < caasihuang> RSChiang and CT: https://www.facebook.com/groups/178218261881?view=permalink&id=10152673708166882
+19:38 < kcwu> caasihuang's url: [Facebook]
+19:39 < au> caasihuang: 已 irc call in 成功
+19:39 < caasihuang> XDDDD
+19:39 < au> AceChen: 就點/貼啊
+19:40 < Lee1092> CTBlue 你說了 大家都知道 RSChiang 在喝湯了  XDDDDDD
+19:40 < caasihuang> 想貼的原因是： "辦事人員不一定記得其中差別，可能受訓上以及接受過的case有差"
+19:40 < caasihuang> 不講還不知道在喝湯 XDD
+19:41 < tritin> 剛剛聽起來很像是在打字的聲音 原來是在喝湯..
+19:42  * lanf0n 一直把空污想成空屋
+19:42 < Lee1092> 中山大學不在中山區  (冷
+19:43 < caasihuang> 三重哭哭 XDDDD
+19:44 < au> CT 表示台南人不把瞭解台北放在優先事項也是很自然的
+19:46 < caasihuang> 斷線了？ XD
+19:46 < kcwu> 斷了?
+19:46 < Lee1092> 斷的剛剛好XDDD
+19:46 < au> reconnecting
+19:46 < pofeng> 天龍國請正名醫龍國 (誤)
+19:46 < caasihuang> 聽到了！
+19:49 < pofeng> Extra-Corporeal Membrane Oxygenation
+19:51 < pofeng> 如果真的要 call in 要用 skype 另外接嗎 :p 
+19:52 < au> 是啊
+19:52 < au> 或是手機 call out
+19:52 < au> 但今天時間不太夠，下次嘍~
+19:52 < pofeng> 當然
+19:53 < pofeng> :p
+19:53 < au> 記得挖下次的坑 XD
+19:53 < pofeng> orz
+19:55 -!- privism_ is now known as privism
+20:03 < Lee1092> CTBlue XDDDDDDDD   在一次聽到還是很好笑
+20:04 < Lee1092> 應該來個網路版的投票 SOP  
+20:07 < ETBlue> via hychen... 原來智慧城市是 IBM 提出 http://www-07.ibm.com/tw/dp-cs/smartercity/overview.html?cmp=c2120&ct=c21202rw&cr=google&cm=k&csot=-&ccy=-&cpb=-&cd=-&ck=smarter_city&S_TACT=C21202RW 
+20:07 < kcwu> ETBlue's url: [IBM - 智慧城市 概觀 - Taiwan]
+20:08 < tritin> 天干地支
+20:08 < nchild> au lanf0n 今天先挖一點點，大概像這樣： https://g0v.hackpad.com/b6gTMfhXMYY
+20:08 < caasihuang> RSChiang: 還有名額的樣子
+20:08 < kcwu> nchild's url: [開放政府資料法 - g0v.hackpad.com]
+20:08 < au> nchild++
+20:08 < au> caasihuang: invite only
+20:09 < caasihuang> au: 瞭解，只看了總人數 0rz
+20:11 < Lee1092> CTBlue 100元~
+20:12 < kiang> IBM 提智慧城市的目的就是告訴客戶以前買的機器應該要淘汰了，請交點保護費，我超餓
+20:12 < caasihuang> RSChiang: 記得那樣命名黑客松的一個優點是，可以期待走到「台灣零時政府第某某次零時政府黑客松」的一天
+20:12 < au> 目前才到 1988 年
+20:13 < au> 還要辦二十幾次~
+20:13 < caasihuang> XDDDD
+20:14 < Lee1092> 一年如果六次  至少要三年多  XD
+20:14 < au> 準備收播換 english track 了
+20:16 < pofeng> 所以 english track 可以給 cfa 當報告 ?
+20:16 < au> that's the idea
+20:16 < pofeng> cool
+20:17 < Lee1092> CTBlue++  RSChiang++
+20:18 < au> 預計 20:40 左右開始 English track
+20:19 < pofeng> CTBlue++  RSChiang++
+20:20 < lanf0n> au++ CTBlue++ RSChiang++    12th 是股市萬點松了 lol
+20:22 < pofeng> 股市萬點 !!
+20:22 < pofeng> (Y)
+20:23 < miaoski> 沒 follow 到 Q.Q
+20:24 < miaoski> 電台沒聲音了
+20:24 < Lee1092> 希望在股市萬點前能股市萬點~  :p
+20:24 < lanf0n> Lee1092: 有柯P....XD
+20:24 < Lee1092> miaoski:  之後會放上 soundcloud   
+20:24 < moon_c__> 嗚嗚錯過了
+20:25 < Lee1092> lanf0n: 這樣效率也太猛了  XDD
+20:25 < lanf0n> au: 20:40 的 english track 是同樣的內容嗎XD
+20:25 < au> RS 和 CT 正在討論這件事
+20:25 < miaoski> 我可以 follow english track XD
+20:26 < lanf0n> wow
+20:26 < au> 會怎樣我也不知道 XD 歡迎提議
+20:26 < ETBlue> hychen: evenwu: https://g0v.hackpad.com/--ckarKHhCVao cc clkao ipa 
+20:26 < kcwu> ETBlue's url: [政策收集區 - 智慧城市篇 - g0v.hackpad.com]
+20:27 < pofeng> au: 或許 focus 外文材料 (?)
+20:27 < au> OK
+20:28 < pofeng> https://www.techdirt.com/articles/20141107/10025529078/taiwans-g0v-using-open-source-code-communities-to-engage-citizens-make-government-more-open.shtml
+20:28 < kcwu> pofeng's url: [Taiwan's g0v: Using Open-Source Code And Communities To Engage Citizens And Make Government More Open | Techdirt]
+20:28 < pofeng> http://techpresident.com/news/wegov/25339/sunflower-movement-g0v-taiwan-open-government
+20:28 < kcwu> pofeng's url: [After Sunflower Movement, Taiwan's g0v Uses Open Source to Open the Government | TechPresident]
+20:31 < pofeng> and clkao at Asia Data BootCamp 
+20:31 < clkao> 英文開播了嗎？
+20:31 < au> in 10 minutes
+20:32 < moon_c__> （爆米花
+20:32 < au> again at http://mixlr.com/%E5%94%90%E9%B3%B3/
+20:32 < kcwu> au's url: [唐鳳 is on Mixlr. Mixlr is a simple way to share live audio online. ...]
+20:34 < RSChiang> 「我們應該找幾家唱片公司談版權，來播個爵士樂什麼的」
+20:34 < RSChiang> 「大家就會為了深夜電台來聽英文版」
+20:35 < clkao> lol
+20:35 < moon_c__> ccmixer裡面不知道有沒有適合的音樂～
+20:35 < moon_c__> 以前蠻愛在那邊挖資料用
+20:36 < au> CTBlue> 「以前戀愛」... 愛在那邊挖資料用?
+20:37 < RSChiang> au：「那是蠻」
+20:37 < au> au> That's very romantic of you
+20:37 < RSChiang> three minutes XD
+20:37 < moon_c__> XDDDD~so romantic
+20:37 < au> 中文的錄音檔在 http://mixlr.com/%E5%94%90%E9%B3%B3/showreel/%E5%94%90%E9%B3%B3s-mixlr-2/
+20:37 < kcwu> au's url: [唐鳳's Mixlr by 唐鳳 broadcast live on Mixlr.]
+20:38 < CTBlue> >\\\<
+20:38 < Lee1092> XDD
+20:40 < clkao> CTBlue++
+20:40 < au> live now
+20:40 < clkao> crazy feedback
+20:41 < au> fixed
+20:42 < clkao> au++
+20:42 < moon_c__> CTBlue++RSChiang＋＋au++
+20:49 < miaoski> 啊可惡 需要 flash
+20:49 < miaoski> sorry... no flash /flee
+20:50 < au> sorry about that...
+20:50 < au> chrome has bundled flash
+20:50 < miaoski> au: Chrome 也和我說需要 flash, 超詭異 :P
+20:50 < au> weeird
+20:56 < tkalu> au: 這邊預計會到幾點呢？
+20:57 < au> tkalu: i have the office key
+20:57 < au> maybe another 30-40min
+20:58 < tkalu> au: 收到, 那下次見, 我要來去吃飯了...
+20:58 < au> ok!
+20:59 < au> CT: referendum
+21:04 < au> 1988
+21:04 < moon_c__> 26
+21:11 < au> alright... if no call-ins then it's jingle time~
+21:11 < clkao> CTBlue++
+21:11 < clkao> RSChiang++
+21:11 < poga> CTBlue++ RSChiang++ au++
+21:12 < moon_c__> CTBlue++ RSChiang++ au++下次啥時～～
+21:12 < au> "in two weeks"
+21:12 < clkao> LOL
+21:12 < au> RS+CT 正在開下次的 hackpad
+21:13 < RSChiang> https://g0v.hackpad.com/1281221-2-BNI4fkfVFgz
+21:13 < kcwu> RSChiang's url: [12/8~12/21 地下電臺 (#2) - g0v.hackpad.com]
+21:18 -!- chihchun_afk is now known as chihchun
+21:22 < ETBlue> RSChiang++ CTBlue++ 還沒追 log 先 ++ XD
+21:23 < RSChiang> good evening!
+21:24 -!- chihchun is now known as chihchun_afk
+21:26 -!- chihchun_afk is now known as chihchun
+21:28 < moon_c__> ETBlue的開場音效也+++
+21:36 < ETBlue> 喔喔喔今天也有開場音效 XD
+21:53 < ronnywang> http://news.ltn.com.tw/news/society/breakingnews/1178536 # 原來葉林傳不只是告我而已 XD
+21:53 < kcwu> ronnywang's url: [搜尋姓名跳出「黑道」市議員葉林傳怒告Google - 社會 - 自由時報電子報]
+21:54 < kiang> ronnywang: 動不動就告人的通常都不會只有一個事件 XD
+21:54 < ronnywang> 我現在每天都會看看台北地檢署的偵結公告，看看我的官司到底是怎樣。今天看到一個 葉○傳 告 簡○峰
+21:55 < ronnywang> 那時候就在想會不會是簡立峰，沒想到真的是 XD
+21:55 < kiang> XD
+22:00 < clkao> 潮爽der
+22:01 < clkao> 他有選上嗎？
+22:01 < kiang> 有： http://k.olc.tw/elections/candidates/view/53c68f9c-202c-4197-9a1b-0f15acb5b862
+22:01 < kcwu> kiang's url: [2014 > 直轄市議員 > 臺北市 > 第04選區[區域] > 7號 葉林傳候選人 @ 選舉黃頁]
+22:02 < kiang> ronnywang: 應該要選前去加入對手陣營的 XD
+22:05 < ronnywang> 我的案子還沒偵結啊 XD 等超久der
+22:06 < hlb> ronnywang: 告你什麼 o_o
+22:07 < clkao> nchild++ # http://opinion.cw.com.tw/blog/profile/265/article/2178 (還故意消費阿基師? XD)
+22:07 < kcwu> clkao's url: [楊孝先：選舉過後，如何確保政府的開放透明 - 獨立評論@天下 - 天下雜誌]
+22:07 < ronnywang> hlb: 因為 http://murmur.tw/ronnywang/2953152 告我公然侮辱
+22:07 < kcwu> ronnywang's url: [去你媽的葉林傳在那邊給我敲鑼打鼓放鞭炮，你他媽的只是來選人民公僕的搞這種陣仗你以為你是神啊 - murmur.tw]
+22:07 < hlb> LOL
+22:07 < kiang> 就另外一個北宋的代價 XD
+22:07 < hlb> 這人好妙
+22:08 < ronnywang> 2014/10/31 去台北地檢署開了偵察庭，到現在還沒結果，地檢署好慢 X
+22:08 < ronnywang> XD
+22:08 < tkirby> 都在查 MG149
+22:09 < hlb> ronnywang: 地檢署感到為難
+22:09 < ronnywang> 不過他告 google 應該跟我差不多是同時間吧，看來我這幾天應該也會有結果了
+22:09 < hlb> 看來得要先處理 google 的約有 17,700 筆資料
+22:12 < jimyhuang_> 原來是google幫的忙
+22:17 < kiang> http://www.appledaily.com.tw/realtimenews/article/politics/20141210/522024/ - 希望民進黨真有機會變成開放政黨，目前看起來內部鬥爭沒有比較少啊 XD
+22:17 < kcwu> kiang's url: [明確表態　賴清德：民進黨應協助陳為廷 | 即時新聞 | 20141210 | 蘋果日報]
+22:21 < lanf0n> nchild++
+22:34 < jimyhuang_> kiang: 你會去這個喔 https://tahr.hackpad.com/MNOr5p0T5GU ！
+22:34 < kcwu> jimyhuang_'s url: [網路透明計畫（台權會） - tahr.hackpad.com]
+22:34 < kiang> jimyhuang_: 剛好有機會路過，感謝北投里長邀請我北上
+22:35 < jimyhuang_> kiang: 所以最後還是不能在台南開庭？
+22:35 < kiang> jimyhuang_: 沒辦法這麼快裁決，至少要上去這一次吧
+22:36 < jimyhuang_> kiang: 那有空吃一頓好料的吧 :D
+22:37 < kiang> jimyhuang_: 好啊，16號你也會去嗎？如果會就直接接著吃晚餐吧
+22:38 < kiang> M○tthew S. 跟簡一起列為被告，應該也是台灣 google 的人吧
+22:38 < jimyhuang_> kiang: 會去，來找找附近民權西路站有啥好料
+22:38 < kiang> jimyhuang_++
+22:39 < kiang> 我已經跟台北不熟了 XD
+22:40 < walkingice> @.@
+22:45 < clkao> 可以問 chhsiao1981 他對那附近應該很熟
+22:46 < kiang> chhsiao1981 要一起吃飯嗎？ ;)
+22:48 < jimyhuang_> chhsiao1981: 一起跟被告補一下身體
+23:05 < chhsiao1981> 16 號晚上應該 ok. 
+23:05 < kiang> chhsiao1981++
+23:06 < chhsiao1981> 可以到附近的大橋頭站的延三夜市. 或是承德路/昌吉街附近.
+23:22 < ronnywang> kiang: http://company.g0v.ronny.tw/id/54670929  Matthew S. Sucherman 是 Google 在台灣分公司登記的代表人
+23:22 < kcwu> ronnywang's url: [台灣科高股份有限公司:54670929:台灣公司資料]
+23:23 < kiang> ronnywang++
+23:26 < kiang> http://opinion.cw.com.tw/blog/profile/265/article/2178 nchild++, 連熱門關鍵字 阿基師 都用進去了， SEO 做的很徹底 XD
+23:26 < kcwu> kiang's url: [楊孝先：選舉過後，如何確保政府的開放透明 - 獨立評論@天下 - 天下雜誌]
+23:48 < jimyhuang_> ronnywang: 偷吃步，我目前直接捷圖來疊... https://dl.dropboxusercontent.com/u/12852670/taiwan-river.jpg
+23:49 < clkao> 為何 jimyhuang_ 最近常常感嘆~
+23:50 < jimyhuang_> clkao: 啊？我只是在練習幽默...
+23:56 < CindyLinz> kiang: locate_block 作了小修改, 切方塊會再聰明一點點...
+23:57 < CindyLinz> kiang: ....其實是會讓我現在正在嘗試的猜欄位更準 XD
+23:57 < CindyLinz> 雖然變準的那一張沒什麼用... 因為公報裡面的字都沒被認走..... ^^|
+23:58 < CindyLinz> 這一份.. 我猜這一份是掃描的.. # http://k.olc.tw/bulletin/546e068d-6a80-4d0a-8f58-1a32cf91e152/546e068d-6a80-4d0a-8f58-1a32cf91e152.html

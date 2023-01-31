@@ -1,0 +1,125 @@
+--- Day changed 四  7月 23 2015
+02:52 < gugod> hacktabl++
+08:59 < slackbot7> <mrorz> 請問有沒有 google doc 版的 inviteyoself 呢？
+08:59 < slackbot7> 就是讓使用者自己寫 email 之後，那個人就會自動被加入某份 google doc 的 editor
+08:59 < slackbot7> <mrorz> 想要替 hacktabl 做記名（記 email）編輯
+08:59 < slackbot7> <yurenju> 喔喔
+09:00 < slackbot7> <yurenju> 我剛還想說開放編輯權限就好了 XDD
+09:00 < slackbot7> <mrorz> 可惜他好像沒有記名的開放編輯權限 orz
+09:00 < slackbot7> <mrorz> 只要開放編輯，那麼就一律是 no signin required
+09:01 < slackbot7> <mrorz> 就算使用者有登入，也會顯示成不知名的水獺或長頸鹿。
+09:01 < slackbot7> <mrorz> Drive API 撈 history 也撈不出編輯者的身份
+09:02 < slackbot7> <mrorz> :s/history/revision list/
+09:11 < slackbot7> <mrorz> 沒有的話只好自己用 Drive API 蓋惹 QQ
+09:37 < slackbot7> <yurenju> @mrorz: 或許可以用 google form + google app script
+09:40 < slackbot7> <yurenju> @mrorz: <https://developers.google.com/apps-script/reference/drive/file#addEditor(User)>
+09:40 < kcwu> slackbot7's url: [Class File   |   Apps Script   |   Google Developers]
+09:42 < slackbot7> <yurenju> 我剛看了一下好像沒辦法用 email 拿到 user, hum
+09:43 < slackbot7> <yurenju> 喔喔可以誒 <https://developers.google.com/apps-script/reference/drive/file#addEditors(String)>
+09:43 < slackbot7> <yurenju> 好棒棒
+09:43 < slackbot7> <mrorz> addEditor 是不是加進自己呀
+09:43 < slackbot7> <mrorz> 自己的 editor
+09:44 < slackbot7> <mrorz> 噢沒事，可以 getFilesByName
+09:44 < slackbot7> <mrorz> 是說 apps script 的執行權限是誰的呀 XD
+09:44 < slackbot7> <yurenju> 恩... 而且如果執行 google app script 的人沒有權限好像沒辦法
+09:45 < slackbot7> <yurenju> 哎，好像不行
+09:45 < slackbot7> <yurenju> 執行權限應該就是填那份表單的人
+09:45 < slackbot7> <yurenju> 可惡
+09:46 < slackbot7> <mrorz> 可是我看到 <https://developers.google.com/apps-script/quickstart/forms>
+09:46 < kcwu> slackbot7's url: [Quickstart: Managing Responses for Google Forms   |   Apps Script   |   Google Developers]
+09:46 < slackbot7> <mrorz> 感覺起來好像是用建立 spreadsheet 的人的權限執行的
+09:46 < slackbot7> <yurenju> 喔？
+09:46 < slackbot7> <mrorz> 反正填表單的人也碰不到 spreadsheet
+09:47 < slackbot7> <yurenju> 好像又有救了的感覺 XDD
+09:47 < slackbot7> <mrorz> 好像很有趣
+10:32 < slackbot7> <yhsiang>  Slack 的確有人做google form跟typeform版本
+11:16 < slackbot7> <mrorz> 是說 google form 的前端可以自己蓋
+11:16 < slackbot7> <mrorz> 他沒有防 csrf 所以可以直接把 input name 與
+11:16 < slackbot7> <mrorz> form action 直接塞進自己的 html
+11:16 < slackbot7> <mrorz> 就可以得到不會壞掉的 inviteyoself (?
+11:24 < slackbot7> <yhsiang> 跟inviteyoself壞掉的關係在？
+11:38 < slackbot7> <mrorz> yurenju: 成功了，而且只寫了4行
+11:38 < slackbot7> ```js
+11:38 < slackbot7> var file = DriveApp.getFileById('1D_TfV5udsWesnD2RFQ5D2VXrbuPG6hOxW1bhqjPKaFg');
+11:38 < slackbot7> function onFormSubmit(e) {
+11:38 < slackbot7>   file.addEditor(e.namedValues['Email'][0]);
+11:38 < slackbot7> }
+11:38 < slackbot7> ```
+11:38 < slackbot7> <mrorz> 有點猛
+11:39 < slackbot7> <yurenju> 其實我一直覺得 google app script 很好用
+11:39 < slackbot7> <yurenju> 只是上架有點機車
+11:39 < slackbot7> <yurenju> 我上次想把我寫的 addon 放到他的 marketplace 竟然要人工審核...
+11:40 < slackbot7> <yurenju> 我還以為跟 extension 一樣放上去就收工了
+11:40 < slackbot7> <mrorz> 權限方面，他是在我註冊 trigger 的時候跟我要的，所以會用我的權限（我是 "1D_TfV5udsWesnD2RFQ5D2VXrbuPG6hOxW1bhqjPKaFg" 檔案的擁有者）
+11:40 < slackbot7> <mrorz> 幸好我沒有要上架 XD
+11:51 -!- chihchun_afk is now known as chihchun
+12:29 < slackbot7> <wildsky> D3.js 求救…
+12:29 < slackbot7> 有 tag 出來可是卻沒有畫面Orz
+12:29 < slackbot7> <http://codepen.io/anon/pen/pJOYEG>
+12:29 < kcwu> slackbot7's url: [A Pen by Captain Anonymous]
+12:36 < slackbot7> <au> wildsky: `weight` 應為 `width` 然後在 attribute 裡的單位自動是 `px`，不用加 `px`
+12:36 < slackbot7> <au> # <http://codepen.io/anon/pen/JdazJK>
+12:48 < slackbot7> <yhsiang> <https://g0v.hackpad.com/2015--KGDZUTdTylb> # 開會討論中 XD
+12:48 < kcwu> slackbot7's url: [2015 第十屆台北數位藝術節參展專案 - g0v.hackpad.com]
+12:54 < slackbot7> <wildsky> 謝謝 @au  ...... 犯了一個想撞豆腐自殺的錯誤Orz
+12:59 < slackbot7> <yhsiang> hmm .. 要拿 vtaiwan 來延伸了嗎 XD
+13:13 < slackbot7> <yhsiang> au: 對於紀錄 vtaiwan 的 real time 互動，有什麼可行的方向嗎？ XD
+13:14 < slackbot7> <au> 是說 http://pol.is ? 每天寫戰報啊 XD
+13:14 < kcwu> slackbot7's url: [Polis]
+13:14 < slackbot7> <au> WebDriver autosnapshot etc
+13:14 < slackbot7> <au> Discourse API 接 visualization 也是一個想法
+13:16 < slackbot7> <au> `wkhtmltopdf` 縮時攝影？
+16:05 < slackbot7> <yhsiang> 考慮來把 democracy 3 中文化 + modding
+16:05 < slackbot7> <yhsiang> XD
+16:17 < slackbot7> <mrorz> @yurenju: 請問 ironworker 的 file system 每次 script 啟動的時候會共用嗎~?
+16:17 < slackbot7> <mrorz> 我可不可以在 ironworker 的 file system 裡面存東西，在下次 scheduled task 裡面使用呢
+16:28 < slackbot7> <clkao> i think it’s stateless.. you should use s3 or something else for persistent storage
+16:29 < slackbot7> <clkao> yhsiang: democracy 3 ?
+16:29 < slackbot7> <yurenju> @mrorz:  村長說得對，我沒試過不過應該是這樣沒錯
+16:31 < slackbot7> <au> democracy 3 = 模擬政府, ptt 有一篇文章表示「目前遊戲沒有中文界面，雖然遊戲String是.txt可供編輯， 但編碼不支援整個悲劇QQ」
+16:32 < slackbot7> <au> yhsiang: 編碼問題可以解決的話，我也有興趣中文化
+16:39 < slackbot7> <mrorz> @yurenju: 好吧那我還是用之前習慣的 heroku 好了 XD
+16:39 < slackbot7> 接個 redistogo 之類
+16:39 < slackbot7> <yurenju> 你可以接 s3 啊～
+16:40 < slackbot7> <mrorz> 我只要記 oauth2 key 而已，幾個字串
+16:43 < slackbot7> <mrorz> 不過 iron_worker 推到 iron worker 的時候是上傳目錄下檔案這樣嗎？
+16:43 < slackbot7> 這樣好像比 heroku 綁 git 方便
+16:43 < slackbot7> 因為 key 那些不能寫成檔案進 git，導致 heroku 專案都要把敏感的東西弄成 environment variable
+16:46 < slackbot7> <yurenju> iron worker 可以在網頁上設定環境變數
+16:46 < slackbot7> <yhsiang> @au: 好欸 明天一起討論 XD
+16:47 < slackbot7> <yurenju> 或是用一個 .worker 檔設定
+16:47 < slackbot7> <yurenju> @mrorz: 我是用 travis 來 deploy 得
+16:48 < slackbot7> <mrorz> 好噢
+16:48 < slackbot7> 我在看 yurenju 在 medium 上發表的那篇文章 XD
+16:48 < slackbot7> <yurenju> XDDD
+17:08 < slackbot7> <yurenju> <http://www.appledaily.com.tw/realtimenews/article/life/20150723/653821> <== 這個在 google map 有跳出災害通知嗎？
+17:08 < kcwu> slackbot7's url: [北市應變中心二級開設　全市已有103處淹水 | 即時新聞 | 20150723 | 蘋果日報]
+17:09 < slackbot7> <yurenju> <http://www.google.org/publicalerts/?hl=zh-TW>
+17:09 < kcwu> slackbot7's url: [Google 災害示警]
+17:09 < slackbot7> <yurenju> 結果是有通知的
+17:53 < slackbot7> <au> yhsiang:  目前玩 Democracy 3 的心得是電子化直接民主 (55pts) 在單一任期裡似乎是做不到的 XD
+17:57 < slackbot7> <yhsiang> 編碼好像是 ASCII
+17:57 < slackbot7> <yhsiang> 目前有看到 windows 的 language selector
+17:58 < slackbot7> <mitsunchieh> yhsiang ++
+17:58 < slackbot7> 但我是肉咖 OAO
+18:13 < slackbot7> <caasi> au, yhsiang: 發現有人問過 <http://positech.co.uk/forums/phpBB3/viewtopic.php?f=38&amp;t=9956&amp;p=69839&amp;hilit=Chinese#p69839>
+18:13 < slackbot7> <caasi> 沒有回應 :anguished:
+18:21 < slackbot7> <caasi> transifex 專案在此 <https://www.transifex.com/projects/p/democracy-3/>
+18:21 < kcwu> slackbot7's url: [Democracy 3 localization]
+20:03 < slackbot7> <kiang> 不知道還有哪裡可以免費看 NASA 的直播？ XD - <http://www.nasa.gov/press-release/nasa-hosts-media-teleconference-to-announce-latest-kepler-discoveries>
+20:03 < kcwu> slackbot7's url: [NASA to Announce Latest Kepler Discoveries | NASA]
+20:04 < slackbot7> <kiang> 官方的直播頻道已經塞滿人了，要付費升級才能鑽進去
+20:58 < slackbot7> <clkao> <https://www.youtube.com/watch?v=OX9I1KyNa8M> ?
+20:58 < kcwu> slackbot7's url: [NASA TV Media - YouTube]
+21:00 < slackbot7> <kiang> clkao++
+21:00 < slackbot7> <kiang> 還有三個小時，已經一堆人在上面聊天了
+21:20 < slackbot7> <michael_li> 今天公視有話好說　有（無人機）空拍機展示　非常時髦
+21:35 < slackbot7> <johnny> 在 sunlight了
+21:56 < slackbot7> <clkao> johnny: space museum 必去
+22:45 < dirty> 這邊有 livehouse.in 的人嗎?
+23:29 < slackbot7> <kiang> 看起來 <http://www.ustream.tv/nasajpl2> 才是正確的頻道
+23:29 < kcwu> slackbot7's url: [NASA JPL Live, Ustream.TV: Upcoming Event: NASA Planet-Finding News Thursday, July 23, 2015, at 9 a.m. PT (noon ET, 1600 UTC) NASA will host a news teleco...]
+23:30 < slackbot7> <yhsiang> clkao: democracy 3 是一款遊戲，如果被黑人至上主義者盯上可能會被暗殺喔 :stuck_out_tongue:
+23:53 < slackbot7> <kiang> <https://www.facebook.com/xiao.s.feng/posts/1210059225676759> - 又翻牆了 XD
+23:53 < kcwu> slackbot7's url: [王奕凱 - 學生進去了！ | Facebook]
+23:54 -!- chihchun is now known as chihchun_afk

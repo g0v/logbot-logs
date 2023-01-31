@@ -1,0 +1,507 @@
+--- Day changed 五  7月 19 2013
+00:00 < hychen> billy3321, ping ping pong
+00:02 < ipa_> billy3321: 回台灣會待到8/10參加黑客松嗎？
+00:04 -!- nchild [~nchild@116.59.225.24] has quit [Remote host closed the connection]
+00:15 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+00:16 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+00:16 < kcwu> 有人玩過 distributed backup system 嗎? 我想像的是一些人每人 donate 一些空間, 然後程式會把檔案分散傳過去, 每個人不見得會持有全部的檔案, 但每個檔案都至少存在 k 個人手上. 當某個檔案太少人持有, 就會從其他人那邊 copy 過去.
+00:18 < yhsiang> 這感覺是p2p backup?
+00:18 < clkao> gugod 之前好像有 survey 過
+00:19 < kcwu> 對, p2p, 理論上可以用現成的 p2p network 兜出來. 不過希望有現成的可以用
+00:19 < clkao> http://web.mit.edu/~emin/www.old/source_code/dibs/dibs.html#Installion-and-Configuration ?
+00:19 < kcwu> clkao's url: [DIBS Documentation]
+00:20 < yhsiang> 上次那個green coder 好像也是在弄p2p content 0.0?
+00:20 < clkao> vincent 嗎？ 好像比較不是 storage
+00:20 < yhsiang> 對, 嗯 不是storage方面沒錯, 
+00:21 < au> 之前用過 Tahoe-LAFS
+00:22 < au> (也訂了 leastauthority.com (LAFS on S3) 但還沒真的用。)
+00:22 < au> 用的就是 kcwu 說的 k of n replication
+00:23  * clkao -> zz ; au see you in a few hours
+00:23 < au> ditto
+00:24 < tkirby> blah
+00:27 < kcwu> 不懂, 為什麼 on S3....k of n 結果 k 份都在 S3 上? 而且 $1/GB/month 相當於十倍 S3 的價格, 那不就自己把 data dup 10 次放 S3 就好了?
+00:28 < kcwu> 我想我誤會了什麼?
+00:28 < S3p_lin> win 35
+00:29 < au> kcwu: Tahoe-LAFS 是分散式的
+00:29 < au> 然後有個特性是 storage layer 不能自行解密
+00:30 < au> leastauthority.com 的 S3 服務是外加的
+00:30 < au> 自己可以和朋友架 TahoeLAFS pool （之前有過好幾個）
+00:31 < au> S3 放一份可能只是方便 / 不讓 amazon 看到資料 / 贊助開發者 etc
+00:31 < kcwu> 是說 pool 中的其中幾個 node 是 backed on S3 ? 
+00:31 < au> 好像是要往這個方向做。
+00:32 < au> 但是如果是自己架可以不用管 S3 的部份。
+00:32 < kcwu> i see
+00:40 -!- hychen [~hychen@host-219-68-122-178.dynamic.kbtelecom.net] has quit [Quit: 暫離]
+01:07 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Quit: leaving]
+01:11 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+01:31 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has quit [Quit: pm5]
+02:30 -!- linarnan [3de70e52@gateway/web/cgi-irc/kiwiirc.com/ip.61.231.14.82] has joined #g0v.tw
+02:41 -!- linarnan [3de70e52@gateway/web/cgi-irc/kiwiirc.com/ip.61.231.14.82] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+02:42 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+02:51 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+03:10 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 260 seconds]
+03:47 < dirty_> http://zoro.ee.ncku.edu.tw:3333/g0v-hackath3n/Mvvl8HrceCV # 試圖美化左邊的 index, 看大家覺得如何
+03:47 < kcwu> dirty_'s url: [hack.g0v.tw]
+03:48 < dirty_> 採用無色彩是為了去政黨色彩, 當然, 以後要改配色也比較容易
+03:50 < dirty_> 目前我個人只剩 line-height 想調, 但這很吃螢幕, 而我現在用的 MBA 11' 可能調出來的跟大多數人希望的不同 :p
+04:29 -!- caasiHuang [~caasi@114-46-144-109.dynamic.hinet.net] has joined #g0v.tw
+04:29 < caasiHuang> 有沒有人用 cheerio 遇到什麼災情的？
+04:36 -!- caasiHuang [~caasi@114-46-144-109.dynamic.hinet.net] has quit [Quit: leaving]
+05:29 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 256 seconds]
+05:41 -!- juanna [~juanna@114-43-101-117.dynamic.hinet.net] has joined #g0v.tw
+05:41 -!- juanna_ [~juanna@114-37-109-105.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+07:25 < ipa_> dirty_: 讚 很不賴
+07:27 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+08:03 -!- bobchao [~bobchao@60.245.64.191] has joined #g0v.tw
+08:14 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+08:26 -!- bobchao [~bobchao@60.245.64.191] has quit [Quit: bobchao]
+08:26 -!- bobchao [~bobchao@60.245.64.191] has joined #g0v.tw
+08:27 -!- MnO2 [~MnO2@nat/yahoo/x-ltzgcchuryapkyvp] has joined #g0v.tw
+08:27 -!- bobchao [~bobchao@60.245.64.191] has quit [Client Quit]
+08:38 -!- MnO2 [~MnO2@nat/yahoo/x-ltzgcchuryapkyvp] has quit [Quit: MnO2]
+08:45 -!- MnO2 [~MnO2@nat/yahoo/x-dkqxjsymtgzickby] has joined #g0v.tw
+08:50 -!- bobchao [~bobchao@140.109.127.9] has joined #g0v.tw
+09:03 -!- neoesque [~neoesque@210.59.147.226] has joined #g0v.tw
+09:06 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+09:18 -!- neoesque [~neoesque@210.59.147.226] has quit [Quit: Bye!]
+09:20 -!- neoesque [~neoesque@210.59.147.226] has joined #g0v.tw
+09:20 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+09:21 -!- naran99 is now known as Nalnat99
+09:21 -!- Nalnat99 is now known as Nalant99
+09:21 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+09:27 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+09:29 -!- FourDollars [~sylee@1.34.160.231] has joined #g0v.tw
+09:30 -!- FourDollars [~sylee@1.34.160.231] has quit [Client Quit]
+09:30 -!- FourDollars [~sylee@1.34.160.231] has joined #g0v.tw
+09:31 -!- Nalant99 [~ws1012574@140.128.9.131] has left #g0v.tw []
+09:31 -!- FourDollars [~sylee@1.34.160.231] has quit [Client Quit]
+09:31 < hychen> billy3321, https://docs.google.com/presentation/d/1zr95fYZseC8rphXqt6ZFQqmaLwTXB6IHCdCjp6cqrFw/edit#slide=id.gf34a2d8a_0113
+09:31 < kcwu> hychen's url: [What is Kuansim? - Google 雲端硬碟]
+09:31 < hychen> billy3321, 投影片我做了一些, 幫忙改一下
+09:32 -!- FourDollars [~sylee@1.34.160.231] has joined #g0v.tw
+09:33 -!- FourDollars [~sylee@1.34.160.231] has quit [Client Quit]
+09:34 -!- FourDollars [~sylee@1.34.160.231] has joined #g0v.tw
+09:38 -!- FourDollars [~sylee@1.34.160.231] has quit [Client Quit]
+09:39 -!- FourDollars [~sylee@1.34.160.231] has joined #g0v.tw
+09:39 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+09:40 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+09:40 -!- RSChiang [~communi@223-138-115-35.dynamic.hinet.net] has joined #g0v.tw
+09:53 -!- SarsTW [~wenpei@106.187.55.81] has quit [Quit: leaving]
+09:57 -!- lijung [~lijung@140.116.96.64] has joined #g0v.tw
+10:07 < clkaoud_> dirty_++ # mobile 上左欄很難 toggle 順便修一下吧
+10:08 -!- lijung_ [~lijung@140.116.96.64] has joined #g0v.tw
+10:08 -!- lijung [~lijung@140.116.96.64] has quit [Quit: lijung]
+10:13 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has left #g0v.tw []
+10:22 < ronnywang> http://www.newsdiffs.org/browse/ # 米國也有 news diff XD
+10:22 < kcwu> ronnywang's url: [NewsDiffs | Changes]
+10:28 < hychen> coool
+10:33 < superbil> so cool!
+10:34 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:38 < lijung_> awesome!...
+10:38 -!- neoesque [~neoesque@210.59.147.226] has quit [Quit: Bye!]
+10:40 -!- bobchao [~bobchao@140.109.127.9] has quit [Quit: bobchao]
+10:43 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+10:44 -!- hasher [~hasher@1.34.23.44] has quit [Client Quit]
+10:45 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+10:46 -!- hasher [~hasher@1.34.23.44] has quit [Client Quit]
+10:47 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+10:49 < superbil> http://tw.news.yahoo.com/%E9%97%9C%E4%B8%8D%E5%88%B0%E6%88%91-%E6%A7%93%E9%95%B7%E5%AE%98-%E6%B4%AA%E4%BB%B2%E4%B8%98%E8%A2%AB%E6%95%B4%E6%AD%BB-213000600.html 
+10:49 < kcwu> superbil's url: [「關不到我」槓長官 洪仲丘被整死 http://tinyurl.com/kek9wyg ]
+10:50 < superbil> 這則新聞做 news diff 應該很有趣
+10:52 < Goddamn> news diff 是指河蟹歷程嗎？
+10:52 < ronnywang> Goddamn: yes
+10:52 < ronnywang> 歷史被修改的過程
+10:53 < kcwu> firebase 好像沒有 transaction 的 restful api
+10:53 < yhsiang> 爬回來丟進git ?
+10:53 < clkao> clifflu 說他進度突飛猛進了
+10:53 < ronnywang> http://www.plurk.com/p/ix0hck
+10:53 < kcwu> ronnywang's url: [clifflu says 放一陣子的 news-diff 終於開始突飛猛進；沒意外的話這週末就可以開始農資料。另外新聞修改/撤回的比例可能比我想像得更高，寫這一晚，就碰到兩篇文章從有內容變成 404 XD 等資料收齊一些再來看 - #ix0hck]
+10:53 < clkao> ronnywang: jinx!
+10:53 < ronnywang> 很期待他的結果 XD
+10:54 < clkao> kcwu: 似乎是這樣
+10:56 < superbil> 好聰明，連 pluck 內容都會抓
+10:56 < superbil> s/pluck/plurk
+10:57 < clkao> 看來需要真理部的 logo 了
+10:57 -!- MnO2 [~MnO2@nat/yahoo/x-dkqxjsymtgzickby] has quit [Quit: MnO2]
+11:06 -!- neoesque [~neoesque@210.59.147.226] has joined #g0v.tw
+11:07 < superbil> hychen: 鄉民關心你的投影片已經可以轉發出去了嗎 XD
+11:09 < Goddamn> ronnywang: 這個好.  XD
+11:15 -!- bobchao [~bobchao@140.109.127.9] has joined #g0v.tw
+11:21 < lijung_> clkao: move to jade and stylus! done!
+11:28 -!- pm5 [~pm5@111-248-223-38.dynamic.hinet.net] has joined #g0v.tw
+11:28 < ETBlue> 挖變漂亮也變好用了！按下去的反應速度也變快了，真是太神奇...  # http://zoro.ee.ncku.edu.tw:3333/g0v-hackath3n/Mvvl8HrceCV
+11:28 < kcwu> ETBlue's url: [hack.g0v.tw]
+11:28 -!- bobchao_ [~bobchao@140.109.127.2] has joined #g0v.tw
+11:29 < ETBlue> dirty_++
+11:31 -!- bobchao [~bobchao@140.109.127.9] has quit [Ping timeout: 252 seconds]
+11:31 -!- bobchao_ is now known as bobchao
+11:31 -!- hychen [~hychen@175.41.48.77] has quit [Ping timeout: 248 seconds]
+11:40 -!- lijung_ [~lijung@140.116.96.64] has quit [Ping timeout: 256 seconds]
+11:42 -!- lijung [~lijung@140.116.96.64] has joined #g0v.tw
+11:44 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+11:53 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+12:05 -!- neoesque [~neoesque@210.59.147.226] has quit [Quit: Bye!]
+12:06 -!- pm5 [~pm5@111-248-223-38.dynamic.hinet.net] has quit [Quit: pm5]
+12:18 -!- bobchao [~bobchao@140.109.127.2] has quit [Quit: bobchao]
+12:31 -!- nchild [~nchild@59-124-93-73.HINET-IP.hinet.net] has joined #g0v.tw
+12:40 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 256 seconds]
+12:40 -!- cibs [~cibs@60-251-40-253.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+12:41 -!- nchild [~nchild@59-124-93-73.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+12:45 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:46 -!- cibs [~cibs@60-251-40-253.HINET-IP.hinet.net] has joined #g0v.tw
+12:52 -!- neoesque [~neoesque@210.59.147.226] has joined #g0v.tw
+12:53 < superbil> 政府從稅收到的錢，這個資料要去那邊查？
+12:54 < clkao> superbil: 中央政府的話 就是中央政府總預算的歲入部分
+13:01 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+13:02 -!- bobchao [~bobchao@140.109.127.9] has joined #g0v.tw
+13:06 -!- lijung [~lijung@140.116.96.64] has quit [Ping timeout: 240 seconds]
+13:08 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 240 seconds]
+13:10 < superbil> clkao: 有了，感謝
+13:12 -!- lijung [~lijung@140.116.96.64] has joined #g0v.tw
+13:25 < ipa_> https://www.facebook.com/photo.php?fbid=10151717121528960&set=a.10151707574478960.1073741850.154580453959&type=1&theater
+13:25 < kcwu> ipa_'s url: [2013【IVOD 全國巡迴評鑑活動】 | Facebook]
+13:32 -!- MnO2 [~MnO2@nat/yahoo/x-rskasrmgucgxiwhs] has joined #g0v.tw
+13:32 -!- MnO2 [~MnO2@nat/yahoo/x-rskasrmgucgxiwhs] has quit [Client Quit]
+13:34 < hychen> superbil, 看有沒有啥要改
+13:34 < hychen> superbil, 其實應該要再加些faq
+13:38 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+13:48 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: BYE]
+13:49 -!- poga [~poga@111-241-131-182.dynamic.hinet.net] has joined #g0v.tw
+13:50 -!- poga [~poga@111-241-131-182.dynamic.hinet.net] has quit [Remote host closed the connection]
+13:59 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+14:04 -!- nchild [~nchild@59-124-93-73.HINET-IP.hinet.net] has joined #g0v.tw
+14:05 -!- lijung [~lijung@140.116.96.64] has quit [Ping timeout: 246 seconds]
+14:10 -!- neoesque [~neoesque@210.59.147.226] has quit [Quit: Bye!]
+14:18 < hychen> superbil, 差不多了, 看faq那要不要再加東西
+14:20 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+14:21 -!- neoesque [~neoesque@210.59.147.226] has joined #g0v.tw
+14:22 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: pm5]
+14:22 < clkao> superbil: 有想要作啥嗎(歲入?) 之前處理歲出的 script 應該可以重新用
+14:23 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+14:23 < clkao> superbil: 然後後來有發現國會圖書館的預算系統可能比較好 parse, 但是要下奇怪的參數把他全部 dump 出來
+14:24 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+14:33 < shelling> lijung: gem install oj rest-client
+14:33 < lijung> shelling: 我今天去學校跟我老師說，他說可以借我8台電腦跑
+14:34 < shelling> (Y)
+14:34 < shelling> 我可能開 EC2
+14:34 < shelling> clkao: 我們這邊需要火力支援 XDD
+14:34 < lijung> 嗯嗯我先試試看可不可以在電腦跑
+14:34 < lijung> 火力支援 XD
+14:35 < clkao> shelling: how can i help
+14:35 < shelling> 我們切了 53 份 companies 列表
+14:36 < shelling> 一份 2500 個，剛好是 google map 一天的 query 量
+14:36 < shelling> 需要約 50 個獨立 IP 電腦/人頭
+14:36 < shelling> :ppp
+14:36 < lijung> 我跑20的全部
+14:36 < au> 人頭是指 google api account key ?
+14:36 < lijung> 20~30
+14:37 < au> shelling: 開個 ethercalc 或 google spreadsheet 開放認領?
+14:37 < lijung> shelling: 你現在跑出來多少
+14:37 < lijung> au 好方法～～
+14:38 -!- bobchao_ [~bobchao@140.109.127.5] has joined #g0v.tw
+14:38 < shelling> 我跑了 fragment 0,1,3
+14:38 < shelling> 0,1,2
+14:38 < shelling> 昨天的 quota 到了，在等今天的
+14:39 < shelling> au: 我現在開
+14:39 < clkao> shelling: 有一行可以 copy paste 的？然後執行結果要如何上傳?
+14:39 < au> 把下載的 url 和要跑的程式放上面，然後欄位是 fragment id, 認領人, result id
+14:39 < clkao> 我有很多台 ec2... 
+14:39 < au> 可以參考 http://www.ethercalc.org/3du-holohak
+14:39 < kcwu> au's url: [EtherCalc - Share the URL to your friends and edit together!]
+14:39 < clkao> (可惜已經過兩點 關了很多台)
+14:39 < au> clkao 的 ec2 一秒上下幾十萬 IOPS
+14:39 -!- bobchao [~bobchao@140.109.127.9] has quit [Ping timeout: 256 seconds]
+14:39 -!- bobchao_ is now known as bobchao
+14:39 < shelling> XDDD
+14:40 < clkao> 其實開一些 spot instance 應該很便宜 XD
+14:40 < clkao> 反正 先把如何跑 結果如何貼整理一下 晚點我再看.. 先工作 
+14:41 < shelling> 我自己是打算這麼做 
+14:41 < shelling> ok
+14:43 -!- chihchun_afk is now known as chihchun
+14:46 -!- hychen [~hychen@175.41.48.77] has quit [Remote host closed the connection]
+14:46 -!- ymow [~Adium@1-171-62-91.dynamic.hinet.net] has quit [Quit: Leaving.]
+14:47 < dirty_> ETBlue: 反應變快只是調動畫長度啊 ^^ 並不是程式碼效率提升
+14:48 < au> dirty++ # UX
+14:48 -!- ymow [~Adium@1-171-175-237.dynamic.hinet.net] has joined #g0v.tw
+14:48 < dirty_> 不過最佳化動畫時間其實應該是偏設計的人來做
+14:48 < dirty_> au: yes!
+14:51 < clkao> dirty_: 有 fork 了嗎？還是你要直接 push ?
+14:51 < dirty_> 看有沒有 ux 更專業, 但是卡在技術(不是指 html, css 這種, 而是如 git, sass, jade 這種)的人來規畫了
+14:51 < dirty_> clkao: 我很懶, 現在是用我自己的 git server XD
+14:51 < clkao> dirty_: 用一下 github 嘛 :p
+14:53 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+14:53 < dirty_> clkao: ok 啊, 本來想說至少用的人(大部分在這?)要覺得 ok 才套用吧, 所以先放上來看看大家意見
+14:54 < dirty_> clkao: 還有我不是很了解這邊習慣的做法, 是偏向別人 fork, 還是加入同一個 repo (開權限)?
+14:55 < au> 通常是加入 g0v organization on github
+14:55 < au> dirty_: 你的 github id ?
+14:56 -!- mingtsay [~mingtsay@114-42-70-180.dynamic.hinet.net] has joined #g0v.tw
+14:56 < clkao> dirty_: wiki style - 直接改 有人覺得不 ok 就另外再改 XD
+14:56 < mingtsay> 早安各位
+14:56 < au> o/
+14:58 -!- nchild [~nchild@59-124-93-73.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+14:59 < dirty_> au: 好問題, 我得找找
+15:02 < dirty_> github id 就是登入帳號而已是嗎? darbychang
+15:03 < au> welcome aboard 
+15:04 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+15:04 < au> dirty_: 加個 remote
+15:05 < au> git remote add github git@github.com:g0v/hack.g0v.tw.git
+15:05 < au> git push github master # 即可
+15:10 < clkao> 熱烈歡迎成大電機知名張教授 push code
+15:11 < dirty_> au: done
+15:11 < clkao> dirty_++
+15:11 < dirty_> clkao: 我做的東西超膚淺的 XD
+15:11 < au> imagineering++
+15:11 < clkao> 微軟正黑體!
+15:11 < clkao> 是不是要列各種黑體？
+15:12 < au> OK on it
+15:12 < dirty_> clkao: 對, 我覺得要用黑體, 然後那順序是有認真選的, 只是 windows 上好像只有一種?
+15:13 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+15:14 < dirty_> 第一種是日文字型, 但至少在我的 mba 上看起來最順眼
+15:14 < lijung> 原來 dirty 就是傳說中的張天毫教授喔 XD
+15:15 < lijung> 豪（sorry打錯）
+15:15 < dirty_> clkao: 另外你提到的 mobile friendly 很難耶, 至少我經驗不多, 原來的版本 mobile 點得到嗎?
+15:15 < dirty_> lijung: 你們的機器還在那間, 其他人很好奇你們是要不要進來 XD
+15:15 < au> dirty_: 我在前面加了 Lantinghei TC Extralight
+15:16 < lijung> dirty_: 不是現在有些人在裡面了嗎？
+15:16 < au> OSX 可以在 字體簿 -> 蘭亭黑-繁 -> 安裝
+15:17 < dirty_> lijung: 是問你們團隊啦, 有別的團隊在沒錯
+15:17 < au> hack.g0v.tw refreshed
+15:17 < clkao> dirty_: animation!
+15:17 < dirty_> au: ok
+15:18 < clkao> dirty_: 收起來剩一個 bar? 這樣就無法點了耶
+15:18 < clkao> 本來是 hover 會出現 popover
+15:18 < clkao> (收起來時)
+15:18 -!- bobchao [~bobchao@140.109.127.5] has quit [Quit: bobchao]
+15:19 < dirty_> clkao: animation 對 ux 很重要耶, 但 angularjs 真的會限制原本熟悉 jquery 的人設計動畫. 還有就是, 那個 bar width 可以調, 我當初的確沒考慮 mobile
+15:19 < lijung> dirty_: 我們團隊都隨機行事，都到處 coding ～～我們都在 push 到 bitbucket 上， 暑假前些日子回桃園～～
+15:19 -!- bobchao [~bobchao@140.109.127.5] has joined #g0v.tw
+15:19 < au> dirty_: firefox collapse 時不像 chrome 會有一個 bar
+15:19 < au> 會整個消失掉，再起不能
+15:20 < dirty_> clkao: @@ 可能是我不小心刪掉了, 有順手 optimize sass code, 原本的 sass 真的有點髒
+15:21 < clkao> (已經 deploy 了)
+15:21 < dirty_> 先回到舊版吧 :p 我現在帶著兩個小孩上台北, 等我修等於是看天吃飯
+15:21 < au> np
+15:21 < clkao> 明天要去散步嗎？
+15:23 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 268 seconds]
+15:23 < dirty_> clkao: me? where?
+15:24 -!- bobchao [~bobchao@140.109.127.5] has quit [Ping timeout: 256 seconds]
+15:24 < clkao> 明天不是要去國防部前舉手請部長幫我們壓腿？
+15:26 < dirty_> 喔喔, i see, 不太可能, 會家庭革命 :p
+15:26 -!- astro^ [r94010@linux3.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:26 -!- astro^ [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+15:27 < dirty_> 我看到所謂的 popover 了, 我原本還想說留個 icon 又沒字沒什麼用, 就刪了... 總之有那個 icon 寬度的 bar 就夠了對嗎? 我再來想想怎麼修
+15:28 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 276 seconds]
+15:28 < clkao> 看來 au 正在修
+15:29 < au> 看來修好了
+15:30 < lijung> shelling: 話說我把 auth, upload 抗議標語那些都寫完了，現在只差 pin 到 map 上
+15:32 -!- nchild [~nchild@59-124-93-73.HINET-IP.hinet.net] has joined #g0v.tw
+15:33 -!- RSChiang [~communi@223-138-115-35.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+15:34 < superbil> clkao: 剛剛是同事對於近幾年交通罰款的收入(歲入)項目有興趣，所以才在查資料；我自己是沒想到要做到，不過他對於這塊應該有點興趣 (推抗中)
+15:35 < dirty_> au++ # 那我就有空再微調啦
+15:36 < au> cool cool
+15:37 < clkao> superbil: 對了，那個部分要看一下預算和決算
+15:44 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+16:07 -!- bobchao [~bobchao@140.109.127.4] has joined #g0v.tw
+16:10 < walkingice> @o@
+16:10 < superbil> clkao: 決算和預算加起來才是正確的結果?
+16:15 < clkao> superbil: 決算是當期結束後被認可的 預算是事前的估計
+16:19 < shelling> clkao au lijung https://github.com/g0v/tisa-map#distributed-location-querying
+16:19 < kcwu> shelling's url: [g0v/tisa-map · GitHub]
+16:20 < shelling> lijung++
+16:20 < shelling> 我這邊先來作 backend 讓 frontend 可以 query companies
+16:22 < shelling> 目前想法是 frontend 給中心座標和半徑
+16:22 < lijung> sure okok
+16:23 < shelling> sql query center latitude - radius < latitude < center latitude + radius 和 center longitude - radius < longitude < center longitude + radius 
+16:24 < shelling> 應該會給 server 還滿沈重的壓力 XDD
+16:24 < clkao> shelling: postgis?
+16:24 < shelling> 我這台還是 percona xtradb
+16:24 < clkao> 用 ronnywang 那天說的 query 法
+16:24 < shelling> pstgis?
+16:25 < shelling> 可以再說一次嗎
+16:25 < lijung> ronnywang 那天有說：
+16:25 < lijung> 常用的是 ST_GeomFromGeoJSON('GeoJSON內容'); 這樣子可以塞 geojson 進去轉換成 postgis 儲存的格式, ST_AsGeoJSON("column_name") 把某個存 postgis 資料的欄位換成 GeoJSON 格式輸出
+16:25 < clkao> shelling: 沒寫 fragment 去哪裡抓？
+16:25 < shelling> clkao: 馬上補
+16:25 < lijung> 我有把他抄下來但我不知道 clkao 是不是說這個？
+16:26 < clkao> yeah
+16:26 < shelling> clkao: 140.112.20.144/fragments.tar.gz
+16:27 < lijung> shelling: 你要不要把 rb 也放到 tar裡面
+16:27 < lijung> 這樣包裝下來解壓縮就可以了
+16:27 < shelling> lijung: 可
+16:29 < shelling> clkao: 已經補上 README https://github.com/g0v/tisa-map#distributed-location-querying
+16:29 < kcwu> shelling's url: [g0v/tisa-map · GitHub]
+16:30 < lijung> shelling++
+16:30 < shelling> 可以試看看 postgis 但是現在資料在 mysql
+16:30 < shelling> 我得先裝 postgre sql
+16:31 < superbil> clkao: 歲入的話應該就沒有決算和預算之分？
+16:35 < shelling> reading http://wiki.debian.org/DebianGis
+16:35 < kcwu> shelling's url: [DebianGis - Debian Wiki]
+16:35 -!- bobchao [~bobchao@140.109.127.4] has quit [Quit: bobchao]
+16:37 < clkao> shelling: 你用 debian/ubuntu 的話可以用 postgres 的 apt 裝 9.2
+16:37 < clkao> superbil: 有，預計收多少 xx 稅 最後實收多少
+16:38 -!- bobchao [~bobchao@140.109.127.4] has joined #g0v.tw
+16:38 -!- neoesque [~neoesque@210.59.147.226] has quit [Quit: Bye!]
+16:45 < shelling> clkao: testing 現在是 9.3+142really9.1+145
+16:45 < shelling> 莫名的版次 :s
+16:46 < clkao> 太新了啦 9.3 不是還在 beta
+16:48 < clkao> 因為曾經不小心 push 9.3
+16:48 < clkao> 版號不能變小... 
+16:48 < clkao> orz
+16:48 < au> 但是其實是 9.1
+16:48 < shelling> 還有 postgis 1.5.3-2
+16:48 < clkao> 傻眼
+16:48 < clkao> 類似 File::Slurp
+16:49 < au> 9.3+142really9.1+145justkidding9.0+148lol
+16:49 < clkao> https://metacpan.org/release/File-Slurp
+16:49 < shelling> 原來是這樣
+16:49 < kcwu> clkao's url: [File-Slurp-9999.19 - Simple and Efficient Reading/Writing/Modifying of Complete Files - metacpan.org]
+16:49 < clkao> 因為他是用 year 當版號 好像有次打錯了
+16:50 < au> 那也可以 revert 到 201301 啊
+16:50 < au> 謎之版本號
+16:50 < shelling> 直接裝 debian testing 的 postgis
+16:50 < shelling> 不知道能不能用
+16:53 -!- bobchao [~bobchao@140.109.127.4] has quit [Quit: bobchao]
+16:54 < mingtsay> 你們覺得版本的顯示字串要什麼格式比較好？不是有分顯示用的字串跟內部的long版本號嗎？
+16:54 < mingtsay> 0.0.A.0.0
+16:55 < mingtsay> 0放數字A放字母？
+16:57 < au> http://semver.org/ ?
+16:57 < kcwu> au's url: [Semantic Versioning 2.0.0]
+16:58 < au> # https://sites.google.com/site/wancw/study-notes/semver
+16:58 < kcwu> au's url: [Semantic Versioning Specification - WanCW]
+17:00 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:00 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+17:03 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:03 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+17:05 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+17:17 < shelling> clkao: postgis 會不會太牛刀了 XD
+17:17 < shelling> 其實我們只用得到 POINT 資料結構
+17:24 < clkao> yak shaving 一下? :p 也許以後可以自動作 clustering 還啥的
+17:24 -!- scyen_ [~scyen@122.146.84.72] has joined #g0v.tw
+17:27 < kcwu> 請問用 message queue (zeromq, rabbitmq, etc) 的方式來 dispatch job. 如果 worker crash 之類, job 不就不見了. 一般建議怎麼處理比較好?
+17:27 -!- scyen [~scyen@4.53.154.230] has quit [Ping timeout: 246 seconds]
+17:30 < au> kcwu: paranoid pirate?
+17:30 < au> http://zguide.zeromq.org/php:chapter4#Robust-Reliable-Queuing-Paranoid-Pirate-Pattern
+17:30 < kcwu> au's url: [Chapter Four - ØMQ - The Guide]
+17:32 < au> # http://rfc.zeromq.org/spec:6
+17:32 < kcwu> au's url: [6/PPP - Paranoid Pirate Protocol - 0MQ Requests for Comments]
+17:33 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+17:40 -!- scyen_ [~scyen@122.146.84.72] has quit [Remote host closed the connection]
+17:40 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+17:45 < dirty_> \
+17:55 < shelling> clkao: createlang plpgsql [yourdatabase] 之後就可以用 ST_GeoFromGeoJSON 之類的函式嗎？
+17:57 < ronnywang> 要有 libjson-dev 的情況下裝 postgis 才會有 ST_GeoFromGeoJSON
+17:58 < ronnywang> 如果沒有的話就要改用 ST_GeomFromText() 了，格式可以參考 http://postgis.refractions.net/documentation/manual-1.4/ST_GeomFromText.html
+17:58 -!- bobchao [~bobchao@140.109.127.9] has joined #g0v.tw
+17:59 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: BYE]
+17:59 < shelling> 目前還都沒辦法使用，安裝不太成功 /_
+18:00  * shelling /_\
+18:00  * shelling 再重來一次
+18:02 < shelling> 看來要用 source 安裝 postgre
+18:03 < shelling> ronnywang: 有沒有比較簡便的 postgre/postgis 安裝流程可以參考
+18:03 < ronnywang> 1. 下載 xxx.tgz 2. tar zxvf xxx.tgz 3. cd xxx 4. ./configure 5. make 6. sudo make install
+18:04 < clkao> XD
+18:04 < shelling> ronnywang: XD
+18:04 < shelling> TMD 的就是不能用 ST_* 啊啊啊 XD
+18:04 -!- mingtsay [~mingtsay@114-42-70-180.dynamic.hinet.net] has left #g0v.tw []
+18:04 < ronnywang> 我自己的安裝筆記就是這樣寫的啊 XD
+18:05  * shelling 畫圈圈畫圈圈
+18:05 < ronnywang> 不過要在你的 database 下面下 CREATE EXTENSION postgis; 指令
+18:05 < ronnywang> 才有 ST_* 可以用
+18:07 < shelling> psql -d database 之後直接下?
+18:07 < ronnywang> yes
+18:08 < ronnywang> 或者在 template1 這個 db 下面下 CREATE EXTENSION, 那之後新建的 DB 都可以支援了
+18:08 < shelling> could not open extension control file "/usr/share/postgresql/9.1/extension/postgis.control": No such file or directory
+18:08 < shelling> dpkg -S postgis.control
+18:08 < shelling> dpkg-query: no path found matching pattern *postgis.control*
+18:08 < ronnywang> 那就只要裝 postgis 就好了
+18:09 < shelling> ok
+18:09  * shelling 來從 source 重裝 postgis
+18:09 < ronnywang> 裝 postgis 前要先裝好 geos, gdal
+18:09 -!- bobchao [~bobchao@140.109.127.9] has quit [Quit: bobchao]
+18:09 < shelling> catched
+18:10 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 256 seconds]
+18:11 < lijung> shelling: http://myweb.ncku.edu.tw/~h34991132/tisa-companies-fragment20.json.location#
+18:12 < lijung> 我完成了 fragment 20
+18:14 < lijung> 看來我還要自己寫一個node 的版本... remote server 安裝 ruby 不知道為什麼一直出現 error 
+18:17 < clkao> shelling: 你有記他 geocode 出來的精確度嗎？譬如找不到他可能會給你同一區的某處?
+18:17 -!- hychen [~hychen@175.41.48.77] has quit [Quit: 暫離]
+18:18 -!- bobchao [~bobchao@116.59.225.153] has joined #g0v.tw
+18:25 < shelling> clkao: 沒有記下
+18:26 < shelling> 只記下 status: "OK"
+18:26 < shelling> 的項目
+18:29 -!- scyen [~scyen@4.53.154.230] has quit [Remote host closed the connection]
+18:30 < shelling> gcc: error: unrecognized command line option ‘-fno-aggressive-loop-optimizations’ /_\
+18:30 < shelling> 先放著...
+18:33 -!- nchild [~nchild@59-124-93-73.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:35 -!- neoesque [~neoesque@122-116-18-21.HINET-IP.hinet.net] has joined #g0v.tw
+18:47 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 246 seconds]
+18:48 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 268 seconds]
+18:50 < yhsiang> shelling: sorry 忘了提醒你要注意處理approximate orz...
+18:51 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: pm5]
+18:58 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+19:05 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+19:07 -!- bobchao [~bobchao@116.59.225.153] has quit [Quit: bobchao]
+19:16 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 260 seconds]
+19:18 -!- bobchao [~bobchao@61-230-130-151.dynamic.hinet.net] has joined #g0v.tw
+19:21 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Ping timeout: 240 seconds]
+19:23 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+19:25 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+19:30 < ipa_> 服貿mailing list: https://groups.google.com/forum/#!forum/tisa-action
+19:30 < kcwu> ipa_'s url: [Google 網上論壇]
+19:35 -!- kanru [~kanru@byebi.wara.tw] has joined #g0v.tw
+19:36 -!- FourDollars [~sylee@1.34.160.231] has quit [Quit: leaving]
+19:37 -!- jimyhuang [72237969@gateway/web/freenode/ip.114.35.121.105] has joined #g0v.tw
+19:37 -!- bobchao [~bobchao@61-230-130-151.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+19:44 -!- bobchao [~bobchao@111-243-90-132.dynamic.hinet.net] has joined #g0v.tw
+19:50 -!- kanru [~kanru@byebi.wara.tw] has quit [Remote host closed the connection]
+19:56 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+19:58 -!- nchild [~nchild@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+20:00 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+20:00 < ipa_> https://www.facebook.com/antiblacktw 大家來按讚吧 剛剛新開熱騰騰
+20:00 < kcwu> ipa_'s url: [反黑箱服貿協議 | Facebook]
+20:00 < ipa_> 目前0個讚
+20:04 < Jedi_> facebook account required
+20:07 < jimyhuang> 目前規劃的炒作方式：
+20:08 < ipa_> Jedi_: sorry.....
+20:10 < Jedi_> ipa_: 沒關係啦，只是就沒辦法多按一個讚而已
+20:10 < jimyhuang> 反服貿黑箱協議Facebook，目前規劃的炒作方式，這樣子看有沒有人可以建議 / 修正一下： 1. 寫一篇文章講一下服貿的影響  2. 附上曾經發過的新聞稿  3. 規劃一個活動 4. 開始大肆找人按讚
+20:14 -!- chihchun is now known as chihchun_afk
+20:20 -!- nchild [~nchild@114-35-121-105.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+20:25 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 264 seconds]
+20:41 -!- kcwu [fakeidkcwu@kcwu.csie.org] has quit [Ping timeout: 246 seconds]
+20:41 -!- kcwu [fakeidkcwu@kcwu.csie.org] has joined #g0v.tw
+20:45 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+21:00 -!- FourDollars [0122a0e7@gateway/web/cgi-irc/kiwiirc.com/ip.1.34.160.231] has joined #g0v.tw
+21:01 -!- FourDollars [0122a0e7@gateway/web/cgi-irc/kiwiirc.com/ip.1.34.160.231] has quit [Client Quit]
+21:05 -!- nchild [~nchild@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+21:05 -!- jimyhuang [72237969@gateway/web/freenode/ip.114.35.121.105] has quit [Quit: Page closed]
+21:08 < shelling> yhsiang: 再修正就好
+21:16 -!- nchild [~nchild@114-35-121-105.HINET-IP.hinet.net] has quit [Read error: No route to host]
+21:16 -!- neoesque [~neoesque@122-116-18-21.HINET-IP.hinet.net] has quit [Quit: Bye!]
+21:16 -!- nchild [~nchild@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+21:19 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+21:32 -!- nchild [~nchild@114-35-121-105.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+21:35 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has quit [Quit: leaving]
+21:35 -!- icman [~icman@123.240.128.193] has joined #g0v.tw
+22:00 -!- bobchao [~bobchao@111-243-90-132.dynamic.hinet.net] has quit [Quit: bobchao]
+22:12 -!- swem [~Thunderbi@36-226-16-115.dynamic-ip.hinet.net] has joined #g0v.tw
+22:22 -!- bobchao [~bobchao@60.245.65.188] has joined #g0v.tw
+22:24 -!- nchild [~nchild@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+22:25 -!- nchild [~nchild@114-35-121-105.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+22:26 -!- nchild [~nchild@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+22:30 -!- nchild [~nchild@114-35-121-105.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+22:31 -!- bobchao [~bobchao@60.245.65.188] has quit [Quit: bobchao]
+22:42 -!- Jhe__ [~Jhe@220-136-115-64.dynamic.hinet.net] has joined #g0v.tw
+23:15 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 262 seconds]
+23:16 -!- Jhe__ [~Jhe@220-136-115-64.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:18 -!- Jhe__ [~Jhe@220-136-115-64.dynamic.hinet.net] has joined #g0v.tw
+23:38 -!- thschee [thschee@2a00:dcc0:eda:3748:247:48:123:4] has quit [Quit: leaving]
+23:40 -!- swem [~Thunderbi@36-226-16-115.dynamic-ip.hinet.net] has quit [Ping timeout: 276 seconds]
+23:41 -!- thschee [thschee@2a00:dcc0:eda:3748:247:48:123:4] has joined #g0v.tw
+23:43 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+23:50 < Jcrt> ipa_: clkao: 上次跟你們提的紀錄片 Indie Game: The Movie 現在又有特價啦！只要 $3.x 就可以買到一堆遊戲原聲帶、遊戲和電影 https://www.humblebundle.com/weekly
+23:50 < kcwu> Jcrt's url: [Humble Weekly Sale: Jim Guthrie and Friends (pay what you want and help charity)]
+23:50 < Jcrt> 辛苦的紀錄片要支持一下～
+23:51 < Jcrt> 然後最近有 Special Edition ，紀錄電影的後續發展，再五天就會上線，可以花 $5 繼續支持 XD http://buy.indiegamethemovie.com/
+23:55 < Jcrt> ipa_: 我學妹的 g0v 筆記 http://anna-su.tumblr.com/day/2013/06/08
+23:57 -!- Nalant99 [~ws1012574@140.128.9.131] has joined #g0v.tw

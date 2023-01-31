@@ -1,0 +1,37 @@
+--- Log opened 日 11月 01 00:00:25 2015
+00:47 < ronnywang> fampat1: thanks, 資料修理中，因為九月中民視微調html造成的，還好我還有留原始 html ，現在可以把他重算回來
+00:49 < ronnywang> 原因是因為他的 <head> 沒有 utf-8 content-type meta ，造成我 parser 不知編碼會弄錯 ，我之前是把 <meta> 取代成 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+00:49 < ronnywang> 結果他九月中網站改成 <head id="ctl00_Head1">  orz
+00:52 < clkao> 今天洪秀柱被下架的新聞有被 newsdiff 抓到嗎？
+00:53 -!- alicekey_ is now known as alicekey
+00:54 < clkao> 今天跟 hlb 討論了一下 應該來弄 ncc.g0v, archive 所有新聞、政論節目 XD
+00:54 < ronnywang> http://newsdiff.g0v.ronny.tw/index/log/3825621
+00:54 < kcwu> ronnywang's url: [NewsDiff]
+00:55 < ronnywang> 2015/10/30 13:03 第一次抓到新聞，然後 2015/10/30 14:24 就被下架了
+01:01 < kcwu> ronnywang: newdiff db 大小大概多大?
+01:01 < kcwu> newsdiff
+01:08 < ronnywang> 用 mysql 有開壓縮， news meta + 已經 parse 出來的 title/body 記錄合起來 6G, 然後原始 HTML 一個月大概 4G ，會留兩個月 
+01:12 < ronnywang> 從 2013/8/14 開始收集的
+01:27 < mrsole2> ronnywang: newsdiff 發現..  log 3831555 和 3831554 一模一樣 但修改時間差1分鐘?
+01:33 < slackbot2> <clkao> 這個超有趣 看辯論的哪句話被電視引用最多 # <http://television.gdeltproject.org/cgi-bin/iatv_campaign2016_ddebate1/iatv_campaign2016_ddebate1#2015-10-13-D-Debate-0266>
+01:33 < kcwu> slackbot2's url: [Campaign 2016: Democratic Debate #1]
+01:48 < slackbot2> <hlb> 好強大...
+02:19 -!- mrsole2 [guest-mrso@gateway/web/scrollback.io/x-wawzgdiihdlmsbky] has left #g0v.tw []
+06:41 < gugod> ronnywang: 各新聞網站對於 newsdiff crawler 有沒有甚麼阻擋的手段？
+08:46 < ronnywang> gugod: 目前沒有，通常遇到問題都是各新聞網站自己改版或者是自己本身不穩造成抓到失敗，newsdiff 一則新聞一小時抓一次最多檢查 24 次，所以平均起來一天幫每則新聞加上 24 次 page view ，這個量對網站來說應該是很無感的吧
+10:35 -!- MouthBrother is now known as mouther
+10:47 -!- ac77 [~ac777@114-25-99-89.dynamic.hinet.net] has left #g0v.tw ["Leaving"]
+11:43 < slackbot2> <clkao> tkirby: 什麼，不用 d3 跟 geojson 也能畫地圖統計?
+11:43 < slackbot2> <clkao> <http://bl.ocks.org/anandthakker/52d26ae7b71b7e23c279>
+11:43 < kcwu> slackbot2's url: [Data driven style example with Mapbox GL]
+11:44 < slackbot2> <tkirby> 好快喔 XD
+11:44 < slackbot2> <clkao> 超強
+11:45 < slackbot2> <tkirby> 來做個台灣版的拿來收使用費好了 XD
+11:46 < slackbot2> <tkirby> mapbox 越來越厲害惹....
+11:46 < slackbot2> <clkao> jimyhuang: have you seen this? <https://github.com/developmentseed/landsat-util/tree/master>
+11:46 < kcwu> slackbot2's url: [developmentseed/landsat-util at master · GitHub]
+20:26 < clkao> 這 label 有點好笑... # https://github.com/g0v/itaigi/labels/%E8%AC%9B%E4%B8%80%E4%B8%8B%E6%8C%89%E6%80%8E%E5%81%9A%EF%BC%8C%E4%B8%9E%E5%AE%8F%E5%B0%B1%E6%9C%83%E4%BD%BF%E5%81%9A
+20:26 < kcwu> clkao's url: [Issues · g0v/itaigi · GitHub]
+21:31 < pm5> -w-
+23:08 < gugod> ronnywang: 了解... 我也打算來佈個 news crawler... 所以問一下。 
+23:11 < gugod> 說到這個... 台灣新聞社好像比想像中的還要多

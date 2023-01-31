@@ -1,0 +1,108 @@
+--- Day changed 五 12月 25 2015
+00:20 < slackbot13> <johnny> billy3321: ttcat: 議案改資料來源，格式大改了，api 可以看一下  <http://vote.ly.g0v.tw/api/bill/>
+00:20 < kcwu_> slackbot13's url: [Django REST framework]
+00:23 < slackbot13> <clkao> ttcat: !
+00:49 < slackbot13> <ttcat> @johnny: ++
+00:50 < slackbot13> <clkao> ttcat: 快回信
+00:59 < slackbot13> <yhsiang> ttcat: 快送我火焰
+01:00 < slackbot13> <yhsiang> XD
+01:15 < slackbot13> <ttcat> Ok ok orz 
+07:01 -!- veloci85_ is now known as veloci85
+10:14 < slackbot13> <peggylo> 【求救】有人手上有多明天g0v的票嗎？
+10:14 < slackbot13> 我估計錯誤只幫同事報名兩張票，結果爆棚了Q______Q  有人願意捐票給健保署組長&amp;同事們嗎(跪) 可提供的回饋是明天讓大家對健保署open data問到飽 (來的企劃組是負責健保署open data的單位)。
+10:14 < slackbot13> 先跪跪跪謝謝謝謝謝~~~~~~~
+10:15 < slackbot13> <peggylo> ps. 希望有已報名但剛好不能來的大大願意讓票Q_____Q
+10:21 < slackbot13> <moon_c> @peggylo: 現在還沒額滿喔，我昨天退票的時候有看到還有<http://g0v-jothon.kktix.cc/events/g0v-hackath17n>
+10:21 < kcwu_> slackbot13's url: [g0v hackath17n | 台灣零時政府第拾柒次立委改選黑客松]
+10:24 < slackbot13> <peggylo> 感人！感謝樓上提醒！多搶到兩張票惹~~~~
+11:18 < slackbot13> <billy3321> @johnny:  收到，我來研究一下！
+11:44 < slackbot13> <billy3321> @johnny: 想問一下幾個問題：
+11:44 < slackbot13> 1. 之前提案內容會分成abstract和summary，現在還會分嗎？
+11:44 < slackbot13> 2. 有許多內容的key使用中文，會考慮改成英文嗎？
+11:44 < slackbot13> 3. 提案編號有一些是使用空白和分號分開，比如這樣： "提案編號": "310政13466 ; 310委12959 ; 310委14643 ; 310委14588 ; 310委15027”，會考慮把它換成list結構，或是把中間的空白去掉嗎？
+11:47 < slackbot13> <billy3321> 阿，還有一個問題，國會大代誌是不是有點壞掉了？之前我用這個樣子連到國會大代誌："<http://ly.g0v.tw/bills/#{'uid'}”，但我發現國會大代誌的網頁都連不到> Q_Q
+11:47 < slackbot13> <johnny> billy3321: 
+11:47 < slackbot13> 1. 現在的資料來源沒有這兩欄了，以前應該是api.ly進去關係文書爬的
+11:47 < slackbot13> 2. 中文爬蟲比較好寫XD  而且東西不多存取的時候感覺效率沒什麼差
+11:47 < slackbot13> 3. 好哦 可以換成list
+11:47 < slackbot13> <johnny> 是的，因為這樣才臨時先換資料來源
+11:48 < slackbot13> <billy3321> <http://vote.ly.g0v.tw/api/bill/0021252/>
+11:48 < kcwu_> slackbot13's url: [Django REST framework]
+11:48 < slackbot13> <johnny> 我現在網頁看詳細的部分是先連到關係文書
+11:48 < slackbot13> <billy3321> 以這個為例，裡面資料來源都還是掛掉的
+11:48 < slackbot13> <billy3321> Q_Q
+11:50 < slackbot13> <johnny> links -> 關係文書 把它複製貼到瀏覽器就可以了，大概有擋referer
+11:50 < slackbot13> <johnny> ㄟ不對，直接點最後會多一個等號，@@
+11:51 < slackbot13> <billy3321> 沒關係，我先抓值
+11:51 < slackbot13> <billy3321> 這可能是django的bug？＠＠
+11:52 < slackbot13> <johnny> 也可能升級太多東西我沒注意到什麼，不過關係文書的網址是正確的可以直接用
+11:52 < slackbot13> <johnny> 另外兩個我也是抓的時候順便存，但他看起來都會timeout
+11:57 < slackbot13> <billy3321> 看起來應該是ok，感謝！剛剛看了一下原始來源，確實沒有辦法再分abstract和summary，有點可惜了XD
+11:58 < slackbot13> <johnny> 之後會看立法院開放資料有沒有辦法接上這塊
+11:58 < slackbot13> <johnny> 進去爬doc太慘烈
+11:58 < slackbot13> <billy3321> 嗯嗯，是啊
+11:59 < slackbot13> <billy3321> 我最近爬判決，那個雖然是純文字，但還是很慘烈
+11:59 < slackbot13> <billy3321> Q_Q
+11:59 < slackbot13> <johnny> 正則表示式會進步很多
+12:01 < slackbot13> <billy3321> <https://github.com/JRF-tw/jrf_data/blob/master/get_judgements.rb>
+12:01 < kcwu_> slackbot13's url: [jrf_data/get_judgements.rb at master · JRF-tw/jrf_data · GitHub]
+12:01 < slackbot13> <billy3321> 都在這裡了XD
+12:03 < slackbot13> <johnny> 一堆\s  XD
+12:20 < slackbot13> <billy3321> 能用\s是因為前面有個 .gsub('　', '  ').gsub("\r", '')
+12:21 < slackbot13> <billy3321> 然後 \w 不能抓 unicode，所以要用 \p{Word}
+12:21 < slackbot13> <billy3321> Q_Q
+13:55 < slackbot13> <lanf0n> 啊… 判決書很愛全形空白跟半形混用
+13:56 < slackbot13> <lanf0n> 一個靠空白跟換行土砲排版的概念
+14:30 < slackbot13> <kiang> <http://202.39.218.113/> - 有人試過把透明圖磚還原成 polyline 嗎？ XD
+14:30 < kcwu_> slackbot13's url: [Map]
+15:11 < slackbot13> <macpaul> 請問臉書大神：有人認識新竹縣市，在學校做電腦教育的 國中小 老師嗎？
+15:11 < slackbot13> <macpaul> 打錯
+15:11 < slackbot13> <macpaul> 請問g0v 大神：有人認識新竹縣市，在學校做電腦教育的 國中小 老師嗎？
+15:11 < slackbot13> <billy3321> @kiang: 我看了一下，判決elasticsearch的anlyzer已經是cjk了....
+15:11 < slackbot13> <billy3321> <https://search-judgements-search-3uovl2rqrgxgr36xktxdmdjgc4.ap-northeast-1.es.amazonaws.com/_mapping>
+15:13 < slackbot13> <kiang> billy3321: 可能還是得有自建詞庫去做分詞才行，因為很多人名 XD
+15:14 < slackbot13> <billy3321> @kiang 我對他已經沒有辦法了 Q_Q
+15:14 < slackbot13> <kiang> billy3321: 可以直接 mysqldump 嗎？ XD
+15:14 < slackbot13> <billy3321> mysql也有一份，我找一下
+15:15 < slackbot13> <kiang> billy3321++
+15:17 < slackbot13> <kiang> (昏迷去)
+15:18 < slackbot13> <billy3321> @kiang: <http://52.69.195.205/db.sql>
+15:21 < slackbot13> <kiang> billy3321++, 下載完了(逃)
+15:21 < slackbot13> <billy3321> 晚一點撤掉，要的要快（咦）
+18:41 < slackbot13> <gavin> 我退了還有一位哦. <http://g0v-jothon.kktix.cc/events/g0v-hackath17n>
+18:41 < kcwu_> slackbot13's url: [g0v hackath17n | 台灣零時政府第拾柒次立委改選黑客松]
+18:43 < slackbot13> <etblue> macpaul: 先前 singing 跟孫賜萍老師橋事（？）的時候孫老師有提到一些，但印象中沒新竹的... 等 singing 手痛好一點可以跟他打聽看看
+18:43 < slackbot13> <etblue> 明天大松直播網址： <https://www.youtube.com/watch?v=SGOMsAvFVOE>
+18:43 < kcwu_> slackbot13's url: [g0v hackath17n | 台灣零時政府第拾柒次立委改選黑客松 - YouTube]
+19:08 < slackbot13> <mrorz> ethercalc 呈現詭異的狀態
+19:08 < slackbot13> <http://ethercalc.org/president2016> 連不上
+19:08 < slackbot13> <http://ethercalc.org/president2016.csv> 是好的
+19:08 < kcwu_> slackbot13's url: [EtherCalc - Share the URL to your friends and edit together!]
+19:08 < slackbot13> 但是很久以前的 <http://ethercalc.org/fepz-edu> 是壞的
+19:08 < slackbot13> <https://ethercalc.org/log/?fepz-edu> 回復的時候會寫 restore failed
+19:08 < kcwu_> slackbot13's url: [EtherCalc Log Viewer]
+19:10 < slackbot13> <mrorz> <https://ethercalc.org/log/?fepz> 可以把資料 restore
+19:10 < slackbot13> 但回復之後 <https://ethercalc.org/fepz.csv> 會是 502 gateway error
+19:22 < slackbot13> <au> mrorz: 每 10-20min 會 auto recover
+19:22 < slackbot13> <au> 像現在已經好了，我明天才會有時間看 root cause...
+19:22 < slackbot13> <au> 這兩天都在趕稿子 XD <https://g0v.hackpad.com/HlZmy1bp0aM>
+19:22 < kcwu_> slackbot13's url: [全民參政大時代 - g0v.hackpad.com]
+19:25 < slackbot13> <mrorz> au++
+19:26 < slackbot13> <mrorz> 稿子加速進行中 (?
+20:11 < slackbot13> <clkao> 不是已經截稿了嗎
+20:25 < slackbot13> <howl> 有人知道很好的線上OCR （光學辨識）網站嗎？
+20:25 < slackbot13> <howl> 中英文混雜需要
+21:30 < ronnywang> howl: abbyy online 不錯
+22:18 < slackbot13> <miaoski> @billy3321: 41MB … 先 gzip / zip / 7z 一下啊啊啊
+22:43 < slackbot13> <billy3321> miaoski: XD
+22:59 < slackbot13> <howl> ok, thanks!
+23:53 < MX___>  不知道要跳哪個坑 ...
+23:53 < slackbot13> <kiang> MX___: 那就都跳吧
+23:54 < MX___> 我得先練練影分身術
+23:54 < MX___> 否則分身乏術
+23:55 < slackbot13> <kiang> 挑個有興趣的？要自我介紹一下嗎 :wink:
+23:56 < MX___> 在下工作主攻 Node.js
+23:58 < MX___> 對語言、農業、都計、交通方面的有些興趣
+23:58 < MX___> 不過我比較不太會寫 Python :P
+23:59 < slackbot13> <kiang> 要踹踹 <https://g0v.hackpad.com/8Hlh2hux8xg> 嗎？
+23:59 < kcwu_> slackbot13's url: [超農域 - g0v.hackpad.com]

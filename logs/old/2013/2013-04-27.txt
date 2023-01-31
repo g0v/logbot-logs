@@ -1,0 +1,303 @@
+--- Day changed 六  4月 27 2013
+00:02 < clkao> 我把 topojson 也放上去了: https://dl.dropboxusercontent.com/u/30657009/twgeo/tw-fix.topo.json.bz2
+00:05 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has quit [Quit: leaving]
+00:14 -!- david362 [3a72c134@gateway/web/freenode/ip.58.114.193.52] has joined #g0v.tw
+00:15 < tkirby> 囧
+00:19 -!- david362_ [~david362@host-58-114-193-52.dynamic.kbtelecom.net] has joined #g0v.tw
+00:19 -!- david362 [3a72c134@gateway/web/freenode/ip.58.114.193.52] has quit [Quit: Page closed]
+00:20 < clkao> 超苦的
+00:22 < clkao> tkirby: 所以... 邊界問題修正前，暫時無法用村里界去合併縣市界... 苦悶啊
+00:23 < tkirby> hmm
+00:23 < tkirby> 不曉得有沒有解法..
+00:23 < tkirby> 比方說算交點取一邊之類的..
+00:26 < clkao> tkirby: 有這種的: http://d.pr/i/hocD
+00:38 < clkao> au: https://ethercalc.org/g0v-admin-changes csv export is a bit weird .. the year column
+00:38 < kcwu> clkao's url: [EtherCalc - Share the URL to your friends and edit together!]
+00:38 < clkao> date column i meant
+00:41 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+00:42 < au> clkao: yeah it's exported as (days since 1900-01-01Z)
+00:56 -!- kaxing [~kaxing@1-160-25-198.dynamic.hinet.net] has joined #g0v.tw
+00:57 < tkirby> 只好用吹氣球演算法了
+00:57 < clkao> orz
+01:02 < tkirby> 念碩士的時候看過肥皂泡演算法
+01:16 -!- david362_ [~david362@host-58-114-193-52.dynamic.kbtelecom.net] has quit [Quit: Leaving]
+01:28 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+01:36 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+01:49 < mindos> clkao : 有想用 topojson 1.0 嗎
+01:52 < clkao> mindos: yes. already using it but not pushed yet
+01:52 < clkao> (choro.html)
+01:53 < clkao> feel free to migrate to 1.0 for other samples alongw ith d3 3.x
+01:53  * mindos look forward....
+01:53 < mindos> clkao : wanna push now? +_+
+01:53 < mindos> clkao
+01:54 < mindos> clkao: 3dmap2 & 3 work with d3 3.x
+01:54  * mindos will work on others if have time
+01:56 < mindos> BTW, COSCUP needs talks!  Project owners, please porpose the talks!
+01:57 -!- pm5 [~pm5@1-161-61-170.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+01:58 -!- icman [~icman@123.240.144.88] has quit [Quit: 明天天氣晴]
+01:59 -!- KNY [~Adium@203.66.126.1] has joined #g0v.tw
+02:05 -!- allenown [~allenown@devstd.in] has quit [Ping timeout: 246 seconds]
+02:06 -!- allenown [~allenown@devstd.in] has joined #g0v.tw
+02:06 -!- KNY [~Adium@203.66.126.1] has left #g0v.tw []
+02:32 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+02:52 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+03:03 -!- pm5__ [~pm5@1-161-61-170.dynamic.hinet.net] has joined #g0v.tw
+03:07 -!- pm5__ [~pm5@1-161-61-170.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+03:12 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+03:23 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+03:29 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+04:17 -!- mindos_ [~mindos@220-137-73-150.dynamic.hinet.net] has joined #g0v.tw
+04:19 -!- mindos [~mindos@220-137-99-92.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+04:19 -!- mindos_ is now known as mindos
+04:29 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+04:36 -!- Supaplextw1 [~Lucky@114-36-237-45.dynamic.hinet.net] has joined #g0v.tw
+04:38 -!- Supaplextw [~Lucky@114-36-225-251.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+05:04 -!- juanna [~juanna@114-37-101-86.dynamic.hinet.net] has joined #g0v.tw
+05:07 -!- juanna_ [~juanna@114-37-98-226.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+05:16 -!- mp607_ [~mp607@219.85.202.224] has joined #g0v.tw
+05:17 -!- mp607 [~mp607@219.85.202.224] has quit [Ping timeout: 258 seconds]
+05:17 -!- mp607_ is now known as mp607
+05:56 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+06:05 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 256 seconds]
+06:40 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+07:00 -!- astro^ [r94010@linux3.csie.ntu.edu.tw] has quit [Remote host closed the connection]
+07:00 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+07:00 -!- ch0upi_b1d [r96006@bsd1.csie.ntu.edu.tw] has quit [Quit: Lost terminal]
+07:00 -!- chhsiao1981 [chshou@linux15.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+07:00 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Remote host closed the connection]
+07:00 -!- b88052_ [b88052@bsd1.csie.ntu.edu.tw] has quit [Remote host closed the connection]
+07:00 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Remote host closed the connection]
+07:00 -!- mhs1n_bsd [b7506043@bsd1.csie.ntu.edu.tw] has quit [Remote host closed the connection]
+07:03 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 240 seconds]
+07:38 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Operation timed out]
+07:44 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+07:57 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 245 seconds]
+09:19 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+09:32 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+10:02 -!- pm5 [~pm5@1-161-61-170.dynamic.hinet.net] has joined #g0v.tw
+10:06 -!- pm5___ [~pm5@1-161-61-170.dynamic.hinet.net] has joined #g0v.tw
+10:43 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+11:37 -!- RB [01abfe30@gateway/web/freenode/ip.1.171.254.48] has joined #g0v.tw
+11:39 -!- RB [01abfe30@gateway/web/freenode/ip.1.171.254.48] has quit [Client Quit]
+11:39 -!- Howar31_ [cb47efef@gateway/web/freenode/ip.203.71.239.239] has joined #g0v.tw
+11:50 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+11:59 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 264 seconds]
+12:05 -!- Howar31_ [cb47efef@gateway/web/freenode/ip.203.71.239.239] has quit [Quit: Page closed]
+12:15 < clkao> 話說好像可以用 qgis + grass plugin 把鄰近的 vertex 合併: http://gis.stackexchange.com/questions/19179/how-to-join-lines-in-qgis
+12:15 < kcwu> clkao's url: [polyline creation - How to join lines in QGIS? - Geographic Information Systems Stack Exchange]
+12:16 < clkao> 可是我 grass gui 跑不起來，有人想試試看嗎？
+12:22 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+12:26 < mindos> clkao: 可以把使用 topojson 1.0 的版本放上去嗎？這樣我就不用重新發明一次輪子。:p
+12:31 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+12:32 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+12:32 -!- pm5 [~pm5@1-161-61-170.dynamic.hinet.net] has quit [Ping timeout: 268 seconds]
+12:33 -!- pm5___ [~pm5@1-161-61-170.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+12:36 -!- favonia_ [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+12:36 -!- favonia_ [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Connection reset by peer]
+12:45 < clkao> mindos: just pushed
+12:46 < mindos> cool !
+12:51 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:53 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+12:57 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+13:16 -!- allan914_ is now known as allan914
+13:24 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+13:48 -!- icman [~icman@123.240.144.88] has joined #g0v.tw
+13:52 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 264 seconds]
+13:52 < clkao> au: new Date( new Date 1900, 0, 1 .getTime! + 41334*24*3600*1000) => Mar 03 2013, but the date should be mar 01 2013. am i missing something?
+14:29 -!- hlb [~hlb@li381-115.members.linode.com] has quit [Remote host closed the connection]
+14:29 -!- tka_ [~tka_test@li381-115.members.linode.com] has quit [Remote host closed the connection]
+14:35 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Operation timed out]
+14:44 -!- tka_test [~tka_test@li381-115.members.linode.com] has joined #g0v.tw
+14:50 -!- astro_ [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+15:02 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+15:04 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+15:11 -!- Ap0stle [01abfe30@gateway/web/freenode/ip.1.171.254.48] has joined #g0v.tw
+15:21 -!- Ap0stle [01abfe30@gateway/web/freenode/ip.1.171.254.48] has quit [Quit: Page closed]
+15:39 < hlb> 又要寫 HCI 作業，好煩噢......決定先來做 moedict XD
+15:44 < Jedi_> KD
+15:48 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+15:50 < hlb> https://dl.dropboxusercontent.com/u/132028/Screenshots/Screen%20Shot%202013-04-27%20at%203.44.08%20PM.png mobile layout
+16:07 < au> clkao: try "new Date 1900, 0, -1"
+16:07 < au> hlb++
+16:11 < hlb> au: EBAS font 的 license 是什麼?
+16:12 < hlb> au: 可以作為 webfont 嗎
+16:12 -!- Neson [~Neson@dex.tw] has quit [Read error: Operation timed out]
+16:15 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+16:15 < au> 　　© 2012 中華民國行政院研究發展考核委員會。本字型檔採用創用CC「姓名標示－禁止改作」3.0臺灣版授權條款釋出。您可以在不變更字型內容之條件下，重製、散布及傳輸本字型檔之著作內容。惟應保留本字型名稱及著作權聲明。 
+16:15 < au> 顯然是可以
+16:20 -!- Neson [~Neson@dex.tw] has joined #g0v.tw
+16:21 < clkao> au: that's what i did.  but that doesn't quite make sene ? :)
+16:29 < au> 1900-01-01 is day 1, not day 0
+16:30 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 264 seconds]
+16:30 < au> so two off-by-one errors later and you have that :)
+16:30 < au> (relocating, bbiab)
+16:39 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+16:50 < hlb> https://dl.dropboxusercontent.com/u/132028/Screenshots/Screen%20Shot%202013-04-27%20at%204.49.33%20PM.png
+16:50 < hlb> 配上 -webkit-font-smoothing: antialiased; 跟 font-smooth: always; 效果++
+16:55 -!- mindos [~mindos@220-137-73-150.dynamic.hinet.net] has quit [Ping timeout: 268 seconds]
+17:12 < au> 好讚
+17:15 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+17:18 -!- kaxing [~kaxing@1-160-25-198.dynamic.hinet.net] has quit [Quit: 881]
+17:27 -!- swem1 [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+17:27 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+17:30 < hlb> https://dl.dropboxusercontent.com/u/132028/Screenshots/Screen%20Shot%202013-04-27%20at%205.29.29%20PM.png
+17:30 < au> 相當典雅
+17:36 < kcwu> 右上角 icon 的筆畫怪怪的?
+17:36 < hlb> kcwu: 正在解決
+17:37 < au> 如果「告」不好調也可以改成「示」之類的
+17:38 < hlb> 不是，是 bootstrap default 加了一層 shadow
+17:38 < au> ah ok
+17:40 -!- swem1 [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+18:07 < hlb> au: font size 14pt 是有什麼特殊用處嗎
+18:08 < au> hlb: 沒有耶，就是一個預設的手機上看來還可以的大小
+18:08 < au> 歡迎改掉
+18:11 < hlb> au: http://moe.hlb.the-hold.handlino.com/ v1. Some class names are changed, so the responsive is broken.
+18:11 < kcwu> hlb's url: [3du.tw 萌典測試版]
+18:11 < au> woot
+18:12 < au> 有一種 chromebook 的方正感覺
+18:13 < hlb> 學到 ::-webkit-search-cancel-button:after 可以放自己的圖片
+18:20 -!- mindos [~mindos@118-160-198-233.dynamic.hinet.net] has joined #g0v.tw
+18:26 -!- mindos [~mindos@118-160-198-233.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+18:37 -!- astro_ is now known as astro^
+18:37 < hlb> 修了一些明顯的問題 http://moe.hlb.the-hold.handlino.com/
+18:39 < au> ++
+18:45 < hlb> 根據搜尋 萌 的結果，萌典應該使用 黑、白、紅、粉紅、天藍 這幾種色系
+18:45 < hlb> # 女僕裝居多
+18:46 < hlb> # 水手服其次
+18:48 < au> ...XD
+18:49 < hlb> au: 覺得如何? :p
+18:49 < hlb> au: 重點 highlight 都用紅/粉紅
+18:50 < au> 我一切聽設計師的 :p
+18:53 < CindyLinz> au: 這樣很危險喔~ (咦)
+18:53 < au> :D
+19:00 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+19:04 < hlb> 套用了修正案 http://moe.hlb.the-hold.handlino.com/
+19:04 < kcwu> hlb's url: [3du.tw 萌典測試版]
+19:05 < au> part-of-speech 四周間距可以再大些（如閩的右邊）
+19:06 < hlb> 名/動/... 以及連結 hover 顏色取樣自 http://pic.pimg.tw/batte1124/4be40e43503f6.jpg
+19:06 < au> 顏色不錯看
+19:06 < au> hlb++
+19:07 < hlb> au: 沒問題，那部分樣式來重寫
+19:09 < hlb> 先把樣子調對 http://moe.hlb.the-hold.handlino.com/
+19:09 < au> cool
+19:09 < hlb> 太太: "那個背景圖怎麼換掉了" 我: "因為要萌所以改用絲襪材質背景......"
+19:10 < hlb> subtlepatterns 什麼圖都有，真好 :D
+19:11 < hlb> au: 國語字典有發音嗎
+19:11 < au> hlb: 沒有，不過可以抓別的地方的 (google tts?)
+19:11 < au> 目前沒有
+19:12 < hlb> au: 發現我還蠻需要的，因為小丁大字還不識幾個 :D
+19:12 < au> 這個色調讓人想到在「萌典」這兩個字被我們 take over 之前的萌典網站
+19:12 < au> # http://shmdking.cn.alibaba.com/
+19:12 < kcwu> au's url: [上海萌典纺织品有限公司]
+19:12 < hlb> LOL
+19:20 < hlb> au: https://github.com/hlb/moedict-webkit-prototype # wip version
+19:20 < kcwu> hlb's url: [hlb/moedict-webkit-prototype · GitHub]
+19:20 < hlb> 小孩要起床了，撤退...... &
+19:21 < au> cool
+19:21 < au> thx much
+19:32 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+19:32 < hlb> 晚上來把 header 加個皮革材質好了 :p
+19:32 < au> ++
+19:43 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+20:06 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 264 seconds]
+20:09 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+20:16 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 268 seconds]
+20:46 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+20:51 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 245 seconds]
+20:54 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+20:57 < c9s> 請問 moedict 的 .ui-autocomplete 用 max-height: 60% 另外 40% 有什麼原因才特別保留嗎?
+20:58 < c9s> max-height: 60% 好像讓 bottom: 52px !important; 這段 property 失去效用了
+21:01 < au> c9s: it's for narrow layout so it does not completely overlap the screen
+21:02 < au> can probably remove it
+21:03 -!- pm5___ [~pm5@1-161-61-170.dynamic.hinet.net] has joined #g0v.tw
+21:08 -!- pm5______ [~pm5@1-161-61-170.dynamic.hinet.net] has joined #g0v.tw
+21:16 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 260 seconds]
+21:19 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+21:35 -!- pm5______ [~pm5@1-161-61-170.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+21:35 -!- pm5___ [~pm5@1-161-61-170.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+22:05 < c9s> json2prefix.ls 吃的 dict-twblg.json 跟 dict-twblg-ext.json 是從 moedict-data + moedict-epub 轉來的嗎? 還是要從 moedict.tw 裡面的 script 轉出來?
+22:11 < c9s> moedict-data 抓好慢... 這應該不只一個番茄了 XDDD
+22:12 < c9s> 咦不對，看起來是從 data.tar.bz2 來的, 不過 data.tar.bz2 從哪來呢 XD
+22:20 < hlb> au: 有想要用什麼 js template solution 嗎
+22:31 < c9s> ok i got dict-twblg.json now
+22:31 < c9s> 還缺 /a/ 底下的東西...
+22:35 < c9s> 神祕的 txt2autolink.ls 檔 XD
+22:36 < kcwu> 期待 moedict.tw 建置攻略(?)
+22:39 < c9s> http://goo.gl/EBgMA 太神祕了...
+22:39 < kcwu> c9s's url: [Google]
+22:40 < c9s> 三顆番茄沒了.. 今天到此為止 XDDD
+22:43 < hlb> LOL
+22:43 < hlb> 套用了設計理念 http://moe.hlb.the-hold.handlino.com/
+22:43 < kcwu> hlb's url: [3du.tw 萌典測試版]
+22:44 < kcwu> [外] 跟後面的字視覺上不夠容易區分?
+22:47 < hlb> ah, 樣式改壞掉了 :D
+22:48 < hlb> kcwu++ # fixed
+22:48 < hlb> 某設計師的回應: 萌跟中國風混搭有點怪怪的
+22:48 < hlb> 只好說是禁忌的樂趣了！
+22:53 < c9s> moedict 拿來整合小麥輸入法應該會很不錯
+22:53 < c9s> i mean 字典檔
+22:53 < kcwu> 我猜不會... 
+22:54 < hlb> 除非一路 cc0 下去? :p
+22:54 < hlb> 而且... 這年頭大家打字都不用成語的！ :p
+22:54 < hlb> moedict 未收綠 草泥馬
+22:54 < hlb> 收錄
+23:00 < CindyLinz> 暗紅色感覺有點成熟?
+23:02 < hlb> CindyLinz: 再亮有點過頭 :pp
+23:02 < CindyLinz> 喔 XD
+23:03 < hlb> CindyLinz: 畫個看板娘來吧
+23:03 < hlb> 偷偷藏在背景
+23:03 < CindyLinz> 不是就要給它萌到底了喔 XD # http://pic.pimg.tw/batte1124/4be40d799a35e.jpg
+23:03 < CindyLinz> 我不會畫圖啊 orz
+23:04 < hlb> CindyLinz: 其實我是想找類似這張後面的背景!
+23:04 < hlb> 就應該要有花的啊！
+23:05 < CindyLinz> 這是他窩在他媽媽的大床上啦!
+23:06 < hlb> CindyLinz: 我說背後的背後的背後那個 repeat 的壁貼 XD
+23:07 < CindyLinz> 有點蕾絲緞帶的感覺?
+23:10 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 248 seconds]
+23:11 < hlb> CindyLinz: ye
+23:11 < hlb> CindyLinz: yep
+23:11 < hlb> 要一打開來就覺得這個背景好萌！這樣
+23:12 < Jedi_> 每個人萌點不同啊～（？）
+23:13 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+23:13 < hlb> 我的莉雅怎麼這麼萌～
+23:15 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+23:20 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 252 seconds]
+23:23 < tkirby> 喔喔, 要來畫招牌娘了嗎
+23:24 < clkao> tkirby!
+23:24 < tkirby> clkao!
+23:25 < clkao> https://github.com/g0v/twhgis/tags # 累死我了
+23:25 < kcwu> clkao's url: [Tags · g0v/twhgis · GitHub]
+23:25 < clkao> (各時間點的村里列表/代號)
+23:25 < tkirby> !!!!!!!!
+23:26 < clkao> tkirby: 來把 cec 那個 pua 對應一下吧
+23:26 < tkirby> cec?
+23:26 < clkao> 中選會
+23:26 < tkirby> 中央...
+23:26 < tkirby> XD
+23:26 < clkao> 那個 votes section json 裡面的村裡還是爛掉的
+23:26 < tkirby> hmm
+23:27 < tkirby> 你是說你那邊的? 還是這個: https://github.com/g0v/twgeojson/blob/master/vote/ly-section.json ?
+23:27 < kcwu> tkirby's url: [twgeojson/vote/ly-section.json at master · g0v/twgeojson · GitHub]
+23:27 < clkao> yeah that one
+23:28 < tkirby> hmm
+23:29 < tkirby> 明天ICOS結束來弄好了.. 有一個自由的下午
+23:29 < clkao> tkirby: 賀！
+23:30 < tkirby> 好久沒有 commit 東西了.. XD
+23:31 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+23:31 < clkao> au: 有神經被斷為 有神 經
+23:36 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 268 seconds]
+23:36 -!- pm5 [~pm5@1-161-61-170.dynamic.hinet.net] has joined #g0v.tw
+23:36 -!- pm5____ [~pm5@1-161-61-170.dynamic.hinet.net] has joined #g0v.tw
+23:41 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+23:53 < tkirby> 好像不夠萌 # http://imgur.com/cgCimk9
+23:53 < kcwu> tkirby's url: [imgur: the simple image sharer]
+23:56 < hlb> tkirby: 不夠！
+23:56 < hlb> 開個 ticket 好了......?
+23:56 < tkirby> ticket ...XD
+23:57 < hlb> #27182: UI redesign is blocked by #31415: 看板娘
+23:57 < clkao> ...
+23:58 < c9s> XDDD
+23:58 < c9s> tkirby: 太強了吧，說畫就畫 XDDD
+23:59 -!- chhsiao1981 [dc883608@gateway/web/freenode/ip.220.136.54.8] has joined #g0v.tw
+23:59 < tkirby> 就.. 就畫嘛 XD
+23:59 < tkirby> 不過我沒畫過萌的角色..一時也不知道怎麼畫.. XD

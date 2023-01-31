@@ -1,0 +1,190 @@
+--- Day changed 三  7月 08 2015
+00:11 < slackbot3> <yurenju> okay cool.
+00:25 -!- chihchun is now known as chihchun_afk
+00:40 < slackbot3> <miaoski> acechen: 我現在在家裡試跑... 看用行動電源可以撐多久。不過 DN7C3CA006 從 A0 讀進來會漂，感覺很不妙。半夜的 PM2.5 應該不會一直變才對...
+00:40 < slackbot3> <miaoski> 倒是 MQ9 在 A1 的電壓一直很穩
+00:41 < slackbot3> <miaoski> DHT-22 的濕度計一定有問題，它寫窗外 RH 50% 這根本不是台北市可能遇到的濕度。
+00:41 < slackbot3> <miaoski> 溫度 31.9 - 32.1 我想應該是可信的...
+00:43 < slackbot3> <miaoski> 如果你有空的話，看能不能幫我看一下電路有沒有哪裡有問題，還是需要再加 decouple ，還是其實我讀值的方法和 spec 寫的不一樣
+00:44 < slackbot3> <miaoski> 感謝。
+09:01 < slackbot3> <acechen> @miaoski++  ok我看看
+09:02 < slackbot3> <miaoski> @acechen: 感謝。我沒畫 schematics 出來就是了.. :$ 我今天會試著改用 A2 來取樣，看是不是台版 Arduino 在害我
+09:03 < slackbot3> <miaoski> 然後按 spec 量測 PM2.5 需要風扇沒上電的時候量測 V0. 所以我今天也會做這件事。我手上買了兩顆 DN7C3CA006 可以順便測它們出廠的時候有沒有校準。
+09:04 < slackbot3> <miaoski> 從 spec 上來看似乎是抽測，所以可能會很頭痛... 如果 V0 每顆都不一樣的話，說不定要加校準用的電路。:(
+09:04 < slackbot3> <miaoski> 畫 schematic 有沒有推薦的 OSS 或網站? :simple_smile:
+09:37 < slackbot3> <t0mst0ne> 國健署的opendata 平台
+09:37 < slackbot3> <http://data.hpa.gov.tw/>
+09:38 < kcwu> slackbot3's url: [歡迎 - 衛生福利部國民健康署開放資料平台]
+09:39 < slackbot3> <t0mst0ne> 昨天衛福部內有表示, <http://很多資料都放到data.gov|xn--data-pm9f897agklhplnxam351a3xj.gov> , 但是好像沒人用 ....
+09:39 < slackbot3> 今天再看看, 才發現的確有好多 (瀏覽量是0)
+09:39 < slackbot3> <t0mst0ne> 癌症發生統計
+09:39 < slackbot3> <http://data.hpa.gov.tw/dataset/52d223a259ba6de72ac9cb5c88e5e605>
+09:39 < slackbot3> 看看有沒有dataset 可以做成 @muyueh  之前的展示 :stuck_out_tongue:
+09:39 < kcwu> slackbot3's url: [癌症發生統計 - 資料集 - 衛生福利部國民健康署開放資料平台]
+11:37 < slackbot3> <t0mst0ne> 請問  @kiang <http://data.hpa.gov.tw/dataset> 這個要怎麼定期 clone &amp; update ?
+11:38 < slackbot3> <kiang> 我都是硬寫爬蟲抓的
+11:38 < slackbot3> <kiang> like <https://github.com/kiang/data.fda.gov.tw-list>
+11:38 < kcwu> slackbot3's url: [kiang/data.fda.gov.tw-list · GitHub]
+11:38 < slackbot3> <kiang> ckan 應該會方便許多
+11:44 < slackbot3> <t0mst0ne> 所以@kiang 大概多久會run ㄧ次？
+11:44 < slackbot3> <kiang> 我目前是一天跑一次
+11:45 < slackbot3> <t0mst0ne> 瞭解，看起來hpa 也要來clone ㄧ下
+11:50 < slackbot3> <kiang> t0mst0ne: 或者問問 @ronnywang 有沒有打算定時塞進 sheethub
+12:01 -!- chihchun_afk is now known as chihchun
+12:02 < slackbot3> <t0mst0ne> 真的琳琅滿目
+12:02 < slackbot3> 歷年活產新生兒出生性別比.CSV : <http://data.hpa.gov.tw/dataset/143070840753/resource/a519c937-2e5c-4049-ab01-211e14332dce>
+12:02 < slackbot3> 歷年出生性別比.csv : 
+12:02 < kcwu> slackbot3's url: [歷年活產新生兒出生性別比 - 歷年活產新生兒出生性別比.CSV - 衛生福利部國民健康署開放資料平台]
+12:02 < slackbot3> <http://data.hpa.gov.tw/dataset/643dc4cbd516522c1ca5cd3d47ef1503/resource/e44b4450-76f7-4811-b405-9a0604e51729>
+12:02 < slackbot3> 2個 csv 要 接龍 ...( 時間有 overlap )
+12:02 < slackbot3> 然後也有按照地理來區分(102年活產新生兒出生性別比-依縣市別分.CSV) , 但只有102年 
+12:02 < slackbot3> <http://data.hpa.gov.tw/dataset/143070881977/resource/f1962d2e-9682-43a1-a13c-752dc01a464d>
+12:02 < kcwu> slackbot3's url: [102年活產新生兒出生性別比-依縣市別分 - 102年活產新生兒出生性別比-依縣市別分.CSV - 衛生福利部國民健康署開放資料平台]
+12:02 < kcwu> slackbot3's url: [歷年出生性別比 - 歷年出生性別比.csv - 衛生福利部國民健康署開放資料平台]
+12:32 < slackbot3> <miaoski> acechen: 我參考了這篇 <http://www.howmuchsnow.com/arduino/airquality/> 現在讀數穩定了。
+12:32 < kcwu> slackbot3's url: [Monitoring your Air Quality]
+12:33 < slackbot3> <miaoski> 不過 壞消息是，我手上有兩顆，在無風扇的情況下，一顆的讀數在 208-210 之間，另一顆在 230-240 之間
+12:33 < slackbot3> <miaoski> 表示它每一顆的 V0 都需要 calibration :disappointed:
+12:45 < slackbot3> <miaoski> acechen: 耗電量是另一個問題。我昨晚跑了 8 小時，早上起來 5000mAh 的電池剩一半。
+13:23 < slackbot3> <yurenju> 今天用了 hackfoldr, 感覺或許可以做一個專門給 hackfoldr 的 ethercalc 編輯器
+13:23 < slackbot3> <yurenju> 這樣可以降低門檻
+13:27 < slackbot3> <hychen> yurenju+++
+13:27 < slackbot3> <hychen> 真錢端強者
+13:35 < slackbot3> <poga> yurenju++
+13:43 -!- Akira is now known as Guest85808
+13:44 -!- Guest85808 [3cfac741@gateway/web/cgi-irc/kiwiirc.com/ip.60.250.199.65] has left #g0v.tw []
+14:14 < Guoboism> Hello
+16:08 -!- manyo [~manyo@1-171-248-134.dynamic.hinet.net] has left #g0v.tw []
+16:31 < slackbot3> <mrorz> Guoboism: hi
+16:35 < slackbot3> <mrorz> 是說現在有沒有幫 PDF 裡面的頁面做 permalink 的 web app 呢～？
+16:35 < slackbot3> political promise tracker 這裡想要直接把施政報告 PDF 裡的標題拉出來當政策，然後細節就只丟個到 PDF 檔案特定 section 的 permalink
+16:35 < slackbot3> 這樣就可以用程式蓋出資料庫，以後再慢慢m/4人工檢視的部分 XD"
+16:43 < slackbot3> <ronnywang> @kiang, @t0mst0ne : 目前 sheethub 是有打算把各 portal 的資料都拉進來，然後除了定期更新讓大家可以直接下載方便的格式以外，也希望能把各 portal 的資料連結起來
+16:44 < slackbot3> <ronnywang> <https://sheethub.com/area.reference.tw/%E4%B8%AD%E8%8F%AF%E6%B0%91%E5%9C%8B%E8%A1%8C%E6%94%BF%E5%8D%80/linelink/09020>  像是現在 URI 頁也有哪些 sheet 有連結到這一筆資料的功能，這樣以後只要搜尋 "金門 人口" 就可以找到有連結到金門縣又有人口兩字欄位的資料
+16:45 < slackbot3> <t0mst0ne> @ronnywang: ++
+16:48 < slackbot3> <t0mst0ne> 那請問您是否有人工看不同portal 資料集是否是重複？
+16:48 < slackbot3> <mrorz> 看到 @kiang 在 hackpad 提到選舉黃頁的中選會原始檔案的處理方式是，「網頁格式則是透過程式將 PDF 轉為網頁型態的版本。」
+16:48 < slackbot3> 請問 PDF 轉網頁的部分大概是怎麼做的呢～？
+16:49 < slackbot3> <ronnywang> t0mst0ne: 我現在是每個 portal 都各自爬各自的，但是就遇到重覆的很多，或者是像 http://data.gov.tw 有放了很多資料是各地方的集合，例如實價登錄各縣市 portal 都有放自己縣市的，但是 http://data.gov.tw 又放全部的
+16:49 < kcwu> slackbot3's url (1/2): [政府資料開放平臺]
+16:50 < slackbot3> <ronnywang> 現在想先都各自放，但是之後就讓地方的資料直接加提示說可以去中央看，然後中央那邊透過 SQL 篩選該縣市的資料
+16:51 < slackbot3> <kiang> @mrorz: 我是用 pdf2htmlEX 轉的
+16:53 < slackbot3> <t0mst0ne> http://Data.how.gov.tw 有些資料集也跟 http://data.gov.tw 重複
+16:54 < slackbot3> <t0mst0ne> http://Data.hpa.gov.tw
+16:54 < kcwu> slackbot3's url: [歡迎 - 衛生福利部國民健康署開放資料平台]
+16:55 < slackbot3> <mrorz> kiang: cool, pdf2htmlEX 的 github 上面寫說他是 inspired by PDF.js
+16:55 < slackbot3> 不知道他跟 PDF.js 相比的優點有哪些呢
+16:56 < slackbot3> <kiang> PDF.js 應該是線上瀏覽， pdf2htmlEX 直接轉成網頁格式，網頁格式相對友善吧？我沒真的用過 pdf.js
+16:58 < slackbot3> <monaludao> 題外話，請問這種jsp網頁要怎麼爬出每一頁的內容? (下載網址) <http://www.planning.ntpc.gov.tw/ap/fdownload/fdownload2.jsp?mfkind_id=00038>
+16:58 < kcwu> slackbot3's url: [無標題文件]
+17:03 < slackbot3> <mrorz> :+1: 感謝～～
+17:04 < slackbot3> <clkao> http://ignite.clkao.org 就是用 pdf.js
+17:21 < slackbot3> <mrorz> 看起來 pdf2htmlEX 做完 text extraction 之後有針對每塊文字的坐標稍微排序一下，所以文字塊在 html 裡的順序不是亂的，如果要拉文字出來的話比較合適
+17:21 < slackbot3> 不過 pdf2htmlEX 好像要先做 server-side processing 這樣
+17:23 < slackbot3> <mrorz> 如果想要做一個 PDF permalink 的純前端 webapp，
+17:23 < slackbot3> 例如說達成「瀏覽 <http://hackpdf.github.io/<某> google drive 上的 PDF file ID>#page-3  可以顯示那個 PDF 並且自動翻到第三頁」這樣的行為，用純 browser 就能跑的 pdf.js 可能會比較容易
+17:24 < slackbot3> <mrorz> // 至於 google drive 公開檔案有沒有開放 CORS，可能還要再研究一下 orz
+17:38 < slackbot3> <yhsiang> monaludao: 直接爬然後解析 table內容搜集好 那個下載的 a的 href
+17:39 < slackbot3> <monaludao> @yhsiang: 直接爬也可以爬到第2~10頁的href嗎
+17:40 < slackbot3> <yhsiang> 可以啊 他的 那個 js 都寫在內容裡面 就是送個 post 按照格式去送就可以了
+17:41 < slackbot3> <yhsiang> 送 post 然後帶上 mfkind_id, mf_name, enpage  幾個參數
+17:43 < slackbot3> <monaludao> @yhsiang: 喔喔 我試試看 謝謝
+19:26 < slackbot3> <ronnywang> 剛剛才用 pdftotext 把捷運今天公開的各站時刻表的 PDF 轉成 CSV ，有時候如果 PDF 文件格式還滿統一的話，用 pdftotext 轉成純文字再去處理純文字就滿夠用的了   <https://sheethub.com/ronnywang/台北捷運班次時刻表>
+19:27 < slackbot3> <ronnywang> 程式碼放在 <https://github.com/ronnywang/taipei-mrt-table>
+19:27 < kcwu> slackbot3's url: [ronnywang/taipei-mrt-table · GitHub]
+21:13 < slackbot3> <clkao> ronnywang: 我懷疑他們已經有 gtfs…. 不然為何 google 上會有時刻
+21:17 < slackbot3> <mrorz> ronnywang++ 不過看來 pdftotext 對桃園市的施政報告不太行 XD
+21:18 < slackbot3> <mrorz> <http://i.imgur.com/yjOpeRa.png>
+21:21 < slackbot3> <ronnywang> pdftotext 可以加上 -layout ，排版會好看一點 <https://clbin.com/WSAN0>
+21:25 < slackbot3> <ronnywang> @clkao: google 的導航的捷運時刻是準確的? 我以為他只是大概估一下幾分鐘到幾分鐘一班耶
+21:26 < slackbot3> <mrorz> `-layout` 的結果： <http://i.imgur.com/Z3pkQ0g.png>
+21:26 < slackbot3> 看來這真的高難度 XD
+21:28 < slackbot3> <kiang> 這種自由編排的文字轉換出來都不太好看，除非固定格式且數量很多才會想辦法拆吧 XD
+21:28 < slackbot3> <kiang> 大絕招就是去掉所有空白，純粹餵給系統當 meta data ，如果有中文分詞系統就會舒服一點 XD
+21:28 < slackbot3> <mrorz> 不過我很好奇的是
+21:28 < slackbot3> <mrorz> mac 的 preview 選取之後複製貼上同樣這段文字
+21:29 < slackbot3> <mrorz> 居然沒有重複的字
+21:29 < slackbot3> <mrorz> 像是這樣：
+21:29 < slackbot3> ```
+21:29 < slackbot3> (5)捷運綠線延伸至中壢火車站可行性研究
+21:29 < slackbot3> 捷運綠線 G01 延伸至中壢火車站可形成口字型路網,以達健全桃 4
+21:29 < slackbot3> 園都會區交通路網、提供更完整的大眾運輸服務及提升大眾運輸使用 率目標。
+21:29 < slackbot3> 目前已就方案一─八德 G01 站起,經中山東路,接環中東路至機 場捷運 A23 站及方案二─八德 G01 站起,經中山東路,接龍東路,轉 龍岡路至機場捷運 A23 站,綜合研究評估延伸至中壢、平鎮地區之可 行性,以利報請交通部審查,預計 105 年底可行性研究通過行政院核 定。本計畫未來 5 年施政重點與期程規劃詳如下表 4。
+21:29 < slackbot3> ```
+21:29 < slackbot3> <mrorz> mac 的 preview 用了什麼神招來去掉重複的字呀 @@
+21:30 < slackbot3> <ronnywang> 本來 PDF 有重覆的字嗎?
+21:30 < slackbot3> <mrorz> 算 bounding box 之類的？
+21:30 < slackbot3> 來試試看號稱專做學術論文的 pdf2htmlEX 好了
+21:30 < slackbot3> <mrorz> 我猜 pdftotext 會拆出重複的字，一定是 PDF 裡面有兩個重複的字沒錯
+21:31 < slackbot3> <mrorz> 我用 pdftotext -bbox，拆出來的 html 長這樣：
+21:31 < slackbot3> ```html
+21:31 < slackbot3>     <word xMin="153.000000" yMin="745.835700" xMax="208.973062" yMax="759.801720">捷運綠線</word>
+21:31 < slackbot3>     <word xMin="212.280000" yMin="745.835700" xMax="233.246541" yMax="759.801720">G01</word>
+21:31 < slackbot3>     <word xMin="212.520000" yMin="745.835700" xMax="219.507200" yMax="759.801720">G</word>
+21:31 < slackbot3>     <word xMin="236.700000" yMin="745.835700" xMax="278.695867" yMax="759.801720">延伸至</word>
+21:31 < slackbot3>     <word xMin="265.140000" yMin="745.835700" xMax="335.084667" yMax="759.801720">至中壢火車</word>
+21:31 < slackbot3>     <word xMin="321.000000" yMin="745.835700" xMax="376.973062" yMax="759.801720">車站可形</word>
+21:31 < slackbot3> ```
+21:31 < slackbot3> <ronnywang> pdftotext 會這樣斜下去我猜是因為他針對的是英文字的字寬，但是中文字寬一倍所以就一直被往下擠
+21:32 < slackbot3> <ronnywang> 然後他這份 PDF 又很怪，幾個中文字就一個 box ，而不是一整段一個 box (好像很多 PDF 都這樣)
+21:34 < slackbot3> <mrorz> 我覺得跟英文字字寬可能無關，主要是圖文混排的時候，PDF 裡的 object 們的 layout 會打亂
+21:35 < slackbot3> <mrorz> 因為只要不是圖文混排，pdftotext 就表現得非常完美
+21:35 < slackbot3> <mrorz> <http://i.imgur.com/LgdPbtP.jpg>
+21:36 < slackbot3> <mrorz> 在 object 被打亂的時候，就變成做 text extraction 的軟體要非常小心翼翼地處理各種狀況
+21:36 < slackbot3> <mrorz> mac 的 preview 的複製貼上功能，裡面大概做了不少苦功
+21:36 < slackbot3> <mrorz> 工
+21:36 < slackbot3> <kiang> 之前試過去算 bounding box ，並不是相當容易還原排版，不過我處理的是選舉公報
+21:37 < slackbot3> <kiang> 選舉公報可能格式比較自由些，理論上文書轉出來的會精準些
+21:42 < slackbot3> <mrorz> 不過其實有 bounding box 資訊，或許是可以去掉重複的字沒錯
+21:42 < slackbot3> 方塊字還滿方便的，行高 `yMax - yMin` 大概會跟字寬相等，因此兩個同行的 Box 的 `x` 重疊多少，就可以用 `yMax - yMin` 算出的字寬推出大概有幾個字重複
+21:42 < slackbot3> <mrorz> anyway 先來嚐嚐 pdf2htmlEX (?)
+21:46 < slackbot3> <mrorz> 說到捷運時間，網路上之前有人批評過其實捷運公司非常常誤點，只是因為他沒公佈時刻表，所以沒有人知道它誤點了  xd
+21:47 < CindyLinz> 以前在教會認識在作捷運工程的哥哥, 他以前有跟我們說捷運站距太短很容易誤點, 因為沒有足夠距離調節車距..
+21:47 < CindyLinz> 應該不能說誤點, 是說班次很難準
+21:47 < slackbot3> <chihao> 因為沒有公開時刻表，就沒有「點」可以「誤」了 :stuck_out_tongue:
+21:47 < CindyLinz> 好像意思差不多 ^^|
+21:50 < slackbot3> <mrorz> 那捷運司機就會晚關門個幾秒來等慢慢走的旅客，是時間誤差的起點嗎～？
+21:50 < slackbot3> <mrorz> 然後因為每一站都要多等個幾秒，誤差就會一直累積下去 (?)
+21:53 < CindyLinz> 也有時候是等前一班.......
+21:54 < CindyLinz> 尖峰時間車距太短怕危險 ^^|
+21:59 < slackbot3> <chihao> 可以像波士頓一樣停下來等前一輛車離站之後再開進去 :stuck_out_tongue:
+22:00 < slackbot3> <mrorz> 捷運有時候會這樣沒錯呀 XD
+22:00 < slackbot3> <mrorz> 台鐵區間車也常常停下來等別的車，不過是等自強號通過，好像不太一樣 |||
+22:05 < slackbot3> <kiang> 最神奇的還是日本吧，連公車時刻表都很準...
+22:06 < slackbot3> <miaoski> @kiang: 然後常常開太快 (東京的 max 也是 40) 最後得要在站牌等時間
+22:08 < slackbot3> <kiang> 日本的公車經常在站牌等客人，時刻表的時間到了才會開走，而且有座位的時候司機會要求你坐下他才要開車，搞的我都覺得開公車是個很神聖的職業 XD
+22:22 < slackbot3> <mrorz> 會不會是日本的班次沒那麼密集，站與站之間的時間很充裕呢？
+22:23 < slackbot3> <mrorz> 應該是說班次表裡，站與站之間留下了足夠的時間
+22:31 < slackbot3> <kiang> 日本的公車在尖峰時段還是會遲到，但因為有時刻表，所以你只要那個時間點到，一定不會錯過那班車
+22:34 < slackbot3> <kiang> 在台南，即使你看著即時公車動態都有可能錯過公車，因為他如果看不到你就不會停下來 XD
+22:34 < slackbot3> <mrorz> 有道理 XD
+22:34 < slackbot3> <kiang> 所以台南適合慢遊，因為快不起來 XD
+22:37 < slackbot3> <kiang> 不過台灣有無敵的摩托車，所以感覺還是方便些（當然，建立在各種混亂交通的現況之上）
+22:47 < slackbot3> <mrorz> pdf2htmlex 結果出爐：
+22:47 < slackbot3> <http://i.imgur.com/jMtuuyx.png>
+22:47 < slackbot3> 好像也很慘 orz
+22:47 < slackbot3> 亮藍色底線的是我用滑鼠匡選的結果。滑鼠匡選可以呈現文字在 DOM 裡面的順序，看其來 DOM 裡面的文字是直的排的。如果把整個頁面用 innerText 倒出來，是完全不能讀的 orz
+22:49 < slackbot3> <mrorz> 這樣看起來，如果要做 text extraction 的話，比較合適的還是 pdftotext、開 bounding box，然後去算重複的字 orz
+22:50 < CindyLinz> 這字體好藝術....
+22:50 < slackbot3> <mrorz> 那個字體我完全不知道發生什麼事情 XDD
+22:50 < slackbot3> <mrorz> pdf2htmlex 背後好像也有用到 pdftotext
+22:50 < slackbot3> <au> 那是 TTF bytecode，如果用 IE 看會是好的
+22:50 < slackbot3> <au> （Safari Chrome Firefox 看各自都不一樣）
+22:54 < slackbot3> <au> 之前也有試過用 <https://www.npmjs.com/package/pdf2json> 找 bounding box，結構同 `pdftotext` ，但是預先 parse 好的 <https://github.com/audreyt/pdf2md/blob/master/parse.ls>
+22:54 < kcwu> slackbot3's url (2/2): [pdf2md/parse.ls at master · audreyt/pdf2md · GitHub]
+22:55 < slackbot3> <mrorz> 最後，pdf.js 則是這樣
+22:55 < slackbot3> <http://i.imgur.com/BV7zlyZ.jpg>
+22:55 < slackbot3> 字體不知道下了什麼魔法所以好很多（雖然好像有些被鬼遮眼）
+22:55 < slackbot3> <mrorz> 但是 object 一樣不符合閱讀順序
+23:11 < slackbot3> <clkao> 悲劇了 東西掉下來壓到鍵盤 在 inbox 裡把一堆待處理的信 archive 了........
+23:16 -!- chihchun is now known as chihchun_afk
+23:21 < slackbot3> <michael_li> 還好不是Delete　就會更悲劇（曾經苦主
+23:26 < slackbot3> <mrorz> au: 感謝資訊 m(_ _)m
+23:26 < slackbot3> 不過我發現 pdftotext 好像有先對 bounding box 的垂直位置與水平位置 sort 過，但 pdf2json 沒有的樣子
+23:26 < slackbot3> (左：`pdftotext -bbox`，右：pdf2json)
+23:26 < slackbot3> <http://i.imgur.com/fY7pKrO.jpg>
+23:26 < slackbot3> 因為 pdf2json 是 port PDF.js（自幹 JS 版 PDF parser），所以跟 pdftotext 不一樣
+23:27 < slackbot3> <mrorz> 不過 sort json 超簡單的，應該會比 parse html 簡單很多 XD
+23:30 < slackbot3> <mrorz> 啊可是 pdftotext 有做多欄 detection 的樣子，好像不是只是單純地 sort bounding box position⋯⋯
+23:55 < slackbot3> <au> mrorz++ # 確實是這樣，我記錯了。有用到 `pdftotext` 的是 <https://github.com/audreyt/pdf2line> 不是 pdf2md
+23:55 < kcwu> slackbot3's url: [audreyt/pdf2line · GitHub]

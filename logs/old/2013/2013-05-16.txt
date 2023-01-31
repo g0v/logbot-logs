@@ -1,0 +1,164 @@
+--- Day changed 四  5月 16 2013
+00:05 -!- kaxing [~kaxing@175.96.175.99] has joined #g0v.tw
+00:11 -!- kaxing [~kaxing@175.96.175.99] has quit [Read error: Connection reset by peer]
+00:28 -!- kaxing [~kaxing@101.12.42.223] has joined #g0v.tw
+00:42 < clkao_> postgis 2.1 會支援 topojson 
+00:42 < clkao_> 太威了
+00:44 < au> http://prag.ma/code/d3-cartogram/#popest/2011
+00:44 < kcwu> au's url: [Cartograms with d3 & TopoJSON]
+00:44 < au> nice demo
+00:50 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Operation timed out]
+00:50 < clkao_> with that and pg93, town can be materialized view of villages, topologically merged, etc.
+00:51 < au> ++
+00:57 -!- pm5_ [~pm5@1-161-58-144.dynamic.hinet.net] has joined #g0v.tw
+01:06 -!- ck_ [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+01:06 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+01:07 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+01:09 -!- KNY [~Adium@118-170-64-25.dynamic.hinet.net] has left #g0v.tw []
+01:20 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+01:42 -!- markwu [~markwu@116.50.34.246] has joined #g0v.tw
+01:42 -!- markwu [~markwu@116.50.34.246] has quit [Client Quit]
+02:02 -!- pm5_ [~pm5@1-161-58-144.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+02:23 -!- icman [~icman@123.240.147.165] has quit [Quit: 明天天氣晴]
+02:34 -!- Jedi_ [~Jedi@jedi.org] has quit [Ping timeout: 276 seconds]
+02:47 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+03:09 -!- pm5_ [~pm5@1-161-58-144.dynamic.hinet.net] has joined #g0v.tw
+03:13 -!- pm5_ [~pm5@1-161-58-144.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+03:23 -!- Supaplextw1 [~Lucky@114-36-228-56.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+04:32 -!- chihchun is now known as chihchun_afk
+05:19 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+05:24 -!- Jedi_ [~Jedi@jedi.org] has quit [Read error: Connection reset by peer]
+05:28 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+06:05 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 256 seconds]
+06:11 -!- kanru [~kanru@66.207.208.98] has quit [Ping timeout: 246 seconds]
+06:44 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+07:12 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+07:37 -!- Jedi_ [~Jedi@jedi.org] has quit [Ping timeout: 276 seconds]
+08:41 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+09:00 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+09:00 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+09:15 -!- kaxing [~kaxing@101.12.42.223] has quit [Ping timeout: 245 seconds]
+09:16 -!- MnO2 [~MnO2@nat/yahoo/x-azhjseeeupbemdrn] has joined #g0v.tw
+09:25 -!- Jedi_ [~Jedi@jedi.org] has quit [Ping timeout: 256 seconds]
+09:26 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+09:37 -!- kanru [~kanru@173.243.46.194] has joined #g0v.tw
+09:50 -!- mp607 [~mp607@140.130.198.19] has joined #g0v.tw
+10:21 -!- pm5 [~pm5@114-32-168-129.HINET-IP.hinet.net] has joined #g0v.tw
+10:27 -!- pm5 [~pm5@114-32-168-129.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+10:27 -!- pm5 [~pm5@114-32-168-129.HINET-IP.hinet.net] has joined #g0v.tw
+10:28 -!- MnO2 [~MnO2@nat/yahoo/x-azhjseeeupbemdrn] has quit [Quit: MnO2]
+10:31 -!- MnO2 [~MnO2@nat/yahoo/x-blebvceiikyugdyi] has joined #g0v.tw
+10:34 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:42 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:44 -!- pm5 [~pm5@114-32-168-129.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+10:44 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+10:53 -!- ctf_ [~ctf@gateway/tor-sasl/ctf/x-48556045] has joined #g0v.tw
+10:56 -!- pm5_ [~pm5@114-32-168-129.HINET-IP.hinet.net] has joined #g0v.tw
+10:58 -!- ctf_ [~ctf@gateway/tor-sasl/ctf/x-48556045] has quit [Quit: leaving]
+11:01 -!- roy_ [76a8dde4@gateway/web/freenode/ip.118.168.221.228] has joined #g0v.tw
+11:02 < roy_> hello
+11:02 < roy_> ejfdksfjd;
+11:02 < roy_> test
+11:02 < roy_> long time
+11:02 < roy_> where are you
+11:05 -!- roy_ [76a8dde4@gateway/web/freenode/ip.118.168.221.228] has quit [Client Quit]
+11:07 -!- chihchun_afk is now known as chihchun
+11:10 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+11:10 -!- dm4_ [~dm4@ec2-54-251-97-226.ap-southeast-1.compute.amazonaws.com] has joined #g0v.tw
+11:11 -!- ypcat_ [~ypcat@li565-27.members.linode.com] has joined #g0v.tw
+11:12 -!- lwhsu_ [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+11:12 -!- pingooo_ [~pingooo@li582-242.members.linode.com] has joined #g0v.tw
+11:13 -!- jeffhung_ [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+11:13 -!- dm4 [~dm4@ec2-54-251-97-226.ap-southeast-1.compute.amazonaws.com] has quit [Ping timeout: 245 seconds]
+11:13 -!- ypcat [~ypcat@li565-27.members.linode.com] has quit [Ping timeout: 245 seconds]
+11:13 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+11:13 -!- pingooo [~pingooo@li582-242.members.linode.com] has quit [Ping timeout: 245 seconds]
+11:31 -!- KNY [~Adium@111-253-158-40.dynamic.hinet.net] has joined #g0v.tw
+11:54 -!- ctf_ [~ctf@gateway/tor-sasl/ctf/x-48556045] has joined #g0v.tw
+11:55 -!- chihchun is now known as chihchun_afk
+12:07 -!- pm5_ [~pm5@114-32-168-129.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+12:15 -!- ipa_ [~ipa@59-126-64-204.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+12:15 -!- ipa [~ipa@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+12:45 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+13:04 -!- ctf_ [~ctf@gateway/tor-sasl/ctf/x-48556045] has quit [Ping timeout: 240 seconds]
+13:04 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+13:06 -!- ctf_ [~ctf@gateway/tor-sasl/ctf/x-48556045] has joined #g0v.tw
+13:32 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+13:39 -!- logbot____ [~cinch@140.122.183.158] has quit [Ping timeout: 240 seconds]
+13:47 -!- lwhsu_ is now known as lwhsu
+14:35 -!- chihchun_afk is now known as chihchun
+14:36 < clkao_> hlb_: http://cmx.io/
+14:36 < kcwu> clkao_'s url: [Comix I/O]
+14:51 < clkao_> 好像可以作個 moedict 的漫畫介面
+14:56 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 245 seconds]
+14:58 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+15:05 -!- Neson_ [~Neson@dex.tw] has quit [Remote host closed the connection]
+15:08 -!- Neson_ [~Neson@dex.tw] has joined #g0v.tw
+15:33 -!- bafu [~bafu@175.41.48.77] has quit [Quit: Ex-Chat]
+15:33 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+16:09 -!- MnO2 [~MnO2@nat/yahoo/x-blebvceiikyugdyi] has quit [Quit: MnO2]
+16:13 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+16:44 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+16:45 -!- dm4_ is now known as dm4
+17:37 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+17:39 -!- MnO2 [~MnO2@nat/yahoo/x-vqctooqnkusrfupj] has joined #g0v.tw
+17:39 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+17:49 -!- superd [superd@saturn.stu.edu.tw] has quit [Read error: Connection reset by peer]
+17:49 -!- Custom [custom@saturn.stu.edu.tw] has quit [Read error: Connection reset by peer]
+17:49 -!- Custom_ [custom@saturn.stu.edu.tw] has joined #g0v.tw
+17:50 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+17:50 -!- bafu [~bafu@175.41.48.77] has quit [Read error: Connection reset by peer]
+17:55 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+17:58 -!- chadliu23 [~chadliu23@DHCP-19192.iis.sinica.edu.tw] has left #g0v.tw ["Leaving"]
+17:58 -!- chihchun is now known as chihchun_afk
+18:00 -!- chadliu23 [~chadliu23@DHCP-19192.iis.sinica.edu.tw] has joined #g0v.tw
+18:01 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+18:03 -!- bafu [~bafu@175.41.48.77] has quit [Quit: Ex-Chat]
+18:03 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+18:18 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 248 seconds]
+18:29 -!- Custom_ [custom@saturn.stu.edu.tw] has quit [Ping timeout: 248 seconds]
+18:30 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+18:30 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 264 seconds]
+18:30 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+18:38 -!- MnO2 [~MnO2@nat/yahoo/x-vqctooqnkusrfupj] has quit [Quit: MnO2]
+18:41 -!- MnO2 [~MnO2@nat/yahoo/x-zritqjlrodxqziql] has joined #g0v.tw
+18:45 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 276 seconds]
+18:49 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+18:59 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+19:08 -!- MnO2 [~MnO2@nat/yahoo/x-zritqjlrodxqziql] has quit [Quit: MnO2]
+19:15 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+19:21 -!- Supaplextw [~Lucky@114-36-228-56.dynamic.hinet.net] has joined #g0v.tw
+19:56 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+20:11 -!- kaxing [~kaxing@101.12.51.178] has joined #g0v.tw
+20:31 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 245 seconds]
+20:52 -!- bafu [~bafu@111-240-239-33.dynamic.hinet.net] has joined #g0v.tw
+20:58 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+21:06 -!- kaxing [~kaxing@101.12.51.178] has quit [Quit: 881]
+21:29 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+21:31 -!- kanru [~kanru@173.243.46.194] has quit [Ping timeout: 252 seconds]
+21:44 -!- Custom_ [custom@saturn.stu.edu.tw] has joined #g0v.tw
+21:44 -!- kanru [~kanru@66.207.208.98] has joined #g0v.tw
+21:45 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 256 seconds]
+21:46 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 276 seconds]
+21:46 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+21:48 -!- KNY [~Adium@111-253-158-40.dynamic.hinet.net] has quit [Quit: Leaving.]
+21:49 < clkao_> http://www.accupass.com/go/hackntu_2013
+21:49 < kcwu> clkao_'s url: [HackNTU 臺大黑客松 - 活動通 Accupass]
+21:50 < clkao_> 遍地黑客松
+21:50 -!- clkao_ is now known as clkao
+22:08 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 245 seconds]
+22:09 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+22:39 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has left #g0v.tw []
+22:55 -!- KNY [~Adium@111-253-158-40.dynamic.hinet.net] has joined #g0v.tw
+23:03 < hlb_> 張凱迪... 這名字好熟 :p
+23:10 -!- KNY [~Adium@111-253-158-40.dynamic.hinet.net] has left #g0v.tw []
+23:20 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+23:23 < hlb_> clkao: 300 人以上連署，第一次大會有 50% 參加
+23:23 < hlb_> 就可以辦政黨了
+23:24 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+23:27 -!- Natata [8c73348f@gateway/web/freenode/ip.140.115.52.143] has joined #g0v.tw
+23:33 -!- KNY [~Adium@111-253-158-40.dynamic.hinet.net] has joined #g0v.tw
+23:34 -!- ctf_ [~ctf@gateway/tor-sasl/ctf/x-48556045] has quit [Remote host closed the connection]
+23:42 -!- ctf_ [~ctf@gateway/tor-sasl/ctf/x-48556045] has joined #g0v.tw
+23:42 -!- KNY [~Adium@111-253-158-40.dynamic.hinet.net] has quit [Quit: Leaving.]
+23:46 -!- mp607 [~mp607@140.130.198.19] has quit [Quit: mp607]

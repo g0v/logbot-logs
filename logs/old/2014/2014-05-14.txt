@@ -1,0 +1,337 @@
+--- Day changed 三  5月 14 2014
+00:14  * hcchien 看起來 github api 好像很容易
+00:17 < ronnywang> clkao: 我已經讓現在的 data.g0v.tw 可以吃 request.data.g0v.tw 了, 可以換過去，再把 data.g0v.tw 指到 jimmy 的 dkan 吧?
+00:25 -!- reChing|afk is now known as reChing
+00:27 < isacloud__> 是指 ckan 嗎？
+00:30 < isacloud__> hcchien: github API 之前有弄一個 proxy (為了解 requests per hour 限制) for example, http://utcr.org:8080/repos/g0v/g0v.tw
+00:31 < isacloud__> 純 forward, 未 cache
+00:31 < jimyhuang_> clkao: ronnywang 我這裡也設定好了106.187.50.25
+00:40 < isacloud__> ckan 目前在 ckan.g0v.today , 要不要考慮用 ckan, 比較好 follow upstream, 如果不需要 cms
+00:44 < jimyhuang_> isacloud__: 這CKAN是幾版的？感覺滿完整
+00:44 < jimyhuang_> i means 中文支援
+00:45 < isacloud__> 2.2, 因為我自己加了 plugin， 預設不支援。不過 2.2 有個好消息是支援多層次的 organization
+00:46 < jimyhuang_> isacloud__: 之前我印象弄中文的 solr 弄了頗久 ... 
+00:46 < isacloud__> 我發現我似乎誤會了， dkan 跟 ckan 是不是無關聯? 完全用 php 重寫?
+00:46 < jimyhuang_> isacloud__: 對啊～ 所以我完全不熟 CKAN (無奈
+00:47 < jimyhuang_> 不過，看起來 ckan.g0v.today 很好啊！！！
+00:47 < isacloud__> 我也弄一陣子才弄好中文沒錯，幸好有前人的文件。
+00:49 < isacloud__> yes 甚至有機會當 project/api/data hub。沒玩過 dkan, 應該也很不錯。都可試試。
+00:50 < jimyhuang_> 不如下次來開個 data.g0v.tw 松 XD cc tkirby ronnywang .. .今天忘記誰還有人有興趣了
+00:50 < isacloud__> XD 五星幫
+00:51 < isacloud__> 嗯我們可以來比較討論過後決定。
+00:52 < jimyhuang_> 不愧是 g0v ... 只要有坑，立刻有填～噗噗噗
+00:54 < isacloud__> jimyhuang_: 請問有現在 dkan 的網址嗎？
+00:54 < jimyhuang_> http://dkan.jimmyhub.net/
+00:54 < kcwu_> jimyhuang_'s url: [歡迎來到 data.g0v.tw | data.g0v.tw]
+00:54 < yhsiang> 5☆ data.g0v.tw
+00:55 < jimyhuang_> 對還有 yhsiang 你回到家啦
+00:56 < yhsiang> 一個小時前就到拉
+00:56 < isacloud__> jimyhuang_: Thanks, 跟 ckan 長得好像 lol， 真的是純 php? 太偉大了。
+00:57 < jimyhuang_> isacloud__: XD 純Drupal比較機車 ... 這種照抄真是很... 科科
+00:58 < isacloud__> lol
+00:59 < clkao> jimyhuang_, ronnywang dns updated
+00:59 < kiang> http://docs.getdkan.com/dkan-documentation/dkan-features/comparing-dkan-and-ckan
+00:59 < kcwu_> kiang's url: [Comparing DKAN and CKAN | DKAN Documentation]
+01:03 < jimyhuang_> kiang: XD DKAN當然說自己好啊
+01:04 < isacloud__> 不得不說 ckan 安裝步驟真的很繁雜
+01:06 < kiang> jimyhuang_: 就等 CKAN 出來還擊 XD
+01:06 -!- Jerry is now known as JerryWu
+01:11 -!- JerryWu [3a725b73@gateway/web/cgi-irc/kiwiirc.com/ip.58.114.91.115] has left #g0v.tw []
+01:13 < isacloud__> 這個 ckan 是我架的，不過目前看起來，我想投 dkan 一票 XD。多了 cms 應該很多好處。我只是在思考，為何各大國的政府 open data 多半選擇 ckan? 
+01:15 < isacloud__> 反正 dns 也轉好了，就先用用看 dkan 吧，除非遇到什麼瓶頸再來嘗試別的。
+01:28 < clkao> isacloud__: er orz.. 剛沒看到 ckan... 和 jimyhuang_ 討論看看最後要用哪個... ?
+01:29 < yhsiang> clkao: 它們決定先用dkan XD
+01:32 < isacloud__> clkao: np, 不是三兩天有辦法比較出適合的，就先衝吧!
+01:37 < pipi_> 我都看不懂（路過)
+01:43  * jimyhuang_ 正在加一些快速login機制. ..
+03:30 < yhsiang> hmm firebase可以hosting了
+04:51 < a0000778> NewCliCker: 早些又去翻ustream 看來要弄台伺服器提供API 分析ustream的網址 沒辦法全部用JS直接抓到ID
+04:53 < NewCliCker> a0000778: 辛苦了<(_ _)> 其實我比較驚嚇的是現在還有活人，您是剛起床還是還沒睡？
+04:54 < a0000778> NewCliCker: 還沒睡 昨天下午睡醒的XD
+04:56 < a0000778> NewCliCker: 頻道列表什麼的倒是有提供API(可以直接申請使用，但5000次/天以上要額外寫信申請)
+05:01 < NewCliCker> a0000778: 喔喔，收到。看來Ustream的列表更新只能每18秒更新一次，而且不能交給使用者自己按更新
+05:02 < NewCliCker> a0000778: 我得再回去躺一下，您也別太勉強自己弄壞身體了。<(_ _)>4
+05:02 < a0000778> NewCliCker: 不能這樣算阿... 不可能讓你一次拖整個站的資料下來的
+05:03 < a0000778> 嗯
+05:03 < NewCliCker> a0000778: XD 
+08:39 < seikon> miaoski: 嗚 ... 昨天回家接 hdmi 看營幕，還是沒辦法成功刷好機子，按下 reset btn (應該是跑第一階段) 就是一直紅燈。今天看看同事有沒有帶給我新的機子，然後也會找頭來接 console port，我有好幾條 usb2serial 可以用，但是沒有那個頭。 // 沒進度之前，我要躲起來 ( =皿=)
+08:40 < seikon> s/昨天回家接營幕/昨天回家想接螢幕/
+09:15 < seikon> 大心，同事帶新的網樂通給我玩了，這次我要多做點準備。(不過沒有 adapter ，所以我拿別的 5V 2A 正負相同，應該也 ok 吧 ...)
+10:00 < miaoski> seikon: 變壓器ok 的。如果你覺得變磚了，可以把 dom 拆下來
+10:09 < miaoski> seikon: 我今天回家找個免費空間 (壓過還要 5G) 把 Conrad 上次 dd 的 DOM image 傳上去
+10:10 < miaoski> seikon: 這樣就算磚了你也可以修好... DOM 拆下來後，可以用這個東西 (其實就是 USB 頭) 接上你的電腦，然後 dd if=image of=/dev/sdc 就恢復了 XD
+10:10 < seikon> miaoski: 收到，大感謝。
+10:11 < miaoski> seikon: (咦，我記得之前 Hackathon 有人拍照，我要找一下下...)
+10:13 < seikon> 我等一下要試試生 console 出來，中午再試試看，只有燈號操作好黑箱的感覺。
+10:18 < miaoski> seikon: http://imgur.com/GmEIKmE
+10:18 < eyes1971>    
+10:18 < kcwu_> miaoski's url: [imgur: the simple image sharer]
+10:18 < miaoski> Console 的話請參看 hackpad
+10:19 -!- oilleyao is now known as OilleYao
+10:19 < OilleYao> hi~ i am newbie! test msg now.
+10:20 < miaoski> OilleYao: pong
+10:25 < ShrewMouse>  hi~ i am newbie! test msg again.
+10:25 < OilleYao> lol...
+10:26  * ShrewMouse nothing can do.
+10:50 < clkao> api.ly 也換成 linode ssd 了
+10:51 < clkao> 禮拜三中午的新提案時間應該不會 GG 了
+10:51 < clkao> `
+10:52 < clkao> http://ly.g0v.tw/bills/99L16431
+10:53 < jimyhuang_> 最近一直收到升級通知信 ... (到底有多少服務用 linode XD)
+10:59 < jbytw> 這提案... 會不會太小題大作
+11:19 -!- juiz- is now known as juiz
+11:19 -!- chihchun_afk is now known as chihchun
+11:20 < miaoski> 有沒有人用過 DigitalOcean? USD5 感覺很划算
+11:21 < yhsiangCloud_> miaoski: 用啊
+11:21 < yhsiangCloud_> 話說madison弄到一半……
+11:22 < miaoski> yhsiangCloud_: 好用嗎? 好用的話我衝一個^^;
+11:22 < miaoski> chihchun: 結果 packages.palaso.org 的 repo 不能用，我偷偷改去 ppa.launchpad.net 抓...
+11:23 < yhsiangCloud_> 還可以吧……
+11:34 < miaoski> chihchun: 還是不行，只好怒升 14.04 LTS (T_T)
+11:39 < seikon> miaoski:感謝。我的網樂通應該是用了 wheezy-sh4.dd 但是沒有完全成功，所以有 sh4twbox ，但是沒有 debian。我再看一下，怎麼從 sh4twbox 到 debian ，或乾脆再重來一次。
+11:45 < miaoski> seikon: 哦哦，如果已經刷好 uboot 的話，rootfs 可以隨便你搞... 
+11:45 < miaoski> seikon: 我習慣用 nfs (一樣有寫在 hackpad) 這樣可以很方便切換我想試的 distribution
+11:46 < chihchun> miaoski: packages.palaso.org/
+11:46 < chihchun> miaoski: packages.palaso.org ?
+11:47 < miaoski> chihchun: 嗯 add-apt-repository ppa:phablet-team/tools 會加這個 URL 進 sources.list
+11:47 < miaoski> chihchun: 我放棄在舊版 Ubuntu 裝了 XD ... 等一下來裝一套 14.04 LTS
+12:05 < seikon> miaoski: 你們的 lxc 現在都是裝在 ubuntu 14.04 上面嗎？ (我剛剛在 13.04 上面開始試著裝 lxc )
+12:12 < miaoski> seikon: 我用 debian wheezy
+12:35 < seikon> miaoski: 我把 DOM 裝回去，現在重新用 wheezy 那顆 usb 開，剛剛 tail -f inst.log ...
+12:35 < seikon> 原來 這顆 DOM 真的很慢 ...
+12:36 < seikon> 我可能之前都太快關電了，所以才會一直裝不成功。
+12:43 < clkao> 今天才知道原來前陣子有黑箱之亂 # https://www.facebook.com/genehong/posts/10152399658469728?comment_id=10152435792254728&offset=0&total_comments=26
+12:43 < eyes1971>    
+12:43 < kcwu> clkao's url: [Gene Hong - 星期五的 Open Data 座談, 記者跟我說科技部 "挽拒" 記者採訪,... | Facebook]
+12:44 < yhsiang> clkao: XD 就你去poplus的時候
+12:46 < clkao> zzz
+12:48 < hcchien> 黑箱之亂   lol
+13:05 < gavin-^^> seikonn apt-get install lxc <<< 12.04 or 14.04 都可 超好用.
+13:09 < seikon> gaivin-^^: 感謝，我有參考這裡： https://g0v.hackpad.com/Fr9H87GPcUM
+13:09 < kcwu> seikon's url: [太陽花盒子－自己的媒體自己報－ - g0v.hackpad.com]
+13:09 < eyes1971>    
+13:11 < seikon> 但是 lxc create debian 的時候，不知道為什麼一直說：
+13:11 < seikon> http://pastebin.com/0SpGmv0v
+13:11 < eyes1971>    
+13:11 < kcwu> seikon's url: [$ sudo lxc-create -t debian -n sid -- -a sh4 -r sid -c 2>&1 | tee sh4-debug.log - Pastebin.com]
+13:14 < yhsiang> ...我怕電力不夠 ...囧
+13:19 < yhsiang> https://www.youtube.com/watch?v=oUyXN1B-ogQ
+13:19 < eyes1971>    
+13:19 < kcwu> yhsiang's url: [Hacking Your Goverment with Keyboards @ NCTU - YouTube]
+13:20 < yhsiang> 時間好像設錯了 orz
+13:20 < yhsiang> 有東西了
+13:23 < Lee1092> yhsiang++
+13:25 < yhsiang> 剩下50%
+13:25 < yhsiang> 播多少算多少吧
+13:35 < venev> 五都政治獻金伐木成果豐碩，nicemaker++ ronnywang 切豆腐忙得過來嗎？http://bit.ly/ScanPoliticalContribution
+13:35 < kcwu> venev's url: [政治獻金圖檔上傳回報表 (回覆內容)]
+13:35 < eyes1971>    
+13:35 < yhsiang> venev: ronny演講中:p
+13:41 < venev> ronnywang++ 好像還有 johny___ ++
+13:56 < ipa> 又該來想黑客松名字了似乎......http://hack.g0v.tw/meta/hyPxZEmyzgg
+13:56 < ipa> 還我土地黑客松？
+13:56 < yhsiang> ipa: 是不是該在ronny演講完就告訴他六月的時間確定了 :p
+13:57 < venev> 六月松確定是幾號啊？（總覺得才剛松完啊）
+13:57 < ipa> 他正在講嗎？好挖，就6/21（昨天有放topic了，大家一起抬頭～）
+13:58 < yhsiang> ipa: 我講了 XD
+13:59 < ipa> 下次回資訊所，規模小一點輕鬆一點好了
+13:59 < ipa> yhsiang: 你在現場喔？
+13:59 < yhsiang> ipa: yes 我在直播
+13:59 < yhsiang> ipa: 但是快沒電了 XDD
+14:00 < ipa> 一連去看直播就黑畫面惹
+14:00 < mosiwang> yhsiang的直播應該停了XD
+14:00 < venev> 還我土地 ++
+14:00 < yhsiang> mosiwang: 還在直播
+14:00 < yhsiang> 網路有點不穩
+14:00 < Lee1092> 還我牛 黑客松!!!   (誤
+14:00 < mosiwang> yhsiang: 正常了 現在換Jonny
+14:00 < venev> http://taiwanpedia.culture.tw/web/content?ID=100253 
+14:01 < kcwu> venev's url: [原住民族還我土地運動 - 台灣大百科全書 Encyclopedia of Taiwan]
+14:01 < yhsiang> ya 剛剛ydlin教授問問題黑畫面了
+14:01  * yhsiang orz
+14:01 < venev> 還可以有主題曲 https://www.youtube.com/watch?v=6tz_-cKqne4
+14:01 < kcwu> venev's url: [還我土地 第八號 （相思寮不賣 完整版） - YouTube]
+14:01 < eyes1971>    
+14:02 < venev> 還我牛之外，也可以還我樹嘛 >"<
+14:02 < yhsiang> 我的成績也很慘  orz...
+14:02  * yhsiang 遮臉
+14:02 < yhsiang> venev: 還我老木!!
+14:02 < venev> eyes1971 是 bot 嗎？
+14:03 < venev> 一直推空白文捏～
+14:03 < yhsiang> venev: 應該是
+14:03 < venev> yhsiang: 還我老木！！
+14:04 < kiang> 砍林老木也不錯 - http://www.appledaily.com.tw/realtimenews/article/new/20140514/397468/
+14:04 < kcwu> kiang's url: [【是誰噴的漆】台中行動者表示噴漆『砍林老木』聲援松菸護樹 | 即時新聞 | 20140514 | 蘋果日報]
+14:04 < eyes1971>    
+14:05 < jbytw> https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-prn2/t1.0-9/10176159_10202634412119305_597758963987401299_n.jpg
+14:05 < venev> 文化部的台灣大百科全書，是不是可以來推廣個 CC 授權啊～（應該也是拿稅金編寫成的？）
+14:08 < venev> 哦，已經在用了「投稿之內容皆同意採創用CC 姓名標示-非商業性-相同方式分享 2.5 台灣 授權條款」
+14:08 < Lee1092> venev: 有耶  http://taiwanpedia.culture.tw/web/plan?ID=4  
+14:08 < Lee1092> 除另有註明，使用本站的「文字資料」請遵循創用CC 姓名標示-非商業性-相同方式分享 2.5 台灣 授權條款的規範，並請依照相同授權方式授權使用。
+14:08 < kcwu> Lee1092's url: [台灣大百科全書 Encyclopedia of Taiwan]
+14:10 < venev> 但全站底下依然是標示「版權所有 文化部」<- 所以誤會成 copyright 了
+14:11 < yhsiang> 正0履歷表 :p
+14:14 < yhsiang> 電力跟馬總統的支持率一樣了
+14:30 < yhsiang> 網路又有點不穩 ...
+14:30 < yhsiang> 然後剩下8% XD
+14:38 < yhsiang> 電力剩下一點 隨時直播會暫停
+14:41 < ipa> oops 講到 Swartz就斷線了
+14:43 < yhsiang> ipa: 0% :o
+14:48 < kiwifishcat_fei_> o.o
+14:50 < yhsiangCloud_> 一講完0%就黑畫面
+14:56 < yhsiangCloud_> 啊啊 問題都不錯  可是沒錄到
+14:56  * yhsiangCloud_ 錯了
+14:58 < clkao> GG
+15:02 < yhsiangCloud_> 提到校長選舉了XD
+15:02 < ywang1007> yhsiangCloud_: 支持你出來選
+15:02 < yhsiangCloud_> 無限期支持交大校長學生直選XD
+15:02 < yhsiangCloud_> ywang1007: 想太多
+15:10 < yhsiangCloud_> Ydlin問了5個問題有記錄在hackpad上
+15:16 < yhsiangCloud_> 啊啊啊啊 現場好歡樂  沒錄到
+15:22 < walkingice> yhsiangCloud_: 大王選！大王選！大王選！大王選！大王選！
+15:27 < yhsiangCloud_> walkingice: 頭份強！
+15:36 < clkao> sunlight++ # https://github.com/PresidentObama
+15:36 < kcwu> clkao's url: [PresidentObama (President Obama) · GitHub]
+15:36 < clkao> 通過的法案這樣就會變成小綠點了 XD
+15:38 < walkingice> XDXDXD
+15:51 < Lee1092> XDDDDDD
+15:52 < miaoski> seikon: 我遇過一樣的問題! 那時候我用的是 Ubuntu 13.10
+15:52 < miaoski> seikon: 後來一怒之下 (?) 改裝 Debian Wheezy 就一切順利了
+15:53 < Lee1092> 還可以用 github issue 討論通過的法條  wow
+15:53 < miaoski> seikon: 當然這不是解決事情的態度，不過我剛好需要重灌......
+15:58 < seikon> miaoski: ... 突然想問你，你的名字是 貓。斯基  嗎？
+15:58 < miaoski> seikon: 是「喵斯基」
+15:58 < seikon> miaoski:鴨八力。
+15:59 < miaoski> seikon: 所以你要改名叫 やっぱり？
+16:00 < seikon> XD, 感謝回答前面的問題，我現在在網樂通上面成功裝好  debian 了，下一步再來 build code platform 。
+16:01 < seikon> 不過家裡的 PC 是黑蘋果，公司的是 fedora，還有一台是 ubuntu 13.04 但是在學校，所以不好更新。
+16:03 < seikon> 所以應該會花時間去確認 ubuntu 13.04 是怎麼回事，還有 fedora 20 可不可以 build 。
+16:29 < chihchun> miaoski: 我一開始聽到，以為你是 mosky
+16:29 < chihchun> XD
+16:45 < miaoski> chihchun: 誤會好大 xd
+16:53 < hcchien> 怎麼忽然看到這麼好笑的對話   XD
+16:56 < seikon> 我猜 mosky 一定是正妹吧 ...
+16:57 < kiwifishcat_fei_> lol (看miaoski 跟 seikon
+16:59 < miaoski> seikon: 對，mosky 是正妹 XD
+17:08 < moon_c_> 哪裡有正妹!!!??
+17:09 < moon_c_> (瞬間醒
+17:09 < seikon> (指) miaoski
+17:09 < miaoski> moon_c_: 是 mosky 不是 miaoski
+17:10 < Lee1092> moon_c_:  要看 mosky  就要學個 python  XD
+17:11 < Lee1092> 今天連尋人啟事都出現了  XDDD  # https://dl.dropboxusercontent.com/u/104842714/find_huang.png
+17:19 < ij1iao> 正妹 ?
+17:19 < ij1iao> where ?
+17:29 < CindyLinz> (指) miaoski 
+17:31 < miaoski> CindyLinz: 妳指自己吧 xd
+17:32 < CindyLinz> 啊煩.. 自然人憑證一直被說無法辨識.. 下午去區公所換, 服務人員測半天跟我說卡片是好的, 而且還順便把我的收入清單印出來了.....ww
+17:32 < CindyLinz> 就不讓我換卡... 回來以後還是被說無法辨識...... OAO
+17:33 < S3p_lin> 換讀卡機?
+17:34 < CindyLinz> 可是同一台讀卡機一直在拿來繳房租和網路購物欸~ 會有這種壞法嗎? @@"
+17:35 < S3p_lin> 新版自然人憑證的容量太大, 讀卡機讀不出後面的資料 XD
+17:37 < dz1984> @Lee1092 立委尿遁
+17:37 < dz1984> Lee1092: 
+17:39 < tw_7215> 請問有人在維護nonuke.today的選單嗎? 國會無雙的頻道有3個 目前選單存在的是第2個直播
+17:41 < ij1iao> 黃昭順又搞失蹤 ? 怎麼老是用同一招啊...
+17:42 < ij1iao> 啊又要面對自然人憑證了... 每年都要到最後一星期才想去打開那個網頁下載新程式...
+17:43 < dz1984> 黃昭順是慣犯
+17:49 < miaoski> CindyLinz: 讀卡機換一下 +1 
+17:51 < anon1269> 割一割，沒煩惱？
+17:52 < yhsiang> tw_7215: 那就直接改
+17:52 < CindyLinz> miaoski: 來準備錢錢... ._.  跟申請新卡差不多 ._.
+17:54 < ij1iao> CindyLinz: 申請新卡也未必能用, 可能卡跟機都要換... XD
+17:54 < tw_7215> yhsiang: 我只會點滑鼠(?)不會修改 先暫離
+17:55 < CindyLinz> 這張卡剛剛在區公所差點成功報完稅了 ._.
+17:55 < tw_7215> 有意者 我先提供三個號碼 1.17012502  2.17401996  3.17989031
+17:59 -!- tw_7215 [tw_7215@anontaiwan.org] has left #g0v.tw []
+18:09 < seikon> http://armorize-cht.blogspot.tw/2014/05/apple.imessage.apt.campaign.html
+18:09 < kcwu> seikon's url: [阿碼外傳－阿碼科技非官方中文 Blog: 某機關正利用駭客針對台灣街頭運動者進行大規模個資蒐集]
+18:09 < seikon> 這篇 blog 後面的留言，讓我想起碇真嗣 ...
+18:11 < seikon> s/這篇 blog 後面的留言/看到這篇 blog 後面貼出投票的留言/
+18:24 < yhsiang> hmm ..為什麼infrath0n的影片不能剪, 交大演講可以剪輯 好神秘
+19:31 -!- CelloCello [~Sero@1.34.191.8] has left #g0v.tw []
+20:44 < hcchien> 用 node-curl 拉 github api 回傳 403，何解？
+20:46 < tkirby> 要 app-id?
+20:46 < isacloud__> 哪個 API?
+20:47 < hcchien> 看來好像是強制要送 header
+20:47 < hcchien> 用 curl 就可以
+20:47 < hcchien> https://developer.github.com/v3/#user-agent-required
+20:47 < kcwu> hcchien's url: [GitHub API v3]
+20:47 < yhsiang> hcchien: https://www.npmjs.org/package/github # 不用這個?
+20:48 < hcchien> 竟然有這個!!
+20:48 < hcchien> 立馬來裝
+20:48 < Lee1092> ronnywang: yhsiang  有今天交大演講的活動頁面嗎?   或是演講的投影片  XD  # 公報
+20:49 < yhsiang> Lee1092: http://www.cs.nctu.edu.tw/cswebsite/news/activities/view/1119
+20:49 < kcwu> yhsiang's url: [演講/講座/活動公告 - 國立交通大學資訊工程學系 NCTU Department of Computer Science]
+20:49 < Lee1092> yhsiang:  thx
+20:49 < yhsiang> Lee1092: https://g0v.hackpad.com/2014-05-14-eTkaDo45YVL # 這邊都很完整
+20:49 < kcwu> yhsiang's url: [2014-05-14交大資工講題討論 - g0v.hackpad.com]
+20:50 < yhsiang> 影片, 投影片, 討論 
+20:50 < yhsiang> 除了 中間一些問題沒記錄到 QQ
+20:50 < Lee1092> 歐歐歐!!!   好讚~  
+20:51 < yhsiang> 只記錄了 最後ydlin問了一長串問題 XDD
+20:52 < yhsiang> 另外有個人社教授也蠻有意思 但是我忘記名字 好像是主任之類的?
+20:53 < yhsiang> 另外有認識交大黑客松的主辦人 XDD
+20:53 < yhsiang> 她有想辦workshop 我馬上說了 可以來弄視覺化worshop之類的 XDD
+20:54 < yhsiang> 後來想想可以弄斧頭幫workshop, 視覺化workshop, 直播workshop :D
+20:54 < tkirby> (y)
+20:54 -GitHub8:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/c902f7f0be4569bfe54d6adf7a2d4e1bf44d97b2
+20:54 -GitHub8:#g0v.tw- g0v.tw/gh-pages c902f7f g0v general (via TravisCI): regen for 8a3222f
+20:54 < yhsiang> 這是我自身有參與的部分 像是其他文化部workshop txt workshop我想也都很好 
+21:00 < hcchien> 咦，github 感覺也沒很好用
+21:01 < yhsiang> hcchien: 還有別的 XDD
+21:01 < yhsiang> https://www.npmjs.org/package/nor-github # 這是有promise的
+21:07 < hcchien> (Y)
+21:27 < hcchien> 結果還是用 github. 只是 method 要多花點時間找  # 跟官方的不太 match.  XD
+21:27 < yhsiang> XD
+21:31 < hcchien> 那 base64 哪個好用呢
+21:34 < yhsiang> hcchien: nodejs的buffer本身可以解base64
+21:34 < yhsiang> http://stackoverflow.com/questions/6182315/how-to-do-base64-encoding-in-node-js
+21:34 < kcwu> yhsiang's url: [encryption - How to do Base64 encoding in node.js? - Stack Overflow]
+21:35 < hcchien> 結果我也在看同一篇   lol
+21:35 < yhsiang> hcchien: XDD
+21:52 < hcchien> 一下就超過 api limit
+21:52 < hcchien> XD
+21:53 < yhsiang> hcchien: 要不要用 isacl 的 proxy XD
+21:54 < hcchien> yhsiang: 那還可以用剛剛那個？
+21:55 < yhsiang> host: "github.my-GHE-enabled-company.com", host換一下應該可以 ?
+21:56 < hcchien> 來試試
+22:01 < isacl> 大概就是 60 requests per hour 跟 5000 request per hour 的差別  https://api.github.com/rate_limit v.s. http://utcr.org:8080/rate_limit
+22:01 < hcchien> 結果不行
+22:02 < hcchien> 這個看起來沒 implement protocal 啊，跟 document 不太一樣
+22:02 < hcchien> doc 裡面沒寫 port. 但其實好像可以指定 port
+22:04 < yhsiang> hcchien: 可以指定port
+22:04 < yhsiang> hcchien: https://github.com/mikedeboer/node-github/blob/master/index.js#L45
+22:04 < kcwu> yhsiang's url: [node-github/index.js at master · mikedeboer/node-github · GitHub]
+22:05 < hcchien> [error] 140735151244048:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol
+22:05 < hcchien> 我指定了 8080
+22:05 < isacl> hcchien: 我沒有 ssl, 可能要關 ssl @@
+22:06 < hcchien> 我指定了 protocal. 他好像不理我
+22:07 < isacl> client --(http)-> proxy --(https)-> github api
+22:07 < isacl> 沒用過 node-github :S
+22:12 < isacl> 明天有空來把 proxy 加一個 self-signed 的 ssl 看看。
+22:12 < isacl> 或許 node-github 沒有被設計來連別的 github api server?
+22:12 < hcchien> 好像改用 curl 比較快   lol
+22:14 < hcchien> 不過這樣要自己 handle error. 也有點累
+22:18 < yhsiang> hcchien: 可以用
+22:18 < yhsiang> hcchien: proxy: 'http://utcr.org:8080' XD
+22:18 < yhsiang> doc好像沒寫
+22:18 < yhsiang> 翻裡面code有
+22:21 < yhsiang> { version: '3.0.9', protocol: 'http', host: 'utcr.org', port: 8080, proxy: 'http://utcr.org:8080'}
+22:21 < yhsiang> 我這樣是work的
+22:27 < hcchien> yeap. 可以了，結果怎麼跟剛剛 response 不太一樣，要再來改 code   lol
+22:28 < yhsiang> hcchien: XDDD
+22:28 < yhsiang> hcchien: 我上面打錯 是 3.0.0
+22:29 < hcchien> yhsiang: 對，我有發現
+22:29 < isacl> cool. 疑可列一下 response 哪些不一樣嗎？
+22:31 < hcchien> isacl: 沒存之前的  XD
+22:33 < yhsiang> 我用 /users/yhsiang/following 結果是一樣 @@
+22:33 < isacl> 我剛剛裝成這個，結果一直試不出來 https://www.npmjs.org/package/node-github , 原來是要 npm i github 不是 node-github
+22:33 < hcchien> 只是剛剛可以跑的 code. 有出現 data parse error
+22:33 < isacl> hmm. 只是過 proxy 不應該不同才對
+22:33 < yhsiang> isacl: 要看npmjs.org上的才準
+22:34 < yhsiang> isacl: 你那個是舊的了
+22:34 < isacl> yhsiang: 了解，現在可以了
+22:34 < yhsiang> isacl: https://www.npmjs.org/package/github # 新的是這個
+22:52 < hcchien> isacl: 沒差，也可能是我改到什麼
+22:59 < hcchien> 所以看來很快可以 parse 出來 g0v.json
+23:59 -!- chihchun is now known as chihchun_afk

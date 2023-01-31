@@ -1,0 +1,509 @@
+--- Day changed 五  5月 24 2013
+00:06 -!- poga [~poga@111-241-135-35.dynamic.hinet.net] has quit [Remote host closed the connection]
+00:10 -!- racklin [dc8739c0@gateway/web/freenode/ip.220.135.57.192] has quit [Quit: Page closed]
+00:11 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+00:13 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has joined #g0v.tw
+00:17 -!- rein [01a316ce@gateway/web/freenode/ip.1.163.22.206] has joined #g0v.tw
+00:20 -!- rein [01a316ce@gateway/web/freenode/ip.1.163.22.206] has quit [Client Quit]
+00:23 -!- ETBlue [~chatzilla@175.182.237.104] has joined #g0v.tw
+00:27 < au> hlb++ ok I'll oook
+00:27 < au> thinking about switching to select2 perhaps
+00:27 < au> *look
+00:28 -!- Toby_ [8c73ce57@gateway/web/freenode/ip.140.115.206.87] has quit [Ping timeout: 250 seconds]
+00:29 < hlb> select2 is good.
+00:29 < hlb> let's drop jquery ui.
+00:30 < au> bootstrap + select2 ftw
+00:36 < au> design 真棒
+00:37 < au> 周末來 merge + switch to <template>
+00:37 < au> hlb++ again
+00:37 -!- ctf_ [~ctf@gateway/tor-sasl/ctf/x-48556045] has joined #g0v.tw
+00:38 -!- hychen [~hychen@host-58-114-191-124.dynamic.kbtelecom.net] has quit [Remote host closed the connection]
+00:43 < clkao> pull 來 preview 一下
+00:43 < clkao> 改用 template 了?
+00:43 < clkao> 噢 少看一個 + :P
+00:44 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+00:44 < ETBlue> clkao: 後來想到 strategy 直接寫這個詞彙可能有點抽象，可以請大家註明說預定產出的格式是什麼（json檔案 / api / web / mobile app / browser extension ... etc. ）、東西可以給誰用（programmer / 一般民眾...）、要怎麼用
+00:45 < au> clkao: 沒有 pull, directly committed to ios/www/ as staging area
+00:45 < clkao> 華語也變成楷書？
+00:45 < hlb> au: the EBAS font is not included yet.
+00:45 < au> ok
+00:45 < au> 楷書?
+00:45 < clkao> local build
+00:45 < clkao> ETBlue: add notes to prehackathon hackpad?
+00:45 < au> "MOESongUN","教育部標準宋體UN","全字庫正宋體","TW-Sung-98_1","教育部標準宋體","CMEXa1","新細明體","PMingLiU","MingLiU","全字庫正楷體","TW-Kai-98_1","教育部標準楷書","kai-pc","CMEXc1","標楷體","BiauKai","DFKaiShu-SB-Estd-BF",sans-serif,"HANNOMmoesubset-Regular","HAN NOM A","HAN NOM B"
+00:45 < hlb> au: 萌典字型
+00:46 < ETBlue> clkao: roger
+00:46 < au> maybe it fallback'd to Kai with Song unvailable
+00:46 < au> hlb: roger
+00:46 < hlb> au: also, 現在還沒有 responsive
+00:47 < hlb> au: 原本的 media query 需要先問你一下各是幹嘛用的
+00:47 < au> 目前只是 iPad (768px+) 和 iPhone (-767px)
+00:47 < au> 這兩種 layout
+00:47 < au> 很久以前強者設計師 hlb contribute 的
+00:48 < hlb> au: 可是裡面有很多不是我寫的 XD
+00:48 < hlb> 奇妙的 exception 之類的
+00:48 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 260 seconds]
+00:48 < au> .prefer-down-false 不用理會
+00:48 < au> .ios 和 .android 的差別是 ios 多了 back button
+00:48 < au> 大致只有這樣。
+00:49 < au> 我想可以 back/forward 都做在畫面上
+00:49 < au> 和 ios 一致，不再用 android compat mode 的 back button
+00:49 < au> 這樣就沒有 exception 需要維護了
+00:49 < au> .
+00:51 < hlb> au: .ios?
+00:51 < hlb> .prefer-down-false removed
+00:52 < au> @media only screen and (max-width: 767px) { .ios #query-box { left: 60px; } }
+00:52 < au> 這一類的
+00:53 -!- icman [~icman@123.240.147.165] has quit [Quit: 明天天氣晴]
+00:54 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+00:56 -!- adaam_ [~adaam@2001:288:5009:1390:219:b9ff:fe08:260d] has quit [Ping timeout: 252 seconds]
+00:56 < hlb> au: 為什麼 autocomplete 要 override 這麼多 style :p
+00:56 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has left #g0v.tw []
+00:57 < au> hlb: 因為在 >768px 上，原本消失的 autocomplete 要變成只是 .invisible 而不消失
+00:57 < au> 但 <=767px 時則要消失
+00:58 < au> 是最複雜的部份
+00:58 < au> 早換掉早好 XD
+00:58 < hlb> LOL
+00:58 < hlb> # 聽起來像是什麼早期規劃壞掉了 XD
+00:59 < au> # 用 jQuery UI 就是壞掉的開始
+00:59 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has quit [Quit: Leaving.]
+00:59 < hlb> 真的
+01:07 < clkao> 突然覺得 g0v 宣言寫「支持(原來是堅持)言論自由」就注定這幾天類 SOPA 事件的發生了... 
+01:25 < GitHub70> [ly-vote] viirya opened pull request #1: Tweaking click behavior (master...master)  https://github.com/g0v/ly-vote/pull/1
+01:33 < clkao> au: moedict-app repo is just submodule for xulrunner packaging ?
+01:34 -!- mp607 [~mp607@140.130.198.17] has quit [Quit: mp607]
+01:34 < clkao> basically a built moedict-webkit?
+01:36 < au> clkao: correct
+01:36 < clkao> shuold probably add readme/license noting that?
+01:36 < au> to avoid dep on npm webworker threads and whatnot
+01:37 < au> done & pushed
+01:38 < au> clkao++
+01:39 < au> added backlink to moedict-webkit
+02:04 -!- mp607 [~mp607@140.130.198.17] has joined #g0v.tw
+02:15 -!- Supaplextw [~Lucky@1-164-214-83.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+02:38 -!- Supaplextw [~Lucky@1-164-214-83.dynamic.hinet.net] has joined #g0v.tw
+02:42 -!- superbil [~superbil@114-34-221-169.HINET-IP.hinet.net] has quit [Read error: Operation timed out]
+02:42 -!- ETWu [~ETWu@175.182.230.90] has joined #g0v.tw
+02:44 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+02:45 < ETWu> 不好意思，可以弱弱的請問一下現在 IRC Log Bot還有在運作嗎？
+02:45 < ETWu> 因為最近好像沒跟g0v的重要動態，想要回頭參考一下
+02:51 -!- Anony96 [~Anony96@175.182.230.90] has joined #g0v.tw
+02:52 < ETWu> 看來大家可能都在忙或是在睡覺，那我用其他方式問問看好了，謝謝
+02:52 -!- Anony96 [~Anony96@175.182.230.90] has quit [Client Quit]
+02:52 -!- ETWu [~ETWu@175.182.230.90] has quit [Quit: 暫離]
+02:56 -!- superbil [~superbil@114-34-221-169.HINET-IP.hinet.net] has joined #g0v.tw
+03:04 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+03:07 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+03:09 < ETBlue> au: updated! XDDD http://etblue.github.io/rwd/
+03:11 -!- a-tsioh [~pierre@175.176.102.84.rev.sfr.net] has joined #g0v.tw
+03:14 < a-tsioh> 我回來了
+03:15 < a-tsioh> 這邊還有作moedict的人嗎？
+03:29 < au> a-tsioh: 有
+03:30 < au> a-tsioh: a few bug reports to txt2json.py
+03:31 -!- mp607 [~mp607@140.130.198.17] has quit [Quit: mp607]
+03:31 < au> a-tsioh: 1. 英文的量詞 CL:... 可以濾掉, 2. 出現　繁體|簡体[pin1yin1] 時可以考慮只留繁體
+03:31 < au> 或把 pin1yin1 轉成 pīn yīn
+03:32 < au> 然後... https://www.moedict.tw/#海神 的德文是 Davy Jones
+03:32 < kcwu> au's url: [萌典〔教育部國語+臺語有聲辭典〕（民間線上版）]
+03:32 < au> 這是怎麼回事 XD
+03:32 < au> 其他都還好
+03:32 < au> ETBlue++
+03:33 < hlb> ETBlue++
+03:34 < au> 來送 pullreq
+03:34 < hlb> 剛剛在學 graphviz
+03:35 < hlb> 想說找找看有沒有變漂亮一點的方法
+03:35 < hlb> 結果找到 https://code.google.com/p/dot2svg/
+03:35 < kcwu> hlb's url: [dot2svg - Convert a DOT file into a prettier SVG - Google Project Hosting]
+03:35 < hlb> # 這哪裡 prettier 了 +_+
+03:35 < au> 如果不用中文的話有 www.asciiflow.com 喔
+03:35 < au> # 復古
+03:35 < hlb> au: 要唷
+03:36 < au> 好吧
+03:36 < au> # http://ditaa.sourceforge.net/
+03:36 < hlb> !
+03:36 < au> 魔術!
+03:37 < hlb> 可惡我學完 graphviz 了
+03:37 < au> 不過(認真一點說)我是用 OmniGraffle 開 GraphViz 再細調。
+03:37 < au> 不然 OmniGraffle outline mode 等同於 GraphViz (embedded dot)
+03:38 < hlb> au: omnigraffle 可以開 graphviz?
+03:38 < hlb> 可以耶！
+03:39 < au> 而且還可以選 renderer
+03:39 < au> 它裡面內嵌 graphviz engine 啊
+03:41 < hlb> 真的耶！
+03:42 < hlb> 真不愧是神兵利器
+03:42 < hlb> au++ # great tips
+03:42 < au> :D
+03:49 < au> ETBlue: pull req sent https://github.com/ETBlue/rwd/pull/1
+03:49 < kcwu> au's url: [按鈕之後會閃一下螢幕並改變滑鼠游標為 crosshair by audreyt · Pull Request #1 · ETBlue/rwd · GitHub]
+03:50 < au> # live demo @ http://audreyt.github.io/rwd/
+03:52 < ETBlue> 這是我人生中收到的第一個 pull request!!!!!!!!!! /OoO/ 
+03:52 < au> :D
+03:53 < au> 可能要 compass compile 重新生 css
+03:53 < ETBlue> 竟然在 github 上面按一按就 merge 了... 好方便 XDDDDDDDDDD
+03:53 < au> 剛才忘記附上
+03:53 < ETBlue> 喔喔喔好
+04:04 < au> a-tsioh: 然後大部份德文後面都有 (u.E.)，意思是...? 可以省略嗎
+04:05 < au> 然後簡體註釋（尤其是德文的）可能要轉繁體
+04:05 < au> that's all for now
+04:16 < a-tsioh> 結果是我沒有注意到
+04:16 < a-tsioh> au : sorry I was afk
+04:17 < a-tsioh> I have a better """parser""" for another project, I can push it
+04:19 < au> ok please do
+04:19 < au> a-tsioh++
+04:20 < a-tsioh> Davy Jones 是沒錯！！！
+04:21 < au> ahh 海魔
+04:21 < au> I see
+04:22 < a-tsioh> https://en.wikipedia.org/wiki/Davy_Jones'_Locker
+04:22 < kcwu> a-tsioh's url: [Davy Jones' Locker - Wikipedia, the free encyclopedia]
+04:24 < au> yeah. it's closer to the idea of 海魔 or 海魔王
+04:24 < au> but I guess it's close
+04:25 < a-tsioh> you know better than me
+04:25 < a-tsioh> for sure it's not 媽祖
+04:25 < au> lol it's like the polar opposite
+04:26 < a-tsioh> would you be interested in other languages ?
+04:26 < au> sure thing
+04:26 < au> Spanish, Portuguese, Japanese, Korean etc are all fine
+04:27 < au> the more the merrier
+04:27 < a-tsioh> I'm actually thinking to do a fork with some people here, centered on French and with translations to other languages (mostly CJK first)
+04:27 < au> that'd be lovely
+04:27 < a-tsioh> but for sure we can share the data 
+04:27 < a-tsioh> and most of the code I guess
+04:27 < au> a french-french xref webdict would be awesome
+04:28 < a-tsioh> our goal would be to have a GUI in French, and some website to enrich the database
+04:28 < au> great!
+04:29 < a-tsioh> just like what they did for german and english
+04:29 < a-tsioh> but in French and with Taiwanese also
+04:29 < au> I'll be @ Paris August 19 ~ early September, would love to meetup & help out if the project is still ongoing by then
+04:29 < a-tsioh> really ?
+04:29 < a-tsioh> cool
+04:30 < a-tsioh> for sure
+04:30 < au> whee
+04:30 < a-tsioh> and I will be back in TW by autumn
+04:30 < au> perfect
+04:30 < a-tsioh> is it vacations ?
+04:31 < a-tsioh> what happen in Paris in August ?
+04:31 < au> no, I fly to Paris 2 times a year for psychoanalytic training
+04:31 < ETBlue> 在 readme 中把今天討論到的 g0v 專案 meta data 寫進去看看，一邊寫一邊覺得好囉唆...  XD 不過寫完以後覺得以後不用重複跟別人解釋了！叫他自己看 readme 就好了！ XD XD
+04:31 < ETBlue> https://github.com/ETBlue/rwd/blob/master/README.md
+04:31 < kcwu> ETBlue's url: [rwd/README.md at master · ETBlue/rwd · GitHub]
+04:31 < au> ETBlue: 沒錯這就是 README　的用法 XD
+04:31 < ETBlue> au: 感覺好充實噢！我以後都要認真寫 readme（握拳
+04:32 < a-tsioh> nice, how long will you stay
+04:32 < a-tsioh> I should be around at that time
+04:32 < au> ETBlue++ # 翔實的 README
+04:32 < au> a-tsioh: ~Sep 12 or so
+04:33 < a-tsioh> ok so for sure we can meet then
+04:33 < au> awesome
+04:33 < au> happy hacking & have a great localtime
+04:33 < au> gotta hit the hay here \o
+04:33 < a-tsioh> :)
+04:33 < a-tsioh> good night !
+05:23 -!- Supaplextw1 [~Lucky@114-36-251-186.dynamic.hinet.net] has joined #g0v.tw
+05:24 -!- Supaplextw [~Lucky@1-164-214-83.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+05:35 -!- ctf_ [~ctf@gateway/tor-sasl/ctf/x-48556045] has quit [Ping timeout: 240 seconds]
+05:41 -!- ctf_ [~ctf@gateway/tor-sasl/ctf/x-48556045] has joined #g0v.tw
+06:37 < ETBlue> 今天的 prehackath3n 記錄
+06:37 < ETBlue> https://g0v.hackpad.com/g0v-anger-tank-5MpE16uwqzi
+06:37 < kcwu> ETBlue's url: [g0v anger tank - g0v.hackpad.com]
+06:37 < ETBlue> 上面連結：零時政府化憤池 XD
+06:38 < ETBlue> https://g0v.hackpad.com/g0vtw-website-planning-and-ui-design-YC0Ig73WEMJ
+06:38 < kcwu> ETBlue's url: [g0v.tw website planning and ui design - g0v.hackpad.com]
+06:38 < ETBlue> 上面連結：g0v 網站規劃與介面設計
+07:02 -!- ETBlue_ [~chatzilla@175.182.237.104] has joined #g0v.tw
+07:02 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Ping timeout: 256 seconds]
+07:02 -!- ETBlue_ is now known as ETBlue
+08:10 -!- Jedi_ [~Jedi@jedi.org] has quit [Ping timeout: 248 seconds]
+09:04 -!- adaam [~adaam@2001:288:5009:1390:219:b9ff:fe08:260d] has joined #g0v.tw
+09:13 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+09:27 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+09:39 -!- a-tsioh [~pierre@175.176.102.84.rev.sfr.net] has quit [Quit: WeeChat 0.3.8]
+09:47 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+09:55 < tkirby> !
+09:55 < tkirby> 有沒有 prehackathon 的報導或記錄... XD
+10:02 -!- jslee [~jslee@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+10:08 -!- MnO2 [~MnO2@nat/yahoo/x-fcrsdfiylriluteb] has joined #g0v.tw
+10:09 -!- FourDollars [~sylee@175.41.48.77] has joined #g0v.tw
+10:09 -!- chihchun_afk is now known as chihchun
+10:12 < ETBlue> tkirby: ipa 有拿大台家撕錄影 XDD
+10:12 < tkirby> nice XD
+10:13 < ETBlue> tkirby: ipa 要負責整理 g0v.tw 首頁，要照阿修提出的 best practice 照表操課，這規劃過程極為艱鉅...
+10:14 < ETBlue> 沒有 programmer 及早加入一起 brain storming 的話幾乎不可能完成啊！
+10:14 < hychen> tkirby, 我昨天聽到了一堂改變人生的課
+10:15 < ETBlue> tkirby: 唉，這麼困難的事情 ipa 到底能跟哪個不畏挑戰的 programmer 討論呢？（苦思）
+10:15 < tkirby> hychen: 噢噢噢我要聽
+10:16 < tkirby> 阿修! 是新朋友嗎
+10:16 < tkirby> ETBlue: 你.. 是在暗示什麼嗎 xD
+10:16 < ETBlue> tkirby: 阿修之後每個 check point 都會幫 ipa review 設計稿喔，想一起聽阿修開示嗎
+10:16 < ETBlue> tkirby: 阿修是在外面開一堂課要天價的 ux 大師啊
+10:17 < tkirby> ETBlue: 可以先透露一下阿修的底細嗎 xD
+10:17 < ETBlue> ㄟ他的 id 是什麼... 我找找
+10:17 < ETBlue> 我只知道他很有名 = ="
+10:17 < tkirby> XD
+10:18 < ETBlue> 這個！ http://www.slideshare.net/lis186
+10:18 < kcwu> ETBlue's url: [Justin Lee, App developer & ux designer at Self-employed | SlideShare]
+10:19 < tkirby> ohoh!
+10:25 -!- pm5_ [~pm5@111-248-231-78.dynamic.hinet.net] has joined #g0v.tw
+10:26 < tkirby> 所以昨天主要的產出是 g0v.tw web refine kick off + 化憤池 ?
+10:29 < ETBlue> 不只噢這只是後半段的
+10:29 < ETBlue> au 搞了萌典的四國語言
+10:30 < ETBlue> 還發 pull request 給綠盟的網頁 http://etblue.github.io/rwd/
+10:30 < ETBlue> hychen 他們在搞一些我不懂的咚咚
+10:31 < ETBlue> 還有福利傾聽好像也再弄 ui
+10:31 < hychen> tkirby, 踩到ghc在mac上的bug
+10:31 < hychen> tkirby, 昨天大概都在setup yesod on mac.
+10:32 -!- kanru` [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:33 < ETBlue> 還有討論各專案的 meta data 的欄位，g0v的策略大方向
+10:33 < tkirby> !
+10:34 < tkirby> hychen: ghc 的 bug 改變了你的人生..?
+10:34 < tkirby> 聽起來昨天沒去真是太遺憾了... orz
+10:34 < hychen> tkirby, 喔, 我是指阿修的UI short talk.
+10:35 < ETBlue> tkirby: XDDDDDDDDDDD
+10:35 < tkirby> XD
+10:36 < tkirby> 他有莉莉絲 slide or so 嗎, 好想拜見一下 xD
+10:36 < ETBlue> 莉莉絲是啥？使徒？
+10:37 < ETBlue> 喔喔 release..... = ="
+10:37 < clkao> lilisu!
+10:37 < clkao> rellease 的日文
+10:37 < tkirby> xD
+10:37 < tkirby> clkao!
+10:38 < MnO2> hychen: 好奇你踩到 ghc 的 bug 是哪一隻？請問有 ticket 嗎？
+10:38 < clkao> http://www.slideshare.net/lis186
+10:38 < kcwu> clkao's url: [Justin Lee, App developer & ux designer at Self-employed | SlideShare]
+10:39 < hychen> MnO2, https://www.google.com.tw/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&ved=0CDEQFjAA&url=https%3A%2F%2Fgroups.google.com%2Fd%2Ftopic%2Fyesodweb%2Fmr540RJ7qlw&ei=wdKeUZDUEsHGkAWiyYD4Bg&usg=AFQjCNH3xzkksqrGDzgFoxNqzk9EP6gmGA&sig2=4FX97Va3IwC9-RdcNABAzA
+10:39 < hychen> MnO2, it is fixed on ghc 7.6
+10:39 < MnO2> hychen: thanks, 我看一下
+10:39 < clkao> tkirby: 不過昨天的好像是收費課程內容 但 有幾張簡報我在他其他talk看過
+10:41 < clkao> tkirby: 話說這時間你怎在 irc 上
+10:42 < ETBlue> tkirby: 簡報內容我記得的都寫在 hackapad 上惹，但我覺得那個簡報沒有講解是沒用的，光看心法不能練功啊 XD
+10:50 < ETBlue> tkirby: 喔還有阿修 demo 了神奇的用平板做簡報 app 還有 wacom 耳機筆...
+10:58 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has joined #g0v.tw
+10:59 < tkirby> clkao: 我今天請假~
+10:59 < tkirby> ETBlue: xD
+11:05 -!- adaam [~adaam@2001:288:5009:1390:219:b9ff:fe08:260d] has quit [Ping timeout: 240 seconds]
+11:06 < clkao> tkirby: 噢 那.. 下午要來和多國際總部嗎？
+11:06 < hcchien> 和多國際總部!!
+11:06 < tkirby> 國..國際總部
+11:07 < tkirby> 下午與人有約...  話說你們現在不去班式改去和多星際^H^H總部啦?
+11:07 < clkao> 是的
+11:08 < tkirby> nice...
+11:08 < clkao> 分租辦公室 :P
+11:08 < tkirby> 賀
+11:09 < tkirby> socialtext tw office!
+11:09 < hcchien> 但 clkao 為什麼需要辦公室呢
+11:10 < clkao> 就每週工作一次啊 本來在咖啡店
+11:10 < hcchien> soga
+11:10 < ETBlue> 難道他是為了 g0v 租的
+11:10 < ETBlue> 嗯嗯咖啡店的椅子不能換...
+11:10 < clkao> 噓 你知道軍火什麼的需要地方放... 
+11:10 < tkirby> 噢噢噢
+11:11 < ETBlue> （擊掌）
+11:11 < tkirby> 原來是 掛 socialtext 牌 賣 g0v 肉 (?!)
+11:16 -!- MnO2 [~MnO2@nat/yahoo/x-fcrsdfiylriluteb] has quit [Quit: MnO2]
+11:19 -!- Johnny5TW [~chatzilla@111-246-77-125.dynamic.hinet.net] has joined #g0v.tw
+11:27 -!- adaam [~adaam@2001:288:5009:1390:219:b9ff:fe08:260d] has joined #g0v.tw
+11:31 -!- Johnny5TW [~chatzilla@111-246-77-125.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.90 [Firefox 21.0/20130511120803]]
+11:36 -!- MnO2 [~MnO2@nat/yahoo/x-dmsbbplauiuwvlgq] has joined #g0v.tw
+11:52 < hlb> tkirby: 你知道 clkao 昨天來之後，跟我說的第五句話是「問你一個 CSS 的問題」
+11:53 < hlb> 前四句是「嗨」「我也帶了咖啡豆」「晚上吃什麼」「（忘記了）」
+11:55 < hlb> 好像還是吃什麼之類的 XD
+11:55 < hlb> 還是 angularjs 超棒
+12:01 -!- superd [superd@saturn.stu.edu.tw] has quit [Read error: Connection reset by peer]
+12:01 -!- Custom [custom@saturn.stu.edu.tw] has quit [Read error: Connection reset by peer]
+12:01 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+12:01 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+12:05 < clkao> 明明就先給你上次台南的禮物 :p
+12:08 < au> <br style="clear: both; height: 0"> # 前述 CSS 問題的答案
+12:10  * au 往和多交際總部移動中
+12:23 -!- MnO2 [~MnO2@nat/yahoo/x-dmsbbplauiuwvlgq] has quit [Quit: MnO2]
+12:30 -!- MnO2 [~MnO2@nat/yahoo/x-zucmsttzgjjqflxc] has joined #g0v.tw
+12:37 < hlb> clkao: 對！ :D
+12:37 -!- poga [~poga@114-25-229-72.dynamic.hinet.net] has joined #g0v.tw
+12:37 < hlb> au: 說好不要用的啊啊啊
+12:38 < au> IE7 也是說好不要用的啊啊啊
+12:38 < clkao> ....
+12:38 < au> 兩者相當般配(咦)
+12:50  * au 難得地先到了
+13:19 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+13:25 < tkirby> 原..原來是 CSS Technical Support "被"進駐....
+13:28 -!- MnO2 [~MnO2@nat/yahoo/x-zucmsttzgjjqflxc] has quit [Quit: MnO2]
+13:31 < hlb> 剛剛在高鐵想這個 https://gist.github.com/hlb/5641449
+13:38 < ipa> handlino star fleet...earth branch
+13:38 -!- MnO2 [~MnO2@nat/yahoo/x-tirquuwmzemfvjjt] has joined #g0v.tw
+13:38 < clkao> o/~ planet earth is blue o/~
+13:40 < ipa> ETBlue: 抖，不是要一起弄首頁（拉etblue衣角）....如果阿修當天有來蒞臨指導，我們就現賺幾千元耶
+13:40 < ipa> （現賺阿修老師平常課程的學費）
+13:45 < hlb> ipa: 事實上是一個人 6000 之類的
+13:45 < hlb> ipa: 昨天賺了 70000
+13:47 < hcchien> !!!
+14:00 < ipa> !!!
+14:01 < ipa> 還改作業我不是賺翻了 ^^
+14:01 < hlb> ipa: 親傳弟子
+14:06 -!- adaam [~adaam@2001:288:5009:1390:219:b9ff:fe08:260d] has quit [Ping timeout: 264 seconds]
+14:12 < clkao> win 21
+14:13 -!- chihchun is now known as chihchun_afk
+14:15 -!- pm5__ [~pm5@111-248-231-78.dynamic.hinet.net] has joined #g0v.tw
+14:15 -!- pm5__ [~pm5@111-248-231-78.dynamic.hinet.net] has quit [Client Quit]
+14:15 -!- pm5_ [~pm5@111-248-231-78.dynamic.hinet.net] has quit [Remote host closed the connection]
+14:15 -!- pm5 [~pm5@111-248-231-78.dynamic.hinet.net] has joined #g0v.tw
+14:22 -!- chihchun_afk is now known as chihchun
+14:26 -!- pm5 [~pm5@111-248-231-78.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+14:28 < jslee> hello 很高興路過會議室就join g0v了 ， 可以幫點什麼嗎 ？ 專長是 python 跟 小提琴
+14:29 < clkao> jslee!!
+14:30 < jslee> ！！
+14:32 -!- pm5 [~pm5@111-248-231-78.dynamic.hinet.net] has joined #g0v.tw
+14:33 < tkirby> jslee!
+14:35 < jslee> http://jslee.name/
+14:35 < kcwu> jslee's url: [jslee | I write code.]
+14:35 < jslee> 果然馬上被人肉惹～
+14:36 -!- lazywei [01ab35db@gateway/web/freenode/ip.1.171.53.219] has joined #g0v.tw
+14:36 < lazywei> morning
+14:38 < ipa> good day
+14:38 < lazywei> 想請教一下有辦法查詢公有的「機車、汽車停車位」的資訊嗎？
+14:38 < lazywei> 我猜一定沒 api，不過只要能查詢就好
+14:39 < ETBlue> ipa: 對壓我也有把自己列上去... 只是分工不太一樣（咦） XDDD
+14:41 < clkao> lazywei: 這應該會是個地方政府網站 台北市的話應該是停管處？
+14:42 < lazywei> clkao: 了解！我來研究看看
+14:42 < clkao> lazywei: 有找到可以貼到 data.g0v.tw ;)
+14:42 < lazywei> OK
+14:43 < clkao> (其實沒找到也可以貼)
+14:43 < ETBlue> 好像看過什麼開放空間還是公共停車位（容積獎勵）的那種不知道算不算
+14:43 < clkao> 覺得這種各地方政府負責的同類資訊 才更需要被整理... 
+14:43 < ipa> http://www.tpis.nat.gov.tw/internet/index.asp
+14:43 < kcwu> ipa's url: [歡迎光臨臺北市停車資訊導引系統]
+14:43 < ipa> google到的 
+14:51 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 248 seconds]
+14:51 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 248 seconds]
+14:51 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+14:51 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+14:53 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+14:54 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has quit [Client Quit]
+15:00 -!- pm5 [~pm5@111-248-231-78.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+15:15 -!- poga [~poga@114-25-229-72.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+15:26 -!- chadliu23 [chadliu23@2002:8c6d:13c0::8c6d:13c0] has quit [Quit: Leaving]
+15:31 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has joined #g0v.tw
+15:32 -!- chadliu23 [chadliu23@2002:8c6d:13c0::8c6d:13c0] has joined #g0v.tw
+15:41 -!- chadliu23 [chadliu23@2002:8c6d:13c0::8c6d:13c0] has quit [Read error: Connection reset by peer]
+15:41 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has quit [Quit: Leaving.]
+15:41 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has joined #g0v.tw
+15:41 -!- chadliu23 [~chadliu23@DHCP-19192.iis.sinica.edu.tw] has joined #g0v.tw
+15:53 < hychen> node.js 有推薦的rest client嗎?
+15:53 < clkao> hlb: request?
+15:53 < clkao> 不過也許有更 resty 的 client... 
+15:56 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+15:57 < hychen> hmm
+15:57 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has joined #g0v.tw
+15:57 -!- poga_ [~poga@220-128-121-87.HINET-IP.hinet.net] has joined #g0v.tw
+15:58 < hychen> google第一名 restler 
+16:01 -!- chadliu23 [~chadliu23@DHCP-19192.iis.sinica.edu.tw] has quit [Quit: Leaving]
+16:01 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+16:01 -!- chadliu23 [~chadliu23@DHCP-19192.iis.sinica.edu.tw] has joined #g0v.tw
+16:06 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: 881]
+16:07 -!- pm5 [~pm5@111-248-231-78.dynamic.hinet.net] has joined #g0v.tw
+16:12 -!- pm5 [~pm5@111-248-231-78.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+16:29 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+16:29 -!- chadliu23 [~chadliu23@DHCP-19192.iis.sinica.edu.tw] has quit [Quit: Leaving]
+16:30 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+16:30 -!- chadliu23 [~chadliu23@DHCP-19192.iis.sinica.edu.tw] has joined #g0v.tw
+16:36 -!- gdx [~gdx@staff.kkbox.com.tw] has quit [Quit: leaving]
+16:36 -!- gdx [~gdx@staff.kkbox.com.tw] has joined #g0v.tw
+16:37 -!- gdx [~gdx@staff.kkbox.com.tw] has quit [Client Quit]
+16:37 -!- jslee [~jslee@114-35-121-105.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+16:39 -!- gdx [~gdx@staff.kkbox.com.tw] has joined #g0v.tw
+16:39 -!- gdx [~gdx@staff.kkbox.com.tw] has quit [Client Quit]
+16:40 -!- gdx [~gdx@staff.kkbox.com.tw] has joined #g0v.tw
+16:41 -!- gdx [~gdx@staff.kkbox.com.tw] has quit [Client Quit]
+16:51 -!- poga_ [~poga@220-128-121-87.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+16:52 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+17:05 -!- pm5 [~pm5@111-248-231-78.dynamic.hinet.net] has joined #g0v.tw
+17:18 -!- Swind_ [3b7daee2@gateway/web/freenode/ip.59.125.174.226] has joined #g0v.tw
+17:22 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has quit [Quit: Leaving.]
+17:29 -!- Swind_ [3b7daee2@gateway/web/freenode/ip.59.125.174.226] has quit [Quit: Page closed]
+17:38 -!- MnO2 [~MnO2@nat/yahoo/x-tirquuwmzemfvjjt] has quit [Quit: MnO2]
+17:47 -!- MnO2 [~MnO2@nat/yahoo/x-xcchqlorjhuniktq] has joined #g0v.tw
+17:54 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:01 -!- MnO2 [~MnO2@nat/yahoo/x-xcchqlorjhuniktq] has quit [Quit: MnO2]
+18:03 -!- lazywei [01ab35db@gateway/web/freenode/ip.1.171.53.219] has quit [Quit: Page closed]
+18:05 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+18:07 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 256 seconds]
+18:08 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+18:08 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has joined #g0v.tw
+18:11 -!- FourDollars [~sylee@175.41.48.77] has quit [Quit: leaving]
+18:17 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has quit [Quit: Leaving.]
+18:26 -!- pm5 [~pm5@111-248-231-78.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+18:42 -!- kanru` [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+18:52 -!- chihchun is now known as chihchun_afk
+19:14 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+19:17 -!- pm5 [~pm5@111-248-231-78.dynamic.hinet.net] has joined #g0v.tw
+19:20 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: 881]
+19:31 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has joined #g0v.tw
+19:35 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has quit [Client Quit]
+19:43 -!- pm5 [~pm5@111-248-231-78.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+20:21 -!- a-tsioh [~pierre@nat-rech-217.net.univ-paris-diderot.fr] has joined #g0v.tw
+20:25 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+20:40 < clkao> au: do we have ethercalc api to append single entry?
+20:49 -!- pm5 [~pm5@111-248-231-78.dynamic.hinet.net] has joined #g0v.tw
+20:54 -!- pm5 [~pm5@111-248-231-78.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+21:08 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+21:21 -!- Xyoyo [3ddb9539@gateway/web/freenode/ip.61.219.149.57] has joined #g0v.tw
+21:22 < hlb> clkao: request?
+21:22 -!- Xyoyo [3ddb9539@gateway/web/freenode/ip.61.219.149.57] has quit [Client Quit]
+21:43 -!- a-tsioh [~pierre@nat-rech-217.net.univ-paris-diderot.fr] has quit [Ping timeout: 252 seconds]
+21:46 < clkao> hlb: request for node.js
+21:50 < hlb> clkao: 你應該是要跟 hychen 講？
+21:50 < clkao> right
+21:51 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has joined #g0v.tw
+21:51 -!- clkao changed the topic of #g0v.tw to: http://hack.g0v.tw/#/g0v-hackath3n | 第參次客廳工廠黑客松 6/8 registrano.com/events/g0v-prehackath3n | [注意]本channel 有在log
+21:54 < ETBlue> 我們有沒有某種可顯示出統一集團相關企業挾通路箝制其他媒體或食品公司的圖表...
+21:55 < ETBlue> http://murmur.tw/ronnywang/5312765
+21:55 < kcwu> ETBlue's url: [1999年的千面人事件，統一因中時晚報刊登7-11負面消息，因此將中時晚報移到最下層造成銷售量大減，讓中時晚報必需跟統一道歉。從此媒體不太敢再報統一集團的壞話。這次毒澱粉也是一樣，跟義美用過期原料一樣都該被譴責，卻沒見到統一被以相當的力道批評，統一已經是掌握了媒體的巨獸 - murmur.tw]
+21:55 < ETBlue> 天啊我好像需要化憤池
+21:56 < clkao> strategy & scope? XD
+21:59 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has quit [Quit: Leaving.]
+22:11 < ronnywang> 用整理新聞的? 像統一以前幹過把中時晚報放到最下面和商周下架
+22:12 < ronnywang> 時間軸的呈現方式?
+22:13 < clkao> 除了這兩個之外還有嗎？然後就是好像要想說要達到什麼訴求？要大家少去該集團相關企業消費？還是... ?
+22:17 -!- mp607 [~mp607@61-64-176-185-adsl-kao.dynamic.so-net.net.tw] has joined #g0v.tw
+22:18 < ronnywang> 針對媒體的部份我比較有印象是這兩個，至於食品安全問題的已經有滿多人整理出歷年記錄了
+22:22 < ronnywang> 能做的就是盡自己所能抵制所有統一品牌的東西，包括7-11, 星巴客, Mr.Donuts, 康世美, code stone, 無印良品, 黑貓宅急便, 21世紀, 家樂福, 統一阪吉, 博客萊...
+22:24 < ronnywang> 不過大部份人已經被 7-11 的方便給制約了，像我公司最近一家非 7-11 要走 10 分鐘，這範圍內已經有六家 7-11 了吧
+22:27 < clkao> 超恐怖 我應該是只有會被 pchome 寄宅即便 不然其他都不去 有全家就不會去 7-11
+22:30 < ronnywang> 我從塑化劑事件後就沒再去過7-11,星巴克了，上次去匪區本來想說終於可以喝星巴克了，沒想到連匪區的星巴克都是統一的
+22:30 < Jedi_> 人家有 台灣統一大陸 公司
+22:34 -!- VoidChen [~VoidChen@114-45-246-158.dynamic.hinet.net] has joined #g0v.tw
+22:37 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has joined #g0v.tw
+22:41 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has quit [Client Quit]
+22:43 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+23:12 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has left #g0v.tw []
+23:20 -!- a-tsioh [~pierre@7.17.90.92.rev.sfr.net] has joined #g0v.tw
+23:25 -!- UncleHandsome [~sora@UncleHandsome.Dorm8.NCTU.edu.tw] has joined #g0v.tw
+23:30 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+23:36 < ETBlue> 這樣說來應該要附上統一集團替代品才行 XD
+23:36 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Quit: Textual IRC Client: www.textualapp.com]
+23:37 < ETBlue> 不吃甜甜圈和冰淇淋可以減肥，不去康是美去屈臣氏，喔喔喔天啊我不知道無印良品也是統一的
+23:38 < clkao> alternativeto !
+23:38 < ETBlue> 「台灣統一大陸」公司光名稱聽起來是有點威.....
+23:38 < clkao> alternativeto.net 真實世界版
+23:39 < ETBlue> 喔喔喔喔喔 http://alternativeto.net/ 
+23:39 < kcwu> ETBlue's url: [AlternativeTo - Social Software Recommendations]
+23:40 < clkao> ETBlue: 對了... bootstrap 的 navigation menu 你用過了嗎 :p
+23:40 < ETBlue> clkao: 我沒用過 bootstrap @@" 但 tka 常用 XD
+23:40 < ETBlue> clkao: 在哪要用到？
+23:40 < clkao> 想把 hack.g0v.tw 上面那條的長期專案 放在一個下拉 menu
+23:40 < clkao> 不然太長了
+23:41 < ETBlue> 我試著研究一下 @@"
+23:42 -!- CrBoy [~crboy@academy.csie.ncku.edu.tw] has joined #g0v.tw
+23:42 -!- a-tsioh [~pierre@7.17.90.92.rev.sfr.net] has quit [Ping timeout: 256 seconds]
+23:43 < clkao> 太好了 assign 給你了 :p
+23:44 < ETBlue> なんゃて　＠＠
+23:44 < S3p_lin> clkao++  # 推坑
+23:44 < ETBlue> np 我搞不定的話就拖坐在我對面的下水 XD
+23:44 < clkao> transtive 推坑
+23:45 < S3p_lin> push someone to somehole
+23:46 < S3p_lin> ref: pigeonhole principle
+23:46 < S3p_lin> 坑都挖了, 總要埋人進去
+23:46 < clkao> ちつに面白い
+23:47 < ETBlue> 先說好我要是 commit 了奇怪的東西那一定是 git 操作錯誤的結果 ... XD
+23:48 < clkao> 沒關係 都可以 revert :p
+23:50 -!- superbil [~superbil@114-34-221-169.HINET-IP.hinet.net] has quit [Ping timeout: 265 seconds]
+23:53 < au> clkao: 目前沒有 append to ethercalc 的 API - issue / test / pullreq welcome
+23:53 < au> 有了就可以做 form input 了

@@ -1,0 +1,441 @@
+--- Day changed 三  6月 12 2013
+00:00 < Jedi_> ETBlue: 請保護眼睛，適量休息
+00:00 < Jedi_> ETBlue: (雖然我還可以告訴你，視障買望遠鏡有補助)
+00:01 < ETBlue> 世界奇觀組提議隔週小松 https://g0vww.hackpad.com/0Anf3xIpVRq
+00:01 < mindos> Jedi_ : 節能救地球
+00:01 < mindos> 小黑客松好像很可愛的樣子，可以擬人化
+00:01 < kcwu> ETBlue's url: [世界奇觀 - g0vww.hackpad.com]
+00:01 -!- pm5 [~pm5@111-248-209-219.dynamic.hinet.net] has joined #g0v.tw
+00:01 < ETBlue> 在「置頂討論區」那裡寫的
+00:02 < clkao> :D
+00:03 < clkao> 我快被 chef 搞死了
+00:03 < clkao> 不過 終於把 lqfb 設成用 nginx 了. 不需要再跑 lighttpd 了
+00:03 < au> lighttpd... 好懷古
+00:03 < cls_bsd> 真的...
+00:04 < clkao> 苦悶
+00:04 < hychen> clkao, pgrest的recip有包含web server嗎?
+00:05 < clkao> hychen: no 就是裝起來而已
+00:05 < clkao> 目前要自己跑 
+00:05 < clkao> 不過我正在獲得 nginx cookbook 之奧義
+00:05 < clkao> hychen: i commented on your issue
+00:05 -!- mindos_ [~mindos@220-137-74-110.dynamic.hinet.net] has joined #g0v.tw
+00:05 -!- pm5 [~pm5@111-248-209-219.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+00:06 < hychen> clkao, still the same error
+00:07 < clkao> can you access the db at all?
+00:08 < hychen> yes
+00:08 < hychen> sudo su postgres -c psql 
+00:09 < clkao> 那 sudo su postgres -c 'pgrest --db foo' 會 access denied?
+00:10 < hychen> 不是,是會拋出異常
+00:10 < clkao> hychen: 耶 我發現那個 cookbook 只有把 plv8 裝起來... 你是自己 clone clkao/pgrest 嗎？ npm i -g ?
+00:10 < hychen> 但是沒有任何資訊
+00:10 < hychen> clkao, yes
+00:10 < clkao> oh 我知道了
+00:10 < clkao> 昨天踩到的雷
+00:11 -!- mindos [~mindos@220-137-74-110.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+00:11 -!- mindos_ is now known as mindos
+00:11 < clkao> hychen: pull and npm i again. trycatch 0.2.x breaks things
+00:11 < clkao> just pushed
+00:12 < hychen> clkao, ok
+00:12 < hychen> clkao, 我是用npm -i g
+00:13 < clkao> au: 我覺得 vote.g0v.tw 不大好 好像只強調投票的動作 應該 somehow 帶出那個參與的感覺 # 民主不是投票凍蒜
+00:13 < hychen> clkao, 所以我要把src抓下來再裝對吧
+00:13 < clkao> hychen: `npm i -g .` from the clone works too
+00:13 < hychen> ok
+00:14 < clkao> 頭好痛啊
+00:14 < clkao> 好像終於過了 我的 vagrant provision with lqfb+nginx
+00:14 < au> clkao: gov.tw naming convention says we can use cec.g0v.tw 
+00:15 < clkao> somehow that should be providing better api / ui to cec.gov.tw, no?
+00:18 < au> point
+00:18 < au> point.g0v.tw
+00:18 < au> motion.g0v.tw # 動
+00:18 < clkao> act.g0v.tw ?
+00:18 < clkao> 也是動
+00:18 < clkao> XD
+00:18 < au> act is good
+00:19 < au> 愈短愈好
+00:19 < clkao> 也有 yapc coneference toolkit 思古之幽情
+00:19 < au> 那就 act 吧
+00:19 < hychen> 要怎麼辨認pgrest是正確得版本?
+00:19 < hychen> pgrest -v got trycatch exception
+00:20 < clkao> hychen: 另個方式是 直接在 clone 出來的地方 lsc bin/cmd.ls --db MYDB
+00:20 < hychen> clkao, clone 是指pgrest的位置?
+00:20 < clkao> yeah
+00:20 < clkao> 就保證是最新的
+00:21 < hychen> let me trytry
+00:25 < hychen> got error: password authentication failed for user "postgres"
+00:25 < hychen> must to sleep
+00:25 < hychen> let me try tomoroow.
+00:25 -!- hychen [~hychen@host-219-68-120-150.dynamic.kbtelecom.net] has quit [Quit: 暫離]
+00:32 < ipa> mindos: 小黑客松要來個擬人圖案了嗎？敬邀尊夫人跳坑～
+00:33 < ipa> act+1
+00:34 < clkao> alright lqfb-test is now on nginx.
+00:34 -!- caasiHuang [~caasi@114-46-146-206.dynamic.hinet.net] has joined #g0v.tw
+00:44 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+00:44 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+00:52 -!- caasiHuang [~caasi@114-46-146-206.dynamic.hinet.net] has quit [Quit: leaving]
+00:56 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+00:56 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+01:07 -!- jslee [~jslee@111-250-116-86.dynamic.hinet.net] has joined #g0v.tw
+01:17 -!- chhsiao2081 is now known as chhsiao1981
+01:18 < ETBlue> 看完一輪名字感想：congress 符合系統原意，vote 直觀，cec 正式，motion / act 符合中文名，除了 congress 跟 cec 之外的都好記...
+01:30 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+01:32 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+01:33 < au> http://lqfb-test.g0v.tw/pf/issue/show/9.html
+01:33 < kcwu> au's url: [議案 #9 - 「動民主」 - g0v.tw]
+01:45 < clkao> updated lqfb cookbook to work with remote pg server
+01:45 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+01:46 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+02:03 < ETBlue> prfb mobile 所有 level 1 頁面初稿完成... Zzz https://picasaweb.google.com/110174937980629662857/G0v#5888284998179863954
+02:03 < kcwu> ETBlue's url: [Picasa Web Albums - ET Blue - g0v]
+02:06 < clkao> ETBlue: 數字亮起來表示... ?
+02:07 < ETBlue> 該做點事了（？）
+02:09 < clkao> 噢，就是 open 的 非 0 就會有顏色？
+02:09 < clkao> (除了底定)
+02:09 < clkao> 是說底定時也可以在提新方案... 
+02:09 < ETBlue> 是呀，我想說既然底定期什麼都不能做就不用 highlight 他了...
+02:09 < ETBlue> 是喔！！！！囧
+02:09 < ETBlue> 我不知道 orz
+02:10 < clkao> 不能修改原有的了
+02:10 < ETBlue> 那還是 highlight 一下好了
+02:13 < ETBlue> hmm. 這樣有邏輯多了 https://picasaweb.google.com/110174937980629662857/G0v#5888290147073249522
+02:13 < kcwu> ETBlue's url: [Picasa Web Albums - ET Blue - g0v]
+02:17 < ETBlue> 有些頁面覺得好像可以刪掉，但需要討論... 先放著等我從台中回來再說好惹
+02:22 < clkao> ETBlue++ # 太強了
+03:08 -!- chuiyi [~Chuiyi@220-135-178-174.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+03:23 < hlb> ETBlue: 要來嗎 # HDmini
+03:24 < hlb> ETBlue: 就像 clkao 講的，這是一個只有 lightning talk 的閒聊 gathering
+03:24 < hlb> # http://registrano.com/events/happydesigner-mini-1 整理出了所有的題目
+03:25 < kcwu> hlb's url: [HappyDesigner Mini 分享會 #1 | Registrano]
+03:25 < ETBlue> hlb: 大半夜的沒睡覺推坑別人 /OoO/
+03:25 < ETBlue> 我今天已經看到這連結第三次惹 QAQ
+03:26 < ETBlue> ..... 看了你們的主題，覺得自己實在乏善可陳......
+03:28 < ETBlue> hlb: 我研究一下自己能分享什麼然後再投稿給你看看有沒有能用的好了 >"<
+03:30 < hlb> ETBlue: 只要是實戰主題其實都很不賴
+03:30 < hlb> ETBlue: 例如 "我如何搞定動民主 prototype"
+03:31 < ETBlue> ...但我搞不定啊！！！ QAQ
+03:31 < hlb> ETBlue: "動民主是個概念良好，設計遭透的工具"
+03:31 < hlb> ETBlue: "我目前的進度是... 我認為我作對了... 不過還有一些事情搞不定... 待會歡迎大家給我建議。"
+03:32 < ETBlue> 喔喔喔喔喔喔喔！！！！！！！
+03:32 < ETBlue> 這樣可以順便問阿修問題耶！！！ @_@
+03:32 < hlb> ETBlue: "心得分享：某某東西是不對的，直接不要用"
+03:32 < ETBlue> 我怎麼沒想到！
+03:32 < hlb> ETBlue: 不用寫投影片
+03:33 < hlb> ETBlue: 電腦接上去開著 code/mockup/whatever 介紹就好
+03:33 < hlb> ETBlue: no pressure
+03:33 < ETBlue> 嗚嗚嗚！我要去啊啊啊啊啊！ QAQ
+03:33 < ETBlue> 來報名 >///<
+03:34 < hlb> ETBlue: 那妳要先確定妳 7/18 有空來分享 :p
+03:34 < hlb> ETBlue: 確定的話請用 KG64PC4S4G 報名 :p
+03:35 < ETBlue> 啊，要到7/18才能問阿修問題...
+03:35 < hlb> 阿修這次就會來啊......
+03:35 < ETBlue> 有空（用力點頭）會拼死命趕上台北的
+03:35 < ETBlue> 那我這次私底下騷擾他好惹
+03:36 < hlb> LOL
+03:36 < ETBlue> 我頭上已經累積了一大陀烏雲般的問題要問他... 可惜 ipa 不能一起來 @@
+03:37 < ETBlue> ipa: 我問完問題會努力做筆記的
+03:42 -!- clkao_kiwi [~clkao_kiw@111-240-177-132.dynamic.hinet.net] has joined #g0v.tw
+03:43  * clkao_kiwi slaps clkao around a bit with a large trout
+03:52 < ETBlue> hlb: clkao: 報名完成 O_O 
+03:53 < ETBlue> 分享主題
+03:53 < ETBlue> 我如何搞不定動民主的 prototyping
+03:53 < ETBlue> 分享主題介紹
+03:53 < ETBlue> 選前苦苦哀求，選後當作沒有，僵硬的投票制度所產生的民主弊端促使「動民主」的誕生。動民主是海盜黨內部使用的資訊系統，我們可以利用它把投票權委託給代議士，但也隨時可以取回。動民主系統有各種優良民主制度的功能，但介面卻讓人難以理解：http://lqfb-test.g0v.tw/pf 因此，引進動民主時除了�
+03:53 < kcwu> ETBlue's url: [「動民主」 - g0v.tw]
+03:53 < ETBlue> ��字翻譯之外，介面也需要重新設計。菜鳥我即將跟大家分享搞不定這套系統的心路歷程... 工作進度目前放在 https://picasaweb.google.com/110174937980629662857/G0v 相簿持續更新中（越後面的越新）
+03:53 < kcwu> ETBlue's url: [Picasa Web Albums - ET Blue - g0v]
+04:29 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 256 seconds]
+04:38 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Read error: No route to host]
+04:38 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+04:42 -!- chihchun is now known as chihchun_afk
+04:44 -!- chuiyi [~Chuiyi@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+04:44 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+04:44 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+04:44 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+04:44 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+04:49 -!- chuiyi [~Chuiyi@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+04:55 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+05:39 -!- jslee [~jslee@111-250-116-86.dynamic.hinet.net] has quit [Remote host closed the connection]
+05:45 -!- chuiyi [~Chuiyi@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+05:49 -!- chuiyi [~Chuiyi@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+06:09 -!- jslee [~jslee@111-250-116-86.dynamic.hinet.net] has joined #g0v.tw
+06:16 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+06:18 -!- jslee [~jslee@111-250-116-86.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+06:35 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+06:42 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+07:02 -!- ETBlue_ [~chatzilla@175.182.237.104] has joined #g0v.tw
+07:03 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Ping timeout: 260 seconds]
+07:03 -!- ETBlue_ is now known as ETBlue
+07:28 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit []
+08:10 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+08:11 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+08:23 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+08:29 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+08:34 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 276 seconds]
+09:01 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+09:01 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+09:02 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+09:03 < ipa> ETBlue++ hlb++ 
+09:21 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 260 seconds]
+09:39 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+09:39 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+09:40 -!- pm5 [~pm5@111-248-209-219.dynamic.hinet.net] has joined #g0v.tw
+10:14 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+10:16 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+10:16 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+10:26 -!- swem1 [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+10:26 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+10:30 -!- c9s_ [~c9s@220.135.44.23] has joined #g0v.tw
+10:36 -!- kcliu [~kcliu@118-168-100-223.dynamic.hinet.net] has joined #g0v.tw
+10:38 < clkao> johnmclear++ #  http://imgur.com/R9p4qOi
+10:38 < kcwu> clkao's url: [imgur: the simple image sharer]
+10:49 -!- jslee [~jslee@111-250-116-86.dynamic.hinet.net] has joined #g0v.tw
+10:54 -!- soidid [76a5d8fd@gateway/web/freenode/ip.118.165.216.253] has joined #g0v.tw
+11:10 -!- swem1 [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 260 seconds]
+11:11 -!- KNY [~Adium@111-253-153-20.dynamic.hinet.net] has joined #g0v.tw
+11:19 -!- KNY [~Adium@111-253-153-20.dynamic.hinet.net] has quit [Quit: Leaving.]
+11:21 -!- clkao_kiwi [~clkao_kiw@111-240-177-132.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+11:47 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+11:55 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 246 seconds]
+11:58 -!- KNY [~Adium@111-253-153-20.dynamic.hinet.net] has joined #g0v.tw
+12:01 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+12:02 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+12:39 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+12:39 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+12:39 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+12:39 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+13:03 < wHisKy> https://www.facebook.com/pages/%E4%BC%BC%E6%83%A1%E8%B7%AF/443879859042185 有人要做 crowd sourcing 拍路面狀況的活動
+13:03 < kcwu> wHisKy's url: [似惡路 | Facebook]
+13:04 < wHisKy> 和「路見不平」似乎可以來個結合
+13:17 -!- soidid [76a5d8fd@gateway/web/freenode/ip.118.165.216.253] has quit [Quit: Page closed]
+13:24 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+13:33 -!- pm5 [~pm5@111-248-209-219.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+13:36 < ETBlue> 路平專案陣容越來越壯大了... 專案需要結合的這種時候，就要呼叫會走路的 g0v people hub 了... ipa XD
+13:37 < ETBlue> 鄉民關心你的 user story 也長的好高了 http://hack.g0v.tw/kuansim/fggleikLLiM
+13:41 -!- icman [~icman@123.240.147.165] has joined #g0v.tw
+13:49 -!- KNY [~Adium@111-253-153-20.dynamic.hinet.net] has quit [Quit: Leaving.]
+13:52 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+13:53 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+14:01 < superbil> 派出所和消防單位也算是政府單位吧？在考慮整理通訊的時候要不要連他們的也要弄 ?
+14:01 < superbil> s/通訊/通訊錄
+14:01 < clkao> superbil++
+14:02 < superbil> 派出所我這邊有跟認識的警員聯絡，這應該不是問題
+14:05 < superbil> clkao: 大略的的想一下，就發現真的要收集的好像不少耶
+14:30 < ETBlue> superbil++ g0v 總機組 ... （？）
+14:40 -!- pm5 [~pm5@111-248-209-219.dynamic.hinet.net] has joined #g0v.tw
+14:45 -!- pm5 [~pm5@111-248-209-219.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+14:49 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+15:10 -!- asd [7bf0c847@gateway/web/freenode/ip.123.240.200.71] has joined #g0v.tw
+15:11 -!- asd is now known as Guest16100
+15:11 -!- Guest16100 [7bf0c847@gateway/web/freenode/ip.123.240.200.71] has quit [Client Quit]
+15:49 < clkao> ETBlue: 上面那段根本可以放到動民主文宣去了
+16:01 < ETBlue> clkao: 喔喔喔 XD 不過很簡短... 想說介紹給設計師們聽的不用太詳細 XD
+16:02 < clkao> hlb: http://diy.mysociety.org/2013/06/04/alaveteli-gets-an-upgrade/
+16:02 < kcwu> clkao's url: [Alaveteli gets an upgrade | DIY.mySociety.org]
+16:02 < clkao> hlb: 他終於是 rails 3 了... 架吧你
+16:02 < clkao> ETBlue: 文案應該也需要簡短的開場 :P
+16:05  * ipa 是「會走路的people hub」@@
+16:05 < ipa> 我下次要插一朵小紅花在頭上，我是媒婆
+16:07 < ipa> 「選前苦苦哀求，選後當作沒有」 ETBlue++ # 開個動民主文宣頁吧
+16:08 < ETBlue> 更新中 http://hack.g0v.tw/meta/MO2091Fi3fq
+16:08 < ipa> 噢已經開好了 神速！
+16:08 < clkao> ETBlue: 除了選舉外，好像也可以在找一句跟行政相關的，像是智財局事件，事前不溝通、亂丟風向求什麼的
+16:09 < S3p_lin> 選前支票歷歷在目 選後跳票跳票無數
+16:09 < clkao> S3p_lin++
+16:09 < S3p_lin> 跳票用了兩次好像不太對勁 oroz
+16:10 < clkao> 先放暫存區
+16:11 < icman> 選後芭樂數不勝數 (?)
+16:11 < wHisKy> 選後芭樂票票無數
+16:11 < au> 選前支票歷歷在目 選後跳票罄竹難書
+16:11 < clkao> LOL
+16:12 < clkao> ipa: 接鬼王！
+16:12 < S3p_lin> au++
+16:12 < clkao> 選前支票三隻小豬，選後跳票罄竹難書
+16:15 < ETBlue> ipa: 那是之前 clkao 開的，我之前有把 au 在 irc 上回答忘記是誰的 faq 也貼進去，在後面還沒整理
+16:16 < ETBlue> （以上 g0v 唐詩組）
+16:18 < ETBlue> au 的文學造詣穩居唐詩組之冠... xXD
+16:19 < ipa> 一句八字不是唐詩，是效法紅樓夢回目 @@ 
+16:19 < au> 樓上正解
+16:19 < au> g0v (十六字)箴言組
+16:20 < au> (逃)
+16:20 < clkao> 正是
+16:21 < clkao> 欲知後事 請見下回分曉
+16:28 < ipa> 科科 或讓總統府上演新版紅樓夢 樹倒猢猻散，落了片白茫茫大地真乾淨
+16:28  * ipa 夢ing
+16:29 < clkao> 樹倒猢猻散++
+16:32 < ETBlue> 我在認真編輯文件的時候你們... XD
+16:33 < ETBlue> 目前想到的都打上去了 XD 接下來等新來的人當白老鼠看這樣讀不讀得懂
+16:33 < au> ETBlue++
+16:33 < ETBlue> 開頭箴言請自行修改... XD
+16:40 < clkao> ETBlue++
+16:51 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+17:14 -!- thschee [thschee@2a00:dcc0:eda:3748:247:48:123:4] has joined #g0v.tw
+17:14 < hlb> 門檻越來越高了
+17:15 < hlb> 還要會寫十六字箴言
+17:15 -!- V1ctor_ [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:15 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:15 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:15 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:15 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:15 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:18 < hlb> clkao: 都 rails 4 了...
+17:23 < clkao> ok sent review for ep_author_neat.  it's getting close
+17:25 < clkao> 來工作一下... 
+17:36 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+17:36 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+18:04 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+18:04 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+18:10 < ETBlue> 最後還是把動態跟議案分開在兩個獨立的 level 1 頁面了，因為塞不下... XD 不過共用 filter https://picasaweb.google.com/110174937980629662857/G0v#5888535455579753042
+18:10 < kcwu> ETBlue's url: [Picasa Web Albums - ET Blue - g0v]
+18:12 < ETBlue> 動態打算用小 icon 來表示是「新議案」「新方案」「開始討論」「新建議」...等狀態，因為感覺那沒有重要到需要佔用文字，我自己比較在意議案的內容是什麼，至於有什麼更新反正點進去就全都看得到惹...
+18:13 < ETBlue> https://picasaweb.google.com/110174937980629662857/G0v#5888535578130027394
+18:13 < clkao> ++
+18:13 < clkao> 非常有 github 風味 :P
+18:13 < ETBlue> 成員的「管理者」也是用一個小 icon 表示就好了，至於加通訊錄就用星星 on / off https://picasaweb.google.com/110174937980629662857/G0v#5888535613390220978
+18:14 < clkao> https://github.com/ETBlue?tab=activity
+18:14 < kcwu> clkao's url: [ETBlue (ETBlue) · GitHub]
+18:15 < ETBlue> 需要的話成員也可以看展開的 view（過濾人頭戶時會需要展開）https://picasaweb.google.com/110174937980629662857/G0v#5888535649368025202
+18:15 < ETBlue> 耶？！原來 github 有這東西 @_@
+18:16 < clkao> 可以非常容易的 stalk 別人 XDF
+18:16 < ETBlue> 我偷偷 follow 你們都被看光光了 >///<
+18:17 < clkao> 沒關係 我也有 follow 你 :P
+18:18 < ETBlue> 個人頁面中，「組織」跟「委任」我想合併到同一個畫面 https://picasaweb.google.com/110174937980629662857/G0v#5888535639172651810 
+18:18 < kcwu> ETBlue's url: [Picasa Web Albums - ET Blue - g0v]
+18:18 < ETBlue> 因為東西都差不多... = =b
+18:19 < ETBlue> 「代理」的話因為空間不夠，想說只顯示委託人的 ID 就好，其他的雜魚只顯示頭像，想看的話再展開來看 https://picasaweb.google.com/110174937980629662857/G0v#5888535625968717186
+18:19 -!- hychen [~colloquyu@host-219-68-127-191.dynamic.kbtelecom.net] has joined #g0v.tw
+18:20 < ETBlue> 疑結果這個到底是要翻譯成代理還是受託我也忘記了... @@" 之後再橋
+18:20 < clkao> 雜魚... XD
+18:21 -!- chihchun_afk is now known as chihchun
+18:22 < ETBlue> 明天拿這一堆去轟炸阿修他會不會逃之夭夭 XD
+18:23 < clkao> 如果顯示在 web 上面呢？同樣的介面能直接套用嗎？
+18:23 < ETBlue> clkao: 可能不太行....
+18:24 < ETBlue> responsive 要下很多功夫就是了 @@ 現在這樣直接放大會很怪
+18:24 < clkao> 不知道有沒有一種概念上的對應... mobile 的某種設計 -> 對應展開到 web 上
+18:25 < ETBlue> 很多為了 mobile 而做的展開/收合，在 web 上都直接展開就好了
+18:25 < ETBlue> 然後主選單直接攤開到 nav bar 上
+18:30 < clkao> ETBlue: 設計完就可以直接開幹了嗎？ http://devgirl.org/2013/06/10/quick-start-guide-phonegap-and-angularjs/ XD
+18:30 < kcwu> clkao's url: [Quick Start Guide to PhoneGap+AngularJS : Devgirl's Weblog]
+18:32 -!- BCN [~quassel@209.141.61.187] has quit [Quit: No Ping reply in 180 seconds.]
+18:32 -!- hychen [~colloquyu@host-219-68-127-191.dynamic.kbtelecom.net] has quit [Quit: hychen]
+18:41 < ETBlue> clkao: ..... 你想太遠了，我能把 html 跟 css 寫好就要偷笑惹 = =bbbb
+18:42 < ETBlue> 好像沒辦法直接拿原本的 html 去套 css，差太多了...
+18:44 < ETBlue> 然後我還要用 fireworks 弄一個桌面版的 layout，這樣寫完才不用一直改，我每次改 html 跟 css 都會不小心生出一堆測試用的垃圾忘記刪掉 = =b
+18:49 -!- hychen [~colloquyu@host-219-68-127-191.dynamic.kbtelecom.net] has joined #g0v.tw
+18:51 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+18:59 < clkao> http://topcoat.io/ # 邪惡三件套？
+18:59 < kcwu> clkao's url: [Topcoat]
+19:04 -!- hychen [~colloquyu@host-219-68-127-191.dynamic.kbtelecom.net] has quit [Quit: hychen]
+19:07 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+19:08 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+19:09 < ETBlue> clkao: 好像很方便... 尤其是 Every component we design is benchmarked for performance 好像很讚 @@
+19:12 < ETBlue> 我很怕花老半天設計好 mobile web 後因為爆炸慢所以沒人用 QAQ
+19:14 < Jedi_> 別怕，花老半天設計好 mobile web 之後....大家就換新手機了 *誤*
+19:31 -!- derjohng1 [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+19:34 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+19:48 < clkao> 這裡有個範例，也許可以順便拿來畫 coscup 議程: https://github.com/phonegap/phonegap-app-anyconference
+19:48 < kcwu> clkao's url: [phonegap/phonegap-app-anyconference · GitHub]
+19:54 -!- edwardc [~edwardc@60-199-248-174.static.tfn.net.tw] has quit [Ping timeout: 245 seconds]
+19:54 -!- edwardc [~edwardc@60-199-248-174.static.tfn.net.tw] has joined #g0v.tw
+20:04 -!- derjohng1 [~Adium@122-116-218-31.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+20:14 -!- soidid [76a5dda2@gateway/web/freenode/ip.118.165.221.162] has joined #g0v.tw
+20:37 < ETBlue> Jedi_: ...... = =b
+20:38 < ETBlue> clkao 推薦的東西都太高深了，我要明天問阿修有沒有比較和藹可親的工具 =3=
+20:39 < ETBlue> 世界奇觀組訂在週二小聚耶
+20:54 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 255 seconds]
+20:56 < tkirby> blah
+20:56 < tkirby> me @ kyoto
+21:01 < icman> 京都，跑好遠@@
+21:14 -!- KNY [~Adium@111-253-153-20.dynamic.hinet.net] has joined #g0v.tw
+21:35 -!- haroldwu [~user@114-46-128-175.dynamic.hinet.net] has joined #g0v.tw
+21:36 -!- ck_ [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+21:38 < clkao> tkirby: 太爽了！
+21:44 < ETBlue> 在組織列表中，如果我有該組織的投票權，但沒有參與某主題的話，點主題->點委託清單，會顯示我的組織代理人的委託狀況，但跟直接在組織列表中點主題右邊的自己讀頭像（主題委託：ETBlue）所顯示的畫面是不一樣的... orz
+21:45 < ETBlue> tkirby: 陽光宅男科科比
+21:45 -!- ck_ [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+21:45 < clkao> tkirby: 記得訂一下三鳩亭啊
+21:46 < clkao> ㄟ  lqfb 爆炸了嗎
+21:48 < ETBlue> 喔喔，沒參與主題的話會顯示我的代理人的委託清單...不是我自己的
+21:48 < ETBlue> 沒爆炸啊 @@
+21:49 < clkao> 我 restart 了... 看來 fcgiwraper 會炸掉 不知道為何
+21:49 -!- ymow [~Adium@1-171-166-114.dynamic.hinet.net] has quit [Quit: Leaving.]
+21:50 < ETBlue> 還是那個委託清單指的是這個主題中所有人設定的委託清單，而不只是我自己的？（思
+21:50 < clkao> 噢 /pf 會爛掉 要 /pf/
+21:51 < clkao> 對, 所有人的委託
+21:51 < ETBlue> 難怪剛才一瞬間看到 502 但馬上又沒事了
+21:53 < ETBlue> 覺得我可能會在搞懂這系統以後突然覺得可以適應.... 然後就覺得不需要改版了 XD
+21:54 < ETBlue> 喔喔，沒有參與的主題也可以設定代理人
+21:54 < ETBlue> 只要有投票權即可..
+21:57 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+21:58 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+21:59 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+21:59 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+21:59 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+22:01 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+22:02 < clkao> 是
+22:02 < clkao> 參與只是 follow 那個主題而已
+22:03 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+22:04 < ETBlue> hmmm. 所以之後會改成「追蹤」或「關注」嗎
+22:05 < clkao> 好像不賴
+22:08 < clkao> - 您將被計入此議案的討論人數。這將影響方案必須通過的支持者決定門檻。
+22:08 < clkao> 但是關注人會影響方案成案門檻
+22:08 < ETBlue> 那我把 follow 的圖示設定成愛心不曉得是否恰當
+22:08 < clkao> 所以好像還是參與比較好？有實質影響
+22:09 < ETBlue> 的確...
+22:09 < ETBlue> 所以沒有參與，不計入分母，但仍可以透過代理人投票嗎
+22:10 < ETBlue> 還是我的代理人投的票會直接不算我那份
+22:10 < clkao> 我猜應該是「成案」有影響，但是最後投票要過門檻還是算所有有投票權的人？
+22:11 < ETBlue> 天啊那說明竟然還是有用處的，我打開來看了 orz
+22:12 < ETBlue> 但裡面沒寫代理人投的票會怎麼算 XD
+22:14 < ETBlue> hmmm....依照常理推斷，沒參與的主題既然不計入討論人數，那麼應該也不計入投票分母，除非我特別關注其中某個議案（猜
+22:16 < ETBlue> 耶，不過算所有有投票權的人也挺合理的...
+22:31 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+22:31 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+22:32 -!- derjohng1 [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+22:32 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+22:33 -!- caasiHuang [~caasi@114-46-115-96.dynamic.hinet.net] has joined #g0v.tw
+22:35 -!- jslee [~jslee@111-250-116-86.dynamic.hinet.net] has quit [Remote host closed the connection]
+22:44 -!- nchild [~nchild@111-243-112-195.dynamic.hinet.net] has joined #g0v.tw
+22:45 -!- nchild [~nchild@111-243-112-195.dynamic.hinet.net] has quit [Remote host closed the connection]
+22:45 -!- nchild [~nchild@111-243-112-195.dynamic.hinet.net] has joined #g0v.tw
+22:46 < nchild> 請問週四是有小型聚會嗎？
+22:46 < clkao> 本週是 happy designer mini
+22:47 -!- derjohng1 [~Adium@122-116-218-31.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+22:49 < nchild> 抱歉，那是？搜不到資料 :p
+22:49 < nchild> 找到了
+22:51 < nchild> 這個嗎？http://happydesigner.org
+22:51 < nchild> 但是沒有 mini 的訊息
+22:51 < clkao> http://registrano.com/events/happydesigner-mini-1
+22:51 < kcwu> clkao's url: [HappyDesigner Mini 分享會 #1 | Registrano]
+22:52 < clkao> 啊 完了 不就是明天嗎
+22:52 < nchild> 對啊！那請問每週 schedule 公佈在哪呢？
+22:53 < nchild> 都是在慶隆的活動嗎？
+22:53 < clkao> ?? 沒有每週 schedule 啊
+22:53 < clkao> 完全 adhoc
+22:53 < nchild> 好吧！
+22:54 < nchild> 那我試 liquid feedback 有問題在這裡請教好了。
+22:54 < clkao> nchild: 那當然
+22:54 < clkao> 等到有聚會不都忘記遇到什麼問題了嗎 :p
+22:55 < clkao> 也可以寫在 hackpad 上
+22:55 < nchild> clkao: 上次我在 FB 跟你說的事
+22:56 < nchild> 我好像不會回覆特定人 :p
+22:56 < nchild> 找一下
+22:58 < clkao> nchild: 我忘了你說啥... ><
+22:58 < clkao> 噢 什麼 blocking 的?
+22:59 < nchild> 太少用 IRC，還在查指令
+22:59 < nchild> 問個很白痴的，比如說
+22:59 < nchild> 像上面你回應我
+22:59 < nchild> 我的 nickname 會有不同顏色
+22:59 < nchild> 這樣要用什麼指令？
+23:00 < nchild> 我要問人法律了
+23:01 < nchild> 先暫離
+23:01 < clkao> nchild: 不用指令，你前面打人名他就會 highlight
+23:01 < clkao> 像我就打 n<tab> 就會現 "nchild: "
+23:15 -!- soidid [76a5dda2@gateway/web/freenode/ip.118.165.221.162] has quit [Quit: Page closed]
+23:25 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+23:38 -!- ymow [~Adium@1-171-168-141.dynamic.hinet.net] has joined #g0v.tw
+23:40 -!- KNY [~Adium@111-253-153-20.dynamic.hinet.net] has quit [Quit: Leaving.]
+23:40 -!- KNY [~Adium@111-253-153-20.dynamic.hinet.net] has joined #g0v.tw
+23:42 -!- KNY [~Adium@111-253-153-20.dynamic.hinet.net] has quit [Client Quit]
+23:42 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+23:42 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+23:46 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 240 seconds]

@@ -1,0 +1,131 @@
+--- Day changed 日  1月 10 2016
+00:04 < slackbot4> <yurenju> 婦女票也加上了
+00:05 < slackbot4> <yurenju> 好心人士提供了很多 corner case <https://github.com/yurenju/partyvote/issues/10>
+00:05 < kcwu> slackbot4's url: [婦女保障名額 · Issue #10 · yurenju/partyvote · GitHub]
+00:05 < slackbot4> <yurenju> 大家可以去驗算一下 <http://yurenju.github.io/partyvote/>
+00:05 < kcwu> slackbot4's url: [政黨票計算機]
+00:05 < slackbot4> <yurenju> 證明民國黨的第二順位跟第三順位來亂的
+00:14 < slackbot4> <clkao> 綠社盟也是
+00:19 < slackbot4> <ipa> ++++
+00:19 < slackbot4> <yurenju> 最慘的是台灣獨立黨
+00:19 < slackbot4> <yurenju> 因為他只提名一位男性，永遠無法滿足 婦女票必須超過一半.......
+00:19 < slackbot4> <ipa> 詹順貴要11%才會上，實際上是第四順位
+00:23 < slackbot4> <pofeng> @yurenju ++
+00:25 < slackbot4> <pofeng> 就跟選區一樣 其實有很多細節啊啊啊啊
+00:27 < slackbot4> <pofeng> 印象中 台北市長就是國民黨選不上後 老蔣就擴大台北市的範圍 
+00:27 < slackbot4> 然後後來無黨籍人士終於又選上後
+00:27 < slackbot4> <pofeng> 乾脆把北市變成直轄市 直接官派
+00:27 < slackbot4> <pofeng> (大意, 可能細節有誤)
+00:32 < slackbot4> <ipa> @yurenju 會先處理將未分配改為廢票那個issue嗎？
+00:32 < slackbot4> <ipa> 不然現在算的會不準
+00:33 < slackbot4> <yurenju> 我有點不太確定這條的意思
+00:34 < slackbot4> <lanf0n> 就是未分配應該不算席次，已分配的比率要再以 100% 重算席次
+00:35 < slackbot4> <yurenju> ok, 簡單的說，就是留下第二階段得票率跟席次對吧？
+00:35 < slackbot4> <lanf0n> 應該說把未分配視為廢票時，所有已分配的比率要加總成為 100% (?
+00:35 < slackbot4> <yurenju> 明天早上解好了，該洗洗睡了 Orz
+00:39 < slackbot4> <yurenju> @ipa or @clkao 可以補一下這條的敘述嗎？這樣我明天一起來就可以馬上解 XDDDD <https://github.com/yurenju/partyvote/issues/12>
+00:39 < kcwu> slackbot4's url: [未分配先當廢票 · Issue #12 · yurenju/partyvote · GitHub]
+00:39 < slackbot4> <lanf0n> 其實是一樣的意思XD
+00:39 < slackbot4> <clkao> yurenju: 我看你已經改乘不在那邊放席次了 直接把「未分配」改成寫「無效票」就好了？
+00:40 < slackbot4> <clkao> (然後看要不要 normalize 其他人到 100%)
+00:40 < slackbot4> <clkao> 啊 不過先選的席次會很多 還是很怪
+00:59 < but> http://data.but.tw/votesim/ 實作完成 (咦
+00:59 < kcwu> but's url: [2016年不分區立委得票與當選名單模擬]
+01:01 < slackbot4> <pofeng> but++
+01:41 < slackbot4> <clkao> but!
+01:47 < gugod> ‼
+09:15 < slackbot4> <yurenju> 喔喔我終於懂意思了 XDDDD
+09:20 < slackbot4> <ipa> but++ XD
+09:59 < slackbot4> <yurenju> @ipa: 好了
+10:09 < slackbot4> <mrorz> 我去 github 搜尋 votesim，結果找到奇妙的東西 <https://github.com/gsi-upm/VoteSim/wiki>
+10:09 < kcwu> slackbot4's url: [Home · gsi-upm/VoteSim Wiki · GitHub]
+10:10 < slackbot4> <clkao> @yurenju @but 想到了 default 其實可以用 2012 得票率
+10:10 < slackbot4> <yurenju> 有啊有人有說
+10:10 < slackbot4> <mrorz> 這樣新的黨就會是 0
+10:10 < slackbot4> <mrorz> 不過應該還好
+10:11 < slackbot4> <yurenju> 不過我在台南在電腦前的時間不多 XDDD 有人要來上 pr 嗎 哈哈
+10:11 < slackbot4> <mrorz> 我現在覺得麻煩的是
+10:11 < slackbot4> 當調到
+10:11 < slackbot4> <mrorz> 100% 之後
+10:11 < slackbot4> <yurenju> 大部分的時間都在小吃攤（默
+10:11 < slackbot4> <mrorz> 你要把某黨的票變多，就一定要把另一個黨先變少
+10:12 < slackbot4> <yurenju> 要做自動減少也可以，但是調起來好像有點煩
+10:12 < slackbot4> <mrorz> 我也想不到直覺的「自動減少」UI / 行為要怎麼設計 XD
+10:13 < slackbot4> <yurenju> 對因為有些人他已經決定好比例了，只是要把它調到那個比例，如果做了自動減少，他應該會覺得很煩 XDDD
+10:13 < slackbot4> <mrorz> maybe shift + 滑鼠左鍵選取，被選取的 slider 會連動（某個被增加，其他被選取的會自動減少之類？）
+10:13 < slackbot4> <clkao> Shift-opt 可以微調？ XD
+10:14 < slackbot4> <yurenju> 我想要把比例弄成 inputbox 直接可以調
+10:14 < slackbot4> <mrorz> @yuren 對於決定好比例的使用者，給他們一個 textbox 輸入準確的 percentage 應該會比較好
+10:14 < slackbot4> <yurenju> (patching
+10:15 < slackbot4> <ipa> 精準使用者 textbox+1 （顯示為手殘一直拉不到定點）
+10:16 < slackbot4> <mrorz> 其實是因為 slider 拉動的時候的 step 不夠精細，有些點是永遠拉不到的 XD
+10:16 < slackbot4> <ipa> @yurenju: 婦女保障名額那些corner case 原連結在哪啊？超認真的
+10:16 < slackbot4> <yurenju> <http://law.moj.gov.tw/LawClass/LawSingle.aspx?Pcode=D0020010&amp;FLNO=67>
+10:16 < kcwu> slackbot4's url: [全國法規資料庫入口網站]
+10:18 < slackbot4> <ipa> <https://github.com/yurenju/partyvote/issues/10> 這個，好佛心還把每個黨亂排的全都露
+10:18 < kcwu> slackbot4's url: [婦女保障名額 · Issue #10 · yurenju/partyvote · GitHub]
+10:18 < slackbot4> <mrorz> 是說最直覺的實作方式應該是每個候選人除了名字之外，
+10:18 < slackbot4> 還要加上性別資訊
+10:18 < slackbot4> <yurenju> 對啊他算了超多 corner cases
+10:19 < slackbot4> <mrorz> 不過好像 reorder candidate list 會是比較有效率的做法 XD
+10:19 < slackbot4> <mrorz> reorder 會影響正確性嗎？
+10:22 < slackbot4> <ipa> reorder 就看不出各黨亂排的特性了？ XD
+10:24 < slackbot4> <mrorz> 那個還好，可以準備 (1) 按照政黨提供的排序的表，還有 (2) 計算機實際用的，被我們 reorder 過後的表
+10:24 < slackbot4> 計算機算完比例，用 (2) 決定哪些人會上，但最後顯示的是 (1) 的順序
+10:25 < slackbot4> <mrorz> 只要有個 (1) 與 (2) 的順序對照表就行惹
+10:26 < slackbot4> <yurenju> input box 加了，吃飯去...
+10:30 < slackbot4> <ipa> 小吃第一 \o/
+11:25 < but> http://data.but.tw/votesim/ 確實就是用reorder的另一個list解掉的啊，所以根本沒有儲存性別資訊，顯示不出顏色XD
+11:25 < kcwu> but's url: [2016年不分區立委得票與當選名單模擬]
+11:34 < slackbot4> <mrorz> but: 原來如此 XDD
+11:36 < slackbot4> <clkao> 中選會 Api 沒有提供性別嗎？
+11:53 < slackbot4> <mrorz> 有啊，yuren 就是直接塞中選會的 api
+11:54 < slackbot4> <mrorz> 不過如果採取 reorder 的解法，應該就是為了懶得再
+11:54 < slackbot4> <mrorz> 在 runtime 的時候還保留性別資訊
+12:07 < but> 其實真的想放一些民調數字上去模擬，但怕觸法
+12:08 < slackbot4> <mrorz> 放2012得票率就沒觸法啦～
+12:08 < slackbot4> <mrorz> 總應該不會有人凹說實際得票率是廣義的民意調查吧⋯⋯
+12:08 < but> 2012很多這次參選的政黨不存在啊.....
+12:09 < slackbot4> <mrorz> 但至少有個default 數字可以看嘛
+12:09 < slackbot4> <mrorz> 聊勝於無
+12:10 < but> 先蒐集各家民調先orz (標出日期，1/5之前的資料應該不違法吧orz
+12:11 < slackbot4> <mrorz> <http://law.moj.gov.tw/LawClass/LawSingle.aspx?Pcode=D0020010&amp;FLNO=53> 「不得加以報導、散布、評論或引
+12:11 < kcwu> slackbot4's url: [全國法規資料庫入口網站]
+12:11 < slackbot4> 述」
+12:11 < slackbot4> <mrorz> 「引述」也算的說
+12:15 < but> 真微妙 / 印象中政論節目還是會一直拿封關民調出來討論.....
+12:16 < slackbot4> <mrorz> 或許可以舉發？ XD
+12:24 < but> 不知道哪裡有這次有投票權人數資料(不分區) 中選會找不到
+12:32 < slackbot4> <mrorz> 有道理耶，確統上禮拜就做了，理論上中選會現在已經有精確的投票權人數字
+12:33 < slackbot4> <mrorz> 大概是政府沒想過在選前公開這個數字有什麼應用吧
+12:57 < but> 已加上票數顯示 (這樣比較容易看懂得票比例所代表的票數是需要多少票)
+18:49 < slackbot4> <clkao> 乾脆加一個 button 按了 toggle 順序是否是顯示修正過的排序
+18:50 < slackbot4> <clkao> but 我記得選舉概況有在 api? 有的話應該會細到投開票所 不然就只能用六個月前的內政部村里資料了
+18:50 < slackbot4> <clkao> 跟 but 講話真是麻煩 好像會在說前一句的  but… orz
+19:18 < slackbot4> <clkao> yurenju: 其實勾選當廢票的話，第一階段應該要重算... 因為第一階段百分比是有效票而已...
+20:41 < gugod> but 跟所有發語詞講話大概都一樣煩
+20:42 < slackbot4> <kiang> but, 人生最重要的就是這個 but
+20:42 < but> ~_~
+20:43 < gugod> BTW, 去年份 g0v-data/mirror 的資料轉成比較好讀取（不必一一跑過 git history）的 repo: https://github.com/g0v-data/mirror-2015
+20:43 < kcwu> gugod's url: [g0v-data/mirror-2015 · GitHub]
+20:44 < gugod> 注意 .git/ 2.9G, clone 下來 26G
+21:17 < slackbot4> <ipa> yurenju: 現在困擾就是，需要把其他ooxx小黨也拉進來拉一拉，讓廢票比例低到符合實際情形才會比較準
+21:18 < slackbot4> <clkao> johnny: 咦 <http://vote.ly.g0v.tw/candidates/9/%E5%85%A8%E5%9C%8B%E4%B8%8D%E5%88%86%E5%8D%80/1/> 沒有包含政黨政見跟個人經歷?
+21:18 < kcwu> slackbot4's url: [立委投票指南: 2016~2020 全國不分區 - 候選人]
+21:19 < slackbot4> <ipa> 本來設想是放在上面的政黨全部都是過5%，但發現也不對，所以加一個全部不過5%的小黨得票總和應該是最方便的介面
+21:38 < slackbot4> <johnny> clkao: 有，<http://vote.ly.g0v.tw/candidates/9/%E5%85%A8%E5%9C%8B%E4%B8%8D%E5%88%86%E5%8D%80/1/#王金平>
+21:39 < slackbot4> <johnny> 忘了加個連結在表格內了
+21:39 < slackbot4> <clkao> 原來如此
+21:50 < slackbot4> <clkao> yurenju: sent 2 PR
+21:51 < slackbot4> <clkao> 有點醜就是了 需要多一排
+21:54 < slackbot4> <johnny> clkao: 改好了，點名字也可以連過去
+22:00 < slackbot4> <clkao> johnny++ # 以為你昨天要來松
+22:01 < slackbot4> <johnny> 這幾天身體不太舒服就沒報了
+22:09 < slackbot4> <clkao> take care!
+22:30 < but> 那個視為無效票勾起來就好了啊
+22:38 < slackbot4> <clkao> 「無效票」跟「未達 5% 的其他政黨票數」意義不同喔
+22:46 < slackbot4> <ipa> 「無效票」 —> 廢票，蓋錯沒蓋等等，第一階段先排除；「未達 5% 」—> 蓋對，但第二階段會被排除。現在等於把投給小黨的有效票當成廢票，第一階段得票率就會膨脹....
+22:47 < but> 有更簡潔的寫法嗎
+22:48 < but> 改用詞了
+23:00 < slackbot4> <clkao> but 你的介面好像蠻適合用這個的: <http://worrydream.com/Tangle/>
+23:00 < kcwu> slackbot4's url: [Tangle: a JavaScript library for reactive documents]

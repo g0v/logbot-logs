@@ -1,0 +1,293 @@
+--- Day changed 一  4月 20 2015
+00:00 < slackbot5> <pofeng> <!channel>: 想要捐給 g0v 黑客松 (大松) 的朋友, 麻煩直接到這裡捐款  <http://g0v-jothon.kktix.cc/events/g0v-dathon>
+00:01 < slackbot5> <miaoski> USD$200 說貴不貴....
+00:03 < slackbot5> <pofeng> <!channel>:  之前想要捐給 g0v 黑客松 (大松) , 但直接匯到基金會的朋友, 拜託提醒我們一下 ( mailto:hi@ocf.tw or mailto:mail.ocf.tw@gmail.com ) 我們會將你的捐款保留給 g0v 黑客松 (大松) ( http://ocf.tw 的說明我們會儘快補上, 抱歉 )
+00:03 < slackbot5> <pofeng> <!channel>:  之前想要捐給 g0v 黑客松 (大松) , 但直接匯到基金會的朋友, 拜託提醒我們一下 ( mailto:hi@ocf.tw or mailto:mail.ocf.tw@gmail.com ) 我們會將你的捐款保留給 g0v 黑客松 (大松) ( http://ocf.tw 的說明我們會儘快補上, 抱歉 )
+00:04 < slackbot5> <miaoski> t0mst0ne: 是只要 PM2.5 嗎？還是其它氣體也要
+00:07 < slackbot5> <t0mst0ne> @miaoski: 其實這個專業我不懂，只是大家對2.5 有相當認知，其他氣體..我也好想知道哪個marker可以代表紙漿廠，哪些代表煉油廠etc etc etc 
+00:08 < slackbot5> <miaoski> 我剛爬了一下文，如果只要 PM2.5 的話，這顆應該算不錯的 https://www.sparkfun.com/datasheets/Sensors/gp2y1010au_e.pdf  網路上查到的報價 US$12
+00:10 < slackbot5> <au> miaoski++ 然後手動配一顆 Arduino... <http://lafudo.blogspot.tw/2013/12/arduino-gp2y1010au0fpm25.html>
+00:10 < kcwu> slackbot5's url: [拉夫多多思考: Arduino動手做 - 利用GP2Y1010AU0F偵測空氣懸浮微粒汙染PM2.5]
+00:11 < slackbot5> <miaoski> au: 正是。做起來不難，再加一個無線網路或 ethernet 的模組就可以回傳資料了。
+00:12 < slackbot5> <miaoski> 氣體的話，可以看這個 <http://www.seeedstudio.com/depot/grove-gas-sensormq9-p-1419.html?cPath=25_27>
+00:12 < kcwu> slackbot5's url: [Buy Grove - Gas Sensor(MQ9) [SEN04092P] | Seeedstudio]
+00:13 < slackbot5> <miaoski> MQ9 一氧化碳、煤氣、液化瓦斯 / MQ5 液化石油氣、天然瓦斯 / MQ3 酒精蒸氣 / MQ2 看不懂 XD
+00:21 < slackbot5> <kiang> PM2.5 應該就沒有輻射的專業識別問題吧（期待張中一的提案，不過我想他大概也是射後不理型的吧 XD ）
+00:21 < slackbot5> <miaoski> Aircasting 看來有測 PM2.5, 溫度, 濕度, CO, NO2, 然後配合其它零件，測噪音、心跳、活動率、活動率、核心溫度
+00:22 < slackbot5> <miaoski> @kiang: 重點是準不準。會不會被核終^H^H環保局說鄉民用的是 LED 元件測出來不準、沒有參考價值
+00:23 < slackbot5> <kiang> 柴靜 那個也是明顯被加工過的啊，大家還是爽爽看 XD
+00:24 < slackbot5> <miaoski> @kiang: 如果要做 10 個 sample 我就不會擔心這些了。如果有人要做比較大量的，最後一定會被挑這種毛病。
+00:27 < slackbot5> <kiang> 恩，就先挖坑吧 - <https://g0v.hackpad.com/IoT-DIY-B1xkj9fUqqH>
+00:27 < kcwu> slackbot5's url: [IoT 空污偵測 DIY - g0v.hackpad.com]
+00:28 < slackbot5> <miaoski> CO 感測器 http://goods.ruten.com.tw/item/show?21404014964757  元件報價會更低
+00:30 < slackbot5> <miaoski> NO2 感測的研究台灣做很多 paper (怎麼只有 paper T_T)
+00:30 < slackbot5> <miaoski> 但專業的 NO2 感測器一顆報價 5 千...
+00:31 < slackbot5> <miaoski> WSP1110 http://goods.ruten.com.tw/item/show?21312239079267 一千多。這個項目可不可以不要測 :stuck_out_tongue:
+00:31 < slackbot5> <miaoski> (難怪 aircasting 造價高 … 不知道他們用哪一顆)
+00:36 < slackbot5> <au> kiang: 輻射那邊等提案出來再說... 不過應該是工研院的計畫，所以不至於沒人維護 XD
+00:36 < slackbot5> <au> 但是空氣品質的器材怎麼說都比輻射要便宜一個數量級，而且爭議相對小、日常生活相關程度相對高
+00:36 < slackbot5> <au> 似乎比較有指望
+00:40 < slackbot5> <au> miaoski: NO2 Aircasting 用的是  MiCS 2710
+00:41 < slackbot5> <au> (open hardware + open source, 元件列表在 <http://www.habitatmap.org/habitatmap_docs/HowToBuildAnAirCastingAirMonitor.pdf> page 8  )
+00:48 < slackbot5> <miaoski> au++ 這顆報價 US$28.18 看能不能跳過不要測...
+00:49 < slackbot5> <miaoski> 或 17 euro (現在歐元便宜了 XD)
+00:49 < slackbot5> <au> miaoski: 應該可以拔掉模組就好了，AirCasting 平台可以繼續用
+00:55 < slackbot5> <miaoski> au: 他們用的不是夏普，是日本神榮 ppd42ns 人民幣報價 50 左右
+00:58 < slackbot5> <miaoski> 他們拿只要 US$5.53 其實好便宜...!
+00:58 < slackbot5> <miaoski> 電池是他們最貴的項目。這個可以外包用小米電源嗎？(爆)
+00:59 < slackbot5> <au> 因為是 open hardware 所以答案一定是可以 (爆)
+01:01 < kcwu> 初期可以假設偵測時人在旁邊, 不少人已經有行動電源或 notebook 可供電
+01:03 < slackbot5> <miaoski> 剩下的大概是軟體... 我還沒看他們的軟體 repo. 但應該是可以使用他們的平台(吧) :stuck_out_tongue: 如果是我做的話，會希望不要用藍牙，看能不能直接用 WiFi 或 3G 上傳資料，畢竟最後可能會直接放在固定的地點，還要透過手機不方便。
+01:07 < slackbot5> <miaoski> WiFi 模組 NT$275 (TI C3300 大概還會有更便宜的) 不過要考慮設定密碼的問題。一般是透過 RS232 或接一顆 RS232-USB …
+01:09 < slackbot5> <miaoski> 溫濕度用 DHT-11 覺得想更準的話改用 DHT-22 …
+01:14 < slackbot5> <miaoski> 3G … 好貴哦。找到最便宜的要 47 歐元... 不過有這個的話，放在哪都不用擔心了，而且每個月的網路費用應該會很低。畢竟都吃不到 1GB
+01:14 < slackbot5> <kiang> miaoski: 直接塞進 <https://g0v.hackpad.com/IoT-DIY-B1xkj9fUqqH> ？
+01:15 < kcwu> slackbot5's url: [IoT 空污偵測 DIY - g0v.hackpad.com]
+01:15 < slackbot5> <miaoski> 我不是硬體專門，唸 EE 的應該可以找到更好/更便宜的零件
+01:15 < slackbot5> <miaoski> @kiang: OK
+01:15 < slackbot5> <kiang> miaoski++
+01:24 < slackbot5> <au> 固定地點是一個用法（Wifi/3G/USB），藍芽是用來隨身帶著即時知道/回傳當地狀態的
+01:25 < slackbot5> <au> 也許沒幾年就會變成 Gear/Watch 的變色錶帶也未可知。
+01:30 < slackbot5> <miaoski> WiFi 的另一個好處是可以接手機熱點 (哈) 其實是懶得寫 app …
+01:30 -!- manyo [~manyo@114-44-56-59.dynamic.hinet.net] has left #g0v.tw ["Leaving..."]
+02:22 < slackbot5> <mgdesigner> etblue: 「砍柴」是什麼意思？ @@
+06:36 -!- hedide1 [~hedide1@gateway/web/scrollback.io/x-pnlejpssfocvejrt] has left #g0v.tw []
+07:21 < slackbot5> <jbytw> @pofeng: 了改！
+08:26 < slackbot5> <arlo> MiCs-2714會比較便宜
+09:06 < nellace> s
+09:22 < nellace> ho
+09:23 < slackbot5> <muyueh> @au @clkao  感謝，我研究一下
+09:29 -!- tubaxeno1 is now known as tubaxenor
+09:39 < nellace_> anybody？
+09:39 < slackbot5> <wildjcrt> mgdesigner: 條目「分身伐樹」
+09:39 < slackbot5> <https://g0v.hackpad.com/ep/pad/static/MI7fGNIdygb>
+09:39 < slackbot5> <http://happy.bobi.tw/pic/bomb/e9869118826739579b1.jpg>
+09:39 < kcwu_> slackbot5's url: [/683$MI7fGNIdygb]
+09:44 < yhsiang> 地震！
+09:44 < slackbot5> <muyueh> 地震
+09:45 < slackbot5> <caasi> 有點大
+09:45 < slackbot5> <mitsunchieh> 嚇到
+09:48 < slackbot5> <ymow> 在11樓很搖
+09:50 < slackbot5> <caasi> <http://scweb.cwb.gov.tw/GraphicContent.aspx?ItemId=49&amp;fileString=2015042009425863022>
+09:52 < Lee1092> 呼  幸好是在外海
+09:54 < nellace_> hoho
+10:01 < slackbot5> <yutin> xd
+10:16 < teerce> @slackbot5 
+10:42 -!- DennyHua1g is now known as DennyHuang
+10:51 < slackbot5> <arlo> @miaoski : 供電用太陽能版也不錯喔
+10:53 < kcwu_> 然後挷在路燈下
+10:54 -!- kcwu_ is now known as kcwu
+11:17 < slackbot5> <arlo> 是的, 綁在路燈, 之前有做過太陽能模組 + 18650電池混搭, 體積有點大, 不過可以省掉麻煩的充電問題
+11:39 < slackbot5> <c9s> 先自幹了一個 ios bar code scanner for openfood
+11:39 < slackbot5> <c9s> <https://github.com/c9s/ToxinScanner>
+11:39 < kcwu> slackbot5's url: [c9s/ToxinScanner · GitHub]
+11:39 < slackbot5> <c9s> Project proposal: <https://g0v.hackpad.com/OpenFood-project-jArtZeaeUeL>
+11:39 < kcwu> slackbot5's url: [OpenFood project - g0v.hackpad.com]
+11:40 < slackbot5> <c9s> pre-alpha release early :stuck_out_tongue:
+11:48 < slackbot5> <pofeng> @c9s++ 太強 :stuck_out_tongue:
+11:54 < slackbot5> <c9s> <https://github.com/c9s/OpenFood>  # server side
+11:54 < kcwu> slackbot5's url: [c9s/openfood · GitHub]
+12:05 < slackbot5> <pofeng> @c9s: 其實食藥署應該有 app 和資料, 但是官方的 server 常常沒傳回資料 (以前裝過 app)
+12:18 < jimyhuang> c9sould__: 加上一些之前 「開放食庫」看到的東西，應該有剩餘價值...
+12:18 < jimyhuang> eg. https://sites.google.com/site/cfttestty/project-bookmarks 有不少 data 
+12:18 < kcwu> jimyhuang's url: [共用書籤 - 開放食庫]
+12:20 < slackbot5> <c9s> '台灣地區食品營養成分資料庫' 之前好像有 parse 過, 但跟毒素的關聯性較遠些
+12:21 < slackbot5> <lee> @c9s++
+12:34 < slackbot5> <c9s> jimyhuang, lee 咦 之前的是你們做的?
+12:35 < slackbot5> <pofeng> @c9s: 對對 而且有八卦 :stuck_out_tongue:
+12:35 < slackbot5> <lee> 曾經參與  XD
+12:35 < slackbot5> <c9s> 大概猜得出來為什麼 XDDD
+12:37 < slackbot5> <c9s> 啊 要先忙一下... 晚點繼續來上工 XD
+12:41 < slackbot5> <clkao> c9s: 講個秘訣來聽聽吧
+12:41 < slackbot5> <c9s> clkao: 什麼秘訣? XD
+12:51 < slackbot5> <kiang> 其實是 clkao 想要講 XD
+12:51 < slackbot5> <c9s> clkao: 講個秘訣來聽聽吧
+12:52 < slackbot5> <c9s> XD
+13:23 < slackbot5> <c9s> logo 做好了...
+13:24 < slackbot5> <c9s> 先隨便做做.. 到時候再修 XD
+13:27 -!- imrehg [~greg@122.147.15.218] has left #g0v.tw ["Leaving"]
+13:33 < slackbot5> <clkao> c9s: 有玩過 moodstocks 嗎？我覺得掃條碼實在不實際，應該用商標快速掃商品
+13:38 < slackbot5> <c9s> clkao: 沒耶 好用嗎？看起來未來需要付費？我是覺得 bar code 是好像比較可靠
+13:38 < slackbot5> <c9s> 或是有 API request limitation?
+13:40 < slackbot5> <c9s> brand logo recognition 感覺是 nice to have feature
+13:43 < gugod> 商標如何對應到商品？
+13:52 < slackbot5> <c9s> 好問題。 我在想的是遇到仿冒 Logo 的辨識度 XD 台灣人超愛互相亂抄的
+13:53 < slackbot5> <c9s> lee: 那你們之前的派工系統有開始 work 嗎?
+14:27 < slackbot5> <lee> c9s:  沒有，之前在 CFT 只有跑過 Demo  ，後來就計畫中止了  XD
+14:28 < slackbot5> <lee> 後台是 Play Framework 可是大家都不熟，所以也沒人延續下去
+14:29 < slackbot5> <kiang> lee: 講個秘訣來聽聽吧
+14:30 < slackbot5> <kiang> (其實這是新的電腦病毒)
+14:47 < slackbot5> <miaoski> arlo: 請問哪個比較準？
+14:47 < slackbot5> <miaoski> 太陽能版的 BOM 可以幫忙提供一下嗎？sorry 我不是這方面的專業 ^^;
+14:59 < slackbot5> <arlo> @miaoski:  MiCs-2714是SMT型的，MiCs-2710是dip型的, 然後2710去年停產了XD
+14:59 < slackbot5> 太陽能版充電沒有標準BOM耶, 主要要看你要接多少sensor, 耗電量, 還有18650電池串併的情況...等等
+15:05 < slackbot5> <arlo> @miaoski:  我會建議先確定第一版想接哪些sensors, 然後先拿顆小米電源供電, prototype出來後再來考慮外殼, 尺吋, 防水...etc, 用arduino或RPi的話外部電路應該很單純, 幾顆電組電容而已
+15:35 < slackbot5> <c9s> revision schema 剛剛搞定了 <https://github.com/c9s/LazyRecord/compare/HEAD~3...28a94ba46e9cbc7ef8d508103fc509aa39bf3c31>  cc @lee @jimyhuang
+15:35 < kcwu> slackbot5's url: [Comparing HEAD~3...28a94ba46e9cbc7ef8d508103fc509aa39bf3c31 · c9s/LazyRecord · GitHub]
+16:00 < slackbot5> <miaoski> @arlo: 為了省 cost 應該會用 arduino 吧，然後不會把整塊板放上去 (反正也不需要) 把 RS232 的 pin 留著就好了
+16:00 < slackbot5> <miaoski> 主要耗電的是 NO2 sensor (如果可以不要測的話就省了) 和 PM2.5 sensor
+17:02 < slackbot5> <c9s> @lee: https://consumer.fda.gov.tw/Food/Food_Advertise.aspx?nodeID=168# 對這個違規資料查詢還蠻有興趣的，之前有爬過嗎
+17:03 < slackbot5> <c9s> 居然完全沒有違規廠商名稱
+17:04 < slackbot5> <c9s> 都空的
+17:06 < slackbot5> <c9s> 靠背網站掛了
+17:14 < slackbot5> <lee> c9s: XD  印象中沒人爬過
+17:18 < slackbot5> <lee> c9s There isn't anything to compare.  # revision schema 剛剛搞定了
+17:19  * timdream 不知道 slackbot5 會不會把 irc 上的訊息傳過去
+17:22 < slackbot5> <c9s> 剛剛把 HEAD~3 換掉: <https://github.com/c9s/LazyRecord/compare/6e33c7beafb7a49a023131795b4d3c33d58bf994...28a94ba46e9cbc7ef8d508103fc509aa39bf3c31>
+17:23 < kcwu> slackbot5's url: [Comparing 6e33c7beafb7a49a023131795b4d3c33d58bf994...28a94ba46e9cbc7ef8d508103fc509aa39bf3c31 · c9s/LazyRecord · GitHub]
+17:23 < slackbot5> <c9s> lee: 我覺得食藥署這樣還蠻賤的...明明就違規，居然不填寫廠商名稱跟負責人名稱
+17:24 < slackbot5> <c9s> 違規食品名稱也寫得很偷懶..  不寫全名的...
+17:29 < slackbot5> <c9s> https://consumer.fda.gov.tw/Food/GoodCompany.aspx?nodeID=176# 優良業者這個.. 感覺很不靠譜 XD
+18:17 < pm5> 看了上下游台日小麥專題，忽然想來整理一下農業統計資料 http://agrstat.coa.gov.tw/sdweb/public/book/Book.aspx
+18:17 < kcwu> pm5's url: [農業統計資料查詢]
+18:24 -!- testetset [6a4191a0@gateway/web/freenode/ip.106.65.145.160] has left #g0v.tw []
+18:33 < Hihi> hi
+18:33 < Hihi> hi
+18:34 < Hihi> :)
+18:34 < Hihi> bye
+18:39 < slackbot5> <hychen> c9s: 為什麼隨便做做就這麼好看 @@
+19:05 < slackbot5> <c9s> hychen: 可能是 Affinity Designer 太好用 XD
+19:30 < slackbot5> <ipa> 因為是c9哥
+19:32 -!- aska [7229bc0a@gateway/web/cgi-irc/kiwiirc.com/ip.114.41.188.10] has left #g0v.tw []
+19:34 < slackbot5> <au> c4 可以解決一切，c9 哥的威力更是 c4 的 2¼ 倍~
+20:02 < slackbot5> <c9s> XD
+20:02 < slackbot5> <lee> 瘋狂地震....  0.0
+20:03 < slackbot5> <c9s> 剛剛記者問地震測報中心郭鎧紋主任請問今天這樣連續四次大地震是正常的嗎？地震測報中心郭鎧紋主任:  對對.. 這樣是正常的...
+20:04 < slackbot5> <lee> 是今天早上的餘震吧~   震央都在附近
+20:05 < kcwu> XD
+20:05 < slackbot5> <c9s> 早上日本南部也同步發生地震耶  而且震源不同....
+20:06 < a0000778> 今晚震3次了...
+20:07 < slackbot5> <zorro> 其實是四次
+20:08 < a0000778> zorro: 那是今天吧...
+20:13 < slackbot5> <lee> 正常能量釋放~
+20:17 < slackbot5> <pofeng> @c9s: 我囉嗦一下, 想要的資料記得來填一下 ( 希望有人去反應 :stuck_out_tongue: )  <https://g0v.hackpad.com/Fep6jjoFBc0>
+20:17 < kcwu> slackbot5's url: [衛生福利部資料需求 - g0v.hackpad.com]
+20:18 < slackbot5> <c9s> @pofeng: 感謝! 我晚點來整理一下
+20:23 < slackbot5> <pofeng> @c9s: 食品襪包裝現在好像有兩個條碼, 一個是 2 維條碼, 一個是新的 QR code ( 溯源電子條碼 ) , 我們偉大的立法委員, 很喜歡 QR code , 電子發票上面也有 QR code 放交易品項明細, 但實際上容量不夠, 很麻煩
+20:24 < slackbot5> <pofeng> @c9s: 然後現在食用油廠商強迫導入電子發票, 不知道將來有沒有可能要求經濟部放出相關資料
+20:38 < mmis1000> 安安，有人在嗎？
+20:38 < slackbot5> <seadog007> mmis1000: 千萬不要問這種問題www
+20:40 < mmis1000> 有人知道 氣象局的api 有沒有 websocket或long pull類的即時api嗎？
+20:41 < slackbot5> <kiang> 不免俗的～這裡都 沒有人 喔
+21:09 < au> mmis1000: 目前沒有，幫忙寫個 gateway?
+21:09 < seadog007> wwwwww 要硬幹了
+21:09 < mmis1000> 技術難度上不複雜，可是期中考沒空
+21:10 < slackbot5> <au> 好喔，那就下星期來做吧
+21:12 < slackbot5> <seadog007> @kiang:  等等等等等 這發生什麼事了...
+21:12 < slackbot5> <johnny> 有人做過台灣地圖包含各縣市連結嗎？想把投票指南選縣市換成地圖附帶連結
+21:18 < slackbot5> <clkao> johnny: 連結的意思是... ?
+21:20 < slackbot5> <johnny> clkao: 類似這個 http://www.mos.com.tw/shopSearch.php  可以同一張圖附上多個link
+21:20 < kcwu> slackbot5's url: [MOS BURGER｜店舖檢索]
+21:21 < slackbot5> <clkao> 我正在整理新的 topojson 底圖
+21:21 < slackbot5> <johnny> 之前有看過 http://g0v.github.io/twgeojson/map.html  不過不知道怎麼切開各縣市各自附帶連結
+21:21 < kcwu> slackbot5's url: [D3 + Leaflet]
+21:22 < slackbot5> <arlo> @miaoski: 先把需要接哪些模組確定下了吧，有需要的話硬體電路圖我可以幫忙畫
+21:22 < slackbot5> <miaoski> @arlo++  #  真強者出現了!
+21:23 < slackbot5> <clkao> tkirby: 其實可以把 villages/towns/counties encode 在同一個 topojson, 因為他會 share arc
+21:24 < slackbot5> <miaoski> 不過其實好像也沒有誰能確定要哪些模組...
+21:24 < slackbot5> <miaoski> 坑主說了算!
+21:24 < slackbot5> <arlo> @miaoski: 做這個prototype不難，可是真的要能在戶外用是個挑戰，外殼/防水/always online/導氣孔/體積都要考慮
+21:25 < slackbot5> <miaoski> @arlo: 是的. 我的程度大概只能到 prototype 了... :simple_smile:
+21:27 < slackbot5> <arlo> 手工DIY硬幹是勉強可以弄個幾套，反正拿保鮮密封盒, 鑽些孔, 配熱融膠和silicon也是可以防些水
+21:29 < slackbot5> <au> johnny: 不然用最原始的 `<area shape="poly">` 做？
+21:31 < slackbot5> <au> http://audreyt.org/tmp/ancient.html # 亂畫的示意圖
+21:31 < slackbot5> <c9s> mmis1000: 氣象局資料 API 要寫表單申請
+21:31 < slackbot5> <c9s> 是要錢的
+21:32 < mmis1000> c9s http://opendata.cwb.gov.tw/index
+21:32 < kcwu> mmis1000's url: [交通部中央氣象局-開放資料平臺]
+21:32 < slackbot5> <c9s> mmis1000 <http://www.cwb.gov.tw/V7/service/notice/download/notice_20111027115250.htm>
+21:32 < kcwu> slackbot5's url: [交通部中央氣象局規費收費標準]
+21:33 < slackbot5> <johnny> au: 阿阿阿怎麼這麼快，coords裡的那串是怎麼生出來的阿
+21:33 < mmis1000> 如果只觀測資料變動包括在收費範圍裡？
+21:33 < slackbot5> <au> johnny: google `area shape poly 台北市` 第一筆
+21:34 < slackbot5> <c9s> mmis1000 不太清楚
+21:34 < slackbot5> <c9s> 可能政策有改變
+21:35 < slackbot5> <johnny> au:  居然！！，那我可以手工做了，感謝
+21:35 < slackbot5> <au> :rocket:
+21:35 < mmis1000> 氣象局的api只有單向的資料，用在觀察變動之類很難用啊
+21:35 < seadog007> 直接打去氣象局關心一下(#
+21:36 < mmis1000> http://opendata.cwb.gov.tw/principle
+21:36 < kcwu> mmis1000's url: [交通部中央氣象局-開放資料平臺]
+21:36 < mmis1000> 而且第三項？
+21:37 < mmis1000> 不知道那個舊政策還適不適用
+21:37 < slackbot5> <c9s> http://e-service.cwb.gov.tw/wdps/ 看起來註冊完之後還是要申購...
+21:37 < kcwu> slackbot5's url: [中央氣象局資料申購主頁]
+21:38 < slackbot5> <c9s> 剛剛從你貼的網站註冊會員後, 左邊只有資料申購, 討論區... XD
+21:39 < mmis1000> 你有發現網址布一樣嗎...
+21:39 < slackbot5> <seadog007> 可是抓的到data誒
+21:39 < mmis1000> 那個註冊跟開放資料在不同站阿
+21:39 < mmis1000> http://opendata.cwb.gov.tw/index 還要再登錄一次
+21:39 < slackbot5> <seadog007> 反正就是一個政策不同步的概念
+21:40 < mmis1000> http://opendata.cwb.gov.tw/catalog?group=e&dataid=A0015-001 這邊寫免費，整個desync阿
+21:40 < kcwu> mmis1000's url: [交通部中央氣象局-開放資料平臺]
+21:41 < slackbot5> <seadog007> 是說把apikey丟出來會怎樣嗎XDD
+21:41 < mmis1000> 那個key可能很快被用到封鎖
+21:41 < mmis1000> 因為大概會被各種亂用
+21:44 < slackbot5> <seadog007> <http://opendata.cwb.gov.tw/member/opendataapi?dataid=E-A0015-001&amp;authorizationkey=xxxxx>
+21:44 < slackbot5> <seadog007> 反正這樣有資料就對了(?
+21:44 < mmis1000> yep
+21:48 < slackbot5> <seadog007> mmis1000: 那就每隔10~30sec pull一次XD
+22:00 < mmis1000> http://opendata.cwb.gov.tw/news 突然知道為啥沒人知道這個平台了，他的正式上線日期不就是五天前嘛...
+22:00 < slackbot5> <seadog007> 請留意上述URL僅為測試期間使用，2015年4月15日將配合新版平台上線，將網址改回 <http://opendata.cwb.gov.tw/。|http://opendata.cwb.gov.tw/。> 下載資料之URL亦須改為：<http://opendata.cwb.gov.tw/opendataapi?dataid={dataid}&amp;authorizationkey={apikey}>
+22:01 < slackbot5> <seadog007> 可是他給的API還是舊網址誒XD
+22:02 < mmis1000> 那是相容性理由吧
+22:02 < slackbot5> <kiang> seadog007: 就熊熊想要塞個什麼進去玩的概念 XD
+22:03 < mmis1000> 是說居然是apache耶，我以為政府單位都是IIS
+22:03 < slackbot5> <seadog007> @kiang: 什麼東西啊XDDDD
+22:03 < slackbot5> <kiang> johnny: <http://kiang.github.io/cunli/>
+22:04 < slackbot5> <seadog007> mmis1000: <http://drugs.olc.tw/>
+22:04 < kcwu> slackbot5's url: [藥品一覽 @ 藥要看]
+22:04 < slackbot5> <seadog007> 下面的那張圖要怎麼塞才會好看XDDD
+22:05 < slackbot5> <kiang> 聽說自暴自棄把網站搞的很醜就會有人看不下去下海幫忙？ XD
+22:05 < slackbot5> <seadog007> 不是吧XDDDD 我完全不知道那張圖塞哪了wwwww
+22:05 < mmis1000> 先把rwd做好吧...
+22:06 < mmis1000> 在各種版面下不是字就是圖被切到阿
+22:06 < seadog007> 圖被切到啊ww
+22:06 < mmis1000> 我從300拉到800都有東西被切到...
+22:07 < slackbot5> <kiang> 這跟選的樣板有關吧，這個樣板本來就是為了電腦操作的管理介面設計，切來切去是可以預期的
+22:07 < seadog007> mmis1000: 沒有吧(?
+22:07 < seadog007> 藥物頁面都是正常的
+22:07 < seadog007> 然後表格那樣是BS的正常反應啊
+22:08 -!- chihchun is now known as chihchun_afk
+22:08 < seadog007> 藥廠的資料倒是噴掉了
+22:09 < mmis1000> http://puu.sh/hkyGO/a4aaf38c67.png 這是嘿嘿海報最愛的iphone的310解析度
+22:09 < seadog007> 等等 明明就是320 QQ
+22:09 < mmis1000> 絕對不到320
+22:09 < mmis1000> 因為上次用320設計的版面，在你手機上噴了
+22:11 < mmis1000> 圖的話，作背景如何？
+22:11 < seadog007> 好吧 的確是被這樣切的沒錯
+22:12 < slackbot5> <kiang> 恩，進一步淡化放在背景應該不賴 :simple_smile:
+22:13 < mmis1000> 獲得事，縮成小圖，放在 藥要看 那三個字下
+22:13 < mmis1000> 或是乾脆就取代那三個字
+22:15 < slackbot5> <seadog007> kiang: 然後我只能用這個奇怪的PHP寫嗎XDD
+22:15 < slackbot5> <https://github.com/kiang/drugs/blob/master/View/Members/login.ctp>
+22:15 < kcwu> slackbot5's url: [drugs/login.ctp at master · kiang/drugs · GitHub]
+22:16 < slackbot5> <kiang> seadog007: 其實可以直接抓靜態頁面的 html 去改，我再接手套用？
+22:17 < slackbot5> <seadog007> YA 不然我完全不知道怎麼加class進去www
+22:30 < slackbot5> <pofeng> @jimyhuang: @hlb  我 http://ocf.tw 的 ga 跨 domain 追蹤 設好了 (希望沒弄錯)
+22:30 < kcwu> slackbot5's url: [開放文化基金會]
+22:30 < slackbot5> <pofeng> <script>
+22:30 < slackbot5>     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+22:30 < slackbot5>     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+22:30 < slackbot5>     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+22:30 < slackbot5>     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+22:31 < slackbot5>     
+22:31 < slackbot5>     ga('create', 'UA-379894-19', 'auto', {'allowLinker': true});
+22:31 < slackbot5>     ga('require', 'linker');
+22:31 < a0000778> ....
+22:31 < slackbot5>     ga('linker:autoLink', ['http://neticrm.tw', 'http://kktix.cc', 'http://kktix.com'] );
+22:31 < slackbot5>     
+22:31 < slackbot5>     ga('send', 'pageview');    
+22:31 < slackbot5>     </script>
+22:31 < a0000778> 別直接貼腳本上來阿!
+22:31 < slackbot5> <pofeng> @jimyhuang: neticrm 這邊需要 ga('linker:autoLink', ['http://oc.tw', 'http://kktix.cc', 'http://kktix.com'] );
+22:32 < slackbot5> <pofeng> @hlb: 這邊需要 ga('linker:autoLink', ['http://neticrm.tw', 'http://kktix.cc', 'http://kktix.com'] );
+22:33 < slackbot5> <pofeng> @jimyhuang: 我有點忘記在哪邊設定比較好
+22:33 < slackbot5> <au> neticrm 少打一個 `f` : `ga('linker:autoLink', ['http://ocf.tw', 'http://kktix.cc', 'http://kktix.com'] ); `
+22:33 < slackbot5> <pofeng> @a0000778: sorry
+22:40 < slackbot5> <muyueh> 感謝 @au、@clkao，我終於搞清楚我昨天錯在哪裡了：<https://blog.sheethub.com/thinking-data-definiton/>
+22:40 < kcwu> slackbot5's url: [煩惱：資料、資料維度超展開]
+22:41 < slackbot5> <muyueh> 雖然感覺  json-stat 很有用，但還沒有機會實作，改天再戰戰看
+22:42 < slackbot5> <au> muyueh++ # great summary
+22:48 < slackbot5> <muyueh> XD 因為不寫出來我自己也有一點搞不懂
+23:22 < slackbot5> <rick68> @muyueh++

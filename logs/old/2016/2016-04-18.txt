@@ -1,0 +1,133 @@
+--- Day changed 一  4月 18 2016
+07:01 < slackbot4> <yoyo> Summit 2016 網站講者卞中佩,  李雪莉的大頭像連結無效
+08:18 -!- DennyHuang is now known as Guest74318
+08:41 -!- s8321414_ is now known as s8321414
+10:08 -!- chihchun_afk is now known as chihchun
+10:39 -!- BV1AL_ is now known as BV1AL
+13:44 < slackbot4> <miaoski> LineBOT 繼續卡關。找了認識該公司工程師的朋友，看能不能從裡面找到 support… =,=
+14:19 -!- terces is now known as oreo_terces
+14:49 -!- chihchun is now known as chihchun_afk
+14:51 < slackbot4> <caasi> 驚人的毅力...！
+14:52 -!- chihchun_afk is now known as chihchun
+15:03 < slackbot4> <miaoski> @caasi: 因為有朋友成功了啊 =,=
+15:21 < slackbot4> <evan> @miaoski 不考慮 azure? 怎麼AWS 都是問題比較多的文章?
+15:24 < slackbot4> <miaoski> @evan: Azure 就會收到 callback 的話，也可以哦。我也有 coupon ...
+15:33 < slackbot4> <evan> 幸い、Azure では *.http://azurewebsites.net ドメインの既定の証明書が使用できるため、特に何もしなくてもHTTPSが有効になっています    <http://pierre3.hatenablog.com/entry/2016/04/13/234505>
+15:33 < kcwu> slackbot4's url (2/2): [Azure App Service + ASP.NET Web API で LINE BOTを作ってみる - pierre3のブログ]
+15:36 < slackbot4> <miaoski> evan: ++
+15:40 < oreo_terces> @miaoski: 實際的問題是什麼? callback 沒有戳嗎? http server log呢? 
+15:41 < slackbot4> <miaoski> @oreo_terces: callback 沒有戳。完全沒有 HTTP Server Log.
+15:41 < slackbot4> <miaoski> 同一個網站剪下貼上用 curl 打過了，所以排除了在 LINE Dev Console 打錯字的可能。
+15:42 < oreo_terces> 如果自己從server 發request 過去, response 是什麼?
+15:43 < slackbot4> <miaoski> 因為我是用 flask 開發的，收到的是 AWS API Gateway 轉發過來的訊息 (在另一台電腦，等一下貼上來)，目前沒有 response 資料。
+15:43 < oreo_terces> @miaoski: 我之前也有遇過這種callback 完全沒有戳的問題 可是不知道為什麼同一份code 隔天就能用了 後來我猜是LINE 那邊沒有deploy 你的callback @@
+15:44 < slackbot4> <miaoski> @oreo_terces: 我也這樣猜，可是已經等了差不多 24 小時了... :simple_smile:
+15:44 < oreo_terces> 可以在設好white list 的server 上面用 https://developers.line.me/bot-api/api-reference#getting_user_profile_information 查看看自己
+15:44 < kcwu> oreo_terces's url: [LINE Developers - BOT API - API reference]
+15:44 < oreo_terces> 看有沒有回應?
+15:45 < slackbot4> <miaoski> @oreo_terces: 好哦! 謝謝! 馬上來試。
+15:50 < oreo_terces> @miaoski: 我查詢我自己的結果 https://gist.github.com/terces/8e5b91e98906af440c0495ba33237542
+15:50 < kcwu> oreo_terces's url: [LINE BOT API · GitHub]
+15:53 < slackbot4> <miaoski> @oreo_terces: 這是我自己亂打 curl 的結果 (error log 請無視...)
+15:53 < slackbot4> <miaoski> <http://pastebin.com/CLUdPTse>
+15:53 < kcwu> slackbot4's url: [$ curl -XPOST https://y5y98w7014.execute-api.ap-northeast-1.amazonaws.com:443/pr - Pastebin.com]
+15:53 < oreo_terces> @miaoski: 我跟朋友之前有測試過一些SSL 好像很多種不吃, 目前確定可以用的是 comodo 系的, 可以去申請一個trial 的試試
+15:57 < slackbot4> <miaoski> @oreo_terces: 對。所以我試過 Let's Encrypt (確定不行) COMODO (CloudFlare) 別人說可以但我不行, AWS API Gateway (別人說可以但我也不行)
+15:57 < slackbot4> <miaoski> :simple_smile:
+15:58 < slackbot4> <miaoski> {"contacts":[],"count":0,"display":1,"pagingRequest":{"start":1,"display":1,"sortBy":"MID"},"start":1,"total":1} 我拿到的是這個
+15:58 < slackbot4> <miaoski> 因為我不知道我自己 MID ...
+15:58 < oreo_terces> oops 
+15:59 < oreo_terces> 你要登入進去LINE的頁面看 
+15:59 < slackbot4> <miaoski> 查 BOT 的 MID 的話結果是這個 {"contacts":[{"displayName":"Moedict Amis 阿美語萌典","mid":"u9f1935c043b3cd0bc1d64726b0be33e3","pictureUrl":"<http://dl.profile.line-cdn.net/0m015a53dd7251da76649b0e94811ec5c51b70e3e62491>","statusMessage":""}],"count":1,"display":1,"pagingRequest":{"start":1,"display":1,"sortBy":"MID"},"start":1,"total":1}
+15:59 < slackbot4> <miaoski> 看起來是對的
+15:59 < oreo_terces> 哦 那應該可以正常發呀 
+16:01 < slackbot4> <miaoski> @oreo_terces: 對啊… 所以一切的問題都是 callback 收不到 XD 而且因為沒有對方的 error_log 所以不知道到底錯在哪...
+16:01 < slackbot4> <miaoski> 他們的工程師說可以把 Let’s Encrypt 的 CA text 放進 intermediate file 這樣就可以用 Let’s Encrypt 了。具體是什麼意思我其實看不懂 XD
+16:02 < slackbot4> <miaoski> Install intermediate CA certificate 吧，我猜。不過反正我現在有 AWS API Gateway 了.... 沒差
+16:03 < slackbot4> <miaoski> Let’s Encrypt X3 -> DST Root CA X3 -> ISRG Root X1 然後 LINE 有支援 ISRG. 但 Let’s Encrypt 沒有包括 DST -> ISRG 這邊。
+16:04 < oreo_terces> 如果server 上面沒有流量 可以用tcpdump 聽看看LINE有沒有打過來 
+16:05 < slackbot4> <miaoski> 好像可以試試 :simple_smile:
+16:09 < slackbot4> <miaoski> 另有一個可能... AWS API Gateway 的 issuer ... 是 Symantec :disappointed: 這個是 LINE 不支援的
+16:09 < slackbot4> <miaoski> 剛剛才發現
+16:11 < oreo_terces> aww 
+16:11 < oreo_terces> 如果SSL handshake 階段就結束 http server 應該也不會有log 
+16:21 < slackbot4> <miaoski> 唉還是卡在 issuer ... 只好放棄 AWS API Gateway 了? XD
+16:26 < slackbot4> <miaoski> 囧 AWS API Gateway 都是 Symantec CA ... 網路上其它人到底怎麼成功的 T_T
+16:31 < slackbot4> <evan> 有沒有可能是 callback 設定有問題錯了?
+16:34 < slackbot4> <miaoski> @evan: 目前看起來還是憑證的問題。LINEBOT 只收固定的憑證，AWS 我選來選去用的都是 Symantec, 它們不支援
+16:34 < slackbot4> <miaoski> 然後我的 CloudFlare 的憑證是 COMODO 但是是 v2 … 我不知道他們支不支援
+16:35 < oreo_terces> 所以tcpdump 看的到LINE發request 嗎
+16:35 < slackbot4> <miaoski> @oreo_terces: no ...
+16:35 < slackbot4> <miaoski> 所以它根本沒 request
+16:36 < oreo_terces> 就tcpdump 開著 然後自己對URL 發 request 跟 隨便丟個message 給 bot 
+16:41 < slackbot4> <evan> @miaoski:   問個題外話....  除了 Line Bot API  沒有考慮 微軟的 Bot Framework?  至少不用 HTTPS ．而且可以放 Skype/IM/Slack
+18:44 < slackbot4> <miaoski> @evan: 沒有 :simple_smile:
+19:06 -!- mmis1000_cloud_ is now known as mmis1000_cloud
+19:06 -!- alex_lu_ is now known as alex_lu
+19:06 -!- Irvin_ is now known as Irvin
+19:06 -!- bobchao_ is now known as bobchao
+19:07 -!- mindos_ is now known as mindos
+19:07 -!- ETBlue__ is now known as ETBlue_
+19:08 -!- caasih_ is now known as caasih
+20:13 < slackbot5> <yhsiang> 可以
+20:14 < slackbot5> <yhsiang> 但是小貓袋跟 badge 那些都只有一份
+21:08 -GitHub11:#g0v.tw- [g0v.tw] yhsiang pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/1924ea2cc35ec0e22ec7b0946934b7c57f2f95e1
+21:08 -GitHub11:#g0v.tw- g0v.tw/gh-pages 1924ea2 g0v general (via TravisCI): regen for 3fc5eae
+21:22 < slackbot5> <miaoski> <http://qiita.com/git6_com/items/008404506836011af33b>
+21:22 < kcwu_> slackbot5's url: [LINE BOT APIでリクエストが飛んでこない（SSL関係） - Qiita]
+21:22 < slackbot5> <miaoski> 前兩天貼過了。眼殘沒看到 CloudFlare 和 AWS API Gateway 都沒在「可以」的清單裡
+21:23 < slackbot5> <hcchien> 所以 @miaoski 是在把服務放上 official account? 還是單純的 bot?
+21:23 < slackbot5> <miaoski> 「SSLは，CloudflareのSSLを使ってやりました．」才怪，網路上有人說可以有人說不行。我自己試是不行。
+21:23 < slackbot5> <miaoski> @hcchien: BOT.
+21:23 < slackbot5> <hcchien> ok
+21:23 < slackbot5> <miaoski> 官方開放 Trial BOT.
+21:24 < slackbot5> <miaoski> 私人寫的 bot library 已經全部被要求下架了 (包括 Github 上的)
+21:24 < slackbot5> <miaoski> 我並不是很欣賞這件事... 但，它本來也就不是個開源的東西...
+21:25 < slackbot5> <hcchien> 也是啦
+21:27 < slackbot5> <hcchien> 最近拿到 protostar 帳號，也是要踹這個
+21:37 < slackbot5> <miaoski> 該怎麼說呢， COMODO Free Trial 犯了個很低級的錯誤...
+21:37 < slackbot5> <miaoski> An account already exists for "http://idv.tw".
+21:38 < slackbot5> <miaoski> (喂喂... 我申請的是 http://miaoski.idv.tw ... 囧)
+21:42 < slackbot5> <miaoski> 最後一條路也斷了... @pofeng 請幫忙看看台灣 LINE 能不能處理一下，感謝。
+21:43 < slackbot5> <pofeng> 嗯嗯, 要 回報/詢問什麼 ?
+21:45 < slackbot5> <miaoski> AWS API Gateway -> Symantec CA -> 失敗
+21:45 < slackbot5> Let's Encrypt -> No intermediate file -> 失敗
+21:45 < slackbot5> CloudFlare -> COMODO CA 2 -> 失敗 (LINE 只支援 COMODO CA, 不支援 CA 2)
+21:45 < slackbot5> COMODO SSL Free Trial 90 Days -> 失敗 (COMODO 認為整個 http://idv.tw 是一個 Domain 而不是 TLD)
+21:45 < slackbot5> <miaoski> 我真的很想把 LINEBOT 和阿美語萌典結合在一起，不過這個技術問題看來不是我能解決的了，他們對 SSL 的 CA 太挑剔了。
+21:46 < slackbot5> <pofeng> 好, 我明天請 @singing 幫忙 email給窗口,  然後 CC: 給你
+21:47 < slackbot5> <pofeng> 辛苦了 !!
+21:47 < slackbot5> <miaoski> @pofeng: 感謝! 剛本來想動腦筋到 ocf 頭上.... 發現 ocf 好像沒有 HTTPS :stuck_out_tongue:
+21:48 < slackbot5> <pofeng> 哈哈 對沒買
+21:48 < slackbot5> <ronnywang> 如果我要試用 line bot api 要怎麼開始?
+21:49 < slackbot5> <miaoski> @ronnywang: 前面我有貼了好幾個 link (主要是星期六) 可以參考一下 logbot. 上面有範例程式。
+21:49 < slackbot5> <miaoski> 前提是你要先有申請到限量的 LINE Trial BOT 帳號
+21:50 < slackbot5> <ronnywang> 沒申請到就不能開始了?
+21:50 < slackbot5> <ronnywang> 好吧，那就沒辦法試用了 XD
+21:51 < slackbot5> <miaoski> 對啊 XDDD
+21:51 < slackbot5> <miaoski> 我寫的程式在這邊 <https://github.com/miaoski/amis-linebot> 理論上如果 callback 收得到就可以馬上用了
+21:51 < kcwu_> slackbot5's url: [GitHub - miaoski/amis-linebot: 阿美語萌典 LINE BOT]
+21:52 < slackbot5> <miaoski> 但總之是抄抄改改，不如直接看之前貼的「汪汪 bot」的程式 (笑)
+21:54 < slackbot5> <miaoski> [COMODO 回信] We were unable to process your email. You need to have a helpdesk account before you can create tickets using email.
+21:54 < slackbot5> <miaoski> lol
+22:27 < slackbot5> <miaoski> @ronnywang: ++
+22:27 < slackbot5> <ronnywang> 哈哈，試了 cloudfront 和 startssl 的 key 也是毫無反應
+22:40 < slackbot5> <miaoski> 有沒有長輩付得起可以簽發 subdomain 的 key 的... XD
+22:40 < slackbot5> <miaoski> *.http://linebot.g0v.tw (大誤)
+22:46 < slackbot5> <miaoski> 一年將近一萬台票! 囧 ...
+22:58 < ronnywang> 其實不用 subdomain 吧，只要一個 https://linebot.g0v.tw/ ，之後就用 https://linebot.g0v.tw/amis/callback https://linebot.g0v.tw/newshelper/callback 之類的就好
+22:58 < ronnywang> 然後可以 proxy 到其他 domain 去
+22:59 < ronnywang> 但我覺得與其花錢還是等 line 支援 letsencrypt 吧
+23:00 < au> +1 實在沒道理不支援 letsencrypt
+23:06 < slackbot5> <ronnywang> 不然如果 azure 可以的話，先用 azure 弄個 proxy 暫時頂一下
+23:10 < slackbot5> <ronnywang> @miaoski: 有試過用 heroku 架一個 https 的 proxy app 嗎?
+23:11 < slackbot5> <ronnywang> heroku 的 SSL 是用 Digicert
+23:19 < slackbot5> <miaoski> @ronnywang: 好主意。如果沒有意識型態上的問題 (畢竟不是開源軟體 + 說不定協調以後就改了) 我可以認捐 ...
+23:20 < slackbot5> <miaoski> 但我也覺得應該會改，畢竟用 AWS API Gateway 的人好多啊 XD
+23:20 < slackbot5> <miaoski> @ronnywang: 還沒用過 Heroku. 有人回報說可以。但我好幾年沒用了.... :$
+23:20 < slackbot5> <miaoski> 如果你願意幫忙的話，密碼還沒改回來 ^^;
+23:21 < kcwu_> 他們來找的, 請他們贊助出錢?
+23:23 < slackbot5> <miaoski> @kcwu: 協調看能不能開放 Let's Encrypt 比較好 ^^;
+23:47 < slackbot5> <miaoski> Heroku 失敗了…剛剛 Ronny 試的。
+23:47 < slackbot5> issuer: C=US; O=DigiCert Inc; OU=http://www.digicert.com; CN=DigiCert SHA2 High Assurance Server CA
+23:47 < slackbot5> 這個不在LINE 的 CA List 裡

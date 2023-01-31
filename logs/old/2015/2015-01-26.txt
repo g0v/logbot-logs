@@ -1,0 +1,294 @@
+--- Day changed 一  1月 26 2015
+00:02 < miaoski> kiang: 這是做什麼用的呢？(剛看了一下 about, readme, github 不太明白)
+00:02 < miaoski> "讓 consumer 不用管後面用的是 csv / postgres / mongodb .." 意思究竟是什麼...
+00:11 -!- shunyi_ is now known as shunyi
+00:12 < slackbot> <kiang> miaoski: 就有點類似 https://sheetdb.com/ 在做的事情，提供資料一個標準化的管理平台
+00:12 < kcwu> slackbot's url: [SheetDB.com]
+00:14 < slackbot> <kiang> 它附了一個 editor 可以即時線上編輯資料，我只是好奇有沒有工具可以做到以行為基礎的異動辨識，這樣就可以簡化每次都需要重新匯入新資料的問題
+00:25 < slackbot> <kiang> https://github.com/maxogden/dat/issues/269 - 恩，看起來它也沒有這樣的功能 XD
+00:25 < kcwu> slackbot's url: [only update the version for changed rows when reimport the whole csv again · Issue #269 · maxogden/dat · GitHub]
+00:26 < slackbot> <kiang> 期待 beta 了（逃）
+00:28 < slackbot> <noracami> 請問：https://sheetdb.com/ 目前有開放上傳使用嗎 找不到註冊之類的頁面
+00:28 < slackbot> <kiang> noracami: 應該還在開發中吧，要問 ronnywang
+00:36 < slackbot> <noracami> kiang ok, 因為有看到一份功能介紹的 hackpad，期待開放使用~
+01:08 < slackbot> <kiang> https://www.facebook.com/newpowerparty/photos/a.891139534290737.1073741828.891084220962935/894481620623195/?type=1 閃靈的 Freddy 耶！
+01:08 < kcwu> slackbot's url: [動態時報相片 - 時代力量 New Power Party | Facebook]
+03:47 < slackbot> <kiang> 使用 cloudflare 麻煩的地方是 Raw log file access 要 CloudFlare Enterprise 才能夠有，造成沒辦法主動去追一些異常的紀錄（因為來源 IP 都是 cloudflare ...）
+03:48 < slackbot> <kiang> 像現在有一隻蟲 header 就刻意打 "Googlebot" ，產生大量連線，但無法從紀錄檔案裡面去辨識來源 IP ...
+03:50 < slackbot> <kiang> cloudflare 的代理功能停用後還要等 dns cache 更新，所以還是只能癡癡的等真實 IP 進到紀錄檔案
+04:08 < gugod>         ~.
+04:08 < gugod> .
+04:08 < slackbot> <kiang> 看起來又有貓咪碰觸到某人的電腦？ XD
+04:10 < slackbot> <kiang> 把 cloudflare 關掉之後擋掉討厭的蟲了...，因為不確定快取的規則，怕擋特定規則的流量會造成誤殺，所以乾脆停掉專心把蟲踢掉...
+05:29 < gugod> ~_~
+--- Log opened 一  1月 26 06:08:32 2015
+06:08 -!- Irssi: #g0v.tw: Total of 166 nicks [0 ops, 0 halfops, 0 voices, 166 normal]
+06:08 -!- Irssi: Join to #g0v.tw was synced in 16 secs
+08:29 < gugod> au: https://github.com/gugod/moedict-webkit 大致上完成了，四部字典都有 pinyin lookup。台語的是拿 trs，不過直接跟 trs_lookup 衝突，所以基本上沒用。還沒細分拼音種類就是。
+08:30 < kcwu> gugod's url: [gugod/moedict-webkit · GitHub]
+08:31 < gugod> FYI 由萌典 a/ 生出來的拼音 regex: https://github.com/gugod/moedict-webkit/blob/master/build-pinyin-lookup.pl#L80 
+08:31 < kcwu> gugod's url: [moedict-webkit/build-pinyin-lookup.pl at master · gugod/moedict-webkit · GitHub]
+08:31 < gugod> 可比對到單一一個字的拼音
+08:32 < gugod> spoiler: regexp 長度為 2556 characters :p
+08:59 -!- ywang1008 is now known as ywang1007
+09:13 < au> gugod++ # 超強 :p
+09:13 < slackbot> <mingtsay> 喵～～～～
+09:33 < clkao> gugod++
+10:30 -!- Eddie is now known as Guest82978
+10:42 -!- petercom1and is now known as petercommand
+10:45 < slackbot> <kiang> gugod++
+10:45 < slackbot> <mingtsay> gugod++
+11:11 < slackbot> <yhsiang> gugod++
+11:31 < pm5> gugod++
+12:12 < miaoski> gugod++
+12:37 < caasihuang> gugod++
+14:21 < slackbot> <macpaul> 聽到一個八卦： 有一個 http://tcscachemreg.epa.gov.tw/content/login/NewsList.aspx 化學物質登錄平台
+14:21 < slackbot> 聽說是有法源（沒聽清楚什麼法）依據，行政院各部會都要負責列管。
+14:21 < slackbot> 食品 農藥 肥料 藥物 各有該負責的單位，上面這幾項之外的，全部歸還環保署列管。
+14:21 < slackbot> 於是這些相關部會，就要各自建立一個 xxxx登錄平台，列管這些化學物質。
+14:21 < slackbot> 但是由於法源不同，如環保署要加管化學物質對環境影響，勞動局要加管對勞工影響的部份。
+14:21 < slackbot> 也因為如此，造成各部會要做重工，各自建立一套資訊系統，然後還會出現各自的表格。
+14:21 < slackbot> 明明都是化學物質，但是可能會出現今天要查詢一個化學物質的效用，得自己上各部會平台網站查詢。
+14:23 < slackbot> <macpaul> 但是在環保署的角度，只要別的局處有列管的，環保署就不會管.... orz
+14:23 < slackbot> 聽說有對外宣稱各部會之後會整合的樣子
+14:23 < slackbot> <macpaul> 然後類似的東西，歐盟似乎是有一個500人小組在做。
+14:23 < slackbot> <macpaul> 各部會就是各自外包去了。
+14:25 < slackbot> <macpaul> 由於產業的廠商必須送件送審，所以實際上真正該掌握資訊 跟有能力指揮廠商的應該是工業局，但是環保署之前管過毒化物，所以現在這個東西最大宗的部份給環保署管
+14:25 < slackbot> <macpaul> 登錄系統不只管業界，也管一般科技研究
+14:27 < slackbot> <t0mst0ne> clkao: 請問influxdb ok 了嗎? 我想試著包到 docker 上
+14:29 < slackbot> <t0mst0ne> clkao:  暫時想法是, influxdb 會掛, 所以獨立包 ;  然後crawler 是不是可以同時抓資料feed 給influxdb, 同時存一個csv ; 萬一influxdb 掛了 crawler 還可以繼續抓資料
+14:31 < slackbot> <kiang> http://www.greenpeace.org/taiwan/zh/press/releases/toxics/2014/law-still-loose/ 看起來化學物質登錄還有很多問題
+14:31 < kcwu> slackbot's url: [化學物質登錄辦法大瑕疵　環保署管不住全臺化學物質 | 綠色和平－臺灣網站]
+14:31 < slackbot> <a0kman> 那種管理方法只會讓事情更複雜化
+14:31 < slackbot> <a0kman> 農藥 人類用藥 動物用藥 肥料 還牽涉到原體和添加物
+14:31 < slackbot> <a0kman> 然後跑出一個這個東西只是讓管轄過細 最後很可能變成足球賽
+14:32 -!- chihchun_afk is now known as chihchun
+14:33 < slackbot> <a0kman> 最後只會變成跨部會足球小組
+14:58 < slackbot> <clkao> hackpad down?
+15:08 < au> just g0v.hackpad.com ... 我寫信去 support@ 了
+15:08 < au> 但依慣例可能要等八小時後有人上班才會修好
+15:09 < clkao> kcwu++ # backup
+15:09 < clkao> kcwu: 備份可以直接上 gh-pages branch 嗎？
+15:19 < kcwu> clkao: 可以 rename master 成 gh-pages 嗎?
+15:48 < au> 或是批次定時上傳到 g0v-backup.hackpad.com (read-only)，反正兩邊不會一起當 XD
+15:57 < kcwu> 我剛 rename 了, 不知道會不會動, http://g0v-data.github.io/hackpad-backup-g0v/ 更 refresh
+15:57 < kcwu> s/更/等/
+15:57 < au> kcwu++
+16:14 < kcwu> 已經可以 access PADID.html 了, 只是要先知道 PADID ... 
+16:14 < kcwu> 等 hackpad 恢復我再來生 index.html
+16:16 < slackbot> <kiang> kcwu++
+16:18 < kcwu> 誰能幫忙給它個 domain, 像是 hackpad-backup.g0v.tw ? 我不太喜歡大量來路不明的 html 沒有獨立的 subdomain
+16:23 < au> kcwu: CNAME 設成 g0v.link 應該就會直接動了
+16:23 < au> <- 閒置網域都 park 在 github pages 上
+16:24 < au> hackpad.g0v.link 也已 CNAME 到 g0v-data.github.io
+16:29 < au> kcwu: pullreq sent https://github.com/g0v-data/hackpad-backup-g0v/pull/1
+16:29 < kcwu> au's url: [* Add CNAME to hackpad.g0v.link by audreyt · Pull Request #1 · g0v-data/hackpad-backup-g0v · GitHub]
+16:59 < Lee1092> kcwu++ au++   hackpad 備份工程
+17:01 < slackbot> <kiang> a0kman: 有看過 https://www.facebook.com/groups/1478815455714003/permalink/1485533261708889/ 嗎？
+17:01 < kcwu> slackbot's url: [Facebook]
+17:02 < Lee1092> g0v hackpad 掛掉  連帶 公報 api 也掛了 QQ 
+17:15 < kcwu> au: 是因為把 *.g0v.link 都指到 github.io 嗎?
+17:17 < au> kcwu: 是喔
+17:17 < au> hackpad.g0v.link 特別指到 g0v-data.github.io (有 CDN)
+17:17 < au> 其他目前是 A record
+17:18 < au> gh pages CNAME 大約要半小時生效
+17:21 -!- chihchun is now known as chihchun_afk
+17:25 -!- petercommand is now known as petercommand_
+17:25 -!- chihchun_afk is now known as chihchun
+17:25 -!- petercommand_ is now known as petercommand
+17:27 < kcwu> au: [hackpad-backup-g0v] Page build warning: CNAME already taken: hackpad.g0v.link
+17:29 < au> 看來我要 remove 我的 fork
+17:31 < au> kcwu: ok done, try make an empty commit (加上空白的 index.html 之類的)
+17:34 < au> push 過再等半小時看看，如果還不行的話，再試著把 CNAME 換成 g0v.link 或 hackpad-backup.g0v.link
+17:34 < au> (bbiab)
+17:50 -!- chihchun is now known as chihchun_afk
+18:28 -!- chihchun_afk is now known as chihchun
+18:37 < slackbot> <mgdesigner> 我回報一下，現在還是504 Gateway Time-out
+18:39 < ronnywang> noracami: http://goo.gl/forms/Y1920ciEjt # 因為 sheetdb 還在持續開發中，現在界面可能會一直變動，因此還未開放註冊，不過如果想要先測試的話，可以在這邊留下你想要的帳號以及 email ，我們會將帳號密碼再寄給您。也歡迎有興趣測試使用的人也可以來填寫喔
+18:39 < kcwu> ronnywang's url: [SheetDB.com invite form]
+18:47 -!- chihchun is now known as chihchun_afk
+18:57 -!- chihchun_afk is now known as chihchun
+19:45 -!- chihchun is now known as chihchun_afk
+19:55 -!- chihchun_afk is now known as chihchun
+20:06 -!- chihchun is now known as chihchun_afk
+20:14 -!- chihchun_afk is now known as chihchun
+20:46 < slackbot> <mgdesigner> hello，我們維基協會現在接到一個知名台語學者的字典電子檔捐贈案。這件事我覺得有萌典的參與才會更完整、完善。我想問一下，台語萌典的事務現在要問誰呢？
+20:51 < au> mgdesigner: 把資料貼到 https://g0v.hackpad.com/moed7ct-taigi-neologism 就會有人回了
+20:51 < au> ... 等 hackpad 回來之後 XD
+20:51 < au> 不然也可以先把連結貼在這裡... 相關人士如 a-tsioh pcchen_ pm5 都在頻道上。
+20:52  * a-tsioh 被吵醒
+20:52 < a-tsioh> 怎麼了？
+20:52 < a-tsioh> 要看log 
+20:52 < au> 下午兩點吵醒你真抱歉 XD
+20:53 < a-tsioh> XD
+20:53  * a-tsioh 也被發現了
+20:54 < a-tsioh> 學了flux和semantic-ui學到半夜，之前都是用backbone和bootstrap
+20:54 -!- chihchun is now known as chihchun_afk
+20:54 < au> 兩件事: 一個是 gugod 做了 trs lookup 的離線版（用靜態 json 反查，不經過 server），我會先在 app 上試看看，線上版繼續用 trs lookup 的 ocaml server
+20:55 < au> 一個是 mgdesigner 接到一個知名台語學者的字典電子檔捐贈，有網址時可能可以看一下是否/怎麼匯入到 Taigi Neologism 裡。以上
+20:56 < a-tsioh> cool×2 !
+20:57 < a-tsioh> 檔案在哪？
+20:58 < a-tsioh> 匯入到Taigi Neologism 還是萌典？
+20:58 < au> mgdesigner: 對啊，檔案在哪 XD
+21:00 < au> 我想如果較古老、夠完整，可以比照方敏英阿美語和徐兆泉客語案，自成一本。如果不完整或較新潮，授權又適合，可以做 Neologism 的 bootstrap 資料
+21:01 < a-tsioh> 好
+21:09 < slackbot> <mgdesigner> sry剛才離開了，我回來了，我說明一下
+21:10 < slackbot> <mgdesigner> 字典電子檔是DOS時代的東西
+21:11 < a-tsioh> good old days
+21:11 < slackbot> <mgdesigner> 也有紙本，有比較辛苦的地方，有非常多的缺字使用造字區，描述的有缺的漢字、當時該教授自創的漢字、以及台語注音符號
+21:12 < slackbot> <yhsiang> a-tsioh++ # flux!
+21:13 < au> mgdesigner: 好的。資料一共幾筆？最後更新是幾年？願意採用哪種 CC 授權？
+21:13 < slackbot> <mgdesigner> 我們維基尋會這邊可以做的，是原檔經過整理放到wikisource（維基文庫），授權就是CC-BY-SA
+21:13 < slackbot> <mgdesigner> 剛才打錯，是「維基協會」
+21:14 < slackbot> <mgdesigner> 不過這邊的難點是....缺字問題，順便說那位教授就是吳守禮。是吳守禮的家屬決定要捐奏出來
+21:15 < slackbot> <mgdesigner> 吳教授的台華字典
+21:16 < au> 《國台對照活用辭典》?
+21:16 < kcwu> cool
+21:16 < slackbot> <mgdesigner> 應該是
+21:16 < slackbot> <mgdesigner> 可能是他全部的字典
+21:17 < au> 那就是六萬條詞目，五百萬字，是教育部台語常用詞典的... 三倍大。
+21:17 < a-tsioh> wiki這邊有人願意幫忙嗎？
+21:18 < au> (而且收詞足夠現代。)
+21:18 < a-tsioh> awesome
+21:18 < a-tsioh> 註音->trs 不會很難
+21:19 < au> 缺字編碼就只好再開一次鄉民 OCR 了
+21:19 < slackbot> <mgdesigner> 其中比較麻煩的是會涉及缺字處理，因為轉到現在的unicode，應該大部分會有unicode可以cover的，也會有unicode沒有的。unicode沒有的也可能有發明但是沒有流通的新字等等
+21:19 < a-tsioh> 缺字是什麼情況？
+21:19 < slackbot> <mgdesigner> au: 重點是可能有OCR都找不到的
+21:19 < a-tsioh> 是紙板裏用筆寫的？
+21:20 < a-tsioh> 還是有一種description ?
+21:20 < slackbot> <mgdesigner> BIG-5造字區
+21:20 < au> MGdesigner: unicode沒有的就 IDC 組字，https://ethercalc.org/3du-holohak 就是這樣做的
+21:20 < kcwu> au's url: [EtherCalc - Share the URL to your friends and edit together!]
+21:21 < slackbot> <mgdesigner> 是的，所以要包含入IDC組字的處理
+21:21 < au> 例如 ⿸疒哥、⿺皮卜
+21:21 < slackbot> <mgdesigner> yes
+21:23 < slackbot> <mgdesigner> 然後我這邊就維基團隊這邊的立場，我覺得這是一個大job，除了有電子檔的以外，也許還有比對文本的部份（我們協會也收到吳家捐贈的字典了）
+21:23 < a-tsioh> 那其實我也覺得很有趣
+21:23 < au> MGdesigner: 1200 個造字碼位... 應該沒有都用到吧
+21:23 < au> 之前鄉民共筆的經驗是一天可以消化掉（含 IDC）~100 個碼位
+21:25 -!- lkkgeniu1 is now known as lkkgenius
+21:25 < slackbot> <mgdesigner> 有必要的話我們可以去申請補助（美國維基總會的補助，以及科技部的），此外希望有一個IDC組字的外掛webfont的實作，順便解決維基百科/文庫之類的缺字顯示問題（BY IDC）
+21:25 < a-tsioh> 而且處理過的IDC應該是可以回收
+21:25 < slackbot> <mgdesigner> au: 很難講.... XD
+21:25 < a-tsioh> （吧）
+21:26 < au> mgdesigner: 好吧，即使 1200 個字造滿，也就是兩星期的事情 XD
+21:27 < slackbot> <mgdesigner> ok
+21:27 < a-tsioh> 也可以考慮先自動做出一版（難看一點）才請鄉民來修改
+21:27 < au> 是的
+21:28 < au> 外掛 webfont 可以請 意傳.台灣 補完，鄉民專心做 IDC 序列編碼
+21:28 < slackbot> <mgdesigner> 我想，那再來我發email公文給我們協會報告這件事情。那，email的收件人G0V這邊要寄給哪些人好？au a-tsioh等
+21:28 < slackbot> <mgdesigner> 對耶，有意傳
+21:29 < a-tsioh> original data 不可以 CC 嗎？
+21:29 < slackbot> <mgdesigner> 意傳做好的話，以後也可以有玩鄉民組字了XDXD
+21:29 < slackbot> <mgdesigner> 應該可以吧？
+21:30 < slackbot> <mgdesigner> 捐贈手續完成的時候，我們的立場應該就是CC無誤
+21:31 < au> MGdesigner: pmagistry 和 audreyt.org 都是 @gmail。如果是以 g0v 為公開，則是 g0v-general@googlegroups.com
+21:31 < au> CC BY-SA 很歡迎，比其他字典的 CC BY-ND 已經是進一大步了 XD
+21:32 < slackbot> <mgdesigner> 就是原始資料CC->轉換成現代unicode+IDC造字 ->放到wikisource收藏 ，然後就給外面撈資料使用囉應該是這樣
+21:32 < au> 是的。
+21:33 < slackbot> <mgdesigner> 我有點好奇，https://ethercalc.org/3du-holohak  裡面的對應圖，實際上是IDS對吧？
+21:33 < kcwu> slackbot's url: [EtherCalc - Share the URL to your friends and edit together!]
+21:33 < au> 是 glyphwiki
+21:34 < au> (E & L column 是 glyphwiki)， B & I column 是原本字典的造字點陣圖。
+21:35 < au> F & M column 才是 IDC。當時還沒有使用意傳.台灣的自動組字。
+21:35 < slackbot> <mgdesigner> 了解
+21:38 < slackbot> <mgdesigner> 我問一下，意傳的開發者也是萌典計畫的參與者嗎？（雖然以前跟他通過信XD）
+21:39 < a-tsioh> au: zh-stroke 的xml 到底是什麼licence ?
+21:40 < a-tsioh> 我們這邊有作一些試驗， 用zh-stroke-data作svg
+21:40 < a-tsioh> 可以mix字
+21:40 < a-tsioh> 有開始考慮自動化
+21:41 < au> MGdesigner: sih4sing5hong5 ? 有來第一次萌典松，所以是萌典松的參與者，對 g0v/taigi 也有興趣
+21:41 < slackbot> <mgdesigner> au: 了解，那我也把他拉近email
+21:42 < au> a-tsioh: zh-stroke 的 xml 叫做合理使用 XD 依國教院的定義，「不破壞規範性」就可以做衍生著作了
+21:42 < au> 就是... 不要改動筆劃順序 XD
+21:43 < au> 用部件來 mix 字是完全 ok 的。
+21:44 < a-tsioh> 哦喲
+21:44 < a-tsioh> 不可以作假字嗎？
+21:45 < a-tsioh> 我研究neurolinguistics的朋友要失望
+21:45 < slackbot> <mgdesigner> 不能做假字喔/_\
+21:45 < au> 可以用來做⿺皮卜，但是「卜」的部件的直筆要先寫。
+21:45 < slackbot> <mgdesigner> 做假字很重要的耶
+21:46 < a-tsioh> 亂七八糟 的 demo http://lils.magistry.fr 
+21:46 < kcwu> a-tsioh's url: [SinoEx]
+21:46 < slackbot> <mgdesigner> 「OK土」這個姓，還有清朝公文書上出現的「犬英」（英國狗）這些字重現古籍很重要的啊XD
+21:46 < a-tsioh> 而且介面是法文XD
+21:48 < au> a-tsioh: 看來都可以啊，只是有動畫的話，「卜」部件不要顯示成先點後豎。如果要先點後豎的話，請寫信到 onile@mail.naer.edu.tw 問一聲
+21:51 < a-tsioh> 不要用「卜」要先從其他漢字extract它
+21:51 < a-tsioh> （你是這個意思嗎？）
+21:52 < au> 不是，而是 extract 出筆劃是 OK 的
+21:52 < au> 但如果筆劃有顯示動畫的先後序，希望依原本來源字的先後序。
+21:53 < au> http://lils.magistry.fr/ 看起來沒有動畫? 所以也沒有先後序問題。
+21:53 < slackbot> <mgdesigner> au: 我問一下，pmagistry@gmail  audreyt.org@gmail 是兩個人嗎？還是同一個人？
+21:53 < au> 所以儘量用吧 XD
+21:53 < a-tsioh> 對沒有動畫
+21:53 < au> MGdesigner: 是兩個人，分別是 a-tsioh 和 au
+21:53 < slackbot> <mgdesigner> 收到
+21:54  * a-tsioh 不是 au 的一部分
+21:56 < au> ...但我們都是 Charlie 的一部份 (是這樣說的吧)
+21:56 < a-tsioh> 現在的問題是要找same proportion 的兩個字，不然要scale+translate
+21:57 < a-tsioh> 哈哈
+21:57 < a-tsioh> 其實我們就是Charlie 
+21:57 < au> XD
+21:57 < a-tsioh> 每個人是Charlie的全部
+21:57 < au> 瞭解
+22:00 < hcchien> d3js 裝不起來，怒....
+22:02 < slackbot> <yhsiang> hcchien: 裝?
+22:03 < hcchien> yhsiang: npm
+22:03 -!- t4s is now known as terces_oreo
+22:04 -!- terces_oreo is now known as oreo_terces
+22:04 < slackbot> <kiang> Too many connections - http://data.gov.tw 被打掛了
+22:04 < slackbot> <yhsiang> 我正常 @@
+22:05 < slackbot> <seadog007> Error
+22:05 < slackbot> The website encountered an unexpected error. Please try again later.
+22:05 < slackbot> Error messagePDOException: SQLSTATE[HY000] [1040] Too many connections in lock_may_be_available() (line 167 of /var/www/html/includes/lock.inc).
+22:05 < a-tsioh> miaoski: pcchen_ 和全萌典組 要不要去西班牙玩Linguistic Linked Opend Data ? http://datathon.lider-project.eu/
+22:05 < kcwu> a-tsioh's url: [1st Summer Datathon on Linguistic Linked Open Data (SD-LLOD-15)]
+22:05 < slackbot> <seadog007> yhsiang: 搞不好是cache造成的錯覺
+22:06 < slackbot> <yhsiang> seadog007: 我說的是 d3 ...
+22:07 < slackbot> <kiang> seadog007: 亂入被抓包
+22:07 < hcchien> yhsiang: update xcode 中，看能不能正常一點
+22:09 < slackbot> <seadog007> 哦XDD
+22:27 < a-tsioh> au: 萌典國語版的拼音沒有分詞，有人在這個坑嗎？
+22:40 < slackbot> <kiang> https://www.facebook.com/groups/g0v.general/permalink/750594008350341/ - 1/28 上午十點 XD
+22:40 < kcwu> slackbot's url: [Facebook]
+22:41 < slackbot> <a0kman> kiang: 其實農業末端行銷目前已經多到滿地都是了Orz
+22:41 < slackbot> <a0kman> 根本紅海
+22:41 < slackbot> <kiang> a0kman: 恩，就沒有一個彙整的吧 XD
+22:45 < slackbot> <a0kman> 目前也不太有人會想被匯整
+22:46 < slackbot> <a0kman> 因為農法和觀點有不少人有出入
+22:46 < slackbot> <a0kman> 所以呢~~嘿嘿嘿
+22:46 < slackbot> <a0kman> :Q
+22:46 < slackbot> <kiang> 恩，政治問題就難解了 :simple_smile:
+23:00 < au> a-tsioh: 是說拼音檢索還是拼音標注？前者是 gugod，後者是因為上游就是這樣...
+23:02 < au> 兩者都歡迎填坑，後者（像 CSLD 那樣分的話）應該可以回到上游。
+23:15 < a-tsioh> au:我說是標注
+23:16 < a-tsioh> 我覺得外國人需要
+23:23 < au> sure, go ahead - 應該是現有的斷詞簇加上 hyphen 就好了
+23:23 < gugod> to be honest, I have no idea if trs_lookup and pinyin_lookup (for taigi) solves the same problem
+23:24 < au> gugod: 對了，既然有某個 regex，那pinyin_lookup 可以打「pinyin」檢索，不用打「pin yin」?
+23:24 < gugod> yes, that's possible
+23:25 < au> ++
+23:25 < gugod> something like query.split/($re)/ 
+23:25 < slackbot> <mgdesigner> au: 我跟我們協會回報好了，我們協會內部討論好，我就會再來跟各位討論進一步的細節
+23:25 < au> mgdesigner++ # 感謝
+23:26 < slackbot> <mgdesigner> au: 吳守禮家族真的很有心，本來他們有考慮別的機構選擇，但是考量到會有被拿去close source賺錢的危險，所以後來就找上我們
+23:27 < slackbot> <mgdesigner> au: 更正，應該是close data \_/
+23:31 < miaoski> au, a-tsioh , MGdesigner : 這件事我和張裕宏教授報告一下哦。
+23:32 < slackbot> <mgdesigner> miaoski: 好啊
+23:32 < miaoski> 之前一直勸說他，他都因覺得自己編的字典不夠完善，不願意放出半成品
+23:32 < miaoski> 很難勸他 release early, release often. 不過他知道這件事的話，應該會很高興。
+23:33 < slackbot> <mgdesigner> miaoski: 喔喔，而且open data以後，只要CC-BY-SA就可以繼續編輯擴充下去
+23:34 < miaoski> a-tsioh: j'ai pas de sou
+23:35 < slackbot> <mgdesigner> 法文？？？
+23:35 < a-tsioh> miaoski: 可惜，moi j'ai pas le temps :p
+23:36 < slackbot> <kiang> http://zh.wikipedia.org/wiki/%E5%90%B3%E5%AE%88%E7%A6%AE 看到的有 《綜合閩南臺灣語基本字典》、《國臺對照活用辭典》與 《綜合臺灣閩南語基本字典》
+23:36 < kcwu> slackbot's url: [吳守禮 - 维基百科，自由的百科全书]
+23:38 < a-tsioh> 迫不及待看新資料！
+23:40 < slackbot> <mgdesigner> kiang: 我們秘書長說是家屬要捐贈，此外我補充一點，是紙本附電子檔
+23:41 < slackbot> <mgdesigner> kiang: 按照網站說的，我猜可能連手稿都有也說不定。XD
+23:43 < miaoski> MGdesigner: 對啊。抱歉。我的意思是我沒錢 (去西班牙玩) a-tsioh 的意思是他沒空
+23:43 < slackbot> <kiang> 之前後勤才有人推 鄭惇元 的 台華辭典 ，有他身邊的網友幫忙轉達，不過還沒有進一步回應
+23:43 < miaoski> gugod: 既然大家在討論 trs / pinyin 那我問一個題外話
+23:44 < miaoski> 如果我想在同一個對話框 (請輸入要查的字) 那裡，比方說用漢語查阿美語，我自己掛一個 json 或 sqlite ，怎麼做會比較建議
+23:44 < miaoski> 我本來是想說輸入，判斷 unicode 區間，是漢字就去查，然後另外 overlay 一個 <div>

@@ -1,0 +1,632 @@
+--- Day changed 三  7月 17 2013
+00:21 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+00:35 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+00:35 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+00:51 -GitHub140:#g0v.tw- [twlyparser] clkao pushed 1 new commit to master: https://github.com/g0v/twlyparser/commit/a87b47cab9de73eeac3945376600ffd592073da2
+00:51 -GitHub140:#g0v.tw- twlyparser/master a87b47c Chia-liang Kao: official candidate platform during election from jonny's dump.
+00:59 -!- seudo_tw [r01944023@linux10.csie.ntu.edu.tw] has quit [Quit: Lost terminal]
+01:01 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has quit [Quit: leaving]
+01:07 -!- Netsplit *.net <-> *.split quits: mrmoneyc, hcchien, Jcrt, Howar31, ManicLF, yhsiang
+01:10 -!- Netsplit over, joins: ManicLF, Jcrt, Howar31, yhsiang, mrmoneyc, hcchien
+01:27 -!- mhs1n [~mhsin@114-32-9-83.HINET-IP.hinet.net] has joined #g0v.tw
+01:27 -!- SarsTW [~wenpei@106.187.55.81] has joined #g0v.tw
+01:28 -!- ctf_ [~ctf@li568-163.members.linode.com] has joined #g0v.tw
+01:28 -!- fshiori [~eric@36-224-16-130.dynamic-ip.hinet.net] has joined #g0v.tw
+01:35 -!- Netsplit *.net <-> *.split quits: fshiori_, ipa_c, SarsTW_, mhsin, ctf__
+01:44 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has quit [Quit: pm5]
+01:54 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+02:15 < kcwu> 其他人看 mms://mediavod01.ly.gov.tw/wmv-clip-100k/%e6%9d%8e%e4%bf%8a%e4%bf%8b/%e9%99%a2%e6%9c%83/%e6%9d%8e%e4%bf%8a%e4%bf%8b-%e9%99%a2%e6%9c%83-2013-6-18-9-0-%e9%99%a2%e5%85%a7.wmv 影像是正常的嗎? 還是一直閃爍?
+02:15 < kcwu> clkao: 發現 ivod 前面的 copyright 不見了...
+02:16 < clkao> 是耶
+02:16 < clkao> 可以直接 mplayer
+02:17 < clkao> 所有檔案都這樣嗎？還是新的才這樣
+02:17 < yhsiang> 閃爍是指?
+02:17 < kcwu> 我試新的舊的都一樣
+02:17 < clkao> fascinating
+02:18 < yhsiang> 我看是沒有閃爍 目前是在播字...
+02:18 < clkao> 可能升級結果 config 忘了改?
+02:18 < yhsiang> 洪秀柱出現 還是沒閃 0.0
+02:18 < kcwu> yhsiang: seek 到後面一點看
+02:19 < kcwu> 我看洪秀柱出現那邊的影像就會閃 @@
+02:19 < yhsiang> 我出現的好像是會延遲 不算是會閃
+02:19 < kcwu> 我用 windows media player 9
+02:20 < yhsiang> 我用potplayer 1.5.31490 - 測試版
+02:20 < kcwu> clkao: 你看正常嗎?
+02:29 < clkao> 我沒法 seek orz
+02:30 < clkao> 我 msdl -s 抓一下
+02:30 < clkao> 蠻正常的 沒閃
+02:31 < yhsiang> copyright不見 估計是沒抓到吧?
+02:31 < clkao> 1000fps
+02:33 < clkao> 4792893 bytes 就結束了？
+02:52 < yhsiang> 我這邊只能知道是長度是6:11
+03:21 -!- ipa_cloud [uid12333@gateway/web/irccloud.com/x-palgfvjneaigayuf] has joined #g0v.tw
+04:47 -!- chhsiao1981 [~chhsiao@114-43-157-117.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+04:49 -!- chhsiao1981 [~chhsiao@118-168-218-58.dynamic.hinet.net] has joined #g0v.tw
+06:28 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+06:40 -!- Netsplit *.net <-> *.split quits: t3e, superbil_r, SarsTW, ctf_, Guest16094, clkaoud_, ymow, tkirby, au, mrmoneyc,  (+17 more, use /NETSPLIT to show all of them)
+06:41 -!- Netsplit *.net <-> *.split quits: kcwu, mikimoto, V1ctor_, pcchen_, opop_, CindyLinz, BCN, tryggvib, thschee_, i3n,  (+49 more, use /NETSPLIT to show all of them)
+06:45 -!- Netsplit over, joins: chhsiao1981, ManicLF, Jcrt, S3p_lin, edwardc, Guest16094, au, lwhsu, ca^, tkirby (+76 more)
+06:48 -!- ypcat_ [~ypcat@li565-27.members.linode.com] has joined #g0v.tw
+06:49 -!- ypcat [~ypcat@li565-27.members.linode.com] has quit [Write error: Connection reset by peer]
+07:34 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+08:19 < dirty_> clkao: https://github.com/g0v/hack.g0v.tw 你這裡的 box 還能用嗎? 我剛試它說 box 有問題
+08:19 < kcwu> dirty_'s url: [g0v/hack.g0v.tw · GitHub]
+08:35 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+08:36 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has joined #g0v.tw
+08:46 -!- ipa_cloud is now known as ipa_
+08:58 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+09:02 -!- a2n [~a2n@unaffiliated/a2n] has quit [Quit: leaving]
+09:02 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+09:03 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+09:13 -!- scyen [~scyen@122.147.15.66] has joined #g0v.tw
+09:22 -!- MnO2 [~MnO2@nat/yahoo/x-vtptinokawalxxmc] has joined #g0v.tw
+09:23 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Ping timeout: 245 seconds]
+09:27 -!- FourDollars [~sylee@1.34.160.231] has joined #g0v.tw
+09:37 -!- Chinian [dc8564e5@gateway/web/cgi-irc/kiwiirc.com/ip.220.133.100.229] has joined #g0v.tw
+09:56 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has joined #g0v.tw
+09:59 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has quit [Quit: pm5]
+09:59 -!- Chinian [dc8564e5@gateway/web/cgi-irc/kiwiirc.com/ip.220.133.100.229] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+09:59 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has joined #g0v.tw
+10:01 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has quit [Client Quit]
+10:01 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+10:14 -!- chihchun_afk is now known as chihchun
+10:17 < clkao> dirty_: 可以呀 什麼訊息？
+10:20 < dirty_> clkao: http://nopaste.info/794b99393e.html
+10:20 < kcwu> dirty_'s url: [Nopaste - powered by project-mindstorm IT Services]
+10:21 < clkao> dirty_: 你是手動 vagrant box add 還是 vagrant up 他幫你抓的？
+10:22 < clkao> vagrant box add g0v https://dl.dropboxusercontent.com/u/4339854/g0v/g0v-ubuntu-precise64.box
+10:25 < dirty_> 照那說明打的, 所以是你打的那行 vagrant box add g0v https...
+10:25 -!- MnO2 [~MnO2@nat/yahoo/x-vtptinokawalxxmc] has quit [Quit: MnO2]
+10:26 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has joined #g0v.tw
+10:27 < clkao> 怪了 看起來沒啥問題... vagrant --version && VBoxManage --version ?
+10:28 < dirty_> Vagrant version 1.0.1
+10:28 < dirty_> 4.1.12_Ubuntur77245
+10:29 < dirty_> 呃, vagrant 太舊?
+10:30 < clkao> 應該是喔
+10:30 < clkao> 我是 1.2.2
+10:36 -!- MnO2 [~MnO2@202.89.121.17] has joined #g0v.tw
+10:36 -!- brecht [dc8286dc@gateway/web/freenode/ip.220.130.134.220] has joined #g0v.tw
+10:39 -!- lijung [~lijung@140.116.96.64] has joined #g0v.tw
+10:42 < Dennisc140> http://www.computerworld.com/s/article/9240842/Data.gov_gets_an_open_source_revamp
+10:42 < kcwu> Dennisc140's url: [Data.gov gets an open-source revamp - Computerworld]
+10:42 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:46 < clkao> dirty_: 結果可以了嗎？
+10:46 -!- scyen [~scyen@122.147.15.66] has quit [Remote host closed the connection]
+10:46 < clkao> hychen: dirty_ 用 vagrant 炸掉 應該是 vagrant 太舊 你那篇註明一下請大家用 1.2+ 嗎 :P
+10:47 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+10:47 < hychen> clkao, ok
+10:48 < dirty_> clkao: 下載超慢
+10:49 -!- lijung [~lijung@140.116.96.64] has quit [Ping timeout: 245 seconds]
+10:49 < dirty_> 其實你那文件有寫 vagrant (> 1.1.x), 但我被錯誤訊息誤導, 加上懶得找問題 XD
+10:49 < clkao> XD
+11:02 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+11:06 -!- brecht [dc8286dc@gateway/web/freenode/ip.220.130.134.220] has quit [Quit: Page closed]
+11:11 -!- Brecht [dc8286dc@gateway/web/cgi-irc/kiwiirc.com/ip.220.130.134.220] has joined #g0v.tw
+11:14 -!- FourDollars [~sylee@1.34.160.231] has quit [Quit: leaving]
+11:16 -!- FourDollars [~sylee@1.34.160.231] has joined #g0v.tw
+11:23 < hychen> 加了 1.2+
+11:52 -!- MnO2 [~MnO2@202.89.121.17] has quit [Quit: MnO2]
+11:59 -!- scyen_ [~scyen@122.147.15.66] has joined #g0v.tw
+12:00 < dirty_> vagrant 對 ubuntu 12.04 真不友善, 一直遇到 invalid byte sequence in UTF-8 (ArgumentError) 的問題
+12:03 -!- scyen [~scyen@4.53.154.230] has quit [Ping timeout: 245 seconds]
+12:03 -!- MnO2 [~MnO2@nat/yahoo/x-gblojebqsucksgif] has joined #g0v.tw
+12:05 -!- chihchun is now known as chihchun_afk
+12:13 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has quit [Quit: pm5]
+12:43 < clkao> dirty_: hychen 應該也是用 ubuntu 跑 vagrant 哩
+12:45 < dirty_> clkao: 真的嗎? 我現在還是不行耶 @@
+12:45 < dirty_> hychen: which ubuntu release you used?
+12:49 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+12:58 -!- scyen_ [~scyen@122.147.15.66] has quit [Remote host closed the connection]
+13:05 < walkingice> 他應該是用最新的
+13:08 < dirty_> 那問題大概就出在這了...
+13:09 < yhsiang> dirty_: 你是用LTS ?
+13:10 < dirty_> yhsiang: 是的
+13:10 < dirty_> 5 年 support 實在太誘(懶)人了
+13:11 < walkingice> 抓最新的 vagrant 裝在 local directory?
+13:14 < dirty_> walkingice: 我有用 .deb 裝, 就會一直跑出上面那個 invalid byte sequence in UTF-8 (ArgumentError) 訊息
+13:17 -!- clkaoud_ [uid12095@gateway/web/irccloud.com/x-sejaapdvxszxadxs] has quit [Ping timeout: 240 seconds]
+13:17 -!- clkaoud_ [uid12095@gateway/web/irccloud.com/x-udmoxbkotdkpjefl] has joined #g0v.tw
+13:22 < walkingice> dirty_: 把 vagrant 需要的 dependency 全部裝到 local directory，這樣應該可以安全用到最新的 vagrant 而不會弄髒系統
+13:23 < walkingice> 我自己編的東西都是這樣搞 :P
+13:26 < dirty_> walkingice: 苦啊~ 考慮中
+13:27 < walkingice> XD
+13:30 -!- chihchun_afk is now known as chihchun
+13:31 < lijung> clkao: http://g0v.github.io/tisa-map/
+13:31 < kcwu> lijung's url: [L.Geocoder]
+13:31 < lijung> 下面的立委資料用好了！
+13:34 -!- mark99876 [~ws1012574@backup.cs.pu.edu.tw] has joined #g0v.tw
+13:35 < clkao> lijung: 修了一個小 bug, 不然選區邊界有時候會爛掉
+13:36 < lijung> feature and mesh 差在哪？
+13:37 < clkao> lijung: mesh = 一堆邊界 單一 object
+13:37 < clkao> feature = 多個 objec,t 每個是一個 polygon
+13:37 < lijung> ok 了解 
+13:37 < clkao> 這樣如果要加對各別加 event (如跳到那個人或浮出來) 才能作
+13:38 < clkao> ㄟ 不過現在是 master or gh-pages?
+13:38 < lijung> clkao: 你覺得我要不要加一個倒數計時的
+13:38 < clkao> 計到什麼時候呢？
+13:38 < lijung> 我都先push 到 gh-pages
+13:38 < lijung> 就是 7月底開庭的時候
+13:38 < lijung> 因為我今天有跟我朋友吃飯
+13:38 < lijung> 他們都不知道七月底要審
+13:39 < lijung> 大家都以為是年底
+13:39 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+13:39 < lijung> 加 event 是什麼意思？
+13:40 < clkao> 如點單一 polygon scroll 到下面那個人 (並且把他框起來? )
+13:40 < lijung> sure!ok!
+13:40 < lijung> 我看我們都直接 push 到 gh-pages 好了
+13:41 < lijung> 我把main branch 改成 gh-pages了
+13:42 < clkao> 倒數 - 那好啊 就是第一階段 要求臨時會不能審議 若排入議程則不能逕附二讀
+13:42 < clkao> ok 我 cherry pick 了
+13:42 < lijung> 那有日期時間嗎？
+13:42 < lijung> 我待會來做 event 和倒數
+13:42 < clkao> 可惡 被搶先
+13:43 < lijung> 哈哈
+13:43 < clkao> 7/29 - http://news.chinatimes.com/focus/501013779/122013070500106.html
+13:43 < kcwu> clkao's url: [立院二次臨時會藍營力保服貿協議｜焦點新聞｜中時電子報]
+13:44 < lijung> 所以我就先做倒數 7/29?
+13:44 < hychen> dirty_, precise
+13:45 < hychen> dirty_,  virtualbox                                                  4.1.12-dfsg-2ubuntu0.3 
+13:45 < hychen> dirty_,  vagrant                                                     1.2.2
+13:45 < lijung> clkao: 我順便在他的選區範圍上加上他的mark?用它的大頭照會不會加分？
+13:45 < clkao> lijung: sure, 再看這週有沒有說鐵跟簡短文字可以一併加上
+13:45 < lijung> sounds great :)
+13:45 < clkao> lijung: 可以試試看 但可能要 zoomin 到一個程度才顯示 不然會卡住
+13:46 < lijung> 你是說放大到一定的程度出現還是縮小到一定的程度
+13:46 < clkao> 放大
+13:46 < clkao> 噢 不然就直接用 marker cluster
+13:46 < clkao> 重疊的他會變成 spider 可以再展開 像 google earth 那樣
+13:46 < clkao> 可以偷看 realprice.g0v 的
+13:47 < clkao> lijung: avatar 後面可以加 size=large 比較清楚
+13:47 < clkao> ?size=large
+13:47 < lijung> 喔喔我知道但是我剛剛用過了很巨大...
+13:48 < lijung> 那我用 large set with 200?
+13:48 < lijung> width
+13:48 < clkao> sure
+13:49 < lijung> clkao: 還有就是 顏寬恒立委在原本那的 json 上沒有資料
+13:49 < lijung> 所以我就把昨天你給我的資料拿過去
+13:50 < lijung> 但是現在他那邊只有電話沒有地址和傳真
+13:50 < clkao> 靠 快要七級風了
+13:50 < dirty_> hychen: 你是用什麼方式裝 vagrant 的?
+13:51 < hychen> dirty_, 他的官往上裝的
+13:51 < hychen> 我的locale不是zh_TW
+13:52 < dirty_> 下載 .deb, 用 dpkg 裝的是嗎? 你的 ubuntu release 是? 如果也是 12.04, 就表示我搞爛我系統了
+13:52 < dirty_> @@
+13:52 < clkao> lijung: 嗯 上回好像是 upstream 資料不全 那在手動補好了... 
+13:56 < lijung> clkao: 不過哪區是哪個立委我要怎麼看阿...
+13:57 < clkao> lijung: mly-8.json constituency
+13:59 < dirty_> hychen: 放棄 :p
+14:00 < lijung> 所以我要mly-8.json constituency 去 ly-section.json 查然後再 goecode 綁 event到 map上？
+14:01 < clkao> lijung: 應該是 vote 那個 topojson 的 feature 取中心點就可以了
+14:01 < clkao> d3 的話可以用 path.centroid, leaflet 不知道有沒有現成的
+14:02 < clkao> 再去 geocode 太苦了 XD
+14:02 < clkao> https://github.com/Leaflet/Leaflet/pull/1586 # 看來還沒 merge
+14:02 < clkao> 苦~~
+14:02 < kcwu> clkao's url: [getCenter function for polygons by snkashis · Pull Request #1586 · Leaflet/Leaflet · GitHub]
+14:03 -!- mark123841 [8c800972@gateway/web/freenode/ip.140.128.9.114] has joined #g0v.tw
+14:03 < lijung> tisa-ly-map.json
+14:03 < lijung> 我發現這個檔案裡面就有一個區域立委的名稱了
+14:03 < lijung> 還有立委的資料
+14:04 < clkao> 噢對 我有合併進去
+14:04 < clkao> (gen-map.ls)
+14:04 < lijung> 看可不可以從這邊拉出來就好？
+14:04 < clkao> sure
+14:04 < clkao> seems easier. 但是還是需要 centroid :p
+14:04 < lijung> 嗯嗯
+14:04 < lijung> clkao++
+14:04 < clkao> 真不行就順便 include d3 吧 ;p d3.geo.path().centroid(feature) 應該就可以取回中心座標了
+14:04 < clkao> 灰熊好用
+14:05 < lijung> 還沒用 d3過還滿好奇的哈哈哈，晚點真的不行來試試 XD
+14:05 < clkao> 一次蒐集所有最新技術 :p
+14:05 < lijung> XD
+14:06 < clkao> 話說 tisa-map 不轉成 sass/jade 嗎
+14:06 < clkao> 還是要玩玩 stylus... 都沒機會玩
+14:06 < lijung> 我也在想也但是好像沒這必要
+14:06 < clkao> 他應該和 css compatible :p 所以可以直接改
+14:06 < lijung> css 現在我也沒用多少...
+14:06 < clkao> code 超過一頁眼睛就開始痛
+14:06 < lijung> XD
+14:06 < lijung> 好吧晚點我來改改
+14:07 < lijung> 而且 html 的 js有點亂...
+14:07 < lijung> 順便整理一下..
+14:07 < clkao> :D
+14:07 < clkao> lijung++
+14:07 < lijung> 不過我沒用過 sass只用 less是可以挑戰拉哈哈哈
+14:08 < lijung> 還是要 stylus?
+14:08 < lijung> 哈哈
+14:08 < clkao> stylus 好了, 因為可以直接沿用舊 css, 新的再改
+14:08 < au> stylus++
+14:08 < clkao> 尖端科技
+14:09 < lijung> sure!! ok stylus 看到尖端科技眼睛就發亮
+14:10 -!- hychen [~hychen@175.41.48.77] has quit [Ping timeout: 245 seconds]
+14:11 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has quit [Ping timeout: 240 seconds]
+14:12 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has joined #g0v.tw
+14:18 -!- scyen [~scyen@122.146.84.72] has joined #g0v.tw
+14:25 -!- Dennisc1401 [~Dennis_Ch@210.61.193.66] has joined #g0v.tw
+14:26 < lijung> clkao: add count down!
+14:26 < lijung> 時間還沒調...
+14:26 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has quit [Ping timeout: 256 seconds]
+14:27 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+14:39 < walkingice> sass less 都還沒摸熟又跑出 stylus
+14:39 < walkingice> web 真是可怕的領域 (抖)
+14:40 -!- hychen [~hychen@175.41.48.77] has quit [Quit: 暫離]
+14:41 < yhsiang> walkingice: 同意!
+14:45 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+14:50 -!- mark123841 [8c800972@gateway/web/freenode/ip.140.128.9.114] has quit [Ping timeout: 250 seconds]
+14:51 < clkao> walkingice: https://speakerdeck.com/hlb/modern-design-workflow?slide=5
+14:51 < kcwu> clkao's url: [Modern Design Workflow // Speaker Deck]
+--- Log opened 三  7月 17 15:09:12 2013
+15:09 -!- ronnywang [~ronnywang@ec2-54-249-42-170.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+15:09 -!- Irssi: #g0v.tw: Total of 107 nicks [0 ops, 0 halfops, 0 voices, 107 normal]
+15:09 !morgan.freenode.net [freenode-info] help freenode weed out clonebots -- please register your IRC nick and auto-identify: http://freenode.net/faq.shtml#nicksetup
+15:09 < lijung> clkao!! http://g0v.github.io/tisa-map/#top # 點選區範圍就有立委的大頭照了！
+15:09 < kcwu> lijung's url: [兩岸服務貿易協定災難圖]
+15:09 -!- Irssi: Join to #g0v.tw was synced in 25 secs
+15:09 -!- shelling1lab [~shelling_@xdn20o99.ee.ntu.edu.tw] has joined #g0v.tw
+15:10 < lijung> shelling1lab! 看看吧 tisa-map 我改了很多了！
+15:13 < clkao> lijung++
+15:14 -!- Netsplit *.net <-> *.split quits: shelling_lab, ronnywan1, ieon, superd
+15:16 -!- chihchun_afk is now known as chihchun
+15:28 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+15:35 < shelling> lijung++
+15:35  * shelling 正在偷時間塞資料
+15:41 -!- scyen [~scyen@122.146.84.72] has quit [Remote host closed the connection]
+15:42 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+15:46 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+15:49 -!- ylyang [8c800972@gateway/web/freenode/ip.140.128.9.114] has joined #g0v.tw
+15:50 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+15:54 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:54 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:54 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+15:55 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+16:02 < lijung> shelling: 對了現在都改在 gh-pages branch 上改喔～
+16:03 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 240 seconds]
+16:09 -!- mark99876 [~ws1012574@backup.cs.pu.edu.tw] has quit [Quit: Lost terminal]
+16:19 < lijung> clkao: 現在我們這個網站上還要放什麼資料嗎
+16:20 < lijung> 我現在還有哪些事情比較緊急的，而且我們來得及嗎...感覺好趕...
+16:21 < shelling> 倒進去了
+16:22  * shelling 趕時間所以就先倒進手邊空的 mysql instance
+16:24 < shelling> lijung: 這是 dev 即 ops 的意思嗎
+16:24  * shelling flee
+16:25 < lijung> shelling: ??
+16:25 < shelling> database 這邊倒進去之後還沒有任何 latitude/longitude
+16:25 < shelling> 要先對 osm query 一次
+16:25 < lijung> yes!
+16:26 < lijung> 或是用 google query
+16:26 < lijung> https://developers.google.com/maps/documentation/geocoding/?hl=zh-tw
+16:26 < kcwu> lijung's url: [Google Geocoding API - Maps API 網路服務 — Google Developers]
+16:27 < clkao> 這有 CLI: https://github.com/timchen86/gdcmdtools
+16:27 < kcwu> clkao's url: [timchen86/gdcmdtools · GitHub]
+16:28 < lijung> shelling: 現在 data 有幾筆？
+16:28 < yhsiang> 正在寫google的geocode XDD
+16:29 < shelling> lijung: 快 14 萬
+16:29 < walkingice> clkao: 好連結 (y)
+16:29 < lijung> shelling: great!跟我 parse 出來差不多筆資料...
+16:29 < lijung> 所以你現在想先怎麼做
+16:29 < lijung> 前端只差點外觀
+16:30 < lijung> 現在應該要把前端跟後端接起來
+16:30 < ETBlue> 把選區疊上去真是太酷了 OoO
+16:30 < lijung> ETBlue!!
+16:30 < ETBlue> 倒數時鐘好漂亮 ^o^
+16:30 < shelling> 我這邊先看 query api
+16:30 < lijung> ETBlue: 妳有興趣幫我做下面的那個外觀嗎？？
+16:31 < lijung> 立委資料那裏..
+16:31 < shelling> lijung: 然後還要寫 backend
+16:31 < lijung> 要用啥寫？？
+16:31 < shelling> 前端應該要決定 query backend 方式
+16:31 < lijung> 嗯嗯
+16:31 < shelling> 用什麼都可以
+16:31 < yhsiang> shelling: http://maps.googleapis.com/maps/api/geocode/json?address=地址&sensor=false
+16:32 < yhsiang> 直接這樣呼叫就可以了 回傳是個json
+16:32 < ETBlue> 喔喔喔原來是在同一頁！滿版做得太好了完全沒發現...
+16:32 < yhsiang> 只不過要處理query limit
+16:32 < shelling> 這一天 25000 筆
+16:32 < ETBlue> 好我研究看看 :D
+16:32 < shelling> 14 萬要等一週
+16:32 < yhsiang> 而且幾秒之內不能query太多
+16:32 < lijung> 那用 ops query
+16:32 < lijung> 應該不會限制那麼少吧？？
+16:33 < shelling> ops query?
+16:33 < lijung> 找其他的...看看
+16:33 < yhsiang> openstreetmap
+16:34 < clkao> shelling: 不然切幾份 不同人跑
+16:34 < lijung> shelling: backend 你架還是我架？？
+16:34 < lijung> clkao: 好方法～～
+16:35 < lijung> ETBlue: https://github.com/g0v/tisa-map/blob/gh-pages/index.html#L101
+16:35 < kcwu> lijung's url: [tisa-map/index.html at gh-pages · g0v/tisa-map · GitHub]
+16:35 < lijung> html 在這行裡面
+16:36 < lijung> 然後你的 css 可以寫在 main.css
+16:37 < shelling> 我這邊架好了
+16:37 < shelling> clkao: 那就要丟 json 給我了 
+16:38 < lijung> shelling++
+16:38 < shelling> 以這份為準吧 http://140.112.20.144/tisa.stage2-lt3businesses.json
+16:39 < shelling> 看要怎麼切
+16:40  * shelling 先寫個 script 看是對 google query 還是對 osm
+16:43 < clkao> osm 的 geocoding 應該超弱的
+16:44 < shelling> 那就對 google 吧
+16:44 < lijung> 對我映像中我有看過有人寫過跟 google 的差很多…
+16:44 < clkao> 對了，可以先對那十九個選區的
+16:44 < hcchien> 問一下，現在是不是好多 projects 都會/需要在台灣地圖上疊圖上去 (比如選區的票數)
+16:44 < clkao> hcchien: 你要衝了嗎
+16:44 < hcchien> 那有 library 可以直接用方便的 data 來疊圖嗎
+16:45 < shelling> common mask of taiwan
+16:45 < ronnywang> cartodb 線上服務
+16:45 < shelling> 找「沒有人」
+16:45 < ronnywang> 不過 free 只能 5mb 而已
+16:46 < clkao> carto 好像是幫你 rasterize 對嗎？
+16:46 < clkao> 我記得還有一個 他有包 d3 給你一些方便的 api 
+16:47 < ETBlue> hcchien: 有挖，污染x癌症地圖，徵收x縣市議員房產x實價地圖... 一堆東西都要疊 >o<
+16:47 < clkao> http://datamaps.github.io/
+16:47 < kcwu> clkao's url: [DataMaps]
+16:47 < clkao> 可以包一下 tw api
+16:47 < hcchien> ETBlue: 對啊，我就想說很多 projects 都要疊
+16:47 < hcchien> 應該以後的人只要寫資料舊好
+16:48 < clkao> hcchien: 不過 TW 還有一個困擾 因為 2010 改制
+16:48 < hcchien> 資料生好，就直接可以把地圖叫出來疊
+16:48 < hcchien> 2012 發生了什麼事....
+16:48 < clkao> 所以如果資料跨過那個 就要 map 一次... 縣市/鄉鎮 還好 村里常常有改
+16:48 < hcchien> 咦，不就是去年嗎
+16:48 < clkao> 縣市合併
+16:48 < hcchien> 喔喔，五都？
+16:49 < ronnywang> 明年還要再改制一次
+16:49 < clkao> 所以資料要有 meta data 說他是哪個時間點, 然後對應到「現在要顯示的版本」
+16:49 < clkao> 中間有合併或拆分的 看怎麼 normalize
+16:49 < clkao> (按人口/面積 etc)
+16:49 < clkao> 所以可能要設計一下
+16:50 < hcchien> 原來公務人員都花時間在做改制了
+16:50 < clkao> 明年時桃園升格對吧
+16:50 < ronnywang> 現在的桃園縣桃園市明年應該會變成桃園市桃園區？
+16:50 < clkao> 然後升格的 還會發生裡面的村裡代碼全部 renumber
+16:50 < hcchien> orz
+16:51 < clkao> 因為本來有拆分後 有空的號碼 改制就重新編號了
+16:51 < lijung> ETBlue: 所以你要改嗎？還是我等等自己來用？
+16:51 < clkao> https://github.com/g0v/twhgis/releases 這裡有所有主計處有紀錄的改制版本
+16:51 < kcwu> clkao's url: [Releases · g0v/twhgis · GitHub]
+16:51 < ETBlue> lijung: 我要改 ^o^ 但我要研究一下 >"<
+16:52 < ronnywang> 啊啊，我之前做的藍綠選舉地圖被 fusion table 擋了
+16:52 < hcchien> 所以現在還是大家各自畫圖？
+16:52 < lijung> ETBlue++ 你有看到我剛剛貼的 html link嗎
+16:52 < clkao> hcchien: 看來是
+16:52 < ETBlue> lijung: 我拿之前綠盟的那個來用？
+16:52 < clkao> ronnywang: howcome ?
+16:52 < lijung> ETBlue: 不不不重新設計一個吧
+16:52 < ronnywang> 我資料是放在 fusion table.. 現在讀不到資料進來畫地圖了
+16:52 < ETBlue> lijung:  有，第一次套 anguler 的版有點不知所措... XD
+16:53 < lijung> ETBlue: 不不不那是 handlebars XD
+16:53 < lijung> http://handlebarsjs.com/
+16:53 < kcwu> lijung's url: [Handlebars.js: Minimal Templating on Steroids]
+16:53 < ETBlue> lijung: >"<bbb
+16:53 < ronnywang> http://0rz.tw/We2Fv # 400 Request Quota Exceeded - https://fusiontables.googleusercontent.com
+16:53 < kcwu> ronnywang's url (2/2): [Google Drive]
+16:53 < kcwu> ronnywang's url (1/2): [台灣地圖資訊呈現]
+16:53 < clkao> 太紅了
+16:53 < lijung> 不過應該是改裡面的 class 和 id 就ok了或是切 div
+16:54 < clkao> 所以連資料都讀不出來了嗎 還是 cors 被擋掉而已呢？
+16:54 < ETBlue> lijung: 我想我可能最後只會改到 css 吧... XD 在那之前先開個繪圖軟體
+16:54 < ronnywang> jsonp 擋掉而已吧
+16:54 < lijung> ETBlue: sure!! 
+16:56 < shelling> lijung: 前端你可能要先思考一下想怎麼樣問後端
+16:56 < clkao> lijung++ # 成功讓 ETBlue 離開電動了
+16:56 < hcchien> lol
+16:56 < shelling> \o/
+16:56 < yhsiang> 賀
+16:56 < ETBlue> 呃 XDDD
+16:56 < lijung> shelling: ok! 
+16:56 < lijung> XD
+16:57 < shelling> lijung: 感覺上應該只有一個 api
+16:57 < lijung> 嗯嗯感覺不會太複雜..
+16:57 < shelling> lijung: 返回一個範圍的所有 companies
+16:57 < lijung> 嗯嗯應該是這樣
+16:57 < lijung> 一個 object 
+16:58 < shelling> 一個 array
+16:58 < yhsiang> 寫了google query的 兩千個要跑8分鐘...來期待一下吧 orz....
+16:58 < shelling> 包含一堆 object
+16:58 < lijung> 嗯嗯
+16:58 < lijung> got it!
+16:58 < lijung> ok 我等等爬一下看怎麼寫
+16:58 < shelling> yhsiang: 伸伸
+16:58 < yhsiang> shelling: 等我跑完 XD
+16:59 < shelling> yhsiang: XD
+16:59  * lijung 出門走走
+16:59 < yhsiang> shelling: 我是用nodejs寫的喔0.0
+16:59  * shelling 也先休息
+16:59 < shelling> yhsiang: 沒關係
+16:59 < lijung> shelling: 我也可以幫忙 query
+16:59 < shelling> (Y)
+17:11 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+17:13 < ronnywang> http://0rz.tw/We2Fv # ok, 加上key後就可以用了 XD
+17:13 < kcwu> ronnywang's url: [台灣地圖資訊呈現]
+17:14 < ronnywang> 不過用 js 來畫真的還是有點慢又佔頻寬（village2011.json 要 10MB）
+17:25 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+17:37 < lijung> shelling: 對了我們其實可以先 query 一些地方，然後跟我前端先做測試
+17:38 < lijung> 看要不要先 query 在地圖上 紅色的地方
+17:42 < kcwu> clkao: 我發現有沒有 copyright 是 random .... 同個 url, 抓兩次可能不一樣 orz
+17:42 < kcwu> 通常沒有
+17:48 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+17:59 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+18:08 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has joined #g0v.tw
+18:10 -!- Dennisc1401 [~Dennis_Ch@210.61.193.66] has quit [Ping timeout: 256 seconds]
+18:18 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 256 seconds]
+18:21 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 256 seconds]
+18:30 -!- MnO2 [~MnO2@nat/yahoo/x-gblojebqsucksgif] has quit [Quit: MnO2]
+18:32 < yhsiang> ...把一天的query limit用光了 QQ
+18:40 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has left #g0v.tw []
+18:41 -!- Brecht [dc8286dc@gateway/web/cgi-irc/kiwiirc.com/ip.220.130.134.220] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+18:55 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: pm5]
+18:59 -!- hychen [~hychen@175.41.48.77] has quit [Quit: 暫離]
+19:00 < yhsiang> shelling: https://gist.github.com/yhsiang/6019552 # esri, 比google差, 蠻多查不到, 不過沒有幾秒內筆數限制
+19:00 < kcwu> yhsiang's url: [esri geocoding]
+19:01 < yhsiang> shelling: https://gist.github.com/yhsiang/6019574 # google的..要小心query limit >"<
+19:01 < kcwu> yhsiang's url: [google geocoding]
+19:08 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+19:08 -!- scyen [~scyen@4.53.154.230] has quit [Remote host closed the connection]
+19:27 -!- FourDollars [~sylee@1.34.160.231] has quit [Quit: leaving]
+19:35 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+19:37 -!- ymow [~Adium@1-171-170-149.dynamic.hinet.net] has quit [Quit: Leaving.]
+19:38 -!- ymow [~Adium@1-171-167-251.dynamic.hinet.net] has joined #g0v.tw
+19:39 -!- ymow [~Adium@1-171-167-251.dynamic.hinet.net] has quit [Client Quit]
+19:40 < lijung> 我覺得 tisa 光靠這個網站好像不夠力
+19:41 < lijung> 感覺還需要一些文字和圖表...
+19:44 < clkao> yeah 看文案他們這週有沒有一些
+19:45 < clkao> 行業對照出來了 你有在 mailing list 上嗎？
+19:45 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:45 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+19:48 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:49 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+19:54 < lijung> 有
+19:54 < lijung> 我想要找找看香港cepa 過了跟之前的比較
+19:54 < lijung> 但網路上官方都寫好的...
+19:55 < lijung> 我覺得需要有資料讓一般人民能夠感覺嚴重性...但感覺很難達到...
+19:57 < clkao> 因為各產業要去寫都要研究不少. 不然就開始共筆整理... 或者先寫信問一下 mailing list 目前文件上有什麼樣的分工嗎？
+20:00 -!- ymow [~Adium@1-171-176-181.dynamic.hinet.net] has joined #g0v.tw
+20:09 < lijung> 那之前的懶人包有進度了嗎？
+20:10 < clkao> 週五 nchild 會來 到時問問他
+20:10 < lijung> clkao: 嗯嗯大頭照上傳還要嗎？
+20:12 < clkao> 應該還是要 讓選區立委真的有壓力
+20:15 < lijung> 那我還要做一個map 嗎
+20:15 < lijung> 還是在同一個map
+20:15 < clkao> 應該是同個 然後看怎麼切換顯示
+20:16 < lijung> 現在這個map 應該已經算還滿完整了吧？剩下 shelling company 那塊
+20:16 < lijung> 應該就差不多到為了
+20:16 < clkao> right. 接下來就 user low fine tune, 訴求、文案連結
+20:16 < clkao> user flow
+20:17 < lijung> 感覺還差聳動的文件還有圖表，要不然人點近來看到這個圖不知道在做啥
+20:17 < lijung> 嗯嗯
+20:17 < kcwu> clkao: 發現也會 random 404 ...
+20:17  * kcwu 又開始抓
+20:18 < clkao> kcwu: 他是不是有 load balancer 然後其中一台爛掉啊
+20:18 < clkao> 可是他都已經 dns 有 01/02 了
+20:20 < ipa_> 目前文件應該是 1.郝先生出版業那邊 2. 監督聯盟論壇文件 
+20:21 < ipa_> 要用什麼平台整理文章呢？決定好平台，文章慢慢出來就可以貼了
+20:23 < lijung> hack pad?
+20:29 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 240 seconds]
+20:33 < lijung> clkao: 那照片上傳那個用 firebase + avatar?
+20:33 < clkao> *nod* 感覺最簡單
+20:33 < ipa_> hackpad討論可以，資料多了就很雜亂
+20:33 < lijung> 那我先 dig in 研究一下這個好了
+20:33 < clkao> :D
+20:34 < lijung> 還是用 dropbox?
+20:34 < lijung> 分享 link 出來應該還不錯吧？
+20:35 < ipa_> clkao: lijung 你們說文件整理是先放在一個地方？不是做成網站嗎？
+20:35 < lijung> 但是要先整理消化？
+20:36 < ipa_> soga，那就hackpad吧 我誤會了 
+20:36 < lijung> 還是整理好了？那我可以直接放上也可
+20:36 < lijung> 但是資料應該要少，然後好理解會比較好吧？
+20:36 < lijung> 我說給一般民眾
+20:37 < ipa_> nchild應該正在努力作懶人包
+20:38 < lijung> ++
+20:39 < lijung> ipa_: 你覺得資料放在網站上要直接放 link 嗎？
+20:39 < lijung> 會有人想去看嗎？如果我們看完擷取重要和重點的資訊在一段話突出，然後最後再附上完整的 link 會不會比較好？
+20:42 < ipa_> 要看網站長怎樣，怎麼操作吧。現在我的想像是進來之後，有前情摘要、有訴求、有分析文章、有懶人包、最後要行動點進地圖看災情，然後行動。
+20:43 < ipa_> 更前面是fb粉絲頁，畢竟現在大家都黏在fb上。這部份要問監督聯盟那邊的狀況，目前應該是忙亂亂......
+20:44 < lijung> 嗯嗯 okok，感覺還不錯！要煽動到人真的好難阿…今天做到一個階段冷靜下來，感覺有點困難…
+20:45 < lijung> 那我們現在預計在什麼時候開始動作
+20:50 < ipa_> 我的問題是，那網站用什麼架？架構怎麼分（是正反方，還是行業別？or?）
+20:50 -!- icman [~icman@123.240.128.193] has joined #g0v.tw
+21:03 < clkao> 第一階段應該是阻止臨時會&逕付二讀 看這部份怎麼呈現比較好？ 接著有討論空間也許才用正反方列表？
+21:05 < lijung> 不知…我也在想，我覺得這個拿捏好難阿～～
+21:06 < lijung> ipa_: 所以你的意思還要在架一個試有關 "有前情摘要、有訴求、有分析文章、有懶人包"，然後一個連結連到我們現在在做的那個地圖？
+21:06 < lijung> 還是架在同一個地方
+21:13 < ETBlue> lijung: 草稿 XD https://github.com/g0v/tisa-map/blob/gh-pages/design/tisa-map-legislators-0717-2104.png 背景可能需要變成淺灰色比較好強調被 highlight 的人... 不過現在才突然想到，沒有人被 highlight 的時候可能就整個很灰（思）看來要到了練習召喚術的時間了！ hlb 我今天家裡買了義美布丁 XD
+21:13 < lijung> wow 好有質感阿～～感覺像在相親 XD
+21:15 < lijung> ETBlue++
+21:16 < ETBlue> 相親... XD 
+21:16 < walkingice> 立委都因此變正了 XD
+21:16 < ETBlue> 我是有特別挑一個看起來比較順眼的 XD
+21:17 < lijung> 好看很不錯耶～
+21:17 < lijung> 那有需要我先幫忙哪嗎？
+21:18 < ETBlue> 決定採用的話大概就直接css... XD
+21:18 < ETBlue> 我來把css寫上去好惹
+21:19 < ETBlue> 等等布丁有建議的話再改
+21:20 < lijung> sure! great!
+21:20 < caasiHuang> ETBlue++
+21:20 < caasiHuang> lijung++
+21:21 < caasiHuang> ETBlue: 你的草稿是表示滑鼠移到委員身上他會歪歪頭嗎？XDD
+21:21 < ETBlue> caasiHuang: 也是可以... XD 目前的版本好像是在地圖上被點到的人才會highlight
+21:22 < ETBlue> caasiHuang: 雖然看不出來是怎麼做到的... 可能 js 吧 @@
+21:22 < caasiHuang> 啊，你說得對，點到再 highlight 才不會一直動來動去，
+21:22 < caasiHuang> 不過會歪頭好可愛...
+21:23 < clkao> ETBlue: 用 :hover 就可以了 不用 js 啦
+21:23 < clkao> ETBlue: 對了 明天好像會遇到啊修 是不是該準備作業給他了
+21:24 < ETBlue> clkao: 啊！！！！！...... 我已經搞不清楚我的作業是哪一條惹...
+21:24 < ETBlue> 啊！！！！！！！！明天的投影片還沒加東西上去 /OoO/
+21:31 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+21:34 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+21:44 -!- haroldwu [~haroldwu@42.71.203.204] has joined #g0v.tw
+21:45 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+21:45 -!- haroldwu [~haroldwu@42.71.203.204] has quit [Client Quit]
+22:01 -!- chihchun is now known as chihchun_afk
+22:08 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+22:10 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has joined #g0v.tw
+22:11 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+22:20 < ipa_> lijung: clkao: 第一階段阻止臨時會不知道怎樣呈現，第二階段討論文章是否還沒想到就用時間分？加tag處理（行業別、反對、中立、贊成等）。地圖大概是第二階段才會開始被理解其意義？
+22:21 < ipa_> 架在同一個地方是指跟地圖在一起？
+22:23 < lijung> 嗯嗯
+22:24 < lijung> 地圖是到第二階段才上嗎？
+22:24 < ipa_> lijung: 「就是在7/15之前大家的質疑放上集，7/15評估出來之後的問題放中或下」，是說分兩集，第一集內容是7/15之前的質疑 XD
+22:25 < ipa_> （nchild的信）
+22:25 < lijung> 哦哦了解～～
+22:25 < lijung> 誤解了...
+22:25 < clkao> dirty_: 居然在 hack g0v hub (google analytics 沒關掉被我抓包)
+22:26 < ipa_> clkao: 那天服貿有提到作資料彙整的平台嗎？blog? 問答平台？
+22:27 < lijung> ipa_: 那我們現在的地圖會在 7/29 號上嗎？
+22:27 < clkao> 好像還沒討論到
+22:28 < dirty_> clkao: 呵
+22:28 < clkao> 若是提供一些預先整理好的資訊，用 blog 好像就可以了。要進一步參與才會是問答平台
+22:28 < clkao> dirty_: 有什麼想改的嗎？
+22:28 < dirty_> 我後來放棄 vagrant 了
+22:28 < dirty_> 直接 git clone, 發覺還不難起來嘛, vagrant 確定有幫助?
+22:29 < clkao> 主要是給 windows 的人... :p
+22:29 < lijung> 或是架個很簡單的 jekyll 來做資料彙整的平台
+22:29 < dirty_> 沒耶, 就只是想摸一下新技術, 每個專案都是大坑, 所以就挑基礎設施來看
+22:30 < clkao> dirty_: 這邊有一些應該只需要 css-fu: https://github.com/hackfoldr/hackfoldr/issues?state=open
+22:30 < kcwu> clkao's url: [Issues · hackfoldr/hackfoldr · GitHub]
+22:30 < ipa_> 那就blog+地圖架構先出來，週五碰面看要怎麼跟各方（郝、賴）整合，看7/29前要完成什麼？
+22:30 < dirty_> http://zoro.ee.ncku.edu.tw:3333/g0v-hackath3n/Mvvl8HrceCV # 現在是在設左邊的 sidebar
+22:30 < kcwu> dirty_'s url: [hack.g0v.tw]
+22:31 < clkao> dirty_: https://github.com/g0v/hack.g0v.tw/issues/5 還有這個 在手機上會爛掉
+22:31 < kcwu> clkao's url: [mobile safari main-content scrollbar not visible · Issue #5 · g0v/hack.g0v.tw · GitHub]
+22:31 -!- inksafari [~karin@111-243-105-42.dynamic.hinet.net] has joined #g0v.tw
+22:31 < clkao> dirty_++
+22:31 < dirty_> 然後發覺 jade 真是搞死人了. 正好, 我現在卡在, 怎麼樣讓兩個 inline element 中間不要有空格(因為 jade 會換行)
+22:33 < clkao> dirty_: "a\n  span foo\n  span bar" 中間沒有空格呀
+22:34 -!- inksafari [~karin@111-243-105-42.dynamic.hinet.net] has quit [Quit: Leaving.]
+22:35 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+22:35 < dirty_> precisely, 我想讓 hackpad 那個 icon 跟後面的字中間不要有空格, 這樣 jade 要怎麼改?
+22:36 < dirty_> (應該說我想用 css 來設中間的 space)
+22:37 < clkao> dirty_: 現在應該就是用 img 的 margin-right 設的耶
+22:37 < clkao> margin-right: 9px
+22:37 < clkao> 不同 element 間有換行應該不會有 space 吧
+22:39  * dirty_ 大驚
+22:40  * dirty_ 被 chrome develop tool 婊了
+22:41 < dirty_> 我還在想說一個空個怎麼會那麼大 XD
+22:50 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+22:54 < ipa_> dirty_++ 看起來變舒服了
+22:54 -!- kanru` [~kanru@114-42-12-29.dynamic.hinet.net] has joined #g0v.tw
+22:57 < dirty_> ipa: 我還在亂試耶 ^^ 我主要是摸 code, 其他都是暫時的. 配色好難, 可能之後還是找專業的比較好
+23:00 < ipa_> 但字沒有折到第二行，人生都開闊了起來 XD
+23:01 -!- nchild [~nchild@42-70-244-77.dynamic-ip.hinet.net] has joined #g0v.tw
+23:02 -!- inksafari [~karin@111-243-105-42.dynamic.hinet.net] has joined #g0v.tw
+23:02 < lijung> ETBlue: 我看到你 push 了好好看！～～
+23:02 < nchild> 週五設計師松前松可以開 hangouts 嗎？
+23:02 < nchild> 有朋友在台南可能也可參與。
+23:02 < ipa_> 應該ok吧 
+23:04 < dirty_> 字不要折到第二行請 clkao 改一行就好了吧 XD
+23:04 < dirty_> (雖然那的確也是我想改的主因)
+23:05 -!- monsta [3d431566@gateway/web/freenode/ip.61.67.21.102] has joined #g0v.tw
+23:05 < ipa_> dirty_: 他沒興趣改的我也沒辦法....他會叫我開issue XD
+23:06 -!- monsta [3d431566@gateway/web/freenode/ip.61.67.21.102] has left #g0v.tw []
+23:16 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+23:17 -!- kanru` [~kanru@114-42-12-29.dynamic.hinet.net] has quit [Remote host closed the connection]
+23:18 -!- kanru` [~kanru@114-42-12-29.dynamic.hinet.net] has joined #g0v.tw
+23:31 -!- iamblue [76a0ec8e@gateway/web/freenode/ip.118.160.236.142] has joined #g0v.tw
+23:35 -!- ieon_ is now known as ieon
+23:45 < ETBlue> lijung: 好了 css3 跟 icon 也上去了 XD
+23:47 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has quit [Quit: pm5]
+23:47 -!- naran99 [~ws1012574@backup.cs.pu.edu.tw] has joined #g0v.tw
+23:47 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+23:48 < lijung> ETBlue: awesome!
+23:50 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has joined #g0v.tw
+23:50 < ETBlue> 我覺得很神奇的地方是，原本以為用了新的 template 引擎安裝環境又會很坎坷，沒想到直接用 fire.app watch 那個資料夾，竟然就直接可以用了... 完全不懂發生啥事 XD
+23:52 < clkao> 運動完回來就整個變厲害了!!
+23:53 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+23:55 -!- iamblue [76a0ec8e@gateway/web/freenode/ip.118.160.236.142] has quit [Ping timeout: 250 seconds]

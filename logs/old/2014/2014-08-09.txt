@@ -1,0 +1,244 @@
+--- Day changed 六  8月 09 2014
+00:00 < lanf0n> influexDB 好妙...XD
+00:03 < t0mst0ne_> clkao: ok  login ,  但是沒有可以input 的地方, did I miss something ?  
+00:03 < t0mst0ne_> Will do something like this http://influxdb.com/images/docs/cpu_idle_mean_group_by.jpg
+00:03 < lanf0n> t0mst0ne_: interfaces -> default
+00:04 < t0mst0ne_> lanf0n:  Oh, thanks
+00:05 < lanf0n> t0mst0ne_: 咦咦咦XD 我是連 api-beta.ly.g0v.tw:8083 ...(為什麼你是 localhost QQQ
+00:06 < t0mst0ne_> lanf0n: ? 一樣是 http://api-beta.ly.g0v.tw:8083/
+00:06 < kcwu> t0mst0ne_'s url: [InfluxDB Administration]
+00:06 < lanf0n> t0mst0ne_: 噢我是指你剛貼的.jpg XD
+00:07 < t0mst0ne_> lanf0n:  from guide ( 我還在看manual orz)
+00:07 < t0mst0ne_> lanf0n:  http://influxdb.com/docs/v0.7/introduction/getting_started.html
+00:07 < kcwu> t0mst0ne_'s url: [Getting Started with InfluxDB]
+00:09 < xsoameix> clkao: 碰到問題了，我設完 $httpBackend.when(...).respond(...)，開始 run $scope.$watch '$state.params.billId' -> 內的程式碼，問題是 {committee}:bill <- LYModel.get "bills/#{billId}" .success 之內的程式碼都沒有執行，我把 timeout 開到 20 秒，還是沒有執行
+00:13 -!- chihchun_afk is now known as chihchun
+00:14 < t0mst0ne_> clkao:  奇怪把那行curl -G 在 terminal 執行會跑出東西, 但是copy 到 influxDB web 界面, 就syntax erro 
+00:15 < t0mst0ne_> hospital_sn 拿掉就 OK
+00:17 < clkao> xsoameix: 先寫個小的測試 測 LYModel 吧?
+00:22 < t0mst0ne_> lanf0n: 請問是 Hospital_SN or hospital_sn ?
+00:22 < lanf0n> t0mst0ne_: 都 fix 成 sn 了
+00:22 < lanf0n> t0mst0ne_: 你直接下 select * from ER 看看XD
+00:24 < t0mst0ne_> lanf0n:  got it
+00:24 < xsoameix> clkao: 測 LYModel 有辦法解決這個問題嗎？看起來 LYModel 沒有問題，問題看起來是在 {success, error}:req = $http.get ... 的 success 和 error callback 都沒有執行到
+00:26 < xsoameix> clkao: 我確定 $http 有發出 request，但是卻沒執行 callback，感覺毛毛的
+00:27 < clkao> 感覺是 wrapGet 做了手腳讓 mock object GG 了... 
+00:27 < moon_c_> 請問一下hackpad裏面，要怎麼講一個pad轉移到另一個work space?
+00:29 < xsoameix> clkao: 怎麼辦呢？看起來放著不管也不會變好 ...
+00:29 < xsoameix> clkao: 查 karma 的 source code 嗎？還是？
+00:32 < clkao> xsoameix: 把 wrapHttpGet 改成一般的 $http.get 看看?
+00:33 < lanf0n> moon_c_: 是要把 pad 移到另一個 wrokspace嗎?
+01:09 < moon_c_> 是的！
+01:12 < lanf0n> moon_c_: 如果 pad 是你開的, 直接把左邊的漢堡(三條線)點開，把 pad 拖到你要移到的 workspace 名字上就可以了
+01:20 < CornGuo> clkao: 囧!! 我改一下
+01:21 < xsoameix> clkao: ... 不行耶，直接用 $http.get 也沒有呼叫 callback，真是鬼打牆了
+01:21 < clkao> xsoameix: push WIP somewhere? i can take a look tomorrow
+01:22 < xsoameix> clkao: WIP？work in process？
+01:29 < xsoameix> clkao: https://gist.github.com/xsoameix/22a7462ede2fba510b8f
+01:29 < kcwu> xsoameix's url: [$http should call its callback.]
+01:29 < CornGuo> clkao: 結果是全部的 hospital 都拼錯字.. Orz (面螢幕思過中
+01:31 < lanf0n> XDD
+01:32 < CornGuo> 欸所以輸出是 [{}] 還是直接 {} 就好 @@?
+01:32 < clkao> xsoameix: ya, push to a branch
+01:32 < clkao> CornGuo: {} please
+01:32  * lanf0n 還好我是用 copy-paste...
+01:32 < CornGuo> clkao: got it :D
+01:32 < CornGuo> lanf0n: 我想我大概是第一次 copy-paste 就 typo.. :x
+01:33 < xsoameix> clkao: ok
+01:35 < CornGuo> clkao: crawlers 目前都在 lanf0n 的 github 上了 >> https://github.com/lanfon72/twER_liveboard
+01:35 < kcwu> CornGuo's url: [lanfon72/twER_liveboard · GitHub]
+01:35 < clkao> CornGuo: 呃！ er.mohw 是去每個gist url 抓
+01:36 < CornGuo> clkao: 啊啊，真是對不住 QwQ
+01:36 -!- lwhsu_ is now known as lwhsu
+01:37 < CornGuo> 不過有幾個似乎還是在 gist 就是 Orz
+01:37 < lanf0n> 啊噢...要把 gist 更新成 https://raw.githubusercontent.com/lanfon72/twER_liveboard/master/py/cgh.py 還是更新 gist... QQ
+01:37 < CornGuo> 還是我回頭去更新 gist O__Q
+01:38 < clkao> CornGuo: 然後萬芳醫院 +pending = re.findall(u'：(.+)?</li>',html.text)
+01:38 < clkao> 原來的 (.*)? 會讓舊版 re 炸掉
+01:38 < CornGuo> 我看一下..
+01:39 < clkao> 噢 那是 lanf0n 的 XD
+01:39 < CornGuo> 萬芳是 lanf0n 的
+01:39 < CornGuo> XD
+01:39 < clkao> 都可以啦 更新 gist 的話我就不用改了.. :p
+01:39 < CornGuo> 喔 那我去改一下 gist XD
+01:45 < xsoameix> clkao: https://github.com/xsoameix/ly.g0v.tw/commit/7c83b87b5955e6226f1c6503b70aeb7e96431023
+01:45 < kcwu> xsoameix's url: [should call its callback. · 7c83b87 · xsoameix/ly.g0v.tw · GitHub]
+01:46 < CornGuo> gist updated
+01:47 < CornGuo> 話說昨天心血來潮用 C 去撈斧頭幫.. (滾動
+01:47 < lanf0n> fixed
+01:48 < clkao> LOL
+01:50 < CornGuo> 然後就寫出應該有一堆 memory leak 的程式 囧
+01:51 < CornGuo> (正在看 InfluxDB)
+01:59 < clkao> ronnywang: https://groups.google.com/forum/#!topic/poplus/CQZpY23qPeM
+01:59 < kcwu> clkao's url: [Google 網上論壇]
+02:12 < clkao> xsoameix: 我的 window.__fixtures__ 是空的耶
+02:14 < xsoameix> clkao: 我這裡抓的到 json 耶？
+02:15 < xsoameix> clkao: karma.conf.ls 不是有 preprocessors: { './test/unit/fixtures/**/*.json': ['json_fixtures'] } 嗎？
+02:15 < clkao> 有 window.__karma__ 也有看到
+02:17 < clkao> http://localhost:9876/base/test/unit/fixtures/bills/1374L15430.js 有東西 但是好像沒去 include
+02:17 < xsoameix> clkao: 然後 karma.conf.ls 還有 * pattern: 'test/unit/fixtures/**/*.json'
+02:17 < xsoameix> clkao: included: false
+02:18 < xsoameix> clkao: 我改成 true 一樣也抓的到
+02:18 < clkao> 要改成 true 才有東西
+02:18 < xsoameix> clkao: 指令是 gulp --require LiveScript test:unit
+02:18 < clkao> 不然 window.__fixtures__ 是空的
+02:20 < xsoameix> clkao: 我下的指令跟你不一樣，所以才會這樣，我下的指令是 gulp --require LiveScript test:unit
+02:23 < xsoameix> clkao: 那裡你說的沒錯，我會調整，抱歉
+02:24 < clkao> xsoameix: respond 可以寫       .respond (method, url, data, headers) -> [200, fixture]
+02:24 < clkao> xsoameix: 不過他沒被 call 到耶
+02:25 < xsoameix> clkao: 遇到一樣的問題嗎？
+02:25 < xsoameix> clkao: $http 沒 call callback
+02:25 < clkao> no, mock httpback not called at all
+02:27 < xsoameix> clkao: 所以是 httpbackend 的問題？
+02:36 < clkao> xsoameix: you need 'http://api.ly.g0v.tw/v0/collections/bills?fo=true&q=%7B%22report_of%22:%7B%22$contains%22:%221020930070201200%22%7D%7D'
+02:36 < clkao> LOG: 'wtf', 'http://api.ly.g0v.tw/v0/collections/bills/1374L15430/data'
+02:36 < clkao> oop
+02:36 < clkao> LOG: 'wtf', 'http://api.ly.g0v.tw/v0/collections/bills/undefined'
+02:36 < clkao> xsoameix: you need       $httpBackend.flush();
+02:37 < clkao> xsoameix: also try to capture all other url with .whenGet /.*/
+02:37 < clkao> might need to make sure they are mocked
+02:37  * clkao &
+02:41 < xsoameix> clkao: 不是很懂你的意思？我再 try try 看
+02:44 < ETBlue> yhsiang: 2.0 feature list，有大概註明各是用什麼工具做的，以便未來當作前端松習題…架一個你自己的 hackfoldr XD http://hack.etblue.tw/welcome-to-hackfoldr/0.jmm9642fog5vcxr 
+02:45 < clkao> xsoameix: call $http-backend.flush! before .get_bill!
+02:47 < xsoameix> clkao: 是 before 嗎？before 的話，不會出現 LOG: 'should be called here'，after 的話，會
+02:49 < xsoameix> clkao: 然後看 http://stackoverflow.com/questions/22226160/angular-mock-httpbackend-give-no-pending-request-to-flush，也是放在發 http request 之後
+02:49 < kcwu> xsoameix's url: [angularjs - Angular mock $httpBackend give No pending request to flush - Stack Overflow]
+02:51 < xsoameix> clkao: 不過總算解決我的問題了，原來設定 httpBackend.when(...).response(...) 之後，還要 httpBackend.flush!，這樣 httpBackend 才會處理被 mock 的 request，感謝 clkao :)
+08:39 < t0mst0ne_> clkaoud: 讚嘆 http://api-beta.ly.g0v.tw:5601/#/dashboard/file/default.json 
+08:39 < kcwu> t0mst0ne_'s url: [Grafana]
+08:54 < t0mst0ne_> 天啊, 如果這個界面拿來做Tele-medicine 血壓/血糖呈現 ....(精神來了)
+10:05 -!- frouscy is now known as yUN
+10:08 -!- yUN is now known as liawyun
+10:08 -!- liawyun is now known as yun
+11:53 < johnny__> t0mst0ne_: 我自己是看https://www.udacity.com/course/cs101  不過這很初階，以你的程度可以看快一點XD 不然會有點浪費時間了
+11:53 < kcwu> johnny__'s url: [Intro to Computer Science Class Online (CS101) - Udacity]
+11:55 < johnny__> t0mst0ne_: 然後可以看看其他人寫的，例如mosky https://github.com/moskytw
+11:55 < kcwu> johnny__'s url: [moskytw (Mosky) · GitHub]
+11:57 < t0mst0ne_> johnny__: ++ 
+11:58 < t0mst0ne_> johnny__: mosky 好像在東華大學 ?
+12:29 < johnny__> t0mst0ne_: 不知道ㄟ，重點是他寫的 code拉XD
+12:30 < t0mst0ne_> johnny__: 因為花蓮py 好像有請他 ...不大確定
+13:29 < yhsiang> walkingi1e: ping
+13:29 < yhsiang> t0mst0ne_: 應該是請mosky去給talk吧
+13:58 < t0mst0ne_> clkao: (1131010011, 1111060015, 1131100010, 0401180014) 的時間好像有問題 (最近一筆超過現在時間)
+13:58 < t0mst0ne_> https://www.facebook.com/photo.php?fbid=10152623802238373&set=p.10152623802238373&type=1&theater
+13:58 < kcwu> t0mst0ne_'s url: [Tom Shih - Tom Shih 的相片 | Facebook]
+14:13 < clkao> t0mst0ne_: 看一下原來的 crawler 是不是有問題... ?
+14:34 < clkao> gugod: grafana 太強了 要不要把 graphite 前端換掉
+14:40 < Lee1092> ETBlue:  我可以幫 hackfoldr-2.0 加上 gulp 嗎?  XD
+14:42 < clkao> t0mst0ne_: dashboard save 好像有問題 我要看看
+14:48 < pipi_> 請問黑客松贊助票的標準是？今天聽公視的陳信聰先生演講，他有提到g0v，也跟我提說想來看看黑客松
+15:17 < clkao> t0mst0ne_: 先用 export 存起 dashboard json 吧
+15:17 < kcwu> 我想標準就是報名系統有得按就按下去, 這樣而已吧
+15:24 < clkao> t0mst0ne_: er.kcgmh.py 沒處理 timezone?
+15:36 < clkao> t0mst0ne_: #grafana 求解中
+15:48 < pipi_> 人機一體回話了！！！
+16:12 < clkao> lanf0n: 0501110514 的 full_reported 有問題
+16:16 < clkao> lanf0n: 0601160016 也不對
+16:17 < t0mst0ne_> clkao: https://gist.github.com/t0mst0ne/f40aab166fb536ae3e1b 不知是否抓的是最後？
+16:17 < kcwu> t0mst0ne_'s url: [Parsing ER information from KCGMH]
+16:19 < clkao> t0mst0ne_: 那些是 comment, 你要 edit 原來的版本才會更新 XD
+17:20 < ETBlue> Lee1092: 跪求收邀請、加 gulp 、寫 readme XD
+17:47 < lanf0n> clkao: 那兩個是 null
+17:48 < lanf0n> 咦
+17:49 < lanf0n> 看錯了以為是update_time....(我再檢查一下QQ
+18:03 < ETBlue> hackfoldr 2.0 moztw version: http://folder.moztw.org/ 差別：預設 foldr 為 /moztw
+18:06 < jimyhuang__> ETBlue++ 天壤之別
+18:06 < clkao> t0mst0ne_: check out http://api-beta.ly.g0v.tw:5601/#/dashboard/file/default.json
+18:06 < kcwu> clkao's url: [Grafana]
+18:07 < clkao> lanf0n: 好了跟我說 :p
+18:07 < lanf0n> clkao: 三總好了QQ 北榮要改一下....(re在2.7抓出來的東西竟然不一樣....囧
+18:10 < lanf0n> clkao: all done
+18:14 < clkao> lanf0n++
+18:17 < lanf0n> grafana 好猛...
+18:19 < lanf0n> t0mst0ne_: import os, then os.environ['TZ'] = 'ROC' 可以無視 import time ...XD
+18:28 < lanf0n> clkao: 村長的時間也超前了....
+18:29 < clkao> ?
+18:30 < clkao> 在想是不是無論如何存現在時間 網頁時間用 offset 存
+18:36 < lanf0n> grab time 嗎?
+18:53 < clkao> t0mst0ne_: http://er.mohw.g0v.tw/ now works
+18:53 < kcwu> clkao's url: [Grafana]
+19:14 < t0mst0ne_> kanru: lanf0n  grab time 好像比較好 ...
+19:14 < t0mst0ne_> clkao: sorry for late ( 3 children)
+19:33 < t0mst0ne_> https://www.irccloud.com/pastebin/tE1XSX7c
+19:33 < kcwu> t0mst0ne_'s url: [Pastebin: tE1XSX7c | IRCCloud]
+20:00 < t0mst0ne_> 請問改好的怎樣submit 到 https://github.com/g0v/er.mohw/tree/master/crawlers ?
+20:00 < kcwu> t0mst0ne_'s url: [er.mohw/crawlers at master · g0v/er.mohw · GitHub]
+20:02 < t0mst0ne_> clkao: 還是很怪, 跑er.kcgmh.py出來data ok,  但是 grafana 選 1111060015 就不對 
+20:04 < clkao> t0mst0ne_: TZ=UTC python ./er.kcgmh.py 這樣出來是錯的
+20:06 < lanf0n> t0mst0ne_: timezone預設是抓機器所在的timezone去轉 所以要 import os and os.environ['TZ']='ROC'
+20:11 < t0mst0ne_> clkao: lanf0n  收到, 嘉基/基長 改完
+20:13 < t0mst0ne_> clkao: lanf0n #grafana 會及時更新嗎? 還是慢慢蓋掉? 
+20:15 < jimyhuang__> 有柴待砍直須砍，莫待空揮斧 ...
+20:17 < a0000778> jimyhuang__: 肯定少打兩個字
+20:18 < t0mst0ne_> clkao: 另外"滿床" 那個圖,  Y 軸 數值scale 怪怪的 
+20:20 < lanf0n> XDD
+20:21 < t0mst0ne_> clkao: lanf0n 等20分鐘才知道改完是否 OK ?
+20:22 < t0mst0ne_> clkao: lanf0n 可以用SQL-like query 來分區嗎? 
+20:25 < clkao> influx cross table 有點難用... 
+20:34 < t0mst0ne_> clkao: select  last(pending_ward) from "ER.1111060015", "ER.1301200010"  where  time > 1407513470s and time < 1407581581s     group by time(1h)  order asc    彩球狂轉
+20:38 < clkao> t0mst0ne_: try from /ER\.(1111060015|1301200010)/ ?
+20:43 < t0mst0ne_> clkao: no response
+20:45 < t0mst0ne_> clkao:  #influxDB query 沒回應, #grafana 也沒回應
+21:34 < t0mst0ne_> clkao: oh , 我懂了, matches a regex  , thanks
+22:19 < t0mst0ne_> clkao: 可以再多一個time series 格式是 時間, 地區, 氣溫溫度 ?   如果可以堆疊氣溫和急診人數會很有趣, 目前急性心肌梗塞, 中風, 都是突然間氣溫降低會有大量病患擁入, 如果看得到 氣溫下降趨勢圖 vs 急診待床數, 應該是不錯的資料 
+22:21 < t0mst0ne_> clkao: 看得到的資料大概長這樣 http://www.cwb.gov.tw/V7/observe/real/46692.htm, 圖形長這樣 http://www.cwb.gov.tw/V7/observe/real/46692.htm#ui-tabs-2 , 不知道氣象局有沒有JSON 可以直接抓 ?
+22:21 < kcwu> t0mst0ne_'s url (1/2): [觀測]
+22:30 < clkao> t0mst0ne_: 那個可以從 gugod 的 graphite 近來 
+22:38 < t0mst0ne_> clkao:  嘉基好像還沒加 ?
+22:38 < t0mst0ne_> https://gist.github.com/t0mst0ne/67450a18d5c30c7d928f
+22:38 < kcwu> t0mst0ne_'s url: [嘉義基督教醫院]
+22:41 < clkao> 沒更新新的 crawler... 
+22:55 < seadog007> 所以現在是只要有醫院就可以加?
+22:55 < clkao> t0mst0ne_: "hospital_sn": ["1122010012"]
+22:55 < clkao> seadog007: 可以啊 如果他有提供資訊 就加到 spreadsheet
+22:55 < seadog007> OK
+22:57 < t0mst0ne_> clkao:  "" instead of '' , nod
+22:58 < clkao> t0mst0ne_: no, shouldn't be in array
+22:59 < t0mst0ne_> clkao:  ok, change to hospital_sn = str(1122010012) 
+23:03 < ipa> t0mst0ne_: 我列了幾個簡單問題，有空請共筆 QA 一下 https://g0v.hackpad.com/vtLwiUfYgcc 在這個 pad 最下方
+23:03 < kcwu> ipa's url: [全國重度級急救責任醫院急診即時訊息 - g0v.hackpad.com]
+23:03 < ipa> 有興趣回答想像和應用的朋友也請共筆....
+23:04 < ipa> t0mst0ne_: 等 clkao 再調整一下，這幾天 g0v fb 小幫手會貼粉絲頁
+23:05 < t0mst0ne_> 其實發起人是村長誒XD , 只是我剛好看到醫勞盟FB有一篇提到各醫院急診人力的問題
+23:06 < clkao> push 了 看起來應該比較乾淨了
+23:06 < clkao> 我怎麼記得很久以前你有發起過.. .XD
+23:07 < lanf0n> 發現 au 翻成英文好精準.... ((嗚嗚好多單字QAQ
+23:08 < ipa> t0mst0ne_: 那你就寫他挖坑也行  XD
+23:08 < ipa> 我也記得 t0mst0ne_ 某次開刀躺在病床的時候好像有提起這個坑
+23:09 < ipa> 總之多留些紀錄嚕
+23:10 < clkao> t0mst0ne_: 你調好的記得 export, 到時候 PR 那個 grafana branch 上的 default.json
+23:10 < t0mst0ne_> clkao: export 之後放哪裡 ? github ?
+23:11 < clkao> t0mst0ne_: 這裡: https://github.com/g0v/er.mohw/blob/grafana/src/app/dashboards/default.json
+23:11 < kcwu> clkao's url: [er.mohw/default.json at grafana · g0v/er.mohw · GitHub]
+23:12 < clkao> t0mst0ne_: 你就編輯她 開 PR
+23:12 < clkao> 不過記得 time range reset 到你希望的 default
+23:12 < clkao> 因為他也會變成所有人的 default
+23:28 < t0mst0ne_> clkao: 改完按save 嗎, 萬一出錯, 可以reverse ?
+23:32 < t0mst0ne_> clkao: 剩下左上角 醫院SN
+23:32 < t0mst0ne_> ipa: 可以晚點update
+23:32 < clkao> t0mst0ne_: no, export
+23:33 < clkao> oh you mean on github
+23:33 < clkao> it's okay, deploy is not automated, i still need to manually build it
+23:33 < seadog007> 哭了 看來我的技術只能填表而已吧w
+23:33 < t0mst0ne_> clkao: pull reques
+23:33 < clkao> PR is fine
+23:34 < clkao> t0mst0ne_: you change default to last 12 hrs?
+23:34 < t0mst0ne_> clkao: yes , how to you think ? longer ?
+23:34 < clkao> shuold be good. let me try to redeploy
+23:44 < clkao> t0mst0ne_++ # 新的 dashboard 真美
+23:44 < clkao> t0mst0ne_: 不過 stacked bar 好像很會跳
+23:46 < t0mst0ne_> clkao: 也許該把總覽移除, 直接分區? 可以問問看其他人的意見!   另外 榮總可以改成 北榮 ?
+23:47 < clkao> 請直接到 spreadsheet 改 我會再更新
+23:48 < clkao> 20m 的 stackbar 超怪的 有些 point 不會被 fill
+23:50 < clkao> t0mst0ne_: 我覺得是 bug... 你把 line enable 起來 但是 fill 跟 width 都改成 0 就正常了
+23:50 < clkao> 你可以 reload 一次再修改再 pr 嗎？ 因為我剛才改了 markdown 的內容
+23:51 < t0mst0ne_> clkao: OK 
+23:52 < t0mst0ne_> clkao: 好怪, 最近6 hours , 有幾家醫院資料就沒了 ??
+23:54 < t0mst0ne_> clkao: sorry , not sure what's wrong , reload 看看
+23:56 < t0mst0ne_> clkao:  line enable, fill width 0 , 結果有幾家醫院data就變了
+23:57 < t0mst0ne_> clkao: 點 bar + line 就有bug
+23:57 < clkao> 譬如有人有 18:00 跟 22:00 的資料 中間空的她 bar 就沒 fill 了
+23:57 < clkao> 但是 line 會
+23:57 < clkao> 應該是 bug

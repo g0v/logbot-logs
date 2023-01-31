@@ -1,0 +1,253 @@
+--- Day changed 五  6月 21 2013
+00:01 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+00:04 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has quit [Quit: leaving]
+00:05 -!- lcamel [~lcamel@corp-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 264 seconds]
+00:13 -!- yhsiang- [~yhsiang@180-177-11-18.dynamic.kbronet.com.tw] has quit [Quit: 從znc離開]
+00:15 -!- yhsiang- [~yhsiang@180-177-11-18.dynamic.kbronet.com.tw] has joined #g0v.tw
+00:16 < yhsiang> XD 顯示Error Connecting 卻還是連上來了
+00:18 -!- yhsiang- [~yhsiang@180-177-11-18.dynamic.kbronet.com.tw] has left #g0v.tw []
+00:22 -!- yhsiang- [~yhsiang@180-177-11-18.dynamic.kbronet.com.tw] has joined #g0v.tw
+00:23 < yhsiang-> from kiwi0.0
+00:23 -!- yhsiang- [~yhsiang@180-177-11-18.dynamic.kbronet.com.tw] has left #g0v.tw []
+00:24 -!- kiwi_yhsiang [~yhsiang@180-177-11-18.dynamic.kbronet.com.tw] has joined #g0v.tw
+00:25 < kiwi_yhsiang> 視窗關掉, 重新登入以後還在...
+00:27 < yhsiang> clkao: 是要這樣嗎? 還是說視窗關掉之後connection就要斷掉?
+00:28 < clkao> yhsiang: 是 就應該等於掛著... 然後可以看到離線時的 message and log
+00:29 < yhsiang> clkao: 離線時的message阿 我測看看..
+00:29 < yhsiang> 希望能看到訊息0.0
+00:30 < yhsiang> 沒看到訊息 XDD
+00:33 -!- kiwi_yhsiang [~yhsiang@180-177-11-18.dynamic.kbronet.com.tw] has quit [Remote host closed the connection]
+00:35 < clkao> 可能要下奇怪的指令
+00:35 < clkao> hychen: linux 下有沒有 nullfs ? 就是可以把 /path/A 疊在 /path/B 我記得以前好像有找到一個很簡單的方法可以作
+00:36 < yhsiang> znc上好像有keepbuffer, 再研究看看
+00:36 < clkao> hychen: 那個 vagrant script 我想改成 mount /tmp/node_modules to /vagrant/node_modules, 才不會跟原來的衝到
+00:37 < hychen> aufs or unionfs
+00:37 < clkao> yhsiang: playbuffer
+00:37 -!- yhsiang- [~yhsiang@180-177-11-18.dynamic.kbronet.com.tw] has joined #g0v.tw
+00:37 < hychen> aufs or Unionfs
+00:37 < clkao> hychen: 我也找到這兩個 可以我記得有更簡單的方法
+00:38 < yhsiang> clkao: I try!
+00:38 < clkao> http://wiki.znc.in/Using_commands
+00:38 < kcwu> clkao's url: [Using commands - ZNC]
+00:39 < hychen> overlayfs for inclusion into 3.10
+00:39 < hychen> 你是說這個?
+00:40 < ipa> 看新聞生氣怒畫mockup
+00:41 < yhsiang> 剛剛好像忘了setbuffer XD
+00:41 < yhsiang> 大家多說幾句 我可以多測一點~
+00:41 -!- tonytonyjan [~tonytonyj@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+00:41 < yhsiang> 哈哈 可以了
+00:41 < ipa> 一邊畫一邊發現flow/structure其實也很多bug
+00:42 < yhsiang> 只要設了buffer就可以 然後是直接會buffer playback
+00:43 < clkao> hychen: 好像不是那麼複雜的 因為不是真的要 cascade 每個檔案 只是要把一個目錄 remount 
+00:44 < hychen> 疊在一起的我只知道這兩種
+00:45 < clkao> 我還記得我找半天 後來好像內建哪個 flag 就可以
+00:45 < clkao> 還是我夢到的？
+00:46 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+00:46 < clkao> mount --bind   /tmp/node_modules /vagrant/node_modules
+00:51 < yhsiang> clkao: 剩下就是hack kiwi然後作github auth?
+00:52 < clkao> yhsiang: 在想讓 kiwi client 可以 script include embed 的話， hub 的 crendetial 就可以直接用
+00:52 < clkao> 然後再看如何 verify token
+00:53 < clkao> hychen: pushed
+00:54 < kcliu> https://coderwall.com/p/b5mu2w
+00:54 < kcwu> kcliu's url: [Tom Howe : Symlinks in shares for Vagrant]
+00:54 -!- yhsiang- [~yhsiang@180-177-11-18.dynamic.kbronet.com.tw] has quit [Quit: 從znc離開]
+00:54 < kcliu> 我剛在vagrantfile加了這個好像就可以npm install了?
+00:54 < clkao> kcliu: 本來就可以啊 只是會和 host 的衝突 想要把兩個分開
+00:55 < hychen> bind 有點危險
+00:55 < clkao> hychen: 是噢？
+00:55 < kcliu> ohoh 因為卡這個卡很久=.= 
+00:56 < clkao> kcliu: 原本 hychen 的作法是 cp 去 /tmp; npm i 完再 cp 回來
+00:57 < kcliu> 恩 所以才想說這樣會不會比較省事
+00:58 < clkao> hychen: 有什麼顧忌嗎？不過 vm 中應該是沒什麼關係吧? :p
+00:58 < hychen> 應該也還好
+00:58 < hychen> 我都忘了bind :p
+01:03 < hychen> clkao, 在vm掛沒差
+01:03 < clkao> 話說 libreoffice 4.0.4 終於 release 了... 裡面應該有修掉我報的 headless bug 了... 
+01:03 < clkao> 終於可以 provision 一台公報轉換機了.... 
+01:16 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+01:25 < ETBlue> ipa: 除蟲小精靈（蓋章）
+01:26 -!- a-tsioh [~pierre@242.176.102.84.rev.sfr.net] has joined #g0v.tw
+01:40 < clkao> ETBlue: 我發現 issue structure 的彩度調高的話 就像 lcars 了耶
+01:45 < ETBlue> clkao: 不要以為這樣我就動搖不看 star trek 的決心（握拳
+01:48 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 255 seconds]
+02:13 -!- ymow [~Adium@1-171-63-160.dynamic.hinet.net] has quit [Quit: Leaving.]
+02:14 < ETBlue> 個別議案的頁面非常難產... https://docs.google.com/folder/d/0B0NsS2a-Qx8ZV0ZGVEJLRHUtSk0/edit?docId=0B0NsS2a-Qx8ZYjJVLVBKdll3SlU
+02:14 < kcwu> ETBlue's url: [mockups - Google 雲端硬碟]
+02:14 < hychen> 精神不好果然腦子鈍鈍的...
+02:14 -!- ymow [~Adium@1-171-56-67.dynamic.hinet.net] has joined #g0v.tw
+02:18 < clkao> ETBlue: 這是個別方案... ?
+02:18 < ETBlue> 是議案頁面，其他方案還在下面等著捲
+02:19 < ETBlue> 所以需要收合的按鈕 zz
+02:19 < clkao> soga.. accordian 一次展開一個方案？
+02:20 < hychen> 一回神. coscup handon都賣完了....
+02:20 < ETBlue> 原本在想說要不要按標題列就可以展開收合，這樣可以少一個按鈕
+02:20 < clkao> ETBlue: 同意跟認為採納出現兩次？ 好像按下去方案名稱旁邊的再給選擇就好？
+02:21 < ETBlue> 你說那個有進度條的嗎？我在想說「評價」跟「採納」好像可以省略
+02:21 < ETBlue> 喔喔你是說兩列之間
+02:21 < clkao> ETBlue: 對了 建議要不要左邊 margin 放一點？才不會覺得跟方案是同一層.. 因為還有正反論點... 
+02:22 < ETBlue> 果然需要嗎...
+02:23 < clkao> 還是建議也是列出 title, 然後 accordian 展開？
+02:23 < ETBlue> （思）我原本適用深一點的灰色區隔，但這樣兩條建議之間又分不清了，如果建議之間用更深的灰色，好像會太深
+02:23 < clkao> 如果有 256 個建議.... 
+02:24 < ETBlue> 我現在只有做展開的樣子，收合的還沒弄，還是說，既然預設是收合的話只要收合狀態看得出分別就好，展開的就先不理他
+02:24 < clkao> *nod*
+02:24 < ETBlue> 有道理（擊掌
+02:24 < ETBlue> 那我先來收合看看
+02:26  * clkao 我先來睡睡看... 明天又要去和多星際總部了
+02:32 -!- hychen [~hychen@host-219-68-121-77.dynamic.kbtelecom.net] has quit [Ping timeout: 256 seconds]
+02:51 -!- ymow [~Adium@1-171-56-67.dynamic.hinet.net] has quit [Quit: Leaving.]
+02:52 -!- ymow [~Adium@1-171-60-226.dynamic.hinet.net] has joined #g0v.tw
+03:03  * ETBlue 也先zz... 睏
+04:23 -!- mindos_ [~mindos@111-250-191-21.dynamic.hinet.net] has joined #g0v.tw
+04:23 -!- mindos [~mindos@111-250-188-52.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+04:23 -!- mindos_ is now known as mindos
+05:34 -!- hialan_ [~hialan@118-168-195-128.dynamic.hinet.net] has joined #g0v.tw
+05:37 -!- hialan [~hialan@220-136-85-180.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+05:39 -!- a-tsioh [~pierre@242.176.102.84.rev.sfr.net] has quit [Read error: Operation timed out]
+06:16 -!- a-tsioh [~pierre@242.176.102.84.rev.sfr.net] has joined #g0v.tw
+06:49 -!- a-tsioh [~pierre@242.176.102.84.rev.sfr.net] has quit [Quit: WeeChat 0.3.8]
+09:28 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+09:36 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+09:38 -!- pm5_ [~pm5@111-248-238-20.dynamic.hinet.net] has joined #g0v.tw
+09:38 -!- pm5__ [~pm5@111-248-238-20.dynamic.hinet.net] has joined #g0v.tw
+09:41 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+09:45 -!- MnO2 [~MnO2@nat/yahoo/x-jdjqiuorqmhxnmes] has joined #g0v.tw
+09:48 -!- FourDollars [~sylee@114-35-96-16.HINET-IP.hinet.net] has joined #g0v.tw
+09:49 -!- ttcat [7bc28129@gateway/web/freenode/ip.123.194.129.41] has joined #g0v.tw
+09:55 -!- ttcat [7bc28129@gateway/web/freenode/ip.123.194.129.41] has quit [Ping timeout: 250 seconds]
+10:18 -!- pm5__ [~pm5@111-248-238-20.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+10:18 -!- pm5_ [~pm5@111-248-238-20.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+10:25 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has joined #g0v.tw
+10:28 -!- juanna [~juanna@114-37-81-53.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+10:28 -!- kcwu [fakeidkcwu@kcwu.csie.org] has quit [Ping timeout: 248 seconds]
+10:31 -!- chihchun_afk is now known as chihchun
+10:33 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:48 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+11:24 -!- pm5 [~pm5@111-248-238-20.dynamic.hinet.net] has joined #g0v.tw
+11:24 -!- pm5_ [~pm5@111-248-238-20.dynamic.hinet.net] has joined #g0v.tw
+11:25 < tkirby> 喔喔, 又週五了
+11:25 < clkao> tkirby: 又可以翹班了？ :p
+11:27 < tkirby> clkao: 正在翹班中 XDDD
+11:28 < tkirby> 不過在忙其他事就是了.. XD
+11:29 -!- pm5_ [~pm5@111-248-238-20.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+11:29 -!- pm5 [~pm5@111-248-238-20.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+11:32 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 248 seconds]
+11:37 -!- Zespre [~starbops@140.113.123.194] has joined #g0v.tw
+11:55 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+13:00  * au @ galactic hq
+13:01 -!- bobchao [~bobchao@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+13:01 < bobchao> clkao: g0v.tw down?
+13:02 < yhsiang> bobchao: 沒阿0.0?
+13:02 < au> http://www.downforeveryoneorjustme.com/g0v.tw
+13:04 -!- clifflu [~clifflu@114-32-21-207.HINET-IP.hinet.net] has quit [Quit: leaving]
+13:04 < bobchao> yhsiang: 不曉得 我剛真的連不上, well 現在可以了
+13:05 < bobchao> 原來有 http://www.downforeveryoneorjustme.com/ 這種網站 好讚
+13:05 < au> isup.me # 比較好記
+13:07 -!- hasher [~hasher@1.34.23.44] has quit [Quit: WeeChat 0.4.1]
+13:25 < ETBlue> 動民主  issue 頁面依照目前系統的作法，一開始預設是全部 initiative 收合... https://docs.google.com/folder/d/0B0NsS2a-Qx8ZV0ZGVEJLRHUtSk0/edit?docId=0B0NsS2a-Qx8ZNVF5STRKOHJRRkE
+13:26 < ETBlue> 然後先展開一層（隱藏建議、正反意見的細節） https://docs.google.com/folder/d/0B0NsS2a-Qx8ZV0ZGVEJLRHUtSk0/edit?docId=0B0NsS2a-Qx8ZRDJiak80VkpTWE0 
+13:27 < ETBlue> 然後再按展開才顯示建議和正反意見的內容 zz
+13:41 < ETBlue> 非常擁擠之 initiative 全展開 https://docs.google.com/folder/d/0B0NsS2a-Qx8ZV0ZGVEJLRHUtSk0/edit?docId=0B0NsS2a-Qx8ZZ2hfTkEtRTVLMGM
+14:01 -!- Al_Cho [~al_cho@59-124-67-67.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+14:01 -!- chhsiao1981 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+14:06 < Jcrt> 今天 cloudflare 似乎怪怪的
+14:18 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+14:20 -!- Al_Cho [al_cho@nat/novell/x-idwwouyjkakbulju] has joined #g0v.tw
+14:20 -!- hasher [~hasher@1.34.23.44] has quit [Client Quit]
+14:20 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+14:44 -!- juanna [~juanna@114-37-105-38.dynamic.hinet.net] has joined #g0v.tw
+14:49 -!- water [~water@220-128-216-206.HINET-IP.hinet.net] has joined #g0v.tw
+14:49 -!- water [~water@220-128-216-206.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+14:49 -!- water [~water@220-128-216-206.HINET-IP.hinet.net] has joined #g0v.tw
+14:56 -!- MnO2 [~MnO2@nat/yahoo/x-jdjqiuorqmhxnmes] has quit [Quit: MnO2]
+14:57 -!- water is now known as watersu
+14:57 -!- watersu [~water@220-128-216-206.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+14:58 -!- water [~water@220-128-216-206.HINET-IP.hinet.net] has joined #g0v.tw
+15:00 -!- water [~water@220-128-216-206.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+15:05 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 252 seconds]
+15:08 -!- MnO2 [~MnO2@nat/yahoo/x-wwaeijybyquppcwc] has joined #g0v.tw
+15:24 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:24 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:24 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:24 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:30 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+15:41 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+15:42 -!- cataska [~allen@210.64.6.233] has quit [Remote host closed the connection]
+15:53 -!- cataska [~cataska@210.64.6.233] has joined #g0v.tw
+16:02 -!- MnO2 [~MnO2@nat/yahoo/x-wwaeijybyquppcwc] has quit [Quit: MnO2]
+16:03 -!- cataska [~cataska@210.64.6.233] has quit [Remote host closed the connection]
+16:03 -!- cataska [~cataska@210.64.6.233] has joined #g0v.tw
+16:05 -!- MnO2 [~MnO2@nat/yahoo/x-cdbaxyuqexwtbutk] has joined #g0v.tw
+17:14 < ipa> orz
+17:18 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 240 seconds]
+17:30 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has joined #g0v.tw
+17:31 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+17:32 < caasiHuang> ETBlue++
+17:34 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+17:34 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has joined #g0v.tw
+17:36 -!- ymow [~Adium@1-171-60-226.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+17:38 -!- ttcat [01aba97b@gateway/web/freenode/ip.1.171.169.123] has joined #g0v.tw
+17:42 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+18:07 -!- Al_Cho [al_cho@nat/novell/x-idwwouyjkakbulju] has quit [Remote host closed the connection]
+18:12 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+18:15 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 264 seconds]
+18:18 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has left #g0v.tw []
+18:20 -!- poga [~poga@220-128-121-87.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:40 -!- ttcat [01aba97b@gateway/web/freenode/ip.1.171.169.123] has quit [Ping timeout: 250 seconds]
+18:53 -!- bobchao [~bobchao@114-35-121-105.HINET-IP.hinet.net] has quit [Quit: bobchao]
+19:11 -!- FourDollars [~sylee@114-35-96-16.HINET-IP.hinet.net] has quit [Quit: leaving]
+19:34 -!- bobchao [~bobchao@1-171-111-35.dynamic.hinet.net] has joined #g0v.tw
+19:45 -!- hychen [~hychen@175.41.48.77] has quit [Quit: 暫離]
+19:58 -!- MnO2 [~MnO2@nat/yahoo/x-cdbaxyuqexwtbutk] has quit [Quit: MnO2]
+20:03 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 246 seconds]
+20:08 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 240 seconds]
+20:29 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+20:35 -!- hychen [~hychen@host-219-68-121-77.dynamic.kbtelecom.net] has joined #g0v.tw
+20:37 < hychen> 居然有這個http://opencongress.ccw.org.tw/about
+20:38 < thschee_> 數典的計畫
+20:40 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+20:56 -!- bafu [~bafu@111-240-226-175.dynamic.hinet.net] has joined #g0v.tw
+21:00 < thschee_> 這邊有人參加過 personal democracy forum 嗎？
+21:02 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+21:53 < clkao> thschee_: 如果你有參加的話，應該就有 :p
+22:02 -!- bobchao [~bobchao@1-171-111-35.dynamic.hinet.net] has quit [Quit: bobchao]
+22:09 -!- clkaoud [uid12095@gateway/web/irccloud.com/x-xnzzokuyftezufaz] has joined #g0v.tw
+22:10  * clkaoud tries irc cloud
+22:10 < clkaoud> 好像還不賴
+22:10 < clkao> clkaoud: this is some message for you when offline
+22:13 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+22:14 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+22:21 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 255 seconds]
+22:22 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+22:29 < thschee_> clkao: 我是想知道有沒有人參加過。我沒參加過，只聽過他們 founder Andrew Rasiej 在其他場合講過一場 
+22:29 < thschee_> :)
+22:31 < thschee_> 至少後續去參加一起訂機酒可以眚一點
+22:32 < clkao> travel.g0v.tw ?
+22:34 < thschee_> hipmunk + airbnb + doodle for personal democracy worker?
+22:34 < thschee_> :D
+22:36 < thschee_> 或是 lanyrd + doodle + registrano? :D
+22:37 -!- kcwu [fakeidkcwu@kcwu.csie.org] has joined #g0v.tw
+22:38 < thschee_> 或者是 http://cloud.culture.tw/opendata/ + http://www.citytalk.tw/ for democracy + cultural events?
+22:38 < kcwu> thschee_'s url (1/2): [開放資料服務網 文化部]
+22:38 < kcwu> thschee_'s url (2/2): [Citytalk 城市通 :: 活動情報第一站]
+22:41 < ipa> 問：誰記得 walkingice 很久以前畫的 website ui 放在哪？
+22:42 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+22:43 < clkao> ipa: https://github.com/g0v/dev/issues/2 
+22:43 < kcwu> clkao's url: [g0v.tw 首頁設計 · Issue #2 · g0v/dev · GitHub]
+22:44 < ipa> great
+22:44 < clkao> 凡走過必留下痕跡 |D
+22:44 < clkao> walkingice++
+22:44 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+22:56 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has left #g0v.tw []
+23:01 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has quit [Quit: leaving]
+23:07 -!- bobchao [~bobchao@111.80.183.84] has joined #g0v.tw
+23:08 -!- bobchao [~bobchao@111.80.183.84] has quit [Client Quit]
+23:20 -!- hychen [~hychen@host-219-68-121-77.dynamic.kbtelecom.net] has quit [Quit: 暫離]
+23:34 < clkao> irccloud 會把 join/part 合併: 長這樣: PM  ⇐ caasiHuang and hychen quit  ↔ derjohng and bobchao popped in  
+23:37 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 264 seconds]
+23:46 -!- caasiHuang [~caasi@114-46-115-32.dynamic.hinet.net] has joined #g0v.tw
+23:46 -!- a-tsioh [~pierre@7.17.90.92.rev.sfr.net] has joined #g0v.tw
+23:47 < caasiHuang> clkaoud: irccloud 這舉動真貼心！
+23:47 < clkao> 真的!
+23:48  * caasiHuang 馬上申請看看...
+23:52 -!- ymow [~Adium@1-171-172-185.dynamic.hinet.net] has joined #g0v.tw

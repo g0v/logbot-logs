@@ -1,0 +1,223 @@
+--- Day changed 二  5月 21 2013
+00:01 < clkao> kcwu: 應該是 header.. body 中一般只會用 inline 的? 不過還是問問 hlb 比較保險
+00:03 < kcwu> 我不想 inline, 也不想放 header ....
+00:04 < kcwu> 寫在 blog 中, 所以不想每次 inline 一堆, 因為不是每篇文章都用到, 不想放 header
+00:09 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 260 seconds]
+00:13 -!- ck_ [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+00:13 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+00:14 -!- ck_ [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+00:14 -!- KNY [~Adium@118-170-73-186.dynamic.hinet.net] has left #g0v.tw []
+00:28 < hlb> kcwu: <head><link rel="stylesheet" src="general.css"><link rel="stylesheet" src="blog-post-nubmer-if-needed.css"></head> ?
+00:29 < hlb> kcwu: or http://caniuse.com/style-scoped
+00:29 < kcwu> hlb's url: [Can I use Scoped CSS]
+00:33 < au> kcwu: <body> ... <style>@import url('blog-post-nubmer-if-needed.css');</style> ...</body> ?
+00:42 < clkao> chihchun_afk: 對了，上次雨量那個如何了？我想到如果用整點 1hr 的在搭配最近的 10min 加起來呢?
+00:46 -!- icman [~icman@123.240.147.165] has quit [Quit: 明天天氣晴]
+00:50 < c9s> http://registrano.com/events/g0v-prehackath3n # 咦 css 出不來?
+00:50 < kcwu> c9s's url: [g0v pre-hackathon | Registrano]
+00:51 < c9s>  "http://assets2.registrano.com/stylesheets/all-event.css?1369038400" 暴了?
+00:51 < clkao> chihchun_afk: wtf?
+00:51 < clkao> oops 
+00:51 < clkao> c9s: wfm?
+00:52 < c9s> cannot resolve assets2.registrano.com: Unknown host XD
+00:54 < hlb> um.
+00:57 < hlb> godaddy 發瘋了 O_O
+01:05 < hlb> c9s: 設了 * 似乎爆炸, 補了一堆 A record :p
+01:05 -!- pm5 [~pm5@111-248-226-251.dynamic.hinet.net] has joined #g0v.tw
+01:08 < hlb> seems ok now.
+01:08 -!- hychen [~hychen@host-111-184-15-46.dynamic.kbtelecom.net] has quit [Quit: Leaving]
+01:11 -!- mp607 [~mp607@140.130.198.17] has quit [Quit: mp607]
+01:12 < clkao> hlb: registrano 好像可以直上 cloudflare ? :p
+01:14 < hlb> clkao: 也不是不行
+01:16 < hlb> 這 dns 真的大爆炸了 +_+
+01:21 -!- pm5 [~pm5@111-248-226-251.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+01:35 -!- hialan [~chatzilla@118-168-196-17.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.90 [Firefox 21.0/20130511120803]]
+01:41 -!- allenown [~allenown@devstd.in] has joined #g0v.tw
+01:45 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has joined #g0v.tw
+02:04 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+02:46 -!- poga [~poga@111-241-135-35.dynamic.hinet.net] has joined #g0v.tw
+04:37 < ETBlue> 雖然這時間應該沒人，不過我還是想問一下 gh-pages 有什麼限制嗎？為在 local server 看的見的 background image 上去 gh-pages 就神隱了，但其他地方都正常... orz http://etblue.github.io/rwd/ <aside class="party icons-party-kmt">國民黨</aside>
+05:24 -!- Supaplextw1 [~Lucky@1-164-214-83.dynamic.hinet.net] has joined #g0v.tw
+05:25 -!- Supaplextw [~Lucky@114-25-202-38.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+06:21 -!- pm5 [~pm5@111-248-226-251.dynamic.hinet.net] has joined #g0v.tw
+06:34 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+06:53 < ETBlue> Jedi_: 好早 XD
+06:58 < poga> ETBlue: 改成url('/rwd/img/icons-s5c42c5d14b.png')
+06:59 < Jedi_> ETBlue: 今天這樣算晚起了 ~_~
+07:00 < poga> ETBlue: 不過這編出來的css... 我不知道編譯前該怎麼改 :P
+07:02 -!- ETBlue_ [~chatzilla@175.182.237.104] has joined #g0v.tw
+07:03 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Ping timeout: 246 seconds]
+07:03 -!- ETBlue_ is now known as ETBlue
+07:04 < ETBlue> poga: 波卡卡也好早 ^o^
+07:05 < poga> ETBlue: 被貓貓吵醒，其實沒睡多久 XD
+07:08 < poga> ETBlue: 你的圖片路徑會指到http://etblue.github.io/img/icons-s5c42c5d14b.png，變成404，因為"/"是最上層
+07:10 -!- pm5 [~pm5@111-248-226-251.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+07:14 < ETBlue> poga: 瞭解... 原來是路徑的問題 = ="
+07:16 < ETBlue> poga: 現在用 compass 自動生成這段 css，所以我每次 push 之前都要手動改路徑了嗎 orz
+07:17 < poga> ETBlue: 可以寫成../img/icons-s5c42c5d14b.png這樣
+07:19 -!- pm5 [~pm5@111-248-226-251.dynamic.hinet.net] has joined #g0v.tw
+07:26 < ETBlue> poga: 理解... 剛才測試結果用 compass 寫 .scss " @import "icons/*.png"; @include all-icons-sprites; " 他會自動生出 " background: url('/img/icons-s5c42c5d14b.png') no-repeat; " 到 .css 裡面，每次重新 compile 就會重生一次然後把之前的 .css 檔覆寫掉，所以我之後要 push 上去前得記得手動把 .css 裡的 sprite 路徑改回來 ~_~
+07:29 < poga> ETBlue: 囧，這樣聽起來好像不太對勁
+07:31 < ETBlue> poga: 就是說，感覺超蠢 =3=
+08:39 -!- haroldwu [~user@114-46-131-78.dynamic.hinet.net] has joined #g0v.tw
+08:45 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Remote host closed the connection]
+08:46 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has quit [Ping timeout: 264 seconds]
+08:49 -!- BCN [~quassel@209.141.61.187] has joined #g0v.tw
+08:50 -!- KNY [~Adium@118-170-73-186.dynamic.hinet.net] has joined #g0v.tw
+08:55 -!- pm5 [~pm5@111-248-226-251.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+09:08 -!- mp607 [~mp607@140.130.198.17] has joined #g0v.tw
+09:55 -!- ETBlue [~chatzilla@175.182.237.104] has joined #g0v.tw
+10:01 -!- MnO2 [~MnO2@nat/yahoo/x-xxqfacsfewoaajca] has joined #g0v.tw
+10:02 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:03 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+10:08 -!- kanru` [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:13 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+10:16 -!- KNY [~Adium@118-170-73-186.dynamic.hinet.net] has quit [Quit: Leaving.]
+10:18 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+10:25 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+10:33 < ETBlue> poga: 找到了XD 在 compass 設定 config.rb 檔裡把 relative_assets = true 打開以後要先 stop watching folder 然後再重新 watch 以後就會變成相對路徑惹 = =" http://stackoverflow.com/questions/12422080/compass-is-giving-me-wrong-path-to-sprite
+10:33 < kcwu> ETBlue's url: [sass - Compass is giving me wrong path to sprite - Stack Overflow]
+10:36 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+10:46 -!- mp607 [~mp607@140.130.198.17] has quit [Quit: mp607]
+10:47 -!- chihchun_afk is now known as chihchun
+10:50 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+11:02 -!- kanru` [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+11:10 < clkao> ETBlue!
+11:18 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+11:19 < ETBlue> clkao: 早啊哈哈... 噢我 lag 了九分鐘
+11:24 -!- mike [6ffb5e2d@gateway/web/freenode/ip.111.251.94.45] has joined #g0v.tw
+11:25 -!- mike is now known as Guest67664
+11:26 < clkao> 現在應該是流行說 早吧你
+11:27  * ETBlue 狀態顯示為學 zepto.js 吧你
+11:30 -!- KNY [~Adium@118-170-73-186.dynamic.hinet.net] has joined #g0v.tw
+11:31 < clkao> hlb++ # 來喝啤酒吧你
+11:34 < hlb> clkao: 黑客吧你
+11:36 -!- KNY [~Adium@118-170-73-186.dynamic.hinet.net] has quit [Quit: Leaving.]
+11:38 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+12:00 < clkao> ronnywang: data.g0v.tw is down?
+12:06 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+12:06 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+12:13 < ronnywang> clkao: 我看看
+12:28 -!- kanru` [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+12:28 < ronnywang> clkao: fixed, 重開治百病
+12:29 < clkao> orz
+12:29 < clkao> XD
+13:23 -!- ETBlue_ [~chatzilla@175.182.237.104] has joined #g0v.tw
+13:24 -!- bency_ [~bency@jccf.com.tw] has quit [Ping timeout: 256 seconds]
+13:24 -!- bency [~bency@jccf.com.tw] has joined #g0v.tw
+13:25 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Ping timeout: 256 seconds]
+13:25 -!- ETBlue_ is now known as ETBlue
+13:39 -!- chihchun is now known as chihchun_afk
+13:46 -!- chihchun_afk is now known as chihchun
+13:56 -!- Guest67664 [6ffb5e2d@gateway/web/freenode/ip.111.251.94.45] has quit [Ping timeout: 250 seconds]
+14:10 < clkao> au: 英文、法文、德文釋義，表示可以用英文 sentiment 翻回來變成中文的 sentiment 了嗎？
+14:14 < au> clkao: 還沒建反查表，目前是 Mandarin->{Fr,De,En}
+14:22 -!- IORI71721 [7a759d20@gateway/web/freenode/ip.122.117.157.32] has joined #g0v.tw
+14:22 -!- IORI71721 [7a759d20@gateway/web/freenode/ip.122.117.157.32] has left #g0v.tw []
+14:24 -!- WOP71721 [7a759d20@gateway/web/freenode/ip.122.117.157.32] has joined #g0v.tw
+14:24 < clkao> yeah thats what i meant., mandarin->en->sentiment so we get mandarin->sentiment
+14:25 -!- WOP71721 [7a759d20@gateway/web/freenode/ip.122.117.157.32] has left #g0v.tw []
+14:25 < au> 好主意
+14:34 -!- KNY [~Adium@118-170-73-186.dynamic.hinet.net] has joined #g0v.tw
+14:38 -!- KNY [~Adium@118-170-73-186.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+15:15 -!- KNY [~Adium@118-170-73-186.dynamic.hinet.net] has joined #g0v.tw
+15:48 -!- KNY [~Adium@118-170-73-186.dynamic.hinet.net] has quit [Quit: Leaving.]
+16:07 -!- test123 [76a8491e@gateway/web/freenode/ip.118.168.73.30] has joined #g0v.tw
+16:08 -!- test123 [76a8491e@gateway/web/freenode/ip.118.168.73.30] has quit [Client Quit]
+16:11 < ETBlue> https://groups.google.com/forum/?fromgroups=#!topic/g0v-general/py2dzEJZWWQ
+16:11 < ETBlue> 徵求意見 - hackath3n 專案：選區立委 vs 核電立場 responsive web
+16:11 < ETBlue> 有人有空可以幫我看一下嗎... XD
+16:14 < clkao> ETBlue++ # 超強
+16:21 < ETBlue> clkao: 摸石頭過河中 ~_~
+16:46 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+16:49 -!- BCN [~quassel@209.141.61.187] has quit [Quit: No Ping reply in 180 seconds.]
+16:49 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has joined #g0v.tw
+17:48 -!- ctf_ [~ctf@gateway/tor-sasl/ctf/x-48556045] has quit [Remote host closed the connection]
+17:58 -!- mp607 [~mp607@140.130.198.17] has joined #g0v.tw
+18:05 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Ping timeout: 256 seconds]
+18:07 -!- kanru` [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+18:13 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 240 seconds]
+18:28 -!- ctf_ [~ctf@gateway/tor-sasl/ctf/x-48556045] has joined #g0v.tw
+18:44 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+18:59 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+19:11 -!- chihchun is now known as chihchun_afk
+19:21 -!- MnO2 [~MnO2@nat/yahoo/x-xxqfacsfewoaajca] has quit [Quit: MnO2]
+19:31 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+19:41 -!- Jedi_ [~Jedi@jedi.org] has quit [Read error: Connection reset by peer]
+19:46 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+19:47 < hlb> clkao: 週四打算 refactor moedict sass
+19:47 < hlb> clkao: 有其他計畫嗎
+19:54 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+20:01 < au> hlb++
+20:01  * au 打算來弄四國語言
+20:09 -!- icman [~icman@123.240.147.165] has joined #g0v.tw
+20:30 -!- a-tsioh [~pierre@nat-rech-216.net.univ-paris-diderot.fr] has joined #g0v.tw
+20:31 < a-tsioh> 逐家好
+20:36 -!- Jedi_ [~Jedi@jedi.org] has quit [Ping timeout: 252 seconds]
+20:37 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: 881]
+20:41 < clkao> au: 現在不都六國了嗎
+20:42 < clkao> hlb: 想弄那個 people registry
+20:43 < hlb> clkao: 那個 ?
+20:45 < clkao> 我有寫在 hackpad... 就是之前會請大家填一個 spreadesheet (鄉民列表)
+20:45 < clkao> 每次都搞這個很蠢
+20:46 < hlb> hmm
+21:15 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+21:18 -!- MnO2 [~MnO2@1.34.43.236] has quit [Client Quit]
+21:20 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+21:29 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+21:31 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+21:44 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 245 seconds]
+21:46 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+22:01 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+22:05 -!- chihchun_afk is now known as chihchun
+22:26 < clkao> http://data.gov.tw/opendata/Details?sno=A61000000A-00002 # 這格式還不錯 除了檔名是 big5 之外
+22:26 < kcwu> clkao's url: [政府資料開放平臺>資料分類>服務分類>選舉及投票>rawData]
+22:27 < clkao> 噢 不過他還是混雜了 aggregte 過的資料
+22:27 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+22:42 -!- Supaplextw1 [~Lucky@1-164-214-83.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+22:44 -!- KNY [~Adium@118-170-73-186.dynamic.hinet.net] has joined #g0v.tw
+22:48 -!- chihchun is now known as chihchun_afk
+23:06 < au> clkao: 閩客各算一國才有六國喔 XD
+23:07 -!- Supaplextw [~Lucky@1-164-214-83.dynamic.hinet.net] has joined #g0v.tw
+23:10 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+23:40 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+23:40 -!- ChiChen [dda9d06b@gateway/web/freenode/ip.221.169.208.107] has joined #g0v.tw
+23:42 -!- ChiChen [dda9d06b@gateway/web/freenode/ip.221.169.208.107] has quit [Client Quit]
+23:43 -!- ChiChen [dda9d06b@gateway/web/freenode/ip.221.169.208.107] has joined #g0v.tw
+23:45 < clkao> 有沒有編碼達人可以解碼一下: '®æ¦¡»¡©ú1'
+23:45 < clkao> 中選會的立委選舉資料 zip 檔裡面的檔名
+23:46 < clkao> http://data.cec.gov.tw/%E7%AB%8B%E6%B3%95%E5%A7%94%E5%93%A1%E9%81%B8%E8%88%89/
+23:46 < kcwu> clkao's url: [data.cec.gov.tw - /立法委員選舉/]
+23:48 < KNY> 內文嗎？
+23:49 < clkao> zip 檔內的檔名
+23:49 < KNY> 目錄我看到都是正常的中文
+23:50 < KNY> elbase.csv
+23:50 < au> 格式說明
+23:50 < KNY> 裡面有一個「格式說明.txt」
+23:50 < au> .txt
+23:50 < au> or rather, "格式說明1.txt"
+23:50 < au> (big5)
+23:51 < clkao> yeah, how to turn "®æ¦¡»¡©ú1" into "格式說明1"? i wonder how it is garbled
+23:51 -!- ChiChen [dda9d06b@gateway/web/freenode/ip.221.169.208.107] has quit [Quit: Page closed]
+23:51 < au> pbpaste| piconv -f utf8 -t latin1 | piconv -f big5 -t utf8
+23:52 < clkao> hm, i thought that's what i just did
+23:52 < clkao> but didn't work
+23:53 < kcwu> maybe try convmv -f big5 -t utf-8
+23:53 -!- ChiChen [dda9d06b@gateway/web/freenode/ip.221.169.208.107] has joined #g0v.tw
+23:53 < KNY> clkao : http://goo.gl/Sk5hm
+23:54 < clkao> KNY: 不是內文 那個說明內文就是 big5, 是檔名 7z and unzip 解不出來
+23:54 < au> try Unarchiver
+23:54 < KNY> 我解正常耶，可以順利解出，我的環境是mac
+23:55 < KNY> 還是我全部解給你？
+23:56 < clkao> unarchiver 可以... orz
+23:56 < kcwu> clkao: freebsd?
+23:56 < KNY> XD
+23:56 < clkao> 只是想說要有 command line 才好寫成 script
+23:56 < clkao> mac
+23:56 < au> bin/unar
+23:56 < KNY> http://goo.gl/d8LgR 請笑納
+23:57 < au> # https://code.google.com/p/theunarchiver/downloads/list
+23:57 < kcwu> au's url: [Downloads - theunarchiver - Multi-format unarchiver app for OS X. - Google Project Hosting]
+23:57 < au> KNY++
+23:58 -!- ChiChen [dda9d06b@gateway/web/freenode/ip.221.169.208.107] has quit [Quit: Page closed]
+23:58 < KNY> （only double click + upload  :P )

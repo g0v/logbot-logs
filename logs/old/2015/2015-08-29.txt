@@ -1,0 +1,51 @@
+--- Day changed 六  8月 29 2015
+07:03 -!- veloci85_ is now known as veloci85
+09:14 < slackbot2> <saul511> 請教一下這邊的各位前輩，台北市政府市長現在交辦預算書要做開放資料，我想到之前g0v的中央總預算視覺化。這邊想問的是，請問關於excel轉CSV及後續視覺化網站的程式，是能讓台北市引用的嗎？
+09:49 < slackbot2> <au> saul511: g0v 的所有專案都是開源的 ( <https://github.com/g0v/twbudget> 是 MIT license)，所以很歡迎使用，不用先問過 (但是很高興北市願意使用)
+09:49 < kcwu> slackbot2's url: [g0v/twbudget · GitHub]
+09:50 < slackbot2> <au> 資料結構請見 <https://github.com/g0v/twbudget/blob/master/app/assets/data/tw2014ap.csv> (當然可以再改)
+09:50 < kcwu> slackbot2's url: [twbudget/tw2014ap.csv at master · g0v/twbudget · GitHub]
+09:53 < slackbot2> <au> 詳細的步驟也可以詢問 OpenSpending 社群： <http://community.openspending.org/help/guide/en/>
+09:53 < kcwu> slackbot2's url: [The OpenSpending Guide]
+11:10 < slackbot2> <au> liz: <https://zu.oxforddictionaries.com/> 之前提到的 isiZulu 鄉民辭典上線了，下個月要去牛津技術輸出 OCR 和 iTaigi，看能不能互相整合
+11:10 < kcwu> slackbot2's url: [Explore & Translate - Oxford Dictionaries]
+11:11 < slackbot2> <au> Contact Us 和 About 都是先用祖魯語寫，感覺非常有誠意 XD
+11:19 < slackbot2> <moon_c> 現在才發現CC授權小幫手做好了，超感人超好用QQ（已使用在迷途新手身上）
+11:46 < slackbot2> <liz> 意思是說，iTaigi的介紹應該先用台語寫XD
+12:23 < slackbot2> <saul511> 感謝 @au ：另外想問的是，我同仁在測試 twbudget的excel轉CSV時，發現程式package.js跟最新的CSV套件不相容，想請問當時這project所使用的CSV版本是？
+12:33 < slackbot2> <yurenju> 是編碼問題嗎？
+12:55 < au> saul511: https://github.com/clkao/twbudget 嗎？ 2013 年 11 月的 csv 
+12:55 < kcwu> au's url: [clkao/twbudget · GitHub]
+12:55 < au> 應該是 0.3.6 https://github.com/wdavidw/node-csv/releases
+12:55 < kcwu> au's url: [Releases · wdavidw/node-csv · GitHub]
+12:55 < au> 如果測試成功也請 edit https://github.com/clkao/twbudget/blob/master/package.json 然後送 pullreq
+12:55 < kcwu> au's url: [twbudget/package.json at master · clkao/twbudget · GitHub]
+12:57 < slackbot2> <yhsiang> saul511: 是 excel 的問題吧 XD
+13:00 < au> csv 0.4.x 重寫了 api, 所以  https://github.com/clkao/twbudget/blob/master/package.json#L7  改成 "csv": "0.3.x" 即可
+13:01 < slackbot2> <yhsiang> XD 我以為是編碼問題
+20:14 < amorna> 有人可以去這個hackpad回應最後一個問題發問者嗎.. 雖然我遇到很多次.. https://g0v.hackpad.com/--0dhleAxPa9c
+20:14 < kcwu> amorna's url: [阿美語-法語萌典校對說明書 - g0v.hackpad.com]
+20:17 < slackbot2> <lafin> 是空白～謝謝
+20:18 < amorna> 呃...我意思是說...請有hackpad帳號的人.....
+20:30 < slackbot2> <mrorz> amorna: 像現在 hackpad 上這樣嗎～？
+20:51 < amorna> mrorz: 是的 謝謝
+21:46 < slackbot2> <miaoski> 我家有 Teach Yourself Zulu 有需要可供參考 :stuck_out_tongue:
+22:08 -!- veloci85_ is now known as veloci85
+22:31 -!- veloci85_ is now known as veloci85
+23:02 -!- maximum_1g is now known as maximum_sg
+23:05 < slackbot2> <weiting> 阿美語萌典急徵前端美化介面跟後端資料管理！！
+23:10 < slackbot2> <weiting>  
+23:11 -!- veloci85_ is now known as veloci85
+23:13 < slackbot2> <weiting> undefined
+23:15 < slackbot2> <weiting> 志工在校對時發現有類似附圖的情形, 完全不相關的句子, 或者被認為是空白但其實有清楚的內容, 最初是重打上去, 但漸漸發現案例不時出現. 而且也有已經校過多次的句子, 實在不得不懷疑有人惡作劇,
+23:15 < slackbot2> 有時句子比較長, 重打也挺辛苦的, 不知道有沒有什麼好方法可以處理? 
+23:49 < slackbot2> <au> 用 edit distance ( Levenshtein distance ) 算相似度
+23:49 < slackbot2> <au> 和 OCR 的相似度不到 50% 時刪除
+23:51 < slackbot2> <au> 各語言都有 library… npm 的話可以用 <https://www.npmjs.com/package/levenshtein>
+23:52 < slackbot2> <au> 之前 koktai 的時候是給每個使用者一個亂數 ID 
+23:52 < slackbot2> <https://github.com/g0v/koktai/blob/gh-pages/dodo/scripts/index.js#L16>
+23:52 < kcwu> slackbot2's url: [koktai/index.js at gh-pages · g0v/koktai · GitHub]
+23:52 < slackbot2> <au> 有人來亂的話可以整批刪除。不過當時沒有人來亂...
+23:55 < slackbot2> <weiting> 有興趣幫忙嗎== 我們很肉咖無法解決@@
+23:56 -!- veloci85_ is now known as veloci85
+23:57 < slackbot2> <weiting> 喵太忙惹 急需前輩支援@@

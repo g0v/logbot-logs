@@ -1,0 +1,107 @@
+--- Day changed 五  6月 03 2016
+03:39 -!- [R3]susu is now known as susu
+04:56 < slackbot2> <kiang> @ronnywang: newsdiff 放在 dropbox 的新聞資料好像在 2016-01-03 之後就停了，是因為塞爆嗎？ XD
+04:57 < slackbot2> <kiang> 喔，看到了，換位置 XD
+09:40 < slackbot2> <ronnywang> @kiang: 對了，我昨天研究了一下基金會資料，我覺得用許可機關文號的數字好像有機會可以當作基金會的 unique
+09:40 < slackbot2> <kiang> @ronnywang: 你可以掃一下看看，其實闕漏情況嚴重，而且格式不穩定
+09:40 < slackbot2> <ronnywang> undefined
+09:41 < slackbot2> <kiang> 新的資料比較正確，但是舊有資料比較麻煩
+09:41 < slackbot2> <ronnywang> 像是上面都是滬江高中，其實應該都是同一個法人，但是名字都不一樣，但如果把文號的數字比較起來是可以合在一起的
+09:41 < slackbot2> <ronnywang> 不過確實還是有很多缺漏
+09:42 < slackbot2> <kiang> 如果要處理這個問題就得 crowd sourcing XD
+09:43 < slackbot2> <kiang> 至少法院資料庫 id 看起來是唯一的 XD
+09:44 < slackbot2> <ronnywang> 但是法院資料庫id是變更記錄，每變動一次就會有一個新的id
+09:45 < slackbot2> <kiang> 是啊，至少在後續串連資料的時候不會出現不穩定的情況，有些連這種唯一 id 都沒有...
+09:47 < slackbot2> <ronnywang> <https://sowffd.sfaa.gov.tw/WebSite/Foundation/detail.aspx?page=5&amp;id=J1QqfyvvdUs%3D> 因為我注意到衛福部那邊針對社福慈善基金會中，有列出一個許可文號欄位，而這個就可以跟法院那邊的法人資料連在一起
+09:48 < slackbot2> <kiang> 有想過要改寫程式，以文號優先配對，再透過名稱，不過還在想 XD
+09:56 < slackbot2> <ronnywang> <http://company.g0v.ronny.tw/index/bulksearch>
+09:56 < kcwu> slackbot2's url: [大量搜尋 ::台灣公司資料]
+09:56 < slackbot2> <ronnywang> 我這邊幫 twcompany 加上了大量公司名稱搜尋統編的功能
+09:57 < slackbot2> <ronnywang> 想說之後假如法人、醫院、學校、補習班資料都能有唯一編號的話，這樣子很多政府資料要清理連結會方便很多
+09:57 < slackbot2> <ronnywang> 我也來研究看看法人資料還能怎麼處理好了
+09:59 < slackbot2> <kiang> <https://github.com/kiang/foundations/blob/master/Console/Command/data/approvedKeys.csv> - 這裡有抓出這個欄位的清單，我先踹踹能否調整匯入程式去檢查它
+09:59 < kcwu> slackbot2's url: [foundations/approvedKeys.csv at master · kiang/foundations · GitHub]
+09:59 -!- tonyhusk1 is now known as tonyhusky
+10:29 < slackbot2> <pennyken> 唐鳳在pycon
+10:29 < slackbot2> <pennyken> 說剛他很像的人
+10:29 < slackbot2> <pennyken> 好像可以歸類為衝突製造業XDDDDDD
+10:45 < slackbot2> <mitsunchieh> ?
+10:48 < slackbot2> <pennyken> 他在pycon的keynote
+10:49 < slackbot2> <pennyken> 剛剛有講到一些類似g0v的夥伴
+10:49 < slackbot2> <pennyken> 突然爆出的一句話
+11:18 -!- DennyHuang is now known as Guest79068
+11:22 < slackbot2> <kiang> @ronnywang: 已經試著調整匯入程式 -> <http://foundations.olc.tw/foundations/index/%E6%BB%AC%E6%B1%9F> ，只是不確定會不會造成其他問題（可能會看到 cloudflare 快取）
+11:22 < kcwu> slackbot2's url: [滬江 相關法人一覽 @ 社團/財團法人資料檢索]
+11:44 < slackbot2> <ronnywang> 呃，上個月把新聞小幫手上到 aws cloudfront ，結果這個月帳單多了  30 美金 XD 來搬到 cloudflare 好了
+11:44 < slackbot2> <ronnywang> cloudflare 是一定要把 domain 給他管，不能純粹當 cdn 用嗎
+11:45 < slackbot2> <hcchien> 好像要某個不少錢的付費方案才能純粹當 cdn
+11:46 < g0vtelegrambot> <mmis1000> 理論上，好像有人實驗過，只要a紀錄指過去就能動，但這樣符合條款？
+11:48 < slackbot2> <ronnywang> 我以為 cloudflare  是有針對 open source project 有提供免費 CDN...
+11:51 < slackbot2> <ronnywang> 如果也是要錢的話我還是繼續用 cloudfront 好了
+11:54 < slackbot2> <kiang> ronnywang: 為什麼不想把網域名稱掛進去呢？
+11:56 < slackbot2> <ronnywang> 我只有其中一個 API 需要 Cache ，其他的部分我還是希望單純點可以直接存取中間不用經過其他節點
+11:57 < slackbot2> <kiang> 在裡面是可以設定個別子網域是否開啟 cdn ，也可以透過規則（數量有限）限制只有特定網址進行 cdn 快取
+12:02 < slackbot2> <ronnywang> 而且他好像一定要把 root domain  整個給他管?  這個也是我不想要的
+12:04 < slackbot2> <kiang> 恩，那就沒轍了，其實 raw access log 也是要付費帳號才能夠取得
+12:15 -!- chihchun_afk is now known as chihchun
+12:51 < slackbot2> <m615926> 一個實驗性質的小專案XD—>http://when-i-was-a-kid.me/
+12:51 < kcwu> slackbot2's url: [初衷 | 我小時候想當...]
+12:52 < slackbot2> <m615926> <http://when-i-was-a-kid.me/>
+12:52 < slackbot2> <m615926> 一個實驗性質的小專案XD
+12:59 < slackbot2> <pofeng> 我記得 cloudflare 的確有 npo 方案 , 我晚點來查一下好了
+13:32 < slackbot2> <kiang> -.-|| -> <http://3c.ltn.com.tw/news/24713> 發現小米關不掉，真是...
+13:32 < kcwu> slackbot2's url: [不要 Facebook 「竊取」你的資料？快點關掉這個功能！ | 自由電子報 3C科技]
+13:46 < slackbot2> <mitsunchieh> undefined
+14:20 < CindyLinz> kiang: 把 APP 砍掉, 改用瀏覽器開 FB?
+14:30 < slackbot2> <kiang> CindyLinz: 後來透過另一個 app 去停用，只是不知道這到底有沒有生效...
+14:50 < g0vtelegrambot> <gugod> 偶爾講幾句「我要買肥皂」之類的，再看看有沒有肥皂廣告突然跑出來... 😛
+14:53 < CindyLinz> 可是 FB 宣稱只有在美國用啊..
+14:54 < g0vtelegrambot> <mmis1000> g0vircbot: 信任這種東西像保險絲一樣
+14:54 < g0vtelegrambot> <mmis1000> 燒過一次就回不去了
+14:59 < CindyLinz> 如果證實是謠言的話, 就可以再相信它一次 :Q
+16:29 -!- chihchun is now known as chihchun_afk
+16:31 < slackbot2> <clkao> ronnywang: 你可以開一個 subdomain 給 cloudflare, 把需要 cdn 得放在那個 sub domain
+16:32 < slackbot2> <m615926> 啊，感謝告知！
+16:38 -!- chihchun_afk is now known as chihchun
+16:39 -!- timdream_ is now known as timdream
+16:39 -!- FourDollars_ is now known as FourDollars
+16:40 -!- clkao_ is now known as clkao
+16:59 < slackbot2> <pofeng> @ronnywang: 防 DDOS 和你要的有關嗎 ? <https://www.cloudflare.com/galileo/>
+16:59 < kcwu> slackbot2's url: [Project Galileo | CloudFlare | The web performance & security company]
+17:48 < CindyLinz> kiang: 出現了一篇 FB 的平衡報導.. http://blog.darkthread.net/post-2016-06-03-facebook-eavesdropping.aspx
+17:48 < kcwu> CindyLinz's url: [【獅子鬃毛】臉書官方承認竊聽使用者日常談話？ - 黑暗執行緒]
+17:49 < CindyLinz> 這功能的 FB 說明頁在這.. https://www.facebook.com/help/iphone-app/1499418503612943?hc_location=ufi
+17:49 < kcwu> CindyLinz's url: [如何開啟或關閉歌曲和電視識別？ | Facebook 使用說明 | Facebook]
+19:02 < slackbot2> <ttcat> 想問一下 hackpad api get content 後面是 content[/latest].txt or content.txt 這樣嗎？一直出現 error :cry: 
+19:02 < slackbot2> hackpad live notepad Internal Server Error
+19:10 -!- Jedi____ is now known as Jedi_
+19:15 < slackbot2> <ttcat> 自問自答 <https://github.com/Falicon/Python-Hackpad-API/blob/master/hackpad_api/hackpad.py>
+19:15 < kcwu> slackbot2's url: [Python-Hackpad-API/hackpad.py at master · Falicon/Python-Hackpad-API · GitHub]
+20:26 -!- Kihokki [~Kihokki@unaffiliated/kihokki] has left #g0v.tw ["Leaving"]
+22:38 < slackbot2> <pennyken> <https://www.facebook.com/hyuui/posts/10208377603213653?__mref=message>
+22:38 < kcwu> slackbot2's url: [黃士修 - 「g0v的協作精神：我們可以排除任何人協作的資格。任何人質疑此點，當然就牴觸了g0v的協作精神。」... | Facebook]
+22:39 < slackbot2> <pennyken> 不知道該寫什麼感想啊
+22:44 -!- chihchun is now known as chihchun_afk
+22:46 -!- i is now known as Guest34146
+22:50 < slackbot2> <au> ...這時候只要微笑就可以了
+22:51 < slackbot2> <yhsiang> 我以為是洗洗睡 0.0?
+22:53 < slackbot2> <yhsiang> 恩 … sayit 做出來，然後被批評者拿去用也蠻有趣的 wwwwww \sayit/
+22:53 < slackbot2> <clkao> # <https://zh.moegirl.org/zh-tw/%E8%BF%99%E6%97%B6%E5%8F%AA%E8%A6%81%E5%BE%AE%E7%AC%91%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86>
+22:53 < kcwu> slackbot2's url: [這時只要微笑就可以了 - 萌娘百科 萬物皆可萌的百科全書]
+22:53 < slackbot2> <clkao> yhsiang: what about sayit?
+22:54 < slackbot2> <yhsiang> 就他們一直拿 au 說的話來 comment XDD
+22:54 < slackbot2> <yhsiang> 的確是我當初想弄的想法拉，就是你永遠可以分享一個 link 是別人說過的話
+22:55 < slackbot2> <au> 我覺得這樣用很好啊，至少是在脈絡裡，比截圖好得多
+22:57 < slackbot2> <yhsiang> 沒有覺得不好，就是蠻微妙的感覺 XD
+23:01 < slackbot2> <au> 正在幫台北市公務員出考題 XD <https://paper.dropbox.com/doc/e-xqgDEQrQZrevXvkTRD1a1> reviews welcome
+23:01 < kcwu> slackbot2's url: [Paper]
+23:03 < slackbot2> <jimyhuang> 正常能量釋放
+23:04 < slackbot2> <clkao> 編列廣告預算！
+23:05 < slackbot2> <yhsiang> g0v 是一個 NPO/NGO, 反政府組織, 社群, 公部門  ?
+23:07 < slackbot2> <au> 加了（可以自己加啊）
+23:07 < slackbot2> <yhsiang> 有 … 我發現了 orz
+23:35 < slackbot2> <tkirby> 要回斷章取義的論點，就用斷章取義的回法就好啦：
+23:35 < slackbot2> <https://sayit.archive.tw/speech/8658>
+23:35 < slackbot2> “咦我尊敬的 au 怎麼前後矛盾”
+23:35 < kcwu> slackbot2's url: [“不代表，因為我們用來幫忙那些東西是開放的——羅明才要用就拿去...” :: SayIt]
+23:35 < slackbot2> 不過我建議是... 把時間花在正能量上吧 XD

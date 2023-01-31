@@ -1,0 +1,563 @@
+--- Day changed 三  6月 19 2013
+00:01 < hychen> I've update g0v box today
+00:01 < kcliu> @hychen it's ok now
+00:02 < hychen> kcliu, cool
+00:10 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+00:23 < clkao> hychen: nice, so we now use stock image with custom bootstrap?
+00:23 < hychen> clkao, stock?
+00:24 < au> =default
+00:24 < hychen> https://github.com/g0v/g0v-paradise/blob/master/bootstrap.sh
+00:24 < kcwu> hychen's url: [g0v-paradise/bootstrap.sh at master · g0v/g0v-paradise · GitHub]
+00:24 < hychen> 只有改這些
+00:24 < hychen> au, thx, :p 
+00:24  * hychen 英文不好
+00:25 < au> np :p
+00:26 < hychen> New Pac api 似乎有點問題 
+00:30 < clkao> ETBlue: 突然間收到義大利人來問 lqfb
+00:30 < clkao> hychen: 問問 clifflu ? 他應該有碰一些了
+00:31 < hychen> clifflu, http://www.news-pac.com/api/topic/%E8%94%A1%E8%8B%B1%E6%96%87?limit=1000
+00:32 < hychen> clifflu, 這return會來的值有不是完整的json
+00:32 < clifflu> hychen: news-pac 我這邊 on queue，也許後天會開始處理
+00:32 < hychen> clifflu, thx 
+00:33 < hychen> clifflu, 請問我方便跟你們download部份的news嗎?
+00:33 < clifflu> 我手邊有拿到舊資料 (sqlite)，裡面有些轉碼錯誤的欄位，還在想要怎麼 parse
+00:33 < hychen> clifflu, 我需要一些資料做smoke testing
+00:34 < hychen> runit 好簡單... orz
+00:34 < clifflu> hychen: try https://dl.dropboxusercontent.com/u/25419912/data/news-pac.tgz ; 裡面僅有部份資料，拆能解的 .csv entry 就好
+00:35 < hychen> clifflu, got it
+00:35 < clifflu> 檔案應該還在上傳中，別太急 XD
+00:35 < hychen> clifflu, ok
+00:35 < hychen> that is why I see 404
+00:35 < clifflu> 靠，他線上 api 會 truncate string 喔 XD
+00:38 < clkao> ETBlue: "We are installing a new instance for a party in Italy and we are very interested in your customization"
+00:39 < hychen> ETBlue++
+00:44 < clkao> hychen: runit cookbook 快樂吧
+00:45 < hychen> clkao, 好無腦 XD
+00:45 < clkao> hychen: 那個 default_logger 是我加的... 不然以前每次都要自己在寫一個無腦的 logger template
+00:45 < hychen> clkao, 可以來做個g0v develop kit了...
+00:46 < hychen> g0v-prj new {prj name} 
+00:46 < clkao> hychen: 順便填寫 g0v.json
+00:46 < hychen> chef  cookboox + github repo  直接做完
+00:46 < clkao> project registry 一直沒繼續開工
+00:50 < hychen> default logger 應該連寫都不用寫才對 XD
+00:52 < clkao> 我也這麼覺得... 不過會改變本來的 behaviour 呀
+01:09 < ETBlue> back. clkao hychen : 新的 ui 才做一半根本還不能用，看來得加緊趕工惹
+01:16 < ETBlue> https://twitter.com/flipzagging/status/347024709587709952
+01:16 < kcwu> ETBlue's url: [Twitter / flipzagging: @ETBlue_EN @audreyt I would ...]
+01:17 < clkao> 我知道你有股想要跳坑的衝動... 
+01:17 < ETBlue> hmmm. 難道這些圖解們 http://hack.g0v.tw/meta/1RoeOCTJLIHI2zNKECc19ebu6FSgZB8blEx9a7BdBvYs 也需要做成英文版嗎？這樣樣維護兩份耶
+01:18 < clkao> 只好請基礎建設推出可 i18n 的 gdraw replacement?
+01:18 < ETBlue> 還是先搞定中文好了，中文字數長度很容易控制，比英文好排版很多，弄英文版的話搞不好我 layout 又要調整 orz
+01:19 < ETBlue> clkao: 有可能有這種東西嗎？
+01:19 < clkao> 看有沒有人要幫忙? ddio? :P
+01:19 < ETBlue> 還是我把圖表弄成雙語的就好 XD
+01:19 < clkao> ETBlue: anything is possible.  how much effort it takes is another story ;)
+01:19 < ETBlue> oh ~_~
+01:22 < clkao> gdraw 匯出 svg 已經把文字變成筆畫了 :(
+01:24 < clifflu> 只好再 ocr 回去
+01:33 < clkao> http://productforums.google.com/forum/#!searchin/docs/svg$20text/docs/3DQ4ZsVjm5k/X0MbTQupKRMJ
+01:33 < kcwu> clkao's url: [Google 網上論壇]
+01:33 < clkao> zzz
+01:35 < clkao> 不過 pdf export 的話 還是文字
+01:35 < clkao> 所以... 要 pdf level l10n 了嗎... 超苦的
+01:35 < clkao> text box 應該會完蛋 :p
+01:45 -!- Hasher [~whocareu2@1.34.23.44] has joined #g0v.tw
+01:51 -!- a-tsioh [~pierre@242.176.102.84.rev.sfr.net] has joined #g0v.tw
+01:52 < a-tsioh> 有moedict ê人無？
+01:56 < ETBlue> clkao: 需要的話我可以換個比較好匯出的線上協作工具製圖 @@"
+01:56 -!- Hasher [~whocareu2@1.34.23.44] has quit [Remote host closed the connection]
+01:56 < ETBlue> a-tsioh: 今天魔法生物好像真的不在 :3
+02:01 < a-tsioh> 「魔法」有一點像Ministry Of Foreign Affairs  
+02:01 -!- haroldwu [~user@118-170-205-124.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+02:03 < a-tsioh> Hackpad的Pektiong Chen 是哪位？
+02:04 < a-tsioh> 他寫的design跟我寫的code不同
+02:10 < au> a-tsioh, pcchen 
+02:10 < au> pcchen, a-tsioh 
+02:12 < au> a-tsioh: we can subset / customize IME code into lookup code
+02:13 < au> a-tsioh: I'll be giving a talk at pcchen's class ~33hrs from now and can walk pcchen through your code (if it's on github by then)
+02:13 < au> .
+02:14  * a-tsioh is creating the github repo
+02:15 < au> a-tsioh++
+02:15 < a-tsioh> what I did is splitting each syllabe into initial/medial/final/tone (with 入聲being final for now)
+02:16 < a-tsioh> and I allow the final and the tone to be underspecified 
+02:16 < au> a partial lexing match
+02:16 < au> k
+02:16 < a-tsioh> I think pcchen prefer a simple prefix matching
+02:16 < au> that's what MoE does
+02:17 < a-tsioh> which would actually be easier to code I guess 
+02:17 < au> http://twblg.dict.edu.tw/holodict_new/default.jsp
+02:17 < kcwu> au's url: [臺灣閩南語常用詞辭典]
+02:17 < au> there's an autocomplete box there
+02:17 < au> except it doesn't skip the tones as we'd like.
+02:18 < a-tsioh> for now I have some weird prefix trees with decomposed syllabes stored in a mongodb
+02:18 < au> k
+02:19 < a-tsioh> but it may be easier to have two trees, one for exact match and one for fuzzy matches which would ignore tones and hyphen
+02:20 < a-tsioh> I'm gonna first install it somewhere so you can check it out, that's better than talking about it :)
+02:20 < au> sounds like a plan :)
+02:21 < au> as they say, a thousand words in README.md is worth a thousand words
+02:21 < au> happy hacking! gotta hit the hay & try to adjust sleeping cycle for the talk \o
+02:22 < a-tsioh> hehe
+02:22 -!- Netsplit *.net <-> *.split quits: yhsiang
+02:22 -!- Netsplit over, joins: yhsiang
+02:22 < a-tsioh> good luck with the sleeping cycle (I'm sure the talk will be great)
+02:23 -!- chadliu23 [~chadliu23@DHCP-19192.iis.sinica.edu.tw] has quit [Read error: No buffer space available]
+02:23 < au> danke beaucoup
+02:23 -!- chadliu23 [chadliu23@2002:8c6d:13c0::8c6d:13c0] has joined #g0v.tw
+02:38 -!- chihchun is now known as chihchun_afk
+02:49 < ETBlue> 只好開始做雙語 mockup ... 最新動態頁 https://plus.google.com/u/0/photos/110174937980629662857/albums/5884092864241828641/5890894209880727746?pid=5890894209880727746&oid=110174937980629662857
+02:49 < kcwu> ETBlue's url: [g0v]
+02:49 < ETBlue> 祝調整作息成功 :3
+03:08 -!- hasher [~whocareu2@1.34.23.44] has joined #g0v.tw
+03:08 -!- hychen [~hychen@host-219-68-121-25.dynamic.kbtelecom.net] has quit [Quit: 暫離]
+03:28 -!- hasher [~whocareu2@1.34.23.44] has quit [Ping timeout: 256 seconds]
+03:37 < au> 完全失敗 XD
+04:49 < a-tsioh> curl http://su-lip.magistry.fr/_ws_/ -d '{"query":"tsioh"}'
+04:49 < a-tsioh> au ETBlue pcchen anyone ?
+04:51 < a-tsioh> e-sai tsioh-iong
+04:52 < a-tsioh> https://github.com/a-tsioh/su-lip
+04:52 < kcwu> a-tsioh's url: [a-tsioh/su-lip · GitHub]
+04:53  * a-tsioh should commit the readme, clean and comment the code
+04:53 < wHisKy> clkao 我們要去提立法院 ivod 改版的事情，要一起來討論嗎？
+04:56 < au> a-tsioh: awesome work
+04:56 < au> a-tsioh: I'd like the expended trs along with the words, though
+04:58 < au> a-tsioh: { "fuzzy": [ ["tsio̍h","石"], ["tsioh--lâng", "借人"], ... ] }
+04:58 < au> *expanded
+04:58 < au> issue sent, ttyt
+05:03 < a-tsioh> the db is loading
+05:03 < a-tsioh> not everything is online
+05:03 < a-tsioh> oh
+05:03 < a-tsioh> i see
+05:03 < a-tsioh> that would be cool
+05:04 -!- wHisKy- [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+05:04 -!- wHisKy- [whisky@122-116-86-57.HINET-IP.hinet.net] has left #g0v.tw []
+05:04 < a-tsioh> shouldn't be hard to add
+05:20 < a-tsioh> curl localhost:8080/_ws_/ -d '{"query":"tsioh-a"}'
+05:20 < a-tsioh> {"fuzzy":[{"trs":"tsio̍h-á","hj":"石仔"}]}
+05:25 < a-tsioh> added in 1561cd6
+05:26 < a-tsioh> online on magistry.fr
+05:27 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+07:24 < pcchen> a-tsioh: hi
+07:28 < a-tsioh> pcchen: hi
+07:38 < pcchen> a-tsioh: nice to meet you
+07:40 < a-tsioh> nice to meet you
+07:41 < pcchen> a-tsioh: you have a taigi ime for android, right?
+07:41 < a-tsioh> yep
+07:42 < a-tsioh> oh you are I-kun's friend ?
+07:44 < pcchen> a-tsioh: don't know I-kun in person.
+07:45 < pcchen> a-tsioh: will you have interest to use FHL_ime's database for your ime?
+07:46 < a-tsioh> sure
+07:50 < pcchen> a-tsioh: I am putting it on a private bitbucket repo. If you give me your username on bitbucket I will config the read access for you.
+07:51 < pcchen> a-tsioh: you in France now?
+07:51 < a-tsioh> yes
+07:51 < a-tsioh> and only on github for now but I can create an account
+07:53 < pcchen> a-tsioh: because I need the hg and also bitbucket provide free private repos for academic accounts 
+07:54 < pcchen> https://github.com/a-tsioh/su-lip  --> this is for linux server?
+07:54 < kcwu> pcchen's url: [a-tsioh/su-lip · GitHub]
+07:55 < a-tsioh> pcchen: it compile into node.js 
+07:55 < a-tsioh> so it must be runnable on mac and windows too I guess
+07:55 < pcchen> trying on my MacBookPro
+07:55 < a-tsioh> I haven't checked actually
+07:56 < a-tsioh> you can also try it here curl http://su-lip.magistry.fr/_ws_/ -d '{"query":"bok-bing"}'
+07:57 < a-tsioh> it's a bit buggish for now but should be usable soon
+07:58 < pcchen> got {"fuzzy":[{"trs":"bo̍k-bîng","hj":"莫名"},{"trs":"bo̍k-bîng-kî-miāu","hj":"莫名其妙"}]}
+07:58 < pcchen> cook
+07:58 < pcchen> cool
+07:59 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 240 seconds]
+08:00 < a-tsioh> just to have an idea so anyone can start working on the UI
+08:02 < pcchen> a-tsioh: you do computational linguistics?
+08:02 < a-tsioh> yes
+08:02 < a-tsioh> I should be writting my dissertation
+08:02 < pcchen> a-tsioh: what brings you to learn Taiwanese?
+08:03 < a-tsioh> living in Taiwan for a couple of years
+08:09 < pcchen> datafile is not include in the https://github.com/a-tsioh/su-lip ?
+08:09 < kcwu> pcchen's url: [a-tsioh/su-lip · GitHub]
+08:09 < a-tsioh> lectures.txt
+08:09 < a-tsioh> extracted from moedict
+08:11 < pcchen> ok
+08:14 < pcchen> a-tsioh: is your dissertation related to Taiwanese ?
+08:17 < pcchen> curl localhost:8080/_ws_/ -d '{"query":"su-jip"}'
+08:17 < pcchen> {"fuzzy":[]}
+08:17 < pcchen> got nothing :(
+08:17 < pcchen> forget to build_db..
+08:18 < a-tsioh> pcchen: not really for my thesis, maybe just a little bit
+08:18 < a-tsioh> it's about unsupervized word segmentation, mostly on Mandarin
+08:18 < pcchen> path wrong, my bad
+08:19 < a-tsioh> yep su-jip and su-lip should work
+08:19 < pcchen> didn't config path for lectures.txt properly
+08:20 < a-tsioh> do you teach NLP at Tsing hua ?
+08:21 < pcchen> now. I am a theoretical physicist
+08:21 < pcchen> s/now/no
+08:21 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+08:23 < pcchen> how do I know if http://localhost:8080/build_db has finished the build?
+08:23 < a-tsioh> you don't :)
+08:23 < a-tsioh> CPU usage maybe
+08:24 < a-tsioh> or size of the mongodb called IME
+08:24 < a-tsioh> should be around 23k entries or something
+08:25 < pcchen> seeing: DbGen/Mongo (failure) read from /IME/loaded didn't return any document
+08:25 < pcchen> loading... /Users/pcchen/code/su-lip/lectures.txt...
+08:25 < pcchen> this is normal?
+08:26 < a-tsioh> yes
+08:26 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+08:26 < a-tsioh> the /IME/loaded is set after the db is built
+08:27 < pcchen> dame still got nothing
+08:32 < a-tsioh> it took few minutes on my computer
+08:32 < a-tsioh> I should print something during loading to see what is happening
+08:33 < a-tsioh> but for now, I need some sleep !
+08:33 < pcchen> good night!
+08:34 < a-tsioh> thanks !
+08:34 < a-tsioh> hope the loading will work though
+08:35 < a-tsioh> we can talk about it next time 
+08:35 < a-tsioh> see you
+08:36 < pcchen> see you
+08:47 -!- a-tsioh [~pierre@242.176.102.84.rev.sfr.net] has quit [Quit: WeeChat 0.3.8]
+08:53 < pcchen> 哇哈哈我成功了
+08:53 < pcchen> curl localhost:8080/_ws_/ -d '{"query":"su-jip"}'
+08:53 < pcchen> {"fuzzy":[{"trs":"su-ji̍p","hj":"輸入"}]}
+08:59 < pcchen> node's cpu usage=99% !
+09:10 -!- t3e [~tonie@114-32-217-236.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+09:11 < clkao> wHisKy: 可以啊，有預定的 agenda 了嗎？
+09:11 -!- FourDollars [~sylee@114-35-96-16.HINET-IP.hinet.net] has joined #g0v.tw
+09:18 -!- t3e [~tonie@114-32-217-236.HINET-IP.hinet.net] has joined #g0v.tw
+09:21 < Jcrt> au: 最近發現 moedict.org 在 ipad / mini 上，按上一頁的效果非常奇怪，我猜應該是因為 pushState 的關係？
+09:22 < Jcrt> 大概要按 3~4 次才能真的跳回上一頁，偶爾還會失敗
+09:22 < Jcrt> 比方說有遇到按上一頁，網址顯示 #萌 <
+09:22 < Jcrt> 但是下面詞條是人民
+09:28 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+09:33 -!- MnO2 [~MnO2@nat/yahoo/x-zkynvmirsmdklser] has joined #g0v.tw
+09:39 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 256 seconds]
+09:41 -!- hasher [~whocareu2@1.34.23.44] has joined #g0v.tw
+09:42 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 264 seconds]
+09:43 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+09:46 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+09:48 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+09:53 -!- chihchun_afk is now known as chihchun
+09:54 < ETBlue> 原來 prfb 英文版詞彙是 created / accepted / half frozen / fully frozen / closed ，還蠻好懂的（思
+09:56 < ETBlue> 原來不是 organization, 是 unit
+09:56 < ETBlue> orz
+09:58 < ipa> 原中文翻單位不順，換成組織
+10:00 < ETBlue> 改 mockup 時有點懷疑他們是不是為了單字長度所以採用 unit 而非 organization... XD
+10:00 < ETBlue> 這樣四個單字的長度就比較一致，好排版！
+10:02 -!- superbil_ [3cfbd182@gateway/web/freenode/ip.60.251.209.130] has joined #g0v.tw
+10:03 < ETBlue> 我好像的確該看看英文版的措辭，感覺不太一樣... 不曉得會不會在設計上有什麼微妙的影響（思
+10:14 -!- pm5_ [~pm5@111-248-209-38.dynamic.hinet.net] has joined #g0v.tw
+10:25 < clkao> rusrule: "我覺得我更可以扮演好的角色是, 如何用我的文章向大眾解釋你們整理出來表格或數字對一般人的意義. 就如同國債鐘, 一般人可能只是感受到這是個巨大而不停跳動的數字. 但我可以告訴大家, 這個數字不是你所想或媒體告訴你的 平均一個人負債xx萬. 因為當政府破產或財政困窘, 必須犧牲到某些開支時, 減少的警力不會在台北市大
+10:26 < clkao> rusrule: (....  I'd love to be part of you.)
+10:32 -!- pm5_ [~pm5@111-248-209-38.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+10:37 < ipa> ++
+10:40 -!- thschee [thschee@2a00:dcc0:eda:3748:247:48:123:4] has quit [Read error: Operation timed out]
+10:41 < au> Jcrt: indeed... 應該是 pushState 的問題 (cl 在 android 上也遇到類似的狀況). 有空時開個 https://github.com/audreyt/moedict-webkit/issues/new ? 我想想怎麼修。
+10:41 < kcwu> au's url: [Sign in · GitHub]
+10:42 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has quit [Read error: Connection reset by peer]
+10:42 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has joined #g0v.tw
+10:42 -!- thschee [thschee@2a00:dcc0:eda:3748:247:48:123:4] has joined #g0v.tw
+10:49 < Jcrt> au: issue created.
+10:49 < clkao> Jcrt++
+10:51 < au> cool
+11:04 < Jcrt> 想問一下，有人知道政府資料有什麼關於女性的部分嗎？
+11:04 < Jcrt> 譬如暴力事件有多少女生被性侵報案、或是多少女性主管、多少生育率、就職人口這種
+11:05 < clkao> Jcrt: 公務員我記得有統計女性比例 在銓敘部的年報
+11:06 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+11:09 < au> Jcrt: 台北市有 http://www.dbas.taipei.gov.tw/ct.asp?xItem=1112710&CtNode=6155&mp=120001 ( 來自 http://www.taipei.gov.tw/mp.asp?mp=100033 ) ( 然後可參考 http://www.dosw.tcg.gov.tw/women_group/ 以及 http://www.tapwr.org.tw/ )
+11:09 < kcwu> au's url (3/4): [臺北市女性權益促進委員會]
+11:09 < kcwu> au's url (4/4): [::::: 女權會 :::::]
+11:09 < kcwu> au's url (1/4): [臺北市政府主計處 ─ 性別統計]
+11:11 < au> 中央有 http://www.dgbas.gov.tw/ct.asp?xItem=33333&ctNode=6013&mp=1 後面是 http://www.gec.ey.gov.tw/
+11:11 < kcwu> au's url (1/2): [我國性別統計網頁]
+11:11 < kcwu> au's url (2/2): [行政院性別平等會]
+11:11 < au> 大致如此
+11:11 < Jcrt> au++ clkao++ 
+11:32 -!- mikimoto [~mikimoto@59-125-136-88.HINET-IP.hinet.net] has quit [Quit: leaving]
+11:34 -!- mikimoto [~mikimoto@59-125-136-88.HINET-IP.hinet.net] has joined #g0v.tw
+11:37 < ETBlue> clkao 又勾到人了，根本推坑魔人 XD 上面那些連結 Jcrt 會記在你的專案 hackpad 吧？我就不記了（不知道要記哪 XD）  看起來魔法演講是順利結束了...或者還沒開始 :3
+11:37 < mikimoto> :p
+11:39 -!- pm5 [~pm5@111-248-209-38.dynamic.hinet.net] has joined #g0v.tw
+11:44 -!- pm5 [~pm5@111-248-209-38.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+11:50 -!- Netsplit *.net <-> *.split quits: ddio, thschee_, clkao, tonytonyjan, V1ctor, aar0ntw
+11:51 -!- Netsplit *.net <-> *.split quits: favonia, walkingice, idlecafe, ipa, idryman, mindos, FourDollars, yyhuang, tka_
+11:52 -!- Netsplit over, joins: ddio, V1ctor, thschee_, clkao, aar0ntw, tonytonyjan
+11:53 -!- Netsplit over, joins: favonia, FourDollars, mindos, ipa, idryman, yyhuang, tka_, idlecafe, walkingice
+11:54 -!- Netsplit *.net <-> *.split quits: tonytonyjan, aar0ntw, thschee_, clkao, ddio, V1ctor
+11:55 -!- Netsplit over, joins: ddio, V1ctor, thschee_, clkao, aar0ntw, tonytonyjan
+11:58 -!- kcliu [~kcliu@118-168-96-227.dynamic.hinet.net] has quit [Quit: kcliu]
+12:00 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has quit [Remote host closed the connection]
+12:00 -!- ijliao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Remote host closed the connection]
+12:03 < clkao> 工作一小時 都在 pixel by pixel 調 css... 苦啊 zzz
+12:09 < yhsiang> Jcrt: http://ebas1.ebas.gov.tw/pxweb/Dialog/varval.asp?ma=CS0901A1A&ti=&path=../database/CountyStatistics/&lang=9
+12:09 < kcwu> yhsiang's url: [表格: 【改制後】縣市婦女福利服務重要統計指標]
+12:09 < yhsiang> Jcrt: From http://ebas1.ebas.gov.tw/pxweb/Dialog/statfile9.asp
+12:09 < kcwu> yhsiang's url: [《中華民國統計資訊網》縣市重要統計指標查詢系統]
+12:24 < Jcrt> yhsiang: thanks :)
+12:45 < ETBlue> clkao: 如果可以從設計就下手的話全部都用 rem 當 grid 還蠻方便的... XD
+12:47 < ETBlue> 我已經準備好把動民主的 base font size 設成 16px，這樣每一列高 3rem 剛好就是 android ics 規範中的 48px 
+12:48 < clkao> 啊啊啊啊～不要跟我說 pixel 我頭痛啊
+12:48 < ETBlue> 雖然現在 mockups 上面的自其實是 18px... XDXDXD
+13:44 < hychen> clkao, https://gist.github.com/kcliu/5811548
+13:45 < kcwu> hychen's url: [gist:5811548]
+13:45 < hychen> clkao, 你有遇過這問題嗎?
+13:45 < ETBlue> 中英文版持續更新於 https://docs.google.com/folder/d/0B0NsS2a-Qx8ZV0ZGVEJLRHUtSk0/edit （picasa 一堆歷史遺跡，不太好秀給人看）
+13:45 < kcwu> ETBlue's url: [mockups - Google 雲端硬碟]
+13:49 < clkao> XD
+13:51 < hychen> 走在時代的尖端 ETBlue++
+13:53  * ETBlue 被推坑魔人拖往時代尖端 zz
+13:54 < Jcrt> ETBlue（內心話） 我只是不小心往前站了一點
+13:54 < Jcrt> 是這樣嗎XD
+13:55 < clkao> hychen: 沒過耶？ vagrant reload ?
+13:55 < ETBlue> 內心話是我很怕動民主還沒推廣出去台灣就被賣掉了
+13:55 < clkao> (就掉進去了？)
+13:55 < hychen> clkao, 我的經驗是跟network env有關系
+13:55 < edwardc> ETBlue++ 
+13:55 < hychen> clkao, 但我沒細查
+14:01 -!- susu_ [~cwshu@140.113.54.52] has joined #g0v.tw
+14:02 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+14:06 < ETBlue> 喔喔喔換到 gdoc 就可以在圖上面討論了耶！！之前怎麼沒想到 @@"
+14:18 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has quit [Quit: No Ping reply in 180 seconds.]
+14:20 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has joined #g0v.tw
+14:26 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has quit [Quit: No Ping reply in 180 seconds.]
+14:26 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has joined #g0v.tw
+14:27 < clkao> edwardc: 結果 geojson snapping 可以嗎
+14:30 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has quit [Client Quit]
+14:30 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has joined #g0v.tw
+14:37 < superbil_> 可以用萌典的資料庫來當作 spelling check 嗎 XD
+14:43 -!- Truman [3cfb3510@gateway/web/freenode/ip.60.251.53.16] has joined #g0v.tw
+14:56 -!- hasher [~whocareu2@1.34.23.44] has quit [Quit: WeeChat 0.4.1]
+15:13 < au> superbil_: 可以啊，歡迎 :D
+15:13 < au> (演講是明天中午。)
+15:20 -!- ETBlue [~chatzilla@112-104-122-211.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 276 seconds]
+15:23 < au> superbil_: https://www.moedict.tw/a/index.json should be a good start
+15:30 -!- ETBlue [~chatzilla@112-104-122-211.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+15:33 -!- cataska [~allen@210.64.6.233] has joined #g0v.tw
+15:41 < clkao> ETBlue: 我的頭是 想來喜一下立法院頭 就覺得 project registry 頭癢癢的 想來弄 project 頭 又覺得地圖頭臭臭的... etc etc
+15:42 < ETBlue> clkao: 這是 add style 洗法... 正常人才辦不到 QAQ
+15:56 < Jcrt> clkao: 一開始洗別人的頭很好玩，洗久變成自己的頭就不好玩了 XDDDDD
+16:10 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:10 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:10 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:10 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+16:10 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+16:10 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+16:17 < ipa> 訣竅是，保持好幾個頭都洗一半持續rotate?
+16:24 < clkao> rotate.. 是像考山豬那樣嗎.... XD
+16:31 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+16:32 < Jcrt> 問題是會頭永遠洗不完，還越來越多顆
+16:32 < Jcrt> 最後只好把頭 delegate （推坑）給下一位 XD
+16:38 -!- ymow [~Adium@1-171-166-85.dynamic.hinet.net] has quit [Quit: Leaving.]
+16:50 -!- jerry__ [6ff832df@gateway/web/freenode/ip.111.248.50.223] has joined #g0v.tw
+16:55 < ETBlue> 做 desktop 版發現手機版上有超多 bug ，顯然搞錯了很多東西 >"<bbbb
+16:57 < jerry__> Cool
+16:59 -!- jerry__ [6ff832df@gateway/web/freenode/ip.111.248.50.223] has quit [Quit: Page closed]
+16:59 < edwardc> clkao: 還 .. 在找時間弄 XD
+17:01 -!- MnO2 [~MnO2@nat/yahoo/x-zkynvmirsmdklser] has quit [Quit: MnO2]
+17:06 -!- MnO2 [~MnO2@nat/yahoo/x-sgprajlupwjqibyl] has joined #g0v.tw
+17:10 -!- cataska [~allen@210.64.6.233] has quit [Remote host closed the connection]
+17:53 -!- MnO2 [~MnO2@nat/yahoo/x-sgprajlupwjqibyl] has quit [Quit: MnO2]
+18:01 -!- FourDollars [~sylee@114-35-96-16.HINET-IP.hinet.net] has quit [Quit: leaving]
+18:05 < hlb> clkao: pixel~
+18:07 < clkao> hlb: ~_~
+18:10 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 268 seconds]
+18:16 -!- mindos_ [~mindos@111-250-188-52.dynamic.hinet.net] has joined #g0v.tw
+18:16 -!- mindos [~mindos@111-250-188-52.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+18:16 -!- mindos_ is now known as mindos
+18:16 -!- idryman [~dryman@www.ihatevocab.net] has quit [Ping timeout: 264 seconds]
+18:17 -!- walkingice [~walkingic@114-32-34-65.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+18:18 -!- walkingice [~walkingic@114-32-34-65.HINET-IP.hinet.net] has joined #g0v.tw
+18:19 < hlb> ETBlue: 其實反過來比較好 # mobile first
+18:19 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+18:19 -!- dryman [~dryman@www.ihatevocab.net] has joined #g0v.tw
+18:19 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+18:20 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+18:20 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+18:22 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 256 seconds]
+18:24 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+18:24 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+18:26 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 256 seconds]
+18:28 < wHisKy> clkao 我正在約公督盟的，因為這要寫提案去「遊說」。找他們一起寫
+18:33 -!- superbil_ [3cfbd182@gateway/web/freenode/ip.60.251.209.130] has quit [Quit: Page closed]
+18:37 -!- cataska [~allen@210.64.6.233] has joined #g0v.tw
+18:41 < clkao> wHisKy: ok. 技術 spec 上有什麼需要幫忙的就貼過來吧 或者 hackpad 一塊 review 
+18:52 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+18:52 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+18:54 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+19:10 -!- Truman [3cfb3510@gateway/web/freenode/ip.60.251.53.16] has quit [Ping timeout: 250 seconds]
+19:12 < au> 雖然 OmniGraffle 做 wireframe 除了不能直接輸出 HTML 外簡直沒有缺點
+19:12 < au> 但是為了 pixel layout，還是來裝 Fireworks 玩看看好了
+19:13 < au> # 可惜 Chromebook Pixel 兩個都不能跑
+19:13 < hychen> 今天把bash當成fp在寫... orz
+19:14 < au> ...聽起來相當 hardcore
+19:19 < hychen> 發現可以用read 做pattern matching 時好像發現用火
+19:19 -!- hychen [~hychen@175.41.48.77] has quit [Quit: 暫離]
+19:22 < clkao> draw.io 說 google api 不提供匿名存取，所以就算你 share public can edit 也沒用
+19:22 < au> 好慘
+19:23 < clkao> 只好推坑他們 implement firebase support
+19:27 < clkao> 是說 prism-break.org 完全沒有 google draw alternative
+19:28 < au> Fireworks 和 Microsoft PhotoDraw 2000 相當神似
+19:30 < au> clkao: 只好 EtherPadLite/ShareJS 接 http://www.plantuml.com/plantuml/ 了
+19:30 < kcwu> au's url: [PlantUMLServer]
+19:31 < au> http://plantuml.sourceforge.net/activity.html
+19:31 < au> # 好像完全跟 draw.io 不在同個等級
+19:35 < clkao> 是說 tka 不是最近寫了 svg editor
+19:35 < clkao> tka_: 來接一下吧
+19:36 < clkao> new ticket: 有人想玩玩 znc 嗎？ # https://github.com/g0v/dev/issues/10
+19:36 < kcwu> clkao's url: [web irc integration on hack.g0v.tw · Issue #10 · g0v/dev · GitHub]
+19:38 < clkao> wHisKy: 很久沒吃披薩了你
+19:44 < clkao> superbil: 那個 oid 可以的話也存一下，因為 data.gov.tw 似乎是用那個當單位的 key 的 :p
+19:45 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 241 seconds]
+19:56 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 256 seconds]
+19:56 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+20:11 -!- chihchun is now known as chihchun_afk
+20:16 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:16 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+20:25 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:25 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+20:31 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:31 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+20:47 < yhsiang> clkao: 0.0
+20:51 < clkao> yhsiang: ?
+20:53 < yhsiang> clkao: 覺得znc 很有趣 XD
+20:58 < clkao> yhsiang: ！歡迎入坑 :D 會用 vagrant 跟 berkshelf 了嗎？好像有現成的 znc cookbook 可以試試看
+21:03 < yhsiang> clkao: 沒用過~我先來用看看
+21:03 < clkao> yhsiang++ 
+21:03 < clkao> yhsiang: http://hychen.wuweig.org/blog/2013/06/01/develop-g0v-project-with-vagrant/
+21:03 < kcwu> clkao's url: [利用 Vagrant 開發 g0v.tw 專案 - 無為閣]
+21:04 < clkao> 不過好像已經不需要用那個自訂 box 了，用https://github.com/g0v/g0v-paradise 下的 Vagrantfile 應該自動就會動了
+21:04 < kcwu> clkao's url: [g0v/g0v-paradise · GitHub]
+21:07 < yhsiang> clkao: ok, thx
+21:15 < ETBlue> au: fireworks 工作檔同步到 google drive 怕搞爛，用 dropbox 分享先 :3
+21:16 < ETBlue> 好快速就找到下線，推坑魔人功力真是深厚... /OoO/
+21:17  * ETBlue 卡關奮鬥中
+21:23 < clkao> ETBlue: 我... 只是把坑挖好... 人是自己來的 XD
+21:24 < clkao> 立法院的頭髮好像植髮錯了
+21:24 < clkao> 苦
+21:24 < ETBlue> = =b ......
+21:30 < ipa> 立法院的頭髮？
+21:30 < ipa> wHisKy++
+21:33 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 256 seconds]
+21:40 < au> ETBlue: dropbox 加我一個? audreyt@audreyt.org
+21:40 < au> (shared folder)
+21:41 < ETBlue> au: 你 gmail 那個沒在用嗎 （歪頭
+21:41 < au> not for dropbox
+21:41 < ETBlue> 喔喔喔 XD
+21:41 < Jedi_> ETBlue: 自己的 domain 比較安心～
+21:41  * au 覺得在 png 註解區段裡擺向量資訊確實很有創意
+21:42 < ETBlue> Jedi_: 你好瞭解魔法生物 ^///^
+21:42 < clkao> 「媒體壟斷防止暨多元維護法草案」連結到的議案內容是 「北太平洋公海漁業資源養護與管理公約」及「捕魚實體參與文書」案
+21:42 < Jedi_> 噗
+21:42 < au> 其實 Tahoe-LAFS / Tarsnap 才安心... XD 但是 dropbox 放公開資訊還不錯。
+21:44 < Jedi_> yap, dropbox 特別適合公關使用
+21:44 < clkao> 公關....
+21:44 < Jedi_> （剛剛突然打錯成 特別適合關公使用 orz）
+21:44 < ETBlue> 公關也怪怪的啊 = ="
+21:44 < au> 公開關心，公關開心?
+21:45 < clkao> 關公不開心
+21:45 < ETBlue> 我都把工作檔放裡面當自動備份機耶 @@
+21:45 < clkao> summon bobchao
+21:45 < ETBlue> 公關不關心，關公不開心...
+21:45 < Jedi_> ETBlue: 用來做公共關係使用～
+21:46 < Jedi_> ETBlue: 當自動備份機的話，前提是你沒有放敏感資訊在工作檔案裡面...
+21:47 < Jedi_> ETBlue: 不然其實可以當成是被看光光的
+21:47 < ETBlue> 嗯... 會有些血淋淋的照片什麼的... 
+21:47 < ETBlue> 呃囧
+21:48 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+21:48 < ETBlue> ... 我有空檢查一下好惹 = =
+21:50 < au> ETBlue++ # readme 寫得很清楚
+21:50 < ETBlue> au: 狀態/頁面/圖層 三個 panel 好像要手動開才會全都有，預設只顯示圖層的樣子（？）總之沒全開會很難用 :3
+21:50 < au> yup
+21:50  * au 先來做明天中午的剪報^H^H簡報，演講完再來玩煙火
+21:51 < ETBlue> .... 你簡報還沒做啊 = =b 還有時差要調說 ~_~
+21:53 < Jedi_> 越到死線，產能越高；超越死線，產能破表～
+21:53 < ETBlue> 好吧，明天中午前盡量多做點煙火 XD
+21:53 < clkao> Jedi_: 話說上次不是有坑要跳 但是工作優先?
+21:53 < ETBlue> Jedi_: ...
+21:53 < Jedi_> clkao: 不是，是先答應的事情優先
+21:54 < clkao> 那.. 先答應的事情解決了嗎 :p
+21:54 < ETBlue> Jedi_ 有跟柏儒約會了嗎 :3
+21:54 < Jedi_> ETBlue: 下週日
+21:55 < Jedi_> clkao: 嗯，交稿了
+21:55 < Jedi_> 而且手指的傷也拆線了
+21:55 < Jedi_> :D
+21:55 < au> 死線什麼的我最喜歡了，尤其是它飛過我身邊時會發出「咻」的聲音！
+21:55 < Jedi_> KD
+21:55 < au> -- Douglas Adams # 亂譯
+21:58 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+22:05 < au> hlb: 對了，EBAS-Subset 因為簡報要用所以先做了 https://github.com/audreyt/moedict-webkit/blob/master/EBAS-Subset.ttf 
+22:05 < kcwu> au's url: [moedict-webkit/EBAS-Subset.ttf at master · audreyt/moedict-webkit · GitHub]
+22:06 < au> 才 22.4k，含「萌 典 告 大 小 下 上 國 台 華 閩 客 英 法 德 反 乂 內 外 中」等字，歡迎使用
+22:06 < au> (also committed to ios/www/)
+22:06 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+22:08 < pcchen> EBAS-Subset++
+22:08 -!- hychen [~hychen@host-219-68-124-199.dynamic.kbtelecom.net] has joined #g0v.tw
+22:09 < au> pcchen: 輸入法用的在 http://moedict.tw/TWBLG.ttf (已含所有 ExtA+ 的台語+客語+造字)
+22:11 < clkao> au++
+22:11 < clkao> Jedi_: 那... |D
+22:13 < Jedi_> clkao: 應該可以開始做些正經事了，不過現在必須要去睡了 T_T
+22:13 < au> 睡夠當然是正經事
+22:14 < Jedi_> 目前正在進行以及預期進行中的事大概都會跟 iamblue 那個專案比較有關
+22:14 < clkao> ++
+22:16 < clkao> wow
+22:16 < Jedi_> btw, 本週應該會先送 patch 給某教育部委託的計畫.....明天來看看 base data 釋出沒
+22:16 < clkao> 義大利人要 deploy lqfb  給五千人用
+22:16 < Jedi_> 賀
+22:16  * Jedi_ zzz &
+22:16 < clkao> 而且要自己跳坑來弄 html/css 了
+22:16 < clkao> (based on ETBlue's design)
+22:17 < ETBlue> ?!
+22:18 < clkao> ETBlue: 他應該也有 cc 給你
+22:18 < hychen> wow
+22:18 < clkao> 瞬間成為淨出口國(?)
+22:18 < clkao> hychen: 那篇 vagrant 是不是要 update 一下？不需要 custom box 了
+22:19 < clkao> hychen: yhsiang 說要幫忙看看 znc
+22:19 < ETBlue> 義大利人要洗剩下半顆頭... 噢噢我看到惹
+22:19 < hychen> clkao, 用custom box可以省點時間
+22:19 < au> 輸出革命!
+22:20 < hychen> clkao, 就不用自己跑provision
+22:20 < clkao> hychen: oh ok, 我以為已經 obsolete 了 用那個 bootstrap script. nvm then ;)
+22:20 < ETBlue> 這...不過我也才做一半（呆）我能 demo 啥...?
+22:20 < hychen> clkao, 都可以
+22:20 < hychen> clkao, 不過我kuansim是用custom box
+22:21 < ipa> 補鞋小精靈出現了 @@
+22:22 < ETBlue> ipa: 真的 @@
+22:22 < clkao> 遠渡重洋
+22:22 < clkao> 科科
+22:22 < clkao> 我本來以為他們只是知道 lqfb, 不過已經實際 pilot 了一陣子了
+22:23 < hychen> clkao, 可以在hack.g0v.tw的Vagrantfile加上custombox 的url
+22:23 < hychen> clkao, 這樣就vagrant up即可
+22:23  * hychen 來改一下
+22:24 < ipa> 今天我給加拿大朋友看國債鐘，他也好高興，因為是他介紹我看到的
+22:24 < ETBlue> 囧" 我趕快把剩下的主要頁面補完，然後寫份我原本對實做的想法在 gdocs 好惹... 或者 hackpad 
+22:24 < ipa> 他說很高興有間接參與黑客松 XD
+22:24 < ETBlue> ipa: 那他以後要遠距參與嗎 XD
+22:26 < ipa> 輸出輸入大亂鬥
+22:30 < au> 英特奈雄耐爾得到充份實現
+22:34 < ipa> 只好....唱首歌 http://www.youtube.com/watch?v=gE95GulBfNo
+22:34 < kcwu> ipa's url: [Tang Dynasty - Internationale (唐朝 - 国际歌) - YouTube]
+22:40 < clkao> 今天是復古搖滾日
+22:43  * ETBlue 大腦自動翻譯成魔法王朝
+22:56 < clkao> 遭到置入性行銷：http://www.ptt.cc/bbs/Tech_Job/M.1371258100.A.B91.html
+22:57 < mhs1n> XD
+23:12 < clkao> wow 精靈又出現了
+23:12 < clkao> https://www.globalsign.com/ssl/ssl-open-source/ # Free Wildcard SSL Certificate for qualified open source projects
+23:13 < superbil> clkao: 我會把 OID 存起來的
+23:13 < clkao> superbil++
+23:14 < superbil> 而且剛剛才被告知 http://data.gov.tw/opendata/Details?sno=301000000A-00001 這邊就有派出所資料
+23:14 < kcwu> superbil's url: [政府資料開放平臺>資料分類>服務分類>生活安全及品質>rawData]
+23:18 < hychen> superbil++
+23:31 < superbil> btw, 我明天會出國 不過 irc 還是會掛著
+23:32 -!- chhsiao1981 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+23:38 < yhsiang> clkao: 應該是弄好了vagrant跟berkshelf 0.0
+23:45 < clkao> yhsiang: use berkshelf to install https://github.com/schisamo-cookbooks/znc ?
+23:46 < kcwu> clkao's url: [schisamo-cookbooks/znc · GitHub]
+23:49 < tkirby> clkao: 為什麼
+23:49 < tkirby> clkao: 為什麼這個可以 index 到... XD
+23:49 < tkirby> # tech_job
+23:50 < au> 簡報終於差不多了... 先試著躺一下看看
+23:50 < au> Rough consensus & Running Code 這次譯成...
+23:50 < au> 「粗略の共識 / 進撃の程式」 XD
+23:51 < clkao> au++
+23:55 < clkao> tkirby: 因為開了 google analytics XD
+23:56 -!- ymow [~Adium@1-171-160-199.dynamic.hinet.net] has joined #g0v.tw
+23:58 -!- DaPonte [~DaPonte@46.182.92.87] has joined #g0v.tw
+23:59 < clkao> DaPonte!
+23:59 < DaPonte> hey
+23:59 < clkao> ETBlue: our friend from .it is here ;)
+23:59 < DaPonte> hi everyb
+23:59 < clkao> DaPonte: so, re: auth, https://github.com/clkao/fireauth
+23:59 < kcwu> clkao's url: [clkao/fireauth · GitHub]

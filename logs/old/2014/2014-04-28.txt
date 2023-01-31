@@ -1,0 +1,582 @@
+--- Day changed 一  4月 28 2014
+00:00 < clkao> caa51: billab scroolspy 好像亮起來後就不會暗掉了 (用 /tipo/copyright-reform-act-2014 測試)
+00:03 < greves> 直播有無？
+00:07 -!- mingtsay [uid27779@gateway/web/irccloud.com/x-gppwfaknwzlhtgto] has left #g0v.tw ["Cycling"]
+00:20 < tw_232526> greves: http://nonuke.today
+00:20 < kcwu> tw_232526's url: [停建核四、遍地烽火全記錄]
+00:28 < greves> 多謝
+00:30 < jeffhung> clkao: ping
+00:30 < clkao> jeffhung: pong
+00:31 < jeffhung> 直播狀態丟 GA 好了。
+00:31 < clkao> !!
+00:32 < clkao> 所以現在需要抄 bill-analytics.ls 來取 aggregated report 嗎
+00:32 < jeffhung> 我在想，有沒有需要先把 report bar 放上去？
+00:32 < clkao> 我上次是用 ga api explorer 他可以讓你邊改邊查
+00:32 < clkao> 好像也行
+00:33 < clkao> 就是那些會 trigger ga events 的 button, 對吧
+00:33 < jeffhung> 例如： http://g0v.github.io/live/status_bar.html?https://www.youtube.com/embed/_xN8Rg4_xas
+00:33 < kcwu> jeffhung's url: [G0V Live!]
+00:34 < jeffhung> 分享跟訂閱還不能動，會先藏起來。
+00:34 < clkao> 移 那個不是 hackfoldr 現在可以加 bar: 在 option 就可以了
+00:34 < ddio> 請問，我記得之前有人弄了一個幫忙把問 gmap，把地址轉 gps 的網站，現在可以再哪裡找到嗎？
+00:34 < clkao> style 可能要改一下
+00:35 < jeffhung> clkao: 所以現在 nonuke.today 已經是新版 hackfoldr 了？
+00:35 < clkao> 應該是
+00:35 < jeffhung> clkao: 我要怎麼開新的 hackfoldr site 先測一下 integration？
+00:37 < clkao> 你說 nonuke.today/test 嗎？ 還是要整個新的 site?
+00:37 < Rhozan> ddio: 不懂程式  不過我有找到這個站 http://www.gps-coordinates.net/
+00:37 < kcwu> Rhozan's url: [GPS coordinates google maps, latitude and longitude, map coordinates]
+00:37 < clkao> 不過只是要測的話, local 跑起來就可以測了
+00:38 < jeffhung> clkao: ok. 那我先 local 測。你說 style 要改成什麼樣子？bootstrap 2 ?
+00:39 < clkao> 不限 只是本來長寬根本沒弄 要搭配 live 的話應該是變成一條 fix 在上面或下面
+00:39 < ddio> Rhozan: 謝謝，我也有找到類似的，但我是在找有人有人寫好的 script ，因為我要轉 20k 筆 XD  而且印象中 gmap quota 好像也不太夠的樣子...
+00:40 < jeffhung> clkao: 噢，你是指 hackfoldr 這邊的 style 喔，所以我才需要先 local 測一下好改一改。:-p
+00:41 < clkao> 好像是 tim 有一個 cli tool
+00:42 < sb-occoul> 不好意思新手想要請問個問題   我現在clone政誌的reposity下來build  但是程式裡面有個nconf.get('base')一直return 很奇怪的位址  我的folder是/Users/apple/Codebase/twangry/twangry 但nconf.get('base')console log印出來是/home/nodejs/node/twangry  請問有人知道nconf的base要怎麼改嗎  m(_ _)m
+00:43 < ddio> clkao++,  等他上來再問問
+00:44 < ddio> 阿阿阿...一天只能抓 2.5k XD   看來要想想別的辦法了...
+00:46 < jeffhung> clkao: local 跑起來了，不過 ethercalc 是線上版嗎？這樣測試時不就會改到 g0v.today？
+00:47 < jeffhung> clkao: 搞定。我繼續。
+00:53 < isacl> jeffhung: 你的 local 是 fork 自哪個 repo?
+00:59 < jeffhung> isacl: 這個: https://github.com/hackfoldr/hackfoldr
+00:59 < kcwu> jeffhung's url: [hackfoldr/hackfoldr · GitHub]
+01:00 -!- kengyu_ is now known as kengyu
+01:01 -!- sb-occoul [774DF2A6@conference/jsconf/x-fkjyzngtphgmkedq] has left #g0v.tw []
+01:01 < isacl> jeffhung: g0v.today 與 congressoccupied 都不會被改到，目前都有一些保護。而且你可以直接用 http://localhost:3333/yourtest 開新的測試
+01:02 < jeffhung> isacl: yes. 我直接開新的來測試了。:-)
+01:08 < isacl> jeffhung: 如需要多一點資料方便測試，剛剛幫你開了一個 https://ethercalc.org/a3ubwaye6x # clone from nonuke XD
+01:08 < kcwu> isacl's url: [EtherCalc - Share the URL to your friends and edit together!]
+01:29 < hialan> 
+02:06 < jeffhung> hackfoldr/hackfoldr 跟 g0v/hack.g0v.tw 有什麼不同啊？
+02:07 < jeffhung> 我沒辦法再 github 上面 fork hackfoldr/hackfoldr，總是會切到 jeffhung/hack.g0v.tw。
+02:14 < yhsiangCloud> 目前source是hackfoldr/hackfoldr
+02:15 < jeffhung> Anyway, I've pulled hackfoldr/hackfoldr into jeffhung/hack.g0v.tw. The pull request has been sent.
+02:16 < isacloud__> jeffhung: github 不允許重複 fork 同源的 repo 到同帳號內 (hack.g0v.tw 源自 hackfoldr), 因此你需要自行 remote add hackfoldr/hackfoldr
+02:16 < isacloud__> jeffhung++
+02:16 < jeffhung> 目前 google analytics 開在我的名字下，理論上 GA account 可以被不同的 google accounts 管理。
+02:18 < jeffhung> 所以要看 status 的請 mailto jeff.cc.hung -at- gmail。
+02:27 < NewCliCker> jeffhung:ping~
+02:35 < jeffhung> NewCliCker: pong
+02:36 < NewCliCker> jeffhung:我是g8v.tv的NewCliCker，冒昧詢問您有打算去 g0v x CCSP 2014 嗎?
+02:37 < jeffhung> NewCliCker: 有 link 或 schedule 嗎？
+02:37 < NewCliCker> jeffhung: http://ccsp.kktix.cc/events/hackathon
+02:37 < kcwu> NewCliCker's url: [無限期支持 g0v CCSP Hackathon]
+02:39 < NewCliCker> jeffhung: 如果可以的話我有想找一些人一起去做 直播導播台 Live!  以及 G8V.tv 呢
+02:40 < jeffhung> 目前 5/10 有空，但現在還沒辦法確定能否參加。
+02:44 < NewCliCker> jeffhung:瞭解，不知道 直播導播台 Live! 其他參與者的意願呢，我在Hackpad這邊統計可以嗎？https://g0v.hackpad.com/-Live-VVlHNqKaQrC
+02:44 < kcwu> NewCliCker's url: [直播導播台 Live! - g0v.hackpad.com]
+02:44 < jeffhung> NewCliCker: 好啊。
+02:49 < NewCliCker> jeffhung: 簡單來說就是我們可以利用 g0v x CCSP 2014 Hackathon 的場地衝自己專案的進度 XD
+03:03 < ipa> 請問有沒有人用 windows看 hackfoldr 有完全看不到內容的情形？
+03:04 < ipa> 唔..... 這裡應該沒有人用 windows ><（採樣完全錯誤）
+03:05 < lanf0n> << windows
+03:05 < lanf0n> ipa 哪個hackfoldr
+03:06 < a0000778> windows... 必要情況下用虛擬機跑
+03:06 < j100002ben> windows 的 chrome看不到hackfoldr內容
+03:06 < ipa> lanf0n: 應該任何hackfoldr，上次用 g0v.today 我爸就說看不到內容，昨天傳 nonuke.today 給他，他說只看得到林義雄先生禁食時間那裡
+03:07 < ipa> j100002ben: @@ 是喔！？只看得到上面的 navigation bar 嗎？
+03:07 < j100002ben> Yes
+03:07 < NewCliCker> ipa: hackfoldr 有完全看不到內容 poka有碰過，啊，我打字慢了...orz
+03:07 < ipa> 噢，來開 issue
+03:07 < lanf0n> 我的 g0v.today是正常的(chrome
+03:08 < clkao> 想測某種 browser 的話可以用 saucelabs.com
+03:08 < ipa> firefox IE 可？
+03:08 < clkao> 好像應該要 deploy 後自動 screenshot 每種 browser
+03:09 < tw_232526> <-windows  chrome firefox 開啟均正常
+03:10 < greves> 直播都沒了，警察出動嗎？？
+03:11 < ipa> 直播都還有
+03:12 < lanf0n> greves: http://stlive.maxorz.com/
+03:12 < kcwu> lanf0n's url: [Maxorz.com 聯播網]
+03:13 < NewCliCker> 不過我這邊Win7 chrome 顯示hackfldr倒是很正常
+03:13 < tw_232526> 正在清場 看直播的人突然暴增
+03:15 < greves> oh my poor computer! :(
+03:17 < greves> 太多直播哈哈
+03:18 < NewCliCker> 甚麼！正在清場，趕快開G8V起來看新聞 (偷偷廣告被打) http://hackfoldr.org/G8VTV
+03:21 < NewCliCker> 民視正在連線，g8v先換上民視新聞電視訊號
+03:22 < lancetw> 所以目前只有民視有報？
+03:22 < NewCliCker> 給我一點時間確認各台電視新聞
+03:23 < ipa> j100002ben: 請問一下你的windows、chrome的版本？
+03:23 < lancetw> maxorz 那邊的年代跟壹新聞都沒有
+03:24 < j100002ben> win7 x64 英文版 chrome: 34.0.1847.116
+03:25 < tw_232526> 年代 壹新聞 不是免費電視 放在maxorz比較不保險
+03:26 < NewCliCker> 壹電視正在重播星期天的地震特別報導
+03:27 < lancetw> tw_232526: 請問壹新聞這種網路電視也不能轉播嗎？
+03:29 < tw_232526> lancetw: 因為他們是非免費電視 隨意公開轉播恐怕牽扯授權問題 因此不建議放在容易取得的地方
+03:30 < NewCliCker> 三立目前是反核四節目重播，目前Live現場的驅離行動只有民視 http://hackfoldr.org/G8VTV
+03:31 < NewCliCker> tw_232526: 針對社會議題發生時的電視新聞網路實況，是否可主張基於公眾利益的合理使用範圍？
+03:31 < tw_232526> 能否轉播只能讓大家去判斷 我不是也不代表某方立場人員
+03:32 < lancetw> tw_232526: 我之前是有研究過有線電視的運作與法規...但網路這塊就不清楚 :P
+03:32 < NewCliCker> tw_232526: 我記得419黑客松當天好像有法律背景的參與者，可惜當天沒機會向他們請教orz
+03:33 < NewCliCker> tw_232526:還以為您也是法律背景的，比較清楚這方面的問題...
+03:34 < tw_232526> 因為新聞台 他非24小時一直都播新聞 裡面包含談話性節目 或者其他節目等
+03:35 < lancetw> tw_232526: 嗯嗯...
+03:35 < tw_232526> 以1電視為例 還沒賣盤時還沒問題 現在的話...只能教給大家判斷了 我的話都很低調
+03:35 < lancetw> 哈 XD
+03:37 < NewCliCker> 其他有線電視新聞可以到這邊看 http://news520.web.fc2.com/leetv.html
+03:37 < kcwu> NewCliCker's url: [三立新聞]
+03:39 < ipa> yutin 還在現場直播 ><
+03:39 < tw_232526> 不過 自從學運之後 家人好像有開始拒看1新聞的傾向..
+03:40 < greves> 蘋果live直播好像還沒開始驅離，那是另外一個地方嗎？我有點搞不清楚
+03:42 < tw_232526> 某社交串流提到 現在只剩民視在直播 其他電視台都沒有
+03:43 < NewCliCker> 要看民視可以到這邊喔 (可以這樣一直打廣告嗎) http://hackfoldr.org/G8VTV
+03:45 < tw_232526> 可以考慮到隔壁頻道打廣告 因為現在每天LOG都空到不行
+03:46 < NewCliCker> 隔壁頻道?
+03:46 < tw_232526> fumao.tw
+03:47 < NewCliCker> fumao.tw是給服貿議題用的吧
+03:48 < twWatch>  沒關係 想看的自己點  又不是洗板
+03:49 < twWatch> 而且是z3管的 他沒意見就可以了 XD
+03:49 < tw_232526> 那天我有問過他 他表示沒意見 反正每天LOG都很空 大部分都在哈啦閒聊(無關福懋)
+03:50 < twWatch> 中國黨真的硬幹 代表它們不管選舉了
+03:50 < NewCliCker> 話說z3的 irc.anontaiwan.org 不走SSL實在有點可惜...
+03:51 < twWatch> 再和他談談吧 應該有細節沒調到
+03:51 < tw_232526> 聽說他最近好像很忙
+03:51 < lancetw> 這次既不是學運也沒有王金平更沒有大陸因素了.....
+03:52 < twWatch> 中國黨只為了自己
+03:53 < tw_232526> G8VTV 有電視台直撥的地方 放個免責聲明 (看到選單有寫"影音來源為各實況平台直播者")
+03:53 < twWatch> 能賴在台灣就說要反共 剝削台灣人的資源
+03:53 < twWatch> 能賣台就說中國有多好  整天在舔共
+03:55 < greves> 還有多少人？
+03:56 < greves> 他們說1個小時只進100公尺
+03:56 < twWatch> 經過這一波 隨機公民記者會暴增
+03:57 < lancetw> 只有民視實在怪怪的～～
+03:57 < NewCliCker> tw_232526:對啊，畢竟目前g8v.tv的進展只是利用別人的東西做一個概念雛形示範。最終目標是能夠把開源的hackfldr做出這樣的效果。
+03:59 < tw_232526> 說實在 那個hackfoldr介面好用 可是光要設計就有些麻煩..(對於沒接觸過非M$作業系統的來說)
+03:59 < twWatch> NewCliCker: 目前 hackfldr 能產生浮動視窗嗎?
+04:02 < twWatch> 新一波推擠
+04:04 < NewCliCker> twWatch:目前還不行，我quote clkao的銘言：hackfldr要用 mediaelement/videojs 才能作比較多控制 http://logbot.g0v.tw/channel/g0v.tw/2014-04-25#1291
+04:04 < kcwu> NewCliCker's url: [Logbot | #g0v.tw]
+04:04 < buganini> kcwu: https://github.com/buganini/ocrap 窮人OCR
+04:04 < kcwu> buganini's url: [buganini/ocrap · GitHub]
+04:05 < buganini> 只做了單行的
+04:05 < twWatch> 了解 只是實現鄉民同時多視窗的夢想 XD
+04:06 < twWatch> buganini++
+04:07 < buganini> 接下來還要處理浮水印和deskew
+04:09 < twWatch> buganini: 浮水印 hialan 有研究
+04:10 < buganini> 如果先做好deskew的話，浮水印可以獨立出mask，然後我就略過那些地方
+04:10 < NewCliCker> twWatch:Yeah! g8v就是試圖要做出聊天室、實況、新聞電視牆 & 自由拖動、重疊、自由調整大小等功能 XD
+04:11 < twWatch> NewCliCker: 果然是鄉民 XD
+04:11 < TobyOoO> 現在這個很不好用 http://163.20.151.20/~hs010145/video
+04:11 < kcwu> TobyOoO's url: [網頁下方尚有其他轉播]
+04:12 < a0000778> NewCliCker: 去挖一些老網站的腳本應該很容易實現視窗，以前翻到不少
+04:14 < NewCliCker> a0000778: 可是都有授權疑慮啊，目前g8v.tv用的就是 http://diy0.xlphp.net/ 的腳本，作者到先在都還失聯狀態，聽說人在黑龍江 (抖
+04:14 < kcwu> NewCliCker's url: [DIY]
+04:15 < a0000778> NewCliCker: 有一些比較大的網站好像有提到授權的部份
+04:16 < NewCliCker> a0000778: 如果您有好的來源幫我貼到這裡吧 ，感恩<(_ _)> https://g0v.hackpad.com/g8v.tv-lk9pamtKwyr
+04:16 < kcwu> NewCliCker's url: [第五權電視牆監看「評」台g8v.tv草稿 - g0v.hackpad.com]
+04:17 < a0000778> NewCliCker: 只是寫視窗的話，我臨時寫一個應該夠用
+04:20 < NewCliCker> a0000778: 那來 fork 一個 hackfldr 的g8v.tv電視牆版本吧 (推坑
+04:23 < a0000778> 等等從頭寫一個當套件用...
+04:23 < NewCliCker> a0000778: 有想要參加 5/10 的 g0v x CCSP 2014 嗎？我們一起來hack吧 XD
+04:23 < NewCliCker> a0000778: http://ccsp.kktix.cc/events/hackathon
+04:23 < kcwu> NewCliCker's url: [無限期支持 g0v CCSP Hackathon]
+04:26 < a0000778> NewCliCker: 看情況吧 最近事情比較多
+04:28 < NewCliCker> a0000778: 嗯，沒關係，有空就來g8v坑理坐坐、聊聊天都好 XD
+04:35 < gugod> buganini: deskew 用 imagemagick 效果就不錯了
+04:35 < gugod> buganini: -deskew 40%
+04:36 < greves> 再半小時開始天亮了
+04:45 < twWatch> 警方使用催淚瓦斯
+04:45 < NewCliCker> 有冒煙...
+04:45 < twWatch> 麵線更正 => 是滅火器 XD
+04:47 < gugod> ronnywang, buganini: 以 http://campaign-finance-pic.ronny.tw/914/3-5.png 為例的話， convert $in -statistic maximum 2x1 $out 後的效果為: http://i.imgur.com/MSxZRrL.png
+04:49 < gugod> 就勉強算有去掉浮水印的效果
+05:00 < lancetw> 話說1994年警方是怎麼驅離民眾的 ＠＠？
+05:00 < twWatch> 麵線說到哭了
+05:01 < lancetw> 那年撐了10天
+05:01 < twWatch> 壞兵兵還想選 作它獨裁的夢吧
+05:01 < lancetw> 以上的樣子
+05:04 < lancetw> 連當選已經確定了啊不是？ XD
+05:05 < twWatch> 看台灣人的自覺吧
+05:06 < twWatch> 民眾：方仰寧洗天橋是不是 (水車噴天橋)
+05:11 < twWatch> 現場人還是很多
+05:12 < lancetw> 天橋有記者？
+05:13 < twWatch> 天亮了  記者之前就被警方從天橋趕走
+05:17 < NewCliCker> 天橋就行人走的地方啊，趕人離開天橋是哪招
+05:18 < twWatch> 水母想要那個地方 下台後就讓它待那裡吧 做成環景加直播
+05:27 < NewCliCker> 警察還拆廣播車...
+05:32 < j100002ben> 剪喇叭線....（怒
+05:44 < twWatch> 鄉民都在盯直播 人數維持
+05:50 < twWatch> 警方又開始濫噴水
+05:54 < twWatch> 警方又開始濫噴水 again
+06:11 < twWatch> 警方超近距離噴水
+06:22 < NewCliCker> 民視新聞全程實況凌晨2:50至今的忠孝西路現場，大家可至這裡收看(又再打廣告 XD ) http://hackfoldr.org/G8VTV
+06:42 < a0000778> NewCliCker: 調整大小的算法出現了謎樣的BUG...
+06:43 < NewCliCker> a0000778:您指的是hackfldr嗎？
+06:44 < a0000778> NewCliCker: 我直接從頭寫套件的
+06:46 < NewCliCker> a0000778:所以您的方向是類似LiveTW APP在瀏覽器、iOS、Android等平台開發套件囉？
+06:46 < a0000778> NewCliCker: https://dl.dropboxusercontent.com/u/14581726/temp/VirtualWindow/test.html
+06:47 < NewCliCker> a0000778:喔喔，好好玩 XD
+06:47 < a0000778> NewCliCker: 視窗內邊邊或角落5px內可以拖動修改大小
+06:48 < a0000778> NewCliCker: 不過有機會讓大小跑掉 原因不明
+06:54 < NewCliCker> a0000778:以 http://hackfoldr.org/G8VTV 的概念LiveDemo來說，
+06:54 < NewCliCker> a0000778:希望能達成使用者在調整了每個元素的位置和大小之後，可以用 長/短 網址的方式分想出去
+06:55 < caa51> clkao: XD 中午有 NB 就測看看！ #scrollspy
+06:55 < a0000778> NewCliCker: 這個都可以從參數中直接取值、帶入，不在套件的處理範圍內
+06:59 < NewCliCker> a0000778:喔喔，如果我理解有誤請見諒，所以您的 套件 是指 package 囉？
+06:59 < a0000778> NewCliCker: 嗯 我是寫成一個Class提供調用的
+07:01 < NewCliCker> a0000778: 喔喔，瞭解，因為我不是程式背景，有時候會雞同鴨講請原諒 <(_ _)>
+07:03 < twWatch> 前線鄉民太強了 撐到現在
+07:06 < NewCliCker> twWatch:沒錯，我光是在房間follow實況+蓋網站 熬夜到現在就已經快撐不住了...現場人真的太辛苦了
+07:10 < twWatch> 直播鄉民有幾個都被警方攻擊受傷
+07:19 < a0000778> 原來是頭撞到 帶錯變數去算了..
+07:21 < NewCliCker> 看著直播和電視新聞，心情真的是激盪起伏，彷彿行政院那晚的 Déjà vu ...
+07:23 < twWatch> 今年要結束這個惡夢
+07:37 < a0000778> NewCliCker: 有要從頭打造那個概念Live Demo再說
+07:38 < NewCliCker> a0000778: 因為現在聯絡不到作者，所以我有做好Code從零開始的準備orz
+07:53 < mingtsay> a0000778: ping
+07:54 < a0000778> mingtsay: pong
+07:54 < mingtsay> a0000778: 你的 IPv6 是由 PPPoE 拿到的還是固定制？
+07:55 < mingtsay> []\
+07:56 < a0000778> mingtsay: 我平常都掛著PPPoE 沒注意
+07:56 < mingtsay> a0000778: 所以你家的 PPPoE 是自己撥還是有分享器/Gateway之類的？
+07:57 < a0000778> mingtsay: 我平常就自己播
+08:07 < mingtsay> a0000778: 那你知道怎麼把用 PPPoE 拿到的 IPv6 發給其他 clients 嗎？
+08:08 < a0000778> mingtsay: 印象中跟radvd有關
+08:08 < mingtsay> a0000778: radvd 我會設定但是我拿不到正確的 prefix
+08:10 < mingtsay> a0000778: 我 ppp0 拿到的 IP 是 2001:b010:3040:1a00:w:x:y:z/64 但我應該要拿到 2001:b010:3040:1a01::/64 才能發下去
+08:11 < a0000778> mingtsay: 直接手工設定 反正/64整段都會到那台
+08:12 < mingtsay> a0000778: 我拿到的 :1a00::/64 發下去之後，大家都有拿到但是只有第一台拿到的人有 route 能出去
+08:12 < mingtsay> a0000778: 其他的就不行了…哪招
+08:15 < a0000778> mingtsay: 應該是有對網卡吧 那就讓你的路由器/數據機發吧
+08:15 < mingtsay> a0000778: 我是自己發的啊
+08:16 < mingtsay> a0000778: 架構拓撲：數據機<-[PPPoE]->伺服器<-[LAN]->無線基地台
+08:17 < mingtsay> a0000778: 內網 v4 使用 192.168.0.0/16
+08:18 < a0000778> mingtsay: 終於看懂...是說路由失敗？還是出不到外網
+08:18 < mingtsay> a0000778: 第一個拿到 v6 的裝置（除了伺服器）可以上網，其餘的沒有辦法上網
+08:19 < mingtsay> a0000778: 感覺拿到的 v6 不是用來分配的，而是給單一裝置使用？
+08:20 < mingtsay> a0000778: 聽 togepy 說如果是電腦撥號會拿到 2001:b010:xxxx:xxx0::/64 然後如果是路由器會拿到 2010:b010:xxxx:xxx1::/64
+08:21 < a0000778> mingtsay: 應該是指無線ap吧 那是因為pppoe帳號不同
+08:21 < mingtsay> a0000778: 我的 ppp0 拿到的是 :1a00::/64 我發 :1a00::/64 下去，就是剛剛敘述的情況
+08:22 < mingtsay> a0000778: 發 :1a01::/64 就除了伺服器之外沒人可以上網
+08:22 < mingtsay> a0000778: 是不是 /etc/ppp/options 要設定什麼？
+08:23 < a0000778> mingtsay: 不知道 我家只我一個在搞 沒處理過1台以上的情況
+08:24 < mingtsay> a0000778: 你未來有興趣試試看一台以上嗎？
+08:24 < a0000778> mingtsay: 我可能下禮拜或下下禮拜才可能開始試
+08:25 < mingtsay> a0000778: 那如果到時候我還沒成功然後你有什麼成果再問你哦～
+08:25 < a0000778> mingtsay: 嗯
+08:25 < mingtsay> a0000778: 謝啦w
+09:35 < miaoski> http://realblog.zkiz.com/greatsoup38/90551 
+09:35 < kcwu> miaoski's url: [一個小網站　讓九成德國議員「踹共」 - 湯財文庫 - 神州股票資訊 - Real Blog]
+09:35 < miaoski> 不知道這是個什麼樣的概念...@@
+09:44 < pofeng> miaoski: 看一下劉致昕的系列報導 http://www.businessweekly.com.tw/KArticle.aspx?id=53256
+09:44 < kcwu> pofeng's url: [一個小網站　讓九成德國議員「踹共」 - 時事 - 國際- 商業周刊]
+09:44 < pofeng> miaoski: 綠黨演講 https://g0v.hackpad.com/CGIWfeyAG5r
+09:44 < kcwu> pofeng's url: [民怨商品化？從德國國會觀察網站談起 - g0v.hackpad.com]
+09:52 < pofeng> miaoski: 商周 1367 期有講 希臘、德國、芬蘭 還有  g0v http://www.businessweekly.com.tw/EMagMainPage.aspx?id=2069
+09:52 < kcwu> pofeng's url: [1367：一分鐘勾住人心的行銷制霸術 - 雜誌類別 - 雜誌目錄 - 商業周刊]
+09:57 < jbytw> 問，如果政府斷網，g0v 有緊急因應方案嗎？(假設性問題)
+09:59 < mosiwang> jbytw: 是全台灣不能對外的那種斷網？
+09:59 < lancetw> jbytw: 一天沒上網的台灣鄉民應該不會有政府可以因應 XD
+09:59 < mosiwang> 還是只是 twnic 沒收 g0v.tw ？
+10:00 < kiang> g0v.tw 被亂搞的機率高一點，要不要先申請外國網域因應？
+10:03 < jbytw> 全台不能對外應該無法因應XD 大概是g0v被亂搞的方案
+10:04 < kiang> 我是指網域名稱，外網被直接切斷的機會不高，這會影響一些國際企業
+10:06 < anon1269> 遠x之流wwwwww
+10:07 < kiang> 這樣想想我們落後的基礎建設現在反而可貴，因為大部分的線路都集中在一起，讓政府沒辦法隨時切斷特定連線 XD
+10:12 < hcchien> 有十點記者會的直播嗎
+10:14 < clkao> jbytw: 有 g0v.io
+10:15 < clkao> 爆炸 吃到很慘的餐廳.. 我要怒寫 code 了
+10:15 < hcchien> lol
+10:16 < hcchien> 以後只好多帶 clkao 去吃難吃餐廳了
+10:16 < clkao> #()@$@#*%
+10:17 < kiang> hcchien++
+10:17 < clkao> *怒*
+10:18 < kcwu> buganini: netpbm 附的 pamtilt 可以偵測 skew, output 角度. 再用 pnmrotate 或其他程式轉. (不過我覺得還是不夠正). 我還沒試過 imagemagick 的 deskew
+10:20 -GitHub36:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/aac43df5fb9525d84ab77d3296a86c944488acc4
+10:20 -GitHub36:#g0v.tw- g0v.tw/gh-pages aac43df g0v general (via TravisCI): regen for 9fc8b3e
+10:22 < NewCliCker> hcchien: g8v.tv來打廣告囉，10點的記者會看這喔 http://hackfoldr.org/G8VTV
+10:29 < clkao> NewCliCker: 廣告太兇了吧？可是還是沒看到記者會 link 在哪？
+10:31 < NewCliCker> clkao: 咦，點 http://hackfoldr.org/G8VTV 應該就會自動播放民視新聞的10點記者會實況啊，沒有嗎？
+10:32 < clkao> no...
+10:33 < clkao> wakkk_006? 這邊看是空的
+10:33 < NewCliCker> 是flash的問題？
+10:33 < mosiwang> clkao++ 空的
+10:34 < mosiwang> NewCliCker: 六點多打廣告的時候點進去也是沒有XD
+10:35 < hcchien> NewCliCker: 反正我已經看到新聞了，那個爛記者會，不想看了  # 逃
+10:35 < mosiwang> NewCliCker: Mac OSX 用 Chrome 開無痕就有
+10:35 < NewCliCker> mosiwang:...0rz
+10:36 < NewCliCker> clkao:我這裡只有Win7 + chrome 是正常耶，可以回報一下作業系統和瀏覽器嗎？
+10:36 < alan5281> Win7+firefox正常
+10:37 < NewCliCker> hcchien:幫忙測試 http://hackfoldr.org/G8VTV ，拜託<(_ _)>
+10:37 < mosiwang> NewClicker: 六點的廣告 Win7+Chrome 不正常 開無痕也沒用...
+10:38 < opop> Hi 代問：友人想寫個程式去分析立委的汽車申報資料 http://vote.ly.g0v.tw/legislator/personal_property/car/966/ 不過目前API似乎尚未開放到這塊
+10:38 < kcwu> opop's url: [立委投票指南:蔡正元的汽車申報紀錄]
+10:38 < opop> 希望詢問應該和誰聯繫，fb 為佳，謝謝
+10:38 < hcchien> NewCliCker: osx + chrome 可以看到
+10:39 -!- chihchun is now known as chihchun_afk
+10:39 < anon1269> linux+pepperflash 有直播
+10:39 < NewCliCker> 怎麼會這樣，有的人看的到有的看不到，我沒有fork hackfldr的G8V.tv版本，都是跟著主要版本啊
+10:40 < anon1269> 這警察過街的感覺有點驚人...
+10:41 < clkao> opop: 可以直接加到 https://g0v.hackpad.com/--dMc3UYvwTjT
+10:41 < kcwu> clkao's url: [立委投票指南-意見回饋 - g0v.hackpad.com]
+10:41 < clkao> NewCliCker: mac/chrome
+10:41 < clkao> hcchien: 是喔 我看是空的
+10:42 < NewCliCker> clkao: 方便抓個圖讓我瞭解是哪個部分空的嗎？
+10:43 < NewCliCker> clkao:是類似之前poka的這種狀況嗎？http://i.imgur.com/7HWeuLB.jpg
+10:44 < clkao> no
+10:44 < clkao> 可是直接開 https://justin.tv/swflibs/JustinPlayer.r64da668e48bd80db2ca097b0877abcf2381b4f96.swf?channel=wakkk_006&auto_play=true 是可以的
+10:46 < opop> 看來開在 https://github.com/g0v/twly-voter-guide/issues?state=open 這裡比較好是嗎？我就這樣回他好了
+10:46 < kcwu> opop's url: [Issues · g0v/twly-voter-guide · GitHub]
+10:48 < NewCliCker> clkao:那這個網址呢？http://diy0.xlphp.net/?id=wakkk_006
+10:48 < kcwu> NewCliCker's url: [DIY]
+10:49 < clkao> 就是左邊是空的
+10:51 < NewCliCker> clkao:那再幫我測這個 http://diy0.xlphp.net/?id=wakkk_006&i=newclicker
+10:52 < clkao> 中間是空的
+10:54 < NewCliCker> 那這個呢 http://diy0.cuccfree.com/?id=vmoretv&i=newclicker
+10:56 < clkao> 呃 好像是被 adblock 檔了..... 無痕就可以了
+10:59 < NewCliCker> clkao:喔喔，您adblock是用哪個list ?
+10:59 < clkao> dunnno...預設的吧
+11:00 < NewCliCker> clkao:hmm...(筆記
+11:02 < NewCliCker> well，請允許我quote諸位大德的回報log進hackpad裡 <(_ _)>
+11:05 < clkao> 剛才記者會是說核四要經過公投「正面同意」嗎？
+11:10 -!- chihchun_afk is now known as chihchun
+11:10 < jbytw> 我聽到的是記者會最後，江揆表示: 我們就算公投也不會就核四存廢是"封存與否"
+11:10 < jbytw> 翻譯蒟蒻: 核四不會停建的
+11:10 < jbytw> 有誤請告知
+11:14 < tkirby> D/win 11
+11:16 < NewCliCker> 核四10點記者會蘋果新聞稿 http://www.appledaily.com.tw/realtimenews/article/politics/20140428/387430/
+11:16 < kcwu> NewCliCker's url: [江揆：停工不代表停建不會廢棄核四 | 即時新聞 | 20140428 | 蘋果日報]
+11:21 < hcchien> 跳針記者會
+11:22 < kiang> 現在政府的記者會都流行跳針，因為那些開記者會的人都知道自己在裝傻...
+11:30 < kiang> "本來四月預定推出的100M/20M免費升速100M/40M, 確定延後至七月, 中華是說NCC未核准" ... 剛好我申請的就是 100M/20M ...
+11:32 < anon1269> 呃...NCC不是管媒體內容而已嘛？怎麼管到硬體規格上了...
+11:33 < yhsiangCloud> 這是ncc管的內容沒錯
+11:34 < anon1269> 跟社會脫節太久惹...Orz
+11:35 < yhsiangCloud> 電信通訊 NCC管很大的  不只媒體內容  你可能有點誤會 XD
+11:41 < anon1269> XD
+11:45 < hcchien> ncc 包山包海
+11:45 < clkao> 山也 ncc, 海也 ncc
+11:53 < johnny__> opop: 恩api還沒做，不過有JSON輸出檔https://github.com/thewayiam/twly_fileHandler/blob/master/legislator/property/output/property.json
+11:53 < kcwu> johnny__'s url: [twly_fileHandler/legislator/property/output/property.json at master · thewayiam/twly_fileHandler · GitHub]
+11:57 < ij1iao> NCC 包了以前電信總局的所有業務, 所以管費用是剛好而已
+12:02 < clkao> johnny__: 把立委開的車 plot 出來應該蠻有趣的
+12:04 < anon1269> NCC=舊新聞局+電信局？
+12:07 < johnny__> clkao: 我也很像plot股票，看哪一支是立委最愛的XD 汽車申報沒有年份實在不太完整，沒辦法比差價
+12:07 -!- SilentAssassin is now known as Guest26508
+12:09 < hcchien> plot股票++
+12:09 < hcchien> 是說上次 ij1iao 回了立委的臉書不知道有沒有用
+12:12 < ij1iao> hcchien: 完全沒下文
+12:18 < opop> johnny__: 感謝, 請問他如果有後續問題希望如何提出 (他好像沒在用 irc
+12:22 < clkao> johnny__: jq '.[]  | select(.property_category == "car") | {name,legislator_name}' /tmp/property.json
+12:22 < clkao> opop: g0v-ly groups? or ly-* feedback hackpad?
+12:23 < opop> clkao: ok, 我跟他說～
+12:23 < opop> clkao: 他應該是你學弟，印象中一個四年書卷一的傢伙... 好像 b90 或 b91
+12:29 < opop> 在美國，不過我也只有他 fb、沒有其他聯絡方式 =___=+，所以只能盡量蒐集雙方資訊了，3Q
+12:30 < yllan_> opop: 誰啊？enorm? 
+12:30 < opop> yllan_: 我只知道他叫 Artoo
+12:31 < yllan_> opop: 喔喔！我知道～那應該是 b91
+12:31 < opop> 如果有認識他的人再主動協助吧，我想他要的資料我已經幫他問到了、有後續再說 XD
+12:32 < opop> 我跟他也不太認識 Orz
+12:33 < yllan_> OK. 我和他認識啊，高中同一社團的，不過滿久沒聯絡了
+12:46 < johnny__> opop: api上線了，可以請他寄信到g0v-ly@googlegroups 謝拉
+12:47 < johnny__> opop: https://twly.herokuapp.com/api/property_car/
+12:47 < kcwu> johnny__'s url: [立委投票指南APIs]
+12:51 < johnny__> clkao: jquery居然還有command line的，吃完飯來試試
+12:55 < clkao> johnny__: it's jq, not jquery ;)
+13:06 < mingtsay> NCC 包吃包住（Ｘ
+13:07 -!- chihchun is now known as chihchun_afk
+13:09 < opop> johnny__: okok, 他說他對這方面比較不熟，會弄比較久，FYI
+13:20 -!- Guest26508 is now known as SilentAssassin
+13:20 -!- SilentAssassin is now known as Guest97349
+13:22 < miaoski> <廣告> 之前有些人填了柯P 的問卷，表達願意幫忙，但卻沒留下資料... 如果有人現在還能幫忙的話，可以 PM 給我或 pofeng </廣告>
+13:24 < miaoski> Disclaimer: 本廣告和 g0v 無關.
+13:27 -!- Guest97349 [3cfacfa6@gateway/web/cgi-irc/kiwiirc.com/ip.60.250.207.166] has left #g0v.tw []
+13:27 < peterC> https://github.com/maxogden/dat
+13:27 < kcwu> peterC's url: [maxogden/dat · GitHub]
+13:28 < kiang> miaoski: 有線上討論群組之類的東西嗎？
+13:29 < caa51> clkao: scrollspy 更新了，另外發現 right heading 怪怪的，詳見 issue 4 。
+13:30 < moon_c_> 到底最近的文宣都要用字典體的理由在哪裡？
+13:30 < miaoski> moon_c_: 康熙字典體很帥 ^^;
+13:32 < moon_c_> 朕說的都對
+13:33 < moon_c_> ((原來大家覺得很帥ㄚ...
+13:40 < opop> miaoski: 還滿好奇的，可以開個 hackpad 懶人包嗎哈哈哈
+13:40 < opop> 不過沒有想參與了，什麼都參與只會什麼都做不好，先試著做好第一個先
+13:41 < Seikon> miaoski:hi 我也覺得可以開個 pad 把想分的工作分一下。
+13:41 < miaoski> opop: 好奇康熙字典體？
+13:42 < opop> 柯P 需要幫忙的問卷與項目啦 xD， and 我不會參與～所以如果麻煩就以你方便為主，抱歉打擾~
+13:42 < opop> 柯P
+13:42 < miaoski> Seikon: 如果是 kp 的事情，歡迎大家加入 #kpa.tw irc 頻道，免得破壞 #g0v.tw  的版面 ^_^
+13:42 < Seikon> miaoski:收到，感謝。
+13:42 < opop> cool
+13:44 < opop> clkao: http://g0v.today/ 這種架構是可以非攻城師做出來的嗎？還是可以快速開一個給我嗎？想拿來做電力資訊平台，3Q
+13:47 < yhsiang> opop: http://hackfoldr.org/about 
+13:48 < yhsiang> opop: 還是你需要custom domain ?
+13:48 < superbil> opop: 他們是用 http://hackfoldr.org/<your_keyword> 
+13:48 < superbil> 就可開惹
+13:49 < opop> superbil: 好喔、有空立刻研究
+13:50 < opop> yhsiang: 我完全沒碰過不清楚，不過讓我下班後研看看吧
+13:51 < yhsiang> opop: 可以先試看看hackfoldr.org 有需要power.today 再來研究看看怎麼做
+13:52 < opop> ok~
+13:53  * opop 看醫生去，掰
+14:01 -!- chihchun_afk is now known as chihchun
+15:19 < tw_20421> 國會午點名進行中
+15:37 < miaoski> g0v_tw_logbot_: are you dannvix/Logbot ? XDDD
+15:40 < hbtsai> hackpad 是不是出狀況了? 
+15:42 < jbytw> g0v.hackpad.com 我這邊也有狀況 
+15:42 < jbytw> hackpad.com 沒有異常
+15:43 < tw_20421> CSS傳回404 JS傳回403 ......
+15:44 < au> 已於 twitter 反應
+16:01 < tw_20421> 有人在某社交串流提到 林義雄送醫  .....求證
+16:02 < opop> http://www.appledaily.com.tw/realtimenews/article/politics/20140428/387719/%B8T%AD%B9%B2%C47%A4%D1%A1@%AAL%B8q%B6%AF%A4U%A4%C8%ADu%C2%E5%B0%7C%BD%D5%BEi
+16:02 < kcwu> opop's url: [【更新】林義雄下午赴醫院調養「禁食未結束」 | 即時新聞 | 20140428 | 蘋果日報]
+16:03 < mosiwang> https://www.facebook.com/thejournalist/posts/733172013401644?stream_ref=10
+16:03 < kcwu> mosiwang's url: [新新聞粉絲專頁 - 快訊！！！！ 本刊記者在林義雄先生禁食現場回報，林義雄先生剛剛已在醫師建議下，到醫院檢查。 | Facebook]
+16:03 < tw_20421> 收到 剛才某廣播電台整點新聞也提到了
+16:14 < memecola1111> ?
+16:15 < jbytw> http://open.miaoli.gov.tw/OpenFront/report/email_detail.jsp?sysId=C100AF012
+16:15 < kcwu> jbytw's url: [地方版公務出國報告專區]
+16:15 < jbytw> 部門旅遊 之 隨便抓幾句出來都是網路複製貼上
+16:17 < miaoski> hbtsai: 剛剛 seikon 自己跳太陽花盒子的坑喲!
+16:28 < hbtsai> 好特別的 id
+16:28 < hbtsai> 塞康
+16:35 < yhsiang> 有誰會去周五的open data座談 @@a
+16:35 < tkirby> ._./
+16:35 < tkirby> 該來準備了
+16:36 < opop> 因為 Gene 問出來將不會接受採訪、而且此座談可能有更多含義、建議自己曝光，請與會人員看看是否可以順便攜帶器材直播？
+16:40 < yhsiang> 除了影音直播之外 也可以考論文播 :)
+16:40 < yhsiang> s/論/慮
+16:40 < opop> cool, yhsiang 也會去嗎？
+16:41 < opop> 那...交給你們考量了，若屆時沒人直播我再幫忙找人嘍
+16:41 < yhsiang> opop: 如果是受邀的  我應該沒受到邀請 XD
+16:42 < opop> yhsiang: 我其實也不知道這個活動是怎麼樣可以參與，我也是他人忽然問說是不是應該要直播才知道就在週五 XD 你是有想去嗎～！
+16:46 < yhsiang> 來問問看event建立者 XD
+16:46 < yhsiang> jimyhuang_: 會去嗎 XD
+16:46 < opop> :D
+16:55 < gavin-^^> yhsiang  open data座談 是在台北嗎? 真的沒人,請叫我.
+16:55 < opop> gavin-^^: 在科技大樓，和平東路二段，3Q
+16:58 < NewCliCker> 我星期五人也會在和平東路附近，有需要人手我也可以去幫忙打雜 XD
+17:02 -!- a2n [~a2n@unaffiliated/a2n] has left #g0v.tw []
+17:27 -!- ibanez [~ibanez@111.235.214.98] has left #g0v.tw []
+17:28 -!- ibanez_ [~ibanez@111.235.214.98] has left #g0v.tw []
+17:31 < tw_20421> 國會開會嘍
+17:34 < tw_20421> 快速唸完三條 沒意見 直接散會..................
+17:34 < pm5> ..........
+17:35 < anon1269> ...
+17:35 < opop> .......
+17:36 < tw_20421> 證明了這是突襲黑箱審自由經濟貿易法案..... (握拳)
+17:37 < jbytw> ............
+17:39 < tw_20421> 社交串流有人在問法條內容....早知道該錄音了------
+17:40 < pofeng> tw_20421: 真的嗎  過了 ?
+17:40 < pofeng> tw_20421: 太誇張 ...
+17:41 < tw_20421> 嗯 沒意見 通過 然後宣佈散會
+17:41 < sb-aildid> 問一個專案名稱：輸入地址可以查所在的選區，上至縣市首長，下至里長的姓名、電話和服務處
+17:42 < pm5> pofeng: 審了總則前三條
+17:42 < pofeng> pm5: 嚇我一跳
+17:42 < pofeng> pm5: thanks
+17:44 < tw_20421> 沃草團隊說不轉播了...很擔心等下還沒到12點 偷跑把剩下72條全唸完
+17:48 < tw_20421> (節錄社交串流) 黃昭順委員於10:30表示協商至14:30開會，於14:30表示協商至晚間12點，等立委走得差不多後，於17:30用五分鐘宣讀並通過前三條法條。
+17:49 -!- sb-aildid [3CF81F6F@conference/jsconf/x-jxxehbmbliqscdqc] has left #g0v.tw []
+17:49 < kiang> 每次都要用這種偷雞摸狗的方式真的很氣人...
+17:56 < jbytw> 宣讀時沒有規定要多少委員在場嗎? 這是無視程序，還是灰色地帶？
+18:01 < jimyhuang_> opop: yhsiang 我填在hackpad上了～
+18:01 < opop> jimyhuang_: 如果希望直播的話、建議是加派直播人員還是由參與人員負責呢？
+18:03 < miaoski> pm5: ++
+18:03 < miaoski> tw_20421: 借轉到 FB 可以嗎?
+18:04 < opop> jimyhuang_: 直播事宜是否需要討論與協助，目前願意協助者直播者有三位
+18:04 < miaoski> [求意見] dannvix/Logbot 在 RPi 上跑太吃力了，有沒有推薦的類似的 Logbot ...
+18:06 < jimyhuang_> opop: 對方邀約似乎是內部座談。之前的往例，與會者會整理當天討論的內容供後續追蹤
+18:07 < opop> 友人判斷此座談會會有狀況，所以他特別提出建議直播，請務必小心與多加考量
+18:07 < tw_20421> miaoski: 社交串流的部份是沃草團隊的發言 能否轉至FB可能需要問他 我不是沃草團隊人員
+18:09 < opop> jimyhuang_: 無論是否消息屬實，請多加留意以及特別注意須保全證據
+18:10 < miaoski> tw_20421: 嗯，可是這邊有 log 而且都是公開的。。
+18:13 < tw_20421> 呃 那就讓他慢慢淡出吧 (?
+18:14 < tw_20421> 轉播結束後馬上就有人把文章轉至DISP了 回文也有提到上述過程
+19:18 -!- chihchun is now known as chihchun_afk
+20:32 < mingtsay> a0000778: ping
+21:22 < tw_20421> 五六現在有直播 根據畫面判斷是中正紀念堂?
+21:29 < poga> discourse 架好了... 有人能幫忙把 discourse.g0v.tw 指到 128.199.209.149 嗎 XD
+21:29 < pofeng> poga: ++
+21:30 < mingtsay> poga: 噢噢之前伺服器是 192.168.2.209 所以 highlight 還在XD
+21:44 < isacl> poga++
+21:44 < isacl> poga: 現在會發認證信了嗎？
+21:44 < poga> isacl: 會，透過 mandrill 在發
+21:45 < poga> isacl: 可是現在 domain 還沒指過去... 認證信的連結要自己改成 ip XD
+21:50 < yhsiang> 可以編輯群組 設定信用等級 XD
+21:50 -!- reChing|afk is now known as reChing
+21:56 < clkao> poga: done
+21:56 < poga> clkao: thx
+21:56 < clkao> poga: send me your pgp key, i can send you *.g0v.tw cert
+21:57 < poga> clkao: ...好，我先研究一下 pgp 怎麼用... XD
+21:58 < yhsiang> XD
+21:58 < yhsiang> clkao: 測試邀請功能 XD
+22:14 < clkao> poga: 用 github 登陸 居然跳出兩層 就在最後的一層 refresh 了，沒回到前面的
+22:14 < clkao> 可能他最後 redirect 還是用 ip
+22:15 < clkao> 他可以 quote 別的 discourse thread 喔?
+22:15 < miaoski> 剛用了 https://github.com/excid3/logbot 十分省 CPU, 是 RPi 上的好選擇
+22:15 < kcwu> miaoski's url: [excid3/logbot · GitHub]
+22:15 < miaoski> RPi 實在跑不動 Ruby.
+22:15 < clkao> poga: discourse 可以當 id provider 嗎？
+22:16 -!- Blackode [6cabf84c@gateway/web/cgi-irc/kiwiirc.com/ip.108.171.248.76] has left #g0v.tw []
+22:16 < poga> clkao: 好像不行...
+22:18 < poga> oauth redirect 都換成 domain 了，這樣應該就好了
+22:19 < clkao> poga++
+22:20 < Lee1092> poga++  # 等認證信
+22:21 < poga> Lee1092: 如果是用 oauth 好像就不用認證信了
+22:21 < clkao> http://discourse.g0v.tw/t/fork-15/15 # 這個 quote 還是用 ip .. 是被寫死了嗎
+22:21 < kcwu> clkao's url: [我也能夠Fork了, 但是還是要15個字 - g0v 後勤中心 NEO]
+22:21 < clkao> 是喔 我用 github 他還教我收信
+22:21 < isacl> poga: 我也還沒等到認證信
+22:21 < clkao> 你的帳號尚未啟用，請使用忘記密碼連結重新發出啟用帳號的電子郵件。
+22:21 < yhsiang> clkao: 裡面有開發用的force hostname 
+22:21  * clkao 去準備搬家
+22:22 < Lee1092> 我跟 clkao 一樣   用 github 也教我收信  lol
+22:22 < Lee1092> s/教/叫
+22:22 < yhsiang> 我之前用github還不能用
+22:22 < poga> 我用 github 就直接登入了耶 XD
+22:22 < hcchien> github 要認證+1
+22:22 < kiang> github還不能用+1, 沒有收到認證信
+22:23 < isacl> github 沒收到信 +1
+22:23 < poga> 好像很多信被卡在 mandrill backlog 裡了
+22:24 < yhsiang> hmm
+22:24 < poga> 新帳號不能寄太多信？我敲個客服 XD
+22:24 < yhsiang> 我可以幫system 改大頭照嗎 XD
+22:25 < poga> 改啊 XD
+22:26 < poga> 我先都手動啟用了
+22:28 < Lee1092> poga++  XDD
+22:31 < yhsiang> system 這樣用好可愛 XD
+22:43 < yhsiang> post調成10個好像就比較沒那麼雞肋了 xDD
+22:44 < hcchien> poga++
+22:46 < isacl> poga: 我似乎一樣不能登入，麻煩你了。
+22:47 < poga> isacl: 啊...漏按了 現在應該可以了
+22:50 < yhsiang> top of page 竟然是塞html語法 XDD
+22:51 < Rhozan> http://www.ptt.cc/bbs/Gossiping/M.1398694791.A.DB9.html
+22:51 < kcwu> Rhozan's url: [[爆卦] 轉籍投票 籍行軍 - 看板 Gossiping - 批踢踢實業坊]
+22:52 < isacl> poga: works now! thanks.
+22:54 < miaoski> isacl: 我用 Google+ 沒問題馬上就可以用了
+22:56 < isacl> miaoski: 了解. thanks.
+22:57 < miaoski> 好像應該回報給 poga XD
+22:58 < poga> miaoski: 收到 XD
+22:59 < poga> 寫信問 mandrill 了...
+23:07 < caa51> poga++
+23:14 < kiang> poga++
+23:15 < poga> 我把新註冊的都啟用了
+23:15  * poga 先去洗澡
+23:16 < yhsiang> poga: 獲得xdite支持了!!
+23:27 < hcchien> 話說，這裡有 pycon 工作人員嗎   :p
+23:34 < yhsiang> hcchien: 有講者 XD
+23:34 < pofeng> chihchun_afk: mindos 問一下 當初問 g0v內場轉播 和 議場學生 的對口是哪一位 g0v 大大負責的 (如果有的話) ?
+23:38 < hcchien> yhsiang: 可是我要找工作人員  ha
+23:41 < pofeng> hcchien: 很急嗎 ? 你應該有 yyc 的 email 吧 FB: https://www.facebook.com/yungyuc
+23:41 < kcwu> pofeng's url: [Yung-Yu Chen | Facebook]
+23:42 < hcchien> pofeng: 沒很急，只是想搭他們場佈的順風車
+23:42 < pofeng> hcchien: marr 應該也是 pycon 的人
+23:46 < hcchien> pofeng: yeap. 好像是議程組的樣子
+23:47 < hcchien> 我先去 fb ping yyc
+23:49 < shadowcrow> 議場俊達想要問說，上次在立法院裡面有沒有損失清單
+23:50 < Conrad> shadowcrow: 遺失裝備嗎？
+23:50 < shadowcrow> 想要去善後會議提所有在這次活動各團體遺失耗損的錢
+23:50 < shadowcrow> @conard 包含毀損跟遺失
+23:50 < Conrad> 有幾個 WiMAX 一直沒出現 :D
+23:51 < shadowcrow> 就是整個運動募到的錢，善後會議有部分會談後續怎麼處理，有部分就會提到很多NGO墊錢跟器材
+23:52 < shadowcrow> 我知道議場有台  ap 的無線電直接斷掉了，可是我不知道是誰的，只聽 pioneerlike 說是台大資工所一個女生的
+23:53 < pofeng> shadowcrow: 對, 但是 g0v 這邊要有人願意擔任窗口整理四散的資訊 , 要不燃很亂
+23:53 < shadowcrow> 這樣一台 wimax 要多少錢 OAO
+23:53 < shadowcrow> 我可以 ._./
+23:53 < shadowcrow> 剛好有跟他們一些人繼續聯絡
+23:53 < shadowcrow> 他們也剛好再問
+23:54 < shadowcrow> 這樣我開一個 hackpad 紀錄好嗎？
+23:58 < clkao> discourse 為何跑出一堆 sql query stats :p
+23:59 < clkao> shadowcrow: hi, 這個看要不要到 #g1v.tw 處理 可能有人不想那麼公開
+23:59 < gavin-^^> shadowcrow> 這樣一台 wimax 要多少錢  <<< 真的掉,可以統一一起找全球一動一起處理.用談的比較好談處理的費用.
+23:59 < yhsiang> clkao: 管理員才看的到吧 XD
+23:59 < Conrad> gavin-^^++ 
+23:59 < shadowcrow> 好噢

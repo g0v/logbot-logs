@@ -1,0 +1,135 @@
+--- Day changed 三 10月 29 2014
+00:00 -!- Qhair [319e02eb@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.2.235] has left #g0v.tw []
+01:48 < ETBlue> 「做#code4hk project repo比較懶寫了個script把trello 直接用作backend」是什麼妖術 >_< 
+02:06 < kiang> https://github.com/ronnywang/portal.sw.nat.gov.tw/ 好像有點大...
+02:06 < kcwu> kiang's url: [ronnywang/portal.sw.nat.gov.tw · GitHub]
+08:57 < a0kman> au: 11月最底會碰到7合一，所以萌典松會是提前一周的狀態還是往後到12月初呢@@???
+09:00 < ipa> AceChen: ok ok !
+09:58 < au> a0kman: 11/22 or 23, 我問一下場地。
+10:11 < a0kman> au: <(_ _)> 跪拜
+10:21 < t0mst0ne_> au: 請問ethercalc 和 hackfoldr 裝完後, 若要讓 hackfoldr 內容使用 local ethercalc 而非 ethercalc.org , 除了把 hackfoldr 內的 source code s/ethercalc.org/private_IP:8000/ 外, 是否還要考慮加裝其他package ? (  如 reddis ?) 謝謝!
+10:22 < au> t0mst0ne_: 應該都不用
+10:23 < au> redis-server 是可以裝（裝完之後要手動 migrate 內容），但用量不大的話是無所謂。
+10:25 < t0mst0ne_> au: 可是裝在同一檯 server http://IP:3333/ hackfolder 內新加的folder , ethercalc 指向 ethercalc.org ; 然後改完指向 http://IP:8000/ local ethercalc 之後, update ethercalc 內容; hackfoldr 卻沒有聯動 Orz
+10:26 < au> t0mst0ne_: 按 hackfoldr 的 edit + refresh 也沒用嗎？
+10:27 < au> 或是瀏覽器重新載入? 如果用 hackfoldr-2.0 ( https://github.com/hackfoldr/hackfoldr-2.0 ) 呢？
+10:27 < kcwu> au's url: [hackfoldr/hackfoldr-2.0 · GitHub]
+10:27 < t0mst0ne_> au: 然後 chrome F12 發現 http://IP:8000/../foldername/csv  not fund
+10:28 < au> t0mst0ne_: /../ 應該是 /_/ 才對
+10:29 < t0mst0ne_> au: 對 /_/item/csv not found
+10:30 < au> t0mst0ne_: 可是 http://IP:8000/item 有資料？手動在瀏覽器內鍵入 http://IP:8000/item.csv 和 http://IP:8000/_/item/csv 呢？
+10:31 < au> 檢查一下 ip 或 foldername 的拼字？
+10:31  * au 覺得應該要出 ethercalc + hackfoldr-2.0 同時安裝包 (sandstorm package 或 docker package 之類的)
+10:32 < t0mst0ne_> au:  ethercalc 的 document 都在, http://IP:8000/item.csv 這個在
+10:33 < au> t0mst0ne_: 那啟動 ethercalc 時試試 nodejs `which ethercalc` --cors
+10:34 < t0mst0ne_> http://IP:8000/_/item/csv 也在 ....  啊sorry, error code 應該是 net::ERR_SSL_
+10:34 < t0mst0ne_> net::ERR_SSL_ (failed)
+10:36 < au> 那就是 https://IP:8000 要改成 http://IP:8000
+10:36 < au> --cors 還是要加的。
+10:38 < t0mst0ne_> au: 所以要改 source code s/https/http/ ?
+10:39 < au> 是
+10:45 < t0mst0ne_> au: 感謝 , 搞定 !!
+10:46 < au> cool
+11:09 < yhsiang_> lanf0n: http://www.stormmediagroup.com/opencms/news/detail/c2c885d5-5ecf-11e4-abc1-ef2804cba5a1/?uuid=c2c885d5-5ecf-11e4-abc1-ef2804cba5a1
+11:09 < kcwu> yhsiang_'s url: [同志大遊行結束 連勝文聲援po文就消失 | 政治 | 新聞 | 風傳媒]
+11:12 < lanf0n> yhsiang_: 我查一下
+11:14 < yhsiang_> lanf0n: 我看林艸草今天只有一篇
+11:15 < lanf0n> yhsiang_: 因為是前幾天的，刪除的目前只會檢查當天... calls limit 還沒解QAQ
+11:19 < lanf0n> yhsiang_: http://128.199.192.102:3000/ 有資料~ 我讓 checker 額外跑一下XD
+11:19 < kcwu> lanf0n's url: [Testing]
+11:47 < lanf0n> db 裡面沒有那則....囧>  目前把 check feed 的時間先由 當天 改成 前三天
+12:00 < pipi> ipa: 有看到信了 努力中
+12:01 < pipi> AceChen: 服務處和販賣部能擺一起嗎
+12:24 < ipa> pipi: 所以貼紙哪一天送印?
+12:25 < ipa> pipi: 海報和提案表有設計圖嗎？連結在哪? 都沒文件很難知道進度。。。
+12:26 < pipi> 子龍比較忙 我有儘快了 現在剩決定各要印多少
+12:27 < pipi> 設計圖儘快生出來 
+12:27 < ipa> pipi: 如果需要支援這ㄧ兩天要趕快說喔 週五前可看到設計嗎？
+12:28 < ipa> pipi: 有算好送印日，取件日來得及嗎？
+12:29 < ipa> 有些要五個工作天 @@
+12:30 < ipa> 如果來不及就要印之前簡版，也需要算送收件日
+13:06 < miaoski> AceChen: 那我在 R0 應該做些什麼？
+13:23 < t0mst0ne_> http://news.ltn.com.tw/news/life/breakingnews/1143280 終於回歸喝水的時代 XD
+13:23 < kcwu> t0mst0ne_'s url: [綠茶也有問題？林淑芬再揪黑心食品 - 生活 - 自由時報電子報]
+13:47 < kiang> k.olc.tw/2014/10/我國進口貨物數據初探/ 比綠茶嚴重的還很多的樣子
+13:48 < kiang> http://k.olc.tw/2014/10/我國進口貨物數據初探/ 沒抓到重發
+13:48 < kcwu> kiang's url: [我國進口貨物數據初探 | 江明宗 . 政 . 路過]
+14:01 < t0mst0ne_> 好怪
+14:14 < Lee1092> kiang:  台灣要轉為回收王國!?  XD
+14:17 < lanf0n> 印象中回收品其實很賺....(忘了哪時候看過某篇文寫的QQ
+14:26 < kiang> 回收品超賺啊，親戚家鄰居做沒幾年就在開賓士了...
+14:28 < kiang> https://koding.com/Hackathon - 這個黑客松有點大
+14:28 < kcwu> kiang's url: [World's First Virtual Global Hackathon | Koding]
+14:33 < Lee1092> lanf0n:  kiang  回收品賺的是 中間處理回收品的廠商~    老阿公 老阿嬤  回收瓶瓶罐罐超少 orz
+14:35 < kiang> 恩，的確，當廠商賺很大，不過也是看品項啦，這次的爭議是有毒廢五金，那個賺超大，但是產生的污染很嚴重
+14:35 < kiang> 這些廠商不用期待他們會用高標準處理污染源...
+14:36 < kiang> 最後就是全民買單，廠商賺飽飽移民去外國
+14:44 < jimyhuang__> kiang: 已把你加到 g0v repository 裡頭的 owner
+14:47 < kiang> jimyhuang__++
+15:04 < kiang> http://www.theecologist.org/News/news_analysis/2611216/leaked_sellafield_photos_reveal_massive_radioactive_release_threat.html - 有人可以幫忙解釋一下為什麼用過的燃料棒放在露天水池，然後上面還有海鷗在游泳？ XD
+15:04 < kcwu> kiang's url: [Leaked Sellafield photos reveal 'massive radioactive release' threat - The Ecologist]
+15:33 < geduar1> 請問一下，summit 行政組的頭頭是哪一位呢
+15:39 < hcchien> geduar1: 有什麼事嗎
+15:41 < kiang> http://www.ithome.com.tw/news/91947 - html5 完工
+15:41 < kcwu> kiang's url: [W3C宣佈HTML 5標準制訂完成 | iThome]
+15:41 < geduar1> 我是Juanna  我剛mail了，因為訂餐需要，要了解當天各組人數狀況
+15:42 < tkirby> geduar1!
+15:42 < geduar1> @tkirby1 我不知道為什麼會變這個暱稱耶 @@
+15:44 < tkirby> hmm
+15:44 < ipa> geduar1: 找 lora，msg 給你fb
+15:48 < geduar1> @ipa 好的
+15:49 < ipa> geduar1: 記得幫我多訂三個便當（念茲在茲紀錄拍攝組 XD）
+15:49 < geduar1> @ipa 會的~
+15:50 < geduar1> @ipa msg要去哪裡看哇 XD
+15:51 < ipa> 爺？你是用什麼client上來啊 @@ 我丟到 fb 給你好了
+15:51 < geduar1> @ipa 我丟你fb了  我是用chome開網頁
+16:26 < clkao> 移 ronnywang 今天演講！
+16:26 < ipa> ETBlue: https://g0v.hackpad.com/summit-2014-Unconference-CXD0xCBDpEb unconf 籌備共筆在這
+16:26 < kcwu> ipa's url: [summit 2014 Unconference - g0v.hackpad.com]
+18:18 -!- geduar1 [guest-gedu@conference/jsconf/x-bydroajjblqpxvcr] has left #g0v.tw []
+18:40 < hychen> ;/buf10
+19:04 -!- pcchou1 is now known as pcchou
+21:05 < ipa> http://blog.yam.com/shulusama/article/80850875 moon_c__++++
+21:05 < kcwu> ipa's url: [子龍的晾衣架: 工作日誌 ｜請讓我感謝程式語言 - yam天空部落]
+21:05 < ipa> 子姓網友越來越強惹
+21:13 < a0kman> 撿到野生的 au  !!!!!!!  https://twitter.com/sasakishinya12/status/406214822460526592/photo/1
+21:13 < kcwu> a0kman's url: [ササキシンヤ on Twitter: "築地の落し物リストが凄い。 http://t.co/Zl7jYXoTzM"]
+21:15 < kiang> 有候選人抗議自己的姓名剛好跟某個殺人犯同名，然後程式自動把新聞掛在他的頁面，看樣子有機會收到警局通知了 XD
+21:18 < kcwu> 既 ETBlue 之後另一超展開?
+21:18 < kcwu> s/既/繼/
+21:29 < clkao> kiang: ... XD
+21:30 < kiang> 苦主： http://k.olc.tw/elections/candidates/view/540b5313-7a48-4850-a811-1926acb5b862
+21:30 < kcwu> kiang's url: [2014 > 村里長 > 臺北市 > 北投區 > 一德里 > 高建忠候選人 @ 選舉黃頁]
+21:36 < yhsiang> kiang: 是直接用名字撈而已？
+21:37 < kiang> yhsiang: 是啊，就最簡單的名字比對，所以原住民應該都很怨歎吧 XD
+21:37 < yhsiang> kiang: 沒有吧 至少也可以加 新聞有沒有  選舉  或是  議員, 里長 再filter
+21:37 < yhsiang> 候選人, 選舉, 議員 多一些保障 XD
+21:40 < kiang> yhsiang: 這樣子只會找出選舉期間的新聞，對於一些政治素人不利，我也是玩了之後才發現自己當過主廚 http://k.olc.tw/elections/candidates/view/53c6a7e8-a478-4641-b0ed-4699cb455a61
+21:40 < kcwu> kiang's url: [2014 > 直轄市議員 > 臺南市 > 第11選區[區域] > 江明宗候選人 @ 選舉黃頁]
+21:40 < yhsiang> kiang: 額..那你至少先幫人下架？
+21:41 < kiang> 不太想針對性處理，他在下面自己說明就好了？
+21:41 < kiang> 用 google 也一樣找得到那些資料吧...
+21:42 < kiang> 歡迎控告 google 意圖使人不當選 XD
+21:43 < yhsiang> 我覺得不一樣吧？google畢竟沒有直接把候選人跟該類新聞連結在一起
+21:44 < yhsiang> 不過主要網站還是你在維護  那就這樣吧 XD
+21:44 < kiang> 我如果掛一個 google iframe 也是類似效果，我也沒有特別針對誰做額外處理，應該沒什麼問題吧？
+21:45 < yhsiang> 不過google對於搜尋結果 是可以寫信去請他們處理的
+21:46 < yhsiang> 如果你在意對方有沒有寫信 那又是另外的事? XD
+21:47 < kiang> google搜尋結果可以針對人名做例外抗議處理？第一次聽說。只知道針對違法或隱私資料可以申訴
+21:48 < yhsiang> kiang: 或是掛著免責聲明之類的? 或是在新聞集錦加個說明 你的新聞抓的方式 XD
+21:48 < kiang> yhsiang++, 好像應該掛上去這種東西 XD
+21:49 < yhsiang> kiang: 主要是因為你的網站是選舉黃頁 目的性比google明顯, 而且按照現在的呈現方式 的確會讓人覺得那就是他
+21:53 < kiang> http://www.uploady.com/#!/download/FH~DlpAjzwj/nrOBbWvaAFgly69c - lackneets.tw 變黑名單？
+21:53 < kcwu> kiang's url: [File Upload - Uploady.com]
+23:12 < kiang> http://vote.ly.g0v.tw/bill/normal/?keyword=%E6%BF%95%E5%9C%B0%E4%BF%9D%E8%82%B2%E6%B3%95 - 這是三個草案都通過嗎？感覺好像是同一個東西
+23:12 < kcwu> kiang's url: [立委投票指南:法條修正草案檢索]
+23:24 -!- matlinuxer2_ is now known as matlinuxer2
+23:33 < au> a0kman: 萌典松確定在 11/22 Sat
+23:34 < a0kman> au: 感恩！！++++++++ 辛苦了QAQ
+23:34 < au> np!
+23:36 < simonpai> au++
+23:49 < johnny__> yhsiang++ 新竹市議員上線，工程款的城鄉差距超大  http://councils.g0v.tw/candidates/2014/%E6%96%B0%E7%AB%B9%E5%B8%82/
+23:49 < kcwu> johnny__'s url: [議員投票指南: 2014新竹市候選人]
+23:49 < caasihuang> au++
+23:50 < kiang> http://www.ccw.org.tw/p/21819 - 公督盟做的地方議會評比，他們還跟監票者聯盟合作 議員議會改革承諾書簽署活動 ( http://www.observers.tw/ccw/ )
+23:50 < kcwu> kiang's url (1/2): [【會後新聞稿】挑戰全國黑箱議會 公民團體要求簽署「議會改革承諾書」 | 公民監督國會聯盟]

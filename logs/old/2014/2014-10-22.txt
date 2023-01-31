@@ -1,0 +1,85 @@
+--- Day changed 三 10月 22 2014
+00:16 < kiang> ronnywang++, 已經有選舉資料庫的得票細節了： https://github.com/kiang/db.cec.gov.tw/pull/2
+00:16 < kcwu> kiang's url: [加上更完整的選舉資料，包括縣市、鄉鎮市區、村里、開票所等級資料 by ronnywang · Pull Request #2 · kiang/db.cec.gov.tw · GitHub]
+00:20 < ronnywang> 其實中選會的系統穩定度還不錯，我爬的超順暢的 XD
+00:20 < kiang> ronnywang: 是啊，可惜資料不夠完整
+00:30 < kiang> 台大e論壇 那邊好像也在處理選舉公報的資料（人工掃描），不知道他們最後會不會釋出原始資料
+00:48 < Lee1092> ETBlue: 找了三天 bug 總算找到 sass 不會自動 compile 的原因了~  可能是 gulp-compass 問題，目前有找到暫時解法 避開~
+01:04 < yhsiang> Lee1092: gulp-compass就戳 appleboy啊
+01:05 < Lee1092> yhsiang:  我知道  正在開 issue  XDDD
+01:17 < caasihuang> 有人用 ls 也踩到這個的嗎？ https://github.com/gkz/LiveScript/issues/569
+01:17 < kcwu> caasihuang's url: [livescript binary eats all of argv · Issue #569 · gkz/LiveScript · GitHub]
+01:26 < hychen> Lee1092: 你單存用compass編會動嗎?
+01:27 < Lee1092> hychen:  我遇到的是 要 compile example.sass  假如已經存在 example.css ，將不會 複寫  example.css
+01:27 < hychen> Lee1092: watch有被trigger?
+01:27 < Lee1092> 我直接 run build 
+01:28 < Lee1092> 沒有改 example.sass
+01:29 < Lee1092> 我修改  example.css  儲存後， run gulp sass 還是維持修改過後的  XD
+01:29 < hychen> 路徑是對的嗎?
+01:29 < Lee1092> 對的~
+01:30 < Lee1092> 因為一開始 沒有 example.css 是會產生的 example.css
+01:30 < Lee1092> 這會導致 travis-ci deploy 時， git clone 下來到 _public  後，  gulp build ，不會修改到 _public 裡的檔案   因為已經存在..  
+01:30 < Lee1092> orz...
+01:31 < Lee1092> 導致 css file 一直沒有更新
+01:36 < hychen> firebase 被google買了?
+01:39 < kiang> hychen: 看起來其他類似服務又要掛了 XD
+01:39 < kiang> https://www.firebase.com/blog/2014-10-21-firebase-joins-google.html
+01:39 < kcwu> kiang's url: [Firebase is Joining Google! - Firebase]
+01:41 < hychen> 倒也不一定
+01:42 < yhsiangCloud____> hychen: 來開公司吧 XD
+01:44 < hychen> yhsiangCloud____: 來台南啊
+01:50 < hychen> yhsiangCloud____: 不過我最近在畫關心的UI....
+01:50 < yhsiangCloud____> React!
+01:51 < yhsiangCloud____> XD
+01:51 < hychen> yhsiangCloud____: 畫草稿而已
+01:51  * hychen 在向ETBlue看齊
+01:51 < hychen> ETBlue: 你在紙上畫wireframe有用什麼工具嗎?
+02:20 < hychen> yhsiangCloud____: 還在想時間軸如果要可以diff, 要怎麼呈現比較好 XD
+02:23 < kiang> http://lovemap.tba.tw/ - 做的還不錯 :)
+02:23 < kcwu> kiang's url: [台灣愛心地圖]
+02:35 < hychen> 我想做的是兩個人坐的時間軸的diff
+02:35 < hychen> s/坐/做/
+02:36 < hychen> 畫了時間軸往上, 往右, 往下的幾種模式
+02:37 < hychen> 目前覺得時間軸往右, 上面的資訊往下, 比較清楚
+03:24 -!- chihchun_afk is now known as chihchun
+04:40 -!- chihchun is now known as chihchun_afk
+05:15 -!- chihchun_afk is now known as chihchun
+05:40 -!- chihchun is now known as chihchun_afk
+06:32 -!- chihchun_afk is now known as chihchun
+08:34 -!- chihchun is now known as chihchun_afk
+09:06 -!- chihchun_afk is now known as chihchun
+09:17 -!- chihchun is now known as chihchun_afk
+09:24 -!- chihchun_afk is now known as chihchun
+09:47 < cepong> gugod: 郵局的資料今年8月有更新 而且官方下載專區被拿掉了 https://github.com/g0v/p0st-data (README.md裡的部分連結失效)
+09:47 < kcwu> cepong's url: [g0v/p0st-data · GitHub]
+11:18 < cepong> ETBlue Lee1092:  先來把前幾天mockup專用的PrjList填寫內容貼上來好了 只有完成一小部分 http://pastebin.com/zVKuqjde
+11:18 < kcwu> cepong's url: [Mockup專用prj資料填寫 - Pastebin.com]
+11:53 < billy3321> 我想問一下，50天50張選舉圖表
+11:53 < billy3321> 如果出一個「各政黨上次地方選舉的政治獻金支出」圖表
+11:53 < billy3321> 有搞頭嗎？
+14:23 < tonyq___> hello :D
+14:23 < tonyq___> 柯辦目錢有個計畫是 11/15 ~ 11/16 想辦個 hackathon，題目只要跟開放資料跟開放政府有關即可，預計 3-5 人一組報名。:D
+14:24 < tonyq___> 先預告一下
+14:24 < tonyq___> 剛好是 summit 的後一週，看看有沒有人有興趣來玩，報名資訊之後會再貼過來 :)
+14:46 < johnny__> kiang: 陰魂不散的又來了 :P  bills提案人有些會以、隔開，再麻煩幫split了 http://www.tncc.gov.tw/motions/page.asp?mainid={4EA174EC-7A8A-4840-A9A7-A83F4DAD7F42}
+14:46 < kcwu> johnny__'s url: [臺南市議會議案資訊]
+15:14 < johnny__> kiang: 然後可否加入連署人 petitioned_by
+15:48 -!- YuCheng [uid28221@gateway/web/irccloud.com/x-rrsuvhyuumqbtrwo] has left #g0v.tw []
+15:49 -!- YuCheng [uid28221@gateway/web/irccloud.com/x-rrsuvhyuumqbtrwo] has left #g0v.tw []
+17:24 -!- cepong [guest-cepo@conference/jsconf/x-aalsqykwpepcqaib] has left #g0v.tw []
+17:40 -!- yan is now known as a0726h77
+18:55 < Michael_LI> ronnywang［分享］今天到大學聽課（與除黴計劃這邊給學生介紹專案），這堂課是必修的「新聞倫理」，今天兩個案例都是記者的新聞稿被長官改稿，把事件編劇成為其他的脈絡。
+18:55 < Michael_LI> 續上、（老師說的）記者被改到「崩潰」，「沒有崩潰，只有更崩潰！」。這個案例是中時「游婉琪」記者離職的案例／http://cherryaki66.blogspot.tw/2012/08/blog-post_31.html
+18:55 < kcwu> Michael_LI's url: [之所以揮霍: 人生總有非賣品 我拒絕旺中老闆保衛戰]
+19:59 -!- chihchun is now known as chihchun_afk
+20:59 < kiang> johnny__: fixed
+21:43 -!- chihchun_afk is now known as chihchun
+22:10 < clkao> 科科 firebase 被 google 買了
+23:02 < tkirby> !
+23:03 < tkirby> 游婉琪.. 好熟的名字
+23:07 < au> ... g0v media policy 的間接作者 XD
+23:28 < jimyhuang__> 似乎移居花蓮中... ！！
+23:34 -!- chihchun is now known as chihchun_afk
+23:44 < johnny__> kiang: thanks!   已上線，就差出缺席了，表決沒找到  http://councils.g0v.tw/candidates/2014/%E8%87%BA%E5%8D%97%E5%B8%82/
+23:44 < kcwu> johnny__'s url: [議員投票指南: 2014臺南市候選人]
+23:47 < Michael_LI> 才剛回來只能說一句話／tkirby,au,jimyhuang__／這個江湖。　當年的腥風血雨我們是旁觀者。　現在的風吹草動，身在其中。

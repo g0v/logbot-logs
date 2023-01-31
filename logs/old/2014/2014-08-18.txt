@@ -1,0 +1,213 @@
+--- Day changed 一  8月 18 2014
+00:07 < Lee1092> ETBlue:  已 Merge ，主要再安裝 sass compass 那些時  不要安裝 document 加快  deploy 的速度  :p
+00:11 < clkao> cesium 太猛了
+00:44 < tonyq> lanf0n: regex 在多行的情況要注意看 multiple flag 有沒有需要開
+00:45 < tonyq> 有些語言需要，這就要看你環境決定了
+01:49 < gugod> influx db admin 界面 localhost:8083 竟然無法在電腦離線狀態下登入，2014 年果然厲害。
+01:49 < clkao> !
+01:51 < gugod> 應該是因為這 tag: <script src="http://get.influxdb.org/influxdb-latest.js">
+02:03 < gugod> 好像已經在 influxdb-admin 改掉了: https://github.com/influxdb/influxdb-admin/commit/966e5f7a04761a9a25ed526a4658b5a697d540d7
+02:03 < kcwu> gugod's url: [Vendorize all external assets. · 966e5f7 · influxdb/influxdb-admin · GitHub]
+03:15 < clkao> ronnywang: http://service.etax.nat.gov.tw/etwmain/front/ETW113W1_2  這裡可以查非營利事業統一編號
+03:15 < kcwu> clkao's url: [財政部稅務入口網公示資料查詢服務]
+03:16 < clkao> 而且還可以 post skipValidate=yes 非常 friendly!
+03:17 < gugod> (Y)
+05:39 < Michael_LI> ［需求單］這裡有個日文的文言文歌詞／需要協助翻譯中文白話文／先謝／曲目：傷林果　　http://d.hatena.ne.jp/hunihuni_sakuma/20111108
+05:39 < kcwu> Michael_LI's url: [[邦楽]Bad Apple-傷林果- 歌詞 - ふにふにの退屈しのぎ]
+05:56 < Michael_LI> 續上／麻煩廣告／g0v 文化部／https://groups.google.com/forum/?hl=zh-TW#!topic/g0v-moc/H5TfPOmMYZs
+05:56 < kcwu> Michael_LI's url: [Google 網上論壇]
+06:30 -!- iMac [~iMac@cm218-253-183-114.hkcable.com.hk] has left #g0v.tw ["Leaving"]
+08:24 < t0mst0ne_> 好怪，er 又怪怪的
+08:25 < t0mst0ne_> 出現一個極端值 XD
+08:49 < Michael_LI> 我覺得這歌詞簡直就是幫 g0v 編的「推坑之歌」，用來啟發一些懵懵懂懂徒呼無奈的芸芸眾生／　#自己不主動展開行動，在時間的空隙中持續漂流　／https://www.youtube.com/watch?v=qFOk3zJt77M&index=39&list=PLn7CPpVp9BT0Qb78G7FChDIWXJm8_COH4
+08:49 < kcwu> Michael_LI's url: [【東方】Bad Apple!! ＰＶ【影絵】外加字幕畫質向上版 - YouTube]
+08:54 < pm5> clkao: 好像只查得到營利事業的? 勵馨, 家扶, 都沒有
+09:14 < lanf0n> 微破關.....來去吃早餐 (*sweat
+09:37 < AceChen_> ipa: 綠客松是哪天？如果可以亂入的話拿來討論啥米好像也不錯
+09:37 < AceChen_> ipa: 不過大家也要能到才行 Orz
+09:42 < pipi_> AceChen_: ++
+09:42 < t0mst0ne_> 原來是 1408294800000 的時候, 待床人數match 到 hospital_sn , 所以爆點  clkao  guest 可以刪除2 db 上的 2筆 ?
+09:43 < t0mst0ne_> http://imgur.com/4MEcu89
+09:43 < kcwu> t0mst0ne_'s url: [imgur: the simple image sharer]
+09:57 < ipa> AceChen_: 週三 19:30 在moz 工寮
+10:00 < ipa> AceChen_: 可以開場務組的會？或看 hcchien 要不要召開其他組.... 我是會去跟阿端再順一下議程
+10:03 < AceChen_> ipa: 我先約約看 XD 不過只要幾個人到就可以迷你松腦力激盪一下了 ( cc Lee1092 )
+10:04 < ipa> 好啊 \o/
+10:14 < Lee1092> AceChen_:  ipa  這禮拜三嗎?  這禮拜三剛好有事     囧囧囧
+10:25 < t0mst0ne_> oh , dict(zip(keys, match)) 有點風險
+10:25 < johnny__> lanf0n: 換行我是用\s*，re.M是影響匹配行首^行尾$，原文有換行的情況下，想要匹配其中各行的行首行尾就要記得加re.M
+10:26 < johnny__> t0mst0ne_: 遇到什麼狀況?
+10:27 < t0mst0ne_> https://gist.github.com/t0mst0ne/fba18dcfd89b5ac69b9e  => 不知道當時web上data如何, 有2筆, dump 下來, pending_ward match 到 hospital_sn
+10:27 < kcwu> t0mst0ne_'s url: [馬偕醫院]
+10:28 < t0mst0ne_> http://imgur.com/X4Lkijw
+10:28 < kcwu> t0mst0ne_'s url: [imgur: the simple image sharer]
+10:29 < t0mst0ne_> johnny__:  zip(keys, match) 如果順序跑掉, 或中間有個none, 是否會match 錯 ?   不過我不知道當時網頁到底呈現哪種狀況 ....
+10:31 < johnny__> 如果有給None就會給對應的key，dict(zip(['a', 'b'], [None, 2]))    =>  {'a': None, 'b': 2}
+10:33 < t0mst0ne_> 我猜是這行 "match = [int(value) for value in re.findall(u'>(\d+)</', html.text)]" 因為沒有 none 的選項
+10:33 < t0mst0ne_> 另外不知道Grafana 對 none 的處理是什麼 ...
+10:35 < lanf0n> unicode 的 dict string 要怎麼轉成 dict.....囧
+10:35  * lanf0n 為何會出現 unicode type 啊QAQQQ
+10:39 < johnny__> t0mst0ne_:  那四個數字如果有一個沒有的話的確會有bug，我改改看再跟你說（抓網頁還是習慣用scrapy）
+10:42 < johnny__> lanf0n: json.loads(str(dict_string))  可以嗎
+10:42 < lanf0n> johnny__: no...
+10:43 < johnny__> string貼一下吧
+10:43 < lanf0n> {"from": {"category": "Community", "name": "\u5509\u984d", "id": "307695815922720"}, "privacy": {"value": ""}, "actions": [{"link": "https://www.facebook.com/307695815922720/posts/931189710239991", "name": "Comment"}, {"link": "https://www.facebook.com/307695815922720/posts/931189710239991", "name": "Like"}], "updated_time": "2014-08-18T01:42:13+0000",
+10:43 < lanf0n> "created_time": "2014-08-18T01:42:13+0000", "message": "\u9019\u4e0b\u53ef\u4ee5\u7121\u6b62\u5883\u7684\u767c\u5ee2\u6587\u4e86!!!", "type": "status", "id": "307695815922720_931189710239991", "status_type": "mobile_status_update"}
+10:43 < kcwu> lanf0n's url (1/2): [唉額 - 這下可以無止境的發廢文了!!! | Facebook]
+10:43 < lanf0n> 囧
+10:45 < t0mst0ne_> johnny__: 其實另一個可能: 當時網頁維修或空白 或404 ...  我給了一個沒有table的網頁, output {"pending_bed": null, "pending_doctor": null, "pending_ward": "1101100011"}  
+10:46 < johnny__> lanf0n: 這直接json.loads()就可以了
+10:47 < johnny__> t0mst0ne_: 了解，那如果沒資料你們想要跳過還是?
+10:48 < johnny__> 還是都補null
+10:48 < t0mst0ne_> 要問 clkao  Grafana 怎麼處理?  可能跳過比較直接...
+10:49 < lanf0n> 卡在很奇妙的地方...
+10:49 < lanf0n> t0mst0ne_: 補0
+10:50 < t0mst0ne_> lanf0n: 補0 grafana 畫圖連線會很怪 , 趨勢大逆轉, 崩盤又暴漲 XD
+10:50 < johnny__> 我先寫補null的
+10:51 < lanf0n> t0mst0ne_: 補null 的話圖型上看不到啊XD
+10:52 -!- chihchun_afk is now known as chihchun
+10:52 < t0mst0ne_> lanf0n: 應該是 .....但是時間, hospital_sn 會留著, 剩下都是null , grafana 應該不會畫上去吧 ?!
+10:54 < lanf0n> t0mst0ne_: 這我就...不知道了
+10:56 < lanf0n> tsmh 沒填的話是補 0
+10:57 < t0mst0ne_> 好像半夜比較容易發生...也許server reboot or something like that ...
+11:00 < t0mst0ne_> johnny__: ㄚ, 我確定, 應該是前4個沒有, 後面'通報''時間' 又是null, 所以 SN match 到 pending_bed 
+11:02 < t0mst0ne_> 雖然一對一 指定可以解決, 但是想看怎麼補Null :p
+11:02 < johnny__> t0mst0ne_: 了解，現在既然時間充裕，就把程式寫好一點好了 :)
+11:16 -!- chihchun is now known as chihchun_afk
+11:29 < hcchien> http://summit.g0v.tw/index.html   # 更新囉!!
+11:29 < kcwu> hcchien's url: [g0v Summit 2014 啥米零時政府]
+11:37 < lanf0n> ....原來有一個 bug 是 utf8mb4...囧
+11:42 < Lee1092> 好漂亮!!!   #summit 官網
+11:59 < johnny__> t0mst0ne_: lanf0n: update mmh gist, please try it! https://gist.github.com/thewayiam/e0538f4b6bcf90bade0f
+11:59 < kcwu> johnny__'s url: [prase mmh live ER status board]
+12:53 < clkao> pm5: 可以查到耶 你是查新北市嗎
+13:05 -!- chihchun_afk is now known as chihchun
+13:33 < lanf0n> yhsiang: 吼 抓到了!! http://i.imgur.com/XL8Bl2r.png
+13:38 < tkirby> hcchien: 上次那個動民主 0.5 其實沒有把權限弄好, 公開投票的話我蠻怕被亂搞的
+13:39 < tkirby> hcchien: 也許可以先用其他平台.. 不然就等我把donvote 弄到可以用
+13:39 -!- kengyu_ is now known as kengyu
+13:40 < Lee1092> lanf0n:  看到畫面突然想到  把 facebook url 前面 https://www.facebook.com/  省略，  會不會節省很多空間~?  XD
+13:41 < lanf0n> Lee1092: 存在 db 倒是還好(吧?)  不過之後併前端的話 省不省略倒是....(其實沒啥意見
+13:42 < Lee1092> lanf0n:   恩恩~   如果沒空間疑慮  那到沒差~  只是看到想到  XD
+13:43 < hcchien> tkirby: 喔，其實不會比上次投 summit 網頁主視覺克難吧    :p
+13:44 < lanf0n> 現在只希望第三支 checker 不要在我睡覺的時候炸掉...(雖然應該是不會) 
+13:45  * lanf0n & zzz
+13:45 < clkao> t0mst0ne_: 我手動砍掉了
+13:46 < t0mst0ne_> clkao: thanks!  昨天碰到北融的朋友, 他會轉給院長看看 ....XD
+13:47 < tkirby> hcchien: XD
+13:48 < t0mst0ne_> johnny__: 看到了! 努力研究中 ...
+13:54 < johnny__> t0mst0ne_: 哪邊怪怪的直接ping我吧，主要就是各欄位匹配寫得更明確一點
+14:00 < clkao> 改好記得送 PR 更新 er.mohw 的 submodules :p
+14:14 < hcchien> tkirby: 所以有什麼建議嗎   :p
+14:25 < Michael_LI> 讓你們笑笑／看到這個改編詞　非常適合描述現在選舉／　＃好的蘋果吃一次　壞的蘋果一輩子　好的哪有壞的好　人人心中最明瞭　／《爛蘋果》～中文文藝填詞～　https://www.youtube.com/watch?v=y0rDbXsT_X0&index=75&list=PLn7CPpVp9BT0Qb78G7FChDIWXJm8_COH4
+14:25 < kcwu> Michael_LI's url: [東方vocal【Bad Apple】爛蘋果【中文填詞註解字幕】 - YouTube]
+14:55 < tkirby> hcchien: 什麼時候要投呢
+15:17 -!- kengyu_ is now known as kengyu
+15:24 < pm5> clkao: 查到了. 不知為何早上查沒 XD
+15:31 < yhsiang> hcchien: 最新消息字會看不清楚耶
+15:37 -!- dlackty_ is now known as dlackty
+16:12 < hcchien> tkirby: 最快什麼時候可以投
+16:31 -!- mp607_ is now known as mp607
+16:41 -!- orchard_qqrobot [d2068d67@gateway/web/cgi-irc/kiwiirc.com/ip.210.6.141.103] has left #g0v.tw []
+17:04 < tkirby> hcchien: 不確定說
+17:06 < tkirby> 如果給個一兩個禮拜的時間也許可以讓東西可以用
+17:44 -!- hh [daad4a32@gateway/web/cgi-irc/kiwiirc.com/ip.218.173.74.50] has left #g0v.tw []
+17:49 -!- AceChen_ is now known as AceChen
+18:18 < hcchien> yhsiang: patch 一下?!
+18:18 < hcchien> tkirby: hmm.....，那就不要投票好了    lol
+18:46 < hychen> ETBlue: 外星人有沒有興趣來台南給成大學生講一下你的g0v超展開，技能狂點人生, 據我的了解jserv跟dirty都想邀你去講。
+18:49 < clkao> 要 ETBlue 出遠門應該需要有正妹和或 hackathon 才能吸引得動
+18:56 < hychen> 糟糕, dirty 下學期的課都男的...
+19:03  * Lee1092 想聽 ETBlue 演講~
+19:12 < pipi_> hychen: 我在台南了欸XD
+19:34 < Michael_LI>  <pipi_>  <----正妹？？？
+19:48 < lanf0n> MySQLdb用 autocommit(True) 是不是會有延遲....囧?  (但每個 update, insert 都手動.commit() 好像有點...
+20:38 < ETBlue> clkao: 怎麼那麼中肯XD
+20:39 < ETBlue> hychen: Lee1092: 我覺得根本的問題是我的經驗很沒參考價值，尤其是對本科系的人來說…
+20:40 < ETBlue> hychen: Lee1092: 總不能跟他們老實說技能樹超展開的秘訣是 1.把打工丟著不管 2.和工程師結婚 這樣吧 ><
+20:44 < yhsiang> ETBlue++
+20:45 < yhsiang> ETBlue: 其實是有正妹最重要 :p
+20:45 < yhsiang> hcchien: repo在?
+21:04 < pipi_> Michael_LI: 我是歪弟
+21:08 < ipa> ETBlue 如果要去講超展開我想跟 XD
+21:09 < ipa> hychen: 只好包棟民宿辦黑客松了
+21:11 < yhsiang> ipa: 你就跟ETBlue一個人講超多人  一個講超展開啊 :p
+21:12 < xsoameix_> 不知道有沒有人聽說在台灣有人在做反編譯的？(assembly to c)
+21:14 < hcchien> yhsiang: 我原來以為在這裡.....   # https://github.com/g0v/summit.g0v.tw
+21:14 < kcwu> hcchien's url: [g0v/summit.g0v.tw · GitHub]
+21:15 < hcchien> yhsiang: 所以應該是 https://github.com/g0v/summit.g0v.tw/tree/gh-pages
+21:15 < kcwu> hcchien's url: [g0v/summit.g0v.tw at gh-pages · GitHub]
+21:16 < yhsiang> hcchien: got it~
+21:16 < ipa> ETBlue: 可以說秘訣是 1. 因為熱愛學習，把打工丟著不管 2.就省略 XDD
+21:19 < Jedi_> 2.=>找到合適的對象一起成長，更有效
+21:20 < yhsiang> 找個封頂的組隊練等自然快～:p
+21:25 < xsoameix_> clkao: 等報告完，就開始做這頁好了：http://g0v.github.io/semantic-ui-experiment/public/ly-calendar.html
+21:25 < kcwu> xsoameix_'s url: [議程總覽 | 零時政府立法院]
+21:26 < yhsiang> xsoameix_++
+21:37 < lanf0n> yhsiang: 發現把延用原本 politwoops-collector 的參數獨立出來的話....似乎可以merge 回原本的 project run XD
+21:40 < yhsiang> lanf0n: GJ!
+22:04 < CornGuo> [微 Beta] http://cornguo.nlplab.tw/temp/jicrlf/ (hint: 輸入一些中文句子)
+22:04 < kcwu> CornGuo's url: [JiCRLF]
+22:09 < lanf0n> yhsiang: vps 開新的 session 之後可以直接斷線(但繼續工作...嗎? 囧? 
+22:12 -!- zea1ancer is now known as zealancer
+22:12 < lanf0n> 應該說 我要怎麼樣可以.... 連過去之後開三個 worker 然後...離線(但worker 不會停止)可以再連回同個畫面 囧?
+22:13 < ensky> lanf0n: screen
+22:14 < lanf0n> ensky: !!! (研究中
+22:15 < CornGuo> lanf0n: screen or tmux
+22:25 < lanf0n> 卡住了QAQQQQ tmux 進到類似 insert mode 沒辦法離開囧
+22:26 < Lee1092> clkao:  高村長被點名了 XD https://www.youtube.com/watch?v=sUI_0NFdLCQ&feature=youtu.be
+22:26 < kcwu> Lee1092's url: [ALS Ice Bucket Challenge -- 蔡玉玲政委 - YouTube]
+22:27 < ipa> orz 他在看影集騎腳踏車，跟他講了完全沒有反應 
+22:28 < Lee1092> 這次是水坑了~  XD
+22:28 < ipa> http://www.mnda.org.tw/Pages_Show.asp?AD=3%2C11&FID=5&ID=170
+22:28 < kcwu> ipa's url: [漸凍人協會]
+22:29 < lanf0n> .....好可怕 ((水桶挑戰會蔓延到 g0v 來嗎 囧
+22:30 < ipa> 不會吧
+22:31 < Lee1092> lanf0n:  到 g0v 也只會變成一個一個坑~  
+22:31 < chihchun> 期待看高村長跳水坑 
+22:31 < ipa> 看到推服貿的大官在為需要長照的漸凍人潑水還蠻orz的
+22:32 < kiang> 期待看高村長跳水坑+1 XD
+22:33 < Lee1092> ipa:   hmm....   好諷刺
+22:33 < pofeng> clkao: 趕快潑冰水, 順便幫 ocf 募款 !! 
+22:35 -!- wonder__ is now known as wonder
+22:41 < clkao> orz
+22:42 < wonder_> 各位大大，有沒有一個工具可以畫出論文的refs彼此之間關聯的graph，並可以根據時間還有關鍵字幫我做整理，然後顯示宏觀的整個路線脈絡還有趨勢(因為論文之間應該還是有些承先啟後)，例如說我只要input一篇論文，它可以幫我recursive裡面的參考論文的參考論文，一直追然後畫出一個關聯的graph。：Ｐ
+22:44 < dirty_> wonder_: 你是想問如果要自己做, 有沒有什麼套件對吧, 不是全部都做好的那種工具
+22:44 < wonder_> 有做好的也好啊ＸＤ
+22:45 < wonder_> 大致想要 timeline＋graph的視覺化呈現
+22:50 < xsoameix_> wonder_: 先 parse 出每篇論文的 refs，然後存成 nodes 的格式，再交給畫 graph 的套件去秀？
+22:52 < dirty_> d3js?
+22:52 < wonder_> 恩恩，我有參考那些d3js的graph，不過感覺還要再加上timeline才比較好去瀏覽
+22:53 < wonder_> 不過可以先試試
+22:53 < wonder_> 看會長出什麼樣子ＸＤ
+22:53 < xsoameix_> wonder_: gource ?
+22:53 < dirty_> d3js 已經一統江湖了嗎?
+22:54 < hychen> http://anrope.com/blog/2011/05/11/hey-google-scholar-where-is-my-citation-visualization-tool/
+22:54 < kcwu> hychen's url: [Hey Google Scholar, where is my citation visualization tool? | anrope.com/blog]
+22:54 < ETBlue> ipa: Jedi_: 你們想法好正面 XDDD
+22:54 < dirty_> Gource 應該比較適合 single parent 的, 不過 refs 應該不是這種關係
+22:55 < dirty_> hychen: 怎麼找到這 link 的 XD
+22:56 < hychen> dirty_: 想出關鍵字去找到要的資訊也是一種專業能力
+22:56 < hychen> dirty_: you should tech this in course (誤)
+22:56 < xsoameix_> dirty_, wonder_: gource 有 timeline，這個地方應該可以參考
+22:58 < dirty_> http://ip-science.thomsonreuters.jp/images/iifl/kajikawamap.jpg
+22:59 < hychen> http://papercube.peterbergstrom.com/#Papers/Per_Year/1/1698/3
+22:59 < hychen> 這好high
+22:59 < dirty_> http://well-formed-data.net/archives/192/well-formed-eigenfactor
+22:59 < kcwu> dirty_'s url: [Well-formed data » well-formed.eigenfactor]
+23:00 < dirty_> well-formed-data 那篇, 有解釋每個圖能幹嘛
+23:01 < dirty_> A stacked column visualization shows how cluster structure and journal importance change over time. # 這句講得很準, 我看的時候也是覺得這圖能找出最重要論文(不過通常就是 nature, science 那種)
+23:02 < wonder_> hychen++ 感覺就是那樣！
+23:06 < hychen> wonder: 不過他那個tool只能找demo databae裡的資料
+23:13 < hcchien> clkao: 你手上還有很多牌耶，處理一下吧
+23:14 < yhsiangCloud__> 論文 refs 視覺化不是有人做過了嗎 XD
+23:14 < hychen> yhsiangCloud__: 賞幾個工具來吧
+23:15 < yhsiangCloud__> Timeline要做到是dynamic social network吧
+23:16 < yhsiangCloud__> hychen: 上次ccsp我記得有一組就是做論文相關
+23:16 < hychen> yhsiangCloud__: 不是做author吧, 是做citation and reference 
+23:17 < yhsiangCloud__> 應該也有？
+23:18 < hychen> yhsiangCloud__: 有營運嗎?
+23:36 < yhsiang> hychen: https://gephi.github.io/features/
+23:37 < clkao> hcchien: 真的!
+23:54 -!- wonder_ [~wonder_@61-227-247-38.dynamic.hinet.net] has left #g0v.tw []
+23:58 < lanf0n> "\xFF" 是哪種 encoding QQ

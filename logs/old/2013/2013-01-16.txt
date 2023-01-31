@@ -1,0 +1,524 @@
+--- Day changed 三  1月 16 2013
+00:09 < walkingice> clkao, 小叮噹什麼都變得出來 XD
+00:11 -!- pm5 [~pm5@111-248-215-222.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+00:12 < clkao> oh, jquery 2.0beta
+00:33 < tkirby_> 效果好像不錯.. # 旋轉的台北市 in SVG http://bl.ocks.org/d/4539556/
+00:41 < clkao> tkirby++ # 太威了
+00:41  * clkao 算一下時間 兩小時 （中間應該還有嬰兒 preempt)
+00:42 < clkao> 22:42 < tkirby_> 我覺得 svg -> webgggl 要轉得漂亮應該頗困難.. 之前發現 d3js 可以直接 animate path, 在想有沒有可能直接用 svg 做       │·····
+00:43 < kcwu> tkirby_*頗困難=2hr
+00:43 < clkao> 圖學修的好 嬰兒沒煩惱 ?
+00:43 < clkao> kcwu: 那個不是頗困難的 
+00:43 < clkao> 22:44 < tkirby_> 如果限制住 camera 移動的範圍, z-order 應該不難算                                                                    │·····
+00:43 < clkao> 不難算 應該是不算難 再難一點點
+00:44 < tkirby_> ...... oops XD
+00:44 < clkao> tkirby_: 來個台北市+新北市火力展現吧... 順便 render 一下 texture XD
+00:44 < tkirby_> 這樣下去就沒辦法睡了.. XD
+00:45 < tkirby_> multi-polygon 的格式理解不能中
+00:46 < ipa> mockup tool看起來很有趣，心動想玩玩看
+00:47 < clkao> tkirby_: 他就是 n 個 polygon
+00:47 < clkao> tkirby_: 但是 counter clock wise 的是洞
+00:48 < clkao> 這就是 three.js 有 bug tj4
+00:49 < tkirby_> clkao: 可是不像 polygon 每個點是兩個數字, multi-polygon 每個點有三個... 為什麼呢 XD
+00:49 < clkao> 第三個不重要吧
+00:49 < tkirby_> 咦 XD
+00:49 < clkao> 應該是 simplify 塞進去的一個東西
+00:49 < clkao> 我記得
+00:49 < tkirby_> 嗚阿.. 我的睡眠...
+00:49 < clkao> 他好像算三角形去決定點要不要拿掉
+00:49 < clkao> 然後我沒有 strip 掉就直接 serialize 
+00:50 < tkirby_> 那個, hackath1n 經費還夠嗎? 需要贊助嗎? (轉移話題)
+00:50 < tkirby_> 我們應該來放個 donate 的按鈕
+00:50 < clkao> tkirby_: 夠耶... 藝立協有尾牙餘款贊助 XD
+00:51 < clkao> 有考慮是不是當天放一堆信封 還有一個箱子 自由贊助... ?
+00:51 < tkirby_> clkao: 喔耶 藝力協++
+00:51 < tkirby_> 聽起來不錯
+00:51 < clkao> 結束時公布一下... 我們沒有賣紀念品 請大家把當天產生的 code/text/artwork 當紀念品帶回去 :P
+00:52 -!- juanna [~juanna@114-37-95-10.dynamic.hinet.net] has joined #g0v.tw
+00:52 -!- Seagal82 [72243c9d@gateway/web/freenode/ip.114.36.60.157] has joined #g0v.tw
+00:53 < Seagal82> yo
+00:53 < clkao> hi Seagal82
+00:53 < Seagal82> hi hi everybody ~
+00:53  * clkao 偷看一下 tkirby 的 code 當睡前讀物
+00:54 < clkao> tkirby_: 話說你這顏色好 google 啊
+00:55 < clkao> tkirby_: 對了 你的 - 最好前後有空白 不然很容易踩到雷
+00:55 < clkao> 因為 a-bc 是 valid identifier
+00:55 < clkao> 因為你前面是 ] 所以沒事
+00:55 < clkao> 然後 [0] 可以寫 .0
+00:55 < tkirby_> clkao: 我隨便挑了幾個鮮艷的顏色來作.. XD
+00:56 < tkirby_> clkao: 其實蠻常碰到 a-b  -> aB not defined 的, 只是還不習慣加空格.. XD
+00:57 < Seagal82> 我怎麼直覺地 看了看...就想開個ptt版討論...囧
+00:57 < Seagal82> g0v.tw有ptt1/2版嗎? XD
+00:57 < tkirby_> hmm
+00:58 < clkao> 不過 目前討論就是 irc, hackpad
+00:58 < tkirby_> 其實 blah[x]-xx 是善用 livescript 的 feature!  (誤)
+00:58 < clkao> orz
+00:58 < clkao> 不知情的人拿去改很容易中槍
+01:00 < tkirby_> ..XD
+01:03 -!- ij1iao [~ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+01:04 < tkirby_> 是說其實我也沒特別去算 z-order.. 這樣應該還是會露出破綻
+01:05 < tkirby_> 來睡 XD
+01:08 < clkao> tkirby_: 科科 對了 看看能不能用那個 sattelite projection 長 z ?
+01:08 < clkao> 這樣應該可以不用管 caemra
+01:08 < clkao> ij1iao!
+01:14 < clkao> google 首頁這什麼怪遊戲 XD
+01:19 -!- QQ_bear [6ff01a80@gateway/web/freenode/ip.111.240.26.128] has joined #g0v.tw
+01:20  * walkingice 比較喜歡音樂，有 old school 的感覺
+01:31 -!- QQ_bear [6ff01a80@gateway/web/freenode/ip.111.240.26.128] has quit [Quit: Page closed]
+01:32 -!- QQ_BEAR [6ff01a80@gateway/web/freenode/ip.111.240.26.128] has joined #g0v.tw
+01:50 -!- dunhill [~dunhill@ec2-54-248-99-1.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+01:55 -!- QQ_BEAR [6ff01a80@gateway/web/freenode/ip.111.240.26.128] has quit [Quit: Page closed]
+01:57 -!- ychsiao [ychsiao@FreeBSD.stu.edu.tw] has quit [Ping timeout: 248 seconds]
+01:57 -!- superd_ [superd@saturn.stu.edu.tw] has joined #g0v.tw
+01:57 -!- ychsiao [ychsiao@FreeBSD.stu.edu.tw] has joined #g0v.tw
+01:57 -!- KN16H7_ [knight@saturn.stu.edu.tw] has joined #g0v.tw
+01:57 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 248 seconds]
+01:57 -!- KN16H7 [knight@saturn.stu.edu.tw] has quit [Ping timeout: 248 seconds]
+01:57 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+01:58 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 260 seconds]
+02:16 -!- shenghsiu [~shenghsiu@64-121-94-53.c3-0.smt-ubr1.atw-smt.pa.cable.rcn.com] has joined #g0v.tw
+02:19 -!- shenghsiu [~shenghsiu@64-121-94-53.c3-0.smt-ubr1.atw-smt.pa.cable.rcn.com] has quit [Client Quit]
+02:24 -!- Seagal82 [72243c9d@gateway/web/freenode/ip.114.36.60.157] has quit [Quit: Page closed]
+02:29 -!- walkingice [~walkingic@114-46-251-228.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+02:29 -!- lingxi [d0c43c32@gateway/web/freenode/ip.208.196.60.50] has joined #g0v.tw
+02:31 -!- lingxi [d0c43c32@gateway/web/freenode/ip.208.196.60.50] has quit [Client Quit]
+03:10 -!- whiteg [whiteg@muhonen.net] has left #g0v.tw []
+03:16 -!- Supaplextw [~Lucky@114-36-234-176.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+03:26 -!- hothero [01a9b0f4@gateway/web/freenode/ip.1.169.176.244] has joined #g0v.tw
+04:07 -!- pm5 [~pm5@111-248-215-222.dynamic.hinet.net] has joined #g0v.tw
+04:12 -!- pm5 [~pm5@111-248-215-222.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+05:21 -!- juanna_ [~juanna@114-37-95-178.dynamic.hinet.net] has joined #g0v.tw
+05:21 -!- juanna [~juanna@114-37-95-10.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+06:37 -!- hothero [01a9b0f4@gateway/web/freenode/ip.1.169.176.244] has quit [Ping timeout: 245 seconds]
+08:35 -!- MnO2 [~mno2@1.34.43.236] has quit [Quit: Leaving]
+09:07 -!- thschee [~thschee@199.48.231.89] has joined #g0v.tw
+09:11 -!- a2n_ is now known as a2n
+09:11 -!- a2n [~a2n@ec2-54-248-151-13.ap-northeast-1.compute.amazonaws.com] has quit [Changing host]
+09:11 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+09:19 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+09:34 -!- MnO2 [~mno2@nat/yahoo/x-uhynjigsijpzsvsm] has joined #g0v.tw
+09:35 -!- KNY [~Adium@118-170-70-86.dynamic.hinet.net] has joined #g0v.tw
+09:39 -!- KNY [~Adium@118-170-70-86.dynamic.hinet.net] has left #g0v.tw []
+09:42 -!- zz_chihchun is now known as chihchun
+09:48 -!- timdream [~timdream@123-204-146-97.adsl.dynamic.seed.net.tw] has quit [Quit: timdream]
+09:50 -!- neoesque [~neoesque@210.59.147.232] has joined #g0v.tw
+09:51 -!- shenghsiu [~shenghsiu@64-121-94-53.c3-0.smt-ubr1.atw-smt.pa.cable.rcn.com] has joined #g0v.tw
+09:53 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has joined #g0v.tw
+09:53 -!- chihchun is now known as zz_chihchun
+09:53 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has left #g0v.tw []
+09:54 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has joined #g0v.tw
+09:54 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has left #g0v.tw []
+09:58 < kanru`> @@
+10:01 < shenghsiu> Hello 大家好
+10:02 < shenghsiu> 今天剛發現有這個 group，對你們在做的事情很感興趣，可以的話也想幫忙出點力
+10:03 < tkirby_> clkao: 你是說 d3.geo.satellite 嗎
+10:03 < tkirby_> shenghsiu: 你好, 來個自介吧.. XD
+10:04 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has joined #g0v.tw
+10:04 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has left #g0v.tw []
+10:04 < shenghsiu> 我現在在美國念研究所，讀數學和電腦
+10:05 < shenghsiu> 看到你們的成果覺得很佩服
+10:05 < tkirby_> 喔喔, 所以人在美國
+10:06 < shenghsiu> Yup~
+10:07 < tkirby_> 最近剛好 hackath1n 快到了, 也許可以遠端來參加? # https://hackpad.com/lIoCjaeMWzC  &  http://registrano.com/events/g0v-hackath1n/
+10:07 < kcwu> tkirby_'s url (2/2): [g0v.tw hackath1n | 台灣零時政府第壹次公地放領黑客松 - 台北場 | Registrano]
+10:07 < kcwu> tkirby_'s url (1/2): [g0v hackath1n |  台灣零時政府第壹次公地放領黑客松 - hackpad.com]
+10:08 < ipa> 可以去簽名一下遠端參加 有好幾位都遠端 還有荷蘭的
+10:09 < shenghsiu> OK
+10:12 < shenghsiu> 我對那個議案和院會紀錄的網站很有興趣
+10:13 < shenghsiu> http://ly.g0v.tw.jit.su/#/bill/1011224070200500
+10:13 < shenghsiu> 這些資訊是立法院本來就有對外公開的嗎？
+10:14 < clkao> 是
+10:14 < clkao> 只是藏在意識日程中 然後是 pdf / doc
+10:14 < shenghsiu> 了解
+10:15 -!- eva [ca597910@gateway/web/freenode/ip.202.89.121.16] has joined #g0v.tw
+10:15 < ipa> shenghsiu: 有什麼想做的東西嗎？
+10:16 < eva> logger url
+10:16 < shenghsiu> 你們有報名的邀請碼？
+10:16 < shenghsiu> 台灣零時政府第壹次公地放領黑客松
+10:17 < ipa> 遠端的話去hackpad簽個名即可
+10:17 < ipa> https://hackpad.com/lIoCjaeMWzC
+10:17 < kcwu> ipa's url: [g0v hackath1n |  台灣零時政府第壹次公地放領黑客松 - hackpad.com]
+10:17 < shenghsiu> ok
+10:19 < ipa> 到時會有hangout，掛irc
+10:21 < eva> ok
+10:23 -!- shenghsiu [~shenghsiu@64-121-94-53.c3-0.smt-ubr1.atw-smt.pa.cable.rcn.com] has quit []
+10:24 -!- wHisKy [~wHisKy@220-135-57-250.HINET-IP.hinet.net] has joined #g0v.tw
+10:29 -!- eva [ca597910@gateway/web/freenode/ip.202.89.121.16] has quit [Quit: Page closed]
+10:29 < MindosC> tkirby_++
+10:31 -!- timdream [~timdream@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:32 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: leaving]
+10:33 < MindosC> 零食政府早安！
+10:35 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:36 -!- zz_chihchun is now known as chihchun
+10:39 < clkao> 零食不要吃太多喔
+10:44 < MindosC> Q.Q
+10:45 -!- walkingice [~walkingic@114-46-251-228.dynamic.hinet.net] has joined #g0v.tw
+10:49 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: leaving]
+10:57 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has joined #g0v.tw
+10:58 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has left #g0v.tw []
+11:00 -!- qq_bear [6ff01a80@gateway/web/freenode/ip.111.240.26.128] has joined #g0v.tw
+11:03 -!- ubuntu [~ubuntu@ec2-184-73-183-68.compute-1.amazonaws.com] has joined #g0v.tw
+11:03 -!- ubuntu is now known as Guest63490
+11:03 -!- qq_bear [6ff01a80@gateway/web/freenode/ip.111.240.26.128] has quit [Client Quit]
+11:04 -!- shenghsiu [~shenghsiu@64-121-94-53.c3-0.smt-ubr1.atw-smt.pa.cable.rcn.com] has joined #g0v.tw
+11:05 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+11:06 -!- shenghsiu [~shenghsiu@64-121-94-53.c3-0.smt-ubr1.atw-smt.pa.cable.rcn.com] has quit [Client Quit]
+11:09 -!- Guest63490 is now known as shenghsiu
+11:10 -!- shenghsiu [~ubuntu@ec2-184-73-183-68.compute-1.amazonaws.com] has quit [Quit: leaving]
+11:13 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+11:19 < ctf_> 多人同時編輯hackpad的時候,注音輸入是不是會怪怪的? 我Mac跟Ubuntu都會
+11:19 < tkirby_> 我的注音會爛掉..
+11:20 < ctf_> XDD
+11:20 < ipa> me tooo
+11:20  * ipa 先閃去工作
+11:24 < au> 「程序(program)是給觀眾看的，腳本(script)是給演員看的。」-- Larry Wall #randomQuote
+11:30 -!- Al_Cho [al_cho@nat/novell/x-wijqwqwwhzoxtztj] has joined #g0v.tw
+11:30 < hychen> me either
+11:35 < clkao> 要跳船到 gdoc 了嗎.. 那天 piaip 給一個 link 才知道現在有 folder 功能 還蠻方便的
+11:35 < hychen> gdoc? google doc?
+11:35 < clkao> y
+11:37 < MindosC> hackpad, 我記得我在 Mac 上換了 browser 就還好。
+11:40 < ctf_> google drive+1
+11:41 < ctf_> Google drive有個功能是可以開放一個資料夾,然後只要任何使用者有登入就可以上傳任何,沒登入的也可以看 挺方便的
+11:42 < clkao> yeah 我昨天才知道有這功能
+11:43 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has joined #g0v.tw
+11:43 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has left #g0v.tw []
+11:43 < ctf_> 然後 Google spreadsheet放資料也挺方便的,還可以在上面寫apps script, 我拿來匯入csv再來用
+11:44 < walkingice> 不知道是不是我的 Fx 太舊的原因，在 Google doc 裡面 ibus 酷音會有輸入問題
+11:44  * walkingice 每次用 chrome
+11:44 < walkingice> Debian testing 的 iceweasel 版本很舊了
+11:44 -!- Supaplextw [~Lucky@114-36-234-176.dynamic.hinet.net] has joined #g0v.tw
+11:45 < ctf_> 我是ubuntu precise,chrome+firefox 也是ibus酷音 正常
+11:46 < favonia> 不太清楚 hackpad 的限制，但 gdrive 有編輯人數上線，如果 g0v 事業做大一點可能就不太方便
+11:46 < favonia> s/上線/上限/
+11:47 < walkingice> ctf_, ubuntu precise 已經到 v18 了，debian testing 還在 v10  Q__Q
+11:49 < ctf_> gdrive的編輯人數限制是50人, http://support.google.com/drive/bin/answer.py?hl=en&answer=2494827
+11:49 < kcwu> ctf_'s url: [Limits on sharing - Google Drive Help]
+11:50 < ctf_> 喔不過只有同時10人可以編輯
+11:50 < c9s> au: i like the quote.
+11:52 < clkao> 10 ppl for "older version"
+11:53 < ctf_> 喔對
+11:53 < ctf_> 所以是同時50人
+11:54 -!- pm5 [~pm5@111-248-226-237.dynamic.hinet.net] has joined #g0v.tw
+11:54 < favonia> 通常問題在於有些人可能只是看熱鬧就打開網頁，然後就佔了一個可編輯名額。為此需要提醒大家「如果你沒有要改檔案請看 web 版（不佔名額）」
+11:55 < clkao> 這樣也是有點麻煩... 
+11:55  * clkao 以為到了 2013 年這問題已經被解決了... 
+11:56 < clkao> 結果 etherpad 不支援 h1/table, google doc 人數限制, hackpad 輸入法會爛掉
+11:56 < clkao> etherpad lite 的 table 還要自己改 plugin ... orz
+12:02 < ctf_> gdrive的說明,有點看不懂  A single Google doc, file, or folder can only be shared with 200 people including viewers, commenters, and editor (doesn't apply to public items).  這樣是說如果設成public可以寫,那就沒人數限制了嗎?
+12:03 < clkao> 這應該是有定權限時
+12:03 < clkao> acl 長度有限制
+12:07 -!- pm5 [~pm5@111-248-226-237.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+12:14 < ctf_> 如果是public可以讀寫會有疑慮嗎?, 如果有疑慮的話,可能要維護一個名單專給寫的
+12:14 < clkao> 不會啊 public 讀寫比較方便 主要是剛才 favonia 講的
+12:18 -!- pm5 [~pm5@111-248-226-237.dynamic.hinet.net] has joined #g0v.tw
+12:18 -!- thschee [~thschee@199.48.231.89] has quit [Read error: Connection reset by peer]
+12:19 -!- thschee_ [~thschee@199.48.231.89] has joined #g0v.tw
+12:20 -!- smileshou [dc882167@gateway/web/freenode/ip.220.136.33.103] has joined #g0v.tw
+12:22 < clkao> smileshou!
+12:23 -!- ChanServ changed the topic of #g0v.tw to: http://dev.g0v.tw/ | 第壹次公地放領黑客松 2013/01/27 | https://hackpad.com/lIoCjaeMWzC
+12:23 -!- thschee_ [~thschee@199.48.231.89] has quit [Ping timeout: 260 seconds]
+12:23 < clkao> smileshou: topic has the correct pad
+12:23 < smileshou> thank you!
+12:25 < smileshou> 似乎立院相關的有一個 ref link. 
+12:25 < clkao> 還沒展開
+12:25 < clkao> 不過你說的 endpoint 有 release 嗎？
+12:26 < smileshou> endpoint 是指我弄出來的 api?
+12:26 < clkao> server... 沒人知道就默默進行會害別人作重複的事情喔 :p 
+12:26 < smileshou> 是有打算 release. 但是找不到可以放的地方.
+12:26 < clkao> github
+12:26 -!- KN16H7 [knight@saturn.stu.edu.tw] has joined #g0v.tw
+12:27 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 260 seconds]
+12:27 -!- Custom_ [custom@saturn.stu.edu.tw] has joined #g0v.tw
+12:27 -!- KN16H7_ [knight@saturn.stu.edu.tw] has quit [Ping timeout: 240 seconds]
+12:27 -!- superd_ [superd@saturn.stu.edu.tw] has quit [Ping timeout: 255 seconds]
+12:27 < smileshou> github 是指 code 本身. 另外是還有 data 本身.
+12:27 -!- ychsiao [ychsiao@FreeBSD.stu.edu.tw] has quit [Ping timeout: 276 seconds]
+12:27 -!- ychsiao [ychsiao@FreeBSD.stu.edu.tw] has joined #g0v.tw
+12:27 < ipa> 有設計師要幫忙認領「設計配送中心」嗎？
+12:28 < clkao> data... 如果是 dump file 就 dropbox 呀
+12:28 < clkao> 不然就是提供 script 看怎麼從某個 public 的地方 (ly-gazette?) import
+12:29 < smileshou> hmm. 我先從 github 把 code 放出來開始好了. 這樣子大家也可以討論出怎樣子的檢索系統是大家比較想要的. 
+12:30 < ctf_> gdrive有個解法, 可是有點複雜, 先開一個資料夾,是public read,所以全部裡面的文件都是public read, 然後用apps script寫個界面,讓需要寫入權限的使用者加入自己的account,然後script再把account加入到可以寫的列表中,不過每個文件的開頭都要放個例如: 如果你需要寫入本文件的話,請到  http://APP_LINK 加入你的gmail
+12:30 < ctf_> 有點麻煩 XD
+12:31 < clkao> orz
+12:31 < clkao> au: should we just fix eplite :p
+12:31 < smileshou> 跟一般 SQL DB 不太一樣的地方是可以把 cassandra 當做是超大 hash table + sorted link list (很可能是用 skip list 來做的). 
+12:31 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+12:32 < clkao> smileshou++ # release early
+12:35 < au> clkao: what has data storage to do with eplite :p
+12:36 < clkao> au: see the co-edit fraustration above
+12:36 < au> oh, hackpad ime
+12:36 < au> yeah
+12:36 < clkao> actually hackpad just need to fix IME issue.  i reported that already
+12:37 < clkao> probably it's because the current dom element is removed and reinserted somehow
+12:37 < clkao> (just wild guessing)
+12:37 < au> clkao: does it happen in meetingwords for you?
+12:38 < au> (it works for me w/ Yahoo Keykey)
+12:38 < clkao> ep-based ones are fine.
+12:38 < au> meetingwords is the scala codebase
+12:38 < au> (same as hackpad)
+12:38 < clkao> hmm.
+12:39 < clkao> i just create a new hackpad, start typing 這是中文你好測試他
+12:39 < kcwu> 平常 share link 時給 html page mode 的 link 就好, 然後在文件開頭寫, 如果你要寫入本文件的話請用 link1, 如果只是要看的話, 請用 link2
+12:39 < clkao> then ㄇ triggers IME buffer flush
+12:39 < clkao> then it hangs
+12:39 < au> clkao: both firefox and chrome?
+12:40 < kcwu> (gdoc)
+12:40 < clkao> let me try ff
+12:40 < au> clkao: also, try the same experient in http://meetingwords.com/4tbXFUWDW
+12:40 < kcwu> au's url: [MeetingWords: 4tbXFUWDW]
+12:40 < clkao> i did try that just now, it works.
+12:41 < clkao> hung in meetingwords
+12:42 < clkao> ff seems worse
+12:42 < au> ok
+12:42 < clkao> the ime composition gets interruptted
+12:42 < au> I see that
+12:42 < clkao> but single user seems fine in ff (hackpad,mw)
+12:42 -!- pm5 [~pm5@111-248-226-237.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+12:43 < au> 乾脆用 EtherCalc 好了（大誤）
+12:44 < clkao> orz
+12:44 < clkao> kcwu: 不過如果開一整個 folder 的話呢
+12:45 -!- pm5 [~pm5@111-248-226-237.dynamic.hinet.net] has joined #g0v.tw
+12:45 < clkao> kcwu: 有辦法 default link to viewer mode?
+12:46 < clkao> bestian++ # 人因工程
+12:50 < kcwu> clkao: 不知道, 好像不行
+12:51 -!- thschee [~thschee@199.48.231.89] has joined #g0v.tw
+12:58 -!- pm5 [~pm5@111-248-226-237.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+12:59 -!- CarterTsai [~Thunderbi@218-173-160-251.dynamic.hinet.net] has joined #g0v.tw
+13:01 -!- CarterTsai [~Thunderbi@218-173-160-251.dynamic.hinet.net] has quit [Client Quit]
+13:06 < favonia> clkao: ime 萬用 workaround: 在其他地方打好字再貼上。反正 ime 在系統中的地位總是如此尷尬，支援爛掉也不是一天兩天的事情。
+13:08 < clkao> favonia: yeah... 
+13:11  * au 幻想要是有 ime-position: below-the-spot; 就好了
+13:11 < au> 或是 ime-position: root-window，總之避開 on-the-spot composition
+13:12 < ctf_> gdrive不然這樣,目錄裡面的文件都是public read,先寫一個app,然後分享這個APP的網址加上文件ID, ex: https://script.google.com/xxxxx/dev?docid=yyyyyyy, 這個app會出現兩個選項,read only and write, 點read only就導到public read, 點write就加使用者account到write的列表(如果使用者已經有登入的話,account直接抓得到,不用使用者再輸入gmail了)
+13:25 -!- cataska [~user@210.64.6.233] has quit [Remote host closed the connection]
+13:25 -!- cataska` [~user@210.64.6.233] has joined #g0v.tw
+13:31 -!- KNY [~Adium@118-170-70-86.dynamic.hinet.net] has joined #g0v.tw
+13:32 -!- dannvix [~dannvix@ec2-54-241-13-108.us-west-1.compute.amazonaws.com] has joined #g0v.tw
+13:36 < clkao> KNY!
+13:42 < KNY> clkao: hi
+13:42 < KNY> 該怎麼打私密訊息呢？ XD 
+13:42 -!- pm5 [~pm5@111-248-226-237.dynamic.hinet.net] has joined #g0v.tw
+13:45 < tkirby_> /msg someone something    
+13:45 < tkirby_> 是在問這個嗎
+13:45 < KNY> 應該是，try try
+13:46 -!- hothero [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+13:46 < KNY> tkirby_  有看到我傳給你的嗎？
+13:47 < clkao> on the go
+13:47 < clkao> kny we talked about mrt ninja app
+13:48 < KNY> 嗯嗯，
+13:48 < KNY> 我用adium，看到的應該都是公開訊息吧。
+13:48 < clkao> do you see that?
+13:48 < clkao> ya
+13:48 < KNY> OKOK，我有看到你打字了
+13:48 < clkao> buti think you are offline when we talked about it
+13:48 < KNY> 把我反白，應該是「指定打擊」吧
+13:48 < clkao> ask someone to find log for you
+13:49 -!- SDpower_ [72c74975@gateway/web/freenode/ip.114.199.73.117] has joined #g0v.tw
+13:49 < clkao> i guess thats just mentioning
+13:49 < clkao> your id
+13:49 < clkao> bbl
+13:49 -!- SDpower [~luosteve@114.199.73.117] has joined #g0v.tw
+13:49 -!- SDpower_ [72c74975@gateway/web/freenode/ip.114.199.73.117] has quit [Client Quit]
+13:50 < KNY> ok，剛您說的 ninja mrt 是要派出 .........?
+13:51 < clkao> hard to type on phone
+13:51 < clkao> later
+13:52 < KNY> OK
+14:07 -!- Guest56591 [~steve@123.240.69.226] has joined #g0v.tw
+14:08 -!- Guest56591 [~steve@123.240.69.226] has left #g0v.tw []
+14:11 -!- XDDDD [~XDDDD@123.240.69.226] has joined #g0v.tw
+14:20 -!- thschee [~thschee@199.48.231.89] has quit [Remote host closed the connection]
+14:32 -!- pm5 [~pm5@111-248-226-237.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+14:34 -!- pm5 [~pm5@111-248-226-237.dynamic.hinet.net] has joined #g0v.tw
+14:37 -!- thschee [~thschee@205.164.24.90] has joined #g0v.tw
+14:41 -!- Goddamn [~goddamn@114-34-87-138.HINET-IP.hinet.net] has quit [Quit: leaving]
+14:43 < clkao> KNY: i posted to the hackpad - 捷運忍者
+14:43 -!- Goddamn [~goddamn@114-34-87-138.HINET-IP.hinet.net] has joined #g0v.tw
+14:45 < KNY> 看到了
+14:46 < clkao> 手機對著車廂還可以知道是不是要上錯邊了... XD 
+14:49 < clkao> ETBlue, mikimoto: 報名人中有個 sample@email.tst 是來亂的嗎
+14:52 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 255 seconds]
+14:53 < mikimoto> clkao: 不知道耶，我剛剛看到也覺得奇怪
+14:53 -!- SDpower [~luosteve@114.199.73.117] has quit [Read error: Connection reset by peer]
+14:54 -!- SDpower [~luosteve@114.199.73.117] has joined #g0v.tw
+14:57 < clkao> hlb: 活動通來留言說 請我們去那邊辦活動體驗看看
+14:58 < mikimoto> clkao: 我發個 Email 看看有沒有人回
+14:58 < clkao> tst 不是 valid tld 吧
+14:58 < mikimoto> clkao: hlb 來踢館了 XD
+14:59 -!- XDDDD [~XDDDD@123.240.69.226] has quit [Quit: Computer has gone to sleep]
+15:00 < mikimoto> clkao: 還是確認一下，沒有收到回信就刪除報名資料吧 :p
+15:01 < mikimoto> clkao: 果然，寄件伺服器馬上回應無法傳送，我刪除這筆報名資料吧
+15:11 -!- justin_ [3cfb6433@gateway/web/freenode/ip.60.251.100.51] has joined #g0v.tw
+15:12 < hlb> clkao: haha.
+15:12 < hlb> clkao: 去哪可以留言 :D
+15:13 < clkao> 他是 message 到 g0v.tw fb page
+15:14  * clkao 先出門
+15:16 -!- Johnny5TW [~johnny5tw@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+15:25 -!- thschee_ [~thschee@205.164.24.90] has joined #g0v.tw
+15:27 -!- thschee [~thschee@205.164.24.90] has quit [Ping timeout: 256 seconds]
+15:39 -!- thschee_ [~thschee@205.164.24.90] has quit [Remote host closed the connection]
+15:44 -!- kmshiori [~androirc@42.71.255.104] has joined #g0v.tw
+15:49 -!- kmshiori [~androirc@42.71.255.104] has quit [Read error: Connection reset by peer]
+16:02 -!- justin_ [3cfb6433@gateway/web/freenode/ip.60.251.100.51] has quit [Quit: Page closed]
+16:13 -!- hothero [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has quit [Remote host closed the connection]
+16:15 -!- hothero [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+16:16 -!- hothero [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has quit [Remote host closed the connection]
+16:18 -!- ubuntu [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+16:18 -!- ubuntu is now known as Guest26118
+16:20 -!- Guest26118 is now known as hothero
+16:21 -!- idlecafe [idlecafe@li475-173.members.linode.com] has joined #g0v.tw
+16:24 -!- hothero [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 256 seconds]
+16:29 -!- MindosC [~MindosC@115.80.26.240] has quit [Ping timeout: 246 seconds]
+16:33 < clkao> 6
+16:33 < clkao> 6
+16:33 < clkao> ~.6wwww
+16:35 -!- yike [dc87a5c8@gateway/web/freenode/ip.220.135.165.200] has joined #g0v.tw
+16:35 -!- idlecafe [idlecafe@li475-173.members.linode.com] has quit [Quit: leaving]
+16:36 -!- idlecafe [idlecafe@li475-173.members.linode.com] has joined #g0v.tw
+16:38 < clkao> ... 86 人
+16:38 -!- MindosC [~MindosC@115.80.26.240] has joined #g0v.tw
+16:42 -!- ericChen [6ffaaea6@gateway/web/freenode/ip.111.250.174.166] has joined #g0v.tw
+16:43 < hychen> clkao, can not see your message in correct char but ascii.
+16:56 -!- MnO2 [~mno2@nat/yahoo/x-uhynjigsijpzsvsm] has quit [Ping timeout: 248 seconds]
+16:56 -!- MnO2 [~mno2@nat/yahoo/x-gdjivfafimiwpwgp] has joined #g0v.tw
+17:01 -!- idlecafe_ [idlecafe@li475-173.members.linode.com] has joined #g0v.tw
+17:03 -!- idlecafe_ [idlecafe@li475-173.members.linode.com] has quit [Client Quit]
+17:05 -!- idlecafe_ [idlecafe@li475-173.members.linode.com] has joined #g0v.tw
+17:06 -!- S3p_lin [slzzp@li475-173.members.linode.com] has joined #g0v.tw
+17:06 < clkao> hychen: ? that's probably trying to terminate ssh
+17:07 -!- idlecafe_ [idlecafe@li475-173.members.linode.com] has quit [Client Quit]
+17:08 -!- idlecafe_ [idlecafe@li475-173.members.linode.com] has joined #g0v.tw
+17:08 -!- idlecafe_ [idlecafe@li475-173.members.linode.com] has quit [Client Quit]
+17:11 -!- SDpower [~luosteve@114.199.73.117] has quit [Quit: SDpower]
+17:13 -!- S3p_lin [slzzp@li475-173.members.linode.com] has quit [Quit: leaving]
+17:14 -!- S3p_lin [slzzp@li475-173.members.linode.com] has joined #g0v.tw
+17:15 -!- idlecafe [idlecafe@li475-173.members.linode.com] has quit [Quit: leaving]
+17:16 -!- idlecafe [idlecafe@li475-173.members.linode.com] has joined #g0v.tw
+17:16 -!- yike [dc87a5c8@gateway/web/freenode/ip.220.135.165.200] has quit [Ping timeout: 245 seconds]
+17:20 -!- smileshou_ [dc882167@gateway/web/freenode/ip.220.136.33.103] has joined #g0v.tw
+17:20 -!- smileshou_ [dc882167@gateway/web/freenode/ip.220.136.33.103] has quit [Client Quit]
+17:24 -!- S3p_lin [slzzp@li475-173.members.linode.com] has quit [Quit: leaving]
+17:25 -!- S3p_lin [slzzp@li475-173.members.linode.com] has joined #g0v.tw
+17:28 -!- S3p_lin [slzzp@li475-173.members.linode.com] has quit [Client Quit]
+17:28 -!- S3p_lin [slzzp@li475-173.members.linode.com] has joined #g0v.tw
+17:30 -!- wHisKy [~wHisKy@220-135-57-250.HINET-IP.hinet.net] has quit []
+17:52 -!- ericChen [6ffaaea6@gateway/web/freenode/ip.111.250.174.166] has quit [Quit: Page closed]
+18:14 -!- kaxing [~kaxing@175.41.48.77] has quit [Read error: Operation timed out]
+18:14 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+18:16 -!- KNY [~Adium@118-170-70-86.dynamic.hinet.net] has left #g0v.tw []
+18:33 -!- thschee [~thschee@219.84.208.159] has joined #g0v.tw
+18:36 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+18:40 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has joined #g0v.tw
+18:40 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has left #g0v.tw []
+18:40 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has joined #g0v.tw
+18:40 -!- inksafari [~Ni@111-243-108-239.dynamic.hinet.net] has left #g0v.tw []
+18:43 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 252 seconds]
+19:01 -!- thschee [~thschee@219.84.208.159] has quit [Remote host closed the connection]
+19:03 -!- neoesque [~neoesque@210.59.147.232] has quit [Quit: Bye!]
+19:04 -!- thschee [~thschee@219.84.208.159] has joined #g0v.tw
+19:10 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+19:15 -!- mutolisp [~psilotum@inventory16.fo.ntu.edu.tw] has quit [Quit: leaving]
+19:18 < dannvix> 請問這個 channel 有公開的 log 嗎？我想看一下早些時候「捷運忍者」的相關討論，謝謝
+19:21 < au> dannvix: 沒有 log... see https://hackpad.com/lIoCjaeMWzC
+19:21 < kcwu> au's url: [g0v hackath1n |  台灣零時政府第壹次公地放領黑客松 - hackpad.com]
+19:21 < au> 右手邊有 14. 捷運忍者
+19:22 -!- chihchun is now known as zz_chihchun
+19:22 < dannvix> 謝謝 au，我就是好奇那個「手機對著車廂」要怎麼實現 XD
+19:23 < dannvix> 想說早些時候的討論會不會有一些 implementation 的想法這樣
+19:23 < au> 似乎沒有 :p
+19:24  * au 也很好奇
+19:24 -!- pm5 [~pm5@111-248-226-237.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+19:24 < au> 定位 (特定捷運站) 加上指北針 (特定方向的車)
+19:24 < au> 應該是這樣吧
+19:25  * au 亂猜
+19:27 < dannvix> au++，定位的部分不知道能不能用捷運站內的 hotspot，不然靠 GPS 的話無法處理多層的站
+19:28 < au> 多層的站可以用「想去的站」來分別
+19:28 < dannvix> 對耶！
+19:29 < au> 歡迎協助將討論綜合到 hackpad 上或是加上示意圖之類 :p
+19:29 < dannvix> 之前有另一個想法：設定好終點站後，在抵達前會發出通知，避免低頭族坐過站 XD
+19:29 < au> 好主意
+19:30 < au> 如果收不到 3G 位置資訊，還可以用四國語言語音辨識來判定？ XD
+19:30 < au> -> dinner &
+19:32 < dannvix> au OK 我來整理一下到 hackpad
+19:33 < au> dannvix++
+19:34 < MindosC> 叫使用者把手機對著車箱 lol
+19:35 < MindosC> 廂
+19:50 < clkao> dannvix++
+19:50 < clkao> kcwu: can the ircstat stuff do logging as well?
+19:51 < clkao> summon gugod we need jabbot to do memo and logging
+19:55 -!- MnO2 [~mno2@nat/yahoo/x-gdjivfafimiwpwgp] has quit [Quit: Leaving]
+19:57 < kcwu> http://kcwu.csie.org/~kcwu/ircstat/g0v.html
+19:57 < kcwu> kcwu's url: [#g0v.tw @ IRCNet 由 kcwu 所統計]
+19:59 < kcwu> 我自己的 url title 應該要濾掉...
+20:01 < clkao> dryman 似乎也挺孤獨, 喃喃自語 4 次.
+20:01 < clkao> XD
+20:02 < clkao> kcwu++
+20:02 < momiz1> 好久沒看過這個統計了, kcwu ++
+20:06 -!- thschee [~thschee@219.84.208.159] has quit [Remote host closed the connection]
+20:09 < MindosC> kcwu++
+20:22 -!- mutolisp [~mutolisp@1-162-68-185.dynamic.hinet.net] has joined #g0v.tw
+20:23 -!- thschee [~thschee@219.84.208.159] has joined #g0v.tw
+20:38 < Johnny5TW> 捷運地下隧道應該也有手機訊號吧，可以用基地台位置來訂方向
+20:42 < kcwu> ok, 我把我的 url title reporting 拿掉了. 我設成每日更新. 還有什麼要修的再跟我說. 
+21:04 < tkirby_> kcwu++
+21:07 -!- MindosCheng [~mindos@42-72-228-187.dynamic-ip.hinet.net] has quit [Read error: Connection reset by peer]
+21:11 < clkao> Johnny5TW: 如果對著月台的話應該用 compass 就可以了
+21:11  * clkao 想像這個資訊顯示在 google glass
+21:17 < Johnny5TW> 不知指北針是否會受到因為在地底下而影響誤差？
+21:18 -!- MindosCheng [~mindos@111.80.113.82] has joined #g0v.tw
+21:19 < ipa> kcwu++
+21:21 < kcwu> 我自己有用 tasker, 對我常轉/上/下捷運的車站作 cell station 定位, 提醒下車
+21:23 < kcwu> 我坐的路線都在地下, 用 cell station 定位沒什麼問題, (如果只是要知道在哪個站的話)
+21:24 < clkao> kcwu: 低頭族! (指)
+21:25 < ipa> 我其實曾經看手機看到坐過站（糗）
+21:27 < MindosCheng> 寫信給 ai 中 (逃避中)
+21:28 < kcwu> 我猜地上的用 cell station 比較容易錯(收到很遠的訊號?)
+21:28 < kcwu> 用 cell station 定位的好處是比較省電
+21:30 < ipa> MindosCheng: 要寫啥？
+21:31 < MindosCheng> 和他說我們有這個活動 問他覺得有什麼建議 以及中國那邊有什麼可以公開的
+21:32 < MindosCheng> 寫好再請你們看看
+21:33 < Johnny5TW> 下班，先暫離，86
+21:34 -!- Johnny5TW [~johnny5tw@114-33-113-125.HINET-IP.hinet.net] has quit [Quit: Leaving]
+21:42 < Supaplextw> http://www.youtube.com/watch?v=RjehKbm4Ojs 
+21:42 < kcwu> Supaplextw's url: [2012 DFC Taiwan - CHI-039 「捷」族先登~便捷的轉乘網絡 - YouTube]
+21:42 -!- timdream [~timdream@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: timdream]
+21:53 < clkao> Supaplextw: woot! 結果有釋出嗎 :p
+21:55 < Supaplextw> 我可以問問資助小朋友的臺灣童心協會的理事，他是我朋友
+21:55 < clkao> 超贊的
+21:55 -!- pm5 [~pm5@111-248-226-237.dynamic.hinet.net] has joined #g0v.tw
+21:55 -!- johnny5tw [~johnny5@111-246-78-253.dynamic.hinet.net] has joined #g0v.tw
+21:56 < clkao> 童心救救我們的上一代
+21:57 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+21:58 < dannvix> Supaplextw++
+22:00 < clkao> Supaplextw: add to hackpad?
+22:01 < ipa> 小朋友++++
+22:03 -!- pm5 [~pm5@111-248-226-237.dynamic.hinet.net] has quit [Quit: leaving]
+22:04 -!- MnO2 [~mno2@1.34.43.236] has joined #g0v.tw
+22:05 < Supaplextw> http://www.mdnkids.com/info/news/content.asp?Serial_NO=81660
+22:05 < kcwu> Supaplextw's url: [「全球創意行動挑戰」學童製表指點　搭捷運不迷路─資訊導航─國語日報社網站]
+22:06 < Supaplextw> 民權西路站到南勢角站
+22:14 -!- timdream [~timdream@123-204-174-155.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+22:19 < tkirby_> "Nobody beat anyone up. Everybody was friendly"
+22:19  * tkirby_ beats jabbot
+22:19  * tkirby_ bites jabbot
+22:26 -!- thschee [~thschee@219.84.208.159] has quit [Remote host closed the connection]
+22:30  * au slaps logic-gates around a bit with a large trout
+22:33 < clkao> ...
+22:49 -!- Rifur [~rifur@118-160-172-242.dynamic.hinet.net] has joined #g0v.tw
+23:02 -!- Rifur [~rifur@118-160-172-242.dynamic.hinet.net] has quit [Quit: 暫離]
+23:03 -!- MindosCheng_ [~chatzilla@115.80.26.240] has joined #g0v.tw
+23:04 < MindosCheng_> 台中場也要滿了 @@
+23:13 -!- johnny5tw [~johnny5@111-246-78-253.dynamic.hinet.net] has quit [Quit: 暫離]
+23:27 < billy3321> MindosCheng_: HI
+23:27 < ipa> 據說新竹碼農醞釀下次跟進辦理新竹場？
+23:28 < MindosCheng_> 對啊　這次先到台中見習，和 BlueT 玩
+23:29 < MindosCheng_> 還是直接衝新竹場 lol
+23:32 < MindosCheng_> 生物多樣性的沒有開 project Q.Q
+23:50 < MindosCheng_> 如何使用 hackpad 要新建一個 doc 嗎?
+23:54 < billy3321> ipa: hi
+23:54 < billy3321> ipa: 您那篇搶救國會資料大軍
+23:54 < billy3321> 可以稍做修改嗎？
+23:54 < billy3321> 我想，如果加上"原始資料"，和g0v做出來的資料相比較，一定可以令人印象深刻
+23:55 < billy3321> 如果有的話，那篇應該可以更完美 ;)
+23:55 -!- SarsTW [~wenpei@nw188.csie.ncu.edu.tw] has joined #g0v.tw

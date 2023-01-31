@@ -1,0 +1,143 @@
+--- Day changed 一  8月 31 2015
+00:44 < jianiau> 看不懂orz,請問要點哪些技能才能把hackfoldr-2.0架起來,還有gh-pages這個branch是要用到的嗎,怎麼和master長的完全不一樣
+02:25 < Lee1092> jianiau: gh-pages 是 github 提供免費的 webpage service https://pages.github.com/ ， hackfoldr-2.0 是用 gh-pages 跟 ethercalc 架起來的服務
+02:25 < kcwu> Lee1092's url: [GitHub Pages]
+02:27 < Lee1092> jianiau: 然後 gh-pages 是自動產生出來的，只要你 commit 到 master ，藉由 travic-ci 產生 html 到 gh-pages ，可以看 deploy 的檔案
+02:28 < Lee1092> jianiau: 目前開發 gulp 跟 Fire.app 都沒有加 routing ，所以你輸入其他頁時，會顯示 404  
+02:31 < Lee1092> jianiau: github gh-pages 的服務，當你找不到頁面時，會自動導到 404.html 那頁，然後 hackfoldr 的 404.html 其實就是首頁 ( see view/404.jade )
+02:32 < Lee1092> jianiau: 然後首頁，會根據 url 去找對應的 ethercalc ，然後就會 render 出正確的內容
+02:33 < Lee1092> jianiau: See https://github.com/hackfoldr/hackfoldr-2.0/blob/master/views/index.jade#L110-L111
+02:33 < kcwu> Lee1092's url: [hackfoldr-2.0/index.jade at master · hackfoldr/hackfoldr-2.0 · GitHub]
+02:36 < Lee1092> jianiau:  目前 hackfolder 使用到的技能可以看 README  XD
+02:54 -!- goddamn is now known as Goddamn
+03:04 < jianiau> 謝謝,原來github可以架站! 所以是在 master barnch 開發, npm start 看結果, deploy 後把 gh-pages 丟到 username.github.io 就好了
+03:06 < jianiau> 而原版 hackfoldr 是直接 npm start 就直接在本機架起來了, 不知道我這樣理解有沒有錯
+09:56 -!- chihchun_afk is now known as chihchun
+10:25 < slackbot2> <clkao> jianiau 差不多是這樣
+10:50 < slackbot2> <mrorz> jianiau: github user page (http://username.github.io) 網站是用 master branch 喲，是 project 的網頁才在 gh-pages branch
+10:51 < slackbot2> <mrorz> jianiau: 請參考 <https://help.github.com/articles/user-organization-and-project-pages/>
+10:51 < kcwu> slackbot2's url: [User, Organization, and Project Pages - User Documentation]
+11:14 < jianiau> 感謝大家,配上 apache 在本地端跑起來了, hackfoldr+ethercalc+hackpad 都起來了, 可以推給同事用了
+11:19 < slackbot2> <clkao> ++
+11:20 < slackbot2> <clkao> 有秘訣的話記得幫忙補說明文件哦
+11:27 < Lee1092> jianiau++  cool  
+11:31 < slackbot2> <kiang> @ronnywang: 有人去實驗你的假設了 XD - <http://www.appledaily.com.tw/appledaily/article/headline/20150831/36751472/>
+11:31 < kcwu> slackbot2's url: [空拍機墜軍機場 男侵「要塞」送辦 | 蘋果日報]
+11:52 < slackbot2> <miaoski> PM2.5 專案徵求硬體人加入 ~~~
+11:52 < slackbot2> <miaoski> 會接線懂一些 Arduino 就好，不用會設計電路沒關係 (反正我也不會) (咦)
+12:10 < mindos> miaoski : 還是說志工可以 reject 然後就重送回 cloudsourcing pool?
+12:48 < slackbot2> <miaoski> @mindos: 聽起來是好主意，不過... 這樣以後就沒人要做我的案子了吧 (掩面)
+12:53 < mindos> 就那些有問題的 reject  啊。
+12:55 < mindos> miaoski : 理論上，majority 應該可以防敝?
+13:04 < slackbot2> <miaoski> @mindos: 防敝？
+13:08 < mindos> miaoski : 防弊。就是用 cloudsourcing 多數决。
+13:09 < slackbot2> <miaoski> hmmmm
+13:09 < slackbot2> <miaoski> 目前最大的問題是沒有人吧
+13:13 < mindos> miaoski : 來法語系貼公告 XD
+14:04 < slackbot2> <miaoski> @mindos: 法語系？
+14:04 < slackbot2> <miaoski> PM2.5 要硬體啦
+14:05 < mindos> miaoski : 我是說字典 :)
+14:07 < slackbot2> <weiting> 其實不懂法文也可以校！目前志工 前後端都缺人手@@
+14:17 < slackbot2> <clkao> yhsiang: react-md-editor test 現在要 jsdom, 只能用 iojs 了
+14:22 < slackbot2> <yhsiang> 要用node必須是3.x series QQ
+14:23 < slackbot2> <clkao> 哭哭
+14:24 < slackbot2> <clkao> 有辦法用 cheerio 嗎？
+14:24 < slackbot2> <clkao> 不過你 test PR 應該是給 upstream 吧
+14:25 -!- chihchun is now known as chihchun_afk
+14:25 < slackbot2> <yhsiang> Cheerio沒問題吧
+14:25 < slackbot2> <yhsiang> 寫完才發現是給upstream XD
+14:26 < slackbot2> <clkao> 要幫我把 tabular transformation refactor 成 markdown-it plugin 嗎？ :stuck_out_tongue:
+14:27 < slackbot2> <clkao> 不過他有一些 dom 操作，可能需要 render 後的 hook… 我記得現在好像沒有 可能要寫個 markdown-that 包一層
+15:30 < OS-16786> hi
+15:30 < marksy1ee> hello
+15:31 < OS-16786> Does anyone know how to change my nick name with command sets?
+15:33 -!- OS-16786 [~OS-16786@nz236l30.bb27109.ctm.net] has left #g0v.tw ["Leaving"]
+15:42 -!- chihchun_afk is now known as chihchun
+15:44 -!- OS-16786_3 [~alex.ng@nz236l30.bb27109.ctm.net] has left #g0v.tw []
+15:48 -!- marksy1ee [~marklee@59-124-26-193.HINET-IP.hinet.net] has left #g0v.tw []
+15:50 < slackbot2> <clkao> bobchao: 請問你之前是不是有貼一個新的線上 outline list 的服務？
+15:50 < slackbot2> <clkao> bobbyho: nvm 找到了 # http://workflowy.com
+15:51 < kcwu> slackbot2's url: [WorkFlowy - Organize your brain.]
+15:56 < v3ryLucky> hi
+15:56 < v3ryLucky> 大家有參加過OSCP嗎?
+16:09 < slackbot2> <yutin> <https://www.youtube.com/watch?v=-Qkv3G4WWS0>
+16:09 < kcwu> slackbot2's url: [TVBS世界翻轉中 20150830 4 機器人大戰 親子對決 - YouTube]
+16:19 -!- chihchun is now known as chihchun_afk
+16:19 -!- chihchun_afk is now known as chihchun
+16:19 < slackbot2> <bobchao> @clkao <https://workflowy.com/invite/305eeb48.lnx> 歡迎大家用這個幫我註冊 XD...
+16:19 -!- v3ryLucky is now known as OS16786
+16:19 -!- OS16786 is now known as OS-16786
+16:22 < superbil> OS-16786: try to use /nick
+16:24 < slackbot2> <monaludao> 請問一下 使用hackfolder後 hackpad裡的表格無法顯示
+16:24 < slackbot2> <monaludao> 這個有解嗎
+16:27 -!- chihchun is now known as chihchun_afk
+16:35 < slackbot2> <clkao> 有範例嗎ㄥ
+16:37 -!- chihchun_afk is now known as chihchun
+16:55 < slackbot2> <monaludao> <http://hackfoldr.org/urbancodeg0vtw/y7f4dxUB2oh>
+16:55 < slackbot2> <https://g0v.hackpad.com/-2050-y7f4dxUB2oh>
+16:55 < kcwu> slackbot2's url: [開放都市-台北2050計畫追蹤 - g0v.hackpad.com]
+16:57 < slackbot2> <clkao> 看來是 hackpad 的 bug..
+16:59 -!- chihchun is now known as chihchun_afk
+17:02 < slackbot2> <chewei> 只好盡量不要用表格整理？
+17:04 < slackbot2> <clkao> <https://github.com/dropbox/hackpad/issues/21>
+17:04 < kcwu> slackbot2's url: [Unable to embed tables · Issue #21 · dropbox/hackpad · GitHub]
+17:05 < slackbot2> <clkao> 可以用 hacktabl? :stuck_out_tongue:
+17:26 -!- chihchun_afk is now known as chihchun
+17:47 < slackbot2> <formotse> @miaoski ~ 剛才校對~ 好像發現重複的~ 是正常的嗎? ''mali - mimali jouer au ballon.''' 這則我前兩天好像有看到一樣的。
+18:12 < slackbot2> <miaoski> @formotse: 是的，正常... mali 是字根， mi-mali 是加了主動動詞的前綴
+18:12 < slackbot2> <miaoski> 感謝 ^^  @formotse ++
+18:15 < slackbot2> <formotse> 誤會囉，我的意思是，這則我好像看到第二次了。已經開始二次校稿了嗎？
+18:26 < slackbot2> <clkao> 這好像很嗨 分散式的 prediction market <http://demo.augur.net/>
+18:27 < slackbot2> <clkao> based on <https://www.ethereum.org>
+18:27 < kcwu> slackbot2's url: [Ethereum Frontier]
+20:57 -!- chihchun is now known as chihchun_afk
+22:14 < slackbot2> <michael_li> 預告　９月１９日（六）舉行　第四次的新聞松的 hackpad　　<http://beta.hackfoldr.org/NEWShackathon/2015-09-19-7woO4KV4gjZ>
+22:18 < slackbot2> <miaoski> @formotse: 啊… 我來檢查一下。應該不會才對...
+22:19 < slackbot2> <miaoski> @formotse: 對耶，好像 KO 了... 感謝。我來改一下程式。
+22:26 < slackbot2> <formotse> @miaoski ++ 
+22:26 < slackbot2> <weiting> :-) 
+22:27 < slackbot2> <miaoski> 我把程式改成 3 次以下的都會秀出來 &amp; 進度條是達到 3 次才算數了
+22:27 < slackbot2> <miaoski> 如果這條到 100% 就表示每張圖都至少被看過 3 次 :simple_smile: 那時候就可以收工^H^H開始處理潘世光神父的阿美語-潘語
+22:30 < slackbot2> <weiting> 話說 有前端前輩可以美化或人性化網頁嗎？？
+22:30 < slackbot2> 喵司機辛苦惹！
+22:30 < slackbot2> 希望有前輩可以分擔喵司機工作
+22:30 < slackbot2> 也感謝他對原住民的回饋
+22:30 < slackbot2> 我們原住民自己人真的要加油@@
+22:30 < slackbot2> @lafin .太肉咖了><
+23:10 < slackbot2> <moon_c> undefined
+23:16 < slackbot2> <lafin> 就是出現空白、頁碼、索引、手寫的圖片時，請按這是空白
+23:16 < slackbot2> <lafin> 因為我們想不出更好的表達方式:expressionless:
+23:17 < slackbot2> <moon_c> 所以出現空白、頁碼、索引、手寫的圖片時，就是等於空白？
+23:17 < slackbot2> <lafin> 是的
+23:18 < slackbot2> <moon_c> 那直接寫：當圖片顯示為空白、頁碼、索引、手寫等狀況時，請選擇「這是空白」的按鈕
+23:18 < slackbot2> <moon_c> 這樣就很請楚了吧？
+23:19 < slackbot2> <lafin> @miaoski: 喵司基，呦呼，麻煩改一下摟
+23:30 < slackbot2> <miaoski> lafin: done.  @moon_c 感謝提供
+23:33 < slackbot2> <michael_li> 原來　g0v　有很多機器人了　ＸＤＤＤ　　<https://www.youtube.com/watch?v=-Qkv3G4WWS0&amp;feature=youtu.be>
+23:33 < kcwu> slackbot2's url: [TVBS世界翻轉中 20150830 4 機器人大戰 親子對決 - YouTube]
+23:44 < slackbot2> <moon_c> undefined
+23:45 < slackbot2> <miaoski> @moon_c: 跪求 PR ...
+23:45 < slackbot2> <miaoski> 或是直接給我 HTML 也可以...
+23:46 < slackbot2> <moon_c> 只有圖捏....求前端神實踐它qwq
+23:46 < slackbot2> <miaoski> T_T
+23:47 < slackbot2> <moon_c> 可以先幫我找到原本的github位址在哪嗎qwq
+23:48 < slackbot2> <miaoski> <https://github.com/miaoski/amis-francais/tree/master/toufu>
+23:48 < kcwu> slackbot2's url: [amis-francais/toufu at master · miaoski/amis-francais · GitHub]
+23:48 < slackbot2> <yhsiang> 先承認你就是前端神
+23:48 < slackbot2> <yhsiang> :stuck_out_tongue_closed_eyes:
+23:48 < slackbot2> <moon_c> 前端神出現了！！
+23:48 < slackbot2> <moon_c> （拜
+23:48 < slackbot2> <lafin> 有神～
+23:48 < slackbot2> <miaoski> @yhsiang: (worship)
+23:49 < slackbot2> <yhsiang> :cold_sweat:
+23:49 < slackbot2> <miaoski> 我因為前端苦手，上面是用 bootstrap 2 硬幹的
+23:49 < slackbot2> <lafin> @yhsiang: ++
+23:50 < slackbot2> <yhsiang> 娃 我是 php苦手
+23:56 < slackbot2> <miaoski> @yhsiang: 少來。你不要管那些 PHP 就好了
+23:57 < slackbot2> <yhsiang> 家裡 clone 超慢
+23:57 < slackbot2> <yhsiang> 想幫也幫不上忙 GG
+23:57 < slackbot2> <miaoski> @yhsiang: 前端神 :pray:
+23:57 < slackbot2> <miaoski> 哦 你不要 clone 那些pic 嘛
+23:57 < slackbot2> <moon_c> clone 超慢+1...
+23:58 < slackbot2> <miaoski> 不然等我一下哦
+23:59 < slackbot2> <poga> XD 正在改

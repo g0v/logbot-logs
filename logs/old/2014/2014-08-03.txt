@@ -1,0 +1,293 @@
+--- Day changed 日  8月 03 2014
+00:26 -!- hlb [~hlb@li381-115.members.linode.com] has left #g0v.tw []
+00:42 < mrorz> clkao: 我覺得可能是 ui-router-extra 的 stikcy 設計上的限制吧，先弄了個可以 reproduce 我們遇到的狀況的 plunker: http://plnkr.co/edit/VUdzUh0TkKFBqCZ5UtRZ?p=preview 
+00:42 < kcwu> mrorz's url: [Plunker]
+00:43 < mrorz> 等等來戳戳 state 設定
+00:47 < clkao> mrorz++
+00:47 < clkao> 一部一腳印 XD
+01:13 < clkao> jimyhuang__: 居然偷偷專訪 tonyq!
+01:18 < ipa> 採訪++ 
+01:26 < ipa> jimyhuang__: 撕紙是什麼梗啊？
+01:29 < ipa> 大家slides越來越多示意圖，好清楚 https://speakerdeck.com/jimyhuang/zhi-hui-yong-jian-pan-ke-yi-gai-bian-shi-mo?slide=38
+01:29 < jimyhuang__> ipa: 是一個感受溝通重要的活動
+01:29 < kcwu> ipa's url: [只會用鍵盤，可以改變什麼？ // Speaker Deck]
+01:30  * jimyhuang__ 再也不敢最後一天才做簡報了...
+01:32 < jimyhuang__> 撕紙遊戲： http://chenef.blogspot.tw/2009/12/2009.html
+01:32 < kcwu> jimyhuang__'s url: [溝通遊戲＿＿撕紙 ~ 小夫的家]
+01:35 < ipa> 有趣！ 
+01:58 < kcwu> jimyhuang__: 字型好怪, 有的是黑體有的是仿宋
+02:00 < kcwu> jimyhuang__: s/凡瑞/瑞凡/
+02:03 < au> 因為用了 Gulim (굴림) 字型
+02:04 < au> 所以 Windows Gulim 沒有內建的表意字就 fallback 回仿宋
+02:09 < yhsiangCloud__> 這好強 XD
+02:10 < au> ethantw_: user-pref 上線了，之後併回 master，我就先刪掉 user-pref branch 了
+02:10 < au> s/之後/已經/
+02:19 < kcwu> oh, speakerdeck 用 local font render
+02:20 < mrorz> clkao: 我看了一下 ui-router-extras 的 code，發現他內部實作好像是刻意地避開把在同一個 state，只更新 state param 的舊 state 放進所謂的 "inactive state" (sticky 選項的實作是靠 inactive state 來存 view locals 的)
+02:23 < mrorz> code: http://goo.gl/eJMOym  註解都這樣寫惹 XD 而且他那行的前面他還花了一點功夫來辨識一個 state transition 究竟是進去呢，還是重啟呢，還是只是 update params
+02:23 < kcwu> mrorz's url: [ui-router-extras/stickyStateProvider.js at master · christopherthielen/ui-router-extras · GitHub]
+02:23 < mrorz> 所以我猜這是他故意設計成這樣的，一個 sticky state 更新 state param，也會更新整個 view
+02:24 < mrorz> BTW 這作者超有心，http://goo.gl/YlK6q6 這裡有 ui-router 的 state transition 的 technical review，還有 ui-router-extras 的作法介紹……
+02:24 < kcwu> mrorz's url: [ui-router-extras/stickystate.js at master · christopherthielen/ui-router-extras · GitHub]
+02:24 < clkao> 不過這跟原本的 behaviour 就一樣了 :p 就沒有 sticky 了... 還是要加個 really sticky 的參數? :P
+02:25 < mrorz> 我猜作者只想要解決跨 state 時的 sticky 需求
+02:26 < mrorz> 像我們之前的這種需求可以用 iframe(ng-repeat ng-show) 打發
+02:27 < clkao> 不過那是因為 share controller.... 現在是希望把它拆開
+02:29 < mrorz> 咦，可是我看 code， hack.doc 這個 state 沒有 controller 說
+02:30 < mrorz> 應該是透過 ui-router 把 url 拆開而已？
+02:30 < mrorz> url & state
+02:30 < clkao> 為了這樣所以 controller 放在外面
+02:32 < clkao> mrorz: 因為 hack.doc 是 specific doc activated, controller 得 keep track 全部
+02:33 < clkao> 不過寫這的時候 ui-router 是 0.0.1 .... XD
+02:34 < mrorz> yeah 不過我覺得這個單一 controller 負責來 toggle ng-show 的作法，和我想到的怪解法（靠 onEnter 或自定 directive 來實作 cache）可能是最 declarative 的
+02:35 < mrorz> ui-router 官方的態度一直以來都是「不情願加入這種要記太多東西的功能」
+02:36 < clkao> 對了, 其實 list 的 dom 是不是也會 recreate
+02:37 < mrorz> ui-router-extras 想專心對付的跨 state 情形，因為可能會要穿越多層的 state tree，所以不會像 hackfoldr 的單層 state 的情形那麼好寫進 view
+02:37 < clkao> mrorz: yeah, this should make a case... put <ticker /> in your plunkr
+02:38 < clkao> doesn't make sense.... especially if you have .enter animation on the list entries
+02:39 < mrorz> ng-show 應該不會 recreate 吧，ng-if 會，ng-repeat 的話只要他 watchCollection 的那個變數沒有動，應該也不會 recreate?
+02:39 < clkao> right, i meant if we are separating the list and content with ui-router views
+02:40 < jimyhuang__> kcwu: 因為 libreoffice 匯出pdf時，只要noto sans就會craah，只好線上轉
+02:41 < mrorz> clkao: 如果把 content view 做成 list view 的 child view，那 list view 就不會在切換 content 時 recreate
+02:41 < mrorz> 如果 list view 和 content view 是平行的 named view，好像確實會 recreate？
+02:42 < jimyhuang__> https://github.com/adobe-fonts/source-han-sans/issues/27
+02:42 < mrorz> 平行 = 同一個 state 下
+02:42 < kcwu> jimyhuang__'s url: [LibreOffice Writer crash when export to PDF file using source-han-sans font · Issue #27 · adobe-fonts/source-han-sans · GitHub]
+02:45 < au> jimyhuang__: 已移到 https://bugs.freedesktop.org/show_bug.cgi?id=81516
+02:45 < kcwu> au's url: [Bug 81516 – PDF: export crash when Source Han Sans CJK (OTF) font applied]
+02:54 < clkao> mrorz: 繞了一圈回來用 ng-include... 既寫意又自然... XD
+02:55 < au> 好像是 http://docs.libreoffice.org/vcl/html/cff_8cxx_source.html#l01504 的 assert 壞掉，懷疑 http://docs.libreoffice.org/vcl/html/cff_8cxx_source.html#l00363 的 16 改成 256 就可以動
+02:55 < kcwu> au's url (1/2): [LibreOffice Module vcl (master): cff.cxx Source File]
+02:57 < mrorz> 對呀我也覺得 hack.doc 不指定 view，讓 hack 這個 state 切換，比較符合我們的需求 XD"
+02:58 < mrorz> （就是舊的 state 架構）
+02:59 < mrorz> 該休息惹（倒
+03:00 < mrorz> clkao 辛苦了~~
+03:01 < au> -> zzz, 睡前來 build libreoffice 看會不會醒來 pdf export 就修好了 (已在 bugzilla 留言)
+03:02 < xtort> 大家好  請問這裡是黑客松的聊天室？
+03:03 < au> xtort: 是的，沒有黑客松時也是聊天室
+03:03 < xtort> 謝謝你 Au 
+05:02 < Michael_LI> Bropheus／我想回頭看中午的濃郁之類的短講，直播影片竟然前面都不見去～～害廖廖
+05:08 < Michael_LI> Bropheus／YouTube這次只讓你們保有後面4小時的內容，現在是限縮使用的時間嗎？　　#好想看漢字王那段
+05:26 < Michael_LI> ronnywang／我們需要模擬城市這套遊戲／https://www.ptt.cc/bbs/Gossiping/M.1406891338.A.90F.html
+05:26 < kcwu> Michael_LI's url: [[爆卦] 一些疑惑說明 - 看板 Gossiping - 批踢踢實業坊]
+06:52 < Michael_LI> au／回報經驗／剛於高雄救災資訊hackfoldr這頁「…/Kaohsiung-explode-20140801」／資料表在亂掉的當下我有看到的事情是，當時人非常多很多格子都有藍色框，
+06:52 < Michael_LI> au／而我在最底下「PTT」的下面進行編輯，開始新增行，進行編輯加入一些社群網站的總整理，沒過多久，後來就發現不對勁，紀錄影片的中文字消失了……
+06:58 < au> Michael_LI: 收到，感謝。YouTube 過一陣子就會有完整的 >4hr 的影片。
+06:59 < Michael_LI> <FYI>／我們這次在g0v政府搞這個救災資迅列表，主要的目標根本是幫gov政府控制網路言論不要幫倒忙！各位想想是否如此吧！／https://www.facebook.com/lihsingyu/posts/897841076896198
+06:59 < kcwu> Michael_LI's url: [Hsingyu Li - 依據這篇文章描述『重複造輪子』是個政府與民間搭不起來的橋樑……... | Facebook]
+06:59 < au> 今天救災松的討論是把 hackfoldr 的前端蒐集連結功能貼到 EtherCalc 作成界面，然後在此情況下前端不提供編輯按鈕
+07:00 < au> 然後等收歛之後再轉為 google spreadsheet 等需要登入的服務，也許是用 A1 白底白字貼 google doc id 來重新導向
+07:00 < au> 以上。
+07:01 < Michael_LI> .//已閱
+08:27 < Michael_LI> PS／今天心中一直冒出個：李長榮化工這家公司這次會不會搞到破產保護／
+08:37 < ETBlue> hcchien: 另一行政 = coscup 行政 = moztw 的 lora = 青島東夥伴 = shadowcrow…額，我還沒請她加群組 XD..
+08:39 < ETBlue> caasih_: 對呀，因為我完全不接受用空白設定縮排的 ux 所以決定不支援這功能 >< # hackfoldr 2.0 判斷資料夾的方法
+08:50 < caasih_> ETBlue: 原來如此 XD
+08:56 < ETBlue> jimyhuang 啊離線... pong ^^b
+09:00 < hcchien> ETBlue: XDD
+09:04 < ETBlue> clkao: 直接改 css properties 跟改 class 有何差別？喔喔喔我想到了，有 js code 乾淨與否的差別 XD
+09:05 < ETBlue> # sidebar expansion
+10:12 < Michael_LI> 整理高雄災難訊息／讓各位自由取用／其中也有此文特別值得推薦一讀「用網路社群救災？高雄意外72小時，我們可以做的事（2014-08-02／作者：徐子涵）」／https://drive.google.com/folderview?id=0B6ASgY1GMSOhQzdWeXVZT0JVcmc
+10:12 < kcwu> Michael_LI's url: [整理相關資料開放一小段時間下載]
+11:12 < Michael_LI> ［快訊］哈遠宜主播透過個人關係，請教第一線打火弟兄專業上最缺什麼設備是官方沒預算撥發的？／只不過最後一句話值得社會大眾研究一下／https://www.facebook.com/yuanyi.ha/posts/10202509516167346
+11:12 < kcwu> Michael_LI's url: [哈遠儀 - 這次黃國棟小隊長和其他警消人員的犧牲，不知讓多少人跟著新聞心痛落淚。但眼淚擦乾後迎接全新的明天，難道傷痛淡... | Facebook]
+11:15 < Michael_LI> 重要修正：哈遠宜主播轉貼自熱心的新聞業前輩
+12:20 < clkao> ETBlue: 對的 這樣就可以用 jQuery 的 toggleClass.. 甚至 icon 也用上層 css 決定現在要顯示往左還往右
+13:05 < au> 一醒來就發現徐兆泉老師把客語造字轉萬國碼部件 (656字 1275 部件) 和音節對照表 (999 份排列) 手動做完了... 效率完全不輸 3du-holohak 群眾檢字。
+13:06 < au> 真是又專業又熱血
+13:06  * au 繼續開 repo 來 push
+13:06 < clkao> !!
+13:06 < clkao> 可能放棄了機車出遊行程XD
+13:08 < au> ipa++ # 幫萌典團推坑等級80的俠客一枚
+13:16 < xsoameix> clkao: 一般要用到 array.zip 這樣的東西在 nodejs 上，是用哪個套件呢？我只知道一個：underscore
+13:22 < clkao> xsoameix: underscore works... or you can use prelude: http://www.preludels.com/#zip
+13:22 < kcwu> clkao's url: [prelude.ls - a functionally oriented utility library in LiveScript]
+13:24 < xsoameix> clkao: 看起來不錯，我用用看
+13:47 < au> xsoameix: 一般是用 prelude 或 lodash (superset of underscore)
+13:49 < xsoameix> au: lodash 名字好特殊
+13:50 < au> underscore is a low dash
+13:51 < xsoameix> au: 火藥味好重 XD
+13:52 < au> XD
+13:53 < mrorz> how's lazy.js ?
+13:53 < mrorz> http://danieltao.com/lazy.js/
+13:53 < kcwu> mrorz's url: [Lazy.js - v0.3.2]
+13:54 < mrorz> :s/how's/how about/
+14:01 < au> mrorz: Lazy.js, wu.js 和 bacon.js 是另一端的 (stream-based)... 如果腦筋轉得過來 + 資料量夠大的話是很適合
+14:02 < au> 平常 small data 只有 <1000 筆資料，又在 O(n) 情況的話效能沒差，strict evaluation 還是比較容易理解和除錯 (imho)
+14:05 < clkao> hmm bacon
+14:12 < ipa> au: !! 白客多一枚
+14:17 < hychen> 80級!!!
+14:30 < ipa> hychen: 我要開新的 timemapper 要先去手動 copy 舊的 spreadsheet到自己的 gdrive，對嗎？
+14:37 < ipa> hychen: 有考慮作一鍵式開 spreadsheet 開 template 並連起來嗎？XD
+14:38 < ipa> hychen: 現在按選 gdoc 的按鈕跳出 400 API 開發人員金鑰無效。
+14:50 < hychen> ipa: it should be a bug XD
+15:04 < ipa> hychen: issue added. XD
+15:23 -!- cyen__ is now known as cyen
+15:46 < hychen> okfn的也爆掉了 =,=
+15:50 < ipa> hychen: https://g0v.hackpad.com/w01v8lrMLTY 文案寫好了 看一下共筆
+15:50 < kcwu> ipa's url: [新聞中心（發佈工作站） - g0v.hackpad.com]
+15:54 < hychen> ipa: thx
+16:23 < hychen> ipa: 現在的版本就有中文話了
+16:47 < clkao> tkirby: 居然在抓村里選舉 XD 順便 normalize 一下 ivid 吧 :p
+17:00 < clkao> tkirby: 其實可以用我之前 parse word doc 的那個 script, 只是 word 裡面 big5 外字是 pua, web 已經是 utf-8
+17:26 < tkirby> clkao: ohohoh~
+17:42 < clkao> au: moedict 最下面的 share buttons 出現兩次 而且都沒有作用了
+20:12 < Michael_LI> au,ipa 由於臺灣的人口老化三年多以後達到25%，請儘量早規劃『白客』在g0v出現的需求知識，俗話說『家有一白客，如有一寶。』
+20:16 < clkao> au: pr sent
+20:16 < lanf0n> 有人有印象太陽花怪獸原 source 是哪個repo嗎QQ...((網站下的link失效了..
+20:18 < Michael_LI> 搞不好未來會有『白客松』這種80等級開副本打怪的軍團    (隱形內閣研究所員報告 <---自稱的)
+20:52 < hychen> g0v的hackfoldr for 高雄氣爆是何時弄的?
+20:58 < clkao> hychen: find tonyq in logbot
+21:00 < ipa> hychen: http://logbot.g0v.tw/channel/g0v.tw/2014-08-01#92
+21:00 < kcwu> ipa's url: [Logbot | #g0v.tw]
+21:00 < ipa> 02:01 和 02:05分別由 lanf0n 和 tonyq 生出 hackfoldr 各一，後來整合
+21:03 < clkao> hychen: 各種事件真多啊，好悶喔，講個秘訣來解解悶吧
+21:03 < hychen> clkao: 什麼事件?
+21:13 < clkao> 明天即將上映的搶票事件... 
+21:14 < hychen> clkao: 搶data science?
+21:15 < clkao> 下次大松
+21:16 < jimyhuang__> 講個秘訣，只要當開活動得人，就不用搶票了（先搶開活動...）
+21:28 < ipa> hychen: 管線資訊揭露應該是 20 小時前，不是 8/1凌晨欸
+21:29 < hychen> ipa: 是喔
+21:30 < ipa> 我看 hackpad log
+21:30 < ipa> 印象中也是昨晚才看到
+21:48 < lanf0n> CC0是只有 1.0 嗎QQ
+21:51 < jimyhuang__> 剛剛看到 github issue ... 一年後居然成真了 https://github.com/g0v/twangry/issues/94#issuecomment-29719097
+21:51 < kcwu> jimyhuang__'s url: [政誌/地誌 · Issue #94 · g0v/twangry · GitHub]
+21:53 < hychen> http://timemap.kuansim.com/hychen/kaohsiung-industrial-disasters
+21:53 < kcwu> hychen's url: [高雄歷年氣爆時序圖]
+21:54 < clkao> jimyhuang__: be careful what you wish for!
+21:55 < jimyhuang__> 據說始作俑者 stardog_ 上來跟 hychen 要連結 XD
+21:55 < clkao> hychen: #4 不知為何顯示 2016
+21:55 < clkao> 因為你要選總統嗎？
+21:55 < clkao> 我看 gdoc 裡面是 2014 啊
+21:55 < hychen> clkao: 選總統不是你嗎?
+21:56 < jimyhuang__> 他應該是村長
+21:56 < hychen> clkao: 時間格式錯了
+21:56 < hychen> fixed
+21:57 < stardog_> hychen 做的這份"土地爭議地圖"真是太棒了
+21:58 < stardog_> 一目瞭然
+22:00 < clkao> 好像很久沒看到 stardog_ 了！
+22:01 < hychen> spereadsheet 當backend不好用 ;(
+22:02 < stardog_> 之前被加班纏住了 不過在jimmy提醒下還有記得報g0v summit喔 明天還要記得報hackathon
+22:03  * jimyhuang__ 顯示平常要認真拉下線 ...
+22:06 < hychen> stardog_: ok的，總是要積蓄能量recover
+22:07 < hychen> 剛查了一下高雄中油的工安是件，真恐怖
+22:09 < clkao> 真的 直銷不是常常都會有上下線小聚出遊 XD
+22:10 < hychen> 出遊!
+22:10 < clkao> jimyhuang__: 話說你的 tonyq 專訪 screenshot 居然沒有用思源黑體
+22:11 < jimyhuang__> 我是可憐的windows
+22:21 < hychen> 在想要不要參加大松...
+22:25 < jimyhuang__> clkao: 要我換字體再截嗎？
+22:29 < au> jimyhuang__: 講個祕訣，我昨晚 patch 過 libreoffice 結果 pdf export with source han sans 就修好了
+22:30 < au> 可是是在 linux 上 build 的... 還要 build windows 版給你 XD
+22:32 < au> jimyhuang__: 或是你有 odp 檔，我下載下來換字體測一下？
+22:35 -!- limao [6ffc4844@gateway/web/cgi-irc/kiwiirc.com/ip.111.252.72.68] has left #g0v.tw []
+22:37 < jimyhuang__> au: 這麼神奇！好啊，我要20min 後才能上傳
+22:40 < jimyhuang__> au: 我放slideahare的可以下載 http://www.slideshare.net/mobile/jimyhuang/ss-37600652
+22:40 < kcwu> jimyhuang__'s url: [只會用鍵盤可以改變什麼？]
+22:43 < jimyhuang__> hychen: 來啊，時間軸集合一下？
+22:43 < hychen> jimyhuang__: 時間軸要先hold住 =,=, 想先來改evernote intergration
+22:45 < kcwu> au++
+22:45 < jimyhuang__> hychen: 喔喔喔
+22:45 < hychen> jimyhuang__: 先把之前raejin做的版面launch一下
+22:46 < au> jimyhuang__: ok, downloading
+22:47 < hychen> ipa: 你有辦法在登入的狀態下建立timemap嗎?
+22:47 -GitHub43:#g0v.tw- [twlyparser] xsoameix opened pull request #51: Add test for calendar. (master...feature/test-calendar) https://github.com/g0v/twlyparser/pull/51
+22:48 < hychen> ipa: kiang說twitter login有問題 XD
+22:50 < ipa> 沒登入選 gdoc 現在是 401
+22:50 < ipa> hychen: 登入....也是401 XD
+22:51 < xsoameix> clkao: 弄好 calendar 的測試了，fixtures 的架構也弄好了，之後要再加 sittings 或 bills 或其他的測試變得很輕鬆 :)
+22:51 < hychen> ipa: 手動貼上google spreadsheet url呢?
+22:51 < xsoameix> clkao: 已經送 pull request 了
+22:52 < xsoameix> clkao: 在這裡：https://github.com/g0v/twlyparser/pull/51
+22:52 < kcwu> xsoameix's url: [Add test for calendar. by xsoameix · Pull Request #51 · g0v/twlyparser · GitHub]
+22:52 < ipa> 看了一下 kuansim 的mailinglist，發現有人被爆掛 XD
+22:52 < hychen> 啥掛?
+22:55 < ipa> kcliu 沒時間寫 g0v XD
+22:55 < hychen> oh
+22:56 < ipa> hychen: 直接用貼的之後跳成一頁：not found
+22:57 < hychen> 囧, 我做都正常
+23:01 < ipa> @@ 那也許我哪裡弄錯 我有空再試（先退下）
+23:05 < ETBlue> hychen 的那些地圖跨時間整合進 tkirby 的 foundi 的話… +_+
+23:06 < xsoameix> clkao: 我剛看一下，travis ci 測試通過囉！
+23:07 < jimyhuang__> ETBlue: 咦你醒啦
+23:07 < ETBlue> jimyhuang__: 對啊你昨天 ping 我時完全沒在看 irc 所以…XD
+23:13 -GitHub94:#g0v.tw- [twlyparser] clkao pushed 2 new commits to master: https://github.com/g0v/twlyparser/compare/d42a47b2789b...50f3c13ec600
+23:13 -GitHub94:#g0v.tw- twlyparser/master ece0a76 Lien Chiang: Add test for calendar.
+23:13 -GitHub94:#g0v.tw- twlyparser/master 50f3c13 Chia-liang Kao: Merge pull request #51 from xsoameix/feature/test-calendar...
+23:13 -GitHub99:#g0v.tw- [twlyparser] clkao closed pull request #51: Add test for calendar. (master...feature/test-calendar) https://github.com/g0v/twlyparser/pull/51
+23:13 < clkao> xsoameix++
+23:15 < xsoameix> clkao: 本來預期一個月是做不完 fixtures 測試架構的，沒想到今天就做完了，又不知道要做甚麼了 :\
+23:15 < kiang> tkirby: 抓什麼村里選舉資料呢？
+23:16 < tkirby> kiang: http://github.com/g0v/election-village/
+23:16 < kcwu> tkirby's url: [g0v/election-village · GitHub]
+23:17 < clkao> xsoameix: 動作太快了 XD 不然側一下 parse-doc 好了 那個蠻重要的
+23:17 < kiang> tkirby++, 我只有從裡面抓議員的選區資料，最機車的是鄉鎮市民代表居然沒有選區資料 XD
+23:19 < clkao> xsoameix: 記得寄履歷給 tka 或 yhsiang XD
+23:20 < xsoameix> clkao: parse-doc？我沒看到耶？
+23:22 < au> jimyhuang__: 修好了，可是一次只能轉 18 頁左右
+23:22 < xsoameix> clkao: 是指 parse- 開頭的嗎？
+23:23 < au> 是另一個 bug，無關乎 noto t chinese
+23:23 < au> 要分別轉再接起來 orz
+23:23 < xsoameix> clkao: 有 parse-bill, parse-tts ... 等等
+23:23 < au> 總之， http://audreyt.org/tmp/g0v-keyboard-change-something.pdf
+23:31 < Lee1092> lanf0n: 當然是 時間越新越前面，如果是同一天，則是依照寫順序，第一則在前面，一此類推
+23:32 < Lee1092> lanf0n:  可以看 公報 api json 檔 對照 http://g0v-communique-api.herokuapp.com/api/1.0/entry/all
+23:32 < jimyhuang__> au: thanks. it's magic, not code ...
+23:32 < au> jimyhuang 你的簡報我附上 bugzilla 作 test case 了 (CC By 4.0), patch 也送回上游了, enjoy https://bugs.freedesktop.org/show_bug.cgi?id=81516#c14
+23:32 < kcwu> au's url: [Bug 81516 – PDF: export crash when Source Han Sans CJK (OTF) font applied]
+23:32 < clkao> xsoameix: parse-bill in particular
+23:32 < clkao> 他c all 到的 function
+23:33 < clkao> g0v keyboard change something 好像是 tex 鍵盤要改版了
+23:33 < jimyhuang__> au: got it. 應該來自己回報的...  非常感恩
+23:34 < au> np, COSCUP 時就想修了但是一忙就忘記，剛好你提到
+23:35 < jimyhuang__> clkao: XD 事實上不是真的要改版嗎
+23:36 < jimyhuang__> au: 萌典啄木鳥今日同學看到 4000/5000 時，瞬懂為何要online ...
+23:36 < Lee1092> lanf0n:   1~6 月的公報 你要整理在 hackpad 嗎?   還是幫忙加在  g0vTxT  XD
+23:37 < jimyhuang__> hychen: 我應該會先把ocf的東西清一清，再回來撿timemap / fact.g0v 相關 XD
+23:37 < jimyhuang__> ETBlue: 本想訪談完  tonyq 後，接下來訪談你一下
+23:37 < clkao> au: 結果發現週二要去科科部... 要改週一或週三打工嗎
+23:38 < clkao> hychen++ # 文學家時間地圖也出現了 https://www.facebook.com/playpc/posts/10152346320782108
+23:38 < kcwu> clkao's url: [電腦玩物 - 看到 g0v... | Facebook]
+23:39 < clkao> hychen: user link 會 link 到 okfn instance... 404
+23:39 < jimyhuang__> 這教學太詳細了～趕快收錄到 hackpad 
+23:40 < au> clkao: 周一要跟 caasih_ 打工松，周三也有約了，不然周五吧，或是 skip 一周
+23:40 < lanf0n> Lee1092: 幫忙加是指QQ?
+23:42 < ipa> 我也想到一個時間地圖應用主題：可以作濁水溪演變史
+23:43 < clkao> au: 下週好了
+23:43 < au> k
+23:44 < clkao> hychen: 看來 tonyq 馬上要送 pr 了
+23:46 < xsoameix> clkao: 履歷嗎？我現在才大學生耶？
+23:47 < Lee1092> lanf0n:  直接加個  半年報  or  年報的欄位或選項 ?  http://g0v.github.io/g0vTxT/#/communiqueViewer
+23:47 < kcwu> Lee1092's url: [g0ver TxT]
+23:48 < Lee1092> 還不知道怎麼呈獻比較好  XD
+23:48 < tonyq> 我卡 db ...XD
+23:48 < tonyq> http://screencast.com/t/1tuCNKbz < 我覺得地圖來講這個呈現模型會比較理想
+23:48 < kcwu> tonyq's url: [2014-08-03_2338 - TonyQ's library]
+23:49 < tonyq> 上下對照的方式，然後讓時間軸以 opacity 可能 0.5 (一般)  0.8(hover) 的情況置入在地圖上，應該會更有一體感。
+23:50 < Michael_LI> 正在檢查在高雄的山達基教會......／ＸＸＸ：剛剛電視新聞說心理諮商服務進駐高雄災區，然後我看到山達基Logo與字樣從螢幕上閃過，我看了好擔心。／
+23:50 < kiang> 為什麼只有我沒辦法玩時間地圖... >.<~~
+23:50 < tonyq> 我也在趕另一隻案子 晚點再來裝時間地圖（逃
+23:51 < jimyhuang__> tonyq: css 好像改幾下就變你那樣了 :P
+23:51 < tonyq> 我剛貼的畫面是我直接用 css 改得沒錯（欸
+23:53 < clkao> tonyq 到底嘎了多少攤
+23:53 < lanf0n> 我有 github 障礙...要怎麼把master 轉成 gh-pages QAQ
+23:53 < kiang> git checkout gh-pages ?
+23:54 < tkirby> 在 repo 名旁邊的 branch 下拉是選單裡的 input box 就可以建立了
+23:54 < lanf0n> 我想把gh-pages 原本的data 刪掉然後 master 的蓋過去(艸
+23:54 < tkirby> 下拉"式"
+23:54 < hychen> clkao: fixed, 但是user page還是404
+23:55 < lanf0n> Lee1092: 噢喔喔也是可以QQ 但半年/年報可能得人工寫一些大事紀之類的...
+23:57 < hychen> tonyq: tag不見了? 
+23:57 < au> lanf0n: git checkout master ; git branch -D gh-pages ; git branch gh-pages ; git checkout gh-pages ; git push -f origin gh-pages ; git branch -D master ; git push origin :master
+23:57 < hychen> tag 是用來分不同立場的公佈的事情
+23:57 < hychen> 時間軸一拉出來可以看出來誰打誰臉
+23:58 < tonyq> hychen: 因為是簡易拉的
+23:59 < tonyq> 我剛拉了一個更完整的示範版本
+23:59 < hychen> tonyq: got it
+23:59 < hychen> tonyq: 你有測過疊圖後的狀況嗎?
+23:59 < tonyq> 剛那版只改了 width/height , positsion:absolute ,left top XDD
+23:59 < tonyq> 所以看起來慘了點
+23:59 < tonyq> 我貼另一張改得比較細的過來
+23:59 < hychen> 也許timeline可以加個icon讓user可以hide

@@ -1,0 +1,137 @@
+--- Day changed 日  7月 10 2016
+01:16 -!- chihchun_afk is now known as chihchun
+08:54 -!- bobchao_ is now known as bobchao
+08:54 -!- ETBlue__ is now known as ETBlue_
+10:48 < slackbot2> <yurenju> 工資比較表（目前只實作了現行勞基法），依照現行勞基法修正過規則了，大家可以幫忙檢查一下嗎 :smile: <https://g0v.github.io/workweek/>
+11:07 < slackbot2> <pofeng> 例假日出勤, 好像無論幾小時, 都是補假一天 (晚點查條文), 就是因為太嚴, 所以一週都要上班的行業會採變形工時, 又, 例假日, 不一定要是星期日
+11:35 < slackbot2> <pofeng> 按照勞基法(不合理)很奇怪的解釋 週薪 8800 ,  時薪好像是 ( 8800 / 8hr *7d ) 約 157 / hr 喔 , 
+11:35 < slackbot2> <http://web2.bola.taipei/cutweb/a2.asp> ( 時薪 = 月薪 / 240 hr )
+11:35 < slackbot2>  ( 前 2 hr  加班費 1+1/3 時薪)
+11:54 < slackbot2> <pofeng> 輸 9/7/8/8/8, 加班費從 +400 變成 +200, 但 7 應該不能扣薪 => 不確定
+11:55 < slackbot2> <pofeng> 輸 8/8/8/8/8/(1~4) 200, 400, 650, 900 => 正確
+12:07 < slackbot2> <pofeng> 然後, 月薪制 /240 hr 的算法,  又跟基本工資中的算法衝突(?)  
+12:07 < slackbot2> "民國103年9月15日發布，自104年7月1日起實施，調整基本工資為每月20,008元，每小時120元"
+12:46 < slackbot2> <pofeng> 例假日(週日)的額外工資(加班費),   前 8hr , 法律上, 其實只有要求多 150/hr , 第 9hr 之後, 才有 1+1/3 
+12:46 < slackbot2> 我知道, 這也是很奇怪的解釋, 週日上班, 比週六上班還少錢(?), 但是可以補休
+12:46 < slackbot2> "勞動基準法第三十九條…，所稱加倍發給，係指除依同條規定當日工資照給外，再加發該實際從事工作之休假日內應得工資而言。」(內政部73年10月18日(73)台內勞字第256453號函釋)。因此，當勞工工作時間在正常工作時間八小時以內者，雇主應按勞工工作時數計算，再給一倍之工資。所以，假日加班4小時，就加給4小時工資；假日加�
+12:46 < slackbot2> 會造成這個奇怪解釋的來源也是因為, 剛剛講的, 月薪制每日給薪 ,  月薪 / 240 hr
+12:55 < slackbot2> <yurenju> 好，我來一一檢查一下 @pofeng 謝啦 :smile:
+12:59 < slackbot2> <yurenju> @pofeng:  9 8 8 8 8 0 0 加班費顯示為 400 應該是正確的，因為週五的最後一天也會變成加班
+13:00 < slackbot2> <pofeng> "因為週五的最後一天也會變成加班" ? 不太懂 ...
+13:01 < slackbot2> <yurenju> 因為一週只能工作四十個小時，如果 9 8 8 8 8 = 41 小時，所以超過的一個小時算是加班
+13:01 < slackbot2> <pofeng> 對啊 星期加班一小時 = 150 x ( 1+1/3  ) * 1hr = 200
+13:02 < slackbot2> <yurenju> !!!
+13:02 < slackbot2> <yurenju> 恩.....
+13:02 < slackbot2> <yurenju> @pofeng: 你說得對
+13:03 < slackbot2> <pofeng> 所以你看 8400/40 hr = 210
+13:04 < slackbot2> <pofeng> 一般人會這樣算時薪
+13:04 < slackbot2> <pofeng> 結果勞基法的法定延長工時費用 200 , 比 210 還少, 這是什麼天理 ?
+13:05 < slackbot2> <yurenju> 恩...
+13:08 < slackbot2> <pofeng> 好, 這不是天理, 這是台灣偏向資方的函釋,  討論一例一休之前, 先廢掉這些亂七八糟的函釋吧 XD
+13:08 < slackbot2> (我應該來整理一下, 寫成 blog XD)
+13:13 < slackbot2> <yurenju> @pofeng: 所以週日薪水到底要怎麼算啊？
+13:15 < slackbot2> <pofeng> 例假日(週日) 前八小時 150/hr + 可補休 , 前 2 hr 1+1/3 , 後 2 hr 1+2/3 ( 很怪我知道 )
+13:18 < slackbot2> <yurenju> what…. 這是什麼怪規定...
+13:19 < slackbot2> <yurenju> 我以為是兩倍
+13:19 < slackbot2> <yurenju> 第 40 條		
+13:19 < slackbot2> 因天災、事變或突發事件，雇主認有繼續工作之必要時，得停止第三十六
+13:19 < slackbot2> 條至第三十八條所定勞工之假期。但停止假期之工資，應加倍發給，並應
+13:19 < slackbot2> 於事後補假休息。
+13:19 < slackbot2> <yurenju> 字面上看起來是加倍才對
+13:22 < slackbot2> <pofeng> 對 , 函釋造成的漏洞, 月薪制每日給薪 ( 月薪 / 240 hr )
+13:22 < slackbot2> 所以你週薪 8400 本來就已經給了週日的薪資, 所以再給 150/hr x 8 hr , 就算加倍了
+13:22 < slackbot2> "勞動基準法第三十九條…，所稱加倍發給，係指除依同條規定當日工資照給外，再加發該實際從事工作之休假日內應得工資而言。」(內政部73年10月18日(73)台內勞字第256453號函釋)
+13:22 < slackbot2> <pofeng> (先移動)
+13:22 < slackbot2> <yurenju> ……...
+13:23 < slackbot2> <pofeng> 所以勞工團體罵人不是沒有道理的
+13:23 < slackbot2> <yurenju> 這太扯了
+13:28 -!- BirkhoffLee is now known as Guest90741
+13:33 < slackbot2> <michael_li> 不曉得頻道中　有沒有人　是關注海洋環境保護的議題
+13:34 < slackbot2> <michael_li> 剛剛看到這則國際新聞　相當值得我們人類學習　1.荷蘭輟學青年有才 發明海洋吸塵器
+13:34 < slackbot2> <http://pnn.pts.org.tw/main/2016/07/04/%e5%85%a8%e7%90%83%e7%8f%be%e5%a0%b4-%e6%bc%ab%e9%81%8a%e5%a4%a9%e4%b8%8b-2016703/>
+13:37 < slackbot2> <pofeng> @yurenju: 啊 我講錯了, 週日出勤 8 小時以內, 都至少加發一日薪資 (加倍) 1200 ( 150*8hr) 
+13:37 < slackbot2>  行政院勞工委員會87年9月14日台(87)勞動二字第39675號函：
+13:37 < slackbot2> 『所謂的工資加倍發給，是指假日工資照給之外，再給一日工資，此因勞工假日工作即使未滿8小時，亦無法充份運用假日之故，此與每日延長工時加發工資的概念有所不同，至於勞工於休假日須工作多久，均由雇主決定，應由事業單位內部決定，故勞工出勤工作於八小時內，應依前開規定辦理，超過八小時部份，應依勞動基準法24�
+13:39 < slackbot2> <yurenju> 這也有點怪，這樣不就強迫雇主讓勞工只要是例假日工作，就要做滿八小時？
+13:39 < slackbot2> <pofeng> 對, 怪
+13:42 < slackbot2> <michael_li> pofeng　我前一個公司（機電公司）　開業時股東說　我們依照公務人員上班休假辦理　多好啊！（我是行政總管　發同事薪水記帳超省事
+13:46 < slackbot2> <pofeng> 例假日(週日) 上班八小時內 =  可補休+多給整日薪 1200 (150*8)  
+13:46 < slackbot2> 上 9 hr or 10 hr = 1200 + 150*(1+1/3)*(1 or2)   
+13:46 < slackbot2> 上11 hr or 12 hr = 1200 + 150*(1+1/3)*2 + 150*(1+2/3 )*(1 or 2)
+13:46 < slackbot2> <pofeng> 真的來移動 ( 快把這些怪怪函釋改一改吧 orz )
+13:52 < slackbot2> <pofeng> 休息日 (週六) 上班, 看 weekday 是否超過 40 hr , 超過部份按延長工時給薪
+13:52 < slackbot2> 例假日 (週日) 上班, 需多發日薪+ 補休
+13:52 < slackbot2> 休假日                上班, 多發日薪或補休好像可以擇一
+13:53 < slackbot2> <pofeng> 真的來移動 (剁腳)
+14:08 < slackbot2> <mitsunchieh> 所以生氣 =|
+14:42 < slackbot2> <chucklee> 勞工同意加班 -> 加班費 or 補休(勞基法第39條, 適用平常日、休假日)
+14:42 < slackbot2> 僱主強制加班 -> 加班費 and 補休 (勞基法第32條第三項, 第40條, 適用平常日、休假日或例假日, 限天災事變突發事件)
+15:19 < slackbot2> <pofeng> 法令上僱主不能強制加班
+15:23 < slackbot2> <pofeng> 口語上的的加班, 勞基法上有數個狀況 , 平常日的延長工時, 休息日出勤(40hr內)或延長工時, 例假日(週日)出勤與延長工時, 休假日(國定假日)的)出勤與延長工時
+15:29 < slackbot2> <pofeng> 延長工時一個月有上限 , 但休息日/例假日/休假日 出勤日數上限好像沒有規定, ( 只有七休一的強制規定 和 例假日出勤必有補休)
+15:29 < slackbot2> <pofeng> 39 條	 	
+15:29 < slackbot2> 第三十六條所定之例假、第三十七條所定之休假及第三十八條所定之特別
+15:29 < slackbot2> 休假，工資應由雇主照給。雇主經徵得勞工同意於休假日工作者，工資應
+15:29 < slackbot2> 加倍發給。因季節性關係有趕工必要，經勞工或工會同意照常工作者，亦
+15:29 < slackbot2> 同。
+15:31 < slackbot2> <pofeng> 我錯了, 休息日 "應" 加倍發給
+15:31 < slackbot2> <pofeng> 只是休息日上班, 不一定要加補休
+15:32 < slackbot2> <pofeng> Q：勞工於休假日工作工資如何發給疑義
+15:32 < slackbot2> A：查勞動基準法第三十九條規定勞工於休假日工作，工資應加倍發給，至於勞工應否於休假日工作及該假日須工作多久，均由雇主決定，應屬於事業單位內部管理事宜。勞工於休假工作後，勞雇雙方如協商同意擇日補休，為法所不禁。但補休時數如何換算，仍應由勞雇雙方協商決定。
+15:32 < slackbot2> （行政院勞工委員會八十七年八月三十一日台87勞動二字第○三七四二六號函）
+15:55 < slackbot2> <yurenju> 整理一下，所以週日上班薪水如果低於八個小時都是 150 * 8, 如果超過八小時則前兩個小時加 1/3, 接下來加 2/3 這樣對嗎？
+15:55 < slackbot2> <yurenju> @pofeng: ^^^^^^^
+15:56 < slackbot2> <yurenju> 另外一個問題是，週日上班的時數有包含在「每週不得工作超過 48 小時」嗎？
+16:59 < slackbot2> <lee> 我暈了  (倒
+17:18 < slackbot2> <yurenju> 恩現在算法改了週日應該也會通
+17:18 < slackbot2> <yurenju> 好像該開始做一例一休跟兩例了
+18:36 < slackbot2> <yurenju> 有人有一例一休的規則嗎？
+18:39 < slackbot2> <yurenju> 這個好像不錯
+18:39 < slackbot2> <yurenju> <https://www.facebook.com/labor.better/photos/a.1716320875303715.1073741830.1683335308602272/1716321125303690/?type=3&amp;theater>
+19:28 < slackbot2> <pofeng> @yurenju: 週日薪水應該對了, 可以開始找熟勞基法的來 review 
+19:28 < slackbot2>  「每週不得工作超過 48 小時」是只變形工時的分配後總時數, 目前你可以先不處理
+19:28 < slackbot2> 延長工時的限制是一個月不得超過 46hr
+19:32 < slackbot2> <pofeng> 10/8/8/8/8/0/9  的狀況下 , 周一延長工時為 2hr  ,  週日延長工時為 1hr (對,很奇怪的函釋)
+19:34 < slackbot2> <pofeng> 所以本週用掉 3 小時的延長工時 quota , 剩下 43 小時
+20:03 < slackbot2> <yurenju> @chucklee: 也可以幫忙 review 一下 :smile:
+21:25 < slackbot2> <kiang> 台東的官方災情通報有些舊資料被刪除了，所以剛好做的備份變得更有價值 XD - <https://github.com/kiang/taitung>
+21:59 < slackbot2> <clkao> johnny: <https://beta.openparldata.org/explore/?p%5B%5D=8&amp;p%5B%5D=4&amp;rot=2>
+22:23 < slackbot2> <yurenju> <http://www.cna.com.tw/news/firstnews/201606290106-1.aspx>
+22:23 < slackbot2> <yurenju> 「工作時間計算方式為工作4小時以內，以4小時計算，超過4小時至8小時，以8小時計算，超過8小時至12小時以內者，以12小時計。」
+22:28 < slackbot2> <yurenju> 這個規則這麼複雜，我真懷疑現在討論的人有多少可以完全了解這些規則
+22:37 < slackbot2> <kiang> 所以當勞動部長說 "全世界都還沒有週休就是兩個例假日這樣的規定" ，其實一例一休更是獨步全球吧（嘆）
+22:41 < slackbot2> <kiang> 歐美制度簡單，漏洞部份由工會補上，勞動條件才有辦法如此優渥，總覺得健全的工會組織才是我們缺乏的
+22:43 < slackbot2> <yurenju> 這樣加班費其實有高一點
+22:46 < slackbot2> <yurenju> 一例一休加好了 <https://g0v.github.io/workweek/>
+22:46 < slackbot2> <yurenju> 就剩兩例
+22:46 < slackbot2> <ttcat> 週辛要研究一下法規
+22:46 < slackbot2> <yurenju> 如果有人想幫忙設計 UI 會感激不盡 m(_  _)m
+22:47 < slackbot2> <yurenju> @ttcat: 可以幫忙看一下有啥錯誤的嗎？
+22:47 < slackbot2> <yurenju> 或是什麼可以加的，可以有助於使用的人看得更清楚
+22:48 < slackbot2> <ttcat> 我記得之前看過是說，其實規定是要給週薪，但可以允許雇主每月給一次。所以薪水本來是 52 週，但變 12 個月後會剛好少一個月。就用年終來補齊，所以一個月的年終不算「獎金」
+22:51 < slackbot2> <ttcat> 但是有爭論就是了。勞基法 23 條：第二十三條（工資給付之時間次數）
+22:51 < slackbot2> 工資之給付，除當事人有特別約定或按月預付者外，每月至少定期發給二次；按件計酬者亦同。
+22:51 < slackbot2> <ttcat> 所以我覺得直接換算週薪會有點問題 ...
+22:53 < slackbot2> <yurenju> @ttcat: 你覺得算兩週薪，會比一週薪更清楚嗎？
+22:54 < slackbot2> <ttcat> 不會，兩週薪 12 個月也才 24 次 = 48 週。
+22:55 < slackbot2> <ttcat> 具體來說我是建議先拿掉週薪的換算比較好。
+22:56 < slackbot2> <yurenju> 你說月薪換成週薪嗎？
+22:57 < slackbot2> <yurenju> 還是我只要不寫「總計週薪」就好了 XDD
+23:00 < slackbot2> <ttcat> 對呀
+23:00 < slackbot2> <yurenju> 寫「本週薪資試算」呢？
+23:01 < slackbot2> <ttcat> 你現在是月薪 / 30 x 7
+23:01 < slackbot2> <ttcat> Hmm...
+23:02 < slackbot2> <ttcat> 因為如果月薪 x 12 / 365 x 7
+23:02 < slackbot2> <yurenju> 等等！這個前面好像有討論過
+23:02 < slackbot2> <ttcat> 結果就不一樣了 XDDD
+23:02 < slackbot2> <yurenju> 讓我捲一下
+23:03 < slackbot2> <kiang> 如果可以有鼎新系統之類的人跳坑就好了 XD
+23:03 < slackbot2> <yurenju> <https://g0v-tw.slack.com/archives/general/p1468128142002198>
+23:05 < slackbot2> <yurenju> 我先來寫兩例，這應該最簡單？
+23:06 < slackbot2> <ttcat> Agree//
+23:07 < slackbot2> <yurenju> 兩例，就是週六週日都不能加班，除非緊急狀況或天災，薪水都要給整天，然後規則是前八個小時 150, 八到十小時 150*4/3, 十到十二小時 150*5/3 對吧？ @pofeng &amp; @chucklee
+23:12 < slackbot2> <kiang> 兩例是一週必須有兩天例假，並不一定在六日，例假上班需要通報（沒聽說真的有人通報就是了），然後要有補休，可以參考 @etblue 的 <https://www.facebook.com/ETBlue/media_set?set=a.10207401611891209.1073741855.1014354995&amp;type=3>
+23:13 < slackbot2> <yurenju> 可以移到別天我用註解解決就好了，不然太複雜
+23:56 < slackbot2> <yurenju> 很隨便的弄了 UI, 歡迎大家多多貢獻 UI Orz… <https://g0v.github.io/workweek/> 來睡了
+23:58 < slackbot2> <clkao> 一週兩例假日版本 => "只有在天災、事變或突發事件才可在週日工作。” 這邊「週日」應該是「例假，如週六與週日」
+23:59 < slackbot2> <clkao> 例假有說要多久前約定好嗎？可以多頻繁調整呢？

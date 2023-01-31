@@ -1,0 +1,147 @@
+--- Day changed 三 12月 03 2014
+00:13 < eattee1> 嗯...正在看working project
+00:29 < yhsiang> clkao: er.mohw後端api GG了?
+00:29 < eattee1> 這是什麼
+00:30 < au> eattee1: http://er.mohw.g0v.tw/ 全國重度級急救責任醫院急診即時訊息
+00:30 < kcwu_> au's url: [零時政府衛生福利部 - 全國重度級急救責任醫院急診即時訊息]
+00:31 < au> 目前 GG (掛掉) 中... source: https://github.com/g0v/er.mohw pad: https://g0v.hackpad.com/vtLwiUfYgcc
+00:31 < kcwu_> au's url (1/2): [g0v/er.mohw · GitHub]
+00:31 < kcwu_> au's url (2/2): [全國重度級急救責任醫院急診即時訊息 - g0v.hackpad.com]
+00:32 < eattee1> GET http://api-beta.ly.g0v.tw:8086/db/twer/series?p=guest&u=guest net::ERR_CONNECTION_REFUSED
+00:37 < eattee1> 看起來不是Linode連線的問題 應該是server crash 有人能重開機一下?
+00:38 < yhsiang> eattee1: 所以我戳了clkao XD
+00:39 < yhsiang> 他有空應該就會處理了 dont worry~
+00:39 < au> ethercalc 的 Linode instance 下午也剛被 server reboot... 但 docker 會自己 init 起來所以看來沒有影響
+00:45 < lanf0n> yhsiang: ah... DO 這幾天是不是要 reboot (? 有收到信但不確定是所有機器都會重開嗎QQ?
+00:46 < yhsiang> lanf0n: XD 我現在沒機器放DO耶 
+00:46 < eattee1> DO是Digital Ocean嗎
+00:46  * yhsiang (揍飛
+00:46 < yhsiang> eattee1: yes
+00:48 < lanf0n> ...剩我在用嗎QAQ
+00:48 < eattee1> @lanf0n 我怎沒收到信
+00:51 < lanf0n> eattee1: 2014/11/27 寄的 " We're scheduling this reboot for between 02:00-03:00 local time in Singapore on December 3, which is 18:00-19:00 UTC on December 2. "
+00:52 < yhsiang> lanf0n: 那就是再1個小時 ...
+00:52 < lanf0n> 囧
+00:52 < eattee1> @lanf0n 我現在在新加坡也有租一個VPS可是沒收到通知
+00:52 < lanf0n> eattee1: 好妙 揪竟會不會 reboot...
+01:02 < eattee1> 想請教一下有沒有辦法讓server restart時自動啟動node app
+01:03 < eattee1> 現在是手動run NODE_ENV=production forever start /path/www
+01:04 < yhsiang> eattee1: server是用ubuntu?
+01:04 < eattee1> 嗯嗯
+01:05 < yhsiang> eattee1: 去找個upstart的script吧
+01:05 < eattee1> 還有一個mongodb service
+01:05 < yhsiang> 或加入rc.local裡面
+01:09 < yhsiang> ubuntu好像是要放在rcS.d hmm
+01:11 < eattee1> 有rc.local 我有放一個iptable 3000轉80port
+01:12 < yhsiang> eattee1: https://www.exratione.com/2013/02/nodejs-and-forever-as-a-service-simple-upstart-and-init-scripts-for-ubuntu/
+01:12 < kcwu_> yhsiang's url: [Node.js and Forever as a Service: Simple Upstart and Init Scripts for Ubuntu]
+01:13 < yhsiang> 這裏有upstart範例 放到/etc/init.d底下就可以了
+01:16 < eattee1> @yhsiang1 感謝
+01:47 -!- eattee1 [guest-eatt@conference/jsconf/x-daqhvqvghrjmefxv] has left #g0v.tw []
+02:24 < hychen> 也可以裝runit
+02:24 < hychen> init script 比較好寫
+03:04 -!- chihchun is now known as chihchun_afk
+03:21 -!- chihchun_afk is now known as chihchun
+07:17 -!- seadog007_ is now known as seadog007
+07:19 < yhsiangCloud> hychen: Ubuntu 原廠說話了~
+07:51 < clkao> yhsiang: 修好了 有空要升級順便放進 docker 了
+07:51 < clkao> 昨天看到 amazon ECS 覺得還不賴 只是還在 preview 中
+08:45 -!- chihchun is now known as chihchun_afk
+09:14 < tiwb> 好久沒開IRC..
+09:26 < Lee1092> 早  XD
+09:50 < clarld> ethantw: Win7有些瀏覽器仍無法正確顯示文字 http://i.imgur.com/7VuC3JF.jpg
+10:03 -!- chihchun_afk is now known as chihchun
+10:05 -!- chihchun is now known as chihchun_afk
+10:18 -!- clarld [guest-clar@conference/jsconf/x-sikjbadgvrbzntpo] has left #g0v.tw []
+10:21 -!- chihchun_afk is now known as chihchun
+10:24 -!- chihchun is now known as chihchun_afk
+10:51 -!- CelloCello [~Cello@119.77.223.31] has left #g0v.tw []
+10:52 -!- chihchun_afk is now known as chihchun
+11:26 -!- chihchun is now known as chihchun_afk
+11:28 -!- chihchun_afk is now known as chihchun
+11:42 -!- seadog007_ is now known as seadog006
+11:42 -!- seadog006 is now known as seadog007_
+11:42 -!- seadog007_ is now known as seadog007
+11:47 -!- dobest1021 [7a9244c8@gateway/web/cgi-irc/kiwiirc.com/ip.122.146.68.200] has left #g0v.tw []
+12:35 -!- SarsTW_ is now known as SarsTW
+12:58 -!- seadog007__ is now known as seadog007
+13:04 < hcchien> 有人在 g0v-general 問 全國重度級急救責任醫院急診即時訊息 的資料
+13:10 < lanf0n> 歷史資料應該要問 clkao ^^^^^ #er.mohw
+13:12 < yhsiang> hcchien: 你是說無限期 還是後勤XD
+13:13 < lanf0n> googlegroup 吧XD
+13:19 < yhsiang> 對 我也看到了
+13:19 < yhsiang> https://groups.google.com/forum/?hl=zh-TW#!topic/g0v-general/Vn_Kj39mTWU
+13:19 < kcwu_> yhsiang's url: [Google 網上論壇]
+13:20 -!- seadog007_ is now known as seadog006
+13:20 -!- seadog006 is now known as seadog007
+14:03 < kiang> linode 日本的 datacenter 滿載，沒辦法升級 XD
+14:07 < yhsiang> 好像之前就發生過
+14:07 < yhsiang> kiang: 換到aws? or vultr XD
+14:08 < kiang> 就是覺得 aws 太貴才換到 linode 的 XD
+14:08 < kiang> 相較之下 aws 又貴又慢， linode 有 ssd XD
+14:09 < CornGuo> http://icannwiki.com/.wtf <-- 好歡樂的 TLD
+14:09 < kcwu_> CornGuo's url: [.wtf - ICANNWiki]
+14:09 < kiang> 把快取都寫成檔案之後 linode1024 就可以應付目前的流量，只是機器太小偶爾卡卡，所以想要升級，結果就遇到滿載情況
+14:10 < kiang> *.wtf 應該蠻適合當大腸花系列的網站網址 XD
+14:11 < CornGuo> XDDD
+14:23 < kiang> https://github.com/composer/composer/commit/ac676f47f7bbc619678a29deae097b6b0710b799 被推爆的 commit 只有加一行程式碼 XD
+14:23 < kcwu_> kiang's url: [Disable GC when computing deps, refs #3482 · ac676f4 · composer/composer · GitHub]
+14:24 -!- seadog007__ is now known as seadog007
+14:26 -!- chihchun is now known as chihchun_afk
+14:29 < Lee1092> kiang: 求詳解    我不懂 php  XD
+14:29 < seadog007> 不用懂沒關係(#
+14:30 < lanf0n> Lee1092: 不是把gc關掉嗎O_O
+14:31 < Lee1092> lanf0n:  為什麼把 gc 關掉 效率會倍增?
+14:32 < yhsiang> gc_disable — Deactivates the circular reference collector
+14:33 < yhsiang> Lee1092: http://php.net/manual/en/function.gc-disable.php
+14:33 < kcwu_> yhsiang's url: [PHP: gc_disable - Manual]
+14:33 -!- chihchun_afk is now known as chihchun
+14:34 < Lee1092> 找到了  這篇有說明!  https://news.ycombinator.com/item?id=8686934
+14:34 < kcwu_> Lee1092's url: [Composer – Disable GC when computing deps and refs | Hacker News]
+14:34 < Lee1092> yhsiang:  thx
+14:40 < kiang> 簡而言之： php 的 gc 很糟 XD
+14:43 < kiang> 在這之前只有幾個人懷疑 gc 讓 composer 慢到爆，但核心開發者沒當作一回事，直到真的把 PR 吃下來才發現效能差異超大，然後就一堆人崩潰了，因為這個 PR 只加了一行程式碼 XD
+14:47 < kiang> http://news.ltn.com.tw/news/focus/paper/835877 - 這是一種遞迴的概念，希望有人修正這個 bug ，別讓它進入無限迴圈...
+14:47 < kcwu_> kiang's url: [挺馬中常委：若沒人要選 就回歸黨章總統兼黨魁 - 焦點 - 自由時報電子報]
+14:47 < shelling_> 一行 XD
+14:47 < yhsiang> io.js XDDD
+14:48 < shelling_> 遞迴是沒做 DFS 吧 XD
+14:49 < kiang> 辭職 => 改選 => 沒人敢跳出來 => 同一個人當選 XD
+14:50 < kiang> 以這種模式，辭職 n 次大概也是一樣的結果吧
+14:51 < Lee1092> 馬:  我都說要辭職囉~   既然你們都不當    那我就勉為其難繼續當啦
+16:17 < hcchien> clkao: 看來要去回一下信了
+16:18 < clkao> 要啊
+16:18 < lanf0n> 那篇消失惹...
+16:19 < yhsiang> 獲得新朋友 http://codefor.org.nz/ , https://fyi.org.nz/
+16:19 < kcwu_> yhsiang's url (1/2): [Code for NZ: the New Zealand Code for All Brigade]
+16:19 < kcwu_> yhsiang's url (2/2): [FYI - Make and browse Official Information Act (OIA) requests]
+16:46 < demete> 議員投票指南登上briian http://briian.com/25118/vote2014.html
+16:46 < kcwu_> demete's url: [怎辦？快變色盲也還沒辦法決定要投給誰！來，這兩個網站拿去看 _ 重灌狂人]
+17:46 -!- chihchun is now known as chihchun_afk
+17:46 -!- demete [guest-deme@conference/jsconf/x-usmpxkzkdxnczqmq] has left #g0v.tw []
+17:49 -!- CelloCello1 [~Cello@119.77.223.31] has left #g0v.tw []
+18:43 < pikaren> zzzz
+20:36 < ronnywang> 中國在 2014/1/1 開始執行 国家重点监控企业自行监测及信息公开办法 http://202.136.217.188:8800/page/watchnotice.jsp?pkid=7C66533B-6E5C-4847-8BF3-766E28307614
+20:36 < kcwu_> ronnywang's url: [上海市重点监控企业环境信息发布平台]
+20:37 < ronnywang> 裡面規定，有排放污水的工廠，必需要即時上傳廢水排放檢測數據，並且公開
+20:37 < ronnywang> 台灣好落伍 orz
+20:37 < ronnywang> 第二十条 企业自行监测信息按以下要求的时限公开：
+20:37 < ronnywang> （三）自动监测数据应实时公布监测结果，其中废水自动监测设备为每2 小时均值，废气自动监测设备为每1 小时均值；
+22:14 < miaoski> ronnywang: 上有政策下有對策，你看到的數據說不定全錯的 XDDD
+22:15 < miaoski> 就像去中國旅遊，每個導遊都說的頭頭是道，哪年誰來了這裡做些什麼，結果一翻開史書很多都有爭議，還有根本沒這回事的 XD
+22:15 < kiang> miaoski++, 看到他們報導意外死亡人數後基本上很難相信他們有可以信任的數字 XD
+22:20 < clkao> 但至少規則是先進的... ?
+22:21 < kiang> 中國： 中國式民主獨具特色和魅力。它是中國共產黨領導的人民民主，是保證最大多數人當家作主的民主，是以民主集中製為根本組織原則的民主。
+22:21 < kiang> 語畢，哄堂大笑...
+22:21 < miaoski> kiang: 這是寫在憲法裡的
+22:22 < kiang> miaoski: 我倒是沒有研究過他們的憲法，只是覺得這講的跟世界和平一樣
+22:22 < miaoski> 中國共產黨及各民主黨派共同組成的人民民主集中制
+22:23 < miaoski> kiang: 我大學唸過。
+22:25 < kiang> miaoski: 什麼科系要唸中國憲法啊？
+22:33 < ronnywang> 至少他們是有相關法規的啊，今天大家也可以去自行檢驗去質疑他的數字，不像台灣現在是連數字都沒有，上次日月光事件是檢調在事後 40 天才跑去採樣，也難怪會被法官判無罪
+22:34 < kiang> 應該有特定利益團體在關說這一塊吧
+22:44 -!- CelloCello [~Cello@119.77.223.31] has left #g0v.tw []
+22:52 -!- ethantw_ is now known as ethantw
+22:55 < miaoski> kiang: 好玩啊
+22:56 < kiang> miaoski: 你的興趣真廣泛...
+23:38 -!- chihchun_afk is now known as chihchun

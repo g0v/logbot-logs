@@ -1,0 +1,400 @@
+--- Day changed 六  5月 25 2013
+00:03 -!- superbil [~superbil@114-34-221-169.HINET-IP.hinet.net] has joined #g0v.tw
+00:05 < clkao> au: yeah. 不然就是 fallback 成 post snapshot... 不過比較大的問題是 subscribe updates
+00:06 < au> yeah
+00:13 < clkao> 衝 firebase 也行... 只是就必須要 implement tag / subject editing UI
+00:31 -!- cyt93cs_ [~cyt93cs@linux.cs.ccu.edu.tw] has quit [Ping timeout: 248 seconds]
+00:42 -!- Supaplextw1 [~Lucky@114-36-251-186.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+00:44 -!- sjhuang [~sjhuang@36-229-168-17.dynamic-ip.hinet.net] has joined #g0v.tw
+00:51 -!- Supaplextw [~Lucky@114-36-251-186.dynamic.hinet.net] has joined #g0v.tw
+00:52 < ETBlue> ...... 問個問題，我要怎麼在 chrome dev tool 裡面直接編輯 html  = =
+00:52 < clkao> right click -> edit as html
+00:53 < ETBlue> 喔喔喔XDD
+01:04 -!- hialan [~chatzilla@114-43-139-21.dynamic.hinet.net] has joined #g0v.tw
+01:04 -!- Supaplextw [~Lucky@114-36-251-186.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+01:06 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has joined #g0v.tw
+01:11 -!- Supaplextw [~Lucky@114-36-251-186.dynamic.hinet.net] has joined #g0v.tw
+01:21 < ETBlue> clkao:
+01:21 < ETBlue> 疑
+01:21 -!- Supaplextw [~Lucky@114-36-251-186.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+01:22 < ETBlue> 直接貼可以嗎 XD
+01:22 < ETBlue> <li class="dropdown open">
+01:22 < ETBlue> <a id="projects" data-target="#" role="button" class="dropdown-toggle" data-toggle="dropdown">專案列表</a>
+01:22 < ETBlue> <ul class="dropdown-menu" role="menu" aria-labelledby="projects">
+01:22 < ETBlue>     <li role="presentation"><a role="menuitem" tabindex="-1" href="http://hack.g0v.tw/#/g0v-hackath3n">客廳工廠黑客松</a></li>
+01:23 < ETBlue>     <li role="presentation" class="divider"></li>
+01:23 < ETBlue>     <li role="presentation"><a role="menuitem" tabindex="-1" href="http://hack.g0v.tw/#/g0v-ly">立法院專案</a></li>
+01:23 < ETBlue>     <li role="presentation"><a role="menuitem" tabindex="-1" href="http://hack.g0v.tw/#/g0vwelfare">福利請聽</a></li>
+01:23 < ETBlue> </ul>
+01:23 < ETBlue> <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+01:23 < ETBlue> <script>
+01:23 < ETBlue> $('.dropdown-toggle').dropdown();
+01:23 < ETBlue> </script>
+01:23 < ETBlue> </li>
+01:26 -!- Supaplextw [~Lucky@114-36-251-186.dynamic.hinet.net] has joined #g0v.tw
+01:27 < ETBlue> 喔喔好像該改成 jade 格式，不過我剛才試圖在電腦上裝 jade 的時候又不小心亂搞到 git 最後繞一大圈乾脆直接在 browser 裡面改 XD
+01:28 < clkao> ETBlue: use gist next time to paste things ;)
+01:28 < ETBlue> 總之command line 真的很恐怖... = =
+01:28 < ETBlue> 喔喔喔對喔
+01:28 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 248 seconds]
+01:28 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 248 seconds]
+01:28 -!- Custom_ [custom@saturn.stu.edu.tw] has joined #g0v.tw
+01:30 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+01:30 < ETBlue> 突然覺得 bootstrap 真的挺方便的，剪剪貼貼就會動 XD
+01:30 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has quit [Quit: Leaving.]
+01:31 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has joined #g0v.tw
+01:31 -!- KNY [~Adium@111-253-157-142.dynamic.hinet.net] has quit [Client Quit]
+01:34 -!- poga [~poga@111-241-137-8.dynamic.hinet.net] has joined #g0v.tw
+01:57 < clkao> ETBlue++ # 更新了
+01:57 < clkao> 順便改用 angular-ui bootstrap
+01:57 < clkao> 就不用自己 call .dropdown() 了
+01:58 < ETBlue> 我可以聽不懂嗎（遠目
+01:59 < clkao> 你剛最後不是有一個 script
+01:59 < clkao> 總之就是不用了 :p
+02:00 < clkao> ETBlue: diff: https://github.com/g0v/hack.g0v.tw/commit/241d4eec3ef13c6b50f4d983ba9ff11d98929cf7
+02:00 < kcwu> clkao's url: [menu adjustment per @ETBlue++ · 241d4ee · g0v/hack.g0v.tw · GitHub]
+02:01 < clkao> ETBlue: 話說 關於 裡面要寫些什麼呢
+02:03 < ETBlue> 讓我回憶一下前天阿修說什麼...（思
+02:05 -!- hialan [~chatzilla@114-43-139-21.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.90 [Firefox 21.0/20130511120803]]
+02:07 < ETBlue> 直接把 hackfoldr 的 github 頁面秀在 frame 裡面？直接用 github 上的 readme XDDDDD
+02:07 < clkao> github 不能 embed
+02:07 < ETBlue> 喔是喔 @@
+02:08 < clkao> 而且那邊應該是 g0v dev 的 about
+02:08 < clkao> 有想到什麼請直接 push :p
+02:09 < clkao> about.jade # 不想寫 jade 可以用 html2jade.aaron-powell.com 轉 :p
+02:09 < ETBlue> 囧" 那我要先把環境架好 XD 不然自己做了什麼都看不到 XD
+02:09 < clkao> 其實就 readme 中兩行 - npm i && ./node_modules/.bin/brunch w -s
+02:10 < clkao> 為什麼覺得有次在默契好像有讓你的跑起來過
+02:10 < ETBlue> 對壓，後來都沒在用就還給老師你了...
+02:10 < ETBlue> XD XD
+02:11 < ETBlue> 啊 好像想起來惹 我試試
+02:12 < ETBlue> 剛才想讓 fire.app watch 這個專案結果搞的更一頭霧水，我應該直接跑 node js 的 server 就好
+02:12 < clkao> hmm, 應該要 patch 一下 fire.app, 發現是 brunch project 就自動用 brunch w -s 
+02:21 -!- VoidChen [~VoidChen@114-45-246-158.dynamic.hinet.net] has quit [Remote host closed the connection]
+02:21 < ETBlue> 這樣正常嗎 https://gist.github.com/ETBlue/5645490#file-gistfile1-txt
+02:24 < clkao> 啊慘 好像就是上次遇到的 win32 
+02:24 < ETBlue> 囧
+02:24 < clkao> 問題... au 提供了某個解法 但是我好像沒 push 進去
+02:24 < ETBlue> 在 win 底下寫程式真是太坎坷了
+02:24 < clkao> 直接 node node_modules\.bin\brunch w -s 呢？
+02:25 < clkao> 或者把 package.json 中的 script -> prepublish 整個砍掉
+02:25 < clkao> npm start 
+02:25 < ETBlue> https://gist.github.com/ETBlue/5645529#file-gistfile1-txt
+02:27 < clkao> 苦 ><
+02:27 < clkao> 不行了 先來睏
+02:27 < ETBlue> https://gist.github.com/ETBlue/5645539#file-gistfile1-txt
+02:28 < ETBlue> 我也睏囧了
+02:28 < ETBlue> zzz
+05:54 -!- a-tsioh [~pierre@175.176.102.84.rev.sfr.net] has joined #g0v.tw
+06:07 -!- pm5 [~pm5@111-248-230-248.dynamic.hinet.net] has joined #g0v.tw
+06:19 -!- pm5 [~pm5@111-248-230-248.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+06:59 -!- Jedi_ [~Jedi@jedi.org] has quit [Read error: Connection reset by peer]
+07:03 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+08:37 -!- t3e [~tonie@114-34-217-3.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+08:40 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+08:44 < ETBlue> clkao: 有沒有可能直接連到某個已經架好的環境裡面寫code，不用在自己的電腦上裝東西架server什麼的... 用 windows 好坎坷 >_<
+08:44 < ETBlue> clkao: 喔也不只是 windows 的問題，不管在哪架環境對我來說都好坎坷 
+09:12 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+09:18 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has left #g0v.tw []
+09:50 -!- bafu [~bafu@111-240-222-238.dynamic.hinet.net] has joined #g0v.tw
+10:07 -!- ddio [~ddio@wlan-uam.ntust.edu.tw] has joined #g0v.tw
+10:14 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+10:40 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+10:45 < ETBlue> clkao: 啊我想到了，來試試看 windows 裡面 vm 裝 linux
+10:46 < ETBlue> 這樣至少可以避開 windows 的一些奇怪問題...
+10:57 < tkirby> ETBlue: 買一臺 macbook!
+10:58 < ETBlue> 啊，我想到 hackfoldr 的 about 要寫什麼了 orz 我想問怎麼開一個自己的 hackfolder... 我想開 g0v 網站規劃的，把新的 user story 那個 pad 加進去 @@"
+10:58 < ETBlue> tkirby: 這太 over 了 XDDDD
+10:58 < tkirby> 話說回來之前用的那套 ls + jade + sass + brunch ... 其實整個搬到 windows 上也是蠻容易的
+10:59 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has quit [Quit: Leaving.]
+11:00 < ipa> 一覺醒來hack.g0v上面的navigation就可以下拉了
+11:00 < ETBlue> 昨天架環境遇到莫名其妙的問題，後來就睏囧
+11:01 < ETBlue> ipa: 就是說 XD
+11:01 < tkirby> 喔喔! 下拉!
+11:06 < ETBlue> 在 https://ethercalc.org/ 開一個試算表以後要做什麼事情才能開 hackfoldr ... = =?
+11:06 < kcwu> ETBlue's url: [EtherCalc - Share the URL to your friends and edit together!]
+11:07 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+11:11 < ETBlue> ipa:  hackpad 標題下面的底線怎麼用才會出來 @@?
+11:11 < au> ETBlue: 試算表名稱是?
+11:12 < au> 應該是直接加到 hackfoldr.org/#/ 後面 或 hack.g0v.tw/#/ 後面即可
+11:12 < au> 不用特別設定
+11:12 < au> ethercalc.org/xyzxyz => hack.g0v.tw/#/xyzxyz
+11:12 < au> => hackfoldr.org/#/xyzxyz
+11:12 -!- seudo_tw [r01944023@linux5.csie.ntu.edu.tw] has joined #g0v.tw
+11:13 < au> ETBlue: 架 linux 的話, virtualbox+vagrant 好用 https://www.virtualbox.org/wiki/Downloads + http://downloads.vagrantup.com/tags/v1.2.2
+11:14 < kcwu> au's url (2/2): [Vagrant - Downloads]
+11:14 < kcwu> au's url (1/2): [Downloads – Oracle VM VirtualBox]
+11:14 -!- seudo_tw [r01944023@linux5.csie.ntu.edu.tw] has left #g0v.tw []
+11:15 < ETBlue> 啊對，要怎麼設定試算表名稱 XD
+11:16 < ETBlue> 現在是一堆很亂的應數字
+11:16 < ETBlue> au: 喔喔喔現在就來下載！！！ XD
+11:17 < au> ETBlue: 直接自己改
+11:17 < au> http://ethercalc.org/whatever-name-here
+11:17 < kcwu> au's url: [EtherCalc - Share the URL to your friends and edit together!]
+11:17 < au> 很自由的 XD
+11:18 -!- ETBlue_ [~chatzilla@175.182.237.104] has joined #g0v.tw
+11:19 < au> ETBlue: http://ethercalc.org/ 後面可以自己接... http://ethercalc.org/any-name-you-want-here
+11:20 < ETBlue_> au: 理解，我開好新的然後把剛才那個奇怪名稱的試算表貼過去 XD
+11:20 < ETBlue_> 所以如果想改名稱的話不能直接修改，要開新的對不對
+11:21 < au> 對 (但是其實這個不難加，只是第一次有人提出 XD)
+11:21 < ETBlue_> au: 最適合不熟 linux 的人的 linux 是 ubuntu 對嗎？ XD
+11:22 < au> 至少是社群最大的(之一)
+11:22 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Ping timeout: 248 seconds]
+11:22 < au> 不過如果是用 vagrant，可以跳過界面，putty/ssh 進虛擬機就好了
+11:23 -!- ETBlue_ is now known as ETBlue
+11:23 < au> 想要用 GUI 時再開 virtualbox -- 然後可以弄成和 Windows 7 長的一樣 http://www.pcworld.com/article/2028896/how-to-make-ubuntu-linux-look-like-windows-7.html
+11:23 < kcwu> au's url: [How to make Ubuntu Linux look like Windows 7 | PCWorld]
+11:24 < au> j/k # just kidding
+11:28 < ETBlue> au:  windows 跟 vm 的 ubuntu 可以透過 virtual box 的 shared folder 共用專案資料夾對嗎？那 vagrant 是讓 windows 跟 ubuntu 的環境一致用的嗎（歪頭
+11:28 < ETBlue> au: XD XD XD 我可不是 win7 介面控... XDDDDDDDDDDDD
+11:29 < ETBlue> 跳過介面直接進 vm 是說不用開 virtualbox，只要指向那個 vm 的磁碟位置就可以開機了嗎
+11:30 < au> vagrant 是簡化 virtualbox 設定的工具
+11:30 < au> 可以一鍵裝好 Ubuntu 帳號密碼等並提供 SSH port 連線
+11:30 < au> 可以透過 shared folder 共用資料夾。
+11:30 < ETBlue> 所以是讓我在多台不同電腦之間把各自的 virtualbox 設定成一樣... 喔喔喔
+11:31 < au> you got it
+11:31 < au> # http://blog.roachking.net/blog/2012/12/28/introduce_vagrant/
+11:31 < kcwu> au's url: [使用 Vagrant 管理虛擬機器 - 蟑螂窩]
+11:33 < ETBlue> ssh port 連線是幹嘛用的 @@? 從 A 電腦連到 B 電腦嗎
+11:33 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+11:33 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Client Quit]
+11:33 < au> 是，或從 host machine 連進 virtual machine 
+11:34 < au> = command line
+11:34 < ETBlue> command line ...... =3=
+11:34 < ETBlue> 理解，所以 ssh 是我可以忽視的功能（點頭 XD
+11:35 < au> XD
+11:36 < au> 當年 (1999 年) 應該把＜太初有命令列＞翻譯完的，現在就可以貼了
+11:36 < au> 只翻了一小段 # http://www.audreyt.org/free-tank.txt
+11:37 < ETBlue> 疑！！！說到 vagrant也就是說！！！！只要你們把 vagrant file寫好 push 到 github 上面而我 pull 下來，我就可以無腦安裝成跟你們一樣的環境嗎？
+11:37 < au> (十二年過後狀況完全不同)
+11:37 < au> ETBlue: 是的!
+11:37 < au> 而且 clkao 似乎是有寫 Chef file
+11:38 < au> 像 liquid-feedback 投票系統之類都可以一鍵安裝
+11:38 < ETBlue> 使用者得戴蛙鏡，而且必須不斷把嘴裡的蟲子挑出來 XD XD XD
+11:39 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has quit [Quit: Leaving.]
+11:42 < ETBlue> 「妳看不出來大家祗是要買房車而已嗎？」 XDDDDDDDD
+11:42 < ETBlue> 好歡樂喔怎麼會有這種宅宅小說
+11:44 < ETBlue> 名稱叫做太初有命令列，可見翻譯進度大概還在開場白... XD
+11:44 < ipa> ETBlue: 文字前面會出現一個dash，可以選headline格式，選第一個就會有hr
+11:45 < ETBlue> ipa: 喔喔喔喔喔成功了！！！！！！！
+11:45 < ETBlue> coo~~~
+11:49 < ipa> \o/
+11:49 < ETBlue> au: 疑，這麼說來有 vagrant 的話我是不是就不用把 vm 的磁碟位置特別設定到 D 槽了，反正要是暈倒死重灌的話用備份的 vagrant 檔案可以一鍵安裝 virtualbox + ubuntu
+11:52 < ETBlue> 喔不，我先看完那篇蟑螂窩的文章再來問問題
+11:54 < au> 看哪個槽空間大
+11:54 < au> 沒有差別
+11:54 < au> (作者 Neal Stephenson 是專門寫宅宅小說的，一寫就百萬字...)
+12:04 -!- a-tsioh [~pierre@175.176.102.84.rev.sfr.net] has quit [Read error: Operation timed out]
+12:05 < clkao> (neal stephenson)++
+12:07 -!- icman [~icman@123.240.147.165] has joined #g0v.tw
+12:08 < ETBlue> au: 在我的 windows 裡 -> 開一個資料夾 -> 用 vagrant 把 vm 裝進這個資料夾 -> 用 vagrant 啟動 vm (command line 模式)
+12:10 < ETBlue> au: 在我的 windows 裡 -> 啟動 virtualbox 程式 -> 在 virtualbox 開新的 vm 指向之前 vagrant 裝好的 vm 的資料夾位置 - > 在 vb 裡啟動 vm -> 就可以打開 vm 的 gui 模式
+12:10 < ETBlue> au: 是這樣嗎？ @@?
+12:11 -!- ddio [~ddio@wlan-uam.ntust.edu.tw] has quit [Ping timeout: 256 seconds]
+12:15 < ETBlue> 不同的 g0v project 需要放在不同的 vm 裡面嗎？還是只要開一個 ubuntu 的 vm 然後把不同 project 放在不同資料夾 @@?
+12:18 < ETBlue> ipa: 終於弄好了 XD http://hack.g0v.tw/#/g0v.tw-website/
+12:23 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Read error: Connection reset by peer]
+12:24 -!- ETBlue [~chatzilla@175.182.237.104] has joined #g0v.tw
+12:28 -!- Supaplextw [~Lucky@114-36-251-186.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+12:33 -!- Supaplextw [~Lucky@114-36-251-186.dynamic.hinet.net] has joined #g0v.tw
+12:35 < ipa> ETBlue++ 
+12:40 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+12:41 < clkao> ipa: http://twitter.github.io/bootstrap/components.html#labels-badges
+12:41 < kcwu> clkao's url: [Components · Bootstrap]
+12:48 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+13:08 < ETBlue> 原來那是 bootstrap 裡面的東西！
+13:10 < clkao> 說明好像沒寫很清楚 :p 要幫忙嗎
+13:13 < au> ETBlue: 只要開一個 ubuntu 的 vm 然後把不同 project 放在不同資料夾
+13:14 < au> g0v.tw-website++ # 好讚
+13:16 -!- mp607 [~mp607@61-64-176-185-adsl-kao.dynamic.so-net.net.tw] has quit [Quit: mp607]
+13:33 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+13:39 < ETBlue> clkao: 要 \^o^/ 我決定不跟 windows 奮鬥了，我要把 g0v 的專案資料夾跟 vm 裡的 ubuntu 分享然後在 linux 底下跑 local server \_/
+13:40 < ETBlue> clkao: 早上問坐我對面那位準備被拖下水的同學裝 linux 的事情，他幽幽的說：「這是一條艱辛的路（遠目）」
+13:41 < clkao> ETBlue:你的虛擬坦克可以動了嗎? :p
+13:42 < ETBlue> 還沒裝 /OoO/ 再猶豫要裝啥... 推上有善心人士推薦 mint，http://www.vagrantbox.es/ 裡面有好幾種 ubuntu，真令人困擾
+13:42 < kcwu> ETBlue's url: [A list of base boxes for Vagrant - Vagrantbox.es]
+13:45 < ETBlue> 只裝好了 virtualbox 跟 vagrant ... 有虛擬，沒坦克 = =
+13:54 -!- poga [~poga@111-241-137-8.dynamic.hinet.net] has quit [Remote host closed the connection]
+14:00 < clkao> ETBlue: 就.. 12.04 吧
+14:01 < clkao> 13.04 也許比較好 不然 nodejs 還要去弄 ppa XD
+14:06 < ETBlue> clkao: ubuntu 13.04 嗎？ roger XD
+14:07 -!- mp607 [~mp607@120-114-142-251.ksu.edu.tw] has joined #g0v.tw
+14:09 < ipa> http://blog.g0v.tw/post/51282992309
+14:10 < hlb> clkao: 話說 hackathon 之前都 pre training 好像不錯
+14:10 < ipa> bot不在，自打標題：5/23 pre-hackathon活動速記
+14:10 < clkao> hlb: 還不賴
+14:10 < au> ipa++
+14:10 < hlb> clkao: 簽下賣身契，教你用 git 之類的
+14:11 < clkao> angularFire 真是不錯
+14:11 < hlb> ?
+14:12 < au> 後端也已知用火
+14:12 < au> # firebase
+14:13 < clkao> 定義一個 angular variable bind 到某個 firebase 裡面的 collection
+14:13 < clkao> 然後就... 什麼事情都不用做了
+14:13 < clkao> push array, 修改資料等等 就自動雙向 sync
+14:13 < clkao> angular: model <-> dom two way binding
+14:13 < clkao> angularFire: model <-> database two way binding
+14:14 < au> meteor without the tie-in
+14:14 < clkao> almost
+14:15 < hlb> cool.
+14:15 < clkao> just need to be able to bind to a given query next.  hopefully with pgrest
+14:15 < au> ++
+14:23 -!- bafu [~bafu@111-240-222-238.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+14:25 -!- jslee [~jslee@140.109.127.6] has joined #g0v.tw
+14:28 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has left #g0v.tw []
+14:28 -!- jslee [~jslee@140.109.127.6] has quit [Remote host closed the connection]
+15:56 -!- Supaplextw [~Lucky@114-36-251-186.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+16:08 -!- t3e [~tonie@114-34-217-3.HINET-IP.hinet.net] has joined #g0v.tw
+16:17 -!- idawang__ [8c6d7f07@gateway/web/freenode/ip.140.109.127.7] has joined #g0v.tw
+16:22 -!- t3e [~tonie@114-34-217-3.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+16:23 -!- t3e [~tonie@114-34-217-3.HINET-IP.hinet.net] has joined #g0v.tw
+16:26 -!- t3e [~tonie@114-34-217-3.HINET-IP.hinet.net] has quit [Client Quit]
+16:26 -!- idawang__ [8c6d7f07@gateway/web/freenode/ip.140.109.127.7] has quit [Quit: Page closed]
+16:26 -!- t3e [~tonie@114-34-217-3.HINET-IP.hinet.net] has joined #g0v.tw
+16:32 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+16:43 -!- KNY1 [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+16:48 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has quit [Quit: Leaving.]
+16:48 -!- KNY1 [~Adium@111-253-151-78.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+16:50 -!- jslee [~jslee@140.109.127.6] has joined #g0v.tw
+16:54 -!- jslee [~jslee@140.109.127.6] has left #g0v.tw []
+16:57 -!- mp607 [~mp607@120-114-142-251.ksu.edu.tw] has quit [Quit: mp607]
+17:07 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+17:09 < ETBlue> ipa++ # 5/23 pre-hackathon 活動速記
+17:17 < ETBlue> hlb: 不只要 git，架環境也要 >"< 我明明只是想改個 html 跟css，結果跟 windows 奮鬥老半天... ><
+17:19 -!- VoidChen [~VoidChen@114-45-234-93.dynamic.hinet.net] has joined #g0v.tw
+17:21 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has quit [Quit: Leaving.]
+17:23 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+18:01 < ipa> http://dosomethingforyouself.weebly.com/
+18:01 < kcwu> ipa's url: [It 's war. for FREEDOM. - Home]
+18:02 < ipa> 第一眼猜想是不是hychen弄的 @@
+18:03 < tkirby> ETBlue: 你是要用什麼改
+18:28 < hlb> ETBlue: 你沒有 Fire.app? O_O
+18:28 < hlb> ETBlue: or 還需要架哪些環境? O_O
+18:32 -!- a-tsioh [~pierre@175.176.102.84.rev.sfr.net] has joined #g0v.tw
+18:40 < clkao> hlb: fire.app 要支援 brunch 一下嗎 :P
+18:42 < hlb> clkao: patches welcome?
+18:42 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has quit [Quit: Leaving.]
+18:43 < clkao> hlb: 我先開了 issue 了 XD
+18:44 < hlb> clkao: saw that.
+18:45 < hlb> clkao: but how to "support" brunch if we do not have all the plugins?
+18:47 < clkao> call npm i ? ;p
+19:00 < hlb> clkao: npm i && ./node_modules/.bin/brunch w -s
+19:00 < hlb> clkao: 但是 user 可能根本沒這個啊 :q
+19:01 < hlb> clkao: ex 我就裝到 global 了啊 :p
+19:02 < clkao> npm i 會把 node_modules/.bin/brunch populate 起來呀 所以只要有 npm 可用就好.. 沒的話就請他 brew install node ?
+19:04 < hlb> clkao: 我的 project 的 ./node_modules/ 就沒有 .bin/brunch 啊 :p
+19:04 < hlb> clkao: 也許是因為 brunch 裝到 global 的關係(?)
+19:07 < clkao> 是噢 npm i 之後也還是沒有嗎？這就怪了
+19:07 < clkao> 我也有 global brunch, 但 npm i 一個乾淨的應該也是有
+19:11 < hlb> clkao: 沒有耶
+19:33 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+19:33 -!- KNY1 [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+19:42 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+20:19 -!- mp607 [~mp607@61-64-176-185-adsl-kao.dynamic.so-net.net.tw] has joined #g0v.tw
+20:25 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+20:32 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has quit [Quit: Leaving.]
+21:03 -!- pm5 [~pm5@111-248-230-248.dynamic.hinet.net] has joined #g0v.tw
+21:38 -!- clkao [~clkao@59-126-64-204.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+22:05 -!- KNY1 [~Adium@111-253-151-78.dynamic.hinet.net] has quit [Quit: Leaving.]
+22:15 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+22:50 < ETBlue> tkirby: hlb: 我是昨天改 hackfoldr 的 html 那個下拉選單，編輯器用 sublime text 2，clone 下來以後用 fire.app watch 然後開 localhost 首頁，他只顯示出資料夾，我才想到原本的 html 是用 jade 寫的，於是想試著加入你們那個支援 jade 的 rb 檔案，不得要領...
+22:51 < ETBlue> 然後那時候 tka 又在睡覺，只好轉個彎想說那我來開 node js server 好了！結果裝什麼鬼 npm 的就遇到一堆據說是 win32 的 bug
+22:52 < ETBlue> 於是最後我在 st2 打好字以後貼到 chrome dev tool 裡面，最後把 code 貼到 irc 上交給 clkao ... 後來才知道應該貼 gist 囧
+22:56 < ETBlue> 說到這個環境的問題，au 貼的那個 vagrant 可以解決嗎？clone 下來以後 vagrant up 就自動架好環境，讓我們這些正常人可以快速動手做事 =3= 
+23:03 < au> 有
+23:03 < au> http://www.habdas.org/developing-modern-web-applications-on-windows-vagrant/
+23:03 < kcwu> au's url: [Developing modern web applications on Windows with Vagrant - habdas.org]
+23:03 < au> 就是在講這件事。
+23:04 < au> 好像應該來找找有沒有已經組好的環境
+23:04 < au> ...google "brunch chef recipe" 一點幫助也沒有，全是真正的食譜 orz
+23:05 < ETBlue> XDD
+23:05 < Jedi_> lol
+23:05 < ETBlue> Jedi_ !!!
+23:07 < Jedi_> ETBlue: good day
+23:08 < ETBlue> Jedi_: 最近在幹嘛？ 6/8 要來玩嗎？
+23:10 < Jedi_> 6/8 要上班 ._.
+23:11 < Jedi_> 6/9 則有研討會 ._.
+23:11 < tkirby> ETBlue: 辛..辛苦了 xD
+23:12 < ETBlue> tkirby: 就是說 >_<
+23:12 < Jedi_> ETBlue: 最近除了上班外，大概就是開始振作丟雜物.....
+23:12  * Jedi_ 無生產力 T_T
+23:12 < ETBlue> Jedi_: 我覺得你比我更辛苦 囧"
+23:13 < tkirby> ETBlue: 我想最大的問題應該是在裝 nodejs 吧.. xD
+23:13 < ETBlue> tkirby: 我的電腦明明跑起來過 node js 啊，還是在 clkao 親自指導下跑起來的 >"<
+23:14 < Jedi_> ETBlue: 我其實有在抽空（？）思考如何把職務上的產出轉化成 g0v 的材料
+23:14 < tkirby> ETBlue: 有句話是說工程師不在的時候電腦都是壞的, 人一來電腦忽然就自動好了 (?!)
+23:14 < tkirby> ETBlue: 所以 tka 醒來搞不好就會好了 (?!)
+23:15 < Jedi_> ETBlue: 但是目前在職務上處於很孤單的情況，試做的玩具丟出來都毫無回應，沒有任何同業展開討論或對話 orz
+23:15 < Jedi_> tkirby: 就是要發工程正念才能夠運作的意思
+23:15 < Jedi_> 原來如此！所以 EVA 需要駕駛員啊！ *誤*
+23:16 -!- clkao [~clkao@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+23:17 < ETBlue> Jedi_: 是喔 /OoO/ 你丟給同業沒用啦 @@ 丟來 g0v idea pool？
+23:17 < clkao> Jedi_!
+23:17 < ETBlue> tkirby: 他已經醒了... 那我來看看會不會好 XD
+23:18 < Jedi_> ETBlue: 我覺得我應該要努力實體參與 http://listening.g0v.tw/ 可是此專案聚會好像都還是挑周間北部
+23:19 < kcwu> Jedi_'s url: [Listening 福利請聽]
+23:20 < Jedi_> clkao: good day!
+23:20 < Jedi_> ETBlue: 因為目前的試做玩具都是同業第一線應該會用到的東西啦....
+23:21 -!- jslee [~jslee@175.96.186.57] has joined #g0v.tw
+23:21 < Jedi_> ETBlue: 我知道有同業在用，但是都沒有 feedback
+23:22 < ETBlue> Jedi_: 真的耶，那根本是跟你超相關的專案... 小蟹跟 blue 他們在弄的
+23:23 < Jedi_> (也有可能 feedback 在我看不到的 facebook)
+23:23 < Jedi_> ETBlue: 目前我是敝縣輔具補助審查委員會的審查委員 ._.
+23:23 < ETBlue> Jedi_: 有可能 @@" 如果不是 web service 的話好像很難主動收集到 feedback
+23:23 < ETBlue> Jedi_: 委員好
+23:23 < Jedi_> 噗
+23:23 < ETBlue> Jedi_: 你做的東西是實體的嗎？還是數位的
+23:23 < Jedi_> ETBlue: 數位的呀
+23:24 < Jedi_> ETBlue: 見 http://jedi.org/blog/archives/cat_occupation.html
+23:24 < kcwu> Jedi_'s url: [occupation 彙整 | Jedi's BLOG]
+23:24 < ETBlue> 原來是 local 的程式!
+23:25 < ETBlue> 感覺跟萌典有點異曲同工之妙 ...
+23:25 < Jedi_> 程式拿現成的來用   <- 懶惰
+23:26 < ETBlue> 難道也可以直接拿萌典的程式來用，這樣就有 web 了，方便更新或者做統計或收集回饋？
+23:26 < Jedi_> 原則上是可行的
+23:26 < Jedi_> 其實我也有這樣想過
+23:27 < ETBlue> 喔喔喔喔喔喔喔 /OoO/ 那要諮詢萌典幫的一下！萌典幫好像有 au hlb
+23:27 < Jedi_> 不過目前可以說其實還在處理資料結構的位置
+23:27 < au> 有 JSON API 就可以接
+23:27 < Jedi_> 因為目前這個是按照內政部表格來規劃的，然後內政部表格可能會有變動 etc
+23:27 < ETBlue> Jedi_: 你有 github 帳號嗎？把手上資料放上去？
+23:28 < Jedi_> 然後要參與內政部表格 patch 要經過縣輔具中心手套
+23:28 < Jedi_> 走一些我也不知道是怎樣的會議途徑
+23:29 < Jedi_> 目前的手上資料就....（也是給同業用的）Excel 試算表 *爆* # http://jedi.org/blog/archives/006124.html#entry
+23:29 < kcwu> Jedi_'s url: [助聽器廠牌機種功能對照參考表 | Jedi's BLOG]
+23:31 < Jedi_> 有空的時候應該是要先來整理品牌術語表 (不同品牌對同一個功能有不同講法)
+23:31 < ETBlue> 剛才 tka__ 在他自己的小黑上竟然只打了四行字就把 hackfoldr 的開發環境裝好還跑起來了，好過份！馬的我也要裝 linux！！！！！
+23:31 < Jedi_> 這樣對原廠規格表才看得懂哪個是哪個
+23:31 < Jedi_> ETBlue: KD
+23:34 < Jedi_> ETBlue: 不過我覺得這些資料的實際使用情境跟流程還要在整理一下
+23:35 < Jedi_> ETBlue: i.e., http://jedi.org/blog/archives/006116.html#entry
+23:35 < kcwu> Jedi_'s url: [聽覺輔具評估表相關細節統整 | Jedi's BLOG]
+23:40 < Jedi_> ETBlue: 另外我也有在跟輔具中心的人交流啦，忘記是氣墊床還是輪椅，在補助上會有上百種可能的搭配組合，那也很麻煩
+23:41 < Jedi_> ETBlue: 相關評估文件目前都採紙本，但是據說 2016 年會全面 web 化.....
+23:41 < Jedi_> or 2015，忘了
+23:42 < ETBlue> Jedi_: 真是複雜... 這根本就是福利請聽的專案內容啊 @@
+23:42 < Jedi_> 是啊
+23:42 < ETBlue> Jedi_: 你要跟他們聯絡一下遠端協作嗎 @@
+23:43 < Jedi_> 其實我有把 blog entry 寄給 iamblue
+23:43 < Jedi_> 不過也是幾乎沒回應 KD
+23:43 < ETBlue> 疑（歪頭）我好像週四 prehackth3n 有看到他
+23:43 < Jedi_> 所以才說我覺得需要實體參與，空間感應該會激發出一些不同的東西
+23:44 < ETBlue> 這倒是真的 @@
+23:44 < ETBlue> 因為光看 blog 沒有即時討論可能有點難想像
+23:44 < Jedi_> 所以首先要換一份比較能夠整天休假的工作（？）
+23:44 < ETBlue> Jedi_: 你現在週一到週五都綁死在彰化對嗎
+23:45 < Jedi_> ETBlue: 週一到週六中午
+23:45 < ETBlue> Jedi_: ......
+23:45 < Jedi_> 星期六沒在休的
+23:45 < Jedi_> 星期六還是主任診
+23:46 < ETBlue> ~_~ 他們在萬惡的 facebook 上有開團的樣子，我先把這段 irc 對話貼過去那邊看看
+23:46 < Jedi_> 對啊，大家都喜歡在 facebook :-/
+23:46 < ETBlue> Jedi_: 就是說 =3=
+23:46 < Jedi_> 嗯，還是不會去 facebook.
+23:46  * Jedi_ <- 死板
+23:47 < ETBlue> Jedi_: np, 玷污我一個人就好了 XD
+23:47 < Jedi_> 噗 m(_ _)m
+23:47 < ETBlue> 好像哪裡怪怪的 = ="
+23:52 < clkao> ....
+23:52 < clkao> disqus 碰到有 # 的網址就 gg 了
+23:53 < Jedi_> ....

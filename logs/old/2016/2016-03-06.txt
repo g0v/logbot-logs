@@ -1,0 +1,127 @@
+--- Day changed 日  3月 06 2016
+00:04 < slackbot11> <macpaul> <https://www.facebook.com/macpaul/media_set?set=a.10153914220367910.532627909&amp;type=3&amp;uploaded=3>
+00:04 < kcwu> slackbot11's url: [Facebook]
+00:05 < slackbot11> <macpaul> 照片還是太暗，小閃燈不夠力，那個公關文就請粉絲頁小幫手自己寫一下啦 XD
+02:29 -!- terfbal [76a82a11@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.42.17] has left #g0v.tw []
+04:21 -!- DennyHuang_ is now known as Guest40958
+09:49 < slackbot11> <wildjcrt> 請問萌典有中文錯別字提示的 api/js 嗎？或是有什麼可以做中文錯別字提示的？
+09:50 < slackbot11> <wildjcrt> （不知道 word 怎麼做的……）
+09:54 < slackbot11> <miaoski> gh-pages 裡面的 object 很多，git push 時的效率會變很差嗎？
+09:55 < slackbot11> <miaoski> 還是其實不用介意這種事？比方說 20 萬個 gh-pages, 要切成 10萬/10萬 放兩個 gh-pages 比較容易 git push 還是 20萬放同一個就好
+09:58 < slackbot11> <miaoski> <http://stackoverflow.com/questions/984707/what-are-the-file-limits-in-git-number-and-size>
+09:58 < kcwu> slackbot11's url: [What are the file limits in Git (number and size)? - Stack Overflow]
+09:58 < slackbot11> <miaoski> 看來多切幾個 repo 再放 hyperlink 比較好
+12:07 -!- DennyHuang_ is now known as Guest78250
+13:14 < slackbot11> <pcchou> @mousems ^^^
+13:41 < slackbot11> <rschiang> @k1tten++ 阿貓耶！
+14:49 < slackbot11> <au> wildjcrt: 通常是先建 n-gram model 然後用 homophone dictionary (音似，但也可以形似)。後者可以用詞典，但前者最好是有平衡語料。 LibreOffice 的實作見 <https://github.com/languagetool-org/languagetool/tree/master/languagetool-standalone>
+14:49 < kcwu> slackbot11's url: [languagetool/languagetool-standalone at master · languagetool-org/languagetool · GitHub]
+14:50 < slackbot11> <au> JS in browser 的話請直接用 <http://caniuse.com/#feat=spellcheck-attribute> 不用手寫
+14:50 < kcwu> slackbot11's url: [Can I use... Support tables for HTML5, CSS3, etc]
+14:51 < slackbot11> <wildjcrt> au: 所以目前還沒有常見錯別字 mapping 的詞組對嗎？
+14:51 < slackbot11> <au> 每個輸入法的錯別字都不一樣
+14:51 < slackbot11> <au> 注音用 homophone + 字頻即可
+14:51 < slackbot11> <wildjcrt> oh, right……
+14:53 < slackbot11> <au> 但手寫可能要用 shapealike。字宙反應爐 demo 有個 json 是做這個。 <https://github.com/audreyt/moe/blob/gh-pages/ball/Shape.json>
+14:53 < kcwu> slackbot11's url: [moe/Shape.json at gh-pages · audreyt/moe · GitHub]
+14:53 < slackbot11> <wildjcrt> 那無蝦米呢？
+14:54 < slackbot11> <wildjcrt> 可以也用 sharplike?
+14:54 < slackbot11> <au> 可能要用 `.cin` 裡的選字順序先做，不是真的 shapealike
+14:55 < slackbot11> <au> 然後鍵位 off by one 建個 model… 但現成 qwerty 鍵位的 model 和無蝦米用戶的又不一定 match，所以還要再加 training
+14:55 < slackbot11> <au> 是一個機器學習的好作業題 XD
+14:55 < slackbot11> <wildjcrt> hmm, 那有錯別字檢查現成的 web service or software 嗎？
+14:56 < slackbot11> <au> `<p contenteditable="true" spellcheck="true”>` XDD
+14:56 < slackbot11> <wildjcrt> qwerty 那段不懂，只看得出來很難搞……
+14:56 < slackbot11> <wildjcrt> 呃，這個的判斷來源是？
+14:56 < slackbot11> <wildjcrt> 各家 browser 實作嗎？
+14:57 < slackbot11> <au> 對。剛提到 libreoffice 的實作 `hunspell` 可以包成 api <https://github.com/montanaflynn/Spellcheck-API>
+14:57 < kcwu> slackbot11's url: [GitHub - montanaflynn/Spellcheck-API: HTTP spellcheck API powered by hunspell]
+14:58 < slackbot11> <au> qwerty 那段的意思是按錯鍵（相鄰鍵）的機率要看手指現有位置，但打英文和打無蝦米的位置不同，會打錯的方位也不完全一樣，但可參考。
+15:00 < slackbot11> <wildjcrt> ic. 看來就算限縮在注音也是個挺麻煩的事情……
+15:02 < slackbot11> <wildjcrt> au: 另外，我們昨天大松彙整了性別相關的資料列表（光列表就花掉一天都做不完），想請妳有空看看是不是有更多可以加入盤點的資源～
+15:02 < slackbot11> <https://g0v.hackpad.com/I6TyKqNg0Yz>
+15:02 < kcwu> slackbot11's url: [性別統計資料庫 - g0v.hackpad.com]
+15:03 < slackbot11> <au> 看起來很完成了 ++ 要更細的話可能寫調查問卷寄給性平會們
+15:06 < slackbot11> <au> `gec.ey` 可能可以拿出更多資料... 目前 http://data.gov 上它還是併入行政院本部，但至少有聯絡人 <http://data.gov.tw/node/25440>
+15:06 < kcwu> slackbot11's url (1/2): [Data.gov]
+15:06 < kcwu> slackbot11's url (2/2): [行政院性別平等會-CEDAW法規 | 政府資料開放平臺]
+15:06 < slackbot11> <au> 大致這樣 XD
+15:08 < slackbot11> <wildjcrt> 感謝！總覺得有 au 認證後安心許多 XD
+15:46 < slackbot11> <othree> react + 動態行為要自動生出靜態 html + 行為正常好像有點困難 ..
+15:50 < slackbot11> <au> othree: 後來 http://vtaiwan.tw 是用 `zombie` 自己砍站解決的 <https://github.com/g0v/react.vtaiwan.tw/blob/dev/script/gen-static.js>
+15:50 < kcwu> slackbot11's url (1/2): [vTaiwan.tw]
+15:50 < kcwu> slackbot11's url (2/2): [react.vtaiwan.tw/gen-static.js at dev · g0v/react.vtaiwan.tw · GitHub]
+15:51 < slackbot11> <othree> 我知道，結果 lightbox 壞掉我正在修理
+15:52 < slackbot11> <au> OK… 如果是 `zombie` 的行為和瀏覽器不同，也可以換 `phantom`
+15:52 < slackbot11> <othree> 然後修一修、發現，砍出來的頁面 lightbox 都沒反應 ~_~
+15:53 < slackbot11> <au> 那 on document ready 載入完再 `React.render` 一次有幫助嗎
+15:55 < slackbot11> <othree> 現在好像又正常XD
+15:56 < slackbot11> <othree> 不過還差個入口讓搜尋引擎可以找到那些 html
+15:58 < slackbot11> <au> 一面砍站一面產生 <https://support.google.com/webmasters/answer/156184?hl=en> ?
+15:58 < kcwu> slackbot11's url: [Learn about sitemaps - Search Console Help]
+16:02 < slackbot11> <othree> 我猜沒真的連結到應該會被忽略吧
+16:02 < slackbot11> <othree> 等下來處理看看
+16:03 < slackbot11> <au> 應該不會忽略，其中一個用例就是 `Your site has a large archive of content pages that are isolated or well not linked to each other`
+16:06 < slackbot11> <othree> 我是支持 sitemap ，不過覺得還是要處理一下網址名稱不同的狀況
+16:06 < slackbot11> <othree> 不然 seo 分數也會被分散，google 會認為有兩頁一樣內容的
+16:07 < slackbot11> <othree> 也是可以加 canonical url，不過如果可以從網址不同步這裡修正應該最理想
+17:25 < slackbot11> <a-chioh> g0v youtube channel 好像「沒有人」無法自己隨便加subtitles(是嗎？）
+17:26 < slackbot11> <a-chioh> 就是，我無法！
+17:26 < slackbot11> <a-chioh> （只能fork 影片)
+17:46 < slackbot11> <k1tten> 嗨嗨 @rschiang  XD
+20:17 -!- s8321414_ is now known as s8321414
+20:31 < g0vtelegrambot> <RSChiang> @S_ean 其實我有在 Slack 上，所以我沒打算使用 Telegram 耶XD
+20:31 < g0vtelegrambot> <RSChiang> 這樣會收到兩次通知
+20:31 < g0vtelegrambot> <S_ean> RSChiang: 喔喔 XD
+20:31 < g0vtelegrambot> <S_ean> 可以自己按退出，或是只關提醒
+20:31 < g0vtelegrambot> <RSChiang> /leave
+20:31 < g0vtelegrambot> <RSChiang> 可惡不是 IRC
+21:19 < slackbot11> <clkao> <http://summit.g0v.tw/2016/schedules#day1-r0-7> 好像會 highlight 該 session, 但是不會 popup 哦
+21:19 < kcwu> slackbot11's url: [啥米零時政府 g0v 2016 summit]
+21:38 < slackbot11> <othree> 對啊，因為為了 seo 改成靜態 html 後這個功能先爛掉了
+21:39 < slackbot11> <othree> 我先修到 lightbox 會出來，還沒辦法自動
+21:58 < slackbot11> <ddio> 研究了一陣子新的 grafana 2.1 + Influx 0.10 ，把昨天拿到的社會變遷記錄 20 年資料放上去了 XD
+21:58 < slackbot11> 之後要跑二維的分析，就不用手工處理惹～ 
+21:58 < slackbot11> <http://52.192.222.230/dashboard/db/po-xi-chao-jia-20-nian-bian-hua-tu>
+21:58 < kcwu> slackbot11's url: [Grafana]
+21:58 < slackbot11> 不過他跑起來光 influx 就吃 4G memory <
+22:01 < slackbot11> <clkao> !
+22:02 < slackbot11> <a-chioh> summit 還可以幫忙翻譯或什麼的嗎？還是我是遲到的？
+22:04 < slackbot11> <yhsiang> ddio: <http://vps.sakura.ad.jp/> 要不要考慮 c9s 推薦的？
+22:04 < kcwu> slackbot11's url: [VPS（仮想専用サーバ）｜さくらインターネット - 無料お試し実施中]
+22:06 < slackbot11> <yhsiang> vultr 跟 DO 都是 40$ USD 算算其實都差不多 0.0
+22:08 < slackbot11> <clkao> a-chioh: 可以哦 英文講題可以先幫忙翻中文 <https://github.com/g0v/summit.g0v.tw/blob/2016/app/javascripts/components/Schedule/schedules.json>
+22:08 < kcwu> slackbot11's url: [summit.g0v.tw/schedules.json at 2016 · g0v/summit.g0v.tw · GitHub]
+22:11 < slackbot11> <ddio> yhsiang: 好耶，來試試，感謝！
+22:11 < slackbot11> <a-chioh> huh你的意思是英文翻成中文嗎？
+22:12 < slackbot11> <a-chioh> 這個CSV,每個bio和abstract都應該有對照嗎？
+22:12 < slackbot11> <a-chioh> s/CSV/json/
+22:13 < slackbot11> <yhsiang> ddio: sakura 跟 vultr 好處都是可以開在 tokyo
+22:16 < slackbot11> <a-chioh> 還是目標就是中文？
+22:17 < slackbot11> <a-chioh> JSON file 看起來沒有分語言
+22:21 < slackbot11> <clkao> a-chioh: top level key 是 en-US &amp; zh-TW
+22:21 < slackbot11> <clkao> 所以就是翻 zh-TW 下的 title
+22:24 < slackbot11> <a-chioh> 哦對，沒看到
+22:25 < slackbot11> <a-chioh> 瞭解了
+22:26 < slackbot11> <a-chioh> 可是我i寫的中文會怪怪的：/
+22:27 < slackbot11> <clkao> XD
+22:30 < slackbot11> <michael_li> 昨天我想到一個對外界介紹g0v的一句話　　g0v的人　看到一些事情不順眼　不爽　於是就「開幹」！
+22:30 < g0vtelegrambot> <seadog007> g0v沒有人(?
+22:31 < slackbot11> <othree> 什麼時候有 g0v 有人的錯覺的
+22:31 < slackbot11> <michael_li> #g0v開幹
+22:32 < slackbot11> <michael_li> 對厚～沒有人ㄟ（羞）
+22:33 < slackbot11> <michael_li> 訂正：g0v的沒有人　看到一些事情不順眼　不爽　於是就「開幹」！
+22:34 < dirty_> 想介紹 g0v, 除了 http://g0v.github.io/twgeojson/interpolation.html 還有什麼以地圖形式呈現結果的專案嗎?
+22:34 < g0vtelegrambot> <othree> g0v 沒有人沒有看到一些事情不順眼，沒有不爽，於是就沒有開幹
+22:34 < g0vtelegrambot> <othree> 這樣好像 —- 得 - 了
+22:35 < slackbot11> <wildjcrt> othree++
+22:36 < slackbot11> <xinxinjin> [間隔間隔] 臺灣立法院，地方議會議事直播及錄影資源列表：
+22:36 < slackbot11> <http://j.mp/twlawmakers|j.mp/twlawmakers>
+22:43 < slackbot11> <a-chioh> 那我來寫一些讓人覺得不順眼的短文
+22:45 < slackbot11> <michael_li> 我開了一個　廣宣團　的hackpdad　大家自由發揮吧！　／g0v幹什麼！／　　<https://g0v.hackpad.com/g0v-V4ePeui8uzv>
+22:45 < kcwu> slackbot11's url: [g0v幹什麼！ - g0v.hackpad.com]
+22:47 < slackbot11> <michael_li> （最近需要常常接觸人　介紹g0v都是必要的第一階段環節　要簡短有力　還真不容易）
+22:54 < slackbot11> <xinxinjin> 「只要有心，人人都可以是 g0v 」（拍肩 順便 recruit
+23:12 < slackbot11> <michael_li> xinxinjin／你才是g0v　你全家都是g0v／ＸＤＤＤ
+23:15 < slackbot11> <xinxinjin> 哈哈哈哈哈哈
+23:15 < slackbot11> <xinxinjin> 是在熱血什麼啦

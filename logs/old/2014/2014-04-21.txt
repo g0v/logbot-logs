@@ -1,0 +1,2377 @@
+--- Day changed 一  4月 21 2014
+00:00 < ronnywang> 有什麼好工具可以看 pgsql 現在的 query?
+00:00 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+00:00 < moon_c> 那個....本人家管嚴，所以要先睡QQ請容許我明天早上起來看看可以嗎(哈哈大概五點起床
+00:00 < tuiry> 好早起啊><
+00:00 -!- mrorz [~mrorz@219-80-179-127.static.tfn.net.tw] has quit [Ping timeout: 252 seconds]
+00:01 < clkao_> ronnywang: SELECT datname,procpid,current_query FROM pg_stat_activity
+00:01 < clkao_> 但是要開一個參數: http://chrismiles.info/systemsadmin/databases/articles/viewing-current-postgresql-queries/
+00:01 < tuiry> moon_c 明天見XD
+00:01 < kcwu_> clkao_'s url: [Viewing current PostgreSQL queries]
+00:01 < clkao_> moon_c++
+00:01 < Sorry> http://campaign-finance.g0v.ctiml.tw/cell 現在是好的嗎？
+00:01 < kcwu_> Sorry's url: [政治獻金數位化]
+00:01 -!- kengyu_ [~kengyu@114-43-47-23.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+00:01 < clkao_> Sorry: 正在處理 scalibity 問題
+00:01 < Sorry> 原來如此。打擾了。
+00:01 < clkao_> pg 目前 8k qps, 疑似 bottleneck
+00:02 -GitHub63:#g0v.tw- [g0v.tw] yhsiang closed pull request #89: 'recent activity' fixed (master...master) https://github.com/g0v/g0v.tw/pull/89
+00:03 < moon_c> 有特別要告訴我的事情請mention我比較好找，我還不太會用irc哈哈，先晚安大家辛苦了！
+00:03 < venev> moon_c: 當然可以！先睡吧～我再跟 ronnywang johnny__ （立委投票指南 / 股票）討論看看粉絲頁用法
+00:03 < yllan_> miaoski: 我在你旁邊安全島
+00:04 < kiang> ronnywang: 也許問題出在 ApiController::getrandom() ?
+00:04 < clkao_> johnny__: 結果 zhutil 解決了嗎？
+00:05 -GitHub64:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/711805abb4ac59d9ba4843a23c9ebdb482876fab
+00:05 -GitHub64:#g0v.tw- g0v.tw/gh-pages 711805a g0v general (via TravisCI): regen for 35123d7
+00:05 < ronnywang> 問題好像卡在 count() 的部份
+00:05 < clkao_> ronnywang: 你是 9.3 嗎？
+00:05 < clkao_> 還是 9.2 ?
+00:05 < ronnywang> 9.3
+00:05 < ronnywang> 剛拿掉一個程式中的 count() 好像有比剛剛好一點了
+00:05 < clkao_> create materialized view sxxx_count as select count(*) ... .
+00:05 < clkao_> 然後用 worker 去 refresh view
+00:06 < miaoski> yllan_: 每次都被你抓到 xddd
+00:06 < clkao_> 9.3 賤招
+00:06 < kiang> 可是 count() 已經不會變了不是嗎？
+00:06 < johnny__> clkao: 還沒，剛在上線土地的資料，yhsiang_有出example給我了，應該明天可以完成
+00:06 -!- autekwing [7226554e@gateway/web/cgi-irc/kiwiirc.com/ip.114.38.85.78] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+00:06 < miaoski> 滅火器：晚安台灣
+00:06 -!- blackca [blackca@111-250-161-234.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.90.1-rdmsoft [XULRunner 22.0/20130619132145]]
+00:08 < V1ctor> johnny__: 剛丟上了 bower
+00:08 < clkao_> V1ctor++
+00:08 < ronnywang> ok, 看起來把 count() 的部份改寫掉後就沒那麼卡了
+00:08 < clkao_> ronnywang++
+00:08 < johnny__> V1ctor++
+00:08 < yhsiang_> V1ctor++
+00:08 < walkingice> https://plus.google.com/photos/+walkingicechu/albums/5297882064553537009/6004406257294784354
+00:08 < kcwu_> walkingice's url: [Miscellaneous]
+00:09 < clkao_> walkingice++
+00:09 < clkao_> walkingice: 為何正中間前面好像有個鬼臉
+00:09 < yhsiang_> 來來來 哩來來來 來OCR
+00:10 < ronnywang> DB activity: 1024 tps,  4 rollbs/s, 3294 buffer r/s, 88 hit%,  12459 row r/s,   48 row w/s
+00:10 < clkao_> phew!
+00:10 < ronnywang> 喔喔，不是 qps.. 是 row ps
+00:10 < Rhozan> 剛剛好像有人說滅火器上台要提醒~~~  已經第一首歌完了
+00:10 < yhsiang_> clkao_: 浩克臉 XDD
+00:10 < yhsiang_> Rhozan: 剛剛有人提醒 :)
+00:10 < hcchien> walkingice++
+00:10 < Rhozan> :D
+00:10 < yhsiang_> walkingice++ XD
+00:11 -!- Ti_W_B2 [~Ti_W_B@112-105-192-203.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 240 seconds]
+00:11 < miaoski> 滅火器這首不知道叫什麼
+00:11 < tuiry> venev: 我想的概念是：數位化，群眾外包，公開透明 XP
+00:11 < tuiry> walkingice ++
+00:11 -!- YangHung [uid21603@gateway/web/irccloud.com/x-qfxprykvzajalypk] has joined #g0v.tw
+00:11 < ctiml> ronnywang: 剛剛有人說他想幫忙寫 android app
+00:12 < walkingice> clkao_: 原圖就有，我覺得很妙所以沒拿掉 XD
+00:12 < clkao_> 有兩百人一直在首頁看數字跳動 將近三百人正在幫忙輸入
+00:13 < clkao_> 太扯
+00:13 < lancetw> XD
+00:13 < tuiry> walkingice 乾脆當粉絲專頁名吧!!
+00:13 < V1ctor> clkao_: 對了 你說要 automate for git tags 是指那一個部分?
+00:13 < miaoski> 不知道後面出什麼事
+00:13 -!- Kevin_WY [~Kevin_WY@1-160-181-182.dynamic.hinet.net] has quit [Quit: Kevin_WY]
+00:13 < hcchien> miaoski: 應該是心內話
+00:13 < miaoski> hcchien: ++
+00:14 < miaoski> 滅火器：海上的人
+00:15 < johnny__> V1ctor: clkao: yhsiang_: npm-zhutil超好用！棒呆了
+00:15 < CindyLinz> 豬蹄兒 :p
+00:16 -!- KuoE0 [~textual@114-39-175-70.dynamic.hinet.net] has joined #g0v.tw
+00:17 < yhsiang_> cades++ # recent event works~
+00:18 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+00:18 < cades> 終於做出一點貢獻了T^T
+00:19 < yhsiang_> cades: :)
+00:19 < cades> issue #71 可以 close 囉
+00:20 < yhsiang_> cades: 要不要考慮past跟 recent在做顯示區別 XD
+00:20 < cades> 喔喔 那要怎麼做勒
+00:20 < clkao_> cades: 下次可以在 PR 中寫 Closes #71, 這樣 merge 後就會自動 close
+00:21 < miaoski> 滅火器：島嶼天光
+00:21 -!- MrQ__ [~M157Q@140.113.244.9] has quit [Ping timeout: 240 seconds]
+00:21 < cades> 喔喔喔
+00:21 -!- Ti_W_B2 [~Ti_W_B@112-105-192-203.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+00:21 < mingtsay> guys, 你們覺得學生資訊系統啊, 要為它弄出 API 值得嗎？
+00:21 < venev> johnny__: 問一下，立委投票指南的股票資產，資料來源是「公職人員財產申報」嗎？
+00:21 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+00:21 < walkingice> tuiry: 構圖都是抄「鄉民都來了」這本書，感覺會被告 XD
+00:21 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+00:21 -!- MrQ [~M157Q@140.113.244.9] has quit [Ping timeout: 250 seconds]
+00:22 < yhsiang_> cades: 做兩個不同的css class 例如已經過去的會顯示灰色字 即將發生的會是藍色字這樣
+00:22 < cades> 好der
+00:22 < johnny__> venev: 是的，也是陽光法案主題網抓的http://sunshine.cy.gov.tw/GipOpenWeb/wSite/sp?xdUrl=/wSite/SpecialPublication/baseQuery.jsp
+00:22 < clkao_> walkingice: 可以 twitter 問一下 @cshirkey 
+00:22 < clkao_> @cshirky
+00:23 < johnny__> venev: 另外剛剛加入土地的資料了
+00:24 -!- PCLiao [uid28763@gateway/web/irccloud.com/x-nqgumlzgbpguqlwl] has joined #g0v.tw
+00:25 -!- Ti_W_B2 [~Ti_W_B@112-105-192-203.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 240 seconds]
+00:25 < clkao_> 土耳其人自幹盾牌擋水砲 # http://m.theatlanticcities.com/politics/2013/06/latest-images-turkey-police-continue-crackdown-protesters/5878/
+00:25 < yhsiang_> cades: http://semantic-ui.com/elements/icon.html # 或者用checked box 和 empty checkbox icon XD
+00:25 < kcwu_> clkao_'s url: [The Latest Images From Turkey as Police Continue Their Crackdown on Protesters - Mark Byrnes - The Atlantic Cities]
+00:25 < kcwu_> yhsiang_'s url: [Icon | Semantic UI]
+00:26 -!- icman [~icman@123.240.141.8] has quit [Quit: 明天天氣晴]
+00:27 -!- mrorz [~mrorz@219-80-179-127.static.tfn.net.tw] has joined #g0v.tw
+00:28 < clkao_> mrorz: 你早上是不是問我 hackfoldr # 的問題？應該修好了
+00:28 < yhsiang_> !! 
+00:28 < johnny__>  V1ctor: 不好意思請問，非數字的欄位是否有辦法return原值，目前會變NaN，因為某些欄位有時是字有時有數字，感謝
+00:28 < yhsiang_> hackpad 甚麼時候可以用emoji ...
+00:28  * yhsiang_ 後知後覺 orz
+00:28 < clkao_> 好一陣子了 大概是被我們搞掛的隔天
+00:28 < miaoski> 安可曲是哪首@@
+00:29 < cades> yhsiang_: checked box 對應到 past (辦完的) 對嗎?
+00:29 < yhsiang_> cades: YA :)
+00:29 < yhsiang_> cades: 對應應該是 issue #59 
+00:29 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+00:29 < hcchien> 我才剛寫信給他  # @cshirkey
+00:29 < clkao_> hcchien: ljt!
+00:29 < miaoski> 無力者哀歌
+00:30 < hcchien> 前一秒才寄出去   # 當然不是問封面的事   lol
+00:30 < yhsiang_> johnny__: 用parseInt orz
+00:30 < cades> yhsiang_: 我明天來弄 人老了熬不了夜QQ
+00:30 < yhsiang_> 欸 不對 ...字 ..orz
+00:30 < yhsiang_> cades: it's ok 晚安 :)
+00:31 < cades> 晚安 :>
+00:31 -!- wkendwr [1b696c23@gateway/web/cgi-irc/kiwiirc.com/ip.27.105.108.35] has joined #g0v.tw
+00:31 -!- Ti_W_B2 [~Ti_W_B@112-105-192-203.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+00:31 < johnny__> yhsiang_: 超過五年的土地他會寫"超過五年"...
+00:31  * cades 去睡了
+00:32 < yhsiang_> johnny__: 喔 對 用parseInt 然後判斷是不是NaN 然後再丟給zhutil
+00:33 < yhsiang_> 我記得我範例偷懶用 ~~ XD
+00:33 < johnny__> yhsiang_: 哦好我看看
+00:34 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+00:35 -!- MouseMs [~root@ec2-54-238-134-4.ap-northeast-1.compute.amazonaws.com] has quit [Quit: Changing server]
+00:35 -!- Ti_W_B2 [~Ti_W_B@112-105-192-203.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 240 seconds]
+00:35 < yhsiang_> johnny__: 喔對了要用isNaN
+00:35 < hcchien> "建議做成手機板網頁，上下班捷運可以做"   # 好建議
+00:36 < yhsiang_> johnny__: isNaN(parseInt("超過五年")) 回得到true 
+00:36 < johnny__> yhsiang_: 不太懂，可以再出個範例嗎XD，感謝
+00:36 < yhsiang_> isNaN(parseInt("0")) 回得到false 
+00:37 < CindyLinz> 也可以用 if( ! ( a<=0 || a>=0 ) )  XD
+00:37 < V1ctor> 啊 應該要修
+00:37 < CindyLinz> 違反三一律的不是數字 XD
+00:37 < V1ctor> 我看能不能在出門前修好 XD
+00:37 -!- akira02 [uid27239@gateway/web/irccloud.com/x-jjltepefctebbjtw] has quit [Quit: Connection closed for inactivity]
+00:38 -!- foxtail [uid27696@gateway/web/irccloud.com/x-yatsdsrblguuvgww] has joined #g0v.tw
+00:40 < Rhozan> 請問一下獻金輸入的頁面跑出:  「第 undefined 頁 (undefined, undefined ) 已經有undefined人填寫確認了 」  正常嗎
+00:41 < CindyLinz> XDXD
+00:42 < V1ctor> done
+00:42 < clkao_> V1ctor: 太強
+00:43 < yhsiang_> V1ctor++ # 太強
+00:43  * V1ctor 出門 &
+00:43 < V1ctor> orz
+00:43 -GitHub9:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/72c45a3c7feb347900d73ec3f8f77ba81b4c9c8a
+00:43 -GitHub9:#g0v.tw- g0v.tw/gh-pages 72c45a3 g0v general (via TravisCI): regen for 23c1ef6
+00:47 -!- MouseMs [~root@ec2-54-238-134-4.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+00:49 -!- wkendwr [1b696c23@gateway/web/cgi-irc/kiwiirc.com/ip.27.105.108.35] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+00:49 -!- brucetsai [~brucetsai@114-25-9-140.dynamic.hinet.net] has quit [Remote host closed the connection]
+00:52 -!- clan [~clan@DN800c930d.Stanford.EDU] has joined #g0v.tw
+00:52 -!- hbtsai [uid13121@gateway/web/irccloud.com/x-vsgmenizdhftdhvo] has quit [Quit: Connection closed for inactivity]
+00:53 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+00:54 < johnny__> V1ctor: 哎呀deploy太慢沒趕上你出門 http://vote.ly.g0v.tw/legislator/personal_property/land/1347/
+00:54 < kcwu_> johnny__'s url: [立委投票指南:張慶忠的財產申報紀錄]
+00:56 < yhsiang_> johnny__++
+00:57 < clkao_> johnny__: 好多敬請期待啊 要不要改成敬請跳坑幫忙
+00:58 < clkao_> 好好奇哪位立委有航空器的
+00:58 < johnny__> ㄏㄏ那還要在寫一個註 解釋跳坑
+01:00 < johnny__> 我目前人工是沒看到，要辦個大家最想先看哪一個嗎？
+01:00 < johnny__> 不然我就先弄建物了
+01:01 -!- Supaplextw [~Lucky@36-224-97-210.dynamic-ip.hinet.net] has joined #g0v.tw
+01:01 < clkao_> 建物++
+01:01 -!- pipi [uid28399@gateway/web/irccloud.com/x-csfpzmtivostxgqh] has joined #g0v.tw
+01:04 -!- BV1AL [~bmc@114-32-53-236.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+01:04 < lancetw> 航空器！
+01:05 -!- Kevin_WY [~Kevin_WY@101.12.78.93] has joined #g0v.tw
+01:07 -!- wen [7a760325@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.3.37] has joined #g0v.tw
+01:08 -!- wen [7a760325@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.3.37] has left #g0v.tw []
+01:09 < Lee1092> http://sunshine.cy.gov.tw/   陽光法案網  掛掉了?  XD  原本想驗證一下 ronnywang 的步驟
+01:10 -!- BV1AL [~bmc@114-32-53-235.HINET-IP.hinet.net] has joined #g0v.tw
+01:12 -!- Kevin_WY [~Kevin_WY@101.12.78.93] has quit [Ping timeout: 240 seconds]
+01:13 -!- caasih [~caasiHuan@114-46-147-228.dynamic.hinet.net] has joined #g0v.tw
+01:14 -!- Kiris [~kiris@ec2-50-16-19-54.compute-1.amazonaws.com] has quit [Remote host closed the connection]
+01:14 < lanf0n> 讀不到+1.... ((也正要試-_-
+01:16 -!- BV1AL [~bmc@114-32-53-235.HINET-IP.hinet.net] has quit [Ping timeout: 250 seconds]
+01:17 -!- adison [~adison@118-161-32-176.dynamic.hinet.net] has quit [Remote host closed the connection]
+01:18 -!- adison [~adison@118-161-32-176.dynamic.hinet.net] has joined #g0v.tw
+01:19 < yhsiangCloud> johnny__: 我給你的程式碼請放到 .ready 那個function裡面：)
+01:21 -!- Kiris [~kiris@ec2-50-16-176-239.compute-1.amazonaws.com] has joined #g0v.tw
+01:22 -!- adison [~adison@118-161-32-176.dynamic.hinet.net] has quit [Ping timeout: 250 seconds]
+01:23 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 240 seconds]
+01:24 -!- BV1AL [~bmc@114-32-53-235.HINET-IP.hinet.net] has joined #g0v.tw
+01:25 < yllan_> ronnywang: 全螢幕切視窗，不能用 Cmd+Tab 嗎？
+01:28 -!- hung1024 [3ddb24b5@gateway/web/cgi-irc/kiwiirc.com/ip.61.219.36.181] has joined #g0v.tw
+01:29 -!- hung1024 [3ddb24b5@gateway/web/cgi-irc/kiwiirc.com/ip.61.219.36.181] has quit [Client Quit]
+01:29 -!- MouseMs [~root@ec2-54-238-134-4.ap-northeast-1.compute.amazonaws.com] has left #g0v.tw []
+01:29 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+01:29 < johnny__> yhsiangCloud: 哦哦好，有什麼差別阿問一下
+01:30 -!- MouseMs [uid30039@gateway/web/irccloud.com/x-dtjbqiaginzgyivr] has joined #g0v.tw
+01:34 -!- RiANOl [~rianol@114-34-235-138.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+01:37 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 240 seconds]
+01:38 < yhsiangCloud> johnny__: 會在整個頁面loading完才執行：)
+01:38 -!- AndChat|189569 [~AndChat18@42.71.11.251] has quit [Read error: Connection reset by peer]
+01:40 < johnny__> 了解
+01:40 -!- Salmon [3d3f6286@gateway/web/cgi-irc/kiwiirc.com/ip.61.63.98.134] has joined #g0v.tw
+01:41 -!- Salmon is now known as Guest95674
+01:41 -!- Guest95674 [3d3f6286@gateway/web/cgi-irc/kiwiirc.com/ip.61.63.98.134] has quit [Client Quit]
+01:43 -!- Holio [3de45136@gateway/web/cgi-irc/kiwiirc.com/ip.61.228.81.54] has joined #g0v.tw
+01:43 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+01:45 -!- Holio [3de45136@gateway/web/cgi-irc/kiwiirc.com/ip.61.228.81.54] has quit [Client Quit]
+01:56 -!- KuoE0 [~textual@114-39-175-70.dynamic.hinet.net] has quit []
+02:00 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Remote host closed the connection]
+02:01 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:01 -!- BV1AL [~bmc@114-32-53-235.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+02:02 -!- divazone [~User@210-209-156-57.veetime.com] has quit [Quit: Leaving]
+02:02 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:03 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:04 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:04 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:06 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:06 < hialan> 去浮水印PHP script: https://github.com/hialan/php-strip-watermark
+02:06 < kcwu_> hialan's url: [hialan/php-strip-watermark · GitHub]
+02:06 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:07 < CindyLinz> hialan++
+02:07 < hialan> 跑出來的結果 https://www.dropbox.com/s/9x17sff6wu3ityc/php-strip-watermark-result.png 
+02:07 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:07 < CindyLinz> 好難得看到下半這麼「乾淨」的 github repository.. XD
+02:07 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:08 < hialan> 試了很多參數 , 結果 xnView 效果比較好 XD
+02:08 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:08 -!- BV1AL [~bmc@114-32-53-236.HINET-IP.hinet.net] has joined #g0v.tw
+02:08 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:08 < clkao_> hialan++
+02:08 < CindyLinz> hialan: 辛苦..
+02:09 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:09 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:10 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:10 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:11 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:11 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:12 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:12 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:13 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:13 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:13 < hialan> 有幾個地方的參數可以改，明天再來補 Readme XD
+02:14 -!- MrQ [~M157Q@140.113.244.9] has joined #g0v.tw
+02:14 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:14 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:15 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:15 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:15 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:16 -!- a0kman [uid15218@gateway/web/irccloud.com/x-wjogmjisidoknspr] has quit [Quit: Connection closed for inactivity]
+02:16 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:17 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:18 -!- MrQ_ [~M157Q@140.113.244.9] has joined #g0v.tw
+02:18 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:18 < hialan> CindyLinz: 其實我是 git 新手, 還在新手村 XD
+02:19 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:20 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:20 -!- gavin-^^ [uid27624@gateway/web/irccloud.com/x-isggoavxhqdjrlwv] has quit [Ping timeout: 264 seconds]
+02:21 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:21 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+02:22 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:22 -!- tuiry [uid12761@gateway/web/irccloud.com/x-nnfqgqqybbwvydam] has quit [Quit: Connection closed for inactivity]
+02:22 -!- cataska____ [uid12717@gateway/web/irccloud.com/x-njtsenmissovhixi] has quit [Ping timeout: 255 seconds]
+02:22 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+02:22 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:23 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:23 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+02:23 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:23 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:24 -!- gavin-^^ [uid27624@gateway/web/irccloud.com/x-mohologmgdkckxtn] has joined #g0v.tw
+02:24 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+02:24 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:24 < mindos> hialan++
+02:24 -!- Kiris [~kiris@ec2-50-16-176-239.compute-1.amazonaws.com] has quit [Ping timeout: 245 seconds]
+02:25 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+02:25 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:25 -!- stardog_ [uid14441@gateway/web/irccloud.com/x-uuydwyoucdsqkptk] has quit [Quit: Connection closed for inactivity]
+02:25 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:25 -!- cataska____ [uid12717@gateway/web/irccloud.com/x-ncztxpremiumnsvd] has joined #g0v.tw
+02:25 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:26 < CindyLinz> hialan: 好 XD  其實也就只差在你說的 README.. XD
+02:26 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:26 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+02:26 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:27 -!- hychen [uid12518@gateway/web/irccloud.com/x-rcznkioiipaokkvb] has joined #g0v.tw
+02:27 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:27 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:28 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:28 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:29 -!- KCC [76a8cea8@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.206.168] has joined #g0v.tw
+02:29 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:29 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:30 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:30 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:31 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:31 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:32 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:32 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:32 -!- KCC [76a8cea8@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.206.168] has quit [Client Quit]
+02:33 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:33 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:33 -!- kengyu_ [~kengyu@114-43-47-23.dynamic.hinet.net] has joined #g0v.tw
+02:33 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:34 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:34 < gavin-^^> ???????????????
+02:35 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:36 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:36 -!- clan [~clan@DN800c930d.Stanford.EDU] has quit [Quit: clan]
+02:36 -!- Kiris [~kiris@ec2-23-20-226-65.compute-1.amazonaws.com] has joined #g0v.tw
+02:37 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:38 -!- imacat1 [~imacat@rinse.wov.idv.tw] has quit [Ping timeout: 250 seconds]
+02:38 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:38 < yhsiangCloud> Hackpad手機刪不掉emoji……
+02:38 < yhsiangCloud> 想哭……orz
+02:39 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:39 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+02:39 < clkao_> ....
+02:39 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:40 < yhsiangCloud> 刪掉了！
+02:40 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:40 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+02:40 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:41 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:41 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+02:41 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:41 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:41 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+02:42 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:42 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:43 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+02:43 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:43 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:44 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:44 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:45 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:46 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:47 -!- matrixneo [uid27998@gateway/web/irccloud.com/x-fgtxnymadgahndox] has quit [Quit: Connection closed for inactivity]
+02:47 -!- fghdfgh [dc890a38@gateway/web/cgi-irc/kiwiirc.com/ip.220.137.10.56] has joined #g0v.tw
+02:47 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:47 -!- fghdfgh [dc890a38@gateway/web/cgi-irc/kiwiirc.com/ip.220.137.10.56] has quit [Client Quit]
+02:48 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:49 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+02:49 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:50 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+02:50 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:51 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:51 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+02:51 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:51 -!- Ti_W_B [uid16542@gateway/web/irccloud.com/x-ydatojtzhdkmtcun] has quit [Quit: Connection closed for inactivity]
+02:51 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:52 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+02:52 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:52 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+02:52 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:53 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:53 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:54 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+02:54 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:55 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:55 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:56 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:56 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:56 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:57 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:57 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:58 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:58 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:59 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+02:59 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+02:59 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:00 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:00 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:01 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:01 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:02 -!- Isabel_ [uid12871@gateway/web/irccloud.com/x-tvipntinjlkqqenl] has quit [Quit: Connection closed for inactivity]
+03:02 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:02 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:03 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:03 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:04 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:04 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:05 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:05 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:06 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:06 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:07 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:08 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:10 -!- pipi [uid28399@gateway/web/irccloud.com/x-csfpzmtivostxgqh] has quit [Quit: Connection closed for inactivity]
+03:10 -!- clkao_ is now known as clkao
+03:10 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:10 -!- ChanServ changed the topic of #g0v.tw to: irccloud 邀請: http://tinyurl.com/loxdlk5 | irc log:http://logbot.g0v.tw | 注意：這裡有 log | 如何加入 http://g0v.tw/join.html
+03:10 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:11 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:12 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:12 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:12 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:12 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:12 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:13 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:13 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:14 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:14 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:14 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:15 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:15 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:16 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:16 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:16 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:17 -!- mick_ [uid27649@gateway/web/irccloud.com/x-dgckdhkkurtkehhg] has joined #g0v.tw
+03:17 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:18 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:18 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:18 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:19 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:19 < kiang> ctiml, ronnywang: 載入大圖的作法目前只有一個 proof of concept ，看看要不要做囉？ - https://github.com/ctiml/campaign-finance.g0v.ctiml.tw/issues/5
+03:19 < kcwu_> kiang's url: [preload image · Issue #5 · ctiml/campaign-finance.g0v.ctiml.tw · GitHub]
+03:19 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:20 -!- yyhuang [uid13204@gateway/web/irccloud.com/x-ysoejpschmfzmfhn] has quit [Quit: Connection closed for inactivity]
+03:20 -!- davidpai [6ff8d44f@gateway/web/freenode/ip.111.248.212.79] has joined #g0v.tw
+03:20 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:20 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:21 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:21 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:22 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:22 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:23 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:24 -!- davidpai [6ff8d44f@gateway/web/freenode/ip.111.248.212.79] has quit [Client Quit]
+03:24 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:25 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:26 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:27 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:27 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:27 -!- ccaa [86d02138@gateway/web/cgi-irc/kiwiirc.com/ip.134.208.33.56] has joined #g0v.tw
+03:28 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:28 -!- mrorz [~mrorz@219-80-179-127.static.tfn.net.tw] has quit [Ping timeout: 252 seconds]
+03:28 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:29 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+03:29 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:29 -!- ccaa [86d02138@gateway/web/cgi-irc/kiwiirc.com/ip.134.208.33.56] has quit [Client Quit]
+03:29 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:30 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:30 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+03:30 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:31 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:31 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+03:31 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:32 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:32 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+03:32 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:33 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:33 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+03:33 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:34 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:34 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:35 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:36 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:37 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:38 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:39 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:39 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+03:39 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:40 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:41 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+03:41 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:41 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:42 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:42 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:43 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:43 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:43 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:43 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:44 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:44 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:44 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:45 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:45 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:45 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 240 seconds]
+03:46 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:46 -!- tw_285652 [~chatzilla@118-161-98-226.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.90.1 [Firefox 28.0/20140314220517]]
+03:46 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:46 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:46 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:47 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:47 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:48 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+03:48 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:48 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:49 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:49 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:50 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:51 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:51 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:52 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:52 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:52 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+03:53 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:54 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:55 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:56 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:56 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:57 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:58 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+03:58 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:58 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+03:59 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+03:59 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:00 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:00 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+04:00 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:01 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:01 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+04:01 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:02 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+04:02 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:02 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:03 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:03 -!- t0mst0ne_ [uid13954@gateway/web/irccloud.com/x-sqongvmuhxryauwy] has joined #g0v.tw
+04:03 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+04:03 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:03 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:04 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:04 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 276 seconds]
+04:04 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:05 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+04:05 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:06 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:06 -!- clan [~clan@DN800c930d.Stanford.EDU] has joined #g0v.tw
+04:07 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:08 -!- PCLiao [uid28763@gateway/web/irccloud.com/x-nqgumlzgbpguqlwl] has quit [Quit: Connection closed for inactivity]
+04:08 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:09 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:10 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:10 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:10 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:11 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:11 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:11 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:12 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:12 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:12 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:12 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:13 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:13 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:14 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:14 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:14 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:14 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:15 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:15 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:16 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:16 -!- johnny__ [uid19482@gateway/web/irccloud.com/x-lfmpdbvxhmyutupb] has quit [Quit: Connection closed for inactivity]
+04:16 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:17 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:18 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:19 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:20 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 252 seconds]
+04:20 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:20 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+04:21 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:21 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+04:22 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:22 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+04:23 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:23 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+04:24 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:24 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+04:24 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:25 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:25 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+04:25 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:25 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:26 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+04:26 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:27 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:27 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+04:27 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:27 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:28 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:28 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:29 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:30 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:30 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:31 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+04:31 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:32 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:32 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:33 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:33 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:34 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:34 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:35 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:35 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:35 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:35 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:36 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:36 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:37 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:37 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:38 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:38 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:38 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:39 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:39 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:40 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:40 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:40 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 240 seconds]
+04:41 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:41 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+04:42 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:42 -!- f6bfb5_ [~f6bfb5@36-231-242-253.dynamic-ip.hinet.net] has joined #g0v.tw
+04:43 -!- f6bfb5 [~f6bfb5@61-228-66-228.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+04:43 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:44 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:45 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:46 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:46 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:47 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:47 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:47 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:48 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:48 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:49 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:49 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:50 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:50 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:51 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:51 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:51 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:52 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:52 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:53 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:53 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:53 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:53 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:54 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:54 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:54 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:55 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:55 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:55 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:56 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:56 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+04:56 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:57 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:57 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:58 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:58 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:58 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+04:59 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+04:59 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:00 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:01 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:01 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:02 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:02 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:02 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:03 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:03 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:04 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:04 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:05 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:05 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:06 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:06 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:07 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:07 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:08 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:08 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:09 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:09 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:09 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:10 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:10 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:10 -!- kiwifishcat_fei_ [uid28560@gateway/web/irccloud.com/x-dxemowsyskpfxcfw] has quit [Quit: Connection closed for inactivity]
+05:11 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:11 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:12 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:12 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:13 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:13 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:14 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:14 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:15 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:15 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:16 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:16 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:16 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:18 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:18 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:19 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:19 -!- mick_ [uid27649@gateway/web/irccloud.com/x-dgckdhkkurtkehhg] has quit [Quit: Connection closed for inactivity]
+05:19 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:20 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:20 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:21 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+05:21 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:21 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:22 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+05:22 -!- whitglint [uid15486@gateway/web/irccloud.com/x-dcmvrkyzoasqkauy] has quit [Quit: Connection closed for inactivity]
+05:22 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:22 -!- kiang [uid25350@gateway/web/irccloud.com/x-lvhjldpxtadtumeq] has quit [Quit: Connection closed for inactivity]
+05:22 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:23 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:23 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:24 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:24 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:25 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:25 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:26 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:26 -!- kengyu_ [~kengyu@114-43-47-23.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+05:26 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:26 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:27 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:28 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:28 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:29 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:29 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:29 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:30 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:31 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:31 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:31 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:31 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:32 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:32 -!- fshiori [~eric@36-224-8-180.dynamic-ip.hinet.net] has quit [Ping timeout: 276 seconds]
+05:33 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:33 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 276 seconds]
+05:33 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:34 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+05:34 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:34 -!- fshiori [~eric@36-224-23-64.dynamic-ip.hinet.net] has joined #g0v.tw
+05:34 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:35 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:35 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:35 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:36 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:37 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:37 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:37 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:38 -!- kengyu_ [~kengyu@114-43-33-80.dynamic.hinet.net] has joined #g0v.tw
+05:38 -!- clan [~clan@DN800c930d.Stanford.EDU] has quit [Quit: clan]
+05:38 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:38 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:39 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:39 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:40 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:40 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:41 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:41 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:42 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:43 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:44 -!- cwlin_ [~cwlin@1-169-82-224.dynamic.hinet.net] has joined #g0v.tw
+05:44 -!- cwlin [~cwlin@1-171-210-142.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:44 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:45 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:46 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+05:47 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:47 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:47 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+05:47 -!- kengyu_ [~kengyu@114-43-33-80.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+05:48 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:48 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+05:48 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:49 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:49 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:49 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+05:50 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:50 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+05:50 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:51 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:51 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:52 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:52 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:53 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:53 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:54 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:54 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:54 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:55 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:55 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:56 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:56 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:57 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:57 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:58 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+05:58 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:59 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+05:59 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:00 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:00 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:01 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:01 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:02 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:02 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:02 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:03 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:03 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:04 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:05 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:05 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:05 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:06 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:06 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:07 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:07 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:08 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:08 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:09 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:09 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:09 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:10 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:10 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:11 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:12 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:12 -!- clan [~clan@DN800c930d.Stanford.EDU] has joined #g0v.tw
+06:12 -!- BV1AL [~bmc@114-32-53-236.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+06:12 -!- BV1AL [~bmc@114-32-53-235.HINET-IP.hinet.net] has joined #g0v.tw
+06:12 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:13 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:14 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:14 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:15 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:15 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:16 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:16 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:17 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+06:17 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:17 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:17 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+06:18 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:18 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:18 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:19 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:20 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:20 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:20 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:21 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:21 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:22 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:22 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:23 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:23 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:24 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:24 -!- t0mst0ne_ [uid13954@gateway/web/irccloud.com/x-sqongvmuhxryauwy] has quit [Quit: Connection closed for inactivity]
+06:24 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:25 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:25 -!- paar [~paar@2001:288:8201:4:224:7eff:fe05:ff75] has quit [Ping timeout: 245 seconds]
+06:25 -!- paar [~paar@2001:288:8201:4:224:7eff:fe05:ff75] has joined #g0v.tw
+06:26 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:27 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:28 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:29 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:29 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:29 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:30 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+06:30 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:30 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:31 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:31 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+06:31 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:32 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+06:32 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:32 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:33 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:33 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+06:33 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:34 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:34 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:35 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:35 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:36 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:36 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:37 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:37 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:37 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:38 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:38 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:39 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:39 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:40 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:41 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:42 -!- mics [~mics@1-172-251-171.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+06:42 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:43 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:43 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:44 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:44 -!- BV1AL [~bmc@114-32-53-235.HINET-IP.hinet.net] has quit [Ping timeout: 250 seconds]
+06:44 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+06:44 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:44 -!- clan [~clan@DN800c930d.Stanford.EDU] has quit [Quit: clan]
+06:45 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:45 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+06:45 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:45 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:46 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:46 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:46 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+06:47 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:47 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:48 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:48 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:50 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:51 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:51 -!- BV1AL [~bmc@114-32-53-235.HINET-IP.hinet.net] has joined #g0v.tw
+06:51 -!- clan [~clan@DN800c930d.Stanford.EDU] has joined #g0v.tw
+06:51 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:52 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:53 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+06:53 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:54 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:54 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+06:55 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+06:55 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+06:55 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:56 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+06:56 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:56 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+06:57 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:58 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+06:58 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+06:59 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:00 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:00 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+07:01 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+07:01 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:01 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:02 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:02 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:02 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+07:03 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:03 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+07:03 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:04 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:04 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:04 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+07:05 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:05 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+07:05 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:05 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:06 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:07 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:07 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:07 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:08 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:08 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:09 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:09 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:10 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:10 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:11 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:11 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:12 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:12 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:13 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:13 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:14 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:14 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:15 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:15 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:16 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:16 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:17 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:17 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:17 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:18 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:18 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:19 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:19 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:20 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:20 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:21 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:22 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:22 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:22 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:23 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:23 -!- BV1AL_ [~bmc@220-135-151-143.HINET-IP.hinet.net] has joined #g0v.tw
+07:23 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:24 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:24 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:24 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:25 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:25 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:26 -!- BV1AL [~bmc@114-32-53-235.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+07:26 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:26 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:27 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:27 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:28 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:28 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:29 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:29 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:30 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:30 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:30 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:31 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:32 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:32 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:33 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:33 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:33 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:34 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:34 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:35 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:36 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:36 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:36 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:37 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:37 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:37 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:38 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:38 -!- kcliu_ [uid12402@gateway/web/irccloud.com/x-uuzomvpnkhxjxqwx] has quit [Quit: Connection closed for inactivity]
+07:38 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:39 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:39 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:40 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:40 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:41 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:41 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:42 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:42 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:43 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:43 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:44 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:44 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 252 seconds]
+07:44 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:45 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:46 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:47 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:48 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:49 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+07:49 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:50 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+07:50 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:50 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+07:50 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:51 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:51 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+07:51 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:52 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+07:52 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:52 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+07:52 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:53 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:53 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:54 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+07:54 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:54 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:55 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:55 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:56 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:56 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:57 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:57 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:58 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:58 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 240 seconds]
+07:58 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:59 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+07:59 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+07:59 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:00 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:01 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:01 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:01 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:02 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:02 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:03 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:03 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:04 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:04 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:05 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+08:05 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:05 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:06 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:06 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:07 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:07 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:08 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:08 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:08 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:09 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:09 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:10 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:11 < mikimoto> ronnywang: 轉達一下，有間廠商願意私下提供 PDF 轉 word 跟 OCR 技術給 g0v，需要的話我再進一步接洽
+08:11 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:11 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:11 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:12 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:12 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:13 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:13 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:14 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:14 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:15 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:15 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:16 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:17 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:17 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:17 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:17 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:18 -!- Lan [Lan@114-42-5-246.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+08:18 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:18 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:19 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:19 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:19 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has quit [Ping timeout: 276 seconds]
+08:20 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:20 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:20 -!- nekki [uid16895@gateway/web/irccloud.com/x-yfqmhnbdbvgksylg] has joined #g0v.tw
+08:21 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:21 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:22 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:22 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:23 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:23 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:24 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:24 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:25 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:25 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:25 -!- KylinWu [~kylin@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+08:26 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:26 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:26 -!- KuoE0 [~textual@114-39-165-233.dynamic.hinet.net] has joined #g0v.tw
+08:27 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:27 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:28 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:28 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:28 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:29 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:29 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:30 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:30 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:31 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:31 -!- pm5 [~pm5@111-248-218-209.dynamic.hinet.net] has joined #g0v.tw
+08:31 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:32 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:32 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:33 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:33 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:34 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:34 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:34 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:35 -!- danny___ [uid28981@gateway/web/irccloud.com/x-vvoxfuwkctiwyzjx] has joined #g0v.tw
+08:35 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:35 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:36 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:36 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:37 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:37 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:38 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:38 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:38 -!- KuoE0 [~textual@114-39-165-233.dynamic.hinet.net] has quit []
+08:39 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:39 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:40 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:40 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:41 -!- kaxing [~kaxing@61-230-130-155.dynamic.hinet.net] has quit [Ping timeout: 250 seconds]
+08:41 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:41 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:42 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:42 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:42 -!- whitglint [uid15486@gateway/web/irccloud.com/x-rmbgfyukjqhukzjq] has joined #g0v.tw
+08:43 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:43 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:44 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:44 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:45 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:45 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:46 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:46 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:46 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:47 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:47 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:48 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:48 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:49 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:49 -!- mrorz [~mrorz@219-80-179-127.static.tfn.net.tw] has joined #g0v.tw
+08:49 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:50 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:50 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:51 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:51 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:51 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:52 -!- lcamel [~lcamel@nat/yahoo/x-uwsusbhvsyplhsaz] has joined #g0v.tw
+08:52 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:52 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:53 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:53 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:54 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+08:54 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:55 -!- pm5 [~pm5@111-248-218-209.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+08:55 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:56 -!- LEETIGER [~LEETIGER@pool-108-35-187-36.nwrknj.fios.verizon.net] has quit []
+08:56 -!- wolfenstein [~Thunderbi@60-250-73-121.HINET-IP.hinet.net] has joined #g0v.tw
+08:56 -!- LEETIGER [~LEETIGER@pool-108-35-187-36.nwrknj.fios.verizon.net] has joined #g0v.tw
+08:56 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:57 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:58 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+08:59 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+08:59 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:00 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:00 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:00 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+09:01 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:01 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:01 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+09:01 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:02 -!- kengyu [~kengyu@114-43-33-80.dynamic.hinet.net] has joined #g0v.tw
+09:02 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:02 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+09:02 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:02 -!- kengyu_ [~kengyu@1.200.96.36] has joined #g0v.tw
+09:03 -!- jbytw [uid13105@gateway/web/irccloud.com/x-mynsdnlnsxdwjzgy] has joined #g0v.tw
+09:03 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:03 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+09:03 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:04 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:04 -!- mno2 [~mno2@202.63.156.211] has joined #g0v.tw
+09:05 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:05 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:05 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:06 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:06 -!- kengyu [~kengyu@114-43-33-80.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+09:07 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:08 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:09 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:10 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:10 -!- paar [~paar@2001:288:8201:4:224:7eff:fe05:ff75] has quit [Remote host closed the connection]
+09:11 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:11 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+09:11 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:11 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:12 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:12 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+09:12 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:12 -!- Isabel_ [uid12871@gateway/web/irccloud.com/x-tqyvezphrjziwhxw] has joined #g0v.tw
+09:13 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+09:13 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:13 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+09:13 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:14 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:14 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:15 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+09:15 -!- paar [~paar@2001:288:8201:3:224:7eff:fe05:ff75] has joined #g0v.tw
+09:15 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:15 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:16 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:16 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:16 -!- Kiris [~kiris@ec2-23-20-226-65.compute-1.amazonaws.com] has quit [Ping timeout: 252 seconds]
+09:16 -!- exFREEzy [exFREEzy@nat/google/x-ywgjbmxsnzvkydvs] has joined #g0v.tw
+09:17 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:17 -!- Kiris [~kiris@ec2-23-20-226-65.compute-1.amazonaws.com] has joined #g0v.tw
+09:17 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:18 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:18 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:19 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:19 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:20 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:20 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:20 -!- mrorz [~mrorz@219-80-179-127.static.tfn.net.tw] has quit [Ping timeout: 240 seconds]
+09:21 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:21 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:21 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:22 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:22 -!- kcwu_ is now known as kcwu
+09:22 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:23 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:23 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:24 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:24 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:25 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:25 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:26 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Quit: leaving]
+09:26 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:26 -!- kiang [uid25350@gateway/web/irccloud.com/x-oeylnwagkqfsgxja] has joined #g0v.tw
+09:27 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:28 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:28 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:29 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:30 < YGhost> 人工 OCR 前幾十題(rand)可以給已確認答案，檢查這人是不是來亂的，這樣呢? 不知道有沒有人提過
+09:30 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+09:30 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:31 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+09:31 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:31 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:32 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:32 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+09:32 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:33 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+09:33 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:33 < ronnywang> 突然有個很邪惡的想法，另外做一個版本的網站，是專門收集把圖片交給不同廠商 OCR 的結果，並且給鄉民來挑選哪些廠商 OCR 是正確的..最後可以生出台灣 OCR 廠商準確率大賽結果
+09:33 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:34 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+09:34 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:34 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:35 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:35 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:35 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:36 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:37 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:37 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:37 < miaoski> ronnywang: +1 好邪惡的主意 XDD
+09:37 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:38 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:38 < miaoski> mikimoto: 好奇是哪家... 敝母校整理舊校刊，深為 OCR 所苦
+09:38 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:39 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:39 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:39 -!- lcamel [~lcamel@nat/yahoo/x-uwsusbhvsyplhsaz] has quit [Remote host closed the connection]
+09:40 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+09:40 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:40 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:41 -!- wolfenstein [~Thunderbi@60-250-73-121.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+09:41 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:41 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Quit: leaving]
+09:41 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:42 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:42 -!- yyhuang [uid13204@gateway/web/irccloud.com/x-umdduhwlnogwevva] has joined #g0v.tw
+09:42 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+09:42 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:42 -!- lcamel [~lcamel@nat/yahoo/x-xqstzqenfmjjhglz] has joined #g0v.tw
+09:43 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:43 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:44 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:44 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:44 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:45 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:46 -!- lyanchih [~lyanchih@202.39.219.19] has joined #g0v.tw
+09:46 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:46 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:46 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:47 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:47 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:47 -!- WeiHung [uid13045@gateway/web/irccloud.com/x-srzdsxuhnjwjqmah] has joined #g0v.tw
+09:47 -!- s8321414 [~s8321414@140.127.38.80] has joined #g0v.tw
+09:47 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:48 < brentbiotech> ronnywang++ 這主意好邪惡  XDD
+09:48 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:48 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:49 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:49 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Quit: leaving]
+09:49 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:50 -!- clan [~clan@DN800c930d.Stanford.EDU] has quit [Quit: clan]
+09:50 < ctiml> @lackneets 做了一個政治獻金資料呈現的網站 http://campaign-finance.g0v.lackneets.tw/
+09:50 < kcwu> ctiml's url: [政治獻金資料庫 - 國家自己救]
+09:50 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:50 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:51 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:51 -!- kaxing [~kaxing@175.41.48.77] has quit [Read error: Connection reset by peer]
+09:51 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:52 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:52 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:53 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:53 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:53 < miaoski> ctiml: 強大
+09:54 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:54 -!- ronnywang__ [uid15193@gateway/web/irccloud.com/x-jvxduokibxalxnjn] has joined #g0v.tw
+09:54 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:55 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:55 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:55 -!- Wez [722855ea@gateway/web/cgi-irc/kiwiirc.com/ip.114.40.85.234] has joined #g0v.tw
+09:55 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+09:56 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:56 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:57 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:58 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+09:58 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+09:58 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+09:59 -!- Wez [722855ea@gateway/web/cgi-irc/kiwiirc.com/ip.114.40.85.234] has quit [Client Quit]
+09:59 -!- JoeWang [7a744582@gateway/web/cgi-irc/kiwiirc.com/ip.122.116.69.130] has joined #g0v.tw
+09:59 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:00 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Quit: leaving]
+10:01 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:01 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:02 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:02 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:02 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:02 -!- pm5 [~pm5@61-230-101-43.dynamic.hinet.net] has joined #g0v.tw
+10:03 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:03 -!- ddio [uid13869@gateway/web/irccloud.com/x-mycjzrbcgwgjjlgl] has joined #g0v.tw
+10:03 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+10:03 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:03 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:03 < YGhost> ctiml++
+10:04 < maximum_> 最近google有一篇paper在講怎麼解captcha，不知道能不能拿來用 XD
+10:04 -!- lackneets [uid30065@gateway/web/irccloud.com/x-zqlnkjfejtrmeqyq] has joined #g0v.tw
+10:04 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Quit: leaving]
+10:04 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:04 < lackneets> test
+10:04 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:04 < ronnywang> lackneets ++
+10:04 < ctiml> lackneets ++
+10:04 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:04 < lackneets> lackneets overflow
+10:05 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:05 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+10:05 -!- tuiry [uid12761@gateway/web/irccloud.com/x-oxxjbrkzwujjndyx] has joined #g0v.tw
+10:06 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:06 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:06 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:07 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:07 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:08 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:09 < miaoski> maximum_: (伸)
+10:09 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:10 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:11 -!- wolfenstein [~Thunderbi@60-250-73-121.HINET-IP.hinet.net] has joined #g0v.tw
+10:11 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:11 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:12 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:13 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:13 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:13 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:14 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:15 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:15 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:15 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:15 -!- wolfenstein [~Thunderbi@60-250-73-121.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+10:16 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:16 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+10:16 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:16 -!- wolfenstein [~Thunderbi@123.51.216.88] has joined #g0v.tw
+10:17 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:17 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:18 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+10:18 -!- nyli [~anonymous@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:18 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:18 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:18 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+10:19 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:19 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+10:19 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:20 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:20 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:20 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+10:20 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:21 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:22 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:22 < hcchien> lackneets++
+10:22 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:22 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:23 -!- JoeWang [7a744582@gateway/web/cgi-irc/kiwiirc.com/ip.122.116.69.130] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+10:23 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:24 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:24 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:24 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:25 < kiang> lackneets++
+10:25 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:25 -!- paaaar [~paar@2001:288:8201:3:224:7eff:fe05:ff75] has joined #g0v.tw
+10:25 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:26 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:26 < Lee1092> lackneets++
+10:26 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:27 -!- nekki [uid16895@gateway/web/irccloud.com/x-yfqmhnbdbvgksylg] has quit [Quit: Connection closed for inactivity]
+10:27 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:27 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:28 < ronnywang> ctiml: 剛突然想到，可以把序號的第一格給大家填
+10:28 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:28 < ronnywang> 後面就直接用累加的
+10:28 -!- paar [~paar@2001:288:8201:3:224:7eff:fe05:ff75] has quit [Ping timeout: 245 seconds]
+10:28 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:28 < kiang> ronnywang: 可是序號欄位應該沒有實際意義？
+10:29 < ronnywang> 不知道那個序號會不會是唯一的，還是只是這一次列印的單位的順序
+10:29 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:29 < kiang> ronnywang: 看起來是列印的單位順序
+10:29 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:29 < ronnywang> 如果(獻金專戶名稱 + 會計科目 + 序號) 是唯一的，那序號就有意義了
+10:30 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:30 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:31 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:31 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:32 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:32 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:32 < kiang> ronnywang: 目前看起來是會重複的 - 王惠美/雜支支出/雜支支出.pdf & 王惠美/雜支支出/雜支支出(2).pdf
+10:33 -!- kengyu [~kengyu@114-43-33-80.dynamic.hinet.net] has joined #g0v.tw
+10:33 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:34 < kiang> ronnywang: 感覺有可能是多次送交報告，每次報告的序號都是從 1 開始編
+10:34 -!- pipi [uid28399@gateway/web/irccloud.com/x-xqcmnoicfkmpzctl] has joined #g0v.tw
+10:34 -!- Sorry [uid13520@gateway/web/irccloud.com/x-jdcwzzryijptvsgi] has quit [Quit: Connection closed for inactivity]
+10:34 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:35 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:36 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:36 -!- kengyu_ [~kengyu@1.200.96.36] has quit [Ping timeout: 250 seconds]
+10:36 < clkao> lackneets++
+10:37 < clkao> lackneets: 匿名捐"政" typo
+10:37 -!- fant_____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:37 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:37 -!- yangbleu [dc873092@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.48.146] has joined #g0v.tw
+10:38 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:38 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+10:38 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:39 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:39 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:40 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:40 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:41 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:41 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:41 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:42 -!- fant_____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:42 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:42 -!- imrehg [~imrehg@122.147.15.218] has joined #g0v.tw
+10:42 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:43 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:43 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:44 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:44 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:44 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:45 < lackneets> 匿名捐"政" 名稱從檔案名稱parse出來的 ，這要戳 ronnywang++ http://campaign-finance.g0v.ronny.tw/table/show/775
+10:45 < kcwu> lackneets's url: [政治獻金]
+10:45 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:46 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:46 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:46 < lackneets> GIGO~  XD
+10:47 < clkao> lackneets: 加一下 github 連結.. ?
+10:47 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+10:47 < kiang> 匿名捐"政" 名稱是當初掃描建檔就這樣輸入，錯誤的還有 馬英九//個人捐贈收入/芙丸-個人捐贈收入
+10:47 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:47 < clkao> soga
+10:48 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+10:48 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:48 < lackneets> 還沒上 github 晚點加好了
+10:48 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:48 -!- pletnevchou__ [uid28622@gateway/web/irccloud.com/x-dqcwqnxuovdxhvoa] has joined #g0v.tw
+10:49 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:49 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+10:49 < maximum_> miaoski: 這篇 http://arxiv.org/pdf/1312.6082v4.pdf
+10:49 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:50 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+10:50 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:50 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:50 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+10:51 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:51 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:51 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:52 -!- yangbleu [dc873092@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.48.146] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+10:52 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:53 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:54 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:54 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:54 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:55 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:55 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:56 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:57 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:57 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:57 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+10:57 -!- johnny__ [uid19482@gateway/web/irccloud.com/x-zolvgatmefytyyej] has joined #g0v.tw
+10:57 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:57 -!- Sorry [uid13520@gateway/web/irccloud.com/x-mmybzlgpuwhkqryp] has joined #g0v.tw
+10:57 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+10:58 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+10:59 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:00 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:00 < tuiry> 文化部的google群組好多新人沒人接待阿(抖
+11:01 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:01 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:02 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:03 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+11:03 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:04 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:04 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+11:04 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:05 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+11:05 -!- caasih [~caasiHuan@114-46-147-228.dynamic.hinet.net] has quit [Quit: leaving]
+11:05 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:05 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:06 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+11:06 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:06 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:07 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:07 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+11:07 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:08 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:09 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:11 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:12 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+11:12 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:12 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:12 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+11:13 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:13 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+11:13 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:14 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:15 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:15 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+11:16 -!- fantasy__ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:17 -!- fantas___ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:17 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+11:18 -!- fanta____ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:19 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+11:19 -!- fanta____ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:19 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:20 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+11:20 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:20 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:21 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:21 -!- fantasy__ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+11:21 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:21 -!- fantas___ [~fantasywi@1.34.9.252] has quit [Ping timeout: 276 seconds]
+11:22 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:22 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:23 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:23 < poga> tuiry++ 直接就去接待了 XD
+11:23 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:24 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:24 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:25 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:25 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:26 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:26 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:26 -GitHub20:#g0v.tw- [g0v.tw] cades opened pull request #90: 區別辦完與舉辦中的活動 (master...master) https://github.com/g0v/g0v.tw/pull/90
+11:26 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:27 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:27 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:28 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:29 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:29 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:30 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:30 -!- exFREEzy [exFREEzy@nat/google/x-ywgjbmxsnzvkydvs] has quit [Remote host closed the connection]
+11:31 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:31 < moon_c> tuiry: 而且新人都很強(抖
+11:31 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:31 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:32 -!- fantasyw_ [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:32 -!- fantasyw_ [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:32 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Ping timeout: 240 seconds]
+11:33 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:33 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:34 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:34 < pipi> 沃草也有公民記者(蠢蠢欲動
+11:34 < lancetw> 沃草很強大啊 XD
+11:34 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:34 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:35 < miaoski> maximum_: ++
+11:35 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:35 -!- danny___ [uid28981@gateway/web/irccloud.com/x-vvoxfuwkctiwyzjx] has quit [Quit: Connection closed for inactivity]
+11:35 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:36 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:36 < tuiry> moon_c: 抖抖
+11:36 < tkirby> moon_c!
+11:36 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:37 < tkirby> 是前天的那位 moon 嗎
+11:37 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:37 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:38 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:38 < tuiry> 是貼紙作者moon_c
+11:38 < tkirby> 貼紙作者++
+11:38 < hcchien> 貼紙作者!!
+11:38 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:39 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:39 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:40 < hcchien> 科科，動民主 2.0 團快要湊齊了
+11:40 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:40 < hcchien> 在 g0v.tw 的發源地組分舵~~
+11:40 < miaoski> maximum_: 這個... 要建 deep convolutional neural network 大概要依賴版上的大大們了... 小弟 ML 沒學好 >//<
+11:40 -!- clan [~clan@DN800c930d.Stanford.EDU] has joined #g0v.tw
+11:40 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:41 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:41 -!- s8321414 [~s8321414@140.127.38.80] has quit [Quit: Konversation terminated!]
+11:41 -!- fantasywind [~fantasywi@1.34.9.252] has joined #g0v.tw
+11:42 -!- fantasywind [~fantasywi@1.34.9.252] has quit [Read error: Connection reset by peer]
+11:44 < tkirby> hcchien!
+11:45 < tkirby> 雖然我碩士在類神經網路實驗室可是我也沒學好 >\\<
+11:45 < tkirby> hcchien: 現在的狀況怎樣 XD
+11:45 < hcchien> tkirby:  ued 跟 engineer 應該都找到了，正在找 pm   :p
+11:46 < tkirby> nice
+11:52 < jbytw> http://campaign-finance.g0v.ctiml.tw/cell 的資料是否都已被填寫過？
+11:52 < kcwu> jbytw's url: [政治獻金數位化]
+11:53 < jbytw> (因為連好幾個都是這樣)
+11:56 < brentbiotech> 看狀況感覺好像都被填寫過了~~~~ 目前應該是需要再進監院撈新資料出來給鄉民宅宅們OCR吧?? XD
+11:56 < softpapa> 有人碰過 README.md 裡的空白變tab 的問題嗎？ 畫了ascii flow chart ，用<pre></pre> 包住，在github 上看是爛的...，在github 直接edit，發現有的space 被轉成 tab
+12:00 < tkirby> jbytw: 聽說是都被填完了
+12:01 < jbytw> tkirby++ 
+12:01 < jbytw> brentbiotech++
+12:03 < brentbiotech> 有慫恿朋友組團進監院撈新材料提供廣大鄉民OCR打發時間了 ((誤
+12:05 < mikimoto> ronnywang: 好主意++
+12:07 < mikimoto> miaoski: 是一家台南的軟體公司，對方聯絡時，用了私下這個字眼，所以我想等確定跟 g0v 合作後，再問他是不是願意公開公司名稱
+12:09 < kiwi0530> mikimoto
+12:09 < kiwi0530> 敲錯~抱歉
+12:09 < kiwi0530> mikimoto: 請問是怎樣的公司？
+12:13 < Lee1092> kiwi0530:  處理 OCR 的樣子 # http://logbot.g0v.tw/channel/g0v.tw/2014-04-21#164
+12:13 < kcwu> Lee1092's url: [Logbot | #g0v.tw]
+12:14 < kiwi0530> Lee1092: 喔喔~感謝，那可能我沒問的很清楚，本來是想瞭解一下大概是用怎樣的軟體技術做OCR XD
+12:16 < kiang> mikimoto: 所以我去找他們聊天？ XD
+12:20 < hcchien> brentbiotech++  # 提供廣大鄉民OCR打發時間
+12:23 < brentbiotech> 不過私心也很想看各OCR廠商大亂鬥 ((溜
+12:34 < kiang> brentbiotech++, ptt 上面感覺很多朋友期待新的關卡 XD
+12:36 < brentbiotech> 新關卡 XD 應該要他們快去監院撈資料呀！自己的關卡自己撈
+12:38 < moon_c> 請問一下，大家打++的時候是什麼意思？
+12:39 < kiang> 目前應該沒有人在寫監察院的認領系統吧？不知道能不能透過 api 直接把資料灌進 github issue 系統裡 XD
+12:39 < hcchien> ++  => 讚
+12:39 < poga> moon_c: 替他按讚的意思
+12:42 < kiang> 不過監察院的認領系統應該要加個評分機制，讓大家評選挖資料的順序， facebook 的讚可以，如果這時候有 reddit 可以灌資料就好了 XD
+12:44 -!- reChing|afk is now known as reChing
+12:58 -!- Armand is now known as Guest45467
+13:03 < hcchien> 原來好多人用 google groups 都是當討論區用  (我都拿來當 mailing list)   :D
+13:07 < hychen> 不是本來就是mailing list? XD
+13:07 < hcchien> 剛剛看了一下，很多人都設定不收信
+13:08 < hcchien> 所以就是當討論區看!?
+13:10 < lancetw> XD
+13:11 < lancetw> 台灣應該從來沒普及過 mailing list 的概念 XD
+13:11 < kiang> <=== 當討論區 +1 ，因為信箱太亂了
+13:13 < hcchien> 不過我超習慣 mailing list   lol
+13:14 < jbytw> 習慣+1
+13:19 < miaoski>  Mailing list +1
+13:19 < hcchien> 其實我只是要說，想加入 summit 志工的趕快加入 groups    lol
+13:28 < a0kman> 欸！？所以 hcchien 除了hackpad以外 Gg也要去加入啊
+13:29 < tuiry> hcchien 在哪裡呀
+13:33 < Rhozan> 很希望首頁介面能整合一下，目前有分g0v.tw 、hack.g0v.tw/g0v-hackath8n/Iun4h6yW2qU 、g0v.hackpad.com  三個都可以算是首頁，但是有的有左邊欄有的沒有，而且到另一個就回不去原本的，很錯亂
+13:34 < hcchien> 咦，其實 hackpad 上好像有寫   # https://groups.google.com/forum/#!forum/g0v-summit
+13:34 < kcwu> hcchien's url: [Google 網上論壇]
+13:41 < miaoski> hcchien: 嘩要搞這麼大... 只好跳坑了
+13:42 < hcchien> miaoski: 沒很大啦   lol
+13:47 < miaoski> hcchien: 立馬推人入坑
+13:48 < hcchien> miaoski++
+13:48 < miaoski> foxtail: 我剛剛推 mt01020 入坑，妳要不要一起跳? XD
+13:48 < hcchien> 志工數量有限，預購從速   (咦!?   lol
+13:50 < foxtail> miaoski: 嘎嘎？
+13:58 -!- chihchun_afk is now known as chihchun
+14:00 < tuiry> 最近文化部有好多強者出沒阿，各專案有需要請直接去文化部抓人喔
+14:00 < hcchien> 文化部++  # for g0v only   lol
+14:00 < ij1iao> 申請 g0v-summit 就代表簽賣身契當志工了嗎 ?
+14:00 < hcchien> ij1iao: 當然沒有
+14:01  * ij1iao 隨便問問而已
+14:06 < miaoski> foxtail: 和學姊一起跳坑吧 (推)
+14:06 < miaoski> hcchien: 我以為申請就是簽了? 不行不行，這樣要推第二次坑好累 (咦)
+14:49 < MGdesigner> hi各位朋友，昨天到今天，有來自伊朗跟西班牙各一個ip來源要試我的密碼。在最近這個時間點有點敏感。 http://images.plurk.com/72wvGyThuS2YgXtZdKrfBf.jpg
+14:50 < MGdesigner> 不知道各位最近是否有遇到類似的狀況？ ps.對方當然沒成功XD
+14:50 < miaoski_home> MGdesigner: 別太擔心啦，那些來源的很常見
+14:51 < MGdesigner> miaoski_home: 我第一次遇到@@
+14:51 < MGdesigner> miaoski_home: 第一次遇到人來敲門的興奮感？？  <----M傾向 XDXD
+14:52 < ij1iao> 快開 2FA 比較實在
+14:53 < kcwu> 開 2FA +1
+14:53 < CindyLinz> 跟他說 0A2B 請再加油 (誤)
+14:53 < Jedi_> CindyLinz: .....
+14:55 < kiang> CindyLinz: http://twpug.net/discussion/4449 XD
+14:55 < kcwu> kiang's url: [1A2B 猜數字遊戲 - 原創軟體分享區 相關討論於 台灣PHP聯盟[ Taiwan PHP User Group ]]
+14:56 < CindyLinz> :D
+14:56 < littleq0903Cloud> 有誰要去 CCSP hackathon？
+14:58 < foxtail> 我會去路過ccsp hackathon XD
+15:06 < Lee1092> so sad, ccsp hackathon 剛好回台南QQ
+15:07 < yhsiang_> Rhozan: 可是三個是不同的用途的東西耶?
+15:08 < yhsiang_> Rhozan: 我想你應該要講的是g0v tabzilla XD
+15:23 < miaoski> foxtail: 路過....
+15:34 -!- cwlin_ [~cwlin@1-169-82-224.dynamic.hinet.net] has left #g0v.tw []
+15:35 < Rhozan> yhsiang: 對，主要是路人會混淆
+15:37 < hcchien> miaoski: 快去 hackpad 認工作
+15:38 < miaoski> hcchien: where? 直接在「工作人員」後面填就好嗎?
+15:39 < tuiry> 文化部長有問題._./
+15:40 < tuiry> 有文化部長表示想改現有的網站，請問要如何連絡相關工程師
+15:40 < Lee1092> tuiry:  哪一個網站?
+15:40 < miaoski> hcchien: 所以這次不用文播組嗎? (誤)
+15:41 < MGdesigner> 昨天我"路過"台北火車站 http://images.plurk.com/2Bh477LM2QlzzBdlHNnYee.jpg  :)
+15:41 < hcchien> miaoski: 對啊，打勾填名字就好
+15:41 < tuiry> Lee1092: 目前的問題是g0v有很多網站呈現，如果有設計師想改，應該要到哪裡去詢問?
+15:41 < MGdesigner> 好可惜寬寬沒來XD
+15:42 < hcchien> 看來好像暫時沒有文播需求
+15:42 < miaoski> hcchien: 了解. OSDC 逐字稿感覺不錯啊 (大誤) (會議性質不同吧)
+15:42 -!- ttzeng [c0c692ad@gateway/web/cgi-irc/kiwiirc.com/ip.192.198.146.173] has left #g0v.tw []
+15:43 < Lee1092> tuiry:  他是想改  介紹 g0v 的網站的樣子?    g0v.tw  ?  g0vis ?
+15:43 < hcchien> miaoski: 我沒禁止參加者打 hackpad 啊   lol
+15:43 < miaoski> hcchien: 看來看去我只能當機動組 XD 線路組沒看到在裡面，所以是獨立出來的?
+15:44 < hcchien> miaoski: 有，直接找 david 吧
+15:44 < tuiry> Lee1092: 偶問問QQQQ 
+15:44 < miaoski> 噫 看到「現場網路」被 david 打勾了
+15:44 < miaoski> 那我直接去找他
+15:45 < Lee1092> miaoski:  歡迎亂入機動組~
+15:45 < miaoski> Lee1092: 已經入了 XD
+15:46 < hcchien> 我要找人幫忙處理行政事務啊~~~
+15:47 < ipa> tuiry: 歡迎改g0v.tw設計
+15:47 < Lee1092> miaoski++   讓我們跟隨 Acechen~ 總指揮~  XDD
+15:47 < miaoski> Lee1092: ^^;
+15:48 < hcchien> miaoski 不是要去線路組!?
+15:50 < miaoski> hcchien: 我在線路組只能打雜而已，那裡強者已經太多了. so. 活動當天應該會被 release 出來.
+15:50 < tuiry> hcchien 行政工作是打雜嗎 (只會打雜)
+15:51 < hcchien> tuiry: 就聯絡，記錄.....
+15:54 < tuiry> ipa: 我想他的疑問是，想找後端找不到門進來...hmm
+15:56 < ipa> tuiry: 找後端的開發者?
+15:56 < tuiry> ipa: 嗯
+16:02 -!- khl [c71bb166@gateway/web/cgi-irc/kiwiirc.com/ip.199.27.177.102] has left #g0v.tw []
+16:08 < Lee1092> tuiry:  看到討論了  XD https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/g0v-moc/xK3X_dnrhOk/UHf8nBjXygwJ
+16:08 < kcwu> Lee1092's url: [Google 網上論壇]
+16:08 < tuiry> Lee1092: QQ
+16:09 < Lee1092> 看來要跳三個大坑呢~  XDD
+16:09 < yhsiang_> Rhozan: 就...想辦法開issue 或者跳坑做掉或者找到人做掉
+16:15 < tuiry> Lee1092: 文化部長提出需求了!!! 需要工程師大人支援阿!!!
+16:19 < kiwi0530> 剛剛有沒有人遇到hackpad bad gateway ... 如果對外頻寬不夠或斷線，或是hackpad被買下後反而更來不及緊急加開伺服器那要怎麼辦喔...
+16:19 < chihchun> kcwu: 你的 http://osm.kcwu.csie.org/history/compare.html 噴了 Orz
+16:22 < Lee1092> tuiry:  一口氣丟了許多連結  lol...
+16:23 < tuiry> Lee1092: 感謝您QQQ
+16:23 < tuiry> 這種疑問需不需要專門寫個pad阿
+16:26 < Lee1092> 你是指 找工程師在哪兒的疑問?  XD
+16:28 < kcwu> chihchun: thanks. fixed. 
+16:28 < chihchun> kcwu: thank you~
+16:29 < tuiry> 阿阿阿非資訊人不得其門而入其實也不是一天兩天的事啦OTZ
+16:30 < hcchien> tuiry: 所以阿平要來幫忙處理行政事務了嗎   :D
+16:31 < tuiry> hcchien: 我覺得行政快變正職了............OTZ
+16:31 < hcchien> tuiry: 那你還是趕快去畫圖好了   XD
+16:32 < kcwu> chihchun: 你要看多新的 data? 現在是 20140331, 大概晚上可以換成 20140414
+16:33 < chihchun> kcwu: 請問， 底圖是 ad hoc 隨便依照日期產生的嗎？ 還是手動選固定日期產生？
+16:34 < tuiry> 最近在整理醫療問題的東西，每天都被新的專有名詞空投，寫敘事線還要考慮各方觀點，處理完才能畫圖
+16:35 < hcchien> tuiry: 也是，你那坑太大了
+16:35 < kcwu> chihchun: 底圖, 你是說海岸線嗎?
+16:35 < tuiry> 處理完我都不想畫圖了拉XD
+16:35 < hcchien> 我來找找還在坑外的來幫忙
+16:36 < tuiry> 軍火籌備處傳送門 https://g0v.hackpad.com/aKxNgORSHw8
+16:36 < kcwu> tuiry's url: [醫療議題軍火籌備處 - g0v.hackpad.com]
+16:37 < chihchun> kcwu: 那個畫出 tiled images 的 data 是你手動塞進去 (所以使用者只能選固定日期)，還是自動抓 (所以使用者可以隨便指定任何一天) ？
+16:39 < kcwu> chihchun: 你是說上面那個日期 dropdown menu? 可以隨便選
+16:40 < kcwu> s/menu/box/
+16:41 < chihchun> kcwu: ack, 我沒有特別要看新資料。不用麻煩~
+16:42 < kcwu> chihchun: 也可以把他當 tile server 來用, url format 很簡單. 量小一點就好
+16:44 -!- maximum_ is now known as maximum
+16:58 -!- Goddamn_ is now known as Goddamn
+16:58 < tkirby> tuiry: g0vis 找我~
+17:00 < hcchien> 結果公司找到一堆 backend，都沒 frontend   XD
+17:03 < tuiry> tkirby: 自己去留言阿(推
+17:08 < yhsiang_> 為什麼同樣的code突然可以跑了... google我搞不懂你啊 orz...
+17:08 -!- yhsiang_ is now known as yhsiang
+17:12 < tkirby> tuiry: 幫我嘛 (拉坑) 
+17:14 < yhsiang> clkao: 可以做自動取得google authorization code了耶 XD
+17:15 < tuiry> tkirby: (累
+17:20 < miaoski> yhsiang: ++ # 推 google auth code
+17:27 < yhsiang> 有人要去 無限期支持 g0v CCSP Hackathon 嗎 @_@
+17:27 < tkirby> miaoski: 咦你上周六有去嗎, 好像沒拍到你?
+17:28 < tkirby> yhsiang: blue 有報?
+17:28 < tkirby> yhsiang: 要一起去玩嗎?
+17:28 < yhsiang> tkirby: 有 他穿黃色衣服
+17:28 < jbytw> tkirby: miaoski 有去
+17:28 < yhsiang> tkirby: 小Q找我去 XD
+17:28 < jbytw> 還貼新參者貼紙 (我還以為是大使)
+17:28 < miaoski> tkirby: 有，沒拍到沒問題，低調 ^_^
+17:29 < yhsiang> 可是我現在搞不懂 報名方式 orz
+17:29 < miaoski> jbytw: 我超菜
+17:29 < yhsiang> 所以只要組長報名就好了嗎
+17:29 < tkirby> yhsiang: 小 Q 是哪位 XD
+17:29  * tkirby 尋找黃色衣服中
+17:29 < yhsiang> tkirby: littleq0903Cloud # google EXPERT
+17:30 < tkirby> 嘎?
+17:30 < tkirby> googler?
+17:30 < miaoski> Googler!!!
+17:30 < yhsiang> tkirby: 不是googler的googler XD
+17:31 < tkirby> XDDDD
+17:31 < tkirby> 黃色衣服好像只有兩個人
+17:32 < tkirby> 只好下次再認識了
+17:33 < NewCliCker> g8v.tv 可以去 CCSP Hackathon 獵人頭嗎 XD
+17:36 < littleq0903Cloud> 我
+17:36 < littleq0903Cloud> 怎麼了嗎？
+17:36 < tkirby> littleq0903Cloud: 你好你好
+17:37 < tkirby> littleq0903Cloud,yhsiang: CCSP Hackathon 你們打算去做什麼題目
+17:37 < kcwu> hlb: kktix 有沒有訂閱功能? 當某個 organization 有新活動時會寄信通知
+17:38 < yhsiang> tkirby: 他想做pgrest XD
+17:38 < bobchao> kcwu: 現在還沒有 之後會有組織的 RSS 可以用
+17:38  * bobchao 得了一種聽到 KKTIX 也會探頭的病
+17:38 < tkirby> XD
+17:39 < yhsiang> tkirby: 有人要去做動民主耶
+17:39 < yhsiang> tkirby: https://www.facebook.com/groups/g0v.general/permalink/610946908981719/?stream_ref=2
+17:39 < kcwu> yhsiang's url: [Facebook]
+17:39 < littleq0903Cloud> 我們要去寫 pgrest 喔 QQ
+17:39 < tkirby> ohoh~
+17:39 < littleq0903Cloud> 或是 hubot
+17:40 < littleq0903Cloud> b0t
+17:40 < tkirby> littleq0903Cloud: 你 QQ 是因為...? XD
+17:40 < littleq0903Cloud> 因爲我叫小Q，那是我的叫聲
+17:40 < tkirby> XDDDD
+17:40 < littleq0903Cloud> 就像皮卡丘的皮卡皮卡
+17:40 < ipa> XDD
+17:40 < tkirby> 那我只好顆顆了  顆顆
+17:40 < yhsiang> 所以只要組長報名就好了嗎 Q__Q
+17:41 < CindyLinz> wwww
+17:41 < tkirby> yhsiang: 感覺很像耶, 可是沒說明..
+17:41 < littleq0903Cloud> 你柯南！？
+17:41 < littleq0903Cloud> 我來報名阿
+17:41 < littleq0903Cloud> 等等給我資料就好
+17:41 < tkirby> 要一起報嗎
+17:42 < littleq0903Cloud> 好喔
+17:42 < yhsiang> 我看她不需要填隊員資訊阿 囧oo
+17:43 < littleq0903Cloud> 不用喔？
+17:43 < tkirby> 那就 +1  這樣就不用自己找隊員了.. XD
+17:44 < yhsiang> 他的聯絡人資訊是報名者
+17:44 < yhsiang> 然後只要填專案名稱和相關資訊
+17:44 < yhsiang> 其他沒了 XD
+17:45 < littleq0903Cloud> 那我是不是應該多報一點 = =
+17:45 < yhsiang> XD
+17:45 < yhsiang> 然後我想樂捐香油錢 是只要直接買香油票就好了嗎 XD
+17:45 < littleq0903Cloud> 不過 4X 位 g0v 是哪來的阿？
+17:45 < littleq0903Cloud> 樂捐就直接買香油
+17:46 < tkirby> 好像是說希望 4x 位去的樣子
+17:46 < yhsiang> littleq0903Cloud: 我猜報名應該是上限應該是42
+17:46 < littleq0903Cloud> 噢噢
+17:46 < littleq0903Cloud> 有道理
+17:46 < yhsiang> 他們課程同學不需要報名
+17:47 < littleq0903Cloud> 所以目前是 tkirby, ly and me
+17:47 < miaoski> 網樂通好像和 CCSP 無關，只好路過了 QQ
+17:47 < tkirby> 網樂通怎麼了嗎
+17:47 < littleq0903Cloud> 好像什麼 project 都可以帶去.....
+17:47 < littleq0903Cloud> 不過報名就是一個 project 當一個單位
+17:47 < tkirby> 網樂通是幹嘛的
+17:47 < littleq0903Cloud> 網樂通有關係阿
+17:48 < ij1iao> 用網樂通搞 0media 的樣子
+17:48 < littleq0903Cloud> 有網路服務就算，你們可以 hack server-side
+17:48 < tkirby> 只好來做 3D 立院影城了 : http://x3dom.org/x3dom/example/x3dom_video.xhtml
+17:48 < kcwu> tkirby's url: [Simple WebGL example]
+17:48 < tkirby> ij1iao!
+17:48 < NewCliCker> tkirby: https://g0v.hackpad.com/%E5%A4%AA%E9%99D%E8%8A1%E7%9B%92%E5%AD%90%E8%87%AA%E571%E7%9A%84%E5%AA%92%E9%AB%94%E8%87%AA%E571%E5%A01-Fr9H87GPcUM
+17:48 < kcwu> NewCliCker's url: [太陽花盒子－自己的媒體自己報－ - g0v.hackpad.com]
+17:48 < littleq0903Cloud> http://ccsp.ntumobile.org/
+17:48 < kcwu> littleq0903Cloud's url: [102-2 台大資工網路及平台服務程式設計 :: NTU CCSP 2014 Spring]
+17:48 < ij1iao> tkirby: 報告是 o_o>
+17:48 < tkirby> 紐克力!
+17:48 < tkirby> ij1iao: 快別這樣我承擔不起啊 (淚崩)
+17:48 < yhsiang> tkirby: 不是要拿網樂通弄g8v.tv
+17:49 < littleq0903Cloud> 糟糕，所以只能填一個 project？
+17:49 < tkirby> 結果大家都沒有告訴我網樂通是什麼
+17:49 < tkirby> 所以我就去 google 了 XD
+17:49 < miaoski> tkirby: 太陽花盒子專案啦... ^^;
+17:49 < littleq0903Cloud> 網樂通就是轉播用的
+17:49 < yhsiang> tkirby: 壹電視失敗的機上盒
+17:50 < yhsiang> tkirby: 有沒有簡單明瞭 XD
+17:50 < tkirby> 要做零電視了嗎
+17:50 < miaoski> tkirby: 對啊
+17:50 < miaoski> 等等! 和 RMS 演講衝堂耶...
+17:50 < tkirby> 啊, 因為是 g1v, 所以應該叫壹電視, 可是又不能叫壹電視
+17:50 < yhsiang> RMS ?
+17:50 < tkirby> RMS!
+17:50 < littleq0903Cloud> richard stallman
+17:50 < littleq0903Cloud> 真的嗎？在那天？
+17:50 < yhsiang> 喔 中研院
+17:51 < littleq0903Cloud> 燈冷
+17:51 < miaoski> littleq0903Cloud: 真的... 聽說票已經全滿了
+17:51 < miaoski> 地點是 台北市大安區羅斯福路四段1號；近 復興南路二段與辛亥路三段交叉口
+17:51 < tkirby> 既然全滿了那也不用傷腦筋了
+17:51 < miaoski> tkirby: 可是我有搶到啊....
+17:51 < yhsiang> 喔我中研院朋友要去害我一直以為在中研院 XD
+17:51 < miaoski> 如果中間可以先出來聽 RMS 的話，倒是沒什麼關係....
+17:52 < tkirby> 只好把票給我了! (戴上絲襪亮出刀)
+17:52 < miaoski> tkirby: 沒有人會救我的! (咦)
+17:52 < yhsiang> 我去參加新竹廠了!!
+17:52 < ij1iao> http://rms.kktix.cc/events/2014-taipei
+17:52 < kcwu> ij1iao's url: [台北 Richard Stallman 演講－A Free Digital Society]
+17:52 < yhsiang> http://rms.kktix.cc/events/2014-hsinchu
+17:52 < kcwu> yhsiang's url: [新竹 Richard Stallman 演講－A Free Digital Society]
+17:52 < tkirby> miaoski: 沒有人: 我來救你了!
+17:53 < hlb> kcwu: 目前沒有
+17:54 < miaoski> 好的。所以。CCSP 看來搞網樂通是可以的 (好牽強 :P) 但中間要落跑去看 RMS 大神，有點對不起同伴 XDD
+17:54 < tkirby> 可以帶網樂通去偷偷轉播給夥伴看
+17:55 < yhsiang> 新竹還比台北早一天耶 XDD
+17:55 < miaoski> tkirby: 同伴可以在 CCSP 用網樂通看 iPad 轉播 (那時候搞得定才怪)
+17:55 < tkirby> XD
+17:55 < NewCliCker> tkirby: 這主意好 XD
+17:56 < pipi> 請問下午有講到行政是哪件事？
+17:56 < tkirby> 等等,我是 CCSP 講師, 也報名參加是不是怪怪的 XD
+17:56 < yhsiang> tkirby: XD 我也覺得那裏怪怪的
+17:56 < tkirby> XDDD
+17:56 < tkirby> 問問看能不能現場用晃晃的方式進去好了.. XD
+17:56 < pipi> hcchien: 行政可以幫忙+1
+17:57 < Lee1092> 跟g0v一樣  一視同仁!?  記者來也要搶票  XDDD
+17:57 < yhsiang> 5/11還可以去世貿路過一下子龍的擺攤 !!
+17:57 < clkao> 百什麼攤~
+17:57 < superbil> RMS 新竹! 一起去阿
+17:58 < NewCliCker> tkirby: 講師沒買票，結果議程開天窗 (誤 XD
+17:58 < yhsiang> clkao: https://www.facebook.com/shulusama29/posts/10152336152819886?stream_ref=1
+17:58 < kcwu> yhsiang's url: [子龍 - 信/Letter 信是傳遞訊息的媒介 信，也代表著信念與信任 / Moon 2014原創繪本 致華光社區... | Facebook]
+17:58 < tkirby> XD
+17:58 < miaoski> so... 盒子組的同學們有沒有人要報隊.......QQ
+17:58 < yhsiang> superbil: 我報名惹
+17:59 < tkirby> miaoski 要找 wanski 組隊 (誤)
+17:59 < miaoski> tkirby: wanski 是誰? 
+17:59 < yhsiang> wengshanski~
+17:59 < clkao> (!)
+17:59  * yhsiang 冷 ...
+17:59 < miaoski> yhsiang: 冷...
+17:59 < tkirby> miaoski: 冷...
+18:00 < superbil> yhsiang: cool
+18:01 < yhsiang> 這禮拜四 在交大有戰神演講耶
+18:04 < miaoski> 拉同伴報隊... tag chihchun  FourDollars Conrad 
+18:04 < miaoski> hbtsai 在中國，晚一點拉拉看
+18:04 < FourDollars> miaoski: 蛤？
+18:05 < NewCliCker> au: 結果昨天我才發現原來我在g8v.tv簡報上Live Demo的網址打錯了，也只有您有反映這個問題 XD
+18:05 < FourDollars> miaoski: I see. I see.
+18:05 < NewCliCker> au: 正確的應該是這個才對 http://diy0.xlphp.net/
+18:05 < kcwu> NewCliCker's url: [DIY]
+18:05 < littleq0903Cloud> tkirby, ly 已經報好
+18:06 < littleq0903Cloud> 你們的報名 qrcode 在我這
+18:06 < tkirby> >.ob
+18:06 < yhsiang> ok thx
+18:07 < yhsiang> 這樣五六日的行程好充實 ...
+18:07 < littleq0903Cloud> ly 我在 fb 傳給你了
+18:07 < yhsiang> 收到惹
+18:08 < tkirby> littleq0903Cloud: 來信請寄 tkirby#gmail.com
+18:09 < donaldisfreak> 請問有人玩過用scrapy抓.aspx的切換分頁嗎？
+18:10 < tkirby> 最近正打算看 scrapy 呢
+18:10 < yhsiang> tkirby: 下次換你live coding ? XD
+18:10 < tkirby> XD!
+18:10 < miaoski> FourDollars: 5/10 有空嗎？來報隊？
+18:11 < tkirby> live coding 結果砍不下來就糗了
+18:11 < yhsiang> tkirby: 我覺得那個會發生在我身上 XDD
+18:11 < tkirby> XD
+18:12 < donaldisfreak> .aspx超難搞的 :(
+18:12 < FourDollars> miaoski: 我問問看太座大人
+18:12 < yhsiang> donaldisfreak: _VIEW_EVENTSTATE ?
+18:12 < donaldisfreak> 對呀！怎麼解
+18:13 < yhsiang> 我不知道python耶 XD ,nodejs有現成套件
+18:13 < donaldisfreak> 可以給我package嗎？
+18:13 < yhsiang> 但其實也只是去parse裡面的value
+18:13 < yhsiang> donaldisfreak: https://www.npmjs.org/package/ms-viewstate
+18:14 < yhsiang> donaldisfreak: 有時間看這篇? http://msdn.microsoft.com/en-us/library/ms972976.aspx
+18:14 < kcwu> yhsiang's url: [Understanding ASP.NET View State]
+18:14 < donaldisfreak> 我parse也post出去
+18:14 < donaldisfreak> 都會得到500
+18:15 < tkirby> hmm 之前砍站常碰到 .net 的站
+18:15 < tkirby> 超苦
+18:15 < donaldisfreak> 起初不用送__VIEWSTATE還能爬9個item
+18:15 < donaldisfreak> 用了__VIEWSTATE就狂收到500
+18:15 < tkirby> 在砍哪個站
+18:16 < donaldisfreak> http://eiareport.epa.gov.tw/EIAWEB/00.aspx
+18:16 < kcwu> donaldisfreak's url: [行政院環境保護署「環評書件查詢系統」]
+18:16 < donaldisfreak> 超硬XD
+18:16 < littleq0903Cloud> tkirby: sent
+18:16 < tkirby> littleq0903Cloud: thanks
+18:16 -!- NewCliCker [0122a3e7@gateway/web/cgi-irc/kiwiirc.com/ip.1.34.163.231] has left #g0v.tw []
+18:17 < tkirby> 癌症資料庫也是 aspx
+18:17 < tkirby> 崩潰
+18:17 -!- NewCliCker [0122a3e7@gateway/web/cgi-irc/kiwiirc.com/ip.1.34.163.231] has left #g0v.tw []
+18:25 < hcchien> 可能是同一個外包廠商吧   lol
+18:27 < hcchien> pipi: 收到   # pipi++
+18:34 < c9sloud> ronnywang: hi!
+18:34 < pipi> hcchien: 但是哪件事的行政XD
+18:37 < c9sloud> ronnywang: 我弄了一個 UI mockup: http://i.imgur.com/110jmBp.png  看能不能改善輸入效率，給你參考一下看看
+18:39 < c9sloud> 咦等等我改一下
+18:42 < ronnywang> 2
+18:42 < ronnywang> 按錯 XD
+18:45 < c9sloud> ronnywang:  https://www.dropbox.com/s/hw78am6gi2jz75o/g0v-%E6%94%BF%E6%B2%BB%E7%8D%BB%E9%87%91%E8%BC%B8%E5%85%A5%E4%BB%8B%E9%9D%A2.png 
+18:45 < c9sloud> 第二版
+18:45 < c9sloud> 你參考一下看看
+18:49 < c9sloud> 我覺得下方左右側可以一些色差區分 "已經有答案" 跟 "尚未有答案" 
+18:50 < c9sloud> 譬如說已經有答案的話，左側 background 可以用淡灰色
+18:50 < ronnywang> 快速套用那邊其實應該可以移掉
+18:50 < ronnywang> 因為下一版希望那部份透過 OCR 解決
+18:51 < c9sloud> cool 那這樣感覺 UI 操作上會更簡潔
+18:58 < ctiml> 圖片的 height 不一定，會不會讓按鈕的位置一直跑來跑去？
+18:59 < c9sloud> 應該可以固定一個 viewport 
+18:59 < c9sloud> 或直接寫死 <img height="120" .../> 之類的
+19:01 < c9sloud> ronnywang: https://www.dropbox.com/s/xijjz1sz6cu7t5j/g0v-%E6%94%BF%E6%B2%BB%E7%8D%BB%E9%87%91%E8%BC%B8%E5%85%A5%E4%BB%8B%E9%9D%A2.pdf  # 3rd rev
+19:05 < kcwu> c9sloud: 1.如果已經有不止一組答案的話? 2.希望別人已輸入的答案字大一點, 因為有時字太小打錯字看不出來. (不過我不喜歡自動帶入答案)
+19:10 < FourDollars> miaoski: 5/10 我可以參加
+19:15 < FourDollars> miaoski: Sorry, 我弄錯了，那一天我有事情。>_<
+19:15  * isacl 剛剛才發現 ccspxg0v hackathon 衝到 rms 台北場 Orz.
+19:16  * isacl 看報紙（irc log）才知道
+19:18 < yhsiang> isacl: 新竹場!
+19:22 < isacl> yhsiang: 新竹場是星期五！可以賺一天假！
+19:28 < c9sloud> kcwu: 1. 不知道現在後端是怎麼設計儲存答案 (?) 一組或多組 (?)
+19:38 < miaoski> FourDollars: ++
+19:53 < miaoski> 那只好來 cue chihchun , Conrad ... xd
+19:55 < ttcat_> ipa 我們也要買 .today 嗎
+19:55 < ttcat_> nonuke.today
+19:57 < johnny__>  yhsiang: 請問一下 怎麼執行你的gulpfile.ls產生檔案
+19:57 -GitHub33:#g0v.tw- [g0v.tw] clkao closed pull request #90: 區別辦完與舉辦中的活動 (master...master) https://github.com/g0v/g0v.tw/pull/90
+19:58 < clkao> johnny__: gulp --require LiveScript
+19:58 < clkao> johnny__: 或者 npm i -g cult; 然後用 cult
+19:59 < mikimoto> kiang: 可以啊，看要如何接觸比較方便，我可以牽一下線
+20:00 -GitHub92:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/beeecad2da8efbec13e114fdef3030bab4d1bf66
+20:00 -GitHub92:#g0v.tw- g0v.tw/gh-pages beeecad g0v general (via TravisCI): regen for 16c72a8
+20:01 < yhsiang> 我都是alias guls='gulp --require LiveScript' XDD
+20:03 < johnny__> clkao:yhsiang: 哦哦成功了，剛還自作聰明把LiveScript換成gulpfile.ls，沒想到他自己會去抓阿
+20:04 < isacl> yhsiang: 這樣以後開發會忘記加吧 XD
+20:04 < yhsiang> isacl: 不會耶
+20:04 < isacl> yhsiang: 了解，npm 不會跑到這段 env ?
+20:05 < isacl> 但萬一有其他 script 會吃到，還是怕容易漏掉東西
+20:05 < yhsiang> isacl: 我是自己本機alias, READMe裡面都是寫gulp --require LiveScript
+20:08 < ipa> ttcat_: 看你要不要買呀
+20:11 < ipa> ttcat_: 如果要改 domain，要 fork 一個 hackfoldr，可能要請 isacl 幫忙（g0v.today 是 isacl 和 au 弄的）
+20:12 < ipa> ttcat_: 也可以直接先用現有的 domain
+20:12 < ttcat_> 都 ok 就想短一點
+20:17 < tkirby> 可惜 .ke 不能申請不然就 nonu.ke
+20:19 < clkao> ttcat_: nuke.no 可以買耶 只是要出價競標
+20:21 < au> nuke.red $15.99 可以直接買耶
+20:22 < clkao> nukebomba.red ?
+20:27 < lanf0n> ipa: g0v-general 那有小蜜蜂問 想把 tisa.g0v.tw 做成 QRCode 放在文宣上(好像直接放就好了?) 然後問主要連絡窗口...
+20:27 < isacl> nuke.pink 然後做成 happy tree friends 或 dump ways to die 那種可愛風 # flee
+20:27 < tkirby> XD
+20:27 < tkirby> nuke.is.gy # 老梗
+20:29 < ttcat_> XD
+20:30 < ttcat_> nuke.red 有點意義不明
+20:30 < kiang> mikimoto: fb 聊 ^_^
+20:30 < clkao> kiang++ # 瘋狂開 issue
+20:31 < kiang> clkao: 兇手不是我，我都轉貼的 XD
+20:32 < ttcat_> nuke.no 沒有直購價
+20:33 < yhsiang> nukeno.ne $348 
+20:34 < clkao> 轉貼很重要啊
+20:34 -!- BV1AL_ is now known as BV1AL
+20:34 < au> nuke.today nonuke.today 都有直購
+20:36 < yhsiang> au++ # 連nuke.today 都不讓對手!
+20:38 < ttcat_> au: 買 nonuke.today 好了～～～～～貴嗎
+20:40 < au> ttcat_: .today 都是 $18/yr
+20:40 < au> (usd)
+20:41 < ttcat_> au: 好便宜喔
+20:42 < au> ttcat_: 我是看 http://www.bulkregister.com/domainsearch/search-results.aspx?sld=nonuke&tld=today ... 別家應該也都類似。有空就買吧，買了把 DNS 指到 103.245.222.133 就 ok 了
+20:42 < kcwu> au's url: [BulkRegister - domain name, web site hosting, email, registration]
+20:47 < isacl> ttcat_: 然後可想想看要不要加買 domain privacy 服務，許多服務商會提供。例如 whois g0v.today 是無法直接查到 owner 是誰的。 (不過這個好像比 18/yr 還貴 :p)
+21:01 < kiang> ptt 有人跳坑問政治獻金用 opencv 處理的部份有沒有人在處理？ "數字、空白辨識我認為我可以幫的上忙，目前有同伴在著手這一塊嗎？"
+21:04 < NewCliCker> isacl: 抱歉419那天沒有跟你碰到面...orz，早上都專注在g8v.tv的提案報告上都忘了跟你約的事
+21:07 < isacloud__> NewCliCker: np 我也忘了。
+21:08 < yhsiang> soidid: !
+21:09 < soidid> 又來了
+21:09 < yhsiang> soidid: XD
+21:09 < soidid> yhsiang: ~~~
+21:10 < chihchun> miaoski: 5/10?
+21:16 < ttcat_> au: 我先付款
+21:16 < ttcat_> isacl: XDD 不過有這種必要嗎
+21:17 < au> 我都是亂填連絡地址電話所以沒差 XD
+21:17 < yhsiang> au++ XD
+21:17 -!- Woody_ is now known as WoodyH
+21:17 < Conrad> au++
+21:17 < ttcat_> au: 我們可以用綠盟組織名義啦沒必要躲 反正也都知道是我們
+21:17 < ttcat_> XD
+21:19 -!- antliu is now known as antler
+21:20 -!- antler is now known as antliu
+21:21 -!- kengyu_ is now known as kengyu
+21:22 -!- antliu [76a32e31@gateway/web/freenode/ip.118.163.46.49] has left #g0v.tw []
+21:25 < isacloud__> 嗯好像也只有需要 transfer owner / transfer domain register service 時要檢查身分。一般亂填應無妨。 可能我天生愛躲。
+21:40 < clkao> 咦！ code4hk 也愛用 hackfoldr # http://hackfoldr.org/code4hk/XMIMqq895VC
+21:41 < ttcat_> au: 是要把 a record 改到 103.245.222.133 a87
+21:41 < ttcat_> 嗎
+21:42 < au> ttcat_: 是的
+21:43 < ttcat_> http://d.pr/i/iVi4
+21:43 < kcwu> ttcat_'s url: [Screenshot 2014-04-21 at 21.42.58.png • Droplr]
+21:43 < ttcat_> 好了～
+21:43 < au> none 也要改 A record
+21:43 < au> 到同一處
+21:43 < ttcat_> done
+21:44 < au> 然後 fork https://github.com/hackfoldr/hackfoldr 到綠盟或你自己的帳號下
+21:44 < kcwu> au's url: [hackfoldr/hackfoldr · GitHub]
+21:45 < au> 進入 gh-pages branch https://github.com/YOUACCOUNT/hackfoldr/tree/gh-pages 按 CNAME 按 Edit 改成 nonuke.today
+21:45 < miaoski> chihchun: 是的，5/10
+21:45 < au> 稍等十分鐘即可完成
+21:45 < ttcat_> 好我看看 !!!
+21:47 < au> 最後 app/app.ls line 19 和  app/app/controllers.ls  line 57 要從 congressoccupied 改成你的 ethercalc sheet 的名字再 ./deploy 一次即可
+21:48 < au> 如果沒有設置好 gulp 的環境，這個部份也可以加 committer (g0v/dev) 然後請 hackfoldr 組的任一人支援 ( 例如 isacl XD )
+21:49 < hcchien> pipi: 直接 fb 講？
+21:50 < ttcat_> au: 後面兩個我看不懂了 哈哈 https://github.com/ttcat/hackfoldr/blob/gh-pages/CNAME
+21:50 < kcwu> ttcat_'s url: [hackfoldr/CNAME at gh-pages · ttcat/hackfoldr · GitHub]
+21:51 < au> ttcat_: 沒關係先等 nonuke.today 有出畫面再說
+21:52 < au> ttcat_: 你有已經設置好的 hackfoldr.org/... 嗎?
+21:52 < ttcat_> http://hackfoldr.org/nonuke2014
+21:52 < ttcat_> 還在用
+21:53 < au> ok 我的意思是把 https://github.com/ttcat/hackfoldr/blob/master/app/app/controllers.ls#L91 https://github.com/ttcat/hackfoldr/blob/master/app/app.ls#L25 都從 congressoccupied 替換成 nonuke2014 即可
+21:53 < kcwu> au's url (2/2): [hackfoldr/app/app.ls at master · ttcat/hackfoldr · GitHub]
+21:53 < kcwu> au's url (1/2): [hackfoldr/app/app/controllers.ls at master · ttcat/hackfoldr · GitHub]
+21:55 < ttcat_> done !!!
+21:56 < pipi> hcchien: 好啊
+21:56 < hcchien> pipi: 剛加了你了
+21:57 < pipi> 怎麼大家都認識我（自以為）
+21:59 < clkao> ttcat_: 然後 npm i ; ./deploy (如果你是直接 clone github.com/ttcat/hackfoldr
+22:00 < clkao> 不過這樣 master 下的 app/assets/CNAME 也要改
+22:00 < ttcat_> QQ 終端機要先登入 github 才能下指令嗎
+22:01 < isacloud__> au: 突然發現被 au 推坑了。我的 gulp 都是抄 yhsiang 的。yhsiang++
+22:01 < au> XD
+22:04 < ttcat_> clkao: 我在下這個指令之前應該要先 ... ?
+22:05 < clkao> ttcat_: 呃 你可能完全沒有開發環境.... 那也許要用 koding.io
+22:08 < ttcat_> qq
+22:08 < ttcat_> koding.io 我也查不到誒
+22:09 < clkao> https://www.facebook.com/pofeng/posts/10150391707824949?stream_ref=5
+22:09 < kcwu> clkao's url: [李柏鋒 - 真是太酷了用 koding.com 的環境, 3 分鐘就把 g0v.tw 跑起來 ( local host ) | Facebook]
+22:11 < ttcat_> ok thanks
+22:14 < chihchun> miaoski: 5/10 要幹嘛？ 第一次使用媒體就上手?
+22:17 < au> clkao: 然後 ./deploy 也要改
+22:17 < au> 要是有一個 whitelabel tool 一次改這四個地方就太好了 XD
+22:18 < au> (bbiab)
+22:18 < venev> 政治獻金圖檔已經有第一批上傳了
+22:19  * hcchien 正在進行一個重用 clkao 投影片的動作  XD
+22:19 < ronnywang> venev: good.. 我來切豆腐囉~
+22:19 < pofeng> venev: 喔喔, 有清單給大家看避免重複嗎 ?
+22:19 < yhsiang> au: 我來用看看 XD
+22:20 < venev> pofeng: 有的，我正在設定
+22:20 < pofeng> venev++
+22:20 < hcchien> venev++
+22:20 < venev> 但可能還是需要有人去巡田水，把「已經上傳的專戶、時間區段」以公告方式整理出來
+22:20 < clkao> venev: !!
+22:20 < venev> https://docs.google.com/spreadsheets/d/1I33iX_HciwKVVkDLpDwzcit1tsmPacFIBTEdTsZ5Pbo/
+22:20 < kcwu> venev's url: [政治獻金圖檔上傳回報表 (回覆內容) - Google 試算表]
+22:22 < venev> 想問一個資安匿名性問題：如果「回覆內容」設定為公開檢視，有沒有可能從圖檔下載連結，得知是由哪個 google / dropbox 帳號上傳？
+22:22 < pofeng> venev: link 能否加到 form 那邊, 然後作個 bit.ly 來宣傳 google form 
+22:23 < venev> pofeng: 表單 bit.ly 雨蒼已經做了一個 http://bit.ly/1eJYLiZ 
+22:24 < venev> 至於「表單回覆內容」是否公開宣傳，我想先問問、確認匿名性沒問題再說
+22:24 < pofeng> 瞭
+22:25 < venev> 簡單講，我能從這樣一個連結（ https://drive.google.com/file/d/0ByNprw4l6hnnS3lkUWs4TkRSalU/ ） ，追溯、辨認出這是誰的帳戶嗎？
+22:25 < kcwu> venev's url: [李鴻鈞.zip - Google 雲端硬碟]
+22:26 < venev> 如果無法確保匿名性，我會傾向「表單回覆內容」限定「開放政治獻金工作小組」檢視；但若能確保匿名性，可公開讓大眾檢視
+22:28 < clkao> 求 txt 組幫忙, 覺得超不通順 XD # https://g0v.hackpad.com/iotd2bxRFfp
+22:28 < kcwu> clkao's url: [第捌次解除戒嚴黑客松新聞稿 - g0v.hackpad.com]
+22:29 < ttcat_> 我用終端機重新 git clone 一次 然後 npm i; ./deploy 完了
+22:29 < ttcat_> 可是是不是有需要改什麼嗎
+22:30 < clkao> ttcat_: 都沒錯誤嗎 :p
+22:30 < ttcat_> clkao: 蠻多的 SSL
+22:30 < au> ttcat_: 還有兩個地方要改
+22:31 < au> https://github.com/ttcat/hackfoldr/blob/master/deploy#L6
+22:31 < kcwu> au's url: [hackfoldr/deploy at master · ttcat/hackfoldr · GitHub]
+22:31 < au> hackfoldr/hackfoldr 改為 ttcat/hackfoldr
+22:31 < au> https://github.com/ttcat/hackfoldr/blob/master/app/assets/CNAME 改為 nonuke.today
+22:31 < kcwu> au's url: [hackfoldr/app/assets/CNAME at master · ttcat/hackfoldr · GitHub]
+22:31 < clkao> 可以設定 REPO env
+22:31 < au> 再 deploy 即可
+22:32 < au> venev: 看起來 File -> View Revisions 可看到上傳者為 yuuyh
+22:32 < au> 沒看到其他地方
+22:34 < venev> au: 感謝。那我想還是開放給工作人員檢視為宜 # 政治獻金圖檔上傳匿名性
+22:34 < pofeng> venev: gdoc 好像可以 export html only ? (避免看到 revisions)
+22:34 < venev> pofeng 我試試看
+22:34 < clkao> https://groups.google.com/d/msg/codefortomorrow/F9FefK89bsI/oGBq618tRf4J # 奇怪，抓資料不是飲鴆止渴的方式嗎？
+22:34 < kcwu> clkao's url: [Google 網上論壇]
+22:35 < ttcat_> au: done 但是還是有跳 SSL 錯誤
+22:35 < ronnywang> 這批掃描上傳 PIXNET 相簿中
+22:35 < pofeng> ttcat_: 要加 ssh key
+22:35 < johnny__> clkao: XDXD ronnywang的教學=>無價
+22:35 < ronnywang> http://ronnywang.pixnet.net/album/set/14960235
+22:35 < kcwu> ronnywang's url: [政治獻金 20140421 @ ronnywang的相簿 :: 痞客邦 PIXNET ::]
+22:36 < poga> clkao: XDD
+22:37 < clkao> johnny__: 我指的是同作者的另一文 XD http://citypatterns.blogspot.tw/2013/11/blog-post_10.html
+22:37 < kcwu> clkao's url: [城市格局: 飲鴆止渴的開放資料游擊戰]
+22:37 < au> clkao: 可能終於感受到 harmony 流施壓法的奧義了
+22:37 < ttcat_> pofeng: SSH key?
+22:38 < clkao> 轉基因鴆毒免疫療法？
+22:38 < au> XD
+22:38 < hychen> 砍資料教學 XD
+22:38 < pofeng> ttcat_: 貼一下 error msg, 我猜是沒有 ssh key, 可以在 koding.com 的主機作一個, 再上傳到 github 
+22:38 < pofeng> ttcat_: 步驟類似 http://blog.longwin.com.tw/2005/12/ssh_keygen_no_passwd/
+22:38 < kcwu> pofeng's url: [ssh keygen 免輸入密碼 - Tsung's Blog]
+22:38 < hcchien> 只好用自己的文打自己臉!?
+22:39 < hychen> 此一時也彼一時也
+22:39 < pofeng> ttcat_: 這樣 github 才能相信 koding 的虛擬主機是你的機器
+22:39 < ttcat_> 我沒有用 koding.com 耶，我是拉到我的本機，我重新試試看
+22:40 < johnny__> clkao: 嗯嗯我知道，看到時我就想到昨天榮尼王的砍站直播，果然不用錢的最貴
+22:40 < hychen> 因為看了就要填坑(誤)
+22:41 < clkao> LOL
+22:41 < a0kman> 呼應榮尼王的提案XD https://www.facebook.com/lazy.news/posts/646050532109024
+22:41 < kcwu> a0kman's url: [【懶人時報】 - （所以，大家來發起一個「到豪宅開放空間野餐」的活動吧。轉自畢恆達的臉書，以下引述內文）... | Facebook]
+22:41 < clkao> hychen: 嗨董講個秘訣來聽聽吧
+22:41 < clkao> 不知道能不能直接去烤山豬？
+22:42 < hychen> clkao: livescript也很好用喔 XD
+22:42 < clkao> hychen: 對耶 你錄一個 ronnywang 跟屁版用 livescript cheerio 抓看看? XD
+22:43 < hychen> clkao: cheerio 我覺得沒那麼好用說，特別是對付table hell...
+22:45 < clkao> 真的嗎 我很常用說... # https://github.com/g0v/twlyparser/blob/master/src/misq.ls#L24
+22:45 < kcwu> clkao's url: [twlyparser/src/misq.ls at master · g0v/twlyparser · GitHub]
+22:45 < ronnywang> http://ronnywang.pixnet.net/album/set/14960235 # 這一批照片上傳完成
+22:45 < kcwu> ronnywang's url: [政治獻金 20140421 @ ronnywang的相簿 :: 痞客邦 PIXNET ::]
+22:47 < hychen> clkao: 我有強調是遇到tabel hell...
+22:47 < clkao> 我發現政治獻金中有「中華電信股份有限公司」.... 不過不知道是收入還是支出... 公股很多的公司可以捐助嗎？
+22:47 < hychen> clkao: 講個祕訣，就是data.gov.tw XD
+22:48 < ronnywang> data.gov.tw 不提供友善格式還需要去爬真的是有點失敗的 open data..
+22:48 < ronnywang> 相對起來我對昨天爬的陽光法案網站真的覺得爬的好舒暢XD
+22:49 < ronnywang> 整個就斧頭幫 Lv2 就解決了
+22:49 < venev> ronnywang ++ 之後完成下載、上傳，可否在最後一欄打個 V
+22:49 < venev> （像現在這樣 https://docs.google.com/spreadsheets/d/1I33iX_HciwKVVkDLpDwzcit1tsmPacFIBTEdTsZ5Pbo/pubhtml ）
+22:49 < kcwu> venev's url: [政治獻金圖檔上傳回報表 (回覆內容)]
+22:49 < ronnywang> https://github.com/ronnywang/sandbox/blob/master/20140421/list.csv # 每個檔的位置和檔名的 csv
+22:49 < kcwu> ronnywang's url: [sandbox/20140421/list.csv at master · ronnywang/sandbox · GitHub]
+22:49 < ronnywang> venev: ok
+22:50 < ronnywang> 來準備切豆腐了
+22:50 < clkao> 好像應該 annotate 一下政府個網站屬於斧頭幫哪個 level
+22:50 < clkao> XD
+22:50 < hychen> clkao: g0v認證 XD
+22:51 < hychen> 你現在要處理的網站屬於斧頭幫 Level N, 
+22:51 < hychen> 還可以綁成就系統...
+22:51 < hychen> "你的等級不夠，現在無法挑戰"
+22:51 < hialan> 來嘗試去浮水印...
+22:52 < pofeng> venev++ 然後那個文件暫時不要更新到新版 gdoc ( 好像最新板的 gdoc 那個功能就不見了 )
+22:53 < venev> pofeng 你說的功能是「網頁發布」？
+22:53 < pofeng> venev: 對
+22:54 < venev> pofeng: ok
+22:54 < pofeng> venev: 啊, 還在, 只是變成 iframe .. 
+22:55 < ttcat_> pofeng: au clkao 成功了誒 用 koding.com clone 一份後 npm i; ./deploy 
+22:55 < ttcat_> 沒有錯誤訊息
+22:55 < pofeng> ttcat_: 恭喜
+22:55 < venev> 問：除了 ronnywang 還有誰會參與「下載、上傳圖檔」＆切豆腐，我來開表單回覆編輯權限給你
+22:56 < ttcat_> 可是接下來是 ..
+22:56 < venev> 圖檔上傳成果宣傳連結 http://bit.ly/ScanPoliticalContribution（網頁發布版，看不到編輯歷程紀錄）
+22:56 < a0kman> 一直有人提到 進度  如果把不同人的完成度弄出來呢? 
+22:56 < venev>  http://bit.ly/ScanPoliticalContribution
+22:57 < kcwu> venev's url: [政治獻金圖檔上傳回報表 (回覆內容)]
+22:57 < pofeng> venev: 新版 godc , 沒問題, 我搞錯了, 只是自己要把 url 抓出來 ( 本來放到 ifrmae 裡面...)
+22:58 < pofeng> ttcat_: 接下來你可能需要解決 git commit 的部份
+22:59 < venev> pofeng: ok thanks~
+22:59 < yhsiang> au: 這樣可以嗎 @@
+23:00 < ronnywang> 開始切豆腐，來看看準不準...
+23:00 < ronnywang> 順便寫一下 step by step 教學好了
+23:00 < pofeng> ttcat_: 就是在 koding 主機改來改去之後, 要把更新 commit 回 github 
+23:01 < hialan> ronnywang: 林鴻池去浮水印的結果 https://www.dropbox.com/s/pyhscdv3lj94eao/%E6%9E%97%E9%B4%BB%E6%B1%A0_%E7%84%A1%E6%B5%AE%E6%B0%B4%E5%8D%B0.7z
+23:01 < kcwu> hialan's url: [Dropbox - 林鴻池_無浮水印.7z]
+23:01 < isacl> au: 好像可以先簡單抽一個 config.ls 出來 # hackfoldr whitelabel tool
+23:02 < yhsiang> isacl: XD 我現在放在gulpfile.ls
+23:02 < isacl> au: 剛剛本來想試試看 node-ncurses, 但發現可能滿容易把 console 搞爛，要 reset, 反而造成困擾
+23:02 < isacl> yhsiang: !! 被搶著做完了
+23:02 -!- chihchun is now known as chihchun_afk
+23:03 < hychen> 居然再搶跳坑 XD
+23:03 < yhsiang> isacl: 基本上就只是把放在templates下面的檔案 字串覆蓋放到該放的位置 XD
+23:03 < isacl> yhsiang: yep! yhsiang++
+23:04 < yhsiang> isacl: 你是想要用command line互動?
+23:04 < isacl> yhsiang: 所以 CNAME 就 deploy 時才丟嗎？
+23:04 < yhsiang> isacl: 沒有耶 一開始設定好 通通replace掉
+23:05 < ttcat_> pofeng: everythig up-to-date
+23:05 < yhsiang> 不然好像會動到現在的架構 ?
+23:05 < isacl> yhsiang: 沒有，我暫時放棄 ncurses 或其他互動的想法，應該先簡單改個設定檔就好。其他的等之後再說
+23:05 < ttcat_> 可是 nonuke.today 出來的還是 congressoccupied
+23:06 < yhsiang> ttcat_: 因為你沒改道@@
+23:06 < isacl> ttcat_: 後來的修改好像還沒跑 deploy?
+23:06 < yhsiang> 對 沒deploy @@
+23:07 < isacl> yhsiang: 嗯，所以 CNAME 打算直接放進 master ?
+23:07 < yhsiang> isacl: 一直都在阿 XDD
+23:07 < yhsiang> isacl: 一直都放在app/assets下面
+23:07 < isacl> yhsiang: oh! 我 missed 掉了。 thanks. yhsiang++ 我先 & 一下
+23:08 < ttcat_> 噢對誒 他跟我要key Warning: Permanently added the RSA host key for IP address '192.30.252.131' to the list of known hosts.
+23:09 < yhsiang> 要在koding上產生sshkey 放到 github上面
+23:10 -!- chihchun_afk is now known as chihchun
+23:14 -GitHub157:#g0v.tw- [hack.g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/hack.g0v.tw/commit/bf0996256f4a00d14c8a4d761ed1be110c6d58fc
+23:14 -GitHub157:#g0v.tw- hack.g0v.tw/gh-pages bf09962 g0v general (via TravisCI): regen for 63ccf19
+23:14 < ttcat_> yhsiang: 可以教我怎麼把產生好的 id_rsa.pub 放回 github 嗎
+23:15 < yhsiang> ttcat_: account settings ->SSH keys -> Add SSH key 
+23:15 < yhsiang> title隨便打, 把id_rsa.pub的內容複製貼上
+23:15 < pofeng> ttcat_: https://help.github.com/articles/generating-ssh-keys
+23:15 < kcwu> pofeng's url: [Generating SSH Keys · GitHub Help]
+23:22 -!- chihchun is now known as chihchun_afk
+23:25 < clkao> pofeng 居然在進行 ssh 教學！！
+23:25 < ttcat_> hmm koding 沒辦法用 pbcopy 有其它方法打開 id_rsa.pub 嗎～
+23:25 < yhsiang> cat
+23:26 < yhsiang> ttcat_: 用cat
+23:26 < ttcat_> 我以為你在親暱的叫我
+23:26 < ttcat_> XD
+23:26 < pofeng> 我笑了
+23:26 < ttcat_> <3
+23:26 < Lee1092> XDDD
+23:26 < yhsiang> orz
+23:27 < clkao> <3
+23:29 < ttcat_> 好了～ 也重新 ./deploy
+23:29 < ttcat_> 要怎麼看有沒有成功
+23:32 < yhsiang> ttcat_: 你大概要跑個npm run build @@
+23:33 < pofeng> clkao: 雖然我 coding 屬於殘障等級, 但是還是可以當肉墊讓大家往上爬 *挺* 
+23:33 < yhsiang> https://github.com/ttcat/hackfoldr/tree/gh-pages/js 看app.js應該修改時間應該要是你deploy時間
+23:33 < kcwu> yhsiang's url: [hackfoldr/js at gh-pages · ttcat/hackfoldr · GitHub]
+23:34 < yhsiang> 都沒人幫忙寫新聞稿 QAQ 我context switch很卡 orz ... 語意不順抱歉阿 Q__Q
+23:35 < miaoski> chihhsin: 去 CCSP 吃東西^H^H^H 改網樂通啊。應該沒那麼順利吧... 
+23:36 < ttcat_> https://www.irccloud.com/pastebin/2RVOhh04
+23:36 < kcwu> ttcat_'s url: [Pastebin: 2RVOhh04 | IRCCloud]
+23:36 < ttcat_> hmm
+23:37 < yhsiang> npm install ?
+23:37 < ttcat_> https://www.irccloud.com/pastebin/84cADcqk
+23:37 < kcwu> ttcat_'s url: [Pastebin: 84cADcqk | IRCCloud]
+23:37 < ttcat_> 沒辦法 npm install
+23:38 < miaoski> 有沒有人台語比較好的 (我不是 native speaker 啊啊啊啊啊) 可以幫忙聽一下史明的逐字稿。錄音有些地方真的很難懂。
+23:40 < miaoski> https://hackpad.com/-20140419-7lWct6KgV4N
+23:40 < kcwu> miaoski's url: [史明逐字稿-20140419 - hackpad.com]
+23:40 < twWatch> miaoski: PTT有鄉民逐字了 XD
+23:40 < kiang> miaoski++
+23:40 < yhsiang> ttcat_: npm --version , node -v
+23:40 < miaoski> twWatch: 我是用鄉民逐字當底稿去改的
+23:40 < kiang> twWatch: 裡面的底稿就是 ptt 的
+23:41 < miaoski> twWatch: 現在要開始砍 0420 他在公投盟的講話了 (抖抖)
+23:42 < twWatch> PTT 應該要開個 g0v板 (無誤) XD
+23:42 < twWatch> 將 PTT 的鄉民們全砍進 g0v XD
+23:43 < miaoski> twWatch: 鄉民真的很厲害... 
+23:43 < kiang> ptt: 系統過載, 請稍後再來...
+23:43 < ttcat_> https://www.irccloud.com/pastebin/6UQgUdoM
+23:43 < kcwu> ttcat_'s url: [Pastebin: 6UQgUdoM | IRCCloud]
+23:43 < twWatch> miaoski: 而且有熱血的心和新鮮的肝 XD
+23:46 < ttcat_> yhsiang: 這樣要升級嗎
+23:51 < au> ttcat_: 看起來是 ok, 跑 ./deploy 會出什麼?
+23:52 < au> ttcat_: 對了先跑個 npm i -g gulp
+23:52 < au> (好像 deploy 沒有去用 node_module 裡的 gulp)
+23:53 < au> npm i -g gulp 再 ./deploy
+23:53 < ttcat_> 我試試看
+23:53 < au> 這個似乎要修
+23:59 < isacloud__> au: lsc 也是

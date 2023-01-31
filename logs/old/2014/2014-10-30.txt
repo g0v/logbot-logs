@@ -1,0 +1,154 @@
+--- Day changed 四 10月 30 2014
+00:01 < yhsiang> johnny__++ Q_Q
+00:04 < johnny__> yhsiang: 對了，像新竹市101年，有一個沒有得標廠商（少一欄），cheerio 好像會 shift 掉，我重寫了所以不用再改了XD，不過你之後有用的話要小心
+00:05 < yhsiang> johnny__: hmm 
+00:05 < yhsiang> johnny__: 其實還有個問題
+00:05 < yhsiang> 選舉好像是寫選區 但是網站上是寫居住區域
+00:06 < yhsiang> johnny__: http://zh.wikipedia.org/wiki/%E6%96%B0%E7%AB%B9%E5%B8%82%E8%AD%B0%E6%9C%83
+00:06 < kcwu> yhsiang's url: [新竹市議會 - 维基百科，自由的百科全书]
+00:08 < johnny__> 好怪阿，但像這個就寫選區：南區  http://www.hsinchu-cc.gov.tw/content/%E8%A8%B1%E4%BF%AE%E7%9D%BF.htm
+00:08 < kcwu> johnny__'s url: [CouncilorDetail]
+00:08 < kiang> 也許直接抓中選會上次選舉結果來做對應比較保險？
+00:08 < yhsiang> johnny__: 就那時我爬網站就一直有點疑問
+00:08 < yhsiang> 中選會應該也是選區
+00:09 < yhsiang> 況且這次是按照選區
+00:09 < yhsiang> 如果是要做候選人 還是要改成選區比較好 ?
+00:10 < johnny__> 恩應該要改，可能要有個選區version control   Orz
+00:11 < kiang> 恩，選區跟行政區對應還蠻多狀況的，需要的話我可以丟 http://k.olc.tw/elections/elections/index/53c02085-60b0-4925-8c52-5c5aacb5b862 的資料
+00:11 < kcwu> kiang's url: [2014 > 縣市議員 > 新竹市選舉區 @ 選舉黃頁]
+00:11 < kiang> 新竹市會細分到村里...
+00:12 < johnny__> 目前資料庫有第x選區，但這沒人看得懂
+00:12 < kiang>  新竹市 > 第01選區[區域] -
+00:12 < kiang> 榮光里、東門里、成功里、育賢里、文華里、中正里、公園里、親仁里、光復里、豐功里、東勢里、武功里、綠水里、東園里、復中里、東山里、三民里、光明里、仙宮里、埔頂里、千甲里、立功里、軍功里、建功里、前溪里、水源里、仙水里、科園里、建華里、金山里、
+00:12 < kiang> 新莊里、關東里、龍山里、錦華里、復興里
+00:13 < kiang> 這樣子丟好像也沒比較好看就是了
+00:13 < johnny__> yhsiang: 一般新竹人有在稱呼東南西北區嗎
+00:14 < yhsiang> johnny__:欸 如果寫很細的住址就有
+00:15 < yhsiang> 不過 通常連里都不一定要寫還是寄的到 XDDD
+00:16 < johnny__> yhsiang: 我決定先放著，繼續前進下個縣市XD
+00:16 < yhsiang> johnny__: ok
+00:21 < yhsiang> johnny__: 那新竹縣有問題嗎?
+00:26 < johnny__> yhsiang: 一些小地方，term_end, term_start 可以幫加一下，例 => https://github.com/g0v/councilor-voter-guide/blob/master/data/pretty_format/hsinchucc/councilors.json#L45-L48
+00:26 < kcwu> johnny__'s url: [councilor-voter-guide/councilors.json at master · g0v/councilor-voter-guide · GitHub]
+00:28 -!- CelloCello [~Cello@119.77.223.31] has left #g0v.tw []
+00:28 < johnny__> yhsiang: 可以的話  {"constituency": "1竹北市"} => {"constituency": "1", district":"竹北市"}  感謝
+00:32 < johnny__> yhsiang: 還有 in_office，如果官網只有在職的話就都是true  例：https://github.com/g0v/councilor-voter-guide/blob/master/data/pretty_format/hsinchucc/councilors.json#L25
+00:34 < yhsiang> johnny__: 喔因為我不知道in_office這是什麼 XD
+00:35 < yhsiang> johnny__: 有的是補選的話好像term就不一樣？
+01:00 < johnny__> yhsiang:恩，議會官網好像都沒有到職日期的，真糟糕，沒有的話先用大選的吧
+01:01 < yhsiang> johnny__: XD
+01:02 < yhsiang> johnny__: ok 不急的話 我明天弄
+01:17 < johnny__> yhsiang: 不急阿XD 還有好多縣市
+12:19 < ipa> https://www.facebook.com/TajfunInsulo/posts/760434360659376?pnref=story  
+12:19 < kcwu> ipa's url: [Whiski Tajfun - 好活動，不參加嗎？ 我尤其喜歡和「共乘平台」的合作關係，還有善用 crowd... | Facebook]
+12:21 < moon_c__> 只是在玩。沒有展開XD
+12:22 < yhsiang> moon_c__: 一直玩一直玩
+12:29 -!- chihchun_afk is now known as chihchun
+12:32 < S3p_lin> 28 天 :~
+12:32 < S3p_lin> 啊錯頻了
+13:54 -!- seadog007_ is now known as seadog007
+14:39 < kiang> 恩，原來抗議的那個人不是候選人，免責聲明放上就不理他了 XD
+14:55 < walkingice> 問：有沒有人已經把國土測繪中心裡面，每個縣市鄉里的區域座標撈出來了？
+15:10 < ronnywang> walkingice: http://github.com/g0v/twgeojson ?
+15:10 < kcwu> ronnywang's url: [g0v/twgeojson · GitHub]
+15:14 < kiang> ronnywang: http://data.gcis.nat.gov.tw/ 感覺好像是拿同樣的資料出來另外建立的網站（唉，我們的納稅錢...）
+15:14 < kcwu> kiang's url: [商工行政資料開放平台 data.gcis.nat.gov.tw]
+15:15 < kiang> walkingice: 還有 https://github.com/ronnywang/twgeojson
+15:15 < kcwu> kiang's url: [ronnywang/twgeojson · GitHub]
+15:17 < kiang> walkingice: http://kiang.github.io/cunli/ 這是做一半的東西（另外一半目前遙遙無期），可以參考 https://github.com/kiang/cunli/tree/gh-pages
+15:17 < kcwu> kiang's url (2/2): [kiang/cunli at gh-pages · GitHub]
+15:24 < walkingice> ronnywang++
+15:28 < ronnywang> kiang: 這個平台應該有快一年了，不過裡面很多資料都沒提供，像是董監事名單營業項目等...所以我現在 company.g0v 還是直接爬原頁面
+15:28 < kiang> 台南的 coworking space 像雨後春筍一樣一直冒出來，怎麼大家都喜歡一窩蜂呢 XD
+15:29 < kiang> ronnywang: 我是收到 TCA 的推廣信，你會想去參加（鬧場？）嗎？ XD
+15:29 < kiang> "掌握資料開放生活−商工行政開放資料平台推廣說明會，歡迎踴躍報名參加！"
+15:30 < hychen> kiang: 哪邊啊?
+15:30 < ronnywang> kiang: 哈哈，去年 data.gcis.nat 成立前的推廣說明會我就有去參加了
+15:31 < kiang> hychen: 都加到 https://g0v.hackpad.com/-co-working-space--1qsotUdUIT6 了
+15:31 < kcwu> kiang's url: [對台南 co-working space 的想像 - g0v.hackpad.com]
+15:31 < ronnywang> kiang: 這次推廣會在哪裡啊?
+15:32 < kiang> 11/11 台北電腦公會 B102 / 11/06 高雄 / 11/04 台中
+15:32 < kiang> email 都用圖片很討厭，沒辦法貼文字...
+15:33 < kiang> 找到連結了： http://image.tca.org.tw/AD/EDM1031029161522/
+15:33 < hychen> 大家對co-working space這麼有愛...
+15:33 < kiang> C-Hub @ NCKU 還蠻近的，走路就可以到，希望不會太貴 XD
+15:35 < kiang> http://gene.speaking.tw/2014/10/28.html - 恩，感覺很遙遠的樣子
+15:35 < kcwu> kiang's url: [IMHO, 黑貘來說: 成為資料工程師所須要學習的 28 堂課]
+15:36 < kiang> hychen: http://www.accupass.com/go/TalktoGether_South
+15:36 < kcwu> kiang's url: [南來作伙槓：設計共創 x 文創產業]
+15:38 < hlb_> co-working space 多很好啊...
+15:38 < hlb_> 基礎建設
+15:38 < hychen> kiang: i know this one
+15:38 < hychen> hlb_: 大大要講個秘訣嗎?
+15:42 < hlb_> hychen: 沒有秘訣啊，我覺得是有了比沒有好？
+15:43 < hlb_> 要開公司找辦公室很麻煩 :Q
+15:43 < kiang> 台南其實還蠻好找辦公室空間的， hlb_ 要移民嗎？ XD
+15:43 < kiang> hychen 應該有幫忙物色過許多透天
+15:45 < hlb_> kiang: 那要先幫我介紹國小跟幼稚園...
+15:46 < kiang> hlb_: 台南市區的學校還蠻密集的，我家後面巷子走五分鐘有國小跟幼稚園，出去勝利路整條路邊的學校大概這輩子就夠用了
+15:47 < kiang> 不過如果你想要明星學校的話我就不熟了，我只知道後面那間國小可以在操場看火車來來去去蠻有趣的 ;)
+15:48 < kiang> 台南不缺生活設施，只是工作機會不夠吧
+15:48 < kiang> 等 hlb_ 來創造就業榮景！
+15:49 < hlb_> kiang: o_o
+15:50 < hlb_> kiang: 其實現在來面試 KKTIX 的職缺，就可以在台南工作....
+15:50 < kiang> hlb_: 台南有分公司？
+15:51 < hlb_> kiang: 可以 remote 啊
+15:52 < kiang> hlb_++, 真好，那什麼時候要來 MOSUT( https://www.facebook.com/groups/mosut/ ) 推廣一下啊？ XD
+15:52 < kcwu> kiang's url: [Facebook]
+15:55 < hlb_> kiang: 問題是現在沒缺了 XD
+15:55 < kiang> hlb_: ...
+15:56  * hlb_ 躲起來
+16:29 < bobchao> 雖然現在沒缺了但歡迎展望明年... :P
+16:45 < pipi> ETBlue: Ping～
+16:47 < hcchien> 沒缺了!!
+17:05 -!- chihchun is now known as chihchun_afk
+18:06 -!- chihchun_afk is now known as chihchun
+19:57 < tonyq___> https://www.facebook.com/groups/hackingday/permalink/836463353042331/
+19:57 < tonyq___> Hacking Thursday 活動的樣子
+20:19 -!- chihchun is now known as chihchun_afk
+20:22 < ETBlue> pipi: yes, 關於這個 https://g0v.hackpad.com/summit-2014-Unconference-CXD0xCBDpEb , 我可以幫忙準備海報、提案表紙筆、膠帶……等，11/7 交給你可以嗎？
+20:22 < kcwu> ETBlue's url: [summit 2014 Unconference - g0v.hackpad.com]
+20:24 < ETBlue> pipi: 應該會用用全開海報，上午一張，下午一張，我明天會蹺班跟 clkao 和 ipa 去中研院，看看能貼哪裡XD
+21:22 < clkao> ETBlue: 採訪共筆好像應該也開 hackfoldr... 
+21:22 < clkao> ETBlue: 比較容易看歷史的正在進行的
+22:10 < ETBlue> clkao: yes, g0v-media
+22:10 < ETBlue> clkao: or g0v-press ?
+22:12 < ETBlue> clkao: 把 hackfoldr 2.0 設定成 beta.hackfoldr.org 如何？用 hack.etblue.tw 有時候都不太好意思貼網址 = ="
+22:13 < ETBlue> 講一講又超想放假 orz
+22:14 < yhsiang> ETBlue: 不錯啊 XD
+22:14 < yhsiang> hack.etblue.tw!
+22:16 < ipa> ETBlue: 你就默默的放，不要大張旗鼓，應該就會放了 XD
+22:17 < ipa> ETBlue: 一講就會破功
+22:18 < ETBlue> yhsiang: 那個網址會讓人誤認為 foldr 內容都是我做的
+22:19 < ETBlue> ipa: 我一定是人太好，同事都直接請假的 orz
+22:19 < yhsiang> ETBlue: 咦, 應該都是你做的吧 :p
+22:20 < ETBlue> 現在 hack.g0v.tw 會自動轉到 haclfoldr.org ?
+22:20 < ETBlue> yhsiang: 不是 = =" 重點是會以為 iframe 內嵌的也是我做的，囧
+22:20 < yhsiang> ETBlue: 沒有自動轉耶
+22:21 < yhsiang> ETBlue: 咦, 全世界的網站都是你做的吧! :p
+22:21 < ETBlue> yhsiang:  奇怪為何我打 hack.g0v.tw/g0v-media 被自動轉 QQ
+22:21 < yhsiang> 因為找不到那一頁 XD
+22:21 < yhsiang> 我剛剛也reproduce了 xD
+22:38 < clkao> 現在會 match 特定 project, 不是的話會轉 hackfodlr
+22:38 < clkao> 以免 random project 被當作是 g0v project :p
+22:45 < clkao> ETBlue: 你直接把 cname 改成 beta. 就可以了
+22:50 < ETBlue> clkao: good point... # 以免 random project 被當作是 g0v project
+22:51 < ETBlue> clkao: 兩個可以並存，還是要把 hack.etblue.tw 刪掉
+22:52 < clkao> 直接刪掉之前的 link 就不 permanent 啦... 作個轉址吧
+22:52 < ETBlue> 喔喔……轉址是上 router53 設定對吧
+22:53 < ETBlue> 更正： route53
+22:55 < ETBlue> ... 太可怕了，決定請室友處理 XD
+22:57 < ETBlue> tkalu: hack.etblue.tw -> beta.hackfoldr.org
+22:57 < tkalu> roger
+23:00 < ETBlue> clkao: cname 改這樣就口以了嗎 https://github.com/hackfoldr/hackfoldr-2.0/blob/master/CNAME 
+23:00 < kcwu> ETBlue's url: [hackfoldr-2.0/CNAME at master · hackfoldr/hackfoldr-2.0 · GitHub]
+23:01 < ETBlue> clkao: 還是應該寫 beta.hackfoldr.org @@
+23:02 < clkao> beta.hackfoldr.org
+23:03  * ETBlue done
+23:26 < au> clkao: dig beta.hackfoldr.org 說是指向 audreyt.github.io ... 也許改成 hackfoldr.github.io ?
+23:38 < au> ...似乎會動了 http://beta.hackfoldr.org/
+23:47 < clkao> au: done
+23:47 < clkao> au: well it worked before i changed the cname... 
+23:56 < ETBlue> 採訪資料資料持續整理中 http://beta.hackfoldr.org/g0v-media/
+23:59 < clkao> ETBlue++
+23:59 < clkao> 有人繳 slides 了

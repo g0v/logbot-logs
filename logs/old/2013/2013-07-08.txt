@@ -1,0 +1,398 @@
+--- Day changed 一  7月 08 2013
+00:24 < ETBlue> clkao:把壹民主的功能拿掉一些後變成特定主題的平台的話，介面可能可以長這樣 https://docs.google.com/folder/d/0B0NsS2a-Qx8Za0x6WURKTzcxeFk/edit?docId=0B0NsS2a-Qx8ZYXUwTFZ6TVZsMXM
+00:24 < kcwu> ETBlue's url: [g0v tisa - Google 雲端硬碟]
+00:27 < clkao> ETBlue++
+00:28 < ETBlue> 其他頁明早繼續弄 XD 這樣到時候就可以看要怎麼改
+00:32 < ETBlue> 我想他應該會喜歡頁首橫幅... 桌面版可以把橫幅放上去，手機版再隱藏就好
+00:51 -!- poga [~poga@111-241-131-201.dynamic.hinet.net] has joined #g0v.tw
+01:08 -!- ETBlue [70687ad3@gateway/web/cgi-irc/kiwiirc.com/ip.112.104.122.211] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+01:20 < mindos> ETBlue++
+01:27 -!- KNY [~Adium@118-170-66-18.dynamic.hinet.net] has quit [Quit: Leaving.]
+01:32 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+02:10 -!- poga [~poga@111-241-131-201.dynamic.hinet.net] has quit [Remote host closed the connection]
+04:15 -!- chhsiao2081 [~chhsiao@220-136-43-102.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+04:20 -!- chhsiao2081 [~chhsiao@118-168-221-34.dynamic.hinet.net] has joined #g0v.tw
+05:38 -!- juanna [~juanna@114-37-97-127.dynamic.hinet.net] has joined #g0v.tw
+05:42 -!- juanna_ [~juanna@114-37-81-8.dynamic.hinet.net] has quit [Ping timeout: 268 seconds]
+07:19 -!- lijung [~lijung@36-231-245-10.dynamic-ip.hinet.net] has joined #g0v.tw
+08:00 < chhsiao1981> https://www.facebook.com/photo.php?fbid=482542875168595&set=a.279846045438280.64866.268904949865723&type=1&ref=nf #讓我想起科比的人物關係圖 XD.
+08:00 < kcwu> chhsiao1981's url: [動態時報相片 | Facebook]
+08:02 -!- lijung [~lijung@36-231-245-10.dynamic-ip.hinet.net] has quit [Quit: lijung]
+08:07 -!- lijung [~lijung@36-231-245-10.dynamic-ip.hinet.net] has joined #g0v.tw
+08:33 -!- chhsiao2081 [~chhsiao@118-168-221-34.dynamic.hinet.net] has quit [Ping timeout: 268 seconds]
+08:43 -!- chhsiao2081 [~chhsiao@118-168-221-34.dynamic.hinet.net] has joined #g0v.tw
+08:52 -!- chhsiao2081 [~chhsiao@118-168-221-34.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+09:08 -!- Water [3cf9281b@gateway/web/freenode/ip.60.249.40.27] has quit [Quit: Page closed]
+09:22 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+09:24 -!- DaPonte [~DaPonte@46.182.92.34] has joined #g0v.tw
+09:25 < DaPonte> hey everyb
+09:25 < ipa> good morning and good evening
+09:26 < DaPonte> yeah, i'm actually in the middle of: 3.25 am :)
+09:27 < DaPonte> can you help me with the urls of the pgrest endpoint of g0v's lqfb-test?
+09:27 < DaPonte> i need to know the url to query from the client
+09:32 < ipa> i'm not sure i know the answer, but can redirect this to someone does # clkao ETBlue :P
+09:32 -!- FourDollars [~sylee@114-35-96-16.HINET-IP.hinet.net] has joined #g0v.tw
+09:34 < DaPonte> already wrote an email to them, i tried if they were here or if someb could help. np
+09:36 < clkao> DaPonte: cors for lqfb-test?
+09:38 < DaPonte> hey kao: i just need a small map of the urls. no, writing the routing in angular
+09:38 < DaPonte> i dont do any serverside here by now
+09:38 < clkao> *nod*
+09:40 < DaPonte> we will start our test instance for the redesign when we will have a demo. by now we only the db with the standard frontend
+09:46 -!- lijung [~lijung@36-231-245-10.dynamic-ip.hinet.net] has quit [Quit: lijung]
+09:47 < clkao> DaPonte: sent you reply
+09:47 < clkao> DaPonte: basically the original api spec has only /initiative/:id
+09:48 -!- MnO2 [~MnO2@nat/yahoo/x-vlymksbeahibekfl] has joined #g0v.tw
+09:48 < clkao> DaPonte: but i'd only like /issue/:issue/initiatves to work so it's more RESTy
+09:48 < clkao> also /issue/:issue/initiatives/:initiative
+09:48 < clkao> i'll see if i can get around to it today. but in the mean time use a local file ;)
+09:50 < DaPonte> http://lqfb-test.g0v.tw/pf/pgrest/initiative/37 doesnt work
+09:50 < clkao> DaPonte: not yet.  it's not implemented yet ;)
+09:50 < DaPonte> ok, but i need an array to cut&paste
+09:50 < DaPonte> ok
+09:51 < DaPonte> *copy&paste*
+09:52 < clkao> DaPonte: or it is now ;)
+09:52 < clkao> http://lqfb-test.g0v.tw/pf/pgrest/initiative/37
+09:52 < clkao> pgrest++ # took me 30sec ;)
+09:53 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+09:53 < clkao> i wonder if initiative endpoint should include _all_ arguments/suggestions
+09:54 < DaPonte> yeah, but how long did it take the think/design process (;
+09:56 < DaPonte> url not loading from here, i wait a bit
+09:56 < clkao> the part involved was pretty straightforward. the auth design is more involving ;)
+09:56 < clkao> hmm? http://lqfb-test.g0v.tw/pf/pgrest/initiative/37 wfm
+09:57 < DaPonte> dont mind, only GETing for a while
+09:57 < DaPonte> not working
+09:57 < DaPonte> server not found
+10:00 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+10:02 -!- KNY [~Adium@118-170-66-18.dynamic.hinet.net] has joined #g0v.tw
+10:02 < DaPonte> kao: argument/suggestions: i dont how the api is structured, but they can be loaded from different JSONs and merged on the template or clientside aswelli think
+10:04 -!- superbil__ [3cfbd182@gateway/web/freenode/ip.60.251.209.130] has joined #g0v.tw
+10:05 < clkao> DaPonte: we can either have the full content or just the counts.
+10:05 < clkao> DaPonte: if the ui is loading everything by default, the endpoint should probably provide an option to include everything
+10:06 < DaPonte> yeah it can be usefull
+10:07 < clkao> hopefully i can churn through the basic endpoints this week
+10:08  * clkao -> brunch &
+10:08 < DaPonte> ok, np. let me know the urls when it's ready, so i can grab the data for the demo
+10:09 < DaPonte> see you next
+10:12 -!- DaPonte [~DaPonte@46.182.92.34] has quit [Quit:  Want to be different? Try HydraIRC -> http://www.hydrairc.com <-]
+10:12 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has joined #g0v.tw
+10:15 -!- KNY [~Adium@118-170-66-18.dynamic.hinet.net] has quit [Quit: Leaving.]
+10:17 -!- KNY [~Adium@118-170-66-18.dynamic.hinet.net] has joined #g0v.tw
+10:25 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+10:29 -!- MnO2 [~MnO2@nat/yahoo/x-vlymksbeahibekfl] has quit [Quit: MnO2]
+10:30 -!- chihchun_afk is now known as chihchun
+10:32 -!- MnO2 [~MnO2@nat/yahoo/x-luayfufvkkavzxme] has joined #g0v.tw
+10:47 -!- lijung [~lijung@36-231-245-10.dynamic-ip.hinet.net] has joined #g0v.tw
+10:57 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has joined #g0v.tw
+11:08 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+11:13 -!- MnO2 [~MnO2@nat/yahoo/x-luayfufvkkavzxme] has quit [Quit: MnO2]
+11:15 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has joined #g0v.tw
+11:15 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+11:17 -!- hasher_ [~hasher@1.34.23.44] has joined #g0v.tw
+11:19 -!- lijung [~lijung@36-231-245-10.dynamic-ip.hinet.net] has quit [Quit: lijung]
+11:26 -!- MnO2 [~MnO2@nat/yahoo/x-dpkxnnsbpnuhpztl] has joined #g0v.tw
+11:38 -!- ETBlue [afb6ed68@gateway/web/cgi-irc/kiwiirc.com/ip.175.182.237.104] has joined #g0v.tw
+12:01 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has joined #g0v.tw
+12:10 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+12:24 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+12:44 -!- KNY [~Adium@118-170-66-18.dynamic.hinet.net] has quit [Quit: Leaving.]
+12:46 -!- KNY [~Adium@118-170-66-18.dynamic.hinet.net] has joined #g0v.tw
+12:58 -!- KNY [~Adium@118-170-66-18.dynamic.hinet.net] has quit [Quit: Leaving.]
+13:03 -!- kcliu [~kcliu@114-45-60-216.dynamic.hinet.net] has joined #g0v.tw
+13:20 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+13:27 -!- KNY [~Adium@118-170-66-18.dynamic.hinet.net] has joined #g0v.tw
+13:28 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+13:28 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+13:29 -!- ETBlue [afb6ed68@gateway/web/cgi-irc/kiwiirc.com/ip.175.182.237.104] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+13:29 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+13:29 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+13:46 -!- neoesque [~neoesque@210.242.17.242] has joined #g0v.tw
+14:22 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 268 seconds]
+14:22 -!- MnO2 [~MnO2@nat/yahoo/x-dpkxnnsbpnuhpztl] has quit [Quit: MnO2]
+14:25 -!- MnO2 [~MnO2@nat/yahoo/x-gctbxgvkumqdfzpn] has joined #g0v.tw
+14:33 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+14:52 -!- KNY [~Adium@118-170-66-18.dynamic.hinet.net] has quit [Quit: Leaving.]
+14:59 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+15:37 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has joined #g0v.tw
+15:54 -!- MnO2 [~MnO2@nat/yahoo/x-gctbxgvkumqdfzpn] has quit [Quit: MnO2]
+15:58 -!- MnO2 [~MnO2@nat/yahoo/x-tjpejwzbvsabzpnq] has joined #g0v.tw
+16:00 -!- superbil__ [3cfbd182@gateway/web/freenode/ip.60.251.209.130] has quit [Quit: Page closed]
+16:08 -!- ymow1 [~Adium@1-171-168-133.dynamic.hinet.net] has quit [Quit: Leaving.]
+16:08 -!- billy3321 [~billy3321@li414-152.members.linode.com] has joined #g0v.tw
+16:09 -!- ymow [~Adium@1-171-172-206.dynamic.hinet.net] has joined #g0v.tw
+16:09 < billy3321> ipa: ping
+16:13 < billy3321> ipa: 請問在嗎？；
+16:17 -!- astro [r94010@linux3.csie.ntu.edu.tw] has quit [Ping timeout: 276 seconds]
+16:47 < billy3321> @@
+16:48 -!- astro [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+17:07 -!- chihchun is now known as chihchun_afk
+17:15 -!- chihchun_afk is now known as chihchun
+17:22 -!- scyen_ [~scyen@122.147.15.66] has joined #g0v.tw
+17:26 -!- scyen [~scyen@4.53.154.230] has quit [Ping timeout: 256 seconds]
+18:24 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has left #g0v.tw []
+18:30 -!- chihchun is now known as chihchun_afk
+18:41 -!- MnO2 [~MnO2@nat/yahoo/x-tjpejwzbvsabzpnq] has quit [Quit: MnO2]
+18:50 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+18:54 < clkao> billy3321: whats up
+18:58 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+18:59 < ipa> on taxi
+19:14 < ipa> billy3321: whats up
+19:16 -!- KNY [~Adium@36-232-104-249.dynamic-ip.hinet.net] has joined #g0v.tw
+19:20 -!- FourDollars [~sylee@114-35-96-16.HINET-IP.hinet.net] has quit [Quit: leaving]
+19:25 < clkao> 24
+19:37 < hychen> 42
+19:41 < clkao> hychen: kuansim 要加速進行了嗎
+19:43 < ipa> hychen: 今天跟郝先生討論，感覺要做的就是迷你版 kuansim
+19:43 < hychen> 我也想... 放不了假啊...
+19:44 < hychen> ipa, 是喔
+19:45 < clkao> 來把 just called 加速一下
+19:45 < ipa> 有點像事件頁面吧 這次衝出來的東西可以當kuansim 的live demo XD
+19:46 < ipa> 月底前只要作幾個小的即可 一點一點拼 less is more # pofeng大大的教誨
+19:46 -!- scyen_ [~scyen@122.147.15.66] has quit [Remote host closed the connection]
+19:50 < hychen> ipa, 那要找個時間討論UI嗎? 
+19:52 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 256 seconds]
+19:55 < ipa> hychen: 可以先討論服貿行動的事件頁面（討論平台）要怎麼作，有沒現成可用，這個部分之後可能kuansim可以用。但目前要用最有效率的方式作
+19:56 < ipa> 今天討論的是，要有 1.討論平台：收出版業產出的調查採訪內容、公聽會資料等。可討論、評分等等。
+19:56 < hychen> ipa, 所以現在是要做正反並成?
+19:56 < ipa> 2. 相片地圖：ushahidi，收集服貿標語照
+19:56 < ipa> 3. 施壓立委打電話頁面改版。
+19:57 < ipa> 是否正反並陳或如何呈現還沒討論，clkao 有提幾個可能性 # ping clkao 
+19:58 < ipa> 主要是可能七月底臨時會會審，要有東西可用。但也可能延到九月。無法確認。
+19:59 < ipa> 如果有現成可改，那UI可改幅度就不大。就改成適合此議題功能吧？
+19:59 < ipa> （或還是可改？我不知～～0
+20:00 < ipa> ）
+20:01 < clkao> hychen: 你有看到 wikiarguments 嗎？
+20:02 < hychen> digg-like的平台?
+20:03 < clkao> http://en.wikiarguments.net/should-cannabis-be-legalized/
+20:03 < clkao> 但有正反、還有 counter argument
+20:04 < hychen> 我怎麼印象中這種正反的網站很多
+20:08 < hychen> ipa, wikiarguments有適合嗎?
+20:11 < ipa> 我還沒仔細看，你們先討論，我去當一下主婦 &
+20:11 < hychen> clkao, 這看起來做討論反適合的耶
+20:11 < hychen> s/反/滿/g
+20:21 < hychen> 我先去吃飯
+20:21 -!- hychen [~hychen@175.41.48.77] has quit [Quit: 暫離]
+20:42 -!- lijung [~lijung@61-231-9-245.dynamic.hinet.net] has joined #g0v.tw
+20:48 < lijung> clkao: 可以給我一下今天的那個地圖連結嗎？
+20:50 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+21:14 < clkao> lijung: http://farmersmarket.ushahidi.tw/ & realprice.g0v.tw
+21:15 < lijung> clkao: 我剛剛有看一下 realprice 的 code你是怎麼定位位子的 x, y 座標怎麼知道？
+21:16 < clkao> lijung: 原始資料的 latlng
+21:17 < clkao> 不過我在想要 scale 的話 沒辦法全部吐給 client 處理 clustering
+21:17 < clkao> 所以可能可以 survey 一下 uishahidi 是否已經有作 server side cluster
+21:17 < clkao> 不然可能就要用 postgis 自己弄一下... 等於把 leaflet-markercluster port 到 plv8x
+21:18 < lijung> 對了我想到一個問題會拍照的話可能用 手機那我們要做手機版的讓他上傳照片然後定位？
+21:19 < clkao> lijung: 就... 沒人力做各平台 mobile 就先 mobile web + geolocation + getusermedia 先撐著
+21:19 -!- hychen [~hychen@host-219-68-120-175.dynamic.kbtelecom.net] has joined #g0v.tw
+21:19 < clkao> 或者 phonegap 也許有什麼包好好用的
+21:20 < hychen> superp 前幾天問我他要參加ios device camp, 問說有沒有題目可作
+21:20 < clkao> so - 先看 ushahidi 是否支援 100k+ node
+21:20 < clkao> hychen: 對噢
+21:22 < clkao> superbil: 我看到又有 address PR 了 進展神速啊~ XD
+21:25 < clkao> lijung: 或用 getchute / filepicker.io 處理 user media
+21:30 < lijung> clkao: 天啊我覺得我之前好蠢喔…之前自己刻一個 fileuploader 搞到快瘋掉還自己刻了 oauth 到不同平台...
+21:30 < yhsiang> lijung: filepicker超棒 XD
+21:30  * yhsiang 覺得filepicker 最高!
+21:31 < lijung> yhsiang: 我覺得當初根本個智障…開發了好好幾個禮拜...
+21:32 < yhsiang> lijung: 不會啦, 至少你有處理這些東西的經驗
+21:32 < hychen> svn... 好久沒用了
+21:32 < yhsiang> 像是oauth就lv up會響好幾聲
+21:32 < lijung> 嗯嗯 ...算收貨不少...
+21:32 < yhsiang> 但是自從我用了firebase的SSO...oauth變得好簡單 :p
+21:35 < clkao> yhsiang: indeed :P
+21:35 < lijung> firebase 的sso 是啥阿我剛剛google 一下找不到...
+21:35 < clkao> hychen: 有 github mirror: https://github.com/defnordic/wikiarguments
+21:36 < clkao> lijung: firebase.com
+21:36 < clkao> lijung: what hack.g0v.tw uses for auth
+21:36 < lijung> @@哦哦 我看看...
+21:36 < hychen> localization 寫在db裡...
+21:36 < clkao> hychen: 不過看來 outdated... 
+21:37 < clkao> hychen: yeah... a little orz
+21:37 < hychen> 感覺是個寫很久的專案...
+21:38 < clkao> 很寫久？還是很久前寫？
+21:38 < hychen> 很久前寫的
+21:38 < clkao> 不過二月還有改 :p
+21:39 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+21:39 < clkao> 但是光看檔案列表就覺得可能很苦.... 
+21:39 < hychen> 感覺是上個世紀的產物...
+21:39 < clkao> 不如請 ETBlue 快速刻一個 wireframe 然後 pgrest/firebase + angular 大火一燒
+21:40 < clkao> 同介面應該可以 prfb 重複利用... ?
+21:41 < hychen> 我是覺得UI還不賴
+21:41 < clkao> *nod*
+21:41 < clkao> 簡單明瞭
+21:45 < clkao> https://github.com/g0v/issue-aspect # 現在才發現 readme 裡面有圖
+21:45 < hychen> 他的template 太苦了.... 
+21:45 < lijung> 哈哈我很久之前隨便發的
+21:45 < lijung> 拉的
+21:47 < yhsiang> lijung: Developer那邊要不要直接弄個vagrant ?
+21:47 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+21:48 < lijung> 天啊那又是什麼 冏
+21:48 < lijung> 我先look through document
+21:48 < yhsiang> lijung: 額 不然我有空幫你弄 XD
+21:48 < lijung> what's that??
+21:48 < yhsiang> lijung: 被clkao教會的 0.0
+21:49 < lijung> 我可以自己先弄弄看順便搞懂一個工具也不錯 XD
+21:49 < yhsiang> lijung: 建立開發環境用的, 等於再你那邊跑個虛擬機器
+21:50 < lijung> yhsiang: sounds great 我看看！thanks
+21:50 < yhsiang> lijung: https://github.com/g0v/kuansim/tree/develop/cookbooks/kuansim # 可以參考這邊 XD
+21:50 < clkao> lijung: 歡迎來到每週學習三個新技術的 g0v 開發團 XD
+21:51 < lijung> 哈哈哈聽起來太好了！天堂！哈哈
+21:51 < ipa> @@
+21:52 < clkao> lijung: vagrant = 把你的 project 讓人用一個指令就可以把開發環境架起來 不用自己管什麼 dependency
+21:54 < lijung> 感覺很不賴耶
+21:54 < lijung> okok
+21:54 < yhsiang> 嗯, 因為看到你那邊說 要跑個web server
+21:54 < yhsiang> 所以覺得這樣比較直接 XD
+21:55 < lijung> 哈哈感激～～thanks!
+21:56 -!- KNY [~Adium@36-232-104-249.dynamic-ip.hinet.net] has quit [Quit: Leaving.]
+22:05 < hychen> 我本來想用juju 來取代vagrant
+22:05 < hychen> deploy + charm 都在一起
+22:05 < hychen> 不過lxc 一堆雷啊...
+22:14 < lijung> 我不太懂 "uishahidi 是否已經有作 server side cluster" 什麼意思…
+22:14 < tkirby> blah
+22:16 -!- ymow [~Adium@1-171-172-206.dynamic.hinet.net] has quit [Quit: Leaving.]
+22:17 -!- ymow [~Adium@1-171-167-139.dynamic.hinet.net] has joined #g0v.tw
+22:20 < clkao> lijung: cluster = 把地圖上的點聚在一起
+22:20 < clkao> lijung: 如顯示 5 表示有五個 node
+22:20 < lijung> 哦哦所以你說要在 server 做處理不要丟到 client 再處理
+22:20 < lijung> 了解！！
+22:21 < clkao> 如果要 scale, 就是必要在 server side 處理 「zoom level 15, (x1,y1)-(x2,y2) 中的點，幫我 cluster 好」這個 api
+22:21 < ipa> tkirby!
+22:21 < clkao> 不然 load 100k 個點 就 kk 
+22:21 < lijung> 嗯嗯了解！
+22:22 < clkao> 500k 點 - 一個 0.2k 的話.. 就 100m 了.. XD
+22:25 < lijung> clkao: 那你之前用 real price 的那個 map 適用嗎？你覺得？
+22:25 < clkao> lijung: 那個就是整個 cluster 都在 client side 做
+22:26 < lijung> okok
+22:26 < clkao> 18k 點 loading 大概就要 5sec 了
+22:26 < clkao> 而且 realprice data 是 static
+22:27 < clkao> 同樣 clustering logic 是可以 port 到 server side... 只是如果有人已經做好就拿來用吧 :p
+22:27 < tkirby> ipa!
+22:27 < lijung> 嗯嗯了解
+22:29 < clkao> tkirby: 要加速進行了!
+22:29 < tkirby> clkao: 加加加
+22:30 < clkao> tkirby: 禮拜四在來米你鬆吧
+22:31 -!- ETBlue [~chatzilla@175.182.237.104] has joined #g0v.tw
+22:31 < tkirby> clkao: 週四晚上有聚餐, 大概半夜才會回到台北說~
+22:31 < clkao> tkirby: 慘～～～～
+22:31 < clkao> 禮拜四應該是某人的不過節日 可以順便吃蛋糕
+22:32 < tkirby> 可惡, 將要錯過的迷你松感覺又會發生好事
+22:32 < tkirby> 沒關係應該還會有 post-pre-hackathon (?!)
+22:32 < clkao> 現在已經是 pre 了麼？ 還是 post-post ?
+22:32 < tkirby> 好複雜 <O>
+22:32 < clkao> 剩一個月 好像可以 pre 了!
+22:33 < clkao> 就以中線切分嘛
+22:33 < clkao> 不複雜 跟地圖 cluster 一樣 XD
+22:33 < tkirby> XD
+22:33 < clkao> hlb: ping
+22:33 -!- lijung [~lijung@61-231-9-245.dynamic.hinet.net] has quit [Quit: lijung]
+22:36 < ETBlue> clkao: 自己愛吃東西還藉口一堆 XD
+22:36 < clkao> ETBlue: 啥 有人當天不過節啊
+22:36 < ipa> 週四敝人在下生日，請大家要抵制7-11喔（揪咪）
+22:37 < clkao> 去買東湖咖啡店的厲害蛋糕給大家吃
+22:37 < tkirby> 嗚喔~ ipa 生日!! 我就知道會有好事發生... orz
+22:37 < tkirby> orz orz
+22:37 < ETBlue> ipa: 跟小七很有過節
+22:37 < ETBlue> tkirby: 每次不能來的迷你鬆都特別好康，真奇怪
+22:38 < tkirby> ETBlue: 太慘
+22:38 < clkao> tkirby: 排太滿了啦 XD
+22:38 < ETBlue> tkirby: 週四要固定空出來呀
+22:38 -!- lijung [~lijung@61-231-9-245.dynamic.hinet.net] has joined #g0v.tw
+22:39 < ETBlue> lijung!
+22:39 < tkirby> 來不及了.. XD  快
+22:39 < lijung> ETBlue: hi~~
+22:39 < clkao> lijung: btw  你有把 realprice local 跑起來嗎？
+22:39 < ETBlue> 今日感想：lijung 給人的感覺像是少年 clkao XD
+22:40 < lijung> haven't i'll do now! 剛剛在爬一些剛剛聽不懂的技術哈哈
+22:40 < clkao> ++
+22:41 < lijung> 我有 clkao 千分之一厲害就要偷笑了
+22:41 < lijung> 他是我的 role model
+22:42 < ETBlue> clkao 又成功地蠱惑了無辜的青年學子
+22:43 < ETBlue> 今天聽 brecht 講到 quora ，上去看一下發現真的跟壹民主的概念超像，他也是 recommendation 為中心
+22:44 < ETBlue> 一進去 timeline 就超八卦，大家在幹嘛看得一清二楚...
+22:45 < ETBlue> 然後他的 field 跟 topic 概念也很切實際，一個 field 裡面有很多 topic，然後他推薦給我 follow 的 topic 好像都是我有興趣的 field 之間的交集的 topic
+22:46 < lijung> clkao: how to setup vagrant in realprice?
+22:47 < yhsiang> ETBlue: 前fb cto搞的
+22:47 < clkao> lijung: there's no vagrant file yet. just npm i && ./node_modules/.bin/brunch w -s
+22:47 < ETBlue> yhsiang: 喔喔喔喔喔難怪
+22:47 < clkao> http://registrano.com/events/g0v-pre-hackath4n
+22:48 < clkao> ETBlue: 他是跟你說之乎還是 quora?
+22:48 < ETBlue> clkao: 他兩個一起說
+22:48 < ETBlue> 所以我一直以為是同一個東西
+22:49 < ETBlue> 原來是正版跟盜版
+22:49 < yhsiang> XD
+22:50 < yhsiang> ETBlue: 就像是人人和fb ?
+22:50 < ETBlue> 對壓就是這種類比 XD
+22:50 < lijung> clkao: worked!
+22:50 < ETBlue> 不過不知道為什麼，quora的 timeline看起來沒有 stackoverflow或wikiarguments的易讀，大概他太強調頭像了
+22:51 < lijung> clkao: learning livescripting
+22:52 < ETBlue> quora的對齊都以頭像跟人名為主，topic反而參差不齊的像是配角，不太以t內容為中心的樣子
+22:53 < clkao> ETBlue: 我覺得是要 quora & openideo 中間的某個點
+22:53 < ETBlue> *nod*
+22:55 < ETBlue> 單一問題可以用 wiliargument，問題之間的群組（標籤、標籤的標籤）可以參考quora，大議題整合可以參考open ideo
+22:55 < ETBlue> wikiargument
+22:56 < clkao> *nod*
+22:56 < clkao> ETBlue: 再以 tisa/出版業為例 應該要如何切單一的 wikiargument entry 呢？
+22:56 < clkao> 9or quora question?)
+22:56 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+22:56 < ETBlue> 我目前直接拿郝先生的文件裡面列出的問題來用 XD
+22:56 < clkao> 因為 wikiargument 像是有個單面命題
+22:57 < ETBlue> 然後有個問題就是，對
+22:57 < clkao> 但是 quora 是 open end
+22:57 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has left #g0v.tw []
+22:57 < clkao> 因為「對 xx 的影響」比較難直接變成正反
+22:57 < ETBlue> wa討論的是「方案」所以有正反面
+22:57 < clkao> 正面影響中，可能也有反的 etc
+22:57 < ETBlue> 問題有分成「蒐集」型、「辯論」型
+22:57 -!- lijung [~lijung@61-231-9-245.dynamic.hinet.net] has left #g0v.tw []
+22:58 < clkao> 辯論的主題是... /
+22:58 -!- lijung [~lijung@61-231-9-245.dynamic.hinet.net] has joined #g0v.tw
+22:58 < ETBlue> wa的正反論適用於辯論型，處理「該不該做某件事情」這類的問題
+22:58 < ETBlue> 也就是是非題
+22:59 < ETBlue> 但審議過程中有蒐集型的問題，需要多多益善，不用區分是飛得
+22:59 < ETBlue> 是非的
+22:59 < ETBlue> 所以這兩種題型可能都要顧慮到，我想提問的人可以自己設定他的題型是哪一種
+23:00 < ETBlue> 如果是集思廣益型的問題，就不用分正反了，不過還是可以針對個別答案做辯論
+23:00 < clkao> 那... 拉一下兩種的 structure & wireframe 吧 XD
+23:01 < ETBlue> roger XD
+23:01 < ETBlue> 大概就是各自抄 wikiarguments跟 stackoverflow / quora  ... XD
+23:02 < clkao> ETBlue: 還不報名～
+23:02 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+23:02 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+23:03 < ETBlue> 喔喔喔報了 XDXD 迷你蛋糕松
+23:07 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+23:07 < ETBlue> 靠邀，quora隨便人都可以編輯 tag 是怎樣
+23:07 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+23:07 < clkao> wiki style
+23:08 < lijung> clkao: http://blog.ushahidi.com/2012/10/01/optimizing-ushahidi-for-quick-reads-on-large-datasets/ # i found this, 看起來要自己刻...
+23:09 < ETBlue> question 也是隨便我編... 好危險
+23:09 < lijung> clkao: and this http://forums.ushahidi.com/forums/topic/ushahidi-performance/
+23:11 < clkao> lijung: 科科 跟我猜的一樣... XD
+23:12 < clkao> http://kunuk.wordpress.com/2011/11/05/google-map-server-side-clustering-with-asp-net/
+23:13 < clkao> 不過還是覺得 postgis + plv8x + leaflet-marker-cluster port 蠻可行的
+23:13 < clkao> 而且應該蠻有需求的
+23:14 < hychen> 所以這是指重刻一個嗎?
+23:14 < clkao> hychen: map? looks like it... 好像沒有可以 scale 的 clusterable app
+23:14 < lijung> maybe 刻一點吧ㄏㄏ
+23:14 < clkao> 但可重用的元件還是蠻多
+23:15 < hychen> i mean wikargument
+23:15 < lijung> 那我們就 postgis + plv8x + leaflet-marker-cluster?
+23:15 < clkao> lijung: 可以啊 一次級滿三個新技術 XD
+23:16 < lijung> 好吧這次任務比我想像的還難很多哈哈哈，看來這禮拜有得拼了
+23:16 < yhsiang> lijung++
+23:17 < clkao> lijung++
+23:17 < clkao> lijung: 週四要來嗎 XD
+23:18 < lijung> 好巧不巧國中同學會就在 7/11 18:00 = =
+23:18 < lijung> 但我很想去
+23:18 < lijung> 正在思考中哈哈
+23:20 < clkao> http://gis.stackexchange.com/questions/11567/spatial-clustering-with-postgis
+23:20 < clkao> 這有一些東西 也許不需要 leaflet... 但是 他可能沒有處理單一 cluster reduce (數值加總)
+23:21 < lijung> clkao: 報名了！
+23:22 < yhsiang> XD 衝了
+23:25 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+23:40 < ETBlue> 靠邀，今天根本該找台大政治系公民論壇的主持人家華去
+23:43 < clkao> ETBlue: 太晚「靠、邀」了
+23:43 < ETBlue> 已經有人整理出20個基層受害產業
+23:43 < ETBlue> 明天記者會完他會把資料貼上facebook
+23:44 < clkao> 要 structural data 啊
+23:45 < clkao> opop_: 對了 我的鑰匙~
+23:52 -!- hychen [~hychen@host-219-68-120-175.dynamic.kbtelecom.net] has quit [Quit: 暫離]

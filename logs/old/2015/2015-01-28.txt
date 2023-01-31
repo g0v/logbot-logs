@@ -1,0 +1,317 @@
+--- Day changed 三  1月 28 2015
+00:01 < slackbot> <chihao> 沒有人
+00:03 < slackbot> <kiang> 先承認你就是沒有人
+00:03 < slackbot> <kiang> 恩，沒反應
+00:04 < slackbot> <kiang> slackbot 的訊息還是沒有丟回 logbot XD
+00:05 < slackbot> <yhsiang> 會濾掉
+00:06 < slackbot> <yhsiang> 而且你 match 的規則不對
+00:10 < au> billy3321: 我明天 12:00 可能沒辦法到現場，最快 12:45 到，但直播要架設的話，12:30 前完成比較妥當
+00:11 < au> 我會帶空 iPad + 腳架，至少可以用來錄影，和（希望可以作用的）4G Modem。
+00:12 < au> miaoski: 平常開發用 gulp dev。是在瀏覽器跑的，process.platform 可能要自己填進去。
+00:16 < au> miaoski: 整個 AMI-CMN 作為字串讀進記憶體，然後用 indexOf 找，再向左移動取得 title?
+00:17 < miaoski> au: 似乎是個好辦法...我剛剛在和 heuristic rev index 奮鬥，可是那樣實在太沒效率
+00:17 < miaoski> au++
+00:18 < au> main.ls line 684 的 fill-bucket 就是這樣 (每則一列) O(N) 解決的
+00:19 < au> N < 1mb 的時候似乎可以 C4^H^HindexOf 解決一切
+00:20 < miaoski> 科科.....
+00:20 < CindyLinz> 能用錢(加機器)解決的問題都是小問題(?
+00:20 < miaoski> heuristic rev index 會把東西變成 6 倍大 >_<
+00:20 < au> 主要是在低階手機要跑得動
+00:20 < au> 但 1M memory 應該是還好
+00:22 < slackbot> <kiang> http://blog.vgod.tw/2015/01/26/moving-to-sf/ - 可以請 vgod 幫忙看一下 hackpad 問題了（誤）
+00:22 < kcwu> slackbot's url: [前進舊金山 | vgod's blog]
+00:25 < miaoski> 才 250K 太棒惹
+00:34 < slackbot> <lanf0n> hackpad 還沒好QQ
+00:35 < slackbot> <kiang> 只能看備份 <http://g0v.link/>
+00:35 < kcwu> slackbot's url: [g0v Hackpad Backup]
+00:36 < slackbot> <johnny> linode 有人有promote code之類的嗎？ 想把指南搬走了
+00:42 < slackbot> <kiang> 之前也是網路上亂找的，現在熊熊就找不到了
+00:52 < miaoski> au: gulp build 再 gulp dev? 不然 main.ls 不會 compile 成 main.js
+00:59 < au> miaoski: webpack server 應該會把 main.ls 放在動態產生的 js/deps.js 裡
+01:00 < au> (for gulp dev)
+01:00 < miaoski> au: 所以現在 main.js 沒用了? ...
+01:00 < miaoski> (啊啊啊 gulp 好難懂)
+01:02 < au> 是，main.js 可以刪除了。gulp dev 只是 watch 然後呼叫 webpack-dev-server
+01:05 < miaoski> au++ 搞定。現在的問題是例子的漢字要不要放進去...
+01:06 < miaoski> and 我不知道我把 cmn_amis_longstr <- GET ... 放在 amis_lookup(query, cb) !-> 裡面，這樣對不對
+01:06 < miaoski> 我的 procedure 的腦袋告訴我這樣不對。可是對 functional 來說這樣不一定是錯的.
+01:10 < au> ...只要會動就是對的
+01:12 < miaoski> 跑久了會 memory leak (大誤)
+01:14 < au> 不會，會從 CACHE 裡取得
+01:15 < au> copy-on-write，沒有 write 的話會用同一份
+01:23 < miaoski> au++ #  把解釋和例子分開了。解釋的順序比較高。
+01:24 < jimyhuang__> 找了半天，最後還是用 ethercalc 匿名 api 更新檔案，不過PUT csv 每行要加兩個逗號 au++
+01:27 < miaoski> au: amis.moedict.tw 再麻煩你了. 感謝 ~~ 
+01:30 < au> miaoski: 210.71.78.208 更新了嗎?
+01:31 < miaoski> au: 沒有。那個很舊了... 我剛 ping amis.moedict.tw 發現它已經指向 162.159.244.160 了？
+01:31 < au> 那只是 proxy
+01:31 < au> 最後還是到 210.71.78.208
+01:31 < miaoski> 啊啊了解。
+01:32 < au> 這星期 TANet 似乎比其他民用網路都穩，能放 TANet 還是放吧 XD
+01:32 < miaoski> OK :)
+01:45 < miaoski> au: updated. 感謝!
+01:51 < au> miaoski: http://amis.moedict.tw/revdict-amis-def.txt 404
+01:52 < miaoski> au: 怪... http://ckhis.ck.tp.edu.tw/~ljm/moedict-amis/revdict-amis-def.txt 這裡有
+01:53 < au> 那還是 virtual host 沒指對
+01:53 < au> 我記得你當時設了另個 virtual host root dir
+01:53 < miaoski> 對，我笨 ... 
+01:53 < miaoski> 找到了
+01:53  * miaoski 該睡了>_<
+01:56 < miaoski> au: ++   可以用了 \o/  我先睡吧，本來想繼續做 app
+02:00 < au> 我測也 OK 了。先睡吧，族語已經八千(?)年了，可以等我們八個小時 XD
+02:00 < au> -> zzz too
+04:32 -!- yp is now known as ypwong
+04:34 -!- shelling___ is now known as shelling__
+08:23 < a-tsioh> au: gugod : hack 萌典查詢的輸入法要看哪個branch ?
+08:24 < gugod> a-tsioh: 目前是在我的 fork: https://github.com/gugod/moedict-webkit -- master branch, 主要是 main.ls 中的 pinyin_lookup 以及 build-pinyin-lookup.pl 這個程式
+08:24 < kcwu> gugod's url: [gugod/moedict-webkit · GitHub]
+08:25 < au> a-tsioh: gugod/moedict-webkit master , main.ls, trs_lookup / pinyin_lookup (line 769/770)
+08:25 < au> 咦，鄰近時區的 gugod 出現了，那我再回去睡一下 XD
+08:26 < a-tsioh> XD
+08:26 < gugod> ... 鄰近時區的 gugod 其實也該去睡了 XD
+08:26 < au> gugod: ambiguous parse 也許可以 ltr 和 rtl 各 match 一次，然後都找
+08:26 < a-tsioh> FB談的問題怎麼辦？我繼續作webservice的方式嗎？
+08:27 < a-tsioh> 還是直接用gugod的
+08:27 < miaoski> au: 早安。moedict-app 用這個方式看來手機不會痛, au++ 但我被「→列出含有oo的詞」害到了 XD
+08:27 < au> miaoski: 那是因為手機輸入一串字中間不想被打斷，可以關掉
+08:27 < miaoski> ah OK 我來關
+08:28 < au> a-tsioh: 都可以，你決定，webservice 也有需要, gugod 的做法適合 offline
+08:28 < a-tsioh> 那我先作webservice+新branch for ui
+08:28 < a-tsioh> (嗎?)
+08:28 < gugod> au: 感覺起來好像可以把某 regexp 的特定部份改成 non-greedy match 得到另一組解....
+08:29 < au> sure, su-lip.magistry.fr 有更新的話萌典會同步
+08:29 < miaoski> au: 你的 Dockerfile 有連動到 DockerHub 嗎？
+08:29 < au> miaoski: 還沒 check
+08:29 < au> gugod: ++
+08:29 < a-tsioh> 好
+08:29 < miaoski> 那我來做點噁心的事。在 Dockerfile 裡加 cp -a /moedict-app/www/ platforms/android/asset/
+08:30 < au> miaoski++ # 只要會動就是對的
+08:30 < a-tsioh> 欸 a-tsioh/moedict-webkit 也太古老
+08:30 < a-tsioh> This branch is 339 commits ahead, 1248 commits behind audreyt:master
+08:30 < a-tsioh> 好可怕
+08:33 < a-tsioh> 請教怎麼重新fork
+08:33 < miaoski> a-tsioh: 砍掉重練 :P
+08:34 < miaoski> amis-react 就是這樣生出來的 (然後原來的 amis 就放水流了)
+08:34 < a-tsioh> 那砍掉怎麼
+08:34 < au> a-tsioh: 在 audreyt/moedict-webkit 開新 branch?
+08:34 < a-tsioh> 找不到「destroy all」button
+08:35 < au> https://github.com/a-tsioh/moedict-webkit/settings 右下角
+08:35 < a-tsioh> thx !
+08:43 < miaoski> au: docker build 的話，git clone --depth 1 這行會被 cache 住。docker build --no-cache 我這邊會出奇怪的 btrfs 錯誤 :P
+08:47 < au> miaoski: 那換 overlayfs?
+08:48 < miaoski> 希望我剛剛關掉「→列出」沒有害到其它語言 (應該不會才對) 還有小小的 css 要修: [似] 在手機裡沒顯示
+08:48 < au> (或是讓那行 cache 住，但是 followed by a git pull)
+08:48 < au> amis branch specific 不會動到其它語言
+08:49 < au> k
+08:50 < miaoski> git pull 不知道會不會被 cache 住。不過 docker hub 似乎都是 no-cache 所以其實可以不要管它 XD
+08:54 < miaoski> 噫! 更新 view.js 那個「似」還是不會出來。得先去打工了 /揮揮
+08:54 < au> view.ls not view.js
+08:55 < au> can rm view.js
+08:55 < au> 打工愉快 o/
+09:03 < a-tsioh> au: 萌典的autocomplete還沒有被Reactified？
+09:04 < au> a-tsioh: 沒有，目前還是 jquery autocomplete. would be _so_ great if you can help out
+09:04 < a-tsioh> I‘m just trying to remember our discussion about the table version of the autocomplete ui
+09:05 < au> that's, like, the #1 blocker preventing us from switching to http://moe2.hlb.the-hold.handlino.com/ (which incidentally may fit neologism's use case too)
+09:05 < kcwu> au's url: [萌典 2.0]
+09:05 < a-tsioh> I guess it should be the occasion to reactify it
+09:05 < au> a-tsioh++
+09:06 < a-tsioh> because what was discussed on FB is very close to this
+09:06 < au> aye aye.
+09:06 < a-tsioh> If I understand it correctly
+09:07 < a-tsioh> I mean doing what we once said we (I?) should do would be a correct solution to the issue raised right ?
+09:08 < au> I think khoguan mostly wanted pruning 猜 from looking up ip
+09:09 < au> but a multicolumn lookahead display would help too to disambiguate precise vs fuzzy, or, in miaoski's amis case, definition matches vs example matches
+09:10 < au> (the "looking up ip" above refers to the pinyin "ip" not tcp/ip)
+09:10 < a-tsioh> :)
+09:10 < a-tsioh> 猜 IP is quite difficult
+09:13 < a-tsioh> ok so I'll try that, now that I know more about React and semantic-ui, it should be doable
+09:14 < au> a-tsioh++ 
+09:18 < a-tsioh> au: in prod 
+09:18 < a-tsioh> oops
+09:19 < a-tsioh> the moedict online hit on moedict.org/lookup/trs/... or on su-lip.magistry... ?
+09:21 -!- chihchun is now known as chihchun_afk
+09:23 -!- chihchun_afk is now known as chihchun
+09:23 < au> it hits up https://www.moedict.tw/lookup/trs/ which is a simple proxy to su-lip
+09:25 < a-tsioh> ok
+09:26 < au> alright I gotta run to prepare for the 5hr event starting 3.5hrs from now at https://new.livestream.com/au/x
+09:26 < kcwu> au's url: [EY 虛擬世界研習會 on Livestream]
+09:26 < au> happy hacking
+09:26 < a-tsioh> (it seems that cors does not allow query from anywhere, but that's not really an issue)
+09:26 < a-tsioh> ok
+09:26 < a-tsioh> thx !
+09:39 -!- seadog007_ is now known as seadog007
+09:49 -!- chihchun is now known as chihchun_afk
+10:29 < billy3321> g0v的hackpad掛點了？
+10:31 < pm5> billy3321: 是的. 掛了一兩天, 今天好像換了錯誤訊息頁 XD
+10:38 < billy3321> Q_Q
+10:50 < miaoski> au: 咦？moedict-app 現在也只需要 .ls ?
+11:05 < au> miaoski: moedict-app 需要 js/deps.js 和 index.html，不用 {view,main}.[jl]s
+11:06 < miaoski> 了解。唔。那「似」的問題可能比較難 debug ... 打完工再說好惹 >_<
+11:06 < au> Chrome inspector 左下角可以選手機模擬模式，選完 refresh 即可
+11:07 < au> billy3321: 結果我沒有 micro-sim to sim adapter，目前還不能測 4G... 會在路上找看看手機行
+11:08 < au> afk &
+11:08 < miaoski> 所以是 localhost:8888 然後選手機模擬？ nice
+11:53 < slackbot> <kiang> 健保局有登錄的醫療院所資訊都拿下來了 - https://github.com/kiang/drugs/tree/master/Console/Command/data/nhi ， points.csv 是清單、 points/xxx.json 是明細，目前 hackpad 沒辦法塞...
+11:53 < kcwu> slackbot's url: [drugs/Console/Command/data/nhi at master · kiang/drugs · GitHub]
+11:55 < pm5> https://www.npmjs.com/package/au
+11:55 < pm5> 到處都有 au
+12:03 < slackbot> <kiang> FDA 網站掛掉，還好有備份 XD
+12:07 -!- _bobchao is now known as test_bobchao
+12:08 -!- test_bobchao is now known as _bobchao
+12:08 < slackbot> <kiang> hackpad 掛掉，也許可以藉這個機會把人引導到 <http://community.g0v.tw/> :simple_smile:
+12:08 < kcwu> slackbot's url: [新． g0v 後勤中心]
+12:17 < slackbot> <clkao> au: 上週的錄影有公開了嗎？
+12:25 < slackbot> <yhsiang> clkao: 預計是今天公開 XD
+12:28 < slackbot> <t0mst0ne> kiang:  ++
+12:28 < slackbot> <t0mst0ne> nhi/drug_rank 是每年藥物使用量嗎 ?
+12:29 < slackbot> <kiang> @t0mst0ne 是，可以看 issue list 裡面提的資訊
+12:35 < au> yhsiang: 到場了，4G ok, ping 13ms 下行 7mb 上行 10mb
+12:35 < yhsiang> oho.. 怎麼感覺訊號不太好  
+12:35 < yhsiang> XD
+12:36 < slackbot> <t0mst0ne> kiang: 以SIMVASTATIN 為例, http://drugs.olc.tw/drugs/view/549293e4-5eb4-43a3-925e-1cffd38a10d1  英文品名有20mg , 主成份是 SIMVASTATIN 大概就這兩個來比對 ( 原廠台廠全都算在一起)
+12:36 < kcwu> slackbot's url: [欣脂替膜衣錠20毫克 {Sinty F.C. Tablets 20mg} @ 藥要看]
+12:36 < au> clkao: 上一場的 Q&A https://www.youtube.com/watch?v=V3TbY2urPPA
+12:36 < kcwu> au's url: [EY - YouTube]
+12:37 < au> 上一場的萌典部份 https://www.youtube.com/watch?v=s8gtRoJy54A
+12:37 < kcwu> au's url: [EY au 2015-01-21 - YouTube]
+12:37 < au> 上一場因為種種原因所以沒有錄到前兩部份
+12:43 < slackbot> <kiang> @t0mst0ne 基本上對應的部分應該會讓使用者手動進行，介面就是提供自動完成功能，就看看雛形出來後再調整囉
+12:56 < au> 兩機錄影就位，直播就位，上行 400kbps 。
+12:57 < au> http://livestre.am/52tsD
+12:57 < kcwu> au's url: [EY 虛擬世界研習會 on Livestream]
+13:00 < au> 如有影音問題請回報
+13:01 < yhsiang> au++ billy3321++
+13:01 < au> yhsiang++ # 4g
+13:02 < slackbot> <moon_c> ＋＋＋＋＋
+13:03 < billy3321> 我手上機器是 macpaul 支援的，要謝謝他
+13:09 < tonyq_____> au: 我們這研習有沒有 hackpad 或介紹
+13:09 < tonyq_____> au: 我有媒體朋友有興趣
+13:09 < au> tonyq_____: http://hackpad.g0v.link/yPncicVQ4Kg
+13:09 < kcwu> au's url: [/683$yPncicVQ4Kg]
+13:10 < au> 直播連結見上，事件連結 https://new.livestream.com/au/x
+13:10 < kcwu> au's url: [EY 虛擬世界研習會 on Livestream]
+13:10 < tonyq_____> 然後有人跟我要議程表地圖
+13:10 < au> 議程表事件地圖，livestream 連結和 hackpad 上都有
+13:11 < slackbot> <kiang> livestream 目前卡卡
+13:11 < tonyq_____> 應該說 livestream 大頭的那張
+13:12 < tonyq_____> au: 有沒有更完整解析度的
+13:12 < slackbot> <kiang> 看一陣子就會卡住
+13:12 < tonyq_____> 地圖是繕誤
+13:12 < au> tonyq_____: 有 https://www.facebook.com/billy3321/posts/10205606864747911?pnref=story
+13:12 < kcwu> au's url: [林雨蒼 - 歷史性的里程碑，記錄一下。 | Facebook]
+13:13 < tonyq_____> 感恩
+13:13 < slackbot> <t0mst0ne> 請問一下slack 如果quota 用完, 是要回到 irccloud 上嗎?   總覺得費用好貴 (很想建議敝單位使用 ~ 1000 users, but not all active users)
+13:15 < slackbot> <kiang> t0mst0ne: 就裝個 <https://github.com/laravel-taiwan/slacklogs> ?
+13:15 < kcwu> slackbot's url: [laravel-taiwan/slacklogs · GitHub]
+13:16 < slackbot> <yhsiang> t0mst0ne: slack 沒有 quota
+13:17 < slackbot> <kiang> 講的應該是歷史訊息回顧的費用吧
+13:17 < slackbot> <t0mst0ne> Yhsiang: 不是有個10000筆上限？超要付錢！
+13:18 < slackbot> <yhsiang> 那是你想要查詢記錄
+13:18 < slackbot> <kiang> 所以架了 slackbot / logbot 就無敵啦 XD
+13:18 < slackbot> <yhsiang> t0mst0ne: 那是要看你怎麼使用 其實一般人用 star
+13:18 < slackbot> <yhsiang> 這個問題其實也可以解決
+13:19 < MGdesigner> 觀眾好像都老老的，是政府官員嗎？
+13:19 < au> 是，十二職等必修課
+13:19 < au> 局處長和主祕
+13:20 < slackbot> <yhsiang> t0mst0ne: 另外其實付費還有很多其他的功能 不只是所謂的訊息保存上限
+13:21 < slackbot> <t0mst0ne> yhsiang: oh 如果是這樣,  那就好了 !
+13:21 < slackbot> <yhsiang> 所以是要看需求 XD
+13:21 < MGdesigner> au: 原來如此
+13:22 < slackbot> <yhsiang> t0mst0ne: ya, 建議是先推單位試用, 然後 log 可以按照 kiang 的建議做保存
+13:23 < slackbot> <kiang> 人品不好， livestream 看的斷斷續續，台南中華線路，先關了 :simple_smile:
+13:24 < slackbot> <moon_c> 我看得很順～
+13:24 < au> kiang: 之後會有鏡位更好的 HQ 錄影
+13:24 < slackbot> <kiang> au++
+13:30 -!- seadog007___ is now known as seadog007
+13:31 < slackbot> <lancetw> au++
+13:59 < miaoski> kiang++
+14:24 < slackbot> <kiang> http://git.libreboard.com/libreboard/libreboard/blob/master/README.md - 看起來還不賴
+14:24 < kcwu> slackbot's url: [libreboard / libreboard | GitLab]
+14:50 < Lee1092> au++ billy3321++
+14:54 < Lee1092> kiang 是我誤會了嗎? 跟Trello 好像 0.0
+14:54 < slackbot> <kiang> 應該就是 致敬 版本吧
+14:55 < slackbot> <moon_c> 看起來根本一樣啊ＯＡＯ
+14:56 < slackbot> <poga> https://github.com/libreboard/libreboard 太像了所以他的 github 被 DMCA takedown 了... XD
+14:56 < kcwu> slackbot's url: [libreboard/libreboard · GitHub]
+14:56 < slackbot> <kiang> XD
+14:57 < slackbot> <kiang> https://help.github.com/articles/dmca-takedown-policy/ - 現在才知道有這個東西
+14:57 < kcwu> slackbot's url: [DMCA Takedown Policy - User Documentation]
+15:09 < slackbot> <clkao> poga: wow
+15:39 -!- Sean_Phone [~SeanPhone@114-44-177-253.dynamic.hinet.net] has left #g0v.tw []
+15:51 < pm5> XD
+16:17 < dirty> 致敬要能自己刻到這樣也不容易
+16:30 < caasihuang> 吃過一次，因為某個本來免費的字型要收費，作者到處發 DMCA takedown ，被當成重散佈 -_-b
+16:34 < superbil> g0v hackpad 掛掉很久了嗎?
+16:42 < amigola> hi
+16:46 < ipa> hi
+16:47 < superbil> hi
+16:48 < ipa> superbil: 講個秘訣來聽聽吧
+16:48 < ipa> hackpad 又掛囉 @@
+16:49 -!- chihchun_afk is now known as chihchun
+16:50 < tltd> hi
+16:50 < superbil> 就只有 g0v 這台是掛掉的，hackpad 還是好的喔
+16:52 < Lee1092> ipa: superbil  已經掛快兩天了
+16:53 < Lee1092> 目前 au 跟 kcwu 他們做得備份可以看  http://g0v.link/
+16:53 < kcwu> Lee1092's url: [g0v Hackpad Backup]
+16:54 < superbil> Lee1092: tks
+17:02 -!- seadog007_ is now known as seadog007
+17:07 < slackbot> <kiang> "有關您來信反映事項，您的寶貴意見本府非常重視，將錄案納入施政參考。" - 翻譯： 我不想理你了
+17:07 < slackbot> <seadog007> kiang: 不太意外吧XD
+17:08 < superbil> ipa: 我沒有什麼可以說阿 (爆
+17:51 < tonyq_____> au: 早知道就坐上去了，有話不能講
+17:52 < tonyq_____> 我是希望提醒他們，他們還是有機會用自己專業領導，只是要講出來，好好討論。
+17:53 < tonyq_____> 不需要否定自己來讓網路加入，而是公開競爭，不帶成見。
+18:00 -!- chihchun is now known as chihchun_afk
+20:45 < billy3321> tonyq_____: 其實我還是覺得，高來高去的文化要改變
+20:46 < billy3321> tonyq_____: 他們有很多專業，只要拿專業出來，相信鄉民都會推
+20:46 < billy3321> 也不要語焉不詳，直接把考量和想法都說出來
+20:50 < clkao> tonyq_____: 現在在講啥.. ?
+20:52 < au> 在講 QA 部份的一些討論，中等畫質再 10min 會上傳完
+20:52 < au> 高畫質等 macpaul 有空
+20:52 < miaoski> 忘了把阿美語萌典的 app 的版號設回 1.0.0 真是失策 :P 要從 5.4.5 開始跑了 :)
+20:53 < au> miaoski: fork 保留版號很棒啊
+20:53 < miaoski> 咦？這是常見做法嗎？
+20:53 < au> 至少 CSLD branch 是這樣做
+20:53 < miaoski> 可是我做完漢字查阿美語的部份，不得不進一版...
+20:54 < au> sure, 那就用 semver 精神做成 5.4.6 或 5.5.0 etc，等核心有大幅更動 (例如換到 hlb 的新版型) 再一起昇到 6.0.0 之類的
+20:55 < miaoski> 了解. 哇有 hlb 的新版型! 期待~~~!
+21:03 < clkao> 網軍聽得好煩喔
+21:04 < au> 真的，講一次糾正一次
+21:05 < slackbot> <yhsiang> 腦內設好 ignore 了 :stuck_out_tongue:
+21:05 < clkao> 考慮禮拜六第一張 "講網軍，表示你不懂；講婉君，表示你不懂裝懂"
+21:05 < au> ++
+21:06 < slackbot> <kiang> "婉君表妹" 需要正名（咦？）
+21:07 < clkao> 看一下 Ben Jai # https://www.youtube.com/watch?v=SwrKzkRUlaw&feature=youtu.be
+21:07 < kcwu> clkao's url: [0700/1200/1500/1800/1900/2000/2100/2130/2200/2300 udn tv新聞直播 - YouTube]
+21:11 < slackbot> <kiang> Ben Jai 不懂，因為講了網軍；UDN TV 不懂裝懂，因為字幕標婉君 XD
+21:13 < miaoski> au: 不太懂為什麼 cordova 就不會 call 到 decorate-nyms
+21:23 < au> miaoski: OK, 先開 issue? 我 release iOS 之前看看
+21:24 -!- sdlyu [dad227e8@gateway/web/cgi-irc/kiwiirc.com/ip.218.210.39.232] has left #g0v.tw []
+21:25 < miaoski> au: gulp build 然後 cp 到 moedict-app 後，呃，整個變得很像網頁版 ← 我猜這應該是正確的
+21:25 < miaoski> 所以先不要理我好了 ^^; 
+21:28 < kcwu> clkao++ 真的很煩
+21:32 < slackbot> <moon_c> 設計松多一張大使票<http://fr0ntend.kktix.cc/events/g0v-design>
+21:32 < kcwu> slackbot's url: [g0v-design 第零次設計松]
+21:57 < yhsiang> moon_c: wow
+22:06 < miaoski> au: 把 deps.js 從 moedict-webkit copy 進去後，更像網頁版了，不過「似」的問題就修好了。出 iOS 版時還是麻煩你幫忙看一下有沒有什麼不順眼的地方，感謝! :)
+22:07 < au> ok! miaoski++
+22:35 < au> tonyq_____: 被你 cue 的 QA 部份現在有網址了: https://www.youtube.com/watch?v=cyoNHHghwhY&t=21m30s
+22:35 < kcwu> au's url: [EY 虛擬世界研習會 第二場 QA (5/5) - YouTube]
+23:02 < clkao> 時境遊戲.... 新手村嗎
+23:02 < au> 確實聽起來意思就是 VR 新手村
+23:06 < slackbot> <t0mst0ne> au: 請問一下現在是否已經有 ethercal+hackfolder 的docker image ?
+23:07 < au> t0mst0ne: ethercalc 有 https://registry.hub.docker.com/u/audreyt/ethercalc/ 但 hackfoldr 1.0 / 2.0 似乎沒有，歡迎填坑寫 Dockerfile
+23:07 < kcwu> au's url: [audreyt/ethercalc Repository | Docker Hub Registry - Repositories of Docker Images]
+23:08 < au> 可以用 --name / --link 來連
+23:09 < au> ref. http://hackpad.g0v.link/G7idRJqbG3I
+23:09 < kcwu> au's url: [/683$G7idRJqbG3I]
+23:09 < slackbot> <hychen> kiang: 你反應什麼?
+23:12 < slackbot> <hychen> kiang: 刁民++
+23:13 < slackbot> <kiang> hychen: 我是熱心民眾 :wink:
+23:14 < slackbot> <hychen> kiang: 刁民聽起來比較威武
+23:15 < slackbot> <kiang> hychen: "臺南市政府工務局首頁-便民服務櫃台-表單下載-使用管理科-違章建築優先拆除清冊" 只看到 23 件，原本公佈的 263 件（備份： http://goo.gl/pJAxqf ）為什麼變成只剩下 23 件？最近連續發生違建失火造成人員傷亡的事件，試問接下來這 263 件因存在公安疑慮列管的違建再有意外傷亡傳出，誰要負責？
+23:15 < kcwu> slackbot's url: [Google Fusion Tables]
+23:17 < au> tonyq_____: 你 cue 的第二個是 https://www.youtube.com/watch?v=cyoNHHghwhY&t=48m00s ... 雖然表達方式比較直接，但是現場感覺是還好，而且趁機推廣立委投票指南接得還滿順的 XD
+23:17 < kcwu> au's url: [EY 虛擬世界研習會 第二場 QA (5/5) - YouTube]
+23:18 < slackbot> <t0mst0ne> au:  Thanks
+23:28 < clkao> 收到 hackpad new pads 通知 不過還是 GG

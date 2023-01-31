@@ -1,0 +1,818 @@
+--- Day changed 一  6月 17 2013
+00:06 -!- a-tsioh [~pierre@242.176.102.84.rev.sfr.net] has quit [Quit: WeeChat 0.3.8]
+00:30 -!- ymow [~Adium@1-171-59-35.dynamic.hinet.net] has joined #g0v.tw
+00:31 -!- poga [~poga@111-241-134-201.dynamic.hinet.net] has quit [Remote host closed the connection]
+00:35 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+00:37 < au> clkao: yeah it's a todo
+00:37 < au> clkao: commits welcome XD
+00:38 < clkao> ETODOFULL
+00:38 < clkao> au: seen latest ep on lqfb-test ?
+00:48 -!- clkao_kiwi [6ff0cb2d@gateway/web/cgi-irc/kiwiirc.com/ip.111.240.203.45] has joined #g0v.tw
+00:49 -!- clkao_kiwi [6ff0cb2d@gateway/web/cgi-irc/kiwiirc.com/ip.111.240.203.45] has quit [Client Quit]
+01:04 -!- hialan [~hialan@118-168-193-183.dynamic.hinet.net] has joined #g0v.tw
+01:04 < au> clkao: aye, very exciting
+01:13 -!- KNY [~Adium@118-170-73-42.dynamic.hinet.net] has quit [Quit: Leaving.]
+01:13 -!- KNY [~Adium@118-170-73-42.dynamic.hinet.net] has joined #g0v.tw
+01:18 < ETBlue> 議案底下的「對此關心的成員」和「人數」好像沒有差別... = =?
+01:18 -!- pm5_ [~pm5@111-248-207-138.dynamic.hinet.net] has joined #g0v.tw
+01:21 < clkao> ETBlue: 人數 應該是指此主題的參與人數？
+01:21 < clkao> http://lqfb-test.g0v.tw/pf/issue/show/10.html?tab=population
+01:21 < kcwu> clkao's url: [議案 #10 - 「動民主」 - g0v.tw]
+01:21 < clkao> ETBlue: 你不是回去工作了嗎..... XD
+01:22 < ETBlue> 噢噢，那是我抽中的議案剛好一致 orz
+01:22 < ETBlue> clkao: 沒辦法，看政府這麼努力賣台實在很焦慮...
+01:23 < clkao> ETBlue: 有看到我今天加上的 comment 嗎？
+01:23 < clkao> 德國海盜回信
+01:23 < ETBlue> 有 :D +++
+01:23 < ETBlue> 所以我們要跟進嗎
+01:24 < clkao> 所以... 要想想如果要套用到真正的廣泛參與要怎麼處理
+01:24 < clkao> 光 g0v 使用應該是沒差
+01:25 < ETBlue> 光就介面而言應該不會有什麼很大的更動就是了... 至於三次元世界的事情的話，可能 g0v 內部用一陣子之後大家就會冒出一堆想法來了 XD
+01:25  * clkao 剛寫信問 irccloud 能否提供類似 envolve.com web 介面的 irc 整合
+01:25 < clkao> ETBlue: 我想也是 到不急 ;)
+01:26 < clkao> 反正先了解實際廣泛使用可能會遇到的問題 如果現階段有人要用的話 也讓他們知道一下
+01:26 -!- KNY [~Adium@118-170-73-42.dynamic.hinet.net] has quit [Quit: Leaving.]
+01:28 < ETBlue> 挖那個網站內的聊天室.... 可以一邊用動民主一邊全站聊天的意思嗎 XD
+01:28 < clkao> au: do you know any irc bouncer / web ui integration?  i was thinking about znc + massively hacked kiwichat if none available
+01:28 < clkao> ETBlue: yes, also on hack.g0v.tw
+01:29 < clkao> ETBlue: 要加全部聊天很容易，只是若要和 irc 整合 (不想改變自己的習慣) 然後還要提供別人 offline message/log 就比較費事.
+01:31 < ETBlue> 加全站聊天很容易... =3= 這種事情對我來說完全無法想像 =3= =3= 會寫程式真好 =3= =3= =3=
+01:32 < clkao> ETBlue: envolve 加下去就有啦 :P 應該還有很多現成 solution
+01:33 < ETBlue> 那聊天功能也可以私訊 O_O 一上去就被邀請，而且都是一堆看不懂的文字... 看來是印度人做的 @@"
+01:34 < clkao> 那個公司已經變成 firebase 了 :p
+01:38 < ETBlue> ?!?!!?
+01:39 < ETBlue> 是使用 firebase 還是幹出 firebase
+01:39 < clkao> 幹出 firebase
+01:39 < ETBlue> .....
+01:39 < ETBlue> 會寫程式真好 =3= =3= =3=
+01:39 < ETBlue> 原來要參與主題才會計入人數
+01:40 < ETBlue> 不參與主題只關心議案的話不會計入人數...
+01:40 < clkao> right. 應該那個人數就是提案門檻的基數
+01:42 < ETBlue> 喔喔喔，如果不是「人數」內的人即使關心該議題也不會計入「關心此議題的成員」
+01:42 < ETBlue> 關心此議題的成員 <= 人數
+01:43 < ETBlue> 這樣好像可以翻譯成「關心此議題的成員」和「成員」
+01:43 < ETBlue> u有子集合的感覺...
+01:45 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+01:45 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+01:45 < clkao> ETBlue: 不過這個又不同：http://lqfb-test.g0v.tw/pf/issue/show/9.html?tab=population
+01:45 < kcwu> clkao's url: [議案 #9 - 「動民主」 - g0v.tw]
+01:45 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+01:45 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+01:46 < clkao> ETBlue: 好像底定後，會重新計算？不大確定
+01:48 < ETBlue> 這個的「關心」比「人數」少了pomin，不過應該還是子集合的樣子...
+01:54 < clkao> ETBlue: 應該是說，有參與此主題的人，就自動記人數
+01:54 < clkao> 所以 人數 = 關心者 Union 參與者題者
+01:55 < ETBlue> 我剛才退出主題，然後按關心議題，結果他不把我算在關心人數... 還是他會慢一點才更新？
+01:55 < clkao> 要等一會
+01:55 < ETBlue> 噢噢
+01:55 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+01:55 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+02:02 -!- caasiHuang [~caasi@114-46-159-151.dynamic.hinet.net] has joined #g0v.tw
+02:13 < ETBlue> 議案底下的 meta 區目前整理成這樣 https://picasaweb.google.com/110174937980629662857/G0v#5890144702714475794
+02:13 < kcwu> ETBlue's url: [Picasa Web Albums - ET Blue - g0v]
+02:14 < ETBlue> 這東西簡直比跟我家客廳一樣難整理... orz
+02:19 < caasiHuang> 晚安，想問問[潛在直接指的是？
+02:19 < caasiHuang> 囧，還沒打完「」
+02:20 -!- hychen [~hychen@host-219-68-120-150.dynamic.kbtelecom.net] has joined #g0v.tw
+02:21 < au> caasiHuang: 看起來是 直接支持者人數 扣掉 表示滿意的直接支持者人數
+02:22 < au> 所以就是說，也許支持這個方案，但是有提建議，或覺得某個建議應該採納，但未被採納，的人數　
+02:23 < au> 以及覺得某個建議不應該採納，卻覺得被採納，的人
+02:23 < clkao> 原來有鍵盤革命活動：http://woundero.wordpress.com/tag/%E9%8D%B5%E7%9B%A4%E9%9D%A9%E5%91%BD/
+02:23 < kcwu> clkao's url: [鍵盤革命 | WO! 世界需要一個驚嘆！]
+02:23 < clkao> 不知道有沒有什麼實際產出... 
+02:23 < au> 總之就是直接關心，但在「建議」感覺 :( 的人數
+02:23 < au> .
+02:24 < caasiHuang> au: 謝謝，來去順著您的邏輯再看一次XD
+02:24 < ETBlue> 「潛在直接」跟方案的「可能支持者」是一樣的東西嗎 @@
+02:25 < au> 可能支持者 = 「潛在直接」 + 「潛在間接」 的樣子
+02:26 < au> 所以 potential 既翻成「可能」又翻成「潛在」怪怪的 @@
+02:26 < au> https://github.com/g0v/liquid_feedback_frontend/blob/master-pirate/app/main/initiative/_list_element.lua#L132 <- code
+02:26 < kcwu> au's url: [liquid_feedback_frontend/app/main/initiative/_list_element.lua at master-pirate · g0v/liquid_feedback_frontend · GitHub]
+02:31 < caasiHuang> 以這個案子來說： http://lqfb-test.g0v.tw/pf/initiative/show/1.html
+02:31 < kcwu> caasiHuang's url: [邀請 hcchien 為 COSCUP 2013 g0v.tw 社群議程主持人 - 方案 i1 - 「動民主」 - g0v.tw]
+02:31 < caasiHuang> 支持建議 cool 和 無意義建議的人共有三人，就算直接支持，而沒有表態的就是潛在直接囉？
+02:32 < clkao> ETBlue: 對了, issue structure 應該要加一個東西，看如何表達: 方案修改後，原支持的人會被 mark 說尚未支持最新的版本
+02:32 < au> caasiHuang: 似乎是這樣沒錯。
+02:33 < clkao> 可能上面「表態」左邊要再加上一個「再表態」...  表態後可能可做的動作 (撤回等等)
+02:34 < caasiHuang> au: 瞭解XD
+02:34 < au> caasiHuang: 「可能直接」會不會比較好懂？
+02:35 < clkao> ETBlue: 剛好這個 i1 就有... hychen 是「尚未同意最後草案」
+02:37 < caasiHuang> au: 刻意標出直接二字是為了與委託的支持做區別嗎？
+02:37 -!- pm5_ [~pm5@111-248-207-138.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+02:37 < au> 對，委託就是間接了
+02:38 < ETBlue> clkao: 理解，原來是這個意思...「尚未同意最後草」==「尚未同意更新後的草案」
+02:38 < au> fixed
+02:40 < au> pushed
+02:41 < caasiHuang> 也就是說有著「可能/潛在間接支持」...
+02:41 < au> 有的
+02:41 < au> 就是我沒有參加討論，但我的委託人（之一）有
+02:41 < au> 而委託人是「可能直接支持者」時
+02:42 < au> 我就是「可能間接支持者」
+02:43 < caasiHuang> <--國文不好XD 在苦惱要是寫得很白話是好事還是壞事。
+02:44 < au> 好事
+02:48 < caasiHuang>  3 個人直接支持 / 1 個人可能直接支持 / 3 個人不支持 XD
+02:52 < clkao> 那個「不支持」 好像應該「未支持」比較中性
+02:54 < clkao> (因為有可能是主題參與者 然後尚未挑選方案)
+02:56 < caasiHuang> 啊，現在那個格式是受限於本來的 Supporters: 3 direct / 1 indirect / 0 not ？
+02:57 < caasiHuang> clkao: 喔喔，對，剛剛看說明才知道不表態也就是不支持
+02:57 < au> caasiHuang, clkao: implemented, pushed
+02:57 < caasiHuang> au++ <(_"_)>
+02:58 < au> caasiHuang++ # 白話
+03:00 < clkao> deployed
+03:01 < au> haibulized
+03:02 < au> tooltip 也改成 ETBlue 建議的「成員尚未同意更新後的草案」了。
+03:05 < clkao> 修了那個 member list 亂七八糟的 css
+03:09 < caasiHuang> 3 未支持 -> 3 個人未支持，還是說「 3 個未支持」這樣比較順？（自己讀到好幾個「人」也覺得饒口XDD
+03:09 < caasiHuang> 畢竟前面有個「支持者:」
+03:10 < caasiHuang> 另外關於翻譯若有其它建議，我是不是該去發 issue 較好，在這邊直接講好像不太正式 0rz
+03:10 < au> 3 位直接支持 / 1 位可能直接支持 / 3 位未支持
+03:10  * caasiHuang 覺得自己僭越了
+03:10 < au> 剛好在線上就 irc 很好啊
+03:10 < au> 是沒人在，又需要討論，再發 issue
+03:11 < caasiHuang> au++ #新翻譯
+03:11 < caasiHuang> 瞭解XD
+03:12 < au> pushed
+03:14 < clkao> caasiHuang++
+03:27 < caasiHuang> 看了一下 META ，想起小時候有個無殼蝸牛運動，查了一下， 1989 ，已加上去XD
+03:34 < caasiHuang> 先睡，大家晚安
+03:35 -!- caasiHuang [~caasi@114-46-159-151.dynamic.hinet.net] has quit [Quit: leaving]
+03:36 < au> 寫了信問教育部客語典的四個缺字... 明天再把「⿰足百」、「⿸疒哥」、「⿰亻恩」、「⿰虫念」、「⿺皮卜」從 HanaMinA 造出來，就可以釋出，專心弄界面改版了
+03:36 < au> -> zzz &
+03:38 < ETBlue> http://hack.g0v.tw/meta/1j1nYidSBjPKDKChhOELIiVJTooDpkPQ0VWL2ws3-PgM ... = =
+03:41  * ETBlue 冒煙
+03:43 -!- pm5 [~pm5@111-248-207-138.dynamic.hinet.net] has joined #g0v.tw
+03:48 -!- pm5 [~pm5@111-248-207-138.dynamic.hinet.net] has quit [Ping timeout: 268 seconds]
+03:51 -!- hychen [~hychen@host-219-68-120-150.dynamic.kbtelecom.net] has quit [Quit: 暫離]
+04:01 -!- caasiHuang [~caasi@114-46-159-151.dynamic.hinet.net] has joined #g0v.tw
+04:01 < caasiHuang> ETBlue++
+04:01 < ETBlue> 你還沒睡啊囧
+04:02 < caasiHuang> 和友人提到亞太營運中心XD
+04:02 < ETBlue> = =b ... 我要搶先去睡了 XD
+04:04 < caasiHuang> 晚安<(_"_)>
+04:04 -!- caasiHuang [~caasi@114-46-159-151.dynamic.hinet.net] has quit [Client Quit]
+04:18 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+04:19 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+05:17 -!- juanna_ [~juanna@114-43-109-123.dynamic.hinet.net] has joined #g0v.tw
+05:20 -!- juanna [~juanna@114-37-111-134.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+05:23 -!- Guest90497 [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 256 seconds]
+05:24 -!- ubuntu [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+05:24 -!- ubuntu is now known as Guest16094
+08:04 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has quit [Read error: Connection reset by peer]
+08:12 -!- BCN [~quassel@2605:6400:2:fed5:22:0:8f1e:7c79] has joined #g0v.tw
+08:17 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+08:18 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+08:19 -!- poga [~poga@1-171-105-141.dynamic.hinet.net] has joined #g0v.tw
+08:43 -!- clifflu [~clifflu@114-32-21-207.HINET-IP.hinet.net] has joined #g0v.tw
+09:04 -!- pcchen [~pcchen@cmt.phys.nthu.edu.tw] has quit [Quit: leaving]
+09:06 -!- LittleQNCCU [~littleq@dream.cs.nccu.edu.tw] has quit [Remote host closed the connection]
+09:16 -!- MnO2 [~MnO2@nat/yahoo/x-thcnrmzgcaujrycb] has joined #g0v.tw
+09:18 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has joined #g0v.tw
+09:33 -!- water [~water@220-128-216-206.HINET-IP.hinet.net] has joined #g0v.tw
+09:33 -!- water [~water@220-128-216-206.HINET-IP.hinet.net] has left #g0v.tw []
+09:47 -!- superbil_ [3cfbd182@gateway/web/freenode/ip.60.251.209.130] has joined #g0v.tw
+09:51 -!- pm5 [~pm5@111-248-207-138.dynamic.hinet.net] has joined #g0v.tw
+09:53 < kcwu> 疑, github 可以直接顯示 geojson 檔案 https://github.com/mikelmaron/kenya-election-data/blob/master/data/constituencies.geojson
+09:53 < kcwu> kcwu's url: [kenya-election-data/data/constituencies.geojson at master · mikelmaron/kenya-election-data · GitHub]
+09:54 < kcwu> ronnywang: FYI
+09:54 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+09:55 -!- zealancer [b90057@140.112.30.32] has joined #g0v.tw
+09:55 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+09:55 -!- ch0upi_bsd [r96006@140.112.30.32] has joined #g0v.tw
+09:56 -!- bafu [~bafu@111.80.229.129] has joined #g0v.tw
+09:57 < edwardc> cool # 09:53 < kcwu> 疑, github 可以直接顯示 geojson 檔案
+09:58 < edwardc> 來研究一下 geojson
+10:06 -!- inksafari [~karin@111-243-110-77.dynamic.hinet.net] has joined #g0v.tw
+10:07 -!- inksafari [~karin@111-243-110-77.dynamic.hinet.net] has left #g0v.tw []
+10:10 < clkao> g0v/twgeojson 要改一下副檔名 :p
+10:10 < clkao> 不過 geojson 超肥的啊 不知何時會支援 topojson
+10:11 < ronnywang> kcwu: good! # 09:53 < kcwu> 疑, github 可以直接顯示 geojson 檔案
+10:12 < clkao> ronnywang: 結果國土測繪中心說修邊界不連續要先釐清問題造冊云云就沒下文了... zzz
+10:13 < clkao> edwardc: 有玩過 grass 嗎？
+10:20 < Jcrt> au: 萌典規劃中的新介面，哪邊可以看得到啊？
+10:20  * Jcrt 覺得現在要辨認正在使用國/台/客有點不直覺
+10:35 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+10:36 < clkao> ddio!
+10:36 < ddio> XD  你好
+10:37 < ddio> 該上班了 T___T
+10:50 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+11:03 -!- pcchen_ [~pcchen@ec2-54-248-90-227.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+11:09 -!- KNY [~Adium@118-170-73-42.dynamic.hinet.net] has joined #g0v.tw
+11:13 -!- cataska [~cataska@210.64.6.233] has quit [Ping timeout: 245 seconds]
+11:14 < ipa> 好多功課要作，遭到上週g0v鋒面過境影響delay # 引ETblue之語
+11:18 -!- hychen [~hychen@114-32-21-24.HINET-IP.hinet.net] has joined #g0v.tw
+11:36 -!- hychen [~hychen@114-32-21-24.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+11:42 -!- hychen [~hychen@114-32-21-24.HINET-IP.hinet.net] has joined #g0v.tw
+11:46 -!- poga [~poga@1-171-105-141.dynamic.hinet.net] has quit [Remote host closed the connection]
+11:47 -!- chihchun_afk is now known as chihchun
+11:47 -!- hychen [~hychen@114-32-21-24.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+11:49 -!- hychen [~hychen@114-32-21-24.HINET-IP.hinet.net] has joined #g0v.tw
+11:54 -!- hychen [~hychen@114-32-21-24.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+11:56 < ETBlue> 用下面那張表的格式好像比較好理解 http://hack.g0v.tw/meta/1j1nYidSBjPKDKChhOELIiVJTooDpkPQ0VWL2ws3-PgM
+11:59 < ETBlue> github 好威... O_O  # 09:53 < kcwu> 疑, github 可以直接顯示 geojson 檔案
+12:00 < ETBlue> ipa: 受災戶（握
+12:00 < ETBlue> Jcrt: 萌典介面... 好像也可以呼叫 hlb XD
+12:09 < clkao> ETBlue: 太威了
+12:10 -!- pm5 [~pm5@111-248-207-138.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+12:10 < clkao> "動民主" 已經出現在 google 第一頁了
+12:11 < ETBlue> 該說它是個冷門詞彙嗎 XD
+12:13 < ipa> 冷門新創 XD
+12:13 < ipa> ETBlue++ # delegation structure
+12:19 < ETBlue> ipa: 你覺得下面那張改這樣好不好懂 ^^b
+12:20 < ETBlue> 建議好像只在投票之前才有這東西...
+12:20 < ETBlue> （印象中）
+12:23 -!- KNY [~Adium@118-170-73-42.dynamic.hinet.net] has quit [Quit: Leaving.]
+12:28 -!- chihchun is now known as chihchun_afk
+12:30 < ETBlue> 好了，應該不會再改了 XD
+12:34 -!- cataska [~cataska@210.64.6.233] has joined #g0v.tw
+12:37 < clkao> ETBlue: 我改了一些詞彙
+12:39 < clkao> 突然發現其實「代理」跟 delegate 音近似 
+12:39 < clkao> (如果是日本人就會把 delegate 簡稱 dele 吧 :P)
+12:42 < ETBlue> 真的很像 XD
+12:43 < clkao> 到底要受託人 還是 受委託人 還是 代理人呢
+12:44 < ETBlue> 又要使用動民主的力量來決定了嗎
+12:45 < ETBlue> 找一些新來的白老鼠，問他們哪種比較好懂？XD
+12:47 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+12:48 < edwardc> clkao: yes
+12:48 < edwardc> clkao: yes # 10:13 < clkao> edwardc: 有玩過 grass 嗎？
+12:48 < clkao> edwardc: !!! 那 vclean 就交給你了!
+12:49 < edwardc> 囧~ GRASS 很慢阿
+12:49 < clkao> edwardc: grass 好像有個 plugin 可以自動組合不同 feature 鄰近的 node
+12:49 < clkao> 但只要作一次啊 :P
+12:49 < clkao> 我上次不知為何一直爛掉
+12:49 < hlb> Jcrt: 喵
+12:49 < hlb> Jcrt: # http://moe.hlb.the-hold.handlino.com/ 好忙好忙好忙，停了一陣子
+12:49 < kcwu> hlb's url: [3du.tw 萌典測試版]
+12:49 < edwardc> clkao: 你的需求是 ?
+12:50 < clkao> edwardc: https://github.com/g0v/twgeojson/tree/master/raw
+12:50 < kcwu> clkao's url: [twgeojson/raw at master · g0v/twgeojson · GitHub]
+12:50 < clkao> edwardc: 這個檔是村里界 但是有很多不連續的邊界
+12:51 < clkao> ie 相鄰的村里但 border node 彼此不完全 share
+12:51 < edwardc> humm
+12:52 < clkao> edwardc: 我查到是有個  v.clean.snap 的功能可以自動修
+12:53 < clkao> edwardc: https://gist.github.com/clkao/5468139 # 7
+12:53 < kcwu> clkao's url: [「全國村里界圖（台澎金馬）-經緯度/TW-07-301000100G-613995」修正]
+12:53 < clkao> https://dl.dropboxusercontent.com/u/30657009/twgeo/tw-exterior.png 應該是只顯示島嶼邊邊 內地有顯示的都是有問題的邊界
+12:55 < edwardc> 我看看 FME 能不能做到
+13:00 < clkao> edwardc++
+13:00 < clkao> 突然發現旺中 comment 變成 disqus
+13:01 -!- chihchun_afk is now known as chihchun
+13:01 < clkao> 不過最好還是能變成 script, 用 open source 的東西重現.. 不然 upstream release 新圖資又 GG 了.. 
+13:12 < edwardc> got it
+13:19 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 248 seconds]
+13:20 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+13:25 < Jcrt> hlb++ 清楚多了！
+13:26 < Jcrt> 啊不過切換語言變成要點兩次，舊介面是一次……
+13:26 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+13:27 -!- hychen [~hychen@114-32-21-24.HINET-IP.hinet.net] has joined #g0v.tw
+13:29 -!- pm5_ [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+13:29 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+13:32 -!- hychen [~hychen@114-32-21-24.HINET-IP.hinet.net] has quit [Ping timeout: 268 seconds]
+13:34 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 264 seconds]
+13:36 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+13:37 -!- Goddamn [~goddamn@218-161-44-5.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+13:41 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+13:42 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+13:44 -!- hychen [~hychen@42-70-252-182.dynamic-ip.hinet.net] has joined #g0v.tw
+13:45 -!- MnO2 [~MnO2@nat/yahoo/x-thcnrmzgcaujrycb] has quit [Quit: MnO2]
+13:46 < hlb> Jcrt: 有這麼需要切換嗎 ;p
+13:47 -!- MnO2 [~MnO2@nat/yahoo/x-qvyliyrqffohpwbg] has joined #g0v.tw
+13:47 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+13:48 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 268 seconds]
+13:52 -!- ymow [~Adium@1-171-59-35.dynamic.hinet.net] has quit [Quit: Leaving.]
+13:52 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+13:52 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+13:54 -!- ymow [~Adium@1-171-171-231.dynamic.hinet.net] has joined #g0v.tw
+13:57 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+13:58 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+14:00 -!- pm5_ [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+14:03 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 264 seconds]
+14:03 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+14:06 -!- ck [~ck@111.235.248.220] has joined #g0v.tw
+14:09 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+14:09 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+14:13 < hychen> superbil, 我把pgrest設好了
+14:14 < hychen> superbil, 下載source code, cd cookbooks/kuansim, 然後vagrant up
+14:14 < hychen> superbil, restful server 會 開在 localhost:6987, 就可用curl去做操作
+14:15 -!- KNY [~Adium@118-170-73-42.dynamic.hinet.net] has joined #g0v.tw
+14:15 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+14:15 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+14:21 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+14:21 -!- Zespre [~starbops@140.113.123.194] has joined #g0v.tw
+14:27 -!- Zespre [~starbops@140.113.123.194] has quit [Ping timeout: 252 seconds]
+14:27 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+14:28 -!- chihchun is now known as chihchun_afk
+14:32 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+14:32 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+14:34 -!- pm5_ [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+14:35 -!- chihchun_afk is now known as chihchun
+14:37 -!- bafu_ [~bafu@175.41.48.77] has joined #g0v.tw
+14:37 -!- bafu [~bafu@111.80.229.129] has quit [Ping timeout: 240 seconds]
+14:38 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+14:39 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+14:44 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+14:46 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+14:51 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+14:52 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+14:54 < Jcrt> hlb: demo 給不知道的人看時很需要切換耶
+14:58 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+14:58 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+15:03 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 248 seconds]
+15:03 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+15:08 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+15:08 -!- pm5_ [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+15:09 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+15:14 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+15:14 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 264 seconds]
+15:14 < Jcrt> hlb: 就是希望在推廣介紹時，也可以很方便的去 demo 國/台/客～
+15:19 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+15:19 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+15:24 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 248 seconds]
+15:24 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+15:26 < superbil_> hychen: cool, 我今天晚上有空就試試看
+15:27 < hychen> clkao, 我昨天把有打patch的g0v box上傳了
+15:27 < clkao> (!)
+15:27 < clkao> 我要如何 update?
+15:27 < hychen> 從抓? 
+15:28 < clkao> just vox add again?
+15:28 < clkao> vbox
+15:28 < hychen> yes
+15:28 < hychen> 如果vagrantfile裡面有寫box url
+15:28 < hychen> 他會自己幫你抓
+15:28 < hychen> 你只要把原來的砍掉就好
+15:29 < hychen> https://github.com/g0v/kuansim/tree/develop/cookbooks/kuansim
+15:29 < kcwu> hychen's url: [kuansim/cookbooks/kuansim at develop · g0v/kuansim · GitHub]
+15:29 < clkao> k
+15:29 < clkao> hychen++
+15:29 < hychen> 用berkshelf 可以直接產生cookbook 
+15:29 < hychen> 好好用啊 XD
+15:29 < clkao> 就是啊
+15:29 < clkao> 超爽的
+15:30 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 248 seconds]
+15:30 < hychen> 昨天踩到upstart的問題..
+15:30 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+15:30 < hychen> 找時間再來把service用init從寫
+15:30 -!- hychen [~hychen@42-70-252-182.dynamic-ip.hinet.net] has quit [Quit: 暫離]
+15:30 -!- hychen [~hychen@42-70-252-182.dynamic-ip.hinet.net] has joined #g0v.tw
+15:31 < clkao> hychen: 我通常都用 runit
+15:31 < hychen> clkao, got it
+15:31 < clkao> hychen: runit_service 什麼的 直接定義
+15:31 < clkao> (in chef)
+15:31 < hychen> 我好像忘了裝 sass 跟 compass ... orz
+15:31 < hychen> 晚上重傳一次 XD
+15:32 -!- KNY [~Adium@118-170-73-42.dynamic.hinet.net] has quit [Quit: Leaving.]
+15:32 -!- KNY [~Adium@118-170-73-42.dynamic.hinet.net] has joined #g0v.tw
+15:35 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+15:36 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 276 seconds]
+15:41 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 246 seconds]
+15:42 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+15:46 -!- ltroot [~ltroot@140.127.182.55] has quit [Ping timeout: 248 seconds]
+15:46 -!- ltroot [~ltroot@140.127.182.55] has joined #g0v.tw
+15:52 -!- ck [~ck@111.235.248.220] has quit [Remote host closed the connection]
+15:55 -!- ltroot [~ltroot@140.127.182.55] has quit [Ping timeout: 276 seconds]
+16:01 -!- ltroot [~ltroot@140.127.182.55] has joined #g0v.tw
+16:04 < clkao> hychen: 如果非 vagrant 的話，你用什麼跑 berkshelf manage 的 cookbook?
+16:05 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+16:11 < ETBlue> 動民主系統內部的行為真是太複雜了，複雜到... 我最好把介面弄得看起來很無腦，不然應該很難推廣得出去 orz
+16:12 < hychen> clkao, 我目前都用vagrant耶
+16:12 < hychen> 還沒用到deploy
+16:13 < clkao> 今天看到的不動民主：http://www.facebook.com/questions/418171871615333/?qa_ref=qd
+16:13 < kcwu> clkao's url: [Facebook]
+16:15 < clkao> hychen: 我之前都是用 little-chef... 不過總覺得應該有更好的選擇
+16:16 < hychen> clkao, 我還沒需要到deploy的階段
+16:16 < hychen> clkao, 所以我也不曉得
+16:16 < hychen> clkao, little-chef的缺點是?
+16:16 < clkao> 好吧 反正到時候就知道了 :p
+16:17 < clkao> 就跟 berkshelf 搭的話，可能要先 berkshelf export 一次 cookbook, 再去 call little-chef
+16:27 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 246 seconds]
+16:27 < ETBlue> 那個不動民主...... 字數有限制 QAQ
+16:27 < ETBlue> 新增一個選項打字到他不給我打 orz
+16:28 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+16:29 < ETBlue> facebook 不適合囉唆的人 = =bbb
+16:30 < Jcrt> 還蠻想知道動民主那複雜的介面，到底是有什麼需求造成的……
+16:31 < ddio> 應該是因為海盜黨想要搞複合式的直接民主？
+16:32 < ETBlue> 應該只是很直觀的把議事功能攤開，沒有在 ui 花太多心思 = =b
+16:32 < ETBlue> 如果facebook 的功能全部照這樣攤開的話應該也會很壯觀..
+16:37 < hychen> clkao, little-chef跟chef-solo插在哪?
+16:39 < clkao> hychen: little-chef = rsync + remote chef-solo
+16:40 < hychen> got it
+16:40 < clkao> Jcrt: 應該是說每個選項在能被投票前都要能被充分討論
+16:40 < clkao> Jcrt: 「建議」是 lqfb 就有的。正反方論點是 pirate feedback 加上去的
+16:44 -!- testingtesting [8c6d878a@gateway/web/freenode/ip.140.109.135.138] has joined #g0v.tw
+16:45 -!- testingtesting [8c6d878a@gateway/web/freenode/ip.140.109.135.138] has quit [Client Quit]
+16:49 < hychen> clkao, 也許直接把berkshelf嵌到little-chef?
+16:52 -!- KNY [~Adium@118-170-73-42.dynamic.hinet.net] has quit [Quit: Leaving.]
+16:57 < ipa> ddio 會作前端，對lqfb有興趣，有無坑可推？
+16:59 < ddio> 嘿嘿，好哇，只是我要先玩一下，之前都覺得好複雜就逃跑了
+17:04 < ipa> 先看ETblue畫的各種圖吧 http://hack.g0v.tw/meta/1DKMTYJMAGso-1_UOzgN_MEHCIgOD9DSNzsBVyTHszEI
+17:04 < ipa> ETblue是lqfb魔人 
+17:05 < clkao> 增加 bus number
+17:07 < ETBlue> ddio: 順便來探討新版介面的易用性以及在前端實做之可能性 XD https://picasaweb.google.com/110174937980629662857/G0v#5890144644748902322
+17:07 < kcwu> ETBlue's url: [Picasa Web Albums - ET Blue - g0v]
+17:07 -!- caasiHuang_ [3b7ec26c@gateway/web/freenode/ip.59.126.194.108] has joined #g0v.tw
+17:08 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 246 seconds]
+17:08 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+17:08 < caasiHuang_> 昨天本來不懂為啥動民主長那個樣子，結果查到這個：http://blog.jochmann.me/post/35834118306/liquid-democracy-video-explanation-simple-terms （後知後覺
+17:08 < kcwu> caasiHuang_'s url: [Meaning in Communication | I consider explainy videos a particular genre of...]
+17:09 < caasiHuang_> 然後 ETBlue 的圖又讓我想到能力範圍外的事情了：離線單機版的動民主教學？
+17:12 < ipa> explainy video++
+17:13 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+17:14 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 276 seconds]
+17:18 < ipa> caasiHuang_++ 
+17:19 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+17:20 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+17:21 -!- caasiHuang_ [3b7ec26c@gateway/web/freenode/ip.59.126.194.108] has quit [Quit: Page closed]
+17:24 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+17:25 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+17:25 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+17:26 < clkao> clifflu: url not working
+17:27 < clifflu> clkao: ok, will fix it later. 本想翻成三篇，現在想一篇搞定
+17:28 < clifflu> 看來 wordpress preview 有檢查 auth；我等編完再貼上 Evernote 
+17:30 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+17:31 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+17:35 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 248 seconds]
+17:35 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+17:40 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 248 seconds]
+17:41 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+17:46 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+17:48 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+17:54 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+17:54 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+17:57 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+18:00 < ETBlue> ddio: 這樣有幫助理解嗎？ http://hack.g0v.tw/meta/1RoeOCTJLIHI2zNKECc19ebu6FSgZB8blEx9a7BdBvYs
+18:00 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+18:00 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+18:00 < ETBlue> （議案的生命週期）
+18:05 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+18:06 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+18:08 < ddio> 議案的生命週期很清楚呀～  不管是對用的人還是要開發的人
+18:09 < ETBlue> issue filters / issue structure / behavior 這三份是設計 ui 的人為了理解系統而做的筆記式圖表，issue live cycle 則是為了讓使用者瞭解使用方式而做的說明式圖表
+18:10 < ddio> 我自己覺得複雜，主要是界面 + 真的只看了幾眼，也不是針對現在這版，印象中 g0v 剛開始的時候就有在講 liquid feedback ?
+18:10 < ETBlue> anyone can edit! XD
+18:10 < ETBlue> 對壓現在變成 pirate feedback
+18:10 < ETBlue> 但大同小異
+18:11 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+18:13 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+18:19 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+18:19 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+18:21 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has quit [Quit: Leaving.]
+18:25 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+18:26 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+18:31 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+18:33 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+18:35 -!- superbil_ [3cfbd182@gateway/web/freenode/ip.60.251.209.130] has quit [Quit: Page closed]
+18:38 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+18:39 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 268 seconds]
+18:44 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+18:44 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 264 seconds]
+18:46 -!- bafu_ [~bafu@175.41.48.77] has quit [Ping timeout: 276 seconds]
+18:49 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+18:50 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+18:51 < caasiHuang> ETBlue++
+18:53 -!- hychen [~hychen@42-70-252-182.dynamic-ip.hinet.net] has quit [Ping timeout: 240 seconds]
+18:53 < caasiHuang> 說到介面，第一次用時，不知道怎麼委託給別人。
+18:54 < caasiHuang> 另外編輯區與說明佔據了幾乎整個畫面。
+18:54 < caasiHuang> 可憐的 1280*800 還得往下捲動一下。
+18:55 < caasiHuang> 好奇這是刻意這樣設計的嗎？為了讓使用者能好好讀過後再操作。
+18:55 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+18:57 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+19:02 -!- MnO2 [~MnO2@nat/yahoo/x-qvyliyrqffohpwbg] has quit [Quit: MnO2]
+19:03 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+19:05 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has quit [Quit: leaving]
+19:05 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+19:06 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+19:07 -!- chihchun is now known as chihchun_afk
+19:10 -!- MnO2 [~MnO2@nat/yahoo/x-odlqzzuchfqtytqg] has joined #g0v.tw
+19:10 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+19:11 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 248 seconds]
+19:13 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+19:15 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+19:15 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+19:16 -!- MnO2 [~MnO2@nat/yahoo/x-odlqzzuchfqtytqg] has quit [Quit: MnO2]
+19:20 -!- ymow [~Adium@1-171-171-231.dynamic.hinet.net] has quit [Quit: Leaving.]
+19:20 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+19:21 -!- Zespre [~starbops@140.113.123.194] has joined #g0v.tw
+19:21 -!- ymow [~Adium@1-171-170-135.dynamic.hinet.net] has joined #g0v.tw
+19:22 < ETBlue> 可能因為一堆人反映介面看不懂所以後來加上去的吧... XD
+19:26 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+19:26 -!- Zespre [~starbops@140.113.123.194] has quit [Ping timeout: 246 seconds]
+19:29 -!- ymow [~Adium@1-171-170-135.dynamic.hinet.net] has quit [Quit: Leaving.]
+19:30 -!- ymow [~Adium@1-171-62-25.dynamic.hinet.net] has joined #g0v.tw
+19:31 < ymow> 我也是研究了很久才覺得好像是這樣委託給別人
+19:31 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+19:32 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+19:33 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+19:38 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+19:38 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+19:43 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+19:44 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+19:45 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 256 seconds]
+19:49 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+19:49 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+19:53 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+19:54 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+19:54 -!- pm5_ [~pm5@60.245.65.182] has joined #g0v.tw
+19:55 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+19:59 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+20:00 -!- Zespre [~starbops@140.113.123.194] has joined #g0v.tw
+20:04 -!- Zespre [~starbops@140.113.123.194] has quit [Ping timeout: 246 seconds]
+20:05 -!- pm5_ [~pm5@60.245.65.182] has quit [Ping timeout: 240 seconds]
+20:05 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+20:10 -!- KNY [~Adium@118-170-73-42.dynamic.hinet.net] has joined #g0v.tw
+20:10 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+20:10 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+20:11 < ipa> 交大宿舍網路不穩？XD
+20:14 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+20:15 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 248 seconds]
+20:16 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+20:21 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+20:22 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 268 seconds]
+20:24 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 264 seconds]
+20:24 -!- ipa [~ipa@59-126-64-204.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+20:24 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+20:24 -!- Jcrt [~Jcrt@ec2-54-248-221-251.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 264 seconds]
+20:24 -!- Jcrt [~Jcrt@ec2-54-248-221-251.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+20:25 -!- ipa [~ipa@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+20:26 < clkao> n
+20:26 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+20:26 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+20:27 < clkao> ETBlue: 現在在想到底是砍掉重練 ui 還是從現有的 lua based 改... ><
+20:28 < clifflu> clkao: 整套重寫吧! 造輪子是工程師的天職
+20:28 < clkao> 尤其是原來的輪子是方的時候... 
+20:29 < clifflu> 要用 php or python 重寫的話加我一票 XD
+20:29 < ETBlue> 砍掉重練的意思是可以脫離 lua 嗎 @@
+20:30 < ETBlue> 疑，意思是說那些系統運作邏輯要重新自己寫一遍？
+20:30 < clkao> 方案一: 把現有的 html 結構調整成 css 可變出 ETBlue mockup 的樣子
+20:30 < ETBlue> 這是金字塔等級的工程... XD
+20:31 < clkao> 好處事開發過程中都還有東西可用
+20:31 < clkao> 不會砍掉重練到一半做不完最後兩頭空
+20:31 < ETBlue> 的確
+20:31 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+20:32 < clkao> 方案二: 砍掉重練。但是可以保持原來的 url 結構，也許改版好的就 hijack 到新版？還沒動的就 fallback 到原來 lua
+20:32 < clkao> ETBlue: 大部分邏輯他都是在 pg 層了
+20:32 < ETBlue> pg 是什麼
+20:32 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+20:32 < clkao> 所以只要對 db table 作存取 基本上就會對應到 lqfb 的邏輯
+20:32 < clkao> postgresql
+20:32 < ETBlue> 喔喔喔
+20:33 < clkao> 譬如說, insert 一個 vote, 理論上就會帶入所有委託你的人得票
+20:33 < clkao> 因為計票什麼都在 db 寫好了
+20:33 < ETBlue> 理解，他在資料庫內設定好關聯
+20:34 < ETBlue> hmmm. 我是無法想像這工程要花費多少時間，不過如果需要快速讓 mockup 上去的話，ui 這邊也可以折衷
+20:35 < ETBlue> 能套的盡量套，不能套的把原本的外觀稍微調整一下也是可以
+20:36 < ETBlue> 是說你覺得這東西有多急
+20:36 < clkao> 基本上那個 lua frontend 完全是 page 導向 不含重複使用的 component 的話, 各種 entry point 約六十頁... zz
+20:37 < clkao> (例如新增建議、對建議評價 算兩頁)
+20:37 < ETBlue> 60 頁... 嗯... XD
+20:37 < ETBlue> 看起來兩條路都很艱辛 orz
+20:37 < clkao> 多急很難說啊... XD
+20:38 < ETBlue> 你希望終極版的動民主是 lua based 嗎
+20:38 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+20:38 < clkao> 沒意見耶 只要能動 :p
+20:39 < ETBlue> 那... 要加減用嗎 XD
+20:39 < ETBlue> 說到這個，如果用 lua based 的話以後有更新要拉下來會比較容易嗎
+20:39 < clkao> 好難啊... 或說最常用的先來改改看
+20:39 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+20:39 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+20:39 < clkao> 是。不過就海盜們說，應該是不大會動了。
+20:40 < ETBlue> 噢噢
+20:40 < clkao> 是說可以兩套並行 如果後端相通的話... 後來看了 lfapi, 他只有 read onlty
+20:40 < clkao> 所以... 也是不能用低
+20:41 < au> http://dev.liquidfeedback.org/trac/lf/wiki/lfapi 說有 POST?
+20:41 < kcwu> au's url: [lfapi – LiquidFeedback]
+20:42 < ETBlue> 啊啊正想呼叫魔法生物 @@ 這種問題對我來說太抽象了...
+20:43 < clkao> 疑 我本來也是記得是有，只是後來看到哪裡說 readonly
+20:43 < clkao> 來看看他跟 pirate feedback 合不合
+20:44 < au> http://www.public-software-group.org/mercurial/lfapi 有 POST 並且兩個月前還有動靜
+20:44 < kcwu> au's url: [lfapi: log]
+20:45 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 248 seconds]
+20:45 -!- Zespre_ [~starbops@140-113-123-194.dorm13.nctu.edu.tw] has joined #g0v.tw
+20:45 < clkao> 不過他 access token 不知如何處理
+20:46 < au> OAuth2 http://dev.liquidfeedback.org/trac/lf/wiki/API#POSTtoken
+20:46 < kcwu> au's url: [API – LiquidFeedback]
+20:47 < clkao> http://lqfb-test.g0v.tw:25520/info
+20:47 < au> http://lqfb-test.g0v.tw:25520/member_count
+20:47 < au> haibulai
+20:48 < au> 這樣就回到 node + angular 的 js 全端工程範圍了
+20:49 < au> # 但是支持 URL 保留，逐項替換
+20:50 < clkao> oauth 好像沒做完... ><
+20:50 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+20:51 -!- Zespre_ [~starbops@140-113-123-194.dorm13.nctu.edu.tw] has quit [Ping timeout: 268 seconds]
+20:51 < clkao> 不過應該是可以 inject 一下 偷 cookie
+20:51 < clkao> 科科
+20:51 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+20:52 < clkao> lfapi/main.js 兩千行... zzzz
+20:52 < au> 餅賊王 (咦
+20:52 < clkao> 今天 release 了餅賊王實作：https://github.com/clkao/fireauth
+20:52 < kcwu> clkao's url: [clkao/fireauth · GitHub]
+20:52 < au> ++
+20:54 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+20:54 < clkao> 看的我頭好痛啊 好想給他轉 ls
+20:56 < au> bsw = Bjoern Swierczek ? 也許問問他開發狀況並且推坑他學 ls? XD
+20:57 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+20:57 < au> # 我們轉完給他繼續維護
+20:58 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:00 < clkao> 連了幾次後就 hang 住了 要重開才行
+21:01 < au> 這 2000 行看起來如果做成 pgrest handler，可能只要 200 行
+21:02 < clkao> yeah
+21:02 < au> require*Privilege 做成 ACL 層
+21:02 < clkao> 只是就要加速進行 acl
+21:02 < au> 其他都是 boilerplate
+21:02 < clkao> 只好找一天來衝了
+21:02 < clkao> (?)
+21:03 < au> ++
+21:03 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 241 seconds]
+21:05 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:05 < au> 同時各頁面的靜態 HTML + CSS 可以先做，可以用 zotero 把原來的 html tree 砍下來改
+21:06 < au> 之後再接上就好了
+21:06 < au> bbiab &
+21:10 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 264 seconds]
+21:10 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:15 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+21:15 -!- Zespre [~starbops@140-113-123-194.dorm13.nctu.edu.tw] has joined #g0v.tw
+21:17 -!- yhsiang [~yhsiang@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+21:19 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+21:19 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+21:20 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:21 -!- Zespre [~starbops@140-113-123-194.dorm13.nctu.edu.tw] has quit [Ping timeout: 268 seconds]
+21:21 < clifflu> clkao: 對那篇文章的 secret voting 精神不太理解；以原作給的 liquid_feedback_patch 只是把計票的過程加密並丟出去外面 (mockup in that repo) 算完，原始資料還在，代表它隱含 lqfb 機器是安全的
+21:21 < clifflu> 既然 lqfb 機器安全，那又何需把計票的運算丟出去 ? 
+21:24 -!- bafu_ [~bafu@111-240-236-209.dynamic.hinet.net] has joined #g0v.tw
+21:25 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+21:26 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:27 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 268 seconds]
+21:28 < clifflu> 照邏輯來看，應是把所有 issue 與 public vote (deligate candidate) 都當作 private vote 的選項，並將待計票 (private votes) 都由某套 Acquisti 的實作處理
+21:31 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:31 < clkao> clifflu: 應該是 private vote 過程整個搬到外面吧?
+21:32 < clifflu> ya, 但 delegated vote 相依於 public vote，而必需走 private vote 的路徑
+21:32 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 276 seconds]
+21:33 -!- inksafari [~karin@111-243-110-77.dynamic.hinet.net] has joined #g0v.tw
+21:33 < clifflu> 我還在念 Acquisti 那篇，但感覺上，如果要實作多選，並且要打散 user identity / vote (secure) 的話，我猜把所有投 public vote (或曰 delegated voter candidates) 都也當成選項會比較合理
+21:33 < clkao> 我還沒看那麼多 :p
+21:33 -!- inksafari [~karin@111-243-110-77.dynamic.hinet.net] has left #g0v.tw []
+21:34 < clifflu> 那我就決定交給偉大的工人智慧幫忙勘誤了 XD
+21:36 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 264 seconds]
+21:38 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:44 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+21:45 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:50 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+21:51 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:55 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+21:55 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+21:57 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+21:58 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:04 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+22:06 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:10 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+22:11 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:14 < clkao> pgq 真趣味
+22:16 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:16 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+22:21 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+22:22 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:23 -!- soidid [76a5f296@gateway/web/freenode/ip.118.165.242.150] has joined #g0v.tw
+22:26 < clkao> runit cookbook 更新為 provider 了，似乎更好寫了
+22:28 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+22:28 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:33 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 246 seconds]
+22:34 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:39 -!- Zespre_ [~starbops@140-113-123-194.dorm13.nctu.edu.tw] has joined #g0v.tw
+22:40 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 268 seconds]
+22:44 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:45 -!- Zespre_ [~starbops@140-113-123-194.dorm13.nctu.edu.tw] has quit [Ping timeout: 268 seconds]
+22:45 < clkao> Zespre: check your network please?
+22:49 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+22:49 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:52 < ETBlue> mobile 版加上說明文字增加畫面雜亂度以後就變成 desktop 版 ~_~ https://picasaweb.google.com/110174937980629662857/G0v#5890463680952314690
+22:52 < kcwu> ETBlue's url: [Picasa Web Albums - ET Blue - g0v]
+22:52 < clkao> ipa: https://twitter.com/starbops/status/346568782669574145 XD
+22:53 < kcwu> clkao's url: [Twitter / starbops: 怎麼宿網一直斷啊？這樣 ...]
+22:54 < caasiHuang> ETBlue: 這樣連平板都可以用XD
+22:55 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+22:55 < clkao> ETBlue+++++
+22:55 < clkao> ETBlue: 方案有反對的嗎？
+22:56 < ETBlue> 不是很確定耶，我知道討論期沒有，投票期有，成案期不確定
+22:56 < clkao> 還是你是顯示出自己的投票
+22:56 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:57 < ETBlue> 喔喔喔對耶，投票期好像不會知道別人的投票情況？
+22:57 < ipa> clkao: XD z9神人上身？
+22:57 < clkao> right 開票前
+22:58 < ETBlue> 嘛，總之格式應該是一樣，我先橋好大家的位置，實做之前再來review
+22:58 < clkao> 提出草案 -> 提出其他方案 ?
+22:59 < ETBlue> mockup 的內容有很多 bug，比方說我剛才做桌面版才發現 issue list 不會顯示提案人，只會顯示支持度...
+23:00 < clkao> ETBlue: 可以列出一個有「兩個討論中議案」的 mockup 看看嗎？在想說 issue id (快速投票 #12) 放在下面會不會不容易辨識那一駝是同一個議案
+23:00 < ETBlue> wording 也是 XD 我先弄成自己比較好懂的樣子... 不然腦袋好容易打結
+23:00 < ETBlue> 喔喔喔好，等等
+23:00 < clkao> ETBlue: 然後，無代理人時，如果有上層（主題/組織)代理人 要如何顯示呢？
+23:01 < clkao> 在那個 黑客松 folder 那? 可是這樣就變有兩個地方... 
+23:01 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+23:02 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:05 -!- soidid [76a5f296@gateway/web/freenode/ip.118.165.242.150] has quit [Quit: Page closed]
+23:06 < ETBlue> clkao: 對啊說到這個，原本的委任設定會顯示主題+方案的委任，但只能調整議案層級的委任
+23:06 < ETBlue> 你覺得如果全部搞在一起設定會怎樣
+23:08 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+23:08 -!- Zespre [~starbops@140.113.123.194] has joined #g0v.tw
+23:08 < ETBlue> 就是看得到的都可以設定... 這樣的話，組織跟主題的委任就可以跟議案的委任共用同一個設定介面
+23:11 < ETBlue> 之前因為手機很擠，為了節省空間，把議案上面那兩列組織跟主題都拿掉了，桌面版其實空間很充裕，可以加回來，但這樣 responsive 就比較費工
+23:11 < ETBlue> 說費工也是還好啦，就多兩排... XD
+23:12 -!- Zespre [~starbops@140.113.123.194] has quit [Ping timeout: 246 seconds]
+23:13 < ETBlue> 至於委任的顯示方式！桌面版的話也可以把議案>主題>組織的委任全部放在同一排，只是有時候可能會有點長
+23:13 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:13 < ETBlue> 我是想說不管他設定幾層的委任，其實可以只顯示目前委任到的那位（或者頭兩位）就好了
+23:13 < ETBlue> 第三位以後的就按進去設定再看
+23:14 < ETBlue> 然後不管是設定在哪一層，在該議案是誰的委任生效就顯示誰（儘管那可能是組織委任）
+23:15 < ETBlue> 噢，桌面版的話把所有代理人全部列出來好像空間也很足夠... 
+23:21 < ETBlue> clkao: 顯示方式可以這樣 https://picasaweb.google.com/110174937980629662857/G0v#5890472363376794354
+23:21 < kcwu> ETBlue's url: [Picasa Web Albums - ET Blue - g0v]
+23:22 < clkao> (目前的 lqfb 也是只有顯示議案的代理而已)
+23:22 < clkao> 如果是 issue list 的話
+23:23 < ETBlue> 噢
+23:24 -!- pm5 [~pm5@111-248-207-138.dynamic.hinet.net] has joined #g0v.tw
+23:24 < ETBlue> 兩個討論中議案如果選項一樣多的話是有點相似 XD
+23:24 < clkao> *nod* 看如何調整
+23:26 < ETBlue> 桌面版的話可以把「快速投票#10」移到左上角「討論中」的左邊，不過手機版就完全塞不下
+23:26 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:26 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 256 seconds]
+23:27 < clkao> ETBlue: 那個右邊 bar 的灰框是門檻指標嗎？
+23:28 -!- bafu_ [~bafu@111-240-236-209.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+23:28 < ETBlue> 等實做的時候再一邊測測看好了... 那編號好像對 pattern 辨識幫助也很有限
+23:28 < ETBlue> 喔喔對
+23:28 < ETBlue> 目前是一條直線，其實我過了很久才意會到那條線是什麼
+23:28 < clkao> XD
+23:28 < ETBlue> 我想現在的灰框也一樣會讓人感到很困惑吧 orz
+23:29 < clkao> 只好請 hlb 出馬
+23:29 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has quit [Remote host closed the connection]
+23:30 -!- bluebobo [~bluebobo@123-204-156-130.static.seed.net.tw] has joined #g0v.tw
+23:30 < hlb> ?
+23:30 < ETBlue> 不曉得 picasa 能不能在上面 mark，把那一區框起來指派 issue 給 hlb...
+23:30 < hlb> 一開電腦就被 summon
+23:30 < ETBlue> XD
+23:30 < clkao> hlb: 門檻的 visual 表現方式
+23:32 < hlb> Jcrt: 方便國/台/客其實應該顯現在 interlinks 上
+23:32 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 248 seconds]
+23:32 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:32 < ETBlue> hlb: https://picasaweb.google.com/110174937980629662857/G0v#5890463680952314690
+23:32 < kcwu> ETBlue's url: [Picasa Web Albums - ET Blue - g0v]
+23:34 < hlb> ETBlue: 那個ㄈ形狀框是什麼
+23:34 < ETBlue> 手機版上那條支持度大概得整個拿掉... 塞不下
+23:34 < ETBlue> hlb: 是法定門檻
+23:35 < clkao> 如果是下方或上方一個紅色小箭頭呢？
+23:35 < clkao> (其實單一議案每個方案的門檻一定一樣)
+23:35 < clkao> 所以也許可以 share across 方案？
+23:36 < ETBlue> 對喔議案內的可以合併
+23:36 < ETBlue> 小箭頭好像不賴
+23:37 < ETBlue> 要 share 可能得多一列... 
+23:37 < yhsiang> ETBlue: picasa可以標記人物....所以 你懂的...
+23:37 < ETBlue> yhsiang: 原來如此（頓悟
+23:38  * hlb 仍然狀況外
+23:38 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 240 seconds]
+23:39 < ETBlue> 他是不是只能 tag gmail 帳號
+23:40 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:40 < clkao> hlb: 那個 bar 裡面是有多少人支持這個方案, 然後要有一個方式表示門檻
+23:40 < clkao> 超過門檻的方案最後才會成為投票選項
+23:41 < hlb> 那不同顏色代表?
+23:41 < ETBlue> 直接支持 / 間接支持 / 可能支持
+23:41 < yhsiang> ETBlue: 應該是只能tag google+的人沒錯
+23:41 < ETBlue> 紅色是反對
+23:42 < ETBlue> yhsiang: 原來如此
+23:43 < hlb> ETBlue: 所以 直接支持+間接支持+可能支持 大於門檻就算？
+23:43 < clkao> hlb: yes
+23:44 < ETBlue> clkao: 討論期支持度大過門檻有啥意義
+23:44 < ETBlue> 投票期是不是不會有「可能支持」
+23:44 < clkao> ETBlue: 未達門口最後不會成為投票選項?
+23:44 < clkao> *門檻
+23:44 < ETBlue> 喔喔喔是噢原來如此
+23:45 < hlb> 那在這個 list view 需要看得出 直接/間接/可能 各有多少?
+23:45 < clkao> 我們要有一個多一個人參與的主題來測試這個
+23:45 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 264 seconds]
+23:45 < ETBlue> 原本的prfb是有設定顏色來顯示各有多少人
+23:45 < ETBlue> 但我們未必一定要follow
+23:46 < clkao> hlb: 根據西瓜偽大邊 應該讓人一望即知目前大致的支持狀態
+23:46 < ETBlue> 原本是深綠色、淺綠色、灰色
+23:46 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:46 < clkao> 但是詳細數字我覺得不見得需要... 萬一都是五位數就哭哭了
+23:46 < ETBlue> 對喔... 沒考慮到將來人變多的情況
+23:47 < hlb> let me think a while
+23:47 < caasiHuang> 而且人多時，間接支持與可能間接支持會很多，直接有可能變成細細一點點？
+23:47 < ETBlue> 有可能 XD
+23:48 < hlb> ETBlue: got a plan, 不過會比現在要高喔
+23:48 -!- pm5 [~pm5@111-248-207-138.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+23:49 < ETBlue> 高一點無妨 XD
+23:49 < ETBlue> 可以把那條 bar 變矮一點來因應...
+23:50 < clkao> ETBlue: 紅色好像不會出現 除非他已經投票完了... 
+23:50 < ETBlue> 既然不用放數字進去就不用那麼粗了
+23:50 < hlb> ETBlue: 門檻有明確數字嗎
+23:50 < clkao> hlb: 整數
+23:51 < ETBlue> clkao: 對喔... 所以投票中的議案顯示門檻是沒有意義的嘛 = =b
+23:51 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 245 seconds]
+23:51 < ETBlue> clkao: 投票中他只會顯示我自己的票對吧
+23:51 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:53 < clkao> ETBlue: 不確定耶
+23:53 < ETBlue> hlb: 你用 fireworks 嗎？用的話我可以直接 dropbox 同步 fw.png 給你改
+23:54 < hlb> ETBlue: 快好了等等
+23:54 < hlb> ETBlue: 當然不用愛當機 fireworks
+23:55 < ETBlue> hlb: 他真的很愛當機（點頭）而且已經棄卒很久了
+23:55 < ETBlue> 不過檔案好小，匯出速度好快啊 XD
+23:56 < hlb> ETBlue: 5mins
+23:56 < ETBlue> :3
+23:56 -!- Zespre_ [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:57 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Ping timeout: 264 seconds]

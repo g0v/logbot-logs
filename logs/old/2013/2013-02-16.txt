@@ -1,0 +1,137 @@
+--- Day changed 六  2月 16 2013
+00:28 -!- wHisKy [whisky@1-160-246-98.dynamic.hinet.net] has quit []
+00:37 -!- KNY [~Adium@36-232-95-80.dynamic-ip.hinet.net] has quit [Quit: Leaving.]
+00:41 -!- wHisKy [whisky@1-160-246-98.dynamic.hinet.net] has joined #g0v.tw
+00:45 -!- wHisKy [whisky@1-160-246-98.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+00:46 -!- ArvinH [~ArvinH@114-36-93-27.dynamic.hinet.net] has joined #g0v.tw
+00:57 -!- wHisKy [whisky@1-160-246-98.dynamic.hinet.net] has joined #g0v.tw
+01:00 -!- ArvinH [~ArvinH@114-36-93-27.dynamic.hinet.net] has quit [Remote host closed the connection]
+01:49 -!- awaw [73508d28@gateway/web/freenode/ip.115.80.141.40] has quit [Ping timeout: 245 seconds]
+02:05 < zonble> chhsiao1981: 不過現實是，媒體作業其實很少是單打獨鬥的
+02:07 < zonble> chhsiao1981: 雖然一篇報導可能會掛某個記者的名字，但也
+02:07 < zonble> 不是完全由這個人完成
+02:07 < zonble> chhsiao1981: 甚至一篇稿件寫完之後，記者自己都不知道上報之後最後變成什麼樣子
+02:22 < mjhsieh> 所以要有總編輯、副編輯資料庫了嗎？
+03:29 < au> kcwu: 那是舊的... I'll git rm it
+03:29 < au> kcwu: iOS/Android 用的是 json2pack
+03:29 < au> 不過今天 clkao 給了一些建議，之後可能是從資料庫生成
+03:36 -!- tonytonyjan [~tonytonyj@218-166-155-247.dynamic.hinet.net] has quit [Quit: Lost terminal]
+03:48 -!- mno2 [~mno2@1.34.43.236] has quit [Ping timeout: 240 seconds]
+04:44 < favonia> au: 資料庫生成的意思是什麼呢？
+04:48 < au> favonia: 簡單來說，寫一個 column map (例如 https://github.com/stripe/mosql#the-collection-map-file )
+04:48 < kcwu> au's url: [stripe/mosql · GitHub]
+04:49 < au> 把 json 讀進 pgrest 裡
+04:49 < au> 然後寫不同的 view map 給 pgrest
+04:49 < au> 用 select() 直接取出想要的 JSON
+04:50 < au> 也就是把目前 browser 做的 autolink 和伺服器端做的 split 都移到 postgres 裡變成 stored procedure
+04:50 < au> (當然這三端都是 LiveScript / node module.)
+04:50 < au> .
+04:54 < au> (autolink = 把定義裡的詞自動加上超鏈結; split = 將字依 raw/uni/pua 切成小 json, 或依首字/部首分成歸類 json)
+05:03 < au> -> zz &
+05:09 < favonia> 喔喔
+05:10 < favonia> 應該可行吧。 liquid feedback 好像幾乎（如果不是全部）都是 postgres
+05:13 < au> 對，只是把 PL/SQL 換成 PL/LiveScript -- node_module 的好處是可以視情況在 browser/httpd/database 三層中間隨意移動 :p
+05:13 -!- wHisKy- [~whisky@1-160-246-98.dynamic.hinet.net] has joined #g0v.tw
+05:14 -!- wHisKy [whisky@1-160-246-98.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+05:14 < au> (err, PL/pgSQL)
+07:45 < chhsiao1981> zonble: 是很常看到說內文很正常. 但是標題就很奇怪 XD. 
+07:48 < chhsiao1981> 有可能是記者圈裡比較沒有"掛名就表示要負全責"的概念. 比較有的概念是"老闆給錢才是重點" XD. 
+07:48 < chhsiao1981> 或許現在的 blog 是對於(比較好的)記者的比較好的 po 文方式. 
+08:38 < kcwu> au: android client 的 menu/info 功能已經在 play store 上了嗎? 我找不到 menu 可以按 (android 4.2.2)
+08:38 < kcwu> au: phone 跟 tablet 都一樣
+09:09 -!- KNY [~Adium@111-253-152-8.dynamic.hinet.net] has joined #g0v.tw
+09:09 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+09:26 -!- KNY [~Adium@111-253-152-8.dynamic.hinet.net] has quit [Quit: Leaving.]
+09:59 -!- wHisKy [whisky@1-160-246-98.dynamic.hinet.net] has joined #g0v.tw
+10:00 -!- wHisKy- [~whisky@1-160-246-98.dynamic.hinet.net] has quit [Ping timeout: 244 seconds]
+10:44 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+11:48 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 256 seconds]
+11:48 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+12:18 < clkao> au: https://github.com/dogada/RJSON
+12:18 < kcwu> clkao's url: [dogada/RJSON · GitHub]
+12:21 < clkao> can probably reuse the scehma detection... 
+12:41 < kcwu> for what?
+12:53 < clkao> tranform json data collections into ones with relations... less painfully
+13:02 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+14:35 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+14:41 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+14:47 < au> kcwu: hardware menu key doesn't work?
+14:49 < kcwu> au: I don't have hardware menu key....
+14:49 < au> aha
+14:49 < au> I wonder how to detect the lack of hardward menu key
+14:50 < au> do you have a hardware back key?
+14:50 < au> guess I should detect and display back/menu icons explicitly if they are missing
+14:50 < au> please file a ticket
+14:51 < kcwu> all keys (back,home,"app switch") are software rendered
+14:51 < au> which device are these?
+14:52 < kcwu> Galaxy Nexus
+14:52 < au> ok
+14:52 < au> in Galaxy Note back/home/menu are "hardware" buttons 
+14:52 < au> so I probably missed that case
+14:52 < au> I'll fix it later today
+14:52 < au> thx for the issue/ticket
+15:44 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+16:14 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+16:31 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+16:31 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+16:38 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+16:39 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+17:56 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+17:58 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+20:18 -!- markwu [~markwu@116.50.34.246] has joined #g0v.tw
+20:19 -!- markwu [~markwu@116.50.34.246] has quit [Client Quit]
+20:25 -!- icman [~icman@123.240.140.81] has joined #g0v.tw
+21:07 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+21:19 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+21:56 < favonia> mno2: 結果你有 branch 嗎？
+21:57 < mno2> favonia: 沒有，我只有把一些 deploy 的 config 跟 script 放在 master 而已
+21:58 < favonia> mno2: 所以應該 branch 嗎 @@?
+21:58 < mno2> favonia: 還有要改SQL的話改 postgres 那一份 
+21:59 < mno2> favonia: 我不確定耶，看 miaout17 有沒有要改前端
+21:59 < mno2> 是想說 master 擺個比較能動的
+22:01 < favonia> 喔～
+22:02 -GitHub70:#g0v.tw- [encoding-mashup-server] favonia created new-server from master (+0 new commits): https://github.com/g0v/encoding-mashup-server/commits/new-server
+22:02 -!- KNY [~Adium@111-253-152-8.dynamic.hinet.net] has joined #g0v.tw
+22:08 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+22:26 < favonia> mno2: 更新 GHC 版本忘記重裝 Snap...
+22:28 < mno2> favonia: 疑? 你不是早就更新了? 現在才爆炸?
+22:28 < favonia> mno2: 放置 play
+22:29 < mno2> favonia: 喔喔 @@
+22:29 < favonia> mno2: 裝了 xmonad 等一定要用的就不管他了 xD
+22:56 < favonia> mno2: 你覺得 hash 要不要存在資料庫啊
+22:56 < favonia> 還是每次重算 xDDDD
+22:56 < favonia> postgres 可以把 skein256 塞進去嗎 www
+22:58 < mno2> favonia: 放 hstore 裏面？ http://www.postgresql.org/docs/9.0/static/hstore.html
+22:58 < kcwu> mno2's url: [PostgreSQL: Documentation: 9.0: hstore]
+23:00 < favonia> mno2: 不太懂。這跟 hstore 的關係是？
+23:01 < favonia> hstore 看起來只是有 name 而已？
+23:01 < au> 內建 pgcrypto SHA256/512 不行嗎?
+23:02 < favonia> au: 可以。只是當時只有想到 Haskell 可用裡面不太會撞的中... 最快的
+23:02 < favonia> Skein 256 應該更快 xD
+23:03 < au> 這是內部用還是外部 (cookie/hmac/etc) 用?
+23:03 < favonia> http etag 用
+23:03 < favonia> mno2: au: 算了我先把算 hash 的工作丟到 REST API 模組
+23:03 < kcwu> etag 只是 cache 用, 不需要那麼強的?
+23:03 < favonia> 存資料庫是最佳化...
+23:03 < au> 用 etag 是因為沒有保留 last-modified 資訊?
+23:03 < au> 一般如果手上有 last-modified，實在用不到 etag
+23:04 < favonia> au: 應該是說我後來發現 etag 好像還好，就放棄比較不穩的 last-modified @@
+23:04 < au> oh ok
+23:04 < au> 那 md5 吧，Postgres 算 md5 很快的 XD
+23:04 < favonia> au: xDDDDD
+23:06 < favonia> kcwu: 新的設計可以知道編輯衝突等等，而且絕對不會漏更新 xD
+23:06 < favonia> kcwu: weak Etag 我覺得反而還要花大腦想好累...
+23:06 < favonia> 全部直接 hash 最省大腦 xD
+23:07 < au> md5 也可以標誌成 strong etag
+23:08 < favonia> au: md5 是 strong etag. 只是他本身有點弱 xD
+23:09 < au> Amazon S3 沒記錯的話 Etag: 和 Content-MD5: 相同
+23:10 < favonia> 嗯嗯
+23:10 < au> (純粹自由連想不用理我 XD)
+23:11 < favonia> 唔還好啊，這些都是如果我開始對效率不滿意時可以考慮的方向 xD
+23:12 < au> favonia++ # 設計系統有條不紊
+23:28 -GitHub56:#g0v.tw- [encoding-mashup-server] favonia pushed 1 new commit to new-server: https://github.com/g0v/encoding-mashup-server/commit/a2f327a2fbcd9d0ab1933caeb2703ff209b64874
+23:28 -GitHub56:#g0v.tw- encoding-mashup-server/new-server a2f327a Favonia: Revamp `Type.hs` with the new API design.
+23:30 < favonia> mno2: 是說我這邊禮拜六剛開始你那邊已經要結束了 xDDD
+23:32 < mno2> favonia: 反正你就先改吧，你改了我會想辦法找時間把後面改完
+23:52 -!- miaout17 [~miaout17@li494-208.members.linode.com] has quit [Ping timeout: 255 seconds]
+23:53 -!- miaout17 [~miaout17@li494-208.members.linode.com] has joined #g0v.tw

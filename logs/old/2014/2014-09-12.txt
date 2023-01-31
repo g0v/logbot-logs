@@ -1,0 +1,172 @@
+--- Day changed 五  9月 12 2014
+00:29 < johnny__> 香港的開放立法院，設計蠻漂亮蠻好的  http://www.legcovotes.net/ne/
+00:29 < kcwu> johnny__'s url: [新界東北發展規劃前期撥款 | 立法會重要表決紀錄]
+00:30 -!- tone497 [6ffe697f@gateway/web/cgi-irc/kiwiirc.com/ip.111.254.105.127] has left #g0v.tw []
+00:44 -!- markwu [~markwu@116.50.34.246] has left #g0v.tw []
+00:48 < pipi> miaoski: 今天就是不喵嗚 哼哼XD
+01:25 < yhsiang> au: XD 之前有看到pjf的repo有這個遊戲  但是覺得很花時間就沒深入研究了 XD
+01:41 < miaoski> pipi: .....
+01:45 < clkaoud_> kiang++ 可以 push 上去 cec 嗎？
+01:46 -!- chihchun is now known as chihchun_afk
+01:48 < CindyLinz> pipi: 已承認你就是不喵嗚 (?
+01:50 < pipi> miaoski: 心智年齡越來越低了。。。
+01:53 < CindyLinz> yhsiang: 乍看很花時間, 但是研究下去以後就只要玩一套就好了, 時間就省下來了.. XD
+02:16 < yhsiangCloud___> CindyLinz: 快教我
+02:18 < CindyLinz> yhsiangCloud___: 還不會啊 XD
+02:26 < kiang> clkaoud_: 確定不等 au 解出來的版本嗎？我丟的那個有點亂...
+02:31 < kiang> 先丟上去了，後面再看看有沒有更好的囉 :)
+02:32 < CindyLinz> yhsiangCloud___: 我是看了一輪 PTT SLG 板的精華區 z.10.9.1. 的文章 (裡面有可以配圖看的網頁版連結)
+02:35 < au> 不要等我... truetype match 比想像中難
+02:35 < au> pdf2json 倒是寫好了
+03:43 < au> pdf2htmlex --no-drm 1 --embed-font=0 --font-format svg pta*pdf # 如果不是標楷體的話就做好了
+03:43 < au> 踩到 pdf2htmlex.exe 內建的 libfreetype 沒開 BCI 於是碎字的雷... 睡醒再來重編。
+03:44 < au> (概念是拿解開出來的 svg font path 跟 BiauKai.ttf 轉成的 BiauKai.svg 比對來找出原字碼)
+04:02 < hcchien> ipa: 所以機票補助現在在 google docs 上是對的了嗎
+04:08 < hcchien> ipa: ok. 看到mail 上的了
+04:51 < au> Font Matching 寫完了，目前進度如下，有沒有人要接手 json2md 或 json2csv (kiang?)
+04:51 < au> https://raw.githubusercontent.com/audreyt/pdf2md/master/pta_18238_5821809_02503.json
+04:52 < au> .json 的結構可參考 https://github.com/audreyt/pdf2md/blob/master/parse.ls
+04:52 < kcwu> au's url: [pdf2md/parse.ls at master · audreyt/pdf2md · GitHub]
+04:52 < au> -> zzz &
+09:19 < ipa> hcchien: 其實應該是要請你確認，機票和住宿大項是分開而不是重疊漏算？trello 上有寫。因為之前你說是算在一起，但差很多....
+09:19 < ipa> hcchien: 機票補助細項無誤，已確認。
+10:20 < miaoski> au++ 好強大
+10:26 < ipa> https://www.facebook.com/g0v.tw/posts/780958325278789?comment_id=781134375261184&offset=0&total_comments=11 
+10:26 < kcwu> ipa's url: [g0v.tw 台灣零時政府 - 【立委投票指南】團隊最近如火如荼開發各地【議員投票指南】，目前已將台北市議會資料整理出... | Facebook]
+10:27 < ipa> 「近在整理年底9合1選舉的候選人、選區與戶籍行政區的關聯資料，應該下星期之前就可以整理出來，請問g0v這邊有專案需要嗎?」這是不是已經爬出來了？誰來給他一個 hackpad link?
+10:51 < yhsiang> 是不是kiang在做的?
+11:22 < pipi> summit是同時會有四軌嗎
+11:24 < johnny__> ipa: 只找到選舉黃頁的repo沒看到hackpad  https://github.com/kiang/elections
+11:24 < kcwu> johnny__'s url: [kiang/elections · GitHub]
+11:51 -!- chihchun_afk is now known as chihchun
+12:41 < pipi> AceChen_: g0v summit 2014 場務工作人員調查表的deadline寫錯啦 11/9?
+13:04 < au> clkaoud_: http://logbot.g0v.tw/channel/g0v.tw/2014-09-11#213
+13:04 < kcwu> au's url: [Logbot | #g0v.tw]
+13:11 < au> clkaoud_: https://github.com/audreyt/pdf2md/blob/master/pta_18238_5821809_02503.csv
+13:11 < kcwu> au's url: [pdf2md/pta_18238_5821809_02503.csv at master · audreyt/pdf2md · GitHub]
+13:14 < yhsiang> ! 
+13:14 < yhsiang> 已經完成了
+13:16 < au> 不幸 tabula 有掉字
+13:17 < yhsiang> 是用tabula啊 我以為是json2csv完成了 XD
+13:18 < au> yhsiang: 接力請求 XD
+13:19 < au> 拿 https://github.com/audreyt/pdf2md/blob/master/pta_18238_5821809_02503.json （有正確的字和座標）和 .csv 比對，把 .csv 裡的空白用 .json 裡的正確的字填上
+13:19 < kcwu> au's url: [pdf2md/pta_18238_5821809_02503.json at master · audreyt/pdf2md · GitHub]
+13:19 < au> <- 稍微打工一下
+13:20 < clkaoud_> 打個密工
+13:32 < tkirby> pro.jobs
+13:33 < tkirby> 無法申請 (淚)
+13:40 < kiang> johnny__: 選舉黃頁沒有開 hackpad ，有人要幫忙開嗎？ XD
+13:42 < kiang> au: 我踹踹
+13:42 < au> kiang++
+13:42 < au> 應該是空白做成 regex 裡的 /./ 或是把空白 tokenize 過用 index() 比對
+13:43 < au> 取 json string pool 裡第一個符合的替換，再將它從 pool 裡移除即可
+13:43 < au> 這部份做完了就可以隆重堆出 Bullzip PDF Unprinter 了，說不定 Tabula 會感興趣 XD
+13:43 < au> *「堆」不是錯字
+13:44 < kiang> au++, 不過解出來的東西還真多 XD
+13:45 < au> 可以只看 formImage.Pages[].R[].T 的 "T":"..." 裡的部份
+13:45 < au> e.g. https://github.com/audreyt/pdf2md/blob/master/parse.ls
+13:45 < kcwu> au's url: [pdf2md/parse.ls at master · audreyt/pdf2md · GitHub]
+14:02 < kiang> johnny__: 是我忘記了，有人開過 XD - https://g0v.hackpad.com/SP93kHqeeFM
+14:03 < kcwu> kiang's url: [候選人政見專頁 - g0v.hackpad.com]
+14:14 < walkingice> 所以今年幫朋友寫的政見內容也會進去嗎？ >////<
+14:17 < johnny__> kiang: 加了個副標方便以後找
+14:21 < kiang> walkingice: 就...還沒整理而已，應該可以塞的進去 XD
+14:22 < kiang> au: https://gist.github.com/kiang/e033187d5050cfcfb964 , 欄位的切割也是不太穩定，但是比台南的情況好很多 XD
+14:22 < kcwu> kiang's url: [臺中市投開票所草稿]
+14:23 < au> kiang: 好棒，程式也貼一下吧？
+14:23 < au> 台南也可以再丟到 tabular 試看看
+14:24 < kiang> au: https://gist.github.com/kiang/743736bf2a5a820254b8 - 就土法煉鋼而已 XD
+14:24 < kcwu> kiang's url: [臺中市投開票所草稿-解析程式]
+14:24 < au> oh, 不經過 tabular
+14:24 < kiang> au: tabular 開台南的 pdf 時所有的中文字都消失
+14:25 < au> kiang: 沒關係那個現在可以救了
+14:25 < au> 你把 tabular 的  .csv  貼給我即可
+14:35 < kiang> au: .csv 出來是完全空白的，也許跟系統字型有關？
+14:36 < au> :/
+14:37 < au> 好吧，那台南用之前的 clearscan 手工修正好了
+14:37 < kiang> au++
+14:37 < au> NOBGOC+-ETen-B5-H 不曉得是什麼字體（不是標楷）
+14:38 < kiang> au: http://netlab.cse.yzu.edu.tw/~statue/freebsd/zh-tut/php-pdf.html ?
+14:38 < kcwu> kiang's url: [用 php 製作中文 PDF 檔]
+14:39 < au> yeah 我是說台南那份裡的楷體
+14:39 < au> 要找到原字體的 .ttf 檔才能還原字碼
+14:39 < kiang> "CMap/ETenms-B5-H 是繁體中文的倚天擴充字集對應到 Unicode 的編碼檔" from http://ccckmit.wikidot.com/pdf:streamcoding ，不過我通常是 workaround 出來就停住了 XD
+14:40 < kcwu> kiang's url: [PDF 檔案內文字串 (Stream) 的編碼方式 - 陳鍾誠的網站]
+14:40 < CindyLinz> 倚天
+14:40 < au> 不然就要做和標楷體的向量相似比對
+14:40  * au 望著一個更大的坑
+14:41 < au> ClearScan 之所以會錯字，一部份原因似乎是用黑體/明體作 OCR 的標的而且不能改
+14:41 < CindyLinz> au 望坑興嘆.. XD
+14:41 < au> 所以要徹底解決，勢必要做印刷楷體專用的 OCR engine
+14:41 < CindyLinz> 望坑星探.. (意味不明
+14:41 < au> 這個之前萌典國字測繪做過一次... 也許萌典松來試看看好了
+14:42 < kiang> au 的坑對我們來說都很巨大啊 XD (腦海裡浮現巨人圖示 - http://img.technews.tw/wp-content/uploads/2014/04/g0vis-moe.png )
+14:42 < CindyLinz> kiang: XDXD
+14:59 < pipi> au是專門望坑的嗎
+15:00 < au> 望坑獸 (意味不明
+15:01 < caasih> 不是用巨大的精神質量製造隕石坑的移星者嗎 XD
+15:01 < walkingice> Level 8 黑魔法 隕石術
+15:14 < jimyhuang__> 忘坑瘦
+15:25 < pipi> 忘記坑就會瘦
+15:26 < CindyLinz> 此風不可長...ww
+15:55 < Rhozan_> 突然發現etblue版的hackfoldr有好看的 bookmark icon了~
+16:18 < kiang> https://www.facebook.com/linshufen.tw/posts/725647370841011 - 看起來真的隨便吃都吃得到餿水油或工業用油呢 XD
+16:18 < kcwu> kiang's url: [林淑芬 - Eagle View所認證的檢驗合格豬油是假的， 把工業用的豬油說成是人吃的。... | Facebook]
+16:48 < Lee1092> Rhozan_:  上次 柯柯松作出來的  XD
+16:51 < pipi> 說到柯柯松沒報到就難過 QAQ
+16:51 < Rhozan_> Lee1092++ XD
+16:52 < Lee1092> 不是我作的啦   是  OOBE  XD
+17:53 -!- CelloCello [~Cello@119.77.222.40] has left #g0v.tw []
+18:33 < caasih> 正職看起來好有趣...
+18:46 < ipa> Lee1092: 剛跟lora討論寄邀請票可以客製化，有coscup的秘訣
+18:46 < ipa> ch0upi_bsd提供秘訣
+18:48 < ipa> 我會晚一點到
+18:51 < Lee1092> 歐歐歐！！！ 我要聽秘訣～～～ ch0upi_bsd ~
+18:51 < Lee1092> 我會晚到+1 QQ
+19:01 < pipi> 我跟Acechen兩個人能談什麼 QQ   mouse跟poka在旁邊XD
+20:07 < clkaoud_> tkirby: 嘿 做 summit 網站的 mary 是那天我遇到的 mary 嗎？
+20:38 < tkirby> clkaoud_: 答對了!
+20:39 < tkirby> 是說我以為你們有見過
+20:46 < Lee1092> lanf0n: 你有加入 g0v summit 的 trello 嗎?
+20:58 < clkaoud_> tkirby: 太好了 那可以凹你順便幫忙弄 website 跟聯絡 :p 你有加入 g0v summit 的 trello  a8 ?
+21:00 < clkaoud_> tkirby: 還是拐 mary 上 irc? :P
+21:08 < tkirby> 我一個禮拜只見到他一次阿阿阿 XDD
+21:11 < tkirby> clkaoud_: summit trello 我沒有, 要幫我加一下嗎 XD
+21:13 < clkaoud_> tkirby++ # 直接把卡給你
+21:22 < lanf0n> Lee1092: 咦? 好像沒
+21:23 < ipa> lanf0n: Lee1092 也加一下 summit staff group 吧～
+21:24 < tkirby> 終於.. 還是掉到坑裡面了 (淚)
+21:26 < yhsiang> tkirby++ XDDD
+21:26 < yhsiang> tkirby: 真正的開心恭喜你～滿心歡喜恭喜你～掉坑～啪啪啪～掉坑～
+21:35 < johnny__> 議員助理來通報錯誤，雖然已經手動改了，但想請教大家，除了google還有什麼好方法確認真實性，怕以後會誤改   https://groups.google.com/forum/#!topic/g0v-ly/6qVMBcP4Kjk
+21:35 < kcwu> johnny__'s url: [Google 網上論壇]
+21:35 -!- s8321414_ is now known as s8321414
+21:39 < clkaoud_> johnny__: 真實性... 是說來源的官網是錯的，他提供的才是對的嗎
+21:43 < johnny__> clkaoud_: 一是他真的是議員的助理，二是會不會李慶"鋒"沒有要選，換成有個叫李慶峰的來選...
+21:47 < johnny__> clkaoud_: 雖然這次中選會應該真的是打錯字，但這種事究竟該不該加入我們自己的判斷先改，還是等中選會改才跟著改，有點兩難
+21:47 < clkaoud_> orz
+21:47 < clkaoud_> 打電話問中選會 XD
+21:48 < yhsiang> 我覺得還是先通知中選會 按照中選會資料為主吧
+21:50 < johnny__> yhsiang: 恩我也覺得理想應該這樣做，我今天改完就覺得不太對，來跟大家討論一下
+21:51 < yhsiang> johnny__: 應該是說  你覺得case by case處理 不會太累應該沒差ＸＤ
+21:57 < Lee1092> lanf0n: 請見 攤位組 pad  有 update
+22:11 < bobchao> Hi 開放文化的各位，歡迎參加啊  http://moztw.kktix.cc/events/aaronswartzdoc
+22:11 < kcwu> bobchao's url: [摩茲字幕組 - 網路之子：亞倫史瓦茲 Aaron Swartz The Internet's Own Boy]
+22:25 < miaoski> bobchao: 可惡，想參加...
+22:39 < ipa> 今天moz工寮有吃到蘋果派嗎？
+22:40 < ipa> 蘋果幾乎都是我削的 XD
+22:41 < ipa> AceChen++ Lee1092++ pipi++ muka++ shadowcrow++ mouse++ # summit 戰報會議辛苦了
+22:45 < clkaoud_> tkirby++ # 迅速解卡
+22:55 < bobchao> ipa 喔喔！感謝
+22:55 < bobchao> 蘋果派超好吃
+22:55 < bobchao> 瞬間消光
+22:55 < ipa> 嗚嗚 沒吃到 只吃了一塊剛削好的蘋果 XD
+22:57 < bobchao> ipa 下次下次
+23:36 < hlb> http://www.appledaily.com.tw/realtimenews/article/new/20140912/468629/
+23:36 < kcwu> hlb's url: [公路總局證實　核准5輛中國車來台5天 | 即時新聞 | 20140912 | 蘋果日報]
+23:36 < hlb> 看完爆炸了 +______+
+23:39 < kiang> 聽說十月才開放，這個政府不知道在猴急什麼...
+23:40 < kiang> http://k.olc.tw/elections/candidates - 開始有人幫忙放照片，不過這樣子看起來有點怪怪的 XD
+23:40 < kcwu> kiang's url: [候選人 @ 選舉黃頁]
+23:54 < clkaoud_> 每當布丁爆炸 g0v 就會有厲害的新東西
+23:55 < hlb> 賣 R0 第一排嗎

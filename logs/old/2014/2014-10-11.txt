@@ -1,0 +1,295 @@
+--- Day changed 六 10月 11 2014
+00:00 < ipa> t0mst0ne_: 如果現在正在討論的 project list 會繼續弄，我就不會回去改現在的 css 了 XD
+00:00 < jimyhuang__> ipa: yep. 但如何存續要有一點policy ...
+00:00 < ETBlue> 所以他有 filter 讓我們選 attributes...
+00:00 < lanf0n> t0mst0ne_: proptypeX 跟 saletypeX 是第一頁選的兩個 option 值,  hsimun, ctmd, sec 應該是房屋坐落的三個選項
+00:01 < jimyhuang__> t0mst0ne_: 搜尋結果有個「合計件數: 161 件  」，所以就知道要跳到第幾頁去查最新的
+00:01 < ETBlue> 所以我左側邊欄是打算讓人選的 attributes，然後右邊會出現符合條件的專案列表，列表形式類似 http://g0v.github.io/moc-license-center/software.html
+00:01 < kcwu> ETBlue's url: [g0v 技術部軟體中心]
+00:01 < ipa> ETBlue:jimyhuang__ 最理想的確是給一般使用者、開發者是同一頁，用 filter 
+00:02 < ETBlue> 我現在沒想太多，純粹解決我自己的需求 XD
+00:02 < ipa> ETBlue: jimyhuang__ 把我現在做的看成是給 end-user 的 mockup 
+00:02 < ETBlue> 等弄好以後再看大家需要什麼
+00:03 < jimyhuang__> 有沒有跟 http://g0v.github.io/d3visualization/ 相近一點的 UI 啊..(我真懶糟糕
+00:03 < ETBlue> 原本想抄，但發現不太行 XD 需要的資料結構也不同
+00:03 < ipa> ETBlue: 你做的要吃什麼資料？
+00:03 < jimyhuang__> 不過 ETBlue 的折疊應該算滿相近的，只是得多好幾層filter
+00:04 < t0mst0ne_> jimyhuang__: 了解, 所以要parse 一次, 算 'pageTotal':'N' 的N 值 , 然後再parse 一次 
+00:04 < ETBlue> 可以各自發展然後最後再來互抄？ XD
+00:04 < jimyhuang__> t0mst0ne_: 對，整個得作2-3次request
+00:04 < ETBlue> ipa: 我也是吃 ethercalc，但需要的欄位像這樣 https://ethercalc.org/g0v-project-hub-mockup
+00:04 < kcwu> ETBlue's url: [EtherCalc - Share the URL to your friends and edit together!]
+00:04 < jimyhuang__> project list 右側，倒是ETBlue 和 ipa 做的現況比較接近... d3visualization 有點太陽春
+00:05 < t0mst0ne_> ipa:  了解 !  只是剛好想到我媽那個年紀的人, 眼花手慢 XD
+00:05 < ipa> jimyhuang__: d3vis 的左列呈現太多tag，資訊太多惹
+00:06 < jimyhuang__> ipa: 那個把 tag 整理變成6大分類即可 :P
+00:06  * t0mst0ne_ jimyhuang__: lanf0n 不好意思, 那請問那個 token 'nccharset':'F767F049' & '151509985AF71EBA5C666723D637FCA6':'4C29C7B66E7148069C78421367142DC8' 要從哪裡找
+00:06 < ipa> t0mst0ne_: https://github.com/g0v/g0v.tw/blob/master/app/partials/projects.jade 如果真的受不了也可以改改看  :p
+00:06 < kcwu> ipa's url: [g0v.tw/projects.jade at master · g0v/g0v.tw · GitHub]
+00:07 < jimyhuang__> t0mst0ne_: 似乎在某個hidden input 
+00:07 < jimyhuang__> t0mst0ne_: chrome press F12 , inspect html , 可以搜尋
+00:08 < jimyhuang__> ipa: ETBlue 所以最後期待的是六大分類，還是像 ETBlue 的很多層filter?
+00:08 < ETBlue> jimyhuang__: ipa: 都做，做完再來決定 XD
+00:09 < jimyhuang__> ohohohoh~~ (攤手)
+00:09 < ipa> jimyhuang__: ETBlue 我期待的是「六大類 x 3-4 種開發階段」，開發階段可用 filter 的
+00:09 < ETBlue> 其實我只是想試純 jquery 苦力開發法而已…（逃
+00:09 < jimyhuang__> 所以 ipa 的想法，是否也解決了專案沒有持續開發的issue了？
+00:10 < ETBlue> 想出超白癡的方式避開使用 angular
+00:10 < jimyhuang__> ETBlue: jQuery 也沒這麼苦啊 :P
+00:11 < ETBlue> jimyhuang__: 寫過 angular 以後剛開始回來覺得有點苦 >"<
+00:11 < ipa> jimyhuang__: 專案沒有持續開發就可filter 掉不看，授權和種類看個別專案再接收資訊即可
+00:12 < ETBlue> ipa: jimyhuang__: 授權分兩種就好：可以商用的跟不可以的…… XD
+00:12 < ipa> jimyhuang__: 我比較走剪輯路線，資訊足夠判斷就好 XD
+00:12 < jimyhuang__> ETBlue: ipa well, 我先porting 看看。不過目前的壞消息是.. d3visualization 顧名思義，他用得不是jQuery也不是angular... 
+00:13 < ETBlue> 沒關係……我去角落玩沙
+00:15 < jimyhuang__> ETBlue: 不過我剛剛幫你找到一個東西... http://isotope.metafizzy.co/filtering.html
+00:15 < kcwu> jimyhuang__'s url: [Isotope · Filtering]
+00:15  * jimyhuang__ 我人真好(笑
+00:15 < ipa> jimyhuang__: ETBlue 這個我喜歡 我之前想玩，但功力完全不行
+00:15 < lanf0n> t0mst0ne_: 在 02那頁, form 裡面( nccharset 在01也有...)
+00:16 < ipa> jimyhuang__: 自己發好人卡 XDDDD
+00:16 < t0mst0ne_> lanf0n:  WHD2A02.jsp ?
+00:17 < kiang> 立法院好像只有院會記錄有逐字稿，各委員會的討論不會有這種東西吧？
+00:18 < ETBlue> jimyhuang__: 疑，這個 tkirby 好像用過
+00:18 < kiang> http://www.ptt.cc/bbs/PublicIssue/M.1412952247.A.16E.html 這兒有人問
+00:18 < kcwu> kiang's url: [[情報] 20141009林淑芬質詢頂新餿水油 - 看板 PublicIssue - 批踢踢實業坊]
+00:19 < johnny___> kiang: 值錢只看過會議記錄  http://www.ly.gov.tw/02_introduce/0204_comm/business/businessList.action?comtcd=26&itemno=02082600
+00:20 < t0mst0ne_> https://www.irccloud.com/pastebin/OJr36msP
+00:20 < kcwu> t0mst0ne_'s url: [Pastebin: OJr36msP | IRCCloud]
+00:20 < johnny___> ipa ++ 美感大幅提升  http://councils.g0v.tw/suggestions/
+00:20 < kcwu> johnny___'s url: [議員投票指南:議員配合款]
+00:21 < johnny___> ipa: 廠商之後再做好了，暈了XD
+00:22 < kiang> johnny___++, 看起來並沒有詳列討論過程
+00:22 < lanf0n> t0mst0ne_: res = requests.post('http://aomp.judicial.gov.tw/abbs/wkw/WHD2A02.jsp', data={'proptype':'C51', 'saletype':'1'})
+00:22 < kcwu> lanf0n's url: [法拍屋查詢系統]
+00:23 < lanf0n> t0mst0ne_: 再用 re 去 parse res.text ... (我只抓得到 nccharset QAQ
+00:24 < t0mst0ne_> lanf0n:  了解, 就是找那個hidden form , 用re 找到, 最後再扔到 data 裏頭 
+00:25 < lanf0n> t0mst0ne_: 不知道直接 req.get 02那頁會不會有...XD ((畢竟網頁重新整理它也會更新
+00:26 < t0mst0ne_> lanf0n: 應該是一頁一頁來 , 我猜 XD
+00:26  * lanf0n 試了一下看來是不行XDDD
+00:26 < clkao> kiang: 有  委員會的會議記錄都會有逐字 只是發佈時間比較不定
+00:28 < miaoski> pcchen: 蔡中涵的字典以及 Amis-Français 然後吳明義老師的字典要花些時間談。我其實也希望能談到星牧師的字典，但這就看 lafin 的功力了 (笑)
+00:28 < clkao> johnny___: 為何表中最前面都是 0 的呢？
+00:29 < johnny___> clkao: db裡是null，真想把他趕到最後
+00:29 < clkao> johnny___: 明細部分有辦法連回原來的文件嗎？
+00:30 < clkao> 噢 看來是主計處整份
+00:30 < clkao> 議員個人頁可能也要提供一下連結... ?
+00:30 < johnny___> 有計哪個縣市哪一年度第幾行
+00:31 < johnny___> 議員個人頁是指議會官網的嗎
+00:32 < clkao> no, 是說這一頁 http://councils.g0v.tw/councilors/suggestor/e88ca11134b247549ac27195930f3086/2010/ 
+00:32 < kcwu> clkao's url: [議員投票指南:林奕華2010~2014的工程建議款]
+00:33 < clkao> 如果有人直接連這邊 就沒有原始資料的連結跟說明
+00:33 < johnny___> clkao: 喔喔資料來源的連結，了解
+00:33 < clkao> 還是就加個[資料說明] 連到 /suggestions
+00:34 < johnny___> Good idea
+00:37 < lanf0n> t0mst0ne_: 要帶 headers 才會有第二行...QQ
+00:38 < lanf0n> t0mst0ne_: 我回在你的 gist 了
+00:41 < pcchen> miaoski: 一種字典滾字典的概念。
+00:41 < miaoski> pcchen: 都是 lafin 推坑.
+00:41 < t0mst0ne_> lanf0n:  收到 , thanks !! nccharset 好像每次reload 都會變 (不大確定是否一定要跟著變), 但是 'BCBC9440416E9EF00BDB80F199411869':'4E552F2AA089FD3A045C1D5A350C3275'  前面那個key 也是每天變, 要同時parase key/value 
+00:43 < lanf0n> t0mst0ne_: 對喔要抓第二個的 name... 那前面可能要再加一行去 parse name 的值
+00:57 < lanf0n> t0mst0ne_: 我順手...把它弄好了(?)，你參考一下( on gist )
+00:58 < t0mst0ne_> lanf0n:  Wow , 超強, 我還在慢慢刻說 Orz
+01:00 < kiang> clkao++
+01:01 < johnny___> clkao: 加資料來源，sorttable  http://councils.g0v.tw/councilors/suggestor/e88ca11134b247549ac27195930f3086/2010/
+01:01 < kcwu> johnny___'s url: [議員投票指南:林奕華2010~2014的工程建議款]
+01:05 < kiang> http://nomoresilence.herokuapp.com/ - 這個事件最後日期好像是 10/16 ，不過大概很難蓋過選舉消息吧，國立臺南大學附屬啟聰學校(跟小確幸候選人有關...)
+01:05 < kcwu> kiang's url: [No More Silence|不再沉默]
+01:06 < Michael_LI> 請自己拿去亂用沒關係／開放版權／（這是原本為HanGee社群而整理的知識教育資源）／小風英文教室（永久免費學英文）／http://bit.ly/AweathersEnglishClub
+01:08 < clkao> 有人明天要去 jsdc 的嗎？
+01:12 < Michael_LI> .//沒買票　不過周四見到５個外國講者　值得了！　～看他們吃軟軟勾勾的蚵啊煎的表情　就值得了（重點歪了　ＸＤ）～
+01:33 < jimyhuang__> 問：有人用 phantomjs render 出正確的 hackfoldr 畫面嗎？
+01:36 < lanf0n> 我用 politwoops 試試XD
+01:42 < lanf0n> 只會顯示這樣 -> https://s3-ap-southeast-1.amazonaws.com/twpolitwoops/feed-imgs/307695815922720_966248233400805-1.png
+01:43 < t0mst0ne_> lanf0n: Update gist , thanks
+01:46 < lanf0n> t0mst0ne_: 原來有 00...XD ((難怪剛從 01進去怎麼查都沒資料
+02:14 < jimyhuang__> lanf0n: 已經比 phantomjs 好一些
+10:54 -!- blackca_ is now known as blackca
+12:51 < ipa> johnny___: 問一下，如果要用 jquery，是要加在哪裡啊？（嘗試使用 semantic ui 的 javascript http://semantic-ui.com/modules/modal.html）
+13:44 < johnny___> ipa: 可直接加在這塊  https://github.com/g0v/councilor-voter-guide/blob/master/voter_guide/templates/suggestions/report.html#L133-L148
+13:44 < kcwu> johnny___'s url: [councilor-voter-guide/report.html at master · g0v/councilor-voter-guide · GitHub]
+13:51 < johnny___> 因為很少寫 js，都把 js跟 html 放在同一個檔內
+13:56 < johnny___> muyueh開了一個粉專 https://www.facebook.com/pages/50-%E5%A4%A9-50-%E5%BC%B5%E9%81%B8%E8%88%89%E5%9C%96%E8%A1%A8/1399456396945986 
+13:57 < kcwu> johnny___'s url: [50 天 50 張選舉圖表 | Facebook]
+14:05 < Michael_LI> muyueh++
+14:07 < dirty_> 5050 第一張出來了嗎?
+14:09 < johnny___> dirty_: http://councils.g0v.tw/suggestions/
+14:09 < kcwu> johnny___'s url: [議員投票指南:議員配合款]
+14:09 < dirty_> http://councils.g0v.tw/suggestions/ 這?
+14:09 < dirty_> 晚了一秒 XD
+14:10 < johnny___> 還在做想做最後的掙扎....想有個廠商的個人頁面，看出這個廠商都從那些議員的提案得標
+14:25 < gugod> clkao: 咦。 那你的預知夢準嗎? XD
+14:31 < Michael_LI> 有神快拜！通識課作業，問：你認為是什麼因素驅使了「928雨傘運動」的形成呢？／http://www.plurk.com/p/kgbqk8#response-6107206785
+14:31 < kcwu> Michael_LI's url: [使徒 X 觸手CCCC https://i.imgur.com/lzRJMyi.jpg [emo90] 神！！ ref - #kgbqk8 - Plurk]
+14:48 < gugod> wtf... sorry
+15:42 < clkao> gugod: XD
+15:45 < clkao> ipa: 早上講者的 js tutorial: http://jsforcats.com/ XD
+15:45 < kcwu> clkao's url: [JavaScript for Cats]
+16:01 -!- aron__ is now known as Guest39900
+16:01 -!- Guest39900 [uid47327@gateway/web/irccloud.com/x-nuwsregddckuerrc] has left #g0v.tw []
+16:03 -!- Guest39900 [uid47327@gateway/web/irccloud.com/x-nuwsregddckuerrc] has left #g0v.tw []
+16:10 < johnny___> ipa: 得標廠商個別頁好了  http://councils.g0v.tw/suggestions/bid_by/%E9%87%91%E7%85%8C%E7%87%9F%E9%80%A0/
+16:10 < kcwu> johnny___'s url: [議員投票指南:議員配合款]
+16:22 < johnny___> 先來睡一下
+16:37 -!- Guest39900 [uid47327@gateway/web/irccloud.com/x-nuwsregddckuerrc] has left #g0v.tw []
+16:37 -!- Guest39900 is now known as Cole
+16:38 -!- Cole is now known as Alston
+16:38 < Alston> .
+17:19 < ipa> johnny___: 應該不是得標案中的政黨、議員，是得標案建議的政黨、建議的議員
+17:19 < ipa> 晚點我有時間來改一下，因為這個款項弔詭的就是只有「建議」權
+17:20 < johnny___> ipa: 了解，都多加"建議的"
+17:20 < ipa> 得標廠商寫政黨也怪怪的
+17:20 < johnny___> 也是
+17:20 < johnny___> 其實是建議的議員的政黨
+17:20 < ipa> 建議>提案>通過預算>標案>得標 ，直接寫得標廠商是預設全部是綁樁
+17:21 < ipa> 但沒有證據可以這樣說。。。。只能希望大家仔細看
+17:22 < ipa> 「得標案中的議員所屬政黨分布」
+17:22 < ipa> 「得標案中的建議議員分布」
+17:23 < johnny___> 得標應該沒問題，官方的 excel 就寫"得標廠商"
+17:23 < ipa> 第一個表格「得標廠商」一樣可改為「得標案中的議員所屬政黨分布」
+17:25 < ipa> 官方文件說的得標廠商應該就是只得標廠商，但這邊指政黨，意義就不一樣了
+17:25 < johnny___> 哦哦對，打錯了
+17:25 < johnny___> 複製貼上沒改到
+17:26 < ipa> 我也打錯，應該是「得標案的建議議員之所屬政黨分布」
+17:26 < johnny___> 更新一下db，把股份?有限公司拿掉
+17:30 < johnny___> xx廠商得標案中，提案議員的政黨分布  這樣如何
+17:34 < ipa> johnny___++ 
+17:34 < ipa> 好挖 
+17:43 < johnny___> ipa: 文字已改正，上面第二個連結可以連到 ronnywang 的公司股東董事資料  http://councils.g0v.tw/suggestions/bid_by/%E6%99%89%E5%BE%B7%E7%87%9F%E9%80%A0/
+17:43 < kcwu> johnny___'s url: [議員投票指南:晉德營造的工程建議款]
+18:35 < chhsiao1981> https://docs.google.com/spreadsheets/d/1Mx5Xtb9S5YJMvWkPoRTk6eyKvEsgq-tNHqQxx1mQBjo # 除了鄉鎮市民代表以外. 其他的部分都整理好了.
+18:35 < kcwu> chhsiao1981's url: [2014 候選人網站 link - Google 試算表]
+20:13 < kiang> chhsiao1981++
+20:21 < johnny___> https://www.facebook.com/permalink.php?story_fbid=1399472756944350&id=1399456396945986
+20:21 < kcwu> johnny___'s url: [50 天 50 張選舉圖表 - 選一個議員可能比你買一支手機還要撐更久 貨比三家不吃虧... | Facebook]
+20:21 < johnny___> 這樣還OK嗎 XD
+20:22 < t0mst0ne_> Johnny ++
+20:24 < johnny___> ipa: 用了你做的圖哦 ^^
+20:28 < clkao> 下禮拜三: http://clkao.kktix.cc/events/data-tools-meetup
+20:28 < kcwu> clkao's url: [Emergency data tools meetup | 緊急資料工具聚會]
+20:28 < clkao> dat 基本上就是給資料用的 git
+20:28 < clkao> 非常有潛力
+20:35 < gugod> 有意思
+20:36 < jimyhuang__> 像是 okfn 之前做得 pipeline?
+20:37 < clkao> no, more than that
+20:38 < clkao> dat clone http://.....
+20:38 < clkao> pipeline 比較在做 transform, dat 還沒加這部份
+20:38 < clkao> dat pull ...
+20:38 < clkao> 可以有效率的 sync data
+20:45 < clkao> au: 要來嗎？順便調時差 XD
+20:46 < miaoski> Chang-I 機場的網路超快的，好像在 local 一樣。台灣是怎麼回事 @@
+20:47 < clkao> cdn 吧
+20:50 < ipa> johnny___: 我正在寫文案哩 https://g0v.hackpad.com/w01v8lrMLTY
+20:50 < kcwu> ipa's url: [新聞中心（發佈工作站） - g0v.hackpad.com]
+20:50 < ipa> 圖改了一下，來貼 g0v fb，也順便宣傳 5050
+20:52 < johnny___> OK 我來加一下server
+20:53 < johnny___> ipa++ 文案開頭讚啊！
+20:56 < ipa> lanf0n: 攤位組有沒有要加在問卷裡的？
+20:56 < ipa> https://docs.google.com/forms/d/1E3lhzaoBltk0IATvC0pnX9RSqYSST-zOhVZOhNrOG6c/viewform
+20:56 < kcwu> ipa's url: [g0v Summit 會後問卷]
+20:56 < t0mst0ne_> ipa: johnny___ 請問 “建議金額" 這個就是配合款的金額嗎?  然後, 這全部都給議員嗎?
+20:57 < ipa> 議員建議 > 由地方政府編列預算 > 議會審核 > 標案 
+20:58 < ipa> 但通常中間兩個流程都照單全收，建議多少就通過多少，所以被稱為綁樁基金
+20:58 < johnny___> t0mst0ne_: 是看細項嗎？原始資料有兩欄，一項是議員建議金額，一項是核發金額（通過預算），不是給議員是給得標廠商
+20:58 < ipa> 但得標廠商有沒給議員就不得而知了 XDDD
+20:59 < johnny___> t0mst0ne_: 
+20:59 < kiang> 得標廠商有沒給議員 => 就要看政治獻金細節了 XD
+20:59 < johnny___> t0mst0ne_: 例如  http://councils.g0v.tw/councilors/suggestor/a356d98fa9c24fa9920c4c59db158ed7/2010/?index=rawdata#高雄市-2012-511
+20:59 < kcwu> johnny___'s url: [議員投票指南:許崑源2010~2014的工程建議款]
+21:00 < johnny___> 台北市的建議金額都寫 "無"，高雄市就有寫議員的建議金額
+21:00 < billy3321> 大家好，我有個問題想請教大家
+21:01 < t0mst0ne_> ipa: johnny___ 了解...
+21:01 < billy3321> qrtt1在幫我修改我的ivod-download-client
+21:01 < billy3321> 一個可以下載ivod的python script
+21:01 < billy3321> 以前我命名很爛，現在qrtt1幫我改成系統執行檔
+21:02 < billy3321> 想請大家一起來幫我想一下，下載單檔的程式和可以下載整個會議的程式要怎麼命名
+21:02 < billy3321> 單檔的我想命名為 twly-ivod-dl
+21:02 < johnny___> 還有很多面向可以看，例如：建議和實際核發比率排行，可知縣市政府比較不敢砍誰的
+21:02 < billy3321> 但整個會議的我有點沒主意，想請大家幫忙想想XD
+21:02 < miaoski> au: 我本來以為 `ci~`raraw~`ay~ 這樣寫就 ok 了... @@
+21:03 < miaoski> (ci 是前綴 ay 是後綴)
+21:03 < johnny___> 另外還有跨區建議，例如本身是中山區議員，提案地點卻是萬華區等
+21:03 < billy3321> kiang johnny___ 對了，有東西要麻煩妳們
+21:04 < billy3321> kiang johnny___ https://g0v.hackpad.com/ucTpAApiE7G
+21:04 < kcwu> billy3321's url: [議員判刑資料 - g0v.hackpad.com]
+21:04 < billy3321> 這是公督盟小賴整理的
+21:04 < billy3321> 他收集資料的方式也寫在下面了，大家可以整理進去
+21:05 < johnny___> followed
+21:06 < t0mst0ne_> 前幾天聽長輩說, 在還是臺灣省的時代, 為了要讓工程品質維持, 不會偷工減料, 所以原本1000萬的預算, 會編成1500W, 多的500就是給場傷, 但是堅持要有1000的品質; 自那時起, 較少偷工減料, 並且願意接政府工程 = > 都是老一輩講古, 臺灣省時期, 不知道是不是這個建議款的源頭? 
+21:06 < kiang> chhsiao1981: 已知資料都匯入選舉黃頁了，感謝 :)
+21:09 < miaoski> au: 麻煩幫看一下? https://gist.github.com/miaoski/d77db7bdec6ab5f285fa 
+21:09 < kcwu> miaoski's url: [raraw.json]
+21:09 < jimyhuang__> clkao: got it 所以以後可以 dat push dat://data.gov.tw/xxx , 然後看他們為何不接受 pull request ... :P
+21:11 < clkao> yes, ideally
+21:20 < kiang> johnny___: "金臂人點進去為啥都server error" ptt 傳來的
+21:20 < johnny___> 我看看哦
+21:21 < kiang> johnny___: http://councils.g0v.tw/councilors/suggestor/b318a34db2e74e98ae5d83153035e686/2010/
+21:23 < johnny___> shit他的廠商名字先面居然有  1.xxxxxx
+21:23 < johnny___> 來看一下
+21:23 < clkao> XD
+21:24 < clkao> johnny___: 你前面要不要開 cloudflare 擋一下？ heroku 流量會爆嗎？
+21:24 < clkao> 要的話我可以直接設訂
+21:25 < johnny___> clkao: 啊好啊，目前狀況看起來還OK，cache timeout有先拉高了
+21:28 < clkao> johnny___: done! 順便開了 flexible ssl, 看要不要 http 都轉 https: https://councils.g0v.tw/
+21:28 < clkao> 應該會快不少 有 spdy
+21:28 < johnny___> clkao: 哦哦 django好像有module再做這個，晚點研究一下
+21:30 < lanf0n> ipa: 晚點研究一下QQ
+21:41 < johnny___> kiang: bug解了 https://github.com/g0v/councilor-voter-guide/issues/18
+21:41 < kcwu> johnny___'s url: [url param need urlencode · Issue #18 · g0v/councilor-voter-guide · GitHub]
+21:41 < kiang> johnny___++
+21:59 < johnny___> 天啊，中選會居然把周鍾㴴的名字用圖貼在pdf.....中招了 https://www.facebook.com/g0v.tw/photos/a.456791061028852.107377.454607821247176/796723740368914/?type=1&comment_id=796741347033820&offset=0&total_comments=10
+21:59 < kcwu> johnny___'s url: [g0v.tw 台灣零時政府 - 動態時報相片 | Facebook]
+22:00 < johnny___> 第14頁  http://web.cec.gov.tw/ezfiles/0/1000/attach/92/pta_19706_3257159_58304.pdf
+22:00 < kiang> johnny___: 應該是程式自動轉的，處理候選人資料中招很多次了 XD
+22:01 < kiang> 很多罕見字都會轉成圖檔
+22:02 < kiang> johnny___: 不過 https://github.com/kiang/elections/blob/master/Console/Command/data/2014_candidates/%E7%9B%B4%E8%BD%84%E5%B8%82%E8%AD%B0%E5%93%A1.csv 有順利轉出來，看起來又改版了...
+22:02 < kcwu> kiang's url: [elections/直轄市議員.csv at master · kiang/elections · GitHub]
+22:03 < kiang> johnny___: 沒事，是我自己放入例外處理 XD
+22:05 < johnny___> 決定手工處理
+22:39 < johnny___> 結果居然是立委投票指南爆流量orz，還好最近剛裝newrelic
+22:40 < ipa> johnny___++ 我要學JS來貢獻投票指南 XD
+22:41 < johnny___> ipa: 太棒啦！我 js 超爛
+22:41 < ipa> 別開心太早，我現在根本不會 XDDDD
+22:41 < johnny___> 哈哈哈
+22:45 < johnny___> clkao: 守錯地方了....  https://www.dropbox.com/s/ahvbow83bq6uy8n/food_vote.png?dl=0
+22:45 < kcwu> johnny___'s url: [Dropbox - food_vote.png]
+22:46 < clkao> orz
+22:46 < clkao> 要開嗎？
+22:46 < clkao> 有 referer?
+22:49 < miaoski> au: 嗯，我懂了，正在查的詞本身沒有 tooltip. 那這樣做應該沒問題...
+22:50 < johnny___> clkao: 好像跟這有關...還沒找到源頭   www.ptt.cc/bbs/PublicIssue/M.1413021545.A.785.html
+22:52 < miaoski> 不過不能現在放上去，不然主張 g (天主教) 要拼成 ng (原民會及新教) 的老師會爆炸 :P
+23:18 < johnny___> 看來要想辦法做個相關表決了Orz，不過只截圖的實在很靠杯  https://www.facebook.com/photo.php?fbid=1510684069190413&set=a.1460280227564131.1073741827.100007465036559&type=1
+23:18 < kcwu> johnny___'s url: [王貴玲 - 手機上傳 | Facebook]
+23:21 < jimyhuang__> Councilor.g0v.tw 有上 cloudflare對吧
+23:22 < johnny___> jimyhuang__: 議員嗎 http://councils.g0v.tw/
+23:22 < kcwu> johnny___'s url: [議員投票指南: 2014候選人]
+23:23 < jimyhuang__> 看來現在頗順... 應該沒啥問題 :p
+23:23 < jimyhuang__> johnny___++
+23:24 < johnny___> jimyhuang__: 現在都擠在 http://vote.ly.g0v.tw/vote/08-04-YS-11-013/
+23:24 < kcwu> johnny___'s url: [立委投票指南:(2013-11-22)第013個表決]
+23:28 < jimyhuang__> 原來 clka o 前面有開，漏掉了
+23:29 < miaoski> lafin: Quickdic 的安裝法先公佈好了 https://github.com/miaoski/amis-data/blob/master/quickdic.md 不過這是天主教拼音哦
+23:29 < kcwu> miaoski's url: [amis-data/quickdic.md at master · miaoski/amis-data · GitHub]
+23:29 < miaoski> 等吳明義老師做好原民會拼音的，我們再來做原民會拼音版
+23:30 < lafin> miaoski: 好的!我會時常關心他的進度
+23:30 < miaoski> XD
+23:31 < miaoski> 你可以請 weiting 裝裝看... 看這樣的說明夠不夠簡單 (咦)
+23:31 < lafin> 我看一下
+23:32 < lafin> 我覺得她會丟給我裝
+23:32 < miaoski> lafin: 可是你早就會裝了
+23:33 < miaoski> 然後我把斷詞那邊改了一下，改成和萌典其它語言通用的做法
+23:33 < miaoski> 可是還不敢上傳。我怕我改成天主教拼音後，吳明義會很困擾 XD
+23:33 < lafin> miaoski: ++
+23:34 < lafin> miaoski: 困擾?
+23:34 < miaoski> 他看到 ng 拼成 g 大概會不太高興 XD
+23:34 < miaoski> 哦對了，別忘了 faki 蔡中涵的字典啊...
+23:35 < Michael_LI> Lee1092／今天下午我跟淑華跟中研院的研究生有個跟簡單網路開會／島嶼天光學潮實紀錄／我們下週五到中研院開會／
+23:35 < miaoski> 你在花蓮吧？和神父聊過了嗎？
+23:37 < lafin> miaoski: 蔡中涵會再問問，我感冒所以沒去花蓮 = =
+23:37 < miaoski> 辛苦了....
+23:42 < lanf0n> ipa: 問卷是給所有參與者填的嗎? 攤位應該可以加一題在場地的部份XD
+23:44 < ipa> lanf0n: https://g0v.hackpad.com/g0v-Summit--ThRrabyIUFt 補這
+23:44 < kcwu> ipa's url: [g0v Summit 會後問卷題目共筆 - g0v.hackpad.com]
+23:50 < lanf0n> ipa: 咦我應該要加在場地還是加在攤位囧>
+23:56  * lanf0n 還是加到原有的攤位 part 好了

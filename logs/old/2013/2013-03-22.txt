@@ -1,0 +1,207 @@
+--- Day changed 五  3月 22 2013
+00:01 < kcwu> mms://mediavod02.ly.gov.tw/wmv-100k/2013_03_21/紅樓101會議室(WMV)_2013_03_21_082139.wmv # 會議 9:00 開始
+00:02 < kcwu> mms://mediavod02.ly.gov.tw/wmv/2013_03_21/紅樓101會議室(WMV)_2013_03_21_082139.wmv # 寬頻版
+00:03 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+00:08 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+00:22 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+00:22 < chhsiao1981> 超想跟國民黨立委們說: 再假就不像了啦 XD. #明明就也一堆實際上反核的 XD. 這個新聞就很明顯了 XD. #立院經濟委員會通過退回台電預算、停建核四
+00:25 < chhsiao1981> (而且似乎其實馬冏也是反核的 XD. 不然根本就不會笨到自己提公投 XD)
+00:55 -!- icman [~icman@123.240.139.67] has quit [Quit: 明天天氣晴]
+01:09 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has joined #g0v.tw
+01:10 -!- Custom [~Custom@saturn.stu.edu.tw] has quit [Ping timeout: 264 seconds]
+01:11 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+01:13 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+02:19 -!- Tunghua [~Tunghua@1.34.114.149] has quit [Quit: Computer has gone to sleep.]
+02:19 -!- Tunghua [~Tunghua@1.34.114.149] has joined #g0v.tw
+02:21 -!- Tunghua [~Tunghua@1.34.114.149] has quit [Client Quit]
+02:49 < clkao> tkirby: http://www.w3.org/TR/2013/WD-vocab-data-cube-20130312/
+02:49 < kcwu> clkao's url: [The RDF Data Cube Vocabulary]
+02:49 < clkao> last call for comments
+03:16 -!- Supaplextw [~Lucky@114-25-196-201.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+04:52 -!- mevernom [~Thunderbi@1.34.178.19] has quit [Remote host closed the connection]
+09:00 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has joined #g0v.tw
+09:19 -!- Tunghua [~Tunghua@1.34.114.149] has joined #g0v.tw
+09:36 < tkirby> !!
+09:37 < tkirby> btw, 昨天在想 feature union 的問題, 在想程式怎麼寫.. 忽然覺得手動來作搞不好比較快 (if only for once..)
+09:38 < tkirby> 選區更新的檢討頻率是 2.5屆(aka 10y) 一次
+09:53 -!- MnO2 [~MnO2@nat/yahoo/x-iojujobgdpkhxief] has joined #g0v.tw
+10:16 -!- Tunghua [~Tunghua@1.34.114.149] has quit [Quit: Computer has gone to sleep.]
+10:23 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:28 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+10:36 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:37 -!- KNY [~Adium@118-170-70-83.dynamic.hinet.net] has joined #g0v.tw
+10:44 < clkao> tkirby: 手動怎麼弄? 
+10:44 -!- cades [~mac@114-32-245-7.HINET-IP.hinet.net] has joined #g0v.tw
+10:52 < tkirby> clkao: 我有找到一個視窗介面的 shp file editor, 可以把選取的 feature merge 起來輸出.. 也許可以修改完 shp file 後再 -> geojson -> topojson
+10:55 < tkirby> 其實這樣搞不好比較好, village.json 其實蠻大的, 不如先弄好一個 選區.json, 應該會小很多, 也不需要處理時間的 overhead
+10:57 < clkao> sure. 不過本來也是想說先程式 merge 好各選區, simplify
+10:57 < tkirby> souka
+10:58 < tkirby> hmm? 不過這樣說來.. DGAL 會不會有類似的 tool
+10:58 < tkirby> GDAL
+10:59 < tkirby> 有的話就在 makefile 裡跑 ogr2ogr 前加一下就...
+11:05 < clkao> 太奧義了... 可能可以問問 osm.tw 
+11:06 < clkao> 快速找了一下 gdal utility 好像沒有
+11:07 < clkao> tkirby: 偷懶的方法其實是把兩個 multipoly array concat 起來 只是這樣原來的 border 還是會出現在中間 不過也未必不好
+11:08 < clkao> tkirby: 我原來的 tw-counties 就是這樣 把 coordinates 併在一起
+11:08 < tkirby> XD!
+11:09 < clkao> 因為他原始的 shp 單一縣市不連續部分(如離島)是分在不同的 feature
+11:09 < tkirby> 我晚點 survey 看看.. 如果沒有 offline 的 solution, 這個大絕就拿來放吧 XD
+11:10 < clkao> 村里編號我有貼到 data.g0v.tw
+11:10 < clkao> 他基本上是 <縣市>-<村里>, 但我覺得縣市可以用 ISO3166, 不要用他那個數字 這樣人看比較快
+11:11 < clkao> 說錯了 "#縣市#鄉鎮-#村里"
+11:11 < tkirby> hmm
+11:12 < clkao> so, maybe something like TPE-123-123
+11:12 < clkao> ronnywang 的目前是用全名?
+11:14 < ronnywang> clkao: 我用郵遞區號
+11:14 < ronnywang> 不過我沒去認郵遞區號跟村里有沒有一對一
+11:15 < ronnywang> s/去認/確認/
+11:15 < ronnywang> 喔不是..我是只有名字而已
+11:16 < ronnywang> 郵局有村里中英對照資料
+11:16 < ronnywang> https://github.com/ronnywang/postcode/tree/master/village
+11:16 < kcwu> ronnywang's url: [postcode/village at master · ronnywang/postcode · GitHub]
+11:17 < clkao> ronnywang: 郵遞區號不行 嘉義市東區跟西區是同一個號碼
+11:19 < ronnywang> 我之前寫村里選舉地圖就只有用全名對應而已,沒有用到任何代號..郵局的村里中英對照中沒有任何 ID
+11:20 -!- alcho__ [al_cho@nat/novell/x-fkwshqvlmdwbufmd] has quit [Remote host closed the connection]
+11:20 -!- Al_Cho [al_cho@nat/novell/x-vpweywropmszlkad] has quit [Read error: Connection reset by peer]
+11:23 < clkao> ronnywang: 主計處有一套 我貼的那個 不過目前是 pdf
+11:23 < clkao> bl
+11:27 < ronnywang> https://github.com/ronnywang/twgeojson 我這邊的村里界裡面有把國土資訊的村里 id 也塞進去
+11:27 < kcwu> ronnywang's url: [ronnywang/twgeojson · GitHub]
+11:27 < ronnywang> 剛看了一下跟主計處的是一樣的
+11:34 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+11:49 < clkao> ronnywang++
+11:56 -!- MnO2 [~MnO2@nat/yahoo/x-iojujobgdpkhxief] has quit [Quit: MnO2]
+11:57 < cades> 請問有人想做or做過台灣電力使用的open data嗎? 台電網站上有很詳細的民生用電資訊, 只是做民生用電open data好像沒什麼意義ˊˋa
+11:57 -!- KNY [~Adium@118-170-70-83.dynamic.hinet.net] has quit [Quit: Leaving.]
+11:59 < ronnywang> http://taipower.g0v.ronny.tw/ # 我是從上次 open data day 開始有每分鐘抓一次發電量
+11:59 < kcwu> ronnywang's url: [台電發電記錄]
+12:00 -!- MnO2 [~MnO2@nat/yahoo/x-ejfsikhdzailuayi] has joined #g0v.tw
+12:00 -!- MnO2 [~MnO2@nat/yahoo/x-ejfsikhdzailuayi] has quit [Client Quit]
+12:08 -!- zz_chihchun is now known as chihchun
+12:33 -!- KNY [~Adium@118-170-70-83.dynamic.hinet.net] has joined #g0v.tw
+12:47 < tkirby> 感覺可以用 ST_Union 做.. 但是 ogr2ogr -sql "..." 不知道怎麼寫
+12:48 < tkirby> http://workshops.opengeo.org/postgis-intro/geometry_returning.html#st-union
+12:48 < kcwu> tkirby's url: [OpenGeo : Introduction to PostGIS : Section 18: Geometry Constructing Functions]
+12:48 < tkirby> # The aggregate ST_Union can be used with the GROUP BY SQL statement to create carefully merged subsets of basic geometries. It is very powerful
+13:07 -!- KNY1 [~Adium@118-170-70-83.dynamic.hinet.net] has joined #g0v.tw
+13:07 -!- KNY [~Adium@118-170-70-83.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+13:10 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+13:17 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 252 seconds]
+13:17 -!- KNY1 [~Adium@118-170-70-83.dynamic.hinet.net] has left #g0v.tw []
+13:25 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+13:38 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+13:54 -!- MnO2 [~MnO2@nat/yahoo/x-dzeybxdfhldtstgv] has joined #g0v.tw
+14:02 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+14:21 -!- goodjack [a30d811d@gateway/web/freenode/ip.163.13.129.29] has joined #g0v.tw
+14:24 -!- goodjack [a30d811d@gateway/web/freenode/ip.163.13.129.29] has quit [Client Quit]
+15:13 -!- MnO2 [~MnO2@nat/yahoo/x-dzeybxdfhldtstgv] has quit [Quit: MnO2]
+15:21 -!- cades [~mac@114-32-245-7.HINET-IP.hinet.net] has quit [Quit: This computer has gone to sleep]
+15:28 < tkirby> hmm 我用 python 試了一下, 看來是可以用
+15:39 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has joined #g0v.tw
+15:48 < clkao> tkirby: 你有選區的 mapping 嗎
+16:46 -!- cades [~mac@114-32-245-7.HINET-IP.hinet.net] has joined #g0v.tw
+17:36 -!- MnO2 [~MnO2@nat/yahoo/x-nqiqziitjkmipige] has joined #g0v.tw
+17:52 -!- shawnwan1 [~shawn@163.16.5.181] has joined #g0v.tw
+17:55 -!- shawnwang [~shawn@163.16.5.181] has quit [Ping timeout: 256 seconds]
+17:57 < tkirby> clkao: no.. 我只是先研究 geometry union 怎麼做
+17:58 < tkirby> mapping 有現成的嗎? 還是我建一個 json 檔來存 mapping?
+18:19 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 264 seconds]
+18:19 -!- Kelp_ [704e41cc@gateway/web/freenode/ip.112.78.65.204] has joined #g0v.tw
+18:22 -!- Kelp_ [704e41cc@gateway/web/freenode/ip.112.78.65.204] has quit [Client Quit]
+18:30 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+19:05 < clkao> tkirby: 我這邊有弄到一半的 但.... 中選會的村里又有 PUA
+19:07 < tkirby> PUA?
+19:07 < tkirby> p..pickup artists? XD
+19:10 < clkao> 就是自己到外字集
+19:10 < clkao> 我應該已經有 push 了
+19:10 < tkirby> hmm
+19:10 < clkao> tkirby: https://github.com/clkao/TWVoteData/blob/master/mly/8/TXG-2.json
+19:10 < kcwu> clkao's url: [TWVoteData/mly/8/TXG-2.json at master · clkao/TWVoteData · GitHub]
+19:11 < tkirby> 話說.. 10021 是哪裡的代碼, 在 shp 檔裡有在行政區域及村里代碼卻沒有
+19:11 < clkao> tkirby: 10021 是 ronnywang 檔案裡的嗎？
+19:11 -!- cades_ [~mac@114-32-245-7.HINET-IP.hinet.net] has joined #g0v.tw
+19:12 < clkao> tkirby: 我已經按照選區分好了, 取出區下面的 keys 就可以了. 就和 full list 比對, 剩下的在手動對應 PUA?
+19:12 -!- cades [~mac@114-32-245-7.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+19:12 < tkirby> 我是看 twgeojson makefile 裡的 rar link 抓的.. 應該是這個 http://www.iot.gov.tw/public/Attachment/7101816594871.rar
+19:12 < clkao> 那個可能是另外自己的編號 
+19:12 < tkirby> 囧>
+19:12 < clkao> 中選會的網頁上的里名字是對的, 重抓一次也可以
+19:12 < clkao> 只是我都已經從 excel 弄出來了
+19:13 < tkirby> 賀
+19:13 < tkirby> 連選票都順便爬完了... <(_ _)>
+19:14 < clkao> 就是他的 excel.. 只是 patch 了 unoconv 可以取出某個 sheet 的
+19:24 -!- MnO2 [~MnO2@nat/yahoo/x-nqiqziitjkmipige] has quit [Quit: MnO2]
+19:28 -!- cades [~mac@114-32-245-7.HINET-IP.hinet.net] has joined #g0v.tw
+19:29 -!- cades_ [~mac@114-32-245-7.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+19:30 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+19:42 -!- cades_ [~mac@114-32-245-7.HINET-IP.hinet.net] has joined #g0v.tw
+19:43 -!- cades [~mac@114-32-245-7.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+19:57 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+20:11 -!- chihchun is now known as zz_chihchun
+20:53 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has joined #g0v.tw
+20:58 < clkao> orz 要寫開場投影片了
+21:07 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+21:19 -!- Supaplextw [~Lucky@114-25-202-248.dynamic.hinet.net] has joined #g0v.tw
+21:19 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+21:39 < clkao> ronnywang: re 開放空間 - google docs 上傳圖檔有個選項可以作中文 ocr
+21:44 < clkao> ronnywang: 還有公用停車位換容積率我也相當好奇... 
+21:44 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has joined #g0v.tw
+21:47 -!- pm5_ [~pm5@111-248-226-120.dynamic.hinet.net] has joined #g0v.tw
+21:49 -!- SarsTW [~wenpei@nw188.csie.ncu.edu.tw] has quit [Ping timeout: 256 seconds]
+21:50 -!- SarsTW [~wenpei@nw188.csie.ncu.edu.tw] has joined #g0v.tw
+21:51 -!- cpyang [~cpyang@nerv.siraya.net] has joined #g0v.tw
+21:51 < clkao> 原來 2008 年南港蓋一棟八層大樓只要 43m, 然後一坪可以開 400k, 換算總樓板面積 1500 坪 總價 600m # http://tpebuilding.g0v.ronny.tw/index/license?id=0990016
+21:51 < kcwu> clkao's url: [台北市建管處建照記錄]
+21:52 < clkao> 地基約 250 坪 就不知土地價格多少了... 
+21:52 < cpyang> clkao: 但是應該可以加上其他成本算一算不小心就賠錢了 XD
+21:53 < clkao> cpyang: 譬如說? :P
+21:53 < cpyang> 翻過幾份財報的感覺 :D
+21:53 < clkao> :P
+21:54 < clkao> 而且一般應該都是超高槓桿在操作 :P
+21:54  * cpyang 覺得繳稅是繳心酸的
+21:55 < ipa> @@
+21:55 < clkao> cpyang: 來整理一下財報搭配這個建築登記? :P
+21:56 < cpyang> clkao: 很難拆解吧... 有很多都在轉包過程處理掉了
+21:56 < cades_> <ronnywang> 太棒了！ and sorry 這麼晚才看到  
+21:57 -!- cades_ [~mac@114-32-245-7.HINET-IP.hinet.net] has left #g0v.tw ["暫離"]
+21:57  * kcwu 還不知道明天要幹麻
+21:57 -!- cades_ [~mac@114-32-245-7.HINET-IP.hinet.net] has joined #g0v.tw
+22:15 -!- Tunghua [~Tunghua@1.34.114.149] has joined #g0v.tw
+22:30 < tkirby> kcwu: 來抓鄉鎮級統計資料?
+22:30 < tkirby> TWVoteData 好像整個很大
+22:34 < kcwu> 是說這個不夠完整? https://github.com/ntuaha/TWVoteData
+22:34 < kcwu> kcwu's url: [ntuaha/TWVoteData · GitHub]
+22:40 < tkirby> 阿, 兩件事其實無關...
+22:40 < tkirby> 我講的是 twstat (來抓) ; 至於 twvotedata 是說我正在整理台灣選區地圖所以在 git clone...
+22:41 < tkirby> git clone 還蠻久的, 我就改成直接抓那幾十個 選區 json 了
+22:41 < tkirby> twstat 目前有這裡的全部資料: http://ebas1.ebas.gov.tw/pxweb/Dialog/statfile9.asp
+22:41 < kcwu> tkirby's url: [《中華民國統計資訊網》縣市重要統計指標查詢系統]
+22:42 < tkirby> 不過各縣市自己鄉鎮的詳細資料散在各縣市的網站, 有些只有 excel ...
+22:56 < ronnywang> clkao: 好啊，明天來徵求有 OCR 專長的人，來從圖片中找出有「開放」、「獎勵」的執照有哪些..對這些下手吧!
+22:56 < ronnywang> google docs 的 OCR 我到現在還不知道怎麼用 orz
+23:04 -!- icman [~icman@123.240.139.67] has joined #g0v.tw
+23:10 -!- ETWu [afb6e65a@gateway/web/freenode/ip.175.182.230.90] has joined #g0v.tw
+23:11 < clkao> ronnywang++
+23:11 < clkao> ronnywang: UI 的話，你選 upload 但那他個 popup 有個 setting 按鈕 改了之後 enable ocr, 下次 upload 才會有
+23:12 < clkao> 非常詭異的 UI... 但 api 好像比較單純, 加個參數和語言就可以了
+23:13 < clkao> tkirby: 如果 google pc axis 好像可以找到一堆隱藏的檔案
+23:13 < ETWu> Hello,有誰可以幫忙高抬滑鼠幫忙測試一下直播畫面?
+23:14 < clkao> ETWu: url?
+23:14 < ETWu> http://www.ustream.tv/channel/g0v-testing
+23:14 < kcwu> ETWu's url: [USTREAM: g0v testing: this is only for testing. 入門指導]
+23:14 < au> worksforme Chrome25/MacOSX
+23:15 < au> ETWu++
+23:15 < clkao> ETWu++
+23:15 < clkao> worky
+23:15 < ETWu> 順暢度?
+23:15 < clkao> 還有字幕 真神秘、
+23:15 < ETWu> 嘿嘿嘿
+23:15 < clkao> 跑馬燈有點跳格
+23:16 < clkao> 不過 sinica 水管應該很威
+23:16 < ETWu> sinica的上傳應該是沒問題
+23:21 < ETWu> OK，那就算測試通過...
+23:26 < ETWu> 在下先告退，各位明天見!
+23:27 -!- ETWu [afb6e65a@gateway/web/freenode/ip.175.182.230.90] has left #g0v.tw []
+23:27 < tkirby> clkao: !
+23:27 < tkirby> 小朋友鼻塞睡不著 orz
+23:43 < clkao> tkirby: 只好現在開始進行 24hr 編程馬拉松？

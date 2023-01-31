@@ -1,0 +1,306 @@
+--- Day changed 五  8月 15 2014
+00:00 < t0mst0ne_> dig, nslookup normal here
+00:02 < clkao> dig www.cgmh.org.tw. @60.250.255.68
+00:03 < t0mst0ne_> www.cgmh.org.tw.	33554	IN	A	60.250.255.2  60.250.255.34 
+00:05 < hcchien> 今天解開了在打工公司講正職工作內容的成就  (這什麼
+00:05 < clkao> hcchien: !!
+00:05 < hcchien> clkao!!
+00:06 < hcchien> clkao: shirky 到底怎麼了
+00:06 < clkao> 噢 不知 再來寄個信好了 可能正在搬家
+00:06 < hcchien> 廣告都打了，不要變不實廣告啊   lol
+00:07 < hcchien> 然後今天覺得 udn 跟歪歪應該都還有機會拉到贊助，繼續努力中
+00:10 < hlb> hcchien: 咦 kk 贊助搞定了嗎 :q
+00:11 < hcchien> hlb: 蝦蝦在 follow
+00:12 < hlb> 喔喔 :p
+00:18 < clkao> 感動 氣象局的雨量 open data 終於市可以用的樣子了
+00:18 < yhsiang> clkao: !!
+00:18 < clkao> 來更新 env.g0v 吧
+00:20 < yhsiang> 在那裡啊?
+00:20 < yhsiang> http://data.gov.tw/node/7879 this ?
+00:20 < kcwu_> yhsiang's url: [十分鐘雨量資料 | 政府資料開放平臺]
+00:22 < hcchien> clkao: 你還有很多 cards 都沒動喔
+00:23 < clkao> orz
+00:25 < clkao> yhsiang: 寫一半的worker 放到 env.g0v.tw/scripts 了
+00:25 < yhsiang> XD
+00:27 < clkao> yhsiang: 先弄個架構讓他可以 /air 跟 /rain 吧 :p 現在是寫死 XD
+00:41 < hcchien> clkao: 介紹文案是要請國外 community 提供？
+00:41 < clkao> 對 然後我們再弄中文的
+00:42 < hcchien> 那你就自己認領那些 cards, 去追他們？
+00:42 < hcchien> 還是要找其他人去追？
+00:43 < clkao> 追完後需要 txt 組吧 XD 或者也可以從公開的資訊想如何介紹
+00:43 < yhsiang> clkao: 是說我弄個express 吃/air跟/rain的意思嗎?
+00:43 < hcchien> 那你先追到英文的，我再 assign 其他人
+00:44 < clkao> yhsiang: 應該還是 static 吧 還是你說 dev server
+00:44 < yhsiang> 啊 那我知道了XD
+00:44 < clkao> 疑 本來就有 gulp exress 
+00:45 < kiang> 看起來 tesseract 對沒有浮水印的中文文件好像效果還不賴，只是...好慢......
+00:46 < yhsiang> clkao: 不直接用d3.xml?
+00:46 < yhsiang> 還是我試看看用d3.xml? XD
+00:50 < kiang> 有沒有哪位大大手邊有 Acrobat 可以幫忙用 CleanScan 掃一下 http://www.tainan.gov.tw/tainan/Grants.asp?nsub=A6C400 的三份文件，裡面有兩個把文字給圖形化了...
+00:50 < kcwu_> kiang's url: [臺南市政府全球資訊網]
+00:51 < clkao> yhsiang: 可以啊 反正 transform function 可以 reuse.. 我是說想說丟上 influx archive
+00:52 < clkao> 因為他無法查歷史
+00:52 < au> kiang: 我看起來都是字，有圖的是哪兩個？
+00:53 < kiang> au: 101, 102 兩份資料複製出來的文字是亂碼
+00:54 < au> 那是內嵌字編碼的問題...
+00:54 < au> fixing
+00:55 < kiang> au: 感謝，我以為是圖片化了
+00:55 < au> yeah, 圖片化會不能複製，不會是亂碼
+00:55 < kiang> au++
+00:57 < au> kiang: http://audreyt.org/tmp/101%E5%B9%B4%E5%BA%A6%E5%B0%8D%E8%AD%B0%E5%93%A1%E5%BB%BA%E8%AD%B0%E4%BA%8B%E9%A0%85.html
+00:57 < kcwu_> au's url: [()]
+00:57 < kiang> au++
+00:58 < au> (Acrobat 轉存 HTML)
+01:00 < au> kiang: http://audreyt.org/tmp/%E8%87%BA%E5%8D%97%E5%B8%82%E6%94%BF%E5%BA%9C102%E5%B9%B4%E5%BA%A6%E5%B0%8D%E8%AD%B0%E5%93%A1%E6%89%80%E6%8F%90%E5%9C%B0%E6%96%B9%E5%BB%BA%E8%A8%AD%E5%BB%BA%E8%AD%B0%E4%BA%8B%E9%A0%85%E8%99%95%E7%90%86%E6%98%8E%E7%B4%B0%E8%A1%A8.html
+01:00 < kcwu_> au's url: [0217-]
+01:00 < kiang> au++, 已經下載，感恩
+01:01 < au> np, 有些像全形空白變成「翊」要後製一下
+01:02 < kiang> au: ok, thanks
+01:07 < pipi_> 嚇我一跳，看到熟悉的字。。。
+01:07 < pipi_> 以前求學時代常有人不會念這個字
+01:16 < clkao> yhsiang: 用這個 reply 累積雨量吧 https://cesiumjs.org/d3cesium/
+01:16 < kcwu_> clkao's url: [Cesium + d3 Data Visualization]
+01:17 < clkao> *replay
+01:29 < yhsiang> 零時前端教學 9月將跟evenwu合辦workshop 這樣可以掛g0v嗎 ? XD
+01:29 < evenwu> yo
+01:29 < clkao> evenwu!!
+01:29 < evenwu> clkao!!
+01:29 < clkao> evenwu: 好久沒聽你說秘訣了... 講個來聽聽吧
+01:29 < evenwu> 嗯嗯正要問秘訣
+01:30 < hychen> 講個祕訣
+01:30 < evenwu> 跟柯辦的 workshop 活動可以掛 g0v logo 嗎
+01:30 < evenwu> 跟 ly 一起弄
+01:31 < clkao> 柯辦 workshop?
+01:31 < clkao> 不是教學鬆？
+01:32 < yhsiang> hmm .. 這是有點tricky的地方 
+01:32 < kiang> evenwu: 看起來要辦 柯柯松？
+01:34 < yhsiang> 合辦的話，這次素材是柯辦提供
+01:34 < evenwu> 算前端松吧
+01:34 < evenwu> 所以我想問一下這樣
+01:35 < evenwu> 另外也可能邀請 maker 方面的社群？
+01:35 < kiang> 如果是循綠客松的例子，也許改其他名字會好一些，柯柯松不賴啊 XD
+01:37 < evenwu> 喔喔 名字的話... 
+01:37 < pipi_> ly好神！
+01:37 < yhsiang> ?
+01:38 < yhsiang> pipi_: 誒 我忘了回你 orz
+01:38 < yhsiang> pipi_: 就先開pad 吧?
+01:38 < pipi_> yhsiang: 沒關係啦XD
+01:38 < evenwu> 名字不知道取什麼好
+01:39 < evenwu> 因為 workshop 主軸是設計柯P官網
+01:39 < evenwu> 主活動名稱是 柯文哲野生官網 unlimited 
+01:39 < evenwu> workshop 可以取別的名字
+01:41 < pipi_> 柯前 前柯 柯端 
+01:43 < CindyLinz> 柯男(誤)
+01:45 < au> 柯客松 (會不會太苛刻了)
+01:45 < CindyLinz> (Y)
+01:46 < evenwu> 苛刻松XDDDD 太好笑
+01:46 < pipi_> 前科都出來了 苛刻算什麼
+01:47 < pipi_> 還好不是在台南，不然會變南柯松
+01:47 < yhsiang> 還是可以仿照資料科學愛好者年會的模式 中間插一段是教學松?
+01:52 < yhsiang> 主活動應該就不掛g0v 但是workshop裡面可以寫零時前端松這樣呢?
+01:53 < au> yhsiang: 聽起來不錯，寫個 pad 吧 (或是已經有連結)?
+01:55 < kiang> 一時手滑造成笑到咳嗽... http://www.ptt.cc/bbs/Gossiping/M.1408035318.A.26F.html
+01:55 < kcwu_> kiang's url: [批踢踢實業坊]
+02:03 < yhsiang> evenwu: au: https://g0v.hackpad.com/-X-P-7lkrK1IgFCs
+02:03 < kcwu_> yhsiang's url: [零時前端松 X 柯P野生官網設計營(柯客松) - g0v.hackpad.com]
+02:06 < au> yhsiang: 看來不錯
+02:07 < yhsiang> ETBlue: 也幫忙寫一下 XD
+02:07 < pipi_> 又是一個好多坑的節奏。。。
+02:08 < pipi_> udn有興趣 柯客松也是 
+02:16 < yhsiang> 今天和udn有討論到的東西  我憑印象加在pad裡面了
+02:36 < yhsiang> pipi_: 攝護線好像有pad
+02:38 < pipi_> yhsiang: 有的樣子
+02:38 < yhsiang> pipi_: https://inlivetw.hackpad.com/
+02:38 < yhsiang> 你開個pad然後到社團裡面去問
+02:38 < yhsiang> 請大家協作幫忙
+02:38 < yhsiang> pipi_: 這樣可以吧? XD
+02:39 < pipi_> yhsiang: 你是說聯絡各社運團體？
+02:40 < yhsiang> pipi_: 沒有啊 有兩個社團 零時直播平台工廠  跟公民直攝那個
+02:40 < yhsiang> pipi_: 先找有直播經驗的公民記者來比較快
+02:41 < pipi_> yhsiang: 對啊，先從有經驗的問起的話這好解決
+02:41 < yhsiang> pipi_: ya 那就先這樣 XD
+02:42 < pipi_> yhsiang: 好，目前要先處理台南住宿的問題
+02:42 < pipi_> 我以為三天兩夜可以3000元解決，嗚嗚
+02:43 < pipi_> 3000元吃住行全包
+03:30 < evenwu> 對了喔 13:00 - 13:30 柯柯會到場跟大家打招呼... 
+03:31 < evenwu> 所以那時可能剛好吃完飯吧
+03:42 < yhsiangCloud__> evenwu: 我行程隨便規劃的 可以改沒關係XD
+05:26 < Michael_LI> 半夜一點鐘　又出現　講個祕訣　　ＸＤＤＤ
+05:27 < Michael_LI> 這兩周正在想弄個g0v小天使計劃～～～抽空弄出文案
+05:34 < Michael_LI> Lee1092　公報通常是您寫的嗎？
+08:26 < Lee1092> Michael_LI:  現在 80% 是 lanf0n  跟我~  XD
+08:27 < Michael_LI> Lee1092++　　//在想另外一個整理採訪共筆的小事，過幾天在跟你說
+09:25 < Lee1092> Michael_LI:  是要把各家採訪 收集起來成一個頁面媽?  XD  感覺不錯
+10:28 -!- chihchun_afk is now known as chihchun
+11:21 < xsoameix> clkao: 「行政院」沒有 avatar，在熱門議案上沒有顯示 :(
+11:22 < xsoameix> clkao: 我先把熱門議案的測試做好
+11:27 < barry54007> au: 嗨～Hackpad已經添加新的資料
+11:27 < barry54007> Power by 萌典松
+11:27 < barry54007> Power by HanGee
+11:27 < barry54007> 還有 Staff跳坑區XD
+12:07 -!- ifeach [guest-ifea@conference/jsconf/x-hiodleolysxltxei] has left #g0v.tw []
+12:42 < au> barry54007: 收到，感謝 XD
+13:30 -GitHub19:#g0v.tw- [ly.g0v.tw] xsoameix opened pull request #173: Feature/steps bar of bill coverage (master...feature/steps-bar-of-bill-coverage) https://github.com/g0v/ly.g0v.tw/pull/173
+13:35 < xsoameix> clkao: travis unit test pass 囉！可以 merge 了 https://travis-ci.org/g0v/ly.g0v.tw/jobs/32608920
+13:35 < kcwu_> xsoameix's url: [Travis CI - Free Hosted Continuous Integration Platform for the Open Source Community]
+14:28 -!- morrispeng_ is now known as morrispeng
+14:30 < clkao> 跟 polis 聊完了 看來 annotator integration 是第一步
+14:36 < clkao> polis api: https://pol.is/docs/api/v3
+14:36 < kcwu_> clkao's url: [Polis]
+14:46 < xsoameix> clkao: 接下來有甚麼要做嗎？還是要準備報告了？
+14:55 -!- morrispeng [uid40648@gateway/web/irccloud.com/x-zujzvqgepjsdkopm] has left #g0v.tw []
+14:57 -GitHub93:#g0v.tw- [ly.g0v.tw] clkao closed pull request #173: Feature/steps bar of bill coverage (master...feature/steps-bar-of-bill-coverage) https://github.com/g0v/ly.g0v.tw/pull/173
+15:01 < travis-ci> [travis-ci] g0v/ly.g0v.tw#393 (master - e3f8fbb : Chia-liang Kao): The build passed.
+15:01 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/3cb685bd9cca...e3f8fbb3b455
+15:01 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/32611903
+15:01 -!- travis-ci [~travis-ci@ec2-54-211-196-141.compute-1.amazonaws.com] has left #g0v.tw []
+15:36 < kiang> 360戰場： https://www.facebook.com/groups/javascript.tw/permalink/516309318470411/
+15:36 < kcwu_> kiang's url: [Facebook]
+16:13 < tonyq> 哼，對我來講，一個「技術分享者」的價值是比一個「大陸人」身份還高的。
+16:16 < clkao> 延伸戰場: https://pol.is/8bfzc9
+16:24 < clkao> 圖出現了！
+16:36 < tonyq> 我覺得 pol.is 的圖反應是不是有點慢
+16:36 < tonyq> 我覺得它圖像的部份還算蠻有意思的，但總覺得 ui 上節奏上很慢
+16:37 < tonyq> 不過我覺得這離所謂的網路討論是更進一步了沒錯
+16:37 < tonyq> 還需要一點引導就是了
+16:48 < tonyq> pol.is 的題目安排很有趣，一樣的題目換個方法寫會有不同結果 :P
+16:50 < jimyhuang__> 不過每個問題的 disagree 好像有點不大一致..
+16:51 < tonyq> 我在思考不能改變投票結果的前提下會造成什麼影響
+16:52 < Lee1092> 還有個 pass 可以不表達意見
+17:09 < tonyq> 他如果能按照先後產生的題木排序應該會蠻有意撕得
+17:09 < tonyq> 因為有些後面的題目其實是為了釐清前面的題目而設的
+17:15 < pm5> 我覺得自己一直被分到我不同意的 group 是不是正常的啊? @@
+17:15 < xsoameix> 這讓我想到「技術物有政治性嗎？」，剛好上學期才修完這個選修課
+17:16 < tonyq> group 應該只是「有一群人都回應過這些意見」
+17:16 < tonyq> 如果我沒會錯意的話
+17:17 < tonyq> 我會認為每件事情都有政治性，但可以透過場域來降低、甚至去除。問題是要不要這麼作、效益為何。
+17:17 < tonyq> 通常是為了效益才會去政治化
+17:17 < jimyhuang__> pm5: 覺得每個人的 disagree / agree 似乎不大能一致
+17:19 < pm5> jimyhuang__: 我跟我的 group 一直都超不一致的 XD
+17:27 < tkirby> 為了避免繼續爭吵下去, 只好另外弄一個 cjscup 了
+17:28 < au> bj4cup
+17:29 < Lee1092> pm5:   group  裡面也有同意與非同意的~   應該是都有回答就被歸類~  旁邊有  legend  可以看
+17:31 < tonyq> 應該說「都有回答這些問題」就會被歸類吧
+17:31 < tonyq> 看起來是以共同回答哪些問題的圈法
+17:31 < tonyq> 而不是意見
+17:31 < tonyq> 不過我記得之前有幾位 360工作的業界夥伴對外面批評他們是流氓這點蠻有意見的，這次本來以為會看到他們出來
+17:40 < pm5> bj4cup++
+17:42 < pm5> Lee1092: tonyq legned says group represents "Your position in the conversation, close to those who voted like you did."
+17:42 < clkao> polis deploy 新版了 ... reload 一下 group 裡面會比較正確
+17:43 < pm5> 我不太確定 "voted like you did" 是「都有回答那些問題」的意思? :)
+17:43 < clkao> 應該是跟你的維度
+17:43 < tonyq> interesting XD
+17:43 < clkao> 比較像
+17:45 < kiang> 野生 g0ver 又一隻 - http://blog.udn.com/ying6100/16178562
+17:45 < kcwu_> kiang's url: [五星級的高雄市長 vs. 有省錢的台中市長 - 露西佛爾的天空之城 - udn部落格]
+17:47 < pm5> clkao: reload 以後的 group 感覺比較對 XP
+17:47 < clkao> 他說 math poller 炸掉了
+17:47 < Lee1092> 現在好看多了~   點 group ，左側會出現許多主題，主題內說明  是指目前 group 內的贊成百分比， 然後 紅 綠點  是目前這個主題有回答的意見 (跨 group)
+17:55 < clkao> polis 說上千人也撐的住... 
+17:57 < Lee1092> 為什麼我獨立於 Group 之外  Q__Q
+18:03 < pm5> 太有趣了, 我又被分到我不同意的 group 去了 orz
+18:04 < tkirby> 只好 trace 完 polis 的 code 後送 pull request 來改變這個現象了!
+18:05 < tonyq> 我一直都是group 外的孤島 XD
+18:05 < clkao> 感覺那個 self 位置有問題
+18:05 < clkao> 開兩個會看不到對應的
+18:05 < clkao> 兩個視窗
+18:08 < johnny__> kiang: 議員候選人您好，議員schema改版，台南麻煩了，詳請參看 http://councils.g0v.tw/api/councilors/112/
+18:08 < kcwu_> johnny__'s url: [議員投票指南APIs]
+18:08 < kiang> johnny__: 挖喜擬參選人，目前看起來離第一個 賣歐死棟 還蠻遙遠的 XD
+18:09 < clkao> 應該出動 au 扭曲立場說服他們直接 open source XD
+18:09 < tkirby> 咦 polis 沒有 open 嗎
+18:10 < johnny__> kiang: 主要變更是不要屆期，因各地屆期不統一，改用選舉年(2010)，另外還有之前你說的網站統一到links，另外就是contacts改蠻多，完全follow popolo
+18:10 < kiang> johnny__: 好的，我找時間調整格式給你 :)
+18:12 < johnny__> kiang: 感謝，祝您達標
+18:19 < S3p_lin_> win 39
+18:19 < pm5> tkirby: 沒有吧
+18:23 < tkirby> no~~~~ <0>
+18:24 < tkirby>        0
+18:24 < tkirby>        /ㄥ
+18:25 < pm5> tkirby: 只好自己寫一套了!
+18:25 < tkirby> (y)
+18:25 < kiang> pm5++
+18:29 < tkirby> 可以用 som 做
+18:33 < pm5> som?
+18:37 < tkirby> http://en.wikipedia.org/wiki/Self-organizing_map
+18:37 < kcwu_> tkirby's url: [Self-organizing map - Wikipedia, the free encyclopedia]
+18:38 < tkirby> 喔喔, wiki 右邊的圖剛好就是國會投票傾向
+18:44 < pm5> 喔喔
+18:44 < dz1984> pm5++ 
+18:44 < dz1984> 衝了！
+18:45 < tkirby> 之前有用來視覺化房屋分類傾向, 在 viz workshop 分享過
+18:46 < clkao> tkirby 太強
+19:25 < au> clkao: 其實先 release api，然後再推後端 open source 就好，前端可以另外刻吧？
+19:27 < au> (後端看是要 ShareAlike 系的 CPAL 或 ShareAlike+Viral 的 AGPL3)
+19:27 < clkao> *nod* 已經有一些 api 了
+20:03 < Michael_LI> 說個秘訣／這本來只是網路創作的ACG歌曲／現在變成當紅的國民歌曲／另外／一個國家的傳統樂曲（以日本為例）可以跟西洋人建立的樂曲融合非常好／值得推薦／和楽器バンド　千本櫻(繁體中文字幕版) 　https://www.youtube.com/watch?v=oaWLcXmjhic
+20:03 < kcwu_> Michael_LI's url: [和樂器樂團 / 千本櫻(繁體中文字幕版) - YouTube]
+20:16 < tkirby> polis 看起來掛掉了? XD
+20:17 < yhsiang> tkirby: 我看臉書上有人回報 XD
+20:21 < clkao> yhsiang: 有弄 rain 嗎 我放 influx 了
+20:23 < yhsiang> clkao: 欸 弄到一半@@
+20:24 < yhsiang> 不過在準備明天的事情
+20:24 < clkao> np, 有 wip 時 push 一下吧
+20:36 < Michael_LI> ＰＳ　【千本桜】歌詞涵義和PV部分涵義(第18樓)　http://forum.gamer.com.tw/C.php?bsn=60499&snA=9107
+20:36 < kcwu_> Michael_LI's url: [【心得】【千本桜】歌詞涵義和PV部分涵義(第18樓)~已做最後更新~!! @VOCALOID 虛擬人聲 / 初音未來 -Project DIVA- 哈啦板 - 巴哈姆特]
+21:07 < japie_> 柯客松感覺好有趣(是否太log)
+21:08 < yhsiang> japie_: lag? log? XD
+21:08 < japie_> XDDDDDD 這到底算手殘骸是
+21:08 < japie_> *還是
+21:08 -!- mrbigmouth__ is now known as mrbigmouth_
+21:09 < mrorz> tkirby++ 說到 pol.is 的 clustering 怎麼做，我只想到 k-means XD
+21:11 < japie_> mrorz: clustering 方式還有 fuzzy c-means / Gaussian distribution 之類 
+21:11 < japie_> 不過就不像 k means ，個體隸屬於 cluster 是 0/1 的差別
+21:13 < mrorz> japie_: 快寫 open polis
+21:21 < mrorz> Michael_LI: 突然想推純和樂版千本櫻 XD --> https://www.youtube.com/watch?v=1bUV2wdOfXk&t=1m15s
+21:21 < kcwu_> mrorz's url: [『和楽・千本櫻』 Full版 - YouTube]
+21:23 < Michael_LI> 恩～我是很大規的列表去年弄得　其實正在放下工作（不認真）　正在整理中
+21:26 -!- chihchun is now known as chihchun_afk
+21:28 < Michael_LI> 這樣好了／我先丟出來／html以後再丟／YouTube其實改的沒以前好／１）千本桜　千本櫻　https://www.youtube.com/playlist?list=PLn7CPpVp9BT168hjQScdDyFnmo473Gkge
+21:28 < kcwu_> Michael_LI's url: [千本桜　千本櫻 - YouTube]
+21:28 < Michael_LI> ２）和楽器バンド　和樂器樂團　　https://www.youtube.com/playlist?list=PLn7CPpVp9BT0Qb78G7FChDIWXJm8_COH4
+21:28 < kcwu_> Michael_LI's url: [和楽器バンド　和樂器樂團 - YouTube]
+21:58 -!- allenown_ is now known as allenown
+22:15 -!- dm41 is now known as dm4_
+22:30 < yhsiang> clkao: push了一份 有點應急的reuse orz
+22:37 < yhsiang> lanf0n: XDDDDD
+22:37 < lanf0n> yhsiang: 拿泥(?
+22:38 < yhsiang> lanf0n: 發現寫日誌↓太痛苦了只好放棄QAQ XD
+22:38 < yhsiang> lanf0n: 前幾天蔡正元的有抓到嗎 XD
+22:38 < yhsiang> 想問這件事一直忘記問
+22:38 < lanf0n> yhsiang: 超痛苦的....(抹臉)
+22:39 < lanf0n> yhsiang: 修改的資料嗎XD
+22:39 < yhsiang> lanf0n: 欸 沒抓到修改沒關係 但是有刪除?
+22:40 < lanf0n> yhsiang: ! 真假...
+22:40 < yhsiang> lanf0n: http://news.ltn.com.tw/news/politics/breakingnews/1077823
+22:40 < kcwu_> yhsiang's url: [北市》病史遭蔡正元消費 柯文哲：深呼吸、放輕鬆 - 政治 - 自由時報電子報]
+22:40 < yhsiang> 這篇新聞說的
+22:40 < lanf0n> yhsiang: 但 token expire 的問題今天才解決(艸)  之前幾天是開1~2hr就會 expired
+22:40 < yhsiang> 喔喔喔!
+22:41 < yhsiang> 沒抓到就是有點可惜 XD 下禮拜可以demo這個
+22:41 < yhsiang> 本來是這麼想 XD
+22:41 < lanf0n> fb 的機制整個超怪的.... 連 id 都不是 int 是 str ......囧
+22:41 < lanf0n> 只好等蔡大大這幾天再刪文了(誤)
+23:10 < ensky> lanf0n: token expire試過long-lived token了嗎? https://developers.facebook.com/docs/facebook-login/access-tokens#extending
+23:10 < kcwu_> ensky's url: [Access Tokens]
+23:11 < lanf0n> ensky: ?!
+23:14 < lanf0n> ensky: 應該是換了之後是 long-lived 吧XD... 不過不知道怎麼查 expired 時間...囧?
+23:17 < lanf0n> 以防萬一 目前是每小時換一次 token XD
+23:18 < yhsiang> lanf0n: response有expires_in吧?
+23:19 < ensky> A long-lived token generally lasts about 60 days. 我上次換過到現在好像兩週了都還沒換 XDD
+23:19 < ensky> # http://ensky.tw/hwama/
+23:19 < kcwu_> ensky's url: [官方資訊]
+23:20 < lanf0n> ensky: 喔喔!!? 所以一次是 60 天嗎...等下改換的時間試試XD
+23:20 < lanf0n> yhsiang: 沒有 囧... py的 fb-sdk 寫得有點=__=
+23:21 < ensky> lanf0n: 我沒實驗過不清楚, 畢竟他寫的是generally 也不是100% QQ
+23:22 < lanf0n> 換的時候會回傳 expires: ____(一串int) ，但其實我不確定那數字是啥XD...
+23:22 < lanf0n> 剛查到似乎是秒數XD (有點好用(!
+23:26 < yhsiang> lanf0n: 應該是timestamp
+23:26 < yhsiang> expires_in 應該是秒數, expires_at 是timestamp
+23:27 < yhsiang> lanf0n: 用datetime轉看看?
+23:30 < lanf0n> yhsiang: 是秒數!
+23:30 < yhsiang> lanf0n: good~
+23:38 < clkao> polis is back
+23:46 -!- Lorer [24efd076@gateway/web/cgi-irc/kiwiirc.com/ip.36.239.208.118] has left #g0v.tw []
+23:46 < yhsiang> clkao: 又gg了 
+23:47 < yhsiang> 你開的延伸戰場 我在console 看到 500 error orz

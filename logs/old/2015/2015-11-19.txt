@@ -1,0 +1,76 @@
+--- Day changed 四 11月 19 2015
+00:02 -!- flter_ is now known as flter
+01:47 -!- chihchun is now known as chihchun_afk
+01:53 -!- chihchun_afk is now known as chihchun
+02:10 -!- chihchun is now known as chihchun_afk
+13:15 < slackbot2> <johnny> @liangcc: 好啊請自由發揮！ps: 最近搬家中還沒有網路
+13:32 < howl__> pm 2.5 is back!  http://env.g0v.tw/air/
+13:41 -!- terces is now known as t4s_oreo
+14:16 < slackbot2> <jacky> 大家好
+14:16 < slackbot2> <brain> 早喔
+14:17 < slackbot2> <brain> (探頭
+14:19 < yhsiang>  /win 6
+14:36 < clkao> au: polis 的獨立 embed 模式有 doc 嗎？
+14:38 -!- Guest45421 [786077da@gateway/web/freenode/ip.120.96.119.218] has left #g0v.tw []
+14:43 < slackbot2> <liangcc> @clkao: 慘了～上次看 #parliament 一片空白﹍前面的訊息因為slack有 10000筆的限制所以看不到了，這部份請問有備份嗎？
+14:48 < slackbot2> <clkao> orz 應該只有 #general 連結 irc 才會有 logbot
+14:49 < slackbot2> <clkao> 不過我沒印象有什麼特別的討論在那邊
+14:49 < slackbot2> <liangcc> 了解～感謝！
+15:33 -!- AceLan_ is now known as AceLan
+15:50 < slackbot2> <au> clkao: view source at <http://audreyt.org/tmp/polis-inverted.html>
+15:55 < slackbot2> <mrorz> 請問開放資料中，如果希望開放「手機號碼」欄位，來讓資料使用者來判斷某兩筆資料的手機號碼欄位是否相同，在做去識別化的時候，有沒有要注意的地方呢？
+15:55 < slackbot2> 我想到的是，由於手機號碼組合不多，很容易做出 hash 反查表，所以在 hash 的時候應該要加 secret salt；另外，手機號碼在 hash 前可以固定遮除幾碼，這樣就算 salt 外洩、被建出反查表，也會因為遮除的關係，會對應到複數個手機號碼。
+15:55 < slackbot2> 不知道有沒有單位已經有開放這個的經驗呢？
+16:00 < slackbot2> <mrorz> 仔細想想，乾脆開放手機號碼末三碼 XDD
+16:01 < slackbot2> <kiang> mrorz: uuid mapping table?
+16:02 < slackbot2> <a0000778> kiang++
+16:02 < slackbot2> <a0000778> 這想法不錯...不hash 只方便辨識是不是相同就好XD
+16:02 < slackbot2> <mrorz> kiang: 09xx-xxx-xxx 只有 10,000,000 種組合， 第三方很容易做出 UUID 反查完整電話號碼的表格吧
+16:03 < slackbot2> <mrorz> 所以還是要加鹽
+16:03 < slackbot2> <au> mrorz: randomized salt + throw the salt away (如果只是要辨識異同)
+16:03 < slackbot2> <kiang> mrorz: 如果只是為了識別不同的人，產生之後就把 mapping table 徹底刪除就好囉。 uuid 可以隨機產生啊
+16:03 < slackbot2> <mrorz> ！
+16:03 < slackbot2> <mrorz> 可是這個資料是每個月要更新的
+16:03 < slackbot2> <mrorz> 對應方式應該要相同
+16:03 < slackbot2> <kiang> 那就每月都丟不一樣的啊 XD
+16:04 < slackbot2> <kiang> 反正只是要告訴外面的人，這是不同資料
+16:04 < slackbot2> <au> 每個月都一樣的就增進 linking attack 的 surface 了，除非真的要跨月比對
+16:04 < slackbot2> <yhsiang> 你要比的是當月的資料  每個月都不一樣應該沒差吧？
+16:05 < slackbot2> <mrorz> 這個開放資料每一筆是獨立的通報案件這樣，所以區分月份是沒有意義的
+16:06 < slackbot2> <mrorz> 那大家可以接受舊的 hash 被更新這件事情嗎 XD
+16:06 < slackbot2> <kiang> 如果是這樣應該就不用公開手機欄位吧？（聽起來像是 1999 ）
+16:07 < slackbot2> <mrorz> kiang: 長官說不要公開問，就當成神秘的案件資料來討論 (?)
+16:08 < slackbot2> <au> 考慮到單一自然人也可以換手機號碼，我覺得跨月比對也不一定很準，如果只有舊 hash 更新和不公開兩種選項，傾向不公開
+16:08 < slackbot2> <kiang> 公開這個欄位感覺像是要外面的人幫忙找哪些號碼常常來亂 XD
+16:09 < slackbot2> <kiang> <https://github.com/kiang/1999.tainan.gov.tw_datasets/blob/master/requests/2015/11/19/UN201511190008.json> - 台南公開的資料非常陽春
+16:09 < kcwu> slackbot2's url: [1999.tainan.gov.tw_datasets/UN201511190008.json at master · kiang/1999.tainan.gov.tw_datasets · GitHub]
+16:10 < slackbot2> <mrorz> 對齁，應該拿別的縣市來跟有疑慮的人溝通
+16:10 < slackbot2> <mrorz> 這樣比較快 XD
+16:11 < slackbot2> <mrorz> 這樣的疑慮是，長官希望我們開放前能過濾掉重複通報的資料
+16:11 < slackbot2> 但我覺得過濾很奇怪，不如多開放欄位讓想要過濾的人過濾這樣
+16:12 < slackbot2> <mrorz> 不過最後我的建議是，就說清楚這份開放資料是「通報紀錄」而不是「案件」
+16:12 < slackbot2> <mrorz> 實話實說就好
+16:13 < slackbot2> <mrorz> 不過我只能提建議，並沒有決定權
+16:13 < slackbot2> <kiang> 目前台南是只有公開案件資料，以前有個 bug 可以拿到通報紀錄，看起來已經被修正了 XD
+16:14 < kcwu> 所以有 id 的話, 就可以看到某人某天通報了某事, 同一個人 n 天後反應問題沒解決?
+16:14 < slackbot2> <mrorz> 如果有開放手機 hash 的話，是的
+16:14 < slackbot2> <mrorz> 但原本沒有打算要開放的
+16:15 < slackbot2> <mrorz> 因為實際的狀況其實是，有民眾針對性地連續做惡意檢舉
+16:15 < slackbot2> <mrorz> 例如說我看某商家不爽 就一直檢舉一直檢舉之類的
+16:15 < slackbot2> <mrorz> 政府也只能錄案
+16:15 < slackbot2> <mrorz> 然後乖乖處理
+16:18 -!- chihchun_afk is now known as chihchun
+16:20 < slackbot2> <mrorz> 不過我個人是認為，政府對這份開放資料，應該只要告知這是「通報紀錄」而非「實際案件」，就已經盡了足夠的責任義務。不過可能長官有其他的疑慮，畢竟資料的應用沒有人可以預期，而人對無法預期的事物會有恐懼。
+16:20 < slackbot2> 有點像是，「沒有人理我」之牆、「太多人理我」之牆的中間砌了一堵「理我的人裡可能有壞人」之牆。
+16:24 < slackbot2> <kiang> 我覺得可以開放到通報紀錄就已經夠好了，是否開放手機欄位（即使是隨機碼）應該其次，大部分的公務人員在面對開放的時候都可以想像出一堆問題 XD
+16:27 < slackbot2> <mrorz> 嗯，如果長官決定說要在開放前過濾重複案件
+16:27 < slackbot2> <mrorz> 那我也只能執行
+16:27 < slackbot2> <mrorz> 畢竟不執行的話，就連一點開放資料都沒有了 QQ
+16:27 < slackbot2> <kiang> 恩，先求有囉 (Y)
+16:33 -!- rcmerci [~user@182.138.127.183] has left #g0v.tw ["Killed buffer"]
+16:38 < kcwu> 若真的要 "開放前過濾掉重複通報", 也許可以考慮另加一個欄位 "重複數"
+16:47 -!- chihchun is now known as chihchun_afk
+17:13 -!- chihchun_afk is now known as chihchun
+22:10 -!- chihchun is now known as chihchun_afk
+22:40 -!- chihchun_afk is now known as chihchun
+22:51 < occove> tkalu:  ideapool 有不少重複的資料..(名稱不同但網址一模一樣) 分析篩選後原本229個資料會剩下193個(不含網址是空白的8個)

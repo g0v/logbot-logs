@@ -1,0 +1,113 @@
+--- Day changed 三  6月 03 2015
+00:03 < slackbot1> <yhsiang> ya 留了 XD
+00:13 < slackbot1> <clkao> yhsiang: 61094 is a linux specific issue
+00:14 < slackbot1> <yhsiang> !
+00:14 < slackbot1> <yhsiang> sorry 沒注意到
+00:14 < slackbot1> <clkao> (making sure it works in headless mode so we can package a docker for unoconv)
+00:50 < slackbot1> <johnny> @au: 請問animal.coa 的欄位名稱最終會用google sheet裡的英文嗎？
+01:51 < slackbot1> <au> johnny: 應該是用 Hackpad 裡的英文。
+01:51 < slackbot1> <au> 「需要的多的欄位」那邊，它是 google sheet 的 superset（如籠號 `animal_cage_number` 等）
+01:56 < slackbot1> <johnny> au: 了解
+02:06 < slackbot1> <clkao> coa 有貼後勤嗎？
+02:11 < slackbot1> <au> 目前還沒有 —— 歡迎幫貼
+02:12 < slackbot1> <kiang> <https://www.ptt.cc/bbs/Gossiping/M.1433265710.A.87E.html> - 韓國 MERS-CoV 已經 30 人了...
+02:12 < kcwu_> slackbot1's url: [Re: [爆卦] 日本衛生署發布MERS報告 韓MERS爆發過程 - 看板 Gossiping - 批踢踢實業坊]
+04:06 < dirty_> JSX 不能用 lines.join('<br/>'), 它必須是 [lines[0], <br/>, lines[1], <br/>, lines[2] ...] 這樣的東西
+04:07 < dirty_> 所以... 有什麼方式讓 array join 完還是 array, 而不是 string 的嗎 # 這要求會很過分嗎?
+04:14 < caasihuang> lines[0] 是 String 嗎？JSX 生的 HTML 記得會變成 <span>{lines[0]}</span>
+04:14 < caasihuang> 可以看成他是 component array ，這樣也就不可能 join 了。
+04:15 < caasihuang> 還是說要的只是 concat ？
+04:24 < dirty_> lines[0] 是 string
+04:25 < dirty_> lines.join('<br/>') 這完就是我要的 html code, 只是 JSX 會 escape 它
+07:35 < slackbot1> <yhsiang> Lines不能是string
+07:35 < slackbot1> <yhsiang> Jsx只是外表 實際上還是javascript code
+07:38 < slackbot1> <yhsiang> Javascript的array join 是變成string沒錯啊
+07:40 < dirty_> yhsiang: ? 對啊, 可是我要它變 array 啊
+07:40 < dirty_> 我在 render() 中直接 return lines.join('<br/>') 的話, < > 會被 escaped 掉
+07:41 < dirty_> 要 return array 才可以
+07:41 < slackbot1> <yhsiang> Join這個方法是return string...
+07:43 < slackbot1> <yhsiang> Lines.map((it)=> it + <br/>)
+07:43 < slackbot1> <yhsiang> 大概想要這樣？
+07:48 < slackbot1> <yhsiang> 按照上面看應該是要用zip
+07:48 < slackbot1> <yhsiang> 用underscore, lodash, prelude 選一個吧
+07:57 < slackbot1> <yhsiang> lines.join('<br/>').split('') 這樣？ XD
+08:12 < dirty_> 沒好漂亮的解法就乖乖寫程式 XD
+08:22 < slackbot1> <yhsiang> _.zip(lines,Array.apply(null, new Array(lines.length)).map(()=><br/>)). XD
+08:23 < slackbot1> <yhsiang> 好像可以更簡單 
+08:23 < slackbot1> <yhsiang> _.zip(lines,lines.map(()=><br/>))
+08:24 < slackbot1> <dirty> 其實 zip 也沒那麼難寫, 為了這個 include underscore 進來不划算哪
+08:26 < slackbot1> <yhsiang> 可以只include zip進來啊
+08:33 < dirty_> 也是, 考慮中, 原本是想說再多用到幾個再來弄, 現在連 npm i 都想省
+08:36 < slackbot1> <yhsiang> XD
+08:40 < slackbot1> <yhsiang> 剛剛想到可以 lines.join('\n<br/>\n').split('\n’) XDDD
+08:41 < slackbot1> <dirty> good idea!
+10:14 < slackbot1> <motionman> 安安
+10:14 < slackbot1> <yhsiang> hi
+10:22 < slackbot1> <yurenju> 安安
+10:23 < slackbot1> <motionman> 我是馬來西亞Sinar Project來88的 :simple_smile:
+10:24 < slackbot1> <yurenju> 歡迎 :smile:
+10:24 < slackbot1> <motionman> 謝謝 :simple_smile:
+10:27 < slackbot1> <kiang> wow~ <http://sinarproject.org/en>
+10:28 < kcwu_> slackbot1's url: [Sinar Project — English]
+10:31 < slackbot1> <motionman> 嗯,都是類似的東西,網站設計有待改進 :sweat_smile:
+10:43 < slackbot1> <clkao> motionman!!
+10:43 < slackbot1> <motionman> @clkao: howdy
+10:44 < slackbot1> <clkao> motionman: busy! what’s up
+10:45 < slackbot1> <motionman> same, same, coming up for in hope exchange, plus 練習中文 :simple_smile:
+10:46 < slackbot1> <clkao> 那我應該多打中文，不過我以為你們用簡體較多？
+10:46 < slackbot1> <miaoski> 剛剛在 LinuxCon 拜見到 muan 大大
+10:47 < slackbot1> <motionman> 拼音就一個toggle哈哈哈,都會讀,寫就只是簡體
+10:48 < slackbot1> <motionman> @miaoski: 小貓你好 :simple_smile:
+10:48 < slackbot1> <miaoski> @motionman: 你好
+10:51 -!- KGJ_tonypai is now known as tonypai
+11:00 < slackbot1> <t0mst0ne> 感謝  @muyueh  , 可以把 er的資料sync 到他那邊去方便 "沒有人" 後續使用  <https://www.dropbox.com/sh/dzsqiojkxaxof1e/AABJ0ONWwPe-h2pIQNig5Xloa?dl=0>
+11:00 < kcwu_> slackbot1's url: [Dropbox - backup]
+11:06 < slackbot1> <t0mst0ne> cc @lanf0n @clkao  :  把 er的 data push 到 sheethub 上 也許可以解決之前大量下載研究的問題
+11:08 < pm5> dirty_: lines.map((d) => [d,<br/>]).reduce((cur, prev) => prev.concat(cur))
+11:13 -!- chihchun_afk is now known as chihchun
+11:21 < slackbot1> <muan> @miaoski: :laughing:
+12:26 < dirty_> 我用更合理的方式解決了, 感謝大家. 沒事不要亂 hack JSX 的設計理念 XD
+12:34 < slackbot1> <motionman> ^ +1
+13:37 < gugod> http://maps.amsterdam.nl/airbnb/?LANG=en a little bit surprised to see this :p
+13:37 < kcwu_> gugod's url: [The property value of Airbnb Amsterdam]
+13:37 < gugod> # airbnb 實價登錄 (?)
+13:42 < slackbot1> <clkao> gugod: 要來作 booking 實價登錄了嗎
+13:43 < slackbot1> <kiang> booking 實價登錄++
+13:46 < gugod> 這個... 直接去 booking.com 不就可以查價格了嗎 :p
+13:48 < slackbot1> <kiang> gugod: 就大概跟 <http://www.foundi.info/> 一樣就可以了 XD
+13:48 < kcwu_> slackbot1's url: [foundi 房地資訊站 | 房地]
+13:49 < gugod> 來這套件
+13:53 < slackbot1> <yhsiang> tkirby: 所以有台灣版的 airbnb 實價登錄嗎 :stuck_out_tongue:
+13:53 < slackbot1> <clkao> gugod: 得輸入日期啊 沒有一個均價大概分布
+13:56 < slackbot1> <tkirby> 嘎？
+13:58 < slackbot1> <yhsiang> tkirby: 要看上面 amsterdam 的 demo XD
+13:58 < gugod> FYI http://maps.amsterdam.nl/
+13:58 < kcwu_> gugod's url: [Interactieve kaarten van Amsterdam]
+13:58 < gugod> + www.amsterdamopendata.nl/
+13:59 < slackbot1> <tkirby> 只要有地址的話應該都有機會吧 XD
+13:59 < slackbot1> <tkirby> 不過應該是 just for fun?
+13:59 < slackbot1> <yhsiang> 不知道 muyueh 有沒有看過也 tag 一下
+14:04 < gugod> airbnb 的定價... 查冬天的價格反而比較貴，這也太奇妙了
+14:05 < gugod> 我猜他們的提供的定價模式比較固定，比較容易摘要 XD
+14:07 < gugod> 旅館定價太多變數了，得要十分不在乎精度才可以做摘要 orz
+14:15 < slackbot1> <mrorz> airbnb 不是可以設成人數不同價錢可以不同嗎
+14:15 < slackbot1> 什麼 n 人以下多少，n 人以上每人加收多少
+14:15 < slackbot1> 其實也不單純 XD
+14:22 < slackbot1> <mrorz> btw react-transmit 的 server-side rendering 居然還會偷偷把 query result 往上傳出 react 然後再透過 props 往下傳回來，有點傻眼。（因為 server 上用 `setState` 會 throw exception，所以 react-transmit container 在 server 上其實是把資料放在 container 自己的 props⋯⋯）
+15:48 -!- lydian_ [49de33d6@gateway/web/freenode/ip.73.222.51.214] has left #g0v.tw []
+16:33 < slackbot1> <hanksudo> airbnb在不同地區不同季節有不同訂價，房主可以自己設定, 他還會suggest目前的價格跟出現你所在城市的價格走勢
+16:54 -!- chihchun is now known as chihchun_afk
+17:01 -!- chihchun_afk is now known as chihchun
+19:03 -!- chihchun is now known as chihchun_afk
+20:03 -!- chihchun_afk is now known as chihchun
+22:47 < slackbot1> <clkao> muyueh: sheethub 可以 fork 讓大家一起加欄位嗎？ <https://sheethub.com/ronnyvvang/%E5%A4%A7%E8%87%BA%E5%8C%97%E5%9C%B0%E5%8D%80%E6%8D%B7%E9%81%8B%E8%BB%8A%E7%AB%99%E5%87%BA%E5%85%A5%E5%8F%A3/map> 應該來加哪個出口是有電扶梯(上/下)、電梯等
+22:47 < kcwu_> slackbot1's url: [大臺北地區捷運車站出入口]
+23:15 -!- chihchun_afk is now known as chihchun
+23:26 < slackbot1> <t0mst0ne> @muyueh:   <https://sheethub.com/data.gov.tw/%E8%87%BA%E7%81%A3%E8%A3%BD%E9%80%A0%E6%A5%AD%E6%8E%A1%E8%B3%BC%E7%B6%93%E7%90%86%E4%BA%BA%E6%8C%87%E6%95%B8(PMI)>  好像沒有日期...  @ronnywang
+23:26 < kcwu_> slackbot1's url: [臺灣製造業採購經理人指數(PMI)]
+23:38 < ronnywang> clkao: 目前沒有 fork 功能，想說可以先讓使用者下載 csv 再重新上傳就跟 fork 差不多了，只是 pull request 比較麻煩了
+23:40 < ronnywang> t0mst0ne: 那個資料是從 http://data.gov.tw/ 照原內容匯入的，原始內容就沒有日期資訊了，甚至內容還有些問題 http://data.gov.tw/node/6100 那邊就有回報了
+23:40 < kcwu_> ronnywang's url (1/2): [政府資料開放平臺]
+23:40 < kcwu_> ronnywang's url (2/2): [臺灣製造業採購經理人指數(PMI) | 政府資料開放平臺]
+23:48 < slackbot1> <t0mst0ne> Oh 天啊，沒有日期的pmi  orz
+23:49 -!- chihchun is now known as chihchun_afk

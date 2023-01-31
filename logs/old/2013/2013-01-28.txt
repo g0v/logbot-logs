@@ -1,0 +1,1346 @@
+--- Day changed 一  1月 28 2013
+00:00 < gugod> clkao: start with ::: \ls -d */.git|parallel 'echo -n {//} " "; cd {//}; git config remote.origin.url' | ... ?
+00:00 < gugod> :p
+00:00 < clkao> lwhsu: you should be able to push to twlyparser directly
+00:01 < gugod> 台灣應該還沒凌晨四點吧
+00:01 < clkao> lwhsu: 在想 sha1 JSON stringify 的會不會比較好... 因為目前是 nested array, 會全被展開成逗號分隔... 
+00:01 < lwhsu> clkao: awesome, thanks
+00:01 < lwhsu> 沒錯
+00:01 < clkao> 萬一以後有人要用別的語言 verify... 必須了解這個 rule
+00:01 < hychen> lwhsu, 我晚上吃飯後才把你的臉跟id對起來
+00:01 < hychen> lwhsu, sorry orz...
+00:01 -!- jake_ [76a3c7bc@gateway/web/freenode/ip.118.163.199.188] has joined #g0v.tw
+00:01 < clkao> hychen: meet lwhsu.  lwhsu, meet hychen 
+00:01 < clkao> LOL
+00:01 < lwhsu> hychen: XD
+00:02 < lwhsu> 你們覺得陷老滿好吃嗎?
+00:02 < clkao> lwhsu: 還有 ipa 也才對起來 原來你有來倫敦拜訪過 XD
+00:02 < lwhsu> clkao: wow, 那是 2006 的事了吧
+00:03 -!- Sorry [~USER@210-64-238-187.adsl.dynamic.seed.net.tw] has left #g0v.tw []
+00:04 < clkao> 科科科
+00:04 < lwhsu> clkao: btw, 我看 format-log.ls 裡面都是 require! \./lib/ 但是那些東西都是在 src 下?
+00:04 < clkao> lwhsu: npm run prepublish
+00:04 < lwhsu> 我要 ln -s src lib 才能 run
+00:04 < lwhsu> oh ok
+00:04 < clkao> src/*.ls -> lib/*.js
+00:05 < hychen> npm run prepublish 會把ls轉成js
+00:05 < ipa> lwhsu: hi, 應該是2004....我花了一點時間才想起來 XD
+00:05 < lwhsu> ipa: 2004?
+00:05 < hychen> 如果compile 失敗,  有時npm-debug.log的info 不夠時, 你要直接看package.json run  真正的command才能顯現error
+00:05 < clkao> 對耶... 2006 應該我自己在倫敦 XD
+00:06 < dannvix> clkao: ivod.ly 需要的是這個嗎？ rtsp://mediavod02.ly.gov.tw/wmv-clip/林國正/司法及法制/林國正-司法及法制-2013-1-9-12-40-院內.wmv
+00:06 < medicalw1i> 用 windows 手寫很好用 (輸入法整合器的
+00:06 < medicalw1i> 抓字率很高
+00:09 < clkao> dannvix: 這個也會有一張藍底的圖嗎? 我本來說的是 live streaming 的... 但一時手邊沒有 uri
+00:09 < clkao> 而且現在休會了
+00:10 < tka> 如果有人想測一下 elasticsearch 預設的 cjk 搜尋效果可以到 http://106.186.18.95/procurements/complex_search 測試看看
+00:10 < kcwu> tka's url: [政府標案]
+00:11 < tka> 對應的 elasticsearch API http://www.elasticsearch.org/guide/reference/api/search/ 
+00:11 < kcwu> tka's url: [elasticsearch - guide - Search API]
+00:11 < dannvix> clkao: http://cl.ly/image/3c1a021n0n3J 我用 WMP 開的話是這個片頭畫面
+00:11 < kcwu> dannvix's url: [Screen Shot 2013-01-28 at 12.10.46 AM.png]
+00:12 < clkao> dannvix: right. so it should be similar.. mplayer / vlc 應該弄不開
+00:12 < clkao> vlc 好像就卡在這個畫面重播 不會進到真正的 stream
+00:15 < clkao> Supaplextw: 話說.. mapping party 應該辦一下畫台北市豪宅的公共開放空間
+00:15 < clkao> 以後 hackathon 可以去這些地方辦
+00:15 < clkao> 租一台發電機 請外燴
+00:15 -!- taiansu [~tsu@111-248-81-85.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+00:16 < Supaplextw> clkao:我標過帝寶LOL
+00:18 < clkao> 有標他開放空間的範圍嗎
+00:19 < opop> lwhsu: 我覺得那家餐廳充滿了水餃...(大誤)
+00:22 < opop> 還滿好吃的，我平常都沒吃過 :D 好酷
+00:22 < Supaplextw> nope，標整個基地
+00:22 < clkao> Supaplextw: http://data.g0v.tw/questions/16/
+00:22 < kcwu> clkao's url: [台北市開放空間列表 - TWOpenData]
+00:24 < hychen> clkao, 請billy 研究 trello irc bot了, 希望之後可以在IRC上 lybot card add $new_issue
+00:24  * hychen 很懶
+00:24 < medicalw1i> au, gugod: clearer image source: http://140.111.34.46/dict/fonts/966a.gif
+00:25 < lwhsu> 這好像 runnywang 做過 (還是想過?) 00:15 < clkao> Supaplextw: 話說.. mapping party 應該辦一下畫台北市豪宅的公共開放空間
+00:25 < clkao> 我知道了 我看到 6/12 是假日 以為是三月
+00:25 < clkao> lwhsu: yes. it's ronnywang's idea :D
+00:27 < clkao> 以八週間距的話... 就是 3/23-24
+00:28 -!- taiansu [~tsu@111-248-81-85.dynamic.hinet.net] has joined #g0v.tw
+00:30 < hychen> clkao, 剛少打了一些字, "我已經請billy研究怎麼架trello bot"
+00:30 < clkao> :D
+00:31 -!- LeoHung [~hongsanqu@123-192-246-95.dynamic.kbronet.com.tw] has quit [Quit: LeoHung]
+00:32 < au> medicalw1i: 這樣看清楚了，966a 是＜幽懷賦＞作者李翺的「翺」
+00:32 < lwhsu> 網路上找不到可以查開放空間的地方 :/
+00:32 < au> (24 點字)++ # 比 16 點字容易看
+00:33 < au> #頓時回到上個世紀八零年代
+00:34 < clkao> lwhsu: that's why we need mapping and mapping party for that ;)
+00:35 < au> medicalw1i: 不過上面是「白」不是「自」的話，則是「翶」
+00:35 < au> 改在 gugod/moedict-epub/sym.txt 了
+00:36 < clkao> moedict-epub!
+00:36 < au> my $epub = EBook::EPUB->new;
+00:36 < au> $epub->add_title('萌典');
+00:36 < au> $epub->add_author('3du.tw');
+00:36 < au> gugod++ # lol
+00:38 < Johnny5TW> 大家晚安，來睡～～ZZzz..
+00:38 -!- Johnny5TW [~chatzilla@111-252-45-86.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.89 [Firefox 18.0.1/20130116073211]]
+00:40 < hychen> 我也該來睡了, 現在不准時睡覺，以後得準時吃藥....
+00:43 -!- hychen [~hychen@host-111-184-14-65.dynamic.kbtelecom.net] has quit [Quit: Leaving]
+00:45 -!- MindosCheng [~mindos@101.12.18.101] has joined #g0v.tw
+00:46 -!- taiansu [~tsu@111-248-81-85.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+00:47 < opop> lol (當頭棒喝
+00:50 < clkao> dannvix++ # logbot is live on g0v.tw
+00:50 < ca^> opop: 該吃藥了！
+00:52 < opop> ca^: Q_Q
+00:53 -!- ArvinH [~ArvinH@host-176.119-185-111.static.totalbb.net.tw] has quit [Remote host closed the connection]
+00:55 < gugod> lol
+00:57 < gugod> 套用新的 sym.txt 後這個檔重新生成了一次 http://gugod.org/newdict/moedict.epub 
+00:57 < clkao> gugod: ! sent you mail about cwb rain10... please see if it's somehow not working at times... 
+00:57 < gugod> 雖然可能看不出變化就是了
+00:57  * clkao really zzzz
+00:57  * au too
+00:57 < gugod> hm
+00:58 < gugod> goed nacht
+00:58 < gugod> goednacht #rather
+01:03 -!- KNY [~Adium@114-38-136-156.dynamic.hinet.net] has left #g0v.tw []
+01:04 < cpyang> ronnywang 有在爬司法院裁判書? # http://data.g0v.tw/questions/9/
+01:04 < medicalw1i> au, gugod: https://dl.dropbox.com/u/4582065/characters/characters.html
+01:04 < kcwu> cpyang's url: [司法院裁判書 - TWOpenData]
+01:04 < medicalw1i> and https://dl.dropbox.com/u/4582065/characters/characters
+01:06 -!- jake_ [76a3c7bc@gateway/web/freenode/ip.118.163.199.188] has quit [Ping timeout: 245 seconds]
+01:06 < cpyang> 不過裁判書的分區是管轄法，刑法大概有 200 條有罰則的條款，應該可以關聯依據法院的趨勢，但是離犯罪地圖有點距離
+01:07 < au> medicalw1i: 了不起
+01:07 < kcwu> medicalw1i++
+01:09 < au> medicalw1i: unknown 那個字是「以」的古文。
+01:09 < au> 㠯
+01:09 < au> 967a
+01:10 -!- zz_chihchun is now known as chihchun
+01:10 < au> 剩下的我整理一下 context.
+01:11 < chihchun> 今天有失物招領嗎？
+01:11 < au> 97f6 是 α
+01:11 < MindosCheng> medicalw1i++
+01:12 < au> 98be ⓱ 98c0 ⓳
+01:12 < medicalw1i> u+9847  顇 你們看到的是？
+01:12 < medicalw1i> 左邊是來還是卒
+01:13 < medicalw1i> （Droid Sans Japanese/Fallback 左邊是來，字典缺字要卒）
+01:13 -!- XDD [~XDDDD@123.240.69.226] has joined #g0v.tw
+01:13 < medicalw1i> （新細明體左邊是卒）
+01:14 -!- XDD [~XDDDD@123.240.69.226] has quit [Remote host closed the connection]
+01:18 < MindosCheng> 卒 (osx chatzilla)
+01:19 < au> http://www.fileformat.info/info/unicode/char/9847/index.htm　是卒　
+01:19 < au> medicalw1i: 缺字 context 整理好了： http://www.audreyt.org/newdict/context.html
+01:20 < au> 這樣 google 兩側的字應該比較找得到
+01:20 < au> 也許可以 post 到 pingooo 的 blog 上請人接手完成? # http://pingyeh.blogspot.tw/2013/01/OpenDictAPI.html?showComment=1359280176601#c601569852015048071 
+01:20 < kcwu> au's url: [ping不見路: 還文於民]
+01:21  * au 來 post
+01:22 < medicalw1i> au: H_2 怎麼辦
+01:22 < medicalw1i> H<sub>2</sub> 嗎 XDD
+01:22 < au> 以一個 grapheme 為準
+01:23 < au> 我想想
+01:23 < au> 不然先 H₂ 吧
+01:23 -!- bananapple [7227b45d@gateway/web/freenode/ip.114.39.180.93] has quit [Quit: Page closed]
+01:23 < au> 兩個半形算一個全形字的寬度
+01:24 < au> 之後再看有沒有 Unicode NFC 的表示法
+01:24 -!- MnO2 [~mno2@1.34.43.236] has quit [Quit: Leaving]
+01:27 -!- fntsrlike [7a767312@gateway/web/freenode/ip.122.118.115.18] has joined #g0v.tw
+01:27 -!- chihchun is now known as zz_chihchun
+01:31 < opop> o.o 每次參加完 g0v 明明沒做事都會失眠，我要哭訴～～～(被警衛拖走中
+01:34 < au> OK crowdsource pad created
+01:34 < au> https://hackpad.com/3du.tw-Unicode-Map-uGgOPAFgxDM
+01:34 < kcwu> au's url: [3du.tw Unicode Map - hackpad.com]
+01:35 < medicalw1i> 請問 那個加框的是怎麼打…
+01:38 < au> OSX 上我是這樣打... 
+01:38 < au> perl -Mutf8 -e 'print "字" . chr 0x20DE' | pbcopy
+01:39 < medicalw1i> 0x20de 啊
+01:39 < au> 是，任何字後面接 20de 即可
+01:39  * medicalw1i vim 輸入 unicode 符號用 ^vuxxxx
+01:39 < au> medicalw1i++
+01:41 < medicalw1i> 講錯，是 utf-8
+01:41 < medicalw1i> unicode 是 ^vUxxxxxxxx
+01:46 < au> crowdsource request 發出去了... https://twitter.com/audreyt/status/295587949083500544 http://pingyeh.blogspot.tw/2013/01/OpenDictAPI.html?showComment=1359308248518#c245297788043332813 etc，歡迎散播/轉噗/etc
+01:46 < kcwu> au's url (2/2): [ping不見路: 還文於民]
+01:46 < kcwu> au's url (1/2): [Twitter / audreyt: #3du #g0v 目前需要幫忙的是把教育部的造字和實字整合 ...]
+01:46 < au> -> 真的去睡了，明天再繼續 \o
+01:53 -!- taiansu [~tsu@111-248-81-85.dynamic.hinet.net] has joined #g0v.tw
+01:54 -!- KNY [~Adium@114-38-136-156.dynamic.hinet.net] has joined #g0v.tw
+01:54 -!- KNY [~Adium@114-38-136-156.dynamic.hinet.net] has quit [Client Quit]
+02:00 -!- taiansu [~tsu@111-248-81-85.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+02:07 < MindosCheng> au++ / Night
+02:30 -!- fntsrlike [7a767312@gateway/web/freenode/ip.122.118.115.18] has quit [Ping timeout: 245 seconds]
+02:42 < MindosCheng> tkirby_ : How did you install ogr2ogr ? # http://www.kyngchaos.com/software:frameworks
+02:42 < kcwu> MindosCheng's url: [Unix Compatibility Frameworks [KyngChaos Wiki]]
+02:45 < adaam> 台中場照片出來囉 http://flic.kr/s/aHsjDM17kG
+02:45 < kcwu> adaam's url: [g0v.tw 台中黑客松 - a set on Flickr]
+02:49 -!- hank__ [dc8806d2@gateway/web/freenode/ip.220.136.6.210] has joined #g0v.tw
+04:43 < gugod> http://www.digitalurban.org/2012/04/introducing-citydashboardorg-live-view.html
+04:43 < kcwu> gugod's url: [Citydashboard.org: A Live View of City Data | digital urban]
+04:44 < gugod> 這看起來真帥
+04:44 < gugod> > http://citydashboard.org/london/
+04:44 < kcwu> gugod's url: [CityDashboard: London]
+05:27 -!- juanna_ [~juanna@114-37-98-91.dynamic.hinet.net] has joined #g0v.tw
+05:30 -!- juanna [~juanna@114-43-108-155.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+05:37 -!- Silmarils [wHisKy@114-34-52-19.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+05:38 -!- Silmarils [wHisKy@114-34-52-19.HINET-IP.hinet.net] has joined #g0v.tw
+06:06 -!- jmlin [~jmlin@140.113.86.126] has quit [Ping timeout: 244 seconds]
+06:06 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+06:07 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 256 seconds]
+06:07 -!- liic [~liic@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+06:07 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+06:07 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 246 seconds]
+06:07 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has quit [Ping timeout: 255 seconds]
+06:07 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+06:07 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+06:07 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Ping timeout: 255 seconds]
+06:07 -!- liic [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+06:08 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+06:08 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 276 seconds]
+06:12 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+06:19 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has joined #g0v.tw
+06:26 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has joined #g0v.tw
+06:37 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+07:46 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+07:46 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+07:46 -!- poying [~root@108.171.254.121] has joined #g0v.tw
+07:49 -!- bcse [b2213e46@gateway/web/freenode/ip.178.33.62.70] has joined #g0v.tw
+07:49 -!- bcse [b2213e46@gateway/web/freenode/ip.178.33.62.70] has quit [Client Quit]
+07:50 -!- bcse [~bcse@pegasus.seedboxes.cc] has joined #g0v.tw
+07:53 -!- swem [~Thunderbi@host-61-70-211-134.static.kbtelecom.net] has joined #g0v.tw
+07:56 -!- swem [~Thunderbi@host-61-70-211-134.static.kbtelecom.net] has quit [Remote host closed the connection]
+07:59 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+08:01 -!- swem [~Thunderbi@host-61-70-211-134.static.kbtelecom.net] has joined #g0v.tw
+08:06 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+08:12 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+08:49 -!- swem [~Thunderbi@host-61-70-211-134.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+08:56 < kcwu> 誰可以幫忙在 github/g0v 開個 moedict-process, 然後把我加到 access list 嗎?
+09:07 < V1ctor> kcwu: 開了 但好像沒權限加入 ^^;
+09:07 < V1ctor> 加人
+09:08 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+09:27 -!- GD__ [~GD__@round214.mc.ntu.edu.tw] has joined #g0v.tw
+09:27 -!- zvn [~chatzilla@114-32-15-141.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+09:27 -!- Dennisc140 [d23dc13c@gateway/web/freenode/ip.210.61.193.60] has joined #g0v.tw
+09:30 -!- GD_ [~GD__@round214.mc.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+09:35 -!- Vdragon [~Vdragon@175.180.182.202] has joined #g0v.tw
+09:36 < ronnywang> cpyang: 有，我這幾天也會讓他定期更新放到 dropbox 上 XD # 01:04 < cpyang> ronnywang 有在爬司法院裁判書? # http://data.g0v.tw/questions/9/ 
+09:36 < kcwu> ronnywang's url: [司法院裁判書 - TWOpenData]
+09:40 < opop> #1H1QS8xX (Gossiping) [ptt.cc] [爆卦] 公開資料庫：22K芳名錄
+09:41 -!- MnO2 [~mno2@nat/yahoo/x-uwkznphcklccwsxm] has joined #g0v.tw
+09:42 < thschee> gugod: http://blog.schee.info/2012/05/26/citydashboard/ :)
+09:42 < kcwu> thschee's url: [城市儀表板 City Dashboard | Schee 徐]
+09:46 -!- elek_ [d2f091c3@gateway/web/freenode/ip.210.240.145.195] has joined #g0v.tw
+09:47 < cpyang> ronnywang++
+09:48 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+09:48 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+09:48 -!- liic [~liic@alumni.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+09:49 -!- Sorry1 [~admin@mail.cna.ccu.edu.tw] has joined #g0v.tw
+09:49 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+09:49 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 260 seconds]
+09:49 < V1ctor> ronnywang++
+09:49 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+09:49 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+09:49 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+09:56 -!- lubatang [~Luba@115.80.41.200] has joined #g0v.tw
+09:56 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+09:57 < V1ctor> 現在有文件蒐集大家爬出來的 data 嗎? 沒有的話我來開一個 hackpad 
+09:57 -!- pop [3d3fe0e2@gateway/web/freenode/ip.61.63.224.226] has joined #g0v.tw
+09:58 -!- lubatang [~Luba@115.80.41.200] has quit [Client Quit]
+09:58 -!- pop [3d3fe0e2@gateway/web/freenode/ip.61.63.224.226] has quit [Client Quit]
+10:01 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+10:01 -!- liic [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+10:01 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+10:02 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+10:02 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+10:02 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 276 seconds]
+10:02 < Sorry1> tka: 嘖嘖，那句「非經行政院公共工程委員會或各權利人之同意，使用者不得以任何形式利用 政府電子採購網上之內容，使其存在於任何出版物、網站、檢索系統或相類似之場所。」實在越看越刺眼。
+10:03 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+10:03 -!- allan914_ [~cssuen@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+10:05 < Sorry1> tka: 我們一開始的目標若只是做視覺化和異常案件的分析／揀選，應該還有避開上述規範的空間
+10:05 -!- isabel [7de73b73@gateway/web/freenode/ip.125.231.59.115] has joined #g0v.tw
+10:06 < Sorry1> tka: 但是現在要做到檢索跟 API 的話，會不會有踩線的危險？
+10:08 < tka> Sorry1: 他們網站上還有另一條
+10:08 < tka> 1.行政院公共工程委員會網站上刊載之所有內容，除著作權法規定不得為著作權之標的（如法律、命令、公務員撰擬之講稿、新聞稿等--請參考著作權法第9條規定）外，其他包括文字敘述、攝影、圖片、錄音、影像及其他資訊，均受著作權法保護。
+10:08 < tka> 2.上述不得為著作權標的者，任何人均得自由利用，歡迎各界廣為利用。
+10:09 < tka> Sorry1: 我覺得那就變成各自解讀了, 不打一架大概不會有結果？
+10:09 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+10:09 < V1ctor> https://hackpad.com/g0v-data-0GYy75PLBgA
+10:10 < kcwu> V1ctor's url: [g0v data - hackpad.com]
+10:10 < V1ctor> 想不起來還有那些 orz
+10:14 < opop> tkirby: 今天要努力上班喔！因為等你下班要趕 g0v 的圖片讓我們開始寫文章，辛苦你了，all in one <3
+10:14 < ETBlue> adaam ++ 那麼昏暗竟然還拍的清楚真是太厲害了 ^o^ adaam 大大的照片 https://lh6.googleusercontent.com/-hIvVvIn1_SA/UQSqmUHBMbI/AAAAAAACvik/h1d3lIi2VXY/s870/DSC_2621.JPG 在星雨的相簿 https://plus.google.com/105274501484374472959/posts/4ouGyyxuk5q
+10:14 < kcwu> ETBlue's url (1/2): [Star Rain - Google+ - #g0v.tw #g0v #Taichung  ]
+10:14 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+10:14 < tkirby> 0rz
+10:15 < opop> <>< 啾咪 <><
+10:15 < Sorry1> tka: 或者呼叫法律專家幫忙解讀一下？
+10:16 < tka> Sorry1: btw 後來覺得 http://web.pcc.gov.tw/tps/pss/tender.do?method=goSearch&searchMode=common&searchType=advance&searchTarget=ATM 其實已經很好用
+10:16 < kcwu> tka's url: [政府電子採購網]
+10:16 < tka> Sorry1: 很多資料直接從這邊找就好
+10:17 < dannvix>  clkao: 感恩！ <(_ _)>
+10:17 < ipa> Sorry1: tka: 法律問題可以寫信問isabel
+10:18 < tka> ipa: 好的, 今晚來寫 :p
+10:18 < Sorry1> ipa: 感謝
+10:18 < Sorry1> tka: 有勞了 m(_ _)m
+10:19 -!- Ben_chou [Ben_chou@nat/novell/x-pghitvrlfqowjhju] has joined #g0v.tw
+10:19 < tkirby> <>< --- <><  # 魚打滾
+10:19 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+10:20 -!- Sorry1 [~admin@mail.cna.ccu.edu.tw] has left #g0v.tw []
+10:20 < isabel> 寫信太麻煩了，請問是要問什麼？
+10:20 < tkirby> XD
+10:20 -!- Sorry1 [~admin@mail.cna.ccu.edu.tw] has joined #g0v.tw
+10:20 < ipa> isabel! 居然在線上！
+10:21 < isabel> 因為鋪浪上都沒人。。。可是我不太會用。
+10:22 < opop> tkirby: 快點去上班!!!! (踢)
+10:22 < tka> isabel: 主要是政府電子採購網的資料使用授權問題 
+10:22 < tka> isabel: 大致上整理在　https://hackpad.com/g0v.tw-%E6%94%BF%E5%BA%9C%E6%A8%99%E6%A1%88-0M0HW9tSVNQ　中的資料使用限制一節
+10:23 < tka> isabel: 我們現在做的事情是將網站標案的內容, 整理成方便處理的資料格式後公開散佈
+10:24 < tka> isabel: 並且架設往網站提供檢索及統計的功能
+10:24 -!- jmlin [~jmlin@140.113.86.126] has joined #g0v.tw
+10:24 < tka> isabel: 所以想要詢問說這樣會不會有什麼樣的法律風險呢
+10:25 < tka> isabel: 感謝解惑 
+10:25 < isabel> 那個連結連進去我看不到資料耶。
+10:26 < tka> isabel: 不好意思, 那我節錄出來, 請參考　https://gist.github.com/4652435
+10:27 < isabel> 你可以給我個範例是爬了哪些資料出來嗎？
+10:28 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:29 < isabel> 電子資料庫是個麻煩的問題，要是有空可以看一下臺灣臺北地方法院96年度訴字第146號刑事判決。
+10:29 -!- VHW [7224b43d@gateway/web/freenode/ip.114.36.180.61] has joined #g0v.tw
+10:29 < isabel> 智慧財產法院藉該判決傳達一項重要訊息，即縱使現行法律未明文對不具創作性之電子資料庫賦予特別權利(sui generis)保護，若該資料庫內之資料係經過具創作性之選擇及編排，而不是單純之資料堆積，仍得以「編輯著作」受著作權法之保護。
+10:29 < tka> isabel: 好的　http://106.186.18.95/procurements/96608 http://106.186.18.95/procuring_entities/231 http://106.186.18.95/tenderers
+10:29 < kcwu> tka's url (1/3): [政府標案]
+10:29 < isabel> 範例可以mail給我, isabel.hou@gmail.com
+10:30 < isabel> 喔
+10:30 < ipa> 「具創作性之選擇及編排」....
+10:31 < tka> isabel: 好的 麻煩你了 謝謝
+10:31 < Sorry1> isabel: 上面你點不出來的連結是： https://hackpad.com/g0v.tw-%E6%94%BF%E5%BA%9C%E6%A8%99%E6%A1%88-0M0HW9tSVNQ
+10:32 < kcwu> Sorry1's url: [g0v.tw 政府標案 - hackpad.com]
+10:33 < Sorry1> isabel: 原本政府電子採購網提供這樣的查詢界面： http://web.pcc.gov.tw/tps/pss/tender.do?method=goSearch&searchMode=common&searchType=basic
+10:33 < Sorry1> isabel: 然後搜尋出來的結果像這樣： http://web.pcc.gov.tw/tps/tpam/main/tps/tpam/tpam_tender_detail.do?searchMode=common&scope=F&primaryKey=50910296
+10:34 -!- isabel [7de73b73@gateway/web/freenode/ip.125.231.59.115] has quit [Ping timeout: 245 seconds]
+10:34 -!- isabel [7a761460@gateway/web/freenode/ip.122.118.20.96] has joined #g0v.tw
+10:35 < Sorry1> isabel: 呃，請問有看到我剛剛貼的三個連結嗎？
+10:36 < isabel> 有。就是有廠商得標率那個？
+10:36 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+10:36 < Sorry1> 不是欸
+10:36 -!- Sorry1 [~admin@mail.cna.ccu.edu.tw] has left #g0v.tw []
+10:36 < isabel> 那就沒有，我這兒網路不太穩
+10:36 -!- Sorry1 [~admin@mail.cna.ccu.edu.tw] has joined #g0v.tw
+10:37 < tka> isabel: https://gist.github.com/e8a39cf24ac49510c740 對話紀錄, 最下面 Sorry 補了額外的說明
+10:37 < isabel> 那就沒有，我這兒網路不太穩。還是mail給我吧。isabel.hou@gmail.com
+10:37 < Sorry1> 好
+10:38 < clkao> kcwu, victor you are both admins now
+10:39 < isabel> 感謝，我看一下，我們可能需要再討論一下。
+10:40 < opop> victor 一直不在線上, 我也想找他 Orz
+10:40 < tka> isabel: 感謝, 真的是麻煩你了
+10:41 < V1ctor> opop: 你說我?
+10:41 < isabel> 我現在面臨的最困難的任務可能是先學會怎麼用hackpad。（昏倒）
+10:41 < ipa> isabel: 用ipad會很難用hackpad耶
+10:42 < tka> isabel: 他跟 google doc 很類似, 滑鼠點選文章內容就可以編輯了, 然後會自動存檔
+10:43 -!- hank__ [dc8806d2@gateway/web/freenode/ip.220.136.6.210] has quit [Quit: Page closed]
+10:43 < opop> V1ctor: o.o!!! 我只是要跟你回報 chrome 的 bug 在我每台電腦(三台)都會遇到, 我是神手 Orz
+10:44 < isabel> 我現在是用air。之前編輯時常會跑掉或卡卡的，我需要實地演練一下。
+10:44 < Silmarils> 其實這就是所謂的對格式的保護，就如北捷的地圖一般。路線是沒有版權可宣告，但是那張圖是他們的創作，這就有版權（或說創作權）
+10:44 < opop> 一台 IBM 什麼 200 的型號, 一台 toshiba z830, 一台 z930 Orz
+10:44 < V1ctor> opop: 問看看 ca 能不能制作 stack trace, 不然都沒線索 XD
+10:45 < Silmarils> hackpad 不知道是誰有寫個小教學喔 :  https://hackpad.com/g0v.tw-%7C-Hackpad-%E7%9B%B8%E9%97%9C%E5%95%8F%E9%A1%8C-JrHwLqM8nkO
+10:45 < kcwu> Silmarils's url: [g0v.tw | Hackpad 相關問題 - hackpad.com]
+10:45 < opop> V1ctor: 我知道我只是想 murmur, ca 他老闆應該不會讓他花這個時間做這件事 XD
+10:46 < V1ctor> opop: 都是 windows 嗎? 如果 linux 也會的話，你給我一個帳號密碼(我記得你很多個..XD), 我編一個 debug version 來試試
+10:47 < Sorry1> Silmarils: 格式不是問題，我們（甚至全部的人）現在做的事不就是看原本的格式不順眼嗎？XD
+10:47 < V1ctor> 不過要先等我回去上班
+10:47 < opop> V1ctor: ya 都是 windows, 我有空再弄反正不急, 謝啦 :P
+10:47 < opop> 我覺得不一定是帳號的問題, 但我會再試試的, 感謝
+10:48 < isabel> Silmarils:Thanks.
+10:48 < Silmarils> Sorry1 對，其實就是把資料撈出來後重新排版 - 就如自己重新畫張捷運地圖
+10:49 < ipa> isabel: 中文輸入在hackpad有bug 會卡卡沒錯 orz
+10:50 < Sorry1> 話說有沒有前輩能透露一下當初捨 Google Docs 就 hackpad 的原因是什麼？
+10:50 < Silmarils> win + 自然輸入法沒有問題 XD 總算有理由用 win 了（誤
+10:50  * opop 邊刷牙邊看irc, 我覺得(如果)鏡子可以上 irc 、是件重要的事
+10:51 < Silmarils> opop 你需要 google 眼鏡 ;0
+10:51 < tka> Sorry1: 要是不能公開散佈資料的話, 那就努力散佈我們做出來的程式吧, 這樣有興趣的人在開始爬資料後的幾天就可以開始看結果了 XD
+10:51 < opop> Silmarils: 不行, 我已經有戴眼鏡了, google 眼鏡要加度數一定很貴!!
+10:52 < isabel> 基本上Silmarils說的沒錯，不過要先確定撈出來的就是“單純的資料”，沒有編輯加工過的。
+10:53 < Sorry1> tka: 是的，我正是這個想法。原始資料也許鎖著，但我們的程式可以不用鎖著。XD
+10:55 < Silmarils> 這番對話讓我想到，或許你們都該在自己的程式上加個版權與免責宣言
+10:55 < isabel> 我正想問妳們程式用甚麼License?
+10:55 < Silmarils> 這有點類似政府目前「開放資料」會做的事情
+10:56 < Sorry1> Silmarils: 有沒有 g0v 公版可以套？（無誤）
+10:57 < Sorry1> isabel: 這個「要先確定撈出來的就是“單純的資料”，沒有編輯加工過的」我還是不懂
+10:57 < Silmarils> 好問題，我知道一些政府開放資料的作法，但是可能要 survey 一下並請法律專家看一下
+10:57 < ipa> isabel: 版權與免責宣言認領一下吧?（推坑）
+10:57 -!- Silmarils is now known as wHisKy-
+10:58 < opop> (鼓掌)
+10:58 < tka> isabel: 我需要確認一下, 有沒有受到感染, 我的部份最遭會是 GPL
+10:58 < wHisKy-> isabel 要嗎？我可以一起來找相關資料 XD (其實是我們自己也很有需要這樣的東西可以建議其他人使用）
+10:59 < Sorry1> isabel: 因為程式去下載，一定是被原本部門排版好的資料。我們做的事是把它的排版去掉，只留資料或重新排版。
+10:59 -!- Sorry1 is now known as Sorry_
+11:00 < isabel> 用甚麼License我不太能幫programer決定，昨天404他們似乎是決定用BSD。我不確定各個專案是不是會有不同的考慮？
+11:00 < Sorry_> isabel: 版權宣告跟免責聲明是同一件事嗎？
+11:01 < wHisKy-> 我是覺得程式本身用的 licence 只要 open 就沒多大問題，但是使用上與延伸可能的結果就需要特別聲明一下
+11:02 < Sorry_> （設計對白）M$：「暈倒死系統的版權是我的，但如果它搞掛你的電腦，那是你家的事」
+11:02 < isabel> 比如說法律資料庫裡面會有判決要旨這項，這個因為是節錄的，就不會是單純的資料。如果他們原來有分類，我們又延續他們的分類，就很可能會被認為侵權，法院目前的見解是這樣。
+11:02 < wHisKy-> 他的確是這樣說 XD 都是安裝的 drivers或是 軟體的錯
+11:03 < wHisKy-> 哈哈
+11:03 < isabel> 版權宣告和免責聲明不一樣。免責聲明原則上應該可以作一個公版。
+11:04 < isabel> 我可以幫忙寫這兩件事。
+11:05 < wHisKy-> isabel 你說的如果我沒理解錯應該是對資料庫的保護？而這一部分我之前聽CC的強哥說，似乎沒有特別的法條來保護？不知道我有沒有解讀錯
+11:06 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+11:07 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+11:07 < isabel> 是沒有特別的法條保護，但台灣法院有保護“具創作性資料庫”的判決，就是我剛剛說得那個。如果說不受保護，會有誤導。
+11:07 < wHisKy-> ok
+11:07 < hlb> isabel++
+11:07 -!- allan914_ [~cssuen@alumni.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+11:08 -!- liic [~liic@alumni.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+11:08 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+11:08 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+11:08 -!- liic [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+11:08 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has quit [Read error: Operation timed out]
+11:08 < isabel> 我會寫一個很機車的免責聲明，不想那麼機車的人，請自行斟酌服用。
+11:08 -!- jmlin [~jmlin@140.113.86.126] has quit [Read error: Operation timed out]
+11:08 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Ping timeout: 244 seconds]
+11:09 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+11:09 < clkao> isabel++
+11:09 < clkao> ipa++ # 第一次推坑就成功
+11:09 -!- jmlin [~jmlin@140.113.86.126] has joined #g0v.tw
+11:09 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+11:09 < clkao> Sorry_: 那時候剛好再測試各家 etherpad-based 的 collaborative editing tool... 就... 
+11:10 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+11:10 < wHisKy-> 那補充個資訊，研考會那邊目前正在準備四月要上線的 data.gov.tw，對於 licence 這一塊還有免責聲明他們都正在研究中。如果 g0v 已有公版免責聲明，或許他們也會參考一下
+11:10 < Sorry_> 先拜謝 isabel 大大
+11:10 < ipa> isabel++ 
+11:10 -!- Ben_chou [Ben_chou@nat/novell/x-pghitvrlfqowjhju] has quit [Ping timeout: 252 seconds]
+11:10 < Sorry_> clkao: XDrz
+11:12 < isabel> 大大是我老公不是我，謝謝。
+11:12 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has joined #g0v.tw
+11:13 < Sorry_> isabel: 岔／回題，那麼就我們之前提的電子採購網資料，標案內容的部份，除了免責聲明以外，你有什麼建議嗎？
+11:13 < Sorry_> isabel: 究竟這種形式的下載／重排版／再利用，踩到雷的機率有多高？
+11:13 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+11:14 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+11:14 < ipa> ;'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''bijv  ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+11:15 < Sorry_> whisky: 如果研考會那個東西能解決掉現有的版權問題就再好不過了 *幻想*
+11:16 < clkao> 看來貓咪今天很冷... XD
+11:16 -!- LHD [~lhd@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+11:16 -!- mhs1n [~mhsin@114-32-9-83.HINET-IP.hinet.net] has joined #g0v.tw
+11:16 < isabel> 那個，會不會被告是一回事，告不告的成是另一回事。我初步覺得告的成的機率應該不高（不過我還時間沒仔細看，一直在上線，吐舌）。
+11:16 -!- evan3rd [3b7d8858@gateway/web/freenode/ip.59.125.136.88] has joined #g0v.tw
+11:16 -!- mhsin [~mhsin@114-32-9-83.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+11:16 < ipa> sorry, 我的電腦剛被貓佔領 囧rz
+11:17 < favonia> isabel: 就算政府無聊來找碴... 如果我嘗試引用第 50 條宣稱 g0v 的作法是合理使用，你覺得勝算如何？ xD
+11:17 < isabel> Sorry:我其實擔心很可能讓我們更綁手綁腳。
+11:18 < isabel> 因為本來沒規範的，他都主張需要政府同意才能用，然後要你同意這種條件才能取得資料
+11:18 < lwhsu> clkao: 我加了 JSON.stringify, 那我 merge ok?
+11:18 < clkao> lwhsu++ #  yes please!
+11:18 < favonia> isabel: 以前有類似的案例嗎？
+11:18 < Sorry_> isabel: 我原本的想法是先確定紅線在哪，然後就可以放心亂搞。不過你的考量也有道理。
+11:18 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+11:19 < lwhsu> clkao: 還有一些其他的小修改一起進去了, 我不知道 github 的 merge 會把那個 branch 之後的修改都過去 XD
+11:19 < clkao> 昨天有位經濟部來的 他說他們科專門負責法規鬆綁
+11:19 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+11:19 < clkao> lwhsu: 沒關係 沒改爛就好了 :p
+11:20 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+11:20 < favonia> isabel: （我是指政府機關 & 公法人名義擺的資料）
+11:20 < lwhsu> 應該要開新 branch send pull-request 的 XD
+11:20 -!- liic [~liic@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+11:20 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+11:20 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+11:20 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Remote host closed the connection]
+11:20 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+11:20 -!- jmlin [~jmlin@140.113.86.126] has quit [Ping timeout: 245 seconds]
+11:20 -!- LHD [~lhd@alumni.cs.nctu.edu.tw] has quit [Remote host closed the connection]
+11:20 -!- liic [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+11:21 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+11:21 -!- LHD [~lhd@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+11:21 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has joined #g0v.tw
+11:21 < isabel> favonia:比商業使用的勝算高。但這已經是第二條防線了。主張合理使用的案例很多阿，幾乎所有侵權案件，律師都會這麼主張。
+11:21 < clkao> lwhsu: 就直接 push, 不用 pull-req 再 merge 了 除非改很大
+11:21 -!- jmlin [~jmlin@140.113.86.126] has joined #g0v.tw
+11:22 < lwhsu> clkao: will do next time :)
+11:22 < favonia> isabel: 也是。我自己再做點功課好了。非商業使用勝算高的原因，是因為第 65 條有加分對嗎？
+11:22 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+11:22 -!- evan3rd [3b7d8858@gateway/web/freenode/ip.59.125.136.88] has quit [Ping timeout: 245 seconds]
+11:23 < isabel> clkao:他有名片嗎。我們應該給個說帖去。
+11:23 < clkao> isabel: 有耶 我找一下
+11:24 -GitHub171:#g0v.tw- [twlyparser] lwhsu pushed 7 new commits to master: https://github.com/g0v/twlyparser/compare/b80a3b79e947...1708bac6ff9f
+11:24 -GitHub171:#g0v.tw- twlyparser/master 7fdb075 Li-Wen Hsu: Add sha1 digest of current conversation to interpellation metadata.
+11:24 -GitHub171:#g0v.tw- twlyparser/master c856725 Li-Wen Hsu: Trim unneeded whitespace.
+11:24 -GitHub171:#g0v.tw- twlyparser/master 9bbafaf Li-Wen Hsu: Add lib/, which is generated from src/
+11:25 < clkao> 中小企業處政策規劃組法務政策科
+11:25 < clkao> 蔡科長
+11:25 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has joined #g0v.tw
+11:25 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+11:27 < isabel> favonia:是。
+11:27 -!- akiha [7a74233a@gateway/web/freenode/ip.122.116.35.58] has joined #g0v.tw
+11:27 -!- Ben_chou [~Ben_chou@59-124-67-67.HINET-IP.hinet.net] has joined #g0v.tw
+11:28 < hychen> lwhsu, 現在這時push, 你今天放假嗎? XD
+11:28 < kcwu> copyright owner 是政府, 跟 owner 是其他人/單位, 有什麼不一樣嗎? 
+11:29 < clkao> hychen: i think lwhsu is waiting for some thing to compile XD
+11:30 < isabel> 如果已經確定是受著作權法保護的著作，法律上就沒什麼不一樣，但法官在個案中總是會有些考量吧。
+11:30 -!- evan3rd [~mac@114-47-21-121.dynamic.hinet.net] has joined #g0v.tw
+11:31 -!- Vdragon [~Vdragon@175.180.182.202] has quit [Ping timeout: 240 seconds]
+11:31 < isabel> 喔，不過會有在合理使用上範圍不太一樣。
+11:31 < lwhsu> hychen: *噓* XD
+11:31 < lwhsu> 開會時間一定要好好利用的阿 XD
+11:32 < isabel> 或是像著作權法第62條規定：政治或宗教上之公開演說、裁判程序及中央或地方機關之公開陳述，任何 人得利用之。但專就特定人之演說或陳述，編輯成編輯著作者，應經著作 財產權人之同意。
+11:34 < kcwu> i see
+11:38 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+11:39 -!- taiansu [~tsu@111-248-166-111.dynamic.hinet.net] has joined #g0v.tw
+11:40 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+11:42 < kcwu> 好久沒用成語典, 現在竟然做成 "電子書" orz
+11:42 -!- isabel [7a761460@gateway/web/freenode/ip.122.118.20.96] has quit [Quit: Page closed]
+11:43 < clkao> 而且是一夕之間 好 project 不 blog 一下嗎
+11:46 < kcwu> 喔, 有 "文字版"
+11:50 < au> 一夕之間數百個難字造字剩下十個
+11:52 < au> irvin++ greylee++ yaowei++ yaoling++ gugod++ # 實在太強了
+11:54 -!- ETBlue [~chatzilla@123-204-142-108.adsl.dynamic.seed.net.tw] has quit [Quit: ChatZilla 0.9.89 [Firefox 18.0.1/20130116073211]]
+12:06 < billy3321> ~http://www.libertytimes.com.tw/2013/new/jan/28/today-t1.htm
+12:06 < kcwu> billy3321's url: [自由電子報 - 自經示範區政策大轉彎// 830項中國農產品 攻台]
+12:06 < billy3321> clkao: 撈的到相關法案嗎？
+12:06 < billy3321> 「自由經濟示範區條例草案」已列為優先法案，下會期將送立法院審議，通過機會極大。換句話說，最快下半年，八三○項中國農產品即可上岸，難怪農委會主委陳保基在立法院不願承諾「不開放八三○項中國農產品」。
+12:08 < clkao> 要看是政府提案的話送進立法院沒
+12:12 -!- Vdragon [~Vdragon@175.180.182.202] has joined #g0v.tw
+12:12 -!- Ben_chou [~Ben_chou@59-124-67-67.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+12:13 -!- Jayson__ [76a34ff1@gateway/web/freenode/ip.118.163.79.241] has joined #g0v.tw
+12:14 -!- elek_ [d2f091c3@gateway/web/freenode/ip.210.240.145.195] has quit [Ping timeout: 245 seconds]
+12:17 -!- Jayson__ [76a34ff1@gateway/web/freenode/ip.118.163.79.241] has quit [Client Quit]
+12:24 < V1ctor> mongodb 太方便，就把 ronnywang 的公司 json 也順便接上去了 # http://twlaw.cloudfoundry.com/company/壹傳媒傳訊播放股份有限公司
+12:25 < clkao> V1ctor: yes mongodb++ # 不過本來立院也是丟 mongo.. 但發現要有 relation 時太麻煩了 要 client side populating 一大堆.. 
+12:26 < V1ctor> clkao: 對啊 目前看起來單純的資料還可以 大部分的資料都夠單純
+12:26 < V1ctor> clkao: ???.g0v.tw -> twlaw.cloudfoundry.com
+12:27 < V1ctor> 有什麼建議嗎 :P
+12:27 < au> law.moj.g0v.tw
+12:28 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+12:29 < V1ctor> 是 ok, 不過之後可能再 host 更多法律以外的 data
+12:31 < au> 嗯。並沒有一定要和 law.moj.gov.tw 相同
+12:31 < au> superset is fine
+12:31 < au> 主要只是延續「不小心打錯一個 0 就進入零時政府」的機制 XD
+12:32 < V1ctor> XD
+12:32 < V1ctor> clka0
+12:36 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+12:42 -!- MindosC [~MindosC@101.12.18.101] has joined #g0v.tw
+12:54 < tkirby> tkirby # 無法打錯
+12:55 < tkirby> tkir6y # 進入早上六點政府
+12:56 < V1ctor> 吳六點
+12:56 < Dennisc140> http://technews.tw/2013/01/28/civic_innovation_improve_the_societies/
+12:56 < kcwu> Dennisc140's url: [公民創新改造社會寫程式救國 | TechNews 科技新報]
+12:58 < V1ctor> opop: 對了 如果你要試還沒 release 的 chromium, 可以到 http://build.chromium.org/p/chromium/builders/Win 隨便找一個 build 點去去，再找 download 進去抓
+12:58 < kcwu> V1ctor's url: [Buildbot: Win]
+12:58 < opop> 改變社會第三次的黑客松將在[            ]XD # Dennisc140> http://technews.tw/2013/01/28/civic_innovation_improve_the_societies/
+12:59 < opop> V1ctor: 好深奧，我會 memo 下來 o.o
+12:59 -!- Ben_chou [Ben_chou@nat/novell/x-huhfsufdyfbvratj] has joined #g0v.tw
+12:59 < V1ctor> opop: 那些是開發中的版本，有開 debug, 你的 console 可能會有更多資訊
+13:01 < Dennisc140> opop 沒刪乾淨XD
+13:05 -!- akiha [7a74233a@gateway/web/freenode/ip.122.116.35.58] has quit [Ping timeout: 245 seconds]
+13:09 -!- evan3rd [~mac@114-47-21-121.dynamic.hinet.net] has quit [Quit: evan3rd]
+13:11 < MindosC> kirby kirby ~
+13:12 < MindosC> 你怎麼裝 ogr2ogr ?
+13:16 < MindosC> V1ctor : 可以幫忙修 twlyparser 嗎 Q.Q
+13:17 < tkirby> MindosC: 阿!
+13:18 < tkirby> MindosC: 我沒有裝過 ogr2ogr? 那是什麼咧
+13:19 < MindosC> twgeojson 中，把資料轉成 json 的一個套件
+13:19 < tkirby> 嗚呵!
+13:20 < MindosC> 還是你直接用上面的 json?
+13:20 < tkirby> MindosC: 我直接用上面的 json
+13:21 < tkirby> 話說沒在上面看到有提到 ogr2ogr ?
+13:21 < MindosC> 那我也直接用 ^^  /  在 makefile
+13:21 < tkirby> XD
+13:22 -!- KNY [~Adium@114-38-136-156.dynamic.hinet.net] has joined #g0v.tw
+13:23 < MindosC> http://registrano.com/events/g0v-hackath1n-hsinchu # 來嗎來嗎？
+13:23 < kcwu> MindosC's url: [g0v.tw hackath1n | 台灣零時政府第壹次公地放領黑客松 - 新竹場 | Registrano]
+13:23 < tkirby> 呃呃這 XD
+13:24 < MindosC> 我明白 Q.Q
+13:24 < tkirby> 怎麼不等下次一起辦 XD
+13:26 < MindosC> 本來要這次一起辦 :)
+13:26 < tkirby> hmm
+13:26 < tkirby> 我可以 offline 參加... XD
+13:26 < tkirby> 應該是說 remote
+13:26 < MindosC> ^^
+13:27 < MindosC> 要來 remote 拍照嗎 lol
+13:27 < tkirby> remote 拍照... 這辦得到嗎 XD
+13:27  * MindosC think Avator
+13:28 < tkirby> ...這招 XD
+13:29 < tkirby> MindosC: 你學妹人不錯阿! 不過不知道要怎麼讓他多參與各個 project
+13:30 < opop> 人不錯 A________AY
+13:30 < opop> tkirby: 快點工作啦吼吼
+13:30 -!- zz_chihchun is now known as chihchun
+13:31 -!- Vdragon [~Vdragon@175.180.182.202] has left #g0v.tw []
+13:31 < tkirby> opop: 後! 現在午休吃飯時間啦!
+13:31 < tkirby> 都是 google 出些怪 issue 害我要看問題
+13:31 < MindosC> 謝謝大家照顧了 m(_ _)m 她是 UI/UX 的人，如果有什麼需要可以找她幫忙。
+13:32 < tkirby> xD
+13:32 < MindosC> tkirby : 你都不用午睡嗎
+13:32 < opop> tkirby: 咦，那你快點跟我們一樣一天只需要吃一餐，這樣好省時唷 
+13:32 < tkirby> 他說是使用者經驗分析.. 感覺比設計更偏向研究
+13:32 < opop> 好多時間可以工作呢~
+13:33 < tkirby> MindosC: 好久沒睡午覺了, 雖然今天早上睡過頭 XD
+13:33 < MindosC> opop : 妳不是和哈比人一樣要五餐
+13:33 < tkirby> opop: 沒辦法, 看我的肚子就知道沒辦法了
+13:34 < MindosC> 就是 UI / UX 的範圍啊 :)
+13:34 < opop> MindosC: mmm 工作忙碌的時候就一天一餐，無聊的時候就一直吃 :D
+13:34 < MindosC> opop : 一天一餐很不好耶
+13:36 < MindosC> 來過一次，她對社群的運作模式也比較熟了，希望以後會有比較多的互動。請她介紹對象也可以 :)
+13:38 -!- yllan [~yllan@122-116-177-245.HINET-IP.hinet.net] has quit [Quit: yllan]
+13:39 -!- medicalwei [~medicalwe@140.121.80.62] has joined #g0v.tw
+13:41 < tkirby> XD
+13:41 < billy3321> @@
+13:41 < V1ctor> MindosC: 是那些檔有問題呢?
+13:42 -!- evan3rd [~mac@114-47-21-121.dynamic.hinet.net] has joined #g0v.tw
+13:42 < ca^> \
+13:43 < MindosC> format-log --fromtext 吃到 復 貴處 但是接下來沒有日期給它吃的時後會死掉。
+13:43 < MindosC> 我開了 issue 
+13:45 < MindosC> 問題是，我不知道應該要 ignore 它，還是這是新 case
+13:46 < billy3321> http://www.22kopendata.org/
+13:46 < billy3321> 这是g0v这次生出来的专案？
+13:46 < MindosC> 是啊！
+13:47 < billy3321> COOOL
+13:47 < ipa> 應該來之前就做的差不多
+13:47 < MindosC> 你可以看 google handout 錄下來的介紹
+13:48 < billy3321> 突然觉得可以有台湾版的wikileaks
+13:48 < billy3321> 这样014的影片就有地方投稿了
+13:48 < tkirby> 據他們說現在是 static 的?
+13:49 < MindosC> 會議紀錄 4xxx 有缺，不知道誰可以幫忙補。
+13:52 -!- wHisKy [~whisky@114-34-52-19.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+13:53 < opop> MindosC: mmm 我們公司有很多零食飲料，肚子餓不舒服時我會抓來吃
+13:53 -!- wHisKy- [wHisKy@114-34-52-19.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+13:53 -!- wHisKy [~whisky@114-34-52-19.HINET-IP.hinet.net] has joined #g0v.tw
+13:55 < opop> 還有很多維他命 A_A
+13:55 -!- timdream [~timdream@host-111-184-37-40.dynamic.kbtelecom.net] has joined #g0v.tw
+13:57 -!- pingooo [62f8d77a@gateway/web/freenode/ip.98.248.215.122] has joined #g0v.tw
+13:57 < billy3321> opop: 維他命吃太多會中毒，尤其是維他命C這種
+13:57 < billy3321> 我以前有個老師，有朋友送他一籠芒果。他很開心，一早上吃掉半籠
+13:57 < billy3321> 然後就送醫急救了
+13:57 < opop> billy3321: ....我的教授告訴我我吃得都會隨尿液排出，尤其是維他命C這種的....
+13:57 -!- VHW [7224b43d@gateway/web/freenode/ip.114.36.180.61] has left #g0v.tw []
+13:57 < billy3321> 原因：維他命C中毒
+13:58 < opop> 那個，藥罐上面都有建議劑量...
+13:58 < billy3321> opop: 通常是會隨尿液排出，但是如果你吃的比排出的多，就會變成中毒
+13:58 < opop> 然後中毒劑量也都查得到
+13:58 < opop> 所以....我覺得是好自為之(?)
+13:58 < opop> btw, 雖然很離題, 我大學念營養系的 XDDDD
+13:59 < billy3321> opop: 注意就是了。維他命中毒有症狀，小心為上。像維他命C是會排出沒錯，但是很多人會以為因為會排出，所以就多吃，結果反而容易中毒。
+13:59 -!- Silmarils [wHisKy@114-34-52-19.HINET-IP.hinet.net] has joined #g0v.tw
+13:59 < billy3321> opop: 你好，我是生物學碩士(握) XDDD
+13:59 < opop> billy3321: 嗯謝謝 :D，我平常都吃建議劑量，生病時會加量，然後一週大約有四天會忘記吃 XDDDD
+14:00 < billy3321> opop: 其實維他命是否可以
+14:00 < opop> 不過我上課很不認真，所以我的學歷是.....(以下消音) Orz
+14:00 < billy3321> 加速疾病的痊癒，似乎也還是問號。
+14:00 < billy3321> 就跟電磁波是否影響健康是一樣的。
+14:01 < opop> 我自己親身經驗是都還滿好的，自從我開始這樣控制我的生活作息，我幾乎沒有感冒過了(症狀都有，但都會很快痊癒不會造成生活作息不順)
+14:01 < opop> 此外我這種作息亂七八糟的人不吃也不行 XDDD
+14:01 < billy3321> opop: 其實，三餐定食定量，什麼都吃，生活作息正常，應該沒有比這樣更健康的了。另外吃東西惡補，都是hack身體的行為XD
+14:02 < billy3321> 雖說hack anything很好玩，不過自己身體就.....
+14:02 < opop> billy3321: 我知道 Q____Q 不過個性不好...無法當乖孩子 Orz
+14:02 < billy3321> hack everything XD
+14:02 < billy3321> opop: 啊啊，我也是胃食道逆流XDDD
+14:02  * opop 出門 :P 謝謝
+14:03 < billy3321> opop: 掰~
+14:04 < billy3321> http://tc.jktree.com/disease/article/49f.html
+14:04 < kcwu> billy3321's url: [不同維生素中毒症狀不同-健康樹]
+14:20 -!- evan3rd_ [~mac@114-47-21-121.dynamic.hinet.net] has joined #g0v.tw
+14:20 -!- evan3rd [~mac@114-47-21-121.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+14:20 -!- evan3rd_ is now known as evan3rd
+14:23 -!- hank__ [76a8c736@gateway/web/freenode/ip.118.168.199.54] has joined #g0v.tw
+14:24 -!- pingooo [62f8d77a@gateway/web/freenode/ip.98.248.215.122] has quit [Quit: Page closed]
+14:27 -!- mutolisp [~psilotum@inventory16.fo.ntu.edu.tw] has joined #g0v.tw
+14:29 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+14:47 -!- yllan [~yllan@114-45-187-140.dynamic.hinet.net] has joined #g0v.tw
+14:49 < yllan> 萌典的整理過的資料在哪裡呢？想做成 OS X 的 dictionary 格式
+14:53 -!- timdream [~timdream@host-111-184-37-40.dynamic.kbtelecom.net] has quit [Quit: timdream]
+14:54 < kcwu> 現在只有 sqlite output, http://kcwu.csie.org/~kcwu/tmp/moedict/development.sqlite3.bz2 還有些小問題要修就是了
+14:55 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+14:58 < yllan> kcwu: 感謝！
+15:04 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+15:06 -!- itsZero [~itszero@itszero.xen.prgmr.com] has joined #g0v.tw
+15:08 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+15:12 < kcwu> albb0920: hi, 我想 heteronyms 跟 definitions 這兩個 table 須要加個欄位, 表明順序, 不然常用的音、義可能跑到後面
+15:14 < billy3321>  
+15:18 -!- chihchun is now known as zz_chihchun
+15:21 -!- zz_chihchun is now known as chihchun
+15:28 -!- timdream [~timdream@123-204-146-158.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+15:31 -!- mtchang [7afe1def@gateway/web/freenode/ip.122.254.29.239] has joined #g0v.tw
+15:36 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+15:46 -!- mtchang [7afe1def@gateway/web/freenode/ip.122.254.29.239] has quit [Quit: Page closed]
+16:05 < opop> 大家知道 22k 馬上發酵了嗎，我立院朋友一直好開心的 msg 告訴我現況 XD
+16:05  * opop 剛剛回到電腦前
+16:07 < tkirby> 有在八卦版看到
+16:08 < opop> 我覺得這個團體真是個定時炸彈啊 XD!!!!
+16:09 < tkirby> 立院朋友那邊的現況是談到什麼
+16:10 < opop> 因為他本身也是憤青領導嘛，所以他是開心事件爆發的速度比他想像中快很多！
+16:11 < thschee> 22kopendata.org -> 給 public 印象就是 open data 就是報企業的料？
+16:13 < S3p_lin> 其實這應該要用 104hate 才對 XD
+16:13 < tkirby> 401.org (反 104 ?)
+16:27 < hcchien> 剛剛看到這個，好酷 
+16:27 < hcchien> http://www.judicial.gov.tw/constitutionalcourt/p03_01.asp?expno=520
+16:27 < kcwu> hcchien's url: [司法院大法官]
+16:33 -!- taiansu [~tsu@111-248-166-111.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+16:33 < medicalwei> 現在整理出的 unicode 對應（目前的對應）剩下 3 個 OAO!
+16:34 < medicalwei> 一個有已知異體字
+16:35 < medicalwei> 在想我們要怎麼處理異體字？
+16:35 < medicalwei> gugod(不在嗎)
+16:42 < au> 異體字有 http://dict.variants.moe.edu.tw/ 可以抓
+16:42 < kcwu> au's url: [教育部異體字字典]
+16:42 < au> 應該還有別的來源
+16:42 < au> (剩下 3 個)++ # 太強了
+16:44 < au> 92cf 是 𧮫
+16:45 < au> U+27BAB
+16:47 < au> 剩兩個 (bbiab)
+16:51 < mhs1n> opop: ?
+16:52 < opop> mhs1n: o.o 這裡資訊太多了沒看到你 Orz
+16:53 < opop> 關於 22k 事件 # mhsin> 剛剛才看一篇文章，下面中國鄉民的評論很中肯：維護奴隸制度的方法：把奴隸分級，高級的奴隸會誓死捍衛它（制度）
+16:53 -!- hychen [~hychen@175.41.48.77] has quit [Ping timeout: 252 seconds]
+16:55 -!- ericyu [ericyu@216.237.113.237] has joined #g0v.tw
+16:56 < Sorry_> opop: 這個？ http://faydao.com/weblog/1749.html
+16:56 < kcwu> Sorry_'s url: [关于Github与GFW的讨论——聪明人和傻子和奴才 at 小刀周遠的瘦人民謠]
+16:56 < mhs1n> y
+16:56 < ericyu> Hi 大家好 XD
+16:57 < ericyu> (沒想到這麼多人)
+16:57 < opop> ericyu: 這裡超恐怖，第一次就近百人黑客松，第二次就北中南同步，下一次不知道要幾國連線了 Orz
+16:59 < S3p_lin> Global!
+17:00 -!- yllan [~yllan@114-45-187-140.dynamic.hinet.net] has quit [Quit: yllan]
+17:00 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+17:02 -!- hychen_ [~hychen@175.41.48.77] has joined #g0v.tw
+17:04 -!- taiansu [~tsu@111-248-166-111.dynamic.hinet.net] has joined #g0v.tw
+17:06 -!- rsghost [~chatzilla@114-38-97-133.dynamic.hinet.net] has joined #g0v.tw
+17:07 -!- Al_Cho [al_cho@nat/novell/x-htpnhyczlhsmioaj] has joined #g0v.tw
+17:07 < LHD> http://www.cns11643.gov.tw/
+17:08 -!- taiansu [~tsu@111-248-166-111.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+17:12 < ericyu> 啊， 22kopendata.org 流量爆炸了...
+17:13 < S3p_lin> 太熱門了
+17:15 < lwhsu> 該要有人火力支援了?
+17:16 < hank__> 如果可以從104直接爬資料（但是應該會被強力反擊）應該效率會好的多
+17:17 -!- yllan [~yllan@114-45-187-140.dynamic.hinet.net] has joined #g0v.tw
+17:17 -!- bcse_ [76a354eb@gateway/web/freenode/ip.118.163.84.235] has joined #g0v.tw
+17:18 < yllan> 最近開了 kddi 的 VPS，號稱不限流量，不過還沒什麼機會試
+17:18 < opop> 呃，我這邊有爬過 104 資料庫的人員...
+17:19 < opop> 雖然是六年前的事了 o.o
+17:19 < opop> 不過我不會說他是誰的！
+17:19 < ericyu> 我隔壁同事老婆在 104 上班...
+17:19 -!- hychen_ [~hychen@175.41.48.77] has quit [Quit: Leaving]
+17:20 < opop> A____A 他可以當個...跳板...
+17:20 < lwhsu> yllan: http://www.cloudcore.jp/vps/ 這個? 外國人也可以申請 ？
+17:20 < kcwu> lwhsu's url: [CloudCore VPS｜KDDIウェブコミュニケーションズ]
+17:20 < opop> 呃，據該爬過資料人員說 104 很好爬、不太擋，跟各位報告一下資訊..
+17:20 < yllan> social engineering 是最高竿的啊
+17:22 < yllan> lwhsu: 是這個，但申請表單要填姓名假名和日本住址。
+17:22 < lwhsu> 填假名好辦 但是日本住址就麻煩了
+17:23 < S3p_lin> 日本住址就填 tenso 啊 (喂喂
+17:23 < lwhsu> tenso?
+17:23 < S3p_lin> www.tenso.com :P
+17:23 < mhs1n> 有鄉民提到，小心有人餵假資料挖坑
+17:24 < S3p_lin> 有什麼文件寄到 tenso 給你的住址, tenso 還會寄信來通知你喔
+17:24 < lwhsu> 好像... 還不錯 XD
+17:26 -!- MindosCheng [~mindos@101.12.18.101] has quit [Ping timeout: 252 seconds]
+17:26 < yllan> 我也是用 tenso，不過上次用 tenso 收了封信就要 500 台幣。如果每個月寄帳單光運費就滿兇的 XD;
+17:27 < S3p_lin> 你可以不用寄回台灣啊, 放太久 tenso 就會退件回去
+17:27 < mhs1n> 可以直接要他丟掉嗎？  XD
+17:27 < opop> 拒收
+17:27 < S3p_lin> 要不然也有那種租小倉庫的, 每個月付倉庫費, 累積到滿了再一次寄回來台灣
+17:27 < mhs1n> *如果不要的東西可以直接要他丟掉嗎？  XD
+17:28 -!- MindosCheng [~mindos@42-68-3-26.dynamic-ip.hinet.net] has joined #g0v.tw
+17:28 < MindosCheng> opop : 立刻就有新竹場了
+17:28 < MindosCheng> http://registrano.com/events/g0v-hackath1n-hsinchu
+17:28 < kcwu> MindosCheng's url: [g0v.tw hackath1n | 台灣零時政府第壹次公地放領黑客松 - 新竹場 | Registrano]
+17:28 < opop> MindosCheng: 我知道，我心與你們同在 <3
+17:29 < MindosCheng> :)
+17:29 < MindosCheng> 要報 OSDC 講者嗎?
+17:30 < tkirby> MindosCheng: ?
+17:31 < MindosCheng> ykirby : 快截止了，你不是要講 g0v :)
+17:32 < MindosCheng> Not ykirby >_<
+17:33 < tkirby> XD
+17:33 < opop> 耶科比！
+17:34 < opop> 歪科比！
+17:34 < opop> 咦科比！
+17:34 < tkirby> MindosCheng: 還有 3 天.. XD
+17:34  * opop 警衛已將此人拖出場外
+17:34 < tkirby> opop: 你怎麼了? op 你怎麼了 op ?
+17:35 < tkirby> oh! 只要 abstract 就好!
+17:40 < MindosCheng> yopop
+17:45 -!- acer [acer@newelite.bshellz.net] has quit [Quit: leaving]
+17:46 < tkirby> 優怕普
+17:46 < tkirby> yo-pop
+17:46 < tkirby> opop: 你的兄弟 opush 在哪呢
+17:46 < MindosCheng> lol
+17:47 < MindosCheng> open push / open pop
+17:47 < tkirby> WindosCheng
+17:47  * MindosCheng 倒立中
+17:48 < tkirby> 這次 hackath1n 有兩場 smalltalk
+17:48 < tkirby> 阿! 忘了跟台中高雄 hangout 了!
+17:49 -!- nono [dc87c6b0@gateway/web/freenode/ip.220.135.198.176] has joined #g0v.tw
+17:50 < evan3rd> tkirby: @@
+17:50 < tkirby> evan3rd: evan3rd!
+17:50 < evan3rd> smalltalk 是幾時發生的事?
+17:51 < tkirby> 接近中午還有下午
+17:51 < evan3rd> okay
+17:53 < evan3rd> 這次高雄場因為多是第一次參加, 比較不曉得如何幫上忙
+17:54 < S3p_lin> 一回生 兩回熟
+17:54 -!- yllan [~yllan@114-45-187-140.dynamic.hinet.net] has quit [Quit: yllan]
+17:56 < evan3rd> 請盡量認領高雄場的朋友
+17:57 < tkirby> 可以研究看下次 hackathon 怎麼讓大家都投入
+17:58 < opop> tkirby: 你....到底.....要不要認真工作啦 Q_Q，你只好開 g0v 股份有限公司了啦
+17:58 -!- medicalw1i [~medicalwe@s101062572.CHING-ABC.ab.nthu.edu.tw] has quit [Ping timeout: 246 seconds]
+17:58 -!- medicalw1i [~medicalwe@s101062572.CHING-ABC.ab.nthu.edu.tw] has joined #g0v.tw
+18:00 < tkirby> opop: 阿阿? 我有在寫 code 阿, IRC 只是輔助^H^H掛著看一下
+18:01 < tkirby> opop: 剛剛寫了一個在 memory dump 找特殊 pattern 的 script...
+18:01  * tkirby 下次把他裝到 opop 的手機來找密碼好了
+18:01 < opop> lol
+18:01 -!- taiansu [~tsu@111-248-166-111.dynamic.hinet.net] has joined #g0v.tw
+18:02 < opop> 我的密碼很簡單啊，就是你的身份證字號..
+18:04 < tkirby> 0988380231 嗎
+18:05 < opop> o.o 忽然接到好多電話
+18:05 < tkirby> 人正真好
+18:05 < opop> ...
+18:06 < opop> 為什麼你不會心虛！
+18:06 < opop> 你怎麼這麼難騙！
+18:06 < tkirby> 阿? 我不是貼我的身份證字號嗎?
+18:06 < tkirby> 阿阿! 我貼錯了!
+18:06 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+18:06 < V1ctor> 人在做 log 在看!
+18:06 < opop> XD
+18:07 < tkirby> 糟糕!
+18:07 < tkirby> 等一下要去整理照片
+18:07 < tkirby> 然後要準備 abstract
+18:07 < tkirby> 咦, 所以昨天那個便當盒有找到 owner?
+18:08 < opop> 有 :)
+18:08 < opop> 不過雨傘我忘記拍照了
+18:09 < tkirby> hmm
+18:09 -!- taiansu [~tsu@111-248-166-111.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+18:10 < opop> 有人忘記一隻長雨傘嗎？他現在躺在 g0v 專車中，請於九大建設時認領...
+18:10 < opop> tkirby: 我真的接到電話了............................................
+18:10 < tkirby> opop: 誰打給你, frost chen 嗎
+18:10 < opop> tkirby: 你同事
+18:10 < tkirby> XD
+18:11 < tkirby> 是投履歷嗎! 恭喜!
+18:12 < opop> Orz 不是，他只是想告訴我，這個號碼是科比告訴他的。
+18:12 < tkirby> 一定是法奇吧! 上次我叫他跟 opop 說下次辦趴記得要請客
+18:13 < opop> tkirby: 不是，是本來沒有我電話的人 XD 而且法奇不算你同事了！！！
+18:14 < tkirby> opop: 法奇今天還是我同事!!
+18:14 -!- wens [wens@mirror2.csie.ntu.edu.tw] has joined #g0v.tw
+18:15 < tkirby> opop: 我想一定是愛慕你的人從你上次不小心貼的hackath1n 料理訂單裡撈出號碼的!
+18:15 < opop> tkirby: 他說是科比告訴他的...
+18:15 < opop> 我有裝來電錄音...
+18:15 < tkirby> 太過份了! 竟然抹黑我!
+18:17 < opop> 你超可怕的啦，話說...聽說今天中天夜間節目^H^H^H^H也講我的抄襲案了 XD
+18:17 < tkirby> XD
+18:17 < tkirby> 賀
+18:17 < opop> 說錯，我都叫他深夜節目 XD
+18:18 -!- Dennisc140 [d23dc13c@gateway/web/freenode/ip.210.61.193.60] has quit [Quit: Page closed]
+18:18 < tkirby> opop: 如果那位 frost 一開始就道歉的話你會怎麼處理呢
+18:18 -!- bcse_ [76a354eb@gateway/web/freenode/ip.118.163.84.235] has quit [Quit: Page closed]
+18:18 < opop> tkirby: 我只會留 blog 在 o.o，留作紀念，這是我個人的輝煌紀錄
+18:18 < opop> 像當年被寫進書中一樣
+18:19 < tkirby> hmm
+18:20 < opop> 聽說都沒有人相信我被抄襲很開心 orz，可是我真得很開心啊 orz
+18:21 < opop> 本來設計還想找外包，現在想說自己來當好了，反正我還有國際知名的設計師科比吳可以諮詢！
+18:21 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+18:21 < tkirby> .....
+18:22 < tkirby> 其實我真的覺得你被抄襲很開心, 不過同時也很怒吧 XD
+18:23 < opop> 好像是，我分不太出來，不過我失眠了。
+18:23 < opop> 然後我對於我吃了安眠藥還失眠很生氣！
+18:23 < tkirby> 其實是吃了安眠藥才失眠?
+18:24 < opop> 所以就 po blog 文了！
+18:24 < tkirby> 失眠 = 生產力++
+18:24 < opop> 才不是 >_<
+18:24 < opop> 對了最近 ca 失眠也有點嚴重
+18:24 < opop> 很厲害吧！！！
+18:24 < opop> 神蹟！！！
+18:25 < tkirby> XD
+18:25 < opop> 果然有信教(g0v)有差
+18:25 < opop> 先去吃飯
+18:30 -!- MindosCheng [~mindos@42-68-3-26.dynamic-ip.hinet.net] has quit [Read error: Connection reset by peer]
+18:33 < au> medicalw1i: 8fef 先用「鼂」, 92cf=U+27BAB, 9a5a=U+219EE ... 就做完了? XD
+18:34 -!- nono [dc87c6b0@gateway/web/freenode/ip.220.135.198.176] has left #g0v.tw []
+18:36 -!- nono [dc87c6b0@gateway/web/freenode/ip.220.135.198.176] has joined #g0v.tw
+18:42 -!- MnO2 [~mno2@nat/yahoo/x-uwkznphcklccwsxm] has quit [Quit: Leaving]
+18:42 < opop> 我笑了，引述在fb(泛義上而言)工作朋友的文字：
+18:42 < opop> 今天兩大熱門網站：
+18:42 < opop> 比高薪網站：http://www.ibeejobs.com/
+18:42 < opop> 比低薪網站：http://www.22kopendata.org/
+18:43 < kcwu> opop's url: [ibeeJobs 愛比 - 華人世界領先的薪資待遇情報網站 - 工作薪情報, 就是愛比較! - 首頁]
+18:44 -!- KNY [~Adium@114-38-136-156.dynamic.hinet.net] has left #g0v.tw []
+18:47 < opop> 不過我覺得有些工作 22k 我可以理解，不過我也好想找到晶宏半導體的 19k RD....
+18:48 < opop> 他跟我的需求一樣啊 OAQ
+18:51 < medicalwei> au: 上次 kcwu 做的 mapping
+18:52 < medicalwei> 我上次合併的時候把份給刪掉了
+18:52 < medicalwei> *把不是上次搜索範圍的區域給砍掉了
+18:53 < au> medicalwei: 對，現在我貼回來了... 這部份不是字典而是（二字以上）詞典用到的
+18:53 < au> 這個可以慢慢做
+18:53 < au> 我有空就加一些
+18:54 < medicalwei> 有些部份就在字典有的範圍裡面了…
+18:55 < au> OK
+18:58 < au> 等我一下，我在篩
+18:58 < medicalwei> g0v/moedict-epub/sym.txt 有 commit (只是那三個字還沒進去)
+18:59 -!- swem [~Thunderbi@host-61-70-209-24.static.kbtelecom.net] has joined #g0v.tw
+19:01 < au> OK, 還有 968 個　
+19:04 < au> medicalwei: 貼到 hackpad 了
+19:06 < medicalwei> ok
+19:12 -!- nono [dc87c6b0@gateway/web/freenode/ip.220.135.198.176] has quit [Quit: Page closed]
+19:13 < medicalwei> au: 我真的該多感謝 kcwu
+19:13 < medicalwei> 他的 match 好多
+19:14 < au> 是啊
+19:15 < au> 現在從頭打方知 kcwu++ 之恩 XD
+19:15 -!- chihchun is now known as zz_chihchun
+19:16 < kcwu> 不太懂...我之前打的有什麼幫助? 不都要重轉一次 unicode?
+19:17 < tkirby> 謙虛的 kcwu++
+19:17 -!- lwhsu_ [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+19:17 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Ping timeout: 240 seconds]
+19:17  * kcwu 其實曾想過拿中文構形 db, 用程式自動 match.... 
+19:17 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+19:18 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 246 seconds]
+19:18 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+19:18 -!- cls_bsd [~cls_bsd@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+19:18 -!- LHD [~lhd@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 276 seconds]
+19:18 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 276 seconds]
+19:18 -!- liic [~liic@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 260 seconds]
+19:19 -!- liic [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+19:20 < au> kcwu: 你打的可以給 http://www.zdic.net/sousuo/ids/
+19:20 < kcwu> au's url: [汉字拆分查询（IDS）]
+19:20 < au> 以及 http://chise.zinbun.kyoto-u.ac.jp/ids-find
+19:20 < kcwu> au's url: [CHISE IDS Find]
+19:20 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has joined #g0v.tw
+19:20 < au> 我現在正在補打...
+19:20 < kcwu> 喔
+19:21 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+19:22 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Ping timeout: 240 seconds]
+19:22 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 240 seconds]
+19:22 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+19:22 < medicalwei> 509 個 todo
+19:22 -!- jmlin [~jmlin@140.113.86.126] has quit [Ping timeout: 276 seconds]
+19:22 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 276 seconds]
+19:22 -!- LHD [~lhd@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+19:22 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+19:23 -!- lwhsu_ [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 276 seconds]
+19:23 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has joined #g0v.tw
+19:23 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+19:23 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+19:26 < medicalwei> au, kcwu: https://dl.dropbox.com/u/4582065/characters2/characters.html
+19:26 < medicalwei> https://dl.dropbox.com/u/4582065/characters2/characters (無 html 的列表)
+19:26 < kcwu> FYI, http://kcwu.csie.org/~kcwu/tmp/single.fnt.txt 也許有幫助
+19:27 < au> kcwu++ # 各種資料的來源
+19:27 < kcwu> 後面一點有些組合字的 data, ex 00376C00|㝬0=害0091270DB夫06A0E83E1
+19:28 -!- Ben_chou [Ben_chou@nat/novell/x-huhfsufdyfbvratj] has quit [Ping timeout: 252 seconds]
+19:30 < au> medicalwei: c開頭的日文好像 gif 沒有　
+19:32 < medicalwei> au: 原始的圖片來源是？
+19:32 < medicalwei> http://dict.revised.moe.edu.tw/images/9ce4.jpg
+19:33 < clkao> comments please: https://github.com/g0v/dev/wiki/media-kit-(draft)
+19:33 < kcwu> clkao's url: [media kit (draft) · g0v/dev Wiki · GitHub]
+19:33 < clkao> 開始有媒體希望採訪
+19:35 < au> medicalwei: yeah
+19:36 < au> medicalwei: hackpad 上 merge 我們的了
+19:36 < medicalwei> au: 把 jpg 放進去了
+19:36 < au> OK c 區日文字我另外建
+19:36 -!- MindosCheng [~mindos@42-68-3-26.dynamic-ip.hinet.net] has joined #g0v.tw
+19:37 < medicalwei> au: 那個日文
+19:37 < medicalwei> 看起來像是當時的假 big5
+19:37 < medicalwei> 應該可以直接 merge
+19:37 < kcwu> 這可以叫做養兵千日用在一時嗎 XD # 各種資料的來源
+19:37 < au> 是的
+19:37 < medicalwei> 是倚天系統當時的(以及 bbs 上面的) big5 平假片假
+19:38 -!- KNY [~Adium@114-38-136-156.dynamic.hinet.net] has joined #g0v.tw
+19:38 -!- evan3rd [~mac@114-47-21-121.dynamic.hinet.net] has quit [Quit: evan3rd]
+19:38 < au> *nod*
+19:39 < S3p_lin> 中國海字集?
+19:39 < au> 天哪好懷舊
+19:40 -!- mutolisp [~psilotum@inventory16.fo.ntu.edu.tw] has quit [Quit: leaving]
+19:41 < clkao> 中... 國... 海... 
+19:41 < clkao> 屠龍字形..... 
+19:41 < au> 圖龍啦
+19:42 < kcwu> 金碟卡?
+19:43 -!- KNY [~Adium@114-38-136-156.dynamic.hinet.net] has quit [Quit: Leaving.]
+19:43 -!- KNY [~Adium@114-38-136-156.dynamic.hinet.net] has joined #g0v.tw
+19:44 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 255 seconds]
+19:44 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 256 seconds]
+19:45 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Ping timeout: 276 seconds]
+19:45 < kcwu> dannvix: 我今天試著用 android browser 連 logbot, 發現要拉到下面看最新訊息很不容易, 要一直拉一直拉....
+19:45 < tkirby> clkao: 賀
+19:45 < clkao> 彩虹字型卡 ?
+19:45 < clkao> tkirby: 賀?
+19:45 < tkirby> kcwu: 所以要倒過來了嗎 (log)
+19:46 < tkirby> clkao: # 開始有媒體希望採訪
+19:46 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+19:46 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+19:46 < kcwu> dannvix: 可能要提供 button 快速跳到最下面, 或其他 navigation
+19:46 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+19:46 < clkao> tkirby: 很麻煩呀 所以才想順便弄一下 template.. 到時各 project 也可以拿去用
+19:46 < clkao> 忘形輸入法
+19:47 < kcwu> 倒過來的缺點是讀起來不順...
+19:47 < tkirby> template!
+19:47 < clkao> C:\ET3\ET16V
+19:47 < tkirby> 忘形.. 好懷念
+19:47 < opop> ！！！！#clkao> 開始有媒體希望採訪
+19:48 < ipa> 別人辦活動是忙著找媒體，黑客是忙著拒絕採訪 XD
+19:48 < MindosCheng> clkao : 如果要辦 Hackathon 要怎麼辦呢?
+19:48 < opop> 媒體真的好難玩，好恐怖 Orz
+19:48 < medicalwei> 日文區的都上了
+19:49 -!- jmlin [~jmlin@140.113.86.126] has joined #g0v.tw
+19:49 < tkirby> kcwu: 如果是改往上拉看舊訊息?
+19:50 < au> medicalwei: 超快
+19:52 < clkao> MindosCheng: 開 registrano?
+19:52 < MindosCheng> 像新竹場這種趕不及同時舉辦的要怎麼辦
+19:52 < MindosCheng> 我是說代表性
+19:53 < MindosCheng> 開了啦　：）
+19:53 < clkao> 代表性.. ?
+19:53 -!- jmlin [~jmlin@140.113.86.126] has quit [Ping timeout: 246 seconds]
+19:54 < clkao> 你是說 如何使用 g0v 名號嗎
+19:54 < MindosCheng> 用 g0v.tw 名號舉辦 hackathon 
+19:55 < MindosCheng> 我乃四川唐門～
+19:56 < au> MindosCheng: 咦好巧你也是? XD
+19:56 < ipa> The first rule of fight club is: You do not talk about Fight Club?
+19:56 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+19:57 < au> medicalwei: 不是字的大致都檢出來了，賸幾個國際音標
+19:58 < medicalwei> au: 好快 >w<
+19:59 < medicalwei> 那我開始寫上去了
+19:59 < au> OK
+19:59 < clkao> MindosCheng: 加入 hackathon team?  把 hackathon 當作一個 g0v project
+19:59 < au> 有一個字我猜 Unicode 沒有　
+19:59 < au> 9868 http://140.111.34.46/dict/fonts/9868.gif
+20:00 < MindosCheng> clkao : 那我想加入 :)
+20:00 < clkao> MindosCheng: 好啊
+20:00 < au> # 篆書「#9868」隸定成「秊」；隸變成「年」。隸定字仍可窺測出篆體的結構，隸變字則未必。
+20:00 < MindosCheng> ＾＾
+20:01 < au> 其他應該都檢得出來
+20:03 < MindosCheng> 實務來說，新竹場在 2/2 辦，還是下次一起辦比較有效?
+20:03 < MindosCheng> in terms of productivity
+20:05 < opop> Q_Q 老實說我希望在台北見到許多新竹的夥伴... 不過很多人新竹才方便我也覺得新竹下次一起再辦吧 :)
+20:11 < medicalwei> 2/2 星期天
+20:11 < medicalwei> 那時候我會回基隆 OAQQQQQ
+20:12 < tkirby>  基隆場? (誤)
+20:12 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+20:13 < medicalwei> au: 如果說我看上下文認為他可以使用某字時，我可以直接套上去嗎
+20:13 < medicalwei> e.g. 
+20:13 < medicalwei> 男人或雄性生殖器官的一部分，為製造精子的地方，可分泌睪#99a8素酮。或稱為「精巢」、「外腎」。 
+20:13 < medicalwei> >/////<
+20:13 < opop> 嗯...
+20:14 < opop> 完全無法用理智去理解上面那個問題 XD
+20:14 < medicalwei> 就是他連「丸」也用成圖片;
+20:14 < au> medicalwei: 那是  a00022-001 
+20:14 < au> http://dict.variants.moe.edu.tw/yitia/lda/lda00022.htm
+20:14 < kcwu> au's url: [LDA00022]
+20:15 < au> 我看一下教育部楷體
+20:15 < au> 是了，教育部的楷體，丸的點在下方
+20:15 < au> 所以點在左撇的異體字要造字
+20:15 < au> 這是 UniHan 的後遺症
+20:17 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 246 seconds]
+20:18 < au> medicalwei: 所以 #99a8 應為 U+2F801
+20:18 < au> http://codepoints.net/U+2F801
+20:18 < kcwu> au's url: [U+2F801 CJK COMPATIBILITY IDEOGRAPH-2F801 – Codepoints]
+20:19 -!- icman [~icman@123.240.140.81] has joined #g0v.tw
+20:19 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 240 seconds]
+20:19 -!- i3n [~icman@118-232-177-139.dynamic.kbronet.com.tw] has joined #g0v.tw
+20:19 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+20:19 -!- cls_bsd [~cls_bsd@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 256 seconds]
+20:19 -!- LHD [~lhd@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 244 seconds]
+20:19 -!- liic [~liic@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+20:20 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+20:20 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has quit [Ping timeout: 256 seconds]
+20:20 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Ping timeout: 276 seconds]
+20:21 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: 881]
+20:21 < au> medicalwei++ # 日文假名補全
+20:21 < clkao> 說好的溫泉場呢？
+20:22 < au> $ moe '歐%桑'
+20:22 < au> >>> 歐巴桑　ㄡ　˙ㄅㄚ　ㄙㄤ    對中年婦女的稱呼。為日語おばさん的音譯。如：「這位歐巴桑的態度和藹，讓人倍感親切。」
+20:22 < au> >>> 歐吉桑　ㄡ　ㄐ｜ˊ　ㄙㄤ    對中年、老年男子的稱呼。為日語おじさん的音譯。如：「隔壁的歐吉桑年近半百，卻貧病交迫，正急需社會善心人士的救助。」
+20:22 < clkao> au++ # 倍感親切
+20:22 < medicalwei> au: 我看不到 2f801 的 glyph
+20:23 < au> 例句對比鮮明... 歐吉桑=貧病交迫 XD
+20:23 < clkao> medicalwei++ # 善心救助
+20:23 -!- KNY [~Adium@114-38-136-156.dynamic.hinet.net] has left #g0v.tw []
+20:23 < medicalwei> O_O;
+20:23 < au> medicalwei: http://www.fileformat.info/info/unicode/char/2f801/cjk_compatibility_ideograph2f801.png
+20:23 < au> # http://www.fileformat.info/info/unicode/char/2f801/index.htm
+20:23 < kcwu> au's url: [Unicode Character 'CJK COMPATIBILITY IDEOGRAPH-2F801' (U+2F801)]
+20:24 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+20:24 < au> 文泉驛正黑和LastResort有
+20:24 -!- hank__ [76a8c736@gateway/web/freenode/ip.118.168.199.54] has quit [Ping timeout: 245 seconds]
+20:24 -!- liic [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+20:24 < medicalwei> 為什麼我覺得 4e38 跟 2f801 有一樣的錯覺
+20:24 < medicalwei> O_O;;;
+20:25 < au> 那是你用了對岸的字...
+20:25 < medicalwei> au: 那就有可能
+20:26 < au> http://sf.zdic.net/shufa/0816/60521bc878134ba6b0ea51a77b1faa44.html#ks
+20:26 < kcwu> au's url: [丸的书法]
+20:26 < au> (這是 4e38 原本的寫法)
+20:26 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+20:26 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+20:26 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+20:27 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has joined #g0v.tw
+20:27 < clkao> au is a very aggressive person. He/She attacked others 1 times.
+20:27 < clkao>      * au slaps logic-gates around a bit with a large trout 
+20:27 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has joined #g0v.tw
+20:27 < clkao> XD
+20:28  * au 在 帶著鱒魚的位元 周圍 佈下了許多 邏輯閘
+20:28 -!- jmlin [~jmlin@140.113.86.126] has joined #g0v.tw
+20:29 < MindosCheng> 新竹場貼上去了:)
+20:30 -!- MnO2 [~mno2@1.34.43.236] has joined #g0v.tw
+20:30 -!- LHD [~lhd@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+20:31 < clkao> 另個作法是 只要符合某些要件 就可以稱為 g0v hackathon... ? (如符合 open source 就可以稱為 g0v 專案)
+20:31 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+20:31 < clkao> 就像任何人都可以辦 "open data hackathon" 一樣
+20:32 -!- lwhsu_ [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+20:33 -!- cls_bsd_ [clsung@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+20:33 -!- TigerHuang [~tiger@2001:288:6004:34:a092:5e80:cc57:c721] has quit [Ping timeout: 246 seconds]
+20:33 -!- jmlin [~jmlin@140.113.86.126] has quit [Ping timeout: 240 seconds]
+20:33 -!- liic [~liic@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 256 seconds]
+20:33 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has quit [Ping timeout: 240 seconds]
+20:33 < medicalwei> 那我先回家 OwO
+20:33 -!- TigerHuang [~tiger@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+20:33 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+20:33  * medicalwei away
+20:33 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 276 seconds]
+20:33 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has quit [Read error: Connection reset by peer]
+20:33 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 255 seconds]
+20:34 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+20:34 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has joined #g0v.tw
+20:34 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 276 seconds]
+20:34 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+20:35 -!- liic [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+20:35 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has joined #g0v.tw
+20:36 < opop> 溫泉！！！
+20:36 < opop> 我現在有九姑娘幫我開車了我什麼都不怕！！
+20:45 -!- jmlin [~jmlin@140.113.86.126] has joined #g0v.tw
+20:46 < MindosCheng> clkao : :)
+20:46 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has quit [Quit: leaving]
+21:00 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+21:04 -!- taiansu [~tsu@111-248-81-85.dynamic.hinet.net] has joined #g0v.tw
+21:10 < dannvix> kcwu: issue received... 立刻來修！
+21:14 < ipa> 大家有空的話也寫點黑客松成果介紹文吧～
+21:15 < ipa> （介紹文通常有許願效果，寫出來下次就會有人做出來）
+21:16  * tkirby 正在修片
+21:17 < ipa> 啊慢慢來.....辛苦了tkirby  
+21:20 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+21:20 < clkao> 黑客 松果
+21:21 < opop> tkirby: :D:D:D 可以先給我鬍子哥照片嗎
+21:22 < opop> ipa: 這次我會寫，我覺得最近有手感
+21:22 < ipa> opop: 鬍子哥照片應該在我和Conrad相機裡 ><
+21:22 < opop> 可以寫出政治白痴的心得文..
+21:22 < clkao> opop: ?
+21:23 < opop> ipa: 喔喔不是，我是要他出名的頹廢地板照、還有他自己說有另外一張帥氣鬍子哥 @@
+21:23 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+21:24 < opop> 上次要介紹找不到相片，這種事果然還是要寫個文章才好找...
+21:24 < tkirby> 這次兩百多張大概兩三個小時就可以弄好了
+21:24 < opop> clkao: 我對政治其實超無感的 o.o
+21:24 < tkirby> opop: http://goo.gl/P9vxa
+21:24 < opop> XD
+21:25 < tkirby> 這次一直感覺到有人在拍我.. XD
+21:25 < momiz1> tkirby: 因為你帥
+21:25 < mikimoto> 沒有參與，但可以寫感想跟觀察與檢討文嗎 (逃...)
+21:25 < tkirby> momiz1: O.Q # 感動得流淚
+21:25 < tkirby> mikimoto: 可以阿 XD
+21:26 < tkirby> 會上 blog.g0v.tw 喔!
+21:27 < opop> http://ppt.cc/LQNY 對啊連攝影白痴都嘗試過了 :D
+21:27 < mikimoto> tkirby: XD, 高雄場活動有需多可以再改進之處 :p 檢討文低調一點好 XD
+21:28 < tkirby> opop: 噢噢這張讚!
+21:28 < tkirby> mikimoto: XD
+21:28 < opop> tkirby: 是喔！！！
+21:28 < dannvix> tkirby 都在身邊繞，壓力很大 XD
+21:28 < tkirby> opop: 是的! 第一次^H^H^H打從心裡稱讚 opop!
+21:28 < tkirby> dannvix: 辛苦你了 XD
+21:29 < opop> 怎麼一點高興的感覺都沒有..
+21:29 < tkirby> 我在講 d3js 的時候也有人在拍.. 我就在想說 "原來平常那些講者的感覺是這樣.."
+21:29 < tkirby> opop: 真的! 拍得超棒! 我超愛! (彌補中)
+21:29 < opop> ..
+21:29 < mikimoto> 不過高雄場活動還是要讚揚一下 evan3rd 的努力 :p
+21:30 < mikimoto> opop: 好讚的角度啊
+21:32 < opop> mikimoto: 看來我真的不懂攝影 XD 因為我只是找個可以站得地方拍，然後還因為怕發現、怕拍到旁邊的陳先生所以拉近鏡頭畫面變好糊，我還覺得自己怎麼都拍出糟糕的東西 XD
+21:34 < opop> tkirby: 喔不，我不是在說你糟糕，不要誤會！
+21:34 < tkirby> XDDDDDD
+21:34 < MindosCheng> tkirby : 你真的是貴公司的嗎......
+21:35 < tkirby> MindosCheng: 怎麼了嗎 X
+21:35 < tkirby> D
+21:35 < opop> MindosCheng: :D:D:D:D:D:D:D:D:D:D:D
+21:35 < MindosCheng> 沒有，覺得 kirby 好厲害，做好多事。
+21:36 < tkirby> MindosCheng: XD... 
+21:36 < opop> <>all<>in<>one<>
+21:36 < MindosCheng> 還是你有 evil twin ......
+21:36 < opop> tkirby: 快點給我帥氣照嘛 Q_Q
+21:36 < tkirby> 用血淋淋的考績換來了一些... 東西 XD
+21:37 < tkirby> 想當年拿了幾次 Excellent... 真懷念
+21:37 < MindosCheng> tkirby 我明白！我也...
+21:37 < tkirby> opop: 就你那張就很不錯啦 XD
+21:37 < tkirby> MindosCheng: Q.Q
+21:37 < opop> tkirby: 是喔，所以你最帥就這樣子 XD
+21:37 < MindosCheng> 現在都只拿 I+ XDDD
+21:37 < tkirby> opop: 阿, 我這邊有好多 opop 的照片
+21:38 < opop> ....
+21:38 < opop> [聲明] 本人希望照片都給我但不要公開 A_A
+21:39 < icman> opop: 這裡有一張好便宜的照片  (誤
+21:39 < S3p_lin> opop: 都要上電視了還怕公開啊 XD
+21:39 < opop> icman: 我還是努力找一下那張出名的照片好了
+21:39 < icman> 就是那一張
+21:39 < opop> S3p_lin: 其實我跟我家人、親友，沒有人去看電視！！！！！！！
+21:39 < opop> 半個人都沒有 XD
+21:40 < S3p_lin> opop: 第一次上電視要錄影存證^H^H留念啊
+21:40 < opop> 所以應該沒有上電視吧 :D:D:D
+21:40  * tkirby /ignore -regexp -pattern "不公開" opop
+21:40 < tkirby> oops
+21:40 < opop> S3p_lin: 我第一次上電視是吃超大牛排比賽之類的！！我還特別躲鏡頭了 XD
+21:41  * tkirby /ignore -regexp -pattern "不.公開" opop
+21:41 < S3p_lin> opop: XDDD
+21:42 < S3p_lin> opop: http://pic.pimg.tw/slzzp/4b8aa03393c85.jpg  這種牛排?
+21:43 < opop> 好像沒這麼小..
+21:44 < opop> http://www.cafe-onion.com/ 101oz (兩人)
+21:44 < kcwu> opop's url: [洋蔥牛排 – 洋蔥牛排餐廳官方網站(創始店)]
+21:44 < S3p_lin> 好兇殘 @_@
+21:44  * S3p_lin 輸了, 照片裡面的牛排只有 48oz
+21:45 < opop> :D:D:D:D:D 不過第四名，輸了！！！！
+21:45 -!- KNY [~Adium@114-38-136-156.dynamic.hinet.net] has joined #g0v.tw
+21:46 < S3p_lin> opop: ref: http://slzzp.pixnet.net/blog/post/25863479
+21:46 < tkirby>  ..... 餓了
+21:48 < opop> S3p_lin: 有我有看過！不過因為我去吃牛排這種事太害羞了我沒有留證據 XDDDD
+21:50 < S3p_lin> opop: 要留下戰記啊 XD
+21:50 < opop> 才不要咧 Q_Q
+21:50 < S3p_lin> opop: 以後才有故事講給子孫聽啊 XD
+21:53 < ipa> 黑客松如果一直辦下去，會不會出現「台灣零時政府第捌次大陸探親黑客松」啊？
+21:53 < MindosCheng> 「奶奶當年可是一口氣吃下 101oz 的牛排呢」
+21:54 < MindosCheng> ipa 快有兩岸聯合 hackathon 了
+21:54 < opop> ipa: 肯定會有的..
+21:54 -!- KNY [~Adium@114-38-136-156.dynamic.hinet.net] has left #g0v.tw []
+21:54 < ipa> 「美麗島黑客松」「開放黨禁報禁黑客松」.....
+21:58 < MindosCheng> 第壹點壹次要叫什麼
+21:59 < opop> S3p_lin: 為什麼我要讓我孫子笑我 Q_Q
+22:00 < thschee> 2.23 上海 open data day organizer FYI http://www.techyizu.org/
+22:00 < kcwu> thschee's url: [Techyizu - Connecting Shanghai's Startup and Tech Community]
+22:01 < S3p_lin> opop: 明明是 "外婆好厲害" XD
+22:01 < thschee> HK 就 BarcampHK 那些概念比較清楚，也有執行力
+22:02 < clkao> MindosCheng: 1.1 只好耕者有其田 搭配碼農主題? XD
+22:02 < ipa> MindosCheng: 第壹點？
+22:03 < au> 耕者有其田++ # 比「肥料換穀」好聽 XD
+22:04 -!- swem [~Thunderbi@host-61-70-209-24.static.kbtelecom.net] has quit [Ping timeout: 276 seconds]
+22:05 < dannvix> kcwu: Logbot 的 home/end navigation 上線，請用看看 :P
+22:07 < kcwu> dannvix++ # 真快, 我 quassel 都還沒設好, 還來不及跳槽 XD
+22:08 -!- fntsrlike [3b7e60e5@gateway/web/freenode/ip.59.126.96.229] has joined #g0v.tw
+22:08 < dannvix> 嘿嘿~ 但其實我自己在手機上都用 Widget layout # http://logbot.owo.tw/widget/g0v.tw
+22:08 < kcwu> dannvix's url: [Logbot | #g0v.tw]
+22:09  * dannvix 在電腦上用 WebView 作了桌面版自己用 # http://cl.ly/image/0z1s0d343u2l
+22:14 < clkao> gugod: can moedict be used as a real dict on kindle?
+22:14 < opop> for 22k team: http://www.ursalary.com/search.php
+22:16 < au> clkao: http://i-admin.blogspot.tw/2010/09/german-to-english-dictionary-in-kindle.html
+22:16 < kcwu> au's url: [I, Admin: German to English dictionary in the Kindle]
+22:16 < au> (bbiab)
+22:16 < kcwu> dannvix: 說到這個, 好像沒有辦法(link)在這兩種 layout 切換?
+22:18 < kcwu> kindle 不 root 可以裝 3rd party 的 dictionary 嗎?
+22:19 < dannvix> kcwu: 對的沒有link，之後再想想怎麼作比較好…
+22:21 < MindosCheng> clkao : 是耶
+22:22 < MindosCheng> dannvix++ # weblayout is great
+22:24 < MindosCheng> 應該是壹之壹次
+22:27 < MindosCheng> kcwu : We want the link bot for #GroovIM :)
+22:28 < thschee> 幫推 g0v 到 O'Reilly 和白宮那邊 
+22:28 < thschee> https://plus.google.com/u/0/107980702132412632948/posts/MxoMAE3yAbS
+22:28 < dannvix> MindosCheng: 說到這個，我們家 Logbot 也有顧 #GroovIM 唷
+22:28 < kcwu> thschee's url: [Alexander Howard - Google+ - If I read this correctly, Taiwan plans to launch an open…]
+22:28 < kcwu> #GroovIM 是在討論什麼?
+22:28 < thschee> g+ data data data community
+22:28 < MindosCheng> dannvix++
+22:28 < thschee> oops sorry, 應該是 open government data community https://plus.google.com/u/0/communities/107785386141957326304/stream/e7aa344b-a503-4e85-8a83-23423e2d75f5
+22:29 < kcwu> thschee's url: [Open Government - open data - Google+]
+22:29 < MindosCheng> kcwu : SecureIM
+22:29 < MindosCheng> thschee++
+22:29 < thschee> Alex 其實聊過天啦 XD
+22:29  * thschee 慢慢來
+22:29 < kcwu> MindosCheng: 那是什麼? 輸入法? 有 link 嗎?
+22:30 < MindosCheng> kcwu : g0v project, Secured Instant messager 
+22:31 < kcwu> 我的 link bot 是 irssi script (perl), 所以要我有 join 的 channel 才能用. 不然就是我給 script 你們自己跑...
+22:31 < dannvix> kcwu: https://hackpad.com/GroovIM-Main-Page-DBKDLhwKiA4
+22:31 < MindosCheng> still a baby with no fb page lol
+22:31 < medicalw1i> 不是壹零次嗎？
+22:31 < kcwu> dannvix's url: [GroovIM Main Page - hackpad.com]
+22:31 < MindosCheng> kcwu : 那就來玩吧
+22:32 < MindosCheng> 壹零 == 1.0 ?
+22:32 < medicalw1i> binary
+22:33 < MindosCheng> but it's not the second one
+22:34 < MindosCheng> dannvix : How to read the log for it?
+22:35 < dannvix> http://logbot.owo.tw/channel/GroovIM # 發輝駭客精神把網址列的 channel name 改掉就好 XD
+22:35 < kcwu> dannvix's url: [Logbot | #GroovIM]
+22:35 < MindosCheng> dannvix : Yes, of course
+22:38 < clkao> O'Reilly... gnat 和 au 應該蠻熟的... 很久沒聊了
+22:40 < thschee> http://om.yr.no/verdata/free-weather-data/
+22:40 < kcwu> thschee's url: [Information about the free weather data service - yr.no]
+22:40 < thschee> "yr.no offers free weather data in XML format for 7 million places around the world. As far as we know, this is the world’s largest free weather service."
+22:41 < thschee> 5 yrs data
+22:45 < opop> 等等、下次 g0v 要跟白宮連線？
+22:46 < clkao> 募資申請 .g0v TLD?
+22:47 < Jcrt> clkao: 哈囉，我們聽障組想把專案先來 open source ，想請問需要統一放進 github.com/g0v 下面嗎？
+22:47 < thschee> .g0v gTLD 可以喔
+22:48 < Jcrt> 另外想請教大家建議 license 用哪一種比較好～
+22:48 < clkao> Jcrt: up to you!  只要是 OSI-approved license 都歡迎宣稱是 g0v 專案, 然後可以選個 g0v.tw domain
+22:49 < clkao> 沒什麼特別顧慮的話就 MIT 吧
+22:49 < Jcrt> clkao: 目前專案放上 heroku ，以後如果要 deploy 其他地方再設定好了
+22:50 < Jcrt> 那方便的話，我想放進 github.com/g0v/listening
+22:50 < Jcrt> dns: listening.g0v.tw
+22:50 < Jcrt> 我的github帳號是 wildjcrt
+22:50 < MindosCheng> g0v 之中美斷交!?
+22:51 < clkao> Jcrt++ # ok you may now transfer ownership to g0v
+22:51 < thschee> MindosCheng: 給你一個 email 發給 AIT 好不好？XD
+22:51 < thschee> xyz@state.gov 之類的
+22:52 -!- lwhsu_ is now known as lwhsu
+22:52 < thschee> AIT 比較高階的是掛這個 email
+22:52 < Jcrt> clkao: really nice! tks
+22:52 < ipa> Jcrt++
+22:52 < MindosCheng> thschee : 呃，我想應該沒有這個需求 XDDD
+22:53 < clkao> Jcrt: 然後編輯一下 dev wiki 把專案相關資訊加入 Home 吧
+22:53 < MindosCheng> 我會期待新竹場會有一些軟硬體結合的案子，像是 Environment Sensor 
+22:53 < MindosCheng> 但我記不得例子
+22:55 < Jcrt> clkao: shawnwan1: 我今天把 g0v 貼給朋友們看，馬上就有人來說要加入當 writer ！
+22:55 < MindosCheng> Jcrt++ 
+22:55 < clkao> Jcrt: 查了一下 官方好像有 aide.gov.tw? 不過好像是特教為主.... 
+22:55 < clkao> Jcrt++
+22:56 < clkao> 若有原來政府的網址 覺得合適的就沿用 (這樣可以跟人說 把 gov o 換成 0 :P) 不過如果找不到就 listening 吧!
+22:56 < clkao> 應該直接 cname 到 herokuapps.com 就好了?
+22:59 < wens> clkao: heroku 那邊要設定吧? Host: 會不對
+22:59 < clkao> wens: ya 當然 我是說那邊設好後
+22:59 < Jcrt> clkao: aide.gov.tw 出現奇怪的網站 QQ
+22:59 < dannvix> http://aide.gov.tw/ 連進去竟然是管理介面，而且還把 phpinfo() 印給人家看...
+22:59 < kcwu> dannvix's url: [STeP]
+22:59 < clkao> (!)
+22:59 < clkao> ORZ
+22:59 < dannvix> Jcrt: 要加 www 才是預期的 # http://www.aide.gov.tw/
+22:59 < kcwu> dannvix's url: [阿寶的天空]
+23:00 < clkao> Jcrt: 有需要加 committer 就進 team admin 把人加入 dev team
+23:00 < clkao> 請自助.. :p
+23:01 < Jcrt> clkao: dns 部分我們小組再討論好了～ 先麻煩你設定 cname, heroku 那邊我馬上好～
+23:01 < Jcrt> dannvix: 原來如此 XDDDDD 感謝
+23:01 < Jcrt> clkao: github 我小熟，沒問題 :)
+23:04 < clkao> Jcrt: 所以先 listening.g0v.tw 囉?
+23:05 < Jcrt> clkao: 對，麻煩你了
+23:06 < clkao> 許願單: g0v.tw IDP, 自動 oauth allow *.g0v.tw
+23:06 < clkao> 不然每個人都來一個 facebook app 登入.. 太苦了
+23:07 -!- R3xTW [~rex@111-251-182-6.dynamic.hinet.net] has joined #g0v.tw
+23:07 < dannvix> clkao++
+23:08 < clkao> Jcrt: listening.g0v.tw CNAME configured
+23:08 < Jcrt> clkao++
+23:08 < clkao> dannvix: 這個 idp 應該很有趣吧 (摩拳擦掌推坑預備)
+23:08 < MindosCheng> clkao # 友善 IT
+23:09 < dannvix> clkao: 聽起來很棒，我也很想作，不過最近應該要準備論文了 Orz
+23:09 < clkao> 論文不能作這個題目嗎 LOL
+23:11 < MindosCheng> dannvix : 論文做什麼呢?
+23:13 < dannvix> 我作課程影片的 VoD system
+23:14  * dannvix 棺材(?)都進一半了…啊！本 channel 有在 log
+23:14 < tkirby> dannvix: //pat # 慘遭 clkao 推坑
+23:15 < tkirby> 最後一次被 clkao  推坑應該是... 兩天前?
+23:18 < MindosCheng> dannvix : 論文重要啊～～
+23:20 < dannvix> 畢業為重，嗚~
+23:21 < dannvix> 今天剛好跟老師解釋最近有參與 g0v，獲得正面反應 XD
+23:22 < MindosCheng> dannvix : 不能用 g0v project 畢業嗎
+23:23 < ericyu> dannvix: 那會有 20% 時間投入 g0v 嗎？ XD
+23:23  * MindosCheng 想到軟硬體合作就想能不能弄個代替能源出來。
+23:24 < dannvix> ericyu: 希望可以 XD
+23:24 < MindosCheng> ericyu : 確實弄論文就會想做點別的.....最後 20% -> 95% 
+23:24 < dannvix> MindosCheng: 可能要念 *.3du.tw 的大學才有辦法 :P
+23:24 < ericyu> 研究生症候群
+23:27 < clkao> MindosCheng: fusion?  singularity?
+23:27 < MindosCheng> clkao g0v 能源部
+23:28 < MindosCheng> 太陽能板自製手冊 XDD
+23:29 -!- R3xTW [~rex@111-251-182-6.dynamic.hinet.net] has quit [Quit: R3xTW]
+23:30 < Jcrt> clkao: heroku just configured :)
+23:35 < clkao> Jcrt++
+23:35 < clkao> 太神秘了 # http://nrch.moc.gov.tw/ccahome/tvnews/tvnews_coll_item_index.jsp?dtdid=243&collectionname=%E8%87%BA%E8%A6%96%E6%96%B0%E8%81%9E
+23:35 < kcwu> clkao's url: [國家文化資料庫 電視新聞]
+23:37 < thschee> 這是數位典藏某個補助案吧
+23:38 < thschee> http://nrch.moc.gov.tw/ccahome/right.jsp
+23:38 < kcwu> thschee's url: [歡迎進入 國家文化資料庫]
+23:38 -!- R3xTW [~rex@111-251-182-6.dynamic.hinet.net] has joined #g0v.tw
+23:38 < thschee> 可能七成以上都有拿補助
+23:39 < clkao> wHisKy: 誰打你
+23:39 < clkao> hlb: 改用 bitcoin 嗎
+23:49 < hlb> clkao: ?
+23:49 < hlb> 耕者有其田是說，一整年都送 patch，repo 就是你的？
+23:50 -!- timdream [~timdream@123-204-146-158.adsl.dynamic.seed.net.tw] has quit [Quit: timdream]
+23:50 < wHisKy> clkao ㄎㄎ，被你的回應啊，感謝把我打醒
+23:51 -!- MindosC [~MindosC@101.12.18.101] has quit [Ping timeout: 245 seconds]
+23:52 < hlb> 把這些名詞的 SEO 都搶下來
+23:52 < hlb> 哪天學生要作功課上 google
+23:52 < hlb> 就不小心進入顛覆政府運動了......
+23:53 < thschee> bitcoin 這裡可以兌換成歐元 https://bitcoin-central.net/
+23:53 < thschee> 世界合法第一家
+23:53 < kcwu> thschee's url: [Bitcoin-Central]
+23:53 < thschee> 他們開了一個洞
+23:54 -!- MindosCheng [~mindos@42-68-3-26.dynamic-ip.hinet.net] has quit [Ping timeout: 276 seconds]
+23:56 -!- zzz_walkingice is now known as walkingice

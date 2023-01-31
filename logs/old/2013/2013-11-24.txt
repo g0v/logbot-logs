@@ -1,0 +1,849 @@
+--- Day changed 日 11月 24 2013
+00:01 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has joined #g0v.tw
+00:01 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has quit [Changing host]
+00:01 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+00:06 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Remote host closed the connection]
+00:07 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+00:12 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+00:14 < glll4678> 國／現：漢語拼音／欲增：通用拼音
+00:14 < glll4678> 臺／現：臺灣閩南語羅馬字拼音／欲增：通用拼音
+00:14 < glll4678> 客／現：臺灣客家語拼音／欲增：通用拼音
+00:15 < glll4678> 這是今天討論到的拼音問題
+00:18 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+00:22 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 252 seconds]
+00:23 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has joined #g0v.tw
+00:23 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has quit [Changing host]
+00:23 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+00:26 < jimyhuang> tkirby++ !
+00:26 < yhsiang> jimyhuang: 該不會解掉了吧!
+00:26 < jimyhuang> yhsiang: 哈，解一半... http://jimmyhub.net:3333/sittings/08-04-JUD-14/video#2013-11-06T13:11:00
+00:28 < yhsiang> XD 加油
+00:28 < jimyhuang> clkao: yhsiang https://github.com/g0v/ly.g0v.tw/issues/63#issuecomment-29135387  
+00:28 < jimyhuang> yhsiang: 總之是可以share了...
+00:32 < yhsiang> 可能deploy 另一半就解玩了 XD
+00:44 < clkao> jimyhuang: 偷看 marker 那邊如何更新的, 用 whole (current waveform) 的 start 加上 player offset 再 moment format 起來應該就可以了
+00:44 < clkao> jimyhuang: 你有裝 angularjs batarang 嗎？可以用那個偷看 angularjs properties, 很方便
+00:44 < jimyhuang> clkao: 組起來是timestamp嗎？
+00:44 < jimyhuang> oh !!! 我裝了，但不大會用，研究看看
+00:45 < clkao> should be.. .start might already be a moment obj... cant remember.. 
+00:46 < jimyhuang> sure ... 明天再戰  & zzz
+00:48 < yhsiang> clkao: 疑 現在ly.g0v.tw可以跑batarang了嗎?
+00:48 < yhsiang> 之前我有裝 可是好像dev的時候會炸掉 我就關掉了 orz..
+00:48 < clkao> ? 一直都可以吧？
+00:48 < yhsiang> 額..可能我人品不好
+00:49 -!- imwithye [~imwithye@116.251.209.247] has joined #g0v.tw
+00:51 < jimyhuang> yhsiang: 人品很好啊，都願意開示 angular ... XD
+00:51 < yhsiang> 還是會有錯誤訊息耶
+00:51 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has quit [Quit: mno2]
+00:57 < yhsiang> jimyhuang: 分享分享 還沒到開示等級 XD
+01:11 < yhsiang> https://gist.github.com/yhsiang/7617309 # 我的error 
+01:12 < M00sUltraB0t> [ error in ly.g0v.tw with angular-batarang 0.4.3 ] - gist.github.com
+01:12 < au> glll4678: 需要漢拼/台羅/客羅轉通拼的 Javascript (或別種程式語言) 的程式庫, 如果手邊有，或有找到，請貼到 https://github.com/audreyt/moedict-webkit/issues/new 或 hackpad
+01:12 < M00sUltraB0t> [ Sign in · GitHub ] - github.com
+01:12 < jimyhuang> yhsiang: 你是說pull我的後還是？
+01:13 < yhsiang> jimyhuang: 應該一直是這樣  所以我才沒開batarang Q_Q
+01:13 < jimyhuang> yhsiang: soga ... XD
+01:13 < yhsiang> error整個迷到不知道怎麼解 orz..
+01:14 < a-tsioh> au: where is the hackpad where we started discussing the fuzzy romanised query ?
+01:15 < au> a-tsioh: https://g0v.hackpad.com/MoeDict--jBwY0uGjPfB
+01:15 < a-tsioh> I'm rewriting the webservice I did in OPA into vanilla OCaml
+01:15 < M00sUltraB0t> [ MoeDict - 萌典 - g0v.hackpad.com ] - g0v.hackpad.com
+01:15 < a-tsioh> but I'm not sure how it will be most usefull for moedict
+01:16 < a-tsioh> right now I have the data in a postgreSQL DB
+01:16 < a-tsioh> but that may be a problem for the android/iOS versoin
+01:16 < au> k. the consensus in moethon seems to be feed existing tables to jscin ( https://chrome.google.com/webstore/detail/jscin-javascript-based-ch/cdkhibgadomdghgnknpmgegpjjmfecfk?hl=zh-TW ) without the NaCL part
+01:16 < M00sUltraB0t> [ Chrome 線上應用程式商店 - JsCIN 中文輸入法 ] - chrome.google.com
+01:17 < a-tsioh> NaCL ?
+01:18 < au> chrome native client stuff, just used for chewing
+01:18 < a-tsioh> does that mean including jscin into moedict or restricting romanisation to chrome users ?
+01:19 < au> neither... jscin without nacl is cross platform
+01:19 < au> we do need a frontend though, which is where your work comes in
+01:19 < au> or someone need to investigate e.g. https://github.com/timdream/jszhuyin 
+01:19 < M00sUltraB0t> [ timdream/jszhuyin · GitHub ] - github.com
+01:19 < au> jscin without chrome is just the composition engine.
+01:21 < au> demo: http://timdream.org/jszhuyin/ (zhuyin only; for romaji and other table-based IM etc we need to hook into jscin)
+01:21 < a-tsioh> but we still have to generate some kind of tables to allow for fuzzy lookup
+01:21 < M00sUltraB0t> [ JS 注音：線上注音輸入 ] - timdream.org
+01:21 < a-tsioh> there is something I don't get
+01:22 < a-tsioh> you want to include a full IME ?
+01:22 < au> right, pektiong seem to think he can gen it in .cin format (which jscin takes)
+01:22 < au> yes.
+01:22 < a-tsioh> so user will end inputing 漢字 not TRS ?
+01:22 < a-tsioh> or bopomo
+01:22 < au> they will be entering either trs or bpmf and always get 漢字 output.
+01:23 < a-tsioh> ho
+01:23 < a-tsioh> I'm aiming at TRS queries 
+01:23 < au> but the selection row will display (fuzzy) homophones
+01:23 < au> which is akin to TRS queries, just not sharing the same input candidate list we currently have
+01:23 < au> (thought we discussed this before...)
+01:23 < a-tsioh> so fuzzy stuff is part of the cin engine ?
+01:23 < au> yes.
+01:24 < a-tsioh> I use to genereate fuzzy homophone list in OPA
+01:24 < au> can you export it to .cin?
+01:24 < a-tsioh> don't know
+01:24 < a-tsioh> probably
+01:25 < au> that will help, like, immensely, esp for the kind of fuzzy matching you'd like (and I concur)
+01:25 < a-tsioh> got to check the file format
+01:25 < au> and will get turned into gcin, hime, ibus, OpenVanilla, Chrome (maybe FF) in ~no time
+01:26 < a-tsioh> right I just parse the TRS into {initinal;median;final;tone} this kind of thing
+01:26 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+01:26 < au> *nod*
+01:26 < a-tsioh> I was wondering whether I should index it into a PGSQL DB or directly in JS
+01:26 < a-tsioh> but maybe .cin is good as well for moedict
+01:26 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+01:28 < au> old POJ cin example from lukhnos (no multi-word phrase yet, but you get the idea)
+01:28 < au> https://github.com/lukhnos/openvanilla/blob/master/DataTables/lookup-poj.cin
+01:28 < M00sUltraB0t> [ openvanilla/DataTables/lookup-poj.cin at master · lukhnos/openvanilla · GitHub ] - github.com
+01:31  * au 得先休息補血，明天再來試把 dayi3.cin 加到 jscin (這樣 chromebook 就可以日常用了)
+01:31 < a-tsioh> it's like plain transcription, getting the same kind of file from moedict .json is trivial, but I guess the fuzzy query will then be very basic
+01:31 < a-tsioh> or I'm missing something
+01:31 < clkao> au: 順便衝一下 dayi2 ?
+01:32 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 265 seconds]
+01:32 < au> a-tsioh: cf http://www.audreyt.org/newdict/dayi.cin.txt
+01:32 < a-tsioh> dayi2是啥物？
+01:32 < a-tsioh> hehe ok
+01:33 < au> you'll see like OMQMP 中央研究院資訊所
+01:33 < au> OMS92 中央南路二段
+01:33 < au> clkao: dayi2 好像 21 年前有做過 XD
+01:34 < clkao> 強者我岳父需要... orz
+01:34 < au> clkao: 要詞庫嗎
+01:34 < clkao> 呃 其實我不知道他有沒有用詞庫
+01:35 < clkao> 好像是有？因為好像有類似快拼的功能？
+01:38 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+01:38 < au> clkao: there you have it, have fun http://www.audreyt.org/newdict/dayi2.cin.txt
+01:39 < au> 含詞庫及234碼
+01:40 < au> source code: http://www.audreyt.org/newdict/dayi34phrase-to-dayi2.pl.txt
+01:40  * a-tsioh apt-get install gcin
+01:41 < au> # 沒有更改此表格中任何編碼規則... 只是加上新的編碼規則
+01:43 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 264 seconds]
+01:43 -!- icman [~icman@123.240.173.168] has quit [Quit: 明天天氣晴]
+01:45 < yhsiang> http://www.click-me.com.tw/article/11090.html # 這樣的造句有錯嗎 ... XD
+01:45 < M00sUltraB0t> [ 能寫出這樣的答案，這小五學生絕對是千年天才！！ | 點我一下 分享無價 Click Me ] - www.click-me.com.tw
+01:45 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+01:48 < yhsiang> 荷盡已無擎雨蓋，菊殘猶有傲霜枝 好經典阿 XDDD
+01:49 < clkao> au: ta
+01:50 < ETBlue> http://www.cdnews.com.tw/cdnews_site/docDetail.jsp?coluid=121&docid=102545719 <- 有照片版新聞
+01:50 < M00sUltraB0t> [ 中央日報網路報-教育藝文 ] - www.cdnews.com.tw
+01:50 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Read error: Connection reset by peer]
+01:51 < yhsiang> ETBlue++ # 和tkirby都是藝名也很經典 XD
+01:51 -!- haroldwu1 [~haroldwu@118-170-7-194.dynamic.hinet.net] has joined #g0v.tw
+01:51 < a-tsioh> so the idea behing xcin tables is to generate all possible fuzzy matches beforehand
+01:52 < a-tsioh> behind
+01:52 < a-tsioh> I was doing so at query time (probably smaller but slower solution)
+01:52 < kcwu> au: 之所以 jscin or chromebook 內建的 ime 沒有 dayi table, 是因為看到 http://hyperrate.com/thread.php?tid=27586
+01:52 < M00sUltraB0t> [ 大易輸入法的授權 ] - hyperrate.com
+01:52 < au> a-tsioh: tout à fait exact
+01:52 < a-tsioh> :)
+01:53 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Read error: Connection reset by peer]
+01:53 < a-tsioh> ok let's try that : a small standalone script that goes from moedict json file to a .cin tab
+01:53 < au> kcwu: yeah, well aware of this -- had to manually install cin for hime/gcin too
+01:54 < au> a-tsioh: aye
+01:54 < a-tsioh> should be easy to do from where I am
+01:54 < a-tsioh> (just the old same question about how fuzzy we want to be)
+01:55 -!- Stranger_1980 [~Stranger_@1.34.223.58] has quit [Remote host closed the connection]
+01:55 < a-tsioh> finding the balance between missing what the user is looking for and having too many matches
+01:55 < au> feel free to generate 3~4 different fuzzy things and I'm sure pektiong will be more than happy to inflict^Wsuggest his users to try them out
+01:55 < a-tsioh> ok
+01:56 < a-tsioh> will git push such a thing by tomorrow
+01:56 < au> a-tsioh++
+01:57 < a-tsioh> (這馬法國7am)
+01:57 -!- haroldwu1 [~haroldwu@118-170-7-194.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+01:58 < au> a-tsioh: and you can test it with either gcin or jscin in chrome with its excellent "Add new input method from URL cin" feature thx to kcwu++ piaip++
+01:58 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+01:58 < au> -> zzz for realz :) ttyt
+01:59 < a-tsioh> bonne nuit !
+02:03 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+02:04 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+02:08 < kcwu> 萌典松有一桌提到越南的著作權期限, 越南是用 Berne 公約, 作者死後 50 年. http://en.wikipedia.org/wiki/List_of_countries'_copyright_length 這有各國的列表
+02:08 < M00sUltraB0t> [ List of countries' copyright lengths - Wikipedia, the free encyclopedia ] - en.wikipedia.org
+02:14 < weitsai> 大家早安～
+02:16 < weitsai> 我想要做一個手機簡報的手機 App, 希望手機開 wifi 基地台當做一個  Web Server, 讓 client 連近來瀏覽網頁, 但是剛剛測試了一下, 如果我沒有 3G 把 wifi 基地台打開, 透過電腦連到手機 AP, 是 ping 不到手機 ip 的, 不知有解嘛..?
+02:19 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+02:19 -!- chihhsin [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+02:25 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 252 seconds]
+02:31 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has joined #g0v.tw
+02:31 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has quit [Changing host]
+02:31 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+02:34 -!- imwithye [~imwithye@116.251.209.247] has quit [Remote host closed the connection]
+02:36 < yhsiang> ... 看起來好像是angular batarang的雷 ... 要送patch了嗎 orz
+02:36 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+02:40 < yhsiang> .... 直接裝github上面的就沒錯誤 
+02:40 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 272 seconds]
+02:47 < ETBlue> 影片陸續上傳中，playlist: https://www.youtube.com/playlist?list=PLIWDjrXDaTHmBESpo0HrD8A4eNP-bqkp3
+02:47 < M00sUltraB0t> [ g0v.tw 零時政府 - moed1ct 萌典松 - YouTube ] - www.youtube.com
+02:49 < ETBlue> 最高 1920 x 1080，有些片段聲音悶悶的是我不小心按到 ipad 收音孔 = ="
+02:55 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+02:55 < yhsiang> ETBlue: 辛苦~
+02:55 < ETBlue> yhsiang: 你還醒著啊囧
+02:56 -!- lcamel [~lcamel@114-45-53-139.dynamic.hinet.net] has quit [Remote host closed the connection]
+02:57 < yhsiang> ETBlue: 對阿 剛剛送issue問batarang是不是該升版號了 orz..
+02:59 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+03:08 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+03:20 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has joined #g0v.tw
+03:20 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has quit [Changing host]
+03:20 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+03:27 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 248 seconds]
+03:30 < yhsiangCloud> 忘了做夢  只好起來再做
+03:38 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+03:43 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+03:49 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has joined #g0v.tw
+03:49 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has quit [Changing host]
+03:49 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+03:54 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 252 seconds]
+04:06 < CAA51> ETBlue++ # 上傳影片辛苦了！
+04:07 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+04:14 < a-tsioh> ETBlue++ 我等一下可以練習聽力：D
+04:21 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+04:22 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has joined #g0v.tw
+04:22 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has quit [Changing host]
+04:22 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+04:27 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+04:28 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has joined #g0v.tw
+04:28 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has quit [Changing host]
+04:28 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+04:32 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 241 seconds]
+04:34 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has joined #g0v.tw
+04:34 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has quit [Changing host]
+04:34 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+04:40 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+04:41 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has joined #g0v.tw
+04:41 -!- haroldwu [~haroldwu@118-170-7-194.dynamic.hinet.net] has quit [Changing host]
+04:41 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+05:01 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+05:02 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+05:14 -!- Supaplextw1 [~Lucky@1-164-215-180.dynamic.hinet.net] has joined #g0v.tw
+05:14 < weitsai> 透過  adb shell netcfg | grep wlan0
+05:14 < weitsai> 可以找到 android 手機真正的 ip
+05:15 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 246 seconds]
+05:15 -!- Supaplextw [~Lucky@36.224.97.218] has quit [Ping timeout: 246 seconds]
+05:41 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Read error: Connection reset by peer]
+05:41 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+05:52 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+06:01 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+06:58  * a-tsioh tsha-put-to lah
+06:59 < a-tsioh> 可是搞不清楚jsCin的headers要寫什麼
+07:02 < Michael_LI> 早安
+07:02 < Michael_LI> --眼神-->　大眾銀行：母親的勇氣／不是2010年的電視廣告／是2013年11月22,23新聞／［讚］／https://www.youtube.com/watch?v=A0VQ03hAL70
+07:02 < M00sUltraB0t> [YouTube] Title: 20131123 公視晚間新聞 買法拍凶宅夢碎 單親媽拒絕退款 | Uploader: pts | Uploaded: 23/11/2013, 15:05 | Duration: 1mins 56secs | Views: 29 | Comments: 0 | Likes: N/A | Dislikes: N/A
+07:14 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+07:20 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+07:20 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+07:20 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+07:22 < a-tsioh> au: clkao kcwu (and whoever feels concerned) https://github.com/a-tsioh/TRS.cin
+07:22 < M00sUltraB0t> [ a-tsioh/TRS.cin · GitHub ] - github.com
+07:23 < a-tsioh> 還不能用
+07:23 < Michael_LI> PS.（另閱）大眾銀行 母親的勇氣 電視廣告 TC Bank (3分鐘版本) 　／堅忍　勇氣　愛，不平凡的平凡大眾／　- YouTube
+07:24 < a-tsioh> 應該差不多了，我可能需要一點點幫助瞭解Cin file format
+07:26  * a-tsioh 先休息
+07:33 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+07:50 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+08:00 -!- a-tsioh [~pierre@78.202.136.41] has quit [Ping timeout: 245 seconds]
+08:01 -!- a-tsioh [~pierre@78.202.136.41] has joined #g0v.tw
+08:07 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+08:08 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+08:13 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 252 seconds]
+08:14 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+08:14 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+08:14 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+08:28 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 265 seconds]
+08:32 -!- Ihc [8c712e43@gateway/web/cgi-irc/kiwiirc.com/ip.140.113.46.67] has joined #g0v.tw
+08:35 -!- lcamel [~lcamel@114-45-58-195.dynamic.hinet.net] has joined #g0v.tw
+08:35 -!- pichu__ [~pichu@140.117.182.198] has quit [Ping timeout: 264 seconds]
+08:46 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+08:50 -!- a-tsioh [~pierre@78.202.136.41] has quit [Ping timeout: 272 seconds]
+08:53 -!- imwithye [~imwithye@116.251.209.247] has joined #g0v.tw
+08:53 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+08:53 < imwithye> countdown list
+08:53 -!- imwithye [~imwithye@116.251.209.247] has left #g0v.tw []
+08:59 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+09:09 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 252 seconds]
+09:10 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+09:14 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 265 seconds]
+09:15 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+09:15 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+09:15 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+09:19 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+09:25 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+09:25 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+09:28 -!- lcamel [~lcamel@114-45-58-195.dynamic.hinet.net] has quit [Remote host closed the connection]
+09:29 -!- lcamel [~lcamel@114-45-58-195.dynamic.hinet.net] has joined #g0v.tw
+09:31 -!- lcamel [~lcamel@114-45-58-195.dynamic.hinet.net] has quit [Remote host closed the connection]
+09:31 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has joined #g0v.tw
+09:31 -!- lcamel [~lcamel@114-45-58-195.dynamic.hinet.net] has joined #g0v.tw
+09:31 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+09:31 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+09:31 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+09:32 -!- lcamel [~lcamel@114-45-58-195.dynamic.hinet.net] has quit [Remote host closed the connection]
+09:51 -!- marlboromoo [~marlborom@114-43-110-60.dynamic.hinet.net] has joined #g0v.tw
+09:55 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has quit [Quit: mno2]
+09:59 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+10:10 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+10:10 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+10:10 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+10:16 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+10:16 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+10:21 -!- imwithye [~imwithye@116.251.209.247] has joined #g0v.tw
+10:25 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+10:36 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+10:37 -!- Stranger_1980 [~Stranger_@1.34.223.58] has joined #g0v.tw
+10:44 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+10:50 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+10:50 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+10:50 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+10:51 < Michael_LI> 【特別推薦（讓閱聽大眾了解什麼是相對優秀的新聞處裡方式）】／新聞事件：單親媽媽買到法拍屋後才知是兇宅，畢生儲蓄泡湯需要賠39萬給原先申請法拍的銀行。／https://www.facebook.com/newshelper
+10:51 < M00sUltraB0t> [ 新聞小幫手 | Facebook ] - www.facebook.com
+11:21 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+11:21 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+11:22 -!- mp607 [~mp607@phantom.tfcis.org] has quit [Ping timeout: 246 seconds]
+11:23 -!- mp607 [~mp607@phantom.tfcis.org] has joined #g0v.tw
+11:26 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+11:31 -!- imwithye [~imwithye@116.251.209.247] has quit [Remote host closed the connection]
+11:32 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+11:39 < lijung> jimyhuang: 我想要跑 twangry 在 local , 但一直跳出 no such file or directory 'public/cache/category.json' 
+11:43 < jimyhuang> lijung: 執行prepoblish, 有個script
+11:44 < lijung> 我有跑耶可是沒反應 = =...
+11:44 < jimyhuang> install.md忘記改
+11:47 < lijung> 我跑 ./prepublish 感覺什麼都沒執行...
+11:47 < lijung> 會是跟我 nginx 設定錯誤有關嗎？
+11:48 < jimyhuang> 那public/cache下有東西了嗎
+11:48 < jimyhuang> lijung: 不用nginx應該也可跑
+11:49 < lijung> 只有一個資料夾 wiki
+11:49 < lijung> 然後都是空的
+11:50 < jimyhuang> config/下有設定嗎
+11:50 -!- icman [~icman@123.240.173.168] has joined #g0v.tw
+11:51 < lijung> config 下要設定什麼？
+11:51 < jimyhuang> config有設定，prepublish會把google doc下載回來變json
+11:55 < lijung> 他不會自己去跑 config/default.yaml?
+11:55 < lijung> 我要自己新增 config 檔嗎？
+11:56 < jimyhuang> 應該會吃default. yaml
+11:57 < jimyhuang> npm install有先跑嗎？
+11:57 < lijung> 有...
+11:58 -!- Ihc [8c712e43@gateway/web/cgi-irc/kiwiirc.com/ip.140.113.46.67] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+11:59 < jimyhuang> 嘖... 待會來看看
+11:59 -!- Ihc [8c712e43@gateway/web/cgi-irc/kiwiirc.com/ip.140.113.46.67] has joined #g0v.tw
+11:59 < jimyhuang> node prepublish呢
+12:00 < lijung> same...
+12:02 < jimyhuang> 回去再看，吃早餐中
+12:02 -!- wayne930242 [~wayne9302@198.199.118.114] has joined #g0v.tw
+12:03 < lijung> jimyhuang: 我發覺他根本沒跑因為他在跑 prepublish 的時候 getting json and request json 有 error
+12:03 < lijung> 我把 error console 出來 [Error: 140735215821584:error:0607907F:digital envelope routines:EVP_PKEY_get1_RSA:expecting an rsa key:../deps/openssl/openssl/crypto/evp/p_lib.c:288:
+12:03 < lijung> ]
+12:04 < lijung> 先吃早餐吧ㄏㄏ
+12:08 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+12:09 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+12:13 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+12:14 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+12:15 < Ti_W_B> hello?
+12:16 < lijung> hi
+12:16 < Ti_W_B> 第一次來這請多指教~
+12:16 < lijung> you're welcome :)
+12:19 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+12:20 < Michael_LI>  <Ti_W_B> 歡迎／參考資料／https://michael_li.hackpad.com/g0vgov--2Au6nnCNxzk
+12:20 < M00sUltraB0t> [ g0v／［筆記］gov 入門與懶人手冊 - michael_li.hackpad.com ] - michael_li.hackpad.com
+12:23 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 246 seconds]
+12:25 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+12:25 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+12:25 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+12:25 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+12:28 < jimyhuang> lijung: 
+12:28 < jimyhuang> lijung: ping ~~ 
+12:28 < lijung> pong
+12:28 < yhsiangCloud> CAA51: 土炮懶人無刻 就是鋪條毛巾  我大學就這樣幹 XD
+12:30 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+12:30 < jimyhuang> lijung: 我這裡 node prepublish會出現兩行字
+12:31 < jimyhuang> 你的環境是 windows 還是mac?
+12:31 < lijung> mac
+12:32 < lijung> 會不會是權限問題？
+12:32 < lijung> [Error: 140735215821584:error:0607907F:digital envelope routines:EVP_PKEY_get1_RSA:expecting an rsa key:../deps/openssl/openssl/crypto/evp/p_lib.c:288:]
+12:32 < jimyhuang> lijung: 你的8080 port有run其他東西嗎？
+12:32 < lijung> [Error: 140735215821584:error:0607907F:digital envelope routines:EVP_PKEY_get1_RSA:expecting an rsa key:../deps/openssl/openssl/crypto/evp/p_lib.c:288:]
+12:32 < lijung> nope 沒有
+12:34 < lijung> jimyhuang: success!!!
+12:34 < lijung> 我知道了 node 要用 0.10.x
+12:34 < lijung> 要不然會有那個 error
+12:34 < jimyhuang> XD public/cache/ 下有東西？
+12:34 < lijung> 有了！
+12:34 < lijung> thanks
+12:35 < lijung> 我把它 update 到 install
+12:36 < ETBlue> au: kcwu: ipa: 你們覺得需要編輯 youtube 各別影片的 description 嗎？理論上應該把時程表的資訊也貼一份上去，但覺得這動作好不自動化 www
+12:36 < au> 就加上時程表 view url 即可
+12:37 < au> 如果麻煩的話可以只加第一個
+12:37 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+12:38 < clkao> 評審 ithome 鐵人賽中（連續三十天寫文章）... 看到眼睛快拖窗 我是怎麼掉入這坑的.... XD
+12:38 < clkao> 不過蠻多都不錯的
+12:38 < jimyhuang> lijung: 我正在改install.md XD
+12:38 < yhsiangCloud> 你node是多少啊XD
+12:38 < lijung> jimyhuang: @@ 我 push 了耶
+12:39 < yhsiangCloud> ETBlue:  不然把youtube url貼到時程 然後程式再parse回description?
+12:40 < clkao> http://ithelp.ithome.com.tw/ironman6/team/other/20083290 # 21 歲小朋友寫的繪圖/icong設計教學
+12:40 < lijung> clkao: ++
+12:40 < Ti_W_B> ??
+12:41 < jimyhuang> lijung: it's all right
+12:41 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+12:42 < lijung> jimyhuang: ++
+12:43 < ETBlue> 我現在只在 playlist 的 description 放 url，不然每個影片都貼個 url 好了 www
+12:46 < au> kcwu: jscin + dayi 會動了! 可是詞庫輸入 e.g. XN15 => 測試 會變成候選字 1測 2試
+12:46 < au> ditto for multiword phrases in a-tsioh's twblg
+12:47 -!- wHisKy- [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+12:47 < kcwu> phrases not supported
+12:47 < au> which line(s) should I hack
+12:48 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Write error: Broken pipe]
+12:50 < yhsiang> clkao: 覺得這個比賽很酷 可是不知道要累死誰 XDD 參賽者很累 評審更累 
+12:50 < kcwu> https://code.google.com/p/jscin/source/browse/src/jscin/gen_inp2.js 用到 table[] 的地方都要改, parser 也要動 https://code.google.com/p/jscin/source/browse/src/jscin/cin_parser.js
+12:51 < M00sUltraB0t> [ gen_inp2.js - jscin - Chinese Input Method Environment in JavaScript - Google Project Hosting ] - code.google.com
+12:51 < M00sUltraB0t> [ cin_parser.js - jscin - Chinese Input Method Environment in JavaScript - Google Project Hosting ] - code.google.com
+12:51 < au> 收到，感謝，等 a-tsioh 醒來討論一下
+12:52 < clkao> yhsiang: 真的有累
+12:52 < au> 但是 chromebook 終於不是只能當 tablet 用了 :p # kcwu++
+12:53 < jimyhuang> lijung++ 就等你commit了（望向）
+12:54 < lijung> 哈哈 jimyhuang 有什麼 issue 我能夠解決的？
+12:54 < yhsiang> 最近評審也應該要拿個鐵人評審獎 XD
+12:54 < yhsiang> s/近/後
+12:54 < M00sUltraB0t> yhsiang meant to say: 最後評審也應該要拿個鐵人評審獎 XD
+12:54 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 265 seconds]
+12:55 < CAA51> yhsiang: ??
+12:56 < yhsiang> CAA51: 買不起無刻的作法 XD
+12:56 < lijung> http://fact.g0v.tw/ # jimyhuang 現在最上面的那些分類沒辦法 work 嗎
+12:56 < M00sUltraB0t> [ 政誌 | 勿忘政治 ] - fact.g0v.tw
+12:58 < jimyhuang> lijung: 似乎沒辦法
+12:58 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+12:59 < lijung> ok
+13:22 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+13:28 -!- Ti_W_B2 [~Ti.W.B@218-166-34-155.dynamic.hinet.net] has joined #g0v.tw
+13:30 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 245 seconds]
+13:34 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+13:37 -!- Ti_W_B2 [~Ti.W.B@218-166-34-155.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+13:37 -!- wayne930242 [~wayne9302@198.199.118.114] has quit [Quit: http://www.kiwiirc.com/ - A hand-crafted IRC client]
+13:39 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+13:41 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+13:44 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+13:44 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+13:44 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+13:44 -!- wayne930242 [~wayne9302@198.199.118.114] has joined #g0v.tw
+13:44 < glll4678> 我找不到轉通用拼音的 JavaScript
+13:46 < CAA51> yhsiang: I see, thanks!
+14:06 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+14:12 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+14:20 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+14:20 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+14:24 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 246 seconds]
+14:27 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Remote host closed the connection]
+14:34 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+14:39 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+14:39 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+14:39 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+14:39 < Michael_LI> 透過雞排妹／閱讀到一份「論說文」，是目前在臺灣網路上出現，一位基督教徒+國立大學法學教授，用最深入的方式，也最邏輯清晰的方式，也是篇幅最大的（1萬１千８百餘字）／
+14:39 < Michael_LI> 批判「護家盟」反對「伴侶盟」文宣中各種繆誤，以及法律上張冠李戴錯誤處一一點明／看完花上１小時請不要意外／《對多元成家誤解的再思》／https://www.facebook.com/notes/hsien-chi-kan/%E6%88%91%E5%80%91%E5%8F%AF%E4%BB%A5%E4%B8%9F%E7%9F%B3%E9%A0%AD%E5%97%8E%E5%B0%8D%E5%8F%8D%E5%B0%8D%E5%90%8C%E6%80%A7%E5
+14:39 < Michael_LI> %A9%9A%E5%A7%BB%E5%8F%8A%E4%BC%B4%E4%BE%B6%E5%AE%B6%E5%B1%AC%E5%88%B6%E5%BA%A6%E5%80%A1%E8%AD%B0%E8%AC%AC%E8%AA%A4%E7%9A%84%E6%8C%87%E6%AD%A3/3534475776383
+14:39 < M00sUltraB0t> [ 找不到網頁 | Facebook ] - www.facebook.com
+14:40 < Michael_LI> https://www.facebook.com/notes/hsien-chi-kan/%E6%88%91%E5%80%91%E5%8F%AF%E4%BB%A5%E4%B8%9F%E7%9F%B3%E9%A0%AD%E5%97%8E%E5%B0%8D%E5%8F%8D%E5%B0%8D%E5%90%8C%E6%80%A7%E5%A9%9A%E5%A7%BB%E5%8F%8A%E4%BC%B4%E4%BE%B6%E5%AE%B6%E5%B1%AC%E5%88%B6%E5%BA%A6%E5%80%A1%E8%AD%B0%E8%AC%AC%E8%AA%A4%E7%9A%84%E6%8C%87%E6%AD%A3/3534475776383
+14:40 < clkao> Michael_LI: 資訊性的內容，可以分享在自己的 twitter 或臉書
+14:40 < M00sUltraB0t> [ 對多元成家誤解的再思 ] - www.facebook.com
+14:46 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+14:47 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+14:48 < Michael_LI> clkao oh~sorry
+14:51 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+14:52 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+14:59 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 264 seconds]
+15:00 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+15:00 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+15:00 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+15:05 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 240 seconds]
+15:06 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+15:06 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+15:06 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+15:12 -!- imwithye [~imwithye@116.251.209.247] has joined #g0v.tw
+15:14 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+15:14 -!- imwithye is now known as Azurebot_
+15:14 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+15:15 -!- Azurebot_ is now known as Azurelogger
+15:18 -!- Azurelogger is now known as imwithye
+15:21 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+15:22 < Ti_W_B> Ubuntu-TW都沒人啊......
+15:24  * Ti_W_B µL²áing
+15:30 < glll4678> http://zh.wikipedia.org/zh-tw/%E4%B8%AD%E6%96%87%E6%8B%BC%E9%9F%B3%E5%B0%8D%E7%85%A7%E8%A1%A8
+15:30 < M00sUltraB0t> [ 中文拼音對照表 - 維基百科，自由的百科全書 ] - zh.wikipedia.org
+15:31 < glll4678> 找到這個 但是沒有聲調的部分
+15:33 < glll4678> https://github.com/blankego/cphonetic/blob/master/csharp/CPhoneticTest/all_syllables.txt
+15:34 < M00sUltraB0t> [ cphonetic/csharp/CPhoneticTest/all_syllables.txt at master · blankego/cphonetic · GitHub ] - github.com
+15:34 < glll4678> 還有這個所有注音的可能
+15:36 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 245 seconds]
+15:40 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+15:46 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+15:51 -GitHub180:#g0v.tw- [ly.g0v.tw] clkao pushed 1 new commit to gh-pages: https://github.com/g0v/ly.g0v.tw/commit/98f134783ed36e918f22f6d24b575cdfd60ae9d4
+15:51 -GitHub180:#g0v.tw- ly.g0v.tw/gh-pages 98f1347 Chia-liang Kao: regen for 6eb62c9
+15:52 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+15:59 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+16:06 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+16:06 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+16:06 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+16:10 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 246 seconds]
+16:27 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+16:33 -!- imwithye [~imwithye@116.251.209.247] has quit [Ping timeout: 245 seconds]
+16:39 -!- a-tsioh [~pierre@78.202.136.41] has joined #g0v.tw
+16:44 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+16:46 -!- wayne930242 [~wayne9302@198.199.118.114] has quit [Quit: http://www.kiwiirc.com/ - A hand-crafted IRC client]
+16:53 -!- Guest9851 [~marlborom@111.235.211.94] has quit [Remote host closed the connection]
+16:53 -!- Guest9851 [~marlborom@111.235.211.94] has joined #g0v.tw
+16:55 -!- Moo [~marlborom@111.235.209.87] has joined #g0v.tw
+16:55 -!- Moo is now known as Guest61903
+16:59 -!- Guest9851 [~marlborom@111.235.211.94] has quit [Ping timeout: 246 seconds]
+17:06 < a-tsioh> “早”
+17:19 < walkingice> ！
+17:21 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has joined #g0v.tw
+18:11 < Lee1092> 高村長出現！！！  ＸＤ
+18:11 < Lee1092> @ StartupWeekend
+18:31 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 272 seconds]
+18:38 < clkao> Lee1092! 有熬夜嗎?
+18:42 < Lee1092> clkao: 還ok.稍微  .沒有睡袋.只好回家睡覺XD
+18:43 < jimyhuang> Lee1092: 真可惜沒有睡袋 :P
+18:44 < yhsiang> Lee1092: 只好購入這個了 http://news.gamme.com.tw/598214 # 人型毛毯
+18:44 < M00sUltraB0t> [ 終極防寒具《人型懶人毯》還可以直接上廁所喔～（蹲... ] - news.gamme.com.tw
+18:45 < yhsiang> 裡面還有人形睡袋 
+18:47 < Lee1092> yhsiang: XDDDDDDDDD   這半夜起來會嚇死人
+18:48 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+18:48 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+18:48 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+18:49 -!- ballII [dc88e6eb@gateway/web/cgi-irc/kiwiirc.com/ip.220.136.230.235] has joined #g0v.tw
+18:50 < ballII> 感謝萌典的開發群。請問萌典將來會加進異體字字典嗎？
+18:51 -!- ballII [dc88e6eb@gateway/web/cgi-irc/kiwiirc.com/ip.220.136.230.235] has quit [Client Quit]
+18:58 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 248 seconds]
+18:58 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+18:58 < kcwu> 比較立即可行的是在萌典加 link 到異體字字典(https://github.com/audreyt/moedict-webkit/issues/3 ), 若是完整的異體字字典工程有點大, 可能要有多些人表示有這樣的需求才會做
+18:58 < M00sUltraB0t> [ link to MOE variants dictionary · Issue #3 · audreyt/moedict-webkit · GitHub ] - github.com
+18:59 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+19:06 -!- ballII [dc88e6eb@gateway/web/cgi-irc/kiwiirc.com/ip.220.136.230.235] has joined #g0v.tw
+19:10 < ballII> kcwu 加link到萌典對我來說就很讚了，我用異體字字典最主要是要查說文解字那些的圖檔，可是異體字字典不能用注音查，
+19:10 < ballII> 從同筆畫數裡找出我要的字，非常花時間。
+19:14 < ballII> 講錯了。應是「不能直接輸入文字來查」
+19:14 < a-tsioh> MOE的異體字字典跟Unicode的variants有差嗎？
+19:15 < ballII> 啊我剛剛才發現新版異體字字典可以輸入文字（但新版說尚未完成編修）
+19:16 < Jedi_> ballII: 現行其實也可以用，例如 google 搜尋輸入字，加上 site:dict.variants.moe.edu.tw
+19:16 < Jedi_> 之類的
+19:17 < kcwu> moe 的字比 unicode 的多
+19:18 < kcwu> 而且有解釋、文獻資料
+19:18 < Jedi_> 不過我自己常常需要用異體字字典查的....都是我不知道怎麼用輸入法打出來的字 KD
+19:18 < ballII> Jedi 謝謝
+19:19 < a-tsioh> licence呢？
+19:19 < au> 好像上次討論到這個時，發現新版異體字典沒有 permalink (單字的 URL)
+19:20 < jimyhuang> clkao++ 感謝接力...實在是琢磨很久 XD
+19:20 < kcwu> au: 是說這個 http://dict2.variants.moe.edu.tw/variants/rbt/word_attribute.rbt?educode=A00001 ?
+19:21 < M00sUltraB0t> [ 教育部異體字字典 ] - dict2.variants.moe.edu.tw
+19:21 < clkao> jimyhuang++ getting started
+19:22 < au> kcwu: oh, so there _is_ permalink based on educode, cool
+19:22 < ballII> 像「勳」這個字打得出來，可是異體字字典是用圖檔
+19:23 < kcwu> au: the mapping table is prepared :) https://github.com/kcwu/moedict-variants
+19:23 < yhsiang> 都忘了有watchCollection ... orz
+19:23 < M00sUltraB0t> [ kcwu/moedict-variants · GitHub ] - github.com
+19:23 < au> kcwu: 有另一個可以用字查的
+19:23 < au> http://xiaoxue.iis.sinica.edu.tw/variants/PageResult/PageResult?EudcFontChar=%E8%90%8C&PageNo=false&PaginalZiNum=100&ImageSize=36
+19:23 < clkao> yhsiang: 我今天才知道有 
+19:23 < au> (from iis sinica)
+19:24 < yhsiang> 疑? 那我之前是跟誰討論watchCollection XD
+19:24 < au> 但 moe.edu 的好像比較多
+19:25 < kcwu> 奇怪我一直會忘掉有小學堂異體字表這東西
+19:25 < ballII> Jedi_  像「勳」這個字打得出來，可是異體字字典是用圖檔，所以不容易google。
+19:25 < au> ballII: 勲 & 勳 在 dict2.variants 看起來是字?
+19:25 < au> dict2.variants.moe.edu.tw/variants/rbt/query_by_standard_tiles.rbt
+19:25 < clkao> Sw 北中連線悲劇中
+19:26 < kcwu> http://dict2.variants.moe.edu.tw/variants/rbt/word_attribute.rbt?educode=A00398-002
+19:26 < M00sUltraB0t> [ 教育部異體字字典 ] - dict2.variants.moe.edu.tw
+19:26 < ballII> au 是的新版是文字！（我只對舊版較熟）
+19:33 < ballII> 不過「ㄓ」為什麼要用圖檔啊？ http://dict2.variants.moe.edu.tw/variants/rbt/word_attribute.rbt?educode=A00029-001
+19:33 < M00sUltraB0t> [ 教育部異體字字典 ] - dict2.variants.moe.edu.tw
+19:33 < Jedi_> ballII: 因為是個字，不是注音符號
+19:34 < Jedi_> ballII: 就好像「一」跟「ㄧ」不同
+19:34 < Jedi_> ballII: 所以是「㞢」跟「ㄓ」 hum
+19:35 < ballII> 可是「ㄓ」的註釋裡直接用文字「ㄓ」啊
+19:35 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 245 seconds]
+19:35 < Jedi_> ballII: 這一定是個編輯上的 bug~
+19:35 < au> 可能是建檔的人一時不察
+19:39 < ballII> 哇我現在才發現 Jedi_ 的兩個㞢字不一樣，irc介面編碼看不出來
+19:39 < ballII> 介面「字型」
+19:40 < Jedi_> 至於「㞢」為什麼用圖....大概就是編輯的時候，負責的人的輸入法看不到這個字....(?)
+19:47 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 252 seconds]
+19:50 -!- Ti_W_B [~Ti.W.B@112.104.36.2] has joined #g0v.tw
+19:50 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+19:53 < Lee1092> clkao:  超級悲劇....  orz..
+19:58 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 252 seconds]
+20:00 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+20:00 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+20:00 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+20:00 -!- Ti_W_B [~Ti.W.B@112.104.36.2] has quit [Ping timeout: 272 seconds]
+20:03 < ipa> Lee1092: 還沒結束嗎？
+20:04 < clkao> 3 to go
+20:04 < clkao> 但是會切到台中去，螢幕整個看不到 XD
+20:09 < Lee1092> ipa  還沒 台中還有5～   XD 
+20:09 < Lee1092> 投影片空白跟麥克風回音悲劇XD
+20:09 < clkao> getting hungry
+20:10 < Lee1092> 開動  快搶  食物快完了ＸＤ
+20:10 < clkao> orz
+20:12 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 240 seconds]
+20:16 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+20:18 -!- pichu__ [~pichu@140.117.182.198] has joined #g0v.tw
+20:23 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Read error: Connection reset by peer]
+20:24 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+20:25 < Lee1092> 感謝高村長，獲得 g0v 名片～～ 
+20:25  * Lee1092 如獲至寶
+20:28 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 248 seconds]
+20:31 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+20:31 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+20:31 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+20:31 -!- Ti_W_B [~Ti.W.B@112.104.36.2] has joined #g0v.tw
+20:33 < yhsiang> Lee1092: 恭喜獲得教皇卡
+20:35 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Remote host closed the connection]
+20:35 -!- ballII [dc88e6eb@gateway/web/cgi-irc/kiwiirc.com/ip.220.136.230.235] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+20:41 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+20:41 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+20:41 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+20:43 -!- Ti_W_B [~Ti.W.B@112.104.36.2] has quit [Ping timeout: 272 seconds]
+20:43 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+20:45 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+20:50 < a-tsioh> licence呢？
+20:50 < a-tsioh> (oops, wrong window)
+20:52 < hychen> http://2013.websummit.net/
+20:52 < M00sUltraB0t> [ Where the Tech World Meets | Web Summit - October 30 & 31, 2013 ] - 2013.websummit.net
+20:52 < hychen> 這event超厲害的
+20:52 < hychen> 10000個attendees
+20:58 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+21:02 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+21:03 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Remote host closed the connection]
+21:03 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+21:05 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Client Quit]
+21:05 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+21:06 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+21:08 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+21:15 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+21:15 -!- marlboromoo [~marlborom@114-43-110-60.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+21:18 -!- marlboromoo [~marlborom@114-43-110-60.dynamic.hinet.net] has joined #g0v.tw
+21:19 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 248 seconds]
+21:20 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+21:24 -!- Phoenixmiss [~Miss@p27172-ipngn501hodogaya.kanagawa.ocn.ne.jp] has joined #g0v.tw
+21:25 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+21:26 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+21:26 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+21:26 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+21:30 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 240 seconds]
+21:32 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+21:36 -!- marlboromoo [~marlborom@114-43-110-60.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+21:38 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Ping timeout: 245 seconds]
+21:38 < a-tsioh> au: new version of TRS.cin !
+21:39 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has joined #g0v.tw
+21:39 -!- haroldwu [~haroldwu@118-170-138-33.dynamic.hinet.net] has quit [Changing host]
+21:39 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+21:39 -!- a-tsioh is now known as a-tsioh_afk
+21:46 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has quit [Quit: leaving]
+21:51 -!- haroldwu [~haroldwu@219.85.185.194] has joined #g0v.tw
+21:51 -!- haroldwu [~haroldwu@219.85.185.194] has quit [Changing host]
+21:51 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+21:54 < Ti_W_B> 這裡有人嗎~
+21:56 -!- Phoenixmiss [~Miss@p27172-ipngn501hodogaya.kanagawa.ocn.ne.jp] has quit [Ping timeout: 265 seconds]
+21:57 -!- Missphoenix [~Miss@114-38-109-194.dynamic.hinet.net] has joined #g0v.tw
+21:57 < glll4678> 似乎有
+21:59 < yhsiang> 有
+21:59 < ipa> 目前線上掛了179人（望向右列名單）
+22:02 < ipa> 今天試著換bootstrap theme，還是放棄，我畫mockup就好惹 :/
+22:03 < Ti_W_B> 掛著跟活著是兩回事.....
+22:04 < ipa> Ti_W_B: hi
+22:04 < ipa> Ti_W_B: 有什麼有興趣的議題或專案嗎？
+22:17 < Ti_W_B> 目前學生ing，有興趣的議題或專案.....社會正義?
+22:20 < ipa> nice ....寫程式？寫文章？畫畫？唱歌？
+22:20 < Ti_W_B> 寫程式
+22:20 -!- people [42b7cb41@gateway/web/cgi-irc/kiwiirc.com/ip.66.183.203.65] has joined #g0v.tw
+22:20 < Ti_W_B> 網路架構學習中
+22:21 < Ti_W_B> 文章也是喜歡
+22:23 -!- fetag [~fetag@192.81.215.208] has joined #g0v.tw
+22:23 < ipa> http://hack.g0v.tw/project 有興趣可以先到這頁右側跳坑處看看，找個有趣的來解，有問題也可以上來問
+22:24 < Ti_W_B> Wow~
+22:24 < Ti_W_B> 謝
+22:25 < ipa> 或逛逛 https://github.com/g0v/   
+22:25 < M00sUltraB0t> [ g0v (g0v) · GitHub ] - github.com
+22:27 -!- Missphoenix [~Miss@114-38-109-194.dynamic.hinet.net] has quit [Quit: Leaving]
+22:31 < Ti_W_B> 所以這裡是....自由專案?
+22:33 < yhsiang> 是
+22:33 < ipa> 自由提案，自由撿 issue 囉，想做的就進去討論留言，然後開幹
+22:33 < fetag> 有坑找坑填...
+22:33 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has quit [Quit: mno2]
+22:33 < Ti_W_B> 哇~
+22:33 < ipa> fetag++
+22:34 < Ti_W_B> .....
+22:34 < Ti_W_B> 第一次接觸這些，能問下嗎?
+22:35 < Ti_W_B> 這些專案到底.....是怎麼發起?   是誰主管這些.....?
+22:36 -!- Ti_W_B [~Ti.W.B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+22:36 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+22:36 < Ti_W_B> 斷線~
+22:37 -!- fetag [~fetag@192.81.215.208] has quit []
+22:37 < ipa> Ti_W_B: FYI http://blog.g0v.tw/post/60348667148 
+22:38 < M00sUltraB0t> [ 台灣零時政府 / g0v.tw • 網路廣播《深音》談 g0v.tw：分散協作的實力與潛力 ] - blog.g0v.tw
+22:38 < ipa> Ti_W_B: 你是從哪裡知道g0v的呢？
+22:38 < Ti_W_B> 網路某IRC介紹文
+22:39 < ipa> 然後就不小心掉進來？XD
+22:39 < Ti_W_B> 是是~
+22:39 < Ti_W_B> 要是能做些事也會很開心的~
+22:39 < Ti_W_B> 努力~
+22:40 < ipa> have fun! come join us: https://www.facebook.com/groups/g0v.general/
+22:40 < M00sUltraB0t> [ Facebook ] - www.facebook.com
+22:41 < glll4678> 請問 英文母音加上聲調符號的字 要去哪裡找呢?
+22:41 < Ti_W_B> 已加~
+22:44 < yhsiang> Ti_W_B: 都是有興趣的人自己發起專案的 
+22:44 < Ti_W_B> 看到簡介了，竟然有這種社群存在!?
+22:45 < Ti_W_B> 台灣的Anonymous
+22:49 -!- Ti_W_B2 [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+22:49 < Ti_W_B2> 我想在我們學校推廣這個耶......
+22:50 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 264 seconds]
+22:54 < yhsiang> Ti_W_B2: 甚麼學校 ?
+23:03 -!- Missphoenix [~Miss@114-38-109-194.dynamic.hinet.net] has joined #g0v.tw
+23:05 < Ti_W_B2> 我的nick怎變B2了.....
+23:05 < Ti_W_B2> 學校=全台唯一的藝術高中
+23:06 < yhsiang> 新港藝術高中?
+23:06 < yhsiang> 因為有重複登入 自動變B2吧
+23:07 < yhsiang> Ti_W_B2: 恭喜你成為g0v 新港藝術高中 校園大使 :D
+23:07 < ipa> 新港鴨肉羹好吃
+23:07 < Ti_W_B2> 被猜中了~
+23:08 < glll4678> Google 到新港藝術高中的照片 那跑道好酷喔
+23:08 < Ti_W_B2> 新港人?
+23:08 < Missphoenix> ..
+23:08 < Ti_W_B2> 但我們的運動會不會在上面跑....
+23:08 < Jedi_> 咦，不是有個彰化藝術高中？ # 全台唯一的藝術高中
+23:09 < Ti_W_B2> 是嗎?
+23:09 < yhsiang> Missphoenix: hi
+23:10 < ipa> 新港藝術高中的禮堂很酷 設備專業
+23:10 < yhsiang> Jedi_: 真的有耶 XD
+23:10 < Ti_W_B2> ipa你到底是.....?
+23:11 < glll4678> Ti_W_B2: 搞不好是你的學姐XD
+23:11 < Ti_W_B2> .......
+23:11 < ipa> 我去演講過
+23:12 -!- mno2 [~mno2@bb121-6-15-139.singnet.com.sg] has joined #g0v.tw
+23:12 < Ti_W_B2> 喔喔.....原來
+23:12 < Ti_W_B2> 不會是推廣g0v吧?
+23:15 < ipa> 不是，不然你應該知道g0v了 XD
+23:15 -!- a-tsioh_afk is now known as a-tsioh
+23:15 < Ti_W_B2> 我才高一~
+23:15 < Ti_W_B2> 剛進那裏
+23:15 < yhsiang> Ti_W_B2: good! 太強大了
+23:16 < yhsiang> 人才!
+23:16 < Missphoenix> 祝我一路好走吧..
+23:16 -!- ymow [~Adium@60.245.65.219] has joined #g0v.tw
+23:17 < Ti_W_B2> ?
+23:17 -!- ymow [~Adium@60.245.65.219] has quit [Client Quit]
+23:18  * Ti_W_B2 ¥Rº¡ºÃ´b
+23:19 < yhsiang> Missphoenix: ?
+23:20 < Ti_W_B2> Missphoenix只是.....'
+23:21 < yhsiang> Ti_W_B2: 歡迎推廣g0v喔 :)
+23:21 -!- Missphoenix [~Miss@114-38-109-194.dynamic.hinet.net] has quit [Quit: Leaving]
+23:22 < Ti_W_B2> 看看我們學校會有多少人願意幫忙~
+23:22 < Ti_W_B2> ipa:我好奇的是你連鴨肉羹都知道......
+23:22 < a-tsioh> 竟然在g0v的blog 聽到法語(o_O)
+23:23 < clkao> 終於回到山上了
+23:24 < a-tsioh> 也第一次聽到ipa的聲音
+23:24 < yhsiang> clkao: 可以好好補hp的意思嗎 XD
+23:24 < clkao> orz 沒兩天就要去 jsonf.asia 了
+23:25 < clkao> 話說最近參加了一些活動後，深深覺得 coscup / osdc 等團隊辦的活動真的是世界頂級的
+23:25 < yhsiang> a-tsioh: QQ 對不起 高中沒好好學法語
+23:25 < hychen> 新港鴨肉更好吃
+23:25 < hychen> s/更/羹/
+23:25 < M00sUltraB0t> hychen meant to say: 新港鴨肉羹好吃
+23:26 < a-tsioh> yhsiang: 無問題！
+23:26 < hychen> clkao: 今天聊到把web submit辦在台灣的想法 XD
+23:26 < clkao> yhsiang: 對了，yht 會後那份 slides 有放出來嗎？
+23:26 < a-tsioh> 我只是嚇一跳，結果是廣播的background
+23:26 < clkao> lol
+23:27 < yhsiang> clkao: 阿 我忘了 XD
+23:27  * a-tsioh 期待終於可以參加黑客松的時候
+23:27 < yhsiang> 難怪有種少做甚麼的感覺 ....
+23:27 < yhsiang> hychen: 不愧是嗨董 orz..
+23:27 -!- imwithye [~imwithye@116.251.209.247] has joined #g0v.tw
+23:28 < hychen> web submit超high的, 愛爾蘭總理跟現實世界鋼鐵人對談
+23:28 < yhsiang> elon musk ?
+23:28 < hychen> yap
+23:28 < hychen> 今天聊到愛爾蘭跟台灣很像
+23:28 < clkao> hychen: elon vs 水母 會如何？
+23:28 < hychen> clkao: hmm, 千萬不要握手
+23:28 < yhsiang> 的確有點類似
+23:29 < Ti_W_B2> 看了下g0v，坑數不清啊.....
+23:29 < hychen> 愛爾蘭現在想要爭取成為startup hub.
+23:29 < yhsiang> Ti_W_B2: 所以需要你
+23:29 < Ti_W_B2> 0.0
+23:29 < hychen> 弄了一堆育成中心邀請全世界的startup進駐
+23:29 < clkao> ireland 有租稅優惠
+23:29 -!- Ti_W_B2 [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+23:30 < clkao> 又有大池塘中間的地利之變
+23:30 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+23:30 < Ti_W_B> 又斷線.....
+23:31 < Ti_W_B> 應該說IRC軟體崩潰
+23:32 < tuiry> hychen 怎麼覺得好像現在的新加坡
+23:32 < yhsiang> http://www.slideshare.net/yhsiang/g0v-2013yahoo # slide
+23:32 < M00sUltraB0t> [ g0v - 2013yahoo溫馨小聚 ] - www.slideshare.net
+23:32 < a-tsioh> au clkao  kcwu : jsCin 的 phrases 有人在弄嗎？我的tables好像可以了
+23:33 < hychen> tuiry: 育成中心看來是個好生意 ;p
+23:33 -!- imwithye [~imwithye@116.251.209.247] has quit [Quit: Leaving...]
+23:34 < yhsiang> glll4678: 通用拼音這邊怎麼轉比較好 http://crptransfer.moe.gov.tw 有提供這個http://crptransfer.moe.gov.tw/files/970918duizhao_7924.pdf
+23:34 < M00sUltraB0t> [ 教育部終身教育司- 中文譯音轉換系統 ] - crptransfer.moe.gov.tw
+23:34 < Ti_W_B> ipa是iOS底下的應用程式安裝檔副檔名之一耶
+23:34 < yhsiang> 去query http轉單字好像太慢了?
+23:35 < tuiry> hychen: 對阿，我覺得台灣是華人文化圈裡生活最舒適的地區，如果可以在法規上做好這些，應該會很棒
+23:36 < yhsiang> tuiry: 非常同意 # 生活舒適,方便 XD
+23:36 < hychen> ijoing的場地超大
+23:36 < clkao> 原來 glll4678 也是高中生!
+23:36 < Ti_W_B> 這裡有多少高中生啊.....
+23:37 < Ti_W_B> 報數~
+23:37 < hychen> yhsiang: 不是要寫個新竹co-working space的規劃 XD
+23:37 < tuiry> Ti_W_B 藝術高中有什麼特別的地方嗎
+23:37 < yhsiang> hychen: 有阿 我在看清楚整篇台南co-working space
+23:38 < yhsiang> 不然我先開hackpad好了  讓walkingice來跳 XD
+23:38 < hychen> yhsiang: gogogo
+23:39 < Ti_W_B> tuiry:有啊，旁邊的鴨肉羹很好吃，雖然我都沒吃過.....(誤)
+23:41 < hychen> Ti_W_B: 那超好吃的
+23:42 < yhsiang> walkingice: https://g0v.hackpad.com/-co-working-space--oA0ouszXglo # gogogo
+23:42 < M00sUltraB0t> [ 對新竹 co-working space 的想像 - g0v.hackpad.com ] - g0v.hackpad.com
+23:42 < walkingice> yhsiang: 我是醒著的！別趁機放箭 XDXDXD
+23:42 -!- Missphoenix [~Miss@114-38-109-194.dynamic.hinet.net] has joined #g0v.tw
+23:42 < yhsiang> walkingice: 嗨董說新竹很有機會阿! 
+23:42 < hychen> inception 第二層 XD
+23:42 < yhsiang> 只要找到願意衝的人 XD
+23:43 < clkao> yhsiang: 別趁機放箭~ 還好多 ly 坑要填
+23:43 < walkingice> 嗨董就順手在新竹開一間吧 XD
+23:43 < hychen> =.=
+23:44 < Ti_W_B> 音樂老師超強~
+23:44 < Ti_W_B> 還有一些藝術課程
+23:46 < walkingice> yhsiang: 超嗨，已經開始在寫了 XD
+23:47 < yhsiang> 因為吃了雞酒 ...
+23:47 < ipa> Inception要五層，神棍加油
+23:48 < Missphoenix> 神棍...怎麼會有這詞出現...
+23:48 < Ti_W_B> ipa現身~
+23:50 < yhsiang> 請問ipa 要指名那個人跳坑? (殺手遊戲梗 ...)
+23:51 < yhsiang> Missphoenix: 這..要問hychen了 XD
+23:51 < clkao> 不知道大家有沒有玩過 werewolf?
+23:51 < hychen> g0v是邪教, 那有神棍也是很正常的(誤)
+23:51 < Missphoenix> 哪裡有坑!!
+23:51  * Missphoenix 跳入坑內
+23:51 < Ti_W_B> 哈哈
+23:52  * Ti_W_B ¸ò¶i
+23:52 < walkingice> clkao: nope
+23:52 < glll4678> yhsiang: Wikipedia上有整個表 但是聲調的部分 我不知道怎麼處理
+23:52 < CAA51> werewolf 紙牌十分可愛
+23:53 < yhsiang> boardgame? 好玩嘛
+23:53 < au> a-tsioh: phrase 我還沒有弄，要幫忙看一下嗎?
+23:53 < au> a-tsioh: 你的新的 cin 我在 OSX 上可以用 \o/
+23:53 < CAA51> 團康好遊戲！
+23:54 < clkao> jimyhuang: maybe we can change the share button ui to use https://github.com/esvit/angular-social ?
+23:54 < M00sUltraB0t> [ esvit/angular-social · GitHub ] - github.com
+23:55 < clkao> walkingice: http://en.wikipedia.org/wiki/Mafia_(party_game)
+23:55 < M00sUltraB0t> [ Mafia (party game) - Wikipedia, the free encyclopedia ] - en.wikipedia.org
+23:55 < Ti_W_B> 各位，明天再見啊......
+23:55 < ipa> Ti_W_B: 晚安
+23:56 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+23:56 < ipa> Ti_W_B 是第二年輕的g0ver  年紀最小保持者還是阿一同學 XD
+23:56 < yhsiang> glll4678: oh 我看看
+23:57 -!- Ti_W_B [~Ti_W_B@112-104-36-2.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+23:57 < Missphoenix> !!
+23:57 < Missphoenix> ..
+23:57 < glll4678> yhsiang: http://zh.wikipedia.org/wiki/%E4%B8%AD%E6%96%87%E6%8B%BC%E9%9F%B3%E5%B0%8D%E7%85%A7%E8%A1%A8
+23:57 < M00sUltraB0t> [ 中文拼音對照表 - 维基百科，自由的百科全书 ] - zh.wikipedia.org
+23:57 < a-tsioh> au: 酷！
+23:57 -!- ymow [~Adium@1-171-53-227.dynamic.hinet.net] has joined #g0v.tw
+23:58 < yhsiang> glll4678: 聲韻是指 1,2,3,4聲嗎?
+23:58 < a-tsioh> jsCin就是plain js 嗎？　（我怕js :p)
+23:59 < yhsiang> Ti_W_B: 晚安!
+23:59  * Ti_W_B ·w­Ë
+23:59 < glll4678> yhsiang: 要把 1.2.3.4.輕聲 放在重要母音上

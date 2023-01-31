@@ -1,0 +1,636 @@
+--- Day changed 一 12月 09 2013
+00:01 -!- Guest87783 [7a796ed4@gateway/web/cgi-irc/kiwiirc.com/ip.122.121.110.212] has left #g0v.tw []
+00:13 -!- CJarek|2 [kvirc@1-165-112-23.dynamic.hinet.net] has quit []
+00:13 -!- CJarek [kvirc@1-165-112-23.dynamic.hinet.net] has joined #g0v.tw
+00:16 -!- lcamel_ [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 260 seconds]
+00:21 -!- icman [~icman@123.240.140.154] has quit [Quit: 明天天氣晴]
+00:36 -!- mno2 [~mno2@bb116-15-44-14.singnet.com.sg] has quit [Quit: mno2]
+01:37 -!- WeiHung [~chatzilla@s101002506.CHING-ABC.ab.nthu.edu.tw] has joined #g0v.tw
+01:41 < WeiHung> 好像大家都睡了
+01:41 -!- WeiHung changed the topic of #g0v.tw to: irccloud邀請信: http://goo.gl/YZwI9O | 注意-這裡有log: http://logbot.g0v.tw | 如何參與: http://g0v.tw/join.html | 12/21黑客松報名 https://kktix.com/events/g0v-hackath6n | g0v 行事曆 http://goo.gl/U7LvUK
+01:48 -!- SupaplexTW___ [~Adium@114-25-206-92.dynamic.hinet.net] has quit [Quit: Leaving.]
+02:01 < taililee> hychen: 還有相關訊息嗎？
+02:09 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has quit [Quit: Leaving.]
+02:10 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+02:13 -!- WeiHung [~chatzilla@s101002506.CHING-ABC.ab.nthu.edu.tw] has quit [Ping timeout: 260 seconds]
+02:35 -!- Supaplextw [~Lucky@114-25-206-92.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+02:39 -!- Phoenixmiss [~Miss@114-41-122-27.dynamic.hinet.net] has quit [Quit: Leaving]
+02:41 -!- Supaplextw [~Lucky@114-25-206-92.dynamic.hinet.net] has joined #g0v.tw
+02:47 -!- AceChen_ [~AceChen@140.109.113.100] has joined #g0v.tw
+02:48 -!- shhu_ [~shhu@bsd2.cs.nctu.edu.tw] has joined #g0v.tw
+02:54 -!- Netsplit *.net <-> *.split quits: jwbai, shhu, AceChen
+02:58 -!- Netsplit over, joins: jwbai
+03:22 -!- lcamel [~lcamel@114-45-57-30.dynamic.hinet.net] has joined #g0v.tw
+03:30 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+03:41 -!- dirtybot [~dirty@zoro.ee.ncku.edu.tw] has quit [Ping timeout: 246 seconds]
+04:20 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit []
+04:32 -!- Supaplextw1 [~Lucky@114-36-246-61.dynamic.hinet.net] has joined #g0v.tw
+04:34 -!- Supaplextw [~Lucky@114-25-206-92.dynamic.hinet.net] has quit [Ping timeout: 250 seconds]
+05:03 -!- chadliu23 [~chadliu23@220.133.11.33] has quit [Ping timeout: 246 seconds]
+05:03 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+05:05 -!- lcamel [~lcamel@114-45-57-30.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+05:07 -!- lcamel [~lcamel@118-168-96-142.dynamic.hinet.net] has joined #g0v.tw
+05:39 -!- CJarek|2 [kvirc@61-224-54-27.dynamic.hinet.net] has joined #g0v.tw
+05:42 -!- CJarek [kvirc@1-165-112-23.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+06:17 -!- lcamel [~lcamel@118-168-96-142.dynamic.hinet.net] has quit [Remote host closed the connection]
+06:59 -!- AceChen [~AceChen@140.109.113.100] has joined #g0v.tw
+07:01 -!- AceChen_ [~AceChen@140.109.113.100] has quit [Ping timeout: 240 seconds]
+07:28 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+08:04 < dirty__> 沒空 debug, 但是 kcwu 出現了, 耶!
+08:51 -!- LCfunPlay_op [~LC@111-250-25-246.dynamic.hinet.net] has joined #g0v.tw
+09:19 -!- CJarek|2 [kvirc@61-224-54-27.dynamic.hinet.net] has quit []
+09:19 -!- CJarek [kvirc@61-224-54-27.dynamic.hinet.net] has joined #g0v.tw
+09:23 -!- ypwong [~anthony@124244232015.ctinets.com] has joined #g0v.tw
+09:28 -!- M00sUltraB0t [~r0b0t@118-163-90-205.HINET-IP.hinet.net] has joined #g0v.tw
+09:28 < Guest32973> ipa, bot 回神囉 XD
+09:29 -!- Guest32973 [~marlborom@101.3.42.48] has quit [Quit: 暫離]
+09:29 -!- marlboromoo [~marlborom@101.3.42.48] has joined #g0v.tw
+09:41 -!- M00sL0gB0t_ [~r0b0t@192.241.232.223] has quit [Quit: Closing]
+09:41 -!- M00sL0gB0t_ [~r0b0t@192.241.232.223] has joined #g0v.tw
+09:43 -!- M00sL0gB0t_ [~r0b0t@192.241.232.223] has quit [Client Quit]
+09:44 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has joined #g0v.tw
+09:47 -!- Ti_W_B17 [~Ti_W_B@111-242-79-17.dynamic.hinet.net] has joined #g0v.tw
+09:47 -!- marlboromoo [~marlborom@101.3.42.48] has left #g0v.tw ["暫離"]
+09:47 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has quit [Client Quit]
+09:49 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has joined #g0v.tw
+09:49 -!- ypwong [~anthony@124244232015.ctinets.com] has quit [Read error: Connection reset by peer]
+09:50 -!- marlboromoo [~marlborom@101.3.42.48] has joined #g0v.tw
+09:52 -!- ypwong [~anthony@124244232015.ctinets.com] has joined #g0v.tw
+09:53 -!- CJarek|2 [kvirc@61-224-54-27.dynamic.hinet.net] has joined #g0v.tw
+09:54 -!- LCfunPlay_op [~LC@111-250-25-246.dynamic.hinet.net] has quit [Quit: LCfunPlay_op]
+09:57 -!- CJarek [kvirc@61-224-54-27.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+10:02 -!- lcamel [~lcamel@2406:2000:efa5:9:4936:685c:6ac6:9809] has joined #g0v.tw
+10:06 < ljm> Wow ... 這個週末萌典改了好多東西
+10:06 -!- Ti_W_B17 [~Ti_W_B@111-242-79-17.dynamic.hinet.net] has quit [Quit: Nettalk6 - www.ntalk.de]
+10:10 -!- phoebe__ [uid18220@gateway/web/irccloud.com/x-mjtsfvmxwzjwehwr] has quit [Quit: Connection closed for inactivity]
+10:11 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+10:13 < ljm> merged to nan . 看起來好像沒問題.
+10:20 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+10:31 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+10:35 < pcchen> ljm: 請看看Ihc在bitbucket那邊開的ticket
+10:35 < pcchen> ljm: 大家討論討論
+10:35 -!- lcamel_ [~lcamel@nat/yahoo/x-aaxcuvdwzdjcasls] has joined #g0v.tw
+10:35 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has joined #g0v.tw
+10:35 -!- lcamel [~lcamel@2406:2000:efa5:9:4936:685c:6ac6:9809] has quit [Ping timeout: 240 seconds]
+10:43 -!- haroldwu_away [~haroldwu@unaffiliated/haroldwu] has quit [Quit: leaving]
+10:43 -!- haroldwu [~haroldwu@219.85.185.194] has joined #g0v.tw
+10:43 -!- haroldwu [~haroldwu@219.85.185.194] has quit [Changing host]
+10:43 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+10:43 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has quit [Quit: Leaving.]
+10:44 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+10:44 -!- Ti_W_B18 [~Ti_W_B@36.237.225.204] has joined #g0v.tw
+10:46 < ljm> pcchen: ok
+10:46 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has joined #g0v.tw
+10:49 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+10:51 < ljm> pcchen: 發現沒什麼特別的想法. :P
+10:53 < pcchen> ljm: 就慢慢研究，看怎麼校對及規範化語料庫而已
+10:53 -!- elvis_ is now known as elvisfb
+10:54 -!- CJarek|2 [kvirc@61-224-54-27.dynamic.hinet.net] has quit []
+10:54 -!- CJarek [kvirc@61-224-54-27.dynamic.hinet.net] has joined #g0v.tw
+10:54 < pcchen> ljm: 需要清楚呈現跟教育部標準的 diff
+10:57 -!- chihchun_afk is now known as chihchun
+10:59 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+11:02 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 265 seconds]
+11:11 -!- lcamel_ [~lcamel@nat/yahoo/x-aaxcuvdwzdjcasls] has quit [Remote host closed the connection]
+11:12 -!- lcamel [~lcamel@2406:2000:efa5:5:209b:beea:ddf8:a77] has joined #g0v.tw
+11:15 -!- Ti_W_B19 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+11:16 -!- Ti_W_B110 [~Ti_W_B@36.237.225.204] has joined #g0v.tw
+11:17 -!- Ti_W_B18 [~Ti_W_B@36.237.225.204] has quit [Ping timeout: 252 seconds]
+11:19 -!- Ti_W_B19 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 260 seconds]
+11:24 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has quit [Quit: Leaving.]
+11:29 -!- lcamel_ [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+11:30 < kcwu> au: what's new in 0.5.0?
+11:32 -!- lcamel [~lcamel@2406:2000:efa5:5:209b:beea:ddf8:a77] has quit [Ping timeout: 240 seconds]
+11:34 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has joined #g0v.tw
+11:46 -!- Ti_W_B110 [~Ti_W_B@36.237.225.204] has quit [Quit: Nettalk6 - www.ntalk.de]
+11:55  * isacl 等報名ing
+11:55 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has quit [Quit: Leaving.]
+12:01 -!- Ti_W_B110 [~Ti_W_B@36.237.225.204] has joined #g0v.tw
+12:02 -!- lcamel_ [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Remote host closed the connection]
+12:02 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+12:16 -!- sb-amests2 [7227B841@conference/jsconf/x-efdehzfzpreumzvf] has joined #g0v.tw
+12:16 < sb-amests2> hello
+12:17 < Michael_LI> <sb-amests2> hello
+12:18 < sb-amests2> 大家好，不知道在這裡可不可以發問XD
+12:18 < ipa> 有問題直接問 :)
+12:18 < ipa> 有報到名的可以分享連結了喔～ XD
+12:19 < isacloud> 連結?
+12:20 < clkao_> hychen: 你有 mac 的 display 轉接嗎
+12:20 < ipa> isacloud: 報名連結啊，大家都不在fb分享報名資訊，好像怕自己搶不到票 XD
+12:22 < opop> 科比今天要去跟國寶級白目對談@@!!!
+12:22 < tkirby> 囧!
+12:23 < yhsiang> tkirby: 賀
+12:23 < opop> 會有錄影嗎，好想看國寶級白目說些什麼 XD
+12:23 < tkirby> 我不知道耶 XD
+12:28 -!- t3e [~tonie@114-32-217-236.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+12:29 < ETBlue> 「您已報名成功，敬請安心分享報名連結。」 XDDDD
+12:29 < isacloud> ipa: XD 了解
+12:29 -!- t3e [~tonie@114-32-217-236.HINET-IP.hinet.net] has joined #g0v.tw
+12:29 < clkao_> ETBlue: XD
+12:30 < ijliao> 國寶級白目 !
+12:34 -!- aeil [~Adium@61-222-220-134.HINET-IP.hinet.net] has joined #g0v.tw
+12:38 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has joined #g0v.tw
+12:41 -!- aeil [~Adium@61-222-220-134.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+12:43 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+12:47 -!- Ti_W_B110 [~Ti_W_B@36.237.225.204] has quit [Ping timeout: 250 seconds]
+12:56 < FourDollars> test
+12:56 -!- FourDollars1 [0122A0E7@conference/jsconf/x-lmcghjjxjuttfgmo] has joined #g0v.tw
+12:56 < FourDollars1> test
+13:12 < hcchien> 連結就在 topic 中
+13:17 -!- Ti_W_B110 [~Ti_W_B@36.237.220.37] has joined #g0v.tw
+13:19 -!- Phoenixmiss [~Miss@114-41-122-27.dynamic.hinet.net] has joined #g0v.tw
+13:48 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+13:56 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+13:57 < hychen> clkao_: 我有帶
+13:57 < au> kcwu: re what's new in 0.5.0, it's here https://plus.google.com/108097168863179836693/posts/8rhisvMivYp
+13:57 < M00sUltraB0t> [ Audrey Tang - Google+ - 群組內的朋友可以在… ] - plus.google.com
+13:58 < au> (perhaps I should post to group for each major revision's alpha channel)
+14:03 < au> kcwu: in other news, manifest.appcache is deployed; moedict.tw and moedict.org now opens in <0.5sec for repeated visitors (helps a lot, esp for mobile)... would be fun if we can go all the way with IndexedDBShim for stroke+packed+opus but that'll take some planning.
+14:16 < hychen> taililee: 目前沒有耶,我早上有丟 raejin, 但目前沒回應
+14:17 -!- DonaldIsFreak [76a67393@gateway/web/cgi-irc/kiwiirc.com/ip.118.166.115.147] has joined #g0v.tw
+14:31 -!- WeiHung [~chatzilla@42.74.206.57] has joined #g0v.tw
+14:33 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+14:33 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+14:34 < WeiHung> 好想去看今天的 ronny 和科比的講座
+14:35 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+14:37 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+14:39 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+14:40 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+14:40 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+14:40 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+14:40 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+14:41 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+14:43 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 265 seconds]
+14:50 < ETBlue> semantic ui 更新到最新版以後有些需要手動覆蓋的 bug 不見了，按鈕也變漂亮了（感動）
+14:54 -!- Ti_W_B110 [~Ti_W_B@36.237.220.37] has quit [Ping timeout: 246 seconds]
+14:56 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+14:58 -!- markwu [~markwu@116.50.34.246] has joined #g0v.tw
+15:15 -!- Ti_W_B110 [~Ti_W_B@36.237.220.37] has joined #g0v.tw
+15:18 -!- Phoenixmiss [~Miss@114-41-122-27.dynamic.hinet.net] has quit [Quit: Leaving]
+15:33 -!- wHisKy [~whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+15:37 -!- CJarek [kvirc@61-224-54-27.dynamic.hinet.net] has quit []
+15:37 < ipa> https://docs.google.com/document/d/1sgHqsfOgMjBeYxd5YFkvoZZHzZF5g3S0eVJZtrEZcIM/edit
+15:37 < M00sUltraB0t> [ 拜訪尤美女立委 - Google 雲端硬碟 ] - docs.google.com
+15:37 -!- CJarek [kvirc@61-224-54-27.dynamic.hinet.net] has joined #g0v.tw
+15:38 < clkao_> ETBlue: !!
+15:38 < ipa> clkao_: 上次文件長這樣
+15:40 -!- CJarek [kvirc@61-224-54-27.dynamic.hinet.net] has quit [Client Quit]
+15:40 -!- CJarek [kvirc@61-224-54-27.dynamic.hinet.net] has joined #g0v.tw
+15:42 -!- CJarek [kvirc@61-224-54-27.dynamic.hinet.net] has quit [Client Quit]
+15:42 -!- CJarek [kvirc@61-224-54-27.dynamic.hinet.net] has joined #g0v.tw
+15:43 -!- CJarek [kvirc@61-224-54-27.dynamic.hinet.net] has quit [Client Quit]
+15:46 < clkao_> https://docs.google.com/document/d/1cERNO1ddC8HGAwI8guoPVM6ebM4rCu98PpNZuCR2QnI/edit
+15:46 < M00sUltraB0t> [ 拜訪行政院 - Google 雲端硬碟 ] - docs.google.com
+15:52 < ETBlue> clkao_: 民主又會動了…看到 google docs 小精靈也在動 www
+16:00 < clkao_> 特殊政府對政府關係
+16:01 < hcchien> lol
+16:01 < hcchien> 太有梗
+16:03 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+16:03 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:03 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+16:04 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+16:06 < dirty__> http://www.iis.sinica.edu.tw/~hoho/ # 有人認識 何建明 研究員嗎?
+16:06 < kcwu> dirty__'s url: [何建明的首頁]
+16:06 < hcchien> 我很久以前認識，clkao 應該也認識
+16:07 < hcchien> lcamel 可能比較熟!?
+16:07 -!- cpyang [uid16804@gateway/web/irccloud.com/x-dicwkjvkclmaumrq] has quit [Read error: Connection reset by peer]
+16:08 -!- cpyang [~uid16804@gateway/web/irccloud.com/x-dfbpmeqeudbychou] has joined #g0v.tw
+16:09 < dirty__> 我剛問一位同事關於國科會 open source 計畫, 他提到何建明, 想說有人熟的話, 要不要直接去問?
+16:09 < edwardc> opensource 計畫還活著 ? XD 
+16:09 < dirty__> 我本來想找看有沒有人知道 g0v 的, 覺得該怎麼合作比較好
+16:09  * edwardc 想起當年的金企鵝蔣 
+16:10  * edwardc 想起當年的金企鵝獎
+16:10 < dirty__> 貌似活得還不錯, 剛聽到是教育部好像還有一個計畫
+16:12 < hcchien> 所以 hoho 現在負責國科會 open source project?
+16:12 < hychen> g0v大食團 v.s. gov 大使團 
+16:14 < dirty__> 總之可以問問啊, 不然矇著頭做也可以, 成功率比較低就是了
+16:46 -!- Ti_W_B110 [~Ti_W_B@36.237.220.37] has quit [Ping timeout: 265 seconds]
+16:56 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+16:58 -!- astro [r94010@linux3.csie.ntu.edu.tw] has quit [Ping timeout: 265 seconds]
+16:59 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+17:04 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+17:07 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Client Quit]
+17:09 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+17:11 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Client Quit]
+17:13 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+17:16 < a0kman> 線上如果有萌典的團隊成員~
+17:16 < a0kman> https://g0v.hackpad.com/-g0v--rEzVnbqCZrz
+17:16 < M00sUltraB0t> [ 全部拆掉改造王 -- g0v 團隊（暫名）（系列 ] - g0v.hackpad.com
+17:16 < kcwu> a0kman's url: [全部拆掉改造王 -- g0v 團隊（暫名）（系列節目） - g0v.hackpad.com]
+17:17 < a0kman> 12/21號有空會找各位做一些採訪喔~來充實拆掉改造王用的~
+17:29 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Remote host closed the connection]
+17:29 < au> a0kman++ cool
+17:29 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+17:29 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+17:30 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+17:34 -!- Phoenixmiss [~Miss@114-41-122-27.dynamic.hinet.net] has joined #g0v.tw
+17:37 -!- Guest17190 [~SilentAss@60-250-207-166.HINET-IP.hinet.net] has joined #g0v.tw
+17:42 -!- Ti_W_B110 [~Ti_W_B@36.237.220.37] has joined #g0v.tw
+17:48 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:48 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:48 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:48 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+18:01 -!- Phoenixmiss [~Miss@114-41-122-27.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+18:01 -!- Phoenixmiss [~Miss@114-41-122-27.dynamic.hinet.net] has joined #g0v.tw
+18:04 -!- Guest17190 [~SilentAss@60-250-207-166.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+18:05 -!- Guest17190 [~SilentAss@60.250.207.166] has joined #g0v.tw
+18:05 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+18:05 -!- jwbai [~jwbai@staff.kkbox.com.tw] has quit [Read error: Connection reset by peer]
+18:06 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+18:06 -!- miaout17_ [~miaout17@miaout17.net] has quit [Ping timeout: 250 seconds]
+18:06 -!- jwbai [~jwbai@staff.kkbox.com.tw] has joined #g0v.tw
+18:06 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has quit [Ping timeout: 246 seconds]
+18:06 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 246 seconds]
+18:06 -!- Neson_ [~Neson@dex.tw] has quit [Ping timeout: 260 seconds]
+18:07 -!- Jcrt [~Jcrt@192.241.233.133] has quit [Ping timeout: 246 seconds]
+18:07 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has joined #g0v.tw
+18:07 -!- Neson [~Neson@dex.tw] has joined #g0v.tw
+18:07 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+18:08 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+18:08 -!- miaout17_ [~miaout17@miaout17.net] has joined #g0v.tw
+18:10 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has quit [Ping timeout: 252 seconds]
+18:10 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+18:12 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Client Quit]
+18:17 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+18:18 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Client Quit]
+18:23 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+18:23 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+18:35 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 264 seconds]
+18:51 -!- Ti_W_B111 [~Ti_W_B@36.237.228.136] has joined #g0v.tw
+18:51 -!- Ti_W_B110 [~Ti_W_B@36.237.220.37] has quit [Ping timeout: 250 seconds]
+18:52 -!- Guest17190 [~SilentAss@60.250.207.166] has quit [Ping timeout: 250 seconds]
+19:16 -!- Ti_W_B112 [~Ti_W_B@36.237.228.136] has joined #g0v.tw
+19:17 -!- Ti_W_B111 [~Ti_W_B@36.237.228.136] has quit [Ping timeout: 264 seconds]
+19:25 -!- Ti_W_B112 [~Ti_W_B@36.237.228.136] has quit [Ping timeout: 245 seconds]
+19:25 -!- Supaplextw [~Lucky@114-36-246-61.dynamic.hinet.net] has joined #g0v.tw
+19:27 < yhsiang> hmm ..有沒有人要研究一個有趣的css問題 orz...
+19:27 -!- Supaplextw1 [~Lucky@114-36-246-61.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+19:28 -!- chihchun is now known as chihchun_afk
+19:28 -!- Guest17190 [Guest17190@220-129-0-193.dynamic.hinet.net] has joined #g0v.tw
+19:42 -!- Ti_W_B112 [~Ti_W_B@36.237.228.136] has joined #g0v.tw
+19:56 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+19:58 -!- Ti_W_B113 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+19:59 -!- Ti_W_B112 [~Ti_W_B@36.237.228.136] has quit [Ping timeout: 245 seconds]
+20:00 -!- Ti_W_B114 [~Ti_W_B@36.237.228.136] has joined #g0v.tw
+20:03 -!- Ti_W_B113 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 264 seconds]
+20:07  * ipa 覺得大使團被吃掉了
+20:09 -!- icydockk [722a1c3f@gateway/web/cgi-irc/kiwiirc.com/ip.114.42.28.63] has joined #g0v.tw
+20:10 < clkao> 政委: 你們剛講那個就是 API 嘛？
+20:14 < ipa> 今天大使團和國寶團同步進行
+20:14 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+20:15 < ipa> 果然是一邊拆，一邊建....國寶級白目，帝寶級政委
+20:18 -!- icydockk [722a1c3f@gateway/web/cgi-irc/kiwiirc.com/ip.114.42.28.63] has left #g0v.tw []
+20:19 -!- SupaplexTW___ [~Adium@114-32-8-99.HINET-IP.hinet.net] has joined #g0v.tw
+20:20 -!- WeiHung [~chatzilla@42.74.206.57] has quit [Ping timeout: 260 seconds]
+20:27 -!- Sony [~Adium@113.196.34.104] has joined #g0v.tw
+20:30 -!- markwu [~markwu@116.50.34.246] has quit [Quit: 暫離]
+20:31 -!- Sony [~Adium@113.196.34.104] has quit [Client Quit]
+20:31 -!- Sony [~Adium@113.196.34.104] has joined #g0v.tw
+20:31 -!- elfink [253ba3de@gateway/web/cgi-irc/kiwiirc.com/ip.37.59.163.222] has joined #g0v.tw
+20:32 -!- willard-lin [afb5b6a7@gateway/web/cgi-irc/kiwiirc.com/ip.175.181.182.167] has joined #g0v.tw
+20:33 -!- Sony [~Adium@113.196.34.104] has quit [Client Quit]
+20:35 -!- elfink [253ba3de@gateway/web/cgi-irc/kiwiirc.com/ip.37.59.163.222] has quit [Client Quit]
+20:36 -!- Sony [~Adium@113.196.34.104] has joined #g0v.tw
+20:38 -!- aeil [~Adium@wlib-c-234.lib.nthu.edu.tw] has joined #g0v.tw
+20:44 -!- LCfunPlay_op [~LC@111-250-25-246.dynamic.hinet.net] has joined #g0v.tw
+20:45 -!- zeal_bsd [b90057@140.112.30.49] has quit [Quit: leaving]
+20:54 -!- Ihc [8c712e43@gateway/web/cgi-irc/kiwiirc.com/ip.140.113.46.67] has joined #g0v.tw
+20:54 < Ihc> pcchen: bitbucket 的comment按怎加「換行」
+20:55 -!- Ti_W_B114 [~Ti_W_B@36.237.228.136] has quit [Read error: Connection reset by peer]
+20:56 -!- Ti_W_B114 [~Ti_W_B@36.237.228.136] has joined #g0v.tw
+21:04 -!- Phoenixmiss [~Miss@114-41-122-27.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+21:04 -!- Phoenixmiss [~Miss@114-41-122-27.dynamic.hinet.net] has joined #g0v.tw
+21:08 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+21:08 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+21:08 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+21:08 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+21:21 -!- reChing|afk [~chatzilla@host-61-70-233-22.static.kbtelecom.net] has joined #g0v.tw
+21:23 -!- reChing [~chatzilla@host-61-70-233-22.static.kbtelecom.net] has quit [Ping timeout: 246 seconds]
+21:23 -!- reChing|afk is now known as reChing
+21:25 -!- mno2 [~mno2@bb116-15-44-14.singnet.com.sg] has joined #g0v.tw
+21:26 -!- Sony1 [~Adium@113.196.34.104] has joined #g0v.tw
+21:26 -!- Sony [~Adium@113.196.34.104] has quit [Ping timeout: 264 seconds]
+21:31 < hychen> http://hcnews.jcs.tw/2013/11/blog-post_5184.html?showComment=1386595697327#c4073588183724090072
+21:31 < M00sUltraB0t> [ 新莊報導: 推動國際創新園區 雲端數位匯流產業引錢潮 ] - hcnews.jcs.tw
+21:31 < kcwu> hychen's url: [新莊報導: 推動國際創新園區　雲端數位匯流產業引錢潮]
+21:31 -!- WeiHung [~chatzilla@s101002506.CHING-ABC.ab.nthu.edu.tw] has joined #g0v.tw
+21:31 < hychen> 連莘莊也要蓋園區....
+21:34 < clkao_> hychen++ # 十年軟體從業人員留
+21:35 < hychen> 其實沒那麼久 XD
+21:35 -!- olgalann [d453971a@gateway/web/cgi-irc/kiwiirc.com/ip.212.83.151.26] has joined #g0v.tw
+21:36 < hychen> 不過從第一次碰算來有10年
+21:37 < clkao_> tkirby: 國寶場結束了嗎
+21:37 < olgalann> hi  hi
+21:38 < Ti_W_B114> 剛剛跑去玩g0v新手村的小遊戲......0rz
+21:39 < ipa> olgalann: hello 要玩玩新手村遊戲嗎？XD
+21:39 -!- Supaplextw1 [~Lucky@114-36-246-61.dynamic.hinet.net] has joined #g0v.tw
+21:39 < hcchien> 有人在討論這個  http://taqm.epa.gov.tw/pm25/zh-tw/PM25A.aspx
+21:39 < kcwu> hcchien's url: [行政院環保署-細懸浮微粒]
+21:39 < M00sUltraB0t> [ 行政院環保署-細懸浮微粒 ] - taqm.epa.gov.tw
+21:39 < ipa> olgalann: http://8bit.g0v.tw/
+21:39 < kcwu> ipa's url: [g0v 8bit]
+21:39 < M00sUltraB0t> [ g0v 8bit ] - 8bit.g0v.tw
+21:40 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+21:40 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Client Quit]
+21:40 -!- Supaplextw [~Lucky@114-36-246-61.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+21:40 < hychen> 剛才應該要直接吐說蓋了一堆園區結果沒人要在那邊生活
+21:40 < hcchien> 基隆，汐止出現超高 pm2.5
+21:40 < hychen> 國寶廠是什麼?
+21:40 < olgalann> 哇 這什麼 我看看
+21:40 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+21:40 < edwardc> 晚上有濃霧
+21:41 < olgalann> 這裡好像很熱鬧
+21:41 < hcchien> 所以有人說可能不是濃霧吧，是 pm2.5
+21:41 < hcchien> 其實看這個小時的值，很多地方都破百了
+21:42 < ipa> hychen: https://www.facebook.com/events/334833043324985/  tkirby ronnywang 今天跟國寶級白目對談
+21:42 < M00sUltraB0t> [ 【文化攻策論壇】‧ 系列參 ─公民參與 & 網路革命 | Facebook ] - www.facebook.com
+21:42 < ipa> hychen: 你們跟帝寶級政委對談，還好有先吃晚餐吧 ><
+21:42 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Client Quit]
+21:43 < hychen> ipa: 屁好久...  
+21:43  * hychen 頻頻喝水
+21:44 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+21:48  * Ti_W_B114 §Ö³Q¦Ñµ§¹q·d¨ì±Y¼ì
+21:48 < olgalann> 有位c9s來幫我打村長 XD
+21:51 < clkao_> olgalann: LOL
+21:51 < clkao_> c9s++
+21:51 < hychen> clkao_:  現在的軟體園區都是由經濟部加工出口區代管
+21:54 < hychen> 少蓋一個園區應該可以補助很多新創團隊出國參加conference/展覽
+21:56 -!- aeil [~Adium@wlib-c-234.lib.nthu.edu.tw] has quit [Ping timeout: 252 seconds]
+21:56 -!- SupaplexTW___ [~Adium@114-32-8-99.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+21:57 < ipa> olgalann: 要報名黑客松聚會嗎？可以參考topic各連結
+21:59 -!- olgalann [d453971a@gateway/web/cgi-irc/kiwiirc.com/ip.212.83.151.26] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+21:59 -!- aeil [~Adium@111-243-170-76.dynamic.hinet.net] has joined #g0v.tw
+22:00 < jimyhuang> 差一點就沒報名 ... 
+22:02 < Ti_W_B114> 為何我的nick增長到114了啦~迴圈?
+22:03 < clkao_> jimyhuang: XD
+22:03 -!- jimyhuang [uid12523@gateway/web/irccloud.com/x-rbsrxoaawetbmrzs] has left #g0v.tw []
+22:03 -!- jimyhuang [uid12523@gateway/web/irccloud.com/x-rbsrxoaawetbmrzs] has joined #g0v.tw
+22:11 -!- Ihc [8c712e43@gateway/web/cgi-irc/kiwiirc.com/ip.140.113.46.67] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+22:12 < ETBlue> 動民主議題現在可以…假裝匯出報告了 XD http://g0v.github.io/don-republic/issue-content-report.html
+22:12 < kcwu> ETBlue's url: [兩岸服務貿易協議 | 議題 | 動民主]
+22:12 < M00sUltraB0t> [ 兩岸服務貿易協議 | 議題 | 動民主 ] - g0v.github.io
+22:12 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+22:13 < au> ETBlue++ # 懶人包產生器產生器
+22:13 < ETBlue> XDDDDD
+22:15 < pcchen> ljm: 需要你的語言學專業奧援
+22:19  * ljm (抖抖) <-- 沒有專業
+22:21 -!- olgalannn [58bfc019@gateway/web/cgi-irc/kiwiirc.com/ip.88.191.192.25] has joined #g0v.tw
+22:21 < hychen> jimyhuang: 我備忘寫了3個actions
+22:21 < olgalannn> 終於又進來了
+22:22 < hychen> jimyhuang: 中間的對談要悉數記錄嗎? XD
+22:22 < jimyhuang> hychen: !!!
+22:22 < Jcrt> tkirby++ #文化攻策 #砲火猛烈
+22:22 < jimyhuang> hychen: 感覺還好耶～你寫在google page還是hackpad?
+22:22 < Jcrt> 完全見識到 tkirby 風采！
+22:22 < olgalannn> ipa: 謝謝 我會看一下 時間好像衝到 會再上來逛逛
+22:25 < mindos_cloud> 洪老師在問說:「台灣的open source community，有沒有希望學校幫忙做些什麼？如果有想法的話，我們可提計畫，用來訓練和支持有興趣的學生去實現這些想法。」
+22:26 < johnny__> clkao: 想討論一下立院表決的unique key, 目前想法是%2d%2d%2d%2d % (屆期, 會期, 第幾次會議, 第幾個表決)，ex: 08040105，臨時會的話ex: 080401t01
+22:29 < mindos_cloud> 另一個構想是開課請社群朋友講 open source 的 resource
+22:31 < clkao_> johnny__: 會議部分其實可以套用 http://api.ly.g0v.tw/v0/collections/sittings 現在的 id, 所以只要再記第幾個表決就好了
+22:31 < clkao_> johnny__: 這樣可以 generalize 給委員會的用（雖然委員會應該只有舉手表決？）
+22:32 < clkao_> johnny__: 然後有個時候好像會重付表決，我忘了議事錄中有沒有，這樣不知道要算成第幾個
+22:32 < ipa> olgalannn: cool～ 可以申請 irccloud，也歡迎到fb g0v後勤中心逛逛。沒報名也可以線上討論....（顯示為囉唆）
+22:32 < clkao_> Jcrt: 可惡，想聽！
+22:32 -!- MT [b6eaf05a@gateway/web/freenode/ip.182.234.240.90] has joined #g0v.tw
+22:32 < ronnywang> 今晚我家裡有事，沒機會看到國寶級白目真可惜
+22:32 < johnny__> clkao: 對哄Orz 會有重複表決
+22:33 < clkao_> johnny__: 也許會議 id 外可以有兩組序號, 一個是議事錄的 seq, 一個是如果可以找到他對應報告事項或者討論事項的哪一個 就加上去
+22:33 -!- olgalannn [58bfc019@gateway/web/cgi-irc/kiwiirc.com/ip.88.191.192.25] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+22:34 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+22:34 < pcchen> ljm: 同義詞 跟 異用字 應該是不同的概念吧？
+22:36 < ljm> pcchen: 唔，異用字是什麼?
+22:38 < ljm> 「建議用字與異用字之分析比較研究」 這種的意思?
+22:38 < pcchen> ljm: 就是 不知道或是沒有 正字/本字 的時候， 教育部會有一個主要的推薦用字，但是會列出其他常用的寫法
+22:38 < ljm> http://www.ntcu.edu.tw/tailo/g_in/consultation/c_03.html 還有這裡的提到的?
+22:38 < M00sUltraB0t> [ 無標題文件 ] - www.ntcu.edu.tw
+22:38 < kcwu> ljm's url: [無標題文件]
+22:39 < yukiko> 哇 國寶級白老（尊敬）也接觸 G0v耶@@ http://ppt.cc/~Kx9
+22:39 < kcwu> yukiko's url: [馮光遠 | Facebook]
+22:39 < M00sUltraB0t> [ 馮光遠 | Facebook ] - ppt.cc
+22:40 < yukiko> 捲回去看才知道大家都在討論了>\\\<
+22:41 < pcchen> ljm: 可以看這裡
+22:41 < pcchen> ljm: 例如 http://140.111.56.95/hanji/annesia/pdf/annesia265pdf.pdf
+22:41 < johnny__> clkao: id: "08-04-立法院第8屆第1會期第1次會議議事錄-01"  重複表決id: "08-04-立法院第8屆第1會期第1次會議議事錄-01-01" 這樣的感覺嗎
+22:41 < ipa> yukiko: 可惜沒有轉播，大家都沒看到 >\\\<
+22:41 < pcchen> ljm: 推薦用字是頭路，異用字是 投路
+22:42 < ljm> pcchen: 這是書寫系統的問題，和同義詞 (語義) 自然是不同的概念 :)
+22:43 < ljm> 同義詞是說，兩個字的意義一樣(i.e.相近)，如 碩 = 大 (碩鼠 = 大老鼠)
+22:43 < yukiko> 還在讀G0v新手FAQ ....  想趕快找各活來做 ^^||a
+22:44 -!- markwu [~markwu@116.50.34.246] has joined #g0v.tw
+22:44 < pcchen> ljm: 我們需要處理幾種情形：(1)腔口差：同漢字不同發音 (2)同義詞 跤踏車/孔明車， 臭柿子/柑仔蜜 (3) 異用漢字 (4) 民間使用但應該消滅的錯誤漢字
+22:44 < ljm> 這邊的異用字，按剛剛查到的教育部的說法，是說有些閩南語漢字找不到本字或古字，所以只好使用異用字
+22:44 < pcchen> ljm: 看這個 ticket 的討論 https://bitbucket.org/pcchen/nan/issue/7/--------
+22:45 < kcwu> pcchen's url: [pcchen / nan / issues / #7 - 漢字規範：異用字 — Bitbucket]
+22:45 < M00sUltraB0t> [ pcchen / nan / issues / #7 - 漢字規範：異用字 — Bitbucket ] - bitbucket.org
+22:45 < ljm> pcchen: 是的。不過這個看來很苦耶... XD
+22:45 < pcchen> and https://bitbucket.org/pcchen/nan/issue/6/kha-kha
+22:45 < M00sUltraB0t> [ pcchen / nan / issues / #6 - 漢字規範：腳[kha] ==> 跤[kha] — Bitbucket ] - bitbucket.org
+22:45 < clkao_> yukiko: d3js?
+22:45 < pcchen> (1)腔口差：同漢字不同發音 (2)同義詞 跤踏車/孔明車， 臭柿子/柑仔蜜 這兩個應該比較容易作
+22:46 < pcchen> (3) 異用漢字 因為我們可能使用跟教育部不完全一樣的標準，然後要顯示這個 diff....＝苦
+22:46 < ipa> project跳坑處好像可以多開一個 d3js 的 tag（坑）?
+22:46 < ipa> http://hack.g0v.tw/project
+22:47 < ljm> pcchen: 建議先求同存異吧 (苦笑) 通通修完一輪再來再怎麼辦比較好，比較能往前進
+22:47 < pcchen> ljm: 要設計一個 debug 流程很苦。而且只能工人智慧。
+22:47 < ljm> (3) 異用漢字，這個只能乖乖做表了 XD
+22:47 < pcchen> 通通修完一輪=10萬詞.....
+22:48 < ljm> 而且那個可以叫語言所的學生去處理 (呃) 順便出論文這樣
+22:48 < pcchen> (3) 異用漢字 -> 要想在wesay裡面怎麼家個蘭未來表示
+22:48 < pcchen> ljm: 我要來寫信給語言所的教授
+22:48 -!- lcamel [~lcamel@175.96.240.183] has joined #g0v.tw
+22:48 < mindos_cloud> 這是不是可以用國科會的那個 opensource project 申請?
+22:48 < ljm> pcchen: 現在誰在做台語? 楊允言? 
+22:49 < mindos_cloud> yukiko : 有很多可以 visualization 的資料喔 +_+
+22:49 < ljm> 張裕宏老師已經沒開課 = 沒收學生了。所以台大語言所目前沒人搞台語的樣子 ... 不過幾年沒回去，說不定又有了
+22:49 < clkao_> yukiko: 海報...... 我也忘了誰說要
+22:49 < johnny__> clkao: 討論事項部份我目前只有辦法抓到類似 「國家安全法第九條條文修正草案 鄭麗君, 難民法草案 蕭美琴....」
+22:50 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+22:50 < pcchen> ljm: 清大其實有人。
+22:50 < tkirby> 到家啦~
+22:50 < yukiko> clkao_: 努力捲回去找要海報的人的記錄 +__+
+22:51 < ljm> pcchen: 讚。那就在清大挖坑 ^^;
+22:51 < pcchen> ljm: 楊允言現在在台中教育大學台語文系。
+22:51 < ljm> 如果楊允言願意的話，在台文系處理這個也可以
+22:51 < pcchen> ljm: http://www.ling.nthu.edu.tw/NTHU_Linguistics/Faculty.html
+22:51 < mindos_cloud> tkirby++
+22:51 < kcwu> pcchen's url: [國立清華大學 語言學研究所 NTHU Linguistics ￼]
+22:51 < M00sUltraB0t> [ 國立清華大學 語言學研究所 NTHU Linguistics ￼ ] - www.ling.nthu.edu.tw
+22:51 < ljm> 我的建議是先把手上的字典處理完。剩下的要做再做... XD
+22:52 < ljm> 不然你會卡在這邊
+22:52 < ljm> 台語的線上字典很多了 (信望愛不就好多種) 先抓來 bring up, 再慢慢修正... release early, release often 
+22:52 < yukiko> mindos_cloud: 我拿ill 畫圖比 D3 visualization 快 ...D3牛步學習中 >< 我每天才練習一個小case
+22:52 < clkao_> johnny__: 可以搭配 api.ly 上的 sittings/:id/motions, 有 agendaItem
+22:53 < pcchen> ljm: 這邊大概只是想想架構。我想在aggregate詞典data的時候，進量順便確定漢字跟教育部的用字相容
+22:53 < mindos_cloud> ill 是什麼?
+22:53 < ljm> 清大的誰在做呢?
+22:53 < Jedi_> illustrator?
+22:53 < clkao_> johnny__: 議事錄的順序會在 item (如果有的話)
+22:53 < yukiko> illustrator +__+
+22:53 < ljm> pcchen: 了解。我也贊成和教育部的相容。
+22:54 < pcchen> ljm: 張月琴 教授 謝豐帆 副教授 許慧娟 教授兼所長 連金發 清華講座教授 都有
+22:54 < ljm> 張月琴++ ^^;
+22:54 < mindos_cloud> 喔喔~~~~
+22:54 < yukiko> 正在拿D3畫米老鼠 
+22:54 < mindos_cloud> 其實也不一定要 d3js 啦，用什麼看個人興趣 :)
+22:54 < ipa> yukiko: 用以拉感覺可以來文化部報到一下 https://groups.google.com/forum/#!forum/g0v-moc
+22:54 < kcwu> ipa's url: [Google 網上論壇]
+22:54 < M00sUltraB0t> [ Google 網上論壇 ] - groups.google.com
+22:55 < tkirby> yukiko: 如果是畫米老鼠的話那真的用 illustrator 比較好
+22:55 < ljm> pcchen: 我想想... 阿美語這邊我是把它當兩個不同的詞條 (這樣不太好, but ...)
+22:55 < pcchen> ljm: 我就是要先來寫給張月琴
+22:55 < clkao_> yukiko: http://cssdeck.com/labs/cute-santa-claus-in-css3
+22:55 < kcwu> clkao_'s url: [Cute Santa Claus in CSS3 | CSSDeck]
+22:55 < M00sUltraB0t> [ Cute Santa Claus in CSS3 | CSSDeck ] - cssdeck.com
+22:55 < pcchen> ljm: 什麼當兩個詞條？
+22:55 < ljm> 因為方敏英字典本來就把同一個字不同的讀法獨立成不同的詞條，而且解釋偶爾還會不一樣 (真厚工)
+22:56 < yukiko> http://writecodepeople.blogspot.tw/2013/08/html5-d3js.html 米老鼠的範例
+22:56 < mindos_cloud> 以啦轉SVG
+22:56 < kcwu> yukiko's url: [Follow Fang!: HTML5 D3.js 初體驗]
+22:56 < M00sUltraB0t> [ Follow Fang!: HTML5 D3.js 初體驗 ] - writecodepeople.blogspot.tw
+22:56 < tkirby> yukiko: d3 的用途比較不一樣.. 比方說把米老鼠變魚眼米老鼠或是扭動米老鼠的話, 再拿D3出來用會比較 make sense
+22:56 < ljm> 手邊沒辦法開 WeSay. 不知道能不能開一個 also written as 這類的 note 
+22:56 < yukiko> @@a
+22:57 < mindos_cloud> tkirby : 我想人家只是在練習 XD
+22:57 < ljm> 分成 即爾、則尼、者爾、遮爾 四個詞條的話，人工的部份太多了 ^^;
+22:57 < pcchen> ljm: 應該我，我要來測試
+22:57 < tkirby> XD
+22:58 < ljm> 鐵馬 = 跤踏車 = 孔明車 <-- 這三個是同義詞
+22:58 < mindos_cloud> 我應該睡了，每天騎十公里上坡對我來說還是太吃力。
+22:58 < pcchen> 我的想法是：用現在的規範用字當詞條，選取少數的also written as 加註。其他的就不收
+22:58 < ljm> +1
+22:58 < pcchen> 例如不收：甲爸 (食飽）
+22:58 -!- MT [b6eaf05a@gateway/web/freenode/ip.182.234.240.90] has quit [Quit: Page closed]
+22:59 < mindos_cloud> 上次 clkao 也用了一個很厲害的 clustering visualisation tool.
+23:00 < yukiko> 如果要即戰力的話我可以先支援文化部
+23:00 < ljm> pcchen: 這樣蠻好的
+23:00 < clkao_> http://clkao.github.com/gexf-js # this one?
+23:00 < kcwu> clkao_'s url: [Gephi: JavaScript GEXF Viewer]
+23:00 < M00sUltraB0t> [ Gephi: JavaScript GEXF Viewer ] - clkao.github.com
+23:00 < hychen> jimyhuang: 我沒有寫你那段關於補助的那個 XD
+23:00 -!- Ti_W_B114 [~Ti_W_B@36.237.228.136] has quit [Ping timeout: 264 seconds]
+23:00 < hychen> jimyhuang: gdoc
+23:01 < pcchen> ljm: 腔口跟同義詞用 cross-reference 這個 field?
+23:01 < jimyhuang> hychen: 是說sbir ?
+23:01 < hychen> jimyhuang: ya
+23:01 -!- Netsplit *.net <-> *.split quits: S3p_lin_, LCfunPlay_op, macpaul, hcchien, louielu_, c9s, ltroot_, ManicLF_
+23:01 < hychen> jimyhuang: 還有金流
+23:02 < pcchen> 異用詞或許可以用 note 這個註解用的欄位....
+23:02 < ljm> pcchen: 同義詞應該有一個 synonym (不要管它其實是「相似詞」 XD)
+23:02 -!- Sony1 [~Adium@113.196.34.104] has quit [Quit: Leaving.]
+23:02 -!- Ti_W_B114 [~Ti_W_B@112-105-206-130.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+23:02 < ljm> 腔口... 唉呀呀別的語言比較少這個東西
+23:03 < jimyhuang> hychen: 好難寫，我想一下
+23:03 < ljm> 腔口上次不是說 kue: [台北, 馬公], ke: [台南, ...]
+23:03 < hychen> jimyhuang: 中間有穿插一些東西
+23:03 < mindos_cloud> clkao : 對對 ：）
+23:05 < ljm> pcchen: as in issue #2
+23:05 -!- S3p_lin [slzzp@linode64.slzzp.net] has joined #g0v.tw
+23:05 -!- ManicLF [~Manic@li159-81.members.linode.com] has joined #g0v.tw
+23:06 -!- pm5 [~Adium@111-248-208-33.dynamic.hinet.net] has joined #g0v.tw
+23:06 -!- Netsplit over, joins: hcchien
+23:06 < pcchen> ljm: 我說的是在wesay裡面怎麼放腔口資訊。。。。
+23:06 < johnny__> clkao: 了解了感謝，開工去
+23:07 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+23:07 -!- ltroot_ [~ltroot@140.127.182.55] has joined #g0v.tw
+23:07 -!- louielu_ [uid13501@gateway/web/irccloud.com/x-nhkcezhygdprcvga] has joined #g0v.tw
+23:07 -!- louielu_ [uid13501@gateway/web/irccloud.com/x-nhkcezhygdprcvga] has quit [Read error: Connection reset by peer]
+23:07 -!- willard-lin [afb5b6a7@gateway/web/cgi-irc/kiwiirc.com/ip.175.181.182.167] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+23:07 < ljm> pcchen: pronunciation  variants
+23:07 -!- louielu_ [uid13501@gateway/web/irccloud.com/x-mncibdxlnzuminir] has joined #g0v.tw
+23:08 < ljm> LIFT 標準有這個
+23:08 < ljm> 剛剛 Google 到的 https://groups.google.com/forum/#!msg/wesay/7WStCAaCAXQ/JWCly5QF1d4J
+23:08 < pcchen> pronunciation  variants 在哪裡？
+23:08 < kcwu> ljm's url: [Google 網上論壇]
+23:08 < M00sUltraB0t> [ Google 網上論壇 ] - groups.google.com
+23:09 < ljm> 可能要翻一下「很少用到的欄位」那邊
+23:09 < ljm> (不然就要等我 reboot 去開 WeSay :P)
+23:09 < pcchen> setup 裡面找不到....
+23:10 < ljm> 那邊說，LIFT 的標準有 dialectal / free ariants, pronunciation variants, dialectal synonyms, lexical relations, complex forms, etc.
+23:10 < ljm> pcchen: moment .. 我重開機 3 分鐘回來
+23:18 -!- c9s [sid15100@gateway/web/irccloud.com/x-xhexfqtaenhgmczc] has joined #g0v.tw
+23:21 -!- lcamel [~lcamel@175.96.240.183] has quit [Remote host closed the connection]
+23:22 < pcchen> .....
+23:24 < ljm> pcchen: 看來異用字只能另外開一個 new field
+23:24 < ljm> (我正在開)
+23:25 < pcchen> wesay zh-tw 的 L10n 不知道什麼時候弄好的.....
+23:26 < ljm> pcchen: 而且我也找不到什麼 pronunciation variants ...
+23:26 < pcchen> 那 cross ref 要用來連結腔口，還是同義詞呢
+23:26 < pcchen> ljm: 因為 wesay 本身一直在改
+23:26 < ljm> 同義詞. 也可以開一個 synonym 來連同義詞
+23:27 < pcchen> ljm: 我是想，詞彙的討論可以用ticket，wesay只要放討論後有共識的 minima data
+23:29 < ljm> pcchen: 不幸。Google 到後來發現他們的建議也是開一堆 new fields...
+23:29 < ljm> 到時候會不會被 ticket 淹沒 XD
+23:30 < hychen> jimyhuang: https://g0v.hackpad.com/-IT--iBpZh86ffb8
+23:30 < kcwu> hychen's url: [政府 IT 委外制度，引入自由軟體/開源碼發展模式建議草稿 - g0v.hackpad.com]
+23:30 < M00sUltraB0t> [ 政府 IT 委外制度，引入自由軟體/開源碼&am ] - g0v.hackpad.com
+23:30 < pcchen> ljm: 我會一邊著重修漢字規範的另一個原因是可以放送新版的 輸入法詞庫，減少錯誤的漢字在外面流傳。
+23:30 < pcchen> ljm: 我想漢字規範的討論是最需要留下紀錄的。
+23:30 < ljm> synonym 推薦用 cross reference 好了。既然都要開，沒必要開一個叫 synonym 的 XD
+23:31 < ljm> pcchen: OK.. 了解
+23:32 < ljm> 腔口該怎麼辦好呢... 他們是說，比方說 either (idhr / aydhr) 就用兩個 "English IPA" 來處理
+23:32 < pcchen> 我覺得腔口就用cross ref 吧
+23:34 < ljm> pcchen: cross ref 要放 synonym?
+23:35 < ljm> 我剛改了一點 fields. 我先來試一下...
+23:35 < pcchen> synonym 跟 腔口 能夠共存嗎？.....
+23:35 < pcchen> 		<relation
+23:35 < pcchen> 			type="newField"
+23:35 < pcchen> 			ref="d_d20f6dcf-0e1e-4388-ae6f-e560921c1b9d" />
+23:36 < ljm> OK. 腔口，你原始的設定是 OK 的，因為可以複選
+23:37 < ljm> 所以 kue 就可以複選了 XD
+23:37 < pcchen> 好像 cross-ref 可以同時放 synonym 跟 腔口。只需要檢查漢字，如果漢字完全一樣，就是腔口差，如果漢字沒有完全一樣，就是同義詞（有沒有道理？）
+23:37 < pcchen> 複選？（偶已經忘了）
+23:38 < walkingice> 結果正如嗨董所說，真的要寫萬言書了
+23:38 < ljm> pcchen: 你的「腔口」可以選漳州、廈門、澎湖, etc.
+23:38 < ljm> 選完一個以後，第二個空白會出現，就可以複選
+23:38 < ljm> 所以在 kue 街 你就可以選海口 (誤)
+23:38 < ljm> ke 街 你就可以選台北 (笑)
+23:39 < pcchen> 那個算是tag
+23:39 < pcchen> 有考慮過要tag台灣以外的地區
+23:40 < ljm> pcchen: 用那個放腔口應該就夠了 :)
+23:40 < ljm> cross ref 我剛剛遇到的問題，怎麼只能 cross-ref 一個詞 orz
+23:40 < ljm> kha-tah-tshia , cros ref thih-be 可以
+23:41 < ljm> 然後就不能第二個 xref 了 Q.Q
+23:42 < ljm> OK. xref 只能放一個。看來我們要很噁心地用 xref1, xref2, xref3, xref4 (規定最多 4 個 xref) 
+23:42 < ljm> 才能符合 鐵馬 = 跤踏車 = 孔明車 的需求
+23:43 -!- SupaplexTW___ [~Adium@114-36-246-61.dynamic.hinet.net] has joined #g0v.tw
+23:44 -!- taichunmin [uid19896@gateway/web/irccloud.com/x-tromjmghtkswwikg] has joined #g0v.tw
+23:48 < ljm> pcchen: 請參考一下我剛剛 sync 上去的 WeSay，看這樣符不符合你的想法... 
+23:48 -!- LarryLAI [uid13562@gateway/web/irccloud.com/x-qgzhgcnztzbmcncs] has joined #g0v.tw
+23:48 < LarryLAI> 大家好我是第一次來這裡！
+23:48 < pcchen> ljm: ok...
+23:49 < au> LarryLAI: hi!
+23:49 < ljm> kha-ta̍h-tshia => thih-bé=> khóng-bîng-tshia
+23:49 < pcchen> ljm: 要看什麼詞條？
+23:50 < ljm> chhiaⁿchham-kó"kha-ta̍h-chhia"
+23:50 < LarryLAI> 嗨~其實是有困難想求助~
+23:50 < LarryLAI> 不知道hackath6n上午的專案報告該如何登記
+23:51 < pcchen> ok
+23:51 -!- walkingice is now known as walkingice_zZ
+23:51 < clkao_> LarryLAI: http://hack.g0v.tw/g0v-hackath6n/0Ak0j8_vTJFGUdDI4VXI3QVlRZUh5UmFseEZCaWYxYWc
+23:51 < M00sUltraB0t> [ hack.g0v.tw ] - hack.g0v.tw
+23:51 < ljm> 還有 kue 雞
+23:52 < ljm> wesay 連在我的 i7 native Win7 筆電上跑都好慢.. >_<
+23:52 < pcchen> 來個native XP?
+23:53 < pcchen> no xref1?
+23:53 < ljm> pcchen: XDDD
+23:53 < ljm> xref1 = cross  referece
+23:53 < ljm> cross reference
+23:53 < ljm> 看要不要改名字
+23:53 < ljm> 我正在加「腔口」的選項。本來有漳州、廈門、泉州、安溪、同安、台南、鹿港、澎湖
+23:54 < ljm> (海口腔應該算哪一種?)
+23:54 < pcchen> 那什麼不要捨棄cross-ref,通通用xref?
+23:54 < ljm> pcchen: 也可。來改。
+23:54 < clkao_> LarryLAI: oh, reload plrease
+23:55 < ljm> pcchen: 不過 Name in file 不能改了 (有詞條用過了) 所以寫程式轉檔的時候要注意這個 XD
+23:56 < pcchen> ljm: 腔口這樣只解決一半，這只是標示了 kue_雞是澎湖腔 但是沒有連結 ke_雞 <--> kue_雞這兩個詞條，建議用 cross-ref?
+23:56 < ljm> pcchen: 啊。懂你的意思了。 *sigh* 
+23:56 < ljm> 最後還是沒辦法處理同義詞 vs. 腔口的問題
+23:56 < pcchen> ljm: 這種需要先手動改 lift xml 檔，有很多地雷（以前會改到爛掉）
+23:57 < pcchen> 因為詞典上 ke_雞/kue_雞 的解釋應該一條就好
+23:57 < pcchen> 但是 跤踏車/鐵馬 等應該有分開的解釋。
+23:58 < ljm> pcchen: 看要不要再開 pronunciation var. (prnvar1) (prnvar2) 好噁心
+23:58 < pcchen> 不用，因為槍口只要能夠只到一個 representative form就好
+23:58 < ljm> 嗯。可是詞條還是會有 ke_雞 / kue_雞 兩條... 這個比較討厭
+23:59 < pcchen> 假設有 雞/ke/kue/ker, 那只要kue,ker 能指到 ke...
+23:59 < ljm> OK. 可以這樣。先規定好 citation form 是哪個腔口
+23:59 < pcchen> ljm: 有 ke_雞 / kue_雞 兩條是為了產生輸入法方便，在輸入法的時候，的確需要兩個分開

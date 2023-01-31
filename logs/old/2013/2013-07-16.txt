@@ -1,0 +1,657 @@
+--- Day changed 二  7月 16 2013
+00:00 -!- pm5 [~pm5@111-248-208-253.dynamic.hinet.net] has joined #g0v.tw
+00:01 -!- icman [~icman@123.240.128.193] has quit [Ping timeout: 246 seconds]
+00:01 -!- icman [~icman@123.240.128.193] has joined #g0v.tw
+00:05 -!- bafu [~bafu@111-240-236-118.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+00:09 -!- Zope [76a5ad04@gateway/web/freenode/ip.118.165.173.4] has quit [Quit: Page closed]
+00:11 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+00:12 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+00:27 -!- icman [~icman@123.240.128.193] has quit [Ping timeout: 276 seconds]
+00:28 -!- icman [~icman@123.240.128.193] has joined #g0v.tw
+00:32 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+00:36 -!- chhsiao2081 [~chhsiao@220-136-66-199.dynamic.hinet.net] has joined #g0v.tw
+00:53 -!- iamblue [76a0ec8e@gateway/web/freenode/ip.118.160.236.142] has quit [Ping timeout: 250 seconds]
+00:53 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+00:58 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+00:59 -!- icman [~icman@123.240.128.193] has quit [Quit: 明天天氣晴]
+01:05 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+01:09 -!- tka_test [~tka@li381-115.members.linode.com] has joined #g0v.tw
+01:09 -!- tka_test is now known as tka_
+01:10 -!- tka_ is now known as tka_lu
+01:16 -!- pm5 [~pm5@111-248-208-253.dynamic.hinet.net] has quit [Quit: pm5]
+01:27 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 276 seconds]
+01:33 -!- chhsiao2081 [~chhsiao@220-136-66-199.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+01:39 -!- ymow [~Adium@1-171-48-227.dynamic.hinet.net] has joined #g0v.tw
+01:52 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+02:14 -!- chihchun is now known as chihchun_afk
+05:08 -!- fshiori_ [~eric@36-224-16-130.dynamic-ip.hinet.net] has joined #g0v.tw
+05:11 -!- fshiori [~eric@36-224-18-137.dynamic-ip.hinet.net] has quit [Ping timeout: 256 seconds]
+05:25 -!- poga [~poga@1-171-121-172.dynamic.hinet.net] has joined #g0v.tw
+05:42 -!- juanna_ [~juanna@114-37-109-105.dynamic.hinet.net] has joined #g0v.tw
+05:45 -!- juanna [~juanna@114-37-87-246.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+06:29 -!- poga [~poga@1-171-121-172.dynamic.hinet.net] has quit [Remote host closed the connection]
+06:55 -!- Supaplextw1 [~Lucky@36-229-167-168.dynamic-ip.hinet.net] has joined #g0v.tw
+06:56 -!- Supaplextw [~Lucky@36-229-167-168.dynamic-ip.hinet.net] has quit [Ping timeout: 240 seconds]
+07:19 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has joined #g0v.tw
+07:24 -!- a-tsioh [~pierre@81.179.119.80.rev.sfr.net] has joined #g0v.tw
+07:27 < a-tsioh> 逐家好
+07:28 < a-tsioh> my IME is interacting weird with moedict completion
+07:39 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has quit [Quit: pm5]
+08:03 < walkingice> Morning
+08:03 < ETBlue> a-tsioh:  是噢我的自然注音輸入法在 etherpad 也會很奇怪，有時是注音有時直接跑出英數
+08:04 -!- tryggvib [~tryggvib@i-46-149-18-6.compute.is-1.greenqloud.com] has quit [Ping timeout: 264 seconds]
+08:04 < ETBlue> a-tsioh: 不過在萌典的網路版應該是正常
+08:08 -!- chhsiao2081 [~chhsiao@118-168-220-60.dynamic.hinet.net] has joined #g0v.tw
+08:10 -!- tryggvib [~tryggvib@i-46-149-18-6.compute.is-1.greenqloud.com] has joined #g0v.tw
+08:11 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+08:12 < a-tsioh> ETBlue: 我的(ibus)很難描述
+08:13 < a-tsioh> 打字還沒打完，萌典是對的，然後我按「space」
+08:14 < a-tsioh> 萌典就介紹另外一個詞
+08:14 < a-tsioh> 按down,up就ok了
+08:24 -!- a-tsioh [~pierre@81.179.119.80.rev.sfr.net] has quit [Quit: WeeChat 0.3.8]
+08:28 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+08:39 < ipa_c> ETBlue 是早起還是沒睡
+08:49 -!- kanru` [~kanru@114-42-12-29.dynamic.hinet.net] has joined #g0v.tw
+08:51 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+08:53 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+08:55 -!- chhsiao2081 [~chhsiao@118-168-220-60.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+08:57 < walkingice> 我的 ibus + chewing 用網頁版看起來沒啥問題
+09:04  * walkingice 不過不知道怎麼 trigger auto-complete
+09:06 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 256 seconds]
+09:10 -!- MnO2 [~MnO2@nat/yahoo/x-idgotxtdyklxgfbk] has joined #g0v.tw
+09:16 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+09:23 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has joined #g0v.tw
+09:38 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+09:44 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has joined #g0v.tw
+09:54 < lijung> clkao: 我現在剛寫完移動然後重新定位，也寫好了。但 callnow 那個好像本身 code 有些 bug，今天翻了一下 callnow 的 code 應該要重寫…還有 19位立委是哪19位，有人有資料嗎？（我順便直接重寫這些立委的 json 檔）…我覺得 tisa-map 可能有點來不及耶…看來這幾天都要投注在這上面了...
+09:56 < lijung> 還有 callow 的 js 是不是用 ls  compile 過來的因為不像是 正常 js 的宣告
+09:56 < lijung> 最近剛學完 livescript 哈哈哈
+09:57 < clkao> lijung: twgeojson/vote/ ?
+09:59 < lijung> clkao: 19位是哪 19位？
+09:59 < lijung> 冏
+10:01 -!- FourDollars [~sylee@175.41.48.77] has joined #g0v.tw
+10:06 < clkao> lijung: https://docs.google.com/folder/d/0B0NsS2a-Qx8Zb0xHNFNpYUNPU0U/edit?docId=0B0NsS2a-Qx8ZdnhJVHNwc2FtdkE 
+10:06 < kcwu> clkao's url: [服貿停看聽 - Google 雲端硬碟]
+10:06 < clkao> 不過好像只有 7 個
+10:08 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+10:08 < lijung> clkao: 我下載下來就顯示正常，在上面被切掉了...
+10:10 < lijung> clkao: 我再想說不要讓他移動然後再換立委
+10:10 < lijung> 讓他在右邊只出現一個立委
+10:10 < lijung> 然後往右 scroll 然後就會有一列列出另外 18 位立委
+10:10 < lijung> 這樣 coding 比較簡單
+10:10 < lijung> 而且可以一次看到所有 19位立委也不錯
+10:11 < lijung> 要不然有些人會想要拉其他區域去看其他的立委...
+10:11 -!- MnO2 [~MnO2@nat/yahoo/x-idgotxtdyklxgfbk] has quit [Quit: MnO2]
+10:16 < clkao> sure
+10:20 -!- MnO2 [~MnO2@nat/yahoo/x-cjjuewwdjlqbbgqw] has joined #g0v.tw
+10:25 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+10:31 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:35 < lijung> 我剛剛寫了一個 parser把不要的資料拿掉
+10:35 < lijung> 然後檔案縮小一被
+10:35 < lijung> 但也還是很大...
+10:38 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:41 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has joined #g0v.tw
+10:41 < ronnywan1> lijung: 建議就還是一口氣把資料抓下來，然後塞進一個 sqlite 之類的，之後就直接從 sqlite query 了
+10:42 < lijung> ronnywan1: 但是我們現在想要做到的是把所有廠商列出在這個 map上 http://g0v.github.io/tisa-map/
+10:42 < kcwu> lijung's url: [L.Geocoder]
+10:42 < ronnywan1> 昨天你要的只有幾個欄位的已經生好放在 dropbox 上了, https://www.dropbox.com/sh/42oyn4ustp4ilhy/z8Mmg7Xn_t/files 的 company-lijung.json.gz
+10:42 < clkao> lijung: 大概有幾筆？已經拿掉營業項目較多的? 
+10:43 < kcwu> ronnywan1's url: [Dropbox - files]
+10:43 -!- idryman [~dryman@www.ihatevocab.net] has quit [Ping timeout: 252 seconds]
+10:43 < ronnywan1> 壓縮後還是有 77.94MB.. 這個 json 要讀進記憶體中還是很容易爆掉啊
+10:44 < lijung> ronnywan1: 嗯嗯thanks so much !!但如果我現在想要做到的話有什麼比較好的方法
+10:44 -!- dryman [~dryman@www.ihatevocab.net] has joined #g0v.tw
+10:44 < ronnywan1> 資料量太大的話還是要外連一個資料庫會比 load 進瀏覽器好
+10:45 < lijung> clkao: 我現在至還沒有拿掉營業項目比較多的就是把統編、公司名稱、營業項目、地址保留
+10:45 < ronnywan1> 使用者地圖瀏覽到哪邊，就只要顯示地圖看的到的地方的點就好了
+10:46 < lijung> ronnywan1: 所以他瀏覽到那我去 sql query 找？
+10:46 < ronnywan1> 不過那就會需要可以支援地理資訊的資料庫了，像是 postgresql+postgis 或是 elasticsearch 之類的
+10:46 < lijung> clkao: 我等等會試試但我覺得應該不會差多少，而且我才跑10分之一
+10:46 < ronnywan1> mongodb 好像現在也有支援地理
+10:47 < clkao> postgis++
+10:47 < lijung> 10分之一就 40幾 M
+10:47 < lijung> 全部就 400了..
+10:47 < ronnywan1> 或者把他存進 google fusion table
+10:47 < lijung> 嗯嗯
+10:47 < ronnywan1> 不過 fusion table 最近 limit 越來越嚴格了
+10:48 < lijung> 所以我要用公司地址去查詢的話邏輯大概是怎麼樣
+10:48 < ronnywan1> 用 google map 的 geodecode api
+10:48 < lijung> 把它先轉成 經緯度然後去 query?
+10:48 < lijung> 沒用過postgresql+postgis ...
+10:49 < ronnywan1> postgis 有增加了一系列的 ST_xxx 的 function
+10:49 < lijung> 看來只有 sql query 能解決...
+10:49 < lijung> 我看看
+10:50 < lijung> clkao: 所以我們現在不能用 firebase了？
+10:51 < lijung> 我還是先 filter 掉看看情況
+10:51 < clkao> firebase 需要 query 會很慘 比較適合 simple collection 又有 real time update 需求的
+10:51 < ronnywan1> 我比較常用的是 ST_GeomFromGeoJSON('GeoJSON內容'); 這樣子可以塞 geojson 進去轉換成 postgis 儲存的格式, ST_AsGeoJSON("column_name") 把某個存 postgis 資料的欄位換成 GeoJSON 格式輸出
+10:51 < clkao> (所以本來讓人 signup 顯示在某處的適合用 firebase, 如果先把 location normalize 成村里的話)
+10:52 < clkao> ronnywan1: 現在有用 postgis 在存什麼嗎？
+10:52 < lijung> ronnywan1: thanks!
+10:53 < clkao> 我都一直還沒時間玩他 :~
+10:53 < ronnywan1> 我最近還在玩 postgis 中, 之後路平應該會需要用到他
+10:54 < clkao> btw 前陣子玩了一下 osm 的 overpass api
+10:55 < lijung> ronnywan1: wow我剛剛看到你幫我 parse 的資料了，所以你把 0000000~ 900000都放進去了耶！！
+10:55 < lijung> 太好了！
+10:56 < lijung> ronnywan1++
+10:56 < clkao> 現在有 ui 可以調 query: http://overpass-turbo.eu/?q=PCEtLQpUaGlzIMSHIGFuIGV4YW1wbGUgT3ZlcnBhc8SIcXXEmXkuxIRyecSJdCBvdcSoYsSmcHJlxJ1pbmcgdGjElVJ1xI1ixKt0b8SNYWJvxJghClnEqiBjxIwgZsSzZCBtb8SwxI7EkMSSxJTEiHdpxLfEtsS4IExvYcWQxL9vbMSjxII-CjzEn8ShxLZ5cGU9Im5vZGUixakgIDxoxJwta3Yga8WycmFpbHdheSIgdsWyc3RhdGnFgCIvxbnFu2LFg3gtxazEpSB7e8aab3h9fcaXxIDEgsS3xIrEimHEq28tY2_Fl2V0ZcWQxZrFnMS3ZQrFusa-xr_HgMeAY3VyxLBuxKhtYXDGjWlld8WKb8WTZMSzxpLEsS7FqMWqL8aeecWpPMSvxLN0xpc&c=B
+10:56 -!- chihchun_afk is now known as chihchun
+10:56 < kcwu> clkao's url: [overpass turbo]
+10:56 < ronnywan1> 所以超肥啊 XD, 我用 perl 的 json_xs 想要做 syntax check 結果記憶體就爆了
+10:56 < clkao> ronnywan1: 最近發現可以用 jq 做好多事情 超方便
+10:56 < clkao> 而且超快的
+10:56 < ronnywan1> 我來試試看 jq
+10:56 < lijung> 省了我一大麻煩現在就是想要把廠商用到 map 上，然後去看服貿會影響到的產業..
+10:57 < clkao> 感覺他是 streamy parser
+10:58 < lijung> clkao: 那如果要用 post GIS 的話我們要架 sql server?
+10:58 < clkao> right
+10:58 < lijung> 要衝嗎？ XD
+10:58 < clkao> 我有一台 digital ocean 可以用, 來個 ssh key 吧
+10:58 < ronnywan1> 我有架好一個來玩的
+10:58 < clkao> 噢 那就用現成的吧 |D
+10:58 < ronnywan1> 給我信箱我寄給你帳號密碼吧
+10:59 < lijung> chilijung@gmail.com
+10:59 < lijung> thanks!!
+11:01 < lijung> 我也第一次用  PostgreSQL
+11:01 < clkao> lijung: http://racklin.blogspot.tw/2013/07/programmer-sql.html
+11:01 < kcwu> clkao's url: [Racklin's 阿土伯程式大觀園: 改善 Programmer 生活的 SQL 技巧]
+11:01 < lijung> 之前只有碰過 mysql, cassandra…
+11:01 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+11:01 < lijung> clkao: thanks!
+11:02 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has joined #g0v.tw
+11:02 < clkao> ronnywan1: 你的 postgis 有 sample 資料嗎？我想試試看如何跟 pgrest 接比較好
+11:03 < lijung> 所以 postgresql 可以直接吃 json 檔嗎？
+11:03 < lijung> 還是還要重新 insert 進去
+11:03 < clkao> 如果是要 json column, 9.2 就可以了
+11:03 < ronnywan1> clkao: 我把村里地圖塞到一個新的 postgis ，再把帳號密碼寄給你讓你試試看好了
+11:04 < clkao> 如果要 map 到各自的 column, 還是要稍微寫一下，或者用 pgrest 可以自動建 table columns
+11:04 < clkao> ronnywan1: ok thanks! :D
+11:04 < ronnywan1> lijung: 已經寄給你了
+11:04 < lijung> 我也可以玩玩嗎？
+11:04 < lijung> 收到了～～
+11:04 < ronnywan1> 我為了想玩 JSON ，所以已經是裝 9.2 了
+11:04 < ronnywan1> 不過 9.2 還不是 stable 版本
+11:04 < clkao> 移 不是 9.2.4 了嗎
+11:05 < ronnywan1> 喔喔不對
+11:05 < ronnywan1> 9.3 才增加了 json query 的功能
+11:05 < clkao> 所以已經 9.3 了嗎 :D 
+11:05 -!- scyen_ [~scyen@122.147.15.66] has joined #g0v.tw
+11:05 < ronnywan1> 9.2 增加了 json column type ，但是只有 syntax check 功能，沒其他功能
+11:05 < lijung> ronnywan1: 好強大阿～～ XD
+11:05 < ronnywan1> 9.3 是可以針對 json column 裡面的值再做 query
+11:05 < clkao> 用了 plv8x 的話就可以作一些奇怪的事情: select json_column ~> '.foo.bar'
+11:06 < clkao> 就不用等 9.3 了
+11:06 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+11:07 < clkao> 9.3 好像有說要用 nested hstore 當作 binary json storge, 不知道是 plugin 還是直接進去 default json support. 如果有的話就厲害了
+11:07 -!- scyen [~scyen@4.53.154.230] has quit [Ping timeout: 240 seconds]
+11:08 < clkao> ronnywan1: btw clkao {at} clkao.org
+11:14 < lijung> clkao: 那我想說立委那邊就不要定位了，就把它變成一串像 list 的東西，然後再 map 的右邊說，"誰能夠改變你的命運"點一下然後就往右 scroll 然後就一排 19位立委的 list 然後排版就很像怪物卡那樣
+11:16 < clkao> lijung: 或者就現在 mapview match 的話就 highlight list 中的那個人?
+11:17 < lijung> ok sounds great!
+11:17 < lijung> 那我先把那個list 做出來然後好好研究一下 postgresql
+11:19 -!- TigerHuang [~tiger@netflow.csie.nfu.edu.tw] has joined #g0v.tw
+11:20 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has joined #g0v.tw
+11:21 < lijung> clkao: pgrest 會用到嗎？
+11:22 < clkao> 如果接起來的話，就不用寫 server，但要看一下 postgis 怎麼接比較好
+11:32 < lijung> = = 我要重新 filter ronnywan1 的 data nodejs 就爆了...
+11:32 < lijung> ronnywan1: 你這檔案都怎麼處理阿 400多 M要在什麼東西上跑才不會爆...
+11:33 < ronnywan1> clkao: ok, 寄給你了
+11:33 < ronnywan1> lijung: 我只有寫入沒有讀取過 XD
+11:35 < lijung> ronnywan1: 所以一行行把自己要的資料寫入？
+11:35  * lijung 沒處理過這麼可怕的東西
+11:35 < ronnywan1> lijung: 所以我之前才會用一行一 json 的形式公開，要不然我真的覺得沒什麼程式語言可以把他 load 進資料庫中
+11:35 < ronnywan1> s/資料庫/記憶體/
+11:36 < ronnywan1> lijung: 你要不要改 load 那個 csv 檔？
+11:36 < ronnywan1> csv 雖然有 150mb 比較肥，但是讀取 csv 是一行一行讀的，就比較不會有記憶體爆掉的問題了
+11:36 < lijung> 因為現在 clkao 想要我把營業項目多餘兩項的刪掉，看能不能少多一點資料
+11:37 < lijung> 如果我現在要這麼做應該要去原本的 data做處理吧？現在你給我的 data 應該是無法處理吧..
+11:37 < ronnywan1> csv 那邊我是放完整 data
+11:37 < ronnywan1> 所有欄位都有
+11:38 < lijung> csv 我要用什麼開阿...?
+11:38 < ronnywan1> json 會肥還有一個原因是因為「公司名稱」「營業項目」這幾個中文字都重覆了一百萬次
+11:38 < ronnywan1> csv 的話只有第一行是 column name
+11:38 < ronnywan1> lijung: 你用什麼程式語言？
+11:38 < lijung> nodejs
+11:39 < ronnywan1> https://github.com/wdavidw/node-csv # 試試看這個？
+11:39 < kcwu> ronnywan1's url: [wdavidw/node-csv · GitHub]
+11:39 < lijung> 我實在沒有做過這麼大的處理...
+11:39 < lijung> thanks!!
+11:40 < ronnywan1> 不能直接用 line.split(",") ，因為每一筆資料裡面也可能有逗點，造成被斷錯地方
+11:41 < lijung> 嗯嗯了解
+11:41 < lijung> ronnywan1: company.csv 是全部的 data嗎？
+11:42 < lijung> 還是只有 00000000?
+11:42 < ronnywan1> 全部
+11:42 < ronnywan1> 連商業登記都有
+11:43 < lijung> 感激～～
+11:47 < clkao> ronnywan1++ # 自幹 PaaS
+11:49 < lijung> ronnywan1++ 超神猛…
+11:49 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+11:51 -!- MnO2 [~MnO2@nat/yahoo/x-cjjuewwdjlqbbgqw] has quit [Quit: MnO2]
+11:54 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+11:59 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+12:00 -!- scyen [~scyen@122.147.15.66] has joined #g0v.tw
+12:00 -!- scyen_ [~scyen@122.147.15.66] has quit [Read error: Connection reset by peer]
+12:03 -!- MnO2 [~MnO2@nat/yahoo/x-vclnahgrfhhxybsv] has joined #g0v.tw
+12:06 -!- MnO2 [~MnO2@nat/yahoo/x-vclnahgrfhhxybsv] has quit [Client Quit]
+12:12 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has left #g0v.tw []
+12:14 -!- lijung_ [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+12:15 -!- lijung_ is now known as lijung
+12:34 -!- wake [01aca851@gateway/web/cgi-irc/kiwiirc.com/ip.1.172.168.81] has joined #g0v.tw
+12:35 -!- wake [01aca851@gateway/web/cgi-irc/kiwiirc.com/ip.1.172.168.81] has quit [Client Quit]
+12:43 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Ping timeout: 264 seconds]
+12:45 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+12:45 -!- scyen [~scyen@122.147.15.66] has quit [Remote host closed the connection]
+12:46 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+13:00 -!- halacat [dc88d211@gateway/web/freenode/ip.220.136.210.17] has joined #g0v.tw
+13:04 -!- chhsiao2081 [~chhsiao@220-135-94-48.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+13:05 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Ping timeout: 240 seconds]
+13:12 -!- scyen [~scyen@122.147.15.66] has joined #g0v.tw
+13:19 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+13:22 -!- whitglint [~whitglint@122-117-208-238.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+13:49 -!- MnO2 [~MnO2@nat/yahoo/x-xqsxsfldipkzijba] has joined #g0v.tw
+13:51 -!- cades [3b7c5c0d@gateway/web/cgi-irc/kiwiirc.com/ip.59.124.92.13] has joined #g0v.tw
+13:54 < lijung> ronnywan1: 如果我不用逗點分我要怎麼分資料？
+14:02 < lijung> 我好像有點頭緒了...
+14:03 -!- whitglint [~whitglint@122-117-208-238.HINET-IP.hinet.net] has joined #g0v.tw
+14:10 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+14:13 < lijung> 我好像有點頭緒了...
+14:16 < ipa_c> https://www.facebook.com/shiashia/posts/4434572761754
+14:16 < kcwu> ipa_c's url: [Facebook]
+14:17 < ipa_c> coscup沒票的可參考
+14:26 < hcchien> 沒票的可以當主持人!?   lol
+14:30 < ipa_c> 萬能的OSDC總召出現了！
+14:35 < hcchien> 萬萬不能的
+14:37 -!- cibs [~cibs@60-251-40-253.HINET-IP.hinet.net] has joined #g0v.tw
+14:50 -!- JuanitoFatas [dc87be32@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.190.50] has joined #g0v.tw
+14:50 -!- JuanitoFatas1 [~Adium@220-135-190-50.HINET-IP.hinet.net] has joined #g0v.tw
+14:51 -!- halacat [dc88d211@gateway/web/freenode/ip.220.136.210.17] has quit [Ping timeout: 250 seconds]
+14:51 -!- JuanitoFatas [dc87be32@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.190.50] has quit [Client Quit]
+14:55 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+14:55 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+14:55 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+14:55 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+14:56 < lijung> ronnywan1: 我重新寫了一個 parser 來 parse 大概做好了但是原本的檔案到了第157903 筆資料他就會死掉
+14:57 < lijung> ronnywan1: 出現這個Invalid closing quote at line 1; found "B" instead of delimiter ","
+14:57 < lijung> clkaoud: 我把parser 重寫去看他的項目要小於二還有加一些限制所以原本157903 筆資料變成 4000多筆而已，哈哈哈
+14:58 < lijung> clkaoud: 看來有點希望可以瘦身很多...現在原本的 csv 好像有問題 parse 到 157903就掛了...
+15:02 -!- brecht [dc8286dc@gateway/web/cgi-irc/kiwiirc.com/ip.220.130.134.220] has joined #g0v.tw
+15:02 < lijung> 而且我發現這些 data 好像是歷屆的因為有很多公司解散了...
+15:05 < clkao> wHisKy: ping
+15:05 < lijung> 因為總共有 1,021,786 筆資料
+15:06 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 240 seconds]
+15:07 < clkao> wHisKy: 來幫忙 draft 一下「pdf 和 word 檔裡面的表格不是資料，如果不了解的話，相信研考會同仁很樂意幫貴單位解答」的 template 吧 # http://data.g0v.tw/questions/168
+15:07 < kcwu> clkao's url: [國民健康局癌症登記查詢系統 - TWOpenData]
+15:08 < ETBlue> #idea pool 台灣炒地皮地圖 https://www.facebook.com/groups/g0v.general/permalink/481399471936464/ 都更+徵收地圖，閒置廠房+閒置土地地圖，住宅區空屋地圖，各種炒地皮因子整合在同一張地圖上，並標出政務官/議員及其親屬名下的土地座落
+15:08 < ETBlue> 同場加映：癌症+環境污染地圖
+15:08 < ETBlue> https://www.facebook.com/groups/g0v.general/permalink/478633568879721/
+15:08 < kcwu> ETBlue's url: [Facebook]
+15:09 -!- halacat [dc88d93c@gateway/web/freenode/ip.220.136.217.60] has joined #g0v.tw
+15:25 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+15:26 < ipa_c> lijung講的小故事好可怕，讓我抖了好幾下
+15:28 < ipa_c> 想到，有朋友住處前面的田被賤賣給環保公司，倒了醫療污染物，據說新北很多郊區都這樣，農民可能繼續回去種東西....
+15:29 < clkao> wHisKy: 還有這個不知所云的回答 # http://data.g0v.tw/questions/1/
+15:29 < kcwu> clkao's url: [內政部房價實價登錄資料 - TWOpenData]
+15:31 < lijung> ipa_c: 還有很多呢...這些很驚人的東西，而且之前有一陣子去了上海跟很多富二代出去聽到很多很驚人的東西...
+15:32 < lijung> 越有錢的人越可怕...人性的貪婪...
+15:39 < au> ...酷安点评:「萌典是来自台湾同胞的作品，东西很不错，感叹啊，我们现在只知道钱，一些传统文化还不如侨胞们继承的好。」 # http://www.coolapk.com/apk/org.audreyt.dict.moe
+15:39 < kcwu> au's url: [萌典(org.audreyt.dict.moe)_0.3.11_Android软件_酷安网]
+15:41 < shelling> #僑胞
+15:41 < shelling> (y)
+15:42 < shelling> lijung: 我轉了一份 tisa.json 只留下我們要的欄位
+15:44 < clkao> lol
+15:45 < shelling> lijung: 上傳中...:p
+15:45 < clkao> 下面的 comment: 啥时候返工大路啊 急等... XD
+15:45 -!- kaxing [~kaxing@175.41.48.77] has quit [Read error: No route to host]
+15:45 < au> ...「求光复」
+15:45 -!- halacat [dc88d93c@gateway/web/freenode/ip.220.136.217.60] has quit [Ping timeout: 250 seconds]
+15:46 < shelling> 「南望王師又一年」 // 都會背了
+15:46 < ipa_c> 僑胞通常意指外國人吧 \o/
+15:46 < shelling> \o/
+15:47 < superbil> \O/
+15:48 < lijung> shelling: great job!!
+15:48 < lijung> 你跑出來多大幾 M？
+15:50 < lijung> shelling: 你有限制少於兩項嗎？？
+16:00 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+16:08 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 240 seconds]
+16:10 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+16:12 < shelling> lijung: 524MB
+16:12 < shelling> 這邊都還沒有限制
+16:13 < shelling> 先正規成一行一 json 包含統編，只留五欄
+16:13 < lijung> shelling: 我把我們目標的19位立委的 data 放上來了
+16:13 < lijung> https://github.com/g0v/tisa-map/blob/c45ad6c6a764b7ba359189f98138378e416e204a/json_data/tisa-ly.json
+16:13 < kcwu> lijung's url: [tisa-map/json_data/tisa-ly.json at c45ad6c6a764b7ba359189f98138378e416e204a · g0v/tisa-map · GitHub]
+16:14 < shelling> 接下來我會先過濾只剩下「核准設立」
+16:14 < shelling> lijung++
+16:14 < lijung> 然後阿今天早上 ronny 其實已經幫我們用好只拉出這五欄的版本
+16:15 < lijung> https://www.dropbox.com/sh/42oyn4ustp4ilhy/z8Mmg7Xn_t/files
+16:15 < kcwu> lijung's url: [Dropbox - files]
+16:15 < lijung> shelling: 下面有一個 company-lijung
+16:15 < lijung> 然後後來因為這個檔案還是很大於是 ronny 說用最下面的 company.csv 去抓data 然後去限制
+16:16 < lijung> https://github.com/chilijung/twcompany-parser/blob/master/csv_parser.js
+16:16 < kcwu> lijung's url: [twcompany-parser/csv_parser.js at master · chilijung/twcompany-parser · GitHub]
+16:17 < lijung> 所以我下午寫了這個 csv_parser然後 parse 了資料順便加上限制式
+16:17 < lijung> 但是到了第 15多萬行就會掛掉因為好像是 csv 檔的問題吧...
+16:18 < ETBlue> 立委地圖組真是太強大惹...
+16:18 < lijung> ETBlue: ㄏㄏ就複製貼上...
+16:19 < lijung> shelling: 我現在的最新的 csv parser 抓的時候只有抓這樣 [ '09499599', '巨群房屋仲介有限公司', '臺北市中山區松江路１３６號８樓', '[["","１﹒房屋租售之介紹業務。"]]' ]
+16:19 < shelling> 我先把不是「核准成立」的去掉吧
+16:19 < lijung> 好阿～～但是現在問題是檔案還是很大...
+16:20 < clkao> lijung: 你看要不要直接取這裡的資料 https://github.com/g0v/twlyparser/blob/master/data/mly-8.json
+16:20 < kcwu> clkao's url: [twlyparser/data/mly-8.json at master · g0v/twlyparser · GitHub]
+16:20 < clkao> grep 那十九個 name
+16:21 < lijung> 我現在的想法是我去用網站的部分然後 parser 給你用...我怕來不及...
+16:21 < lijung> clkao: ok我還自己拉出了一個...[
+16:22 < lijung> shelling: 今天早上 ronny 有說比較可行的方式是用postgis + postgresql
+16:22 < lijung> 你有用過這個嗎？？
+16:23 < lijung> shelling: 應該要用 csv 去把我們要的 data 抓出來然後再 parse 成json 我覺得會比較快
+16:24 < lijung> 而且我今天用限制完原本 15萬筆只有 4000筆是對的... 總共有 100萬筆所以大概4萬筆左右
+16:25 < lijung> clkao: 如果4 萬筆的話還要用到 postgis + postgresql嗎？
+16:28 < ronnywan1> lijung: 你說第15萬行掛掉，可以給我是哪一家公司掛掉的嗎?  09499599 這一家?
+16:30 < lijung> [ '12355408', '合泰大理石工程股份有限公司', '臺北市資料空白', '[["","**大理石設計按裝業務（營造業除外）"]]' ]
+16:30 < lijung> ronnywan1: 上面貼的那家
+16:31 < lijung> Invalid closing quote at line 1; found "B" instead of delimiter ","
+16:32 < lijung> error message 為上面那行
+16:33 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+16:36 -!- JuanitoFatas1 [~Adium@220-135-190-50.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+16:39 < ronnywan1> http://company.g0v.ronny.tw/id/12355603
+16:39 < kcwu> ronnywan1's url: [美商潘氏煤礦股份有限公司:12355603:台灣公司資料]
+16:39 < ronnywan1> 死在這家
+16:40 < kcwu> parser 不認得 \" ?
+16:40 < lijung> ronnywan1++
+16:40 < ronnywan1> 應該是
+16:41 < lijung> 我不知道問題出在哪耶...他就跳出我上面貼的那個error
+16:41 < ronnywan1> csv 好像沒有很嚴格的標準? 我用 PHP 內建的 csv 產生他是用 "" 替換掉 "
+16:41 < lijung> 處理了15萬家都正常就到那邊死掉...
+16:42 < clkao> csv 的 " escape 是 "" 沒錯
+16:42 < lijung> 我看看把那筆資料 skip 看看可不可行
+16:43 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:43 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+16:43 -!- cades [3b7c5c0d@gateway/web/cgi-irc/kiwiirc.com/ip.59.124.92.13] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+16:45 < lijung> 我看看把那筆資料 skip 看看可不可行
+16:45 < kcwu> 各家 csv 處理 escape 的方法都不太一樣
+16:45 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:45 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+16:46 < shelling> 我這邊完成 filter 核准設立的 json，只留下四個欄位
+16:46 < shelling> 上傳中
+16:47 < shelling> 四欄位是 統編 公司名稱 公司所在地 所營事業資料
+16:48 < shelling> 290MB
+16:49 < lijung> shelling: 嗯嗯OKOK! great!
+16:49 < lijung> 問題我不知道怎麼 skip 那筆資料 冏...
+16:51 < lijung> ronnywan1: 不對應該是停在 157903
+16:51 < lijung> 這行
+16:51 < shelling> http://140.112.20.144/tisa.stage1-permitted.json
+16:53 < lijung> shelling: 你如果把 公司名稱、公司地址、公司統編不可為空白
+16:53 < lijung> 然後再加上營業項目要少於 2項（包瓜兩項）
+16:54 < lijung> 這樣可以少 25 被...
+16:55 < shelling> 原始 http://140.112.20.144/tisa.json
+16:55 < shelling> 統編應該不會是空白
+16:55 < lijung> ronnywan1: 剛剛那個是過濾過的資料所以那行是錯的，停在這行157903
+16:56 < lijung> shelling: 嗯嗯，你會 postgis 嗎？？
+16:56 < lijung> 我們應該要用這個和 postgresql 他拉到一個畫面的時候去 sql query 找符合的廠商出來
+16:56 < lijung> 這樣才跑的動...
+16:59 < shelling> ??
+16:59 < shelling> 為什麼需要 postgre sql
+17:00 < lijung> 因為要 query 去查在那個經緯度附近的廠商在把它拉出來
+17:00 < lijung> postgresql 把我們的json 丟到裡面
+17:00 < lijung> 也就是你剛剛 parse 的 json 丟進去
+17:01 < shelling> 不是要用 firebase 嗎
+17:02 < shelling> 棄用 firebase? zzz
+17:02 < lijung> 要不然 firebase 你要怎麼用...好幾 m 的 data
+17:04 < lijung> 但我再想我剛剛刪掉這麼多 data 我把它刪到剩，4000筆，那完整的資料大概4萬筆左有搞不好可以用 firebase...
+17:05 < lijung> 4萬筆應該可以吧...沒什麼概念...
+17:05 < lijung> shelling: 你覺得呢？？
+17:06 < shelling> 四萬筆還滿小的
+17:07 < shelling> postgre 要架在哪裡
+17:07 < lijung> ronny 有寫一個 paas
+17:07 < lijung> 你的 email 多少
+17:08 < shelling> 多少？
+17:08 < shelling> 30GB吧
+17:08 < lijung> 我寄邀請信給你
+17:08 < lijung> 他今天早上開給我一個空間
+17:08 < lijung> 我給你 admin 你先看看
+17:09 < shelling> ok
+17:09 < ronnywan1> lijung: 還沒有邀請信和註冊功能 XD 現在要我直接從資料庫開帳號 XD
+17:09 < ronnywan1> shelling: 給我你的 email 吧 XD
+17:09 < shelling> navyblueshellingford@gmail.com
+17:09 < lijung> ronnywan1: 如果說40000筆的話還要用到嗎？
+17:09 < lijung> 因為我大概預估如果說parse 正確大概4 萬筆
+17:11 < shelling> 我先來攔截「所營事業項目」不到三筆的
+17:11 < shelling> 但是我不確定這樣好不好
+17:12 < ronnywan1> 我覺得要評估速度後才知道..像求職小幫手當初灌進評律網的資料大約一萬三千多筆，這樣子直接從 js load 就很慢了
+17:12 < ronnywan1> 我那時就改用資料庫了
+17:13 < ronnywan1> 看你的服務能不能允許一個約 10~20 秒的 now loading
+17:14 < lijung> shelling: 我試起來是還不錯...這樣檔案很乾淨
+17:14 < lijung> 而且有些公司很誇張10, 幾個20幾個營業項目...
+17:15 < ronnywan1> 營業相關多選幾樣不需要多花錢啊
+17:15 < lijung> ronnywan1: 嗯嗯ok
+17:15 < ronnywan1> s/相關/項目/
+17:15 < lijung> ronnywan1: 所以 csv 檔案找到問題了嗎？
+17:15 < lijung> 還是就用 shelling 他用 json 去 parse的data 就好...
+17:17 < ronnywan1> shelling: ok, 寄給你了
+17:17 < ronnywan1> lijung: 原因是因為有資料包含 \"
+17:17 < ronnywan1> 而 node-csv 他不吃這格式
+17:17 < lijung> ok 了解!
+17:21 < lijung> ronnywan1: 可是他 err message 是：found "B" instead of delimiter ","
+17:22 < lijung> 原因不是說找到 B 是斷點符號而不是" , "？
+17:29 < clkao> https://github.com/g0v/tisa-map/blob/master/json_data/tisa-ly-map.json
+17:29 < kcwu> clkao's url: [tisa-map/json_data/tisa-ly-map.json at master · g0v/tisa-map · GitHub]
+17:33 < lijung> clkao: 立委的服務處的圖嗎？
+17:33 < ronnywan1> lijung: 因為是 'P & C \"BITUMINOUS COAL\" INC.'
+17:34 < ronnywan1> 這個 node-csv 的 parser 看到 \" 之後以為這一欄已經結束了，後面是, 才對
+17:34 < ronnywan1> 但是卻遇到 \"BITU...
+17:34 < lijung> 哈哈 got it!我剛剛用 sed 把那行刪掉就沒問題了
+17:35 < lijung> 現在我就重新一直跑因為後面好像有很多行也是因為那個原因所以停掉
+17:35 < lijung> 所以我現在把不合格的 data 刪掉就ok了！
+17:35 < ronnywan1> 或者你把 \" 換成 ""
+17:36 < ronnywan1> "" 就是 node-csv 認得的了
+17:36 < lijung> 阿對吼好方法！
+17:38 < ronnywan1> 另外因為外商公司都會同時有中文和英文名字，所以公司名稱那欄位會變成 array ，要處理資料時要注意這點
+17:39 < lijung> @@ok thanks, 對了我想問一下你之前那邊有 business-0000000.json 那跟00000000.json 有什麼差？
+17:40 < ronnywan1> bussiness 是商業登記
+17:42 < ronnywan1> 像是有些需要統一編號弄發票章的早餐店，咖啡店之類的小店會用商業登記不會用公司
+17:42 < lijung> 哦哦了解，所以 cvs 裡面的資料都有吧？
+17:43 < ronnywan1> 對，csv 裡面我就沒有再分了
+17:43 < lijung> great!!
+17:43 < ronnywan1> 最簡單的分法就是只要「公司」結尾的就是公司
+17:43 < lijung> 我剛 parse 到第 80萬筆然後只有 1萬二合格！！！！！
+17:43 < lijung> 看來應該可以控制在 2萬筆左右
+17:44 < lijung> ronnywan1: ok :)
+17:44 < ronnywan1> 會有 有限公司、無限公司、股份有限公司
+17:47 < lijung> shelling: 我 parse 完了！140528 合格 1470841
+17:48 < lijung> 14萬筆合格的...看來還是要用 sql query...
+17:48 < lijung> 但縮小了 10 倍資料..
+17:49 < au> 不知道其中有幾家屬於 兩合公司...
+17:51 < ronnywan1> http://company.g0v.ronny.tw/index/search?q=%E5%85%A9%E5%90%88%E5%85%AC%E5%8F%B8
+17:51 < kcwu> ronnywan1's url: [台灣公司資料]
+17:51 < ronnywan1> 喔喔，還有兩合公司喔 XD
+17:51 < ronnywan1> lijung: 或者
+17:51 < ronnywan1> fusion table 可以考慮一下
+17:51 < ronnywan1> https://www.google.com/fusiontables/DataSource?docid=1Dz88qA0OpksNHcl5ShNeeY1x4_dmnUQG_VO-P4s&pli=1#map:id=4
+17:51 < clkao> lijung: 不是服務處 是選區範圍
+17:51 < clkao> s/b end
+17:51 < kcwu> ronnywan1's url: [Google Fusion Tables]
+17:51 < au> 兩合公司似乎有五家
+17:52 < au> 05120573,07446702,51331003,71077107,91311003
+17:53 < ronnywan1> lijung: 不過 fusion table 有限制地圖上最多只會顯示 10 萬個點，超過 10 萬就會有資料不會被顯示了
+17:54 < lijung> ronnywan1: fusion table 的好處是什麼？沒用過...
+17:55 < ronnywan1> 好處是他直接跟 google map 整合，內建 geocoding 功能(不過速度還是有點慢)，要依條件顯示，要設定顯示哪些資訊都 ok 
+17:56 < ronnywan1> 缺點是 API 有存取次數上限，超過請付錢，然後資料量太大也還是會遇到限制，匯出功能對中文會有問題
+17:56 < ronnywan1> 他有 jsonp api 可以用
+17:57 < ronnywan1> 所以可以直接把他的資料拉到自己的網頁上
+17:58 < lijung> 哦哦看似還不錯...之前地圖也是用 google map 但是因為他的 api 的限制所以就換成 openstreetmap
+17:59 < ronnywan1> lijung: https://www.google.com/fusiontables/DataSource?docid=1vH3iw8TMjZUXhu7iRBWDVjk8_Sxs7qV-94BcPIw#map:id=3 # 這是台北市所有建築執照的地圖，放在 fusion table 上的
+17:59 < kcwu> ronnywan1's url: [Google Fusion Tables]
+18:00 < lijung> awesome!!
+18:02 < lijung> ronnywan1: 這100多萬筆資料每跑一次感覺 take forever...
+18:19 < lijung> https://www.dropbox.com/sh/o8uu84oskzcsxnp/Do-TEZcra1
+18:19 < kcwu> lijung's url: [Dropbox - tisa]
+18:19 < lijung> 裡面有個 sample.out.zip
+18:20 < lijung> 是我剛剛 parse 出來的
+18:20 < lijung> 只有6 M
+18:20 < lijung> zip 檔 6 M原始檔 24M
+18:20 < lijung> 過濾資料過還有加上如果大於兩個營業項目刪掉
+18:20 -!- FourDollars [~sylee@175.41.48.77] has quit [Quit: leaving]
+18:21 < lijung> 但是還不是標準的 json 檔
+18:23 < lijung> shelling: 看你要不要用，或是你重寫也可以都ok！我先不做 parser了我先去忙網站的部分...
+18:23 < shelling> lijung: 我這邊可能看一下要把資料放哪裡吧
+18:24 < lijung> 還有你看看 我們要用在 firebase 或是 ronny 說的 fusiontable 或是 ronny 的paas
+18:24 < shelling> 先把資料注入資料庫
+18:24 < lijung> 嗯嗯
+18:24 < lijung> 但我們現在不知那個版本才是確定的
+18:24 < shelling> 在看前端要怎麼接
+18:24 -!- MnO2 [~MnO2@nat/yahoo/x-xqsxsfldipkzijba] has quit [Quit: MnO2]
+18:25 < lijung> 我先做前端的 立委資料我還要用 handlebars 做一些樣式還有一些前端的東西要處理...
+18:25 < lijung> 因為右邊立委的那個欄位我要把它重寫
+18:25 < shelling> ok
+18:25 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has left #g0v.tw []
+18:25 < lijung> 我那邊是用之前有人寫的現在不適用所以我要重寫
+18:25 < lijung> 應該還不會用到 company的資料，你先看看我們要用哪個 database 比較適合
+18:26 < lijung> 然後架個 sample 出來
+18:26 < shelling> 假設要用 sql，前端資料怎麼接？
+18:26 < lijung> 那要寫個 server阿
+18:26 < lijung> ..
+18:26 < lijung> web server
+18:27 < clkao> (或 pgrest :p)
+18:27 < lijung> 我們先把 data 看要倒到哪個地方然後 sql都可以用我們在想...怎麼架 web server 或是 clkao 說的 pgrest 也不遲？
+18:28 < lijung> 我想些趕一下前端 js 的進度...把立委的資料拉出來等等我怕來不及...因為我們要在七月底之前完成...
+18:28 < lijung> 可能就下禮拜或這禮拜要完成
+18:29 < shelling> 比方說 osm 現在中心點是台北市中正區，那前端應該取得屬於這區塊的公司就好
+18:29 < lijung> 沒錯！
+18:29 < lijung> 我們要做到這樣
+18:30 < lijung> 所以這樣就可以應該到可以處理的範圍內的
+18:30 < shelling> 那麼 API 應該設計成都是 return Array
+18:30 < shelling> 資料庫裡面每間公司都要加上座標
+18:31 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+18:31 < shelling> 得先用 osm query 每個地址的座標
+18:31 < lijung> 嗯嗯沒錯我再想說要先用 geocode 去把所有的公司在加上一個json 去得到座標
+18:31 < lijung> 然後再倒入db
+18:31 < lijung> 這樣應該會比較快
+18:32 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 248 seconds]
+18:32 < lijung> 我晚點寫個geocode的api 出來好了
+18:32 < shelling> 再考慮一下 osm 的 geocode 作法
+18:32 < lijung> 就是把它地址丟進去出來一個座標 array
+18:32 < shelling> 會影響 API 的設計方式
+18:33 < lijung> 我再想說我們在建資料庫的時候就把座標丟進去會不會比較好？
+18:33 < shelling> 中心點+寬高 或是 四角的座標值
+18:33 < shelling> 應該是需要的
+18:33 < lijung> 嗯嗯
+18:33 < lijung> ok前端我應該可以搞定
+18:34 < lijung> 我先寫 geocode 的 api 就地址丟進去出來 座標 array
+18:34 < lijung> 然後先把前端改一改
+18:34 < lijung> 你說的 " 中心點+寬高 或是 四角的座標值"應該前端可以做的到
+18:35 < lijung> 我想說就是用四角的座標值
+18:35 < shelling> 應該是其中一種而已
+18:35 < lijung> 然後丟到後端後端去 query 出在這個值的範圍然後丟回來
+18:35 < lijung> 這樣？
+18:35 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+18:35 < shelling> 看是哪一種會決定後端 API 作法
+18:35 < shelling> 對
+18:35 < lijung> 我們用後面的好了？
+18:36 < lijung> 我覺得四角的比較好
+18:36 < shelling> osm 兩種皆可嗎？
+18:36 < ronnywan1> GOOGLE MAP 的 geodeocoding api 印象中傳的是中心點和半徑
+18:36 < lijung> @@
+18:36 < ronnywan1> 例如 geodecoding 台北市，他就會給台北市的中心點和大概幾十公里
+18:36 < ronnywan1> 台北市中山區就更小一點
+18:36 < ronnywan1> 如果你要到門牌的話，其實只存點的話就夠了
+18:37 < lijung> ronnywan1: 那你覺得我們要怎麼做比較好，我們現在享用什麼方式去後端 query
+18:37 < shelling> 每間公司應該可以存得到點
+18:37 < ronnywan1> 如果只是公司那用點就好了
+18:38 < lijung> 但是在畫面上會是一個區間
+18:38 < shelling> 顯示某區塊的公司就需要半徑
+18:38 < shelling> 先來看 osm 是哪一種吧 XD
+18:38  * shelling 先吃飯
+18:38 < lijung> 現在 http://g0v.github.io/tisa-map/
+18:38 < kcwu> lijung's url: [L.Geocoder]
+18:39 < lijung> 應該要搜尋到我現在這個點的周圍的公司才對
+18:39 < ronnywan1> 那公司存點就好了
+18:39 < lijung> 嗯嗯
+18:39 < lijung> ok!
+18:40  * lijung 晚餐～～YA!
+18:40 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: pm5]
+18:40 < ronnywan1> 如果用 PostGIS 的話，就用 SELECT  * FROM table WHERE ST_DWithin(column, 中心點, 距離);
+18:40 < ronnywan1> 就可以取得中心點方圓的所有公司了
+18:42 < ronnywan1> fusion table 的話可以參考 https://developers.google.com/fusiontables/docs/v1/sql-reference
+18:42 < kcwu> ronnywan1's url: [Row and Query SQL Reference - Google Fusion Tables API — Google Developers]
+18:49 < clkao> lijung: 然後這有個 tim 寫的 cli 工具, 幫你把東西扔上去 fusion table geocode: https://github.com/timchen86/gdcmdtools
+18:49 < kcwu> clkao's url: [timchen86/gdcmdtools · GitHub]
+18:50 < clkao> hychen: 你那個 pgrest header patch rebase 一下發個 pullreq 吧 :D
+18:51 < hychen> clkao, ok
+18:51 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+18:51 < clkao> http://opencwb.tw/typhoon # 又來了
+18:52 -!- clkaoud [uid12095@gateway/web/irccloud.com/x-ogedquxaqjlnnzpm] has quit [Ping timeout: 260 seconds]
+18:54 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Ping timeout: 240 seconds]
+18:56 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 240 seconds]
+18:58 -!- hychen [~hychen@175.41.48.77] has quit [Quit: 暫離]
+19:05 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Remote host closed the connection]
+19:06 -!- brecht [dc8286dc@gateway/web/cgi-irc/kiwiirc.com/ip.220.130.134.220] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+19:06 -!- chihchun is now known as chihchun_afk
+19:07 -!- scyen [~scyen@122.147.15.66] has quit [Remote host closed the connection]
+19:27 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:27 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:27 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+19:27 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+19:47 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+19:49 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+19:51 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+19:56 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Ping timeout: 252 seconds]
+20:01 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 276 seconds]
+20:02 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+20:04 < lijung> ronnywan1: ok 收到！thanks
+20:05 < lijung> clkao: ok來研究看看～
+20:06 -!- kanru` [~kanru@114-42-12-29.dynamic.hinet.net] has quit [Remote host closed the connection]
+20:06 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+20:14 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 246 seconds]
+20:25 -!- Conrad [~cpyang@60.248.240.7] has joined #g0v.tw
+20:40 -!- ymow [~Adium@1-171-48-227.dynamic.hinet.net] has quit [Quit: Leaving.]
+20:45 -!- Conrad [~cpyang@60.248.240.7] has quit [Ping timeout: 240 seconds]
+20:51 -!- scyen [~scyen@118-161-28-140.dynamic.hinet.net] has joined #g0v.tw
+20:52 -!- scyen [~scyen@118-161-28-140.dynamic.hinet.net] has quit [Remote host closed the connection]
+20:52 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+20:53 -!- clkaoud_ [uid12095@gateway/web/irccloud.com/x-sejaapdvxszxadxs] has joined #g0v.tw
+20:55 < clkao> kcliu_: okfn 在找 frontend contractor, 要去試試看嗎 :p
+20:58 < clkao> ronnywan1: 話說又實價登陸有新資料了... primary key 回信根本是裝死... 也許只能用 releasedate+seq 當 key 了... zzz
+21:03 < kcwu> 之前我們爬資料時就是沒有 primary key 很不爽
+21:07 < clkao> 不是有 caseNo?
+21:08 < clkao> 想請 wHisKy 幫忙 draft 一下 ph 值略低的回信 template
+21:11 < kcwu> clkao: 從圖檔變回文字檔那次, 就把 caseNo 拿掉了
+21:20 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+21:21 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Ping timeout: 248 seconds]
+21:24 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+21:37 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+21:42 < ronnywan1> 或者要用路名+樓層+坪數當作 primary key 了 XD
+21:44 < kcwu> 那時候我們有發現, 有些可能是新建案, 路名+樓層+坪數+價錢全一樣. 由於沒有 caseNo, 數不清楚到底有幾個
+21:46 < lijung> 對了我想要做個倒數計時器在 tisa-map 感覺這樣不錯
+21:46 < kcwu> (至少二三十個)
+21:52 -!- caasiHuang [~caasi@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+22:02 -!- ymow [~Adium@1-171-170-149.dynamic.hinet.net] has joined #g0v.tw
+22:09 < lijung> clkaoud_: http://g0v.github.io/tisa-map/
+22:09 < kcwu> lijung's url: [L.Geocoder]
+22:09 < lijung> 我把你 vote 的 area 放到 map 上了
+22:09 < lijung> 但我不知道為什麼無法 fillColor..
+22:10 < clkao> 是 fill
+22:11 < clkao> 然後 stroke-width 要根據 zoom level 算一下
+22:17 < clkao> 原來是 leaflet 內建的 geojson layer
+22:23 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 240 seconds]
+22:33 < ipa_c> au: ethercalc好像不會更新hackfoldr了
+22:34 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+22:36 < lijung> clkaoud_: ok我晚點用我現在在用 立委的資料...
+22:58 < au> ipa_c: url?
+22:59 < ipa_c> http://hack.g0v.tw/tisa/  # 但已經出現了，大概lag 20min
+23:00 < au> ok... will keep an eye on it
+23:03 < lijung> clkaoud_: http://g0v.github.io/tisa-map/
+23:03 < kcwu> lijung's url: [L.Geocoder]
+23:03 < lijung> works great :) 
+23:04 < lijung> shelling_lab: have a look ~~ http://g0v.github.io/tisa-map/
+23:08 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 240 seconds]
+23:10 < clkao> lijung: 這裡有立委選舉的得票明細 不知道放上去有沒有什麼效果就是了 https://github.com/clkao/TWVoteData/tree/master/mly/8
+23:10 < kcwu> clkao's url: [TWVoteData/mly/8 at master · clkao/TWVoteData · GitHub]
+23:11 < lijung> clkao: ok !
+23:11 < lijung> 天啊好完整阿...佩服....
+23:12 < clkao> 好一陣子前弄的 是村里等級的 但剛剛把 aggregated 過的也放上去 這樣就不用自己再去加總了
+23:15 < lijung> clkao++ 我剛剛又 push 了 gh-pages 我加上 scroll to top
+23:22  * lijung 來去休息去～～
+23:37 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: Lost terminal]
+23:45 -!- pm5 [~pm5@111-248-203-201.dynamic.hinet.net] has joined #g0v.tw
+23:46 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+23:56 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Ping timeout: 256 seconds]

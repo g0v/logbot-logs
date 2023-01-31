@@ -1,0 +1,576 @@
+--- Day changed 四  7月 24 2014
+00:01 < ETBlue> ethercalc 被我搞掛了嗎 >"<
+00:04 < ETBlue> Lee1092++ 真的越來越漂亮了 =w=
+00:09 < Michael_LI> 幫忙轉貼／航空城的呂家小兒子／FlyingV等等要開始募資了／https://www.facebook.com/wordfisher/posts/10152637404458738
+00:09 < kcwu> Michael_LI's url: [Wenchung Lu - 還記得太陽花學運登紐約報紙這件事嗎？... | Facebook]
+00:09 < Michael_LI> .//ZZZ
+00:14 < ronnywang> 我把 http://luz.tcd.gov.tw 的都市計畫範圍都爬下來 GeoJSON 放在 https://github.com/ronnywang/luz.tcd.gov.tw/tree/master/geojson 了
+00:14 < kcwu> ronnywang's url (1/2): [全國土地使用分區資料入口網]
+00:14 < kcwu> ronnywang's url (2/2): [luz.tcd.gov.tw/geojson at master · ronnywang/luz.tcd.gov.tw · GitHub]
+00:14 < ronnywang> 這次實作了 WMS to GeoJSON XD
+00:15 < clkao> !
+00:20 < chihchun> !
+00:23 < Lee1092> ronnywang++
+00:23 < chihchun> ronnywang: 你是把圖塊轉成 geojson?
+00:24 < ronnywang> chihchun: yes, 我用 opencv 的 findcontours 找到多邊型的輪廓
+00:24 < chihchun> ronnywang++ # 太強大！！！
+00:24 < ronnywang> 然後再把圖片中的輪廓座標轉換成 GeoJSON
+00:25 < clkao> 太強惹
+00:25 < clkao> id 是... ?
+00:25 < ronnywang> 不過目前還有些問題，像是有時候抓到的輪闊有缺口的話，出來的 GeoJSON 就會只剩下框線的範圍..
+00:31 < superbil> ronnywang: ++
+00:48 < tkirby> ronnywang++
+00:48 < chhsiao1981> ronnywang++
+00:50 < yhsiang> ronnywang++ # 跪著++
+00:51 < ronnywang> 這樣應該可以把 http://posland.g0v.io/ 這個轉換成可以把地號傳回 GeoJSON 了
+00:51 < pm5> ronnywang++
+00:55 < johnny__> ronnywang++ # 雖然不太懂但還是感覺很強大
+01:06 < ETBlue> ronnywang++ # 雖然完全不懂但還是感覺很強大
+01:08 < clkao> ronnywang++ #  雖然完全懂了但還是感覺很強大
+01:10 < au> ronnywang++ # 雖然推齊也難以言喻真的感覺很強大
+01:11 < chihchun> ronnywang++ # 覺的推齊很好玩跟著感覺很強大
+01:11 < clkao> 呃啊！！！！
+01:12 < jimyhuang__> ronnywang++ 來研究怎麼地號轉polygon
+01:24 < pm5> ronnywang++ # 雖然只是跟著推齊但實在很強大
+01:25 < au> logbot 推齊和 irssi 推齊顯然是不同的概念 XD
+01:25 < tkirby> 這個世界上還真多沒用的網站... http://www.theuselessweb.com/
+01:25 < kcwu> tkirby's url: [The Useless Web]
+01:29 < pipi_> 是jimmy欸（喂
+01:29 < au> tkirby: 竟然沒有列出 http://sometimesredsometimesblue.com/
+01:29 < kcwu> au's url: [Sometimes Red, Sometimes Blue by Damon Zucconi, 2007]
+01:30 < pipi_> jimyhuang__: 被我老闆tyler問說你認識jimmy讓我嚇了一跳XD
+01:33 < tkirby> XD
+01:34 < pipi_> 可以認識大家真是太榮幸了（噴淚）
+01:34 < lanf0n> ronnywang++ # 雖然不是很瞭但還是感覺很強大
+01:44 < clkao> 為何突然就七月底了... 
+01:48 < pipi_> clkao++ 七月週末天天爆滿，八月看來。。。
+01:49  * pipi_ 抖抖抖
+01:49 < clkao> 為何我還有七月初的 email 沒回... 
+01:50 < Rhozan> ronnywang++ 跪著推
+01:53 < pipi_> clkao: 食藥署的open data在集思？ 剛好那天去幫忙直播ideas show 也在集思
+01:55 < yhsiang> pipi_: 那天吃飯聊到你 你就打電話來 我們也嚇一跳阿 :p
+01:56 < clkao> 應該是
+01:57 < pipi_> yhsiang: 為什麼會聊到我（抖
+01:57 < pipi_> 我跟村長又要在集思相遇了XD
+01:58 < clkao> 我沒有要去啊... 
+01:59 < pipi_> @@
+02:02 < pipi_> yhsiang: 已經很低調了（並沒有
+02:15 < kiang> ronnywang++, 這是要用在哪個專案的？
+02:32 -!- chihchun is now known as chihchun_afk
+07:38 -!- chihaoyo [cc0e3d43@gateway/web/cgi-irc/kiwiirc.com/ip.204.14.61.67] has left #g0v.tw []
+09:18 < ronnywang> kiang: 目前也沒要用在哪個專案，只是目前政府滿多資料都只提供 WMS 不提供 raw data ，想說研究一下有沒有辦法自力救濟一下
+09:55 < hcchien> ETBlue: 如果你不太累的狀況，可以幫忙研究一下哪些專案適合，而且有興趣擺攤位嗎
+10:01 < ETBlue> hcchien: 你…… XD
+10:02 < ETBlue> hcchien: 我們有要用專案管理系統嗎
+10:02 < ETBlue> hcchien: github / redmine ... 
+10:03 < ETBlue> 來開個攤位組的 hackpad 好惹
+10:03 < ETBlue> hcchien: 除了g0v 紀念品、g0v 專案以外，ngo 跟贊助商也會擺攤位嗎？
+10:10 < hcchien> ETBlue: 贊助商跟 ngo 不會有攤位
+10:11 < hcchien> 簡單的可以用 trello 弄一下 issue tracking
+10:15 < AceChen> hcchien: NGO不會有攤位？？
+10:15 < AceChen> 那我攤位區劃太大了...
+10:16 < hcchien> AceChen: no. 不過我想請 cc 來弄攤位
+10:16 < AceChen> tkalu 有交待不可以把 ETBlue 弄太累...
+10:17 < AceChen> hcchien: 我一直以為有，老實說沒有的話場地很空
+10:17 < hcchien> AceChen: 很空就集中三樓就好了
+10:18 < hcchien> AceChen: 所以我每次都要先確定 ETBlue 不會太累的狀況下    lol
+10:19 < AceChen> hcchien: ngo/npo不擺攤位的原因是？
+10:19 < AceChen> hcchien: 那其實不需要攤位組的協調人了 lol
+10:20 < hcchien> AceChen: ngo/npo 需要擺攤位的原因是？
+10:20 < ETBlue> 因為 ngo 要聽議程，沒辦法顧攤，所以不擺攤？
+10:20 < AceChen> hcchien: 避免 summit 變成自嗨 :P
+10:21 < ETBlue> https://g0v.hackpad.com/g0v-summit-2014-booth#g0v-summit-2014-
+10:21 < kcwu> ETBlue's url: [g0v summit 2014 攤位組 - g0v.hackpad.com]
+10:21 < ETBlue> hcchien: 攤位組協調人我就先寫 cc 了 XD
+10:22 < AceChen> hcchien: 我覺得這種議程，要讓 ngo/npo 人士報名的動力已經很薄弱了
+10:23 < hcchien> AceChen: 我覺得 ngo/npo 會在議程中應該是比較重要的
+10:23 < hcchien> 我以為聽眾會是一般人佔多數
+10:24 < AceChen> 那也要搶票搶的贏宅宅才行...
+10:24 < hcchien> AceChen: 會有慢手保留   :p
+10:24 < AceChen> 沒有 booth = 沒有 invited code
+10:24 < hcchien> 其實那個等號不成立   :p
+10:25 < hcchien> 可以看議程組有個 google doc
+10:25 < hcchien> 有邀請名單
+10:25 < hcchien> btw, 我設了一個 trello. 也加了一些人
+10:26 < hcchien> 大家可以把 task 加上了
+10:26 < AceChen> 喔，這就是所謂的 ngo/npo
+10:26 < hcchien> ?
+10:26 < hcchien> https://trello.com/b/d1lm8f4T/g0v-summit
+10:27 < kcwu> hcchien's url: [Trello]
+10:38 < hlb> clkao: 6 歲的確是寫程式的好時機
+10:39 < ETBlue> hcchien: cc 是青島東用小黑筆電遺失電源線的正妹嗎？
+10:55 < ETBlue> hcchien: AceChen: 動民主的專案攤位可能需要跟 ngo 一起擺攤，因為公民憲政會議跟動民主很有關係，希望更多人同時跳兩個坑，把 ngo 的情報帶來動民主這邊，像仲庭那種角色
+10:57 < ETBlue> hcchien: AceChen: 專案擺攤的話，可以 g0v 跟 ngo 打散到以專案單位一起擺，順便呼應議程的跨界主軸
+10:59 < AceChen> ETBlue: 兩側長廊可以有 14 攤，茶點桌前可以有 4+ 攤
+11:00 < AceChen> 感覺可以來個 g0v 專案早點名 XD
+11:07 < ETBlue> AceChen: 正在把類似性質的專案 group 在同一個攤位，目前想到八陀…參考 http://g0v.github.io/projectPool/ 持續增加中 XD
+11:07 < kcwu> ETBlue's url: [g0v 零時政府 Hackfoldr專案池]
+11:07 < ETBlue> 喔不，不是類似性質，而是類似主題…
+11:07 < ETBlue> 或者很需要彼此協作的專案
+11:08 < ETBlue> 沃草的國會無雙好像蠻適合跟立院專案群一起擺攤
+11:13 < hcchien> 開了一個會回來，trello 還沒人加 card
+11:15 < clkao> hcchien: url?
+11:16 < hcchien> clkao: 10:26:59        hcchien | https://trello.com/b/d1lm8f4T/g0v-summit
+11:16 < kcwu> hcchien's url: [Trello]
+11:20 < hcchien> 用 trello 就發現了.....
+11:21 < hcchien> 非資訊宅圈的都要另外發 invitation
+11:21 < hcchien> 資訊宅圈的都可以直接加    lol
+11:23 < pipi_> 我是資訊宅QQ
+11:24 < billy3321> ETBlue: 我會建議讓國會調查兵團取代國會無雙擺攤
+11:24 < billy3321> ETBlue: 因為國會無雙不缺志工，國會調查兵團缺志工。
+11:28 < hcchien> 一直開 ticket 給別人有一種快感 # 但總覺得就會有人開 ticket 回來，冤冤相報何時了
+11:29 < clkao> hcchien: 這個 board 要不要搬到一個 organization 下？到時可以開其他 board (若有個資相關可能要 private)
+11:33 < hcchien> clkao: done
+11:44 < ETBlue> hcchien: 複習 trello 中... 奇怪我記得以前可以拖曳的
+11:45 < ETBlue> 啊靠邀，是我自己沒登入
+11:46 < miaoski> 前三大推坑王都是人妻... 看來以後要離人妻遠一點... (抖抖)
+11:48 < AceChen> billy3321: 哩來哩來都來擺攤 :P
+11:49 < Lee1092> miaoski:  真的耶...   0.0  
+11:50 < miaoski> Lee1092: 人妻的丈夫，除了 clkao 之外，都沒什麼戰力 (咦)
+11:50 < Lee1092> 每位成功的男人，背後都有一個善於推坑的女人(!?
+11:50 < miaoski> 以上是錯誤類推... brospheus 和 tka 其實戰力都很強
+11:51 < ETBlue> pipi_: 悲劇，啥密場務好像也滿了… www
+11:51 < ETBlue> miaoski: 只有 ipa 會推自己老公，我跟 venev 都推別人的
+11:52 < miaoski> ETBlue: 妳和 venev 都推別人的老公 (筆記) ← 這個糟糕的梗上次 venev 用過了
+11:52 < miaoski> 不得不幫 ipa++ ...
+11:52 < ETBlue> miaoski: 而且 venev 還把這個當座右銘寫在腰帶上
+11:53 < miaoski> ETBlue: 然後 au 還說寫在腰帶上有點怪 (奇怪為什麼我會記深夜頻道記得這麼清楚 @@)
+11:53 < ETBlue> XDXD
+11:54 < Lee1092> XDDDD
+11:57 < hcchien> clkao: 你還有幾個講者的資料，自己加 cards 吧
+11:57 < clkao> sure
+11:58 < ETBlue> hackfoldr 好像不接受不是亂數產生的 url ，像是 https://g0v.hackpad.com/g0v-summit-2014-booth#g0v-summit-2014- 放進去就變成 http://hack.g0v.tw/g0v-summit2014/booth
+11:58 < kcwu> ETBlue's url (1/2): [g0v summit 2014 攤位 - g0v.hackpad.com]
+12:00 < Lee1092> ETBlue   !!   這 paid ID 好怪...   這樣我 parser 會有問題 囧>
+12:03 < Lee1092> 耶  沒事   不是公報   直接忽略不理    XD
+12:03 < ETBlue> XDDDD
+12:03 < ETBlue> Lee1092: hackpad 跟 etherpad 一樣可以直接輸入 url 決定 pad ID 
+12:03 < ETBlue> Lee1092: 講錯，是 ethercalc ...
+12:04 < yhsiang> International Activist Meeting House 的irc #iameetinghouse
+12:04 < yhsiang> on freenode
+12:04 < Lee1092> ETBlue:   歐歐    原來如此   可以自訂~!   hackpad 小技巧+1    
+12:05 < yhsiang> 據說是明天早上九點開會
+12:06 < yhsiang> 如果用中文channel主持人會幫忙翻譯
+12:06 < ETBlue> 雖然不知道是幹嘛的不過先掛著潛水惹
+12:07 < pm5> 潛水+1
+12:08 < ETBlue> Lee1092: 可以自訂但也可以被自訂… >"< 可能有 - 號之前的都會被 hackfoldr parse 掉的樣子
+12:08 < ETBlue> 那我先改一下 pad ID 好惹，也就是另開一個 pad www
+12:13 < pitual2> tkalu: 私立學校的統編沒辦法在yhsiang給的網址中查到 可能需要自己手動建立資料 # logbot 2014-07-18 194
+12:15 < yhsiang> pitual2: 這個tka有跟我討論過 XD
+12:17 < pitual2> 前陣子我有試著手動建立 但是越來越沒動力了...
+12:17 < yhsiang> pitual2: 這時候就把SOP丟出來，招喚一下沒有人吧
+12:17 < yhsiang> 主要是有些單位是不同下轄，這也很麻煩 XD
+12:19 < pitual2> 我是有去data.gov把全部各級學校資料集 集合製成一個xls檔案
+12:20 < Lee1092> pitual2:  可以把已經收集的資料放在這 http://data.g0v.tw/  or github 上  XD
+12:20 < kcwu> Lee1092's url: [Welcome to 零時資料中心 | 零時資料中心]
+12:21 < pitual2> 總共4000多筆 扣掉國立的就剩下約3800筆
+12:22 < billy3321> ETBlue: 那就麻煩了 <(_ _)>
+12:24 < billy3321> ETBlue: 若可以的話，沃草應該也可以擺一攤....
+12:24 < pitual2> 對了還有一個很麻煩的就是 國中國小還蠻多撞名的 例如忠孝國小
+12:24 < billy3321> ETBlue: 請問擺攤要在哪裡登記呢？
+12:25 < jimyhuang__> pitual2: 有縣市嗎？同一縣市應該不會有同名？
+12:26 < kcwu> 縣市合併的就... 
+12:27 < jimyhuang__> .... 樓上一針見盲腸
+12:27 < pitual2> 像高雄就有兩個忠孝國小
+12:27 < jimyhuang__> .... ... ... 
+12:27 < pitual2> 一個在鳳山 一個在鹽埕
+12:27 < yhsiang> 應該是縣市合併 XD
+12:27 < jimyhuang__> pitual2: 喔喔喔！所以還要有郵遞區號啊 XD
+12:28 < billy3321> 改名吧
+12:28 < billy3321> 高雄忠孝第一國小
+12:28 < pitual2> 那時候就是發現撞名 所以一直很苦惱要怎麼建立資料集
+12:28 < billy3321> 高雄忠孝第二國小
+12:28 < yhsiang> 改名?
+12:29 < Lee1092> 郵遞區號 不錯 XD
+12:29 < yhsiang> pitual2: 我想用 高雄市鹽埕區忠孝國小
+12:29 < jimyhuang__> pitual2: 可以登入 http://data.g0v.tw/user/login 後，發在 g0v 群組裡頭。data.g0v.tw 會自動有api，如果你上傳的是 utf8 csv的話
+12:29 < kcwu> jimyhuang__'s url: [User account | 零時資料中心]
+12:29 < yhsiang> pitual2: 高雄市鳳山區忠孝國小
+12:29 < kcwu> 我知道合併時同名的路會改名, 學校不知道有沒有改
+12:29 < yhsiang> 應該可以區分吧？
+12:30 < pitual2> 而且原始資料集只有大學、大專、特教學校是給全銜 其他(高中職以下)全都是給簡稱
+12:32 < yhsiang> pitual2: 我看臺北教育局給的是有分區?
+12:32 < pitual2> 我是從這裡抓的 http://data.gov.tw
+12:32 < kcwu> pitual2's url: [政府資料開放平臺]
+12:32 < tkalu> pitual2: 了解, 謝謝～
+12:33 < yhsiang> http://www.edunet.taipei.gov.tw/ct.asp?xItem=1219830&ctNode=33668&mp=104001 
+12:33 < kcwu> yhsiang's url: [臺北市政府教育局 ─ 臺北市各級學校統一編號]
+12:33 < yhsiang> 只好從地方教育局個個擊破?
+12:33 < yhsiang> 可能要好幾份資料merge了
+12:33 < clkao> 只好放到 local.data 上的 survey
+12:33 < tkalu> 還有半軍事單位的我也不知道怎麼辦
+12:34 < tkalu> ex. 國防大學下面
+12:34  * tkalu 覺得統一編號一點都不統一
+12:36 < clkao> 他不是各級學校... pdf 只有國小... 
+12:38 < clkao> yhsiang: 要試試嗎？ 到 data.g0v 上開一個「普查」 dataset
+12:40 < yhsiang> local.data?
+12:40 < clkao> 要在 data.g0v.tw 上加, 去 local.data.g0v.tw/admin/reload 讓他 reload
+12:40 < yhsiang> ohoh
+12:41 < pipi_> ETBlue: 我本來就有報不是嗎?表單填了啊
+12:45 < pitual2> 先把大學的部分貼上來好了 有部分統編我有查到並寫入 請大家認領 此連結1天後失效 http://pastebin.com/apUXSyY3
+12:45 < kcwu> pitual2's url: [一般大學、技職(不含高職)清單.csv - Pastebin.com]
+12:45 < yhsiang> 額...reload好像炸掉了
+12:45 < yhsiang> 變成國家了
+12:47 < yhsiang> 這要怎麼修 orz..
+12:47 < clkao> 再 reload :p
+12:47 < clkao> 有 bug XD
+12:48 < yhsiang> !! 好了
+12:50 < clkao> yhsiang: 你名片上的圖有 animated gif 嗎？
+12:50 < yhsiang> 沒有耶 
+12:51 < yhsiang> 會想要這麼挑釁的gif嗎 XD
+12:51 < clkao> 好ㄟ
+12:52 < yhsiang> 跟美編發請求了，不過美編很忙 XD
+12:52 < clkao> 那現在的圖有在網路上嗎 XD
+12:53 < billy3321> 現在是用在livehouse.in的聊天圖
+12:53 < billy3321> 沒有動畫
+13:00 < yhsiang> https://www.dropbox.com/s/b466j0xrig1gg4q/slapass.jpg # 美編說可以分享
+13:00 < yhsiang> 期待有人幫忙變成動畫 XD
+13:02 -!- chihchun_afk is now known as chihchun
+13:07 < lanf0n> 有拆開來單一張的圖嗎XD
+13:09 < yhsiang> lanf0n: 自行發揮 :p
+13:21 < ETBlue> billy3321: 目前攤位應該是以專案為單位，不是以組織為單位，所以應該是跟相關的 g0v 專案一起擺 XD 目前列了一些在這裡 http://hack.g0v.tw/g0v-summit2014/g0v_summit_2014_booth
+13:22 < ETBlue> pipi_: 已經填表就安心等坑掉下來吧 XD 現在是因為還不確定有什麼坑…
+13:39 < clkao> ronnywang: 這好可惜沒抓到修改前的 XD # http://newsdiff.g0v.ronny.tw/index/log/1638354
+13:39 < kcwu> clkao's url: [NewsDiff]
+13:40 < yhsiang> lanf0n: 沒辦法的話我們來參考newsdiff吧
+13:40 < yhsiang> clkao: 白敦義嗎 XD
+13:56 < Lee1092> 沒看到白敦義  可惡
+13:59 < yhsiang> Lee1092: 是有截圖
+14:08 < Rhozan> https://drive.google.com/file/d/0B61XzDeFzLBTU0pPSWR5Yk5wZEk/edit?usp=sharing
+14:08 < kcwu> Rhozan's url: [slapass.gif - Google 雲端硬碟]
+14:08 -!- f0rth_ is now known as f0rth
+14:10 < Rhozan> ↑打屁股動畫
+14:12 < yhsiang> Rhozan++ XDD
+14:14 < clkao> ....... XD
+14:15 < clkao> 太好笑了 屁股還會動....
+14:15 < yhsiang> 採訪授權一般也是寫CC-BY 3.0嗎 ?
+14:15 < clkao> y
+14:16 < yhsiang> ok ~
+14:16 < Lee1092> Rhozan++++++  XDDD
+14:25 < chihchun> Rhozan++
+14:39 < yhsiang> au: 萌典有可以做六書之類的東西嗎 XD
+14:41 < pitual2> 轉注假借表示
+14:42 < au> yhsiang: 是說造字分類的 metadata 嗎? 好問題，一時不記得有...
+14:47 < yhsiang> au: ya, 就可能我查犢 這個字他會告訴我是形聲 從牛賣聲 之類的
+14:50 < yhsiang> http://www.louhau.com/www/discol/discol1/select.htm
+14:50 < kcwu> yhsiang's url: [六書查詢]
+14:50 < yhsiang> 有這種網站 XD
+14:52 < au> 澳門勞工子弟學校 @@" 要寫信去問授權嗎
+15:01 < yhsiang> 硬筆字教學網 XD http://www.estmue.tp.edu.tw/~chinese96/word/menu3.htm  
+15:01 < kcwu> yhsiang's url: [書法教材網]
+15:01 -!- s8321414_ is now known as s8321414
+15:02 < yhsiang> http://shanben.ioc.u-tokyo.ac.jp/ # 東京大學有這種神奇的東西 !
+15:02 < kcwu> yhsiang's url: [東京大学 東洋文化研究所 漢籍善本全文影像資料庫]
+15:12 < lanf0n> yhsiang: 想說用 updated_time 去判斷XD...(撞牆中
+15:12 < lanf0n> Rhozan++ 已存檔
+15:12 < yhsiang> lanf0n: 但是都要先塞進database吧
+15:13 < lanf0n> yhsiang: 嗯啊 所以撞牆中QQ...((本來想說丟進 beanstalk 的 tube 但 crash 就會不見有點...
+15:13 < yhsiang> lanf0n: 你現在post的id是用user_id+post_id嗎?
+15:14 < lanf0n> yhsiang: feed 的資料?
+15:16 < ETBlue> Rhozan++ XDDDD yhsiang 你名片要做電子版的啦
+15:17 < yhsiang> ETBlue: ...挑釁升級成2.0
+15:18 < lanf0n> yhsiang: 還沒連回 tweets-client, 目前在參考 tweepy 實做 stream & listener QQ
+15:18 < yhsiang> lanf0n: 喔喔 你現在要用updated來判斷 event?
+15:19 < lanf0n> yhsiang: 嗯啊 因為要做成 tweepy 那樣 (要自己生 updated / deleted ) 就....撞牆中XD
+15:21 < lanf0n> yhsiang: 不過這塊做完應該可以直接連回 politwoops 的後端 (因為跟原本 tweepy 用的方式都一樣 沒意外的的話應該是不會有誤差囧)
+15:21 < privism> 六書有個問題是...有列表嗎？正確嗎？
+15:21 < privism> 如果只是附個說文解字沒什麼困難..
+15:23 < yhsiang> privism: 目前就看到澳洲勞工子弟學校有做查詢系統ＸＤ
+15:24 < yhsiang> lanf0n: 有fork自己的版本嗎？
+15:24 < yhsiang> lanf0n: 先push一些到github上?
+15:24 < lanf0n> yhsiang: 還不能 run 也要丟上去嗎QAQQQQQ
+15:25 < yhsiang> lanf0n: 就開個branch
+15:25 < lanf0n> yhsiang: ! branch tweepy?
+15:25 < yhsiang> lanf0n: 例如 fbtw ?XD
+15:26 < lanf0n> yhsiang: 本來想說叫 feepy XDD
+15:27 < yhsiang> lanf0n: it's ok XD
+15:28 < lanf0n> yhsiang: 不過 code 生很慢... ((完全跟 python 不熟只好先用 command line 測再一行一行生 囧
+15:31 < macpaul> AceChen: /wi4
+15:31 < macpaul> AceChen: sorry, never mind.
+15:35 < lanf0n> 我先整理一些可以用的(?) push 上去好了
+15:36 < Rhozan> https://www.irccloud.com/pastebin/NEUcmEXu
+15:36 < kcwu> Rhozan's url: [Pastebin: NEUcmEXu | IRCCloud]
+15:53 < yhsiang> lanf0n: ok!
+16:39 < macpaul> https://www.youtube.com/watch?v=71pij8MbcCA # 雨蒼公視節目上youtube了
+16:39 < kcwu> macpaul's url: [獨立特派員 357集(看見國會) - YouTube]
+16:49 < clkao> yhsiang: 大部分 l10n 了 # http://local.data.g0v.tw/submit/?dataset=g0v:d54dbee1-22c8-42b7-8ba8-fe715191968f&place=tnn
+16:49 < kcwu> clkao's url: [登入 - Test Open Data Census]
+16:49 < clkao> 有人可以幫忙翻譯這個最右邊的 Description@TW 嗎? # https://docs.google.com/a/clkao.org/spreadsheet/ccc?key=0ApylrzoEp98gdEtUcGprZEVtZEhKaGJ4cEk3TC1PYmc&pli=1#gid=0
+16:49 < kcwu> clkao's url: [Sign in - Google Accounts]
+16:53 < lanf0n> yhsiang: fork 的 project 可以改名嗎?  ((剛發現其實可以直接在 fb-sdk 再延伸些功能...但要用到 db 的話好像不適合做成api?
+16:57 < clkao> yes, go to settings
+17:00 < lanf0n> clkao++ i got it
+17:22 < yhsiang> clkao: 但是google login一直是壞的耶? XD
+17:23 < yhsiang> 好像是redirect url有問題
+17:23 < yhsiang> l10n 速度好快 @.@
+17:26 < clkao> google login 沒設定
+17:26 < clkao> 有嗎？ description 都沒人翻 :p
+17:36 < Michael_LI> 澎湖空難新聞直播（G8V電視牆）／第一版／http://bit.ly/penghu-crash_G8VLIVE-01
+17:36 < kcwu> Michael_LI's url: [G8V.TV 電視牆]
+17:37 < a0000778> Michael_LI: 如果來源變多了 可以用 來源清單 功能
+17:38 < Michael_LI>  <a0000778>嗯，下次教我，今天時間沒有
+17:38 < a0000778> Michael_LI: 教學裡面有 你先看看吧
+17:42 < Michael_LI>  <a0000778> 在這裡可以顯示／狀態顯示很滿意／http://hackfoldr.org/penghu-crash/
+17:47 < Michael_LI> （澎湖空難訊息統整）http://hackfoldr.org/penghu-crash
+18:03 -!- pitual2 [guest-pitu@conference/jsconf/x-yeexhquqtympuqki] has left #g0v.tw []
+18:21 < yhsiang> 翻譯了一些 ...還有8個
+18:21 < clkao> yhsiang++
+18:23 < yhsiang> Rhozan: 請問你的動畫可以授權在我們的影片上使用嗎 XD
+18:27 < yhsiang> http://udn.com/NEWS/NATIONAL/NAT5/8825573.shtml?instant 所以不是newsdiff沒抓到!
+18:27 < kcwu> yhsiang's url: [網友改標「白」敦義 聯合新聞網聲明 | 綜合 | 國內要聞 | 聯合新聞網]
+18:27 -!- LO is now known as Guest60080
+18:42 < yhsiang> Only links to **official** sites are eligeble, 是不是有錯字?
+18:43 < yhsiang> eligible ?
+19:00 < clkao> british english... 
+19:01 < yhsiang> ohoh 
+19:03 -!- CelloCello [~Sero@1.34.191.8] has left #g0v.tw []
+19:05 < yhsiang> 好像翻譯完了 ....
+19:08 -!- chihchun is now known as chihchun_afk
+19:08 < lanf0n> unix 的 timestamp 是不是不看時區啊? ((不同時區的值都一樣?
+19:10 < a0000778> lanf0n: 固定都是+0000
+19:11 < lanf0n> a0000778: 太好惹 感謝!!
+19:11 < ETBlue> hackfoldr 的 controller.ls 有三百多行 zzz
+19:11 < yhsiang> lanf0n: http://www.unixtimestamp.com/index.php
+19:11 < yhsiang> 參考一下
+19:11 < lanf0n> yhsiang: 我剛用了那個玩了一下 fb api XD....
+19:14 < clkao> ETBlue: 耶 要幫忙 refactor 嗎？
+19:15 < a0000778> fb api 似乎要通過手機驗證才能玩?
+19:15 < ETBlue> clkao: 沒，我還沒看懂，想把串 ethercalc 的部分抽出來弄成 maker.moztw.org ...
+19:15 < ETBlue> 結果看到 ls 頭就有點大 www
+19:16 < clkao> 不是有 white-label howto?
+19:17 < ETBlue> 那是啥？
+19:17 < ETBlue> 先 fork 下來亂搞看看 =w=
+19:25 < clkao> ETBlue: 問你個問題，有辦法用 css 把 <dl><dt>..</dt><dd>...</dd></dl> 中的 dt 和 dd 顯示上掉包嗎？
+19:32 < ronnywang> 我也看了 newsdiff 還覺得很可惜沒抓到 XD 原來是被改的
+19:32 < lanf0n> a0000778: 沒...吧? https://developers.facebook.com/tools/explorer 這裡應該可以直接 run
+19:32 < kcwu> lanf0n's url: [Facebook]
+19:35 < yhsiang> clkao: 是要下上換？
+19:36 < ETBlue> clkao: 我只想得到 position absolute 或 position relative 這種沒啥深度的方法…是上下掉包對嗎
+19:36 < ETBlue> hackfoldr 是用 node.js 去跟 ethercalc 溝通的嗎？不能直接用 gh-pages 上對不對
+19:37 < yhsiang> ETBlue: 可以吧?
+19:38 < yhsiang> ETBlue: https://github.com/hackfoldr/hackfoldr/blob/master/app/app/controllers.ls#L246
+19:38 < kcwu> yhsiang's url: [hackfoldr/app/app/controllers.ls at master · hackfoldr/hackfoldr · GitHub]
+19:51 < ETBlue> yhsiang: 可以的話就太好了 +_+ 
+19:58 < Rhozan> yhsiang: 請隨意使用
+20:06 < yhsiang> clkao: 是要換local.data上面那一排嗎
+20:07 < yhsiang> clkao: dl {float: left;} dt,dd {float: right} 
+20:07 < yhsiang> 但是會通通反過來 XD
+20:24 < xsoameix__> clkao: 先做這一頁嗎？http://g0v.github.io/semantic-ui-experiment/public/ly-index.html
+20:24 < kcwu> xsoameix__'s url: [首頁 | 零時政府立法院]
+20:25 < xsoameix__> clkao: 首頁、熱門議案這一頁
+20:26 < clkao> xsoameix__: 好耶
+20:27 < xsoameix__> clkao: 不知道左邊的大頭貼是做甚麼的？
+20:27 < clkao> 主提案人吧 XD
+20:27 < clkao> 還是通通放 ETBlue ?
+20:27 < xsoameix__> clkao: 呵呵，我試試看
+20:32 < yhsiang> 通通放ETBlue XDD
+20:34 < lanf0n> XDDD
+20:40 < yhsiang> http://local.data.g0v.tw/submit/ # 剩下上面的部分了，另外選項的"請選則"應該是請選擇?
+20:40 < kcwu> yhsiang's url: [登入 - Test Open Data Census]
+20:42 < soutia> 請問local.data.g0v的評析部份，是否需要增加"部分"的選項
+20:43 < soutia> 想要新增 新北市 違反勞基法事業單位名單 卻發現 http://www.labor.ntpc.gov.tw/_file/1075/SG/46207/D.html
+20:43 < kcwu> soutia's url: [新北市政府勞工局 - 勞動檢查結果公告專區]
+20:44 < soutia> Word格式 Excel格式 均有 在"機器可讀"選項 不知道要填什麼
+20:47 < yhsiang> soutia: 不就是填機器可讀?
+20:47 < soutia> yhsiang: Word的話機器不能直接讀呀
+20:50 < clkao> soutia: excel is ok, word is not
+20:51 < soutia> 所以我要填哪個...
+20:51 < clkao> yhsiang: will fix in a bit..
+20:51 < yhsiang> 應該可以填可讀吧
+20:52 < yhsiang> 然後可以在下面細節與註記說明
+20:52 < clkao> soutia: 看來他是去年 9 月起改 excel.. 
+20:52 < clkao> 所以現況是可讀
+20:54 < soutia> 看來必須要一個定期mirror程式...(求職小幫手?)
+20:55 < ronnywang> soutia: https://github.com/nansenat16/LSA-CSV
+20:55 < kcwu> ronnywang's url: [nansenat16/LSA-CSV · GitHub]
+20:55 < ronnywang> 有之前整理的所有內容人工轉成 CSV 的
+20:56 < soutia> ! 所以現在大家看到的最新資料都是人工上去的...沒有所謂自動程式?
+20:57 < ronnywang> soutia: 沒有，24 個縣市有 24 種格式，有 pdf, xls, doc, html.. 寫 24 個 crawler 太累了 XD
+20:58 < soutia> 嗯...零時坑報多一個任務給沒有人來跳...
+20:58 < jimyhuang__> 好累喔 ...
+21:00 < willard> 看到有些坑是live script  好難跳＠＠
+21:00 < willard> 本身也會一點angularJS
+21:00 < soutia> fact.g0v也可以放到零時坑報，不過我上次給jimyhuang的更新資料，Tag沒有新增上去..
+21:01 < jimyhuang__> soutia: Tag 可以自己加，給我 email 把你加到編輯群組.. 
+21:01 < soutia> 我要繼續當匿名貢獻者 XD
+21:02 < jimyhuang__> soutia: soga ...
+21:04 < soutia> willard: 會點AngularJS的話就可以利用很多現有資料庫來寫所查即得(?)的網頁
+21:05 < willard> 例如哪些坑
+21:07 < clkao> ronnywang: check email please :p
+21:07 < soutia> 範例：用Perl去撈並Parse資料 然後用AngularJS做成網頁 https://gist.github.com/anonymous/7e09af31f5908da9e8c7
+21:07 < kcwu> soutia's url: [TodayPCC-gov 今日政府電子採購標案資料(搜尋)]
+21:09 < clkao> 神秘的 soutia 
+21:10 < clkao> yhsiang++ # po file fixed
+21:11 < jimyhuang__> ipa: 問一下慢手的部份... 
+21:11 < ipa> jimyhuang__: ya?
+21:11 < jimyhuang__> 目前有什麼討論哪些不該邀嗎？
+21:12 < ipa> 沒有
+21:12 < jimyhuang__> 好 tks
+21:16 < clkao> soutia: 太強了  你在狂填各縣市勞基法嗎
+21:17 < soutia> ! 被發現了
+21:17 < soutia> 部分公廁還有教育統編也是我填的
+21:17 < clkao> soutia++
+21:17 < yhsiang> soutia++ # 我就覺得好奇怪 數字一直在變 XD
+21:17 < clkao> 太神秘了 其實這個還在測試而已 為何你就知道了... XD
+21:18 < jimyhuang__> soutia++ 匿名的勇者
+21:18 < yhsiang> 還我以為clkao是寫了random number在跳 orz ...
+21:18 < clkao> XD XD
+21:18 < jimyhuang__> 上次也是pastebin就加了fact.g0v.tw很多資料... 
+21:18 < soutia> 因為....今日LOG # 289
+21:19 < clkao> willard: 要幫忙解 https://github.com/okfn/opendatacensus/issues/387 嗎?
+21:19 < kcwu> clkao's url: [popover not internationalized · Issue #387 · okfn/opendatacensus · GitHub]
+21:19 < ronnywang> clkao: got it
+21:19 < soutia> 沒git也想保持匿名 這個要怎麼解...
+21:21 < clkao> local fork 解了之後把 patch 貼到 pastebin? 
+21:21 < soutia> 好像也可以...
+21:21 < au> 用免洗帳號 mailinator 註冊 github?
+21:22 < clkao> 其實還是可以維持匿名但保持同一個 identity :p
+21:22 < soutia> 忘記密碼的話等於跟已註冊的帳號永遠說掰掰?
+21:23 < jimyhuang__> 那就弄一個很厲害但不會忘記的密碼
+21:24 < yhsiang> tkirby: 留言給作者個功能也是自己寫的嗎? XD
+21:24 < willard> soutia 我可以用py的request爬嗎
+21:24 < yhsiang> 不是有 1password可以用嗎 ?
+21:25 < soutia> Willard: 可以呀
+21:26 < jimyhuang__> 好邪惡的 mailinator ... 
+21:26 < willard> 想問你們資料庫有公共的嗎
+21:29 < soutia> 什麼叫做 公共資料庫?
+21:30 < willard> 如果網站連到資料庫的話
+21:30 < willard> 資料庫帳密布可能放到git吧
+21:30 < willard> 這樣clone下來要怎測試
+21:31 < au> 帳密可以不設定，限制只有 localhost 可以連就好了。
+21:32 < au> (然後資料庫內容再用 .sql 發佈)
+21:32 < willard> 所以只是靜態的嗎
+21:32 < willard> 就是只能查詢
+21:35 < soutia> 以我剛才那個標案網頁為例 爬的資料是公開的 parse完之後的也是公開的 查詢是靜態的(僅在HTML和JS而已) 完全沒有任何帳密資料
+21:37 < clkao> 還有什麼資料是跨縣市亂七八糟的呢？
+21:38 < willard> 了解
+21:38 < willard> 是只有parse一次嗎
+21:39 < willard> 所以每隔一段時間都要在parse? 因為都是存成cdv的檔案
+21:39 < willard> csv
+21:39 < soutia> 指的是我的標案網頁嗎?
+21:40 < willard> 嗯嗯
+21:40 < soutia> 先get(抓)一次，然後parse10次，寫成js做為資料庫，再用HTML去呼叫他
+21:41 < yhsiang> http://itaiwan.gov.tw/hotspotQueryList.php # 原來有這種東西
+21:41 < kcwu> yhsiang's url: [iTaiwan 熱點查詢]
+21:42 < soutia> 另外parse出來的是js內包json格式，不是Excel可讀的csv
+21:43 < willard> 你給我的那網址
+21:43 < willard> 只有一個perl的腳本
+21:43 < willard> 沒有整個專案的網址
+21:43 < soutia> 是的 只有一個
+21:43 < willard> https://gist.github.com/anonymous/7e09af31f5908da9e8c7
+21:43 < kcwu> willard's url: [TodayPCC-gov 今日政府電子採購標案資料(搜尋)]
+21:43 < willard> 就這一個？
+21:44 < soutia> 一個PERL 一個HTML 一個說明檔 共三個檔案
+21:44 < willard> 這服務這用的  一打網址就有人回標題
+21:47 < willard> 我在mac上打 Perl PCCTDParser.pl http://web.pcc.gov.tw/pishtml/todaytender.html > DAT.js
+21:47 < kcwu> willard's url: [政府電子採購網]
+21:48 < willard> 他出現 openWide character in print at PCCTDParser.pl line 28.
+21:48 < willard> Wide character in print at PCCTDParser.pl line 50.
+21:48 < willard> Wide character in print at PCCTDParser.pl line 94.
+21:48 < soutia> 出現外部字元就不用理他了 反正重點是有沒有看到DAT.JS檔案
+21:48 < willard> 有
+21:49 < soutia> 那就把剛才HTML檔抓下來 放到和JS同目錄 點擊HTML兩下直接執行
+21:50 < willard> 可以跑呀
+21:51 < soutia> 應該有看到完整的資料庫 在搜尋那邊隨便打幾個中文字
+21:51 < willard> parse10次是什麼意思
+21:51 < willard> 對 可以跑
+21:52 < soutia> 就是將檔案做分析(解析)
+21:52 < soutia> AngularJS的基本應用在這 剩下就自己研究看看嘍
+21:53 < willard> 跟我以前寫的好像
+21:53 < willard> http://itouch.cycu.edu.tw/active_system/CourseQuerySystem/
+21:53 < kcwu> willard's url: [中原大學 開課查詢系統]
+21:54 < xsoameix__> ETBlue: 請問大頭貼下方的獎杯 999 是甚麼？http://g0v.github.io/semantic-ui-experiment/public/ly-index.html
+21:54 < kcwu> xsoameix__'s url: [首頁 | 零時政府立法院]
+21:55 < soutia> 咦 開課查詢系統...這個也要不要做成各大學(技專)課程的開放資料
+21:56 < willard> 老實講我有想過ㄟ
+21:56 < willard> 可是教育部的欄位很多  不知選哪些
+21:56 < willard> http://ucourse-tvc.yuntech.edu.tw/WebU/Default.aspx
+21:56 < kcwu> willard's url: [大學院校課程資源網]
+21:56 < soutia> 說不定這個對想要跨校選修課的學生 以及未來新生入學了解該科系課程會有幫助
+21:56 < willard> 這邊可以查到這大學的
+21:57 < willard> 可是這查詢超級慢～
+21:57 < willard> 這個對課程有幫助嗎
+21:57 < willard> http://coursenote.tw/#/
+21:57 < kcwu> willard's url: [中原選課大全]
+21:58 < soutia> 建立完成的資料庫可以查歷史課程資料
+21:58 < willard> 可是教育部那查詢很久
+21:59 < willard> 你可以直接選進階查詢  查某個學校
+21:59 < willard> 很難查
+21:59 < soutia> 所以就要自己爬 跟剛才查標案的一樣
+22:00 < willard> 那要寫哪個比較好
+22:00 < willard> 開課查詢還是有 評論的
+22:00 < willard> 這兩個都我寫的
+22:02 < soutia> 這樣花點時間研究看看嘍 當初查標案的程式和使用者通常會看(查詢)什麼樣的關鍵資料 我都研究很久
+22:03 < soutia> s/這樣/這要/
+22:03 < willard> ok
+22:04 < willard> 研究完如果我不在 irc上    就mail給我 willard1218@gmail.com
+22:05 < yhsiang> willard: 額 ..這會留log喔 
+22:14 < willard> yhsiang 安安
+22:15 < willard> yhsiang>33
+22:15 < willard> yhsiang> 33
+22:18 < willard> yhsiang:這樣有嗎
+22:18 < yhsiang> 有
+22:22 < willard> safari 不能連 http://g0v.github.io/projectPool/  
+22:22 < kcwu> willard's url: [g0v 零時政府 Hackfoldr專案池]
+22:23 < soutia> willard: 先用這個 http://hackfoldr.org/projectpool
+22:28 < johnny__> clkao: 麻煩 twcy.herokuapp.com 幫指一下 http://sunshine.cy.g0v.tw/  謝拉
+22:33 < tkirby> yhsiang: 是的 XD
+22:34 < yhsiang> tkirby: 好酷啊 回訊息了!!
+22:34 < tkirby> 其實可以留言給任何人, 只是沒地方按而已.. XD
+22:35 < clkao> ronnywang: crowd-ocr 申請一下這個吧 :p # http://www.knightfoundation.org/funding-initiatives/knight-prototype-fund/
+22:35 < kcwu> clkao's url: [Knight Prototype Fund - Knight Foundation]
+22:35 < clkao> 8/1 deadline :p
+22:37 < clkao> johnny__: done!
+22:38 < johnny__> clkao: thanks!
+22:42 < ronnywang> clkao: 好啊，來送送看 XD
+22:42 < clkao> 要把那個 demo 錄成 screencast
+22:42 < clkao> soutia++ # 勞基法快填完了
+22:46 < ETBlue> xsoameix__: 是某個統計數字，決定熱門排行的冠軍、亞軍…用的，不過我還沒想到要用什麼當作排行的標準 XD
+22:46 < soutia> 違反勞基法部分填完了 剩下4個不是空白就是找不到資料
+22:47 < xsoameix__> ETBlue: 那麼我先註解掉喔
+22:49 < clkao> soutia: 勞動部不是有個大連結
+22:49 < ETBlue> xsoameix__: sure 隨你搞 XD
+22:49 < soutia> clkao1: 對呀 我剛才就是從那邊一個一個點進去看的
+22:50 < clkao> hcchien: 在想如果國外的要參加 unconf, 是不是再多住一天? 不然好苦 :p 不過那間真是有貴, 一次訂很多間有辦法談嗎？
+23:04 < hcchien> clkao: 有多少人要住
+23:05 < hcchien> 狂開 ticket 中
+23:06 < clkao> hcchien: 3
+23:06 < hcchien> clkao: 那就多住一天吧
+23:06 < clkao> 談到有折扣的話 到時其他國外的參加者也可以讓他們訂那間 
+23:14 < hcchien> ETBlue 不累的話請 ETBlue 去找找好了
+23:15 < ronnywang> clkao: knight prototype fund 好像只贊助美國的專案?
+23:16 < ronnywang> http://www.knightfoundation.org/prototype/faq/ # At this time, funding is limited to organizations based in the United States.
+23:17 -!- technomm_ is now known as technommy_
+23:17 < clkao> orz... 我以為改了... 
+23:17 < clkao> 那只好投 sunlight 的 mini grant :p 錢比較少 不過上次他們就說有興趣了
+23:19 < ipa> ronnywang: 衝～
+23:21 < ronnywang> 政獻組來開個 hackpad 共筆填一下投的內容 XD
+23:22 < clkao> ronnywang++ # 衝啊！我記得 muyueh 好像已經預先跳坑
+23:25 < xsoameix__> clkao: 議案的「熱門」程度要看日期還是甚麼其他指標呢？我現在是用 calendar 的日期來區分
+23:26 < clkao> ㄟ hot-bill 不是有用一個 stats 的 api endpoint 抓？
+23:26 < johnny__> ronnywang++ 衝阿，我這有一批政府未公布的財報需要分析！
+23:34 < xsoameix__> clkao: 我在 http://docs.twly.apiary.io/ 上沒看到耶
+23:34 < kcwu> xsoameix__'s url: [TW ly api v0—by apiary.io]
+23:36 < clkao> xsoameix__: 沒在那上面... 要看 git diff origin/master..origin/hot-bills
+23:43 < ronnywang> clkao: 我找不到 mini grant 哪邊可以申請，只有找到 opengov grant, 不過這個也是限美國本土
+23:44 < jimyhuang__> 大家都好認真 o-oa
+23:45 < yhsiang> 好像只剩下enterprise跟prototype fund ?
+23:47 < soutia> 公廁和道路挖掘也更新幾個上去 用google還真難爬資料出來(大部分都是找不到)
+23:48 < clkao> soutia++
+23:48 < clkao> ronnywang: 我寫信問問看好了 上次是有人當面跟我講
+23:50 < yhsiang> jimyhuang__: 所以周六有空嗎 :p
+23:53 < xsoameix__> clkao: 原來你是用 merge 的方式，commit 被擠到 github 的第五頁，難怪我找不到 O.O
+23:54 < jimyhuang__> yhsiang: 疑，前端松是晚上喔
+23:54 < jimyhuang__> 那我可以 ..
+23:54 < clkao> 因為那個很久了.... 說到這 我還有 pr 要 review!!
+23:54 < clkao> 前端鬆結束後有啤酒攤嗎？
+23:55 < yhsiang> clkao: 要約那?
+23:55 < yhsiang> XD
+23:55 < jimyhuang__> 是說有啤酒村長就來當助教嗎
+23:55 < yhsiang> jimyhuang__: 我現在在處理一個很special的case ..
+23:55 < yhsiang> 有一個人報了學生 又報了助教 XD
+23:55 < hcchien> 自己教自己
+23:56 < yhsiang> 自己教自己我是沒意見拉 但是他這樣就佔了兩張票阿 XDD
+23:58 < jimyhuang__> firefox 右上角的搜尋，現在 google 還有贊助嗎 ...
+23:58 < ipa> yhsiang: 請他把學生票讓出來，請他多帶個學生？
+23:59 < yhsiang> 應該是明天再打電話給他了 XD

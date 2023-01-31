@@ -1,0 +1,206 @@
+--- Day changed 日  1月 11 2015
+03:30 < gugod> 這兩個字音: 欸 (ㄟˋ ), 誒 (ㄝˋ)
+03:31 < gugod> 在 moedict 裡的拼音資料有點問題。前者是問號，後者多一個 diacritic mark
+03:31 < gugod> 是說這兩個音好難區別 orz
+03:36 < gugod> hmm. 誒 的拼音 ề (LATIN SMALL LETTER E WITH CIRCUMFLEX AND GRAVE) 好像是正確的 ref: http://www.wikiwand.com/en/Pinyin#/Finals
+03:36 < gugod> 不過在 wikipedia 上這兩個字都注成 ê
+04:51 < au> gugod: 真的耶。跟 onile@mail.naer.edu.tw 說一下？
+04:52 < au> 前者應該是 èi
+05:08 < gugod> 已回報 :)
+05:14 < au> gugod++
+05:23 < slackbot> <yhsiang> gugod++
+08:14 < slackbot> <pofeng> 嘴砲: 如果 slack 的 history 可以作到自動匯出也不錯 ? ( logbot )
+08:23 < gugod> http://terms.naer.edu.tw/download/287/ 這地名翻譯資料看起來不錯。
+08:23 < kcwu> gugod's url: [國家教育研究院雙語詞彙、學術名詞暨辭書資訊網 - 下載專區 外國地名譯名]
+08:24 < gugod> zip 解開後是好幾個 .xls 檔... 但真正的檔案格式是 html ( ~_~)
+09:29 < slackbot> <yhsiang> pofeng:  我等等試看看
+09:29 < slackbot> <pofeng> yhsiang: ++
+10:33 < slackbot> <yhsiang> pofeng: 可以用 websocket!! XDD
+10:33 < slackbot> <yhsiang> 看起來可以做全 slack 的 logbot :smile:
+10:56 < slackbot> <yhsiang> 也可以偵測upload!
+10:58 < slackbot> <kiang> yhsiang: <http://chat.phptw.org/general>
+10:58 < kcwu> slackbot's url: [PHP Taiwan Slack logs #general]
+10:59 < slackbot> <kiang> 話說 http://peoplevote.tw/ 好像消失了，有人知道作者嗎？
+11:00 < slackbot> <yhsiang> kiang: 他是用 api
+11:00 < slackbot> <kiang> yhsiang: 只是一個參考，看你要怎麼實作囉
+11:00 < slackbot> <yhsiang> 這我之前看過了 thx
+11:51 < kcwu> http://data.g0v.tw/ 掛了
+12:00 < slackbot> <kiang> @jimyhuang http://data.g0v.tw/ 掛了
+14:01 < au> gugod: isacloud 正在介接 terms.naer.edu.tw 的 .sql.gz (每日更新)
+14:01 < au> 回寫的部份要想一下 API，但也在做了
+14:03 < isacloud> sql dump 談完至今還沒有進一步消息。我下週可再稍微問一下。
+14:04 < au> isacloud: OK. NDC 應該會直接生 daily .sql.gz 的 SOP 出來
+14:05 < au> 明天下午會開個會討論怎樣把這個模式常規化，照例會有 hackpad 逐字稿，我們下周可以接著這個討論去詢問。
+14:06 < isacloud> au: 好!
+14:17 -!- seadog007_ is now known as seadog007
+14:32 < au> a0kman: 話說... 你提的在各局處室合辦黑客松的主意，NDC 找場地先試辦這部份 OK，現在主要是接下來局處資訊室擔心 12 小時一堆 g0v 參與者在內網做介接工作，會不會順便就有人跑個 nmap 什麼了
+14:33 < au> 這好像也不無可能，所以還在想要怎麼回答，歡迎討論 XD
+14:33 < slackbot> <yhsiang> 剛剛跟muyueh demo了 vtaiwan XD
+14:34 < slackbot> <yhsiang> 因為muyueh demo 他們最近很威的兩個成果, 只好順勢 demo 一下 XD
+14:34 < au> yhsiang: 喔喔，muyueh 的 demo 有網址嗎 XD
+14:35 < pm5> au: 免費 pentest 算是好事？
+14:36 < au> pm5: 要看 pentest 之後做什麼吧...
+14:37 < au> 如果一次是一兩個人（像 isacloud 去 MOE，或我去特生）問題不大，如果有狀況可以找到是誰做的
+14:37 < au> 但一次許多人的情況較為複雜
+14:37 < slackbot> <yhsiang> au: 一個是利用聲控然後叫出菜價視覺化, 好像是 localhost
+14:37 < pm5> au: 黑客松裡開個 https://vulreport.gov.tw/ 專案（亂想）
+14:38 < slackbot> <yhsiang> 另一個有網址 可是我沒記起來, 大概要問 ronnywang ? XD
+14:38 < slackbot> <mingtsay> yhsiang: 我的 localhost 是不是跟你的不一樣？
+14:38 < slackbot> <yhsiang> mingtsay: 這是什麼問題? XD
+14:39 < au> pm5: 好主意耶，從外部取得白帽認證 XD
+14:40 < slackbot> <yhsiang> 順便請專業的線路組去幫忙切 vlan ?:p
+14:40 < au> 但沒想出解法前，可能就是和 isacloud 談的一樣，先用架在外網的唯讀資料庫來協作，然後場地選在沒有 physical access to lan port 的位置（禮堂之類的）
+14:41 < au> 這樣線路組要變標準配備了 XDD
+14:41 < pm5> au++
+14:50 < yhsiang> au: 聲控好像 現在只有英文, 中文打算改用google的 speech to text api
+14:50 < yhsiang> 不知道中文的支援度怎麼樣 ?
+14:53 < wildsky> 測試
+15:00 < au> yhsiang: 中文支援度很不錯啊 https://www.google.com/intl/en/chrome/demos/speech.html
+15:00 < kcwu> au's url: [Chrome Browser]
+15:01 -!- tonyhusky is now known as undercrux
+15:03 < au> 也可以先建出指令集的 ABNF，之後應該可以接上。 https://alexandre.alapetite.fr/doc-alex/web-speech-api/index.en.html
+15:03 < kcwu> au's url: [Multimodal demo - Web speech API - Doc’ Alex]
+15:03 < yhsiang> 喔喔！
+15:16  * wildsky_ 又在測試了
+15:20 -!- wildsky [uid61214@gateway/web/irccloud.com/x-rwhcqkpbkufxxttb] has left #g0v.tw []
+15:21 < wildsky_> 為甚麼我的名字後面有底線QQQQ
+15:22 < yhsiang> 使用/nick wildsky 改成沒有底線
+15:22 < wildsky_> 沒辦法手機和電腦同時登入IRC嗎@@...
+15:22 < yhsiang> 登入兩個 另一個人會變自動加上底線
+15:24 < wildsky_> 原來如此...
+15:24 < wildsky_> 第一次用IRC 覺得有點複雜>_<"
+15:26 < slackbot> <wildsky> 現在好像變成登入三個了... slack, 手機, web XD
+15:31 < CindyLinz> 有人在用 browserid 嗎?
+15:31 < CindyLinz> 也是個登入管道.. mozilla 在推
+15:32 < slackbot> <wildsky> 是 persona 那個嗎??
+15:33 < CindyLinz> 對
+15:33 < CindyLinz> 我昨天才聽說的東西.. ^^|
+15:34 < slackbot> <wildsky> 我只有當過使用者 還沒實際去放在網頁上的經驗>_<"
+15:34 < slackbot> 很多 Mozilla 的東西都會用這個登入方式
+15:35 < slackbot> <wildsky> MDN, open badget, bugzilla 好像都有
+15:36 < CindyLinz> 等等.. slackbot 自己也會講話? o_O
+15:36 < slackbot> <wildsky> 感覺他的概念比較像是讓一個組織存放使用者的email資料
+15:36 < slackbot> 要使用的人去跟該組織的人要求身分確認?
+15:36 < slackbot> <wildsky> ???
+15:37 < slackbot> <wildsky> 甚麼意思XD
+15:37 < slackbot> <yhsiang> 不知道為什麼被 split了? XD
+15:38 < CindyLinz> 這介紹.. 下面的 sample code 看起來好像很簡單的樣子, 所以有一點心動.. 好奇來問問接受度怎麼樣 :p # http://hacks.mozilla.org/2011/07/introducing-browserid-easier-and-safer-authentication-on-the-web/
+15:38 < kcwu> CindyLinz's url: [Introducing BrowserID – easier and safer authentication on the web ✩ Mozilla Hacks – the Web developer blog]
+15:38 < slackbot> <wildsky> 先怒推MDN <https://developer.mozilla.org/zh-TW/docs/persona>
+15:38 < slackbot> <wildsky> XD
+15:38 < kcwu> slackbot's url: [Persona | MDN]
+15:38 < undercrux> 15:21 < wildsky_> 為甚麼我的名字後面有底線QQQQ
+15:38 < undercrux> 15:22 < yhsiang> 使用/nick wildsky 改成沒有底線
+15:38 < undercrux> 15:22 < wildsky_> 沒辦法手機和電腦同時登入IRC嗎@@...
+15:38 < undercrux> 15:22 < yhsiang> 登入兩個 另一個人會變自動加上底線
+15:38 < undercrux> 15:24 -!- Supaplectw-mobil [~androirc@1-163-100-53.dynamic.hinet.net] has joined #g0v.tw
+15:38 < undercrux> 15:24 < wildsky_> 原來如此...
+15:38 < undercrux> 15:24 < wildsky_> 第一次用IRC 覺得有點複雜>_<"
+15:38 < undercrux> 15:26 < slackbot> <wildsky> 現在好像變成登入三個了... slack, 手機, web XD
+15:38 < undercrux> 15:29 -!- Supaplectw-mobil [~androirc@1-163-100-53.dynamic.hinet.net] has quit [Read error:
+15:39 < yhsiang> CindyLinz: 要接persona ?
+15:40 < CindyLinz> 看起來是我們架網站的拿 user 的 email 當帳號.. 然後我們不放密碼 (或加密後的密碼), user 登入的時候用某個機制確認這個 email 是本人
+15:40 < tonyhusky> 抱歉剛剛好像設定錯東西噴了一串訊息出去，真的很不好意思（鞠躬
+15:40 < CindyLinz> yhsiang: 是在讀 yesod 的 Yesod.Auth 一堆 plugin 的時候看到 browserid... ^^|
+15:41 < yhsiang> CindyLinz: 不接 0auth 或 Oauthd 嗎
+15:41 < CindyLinz> Yesod 是這個 # http://www.yesodweb.com/
+15:41 < kcwu> CindyLinz's url: [Yesod Web Framework for Haskell]
+15:41 < yhsiang> CindyLinz: 我有裝過 .. >艸<
+15:42 < CindyLinz> 喔 它也有 openid, googleemail 的 auth plugin.. 只是這些都聽過了嘛.. XD
+15:42 < slackbot> <wildsky> 專業的來了XD
+15:42 < slackbot> <wildsky> ((爆米花style
+15:47 -!- chihchun_afk is now known as chihchun
+16:04 < slackbot> <wildsky> g0v好龐大... 不知道要從哪邊開始...
+16:07 < au> wildsky: 就是從聊天室開始沒錯 XD 可以參考 https://g0v.github.io/leve1up/
+16:08 < kcwu> au's url: [G0V LevelUp]
+16:08 < au> wildsky: g0v 就是人+坑+松, 所以來黑客松玩, 想個專案來做, 繼續掛著聊天室~
+16:08 < slackbot> <wildsky> XD
+16:09 < slackbot> <wildsky> 剛是照著"如何參與"的那份文件跑來聊天室的
+16:09 < au> 那... 萌典松還有票 http://g0v-tw.kktix.cc/events/moedict-1-18 
+16:09 < kcwu> au's url: [1/18 第八次萌典松 moed8ct]
+16:09 < au> 二月上旬的大松也可以
+16:10 < au> 設計松法律松好像都滿額了
+16:11 < slackbot> <wildsky> 黑客松這兩個月可能還沒辦法參與... (剛回南部XD
+16:12 < slackbot> <wildsky> 來找找有沒有前端的東西可以幫忙好了@@
+16:25 < slackbot> <jimyhuang> kiang: back online.  最近 linode 怪怪的...
+16:36 < clkao> 超無聊的我 http://jsbin.com/gevoba
+16:36 < kcwu> clkao's url: [中選會表示]
+16:47 < wildsky1> 發現在slack講話這邊會很占版面...
+16:47 < slackbot> <yhsiang> clkao++ XDD
+16:52 -!- wildsky1 [wildsky@gateway/web/scrollback.io/x-fgxrualqwpmbjjnz] has left #g0v.tw []
+17:11 < muyueh> 被 cue 了，從 localhost 上傳現在 pre-alpha 版本
+17:11 < muyueh> http://muyueh.com/30/draw/
+17:11 < kcwu> muyueh's url: [Voice Over]
+17:11 < muyueh> 現在只能支援幾個簡單的 query
+17:11 < muyueh> "what is the price of potato"
+17:11 < muyueh> "what is the price of potato in different market/month/year"
+17:12 < muyueh> potato 可以改成 任何蔬菜名
+17:12 < slackbot> <yhsiang> muyueh++
+17:15 < muyueh> Google 現在聲控好像有每天 50 次的設定
+17:15 < muyueh> 限制
+17:15 < muyueh> 不過感謝 ABNF，我原本不知道有這一個，等下研究一下
+17:16 < slackbot> <kiang> jimyhuang++, 日本機房太熱門吧，很多狀況
+17:17 < slackbot> <yhsiang> muan++
+17:18 < soidid> muan++ #好棒～～好美～～～
+17:19 < slackbot> <kiang> http://evendesign.github.io/tscss-quotes/ 這個比較機車 XD
+17:20 < slackbot> <yhsiang> soidid: <https://vtaiwan.tw/#!/closelyheld/2/59>
+17:20 < kcwu> slackbot's url: [vTaiwan]
+17:20 < slackbot> <yhsiang> 那個 5好像怪怪 der
+17:21 < soidid> 擠到上面的人了？
+17:21 < soidid> 你想說的是這個嗎？XD
+17:21 < slackbot> <yhsiang> yes
+17:21 < slackbot> <yhsiang> u know i know~
+17:23 < soidid> 好噢 來改
+17:33 < soidid> https://www.irccloud.com/pastebin/aDDWl9l0
+17:33 < kcwu> soidid's url: [Pastebin: aDDWl9l0 | IRCCloud]
+17:33 < soidid> 為什麼這裡不會？
+17:33 < soidid> https://demo.vtaiwan.tw/mockup/#/closelyheld/2/59
+17:33 < kcwu> soidid's url: [vTaiwan]
+17:34 < slackbot> <yhsiang> 喔  因為 cache
+17:35 < slackbot> <yhsiang> margin: 20px 0 還沒生效 XD
+17:36 < soidid> (dog)
+17:37 < slackbot> <wildsky> <http://ivod.ly.g0v.tw/>
+17:37 < slackbot> <wildsky> 立院影城的連結好像掛掉了@@
+19:38 -!- seadog007__ is now known as seadog007
+20:57 < clkao> au: 現在有簡易的外掛幫網頁加注音嗎 (先用最常用音就可以了) 好像 racklin 有寫過一個？
+20:58 < clkao> . o O (想幫遞迴文加上注音)
+21:04 < au> clkao: http://www.justfont.com/phonetic
+21:04 < kcwu> au's url: [網頁注音，兒童網站標示注音，注音網站，ㄅㄆㄇ注音網頁 | justfont就是字]
+21:04 < au> (用任何一種注音字型即可 XDD)
+21:05 < clkao> ...
+21:06 < au> 我有寫一個 https://www.moedict.tw/lab/ruby/
+21:06 < au> 但是沒有完全自動化，歡迎 fork
+21:06 < au> source at https://github.com/audreyt/moe/tree/gh-pages/ruby
+21:06 < kcwu> au's url: [moe/ruby at gh-pages · audreyt/moe · GitHub]
+21:13 < au> (racklin 是用注音字型)
+22:04 < slackbot> <t0mst0ne> Ops slack 的 snippit logbot 看不到
+22:05 < t0mst0ne_> https://www.irccloud.com/pastebin/692cdzLB
+22:05 < kcwu> t0mst0ne_'s url: [Pastebin: 692cdzLB | IRCCloud]
+22:06 < slackbot> <t0mst0ne> 可是 slack 可以讀到 pastebin XD
+22:06 < slackbot> <t0mst0ne> @kiang:  https://www.irccloud.com/pastebin/692cdzLB 應該是這樣可以把 主成份的第一個英文字, 餵給 http://api.fda.gov  之後可以丟出 3個比較有意思的資料
+22:07 < kcwu> slackbot's url (2/2): [api.data.gov]
+22:09 < slackbot> <kiang> @t0mst0ne: 主要還是如何呈現的問題 XD
+22:10 < slackbot> <kiang> 其實直接丟 http://www.drugs.com/ 也不賴，今天跟一個藥師聊，他好像常用這個
+22:10 < kcwu> slackbot's url: [Drugs.com | Prescription Drug Information, Interactions & Side Effects]
+22:13 < slackbot> <clkao> t0mst0ne: influxdb GG 了... # <https://github.com/influxdb/influxdb/issues/1241>
+22:13 < kcwu> slackbot's url: [Infinite raft loop · Issue #1241 · influxdb/influxdb · GitHub]
+22:18 < slackbot> <t0mst0ne> clkao:  阿 .....
+22:18 < clkao> 正在尋求 support
+22:21 < slackbot> <yhsiang> <http://join.g0v.today/|http://join.g0v.today/> # 新板, 還是設計師自己切的
+22:21 < slackbot> <yhsiang> moon_c++
+22:22 < au> moon_c++
+22:23 < slackbot> <clkao> moon_c++
+22:23 < slackbot> <clkao> 整頁的敗筆在..... hotmail
+22:23 < au> 邀請還 => 邀請函，然後 input 加個 <input autofocus="autofocus">
+22:24 < clkao> 再加個連結到 irc 禮儀 hackpad? # 講個秘訣：等待邀請函時，可以看一下這個
+22:24 < au> hotmail 錯惹嗎 XD 現在它自動導向到 outlook.com 了
+22:24 < slackbot> <yhsiang> XD hotmail錯了嗎
+22:24 < slackbot> <yhsiang> 他是我的 MX >"<
+22:25 < clkao> hotmail 立刻連結 spam
+22:25 < slackbot> <yhsiang> au: thx fixed
+22:25 < slackbot> <yhsiang> 等等推 XD
+22:32 < slackbot> <kiang> http://fdaforum.net/tw/index.php/2015-01-11-13-51-00 - 直接用 iframe ，不過有先問過我了
+22:33 < slackbot> <kiang> "查找藥品資訊及仿單的效能比官方順暢" XD
+22:37 < slackbot> <clkao> moon_c++ # 覺得那一橫條比 slack 自己配的還好看耶 還有點原住民風(?)
+22:41 < slackbot> <t0mst0ne> kiang: ++
+22:47 < gugod> weechat 不知有沒有辨法加 plugin outdent/reformat slackbot 的發言。

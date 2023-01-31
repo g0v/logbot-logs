@@ -1,0 +1,810 @@
+--- Day changed 二  1月 22 2013
+00:26 < MindosCheng__> Amm... I made the twbudget run on my Mac.  But the connection to localhost got 404 'Cannot GET /'
+00:26 < MindosCheng__> Anyone can help?
+00:38 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+00:43 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+00:53 -!- thschee [~thschee@219.84.208.159] has quit [Remote host closed the connection]
+00:57 < walkingice> clkao: https://github.com/g0v/g0v.tw/tree/walkingice
+00:57 < kcwu> walkingice's url: [g0v/g0v.tw at walkingice · GitHub]
+00:57 < walkingice> 放了一點東西進去
+01:00 < MindosCheng__> walkingice++
+01:02 < walkingice> MindosCheng__: :D
+01:04 -!- timdream [~timdream@host-111-184-37-40.dynamic.kbtelecom.net] has joined #g0v.tw
+01:36 -!- timdream [~timdream@host-111-184-37-40.dynamic.kbtelecom.net] has quit [Quit: timdream]
+01:40 < tkirby_> MindosCheng__: how did you run twbudget?
+01:41 -!- danix [~GD__@round214.mc.ntu.edu.tw] has joined #g0v.tw
+01:44 < MindosCheng__> Basically, following README, but hardwiring the HOST to 127.0.0.1.
+01:45 < tkirby_> 糟糕, 好久沒摸 twbudget
+01:45 < MindosCheng__> Using Livescript@1.1.0 / Fixed app/dailybread.ls in two place.
+01:48 < MindosCheng__> Now I am playing with the underlying frameworks, like zappajs
+01:48 < MindosCheng__> tkirby : You have to go work tomorrow right?
+01:49 < tkirby_> MindosCheng__: yes
+01:49 < MindosCheng__> There are nothing to hurry.... let try it tomorrow....
+01:49 < tkirby_> XD
+01:50 < MindosCheng__> Though it's fun playing with the code fragments.....
+01:52 < tkirby_> 我覺得 twbudget 還有很多地方可以改進..
+01:52 < tkirby_> 平常應該就要慢慢來摸才對
+01:53 < MindosCheng__> 嗯，我有問到一些視覺建議，這就是為什麼我想把它跑起來。
+01:55 < tkirby_> 之前有想寫個比較好讀的 treemap, 起了頭放在 github 好像也擺了好一陣子了.. XD 
+01:55 < tkirby_> 嗚阿, 慘遭 livescript 改版痛毆
+01:56 < MindosCheng__> tkirby_ : 台中場有 project 要仰賴你的 Taiwan chart :P
+01:56 < MindosCheng__> tkirby_ : 先降版下來吧。
+01:56 < MindosCheng__> 可以跑再升
+01:57 -!- MnO2 [~mno2@1.34.43.236] has quit [Quit: Leaving]
+01:57 < tkirby_> MindosCheng__:   你是說稍早那個 SVG 3D Taiwan Chart 嗎 XD
+01:57 < MindosCheng__> 是啊是啊~~~~
+01:58 < tkirby_> souka!
+01:59 < tkirby_> 不過那個如果不把某些縣切一切的話, 會有一些破綻
+02:00 < MindosCheng__> 再調一下就好 :)
+02:04 < MindosCheng__> WebGL 那個的問題是要 convax
+02:06 < tkirby_> 不過 WebGL 比起 SVG 普及率似乎還是差了一些? 像我在公司好像就跑不太起來
+02:07 -!- walkingice is now known as zz_walkingice
+02:07 < tkirby_> SVG 要做到完全沒問題大概還是要做 BSP Tree, 不過多邊形一多, 速度大概也會慢下來
+02:07 < tkirby_> 到時候還要根據 z-order 重新排序, 應該會慢到[C[C[C動不了.. XD
+02:08 < tkirby_> 賀我把 twbudget 跑起來了
+02:09 < tkirby_> 我順便把 warning 跟 error 都修了, 我直接 commit ?
+02:12 < tkirby_> oops js error
+02:16 -!- MindosC [~MindosC@115.82.19.52] has joined #g0v.tw
+02:18 < MindosC> 你的錯在哪裡？
+02:18 < tkirby_> dailybread 不知道什麼原因跑不起來.. 先不要 commit 好了
+02:18 < tkirby_> dailybread.ls 15 行, 應該是這裡吧, js error 寫說no method slider
+02:19 < MindosC> clkao : 剛建議我加 and do
+02:19 < tkirby_> 我是直接加 do, 不過 compile 出來看起來跟這個 error 好像沒什麼關係
+02:20 < MindosC> 有兩處，我加了有過，不過我沒看懂原來要做什麼
+02:20 < tkirby_> 原來應該是把 {...} 丟進 slide 等等的函式
+02:20 < tkirby_> slider
+02:23 -!- superbil [~superbil@114-34-221-169.HINET-IP.hinet.net] has joined #g0v.tw
+02:26 < tkirby_> ......
+02:26 < tkirby_> 因為 clkao 把 slider 換掉了, 所以當然沒有... XD
+02:26 < tkirby_> 奇怪, 可是 code 應該沒改過阿, 那之前是為什麼會動 XD
+02:28 < tkirby_> MindosC: 我改到應該是 1.1.1 會動了, 不然我先 commit
+02:30 < tkirby_> 嗚阿, 02:30... 來睡
+02:31 < MindosC> 我也很好奇
+02:32 < MindosC> I warned you.   lol.
+02:32 < MindosC> Night.
+03:05 -!- wHisKy [whisky@114-34-52-19.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+03:10 -!- wHisKy [~whisky@114-34-52-19.HINET-IP.hinet.net] has joined #g0v.tw
+04:19 -!- juanna_ [~juanna@114-37-94-112.dynamic.hinet.net] has joined #g0v.tw
+04:19 -!- ETBlue [~chatzilla@123-204-142-108.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 240 seconds]
+04:22 -!- juanna [~juanna@114-37-87-176.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+04:42 -!- MindosC [~MindosC@115.82.19.52] has quit [Ping timeout: 252 seconds]
+04:43 -!- MindosC [~MindosC@115.82.19.52] has joined #g0v.tw
+04:50 -!- MindosC [~MindosC@115.82.19.52] has quit [Ping timeout: 252 seconds]
+04:51 -!- MindosC [~MindosC@115.82.19.52] has joined #g0v.tw
+05:14 -!- superbil [~superbil@114-34-221-169.HINET-IP.hinet.net] has quit [Ping timeout: 244 seconds]
+05:27 -!- MindosC [~MindosC@115.82.19.52] has quit [Ping timeout: 252 seconds]
+05:28 -!- MindosC [~MindosC@115.82.19.52] has joined #g0v.tw
+05:41 -!- MindosC [~MindosC@115.82.19.52] has quit [Ping timeout: 252 seconds]
+05:42 -!- MindosC [~MindosC@115.82.19.52] has joined #g0v.tw
+08:06 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+08:12 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+08:14 < MindosCheng__> tkirby_++ # Magically fixed everything in twbudget
+08:16 < MindosCheng__> tkirby_ : Shouldn't use  void instead of null (for replacing undefined ?)
+08:22 < MindosCheng__> Where is twbudget running on ?
+08:23 < MindosCheng__> I meant the url for demo site.
+08:32 -!- MindosC [~MindosC@115.82.19.52] has quit [Ping timeout: 256 seconds]
+08:35 -!- MindosC [~MindosC@115.82.19.52] has joined #g0v.tw
+08:36 -!- swem [~Thunderbi@host-61-70-214-208.static.kbtelecom.net] has joined #g0v.tw
+08:48 < tkirby_> MindosCheng__: 阿!  用 void! 我搞錯了嗎 XD
+08:48 < tkirby_> MindosCheng__: budget.g0v.tw
+08:55 -!- MindosC [~MindosC@115.82.19.52] has quit [Ping timeout: 252 seconds]
+08:56 -!- MindosC [~MindosC@115.82.19.52] has joined #g0v.tw
+08:57 -!- ETBlue [~chatzilla@123-204-142-108.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+09:01 -!- ETBlue [~chatzilla@123-204-142-108.adsl.dynamic.seed.net.tw] has quit [Client Quit]
+09:04 -!- thschee [~thschee@199.48.231.89] has joined #g0v.tw
+09:07 -!- swem [~Thunderbi@host-61-70-214-208.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+09:33 < MindosC> tkirby_ : livescript 首頁是這樣說的 :)
+09:34 -!- MnO2 [~mno2@nat/yahoo/x-upxfvmhvtxpyigke] has joined #g0v.tw
+09:36 -!- GD_ [~GD__@2002:8c70:7cd6::8c70:7cd6] has joined #g0v.tw
+09:39 -!- danix [~GD__@round214.mc.ntu.edu.tw] has quit [Ping timeout: 256 seconds]
+09:40 < tkirby_> MindosC: 也對.. void 跟 null 不一樣, 混用會很危險.. 我重新 commit 了
+09:41 < tkirby_> MindosC: 另外你昨天提到 clkao 建議 "and do", 是像這樣嗎 xxx.slider and do
+09:42 < MindosC> 說不定我會錯意了，看來你的 fix 是對的。
+09:42 < tkirby_> hmm
+09:43 < MindosC> (我說 and do)
+09:44 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+09:49 < tkirby_> 原本是想說他可能是想要表達 a? b 之類的
+09:50 < MindosC> 結果
+09:50 < MindosC> 好一切好 XD
+09:50 < tkirby_> XD
+09:52 < tkirby_> 忽然想到一個 kuso 的題目可以做.. XD
+09:55 < clkao> tkirby_: kuso-p?
+09:55 < tkirby_> clkao: 一時不知道怎麼表達
+09:56 < clkao> 那.. 直接把它做好了吧? XD
+09:56 < tkirby_> XD
+09:56 < clkao> 有些強者的 prototype 就是... 成品
+09:56 < tkirby_> 嗚阿! 幸好我不是強者 (逃)
+09:57 < clkao> 話說.. webconf 照片有得看了嗎? :p
+09:58 -!- Ben_chou [Ben_chou@nat/novell/x-marhinbzvugydopw] has joined #g0v.tw
+10:00 < tkirby_> 照片我寄給 pct 他們了, 等收到他們應該會 release
+10:06 < MindosC> tkirby_ 獲得成就 : Fixed twbudget
+10:06 < tkirby_> xD
+10:07 < tkirby_> MindosC: 對了你昨天講到台中場會用 tw chart.. 他們打算做什麼?
+10:07 -!- zz_walkingice is now known as walkingice
+10:08 < MindosC> 他們好像就是我和 RsG XD 
+10:09 < tkirby_> oops XD
+10:09 < tkirby_> MindosC: 你們打算做什麼呢 XD
+10:11 < MindosC> 有什麼有意思的呢？
+10:12 < tkirby_> MindosC: 嗯? 所以.. 你們想用 tw chart, 不過還沒想到要做什麼嗎
+10:13 -!- thschee_ [~thschee@199.48.231.89] has joined #g0v.tw
+10:14 -!- Johnny5TW [~johnny5tw@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+10:14 < tkirby_> 我前陣子有想到說可以拿一堆資料來視覺化.. 昨天有把他寫到 hackpad 上
+10:14 < MindosC> 我想可以接民意系統。
+10:14 < MindosC> 喔~~
+10:14 -!- thschee [~thschee@199.48.231.89] has quit [Ping timeout: 252 seconds]
+10:15 < MindosC> 晚點來看看
+10:16 < tkirby_> 喔喔, 立委罷免門檻之類的其實也該做一做
+10:16 < MindosC> 我記得議題-民意系統沒人做。
+10:17 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+10:17 < tkirby_> 在 hackath1n 之前我看能不能把 twgeojson 弄得模組化一些
+10:17 < clkao> tkirby_++
+10:17 < tkirby_> >.ob
+10:17 < clkao> 那個 twmercator 應該要可以容易重用
+10:18 < clkao> 這樣就可以有澎湖金門馬祖移動靠近
+10:18 < clkao> XD
+10:18 < tkirby_> 這次有人提了個選票分析的提案, 似乎有點類似
+10:18 < clkao> MindosC: 結果要畫什麼... ?
+10:18 < MindosC> 就是說，如果此立委贊成核四，我下次一定不要投給你。
+10:19 < clkao> right... but i meant tw chart
+10:19 -!- thschee_ [~thschee@199.48.231.89] has quit [Remote host closed the connection]
+10:19 < MindosC> clkao : 支持度 / 消長 / 贊成反對圖
+10:19 < MindosC> (負的向下畫？)
+10:22 < tkirby_> 需要優良的 3D 顯示.. XD
+10:22 < tkirby_> 我相信一定也有適合的 2D 表示法的!
+10:24 < tkirby_> 乾脆來把 three.js 修一修好了.. XD
+10:24 -!- thschee [~thschee@199.48.231.89] has joined #g0v.tw
+10:26 -!- zz_chihchun is now known as chihchun
+10:26 < tkirby_> 在 mtk 用 livescript 寫 code 不知道會不會被揍...
+10:26 < clkao> 反正 你就 commit gen 好的 js 就好了 :p
+10:26 < tkirby_> XD
+10:27 < clkao> 不然就開 workshop? 跟老板說生產力會增加十倍 可以請講師去教? XD
+10:27 < clkao> tkirby_: three.js 應該可以用那個 CSG plugin, 不要用 geometry extrude
+10:27 < clkao> 那個好像有處理比較多 case
+10:28 < clkao> (with hole)
+10:28 < tkirby_> hmm
+10:28 < clkao> Prasad Poozhikalayil <Prasad.Poozhikalayil@socialtext.com>, 
+10:28 < clkao> oops, osrry
+10:28 < clkao> http://learningthreejs.com/blog/2011/12/10/constructive-solid-geometry-with-csg-js/
+10:28 < kcwu> clkao's url: [Learning Three.js: Constructive Solid Geometry With csg.js]
+10:28 < clkao> 如何用減法制作骰子
+10:29 < MindosC> 我不知道貴公司有在寫 JS
+10:29 < tkirby_> 減法制作骰子..這好讚阿
+10:29 < clkao> 連 pos 都可以用 js 寫了 還有什麼不行
+10:30 < tkirby_> MindosC: 我剛進來老闆就叫我學 python , 後來還弄部門用的 website... XD
+10:31 < clkao> (反正多學一個語言好處多多?)
+10:32 < tkirby_> 嚴格說來 mtk 其實還蠻保守的.. 以前寫了個 python 的 build server, 結果 BM team 問我為什麼不用 perl, 因為他們不會 python... orz
+10:33 < MindosC> 目前工作只用到 C++ / Perl  
+10:33 < tkirby_> MindosC: CTO!
+10:34 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:34 < MindosC> tkirby_ : 你這樣叫很多人會回頭 lol
+10:35 < tkirby_> XDDDDD
+10:35 < clkao> (反正多學一個語言好處多多?) 看看 hychen
+10:35 < MindosC> 不過，確實沒人阻止我寫 livescript
+10:35 < tkirby_> 衝衝衝
+10:36 -!- hSATAC [~cat@221.169.252.14] has quit [Ping timeout: 255 seconds]
+10:36 < MindosC> 正在從 twbudget 學 Livescript lol
+10:36 < tkirby_> http://www.zachernuk.com/2012/03/14/webgl-csg-js-and-three-js/ # another CSG example
+10:36 < kcwu> tkirby_'s url: [WebGL, CSG.js and three.js « Zachernuk.com]
+10:36 < tkirby_> livescript++
+10:37 < tkirby_> 明年 webconf 應該來個人講 livescript 議程.. XD
+10:37 < tkirby_> 說到議程
+10:37 < tkirby_> clkao: 所以 OSDC 那時你人不在台灣?
+10:38 -!- You're now known as ronnywang
+10:38 < MindosC> 我想講 Livescript compiler internal 耶
+10:38 < MindosC> 還是 kirby 要講 XD
+10:39 < tkirby_> MindosC: compiler internal... 交給你了 xD
+10:39 < clkao> tkirby_: 不在啊 zz
+10:39 < MindosC> Q.Q
+10:40 < clkao> 不過 太早準備的話 那時可能 compiler 已經重寫了
+10:40 < tkirby_> clkao: 降  ODSC 要找個人衝嗎
+10:40 < clkao> 交給你了!
+10:40 < clkao> au 應該會講 postgrest? 
+10:41 < tkirby_> hmm
+10:43 < tkirby_> ODSC g0v 不上一下感覺蠻可惜.. call for talks deadline 1/31
+10:43 < MindosC> kirby 要不要講 g0v ?
+10:46 < tkirby_> 看來只好衝了
+10:50 < clkao> 在“液體民主”是指直接民主與間接民主之間的混合。而在間接民主的情況下，委託代表自己的利益和所有直接民主本身的利益，必須行使，導致液體民主直接民主與間接民主的一個流動之間的過渡。每一個參與者可以決定多遠，他希望自己的利益，或多遠，他們希望別人來表示。特別是，代表在任何時候的需求將轉移到代表投票，而�
+10:52 < walkingice> 液體民主   還真的有這個字  囧
+10:53 < clkao> 應該是流動民主比較好 :p
+10:53  * walkingice (恍然大悟貌)
+10:59 < walkingice> https://github.com/dreverri/gollum-site/issues/13
+10:59 < kcwu> walkingice's url: [TOC Support · Issue #13 · dreverri/gollum-site · GitHub]
+10:59 < walkingice> 看來沒有「列出所有頁面」的 feature  Q__Q
+11:00 < hychen> tkirby_, 現在還可以投稿啊
+11:01 < clkao> orz
+11:02 -!- timdream [~timdream@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+11:03 < hychen> wow..
+11:03  * hychen 躺著也中槍
+11:03 < tkirby_> ??
+11:07 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+11:09 -!- KNY [~Adium@118-170-64-138.dynamic.hinet.net] has joined #g0v.tw
+11:09 -!- KNY [~Adium@118-170-64-138.dynamic.hinet.net] has left #g0v.tw []
+11:12 < MindosC> clkao 你的講稿我暫放在連結暫存，有地方放了嗎？
+11:12 < clkao> https://github.com/g0v/dev/tree/gh-pages/talks/
+11:12 < kcwu> clkao's url: [dev/talks at gh-pages · g0v/dev · GitHub]
+11:13 -!- thschee_ [~thschee@199.48.231.89] has joined #g0v.tw
+11:13 < clkao> tkirby_: hychen 最近學了很多新語言
+11:14 < tkirby_> 喔喔 XD
+11:14 < clkao> hlb: 話說 現在 dev.g0v.tw auto update 有跑嗎? 
+11:16 -!- thschee [~thschee@199.48.231.89] has quit [Ping timeout: 260 seconds]
+11:17 < walkingice> clkao: 我有 push 一些 commits 到 g0v.tw 的另一個 branch
+11:18 < hychen> 自從混了g0v, 我每個禮拜都要學一個新單字....
+11:19 < tkirby_> XD
+11:19 < tkirby_> 可以整理一個 wiki 來列每週新字^H^H^H^H技術分享
+11:19 -!- timdream [~timdream@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: timdream]
+11:20 < tkirby_> hackathon 之外也可以舉辦 smalltalk?
+11:20 < clkao> walkingice: no index.html? 還是要自己 gen ?
+11:20 -!- timdream [~timdream@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+11:20 < hychen> 黑客松時, LiveScript?????? , 前幾天, Liquid Feedback?????, Chef????, Schulze????
+11:20 < hychen> XD
+11:21 < tkirby_> hychen 的查克拉急速的成長
+11:21 -!- thschee_ [~thschee@199.48.231.89] has quit [Ping timeout: 245 seconds]
+11:21 < hychen>  喔.. 還有d3.js
+11:22 < hychen> 我每天都超展開的啊, 現在在看vala code....
+11:23 < MindosC> clkao : 我知道是在那裡啦，但不需要整理到既有的連結網頁嗎？
+11:23 < hychen> 歡迎來本單位應徵，每天都超展開
+11:24 < MindosC> smalltalk++
+11:25 < clkao> MindosC: hackpad 好像有連耶.. 我忘了 反正.. 看到適合放的地方就放吧 :p
+11:26 < hychen> .key 怎麼開?
+11:26 < clkao> is twitter down?
+11:26 < clkao> hychen: sorry, keynote... mac only :/
+11:26 < clkao> hmm, twitter works now
+11:27 < clkao> but really slow
+11:27 < clkao> hychen: 太強了 :D
+11:28 < hychen> 都不熟 , 只能打個雜
+11:28 < MindosC> 零食政府教育部
+11:28 < tkirby_> hychen++ # 太強
+11:28 < MindosC> hychen++
+11:28 < clkao> 零食吃太多
+11:31 < MindosC> 如過平時能在每週六開 smalltalk 一定很棒。
+11:32 < hychen> 我想學怎麼學習新東西....
+11:33 < clkao> 話說今天在 kindle 上被推銷了 4-hour work week 作者的新書... 4-hour chef... 說是講 meta-learning :p
+11:33 < MindosC> hychen 你開教學班，就會悟道了 :)
+11:33 < tkirby_> 教學相長!
+11:34 < clkao> 殖民地進入表決了: http://lqfb-test.g0v.tw/lf/area/show/1.html?tab=open&filter=frozen
+11:34 < kcwu> clkao's url: [登入 - LiquidFeedback - 台灣零時政府]
+11:36 < clkao> 拖拉偏好的項目
+11:38 < hychen> 投完
+11:40 < MindosC> clkao : 敗了 4 hour chef
+11:40 < clkao> 太快了吧
+11:43 < MindosC> 之前有看過 4 hour week 那本
+11:46  * clkao install gollum.. zz
+11:48 < ipa> tkirby_++ # 衝OSDC
+11:49 < au> tkirby++ # 衝啊
+11:49 < clkao> au++ # 衝啊
+11:52 < tkirby_> XD
+11:57 < ipa> tkirby_: OSDC 講者聚餐的餐廳都選的很好XD # hcchien++
+11:57 < clkao> 通知信寄出後 目前都還沒有人取消
+12:00 -!- thschee [~thschee@199.48.231.89] has joined #g0v.tw
+12:04 < tkirby_> :D~
+12:16 < clkao> tkirby_: 那個 3d 看得我頭好暈啊 :p 早上在 kindle 上看 因為很慢不覺得 :p
+12:20 -!- KNY [~Adium@118-170-64-138.dynamic.hinet.net] has joined #g0v.tw
+12:20 < walkingice> clkao: sorry 剛剛 miss 掉你的回應，我是用 gollume-site 去 generate static pages
+12:20  * walkingice 不得其解，我怎麼會說出「剛剛 miss 掉你的回應」這種奇怪的句子
+12:23 < tkirby_> clkao: XD... 忽然想到可以拿來視覺化地震報導 
+12:23 < tkirby_> 震度越大搖得越厲害
+12:24 < clkao> LOL
+12:26 < dannvix> tkirby++
+12:29 -!- KNY [~Adium@118-170-64-138.dynamic.hinet.net] has quit [Quit: Leaving.]
+12:35 < MindosC> lol
+12:35 < clkao> walkingice: gollum-site hates me... push the generated files as well? 
+12:35 < walkingice> clkao: sure
+12:36 < MindosC> 我們台中場有 secure IM project 有沒有什麼建議呢？
+12:38 < clkao> otr ?
+12:40 < MindosC> Cool
+12:40 < au> Socialist Millionaire's Protocol?
+12:40 < au> http://trac.adium.im/ticket/9768#comment:18
+12:40 < kcwu> au's url: [#9768 (OTR: switch authentication to Socialist Millionaire's Protocol) – Adium Trac]
+12:42 < walkingice> clkao: pushed (抖)
+12:44 < walkingice> clkao: 我的想法是用 gollum-site 產生 static html 檔，這樣大家就可以繼續用寫 wiki 的方式維護 *.md 來寫網站
+12:44 < clkao> walkingice++
+12:45 < walkingice> clkao: 不過 gollum-site 有一些討人厭的限制，好比沒辦法產生一個「所有頁面連結」的頁面
+12:45 < MindosC> au++ # SMP :)
+12:46 < clkao> github pages 內建得好像是 Jekyll? 如果不想自己 build and push to gh-pages
+12:46 < au> http://häcker.net/trac/blog/2008/09/02/23.32 # 這個 UI 是四年前做的，有改進空間，patches welcome
+12:46 < clkao> 不過我沒用過
+12:46 < walkingice> 喔！？我一直以為 github 內建是 gollum
+12:47 < clkao> right. that's github wiki
+12:47 < clkao> but pages is another story.. orz
+12:47 < walkingice> 囧
+12:47 < clkao> https://help.github.com/articles/using-jekyll-with-pages
+12:47 < kcwu> clkao's url: [Using Jekyll with Pages · github:help]
+12:48 < clkao> 應該也是從 md render
+12:48 < walkingice> 好，我來菸酒一下  *sweat*
+12:51 -!- KNY [~Adium@118-170-64-138.dynamic.hinet.net] has joined #g0v.tw
+12:53 -!- MindosC [~MindosC@115.82.19.52] has quit [Ping timeout: 252 seconds]
+12:53 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 245 seconds]
+13:15 -!- sdf_ [62f8eca9@gateway/web/freenode/ip.98.248.236.169] has joined #g0v.tw
+13:32 -!- nchild [~nchild@220-136-186-234.dynamic.hinet.net] has joined #g0v.tw
+13:32 -!- nchild [~nchild@220-136-186-234.dynamic.hinet.net] has quit [Remote host closed the connection]
+13:42 -!- sdf_ [62f8eca9@gateway/web/freenode/ip.98.248.236.169] has quit [Quit: Page closed]
+13:51 -!- MindosC [~MindosC@115.82.11.130] has joined #g0v.tw
+13:52 -!- miau715_ [01226cc3@gateway/web/freenode/ip.1.34.108.195] has joined #g0v.tw
+14:12 -!- Sorry [~admin@mail.cna.ccu.edu.tw] has quit [Ping timeout: 244 seconds]
+14:17 -!- ETBlue [~chatzilla@123-204-142-108.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+14:24 -!- Supaplextw1 [~Lucky@114-36-243-210.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+14:25 < ETBlue> 我要尖叫 >o< 404 組的 designer 火速做好了 logo 、首頁、404 頁的視覺設計！ http://d.pr/i/ngVj  http://d.pr/i/Tpsq  http://d.pr/i/RRdt
+14:26 < opop> [食物組] https://dl.dropbox.com/u/13701231/gOv1000.pdf https://dl.dropbox.com/u/13701231/gOv1200.pdf 餐點跟午餐
+14:26 < ctf_> ETBlue, 畫面真不錯  好讚阿
+14:26 < opop> 午餐另有 15 個大 pizza 與 5 個素食 pizza 、五桶炸雞
+14:27 < opop> 靠杯我智障了，裡面有個資
+14:27 < opop> 算了 A_A
+14:27 < tkirby_> 個資++
+14:27 < tkirby_> 阿我們公司擋 dropbox
+14:27 < tkirby_> 無法備份 (淚)
+14:28 < opop> 裡面有的個資你都有...
+14:28 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+14:28 < opop> 我也懶得改了，你回家還可以備份
+14:28 < opop> 我要去吃午餐了
+14:28 < tkirby_> 原來是郭小姐的個資
+14:28 < tkirby_> opop: 辛苦了XD
+14:28 -!- Supaplextw [~Lucky@36-229-166-54.dynamic-ip.hinet.net] has joined #g0v.tw
+14:29 < tkirby_> ETBlue: 這好棒阿!
+14:32 < dannvix> ETBlue: 好讚喔！
+14:32 < dannvix> opop: 真豪華的黑客松 XD
+14:32 < opop> 我上次定太多點心 (用自己的食量預估估成兩倍!!)
+14:33 < opop> 這次有預算控制加上用1/2食量 A_A 應該會剛好了
+14:34 < tkirby_> opop: 也來寫 code 吧!
+14:35 < ETBlue> 對不起我看到了不該看的個資 /OoO/ 我會火速把他加入 gmail 通訊錄...
+14:35 < opop> tkirby_: 有歐～我 app 可以快速產了
+14:35  * tkirby_ ETBlue 成就達成: 獲得 opop 個資
+14:36 < opop> 一個黑客頌可以生個三隻 app 沒問題
+14:36 < tkirby_> opop: 可是要是生產 open data app, 會被政府檢舉然後下架 (!?)
+14:36 < tkirby_> 真是哀傷的故事
+14:36 < opop> 反正後台都是 google 文件，隨時都可以修改喔
+14:36 < clkao> opop: 上次有人反映點心都甜的 可能要甜鹹交錯一下
+14:36 < tkirby_> XD
+14:36 < opop> 有需要我可以再多申請個開發者帳號給他被檢舉嘍
+14:37 < opop> clkao: 鹹的會有保存的問題...
+14:37 < clkao> 是齁
+14:37 < opop> 還有葷素的問題
+14:38 < ETBlue> clkao: 請問台中場的 hackpad 上面寫（將提供免費點心），每個人點心費用有上限嗎？到時候請大家直接跟默契咖啡點嗎？
+14:38 < tkirby_> 可以擺束脩
+14:38 < opop> 不過歡迎自備/贊助鹹點 A_A (by 台北場食物組
+14:39 < clkao> ETBlue: 好像是 mindos 寫的? 不過不知道默契有什麼點心類的耶 @@
+14:39 -!- mutolisp [~psilotum@inventory16.fo.ntu.edu.tw] has joined #g0v.tw
+14:41 < ETBlue> clkao: 喔喔喔理解，因為那行前面是你的名字... 以為是你寫的 orz
+14:41 < clkao> 先算 150 * 16 = 2400 好了? 再看拿給誰
+14:42 < clkao> 好嗨噢 考不雷
+14:44 < opop> A_A 聽說很好吃
+14:44 < clkao> opop: 不過這次人數比較多一些
+14:45 < clkao> 反正.. 我看很多人都認真寫 code 沒在吃 XD
+14:45 < opop> 是吧 A_A 我想說抓 80 人差不多
+14:45 < clkao> k
+14:45 < opop> 大 pizza 加五個
+14:45 < opop> 甜點量減少1/2
+14:46 < opop> A_A
+14:46 < clkao> opop++ # 專業 迅速
+14:51 < ETBlue> MindosC: 台中場點心的部分有啥想法？直接交給你全權處理嗎？ XD
+14:57  * walkingice 覺得寫 code 的時候有珍奶之類半固體的東西就行了 XD
+15:06 < opop> 喔喔可以啊，我調整一下預算改訂針奶好了
+15:06 < clkao> walkingice 明明就要去度蜜月!
+15:06 < opop> 噗
+15:10 < opop> 好難擠
+15:10 < opop> 有空再看看zzz
+15:10  * opop 真的要去吃午餐
+15:14 < walkingice> XD
+15:15 < walkingice> 哈，阿宅認真寫 code 之後，還真的都懶得起身吃東西
+15:21 < ipa> 404 designer++ # 看見下面那些小房子好有fu喔（哀傷）
+15:30 < MindosC> 免費點心不是拿掉了？知有三明治
+15:31 < MindosC> ETBlue 好啊，點心我來負責 :)
+15:31 -!- Ben_chou [Ben_chou@nat/novell/x-marhinbzvugydopw] has quit [Ping timeout: 246 seconds]
+15:33 < MindosC> 404 Designer 是凜希啊 :)
+15:33 < clkao> 凜希?
+15:34 < MindosC> 白凜希
+15:34 -!- MindosC [~MindosC@115.82.11.130] has quit [Quit: Bye]
+15:35 -!- MindosC [~MindosC@115.82.11.130] has joined #g0v.tw
+15:38 < MindosC> 白凜希
+15:39 < ETBlue> MindosC: 不知為何 hackpad 上有免費點心的字樣，不是我寫的啊 QAQ 台北場的今天寄行前了，我們台中場也要來寄行前通知信... 現在有攝影機（應該是 Johnny5TW ？）了，還要徵求拍照的 >o<
+15:40 < ETBlue> clkao: 專案成員更新到 https://github.com/g0v/dev/wiki/Project-ChildNotFound.tw 了，順帶一提， timdream 被我搶到了哈哈哈 XD
+15:40 < kcwu> ETBlue's url: [Project ChildNotFound.tw · g0v/dev Wiki · GitHub]
+15:41 < ctf_> ETBlue, good job!
+15:41 < MindosC> 本來 clkao 回信說有三明治，我寫上去應該是寫三明治與點心？
+15:41 < ETBlue> clkao: designer 的資料也在上面，她人在紐約，是 MindosC 不知從哪裡挖出來的，超讚啊！
+15:41 < clkao> ETBlue++
+15:41 < MindosC> 她有寫啊 ？
+15:42 < ETBlue> MindosC: 凜希她有註冊  github 帳號，還自己去更新了她的聯絡方式
+15:42 < MindosC> 因為三明治算點心，所以不算錯 :P
+15:42 < ETBlue> MindosC: 總之你說了算 XD
+15:43 -!- tka_ [~tka_test@li381-115.members.linode.com] has joined #g0v.tw
+15:43 -!- tka [~tka_test@li381-115.members.linode.com] has quit [Ping timeout: 276 seconds]
+15:43 < MindosC> 到時問看看能不能外食。
+15:44 < MindosC> 凜希++
+15:46 < MindosC> 現在台中16人？
+15:47 -!- Ben_chou [Ben_chou@nat/novell/x-rbsyzsnrnccaxzsf] has joined #g0v.tw
+15:48 < MindosC> 可以 fork kirby 就好了 Q.Q
+15:52 < ETBlue> MindosC: 對呀，其實頂多也只能16人，因為週日默契的一樓包廂不開放訂位
+15:53 < MindosC> 下次再看看怎麼把一樓佔下來 :)
+16:02 < MindosC> ETBlue : email 要不要文字化一下 lol
+16:03 < ETBlue> MindosC: email 文字化是啥 @@
+16:05 < timdream> ETBlue: 可以把我的 e-mail 換成 timdream@gmail.com 嗎？通知信一直寄錯不知要去哪改 T_T
+16:05 < MindosC> 就是 mindos -at- gmail -dot- com
+16:10 < ETBlue> timdream: 喔喔好 XD
+16:10 < timdream> ETBlue: 還有我名字最後一個字是家庭的庭
+16:11 -!- thschee [~thschee@199.48.231.89] has quit [Remote host closed the connection]
+16:13 < ETBlue> timdream: 你說換 email 的是 trello 對嗎？現在這樣有正確嗎？ @@
+16:13 < timdream> ETBlue: 好像有，不確定，還有我剛剛發現某封信是你直接寄的吧 XD
+16:14 < ETBlue> timdream: 喔喔喔我知道了，gmail 聯絡人 orz
+16:14 < MindosC> ETBlue : 不過妳可能要和她說一聲，她的資料會放在網頁上。
+16:15 < ETBlue> timdream: gmail contact 更新完成，下次會用你的 gmail 帳號+正確姓名 >0< 感謝提醒 >"<
+16:15 < timdream> ETBlue: cool :)
+16:16 < timdream> ETBlue: 我下班之後會繼續研究把工作環境架起來
+16:18 < ETBlue> MindosC: 你要不要也去 github wiki 上寫自己的聯絡方式... XD 凜希應該是知道的，因為是她自己上去 github 編輯的 XDXD
+16:18 < ETBlue> timdream: hooray XD
+16:19 < MindosC> 好啊
+16:19 < walkingice> 出國要用的東西十分鐘就整理完了...當男生真好 (遠目)
+16:29 < xdite> XD
+16:32 < ipa> walkingice: 賀新婚
+16:32 < walkingice> 謝囉 :D~~
+16:36 < ETBlue> walkingice: 賀新婚 +1 XDDDD
+16:36 < walkingice> ETBlue: XD....(y)
+16:54 < MindosC> opop : 要不要做 議題-民意 系統？
+16:55 < opop> MindosC: yes，但我 app 做久了我滿腦子都是想刪除功能 A_A
+16:56 < opop> 就是要最簡單、擊中需求、不要有令人困惑的地方
+16:57 < opop> (謎：而且我其實不太會寫程式，我無法產生功能複雜的 app XD)
+17:02 < MindosC> 就是說，考試前念書，投票前在回想候選人做了什麼，都太晚了。
+17:03 < MindosC> 議題-民意系統是在議題進行的當下，就讓有效選民表達意見。
+17:03 < opop> 忽然覺得我的 app 應該串 wiki?
+17:03 < opop> 這樣就有最精準的 data 了 o.o
+17:05 < MindosC> 候選人就會知道，今天封殺了砍預算案，選民會高興還是不高興。
+17:09 < MindosC> 然後在選前再提醒選民。
+17:10 < ETBlue> opop: 請問大大要如何才能當 PM 當到會寫 app... /OoO/
+17:12 < opop> ETBlue: A___A 而且我還是北醫營養的喔 (得意)
+17:13 < opop> 從營養(不夠聰明的醫界生)跑到軟體界我就已經不明所以了
+17:13 < opop> 所以從 PM 當到會寫 app
+17:13 < opop> 可能聽起來比較正常
+17:13 < ETBlue> opop: ∫OoO∫ 因為懂的攝取營養所以腦袋特別好嗎？！
+17:14 < ETBlue> 咦，那 opop 跟 webconf 的主辦人 eddie 不就是同校同系的... 
+17:14 < ETBlue> 營養系真是太強大了 >o<
+17:21 < MindosC> 那 opop 妳們有興趣嗎？
+17:25 < opop> ETBlue: 應該不是，我大部分時間都在吃垃圾食物 XD'
+17:25 < opop> MindosC: 我的興趣在於很快的把即時資訊呈現出來給 user
+17:25 < opop> 但為了即時、呈現的方式可能很限縮
+17:26 < opop> 所以你們想需求與應用，我再告訴你們我目前可以的呈現方式
+17:26 < opop> 可能當天再討論吧 Q_Q
+17:26 < opop> 我今天還有一個 funtion 要 design 完 Q_Q
+17:27 < MindosC> 我會去台中 :)
+17:27 < opop> 阿屋
+17:28 < MindosC> 去找 BlueT 寫 Perl +_+
+17:28 < opop> 那你有 Android 手機嗎，先看看我的 app，原則上我希望呈現方式跟他一樣，這樣我才可以一天生三個 XD
+17:28 < MindosC> 有啊有啊
+17:29 < opop> 然後我也會做很醜的^H^H^H image design
+17:29 < MindosC> ^^
+17:29 < opop> 所以你可以大概照著輪廓畫線框
+17:29 < opop> 還有概念文字化
+17:30 < opop> 我就可以交出一個點下去以後還沒有內容頁的 app 給你
+17:30 < opop> 然後給你內容頁要去哪裡編輯
+17:31 < opop> 當然如果有人要 design 我就可以省好多功 XD
+17:31 -!- thschee [~thschee@101.12.183.219] has joined #g0v.tw
+17:32 < opop> ETBlue: 對了我覺得我搞到什麼都會做一點的秘訣應該在沒耐心吧 o.o
+17:33 < opop> 覺得別人做很慢，自己改比較快 Orz
+17:35 < ETBlue> opop: 那我沒救了，我很有耐心 orz
+17:38 < opop> 像我那隻 app 就是因為沒耐心，也不知道哪個毛覺得差一點時間就差很多，所以 coding 過程是連續 24HR 不中斷 orz
+17:39 < opop> 我覺得可能要去看醫生了～～～
+17:44 < MindosC> opop : 那我要怎麼看得到妳說的 prototypeApp ? 
+17:45 < opop> MindosC: 我做好寄 apk 給你？
+17:45 < MindosC> 好啊好啊 mindos at gmail
+17:46 < opop> MindosC: 不過你先把概念、線框給我嗎？XD
+17:47 < ETBlue> opop: 這揪竟是完美主義者還是強迫症或者藝術家性格呢（思） 
+17:48 < opop> ETBlue: 也有可能是因為在那前一天我連續打了 24hr 電動以後對自己感到相當懺悔 XD
+17:48 < tkirby_> ...........................
+17:48 < MindosC> opop : 哪個層級的概念？比我剛才說得細？
+17:48 < ETBlue> opop: 那你不就連續 48 hr 沒睡覺 = =?
+17:49 < opop> ETBlue: 不，這兩個 24hr 中間有睡
+17:49 < ETBlue> ...........我還是不要參考你的經驗好了，我想當個正常人......
+17:50  * walkingice 最多只能連續寫八小時的程式
+17:51 < opop> MindosC: mmm 比較像是https://lh4.ggpht.com/nR7OfU6WGtnAiG0TcjKKQc_X-HYYv-rfOXLzKo5bQgxMmThOMCLVGuqyvad_Z4NqUBs 這頁你要放哪些東東
+17:52 < opop> 這一頁我還不是做 online 的...所以要先做好 Orz
+17:54 < MindosC> 我的咖啡份燒完了，現在工作不能。
+17:56 < opop> 沒關係，我不急 A_A
+18:08 -!- logbot__ [~cinch@140.122.183.158] has joined #g0v.tw
+18:09 -!- KNY [~Adium@118-170-64-138.dynamic.hinet.net] has quit [Quit: Leaving.]
+18:10 -!- logbot_ [~cinch@140.122.183.158] has quit [Remote host closed the connection]
+18:12 -!- thschee [~thschee@101.12.183.219] has quit [Ping timeout: 252 seconds]
+18:17 -!- acer [acer@newelite.bshellz.net] has quit [Ping timeout: 255 seconds]
+18:28 -!- thschee [~thschee@27-96-60-26.ipq.jp] has joined #g0v.tw
+18:34 -!- KNY [~Adium@118-170-64-138.dynamic.hinet.net] has joined #g0v.tw
+18:37 -!- MindosC [~MindosC@115.82.11.130] has quit [Read error: Connection reset by peer]
+18:43 < tka_>  
+18:44 -!- tka_ is now known as tka
+18:46 -!- KNY [~Adium@118-170-64-138.dynamic.hinet.net] has left #g0v.tw []
+18:52 -!- MnO2 [~mno2@nat/yahoo/x-upxfvmhvtxpyigke] has quit [Quit: Leaving]
+18:52 -!- MindosC [~MindosC@115.80.1.138] has joined #g0v.tw
+18:54 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+18:54 < MindosC> 週四會去碼農講 g0v.tw 看能不能生個新竹團 :)
+18:55 -!- mutolisp [~psilotum@inventory16.fo.ntu.edu.tw] has quit [Quit: leaving]
+19:01 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 255 seconds]
+19:11 -!- Ben_chou [Ben_chou@nat/novell/x-rbsyzsnrnccaxzsf] has quit [Ping timeout: 252 seconds]
+19:15 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+19:58 < walkingice> MindosC: ++
+20:36 -!- miau715_ [01226cc3@gateway/web/freenode/ip.1.34.108.195] has quit [Quit: Page closed]
+20:36 -!- MnO2 [~mno2@1.34.43.236] has joined #g0v.tw
+20:43 < billy3321> 還有需要撰寫的新手文件嗎？
+20:45 < MnO2> Hi, 各位好
+20:45 < billy3321> MnO2: 你好
+20:46 < MnO2> 我有一個點子想要請大家給一點feedback
+20:46 < MnO2> 就是我想做 「公民 recaptcha」
+20:46 < MnO2> 像是圖片 http://goo.gl/ghAVt
+20:46 < tkirby_> 公民 recaptcha?
+20:47 < MnO2> 可以擷取下來仿照 recaptcha 的形式，提示當作問題
+20:47 < MnO2> 上面是建築的資料，但也有可能是政府的資料
+20:48 < billy3321> 要輸入什麼東西來認証？
+20:48 < MnO2> 提示的問題可能是「XXX今年預算多少」，這樣提問的同時可以讓解答的人了解到公民議題
+20:48 < MnO2> 也可以同時做 crowd sourcing 來解碼，釋放出來資料
+20:49 < MnO2> billy3321: 可能就是圖片中的文字之類
+20:49 < billy3321> captcha不能佔太大空間耶
+20:49 < MnO2> billy3321: 所以要切小段， recaptcha 也是從圖書中擷取小段
+20:49 < billy3321> hmm
+20:50 -!- MindosXD [df88c19d@gateway/web/freenode/ip.223.136.193.157] has joined #g0v.tw
+20:50 < MnO2> http://zh.wikipedia.org/wiki/ReCAPTCHA
+20:50 < kcwu> MnO2's url: [reCAPTCHA - 维基百科，自由的百科全书]
+20:51 < MnO2> 這是 recaptcha 的運作方式， 基本上就是照抄， 但圖片用無法簡易解析的未被釋放資料
+20:51 < MnO2> 技術上面應該不會太困難，只是這樣做可能會有法律方面的考量，需要懂法律的人幫忙看看。
+20:52 < MnO2> 這是個目標被破解的系統，因為破解的那一天，Data就成為機器可讀了
+20:55 < tkirby_> 這個問題大概主要會是圖片怎麼來?
+20:55 < favonia> MnO2: 聽說立法院好像也有一些 jpeg...
+20:56 -!- MindosXD [df88c19d@gateway/web/freenode/ip.223.136.193.157] has quit [Ping timeout: 245 seconds]
+20:57 < MnO2> tkirby_: 剛剛我丟的連結就是一個啦，而且之前實價登錄被改成圖檔事件就表示這種案例應該不會少
+20:59 < tkirby_> MnO2: hmm 我覺得問題會在整理資料上吧, 原始圖檔要切, 要先做出一些有正確答案的圖 等等的..
+21:00 < billy3321> 不過這個recaptcha要用在怎樣的場合？
+21:00 < MnO2> tkirby_: 的確會有一些初期整理的功夫
+21:00 < tkirby_> 也許類似 child404? 做成 api 給大家用這樣..
+21:00 < billy3321> 感覺這樣會有點麻煩，如果還要閱讀以後才能輸入並認証的話
+21:00 < MnO2> billy3321: 就是你會用 recaptcha 的場合
+21:01 < MnO2> tkirby_: yes
+21:01 < billy3321> 我覺得除非被拿來當作抓A片之前的認証
+21:01 < billy3321> 驅力才夠
+21:01 < billy3321> 不然....不樂觀。
+21:02 < MnO2> billy3321: 所以可能要弄成跟現有 recaptcha 一樣，是一張小小圖
+21:02 < tkirby_> MnO2: 最麻煩的大概是切圖.. 這個應該要自動化不然頗費人工, 不過要切出確實含有資訊的部份可能要想想怎麼做
+21:02 < billy3321> 大陸目前有中文的captcha認証
+21:02 < tkirby_> billy3321: 這個做出來應該是期望各網站原本有用 captcha 的地方使用這個 api 替換掉這樣..
+21:02 < favonia> 實價登錄的圖雖然很醜，但風格很接近，有希望
+21:03 < billy3321> 但是會造成一個很大的問題
+21:03 < billy3321> 就是要有中文輸入才能用
+21:03 < billy3321> 而且還要是簡體的
+21:03 < billy3321> 繁體輸入會沒辦法辨識
+21:04 < billy3321> 同理應該會出現在這個recaptcha上
+21:04 < favonia> 唔我剛才打錯，我是說都市更新
+21:04 -!- mutolisp [~mutolisp@1-162-44-22.dynamic.hinet.net] has joined #g0v.tw
+21:04 < tkirby_> 先使用 OCR 選出 candidate 然後用選的? 最後面補一個 "以上皆非"
+21:04 < tkirby_> 也許可以順便幫助 OCR training.. XD
+21:05 < tkirby_> 結果每一題都是以上皆非就糗了
+21:05 < MnO2> tkirby_: 這樣用選的，機器人過的機率太高
+21:05 < tkirby_> 不過做久了總是會逼近正確答案..
+21:06 < tkirby_> MnO2: 沒問題的! 提出 20 個選項!!! (逃)
+21:06 < tkirby_> 20Q.net
+21:06 < MnO2> billy3321: 要看資料情況，答案可能會是數字，但問題很可能是繁體中文。
+21:07 < billy3321> 答案如果是中文會比較麻煩
+21:07 < billy3321> 而且可能還會跟該網站編碼有關XD
+21:07 < tkirby_> XD
+21:08 < tkirby_> 切圖是個問題.. 推廣應該會是另一個吧
+21:09 < MnO2> tkirby_: 的確，這就跟 404 一樣
+21:10 -!- KNY [~Adium@118-170-64-138.dynamic.hinet.net] has joined #g0v.tw
+21:10 < tkirby_> 切圖, 推廣... 再來是.. 網站維護? 流量一大成本就高了, 而且不能隨便掛站
+21:11 < tkirby_> 也可以提供上傳圖片幫助分析.. 限制學術或是公共事務使用這樣
+21:11 < MnO2> tkirby_: 我想如果能夠流量大到那種程度的話，我會很願意花時間金錢承擔那些問題
+21:12 < tkirby_> MnO2++
+21:12 < tkirby_> 一時想得到的大概就這幾點, 我覺得做得起來的話蠻有幫助的
+21:13 < tkirby_> 不過對於有經費的單位, 也許會選擇顧工讀生來做這件事
+21:13 < MnO2> tkirby_: Thanks for your comment
+21:13 < tkirby_> 呃我是說工讀生做人肉 OCR
+21:13 < tkirby_> MnO2: >.^
+21:15 -!- timdream [~timdream@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: timdream]
+21:23 < ipa> 所以是有提示問題（文字），配上答案（圖片），然後要輸入答案嗎？
+21:25 < ipa> 問：核四若運作佔總發電量多少？圖片：6% <---這樣？
+21:26 -!- swem [~Thunderbi@host-61-70-229-184.static.kbtelecom.net] has joined #g0v.tw
+21:30 < billy3321> ipa++ 
+21:30 < billy3321> 這樣好像還不錯XD
+21:35 -!- Johnny5TW [~johnny5tw@114-33-113-125.HINET-IP.hinet.net] has quit [Quit: Leaving]
+21:37 -!- KNY [~Adium@118-170-64-138.dynamic.hinet.net] has left #g0v.tw []
+21:41 < billy3321>  
+21:47 < S3p_lin> 百萬小學堂 XD
+21:50 < ipa> 聽起來我好像誤會 MnO2 原意？我是努力了解，胡亂延伸....
+21:54 < dannvix> MnO2++
+21:55 < clkao> ETBlue: 可以讓我看看 404 目前 trello 長怎樣嗎 :p
+21:56 < MnO2> ipa: 我想初期有答案的資料太少比較沒辦法這樣問，可能就只是一個圖檔來源是政府相關網站的 recaptcha
+21:57 < MnO2> ipa: 但如果隨著有答案的資料增加，也是可以設計成這樣
+21:57 < MnO2> ipa: 就是單純教育性的 captcha
+21:57 < MnO2> ipa: 不過我想中文字也是要入圖檔，只有一個數字的圖檔太容易OCR
+22:01 < ETBlue> clkao: roger, done  XD 剛開始用trello都亂七八糟，也不知道可以assign人收通知，現在比較上手了有慢慢在進步... XD
+22:02 -!- acer [acer@newelite.bshellz.net] has joined #g0v.tw
+22:03 < clkao> ETBlue: thanks!  偷看一下專業 pm 怎麼用工具 :p
+22:03 < ETBlue> clkao: 昨天以前原本都在 gmail 寄群組信，直到今天邀 timdream 進來以後發現不可能把所有群組信重新轉寄一次，我這不專業的PM才終於醒悟不好好把現況更新到trello上是不行的 QAQ
+22:04 < ETBlue> clkao: 就說不專業了啊 T_T
+22:04 < clkao> 不過他沒有一個 cross-board 的 overview 齁?
+22:04 < MindosCheng> 404 充份發揮 Trello 的功能 (見證)
+22:04 < clkao> 太強了
+22:04 < ETBlue> clkao: 對啊我覺得這點很麻煩
+22:05 < MindosCheng> 我竟然手殘把 Log 連結弄壞了 Q.Q (現在好了)
+22:05 < ETBlue> 他的每個board都有獨立的權限設定，比較像是大型的組織裡面不同權限的團隊各自一個獨立的board
+22:06 < MindosCheng> clkao 我星期四要去碼農講 g0v.tw *panic*
+22:07 < clkao> 剛在看 huboard: http://huboard.com/g0v/dev/board
+22:07 < MindosCheng> ETBlue++ # Native Tool Adapter
+22:07 < kcwu> clkao's url: [Sign in · GitHub]
+22:07 < ETBlue> 也許是因為這樣才不提供cross-board，不過這份權限控管的美意對於我們這種小不拉機的團隊來說就很多餘，我要去每個board把新加入的成員設定進去member
+22:07 < MindosCheng> huboard 好玩嗎
+22:08 < MindosCheng> 在想要怎麼講
+22:09 < ETBlue> 看起來 huboard 好像...比較好用耶！！！ 
+22:10 < ETBlue> 你看我們每個board都要手動加todo/doing/done三張card... huboard直接內建 orz
+22:11 < tkirby_> MindosCheng: 賀
+22:11 < MindosCheng> tkirby_ : *panic*
+22:11 < MindosCheng> 要怎麼講給工程師聽
+22:12 < clkao> ETBlue: 咦 可是 trello 不是 default 就是 todo/doing/done ?
+22:12 < ETBlue> 還可以直接開關不同類型item的visibility...
+22:12 < clkao> MindosCheng: .... 你又不會演講前投影片消失 有什麼好抖的.... -.-
+22:12 < tkirby_> clkao: XDDD
+22:13 < MindosCheng> Naked presenter 
+22:13 < ipa> acer!
+22:13 < ETBlue> clkao: 原來那是default嗎 @@ 因為是 hSATAC 建的所以我不曉得 orz
+22:13 < clkao> 不過還發現一個厲害的: https://zapier.com/home/GitHubAPI/TrelloAPI
+22:13 < kcwu> clkao's url: [Zapier · Zapier]
+22:13 < hlb> huboard looks nice.
+22:13 < clkao> 可以隨便亂接東西
+22:13 < clkao> hlb!
+22:13 < tkirby_> 金山五街 28 號  蠻近的
+22:13 < clkao> hlb: 話說 dev 現在有自動更新媽... 
+22:14 < hlb> 說太早了，好像登入進去之後就爛掉了
+22:14 < hlb> clkao: 又爛掉了嗎？ -_+
+22:14 < MindosCheng> tkirby_ : Freedom 號召的 當然很近啊 XDDD
+22:15 < MindosCheng> tkirby_ : 照片借我用 :)
+22:15 < clkao> 印象中最新消息我加了黑客松
+22:15 < MindosCheng> clkao : 投影片借我用 XDDD
+22:15 < clkao> MindosCheng: 自由取用啊
+22:15 < tkirby_> MindosCheng: 好 XD
+22:15 < tkirby_> 要來報名嗎 (思)
+22:16 < MindosCheng> clkao++ # Human file recovery
+22:16 < ETBlue> trello 比 huboard 好的地方大概是視覺化，便利貼畫面感覺對不那麼熟悉電腦的人來說可能比較直覺，我們 trello 裡有兩位使用者是資料管理中心的人，目前看起來使用上沒啥問題
+22:16 < MindosCheng> tkirby_++ # Vivid event record
+22:16 < hlb> 吼是讚爛什麼啦
+22:16 < tkirby_> MindosCheng: XDD
+22:17 < clkao> hlb 爆炸了
+22:17 < hlb> clkao: 有可以 parse GFM 的替代品了嗎 :-/
+22:17 < clkao> marked --gfm
+22:18 < hlb> marked 啊...
+22:18 < MindosCheng> 我在看 Open Government 這本，希望今天能看完，有推薦章節嗎?
+22:18 < clkao> gollum is not very trustworthy, isn't he
+22:18 < hlb> ya.
+22:18 < clkao> MindosCheng: 這要問速讀高手 au
+22:18 < billy3321> clkao: 活動是在本周週末嗎？
+22:18 < clkao> billy3321: inddeed
+22:18 < clkao> 高雄... 有點冷清啊啊
+22:19 < clkao> hlb: marked 有什麼不優的嗎
+22:19 < billy3321> clkao: thx
+22:19 < clkao> hlb: 我 post proc ly md 也是用 marked
+22:19 < clkao> liquidfeedback 也把它改成用 marked
+22:19 < hlb> clkao: marked 不認得 wikilink
+22:20 < clkao> 喔 你說站內互聯
+22:20 < hlb> ya
+22:20 < MindosCheng> 9 位不錯啊 只是可惜了場地 :)
+22:21 < billy3321> Dear all:我不知道在這邊說這樣好不好，不過我寫了一篇文章，目前需要一點意見。
+22:21 < billy3321> 這篇文章是關於大陸和台灣的價值觀
+22:21 < clkao> hlb: 弄個 test case 吧 report 一下也許明天就有人修好了 :p
+22:22 < clkao> 是美洲大陸？還是南極大陸？
+22:22 < billy3321> 如果有興趣想看，想給我意見的人，請私下給我gmail郵箱
+22:22 < clkao> XD
+22:22 < clkao> share google doc? :p
+22:22 < billy3321> clkao: 中國大陸。但是由於文章需要縮小，所以文化上的中國稱為中國，國籍上的中國稱為大陸。
+22:22 -!- timdream [~timdream@112.104.45.169] has joined #g0v.tw
+22:22 < billy3321> clkao: sure。您要看嗎？
+22:22 < clkao> sure
+22:22 < hlb> clkao: 正在看可不可以加 hook
+22:23 < clkao> hlb: https://github.com/chjj/marked/pull/35 ?
+22:23 < kcwu> clkao's url: [Added support for plugins by jcayzac · Pull Request #35 · chjj/marked · GitHub]
+22:23 < billy3321> clkao: done
+22:23 < hlb> 11months ago...
+22:23 < ipa> 地理上稱中國大陸，國籍上應該稱為中國吧 XD
+22:24 < billy3321> ipa: 因為我討論的是文化上的中國。這樣說起來的中國人，會有國籍和文化上的混淆
+22:24 < billy3321> ipa: 看文章比較清楚@@
+22:24 < clkao> 可是明明 11 天前都還有在動
+22:25 < hlb> 讀ing
+22:25 < clkao> billy3321: gmail 帳號是另一個
+22:26 < MindosCheng> billy3321 : 我也想看!
+22:27 < clkao> 話說 火星還有金星殖民地的表决 還有 36 小時 請大家踴躍投票: http://lqfb-test.g0v.tw/lf/issue/show/5.html
+22:27 < kcwu> clkao's url: [登入 - LiquidFeedback - 台灣零時政府]
+22:28 < ETBlue> 高雄場可能比較晚開，所以沒宣傳到，去 sns 貼貼看會不會有幫助
+22:30 < billy3321> 是不是可以給一個官方的g0v文宣
+22:30 < billy3321> 讓大家可以拿去各個地方貼？
+22:30 < billy3321> g0v可以的話，希望可以設計一下blog貼紙
+22:30 < billy3321> 方便放在blog旁邊串聯
+22:30 < hlb> marked 現在的 test 就會 fail XD
+22:31 < hlb> 先來寫寫看好了 @@
+22:31 < clkao> hlb++
+22:31 < MindosCheng> 高雄的 programmer 不是在 fb 上有個 group>
+22:31 < billy3321> kalug?
+22:32 -!- timdream [~timdream@112.104.45.169] has quit [Ping timeout: 252 seconds]
+22:32 < MindosCheng> KSDG ?
+22:33 < billy3321> 我先陪老婆出門一下，等等就回來
+22:33 < ipa> https://github.com/g0v/dev/wiki/g0v-manifesto-(draft) 
+22:33 < kcwu> ipa's url: [g0v manifesto (draft) · g0v/dev Wiki · GitHub]
+22:33 -!- timdream [~timdream@nat/mozilla/x-pficpsbbiifoijca] has joined #g0v.tw
+22:34 < MindosCheng> billy3321 我很想問哪一個...... 但還是沒問 XD
+22:34 < clkao> 大家喝口酒 幫忙填入宣言中的 xxx ?
+22:35 < MindosCheng> ipa++ # 起草宣言
+22:36 < MindosCheng> 要不要貼 KSDG 呢?
+22:37 < clkao> billy3321: 我覺得階級有點薄弱 歐洲還有很多國家有國王或女王的.... 不過我歷史讀得太少了... 可以請教 momiz1 高手
+22:39 < ipa> 黑客松活動前會把宣言補完，歡迎提供想法
+22:40 < ipa> 所以大家去玩一下liquid feedback吧，不是真的要殖民火星 XD
+22:41 < MindosCheng> ipa 原來不是喔 Q.Q
+22:42 < clkao> yay liquidfeedback chef recipe patches accepted
+22:43 < ipa> MindosCheng: 其實我也真的想邀請Data中校以及Captain Picard!
+22:44 < MindosCheng> ipa : We can make it so.
+22:44 < ipa> https://hackpad.com/g0v.tw-Liquid-Feedback-%E6%B8%AC%E8%A9%A6%E6%A9%9F-Bee14qTnjgX 
+22:44 < kcwu> ipa's url: [g0v.tw Liquid Feedback 測試機 - hackpad.com]
+22:45  * MindosCheng claim the ownership of Curiosity
+22:46 < MindosCheng> 我來把報名頁貼去 KSDG
+22:46 < clkao> MindosCheng++
+22:54 < V1ctor> 晚上寫了一個 law2json, 可能可以變成 law2git XD  #  https://gist.github.com/4595212
+22:56 < V1ctor> 然後.. 每一條的變遷其實也可以 back reference 到會議記錄, 像 http://lis.ly.gov.tw/lgcgi/lglaw?@40:1804289383:f:NO%3DB04536*%20AND%20NO%3DA2%24%246$$$PD
+22:56 < kcwu> V1ctor's url: [立法院法律系統]
+22:57 < MindosCheng> KSDG 好像貼過了 :p
+22:58 < V1ctor> hmm.. log 沒看到 ^^;
+23:06 < clkao> V1ctor++
+23:06 < clkao> V1ctor: 法規資料庫有更多資訊嗎? 還是這邊已經都有了
+23:06 -!- pichu_ [~pichu@140.117.182.198] has joined #g0v.tw
+23:08 < hlb> clkao: 好像寫好了 XD
+23:09 < V1ctor> clkao: 我看到的有... 什麼時候修了什麼法、修法的理由、back ref
+23:09 < clkao> hlb++
+23:09 < hlb> clkao: 要怎麼包起來啊
+23:09 < clkao> V1ctor: right.. 每一條好像也會有說明... ?
+23:10 < V1ctor> clkao: 說明是指理由嗎 # http://lis.ly.gov.tw/lgcgi/lglaw?@40:1804289383:f:NO%3DE04536*%20OR%20NO%3DB04536$$10$$$NO-PD
+23:10 -!- MindosCheng__ [~chatzilla@223-136-193-157.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+23:10 < kcwu> V1ctor's url: [立法院法律系統]
+23:12 -!- MindosCheng [~mindos@223-136-193-157.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+23:18 -!- MindosCheng [~mindos@111.80.26.85] has joined #g0v.tw
+23:20 -!- timdream_ [~timdream@112.104.45.169] has joined #g0v.tw
+23:22  * dannvix 把 Logbot 開源了，code 很髒請大家不要笑太用力 XD # https://github.com/dannvix/Logbot
+23:23 < clkao> dannvix++
+23:23 -!- timdream [~timdream@nat/mozilla/x-pficpsbbiifoijca] has quit [Ping timeout: 255 seconds]
+23:23 -!- timdream_ is now known as timdream
+23:25 -!- MindosCheng_ [~chatzilla@111.80.26.85] has joined #g0v.tw
+23:34 -!- chitatlin [722db690@gateway/web/freenode/ip.114.45.182.144] has joined #g0v.tw
+23:36 -!- chitatlin [722db690@gateway/web/freenode/ip.114.45.182.144] has left #g0v.tw []
+23:38 -!- Chitat [~Chitat@114-45-182-144.dynamic.hinet.net] has joined #g0v.tw
+23:39 -!- Chitat [~Chitat@114-45-182-144.dynamic.hinet.net] has quit [Client Quit]
+23:39 < V1ctor> 刑法.git XD # https://github.com/victorhsieh/tw-criminal-law/commits/master
+23:39 < kcwu> V1ctor's url: [Commit History · victorhsieh/tw-criminal-law · GitHub]
+23:40 < MindosCheng_> dannvix++ # Release fast
+23:41 < billy3321> 啊，結果大家都沒意見嗎？@@
+23:41 < billy3321> 看來議題開太大了
+23:41 < billy3321> XD
+23:42 < MindosCheng_> billy3321 : 看完了 :)
+23:44 < billy3321> MindosCheng_: 有沒有需要改的？
+23:44 < billy3321> 事實上連標題我都還沒想好
+23:44 < billy3321> XD
+23:44 < MindosCheng_> billy3321 : 上吧! 作者是孤獨的！
+23:44 < billy3321> 還有引用來源也是
+23:44 < billy3321> MindosCheng_: 先放著好了，等下週大家活動辦完再來投稿
+23:45 < billy3321> 哈哈
+23:45 < MindosCheng_> billy3321 : 如果是網路文章我覺得太長
+23:46 < clkao> V1ctor++ # use git commit --date to set the dates?
+23:46 < MindosCheng_> 還有你可以問一下 momizi :)
+23:47 < clkao> V1ctor: blame view is more interesting: https://github.com/victorhsieh/tw-criminal-law/blame/master/law.txt
+23:47 -!- chitat [~chitat@114-45-182-144.dynamic.hinet.net] has joined #g0v.tw
+23:48 < billy3321> MindosCheng_: 事實上文章我已經砍很多了，之前更長XD
+23:48 < billy3321> 我晚點問問
+23:48 < MindosCheng_> 傳說中的謀姐 :P
+23:49 < clkao> chitat!  you just cancelled?
+23:51 < MindosCheng_> chitat : You did that? Q.Q
+23:52 < chitat> yap~ 完全忘記那天有報了馬拉松賽 (跪)
+23:52 < clkao> 我們.... 也是馬拉松呀 (挺)
+23:52 < MindosCheng_> Q.Q
+23:52 -!- KNY [~Adium@118-170-64-138.dynamic.hinet.net] has joined #g0v.tw
+23:53 < billy3321> clkao: 話說回來
+23:53 < billy3321> 還有新手文章需要寫嗎？
+23:53 < chitat> Mindos: 我先去看哪幾個job可以幫忙寫點code吧
+23:54 < MindosCheng_> billy3321 : 宣言!
+23:54  * clkao -> zzz
+23:54 < MindosCheng_> chitat 謝謝 :) 你現在都寫什麼
+23:54 < billy3321> MindosCheng_: 我明天來短話長說
+23:54 < billy3321> XD
+23:55 < MindosCheng_> billy3321 : 我是說 ipa 貼的宣言~
+23:56 < billy3321> MindosCheng_: Y
+23:56 -!- yllan [~yllan@122-116-177-245.HINET-IP.hinet.net] has joined #g0v.tw
+23:57 -!- susu [~cwshu@bsd1.cs.nctu.edu.tw] has joined #g0v.tw
+23:57 < MindosCheng_> yllan 要寫什麼~
+23:57 < yllan> MindosCheng_: 還不知道耶，我連 freenode 帳號都忘了，先上來看看
+23:58 < yllan> 看一下 wiki 惡補一下
+23:58 < chitat> MindosCheng_: C++ 跟 python 初學
+23:59 < MindosCheng_> chitat : 最近在學 Livescript ，很酷。
+23:59 < MindosCheng_> 我這次會到台中和 BlueT / Luba 做 Secure IM

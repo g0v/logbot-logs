@@ -1,0 +1,333 @@
+--- Day changed 二  6月 04 2013
+00:01 < ipa> 一石二鳥 COSUPxg0v
+00:01 < ipa> 雙贊助活動
+00:15 < hlb> 買完之後不知道什麼時候才會收到報名序號 :p
+00:20 < clkao> 不是貴公司弄的嗎
+00:20 < clkao> XD
+00:20 < opop> 我也是在想...
+00:20 < opop> 你不是自己生就好了嗎 Orz
+00:22 < au> moedict.tw 黑了。
+00:22 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Operation timed out]
+00:27 < clkao> au++
+00:28 < au> :D
+00:28 < opop> (_   _)
+00:29 < hlb> au++
+00:29 < au> hlb++ # design
+00:30 < hlb> # 沒有境內分站可以用 ~_~
+00:30 < au> XD
+00:44 < clkao> au: can eplite show author without going to history slider?
+00:47 < au> not out of box afaik, might be a matter of styling
+00:49 < clkao> ok
+00:50 < clkao> 看來「底定期」是不能改草案，但是可以提新的方案？
+00:54 -!- clifflu [~clifflu@114-32-21-207.HINET-IP.hinet.net] has joined #g0v.tw
+01:08 -!- pm5 [~pm5@111-248-222-126.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+01:10 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+01:53 -!- test_ [267a07a2@gateway/web/freenode/ip.38.122.7.162] has joined #g0v.tw
+01:54 -!- test_ [267a07a2@gateway/web/freenode/ip.38.122.7.162] has quit [Client Quit]
+02:04 -!- icman [~icman@123.240.147.165] has quit [Quit: 明天天氣晴]
+02:15 -!- pm5 [~pm5@111-248-222-126.dynamic.hinet.net] has joined #g0v.tw
+02:19 -!- pm5 [~pm5@111-248-222-126.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+03:19 -!- VoidChen [~VoidChen@118-160-160-127.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+03:47 -!- poga [~poga@114-25-227-70.dynamic.hinet.net] has quit [Remote host closed the connection]
+04:45 -!- Supaplextw1 [~Lucky@1-164-212-112.dynamic.hinet.net] has joined #g0v.tw
+04:47 -!- Supaplextw [~Lucky@114-25-195-59.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+05:12 -!- haroldwu [~user@118-170-197-124.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:14 -!- haroldwu [~user@118-170-202-83.dynamic.hinet.net] has joined #g0v.tw
+06:32 -!- astro [r94010@linux3.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+06:32 -!- astro [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+07:02 -!- ETBlue_ [~chatzilla@175.182.237.104] has joined #g0v.tw
+07:04 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Ping timeout: 260 seconds]
+07:04 -!- ETBlue_ is now known as ETBlue
+08:45 -!- haroldwu [~user@118-170-202-83.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+08:55 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+09:05 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+09:11 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+09:31 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+09:42 -!- MnO2 [~MnO2@nat/yahoo/x-jbhrdokgfscjrimn] has joined #g0v.tw
+09:43 < clkao> au: 看得懂 preference delegation 是怎樣嗎？ http://wiki.piratenpartei.de/Pirate_Feedback/Verbesserungen 
+09:43 < kcwu> clkao's url: [Pirate Feedback/Verbesserungen – Piratenwiki]
+09:47 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+09:52 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+10:02 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+10:07 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+10:09 -!- evan3rd [~evan3rd@59-125-138-163.HINET-IP.hinet.net] has joined #g0v.tw
+10:15 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:23 -!- FourDollars [~sylee@175.41.48.77] has joined #g0v.tw
+10:26 -!- chihchun_afk is now known as chihchun
+10:47 -!- evan3rd [~evan3rd@59-125-138-163.HINET-IP.hinet.net] has quit [Quit: evan3rd]
+10:59 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+11:04 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+11:19 < au> clkao: 略懂... basically flattening a tree of single-delegations into an ordered list per person
+11:20 < au> so there are no more transfers and for any issue, the first active participant in my list (non-transferrable) gets my vote if I don't vote by myself
+11:20 < au> .
+11:26 < pcchen> au: ping
+11:27 -!- tr33y4 [b4b10eea@gateway/web/freenode/ip.180.177.14.234] has joined #g0v.tw
+11:34 < au> pcchen: ?
+11:38 < pcchen> au: 想找你來課上演講關於萌典跟零時政府
+11:38 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+11:38 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+11:38 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+11:38 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+11:38 < au> pcchen: 課上?
+11:39 < pcchen> 我在清大的電腦概論類的課
+11:39 < pcchen> au: 還有想找你討論一下萌典台語部分可以改進的部份
+11:40 < au> OK. will you be @ hackathon this saturday?
+11:41 < pcchen> au: 有考慮要去本週 hackathon 但是還沒有完全確定是否能去
+11:41 < au> ok 演講的時間/地點/主題請寄至 g0v-talks@googlegroups.com
+11:42 < au> I'll reply from there
+11:42 < pcchen> au: ok!
+11:45 -!- chihchun is now known as chihchun_afk
+11:54 < pcchen> au: invitation sent to g0v-talks@googlegroups.com
+12:01 -!- tr33y4 [b4b10eea@gateway/web/freenode/ip.180.177.14.234] has quit [Quit: Page closed]
+12:03 -!- MnO2 [~MnO2@nat/yahoo/x-jbhrdokgfscjrimn] has quit [Quit: MnO2]
+12:05 -!- chihchun_afk is now known as chihchun
+12:07 -!- MnO2 [~MnO2@nat/yahoo/x-flzznpsxrdypjczv] has joined #g0v.tw
+12:09 < billy3321> https://github.com/billy3321/TW-ERROR-451-PAGE
+12:09 < kcwu> billy3321's url: [billy3321/TW-ERROR-451-PAGE · GitHub]
+12:09 < billy3321> 寫好教學文了
+12:09 < billy3321> 好像太晚出了(汗)
+12:10 < billy3321> 結果請看 http://billy3321.blogspot.com/
+12:10 < kcwu> billy3321's url: [雨蒼的終端機]
+12:20 < clkao> pcchen++
+12:20 < clkao> au: 好像比較 make sense? 以免瞬間 cluster 成寡頭
+12:22 < clkao> http://streetdogg.wordpress.com/category/lqfb/ 這裡有更多複雜的討論
+12:22 < kcwu> clkao's url: [LQFB | StreetDogg]
+12:25 < clkao> clifflu: coscup-2013-program 不 push 一個 gh-pages 嗎
+12:33 < clifflu> clkao: 原想說等顯示頁面都弄出來再說 O.o
+12:35 < clifflu> 今年 coscup 開到八軌，那個議程表不太方便速查，所以想說自己來打造輪子。搶先官方生出 json，有興趣的可以在 https://t.co/7nGVzZDsSK 的 data (or asset/data , branch:develop) 下找到 json 檔
+12:35 < kcwu> clifflu's url: [clifflu/coscup-2013-programs · GitHub]
+12:38 < clkao> clifflu++
+12:39 < clifflu> 如果一切順利，半夜前能弄出會動的橫捲版本 O.o
+12:40 < clkao> 順便加個 star & filter?
+12:41 < clifflu> 放 localStorage 的話沒問題，扯到資料同步會比較麻煩 ㄎㄎ
+12:41 < clkao> 就... firebase 吧 最新流行 :p
+12:42 < clifflu> filter 指的是 by category ? 我是比較想弄成像選課表那樣，可以先安排自己什麼時間往哪走說
+12:42 < clkao> filter by topic, community, starred, keyword etc
+12:43 < clifflu> 那 UI 會有點傷腦筋；我不喜歡會動的東西，所以可能只能把不符合的 session gray out
+12:44 < clkao> 那也不錯呀
+12:45 < clifflu> ok, 先去看 firebase 能幫忙省多少時間；另外順便問問，關於表格內的併格 (colspan rowspan) 有什麼好建議嗎 ? 這東西越踩越覺得弔詭
+12:50 < clkao> clifflu: colspan 很慘啊
+12:50 < clkao> clifflu: rowspan ng-grid 我有 patch 支援了
+12:51 < clifflu> ㄟ都，這次 coscup 2013 議程兩種都會用到，雖然說除了休息/吃飯這類地圖兵器以外不多就是 @@ 
+12:51 < clkao> clifflu: 問問 hlb 有什麼建議吧... 基本上想用 css3 做複雜的 tabular 都蠻苦的 
+12:52 < clifflu> ya, 算格數有些麻煩，原打算拿 offset 倒推 cell 所在位置與大小再來搞
+12:53 < clkao> 一般都是這樣 變成用 absolute
+12:53 < clkao> 不過如果用 angular 應該是蠻好寫的
+12:54 -!- MnO2 [~MnO2@nat/yahoo/x-flzznpsxrdypjczv] has quit [Quit: MnO2]
+12:54 < clifflu> 我的意思是用 $('td').offsetX 來算它在哪邊；我其實不在意 presentation；我擔心的是資料 colspan /rowspan 算錯，結果併錯格
+12:55 < clifflu> 現在想法是每個 cell 有自己的 uid；uid 相等且能併成方形的 cell 才能合併。但在開始合併以後，child node 的 order 不再與所在格數直接相關
+12:58 < clkao> http://sched.cssdevconf.com/
+12:58 < kcwu> clkao's url: [CSS Dev Conf 2012: Schedule]
+12:58 < clkao> 話說回來 在哪一間好像沒有那麼重要？反正要去再看就好?
+13:01 < tkirby> http://jsfiddle.net/NYWT8/ prototype 像這樣?
+13:01 < kcwu> tkirby's url: [Edit this Fiddle - jsFiddle]
+13:02 -!- MnO2 [~MnO2@nat/yahoo/x-vfgbybfeejaubitw] has joined #g0v.tw
+13:05 < clifflu> tkirby: 我覺得時間與地點應該要當作兩個軸向，讀起來比較直覺；但拿 d3 來做這個挺有趣的XD
+13:06 < tkirby> clifflu: >.^b
+13:10 < clkao> tkirby: 大師出手！
+13:11 < tkirby> clkao: 嗚阿被大師喊大師我承擔不起阿 (淚崩)
+13:11 < billy3321> clifflu: 幫我改一下
+13:12 < billy3321> "Hack Everything, Include Society"
+13:12 < billy3321> 改成
+13:12 < billy3321> "Hack Everything, Including Society"
+13:12 < billy3321> 感謝！
+13:14 < clifflu> billy3321: done, 不過我非官方，可能還要請聯絡 coscup 更正
+13:17 < clifflu> clkao: 我大概猜到你想的是啥了；做成像選課系統那樣，可以 browse & pick sessions 應該也挺實用
+13:17 < tkirby> 用 D3 真的蠻方便的.. 也許可以參著用用看
+13:18 < billy3321> clifflu: COSCUP已經更正了
+13:18 < billy3321> :)
+13:26 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+13:33 < Jcrt> clkao: 剛剛轉你的萌典 tweet ，結果你寫太長啦，無法 retweet with comment …… 只好把 RT @clkao 拿掉 XDDDD
+13:44 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+13:48 -!- evan3rd [~evan3rd@59-125-136-88.HINET-IP.hinet.net] has joined #g0v.tw
+13:55 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has quit [Ping timeout: 264 seconds]
+13:55 -!- Howar31 [~howar31@Autumn.cs.ccu.edu.tw] has quit [Ping timeout: 276 seconds]
+14:01 -!- evan3rd [~evan3rd@59-125-136-88.HINET-IP.hinet.net] has quit [Quit: evan3rd]
+14:12 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has joined #g0v.tw
+14:13 -!- Howar31 [~howar31@Autumn.cs.ccu.edu.tw] has joined #g0v.tw
+14:15 < clkao> Jcrt: :P
+14:28 < ETBlue> clkao: 黑客松完應該暫時不會有活動了對嗎？那我要訂車票回台中去了 XD
+14:28 < tkirby> ETBlue: 不吃個飯再回去?
+14:30 < ETBlue> tkirby: 不是黑客松一結束馬上回去，那會跟別人擠到的 XD 我是要訂週一以後的票... XD
+14:30 < tkirby> xD
+14:31 < tkirby> 雖然沒見過 ETBlue 幾次不過怎麼好像已經很熟了的樣子
+14:31 < ETBlue> tkirby: 仔細想想好像也只見過一次 = =b
+14:32 < tkirby> ETBlue: 竟然只有一次! 喔天阿! 真的假的! 怎麼可能~!!
+14:32 < clkao> ETBlue: 科科 那本週四要繼續 post-pre 嗎
+14:32 < ETBlue> clkao: 本週四當然要啊！不是上週說好的嗎 XD
+14:32 < tkirby> 可惡, 你們又要玩什麼好玩的
+14:33 < ETBlue> tkirby: 理論上會跟 ipa 一起玩 g0v.tw 首頁的 user story
+14:33 < tkirby> ETBlue: 喔喔, 週四晚上嗎?
+14:33 < ETBlue> tkirby: 對壓，要來玩嗎
+14:34 < tkirby> ETBlue: 這週好像有機會.. xD 在哪裡呢
+14:34 < ETBlue> tkirby: 和多星際總部
+14:34 < clkao> ETBlue: 開活動吧 我要進行睡一下行程
+14:34 < clkao> siesta
+14:35 < ETBlue> clkao: ... 晚安 = ="
+14:35 < tkirby> clkao: 這麼早睡!
+14:35 -!- evan3rd [~evan3rd@59-125-136-88.HINET-IP.hinet.net] has joined #g0v.tw
+14:35 < tkirby> ETBlue: 和多的地址是...?
+14:38 < ETBlue> tkirby: 正在開活動，等我一下XD
+14:38 < tkirby> xD
+14:38 -!- haroldwu [~user@118-170-186-137.dynamic.hinet.net] has joined #g0v.tw
+14:39 < tkirby> 喔喔, 查到了
+14:41 -!- Eva [7a741a92@gateway/web/freenode/ip.122.116.26.146] has joined #g0v.tw
+14:45 -!- Eva [7a741a92@gateway/web/freenode/ip.122.116.26.146] has quit [Client Quit]
+14:46 < ETBlue> http://registrano.com/events/g0v-postprehackath3n
+14:46 < kcwu> ETBlue's url: [g0v post-pre-hackath3n | Registrano]
+14:46 -!- evan3rd [~evan3rd@59-125-136-88.HINET-IP.hinet.net] has quit [Quit: evan3rd]
+14:47 < ETBlue> tkirby: 開好了 XD
+14:47 < tkirby> ETBlue: kD
+14:49 -!- evan3rd [~evan3rd@114-47-1-33.dynamic.hinet.net] has joined #g0v.tw
+14:49 < Jcrt> postprehackathon 每次都辦在桌球日 QQ
+14:49 < tkirby> 桌球日?
+14:50 < tkirby> 唔, 算算時間我到的時候應該七點半了
+14:50 -!- evan3rd [~evan3rd@114-47-1-33.dynamic.hinet.net] has quit [Client Quit]
+14:51 < Jcrt> 對啊，跟幾個朋友(tka, 阿修等)週四固定打桌球
+14:51 < tkirby> 喔喔, 好朋友!
+14:52 -!- evan3rd [~evan3rd@59-125-138-163.HINET-IP.hinet.net] has joined #g0v.tw
+14:54 < Jcrt> 還設了 ifttt ， twitter 上每週四都會有自動提醒 XDDDDD
+14:56 < tkirby> 話說回來為什麼叫 postprehackathon
+15:04 < cls_bsd> 友達以上，戀人未滿
+15:04 < ETBlue> 因為是在 prehackath3n 之後的 hacketh3n ... XD
+15:06 < tkirby> 呃 xD
+15:06 < ETBlue> clkao: 活動有要調整的地方再麻煩你幫我弄，要來進行出門一下行程 XD
+15:42 -!- hcchien_ is now known as hcchien
+15:43 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+16:07 < hlb> post/pre/
+16:09 < hlb> Jcrt: 可是上次阿修已經被我們騙來了
+16:10 < hlb> Jcrt: 所以固定好朋友的黑客松也不賴喲
+16:13 < opop> 好朋友黑客松!!!
+16:13 < opop> 不來就不是好朋友!!!
+16:14 < hlb> clkao: 更新一下有獎項這回事嗎 http://registrano.com/events/g0v-hackath3n-taipei
+16:14 < kcwu> hlb's url: [g0v.tw hackath3n | 台灣零時政府第參次客廳工廠黑客松 - 台北場 | Registrano]
+16:15 < ipa> 這組織好怪，活動名稱都無法一望即知
+16:16 -!- evan3rd [~evan3rd@59-125-138-163.HINET-IP.hinet.net] has quit [Quit: evan3rd]
+16:18 < opop> 真的
+16:18 < opop> 看起來就是孫中山之類的怪叔叔
+16:20 -!- evan3rd [~evan3rd@59-125-136-88.HINET-IP.hinet.net] has joined #g0v.tw
+16:24 < ipa> 獎項加好了 置頂號外！
+16:25 < opop> 我真心覺得 g0v 沒搶到票的人搞不好 <4 XD
+16:35 < clkao> Jcrt++ # http://womany.net/users/login
+16:35 < kcwu> clkao's url: [加入 womany 吧 | 登入/註冊 | 女人迷 womany]
+16:36 -!- evan3rd [~evan3rd@59-125-136-88.HINET-IP.hinet.net] has quit [Quit: evan3rd]
+16:43 < S3p_lin> Jcrt: 你變成看版男了 XD
+16:43 < tkirby> Jcrt: 看版男!
+16:57 -!- evan3rd [~evan3rd@59-125-136-88.HINET-IP.hinet.net] has joined #g0v.tw
+17:09 < au> clkao: 寡頭有寡頭的用處... 主要是容易通過門檻做出決策。但人少時 chain delegation 意義確實不大。I'm fine either way
+17:17 < Jcrt> XDDDDDDD 被發現
+17:18 < Jcrt> 那頁是同事們每天輪流 show ，過十二點就不是我了啦 >///////<
+17:18 < tkirby> 灰姑娘看版男
+17:18 < tkirby> 揪竟王子能否找到穿得下這件 T-Shirt 的看版男呢?
+17:18 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:19 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:19 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:19 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+18:12 -!- FourDollars [~sylee@175.41.48.77] has quit [Quit: leaving]
+18:14 -!- ltroot [~a9903089@140.127.182.55] has joined #g0v.tw
+18:33 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+18:49 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 264 seconds]
+18:55 -!- edwardc [~edwardc@60-199-248-174.static.tfn.net.tw] has quit [Ping timeout: 245 seconds]
+18:55 -!- edwardc [~edwardc@60-199-248-174.static.tfn.net.tw] has joined #g0v.tw
+19:00 -!- chihchun is now known as chihchun_afk
+19:05 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 256 seconds]
+19:11 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+19:23 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+19:41 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+19:47 -!- MnO2 [~MnO2@nat/yahoo/x-vfgbybfeejaubitw] has quit [Quit: MnO2]
+19:51 -!- evan3rd [~evan3rd@59-125-136-88.HINET-IP.hinet.net] has quit [Quit: evan3rd]
+20:17 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:17 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+20:17 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:17 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+20:36 -!- mindos [~mindos@61-230-251-82.dynamic.hinet.net] has joined #g0v.tw
+20:47 -!- evan3rd [~evan3rd@118-163-243-249.HINET-IP.hinet.net] has joined #g0v.tw
+21:06 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+21:09 -!- pm5 [~pm5@111-248-202-15.dynamic.hinet.net] has joined #g0v.tw
+21:11 < clkao> 噢 山上網路變成 5m 了
+21:11 < S3p_lin> 賀?
+21:17 < ipa> 可以在山上辦烤山豬黑客松了？
+21:18 < ETBlue> 網路5m很快嗎... （歪頭）
+21:20 < clkao> .... 可是一路從 512k 升上來的啊... zzzz
+21:24 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Operation timed out]
+21:27 < tkirby> ETBlue,ipa: 你們明天會進行 g0v.tw website 的工作嗎
+21:27 -!- pm5 [~pm5@111-248-202-15.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+21:28 < ETBlue> tkirby ipa : 明天週三嗎？我可能會週四白天才開始思考這個 XD
+21:28 < tkirby> ETBlue: 噢對不起.. 我是指後天 XD
+21:28 -!- pm5 [~pm5@111-248-202-15.dynamic.hinet.net] has joined #g0v.tw
+21:29 < ipa> https://twitter.com/octw/status/341907220042235904 非常有趣的一串討論
+21:29 < kcwu> ipa's url: [Twitter / octw: @audreyt @ilya ...]
+21:30 < ETBlue> tkirby ipa : 我想理論上應該是會（？） ipa 你週四會什麼時候到
+21:32 < ipa> 但我也想問，萌典不是雙向通訊，那是什麼呢? 結果原來查詢不是通訊？XD
+21:32 < ipa> ETBlue: tkirby: 飯前或飯後吧（好像沒回答到...）
+21:34 < ETBlue> ipa: 還好你有貼，我完全沒看到這串好料...
+21:35 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+21:36 < tkirby> 一路看下來老貓的論點一直被擊倒, 所以他就一直換論點.. 我覺得他一開始真的是覺得有疑慮, 但後來純粹是不服輸而已.
+21:36 < tkirby> 所以我覺得我們不用認真去想這個問題.. 因為問題不存在...
+21:37 < ETBlue> au++ 哲學大師
+21:37  * au 只是單純在跟貓咪玩毛線球
+21:37 < Jedi_> KD
+21:37 < tkirby> xDDD
+21:37 < clifflu> 但我覺得把憲法裡的通訊自由拿來打 "機器與機器的傳輸" 有可能超過，即使機器的兩端都是人
+21:38 < au> clifflu: http://ap6.pccu.edu.tw/encyclopedia_media/main-soc.asp?id=5519 只取「其一」
+21:38 < kcwu> au's url: [中華百科全書]
+21:38 < ETBlue> 該是時候召喚 isabel 了嗎... 但他不在 irc XD
+21:39 < au> 延伸閱讀說到「其二」是超過了，這我也同意。
+21:39  * ETBlue 突然覺得毛線球好好玩
+21:40 < clifflu> 法律沒跟上科技的時候，擴張解釋有點危險；或許用情感擅動，然後讓人民認同立法會比較好
+21:40 < au> *nod*
+21:42 < clifflu> 現學現賣：現在是政府把法案吞回去了，否則這無訴之利益，好像都可以提行政訴訟，未必要被害人身份。詳情要找公法律師確認
+21:42 < tkirby> ETBlue: 咦你週四幾點會到? 
+21:42 < ETBlue> tkirby ipa : 我是打算看 ipa 什麼時候到，然後學他... XD 
+21:43 < ETBlue> tkirby: 我是想早點去，在那環境底下比較容易思考，但週四是和多上班日，太早去可能會打擾到人家
+21:43 < opop> A_A 拐到一隻黑饃
+21:44 < tkirby> ETBlue: 呃喔 XD  我從新竹上去, 大概七點半以後才會到.. 所以可能待不久.. 可以跟你要手機號碼嗎, 方便找位置 XD
+21:44 < ipa> 我大約四點吧，工作一下去吃明太子，然後回來黑客松如何？
+21:44 -!- VoidChen [~VoidChen@118-160-162-221.dynamic.hinet.net] has joined #g0v.tw
+21:44 < ETBlue> tkirby: gmail sent :D
+21:45 -!- pm5 [~pm5@111-248-202-15.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+21:45 < tkirby> >.ob
+21:45 < ETBlue> ipa: 聽起來不錯，但有沒有正常的食物... 明太子好噁心 QAQ
+21:46 < ipa> 好啊，再想想
+21:47 < ETBlue> ipa: 那我也四點左右到 :D
+21:48 < tkirby> ETBlue: 要學 javascript 了嗎
+21:48 < ETBlue> tkirby: 這年頭不學 javascript 幾乎是半殘 QAQ
+21:48 < tkirby> ETBlue: xDDD
+21:49 < tkirby> 學 vbscript!
+21:49 < clifflu> ETBlue: 需要幫忙轉貼這句話嗎 ? XD
+21:49 < tkirby> ... 好像跟半殘差不多
+21:49 < ETBlue> clifflu: 都好 XDXDXDD
+21:49 < ETBlue> tkirby: （點頭
+21:49 < clifflu> ETBlue: 會黑掉吧 @@ 太可怕了這個
+21:50 < tkirby> 就好像男生沒有 180是半殘, 沒有 170 是全殘這樣 (?)
+21:51 < CindyLinz> 殘體(字)正夯啊 (逃)
+21:51 < clifflu> tkirby: 幫你轉給 clkao !
+21:51 < tkirby> oh no xDDD
+21:52 < clifflu> tkirby: 看了 /names , 你恐怕得罪不少人 OTZ
+21:53 < tkirby> clifflu: 沒關係, 因為我自己也是... xD
+21:54 < ETBlue> 好險我是女的，不算全殘，但因為不會 javascript 所以目前半殘 XD
+21:56 -!- evan3rd [~evan3rd@118-163-243-249.HINET-IP.hinet.net] has quit [Quit: evan3rd]
+21:57 -!- pm5 [~pm5@111-248-202-15.dynamic.hinet.net] has joined #g0v.tw
+22:02 < Jedi_> 我有低於 180，也有低於 170！所以無殘 :D
+22:04 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 260 seconds]
+22:18 < clkao> ..... 我脊椎開刀後從 170 變成 169，全殘無誤
+22:19 -!- pm5 [~pm5@111-248-202-15.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+22:19 < tkirby> clkao: 竟然還是比我高! (淚奔)
+22:19 < clkao> 毛線球++
+22:19 < clkao> btw, g0v.tw 上 cloudflare 了
+22:22 < clkao> 考慮要不要開半殘的 ssl
+22:23 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+22:34 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+22:41 -!- c9s [~c9s@220.135.44.23] has quit [Quit: fly away]
+22:57 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+23:00 -!- bafu [~bafu@111-240-209-208.dynamic.hinet.net] has joined #g0v.tw
+23:02 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+23:03 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+23:21 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+23:21 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+23:21 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+23:21 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+23:25 -!- pm5 [~pm5@111-248-202-15.dynamic.hinet.net] has joined #g0v.tw
+23:25 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+23:29 -!- pm5 [~pm5@111-248-202-15.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+23:53 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 245 seconds]

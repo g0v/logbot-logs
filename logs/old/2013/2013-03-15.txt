@@ -1,0 +1,235 @@
+--- Day changed 五  3月 15 2013
+00:00 -!- swem [~Thunderbi@host-61-70-238-230.static.kbtelecom.net] has quit [Ping timeout: 245 seconds]
+00:02 < tkirby> XDDD
+00:03 < clkao> kcwu: 有什麼想法嗎？
+00:04 < clkao> 不知道有沒有人熟 coding... 像整日會議中 有很多時候畫面是不動的，只有 timestamp 在跑. low motion 應該有比較好的 codec option 可以把 bitrate 壓小
+00:06 < clkao> tkirby: 對了，是不是可以用兩層甜甜圈圖？一層是贊成反對，另外一個是之下的以政黨區分? 
+00:07 < kcwu> clkao: 我在想我可以幫上什麼忙
+00:07 < clkao> tkirby: simplified version of: http://www.jasondavies.com/coffee-wheel/
+00:07 < kcwu> clkao's url: [Coffee Flavour Wheel - Jason Davies]
+00:10 < clkao> kcwu: 就來抓吧? :p 我的想法是都抓全日的, 他那個會議單日列表的 clip 有起始時間跟長度, 也把那些 meta data 存下來, 之後要 export 片段再從全日的轉...
+00:10 < clkao> 好像應該算一下放在 s3 要多少錢
+00:12 < clkao> kcwu: 目前應該可以從 api.ly 的 calendar 對應出全日影片 mms 
+00:13 < GitHub83> [ly-vote] zbryikt pushed 1 new commit to gh-pages: https://github.com/g0v/ly-vote/commit/3bc3866b980db1d6cc987d859647c85e6f245f73
+00:13 < GitHub83> ly-vote/gh-pages 3bc3866 Kirby T. Wu: +min/max mode, add text
+00:14 < tkirby> clkao: 也許可以試試看.. 這樣說來還可以再加一層分縣市?
+00:14 < tkirby> 現在這樣好像孔雀
+00:14 < clkao> tkirby: 根據上次某個 talk 說的, 贊成反對應該各從正上方分左右邊 
+00:14 < clkao> tkirby: 這樣才能立即比較大小
+00:15 < clkao> UX 之奧義
+00:15 < clkao> tkirby++ # 孔雀開屏
+00:15 < tkirby> 嗚阿.. 我是拿 lib 寫的阿.. XD
+00:15  * clkao 點播: http://www.indievox.com/song/22093
+00:16 < tkirby> 竟然有這首歌
+00:16  * clkao o/~ 為著家和萬事興　煞來路頭賣芋冰 o/~
+00:16 < kcwu> clkao: 什麼意思? # api.ly 的 calendar
+00:16 < kcwu> 有 example 嗎
+00:17  * kcwu 還 build 不出 msdl XD
+00:17 < clkao> kcwu: http://api.ly.g0v.tw/v0/collections/calendar?&s={%22date%22:-1}
+00:17 < clkao> kcwu: oh? 那邊不能 compile ?
+00:19 < kcwu> 不會寫 configure 參數, 所以 make 會叫 iconv 找不到. anyway, 手動 copy/paste command line build 就好了
+00:19 < clkao> kcwu: 因為根本沒加入.. 自己改 makefile -liconv :p
+00:19 < clkao> 因為我不會 autocrap
+00:23 < clkao> kcwu: 然後 rtsp 可以加 -s 5 五倍速下載 不然會等到地老天荒
+00:25 < GitHub121> [ly-vote] zbryikt pushed 1 new commit to gh-pages: https://github.com/g0v/ly-vote/commit/71bafe8f811c5989a346ad443ed64a9a62c422f5
+00:25 < GitHub121> ly-vote/gh-pages 71bafe8 Kirby T. Wu: improve UX
+00:31 -!- KNY [~Adium@36-232-99-20.dynamic-ip.hinet.net] has left #g0v.tw []
+00:33 -!- KNY [~Adium@36-232-99-20.dynamic-ip.hinet.net] has joined #g0v.tw
+00:36  * tkirby 聽起加味姑嫂丸
+00:41 < clkao> tkirby: mly 裡面應該有 constituency 可以看選區
+00:44 < clkao> tkirby: 話說紅綠好像應該跟勾勾叉叉顏色一樣? 
+00:54 < tkirby> clkao: constituency 這個選區資料有說明嗎? 有些看不太懂
+00:54 -!- shr [b89108@linux15.csie.ntu.edu.tw] has joined #g0v.tw
+00:54 < clkao> tkirby: ISO3166-2:TW
+00:55 < clkao> tkirby: see also mly.ls
+00:55 < tkirby> clkao: 顏色應該有 match? 紅色=反對=XX, 綠色=贊成=V
+00:55 < tkirby> oh, 來看
+00:55 < clkao> tkirby: but it's #0b0 vs #080
+00:56 < clkao> tkirby: 話說人物關係圖又可以派上用場了: http://www.facebook.com/photo.php?fbid=4517268938629&set=a.1452781888368.2064362.1497919957&type=1&theater
+00:56 < kcwu> clkao's url: [鄭秉原的相片 | Facebook]
+00:57 < tkirby> oh, 你是說要 exactly the same... that makes sense
+00:58 < clkao> tkirby: 棄權也應該跟減號一樣？也許和沒投調換？... 
+00:59 < clkao> 還是缺席直接用透明的?
+00:59 < tkirby> clkao: 我把減號改成黃色好了, 這樣就 ok
+00:59 < tkirby> 哇, 又出現新的關係圖 XD
+01:00 < tkirby> 話說字疊在一起了
+01:02 < clkao> 棄權往內 缺席往外? ;P
+01:11 < clkao> 突然發現有立院 app: https://play.google.com/store/apps/details?id=com.farnet.mii&feature=search_result#?t=W251bGwsMSwyLDEsImNvbS5mYXJuZXQubWlpIl0.
+01:11 < kcwu> clkao's url: [立法院 - Google Play Android 應用程式]
+01:12 < clkao> 不知道有沒有隱藏版 api
+01:12 < tkirby> clkao: 也可以把字由內往外寫成直的... 不過好不好閱讀就難說了... XD
+01:14 < clkao> 啊啊啊 終於找到了
+01:14 < clkao> http://www.ly.gov.tw/02_introduce/0203_unit/business/businessView.action?unitcd=32&id=508&itemno=02073200&atcid=508
+01:14 < kcwu> clkao's url: [立法院全球資訊網－認識立法院－各單位]
+01:22 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+01:25 -!- icman [~icman@123.240.139.67] has quit [Quit: 明天天氣晴]
+01:32 < GitHub93> [ly-vote] zbryikt pushed 1 new commit to gh-pages: https://github.com/g0v/ly-vote/commit/0b65d71884654d62ba885c14f1b4cc408caf9aa8
+01:32 < GitHub93> ly-vote/gh-pages 0b65d71 Kirby T. Wu: adjust colorschema,fix click issue,relayout sample page
+01:32 < tkirby> 順便把多年前說要修的 click on text issue 修掉了
+01:51 -!- KNY [~Adium@36-232-99-20.dynamic-ip.hinet.net] has quit [Quit: Leaving.]
+02:06 -!- chihchun is now known as zz_chihchun
+02:24 < tkirby> 好像越來越龐大了.. http://i.imgur.com/FJqESVg.png
+02:26 -!- ctf_- [~ctf_@61-231-15-64.dynamic.hinet.net] has quit [Quit: This computer has gone to sleep]
+02:30 -!- zz_chihchun is now known as chihchun
+02:31 -!- chihchun is now known as zz_chihchun
+02:42 -!- pm5 [~pm5@111-248-221-17.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+05:29 -!- MindosCheng_ [~mindos@220-137-65-164.dynamic.hinet.net] has joined #g0v.tw
+05:31 -!- MindosCheng [~mindos@61-230-54-15.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+05:31 -!- MindosCheng_ is now known as MindosCheng
+06:38 -!- pm5 [~pm5@111-248-221-17.dynamic.hinet.net] has joined #g0v.tw
+06:43 -!- pm5 [~pm5@111-248-221-17.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+08:31 -!- swem [~Thunderbi@host-61-70-238-230.static.kbtelecom.net] has joined #g0v.tw
+08:52 -!- swem [~Thunderbi@host-61-70-238-230.static.kbtelecom.net] has quit [Read error: Connection reset by peer]
+09:03 < clkao> tkirby: http://politics.nytimes.com/congress/votes/112/house/2/659
+09:03 < kcwu> clkao's url: [Congressional Bills and Votes - NYTimes.com]
+09:18 -!- pm5 [~pm5@111-248-221-17.dynamic.hinet.net] has joined #g0v.tw
+09:37 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+09:46 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+09:51 < tkirby> !!
+09:52 < tkirby> 話說.. 公投結果不曉得會不會有詳細資料?
+09:52 < tkirby> 核四公投的話, 剛好可以響應話題來一下
+09:53 < tkirby> 比方說反核的城市卻選出擁核的立委的話可以 highlight 一下...
+09:54 < tkirby> (應該不會剛好就分藍綠吧 XD)
+09:56 < clkao> 如果沒被操作拒領的話... 不過以現行的設計 話說反對的人 也要覺得投票率會過半 才會想要去投吧. 不然一投反對票 本來不會過的剛好過門檻 反而過了. 造成投票悖論
+09:58 -!- MnO2 [~MnO2@nat/yahoo/x-uuhvgixftidyuhkw] has joined #g0v.tw
+09:58 < tkirby> 唔
+10:03 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:23 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+10:32 -!- ctf_- [~ctf_@61-230-21-180.dynamic.hinet.net] has joined #g0v.tw
+10:32 -!- ctf_- [~ctf_@61-230-21-180.dynamic.hinet.net] has quit [Client Quit]
+10:34 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+10:37 < clkao> http://big5.xinhuanet.com/gate/big5/news.xinhuanet.com/collection/2007-12/20/content_7283448.htm # code 的價值!
+10:37 < kcwu> clkao's url: [世界最重要文件 英國大憲章拍出2130萬美元圖_收藏頻道_新華網]
+10:38 < edwardc> 以後哪位長輩百年後的 hello world 文稿也可以賣個幾千萬鎂這樣
+11:00 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+11:14 < clkao> tkirby: 得先把選區的邊界弄出來.. 如果有多個 feature, topojson 可以直接 merge 取邊界嗎？
+11:14 < clkao> tkirby: 選區有點鳥 不見得是以鄉鎮市區來切 像板橋就有兩個選區 所以要用村里邊界再 merge
+11:20 < kcwu> 有什麼程式可以比較兩個 video 的相似度嗎 (in human perception), 想比較 ffmpeg 不同參數 transcode 的差異...
+11:21 -!- zz_chihchun is now known as chihchun
+11:28 < clkao> kcwu: 不知道耶. 我現在是這樣壓:  -vcodec libvpx -
+11:28 < clkao> acodec libvorbis -r 25 -b:v 85k -ar 12k -ac 1
+11:29 < clkao> 感覺是和原來的 wmv 差不多, 壓完大概 65%
+11:30 < clkao> 話說今天 live 的好像有問題.. corrupted asf header
+11:30 -!- Al_Cho [al_cho@nat/novell/x-ujgvanxmfsfxyrfj] has joined #g0v.tw
+11:32 < clkao> kcwu: 想要研究 nginx-rtmp-module 嗎? 我那天試了 hls support 生不出來
+11:32 < clkao> http://59.126.64.204:8090/YS.webm # live again, 今天 mediavod02 爛掉, mediavod01 才行
+11:32 < kcwu> bitrate 85k ? 那不就超小?
+11:34 < clkao> this is the string: http://59.126.64.204:8090/YS.webm
+11:37 < clkao> *stream
+11:37 < clkao> bbl
+11:38 < kcwu> clkao: 你的 source 是 "寬頻版" 還是 "乍頻版" ?
+11:39 < kcwu> 寬頻版的 bitrate 大概有 1400k
+11:40 < clkao> kcwu: (!)
+11:40 < clkao> kcwu: short clip 的寬頻是更大的 整日的寬頻應該和 live 一樣是小的
+11:43 < clkao> 整日好像沒有更大的
+11:43 < clkao> 但目前整日的寬頻版 wmv 一天就差不多 1G 了
+11:45 < kcwu> 整日的寬頻版 bitrate 大約 200k
+11:48 < clkao> yeah. but thats av combined
+11:48 < clkao> the 85 in ffpmeg is video
+11:49 < clkao> btw google now really knows where i am going!
+11:49 < clkao> preety amazing
+11:50 -!- KNY [~Adium@36-232-99-20.dynamic-ip.hinet.net] has joined #g0v.tw
+11:51 < tkirby> clkao: 之前沒特別注意 feature merge 的問題, 不過我覺得可能得要自己來..
+11:51 < kcwu> 疑, fullday 跟 short clip, 用的 video codec 不一樣.... full=wmv3, short=wmv2
+11:53 < clkao> kcwu so msdl works for you now?
+11:54 < kcwu> clkao: yes
+11:56 < clkao> whoot
+12:06 < kcwu> https://docs.google.com/spreadsheet/ccc?key=0AoFUWdnG_V81dDVpWVQ1bEZKbzlnQzdqV2kteXhDOGc&usp=sharing 
+12:06 < kcwu> # ivod.ly codecs
+12:08 -!- yllan [~yllan@114-24-2-59.dynamic.hinet.net] has joined #g0v.tw
+12:09 -!- yllan [~yllan@114-24-2-59.dynamic.hinet.net] has quit [Client Quit]
+12:09 -!- yllan [~yllan@114-24-2-59.dynamic.hinet.net] has joined #g0v.tw
+12:11 < clkao> 原來全日窄是降 fps
+12:17 < kcwu> 不知道用不同 protocol 抓會不會抓到不同的...
+12:17 < clkao> 應該是一樣的 因為我 debug 時是去比對
+12:18 -!- KNY [~Adium@36-232-99-20.dynamic-ip.hinet.net] has left #g0v.tw []
+12:53 -!- chihchun is now known as zz_chihchun
+12:56 -!- Al_Cho [al_cho@nat/novell/x-ujgvanxmfsfxyrfj] has quit [Ping timeout: 245 seconds]
+13:18 < au> clkao: http://8491428a1d85a3c4f4e5-e9a5796e59d41e940f226e09ed95706a.r90.cf1.rackcdn.com/index.html
+13:22 < clkao> au: https://hackpad.com/%E7%AB%8B%E6%B3%95%E9%99%A2%E5%85%AC%E5%A0%B1-PUA-RgvhhdaHoDL
+13:22 < kcwu> clkao's url: [立法院公報 PUA - hackpad.com]
+13:23 -!- Al_Cho [~al_cho@59-124-67-67.HINET-IP.hinet.net] has joined #g0v.tw
+13:36 < au> http://8491428a1d85a3c4f4e5-e9a5796e59d41e940f226e09ed95706a.r90.cf1.rackcdn.com/used.html
+13:38 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+13:46 < clkao> au: current mapping: https://github.com/chhsiao1981/twlyparser/commit/590a469173b5a12ec4cec1b719f9a830cfbe3b03#L6R126
+13:46 < kcwu> clkao's url: [more readable util.fix_up_map · 590a469 · chhsiao1981/twlyparser · GitHub]
+13:54 -!- zz_chihchun is now known as chihchun
+14:17 -!- pm5 [~pm5@111-248-221-17.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+14:33 < clkao> au++ # coding ly PUA at lightning speed
+14:39 < au> alright done
+14:40 < au> clkao: https://gist.github.com/anonymous/afd90c53216f43441516
+14:40 < kcwu> au's url: [ly pua]
+14:40 < clkao> au++
+14:41 < au> E5A2 叁
+14:41 < clkao> 三個不同的
+14:41 < clkao> 個
+14:41 < clkao> 叁
+15:10 -!- hychen [~hychen@175.41.48.77] has quit [Ping timeout: 260 seconds]
+15:26 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+15:27 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+15:37 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+15:38 < clkao> g㍘v
+15:42 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+15:54 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+16:12 -!- chihchun is now known as zz_chihchun
+16:29 -!- zz_chihchun is now known as chihchun
+16:40 -!- MnO2 [~MnO2@nat/yahoo/x-uuhvgixftidyuhkw] has quit [Quit: MnO2]
+16:43 -!- MnO2 [~MnO2@nat/yahoo/x-wsycdcnqojlurust] has joined #g0v.tw
+16:55 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+16:56 -!- hychen [~hychen@175.41.48.77] has quit [Ping timeout: 255 seconds]
+16:57 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+17:02 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+17:14 -!- wHisKy [~wHisKy@220-135-57-250.HINET-IP.hinet.net] has joined #g0v.tw
+17:14 -!- yllan [~yllan@114-24-2-59.dynamic.hinet.net] has quit [Quit: yllan]
+17:27 < wHisKy> clkao，根據今天得到的一點消息，授權的部分目前還沒有定案，但是因為整體考量，所以和其他目前所謂「開放資料」平台上的都會差不多，不會有很大差異
+17:28 < wHisKy> 新北市和文化部會有新版本的「開放授權」，所以目前要看看這邊會不會有什麼新東西。我認為，很可能不會有太大差異
+17:34 -!- Al_Cho [~al_cho@59-124-67-67.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+17:40 -!- ericyu [ericyu@216.237.113.237] has quit [Read error: Operation timed out]
+17:44 -!- ericyu [ericyu@216.237.113.237] has joined #g0v.tw
+18:02 -!- MnO2 [~MnO2@nat/yahoo/x-wsycdcnqojlurust] has quit [Quit: MnO2]
+18:04 -!- MnO2 [~MnO2@nat/yahoo/x-uulglwdvktsqgibj] has joined #g0v.tw
+18:05 -!- Jedi_ [~Jedi@jedi.org] has quit [Ping timeout: 245 seconds]
+18:07 -!- swem [~Thunderbi@host-61-70-238-230.static.kbtelecom.net] has joined #g0v.tw
+18:14 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+18:14 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+18:28 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+18:33 -!- ronnywang [~ronnywang@ec2-54-249-42-170.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 256 seconds]
+--- Log opened 五  3月 15 18:33:55 2013
+18:33 -!- ronnywang [~ronnywang@ec2-54-249-42-170.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+18:33 -!- Irssi: #g0v.tw: Total of 93 nicks [0 ops, 0 halfops, 0 voices, 93 normal]
+18:34 -!- swem [~Thunderbi@host-61-70-238-230.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+18:34 -!- Irssi: Join to #g0v.tw was synced in 33 secs
+18:35 -!- cibs [~cibs@218.211.32.194] has quit [Ping timeout: 256 seconds]
+18:35 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:38 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+18:39 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:45 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:51 -!- chihchun is now known as zz_chihchun
+18:53 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+18:59 -!- cibs [~cibs@218.211.32.194] has joined #g0v.tw
+19:09 -!- MnO2 [~MnO2@nat/yahoo/x-uulglwdvktsqgibj] has quit [Quit: MnO2]
+19:11 -!- MnO2 [~MnO2@nat/yahoo/x-fwppjhjhykrsdogq] has joined #g0v.tw
+19:13 -!- Jedi_ [~Jedi@jedi.org] has quit [Read error: Connection reset by peer]
+19:18 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+19:28 -!- ArvinH [~ArvinH@host-176.119-185-111.static.totalbb.net.tw] has joined #g0v.tw
+19:32 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+19:40 -!- MnO2 [~MnO2@nat/yahoo/x-fwppjhjhykrsdogq] has quit [Quit: MnO2]
+19:42 -!- wHisKy [~wHisKy@220-135-57-250.HINET-IP.hinet.net] has quit []
+19:53 -!- ArvinH [~ArvinH@host-176.119-185-111.static.totalbb.net.tw] has quit [Remote host closed the connection]
+19:58 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+20:03 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: 881]
+20:04 -!- cibs [~cibs@218.211.32.194] has quit [Quit: leaving]
+20:16 -!- ArvinH [~ArvinH@host-176.119-185-111.static.totalbb.net.tw] has joined #g0v.tw
+20:32 -!- ArvinH [~ArvinH@host-176.119-185-111.static.totalbb.net.tw] has quit [Remote host closed the connection]
+21:22 -!- swem [~Thunderbi@203-70-94-16.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+21:40 < ipa> https://docs.google.com/file/d/0BzGJ4qvz2D3EZVctVE1KTi1JUTA/edit
+21:40 < kcwu> ipa's url: [ly-mockup.png - Google 雲端硬碟]
+21:41 < ipa> 昨天玩moqups畫了人生第一張mockup
+21:54 -!- swem [~Thunderbi@203-70-94-16.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 252 seconds]
+21:56 -!- Jedi_ [~Jedi@jedi.org] has quit [Read error: Connection reset by peer]
+21:59 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+22:07 -!- ctf_- [~ctf_@61-230-21-180.dynamic.hinet.net] has joined #g0v.tw
+22:08 < clkao> tka_: 發現 pcc data 好像 inconsistent? tender 304 連到 http://g0v-pcc.tka.lu/procurements/7473 出現的 json 是錯的。但原始連結是正確的 (304 得標標案)
+22:08 < kcwu> clkao's url: [政府標案分析]
+23:08 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+23:51 -!- icman [~icman@123.240.139.67] has joined #g0v.tw

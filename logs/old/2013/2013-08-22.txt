@@ -1,0 +1,1123 @@
+--- Day changed 四  8月 22 2013
+00:00 < ttcat> clkao: 我覺得蠻好的 接連署平台 或是 全國廢核行動平台都不錯
+00:01 < ttcat> LarryLAI: issue 出來的那個地圖，是什麼啊 XD
+00:01 < LarryLAI> 那個是一個資料地圖，舉現在的頁面為例
+00:02 < LarryLAI> 現在的頁面是反核，我們想讓使用者知道在這個世界上，有哪些國家也再發起反核（或曾經發起）運動，然後人數有多少
+00:02 < ttcat> LarryLAI: 我是綠盟的 pm 我叫阿端
+00:03 < LarryLAI> 您好=) 我叫賴瑞晟，大家都叫我Larry
+00:04 < mindos_cloud> Larry 你好
+00:04 < LarryLAI> 您好，請問該怎麼稱呼您呢＠＠？
+00:05 < ipa> LarryLAI: 阿端是正港反核份子
+00:05 < LarryLAI> 所以那個issue頁面剛好打到你的心了嗎XDD
+00:06 < jeffhung> 不曉得 avatars.io/github 內部是怎麼做的？再連到 github 拿 avatar 嗎？
+00:06 < ttcat> issue 和 討論都不錯
+00:06 < ttcat> 但是好慢噢
+00:06 < ttcat> 是 server 問題還是太多 jquery
+00:07 < yhsiang> jeffhung: github是連到avatars.io拿 avatar吧 ?
+00:08 < jeffhung> 那兩個超級慢的 avatar 是指到 github 新的 identicons。
+00:08 < LarryLAI> 嗯...其實我不是coding組的我不太清楚...
+00:09 -!- klandor [uid13157@gateway/web/irccloud.com/x-aygesmlkkefibdfa] has quit [Quit: Connection closed for inactivity]
+00:09 < clkao> jeffhung: avatars.io 已經不支援 github 了
+00:09 < LarryLAI> 不過很慢的點是...？（我自己覺得頗順暢＠＠
+00:09 < clkao> 要改用 gravatar, login github 時選取 # https://github.com/g0v/hack.g0v.tw/issues/16
+00:09 < kcwu> clkao's url: [fix avatar from github · Issue #16 · g0v/hack.g0v.tw · GitHub]
+00:10 < LarryLAI> 可能是第一次loading的時候圖片太多所以比較慢嗎＠＠？
+00:10 < jeffhung> clkao: 這就是為什麼一堆 default avatar 的緣故嗎？
+00:10 < ttcat> 就是有點頓頓的，最明顯的是註冊後跳出來的 colorbox/fancybox 要關掉
+00:10 < clkao> yes, 剛開始的時候 avatars.io 是有 github 的 :p
+00:10 < ttcat> 也有可能是我電腦問題
+00:11 < ronnywang> https://www.facebook.com/photo.php?fbid=700659836617105&set=a.275097039173389.87655.212660365417057&type=1&theater # 這種不知道要不要回報到新聞小幫手 XD
+00:11 < kcwu> ronnywang's url: [動態時報相片 | Facebook]
+00:11 < jeffhung> clkao: hub.ls 裡 avatarFor 若 firebase 裡沒有 avatar 預設會m/4
+00:11 < ronnywang> 他是 TV135, 不是 TVBS 喔
+00:11 < jeffhung> 預設會抓 http://avatars.io/github/#user
+00:12 < clkao> right. bad idea XD
+00:12 < LarryLAI> 啊...那可能要再修改，很多動畫都是用jQuery去寫的
+00:12 < clkao> ronnywang: XD XD
+00:13 -!- willcus [daa40f21@gateway/web/cgi-irc/kiwiirc.com/ip.218.164.15.33] has joined #g0v.tw
+00:14 -!- nikkki [6ff3773c@gateway/web/cgi-irc/kiwiirc.com/ip.111.243.119.60] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+00:15 < jeffhung> clkao: firebase 那邊 avatar 是怎麼決定的？讓使用者選要哪個 fb/github/... 的 avatar？
+00:16 < clkao> jeffhung: 是第一次 login 時決定的, 其實和 firebase 無關
+00:16 < clkao> 但目前沒有得改 (#8)
+00:16 -!- chihchun is now known as chihchun_afk
+00:16 -!- Chenalex1988 [1bf2369e@gateway/web/freenode/ip.27.242.54.158] has joined #g0v.tw
+00:17 -!- poshenghsu [3cfbc060@gateway/web/cgi-irc/kiwiirc.com/ip.60.251.192.96] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+00:17 < clkao> (firebase-login 的 auth callback 會有 avatar url, 不過目前我們是直接取 avatars.io/:service/:id)
+00:17 < jeffhung> clkao: 了解。issues 這邊可以改用 github api 裡提供的 avatar_url
+00:17 < clkao> ok!
+00:18 < jeffhung> 不過這樣還是慢就是了，github 的 identicons 很慢
+00:18 < jeffhung> clkao: 所以「第一次 login 時的『決定』」是直接取 avatars.io/:service/id？！
+00:19 < clkao> 對的 XD
+00:19 < clkao> 有人知道這是在說什麼嗎？ # https://twitter.com/f10e_/status/370217316446765057
+00:19 < kcwu> clkao's url: [Twitter / f10e_: 對 #g0v 的感覺就是這樣啊，做產品的場合拿來廣告很怪，或 ...]
+00:19 -!- Chenalex1988 [1bf2369e@gateway/web/freenode/ip.27.242.54.158] has quit [Client Quit]
+00:20 -!- LarryLAI [01a88737@gateway/web/cgi-irc/kiwiirc.com/ip.1.168.135.55] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+00:21 < clkao> 還是今天 HPX 其實有繼續，有人假冒我去給 talk? f-.-
+00:21 < tkirby> XD!
+00:24 < hychen> 看議程後的發言？
+00:24 -!- Chenalex [1bf2369e@gateway/web/freenode/ip.27.242.54.158] has joined #g0v.tw
+00:25 < clkao> yllan: reset 了！可是好藍好刺眼啊
+00:25 -!- poshenghsu [3cfbc060@gateway/web/cgi-irc/kiwiirc.com/ip.60.251.192.96] has joined #g0v.tw
+00:26 < ttcat> 我錯過什麼廣告了
+00:26 < clkao> 不知道耶 我可能也錯過了
+00:27 -!- qrtt1 [~qrtt1@220-129-36-100.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+00:27 < ipa> http://paul.kinlan.me/hackathons-dont-win-you-customers/ 她好像先貼了這個?
+00:27 < kcwu> ipa's url: [Hackathons don't win you customers - Tales of a Developer Advocate]
+00:30 < clkao> 噢。因為我們「廣告」的對象是 potential contributor? ;)
+00:31 -!- Chenalex [1bf2369e@gateway/web/freenode/ip.27.242.54.158] has quit [Ping timeout: 250 seconds]
+00:31 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: mno2]
+00:32 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+00:33 < yllan> clkao: 真的耶～看來高度轉顏色還是要好好配色……
+00:35 -!- kanru` [~kanru@114-42-29-246.dynamic.hinet.net] has quit [Remote host closed the connection]
+00:38 < hychen> G0v黑客松屬於企業內部的sprint
+00:39 < hychen> 那篇文章提的是marketing 類的廣告型黑客松
+00:40 < clkao> yeah.
+00:40  * superbil 爬完 log 清完漏水，感覺今天可以休息了
+00:40 < clkao> yllan: 其實我閃過一個念頭... 這是不是 yl"藍" 埋的梗
+00:41 < jeffhung> ipa: 那篇我倒懷疑是在回應 xdite 最近某篇講 logdown 的文章。# 不過 url 我一時找不到
+00:41 < hychen> Commit 勒？
+00:41 < clkao> superbil^^: 順道補完一下公報吧 :p
+00:41 < jeffhung> http://smalltalk.xdite.net/posts/41722-plan-too-much-is-a-crime?fb_action_ids=10151675042598611&fb_action_types=og.likes&fb_source=other_multiline&action_object_map=[543285392374383]&action_type_map=[%22og.likes%22]&action_ref_map=[]
+00:41 < kcwu> jeffhung's url: [Plan too much is a crime « smalltalk]
+00:43 < superbil> clkao: 阿 我只記得高挫折 # 正在打
+00:43 -!- poshenghsu [3cfbc060@gateway/web/cgi-irc/kiwiirc.com/ip.60.251.192.96] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+00:46 < tkirby> ETBlue: 你那個 g0vis mockup 放哪 我忘了記下來
+00:47 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Remote host closed the connection]
+00:47 < tkirby> 咦找到了
+00:48 < clkao> 好睏啊 沒力回 可以召喚 au 嗎 # 雖然不知道萌典是不是個好的回應例子 => `或許現在政府推出來的東西都很爛，但改用各位開發出來的替代方案後，他還是爛的. '
+00:48 < ETBlue> tkirby: 喔喔... XD
+00:49 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+00:49 < ETBlue> clkao: 這時候就是施展推坑之術的時機？
+00:51 < tkirby> 嚴格說起來 hackathon 原本就是很技術性的活動... 
+00:51 < clkao> 對的 但是我覺得 twitter 推坑難度對我來說太高 因為上下兩一句已經講到三件不同的事情了 zzz
+00:51 < ipa> 我回了啊
+00:52  * superbil 打完字都會習慣怪的按 cmd+s，但是 hackpag 都不會說話真好 # 安心的認為有存檔
+00:53 < ipa> 不過的確還是百廢待舉（望向立院公報議事錄投票紀錄），所以也才要繼續吃雞排啊
+00:55 < hychen> 回這還不如多寫幾行code
+00:57 < ETBlue> tkirby: 對了我是直接記在你的留言下面 http://hack.g0v.tw/meta/1qDnOBaoztH 沒事可以繼續往下加東西... XD
+00:57 -!- haroldwu_irssi [~haroldwu@42-79-32-159.dynamic-ip.hinet.net] has quit [Read error: Connection reset by peer]
+00:58 < tkirby> ETBlue: 其實我有開說 XD https://hackpad.com/G0ViS-G0-V-isualization-GOV-IS...-38KFeiT1Qrm
+00:58 < jeffhung> 睏。XD
+00:58 < ETBlue> tkirby: 疑？！要不要改開在 g0v.hackpad.com 下面？
+00:59 < jeffhung> 晚安
+00:59 < tkirby> ohoh~
+00:59 < ETBlue> jeffhung: 晚安
+00:59 < tkirby> hackpad 連不上中
+00:59 < tkirby> jeffhung: 晚上好
+00:59 < ETBlue> tkirby: 我也是...
+00:59 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Remote host closed the connection]
+00:59 < tkirby> 連上再來移
+00:59 < ipa> hychen: 此時竟然還有電寫code
+01:00 < ETBlue> ipa: 難道現在有停電？
+01:00 < tkirby> 台風天比較沒有打雷
+01:00 -!- poshenghsu [3cfbc060@gateway/web/cgi-irc/kiwiirc.com/ip.60.251.192.96] has joined #g0v.tw
+01:00 < ipa> 他忘了帶電源回家
+01:00 < ETBlue> 喔喔喔... XD
+01:00 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+01:01 < ETBlue> hackpad 504 的時候突然好慶幸 kcwu 有做備份... （抖）
+01:01 < tkirby> XD
+01:01 < tkirby> kcwu++
+01:01 < clkao> ETBlue: 可以設定 dropbox sync
+01:02 < ETBlue> clkao: 原來如此，等連上時來設定（抖抖
+01:03 -!- willcus [daa40f21@gateway/web/cgi-irc/kiwiirc.com/ip.218.164.15.33] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+01:05 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Remote host closed the connection]
+01:05 < superbil> 粗略的打完昨天的公報
+01:05 < superbil> 一直看 log 重複的東西好像下一次就看不到，所以就…
+01:06 < hychen> 沒有電.... 只能用ipad畫mockup...
+01:07 < tkirby> superbil: ETBlue 畫了個 mockup (幫高調)
+01:09 < superbil> tkirby: 記上去了，但是 mockup 的連接好像還沒有
+01:10 -!- dsewnr [~dsewnr@111-255-204-195.dynamic.hinet.net] has quit [Quit: leaving]
+01:11 < tkirby> superbil: 在這裡 https://drive.google.com/folderview?id=0B0NsS2a-Qx8ZaEdCV1FpYWY3YVU&usp=drive_web&tid=0B0NsS2a-Qx8ZN19uV1p6YWd6TXc
+01:11 < kcwu> tkirby's url: [g0v infographic]
+01:11 < hychen> 但也稱不上mockup, 頂多算概念示意圖
+01:12 < yhsiang>  接下來就會出現mockup ...
+01:13 < clkao> 夢境接力 但我真的要去作夢了
+01:13 < tkirby> 想來接個 github api 不過哈欠連連 看來只好追隨 clkao 的腳步了
+01:14 < hychen> 我是指我畫的 :p
+01:14 < superbil> tkirby: tks done
+01:15 < clkao> tkirby: 記得睡前先把 issue 開好
+01:15 < hychen> http://twitter.com/hychen/status/370211177545998338/photo/1
+01:15 < kcwu> hychen's url: [Twitter / hychen: #kuansim mockup for review ...]
+01:16 < billy3321> 問一下
+01:16 < clkao> hlb: sns icon 需要建議 # https://github.com/g0v/g0v.tw/issues/42#issuecomment-23030008
+01:16 < billy3321> irccloud是不是不能傳上色的文字？
+01:16 < kcwu> clkao's url: [add smaller sns buttons to header · Issue #42 · g0v/g0v.tw · GitHub]
+01:16 < clkao> 
+01:19 -!- KuoE0 [uid13416@gateway/web/irccloud.com/x-pznzwkuxswkodpdx] has quit [Ping timeout: 268 seconds]
+01:19 -!- yyhuang [uid13204@gateway/web/irccloud.com/x-uvvpemmaxbuxuvit] has quit [Ping timeout: 268 seconds]
+01:19 < clkao> google 今天是德布西
+01:19 -!- shelling [uid12374@gateway/web/irccloud.com/x-egshliuxdpjbsxbi] has quit [Ping timeout: 246 seconds]
+01:20 -!- rich1iu_ [uid13350@gateway/web/irccloud.com/x-oqvturfaqpnsdcxs] has quit [Ping timeout: 264 seconds]
+01:20 -!- rich1iu_ [uid13350@gateway/web/irccloud.com/x-bzgwdywneadvfgkl] has joined #g0v.tw
+01:21 -!- shelling [uid12374@gateway/web/irccloud.com/x-pfbprsyqghvubidw] has joined #g0v.tw
+01:21 -!- Iressa [uid13522@gateway/web/irccloud.com/x-yhslusaegytjksvc] has quit [Ping timeout: 246 seconds]
+01:22 -!- allenown_ [uid13449@gateway/web/irccloud.com/x-wkmxgdzvzdumgyco] has quit [Ping timeout: 264 seconds]
+01:22 -!- Iressa [uid13522@gateway/web/irccloud.com/x-ussvzsxcenofsbtj] has joined #g0v.tw
+01:22 < yhsiang> 月光曲 ~
+01:23 -!- allenown_ [~uid13449@gateway/web/irccloud.com/x-pdhzonqnmnglckxf] has joined #g0v.tw
+01:23 -!- tonyhusky [~tonyhusky@111-254-112-117.dynamic.hinet.net] has left #g0v.tw []
+01:23 -!- FourDollars [uid12544@gateway/web/irccloud.com/x-qipxwzulkxnqdarq] has quit [Ping timeout: 260 seconds]
+01:24 -!- dca_ [uid13114@gateway/web/irccloud.com/x-ztacursgiomgiyja] has quit [Ping timeout: 260 seconds]
+01:26 < ETBlue> hychen: 你用什麼畫的？這水墨風格好優雅... # mockup 
+01:27 < ETBlue> hychen: 你其實也是懶人藝術家吧（指
+01:27 -!- poshenghsu [3cfbc060@gateway/web/cgi-irc/kiwiirc.com/ip.60.251.192.96] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+01:27 -!- poshenghsu [6febdbb2@gateway/web/cgi-irc/kiwiirc.com/ip.111.235.219.178] has joined #g0v.tw
+01:29 < hychen> Ipad paper
+01:30 < superbil> paper 大推！
+01:31 -!- dc [76a9e720@gateway/web/cgi-irc/kiwiirc.com/ip.118.169.231.32] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+01:31 < hychen> 缺一隻筆
+01:31 -!- taibo__ [01a41072@gateway/web/freenode/ip.1.164.16.114] has quit [Ping timeout: 250 seconds]
+01:33 < hychen> 用手指畫好苦
+01:34 -!- bot_name_here___ [~cinch@p54A41497.dip0.t-ipconnect.de] has quit [Ping timeout: 276 seconds]
+01:35 -!- miaout17 [uid13197@gateway/web/irccloud.com/x-aehlpzgbbbdyyigg] has quit [Ping timeout: 260 seconds]
+01:35 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+01:36 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+01:41 < Lee1092> 今天花一天研究backup hackpad 結果，前幾個小時kcwu做完了!!  ++
+01:42 < Lee1092> 我感受到  自己不早點做   坑只會被人秒殺的壓力XDDDD
+01:43 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Ping timeout: 247 seconds]
+01:46 -!- poshenghsu [6febdbb2@gateway/web/cgi-irc/kiwiirc.com/ip.111.235.219.178] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+01:46 < superbil> 看來要做之前，要先說一聲我要做了！
+01:47 -!- Lei_ [~test@114-36-182-31.dynamic.hinet.net] has joined #g0v.tw
+01:48 < Lee1092> 真的~  不過也因此學到很多東西啦  XD
+01:51 < superbil> merge !
+01:51 -!- Lei_ [~test@114-36-182-31.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+01:54 -!- TuTu [99b939da@gateway/web/cgi-irc/kiwiirc.com/ip.153.185.57.218] has joined #g0v.tw
+01:55 < TuTu> exit
+01:56 -!- TuTu [99b939da@gateway/web/cgi-irc/kiwiirc.com/ip.153.185.57.218] has left #g0v.tw []
+01:56 -!- TuTu [99b939da@gateway/web/cgi-irc/kiwiirc.com/ip.153.185.57.218] has joined #g0v.tw
+01:58 -!- TuTu [99b939da@gateway/web/cgi-irc/kiwiirc.com/ip.153.185.57.218] has quit [Client Quit]
+01:58 < kcwu> Lee1092: 我前幾天就把那 bug assign 給我自己了 ^^
+02:02 -!- poshenghsu [6febdbb2@gateway/web/cgi-irc/kiwiirc.com/ip.111.235.219.178] has joined #g0v.tw
+02:06 < Lee1092> 嗯嗯嗯   你的做法也比較正統~   觀賞程式碼當中~
+02:06 < Lee1092> 再來找其他坑跳~   lol
+02:09 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+02:10 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+02:29 < billy3321> https://github.com/g0v/dev/wiki/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-IRC
+02:30 < billy3321> 把irccloud的使用方法補上圖文介紹了
+02:30 < kcwu> billy3321's url: [如何使用 IRC · g0v/dev Wiki · GitHub]
+02:40 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+02:40 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+02:44 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+02:48 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+03:17 -!- poshenghsu [6febdbb2@gateway/web/cgi-irc/kiwiirc.com/ip.111.235.219.178] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+03:18 -!- KuoE0 [uid13416@gateway/web/irccloud.com/x-wpaertmgjkkxrsrs] has joined #g0v.tw
+03:20 -!- yyhuang [uid13204@gateway/web/irccloud.com/x-qfuwqgguopzynfej] has joined #g0v.tw
+03:23 -!- FourDollars [uid12544@gateway/web/irccloud.com/x-uapabejirpqjzvzk] has joined #g0v.tw
+03:23 -!- dca_ [uid13114@gateway/web/irccloud.com/x-najrgvzzmpilljxb] has joined #g0v.tw
+03:35 -!- miaout17 [uid13197@gateway/web/irccloud.com/x-xihsgtwprbvtexqi] has joined #g0v.tw
+03:45 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+03:49 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+04:14 < lijung> shelling: 現在可以統編搜尋、公司名稱搜尋、drag 的時候會去 query 然後把受害廠商都列出到 map 上
+04:14 < lijung> 我都做完了
+04:32 -!- angus [6ff210d5@gateway/web/cgi-irc/kiwiirc.com/ip.111.242.16.213] has quit [Remote host closed the connection]
+04:33 -!- angus [6ff210d5@gateway/web/cgi-irc/kiwiirc.com/ip.111.242.16.213] has joined #g0v.tw
+04:35 < au> clkao: 那是接續 Eddie 的上一轉推 http://paul.kinlan.me/hackathons-dont-win-you-customers/ 的脈絡，我回了。
+04:35 < kcwu> au's url: [Hackathons don't win you customers - Tales of a Developer Advocate]
+04:45 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+04:50 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+04:54 -!- angus [6ff210d5@gateway/web/cgi-irc/kiwiirc.com/ip.111.242.16.213] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+04:55 -!- angus [6ff210d5@gateway/web/cgi-irc/kiwiirc.com/ip.111.242.16.213] has joined #g0v.tw
+05:04 < ETBlue> 原來是從這脈絡下來的（頓悟）不過 g0v 的目的不是創造顧客，是創造夥伴... 所以東西當然不能做得太完美，不然就沒坑可推了 XDDDD
+05:07 < au> 正是。做出來的東西是副產品，過程才是主要的產出 XD
+05:15 < ETBlue> 竟然還沒睡 OoO
+05:16 < au> 還沒午夜啊... 這裡晚餐都喫到十一點多
+05:17 < ETBlue> 以物理角度而言，你位於台灣嗎？
+05:18 < gugod> [問] 有其他專案會用到 oid 嗎 http://oid.nat.gov.tw/ # ref: https://github.com/g0v/magic-mirror/issues/5
+05:18 < kcwu> gugod's url (2/2): [data.gov.tw provider oid · Issue #5 · g0v/magic-mirror · GitHub]
+05:18  * au 目前和 gugod 位於同一個時區
+05:19  * gugod 三小時前吃完晚餐
+05:19  * ETBlue 心理上與 au 和 gugod 位於同一個時區
+05:20 < au> 中歐夏日部落 # Eastern Standard Tribe 梗
+05:21 < gugod> oh apparently there's already a mapping https://github.com/g0v/addressbook/blob/master/raw_data/oid.nat.gov.tw.json
+05:21 < kcwu> gugod's url: [addressbook/raw_data/oid.nat.gov.tw.json at master · g0v/addressbook · GitHub]
+05:21  * ETBlue 馬上轉身問狗
+05:25  * ETBlue 原來是某宅小說... = =
+05:28 < au> 宅到某個程度就會進入侘寂的境界喔 :D
+05:28 < au> -> zzz &
+05:30  * ETBlue 再度問狗...答曰「wabi-sabi究竟是種什麼樣的美感？wabi原指的是哲學上空虛感，sabi是人性上的寂寞感，簡單地說就是一種空虛寂寞的枯淡美」
+05:32  * ETBlue -> GW2 &
+05:32 -!- caasih [~caasiHuan@114-41-135-41.dynamic.hinet.net] has joined #g0v.tw
+05:41 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+05:45 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+05:45 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+05:49 -!- Lei [~test@114-36-182-31.dynamic.hinet.net] has joined #g0v.tw
+05:50 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 268 seconds]
+05:53 < caasih> 呼喚強大的 kcwu ！可以跟您要 binary 版的筆劃嗎？
+05:54 -!- Lei [~test@114-36-182-31.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+06:36 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+06:41 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+06:44 -!- Michael-Li [dc87c3ed@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.195.237] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+06:46 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+06:46 -!- tsaiid [~tsaiid@host-219-68-13-81.dynamic.kbtelecom.net] has joined #g0v.tw
+06:46 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+06:48 -!- caasih [~caasiHuan@114-41-135-41.dynamic.hinet.net] has quit [Quit: leaving]
+06:50 -!- Lei [~test@114-36-182-31.dynamic.hinet.net] has joined #g0v.tw
+06:51 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+06:51 -!- tsaiid [~tsaiid@host-219-68-13-81.dynamic.kbtelecom.net] has quit [Ping timeout: 276 seconds]
+06:54 -!- Lei [~test@114-36-182-31.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+06:56 -!- qrtt1 [~qrtt1@220-129-36-100.dynamic.hinet.net] has joined #g0v.tw
+06:57 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+07:14 -!- Michael_Li [dc87c3ed@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.195.237] has joined #g0v.tw
+07:20 < tkirby> ETBlue: wabi: 遊戲主機的線不經意地擺出某個平假名形狀   sabi: 很久沒拿出來的 PS2 已經積了一層灰 (by 良電子)
+07:21 < tkirby> 話說怎麼(在台灣的)這些人睡覺時間都不睡覺的
+07:42 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+07:46 -!- chuiyi [~Adium@220-135-178-174.hinet-ip.hinet.net] has joined #g0v.tw
+07:46 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+07:46 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+07:50 -!- Lei [~test@114-36-182-31.dynamic.hinet.net] has joined #g0v.tw
+07:51 -!- chuiyi [~Adium@220-135-178-174.hinet-ip.hinet.net] has quit [Ping timeout: 268 seconds]
+07:55 -!- Lei [~test@114-36-182-31.dynamic.hinet.net] has quit [Ping timeout: 268 seconds]
+08:02 -!- tonyhusky [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+08:05 -!- tonyhusky is now known as undercrux
+08:08 -!- tonyhusky [~tonyhusky@111-254-134-109.dynamic.hinet.net] has joined #g0v.tw
+08:15 -!- qrtt1 [~qrtt1@220-129-36-100.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+08:34 < pofeng_> 廣告一下, 神秘的受訪方式 , 「g0v.tw採訪」線上協作 https://g0v.hackpad.com/g0v.tw-Wa1jHJEsPoG
+08:34 < kcwu> pofeng_'s url: [「g0v.tw採訪」線上協作 - g0v.hackpad.com]
+08:42 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+08:46 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+08:46 -!- chuiyi [~Adium@220-135-178-174.hinet-ip.hinet.net] has joined #g0v.tw
+08:47  * Michael_Li 早安
+08:50 -!- keanu [~keanu@61-219-70-219.HINET-IP.hinet.net] has joined #g0v.tw
+08:52 -!- chuiyi [~Adium@220-135-178-174.hinet-ip.hinet.net] has quit [Ping timeout: 268 seconds]
+08:52 -!- keanu_ [~keanu@118-163-61-157.HINET-IP.hinet.net] has joined #g0v.tw
+08:53 -!- undercrux [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+08:55 -!- keanu [~keanu@61-219-70-219.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+09:03 < Michael_Li> pofeng 這是新聞採訪稿嗎？
+09:06 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+09:06 -!- undercrux [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+09:17 -!- qrtt1 [~qrtt1@220-130-128-164.HINET-IP.hinet.net] has joined #g0v.tw
+09:20 -!- scyen [~scyen@122.146.84.72] has joined #g0v.tw
+09:20 -!- apple [~apple@220-130-128-164.HINET-IP.hinet.net] has joined #g0v.tw
+09:21 -!- apple is now known as Guest62927
+09:23 -!- Guest62927 is now known as qty
+09:23 -!- qty is now known as qrtt123
+09:26 -!- Lei [~test@218.32.94.101] has joined #g0v.tw
+09:26 -!- Lei [~test@218.32.94.101] has quit [Remote host closed the connection]
+09:26 -!- qrtt1 [~qrtt1@220-130-128-164.HINET-IP.hinet.net] has quit [Quit: leaving]
+09:27 -!- Lei [~test@218.32.94.101] has joined #g0v.tw
+09:30 -!- micky [a31d8cc8@gateway/web/cgi-irc/kiwiirc.com/ip.163.29.140.200] has joined #g0v.tw
+09:30 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+09:30 -!- micky [a31d8cc8@gateway/web/cgi-irc/kiwiirc.com/ip.163.29.140.200] has quit [Client Quit]
+09:31 -!- Lei [~test@218.32.94.101] has quit [Ping timeout: 246 seconds]
+09:34 -!- susu_ [~cwshu@140.113.54.52] has quit [Ping timeout: 240 seconds]
+09:34 -!- Lei [~test@210.242.160.66] has joined #g0v.tw
+09:34 -!- joyqul [~joyqul@140.113.54.52] has quit [Read error: Connection reset by peer]
+09:38 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+09:42 -!- joyqul [~joyqul@140.113.54.52] has joined #g0v.tw
+09:46 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Remote host closed the connection]
+09:47 -!- chuiyi [~Adium@220-135-178-174.hinet-ip.hinet.net] has joined #g0v.tw
+09:47 -!- Lei [~test@210.242.160.66] has quit [Remote host closed the connection]
+09:48 -!- Lei [~test@210.242.160.66] has joined #g0v.tw
+09:48 -!- joyqul [~joyqul@140.113.54.52] has quit [Remote host closed the connection]
+09:49 -!- FourDoll1rs [~sylee@175.41.48.77] has joined #g0v.tw
+09:50 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+09:51 -!- FourDoll1rs [~sylee@175.41.48.77] has quit [Client Quit]
+09:51 -!- chuiyi [~Adium@220-135-178-174.hinet-ip.hinet.net] has quit [Ping timeout: 268 seconds]
+09:52 -!- Lei [~test@210.242.160.66] has quit [Ping timeout: 245 seconds]
+09:54 -!- susu_ [~cwshu@140.113.54.52] has joined #g0v.tw
+09:55 -!- joyqul [~joyqul@140.113.54.52] has joined #g0v.tw
+09:55 < mikimoto> 剛剛更新文件，請 g0v 要來高雄的朋友看一下，需要代訂房間朋友請幫忙登記一下 https://g0v.hackpad.com/g0v-x-MOPCON-VNUEogAQ1cm
+09:55 < kcwu> mikimoto's url: [g0v x MOPCON - g0v.hackpad.com]
+09:56 -!- pm5_ [~pm5@111-248-210-241.dynamic.hinet.net] has joined #g0v.tw
+09:57 -!- haroldwu_irssi [~haroldwu@42-67-9-246.dynamic-ip.hinet.net] has joined #g0v.tw
+09:58 < pofeng_> mikimoto++ ( 辛苦了 )
+09:59 -!- undercrux [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+09:59 < mikimoto> pofeng_: ^_^
+10:00 -!- Lei [~test@60-251-109-66.HINET-IP.hinet.net] has joined #g0v.tw
+10:00 -!- Lei [~test@60-251-109-66.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+10:00 -!- Lei [~test@60-251-109-66.HINET-IP.hinet.net] has joined #g0v.tw
+10:04 -!- Lei_ [~test@210.242.160.66] has joined #g0v.tw
+10:04 -!- Lei [~test@60-251-109-66.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+10:05 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Remote host closed the connection]
+10:06 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+10:06 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Remote host closed the connection]
+10:08 -!- pm5_ [~pm5@111-248-210-241.dynamic.hinet.net] has quit [Quit: leaving]
+10:08 -!- whyjaster [~whyjaster@61-220-205-84.HINET-IP.hinet.net] has joined #g0v.tw
+10:12 -!- UnderCrux [~UnderCrux@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+10:15 -!- mno2 [~mno2@wlan50.cc.ntu.edu.tw] has joined #g0v.tw
+10:16 -!- joyqul [~joyqul@140.113.54.52] has quit [Ping timeout: 246 seconds]
+10:16 -!- UnderCrux [~UnderCrux@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+10:17 -!- poga [~poga@114-25-231-247.dynamic.hinet.net] has joined #g0v.tw
+10:17 -!- poshenghsu [3cfbc060@gateway/web/cgi-irc/kiwiirc.com/ip.60.251.192.96] has joined #g0v.tw
+10:17 -!- susu_ [~cwshu@140.113.54.52] has quit [Ping timeout: 264 seconds]
+10:21 -!- poshenghsu [3cfbc060@gateway/web/cgi-irc/kiwiirc.com/ip.60.251.192.96] has quit [Client Quit]
+10:22 -!- VJ330 [76a37896@gateway/web/freenode/ip.118.163.120.150] has joined #g0v.tw
+10:22 -!- UnderCrux [~UnderCrux@140.113.121.170] has joined #g0v.tw
+10:25 < kcwu_mobile> caasih: 我要再整理一下，你用 python 嗎?
+10:26 -!- rayren [76a37896@gateway/web/freenode/ip.118.163.120.150] has joined #g0v.tw
+10:26 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+10:30 -!- joyqul [~joyqul@140.113.54.52] has joined #g0v.tw
+10:30 -!- dsewnr [~dsewnr@59-127-35-164.HINET-IP.hinet.net] has joined #g0v.tw
+10:30 -!- susu_ [~cwshu@140.113.54.52] has joined #g0v.tw
+10:31 -!- haroldwu_irssi [~haroldwu@42-67-9-246.dynamic-ip.hinet.net] has quit [Quit: Lost terminal]
+10:31 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:32 -!- lcamel_ [~lcamel@nat/yahoo/x-zomykedruchfrpud] has joined #g0v.tw
+10:32 -!- lcamel [~lcamel@202.89.121.17] has quit [Read error: Connection reset by peer]
+10:33 < UnderCrux> .help
+10:37 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:38 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has joined #g0v.tw
+10:40 -!- enum [~enum@1-171-57-243.dynamic.hinet.net] has joined #g0v.tw
+10:41 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has joined #g0v.tw
+10:41 -!- kaxing [~kaxing@175.41.48.77] has quit [Client Quit]
+10:41 -!- VJ330 [76a37896@gateway/web/freenode/ip.118.163.120.150] has quit [Quit: Page closed]
+10:45 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:47 < UnderCrux> clear
+10:47 < clkao> billy3321++ # irccloud intro 對了那個 freenode web irc 好像可以拿掉了，建議大家直接用 hack.g0v.tw/irc 進去？
+10:47 -!- tsaiid [~tsaiid@host-219-68-13-81.dynamic.kbtelecom.net] has joined #g0v.tw
+10:47 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+10:48 -!- billy3321_ [7579f16a@gateway/web/cgi-irc/kiwiirc.com/ip.117.121.241.106] has joined #g0v.tw
+10:48 -!- billy3321_ [7579f16a@gateway/web/cgi-irc/kiwiirc.com/ip.117.121.241.106] has quit [Client Quit]
+10:48 < billy3321> clkao: 我另外加上這個IRC的教學好了
+10:48 < billy3321> clkao: 掛一個可以互相備援
+10:49 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+10:50 -!- GangGang [76a37896@gateway/web/cgi-irc/kiwiirc.com/ip.118.163.120.150] has joined #g0v.tw
+10:50 < billy3321> clkao: 會想寫irccloud的教學，是因為wayne930242 他有一次不會用跑來問我
+10:50 < GangGang> 寫的好！ :)
+10:50 -!- nikkki [3dde6f8b@gateway/web/cgi-irc/kiwiirc.com/ip.61.222.111.139] has joined #g0v.tw
+10:51 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has joined #g0v.tw
+10:52 -!- tsaiid [~tsaiid@host-219-68-13-81.dynamic.kbtelecom.net] has quit [Ping timeout: 264 seconds]
+10:52 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+10:54 < Michael_Li> 我也要問個IRC雲的問題，早上看到它跑出訊息，好像是說超過容量，得要購買才行？
+10:54 < Michael_Li> This is a subscription service. Not all the limits are enforced during the beta, but your current usage exceeds the normal allowance.
+10:54 < Michael_Li> Upgrade your account
+10:56 < hlb> clkao: 有 number 不錯啊
+10:56 < hlb> clkao: 不過可以不用像現在這麼碩大吧 ＸＤ
+10:56 -!- susu_ [~cwshu@140.113.54.52] has quit [Ping timeout: 264 seconds]
+10:57 -!- chihchun_afk is now known as chihchun
+10:58 -!- susu_ [~cwshu@140.113.54.52] has joined #g0v.tw
+11:02 -!- GangGang [76a37896@gateway/web/cgi-irc/kiwiirc.com/ip.118.163.120.150] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+11:03 -!- Lulala [uid13558@gateway/web/irccloud.com/x-xctcviwmlxvtzgcu] has joined #g0v.tw
+11:05 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+11:05 < clkao> hlb:  XD XD
+11:05 -!- scyen_ [~scyen@122.146.84.72] has joined #g0v.tw
+11:06 < clkao> Michael_Li: 超過容量但是現在是 beta 期 所以不強迫你付錢。 billy3321 這可能也要註明一下
+11:06 -!- scyen_ [~scyen@122.146.84.72] has quit [Read error: Connection reset by peer]
+11:06 < clkao> (他連 freenode 是要收費的 $3/month)
+11:07 -!- scyen_ [~scyen@122.146.84.72] has joined #g0v.tw
+11:09 -!- scyen [~scyen@122.146.84.72] has quit [Ping timeout: 264 seconds]
+11:10 < billy3321> clkao: 所以說，目前不收費，但未來會收費，是嗎？
+11:12 < clkao> 是
+11:12 < clkao> 所以有疑慮可以用 hack.g0v.tw/irc + logbot
+11:12 < clkao> 之後可能會有另外做整合 (望向 yhsiang & allenown_ XD) 不過感覺是 irccloud 還可以用時 動力不大高
+11:13 < billy3321> clkao: 另外他好像不支援上色
+11:13 < clkao> 不知道耶 不過上色很重要嗎？
+11:13 < billy3321> clkao: 對erepublik的玩家來說很重要，他們會有指揮命令，會用紅色表示
+11:13 < clkao> 如果 irc 出現一堆 ansi color code 我應該會想辦法自己 filter 掉... 
+11:13 < walkingice> 科技來自於人性...的懶惰
+11:14 < clkao> 不知道耶 可以發 notice 看看？
+11:14 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+11:14 -clkao:#g0v.tw- your attention please. billy3321 wants to make this place more colorful. do you concur?
+11:14 < clkao> walkingice: 簡稱惰性 :p
+11:15 < billy3321> @@
+11:15 < clkao> billy3321: 如何？ /notice #g0v.tw <msg>
+11:15 < wHisKy> 可以自己加 script 加顏色，我就是這樣設定 highlight
+11:15 < billy3321> XD
+11:15 < walkingice> clkao++   科技來自於惰性
+11:15 -!- qrtt123 [~apple@220-130-128-164.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+11:15 -billy3321:#g0v.tw- test~
+11:16 < clkao> keyword highlight 應該各 client 都有. irccloud 我記得也可以設定除了自己 nick 外的其他 highlight
+11:16 < clkao> (如果自己做整合的好處是 可以推送這個 user 自己的 tag 被提到時的訊息)
+11:16 < wHisKy> 嗯，不知道大家都用哪些 client，不然也可以有個 g0v 版的 irc script
+11:17 -!- billy3321 changed the topic of #g0v.tw to: irccloud邀請信排隊 http://tinyurl.com/loxdlk5 | irc log: http://logbot.g0v.tw | 如何參與: http://g0v.tw/join.html | 注意: 這裡有log
+11:18 < Michael_Li> ［別理我］其實我大前天發現，logbot 會漏掉訊息沒存到檔，也許有BUG？
+11:19 < billy3321> Michael_Li: 哪有bug回報還叫人不要理你的=.=
+11:21 < CindyLinz> 也許他就是喜歡這個 bug 的效果, 希望不要被修掉.. (誤)
+11:22 < Michael_Li> 請容許向各位學長報告，完全沒有文字 ＸＤ
+11:22 < Michael_Li> ～其實我是在忙其他事～
+11:24 < tkirby>  bravo!
+11:25 -!- cataska [~cataska@210.64.6.233] has quit [Remote host closed the connection]
+11:29 < hcchien> 咦，topic 沒有高雄場黑客松!?
+11:30 -!- mno2 [~mno2@wlan50.cc.ntu.edu.tw] has quit [Quit: mno2]
+11:30 < wHisKy>  101112131415
+11:30 < clkao> 好像還沒完全定案.. hcchien 要幫忙處理嗎？ XD
+11:30 < wHisKy>   1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+11:31 < hcchien> clkao: ??，我是看到有 hackpad，你們不是都登記了？
+11:32 -!- whyjaster [~whyjaster@61-220-205-84.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+11:33 -!- whyjaster [~whyjaster@203.73.64.128] has joined #g0v.tw
+11:33 -!- cataska [~cataska@210.64.6.233] has joined #g0v.tw
+11:33 -!- mno2 [~mno2@wlan55.cc.ntu.edu.tw] has joined #g0v.tw
+11:35 -!- UnderCrux [~UnderCrux@140.113.121.170] has quit [Quit: leaving]
+11:36 -!- UnderCrux [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+11:37 < ipa> hcchien: 那你要加topic嗎？
+11:37 < billy3321> wHisKy: 怎麼做到的？
+11:39 < wHisKy> ctrl-k + 數字碼
+11:40 < wHisKy> 這其實不是 standard作法，不過應該很多 client現在都採用這個標準了
+11:41 -!- ballII [76a8ee66@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.238.102] has joined #g0v.tw
+11:42 < ballII> http://mkhere.blogspot.tw/2009/10/scar-milk.html 遇到類似這種「教會故事」時，我都不知道該不該用新聞小幫手回報那則消息是假的⋯⋯
+11:42 < kcwu> ballII's url: [《姆奈》MKnight: 傷疤與牛奶]
+11:43 < clkao> hcchien: 是會去參加 mopcon 呀 但是黑客松活動細節還沒完全敲定
+11:44 -!- hcchien changed the topic of #g0v.tw to: irccloud邀請信:http://tinyurl.com/loxdlk5 | irc log:http://logbot.g0v.tw | 如何參與:http://g0v.tw/join.html | 注意:這裡有log | 高雄黑客松:http://ppt.cc/us2F
+11:45 -!- ballII [76a8ee66@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.238.102] has quit [Client Quit]
+11:48 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+11:48 < kong0107> 剛看到個懶人藝術家可參考的：《圈地遊戲》 全台各縣市 現正熱映中
+11:48 < kong0107> http://www.youtube.com/watch?v=Opg3jNK5L_M
+11:48 < kcwu> kong0107's url: [【圈地遊戲】預告片 - 全台現正熱映中 - YouTube]
+11:49 < kong0107> 看完後我心裡就OS：「經濟動能推升方案」是商業廣告對吧，李鴻源？
+11:49 < ipa> 可能就是 10/19 台北pre-hackathon，10/26-27 高雄主場美麗島黑客松....lqfb上三個方案完全可以並陳 XD
+11:49 -!- lcamel_ [~lcamel@nat/yahoo/x-zomykedruchfrpud] has quit [Remote host closed the connection]
+11:50 -!- lcamel [~lcamel@nat/yahoo/x-myzxrablenekuqsh] has joined #g0v.tw
+11:50 -!- mno2 [~mno2@wlan55.cc.ntu.edu.tw] has quit [Quit: mno2]
+11:51 < ipa> kong0107: 這個不賴
+11:51 -!- mno2 [~mno2@wlan71.cc.ntu.edu.tw] has joined #g0v.tw
+11:52 -!- lcamel [~lcamel@nat/yahoo/x-myzxrablenekuqsh] has quit [Read error: Connection reset by peer]
+11:52 -!- lcamel [~lcamel@nat/yahoo/x-dfmnixqftaceyals] has joined #g0v.tw
+11:52 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 268 seconds]
+11:53 -!- ypwong [~anthony@123.121.50.73] has quit [Ping timeout: 240 seconds]
+11:53 < brecht_> 圈地遊戲做得好棒啊
+11:54 < kong0107> louielu: 全砍了吧。（顯示為希望能做 data mining）
+11:54 < Michael_Li> 圈地遊戲做得好棒啊 ++  馬上到FB推薦
+11:57 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+11:57 -!- haroldwu_irssi [~haroldwu@223-139-74-120.dynamic.hinet.net] has joined #g0v.tw
+11:58 -!- mno2 [~mno2@wlan71.cc.ntu.edu.tw] has quit [Quit: mno2]
+11:58 -!- rayren [76a37896@gateway/web/freenode/ip.118.163.120.150] has quit [Quit: Page closed]
+11:59 -!- ypwong [~anthony@123.121.27.239] has joined #g0v.tw
+12:01 -!- lcamel [~lcamel@nat/yahoo/x-dfmnixqftaceyals] has quit [Remote host closed the connection]
+12:01 -!- lcamel [~lcamel@nat/yahoo/x-wnbemtsswemiyxxu] has joined #g0v.tw
+12:01 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: BYE]
+12:04 -!- jslee [~jslee@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+12:05 -!- lcamel [~lcamel@nat/yahoo/x-wnbemtsswemiyxxu] has quit [Read error: Connection reset by peer]
+12:05 -!- lcamel_ [~lcamel@nat/yahoo/x-wmmarfybfweoduwa] has joined #g0v.tw
+12:10 < clkao> dannvix++ # 新聞小幫手新頁面太帥了
+12:13 < ipa> 「有可以統計多少小時內累計雨量與水災和土石流之間的correlation嗎? 可以自動發警報」 fb回應 ---> 這之前好像有誰提過喔？感覺慢慢就會做到那裡
+12:13 < ipa> # 雨量地圖
+12:16 -!- a2n [~a2n@unaffiliated/a2n] has quit [Quit: leaving]
+12:16 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+12:18 < racklin> 新聞小幫手 連打錯字都有人回報！！ 看到紅框以為蛋是假的！！ http://video.n.yam.com/20130821699157  
+12:18 < kcwu> racklin's url: [「勤益」騙很大！普通蛋誆高價蛋　削暴利 | yam蕃薯藤新聞]
+12:19 -!- UnderCru1 [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+12:19 -!- scyen_ [~scyen@122.146.84.72] has quit [Read error: Connection reset by peer]
+12:19 < yhsiang> ipa: 有水位警戒
+12:19 -!- scyen [~scyen@122.146.84.72] has joined #g0v.tw
+12:20 < UnderCrux> exit
+12:20 -!- UnderCrux [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+12:20 -!- UnderCru1 [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+12:21 -!- UnderCrux [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+12:23 -!- scyen [~scyen@122.146.84.72] has quit [Remote host closed the connection]
+12:23 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has joined #g0v.tw
+12:23 -!- Michael_Li [dc87c3ed@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.195.237] has quit [Ping timeout: 246 seconds]
+12:24 < walkingice> UnderCrux++
+12:24 < chihhsin> UnderCrux++
+12:26 -!- tonyhusky [~tonyhusky@111-254-134-109.dynamic.hinet.net] has quit [Quit: tonyhusky]
+12:29 -!- UnderCrux [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has left #g0v.tw []
+12:30 -!- UnderCrux [~tonyhusky@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+12:42 < tkirby> kcwu: 對了, ircnet 你現在都連哪台 server 阿?
+12:43 < dsewnr> 圈地遊戲++
+12:44 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has joined #g0v.tw
+12:48 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+12:48 -!- apple [~apple@220-130-128-164.HINET-IP.hinet.net] has joined #g0v.tw
+12:49 -!- apple is now known as qty
+12:51 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+12:52 -!- poshenghsu [7a92560e@gateway/web/cgi-irc/kiwiirc.com/ip.122.146.86.14] has joined #g0v.tw
+12:52 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+12:58 -!- ballII [8c7aa16e@gateway/web/cgi-irc/kiwiirc.com/ip.140.122.161.110] has joined #g0v.tw
+13:03 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+13:05 -!- louielu [7a761eb6@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.30.182] has joined #g0v.tw
+13:11 -!- ballII [8c7aa16e@gateway/web/cgi-irc/kiwiirc.com/ip.140.122.161.110] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+13:22 < CAA51> kcwu_mobile: 用 node ，但不排斥碰 python
+13:24 -!- Yikaros [db55b9ed@gateway/web/cgi-irc/kiwiirc.com/ip.219.85.185.237] has joined #g0v.tw
+13:28 -!- poshenghsu [7a92560e@gateway/web/cgi-irc/kiwiirc.com/ip.122.146.86.14] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+13:30 -!- raejin [uid12959@gateway/web/irccloud.com/x-afndkimctvcsyjjm] has joined #g0v.tw
+13:31 -!- enum [~enum@1-171-57-243.dynamic.hinet.net] has quit [Remote host closed the connection]
+13:35 -!- Yikaros [db55b9ed@gateway/web/cgi-irc/kiwiirc.com/ip.219.85.185.237] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+13:48 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+13:52 < billy3321> wHisKy: 看了一下，您應該不是用ircclou。
+13:52 < billy3321> wHisKy: 看了一下，您應該不是用irccloud。目前是irccloud無法輸入彩色文字
+13:52 -!- haroldwu_irssi [~haroldwu@223-139-74-120.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+13:53 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+13:56 < edwardc> irc.atw-inter.net:6667 ? # 12:42 < tkirby> kcwu: 對了, ircnet 你現在都連哪台 server 阿?
+13:56 < icemango> 
+13:56 < icemango> 3
+13:57 < icemango>  test~
+13:58 < FourDollars> 有彩色耶～ @_@a
+13:58 -!- Lei_ [~test@210.242.160.66] has quit [Remote host closed the connection]
+13:58 -!- Lei [~test@210.242.160.66] has joined #g0v.tw
+14:00 < kcwu> tkirby: chat.freenode.net 6667
+14:01 -!- mno2 [~mno2@wlan85.cc.ntu.edu.tw] has joined #g0v.tw
+14:03 -!- Lei [~test@210.242.160.66] has quit [Ping timeout: 256 seconds]
+14:07 < Lee1092> 好酷喔   彩色
+14:07 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has joined #g0v.tw
+14:09 < edwardc> irc.seed 好像正式死掉了
+14:09 -!- allenlinli [722b90ca@gateway/web/cgi-irc/kiwiirc.com/ip.114.43.144.202] has joined #g0v.tw
+14:13 < hcchien> 幸好我用的 channel 都在 freenode 了
+14:14 < wayne930242> http://www.ettoday.net/news/20130822/260110.htm
+14:14 < kcwu> wayne930242's url: [麵包加香精？胖達人警告網友「勿再轉載，以免觸法！」 | ETtoday生活新聞 | ETtoday 新聞雲]
+14:14 < wayne930242> 胖達人後續
+14:16 < kcwu> CAA51: https://gist.github.com/kcwu/6303715 這只是 PoC, 應該還會再改, 你要用或改寫都可以
+14:17 < kcwu> kcwu's url: [pack strokes]
+14:18 -!- allenlinli [722b90ca@gateway/web/cgi-irc/kiwiirc.com/ip.114.43.144.202] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+14:19 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+14:20 < louielu> PoC是什麼啊?
+14:20 < louielu> Proof of Concept 嗎...?
+14:20 < kcwu> yes
+14:21 -!- enum [~enum@1-171-57-243.dynamic.hinet.net] has joined #g0v.tw
+14:22 -!- willcus [8c74dd1c@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.221.28] has joined #g0v.tw
+14:22 < yhsiang> 找不到上次說kml轉json, 自己先弄了一個 https://github.com/yhsiang/twalert
+14:22 < kcwu> yhsiang's url: [yhsiang/twalert · GitHub]
+14:22 -!- willcus_ [uid13561@gateway/web/irccloud.com/x-lccwhabbxgvweavv] has joined #g0v.tw
+14:22 -!- willcus [8c74dd1c@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.221.28] has quit [Client Quit]
+14:22 -!- willcus_ is now known as willcus
+14:23 -!- logbot_g0v_tw [~cinch@li630-203.members.linode.com] has quit [Remote host closed the connection]
+14:24 -!- logbot_g0v_tw [~cinch@li630-203.members.linode.com] has joined #g0v.tw
+14:26 -!- Lei [~test@60-251-109-66.HINET-IP.hinet.net] has joined #g0v.tw
+14:27 < wayne930242> http://www.nownews.com/2008/06/22/329-2293288.htm
+14:27 < kcwu> wayne930242's url: [NOWnews【地方新聞】與馬總統牽手散步　老婦：腰痛都好了]
+14:27 < CAA51> kcwu: 謝謝！
+14:29 -!- LarryLAI [uid13562@gateway/web/irccloud.com/x-ypikemhupchhjpvz] has joined #g0v.tw
+14:30 < louielu> http://www.indiegogo.com/projects/ubuntu-edge
+14:30 < kcwu> louielu's url: [Ubuntu Edge | Indiegogo]
+14:31 < kong0107> yhsiang ++ 
+14:32 -!- enum [~enum@1-171-57-243.dynamic.hinet.net] has quit [Remote host closed the connection]
+14:32 < gugod> yhsiang++
+14:33 < gugod> https://github.com/mapbox/togeojson 我之前試了這個
+14:33 < kcwu> gugod's url: [mapbox/togeojson · GitHub]
+14:34 < gugod> 不過 WRAWarm.kml 裡面全都是 link
+14:34 < gugod> 用 mapbox/togeojson 轉成 geojson 後變成沒有任何資料
+14:34 -!- enum [~enum@1-171-57-243.dynamic.hinet.net] has joined #g0v.tw
+14:34 < gugod> 可能是不支援吧
+14:35 < gugod> 要把遞迴地每個 NetworkLink 單獨拆出來轉 
+14:36 < gugod> 而且像這個 氣象局一週天氣預報 http://fhy.wra.gov.tw/DMCHY/DES/KMLFiles/WeatherWeekForecast.kml
+14:36 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has joined #g0v.tw
+14:36 < gugod> 基本上只是在台灣地區上蓋個 png
+14:37 < gugod> 真正的資料在圖裡 
+14:37 -!- haroldwu_irssi [~haroldwu@223-139-74-120.dynamic.hinet.net] has joined #g0v.tw
+14:39 < yhsiang> gugod: http://fhy.wra.gov.tw/DMCHY/DES/KMLFiles/NewstWaterWarm.kml # 轉看看這個 ?
+14:39 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has quit [Client Quit]
+14:39 -!- poshenghsu [7a92560e@gateway/web/cgi-irc/kiwiirc.com/ip.122.146.86.14] has joined #g0v.tw
+14:40 -!- mno2 [~mno2@wlan85.cc.ntu.edu.tw] has quit [Quit: mno2]
+14:40 < gugod> 這個有。轉出來結果： https://gist.github.com/gugod/6303908
+14:40 < kcwu> gugod's url: [NewstWaterWarm.geojson]
+14:40 -!- mno2 [~mno2@wlan85.cc.ntu.edu.tw] has joined #g0v.tw
+14:41 < tkirby> kcwu: thanQ~
+14:42 < gugod> gist.github 也會顯示 geojson 成地圖真是太 cute 了
+14:42 < yhsiang> 是阿 :)
+14:42 < yhsiang> 他土石流只有座標點
+14:42 < tkirby> kcwu: err 我是說 ircnet... 那是 ircnet 嗎?
+14:43 < gugod> 應該去問一下 github 能不能加個地圖 resize 的 hinge
+14:44 < gugod> 還是 dannvix 要寫個非官方外掛 ? :p
+14:45 < yhsiang> gugod: http://fhy.wra.gov.tw/DMCHY/DES/KMLFiles/NewstFloodWarm.kml # 這個也有轉嗎 淹水的
+14:47 < gugod> 這也有： https://gist.github.com/gugod/6303948
+14:47 < kcwu> gugod's url: [NewstFloodWarm.geojson]
+14:49 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+14:49 < kcwu> tkirby: oh, 哪是 FreeNet XD
+14:50 < kcwu> tkirby: 我是設 irc.seed.net.tw, irc.atw-inter.net, us.ircnet.org, ircnet.choopa.net, irc.tw.freebsd.org 讓 irssi 自己去 try. (其中幾個壞很久了)
+14:53 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+14:55 -!- mno2 [~mno2@wlan85.cc.ntu.edu.tw] has quit [Quit: mno2]
+14:56 -!- poshenghsu [7a92560e@gateway/web/cgi-irc/kiwiirc.com/ip.122.146.86.14] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+15:01 < dirty_> tkirby: 我前一陣子也是慣用的掛了, 然後找到這個 eu.irc6.net 目前看起來還不錯
+15:01 < dirty_> 好像是 irssi 預設的?
+15:02 -!- mno2 [~mno2@wl043.cc.ntu.edu.tw] has joined #g0v.tw
+15:04 -!- scyen [~scyen@219-87-64-222.static.tfn.net.tw] has quit [Remote host closed the connection]
+15:04 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+15:09 -!- weitsai [78777e0a@gateway/web/cgi-irc/kiwiirc.com/ip.120.119.126.10] has joined #g0v.tw
+15:10 < weitsai> 我把 twgeojson 轉存 SQLite，如果有需要可以這邊拿
+15:10 < weitsai> https://github.com/cy-project/iHelp-android/issues/7
+15:10 < kcwu> weitsai's url: [tw geo json 轉成 SQLite 檔案 · Issue #7 · cy-project/iHelp-android · GitHub]
+15:13 -!- weitsai [78777e0a@gateway/web/cgi-irc/kiwiirc.com/ip.120.119.126.10] has quit [Client Quit]
+15:15 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has joined #g0v.tw
+15:16 < isacloud> oops github 掛了嗎？
+15:16 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:16 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:17 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:17 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:17 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:20 < tkirby> dirty_,kcwu: thanks... but eu.irc6.net 似乎不通?
+15:21 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+15:21 -!- weitsai [78777e0a@gateway/web/cgi-irc/kiwiirc.com/ip.120.119.126.10] has joined #g0v.tw
+15:21 -!- poshenghsu [7a92560e@gateway/web/cgi-irc/kiwiirc.com/ip.122.146.86.14] has joined #g0v.tw
+15:21 < weitsai> 應該是... 目前噴 500
+15:23 < louielu> 7:22 UTC We are working to restore service to github.com. We will provide updates as more information becomes available.
+15:24 < louielu> https://status.github.com/
+15:24 < kcwu> louielu's url: [GitHub System Status]
+15:24 < dirty_> tkirby: @@ 真的嗎? 怎麼查現在是連哪個 server
+15:25 < dirty_> 呃, 我現在就是 eu.irc6.net 耶
+15:27 < dirty_> tkirby: 你 eu.irc6.net port 設多少?
+15:28 -!- poshenghsu [7a92560e@gateway/web/cgi-irc/kiwiirc.com/ip.122.146.86.14] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+15:29 -!- poshenghsu [3cfbc05d@gateway/web/cgi-irc/kiwiirc.com/ip.60.251.192.93] has joined #g0v.tw
+15:29 -!- EuniceLu [3de702c6@gateway/web/cgi-irc/kiwiirc.com/ip.61.231.2.198] has joined #g0v.tw
+15:29 < EuniceLu> #kuansim
+15:31 -!- haroldwu_irssi [~haroldwu@223-139-74-120.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+15:32 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:35 -!- mno2 [~mno2@wl043.cc.ntu.edu.tw] has quit [Quit: mno2]
+15:35 -!- poshenghsu [3cfbc05d@gateway/web/cgi-irc/kiwiirc.com/ip.60.251.192.93] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+15:36 < tkirby> dirty_: 6666 & 6667?
+15:36 < tkirby> dirty_: /server
+15:36 < tkirby> dirty_: eu.irc6.net can't resolve hostname
+15:36 -!- poshenghsu [7a92560e@gateway/web/cgi-irc/kiwiirc.com/ip.122.146.86.14] has joined #g0v.tw
+15:38 -!- poshenghsu [7a92560e@gateway/web/cgi-irc/kiwiirc.com/ip.122.146.86.14] has quit [Client Quit]
+15:38 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has joined #g0v.tw
+15:42 -!- mno2 [~mno2@wlan83.cc.ntu.edu.tw] has joined #g0v.tw
+15:46 < isacloud> 突然發現 http://framework.pixnet.net/license/ 這好像是 pix framework 的 license, 而它的衍生產品，我們把它包裝成 MIT 是 ok 的嗎？ 不確定是不是有人確認過了，問一下。 # 新聞小幫手 backend.
+15:46 < kcwu> isacloud's url: [License - Pix Framework]
+15:47 < isacloud> https://github.com/g0v/newshelper-backend/blob/master/README.md
+15:47 < kcwu> isacloud's url: [newshelper-backend/README.md at master · g0v/newshelper-backend · GitHub]
+15:49 < ronnywang> XD 我還沒注意到這點
+15:49 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+15:49 < edwardc> XD
+15:50 -!- weitsai [78777e0a@gateway/web/cgi-irc/kiwiirc.com/ip.120.119.126.10] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+15:50 < edwardc> 這是 3-clause BSD ?
+15:52 < isacloud> ronnywang: XD btw, 我跑起來的時候很多 PHP Strict warning. (我是 PHP 5.3.26), 請問你建議的 PHP 版本是？
+15:53 < ronnywang> PHP 5.4, 不過 pix framework 沒有處理 strict XD
+15:53 < ronnywang> PHP 5.3 應該是可以正常執行，應該是沒有用到 5.4 only 的功能
+15:53 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+15:54 -!- Witz [3b78c5c5@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.197.197] has joined #g0v.tw
+15:54 < isacloud> ronnywang: ok 那就先略掉. Thanks :)
+15:54 -!- Witz [3b78c5c5@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.197.197] has quit [Client Quit]
+15:59 -!- poga [~poga@114-25-231-247.dynamic.hinet.net] has quit [Remote host closed the connection]
+16:05 < clkaoud> isacloud: 註明有包含 pix framework 應該就可以
+16:11 < dannvix> ronnywang: 剛才發了「新聞小幫手」新網站的 pull request # https://github.com/g0v/newshelper-backend/pull/7
+16:11 < kcwu> dannvix's url: [website restyles by dannvix · Pull Request #7 · g0v/newshelper-backend · GitHub]
+16:12 < dannvix> ronnywang: 我跟原本的 PHP 套好了，不過沒去看 PixFramework 的文件，還請幫忙測試一下 XD
+16:12 < ronnywang> dannvix: ok, 我測一下，沒問題就推上去了
+16:14 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:14 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:14 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+16:14 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+16:14 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+16:16 < dirty_> tkirby: 6667. dns 問題?
+16:16 < clkaoud> dannvix++
+16:17 < isacloud> clkaoud: ok. thanks
+16:17 < isacloud> clkaoud: 那應該 readme 或 license file 改一下就好
+16:18 -!- mno2 [~mno2@wlan83.cc.ntu.edu.tw] has quit [Quit: mno2]
+16:19 -!- SilenceAssassin [3cfacfa6@gateway/web/cgi-irc/kiwiirc.com/ip.60.250.207.166] has joined #g0v.tw
+16:19 < Lee1092> github 前幾個月開始支援 .geojson https://github.com/blog/1528-there-s-a-map-for-that
+16:19 < kcwu> Lee1092's url: [There's a map for that · GitHub]
+16:19 < clkaoud> Ya, 是說後段也沒真的 release, sub directory 有包含本來  readme 就 ok
+16:19 < clkaoud> Lee1092: yes you can see twgeojson repo
+16:20 -!- mno2 [~mno2@wlan69.cc.ntu.edu.tw] has joined #g0v.tw
+16:24 < Lee1092> clkaoud ++   我看到了~   實在太多東西學不完啦~~~
+16:26 -!- ttta [6feb8703@gateway/web/freenode/ip.111.235.135.3] has joined #g0v.tw
+16:26 < whyjaster> 好奇請問，大家大概每天播多少時間來處裡g0v的東西?
+16:28 -!- mno2 [~mno2@wlan69.cc.ntu.edu.tw] has quit [Ping timeout: 245 seconds]
+16:28 -!- logbot_g0v_tw [~cinch@li630-203.members.linode.com] has quit [Ping timeout: 264 seconds]
+16:30 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has joined #g0v.tw
+16:30 -!- mno2 [~mno2@wlan39.cc.ntu.edu.tw] has joined #g0v.tw
+16:31 -!- logbot_g0v_tw [~cinch@li630-203.members.linode.com] has joined #g0v.tw
+16:33 -!- scyen_ [~scyen@122.147.15.66] has joined #g0v.tw
+16:33 < miaout17__> dannvix++ # For newshelper-backend
+16:33 -!- scyen [~scyen@4.53.154.230] has quit [Read error: Connection reset by peer]
+16:38 -!- mno2 [~mno2@wlan39.cc.ntu.edu.tw] has quit [Ping timeout: 276 seconds]
+16:40 -!- Michael_LI [dc87c3ed@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.195.237] has joined #g0v.tw
+16:41 -!- mno2 [~mno2@wlan31.cc.ntu.edu.tw] has joined #g0v.tw
+16:42 < Michael_LI> 看完HTC大陸的中文版，莫名奇妙的羨慕起中共的漢語拼音系統～～  http://www.youtube.com/watch?v=7INLmC4oMFg
+16:42 < kcwu> Michael_LI's url: [Here's to Change - 看小勞勃道尼秀中文 詮釋HTC改變 - YouTube]
+16:42 < ronnywang> dannvix: http://taichung-chang-946908.middle2.me/
+16:42 < kcwu> ronnywang's url: [新聞小幫手]
+16:42 < ronnywang> 我還要思考一下這樣改之後我 deploy 怎麼做 orz
+16:42 < isacloud> whyjaster: 下班後吃飽大概晚上八點，然後立刻坐 12 小時飛機去美國，到了美國之後大概下午四點。於是晚上就有八個小時可以做 g0v。 (誤)
+16:43 -!- logbot_g0v_tw [~cinch@li630-203.members.linode.com] has quit [Ping timeout: 256 seconds]
+16:43 < Michael_LI> ronnywang 這會是新的首頁樣子＋後台？
+16:43 < ronnywang> Michael_LI: yes
+16:44 -!- logbot_g0v_tw [~cinch@li630-203.members.linode.com] has joined #g0v.tw
+16:46 < whyjaster> 真是強大w
+16:47 < ronnywang> dannvix: http://taichung-chang-946908.middle2.me/index/edit/76#logs 修改頁還沒有做好？
+16:49 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+16:50 < Michael_LI> ronnywang 之後我想（要不要）建個Blog，是個規範指導的教學專門學校。 你？
+16:50 < ronnywang> 用一頁 wiki 就好了吧？如果規範多到需要一個專門的部落格來教學的話，那好像也太複雜了吧？
+16:53 -!- ttta is now known as jarek
+16:53 -!- jarek is now known as Guest44183
+16:53 -!- Guest44183 [6feb8703@gateway/web/freenode/ip.111.235.135.3] has quit [Quit: Page closed]
+16:54 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+16:54 -!- taibo [3d42f360@gateway/web/freenode/ip.61.66.243.96] has joined #g0v.tw
+16:57 < Michael_> 剛才看了新頁面的HTML排版，真舒服，賞心悅目。
+16:57 < dannvix> ronnywang: 修改頁是一個獨立的 phtml (webdata/view/edit.phtml)，可能要麻煩你改一下 router 或 link 讓他能正確指過去 Orz
+16:58  * dannvix 不在電腦前 &
+16:58 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+16:59 < ronnywang> http://taichung-chang-946908.middle2.me/index/edit/76#logs # ok, 改好了
+16:59 < yhsiang> ronnywang: 江宜樺打臉江宜樺，為你介紹何謂憲政民主 #還是出現了兩次耶
+17:00 < dannvix> ronnywang: thanks
+17:01 < Michael_> ：Ｐ　給人看的確實不能太複雜，但是內部正在草擬的規範書，還是要細心一點比較好。
+17:03 < Lee1092>  新頁面超好看的!!!!!!!!!!!!!!!!!!!
+17:07 -!- poga [~poga@114-25-231-247.dynamic.hinet.net] has joined #g0v.tw
+17:08 < Michael_LI> 剛才在查證胖達人麵包的新聞，發現到我第一次看到的現象，就是新聞頁面會保留原先文字，然後在後面註解原先報導有了異動  http://www.ettoday.net/news/20130822/260110.htm
+17:08 < kcwu> Michael_LI's url: [麵包加香精？胖達人警告網友「勿再轉載，以免觸法！」 | ETtoday生活新聞 | ETtoday 新聞雲]
+17:10 < Michael_LI> 不過這次只是只是說別人，還不是自己犯錯（例如看藍光DVD會有藍光），通常都會趕緊回收下架，而不是承認自己犯錯。
+17:10 < ronnywang> dannvix: 我在想詳情頁要不要加個 comment system 讓大家可以討論這則？
+17:15 < ronnywang> dannvix: 那個 js/dontUseMe 可以砍掉嗎？
+17:15 < dannvix> good idea. How about Disqus or Facebook comments?
+17:16 < dannvix> ronnywang: yes, that's garbage
+17:17 < Michael_LI> ronnywang （請進規範書＆圖庫）你們現在的程式，我一直覺得可能要先處裡超鏈結重複張貼的問題
+17:18 < Michael_LI> 目前資料不多還不亂，等到之後一堆人重複貼同樣的資訊就麻煩了
+17:20 -!- logbot_g0v_tw [~cinch@li630-203.members.linode.com] has quit [Remote host closed the connection]
+17:20 < Michael_LI> PS.我在規範書中其實整理了一些程式判讀的邏輯。
+17:20 -!- logbot_g0v_tw [~cinch@li630-203.members.linode.com] has joined #g0v.tw
+17:21 -!- Custom_ [custom@saturn.stu.edu.tw] has joined #g0v.tw
+17:21 -!- superd_ [superd@120.119.112.221] has joined #g0v.tw
+17:22 -!- ychsiao [ychsiao@FreeBSD.stu.edu.tw] has quit [Ping timeout: 264 seconds]
+17:22 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 264 seconds]
+17:22 -!- ychsiao_ [ychsiao@FreeBSD.stu.edu.tw] has joined #g0v.tw
+17:22 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 276 seconds]
+17:24 < Michael_LI> PS.至於圖庫中這個檔案，新聞標題如果不動程式的話，就靠人工整理規律性也很好，只要用教學文指導用戶即可。   新聞小幫手／後台改善建議_01／.jpg
+17:27 -!- Guest16094 [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 245 seconds]
+17:27 -!- ubuntu [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+17:28 -!- ychsiao_ [ychsiao@FreeBSD.stu.edu.tw] has quit [Quit: leaving]
+17:28 -!- ubuntu is now known as Guest35119
+17:28 -!- ychsiao [ychsiao@FreeBSD.stu.edu.tw] has joined #g0v.tw
+17:28 -!- logbot_g0v_tw [~cinch@li630-203.members.linode.com] has quit [Remote host closed the connection]
+17:29 -!- logbot_g0v_tw [~cinch@li630-203.members.linode.com] has joined #g0v.tw
+17:31 < Michael_LI> ronnywang 多問一個，目前程式判讀，來源鏈結被重複登記，請問小幫手是不是只讀取最後一筆資料？
+17:34 -!- mno2 [~mno2@wlan31.cc.ntu.edu.tw] has quit [Quit: mno2]
+17:39 < Michael_LI> ronnywang 我剛才多餵一筆資料測試，結果我看到輸出是最先的那筆。
+17:40 < ronnywang> Michael_LI: 應該是最新一筆沒錯
+17:40 < Michael_LI> 但是換用火狐就顯示不出來
+17:41 < ronnywang> 如果要處理重複張貼的話要改一下資料庫架構，這邊要花點時間處理一下
+17:41 < ronnywang> dannvix: http://pingtung-ma-672290.middle2.me 這邊如果沒問題的話我就把他推上線囉？
+17:42 < ronnywang> 對了，首頁右手邊有一塊是空白的是正確的嗎？
+17:42 -!- haroldwu_irssi [~haroldwu@223-139-74-120.dynamic.hinet.net] has joined #g0v.tw
+17:43 < clkao> ETBlue: 對了，服貌小人睜眼是要用在什麼文宣上嗎？感覺應該是眼中有怒火
+17:43 -!- kk1fff [~kk1fff@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+17:44 < clkao> 右邊好像本來是個 screenshot
+17:44 < yhsiang> http://pingtung-ma-672290.middle2.me/images/newshelper-facebook.png
+17:44 < Michael_LI> 圖庫上傳好了  測試／重複資料輸入，Chrome顯示最原先那筆／
+17:44 < yhsiang> 本來是右手邊的圖, 好像是css 路徑問題
+17:46 -!- a-tsioh [~pierre@nat-rech-216.net.univ-paris-diderot.fr] has joined #g0v.tw
+17:47 < ronnywang> ok, 修正好改成絕對路徑了
+17:47 -!- Wen [71c434e3@gateway/web/freenode/ip.113.196.52.227] has joined #g0v.tw
+17:48 -!- Wen [71c434e3@gateway/web/freenode/ip.113.196.52.227] has quit [Client Quit]
+17:48 < Michael_LI> ［訊號而已］圖庫上傳 測試／重複資料輸入，火狐不顯示提示／.png
+17:50 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+17:50 -!- NotExist [~notexist@outpost.tdcpf.org] has quit [Remote host closed the connection]
+17:50 -!- dsewnr [~dsewnr@59-127-35-164.HINET-IP.hinet.net] has quit [Quit: leaving]
+17:50 < Michael_LI> ronnywang ＯＫ，你們繼續，我這兩天能觀察的事情都寫出來了，慢慢解決。
+17:54 -!- chuiyi1 [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+17:55 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+17:55 < dannvix> ronnywang: OK, 那就麻煩您 deploy 了 <(_ _ )>
+17:55 -!- haroldwu_irssi [~haroldwu@223-139-74-120.dynamic.hinet.net] has quit [Ping timeout: 268 seconds]
+17:55  * dannvix 晚點再來加入討論功能
+17:56 < ronnywang> 嗯嗯，還要 fb 選回報到小幫手時要自己套入資料的部份
+17:56 < ronnywang> 改用 js 做好了
+17:58 < dannvix> ronnywang: 這是 extension 那邊要做的？
+17:58 -!- logbot_g0v_tw_ [~cinch@li630-203.members.linode.com] has joined #g0v.tw
+17:58 -!- lcamel_ [~lcamel@nat/yahoo/x-wmmarfybfweoduwa] has quit [Remote host closed the connection]
+17:58 < ronnywang> 我之前寫法是網頁做的，extension 已經有傳 ?news_link=xxx&news_title=xxx 過來了
+17:58 -!- logbot_g0v_tw [~cinch@li630-203.members.linode.com] has quit [Read error: Connection reset by peer]
+17:59 -!- lcamel [~lcamel@nat/yahoo/x-pjvnhfplltvxnpef] has joined #g0v.tw
+17:59 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+18:00 -!- SilenceAssassin [3cfacfa6@gateway/web/cgi-irc/kiwiirc.com/ip.60.250.207.166] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+18:00 -!- jslee [~jslee@114-35-121-105.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:01 < dannvix> ronnywang: 喔喔，那目前的頁面也可以吃到這些資料。剛才說改用 JS 做的考量是？
+18:02 < ronnywang> dannvix: 還是這個麻煩你加一下？如果發現網址有 news_link=xxx&news_title=xxx 就自動帶入回報新聞的框框中? jade/sass 我還不太會用 XD
+18:02 -!- louielu [7a761eb6@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.30.182] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+18:02 < ronnywang> 因為現在 form 不在最上面了，所以還要幫使用者 scroll 過去
+18:03 -!- lcamel [~lcamel@nat/yahoo/x-pjvnhfplltvxnpef] has quit [Ping timeout: 240 seconds]
+18:03 < dannvix> 喔喔，如果是 scrolling 的話可以直接用 anchor。例如 http://newshelper.g0v.tw/#report?news_link=xxx&news_title=xxx 會直接定位到 form
+18:03 < kcwu> dannvix's url: [新聞小幫手]
+18:03 -!- nikkki [3dde6f8b@gateway/web/cgi-irc/kiwiirc.com/ip.61.222.111.139] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+18:04 < dannvix> 倒是 focus() 的部分應該來加一下…
+18:04 < ronnywang> 不過改 anchor 的話還要更新 extension, 要等好久 XD
+18:04 < dannvix> 也對，那我晚點送個 commit 加這個
+18:05 < dannvix> ronnywang: 說到改 extension，我那個版本應該有變動到 log 的連結，這樣會不會造成 extension 裡的連結失效？
+18:05 < ronnywang> dannvix: 我改回來了
+18:05 -!- keanu_ [~keanu@118-163-61-157.HINET-IP.hinet.net] has quit [Quit: Leaving]
+18:05 < dannvix> ronnywang: 喔喔，太好了
+18:05 < ronnywang> 統一都用 /index/log/{id}
+18:05 < ronnywang> /index/edit 只用在處理 POST 而已
+18:06 < dannvix> 了解
+18:08 -!- SilenceAssassin [3cfacfa6@gateway/web/cgi-irc/kiwiirc.com/ip.60.250.207.166] has joined #g0v.tw
+18:10 -!- KNY [~Adium@61-224-19-196.dynamic.hinet.net] has joined #g0v.tw
+18:11 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has joined #g0v.tw
+18:11 < ronnywang> 好吧，那我直接推上線了
+18:11 -!- watersu [uid13503@gateway/web/irccloud.com/x-sepyebofrdmlywan] has quit []
+18:12 -!- watersu [uid13503@gateway/web/irccloud.com/x-hgvjdknxvxieyjlp] has joined #g0v.tw
+18:15 < ronnywang> http://newshelper.g0v.tw/ # done
+18:15 < kcwu> ronnywang's url: [新聞小幫手]
+18:17 -!- SilenceAssassin [3cfacfa6@gateway/web/cgi-irc/kiwiirc.com/ip.60.250.207.166] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+18:17 < ronnywang> dannvix: ㄟ對了，可以幫我預留一個登入按鈕嗎?
+18:17 < ronnywang> 我開一張 issue 好了
+18:22 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 256 seconds]
+18:24 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has left #g0v.tw []
+18:24 < dannvix> ronnywang: no problem
+18:26 < pofeng_> dannvix: 來個 meta property="og:image" 如何 ?
+18:30 < Michael_LI> 終於注意到LOGO是著名的裝置藝術大師 evenwu 設計的
+18:38 -!- Lei [~test@60-251-109-66.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:39 -!- Lei_ [~test@210.242.160.66] has joined #g0v.tw
+18:39 -!- chihchun is now known as chihchun_afk
+18:44 -!- Lei_ [~test@210.242.160.66] has quit [Ping timeout: 264 seconds]
+18:45 < dannvix> pofeng_: 好建議，立刻來開 issue
+18:48 < Michael_LI> ［飛鴿］itrs821 我在 ［聯絡簿］製作遊行現場可以暢通的網路系統 回您話了。
+18:49 -!- chihchun_afk is now known as chihchun
+18:50 -!- DAINESE_ [~dainese@112-105-79-48.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+18:50 -!- venev [dc851de3@gateway/web/cgi-irc/kiwiirc.com/ip.220.133.29.227] has joined #g0v.tw
+18:51 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 240 seconds]
+18:55 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+19:01 -!- poshenghsu [3b78b8ab@gateway/web/cgi-irc/kiwiirc.com/ip.59.120.184.171] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+19:02 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+19:05 -!- whyjaster [~whyjaster@203.73.64.128] has quit [Remote host closed the connection]
+19:06 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+19:08 -!- enum [~enum@1-171-57-243.dynamic.hinet.net] has quit [Remote host closed the connection]
+19:08 -!- scyen_ [~scyen@122.147.15.66] has quit [Remote host closed the connection]
+19:15 -!- chihchun is now known as chihchun_afk
+19:15 -!- a-tsioh [~pierre@nat-rech-216.net.univ-paris-diderot.fr] has quit [Ping timeout: 246 seconds]
+19:20 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+19:27 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+19:29 < Michael_LI> ［推薦］媒體總編輯訓話：你們腦袋裝什麼東西啊！叫你們去網路上複製一些新聞，複製貼上，這們簡單你們都不會！ https://www.youtube.com/watch?v=XpXoG0stuMQ
+19:29 < kcwu> Michael_LI's url: [BBS鄉民的正義 角色前傳 参 記者 藍苡晴 - YouTube]
+19:31 -!- ychsiao [ychsiao@FreeBSD.stu.edu.tw] has quit [Quit: leaving]
+19:31 -!- ychsiao [ychsiao@FreeBSD.stu.edu.tw] has joined #g0v.tw
+19:34 -!- Fntsrlike [~swl@www.sg.nchu.edu.tw] has quit [Read error: Connection reset by peer]
+19:36 -!- chuiyi1 [~Adium@220-135-178-174.HINET-IP.hinet.net] has left #g0v.tw []
+19:36 -!- chuiyi [~Adium@220.135.178.174] has joined #g0v.tw
+19:36 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+19:39 < clkao> dannvix: http://newshelper.g0v.tw/index/log/92#logs # 超寬的
+19:39 < kcwu> clkao's url: [新聞小幫手]
+19:44 -!- haroldwu_irssi [~haroldwu@223-139-74-120.dynamic.hinet.net] has joined #g0v.tw
+19:45 < dannvix> XDD 忘了 wrap
+19:49 -!- lanfon72 [319e6ab1@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.106.177] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+19:50 -!- nikkki [6ff3773c@gateway/web/cgi-irc/kiwiirc.com/ip.111.243.119.60] has joined #g0v.tw
+19:51 -!- lanfon72 [319e6ab1@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.106.177] has joined #g0v.tw
+19:53 -!- bafu [~bafu@223-138-150-88.dynamic.hinet.net] has joined #g0v.tw
+19:57 -!- lcamel [~lcamel@114-45-58-158.dynamic.hinet.net] has joined #g0v.tw
+19:57 -!- lanfon72 [319e6ab1@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.106.177] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+19:59 -!- lanfon72 [319e6ab1@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.106.177] has joined #g0v.tw
+20:00 -!- haroldwu_irssi [~haroldwu@223-139-74-120.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+20:03 -!- yrchen [~yrchen@Lion.MINE.CSIE.NCU.edu.tw] has joined #g0v.tw
+20:06 -!- bafu [~bafu@223-138-150-88.dynamic.hinet.net] has quit [Ping timeout: 268 seconds]
+20:10 -!- kk1fff [~kk1fff@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: kk1fff]
+20:11 -!- kaxing [~kaxing@49.218.86.83] has joined #g0v.tw
+20:16 -!- lanfon72 [319e6ab1@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.106.177] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+20:18 -!- lanfon72 [319e6ab1@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.106.177] has joined #g0v.tw
+20:22 -!- venev [dc851de3@gateway/web/cgi-irc/kiwiirc.com/ip.220.133.29.227] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+20:25 < Michael_LI> 剛才花時間查證資料，改了２次 92 號的資料回報（胖達人），工作處裡交叉比對，確實跟維基百科的經驗很相似。
+20:27 -!- kaxing [~kaxing@49.218.86.83] has quit [Ping timeout: 240 seconds]
+20:31 -!- kaxing [~kaxing@49.218.86.83] has joined #g0v.tw
+20:32 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+20:35 < clkao> 上次是哪個 project 說用 phantomjs/casperjs 無法下載檔案的呢？我想不起來了... penk 解法在這 # http://www.plurk.com/p/j2j4a6
+20:35 < kcwu> clkao's url: [penk 如果想用 casperjs/phantomjs 下載檔案, 就是 header 裡面帶 `Content-Disposition: attachment;` 的, 可以用 github.com/Vit - #j2j4a6]
+20:36 -!- louielu [7a761eb6@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.30.182] has joined #g0v.tw
+20:37 -!- lanfon72 [319e6ab1@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.106.177] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+20:37 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: mno2]
+20:39 -!- Lei_ [~test@114-36-182-31.dynamic.hinet.net] has joined #g0v.tw
+20:39 < yurenju> 問一下 twangry clone 下來之後要怎麼啓動 server 阿？
+20:40 < yurenju> 喔 node app.js 打開 8080 就好了
+20:40 < clkao> npm i && npm start?
+20:40 < yurenju> 但是沒資料 XD
+20:40 -!- tdw2008 [dc891a70@gateway/web/cgi-irc/kiwiirc.com/ip.220.137.26.112] has joined #g0v.tw
+20:41 -!- tdw2008 [dc891a70@gateway/web/cgi-irc/kiwiirc.com/ip.220.137.26.112] has quit [Client Quit]
+20:42 < yurenju> 有要餵什麼資料嗎？
+20:42 -!- a-tsioh [~pierre@nat-rech-219.net.univ-paris-diderot.fr] has joined #g0v.tw
+20:42 < clkao> unsure, pm5cloud jimyhuang ping
+20:43 < yhsiang> 應該不用吧?, 他不是應該有個index.json ?
+20:45 < yurenju> 我剛看了一下好像是要起 nginx
+20:46 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+20:46 < ipa> 粉絲頁破萬要怒寫程式嗎？要準備了喔....
+20:46 < ipa> 我怒寫部落格好了
+20:50 < louielu> 請第10000人想個專案ww
+20:53 -!- yrchen [~yrchen@Lion.MINE.CSIE.NCU.edu.tw] has quit [Quit: leaving]
+20:53 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+20:53 -!- tsaiid [~tsaiid@host-219-68-13-81.dynamic.kbtelecom.net] has joined #g0v.tw
+20:54 < pm5cloud> clkao: yeah?
+20:54 < Michael_LI> ipa 來瞜～～我之前辦抗議連署的時候，第１萬人時我有趕緊標記起來，不過大概盯了１小時就是了
+20:54 < ipa> http://hack.g0v.tw/project 或是跳個坑
+20:55 -!- yrchen [~yrchen@Lion.MINE.CSIE.NCU.edu.tw] has joined #g0v.tw
+20:56 < pm5cloud> yurenju: 要掛 nginx
+20:56 < yurenju> pm5cloud: 有我看到 install.md 了，謝謝
+20:57 < pm5cloud> 參考內附的 nginx.conf
+20:57 < Michael_LI> 所以第一萬人挖坑推坑活動，記得要把這位人兄標記起來，然後拍照存證，公告一下，讓她踹共 ＸＤＤＤＤ
+20:57 < pm5cloud> yurenju++
+21:01 < yurenju> pm5cloud: nginx.conf 外面還要包 http{} 在 server{} 外面嗎？
+21:02 < pm5cloud> 記得是要
+21:03 < Michael_LI> ＰＳ.我確實要把１萬人拍照存檔，可是抗議活動請他上台發表感言，或是送神秘禮物都無適合，所以也沒幹什麼......殘念。
+21:03 < pm5cloud> 我等下看一下
+21:05 -!- jarek [01a5736e@gateway/web/freenode/ip.1.165.115.110] has joined #g0v.tw
+21:05 -!- qrtt1 [~qrtt1@36-231-137-107.dynamic-ip.hinet.net] has joined #g0v.tw
+21:05 -!- jarek is now known as Guest35327
+21:06 < qrtt1> 查資料突然發現台中市有 opendata http://data.taichung.gov.tw/GipOpenWeb/wSite/mp?mp=1 (有op嗎qq)
+21:06 < kcwu> qrtt1's url: [Open Data 政府資料開放平台]
+21:06 -!- Guest35327 is now known as CJarek
+21:07 -!- EuniceLu [3de702c6@gateway/web/cgi-irc/kiwiirc.com/ip.61.231.2.198] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+21:08 < yurenju> pm5cloud: 不會動 XD
+21:09 < yurenju> pm5cloud: 我打開 localhost (nginx 是設 localhost), 看起來 template 好像不 work, 都是 {{xxx}}
+21:09 -!- yrchen [~yrchen@Lion.MINE.CSIE.NCU.edu.tw] has quit [Quit: leaving]
+21:09 -!- yrchen [~yrchen@lion.mine.csie.ncu.edu.tw] has joined #g0v.tw
+21:11 < pm5cloud> yurenju: app.js 連不到往路?
+21:11 < clkao> mindos_cloud: what were you asking me about?
+21:12 < yurenju> pm5cloud: 我是要開 localhost:8080 or 80?
+21:13 < pm5cloud> 80
+21:13 -!- pm5 [~pm5@115.80.20.151] has joined #g0v.tw
+21:13 < yurenju> hmmmmm
+21:14 < ETBlue> clkao: 是waiting媽媽設計師要用在從tuiry接手過來的服貿折頁文宣裡的，因為眼睛看得到耳朵聽得到了所以表情都變得有點未爽 # 服貿小人睜眼版
+21:14 < yurenju> pm5cloud: 我剛看 css 也連不到，所以應該是 nginx 的問題
+21:14 < pm5cloud> hmm
+21:14 < yurenju> BTW 我是用 mac
+21:14 < tuiry> ETblue 已經畫好了@@?
+21:15 < pm5cloud> yurenju 我也是
+21:15 < nikkki> 耶我剛在mac 試app.js 跑起來了！
+21:15 < pm5cloud> nikkki++
+21:16 < ETBlue> tuiry: 對呀有更新到drive，怎麼了，你會用得到嗎？
+21:16 < tuiry> 想看而已啦(扭扭
+21:16 -!- enum [~enum@223-138-181-164.dynamic.hinet.net] has joined #g0v.tw
+21:16 < nikkki> 等等可是我現在缺一個index.html
+21:16 < billy3321> 本日翻牆巨慢
+21:16 < clkao> nikkki! 你剛有問我 twbudget & mongo ?
+21:16 < nikkki> 對啊
+21:17 < nikkki> 下午在公司的xp 上連不到mongo
+21:17 < nikkki> 不知為啥
+21:17 < clkao> 手動設一下 env MONGOLAB_URI 呢？
+21:17 < yurenju> 好詭異 XDD
+21:18 < nikkki> 明天試試
+21:18 < yurenju> pm5cloud: 有要起 mongo 嗎？
+21:18 < ETBlue> tuiry: XDDD 我想說大概沒別人會用到所以只貼自己推特沒特別昭告天下XD
+21:18 -!- chuanan [2a4e0d26@gateway/web/cgi-irc/kiwiirc.com/ip.42.78.13.38] has joined #g0v.tw
+21:18 < pm5cloud> yurenju: 你開 port 80 看到的是什麼?
+21:18 < nikkki> 這裡如何可以對某人發公開訓習又不用手動打 xxxx: ？
+21:19 < clkao> 打第一個字按 tab
+21:19 -!- pengpong [3d3a4298@gateway/web/cgi-irc/kiwiirc.com/ip.61.58.66.152] has joined #g0v.tw
+21:19 < nikkki> 我試過/msg 好像變私訓
+21:19 < clkao> n<tab> => nikkki: 
+21:19 < nikkki> 喔～～謝謝！
+21:19 -!- enum [~enum@223-138-181-164.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+21:19 < chuanan> 這裡感覺非常厲害!
+21:19 -!- a-tsioh [~pierre@nat-rech-219.net.univ-paris-diderot.fr] has quit [Ping timeout: 264 seconds]
+21:20 < clkao> chuanan: 你好，你看起來是高挫折的人，去領個專案寫吧！
+21:20 < ipa> ETBlue: https://docs.google.com/drawings/d/1Qg9-_EbYgfi1xJv5xd0Qya0CSFV3t0-742XJYhavb4I/edit 最近在重新規劃開專案流程，這說不定需要變成圖像版
+21:20 < kcwu> ipa's url: [建立專案流程圖 - Google 雲端硬碟]
+21:20 < ipa> chuanan: hello
+21:21 < chuanan> 摁不太懂
+21:22 < nikkki> clkao:請問我是不是在twbudget/ 裡應該要有一個__public/？
+21:22 < yurenju> pm5cloud: 沒有套樣式的 html, 然後也有一堆 {{xxx}}
+21:22 < yurenju> pm5cloud: 我 node 太舊了，升一下
+21:23 < pm5cloud> yurenju: https://gist.github.com/pm5/6307072
+21:23 < kcwu> pm5cloud's url: [nginx.conf for twangry]
+21:23 < clkao> nikkki: ./node_modules/.bin/brunch build 應該會產生 _public
+21:23 < nikkki> 因為我現在連到localhost:8000 然後console 理說我缺一個__public/index.html
+21:23 < pm5cloud> 我的 nginx.conf
+21:23 < nikkki> oh!
+21:23 < clkao> nikkki: 如果 README 寫的不完整順便修一下吧
+21:23 < ipa> chuanan: http://8bit.g0v.tw/ 可以玩玩看g0v新手村～
+21:23 < kcwu> ipa's url: [g0v 8bit]
+21:23 < nikkki> 好吧其實我沒跑那步
+21:24 -!- chuanan [2a4e0d26@gateway/web/cgi-irc/kiwiirc.com/ip.42.78.13.38] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+21:24 -!- weitsai [dc86cb22@gateway/web/cgi-irc/kiwiirc.com/ip.220.134.203.34] has joined #g0v.tw
+21:25 < ipa> clkao: 亂講話人家嚇跑了 XD
+21:25 < pm5cloud> XDDD
+21:25 < yurenju> pm5cloud: 不是 node version 的問題，我試試你的 nginx.conf
+21:27 < mindos_cloud> http://www.ncc.gov.tw/Chinese/news.aspx?site_content_sn=2002 
+21:27 < kcwu> mindos_cloud's url: [國家通訊傳播委員會_第二類電信事業經營者名單]
+21:27 < weitsai> 今天在 one x 測試 App 時，Geocoder 發生 Service not Available 有人遇過嘛＠＠？
+21:28 < yurenju> pm5cloud: 好了 \o/
+21:28 < nikkki> clkao:你說README.md? 所以我就直接寫寫直接push嗎？
+21:28 < ipa> 其實每次我玩新手村，瀏覽器就會當掉，甚至整台電腦需要重開機 orz
+21:28 < pm5cloud> yurenju++
+21:28 < yurenju> pm5cloud: 謝啦 ^^
+21:29 < pm5cloud> 領個 issue 吧
+21:29 < clkao> nikkki: right. what's your github id ?
+21:30 < yurenju> pm5cloud: 隨便點一個 wiki 就炸了 XD
+21:30 < yurenju> pm5cloud: no such file or directory 'public/cache/index.json'
+21:30 -!- pm5 [~pm5@115.80.20.151] has quit [Read error: Connection reset by peer]
+21:30 < yurenju> pm5cloud: 大概是權限問題？
+21:31 < pm5cloud> mkdir -p public/cache/wiki # ??
+21:31 < nikkki> i don't remember now need to find it back...... :P
+21:31 < ipa> ETBlue: 專案開啟流程需要改hackfoldr，我已經開issue。之後這張流程圖我會再改，也許適合零時傳教計畫（把工作流程SOP做成圖文版，讓大家更容易stey-by-step認領工作）
+21:32 < nikkki> yeah i got twbudget running and showing me the page!
+21:32 < pengpong> 印象中 github裡面是可以放中文的
+21:33 < nikkki> but i had to cp _public/index.static.html _public/index.html to make it work
+21:33 < pengpong> 為什麼點開大家的專案裡面卻滿滿的都是英文
+21:33 < pengpong> <- 英文苦手 ｏｒｚ...
+21:34 < clkao> pengpong: 應該看專案發起人的選擇? 如果是有可能國際上 reuse 的元件的話，用英文比較不會阻礙不會中文的人幫忙 ;)
+21:34 -!- nikkki [6ff3773c@gateway/web/cgi-irc/kiwiirc.com/ip.111.243.119.60] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+21:34 < clkao> nikkki: maybe a brunch bug... does it work if you run build twice ?
+21:35 -!- nikkki [6ff3773c@gateway/web/cgi-irc/kiwiirc.com/ip.111.243.119.60] has joined #g0v.tw
+21:36 < nikkki> 我要先閃去做別的事今天進度先將
+21:36 < clkao> nikkki++
+21:37 -!- nikkki [6ff3773c@gateway/web/cgi-irc/kiwiirc.com/ip.111.243.119.60] has quit [Client Quit]
+21:37 -!- KNY [~Adium@61-224-19-196.dynamic.hinet.net] has quit [Quit: Leaving.]
+21:37 < pm5cloud> yurenju: 或者你的 app.js 是在 project root dir 跑的嗎?
+21:38 < yurenju> 恩，是啊
+21:38 < yurenju> 就用 npm start
+21:38 < yurenju> pm5cloud: 我剛看你會去抓一份 spreadsheet
+21:38 < yurenju> pm5cloud: 我覺得可能是我這邊網路太爛，所以有點小問題
+21:38 -!- pengpong [3d3a4298@gateway/web/cgi-irc/kiwiirc.com/ip.61.58.66.152] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+21:39 < yurenju> pm5cloud: 回家我在試看看，先問個問題，我進去一個頁面之後左邊好像會有一些不同顏色的分類，
+21:39 < yurenju> pm5cloud: 那些的作用是什麼？因為我看到 timeline 上面好像都是同一個顏色的
+21:41 < pm5cloud> yurenju: 事件會依它寫在維基條目的段落分別列出來
+21:41 < yurenju> pm5cloud: ok, 那有沒有什麼小 issue 要修可以讓我先練練身手 XDD
+21:42 < pm5cloud> yurenju: 每個顏色是一個段落 有標題
+21:43 < pm5cloud> yurenju: 修安裝遇到的問題 XDD
+21:43 < yurenju> pm5cloud: 好，我晚點可以再用一台乾淨的 vm 再裝一次看看，把文件補一補
+21:44 < pm5cloud> yurenju: 喔耶太棒了
+21:47 < yurenju> 伯朗網路好爛
+21:51 < walkingice> yurenju: !!!
+21:51 < yurenju> walkingice: hola!
+21:52 < walkingice> yurenju: 你看起來也是高挫折的人！
+21:53 < yurenju> walkingice: 對阿，我也是高挫折的人 XD
+21:53 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: mno2]
+21:53 < ipa> 去領個專案來寫吧
+21:53  * walkingice 笑翻
+21:53 < yurenju> 你是否要跟高挫折戰鬥？
+21:57 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+21:59 < clkao> ronnywang: 好像要有 mute 某則的功能, 不然一直有人 update 就一直跳出來
+22:02 < louielu> 哈哈哈真的變高挫折村長了wwwww
+22:03 < CindyLinz> 真是高挫啦~~~
+22:04 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+22:07 -!- haroldwu_irssi [~haroldwu@223-142-138-226.dynamic.hinet.net] has joined #g0v.tw
+22:09 -!- kk1fff [~kk1fff@111-248-171-73.dynamic.hinet.net] has joined #g0v.tw
+22:10 < ronnywang> dannvix: 如果是 input type="radio" checked="false" , 還是會是被選取的狀態
+22:10 -!- kaxing [~kaxing@49.218.86.83] has quit [Quit: BYE]
+22:11 < shelling> @lijung 今天飛?
+22:14 -!- pm5 [~pm5@111-248-210-241.dynamic.hinet.net] has joined #g0v.tw
+22:16 < dannvix> ronnywang: OK, 立刻修
+22:16 < jimyhuang> yurenju++
+22:18 < walkingice> clkao: 我想在自己的 host 跑 api.ly，跑 lsc app.ls --db tcp..... 這一行的時候一直吐 throw er; // Unhandled 'error' event
+22:19 < walkingice> clkao: 是少裝了什麼嗎？
+22:21 < clkao> 會不會是 port in use ? 那邊的 error handling 怪怪的, trycatch 版本檢查一下 ？
+22:25 -!- bafu [~bafu@111-240-212-139.dynamic.hinet.net] has joined #g0v.tw
+22:28 < ronnywang> Michael_LI: ok, 現在同一個網址不能回報第二次了
+22:28 < ronnywang> 你可以回報 http://example.org 實驗看看，
+22:28 < kcwu> ronnywang's url: [Example Domain]
+22:29 < ronnywang> dannvix: 已經 deploy 了，多謝!
+22:30 < dannvix> ronnywang: 感謝大大
+22:32 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+22:32 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+22:32 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+22:33 < walkingice> clkao: 我有試著換過 port 但情況依然，看起來是 app.ls 第十行的那個 backcall 執行完之後遇到的 exception
+22:37 < clkao> walkingice: 不過 vm 裡面 ok 嗎？ 不然先 psql DBNAME -c 'drop schema pgrest cascade; drop schema plv8x cascade' 試試看?
+22:39 < walkingice> clkao: vm 裡面是 ok 的，我是很固執地想要在 host 裡面給它動起來 :P
+22:43 -!- DAINESE_ [~dainese@112-105-79-48.adsl.dynamic.seed.net.tw] has quit [Quit: DAINESE_]
+22:44 -!- tsaiid [~tsaiid@host-219-68-13-81.dynamic.kbtelecom.net] has quit [Quit: tsaiid]
+22:52 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+22:56 -!- DAINESE_ [~dainese@112-105-79-48.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+23:01 -!- Stranger_1980_ [~Stranger_@1.34.223.58] has joined #g0v.tw
+23:03 -!- Stranger_1980 [~Stranger_@1.34.223.58] has quit [Ping timeout: 260 seconds]
+23:12 -!- dsewnr [~dsewnr@111-255-204-195.dynamic.hinet.net] has joined #g0v.tw
+23:13 -!- chuiyi [~Adium@220.135.178.174] has quit [Remote host closed the connection]
+23:15 -!- Nalant [~ws1012574@140.128.9.131] has quit [Ping timeout: 264 seconds]
+23:15 -!- Nalant [~ws1012574@140.128.9.131] has joined #g0v.tw
+23:15 < jimyhuang> yurenju: 理論上不用nginx也能跑~
+23:16 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Remote host closed the connection]
+23:16 -!- chuiyi [~Adium@220.135.178.174] has joined #g0v.tw
+23:19 < clkao> hackpad 又 gg 了嗎
+23:19 < ipa> 504 Gateway Time-out
+23:19 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Quit: leaving]
+23:20 < ipa> logbot也gg
+23:21 < ipa> 噢又好了
+23:23 -!- bafu [~bafu@111-240-212-139.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+23:28 < Sorry> 又 504 了 orz
+23:29 < Lee1092> 504++    可以看得出來 hackpad沒有504 page XD
+23:30 < pm5cloud> jimyhuang: 我剛才 push 了 prepublish script 上去  要幫忙看一下嗎?
+23:30 < pm5cloud> jimyhuang: 我不是很清楚 g0v.json 要怎麼弄
+23:31 < jimyhuang> okok
+23:31 < jimyhuang> 這兩天水深火熱
+23:32 < pm5> XD
+23:32 < jimyhuang> pm5: 你是說，我要pull回來嗎？
+23:33 -!- KNY [~Adium@61-224-19-196.dynamic.hinet.net] has joined #g0v.tw
+23:34 -!- KNY [~Adium@61-224-19-196.dynamic.hinet.net] has left #g0v.tw []
+23:34 < pm5cloud> jimyhuang: 嗯 你 pull 看看 g0v.json 那樣寫行不行吧 因為我不知道在我這邊怎麼測試
+23:34 < pm5cloud> jimyhuang: 至少 `node tools/prepublish` 這樣是會抓一份 index.json 下來
+23:34 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+23:35 < jimyhuang> 我pull、重啟了~
+23:35 < jimyhuang> g0v.json好像沒改什麼 XD
+23:36 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has quit [Remote host closed the connection]
+23:37 < pm5cloud> 我加了一行 scripits
+23:38 < pm5cloud> s/scripits/scripts/
+23:38 < jimyhuang> soga
+23:38 < clkao> 對了 現在 g0v.json 更新後 不會自動上去喔（這也是個坑） # https://github.com/g0v/hack.g0v.tw/issues/10
+23:38 < kcwu> clkao's url: [project registry - allow update from g0v.json of registered repo · Issue #10 · g0v/hack.g0v.tw · GitHub]
+23:39 < jimyhuang> clkao: yap我剛剛想到，不過要怎樣才能手動更新？
+23:40 < jeffhung> 聽起來 isacloud 跑 script 的時候可以順便 (坑...)  # g0v/hack.g0v.tw#10
+23:43  * jimyhuang 繼續打工...
+23:46 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+23:48 < clkao> jeffhung: 對耶 幾乎是同一件事情 XD
+23:48 -!- enum [~enum@118-168-24-63.dynamic.hinet.net] has joined #g0v.tw
+23:50 < pm5cloud> -> zzz
+23:51 -!- CJarek [01a5736e@gateway/web/freenode/ip.1.165.115.110] has quit []
+23:56 -!- angus [6ff210d5@gateway/web/cgi-irc/kiwiirc.com/ip.111.242.16.213] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+23:56 -!- weitsai [dc86cb22@gateway/web/cgi-irc/kiwiirc.com/ip.220.134.203.34] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]

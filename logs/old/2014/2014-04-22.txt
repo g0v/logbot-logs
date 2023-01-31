@@ -1,0 +1,706 @@
+--- Day changed 二  4月 22 2014
+00:00 < au> isacloud__: yeah, 都改成 ./node_module/bin/gulp 和 ./node_module/bin/lsc
+00:00 < ttcat_> au: npm i -g gulp 出來一堆錯誤說
+00:08 < Conrad> miaoski: ? # 拉同伴報隊... tag chihchun  FourDollars Conrad
+00:08 < miaoski> Conrad: 要嗎要嗎
+00:09 < yhsiang> 我覺得是npm版本有點舊耶 @@
+00:09 < Conrad> miaoski: 可是我沒跟到說要報什麼？ 
+00:10 < miaoski> Conrad: CCSP 5/10 在台大的黑客松
+00:10 < miaoski> 從早上 9 點開幹到晚上 9 點
+00:10 < miaoski> 吃東西開幹，不自我介紹 XD
+00:11 < Conrad> miaoski: 然後 antliu 說有人要捐網樂通 //在內湖 
+00:11 < au> ttcat_: 要從上游取得變更的方式是 git remote add hackfoldr https://github.com/hackfoldr/hackfoldr.git ; git fetch hackfoldr ; git merge hackfoldr/master -m merge
+00:11 < kcwu> au's url: [hackfoldr/hackfoldr · GitHub]
+00:11 < au> 這樣應該再跑 ./deploy 就好了 (希望)
+00:11 < miaoski> Conrad: 真棒，可以請他寄給我.... (面交就太苦了，最近好忙)
+00:12 < miaoski> 我也上網標了一台 $150 
+00:12 < miaoski> Conrad: 在 FB 上的網樂通群組可以看到，他們其實研究得很透徹了 (他們還沒玩 Qt embed for SH4, 不過這沒關係)
+00:13 < miaoski> 不過因為他們偏好用 XBMC 所以我們可能要改一些東西
+00:15  * Conrad 想說路過去拿，不過這禮拜還沒浮出內湖的行程 # 昨天在說要去八德保養車子，今天就被塞了兩個明天的桃園行程
+00:16 < Conrad> miaoski: XBMC 也不錯，現成的遙控器友善介面
+00:18 < johnny__> 立委的建物上線了http://vote.ly.g0v.tw/legislator/personal_property/building/1384/  台北市一間不到六萬ㄟ厝，乾五摳玲
+00:18 < kcwu> johnny__'s url: [立委投票指南:薛凌的建物申報紀錄]
+00:21 < clkao> johnny__: 你會接近開放水域嗎？
+00:21 < au> ttcat_: 最後 git push 把合併過的版本放回 github 上 (不然下次連 koding 會掉)，然後再 ./deploy 就完成了
+00:21 < johnny__> clkao: 不會，我除了騎機車以外沒啥危險的活動
+00:22 < kcwu> 看起來是機器 OCR 出來的
+00:23 < johnny__> 對了我想把雲端transfer給信任的人備份，有沒有什麼先例可參考阿
+00:23 < johnny__> kcwu: 是的，是付費軟體轉的，所以這部份沒放github
+00:23 < Lee1092> johnny__:  複製個鄉民的不自殺聲明  XD
+00:24 < soidid> venev: 政治獻金現在已經有資料的立委，和還需要鄉民砍柴的列表目前有統整嗎？有網友在問～～
+00:24 < polor1010> https://www.dropbox.com/s/0dlkiyik1s6ypqb/WordExtract.zip
+00:24 < kcwu> 資料量多大, 怎麼樣的資料型式? (web page, db, raw data ?)
+00:24 < polor1010> 政治現金圖檔的文字擷取
+00:26 < kiang> polor1010: 使用什麼程式呢？
+00:27 < polor1010> 自己寫的
+00:27 < soidid> venev: 是不是目前有的是：馬英九、吳育昇、張慶忠、丁守中、王惠美、顏清標、徐耀昌＋http://bit.ly/ScanPoliticalContribution
+00:27 < kcwu> soidid's url: [政治獻金圖檔上傳回報表 (回覆內容)]
+00:27 < kiang> polor1010: 方便放 github 嗎？
+00:27 < lyanchih> :polor1010 是我之前說到影像處理的學長
+00:27 < kiang> polor1010++
+00:27 < polor1010> 沒問題 但是要整理一下程式碼
+00:28 < polor1010> 如果要辨識數字部分
+00:28 < polor1010> 我這應該可以解決
+00:29 < kiang> polor1010: 可以在 https://g0v.hackpad.com/8ow2GnliH48 登記一下目前進度嗎？因為其實同時有多個人在做類似的嘗試，需要讓他們知道已經有進展了
+00:29 < kcwu> kiang's url: [開放政治獻金 - g0v.hackpad.com]
+00:29 < johnny__> kcwu: 是問我嗎?目前轉的是pdf的圖檔，轉成xlsx，再用python處理成json塞進db
+00:30 < polor1010> ok 我研究一下怎麼登記
+00:30 < kcwu> johnny__: 我是問需要人幫忙備份的部份
+00:33 < johnny__> kcwu: 資料、程式、db.dump都有在github上，只是想說server上的帳號可以colabrate，不過前面那幾樣應該就夠了
+00:44 < isacloud__> 超農域被 muan PR 了!! 
+00:44 < au> ttcat_: http://nonuke.today/ looks good now
+00:44 < kcwu> au's url: [hack.g0v.tw]
+00:44 < isacloud__> 噢我 lag 了
+00:45 < kiang> au++
+00:45 < ttcat_> au: oh ya 
+00:45 < ttcat_> au: ++++++
+00:45 < ttcat_> <#
+00:49 < au> yhsiang++ # 下次 fork 就簡單多了
+00:53 < Rhozan> au: ++++
+00:53 < ij1iao> http://www.theverge.com/2014/4/21/5636384/google-is-working-on-end-to-end-encryption-for-gmail # 前不久是不是有人在討論 pgp 很難用的... 有謠言說 google 好像有打算要整合進 gmail 的樣子...
+00:53 < kcwu> ij1iao's url: [Google is working on end-to-end encryption for Gmail | The Verge]
+00:56 < venev> soidid: 據我所知是的：「hackpad 上馬英九等七人全部資料，加 http://bit.ly/ScanPoliticalContribution 」
+00:56 < kcwu> venev's url: [政治獻金圖檔上傳回報表 (回覆內容)]
+00:56 < venev> 目前還沒有人作「已有圖檔公告」及「待認領清單」
+00:56 < soidid> venev: 謝謝～
+00:58 < miaoski> 好希望一覺醒來逐字稿就好了 (好多聽不清楚的 >_<)
+00:58 < miaoski> https://hackpad.com/-20140220-c1lv5Jj2ppc
+00:58 < kcwu> miaoski's url: [史明逐字稿-20140220 - hackpad.com]
+00:58 < miaoski> https://drive.google.com/file/d/0B0MapJ-Wf54NVC1zWGdWc085WTA/edit?usp=sharing
+00:58 < kcwu> miaoski's url: [0420公投盟史明.mp3 - Google 雲端硬碟]
+00:59 < venev> 幫宣傳：想組隊報名 5/10 CCSP x g0v 黑客松的有薪階級，除了依出席人數報「小組組員票」，請另外隨喜樂捐香油錢（附午、晚餐）
+01:06 < twWatch> miaoski: 你在現場錄的嗎?
+01:14 < Conrad> https://www.facebook.com/groups/294171667382837/permalink/458145744318761/
+01:14 < kcwu> Conrad's url: [Facebook]
+01:14 < twWatch> miaoski:  好想請史明先生一起協作 XD
+01:17 < kiang> Conrad++, 加入群組申請中 XD
+01:18 < Conrad> kiang: 看來應該邀他們來挖坑啊... 
+01:19 < kiang> Conrad: 應該要請他們來自己填坑的，他們太習慣嘴砲（罵別人的時候也罵了自己...）
+01:20 < Conrad> 如果有人願意去監察院印非國民黨的政治獻金，我也很想看啊... 
+01:20 < pipi> 台大資工，曾經的第一志願QQ
+01:21 < au> 話說擁核的 ethantw 也填了一堆坑，而且幅射地圖去開會時 hackpad 上也討論出了一堆問題... 直播時說「參與者各有立場，不要人身攻擊或洗板就好」並不是隨便說的
+01:22 < kiang> 每個人有選擇腦袋瓜用途的自由 XD
+01:24 < au> 如果有人要架 pronuke.today 我也幫忙喔 XD # 而且現在變容易了
+01:25 < Conrad> au++
+01:25 < clkao> 嘴砲個屁，不會拿 muyueh 的能源分析器看哪裡可以改進，好好的 marketing 一下嗎？
+01:26 < venev> clkao: 求監察院 hackfoldr 連結（熊熊找不到）
+01:26 < icespeech> 那篇動態我今天有去回應，結果一堆都在扯藍綠
+01:26 < icespeech> 氣到直接刪文退社團... (汗
+01:27 < venev> 我找得到後台 https://ethercalc.org/g0v-cy 但找不到前端
+01:27 < kcwu> venev's url: [EtherCalc - Share the URL to your friends and edit together!]
+01:27 < clkao> hack.g0v.tw/g0v-cy ?
+01:27 < venev> 對，就是這個！感謝（轉址到 g0v.today 之後就忘記對應規則了 XDDD ）
+01:28 < WeiHung> 誰要加入該社團？我可以幫大家加入看看（我在裡面）
+01:29 < WeiHung> 但不確定管理員會不會審核就是
+01:32 < clkao> api.ly pgq 設定好像悲劇了
+01:33 < clkao> bill-details 會 subscribe bills table, 但是也會更新... 所以 pending events 就無限增長 pg 就把硬碟用光了.......
+01:34 < clkao> 剛先加了一下 10G 應急 ><
+01:56 < awa> 話說有人現在在看政治獻金的狀況嗎？
+01:57 < awa> 我發現好像有人在把正確資料洗掉，光是看了幾個就發現有些資料空了，下午檢查資料檢查兩個小時，都沒那麼嚴重
+02:01 < venev> ronnywang: awa 回報似乎有人在把政治獻金辨識的正確資料洗掉，請留意
+02:10 -!- aocole [~aocole@aocole.net] has left #g0v.tw ["WeeChat 0.4.3"]
+02:12 < awa> 不過不知道是不是我用iPad的緣故，感覺換圖的時候會有奇怪的閃爍，可能底層Ajax有問題導致答案區跟圖片區沒有一致XD?
+02:14 < awa> 剛剛出現空白圖但是答案有字的狀況，讓我有點抖
+02:17 < WeiHung> 真佩服 au 可以心平氣和地和『「g0v 不會對特定議題有立場」，那麼「g0v 就必須對旗下所有專案負起監督的責任」』的論點溝通（我直覺地就想挑戰這句話啊......）
+02:19 < au> WeiHung: 寬柔以教，不報無道 :)
+02:19 < kiang> 恩，我只會比較低層次的把 ph 值降低到接近的比例 XD
+02:20  * poga 只會酸人
+02:23 < WeiHung> au: 嗯…
+02:32 < venev> 重新編輯了 http://hack.g0v.tw/g0v-cy 請幫忙看一下還有什麼需要修改、補充的
+02:34 < pofeng> WeiHung: 那裡討論啊, 我看 mindos 也怒了 ?
+02:34 < venev> WeiHung: 伸討論連結（顯示為鄉民）
+02:34 < kiang> pofeng: http://logbot.g0v.tw/channel/g0v.tw/2014-04-22/71
+02:34 < kcwu> kiang's url: [Logbot | #g0v.tw | Conrad> https://www.facebook.com/groups/294171667382837/permalink/458145744318761/]
+02:35 < pofeng> kiang: 刪了, 真是小氣 :p
+02:36 < kiang> pofeng: 還在啊
+02:36 < ttcat_> 哎，我也覺得自己不太知道怎麼拿捏分寸
+02:36 < kiang> ttcat_: 就面對自己吧，絕對的中立不存在 ;)
+02:37 < pofeng> kiang: 我顯示 "這篇貼文已被移除或者無法讀取。" link 沒錯嗎 ?
+02:37 < ttcat_> 就怕有時候有些東西丟過來不太好
+02:38 < kiang> https://www.facebook.com/groups/294171667382837/permalink/458145744318761/ - 看起來沒錯，但是我重新整理畫面還是在？
+02:38 < kcwu> kiang's url: [Facebook]
+02:39 < pofeng> kiang: 奇怪我讀不到耶 (抖)
+02:39 < pofeng> kiang: 印成 pdf 讓我看一下 (拜託)
+02:39 < kiang> pofeng: 表示你已經是該群組的黑名單了
+02:40 < pofeng> kiang: 群組其他 post 我看得到耶 ... 
+02:40 < pofeng> kiang: 還是我被該作者封鎖了
+02:41 < pofeng> kiang: 社團應該不能封鎖特定人吧?
+02:41 < pofeng> kiang: 那篇的作者是誰啊 ?
+02:41 < kiang> pofeng: https://www.facebook.com/bunny.tw
+02:42 < venev> pofeng: 我也看得到該討論串
+02:42 < pofeng> kiang: 真的耶, 我看不到該網頁 ...
+02:42 < kiang> pofeng: http://ppt.cc/s5Fw
+02:42 < kcwu> kiang's url: [來個 PPT 短網址 :: 縮圖剪剪樂!]
+02:43 < pofeng> kiang: 好好笑, 我莫名其妙計被封鎖了
+02:45 < caasih> 打擾一下， ping 
+02:45 < caasih> ping 不到 pugs.blogs.com ？
+02:46 < a0000778> caasih: ping pugs.blogs.com (204.9.177.195) 100% loss
+02:46 < yllan_> bunny.tw 我還以為是我學長
+02:47 < caasih> a0000778: 對，跟你的結果一樣 D:
+02:51 < pofeng> kiang: 看完了, 感謝, 趕快請他們去學寫程式吧, 一個會亂封鎖別人的人, 很難相信他(們)能和平溝通, 哈哈哈, 我願意教他怎樣用 koding.com 喔 哈哈哈
+02:51 < CindyLinz> yllan_: 記得那個是 activebunny.idv.tw 的樣子? :p
+02:52 < yllan_> CindyLinz: 你連連看 XD
+02:52 < CindyLinz> yllan_: not available.. :(
+02:52 < yllan_> 我說 bunny.tw
+02:52 < CindyLinz> 喔喔
+02:53 < CindyLinz> 咦..
+02:53 < CindyLinz> 可是 FB 名字看起來姓楊啊...
+02:53 < CindyLinz> 喔 FB 那個只是 name, 跟網址沒關 = =
+02:54 < CindyLinz> 我也蠻想看到整理好的擁核資料... ._.
+02:55 < CindyLinz> 特別是災難評估方面, 精細一點的 機率x損害 的圖表, 還有目前不同的可用的處置方式的可用性和缺點, 還有什麼情況下會失靈, 發生率等等...
+02:57 < kiang> 擁核很多也是在跳針，開始檢驗他們的話的時候跳針的更厲害...(當然，也可能是我沒有他們那麼專業啦，就看到 ph 值低的東西就跟著降低 ph 值了)，我只是很好奇驅動他們跳出來的真實理由 XD
+02:58 < CindyLinz> 看跳針很累啊, 整理好了的就不用跳了 :|
+02:59 < twWatch> 各位竟去那裡浪費時間 快去寫code啦 XD
+02:59 < pofeng> 寫code++
+02:59 < twWatch> 那裡讓跳針小幫手去bot就好了 XD   快呼叫tonyQ XD
+02:59 < CindyLinz> 希望理想上能夠把優缺點攤開來, 接下來如果面對的是: 如果一生茹素, 可以活一百歲; 如果吃肉, 只能活五十歲. 要怎麼選.. 那就再憑各人喜好 :|
+03:00 < kiang> 小酸怡情，大酸傷身（剛好遇到 bug 所以就跑去練跳針了）
+03:00 < CindyLinz> XD
+03:01 < CindyLinz> kiang: 王水kiang.. # 中文真是偉大的發明
+03:01  * CindyLinz 逃
+03:02 < twWatch> "bug跳針"的都是在"工作"的 別和它們浪費時間 讓跳針小幫手標記起來 讓台派新手可以進入狀況 XD
+03:02 < kiang> 我是真的遇到程式 bug ... http://vanillaforums.org/discussion/18474/vanilla-2-0-18-1-installation-loop
+03:02 < kcwu> kiang's url: [Vanilla 2.0.18.1 installation loop - Vanilla Community]
+03:03 < twWatch> "bus跳針" 真的也是指各種bug  XD
+03:05 < CindyLinz> twWatch: 那就叫你解解(bug)... XD
+03:06 < twWatch> CindyLinz: 有些bug本身出現的目的就是bug 無解 XD
+03:06 < kiang> yeah, 又有機會召喚我家的跳針姐 - https://www.youtube.com/watch?v=CnGNDWphN5s
+03:06 < kcwu> kiang's url: [易恩版姊姊！ - YouTube]
+03:08 < CindyLinz> twWatch: XD
+03:08 < twWatch> 解決的方法就是把bug標示出來 讓鄉民們不要浪費時間認真回覆(解決)bug 如果鄉民是當作打怪殺時間就無妨了 XD
+03:08 < CindyLinz> twWatch: 想到 Haskell 有個函數叫作 fix, 如果打 fix ("bug" :) 就會生成 ["bug", "bug", "bug", "bug", ... (無窮)] XD
+03:09 < kiang> Haskell 真是個人性化的語言 XD
+03:09 < CindyLinz> twWatch: 在 bug 後面放 reference 到整理好的表格裡的坐標
+03:10 < yllan_> CindyLinz: 哪個 package 呀？
+03:10 < CindyLinz> twWatch: 就像 issue 解掉以後放一個 git commit hash XD
+03:10 < twWatch> 所以鄉民要內建"break"啦 XD
+03:10 < S3p_lin> goto fail;
+03:10 < yhsiangCloud> close #5566
+03:10 < CindyLinz> yllan_: Data.Function 或 Control.Monad.Fix
+03:10 < CindyLinz> yllan_: 原始是在 Data.Function
+03:13 < caasih> CindyLinz: 對了，昨天你提到 isNaN
+03:14 < caasih> 查到 a !== a # true if NaN
+03:15 < CindyLinz> caasih: 方便!
+03:16 < yllan_> CindyLinz: 喔喔，所以這是 fixed point combinator?
+03:17 < CindyLinz> yllan_: 嗯.. :p
+03:18 < yllan_> 真有趣！一開始還被後面那個笑臉唬住
+03:18 < caasih> CindyLinz: 你說的違反三一律跟這個，查到前幾名都是從同為 ECMAScript 的 AS 出來的XDDD
+03:19 < CindyLinz> yllan_: XDD
+03:20 < CindyLinz> caasih: AS? 那是什麼? Flash 的 action script?
+03:20 < caasih> CindyLinz: yap
+03:20 < CindyLinz> 呼~
+03:20 < caasih> CindyLinz: 年紀小時被它的 ECMAScript 特性害過不少次
+03:21 < CindyLinz> caasih: 直到你現在講出來以前, 我一直以為 ECMAScript 就是專屬 javascript 的某種標準 @_@"
+03:39 < lancetw> CindyLinz: 這看法就歷史發展來說沒錯啊，但從來並沒有規定要叫 Javascript （微軟的是叫 JScript） XD
+04:13 < kiang> 我把 ronnywang 取出的政治獻金帳戶清單匯入一個討論區，不過搜尋好像有點問題... -  http://campaign-finance.g0v.olc.tw/
+04:13 < kcwu> kiang's url: [Recent Discussions - g0v 開放政治獻金]
+04:45 < tonysan> names
+04:45 < tonysan> oops
+04:45 < tonysan> 關於 #政治獻金數位化 有些小建議
+04:46 < tonysan> 可以一次show 10 組 已經被判斷成 空白 的圖，然後 user 一次確認 10 組.
+04:46 < tonysan> 這樣應該可以提升工人OCR速度 XD
+04:48 < tonysan> 每張圖左邊有個 x 按鈕，按下去可以把非 空白 的圖 exclude
+04:48 < tonysan> 以上建議 空白 可替換成 any value, 不過空白應該是最保險的
+07:55 < donaldisfreak> http://www.etusolution.com/DSP/edm_dsp_ETL.html
+07:55 < kcwu> donaldisfreak's url: [資料科學計畫 ─ 資料爬理析 Python 實戰班]
+07:56 < donaldisfreak> 砍材課程爆貴的
+08:32 < ronnywang> http://ronnywang.github.io/tw-campaign-finance/demo0421.html # 昨天目前切到一半的豆腐
+08:32 < ronnywang> 不過這次的豆腐比較難切...有些切歪了
+08:32 < ronnywang> 等到全部程式處理完我再人工把剩下的豆腐切好吧
+08:35 < FourDollars> miaoski: 我在 5/10 的事情取消了，所以又可以參加了。>_<
+08:40 < miaoski> FourDollars: ++
+08:40 < miaoski> Conrad: 能來嗎？要先決定人數、報隊
+09:20 < ronnywang> http://ronnywang.github.io/tw-campaign-finance/demo0421.html # 切完了，不過還是有些漏切的，來人工處理好了
+09:20 < kcwu> ronnywang's url: [政治獻金]
+09:31 < clkaoud> caasih: ... 看成 年紀小時被 ECMAScript 性侵害 orz
+09:31 < isacloud__> clkaoud: same here...
+09:35 < ipa> lanf0n: 應該直接作就好了 # tisa.g0v.tw QR code
+09:37 < miaoski> clkaoud: 好糟糕 *指*
+09:39 < hlb> clkaoud: 被 ECMAScript dom inject 嗎 :-/
+09:39 < clkao> hlb: 太糟糕了... 
+09:39 < poga> hlb: XDDDDD
+09:40 < donaldisfreak> 有梗XD
+09:41 < rick68> x
+09:41 -!- donaldisfreak is now known as dz1984
+09:42 < Lee1092> donaldisfreak  g0v 就有一堆砍材實例了 XD  還有 live 教學
+09:44 < dz1984> @Lee1092 
+09:45 < dz1984> Lee1092: thx~有去看，可是發現很少砍aspx的
+09:45 < dz1984> 最近在砍aspx
+09:47 < Lee1092> 有  我有看到昨晚討論  lol    我功力也還無法砍那個   orz
+09:47 < ipa> ttcat_: nonuke.today 的 navibar 可以改，現在是放在哪裡？
+09:47 < rick68> LiveScript 真不賴，還有資料結構庫 prelude-ls 可以用
+09:48  * ipa 來研究一下怎麼送 PR 好了 XD
+09:50 < isacloud__> ipa: https://github.com/ttcat/hackfoldr
+09:50 < kcwu> isacloud__'s url: [ttcat/hackfoldr · GitHub]
+09:53 < kiang> ronnywang: 上一批七個人的資料有五個檔案的資料沒有在裡面 - https://groups.google.com/forum/#!category-topic/g0v-open-cf/rNmODUEtgXw
+09:53 < kcwu> kiang's url: [Google 網上論壇]
+09:54 < ronnywang> kiang: 嗯，這一批我會把這五個檔案也加進去
+09:55 < ipa> 原來 github 的 PR 用於無形.....
+09:55 < ronnywang> 之後檔名應該統一用「第13任總統、副總統擬參選人馬英九、吳敦義政治獻金專戶」 這樣的名字比較好
+10:11 < ipa> WeiHung: 「我是g0v的」這個稱謂好可愛啊....但是是的什麼呢？XD
+10:12 < WeiHung> XD
+10:12 < ipa> 來補充在這裡 XD https://g0v.hackpad.com/-g0ver--p91yfZBbUG1
+10:12 < kcwu> ipa's url: [自稱 g0ver 的幾種方式 - g0v.hackpad.com]
+10:15 < Conrad> miaoski: Yes, #08:40   miaoski | Conrad: 能來嗎？要先決定人數、報隊
+10:16 < hlb> ipa: (默默補上獻金提供人)
+10:16 < miaoski> Conrad: ++ 我報了 3 個人... hbtsai 平常週末要帶小孩
+10:18 < pofeng> hlb: 金主 !!
+10:19 < hlb> pofeng: 就是你啊
+10:20 < ipa> hlb:金主！！
+10:20 < pofeng> hlb: 我是洗錢中心 *挺*
+10:20 < hlb> pofeng: https://g0v.hackpad.com/-g0ver--p91yfZBbUG1#:h=獻金提供人
+10:23 < pofeng> ctiml: 網頁可以加個 link 到 "政治獻金圖檔上傳回報表" 嗎 ? https://docs.google.com/forms/d/108LkUakP8qC5G3AGXMaX8t8d7yklf05M_PBphUqe6vg/viewform?edit_requested=true
+10:24 < pofeng> hlb: 亂講我只出過一次尾牙好不好 
+10:25 < ij1iao> pofeng: 金主 !
+10:25 < hcchien> 金主!!!
+10:25 < pofeng> ij1iao: hcchien 亂講, 明明 hlb 出的最多 
+10:27 < hcchien> 那就是兩位金主啊   # 沒人說不能複數   lol
+10:28 < hcchien> 沒想到明天的分舵 kick off 已經超過十人了
+10:28 < ipa> 買過香油票都金主啊
+10:28 < hcchien> 來到了 1/10 大黑松，小兩口的人數
+10:35 < pofeng> hcchien: 分舵 ?
+10:36 < miaoski> http://www.appledaily.com.tw/realtimenews/article/politics/20140421/383203/ 
+10:36 < kcwu> miaoski's url: [【沃草獨家】檢討黑箱服貿 IVOD竟「完全沒有畫面」！ | 即時新聞 | 20140421 | 蘋果日報]
+10:37 < miaoski> 大概之後要找公民記者去現場轉播了? *頭痛*
+10:37 < hlb> ipa: 所以要改成爐主!
+10:37 < jbytw> 那真超誇張
+10:37 < a0kman> 洗腦過度會自動跳歌詞XDDDDDDDDDDDD
+10:37 < a0kman> http://m.youtube.com/watch?v=SmM0653YvXU&feature=kp
+10:37 < kcwu> a0kman's url: [Pitbull - Rain Over Me ft. Marc Anthony - YouTube]
+10:38 < hlb> > 爐主、副爐、頭家，簡單地說，就是神明所欽點的年度信徒代表。 
+10:38 < hlb> http://chiiaka.tacocity.com.tw/know_3.htm
+10:38 < kcwu> hlb's url: [爐主頭家大福頭]
+10:38 < hlb>     民間對於爐主、副爐、頭家這些神明欽點的服務人員又別稱「福頭」，認為他們是「受到神明眷顧關愛，即將消災解厄、飛黃騰達的幸運兒」，因為這群福頭在擔任爐主、副爐、頭家當年為神明揮汗效勞的種種，神明都有看在眼裡、記到心裡、上稟  金闕玉皇大天尊，自然這群弟子們有難神明會暗中相助、財祿遇阻會幫忙疏通，同樣道理，�
+10:38 < hlb> 受神明眷顧！
+10:41 < ij1iao> 爐主只有一個吧... (思)
+10:46 < kiang> pofeng: 轉到 https://github.com/ctiml/campaign-finance.g0v.ctiml.tw/issues/23 了
+10:47 < kcwu> kiang's url: [介紹頁建議放置一些資訊 · Issue #23 · ctiml/campaign-finance.g0v.ctiml.tw · GitHub]
+10:47 < pofeng> kiang: 喔喔, 感謝, 下次自己來開
+10:47 < miaoski> 所以 ij1iao 是副爐 (思)
+10:53 < ctiml> pofeng: http://campaign-finance.g0v.ctiml.tw/ # 加上認領及圖檔上傳資訊了
+10:53 < kcwu> ctiml's url: [政治獻金數位化]
+10:53 < pofeng> ctiml: 感謝 !!
+10:58 < pofeng> kiang: 你願不願意回留言終結者那邊, 留言歡迎他們認領處理綠委的政治獻金 eg: https://docs.google.com/spreadsheets/d/1wGLljeMSZ33cKreWVPLXQZaupdvM2DFHiG9zn06nJcs/pubhtml
+10:58 < kcwu> pofeng's url: [開放政治獻金認領現況]
+10:58 < kiang> pofeng: ok
+10:58 < pofeng> kiang: 感謝
+10:59 < tuiry> 沒必要吧
+10:59 < pofeng> kiang: just FYI 那邊有個三元其實也是 coscup 老朋友
+10:59 < pofeng> kiang (San-Yuan Chen)
+11:02 < hcchien> pofeng: 對啊，在 g0v 的發源地創立分舵
+11:03 < Edward_> 請問一下，https://dl.dropboxusercontent.com/u/4339854/g0v/g0v-ubuntu-precise64.box這個vagrant box連結失效了
+11:03 < hcchien> pofeng: 因為有些人報不到/無法參加黑客松
+11:03 < pofeng> ctiml: 回報表的 link 錯了, 應該是: https://docs.google.com/forms/d/108LkUakP8qC5G3AGXMaX8t8d7yklf05M_PBphUqe6vg/viewform?edit_requested=true
+11:03 < kcwu> pofeng's url: [政治獻金圖檔上傳回報表]
+11:03 < pofeng> hcchien: 所以是小松 ?
+11:03 < Edward_> 還有其他連結嗎
+11:04 < hcchien> pofeng: 算是吧，可是參與的人大多是新的人
+11:04 < hcchien> pofeng: 都是公司同事
+11:04 < pofeng> hcchien: 瞭, 辛苦了
+11:05 < hcchien> pofeng: 還好，就是推推坑  # 誤
+11:05 < ctiml> pofeng: 我的錯，已修正
+11:05 < hcchien> 我們已經要認領動民主 2.0 來做了   :p
+11:06 < Lee1092> hcchien++
+11:06 < kiang> hcchien++
+11:06 < tuiry> hcchien++
+11:07 < pofeng> hcchien: 喔喔 賀
+11:07 < soidid> miaoski: 對，計劃中，有興趣跳坑 (?) XD #公民轉播
+11:07 < miaoski> soidid: 已經在太陽花盒子坑裡了 QQ. 
+11:09 < soidid> miaoski: XD 沒關係啊，有想法仍可隨時丟
+11:09 < miaoski> soidid: 需要什麼樣的填坑材料呢? 
+11:10 < kiang> 高速公路收費員自救會剛剛衝入交通部一樓大廳，佔領成功！ <<< 最近蠻流行佔領的
+11:11 < soidid> miaoski: 這一兩天應該會有作戰文案出來吧，在這之前就是自由發想可以用的材料
+11:11 < soidid> 屆時再丟
+11:11 < miaoski> soidid: ok. 我來看看你們的 hackpad ..
+11:13 < miaoski> Conrad: ZFS 你是跑在 Linux 嗎? 我只有 4GB 記憶體，不知道跑起來會不會不順..
+11:15 < jbytw> 遍地開花之路過與占領
+11:16 -!- poying_ is now known as poying
+11:18 < kiang> hackpad 的 js/css cdn 好像掛掉？看到原汁原味的畫面
+11:21 < clkaoud> Edward_: 請問在哪看到這個 vagrant 連結呢 現在應該可以直接用 precise
+11:22 < pofeng> 請問一下誰有 g0v 轉播組心得的 url ( 要找一下無限麥克風或指向型麥克風的方案  )
+11:23 < kiang> <<< 用新客戶的名字去咕狗，突然看到辣妹的照片，瞌睡蟲就消失了，辣妹好神奇？
+11:24 < Edward_> https://g0v.hackpad.com/Instant-Setup-hack.g0v.tw-for-Windows-Users-L0mEqjsanOA 這個連結
+11:24 < kcwu> Edward_'s url: [Instant Setup hack.g0v.tw for Windows Users - g0v.hackpad.com]
+11:25 < hychen> hcchien+++++
+11:26 < kiang> pofeng: https://g0v.hackpad.com/ep/search/?q=%E7%B7%9A%E8%B7%AF%E6%9D%BE ?
+11:26 < pofeng> Edward_: kiang tks
+11:43 < superbil> hcchien: +++
+11:47 < miaoski> hcchien: 剛剛怒推 ch0upi_bsd 入坑
+11:47 < hcchien> miaoski++
+11:59 < kiang> http://campaign-finance.g0v.olc.tw/ - 搜尋功能搞定了，這兒只是記錄個別帳戶的處理狀況(或是閒聊吧？)
+11:59 < kcwu> kiang's url: [Recent Discussions - g0v 開放政治獻金]
+12:03 < jbytw> kiang++
+12:05 < ronnywang> kiang++
+12:06 < hcchien> clay 竟然不回我信
+12:15 < isacl> kiang++
+12:16 < isacl> 感覺應該架個 ckan 了，資料越來越多種，散落在各個地方
+12:21 < superbil> kiang: ++
+12:48 -!- awa [24e0e59c@gateway/web/cgi-irc/kiwiirc.com/ip.36.224.229.156] has left #g0v.tw []
+13:00 < kiang> isacl++, 來個 ckan 吧？ XD
+13:04 < clkao> 咦 今天真的有去投標嗎？
+13:06 < yhsiang> 要問charles ?
+13:16 < isacl> kiang: ok. 晚上來用!
+13:26 < Lee1092> kiang:  replies 次數好像有問題   有些沒有取得的  replies 還是顯是 1
+13:54 < gavin-^^> 可以請問 4/19 當天有人說.要組工會的專案.有後續嗎?
+14:02 < clkao> johnny__: ^^^
+14:06 < tw_556321> 請問 沃草團隊 國會無雙 跟g0v有沒有關係? (或者說 有沒有在g0v的管轄範圍內?)
+14:07 < icemango> no
+14:07 < clkao> g0v 算是資料的上游
+14:08 < clkao> 內容選輯、議題追蹤等都是沃草在進行的
+14:09 < tw_556321> 因為是有些小提議 只是在這裡提 還是直接乾脆連絡沃草團隊 哪個比較適當?
+14:10 < tuiry> 直接聯絡吧
+14:11 < tw_556321> 嗯 謝謝
+14:13 < yhsiang> tw_556321: 請直接連絡, 這邊可以找WeiHung
+14:15 < tw_556321> yhsiang: 收到 謝謝
+14:37 < ij1iao> gavin-^^: 組工會 ? g0v 一群沒有組織的人要組工會這件事聽起來挺有喜感的 :p
+14:39 < yhsiang> 請找 johnny__ ~
+14:41 < ddio> gavin-^^: 這個？ https://g0v.hackpad.com/1.0-BETA-jcHrCppGump
+14:41 < kcwu> ddio's url: [如何做工會1.0 BETA - g0v.hackpad.com]
+14:54 -!- chihchun_afk is now known as chihchun
+14:57 < hychen> ij1iao: 不是g0v組工會, 是how to組工會的專案
+14:59 < S3p_lin> 開放資料工程協會? XD
+15:00 < johnny__> gavin-^^: 目前沒進度，有電子電機公會的分享，發起並不難，難是難在成立之後，這方面還沒想法
+15:01 < gavin-^^> johnny__ 了解.... 
+15:01 < gavin-^^> S3p_lin    開放資料工程協會 << 好名字.
+15:19 -!- lyanchih_ is now known as lyanchih
+15:21 < lancetw> cool XD
+15:22 < lancetw> 聽起來就很厲害的樣子 XD
+15:23 < Lee1092> 開放政府工程協會   << 不知道這個審核會不會過  XD
+15:35 < pofeng> tw_556321: info@watchout.tw , https://www.facebook.com/groups/musou.tw/
+15:35 < kcwu> pofeng's url: [Facebook]
+15:38 < tw_556321> pofeng:沒用FB 正在想還有沒有其他方式..
+15:39 < pofeng> tw_556321: 電話：02-2361-7588 ( http://watchout.tw/ )
+15:39 < kcwu> pofeng's url: [沃草！Watchout]
+15:41 -!- Aiden is now known as Guest41492
+15:43 < jbytw> pofeng++
+15:47 < isacl> 徵求熟悉 solr/lucene 中文斷詞的朋友協助. ckan 架好了但尚未設定中文斷詞 (因此無法搜尋中文)， smtp 也未設定。網址暫時用 http://ckan.g0v.today/ account/pwd: g0v/g0v 先隨便玩. 若有問題可到 https://github.com/g0v/ckan 報 issue
+15:47 < kcwu> isacl's url (2/2): [g0v/ckan · GitHub]
+15:48 < pofeng> isacl++
+15:48 < isacl> # ckan 是目前英國/美國/日本/巴西 ... 等國政府用來彙整開放資料的平台. 台灣目前也有些單位開始使用。
+15:49 < clkao> isacl++
+15:49 < isacl> 疑掛了. XD. 請稍等
+15:49  * clkao -> HKG
+15:50 < isacl> http://ckan.g0v.today/ fixed # 不知道為什麼把 debug 開啟後會沒畫面, 暫時關掉 debug
+15:50 < kcwu> isacl's url: [Welcome - CKAN]
+15:50 < pm5> isacl++
+15:54 < isacl> 美國： http://catalog.data.gov/dataset  英國:  http://data.gov.uk/data/search (英國的改得有點多, 界面比較不像 ckan 了)
+15:54 < kcwu> isacl's url (1/2): [Search for a Dataset - Data.gov]
+15:54 < kcwu> isacl's url (2/2): [Data Search | data.gov.uk]
+15:55 < isacl> ckan 的中文翻譯問題很多。也是一個坑
+15:56 < pofeng> isacl: ckan.g0v.today  對 g0v 來說. 定位如何和 http://data.g0v.tw/ 區分 ?
+15:56 < kcwu> pofeng's url: [Taiwan Open Data 台灣開放資料]
+15:58 < isacl> pofeng: 還沒想這麼多，只是看到 kiang 弄了個 forum 整理政治獻金資料，於是想說用 ckan 會不會更完整。一方面 g0v 很多其它的 API 或是資料也可以此為統一入口。
+15:59 < isacl> pofeng: 如果屆時覺得不適合就關掉也無妨
+15:59 < pofeng> isacl: 因為我剛剛想要加資料就卡住了 .... 
+15:59 < hcchien> 可以 cname 到同一個？
+16:00 < isacl> data.g0v.tw 看起來比較像問問題 (data request) ?
+16:01 < hcchien> data 名字沒取好   lol
+16:01 < isacl> pofeng: 哪一步呢？我來試試看. 剛剛沒看到噴 error
+16:01 < ronnywang> 我提議將 data.g0v.tw 改名叫 data-request.g0v.tw 之類的名稱 XD
+16:02 < pofeng> isacl: 喔喔, 不是 error 啦, 我是說不知道要加什麼樣的資料源 .... 
+16:02 < hcchien> ronnywang++
+16:04 < isacl> pofeng: 剛剛先加了一筆試試看. http://ckan.g0v.today/dataset (ckan 預設對 csv 及 xls, json, html 等資料來源可以 preview. pdf 則要額外安裝 plugin 才能 preview)
+16:04 < kcwu> isacl's url: [Datasets - CKAN]
+16:05 < isacl> ronnywang++ 
+16:05 < hcchien> isacl++
+16:06 < ronnywang> hcchien++
+16:06 < hcchien> 不過看來還要發動鄉民做翻譯   :p
+16:06 < isacl> feel free to try. (p.s. 請先不要使用 add Member 功能，因為需要 SMTP, 會顯示錯誤。其餘應該都可以用)
+16:09 < isacl> hcchien: 上次研究了一下它的翻譯, 要使用一個線上的 po edit 系統，而且有週期 (可能是等下一版的 release 之前)。目前週期還沒開始沒辦法 contribute 翻譯。等可以開始翻我再通知大家 XD
+16:10 < lancetw> transifex ?
+16:10 < Lee1092> isacl++
+16:11 < isacl> lancetw: yes. 我前陣子 login 後發現它寫目前無法翻譯之類。來找一下連結..
+16:13 < lancetw> isacl: 嗯 這平台目前看起來是最好用的 XD
+16:15 < ttcat_> ipa: http://nonuke.today/ hackfoldr 要開資料夾的規則是什麼 ?
+16:15 < kcwu> ttcat_'s url: [...]
+16:25 < Lee1092> ttcat_: 是指要成為子資料嗎?    url 前面空一格  #  http://nonuke.today/about    
+16:25 < isacl> ckan 現在看起來可以翻譯，但是要先 join 翻譯 team, 要等人 approve 。 https://www.transifex.com/projects/p/ckan/language/zh_TW/ 
+16:25 < kcwu> isacl's url: [CKAN localization]
+16:25 < isacl> 晚點再整理到 hackpad.
+16:27 < ttcat_> Lee1092: ++ thanks 可以幫我看一下為什麼直播網址出不來嘛？ http://www.ustream.tv/channel/art1025
+16:27 < kcwu> ttcat_'s url: [USTREAM: art1025: 台灣、Taiwan、公投盟、公投護台灣聯盟、ART、Alliance of Referendum for Taiwan、蔡丁貴、Aquia. 其他 Event]
+16:27 < isacl> 有一個顯著的翻譯錯誤是，新增資料內容 (Resource) 時，資料名稱被誤翻譯成「使用者名稱」
+16:29 < Lee1092> ttcat_:  要使用 embed 的方式 http://www.ustream.tv/embed/12933307    在直播畫面  點又下的共用  可以取得 embed 的網址
+16:29 < kcwu> Lee1092's url: [Ustream.Tv]
+16:29 < Lee1092> 我有用好一個  請參考  :)
+16:29 < ttcat_> THANKLS
+16:30 < Lee1092> youtube 也是同樣的道理  (y)
+16:51 < yhsiang> isacl: http://docs.ckan.org/en/ckan-1.7.3/using-data-api.html 搜尋直接上ES ? XD
+16:51 < kcwu> yhsiang's url: [Using the Data API — CKAN Data Management System Documentation 1.7.3 documentation]
+16:58 < ttcat_> clkao: 我可以在 hackfoldr 加上 ga 嗎？
+16:59 < isacloud__> yhsiang: 不確定是不是 2.2 或之前的版本把 ES 換掉了，再之後的文件沒找到關於 ES 的地方。只有講 solr 與 jetty # 我也較想用 ES
+17:06 < yhsiang> isacloud__: CKAN’s DataStore and Data API have been rewritten, and now use PostgreSQL instead of elasticsearch, so there’s no need to install elasticsearch anymore (this feature was also back-ported to CKAN 1.8) (#2733
+17:06 < isacloud__> isacloud__: 或是 ES 只能用在 Data Store (DataStore 在 ckan 是一個 extension, 用來將"資料內容" 匯入, 如不使用 DataStore, CKAN 只是簡單儲存資料的來源網址跟 metadata , 最後還是會回原資料來源取得資料，且搜尋只適用於 metadata)
+17:06 < isacloud__> yhsiang: ES GG XD
+17:08 < yhsiang> ttcat_: 修改gulpfile.ls 
+17:09 < yhsiang> ttcat_: https://github.com/ttcat/hackfoldr/blob/master/gulpfile.ls#L164
+17:09 < kcwu> yhsiang's url: [hackfoldr/gulpfile.ls at master · ttcat/hackfoldr · GitHub]
+17:16 < ttcat_> 改完後就直接匯聲笑嗎
+17:16 < ttcat_> 會生效嗎
+17:17 < au> 可能要跑 npm run fork
+17:18 < au> 和 ./deploy
+17:18 < au> oh nvm, 只要 ./deploy 即可。我可以幫忙跑。
+17:19 < yhsiang> 應該是要./deploy XD
+17:19 < au> 好像可以列成上面的 constant XD
+17:20 < yhsiang> ohoh @@
+17:20 < yhsiang> 我是改成上面的constant了 
+17:21 < au> yhsiang++ # 超快
+17:21 < ttcat_> au: yhsiang ++
+17:21 < au> ttcat_: 你的 GA ID 是?
+17:21 < ttcat_> 我改好了
+17:21 < au> awesome
+17:21 < ttcat_> UA-50246664-1
+17:23 < au> deploy 跑完了 (linode ssd 比之前快好多)
+17:24 < ttcat_> ya
+17:24 < ttcat_> http://d.pr/i/qZll
+17:24 < kcwu> ttcat_'s url: [Screenshot 2014-04-22 at 17.24.23.png • Droplr]
+17:24 < ttcat_> 目前有一個人在線上了
+17:25 < yhsiang> au: 被DO激到的嗎 XD # linode ssd
+17:25 < au> 好像是 XD
+17:30 < yhsiang> ttcat_: 鎮江街直播是誰負責 @@a
+17:32 < ttcat_> 爛掉了真的
+17:32 < ttcat_> 我來問問
+17:51 < kiang> Lee1092: 有注意到，可能我硬塞資料庫造成的吧，晚點看看問題
+17:55 < ttcat_> http://nonuke.today/ share 到 facebook 的 meta 可以改嗎
+17:55 < johnny__> 打工碰到點問題請問一下，在heroku架api給mobile client上傳檔案，但heroku居然有30秒timeout機制，大檔案就死了，有人碰過嗎
+17:55 < kcwu> ttcat_'s url: [...]
+17:57 < a0000778> johnny__: 把大檔案自動分割成小檔案分次傳呢？
+17:57 < yhsiang> johnny__: 直上s3~
+17:58 < yhsiang> johnny__: https://groups.google.com/forum/#!topic/django-filer/cByWK4CjvrE
+17:58 < kcwu> yhsiang's url: [Google 網上論壇]
+17:58 < au> ttcat_: 可以，要改四行...
+17:58 < au> https://github.com/g0v-today/hackfoldr/commit/f89d1bda4#diff-790343d5c42102e70035fb59e91c8ee4R2
+17:58 < kcwu> au's url: [* Test og:image · f89d1bd · g0v-today/hackfoldr · GitHub]
+17:59 < yhsiang> 這也要上whitelabel嗎 XD
+17:59 < au> ttcat_: 要改在 ./app/index.jade 裡
+17:59 < miaoski> twWatch: 我知道會有逐字稿的需要，就用手機另外錄了。那天我在當民眾，沒去和 PA 裝熟，so 沒有直接輸入的訊號 ...
+17:59 < au> yhsiang: whitelabel 好忙啊 XD
+18:00 < au> 那還要連 https://github.com/g0v-today/hackfoldr/commit/e63b81e4#diff-790343d5c42102e70035fb59e91c8ee4R16 都加上去
+18:00 < kcwu> au's url: [* Beginning of SEO · e63b81e · g0v-today/hackfoldr · GitHub]
+18:02 < au> <- 正在打工沒力氣加... ttcat_ 先想辦法生個 og-image.jpg 出來?
+18:02 < au> 像是 http://g0v.today/img/og-image.jpg (解析度 1000x1000 以上)
+18:02 < ttcat_> 好
+18:02 < johnny__> a0000778: 因還要給client下載，client需要原來的檔案
+18:03 < a0000778> johnny__: 那client也一樣 分段下載 用戶端組合好
+18:04 < johnny__> yhsiang: 官方教的質上都是browser base的，看起來需要jquery或javascript，但rest api有辦法這樣用嗎
+18:04 < au> 然後連同 keywords 和 description 一起寫好，看誰有空幫忙 hackfoldr/hackfoldr 的 whitelabel 化，或我打工完再弄
+18:04 < yhsiang> johnny__: 有阿~ 只要開CORS都可以用
+18:06 < isacl> yhsiang: whitelabel 好多坑啊 XD
+18:07 < johnny__> yhsiang: 是喔！!
+18:08 < johnny__> a000078: client 端會殺了我XD
+18:08 < yhsiang> johnny__: ya 不過重要data記得要做protect :)
+18:09 < a0000778> johnny__: 瀏覽器寫JS去組合好再提示下載 跟mega.co.nz一樣
+18:10 -!- nyli` is now known as nyli
+18:10 < yhsiang> isacl: 跳嗎跳嗎~
+18:10 < ttcat_> au: 我改好了
+18:10 < ttcat_> https://github.com/ttcat/hackfoldr/blob/master/app/index.jade
+18:10 < kcwu> ttcat_'s url: [hackfoldr/app/index.jade at master · ttcat/hackfoldr · GitHub]
+18:13 < yhsiang> ttcat_: ./deploy ~
+18:14 < au> ttcat_: ok 我改了一下位置 ( git mv assets/banner_nonuke.jpg app/assets/img/og-image.jpg )... 因為 assets/ 在 deploy 時的前綴會不見，也就是說 app/assets/img/ 會變成 /img/
+18:14 < ttcat_> ok~
+18:14 < au> 所以 og:image 直接寫 /img/ 即可 (總之弄好了)
+18:14 < au> 也 deploy 了
+18:14 < au> enjoy
+18:15 -!- cybeliak [~cybeliak@128.199.248.20] has left #g0v.tw []
+18:16 < ttcat_> 再一次～～ og-img 要用絕對位置     meta(property="og:image", content='http://nonuke.today/img/og-image.jpg')
+18:16 < au> deployed
+18:17 < au> 目前 opengraph lint 看來完全 ok
+18:19 < ttcat_> okay 等 facebook debug update
+18:19 < au> 已經可以 share 了
+18:19 < au> (g0v.today 一直是用相對位置也沒怎樣 XD)
+18:26 < ipa> ttcat_: 目前是大家都可編輯，如果編輯不要開放的話也是請 au 幫忙改 
+18:27 < ipa> 一天沒上線domain已經弄好了 @@
+18:28 < au> 編輯不開放的部份也可以 whitelabel XD 或是用 google spreadsheet 限定誰有編輯權 (雖然我自己比較不偏好這樣，但是可以請 muan 幫忙改 XD)
+18:28 < au> 至少先每小時備份 https://ethercalc.org/static/backup/nonuke.today/
+18:28 < kcwu> au's url: [Index of /static/backup/nonuke.today/]
+18:30 < yhsiang> whitelabel 下去 hackfoldr都可以開公司了 *flee*
+18:31 < pofeng> hackfoldr 好像有申請米國贊助 :p ... 應該有過吧 ?
+18:32 < au> pofeng: 目前決選中
+18:32 < au> https://www.newschallenge.org/challenge/2014/submissions/hackfoldr-community-collaboration-organized
+18:32 < kcwu> au's url: [News Challenge - How can we strengthen the Internet for free expression and innovation? - hackfoldr: Community Collaboration Organized]
+18:32 < pofeng> au: 厲害
+18:33 < au> pofeng: 沒有厲害啊，似乎是沒上 XD
+18:33 < pofeng> au: 喔喔 我稿錯了 哈哈 抓頭
+18:46 < yhsiang> 結果newschallenge.org掛了 ..
+18:49 < clkao> yhsiang: GG
+18:50 < yhsiang> 回來了
+18:53 < yhsiang> clkao: 有個留言妳沒回耶 XD
+18:57 < clkao> 啥?
+18:57 < clkao> 太忙啦
+19:00 < clkao> 機車 飛機 delay... 本來想說可以坐一下弄點東西
+19:00 < clkao> 不久又要登機了
+19:06 < clkao> 開了新的 ssd api-beta.ly... 還沒 provision 好... ><
+19:07 < isacl> yhsiang: after you # 跳嗎跳嗎~
+19:11  * isacl 今天也被 SSD 吸引了，剛剛的 ckan 就是開在 linode XD
+19:17 < ttcat_> 沒關係 hackfoldr 是國安局認證的誒
+19:24 < Lee1092>  高科技～～ XD
+19:26 < hychen> 國安局太優秀了 shit
+19:27 < ttcat_> 不過用手機看 hackfoldr 真的是 ...
+19:28 < kiang> 找了一下 林義雄 的經歷，還真是讓人汗顏...
+19:36 -!- chihchun is now known as chihchun_afk
+20:01 < vy1031> to Kiang....是的,我這年齡的人都知道這件血案....
+20:01 < Conrad> miaoski: Yes, Ubuntu Trusty. 4G 是有點少.... # miaoski | Conrad: ZFS 你是跑在 Linux 嗎? 我只有 4GB 記憶體，不知道跑起來會不會不順..
+20:01 < a0000778> 4GB應該勉強吧？
+20:02 < vy1031> 有人可以幫忙抓林家血案,々
+20:02 < Conrad> a0000778: cache 不夠會很卡...
+20:03 < a0000778> Conrad: 不長期開機的話還好 開完吃1G Cache2G 留1G給使用者
+20:03 < miaoski> Conrad: 沒機會玩耍了。Acer S3 只有 4GB 不能加。
+20:04 < miaoski> vy1031: 你透露出年紀了。。。
+20:04 < Conrad> 我之前用 8G + 7200 rpm HDD 慢到受不了 
+20:04 < a0000778> 其實去 #ubuntu-tw 談這個會不會比較好？
+20:04 < vy1031> 沒啦
+20:04 < Conrad> 現在是 16G + SSD 就非常順了 XD
+20:05 -!- vy1031 [uid30033@gateway/web/irccloud.com/x-kywxkrbnwuwildzd] has left #g0v.tw []
+20:11 < Lee1092> 政誌: 林宅血案 http://fact.g0v.tw/wikipedia/%E6%9E%97%E5%AE%85%E8%A1%80%E6%A1%88#0
+20:11 < kcwu> Lee1092's url: [林宅血案 - 政誌]
+20:12 < isacl> 歡迎多到 #ubuntu-tw 灌水，冰凍很久了
+20:13 < ttcat_> Lee1092: :~~~
+20:17 < isacl> CKAN 文件已經先簡單整理到 hackpad, 供參考： https://g0v.hackpad.com/CKAN-g0v--8dDtG1xQaqP
+20:17 < kcwu> isacl's url: [CKAN g0v 開放資料彙整平台 - g0v.hackpad.com]
+20:18 < kiang> isacl++
+20:18 < isacl> kiang: 底下有個 Q&A 要你幫忙回 XD
+20:19 < ttcat_> 綠盟網站 http://gcaa.org.tw 被攻擊了 .... QQ
+20:21 < isacl> ttcat_: @@
+20:22 < ttcat_> isacl: any idea how to restore it?
+20:22 -!- chihchun_afk is now known as chihchun
+20:24 < isacl> ttcat_: 我沒有看過本來的網站，現在看起來被 redirect 掉了。本來裡面是什麼東西？機器在哪？
+20:25 < isacl> ttcat_: sorry, be back in 10 mins. 先回家
+20:32 < lancetw> 政誌的 FB og:description 怎麼還是 test XD
+20:36 < Lee1092> ttcat_:  我看現在是正常了!?
+20:37 < lancetw> 目前 gcaa.org.tw 正常
+20:40 < pipi> 找工作的皮皮來了（毆
+20:43 < jqq> "皮皮"跟我一個朋友的匿名一樣XD
+20:44 < moon_c> 找工作順利嗎XD
+20:48 < ttcat_> Lee1092: 好像是主機太爛撐不住 剛剛那是被主機廠商關閉的
+20:48 < ttcat_> qq
+20:49 < Lee1092> 原來如此~   linode 正夯 (疑
+20:49 < pipi> 普普通通
+20:50 < pipi> 那天黑客松自介應該說我的本名是男的，也不是物資組的皮皮XD
+20:51 < lancetw> ttcat_: 是用哪家啊 ＠—＠
+20:53 < isacloud__> ttcat_: 不太像是撐不住 (出現一個 virus 字眼)，我有留剛剛被 redirect 的網址，晚點開電腦查看看。
+20:58 < ttcat_> 綠盟（強調：在我去之前）是用捕夢網
+20:58 < ttcat_> 剛剛是說是工程師關掉的 不知道為什麼會 redirect 到那種網址去
+21:03 -!- MOON is now known as Guest77527
+21:04 -!- KeJ is now known as Guest46693
+21:06 < pofeng> 為什麼婉拒演講也要公告啊 (酸)
+21:07 -!- Guest46693 [dc87c206@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.194.6] has left #g0v.tw []
+21:07 < pofeng> 那我也宣告婉拒採訪 (酸)
+21:12 < jqq> 加入/離開 訊息怎有用戶對外IP@@(驚!
+21:13 < Idle> WoW
+21:13 -!- Idle is now known as Guest68920
+21:15 < moon_c> 還沒申請帳號的人？
+21:16 < moon_c> 或是.....我的桌機
+21:16 < moon_c> 一直無法好好使用irc
+21:17 < Lee1092> jqq:  irc 本來就會有吧?  XD
+21:19 < yhsiang> moon_c: ?
+21:26 < moon_c> 我的一般瀏覽器上不了irc
+21:28 < yhsiang> moon_c: 瀏覽器是?
+21:28 < hychen> data.gov.tw的村里幹事的資料也太亂七八糟了.... 怒...
+21:33 < yhsiang> hychen: XD 我看到你好多回應
+21:34 < hychen> yhsiang: 怒...
+21:34 < yhsiang> 有一堆莫名地回應阿 甚麼 了解 xD
+21:34 < yhsiang> 不錯的資料 ...
+21:39 < moon_c_> ㄚㄚ有人解救我了，ok順利連上
+21:45 < Lee1092> moon_c_:  申請 irc cloud ?  XD
+21:47 < moon_c_> 恩恩有申請過了~只是申請完就把主網址亂丟找不到，每次都從g0v的新手教學進去((很笨
+22:09 < kiang> isacl: 與 http://campaign-finance.g0v.olc.tw/ 會衝突嗎？ <== 誰問的啊？ XD
+22:09 < kcwu> kiang's url: [Recent Discussions - g0v 開放政治獻金]
+22:11 < isacloud__> kiang: me lol, 因為不太確定你的想法，先寫為問題
+22:12 < isacloud__> 你的平臺看起來不錯用，很乾淨的配置
+22:12 < kiang> isacloud__: 那邊就當作閒聊區吧，討論區的形式並不是很嚴謹的作法
+22:12 < isacloud__> kiang: 了解。只侷限政治獻金嗎？
+22:13 < kiang> isacloud__: 有其它想法嗎？它是用 http://vanillaforums.org/ 裝起來的，隨時可以多生幾個？
+22:13 < kcwu> kiang's url: [Community Forum Software - Vanilla Community]
+22:13 < kiang> 好處也許是可以直接 FB 登入吧
+22:15 < kiang> 目前六千多筆資料的搜尋應該還算輕鬆愜意，如果要塞更多東西，應該 CKAN 會比較合適
+22:15 -!- chihchun is now known as chihchun_afk
+22:15 < isacloud__> kiang: 請問是想去監察院印文件的人，在底下回文認領嗎?
+22:16 < kiang> isacloud__: 是的，就是一個認領的通知吧，避免有重複認領的情況
+22:16 < johnny__> 立委汽車上線，不小心看到某立委lexus es350 3456cc三年前買只要60萬  靠杯 https://www.facebook.com/TW.Voter.Guide/posts/450233331778159?stream_ref=10
+22:16 < kcwu> johnny__'s url: [立委投票指南 - 車子最多的是林滄敏委員，汽缸cc 數最大是顏寬恒委員，大家買車記得先來比個差價阿！... | Facebook]
+22:16 < kiang> johnny__++, 好想買...
+22:19 < chhsiao1981> 小蜜蜂地圖視覺化約這星期天 (4/27) 8am - 6pm 在台大資訊系館聚會 (感謝林阿天). 非常歡迎有興趣的朋友們參加. (來參加的時間隨意. 我會在 11:30am - 4pm 之間不在)
+22:20 < pofeng> johnny__: 我大笑
+22:20 < pofeng> johnny__ ++
+22:20 < antliu> 有地方民代與主官的財產申報嗎?
+22:20 < Ltff> http://technews.tw/2014/04/22/follow-the-money-to-chase-the-champion-finance-using-crowd-sourcing-by-g0v-tw/
+22:21 < kcwu> Ltff's url: [金錢政治無所遁形！g0v.tw 開放政治獻金紀錄，運用群眾智慧比對資料 | TechNews 科技新報]
+22:21 < antliu> 中央的對年底選舉的幫助不大
+22:21 < isacloud__> kiang: 嗯，那也許要有方式 filter 出 "認領中" 已取得資料" "已OCR" 等等， 實在太多了。
+22:21 < Lee1092> chhsiao1981:  po個後勤 或 開個活動 小松!!  XD
+22:21 < kiang> isacloud__: 它可以加標籤，要跳坑嗎？我開權限給你
+22:22 < licyuan> 請問一下，割闌尾也是出自於這裡嗎?
+22:22 < isacloud__> kiang: 好啊，來玩玩看。感謝! 我需要先 facobook 登入嗎
+22:23 < kiang> isacloud__: 都可以啊（我忘了測試主機的註冊通知信功能是否正常 XD ）
+22:24 < johnny__> antliu: 今天看到縣市議員無法影印財產申報資料 https://g0v.hackpad.com/--dMc3UYvwTjT#:h=#-參考資料討論區
+22:24 < kcwu> johnny__'s url: [立委投票指南-意見回饋 - g0v.hackpad.com]
+22:26 < antliu> johnny__ WTH
+22:27 < kiang> ...台南花園夜市的土地好像又被建商買走了，希望不是真的八卦...XD
+22:27 < isacloud__> kiang: 註冊會說沒有 recaptcha key. =)
+22:28 < johnny__> pofeng: 請教大大，為何土地大戶都沒有車子XD
+22:28 < kiang> isacloud__: 因為我還沒註冊 key XD
+22:28 < kiang> isacloud__: 立刻修
+22:28 < johnny__> 是房子太多 怕忘記車子停在哪一間嗎
+22:29 < isacloud__> kiang++ 不急
+22:30 < antliu> johnny__ 一般有公司的會用公司名字買車 可當會計減項
+22:32 < kiang> isacloud__: 設定好了
+22:32 < johnny__> antliu: 哦了解，小小賤民實在難以了解箇中奧妙
+22:33 < kiang> 現在有錢人也都用租車了，因為租車的費用可以折抵營業稅，比買車好用多了。租車公司的方案大多是租個幾年就把車送你了
+22:38 < kiang> isacloud__: 已經開管理權限囉
+22:39 -!- chihchun_afk is now known as chihchun
+22:40 < isacloud__> kiang: 謝謝你, 明天會再詳細研究看看! 
+22:40 < kiang> isacloud__++
+22:44 < miaoski> licyuan: 據我所知不是
+22:48  * caasih 取得了「被 ECMAScript 侵犯過」成就
+22:48 < CindyLinz> caasih: 瞧你得意的......ww
+22:54 < pofeng> johnny__: 公司用租的可以洗錢 (?)
+22:55 < pofeng> 喔喔大家都答了 :p
+22:59 < hcchien> 問一下，誰有 308 線路松的照片!?
+23:17 < hcchien> 立法院好像快衝突了
+23:17 < au> hcchien: https://www.facebook.com/photo.php?fbid=10203261688842145&set=a.2132805718845.131510.1207082906&type=1&relevant_count=1
+23:17 < kcwu> au's url: [瞿筱葳 - 手機上傳 | Facebook]
+23:19 < hcchien> au: got it
+23:20 < MGdesigner> 立法院不是快衝突了
+23:20 < rick68> http://goo.gl/JSznPZ
+23:20 < kcwu> rick68's url: [蔡丁貴教授遭帶走　民眾喊「警察放人」 | 即時新聞 | 新聞 | 壹電視 NextTV]
+23:20 < MGdesigner> 是已經衝突了
+23:20 < MGdesigner> 立院最新狀況  幫轉：警察用盾牌推倒第一排的阿姨，蔡教授號招推拒馬，翻過拒馬的被警察打+逮捕，請複製貼上告知還不知道狀況的人
+23:20 < MGdesigner> 現在群眾大喊讓醫生進去
+23:22 < hychen> http://www.ustream.tv/channel/nonukestw
+23:22 < kcwu> hychen's url: [USTREAM: [不要核四、五六運動]: 本頻道以LIVE直播為主，分段精華影片請到 YouTube 觀賞。 http://www.youtube.com/user/antinucleartw. 公民記者...]
+23:23 < MGdesigner> http://www.ustream.tv/channel/BANANANA 另外一個公民記者
+23:23 < kcwu> MGdesigner's url: [USTREAM: Sunflower學運 (轉守為攻，割除闌尾；出關播種，遍地開花): Facebook 粉絲頁 http://goo.gl/39Ed1v Facebook 社團 http://goo.gl/WlHgvf Youtube 分流 (非直播) http://goo.gl/UZjMkt. 公民記者...]
+23:24 < MGdesigner> http://www.ustream.tv/channel/noodlesking 這也是
+23:24 < kcwu> MGdesigner's url: [USTREAM: 麵線Noodlesking 公民記者直播台: 公民記者北部活動直播台 粉絲頁面: https://www.facebook.com/pimbaweak 社團頁面: http://ppt.cc/ImhM #CongressOccupied. 公民記者...]
+23:24 < hychen> 好像只有中字輩的在拒馬內
+23:27 < kiang> 直播頻道都更新到 http://nonuke.today/nonuke2014/ 了
+23:32 < MGdesigner> 更新現況：事因：警察用盾牌直接扳倒第一排靜坐的老人與民眾 經過：立院的朋友正有少許翻越拒馬，警察用長棍戳人，方仰寧出現。 幾位夥伴被抓被拖行，蔡教授被上手銬。 現狀：鎮暴警察出現了，有人受傷但警察不讓律師和醫護人 
+23:32 < MGdesigner> 醫療人員卡在外面15分鐘，警察不給進去
+23:34 < moon_c_> ：′(
+23:37 < Andchat_penetrat> :'(
+23:38 < CindyLinz> 雖然不是第一次知道了.. 還是會難過 @@"
+23:38 < CindyLinz> 現場現在在喊「放律師和醫師同行」
+23:40 < MGdesigner> 現場採訪妹X2：『被抓進去的１１個人很安全，王受傷、另有兩個人撞到頭，但進去沒有被打，希望大家冷靜』 
+23:42 < kiang> 束帶綁手應該可以控告妨礙自由吧...
+23:42 < kiang> 恩，有人貼了，違反 "警察職權行使法"
+23:44 < CindyLinz> 那是塑膠手銬, 算是逮捕吧
+23:45 < kiang> CindyLinz: https://www.facebook.com/photo.php?fbid=254203794762874 塑膠手銬?
+23:45 < kcwu> kiang's url: [黑色島國青年陣線 - 動態時報相片 | Facebook]
+23:46 < lancetw> cost down?
+23:46 < WeiHung> 好難過QQ
+23:46 < tw_556321> 現在有些擔心 等下半夜會不會無預警強制驅離....
+23:47 < kiang> 在八卦 PO 文的運氣真的很背，每次都會遇到隔壁有更聳動的爆掛，然後就沒人理我了 XD
+23:48 < icman> 這…算背嗎
+23:48 < kiang> icman: 正隔壁那篇文章推文爆炸，我只有 4 個推文，感覺很糟 XD
+23:49 < NewCliCker> 剛剛爬LOG才跟到昨晚核能流言終結者 聊天室的筆戰https://www.facebook.com/groups/294171667382837/permalink/458145744318761/
+23:50 < icman> kiang: orz
+23:50 < kiang> NewCliCker: 要參戰？
+23:50 < NewCliCker> 只能說太佩服au的修養了...
+23:50 < CindyLinz> kiang: 對, 在 CSI 有看過
+23:50 < CindyLinz> kiang: 長得就是束帶樣
+23:51 < kiang> CindyLinz++, 了解，我不應該跟著起鬨 XD
+23:53 < lancetw> http://autozone.techbang.com/posts/1306-prison-break
+23:53 < kcwu> lancetw's url: [【越獄】 | Auto-Zone 玩車特區 – 讓你成為汽車玩家]
+23:53 < lancetw> 警用簡易型塑膠手銬
+23:53 < kiang> lancetw++
+23:58 < NewCliCker> lancetw++

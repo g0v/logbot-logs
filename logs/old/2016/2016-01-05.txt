@@ -1,0 +1,163 @@
+--- Day changed 二  1月 05 2016
+00:00 < slackbot4> <jackymaxj> 因為我那時候拿到的網址連jcheck都是空值
+00:00 < slackbot4> <jackymaxj> 你有先偽造referer嗎
+00:00 < slackbot4> <kiang> 對喔，忘記 referer 問題
+00:01 < slackbot4> <jackymaxj> 這次寫的爬蟲有直接按照網址偽造referer，所以
+00:18 < slackbot4> <kiang> jackymaxj: 發現 jcheck 欄位可以拿掉，只是 PrintFJUD03_0.aspx 的 referer 必須設定為 FJUDQRY03_1.aspx
+00:22 < slackbot4> <kiang> 參考： <https://gist.github.com/kiang/040ae1122a1cb31cf033>
+00:22 < kcwu> slackbot4's url: [the snippet to fetch printable page · GitHub]
+00:25 < slackbot4> <jackymaxj> 是的沒錯
+00:25 < slackbot4> <https://github.com/biglawtw/judicial_crawler/blob/master/judicial_crawler/spiders/fjud_crawler.py#L13>
+00:25 < kcwu> slackbot4's url: [judicial_crawler/fjud_crawler.py at master · biglawtw/judicial_crawler · GitHub]
+00:25 < slackbot4> <jackymaxj> 就是說列表頁需要列表頁當作referer\
+00:26 < slackbot4> <kiang> 恩，列表頁好像比較不會封鎖，可以先拿到清單，然後產出個別判決書的工作清單，接著就是大家自己認領去處理
+00:27 < slackbot4> <kiang> 我目前是使用 hinet proxy 跑，所以封鎖的情況改善了一些 XD
+00:28 < slackbot4> <jackymaxj> 是說可以做成有中央伺服器，列出所有task，讓大家去抓完上傳，伺服器會稽核做確認
+00:29 < Gmi> 現在ＩＲＣ一直出現"You need to identify via SASL to use this server" 無法登入 ，請問要怎麼解決．．．卡兩天了．．
+00:29 < caasih> Gmi 有跟 NickServ 註冊的話，用 SASL 登入即可，沒有的話，換 ip 看看
+00:31 < Gmi> caasih 請問要怎麼註冊 看官方那邊好像是下指令？
+00:32 < caasih> Gmi 你要用 /msg 私訊給 NickServ 下指令註冊
+00:32 -!- DennyHuang_ is now known as Guest91812
+00:32 < slackbot4> <yhsiang> 我可以提供我從別的地方找到的 cap_sasl.pl
+00:32 < slackbot4> <kiang> 目前 @billy3321 的機器已經拿到 219880 筆了，也許可以合併一下然後找出一個共同作業的方式，畢竟以 lawbank 宣稱的數字是 1292 萬筆，個別主機要跑完應該會很痛苦
+00:33 < slackbot4> <yhsiang> 然後你只要寫一個 sasl.auth 就可以自動登入了
+00:33 < caasih> Gmi: `/msg NickServ HELP` 可以開始看說明
+00:33 < Gmi> caasih 好的，我再試試看
+00:33 < caasih> yhsiang++
+00:33 < caasih> Gmi: 也看看 yhsiang 講的解法～
+00:33 < slackbot4> <yhsiang> Gmi: <https://freenode.net/sasl/sasl-irssi.shtml>
+00:33 < kcwu> slackbot4's url: [Configuring SASL for irssi]
+00:34 < slackbot4> <yhsiang> 按照這邊做就是了
+00:34 < slackbot4> <kiang> 我跟 billy3321 的作法是以年份區分，它的主機跑 2012 ~ now 的，我的主機則是先跑 2011 的，只是我們的作業方式缺乏進一步驗證機制
+00:35 < Gmi> 感謝，我再試試看
+00:35 < slackbot4> <kiang> 目前拿到的資料 elasticsearch &amp; mysql 各塞一份，程式是 <https://github.com/JRF-tw/jrf_data/blob/master/get_year_judgements.sh>
+00:35 < kcwu> slackbot4's url: [jrf_data/get_year_judgements.sh at master · JRF-tw/jrf_data · GitHub]
+00:37 < slackbot4> <jackymaxj> 目前看來是比較需要中央
+00:37 < slackbot4> <jackymaxj> 來做管理與驗證機制
+00:37 < slackbot4> <kiang> yes, 否則大家都在做重複的工作
+00:38 < slackbot4> <jackymaxj> hmm，我不能保證最近有空
+00:38 < slackbot4> <kiang> 沒關係，反正目前爬蟲大概也可以跑到天荒地老吧 XD
+00:40 < slackbot4> <jackymaxj> 哈哈好，我會看有零碎時間的時候能幫上什麼忙
+00:40 < slackbot4> 祝各位順利！
+00:40 < slackbot4> <kiang> jackymaxj++
+00:43 < slackbot4> <billy3321> @moon_c: 覺得可以徵求一下「爬蟲系」的圖示XD
+00:45 < slackbot4> <kiang> "繼沙烏地阿拉伯和巴林之後，蘇丹外交部剛剛宣佈也宣布與伊朗斷交。伊朗一天之內連續失去三個邦交國。" 不知道會不會開戰...
+00:45 < slackbot4> <moon_c> 沒空的時候請多加利用貼紙產生器阿各位XDD
+00:45 < slackbot4> cc @poga
+00:47 < slackbot4> <billy3321> @kiang @jackymaxj @johnny @ronnywang 爬蟲系安安（誤）
+00:56 -!- chihchun is now known as chihchun_afk
+09:37 < Guest51960> s
+09:38 -!- Guest51960 [7de39edf@gateway/web/cgi-irc/kiwiirc.com/ip.125.227.158.223] has left #g0v.tw []
+09:46 < slackbot4> <jpomichael> hi
+09:47 < slackbot4> <jpomichael> @kiang  看来军火生意好做了
+09:55 -!- chwong_ is now known as chwong
+11:08 -!- DennyHuang_ is now known as Guest4434
+11:13 -!- [Enter] is now known as PingNote
+11:25 -!- chihchun_afk is now known as chihchun
+12:38 < slackbot4> <t0mst0ne> 最近er 的crawler 跑的不順，不知道是否被擋...tracerout failed 
+12:49 < slackbot4> <clkao> 某一家嗎？
+12:49 < slackbot4> <clkao> 還是全部?
+13:05 < slackbot4> <etblue> johnny: 這個檔案要去哪改？ <https://s3-ap-southeast-1.amazonaws.com/councilor.tw/g0v.css> 
+13:05 < slackbot4> 只要把第七行
+13:05 < slackbot4>  .container-fluid {
+13:05 < slackbot4>     padding-right: 20px;
+13:05 < slackbot4>     padding-left: 20px;
+13:05 < slackbot4>     margin: 0 50px 0 50px;
+13:05 < slackbot4> 的 margin 跟 padding 都拿掉，手機上看應該就暫時 ok
+13:08 < slackbot4> <t0mst0ne> @clkao:   剛看是我的local routing 出去被改 Orz , 和網管接洽中 ...
+13:18 < slackbot4> <johnny> etblue: 原來是那裡！難怪我怎麼試都找不到，檔案在這 <https://github.com/g0v/councilor-voter-guide/blob/master/voter_guide/static/css/g0v.css>
+13:18 < kcwu> slackbot4's url: [councilor-voter-guide/g0v.css at master · g0v/councilor-voter-guide · GitHub]
+13:21 < slackbot4> <johnny> etblue: 我 copy 一份到立委這好了，太亂了
+13:37 -!- chihchun is now known as chihchun_afk
+13:46 -!- acterce is now known as Acterce
+13:46 < Acterce> hello All
+13:46 < slackbot4> <johnny> etblue: 把它放到 responsive css 了，你看看這樣好不好 <https://github.com/g0v/twly-voter-guide/commit/462d7d1e1f45c3629b112109c0549543ba76ca1a#diff-1cd34f08fc8f66d32424f0d21b24e8ed>
+13:46 < kcwu> slackbot4's url: [responsive by @ETBlue · g0v/twly-voter-guide@462d7d1 · GitHub]
+13:48 < Acterce> 网站时国人的？
+13:49 < slackbot4> <etblue> johnny: 啊，我剛在 github 直接編輯那個... 我 revert 一下 XDDDD
+13:50 < slackbot4> <etblue> 額，在 github 的 web 上好像沒有 revert 可以按
+13:51 < slackbot4> <kiang> Acterce: 沒有人的
+13:51 < slackbot4> <johnny> etblue: 沒關係啦，等議員快要選的直後再整理XD
+13:51 < slackbot4> <etblue> johnny: 好 XD
+13:52 < slackbot4> <acterce> 哈喽
+13:52 < slackbot4> <johnny> etblue: 我剛直接改的話，手機看OK，桌機看會有點超出畫面，所以改放在static/css/style-responsive.css 那
+13:53 < slackbot4> <acterce> 第一次玩irc :grin:
+13:53 -!- Acterce [a1ca571b@gateway/web/cgi-irc/kiwiirc.com/ip.161.202.87.27] has left #g0v.tw []
+13:54 < slackbot4> <etblue> johnny: 喔喔喔瞭，直接改太地圖砲了 XDD
+13:57 < slackbot4> <johnny> etblue: 你要回覆這些回饋嗎XD 
+13:57 < slackbot4> <https://mail.google.com/mail/u/0/#inbox/1520b7c898f0d1b9>
+13:57 < slackbot4> <http://vote.ly.g0v.tw/#comment-2434582948>
+13:57 < kcwu> slackbot4's url: [立委投票指南]
+13:57 < kcwu> slackbot4's url: [Gmail]
+13:57 < slackbot4> <johnny> 晚點 cache 才會清掉
+14:07 < slackbot4> <etblue> 不同 gmail 帳號之間的 link 好像不會共通 XDDDDD
+14:08 < slackbot4> <etblue> 喔喔看到 disqus 了
+14:08 < slackbot4> <etblue> roger
+14:12 < slackbot4> <etblue> johnny: done <http://vote.ly.g0v.tw/#comment-2440311443>
+14:40 < slackbot4> <kiang> johnny: <http://blog.akanelee.me/posts/406064-2016-legislators-voting-guide> 感覺是漂亮的學姐
+14:40 < kcwu> slackbot4's url: [2016 立委投票指南 « 嫁給RD的 UI Designer]
+14:56 -!- chihchun_afk is now known as chihchun
+15:10 < slackbot4> <johnny> kiang: 他不定時會開設計課程可以去上課阿XD
+15:15 < slackbot4> <clkao> johnny++ # 可愛溫柔
+15:17 < slackbot4> <t0mst0ne> 健保署 大概每2個星期改一下 DRG 規則, 釋出excel檔
+15:17 < slackbot4> 然後19M 的excel打開來大約5 ~ 10 分鐘, search &amp; replace 也很久
+15:17 < slackbot4> 乾脆把excel解開, 開個repo 放到Github , 就知道每一次改版, 到底增減了哪些碼
+15:17 < slackbot4> NHI : <http://www.nhi.gov.tw/webdata/webdata.aspx?menu=17&amp;menu_id=1027&amp;webdata_id=937&amp;WD_ID=1036> 
+15:17 < slackbot4> repo : diff example
+15:17 < kcwu> slackbot4's url: [衛生福利部中央健康保險署]
+15:17 < slackbot4> <https://github.com/t0mst0ne/TWDRG/commit/adc09135ff3be5372984c290708ed7ebf48c7bf2>
+15:17 < kcwu> slackbot4's url: [renamed: "DRG3.4/DRG ICD10 DRG 3.4\347\211\210 (29705) 1062\351\2… · t0mst0ne/TWDRG@adc0913 · GitHub]
+15:24 < slackbot4> <t0mst0ne> 如果想找 ICD10 碼,也可以用 Github search within repo 的方式
+15:24 < slackbot4> 同時找到 ICD 10 coding 和 DRG 
+15:24 < slackbot4> <https://github.com/t0mst0ne/TWDRG/search?utf8=%E2%9C%93&amp;q=dengue>
+15:24 < kcwu> slackbot4's url: [Search Results · GitHub]
+15:25 < slackbot4> <t0mst0ne> 不知道有沒有人想接手做個 前端? ( elasticsearch 大約140M)
+16:49 < slackbot4> <kiang> t0mst0ne: 主要是想看個別代碼的異動情況嗎？我以為資訊系統廠商都有處理這些資料的更新
+16:50 < slackbot4> <billy3321> 話說想請教一下
+16:50 < slackbot4> <billy3321> 目前台灣有辦法可以依據地址去查詢到該地的地目嗎？
+16:51 < slackbot4> <t0mst0ne> @kiang: 不是；是想做成可以直接搜尋畫面
+16:52 < slackbot4> <leo424y> 請問g0v有社運頻道嗎? <https://www.twreporter.org/a/opinion-tang>
+16:52 < kcwu> slackbot4's url: [唐鳳／2016網路社運者的挑戰]
+16:52 < slackbot4> <kiang> t0mst0ne: 既有資訊廠商好像都有這樣的功能了，是因為你們自行開發的關係嗎？
+16:55 < slackbot4> <t0mst0ne> @kiang 沒廠商, 健保署會找廠商做一個單機版, 再給醫院; 但是這個單機版用sql , 又不開放把sql database file 直接給看
+16:55 < slackbot4> 所以我要不等單機版更新, 要不就自己從excel 找, 最後選擇和excel奮戰
+16:56 < slackbot4> <t0mst0ne> undefined
+16:58 < slackbot4> <t0mst0ne> 所以只好把每一欄位餵給elasticsearch , 之後看看診斷馬是否會落入某個DRG
+16:58 < slackbot4> 表面上和民眾無關, 不過因為DRG每個都有定額, 所以民眾可以知道某個診斷, 健保會給醫院多少錢
+16:59 < slackbot4> 大概也會知道為什麼接下來人球會越來越多 ....( 因為接6跟肌健 和 接1隻一樣)
+16:59 < slackbot4> <au> leo424y: 這裡就是社運頻道 XD
+17:00 < slackbot4> <t0mst0ne> @kiang 當然按照健保署的講法, 醫院都是有賺錢的拉 XD, 所以不要太計較 ....
+17:01 < slackbot4> <kiang> t0mst0ne: 可是看起來健保署的 DRG 並沒有對應點數，所以你畫的圖是依據院內資料庫？
+17:03 < slackbot4> <t0mst0ne> 點數有個公式 .....來開個hackpad 好了
+17:04 < slackbot4> <kiang> t0mst0ne++
+17:10 < Jedi_> 醫院都是有賺錢的啦，被剝削的從來都是醫事人員不是醫院 *哭哭*
+17:14 < slackbot4> <kiang> 醫院很多都不是靠醫治病人賺錢的呢 XD - <http://jackchang86.blogspot.tw/2016/01/2014-vgh-tw.html>
+17:14 < kcwu> slackbot4's url: [傑克醫生 Dr. Jack: 2014年 ‎台灣非常好醫院排行榜‬ (Very Good Hospitals in Taiwan)]
+17:34 < Jedi_> 醫務本業都很難講了，之前我月薪還不到四萬，每月業務的健保申報點數是二十幾萬點，醫院宣稱雇用我是在賠錢做公益....
+17:38 < Jedi_> 所以為了不要讓醫院繼續虧錢，只好離開（咦）
+18:04 < slackbot4> <muyueh> <https://www.facebook.com/events/1655396844743600/>
+18:04 < kcwu> slackbot4's url: [選舉松（台灣當前困難議題的看法討論） | Facebook]
+18:04 < slackbot4> <muyueh> 選舉松這一個星期六
+18:05 < slackbot4> <muyueh> 歡迎大家來閒聊自己覺得重要的議題，以及解法
+18:05 < slackbot4> <muyueh> <https://g0v.hackpad.com/HmcmD3XeAcW>
+18:05 < kcwu> slackbot4's url: [台灣當前困難議題討論 - g0v.hackpad.com]
+18:21 -!- chihchun is now known as chihchun_afk
+18:29 < slackbot4> <muyueh> 報名：<http://muyueh.kktix.cc/events/2016election>
+18:47 -!- chihchun_afk is now known as chihchun
+19:46 < slackbot4> <etblue> 背景資料收集份量還蠻多的，好像需要事前認領一下
+19:47 < slackbot4> <etblue> 在第一題九二共識就被打敗 wwww
+20:39 < slackbot4> <mh> 醫務收入部分，假設各醫院主要收入來源都是健保，那麼扣掉醫務成本後，賺愈多錢的醫院，就愈可能在醫務成本方面(例如醫材消耗、品質管控、人員訓練等)比其他醫院更……靈活運用……
+20:39 < slackbot4> 業外收入部分，醫院順便為就醫民眾提供美食街、停車場等(相較於醫療而言)比較不那麼接近基本人權的服務，就比較接近營利性質(相較於醫療而言)，收入高低各憑本事，其獲利又可以支持不那麼營利的醫療服務運作，這部分多賺一點對全民而言沒什麼不好
+20:39 < slackbot4> 公共衛生學者大多很左，認為醫療是全民應享有的權利，不能用來營利，和某些非公立醫院的經營者(或投資客)理念大不同。投資人投資醫院前應詳閱該醫院經營說明書，看該院傾向從哪部分賺錢
+20:49 < slackbot4> <pipi> <http://newtalk.tw/news/view/2016-01-05/68824>
+20:49 < kcwu> slackbot4's url: [挺政績 馬：非自我感覺良好 是國際感覺不錯 | 新頭殼 newtalk]
+20:49 < slackbot4> <pipi> 是被收割了嗎= =
+20:49 < slackbot4> <pipi> 而英國也有一個調查全球政府資訊開放程度的機構「開放知識基金會」，就open data做評比，台灣3年前是36名、2年前是11名，去年是第1名，「以後還有人說政府是黑箱作業，你可以說，你看看，全世界都說我是第1名」。
+21:03 < slackbot4> <pofeng> open data 和 Freedom of Information Act (FOIA) (開放政府) 是類似不同概念
+21:04 < slackbot4> <pofeng> 馬總統這樣說, 應該是沒有聽進 @whisky 上課的內容 :stuck_out_tongue:
+21:10 < slackbot4> <au> 然後黑箱指涉的除了輸出端 (資訊和資料不對等) 之外，還有輸入端 (民間參與、議題設定等正當程序不完備)... 例如下傳 100Mbps 上傳 10bps 算不算寬頻呢...
+22:47 < slackbot4> <billy3321> 被批評的服貿、貨貿數據沒有在 http://data.gov.tw 裡面看到喔（咦）
+22:47 < kcwu> slackbot4's url: [政府資料開放平臺]
+22:48 < slackbot4> <au> 服貿有一些 <http://data.gov.tw/search/site/ecfa> <http://data.gov.tw/search/site/%E6%9C%8D%E5%8B%99%E8%B2%BF%E6%98%93>
+22:48 < kcwu> slackbot4's url (1/2): [查詢 | 政府資料開放平臺]
+22:49 < slackbot4> <au> 貨貿確實似乎沒有

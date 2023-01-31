@@ -1,0 +1,827 @@
+--- Day changed 五  8月 30 2013
+00:02 -!- pm5 [~pm5@111-248-225-246.dynamic.hinet.net] has joined #g0v.tw
+00:02 -!- pm5_ [~pm5@111-248-225-246.dynamic.hinet.net] has joined #g0v.tw
+00:08 -!- kewang [dc860335@gateway/web/cgi-irc/kiwiirc.com/ip.220.134.3.53] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+00:10 < mindos_cloud> 晚上好
+00:11 -!- lukas_h [2e8e006d@gateway/web/cgi-irc/kiwiirc.com/ip.46.142.0.109] has joined #g0v.tw
+00:12 < mindos_cloud> billy3321 : 我上次有貼過二類電信的清單 http://www.ncc.gov.tw/Chinese/gradation.aspx?site_content_sn=1970
+00:12 < kcwu> mindos_cloud's url: [國家通訊傳播委員會_第二類電信業者名單]
+00:12 -!- lukas_h [2e8e006d@gateway/web/cgi-irc/kiwiirc.com/ip.46.142.0.109] has quit [Client Quit]
+00:13 < mindos_cloud> 其中包含有名的中嘉 中嘉寬頻股份有限公司
+00:25 -!- pm5_ [~pm5@111-248-225-246.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+00:25 -!- pm5 [~pm5@111-248-225-246.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+00:27 < tuiry> http://images.plurk.com/f7Nl-7rrdYbKfwJ2W7skFqs5WH4.jpg 
+00:27 < tuiry> 主題是反對政黨辯論會
+00:27 < mindos_cloud> tuiry++
+00:28 -!- caasih [~caasiHuan@114-46-141-202.dynamic.hinet.net] has joined #g0v.tw
+00:29 < pofeng_> tuiry++
+00:29 < clkao> tuiry++ # 太強了
+00:31 < caasih> kcwu: 來看你那 / 8.04x 版本。對了，要跑你的 pack.py 還需要別的東西嗎？
+00:31 -!- Guest91589 [722b8ad7@gateway/web/cgi-irc/kiwiirc.com/ip.114.43.138.215] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+00:32 < kcwu> caasih: 不用
+00:32 < billy3321> mindos_cloud++ 加進去了
+00:32 < billy3321> tuiry++
+00:33 < caasih> 另外每個字的長度不定，如果我要弄成一個檔或是 256 個檔，是不是最好還是該在檔案裡放個索引？
+00:33 < kcwu> caasih: 放在 zh-stroke-data 目錄, 第一次 python pack.py init 
+00:33 < caasih> kcwu: 好的，謝謝 <(_"_)>
+00:33 -!- caasih [~caasiHuan@114-46-141-202.dynamic.hinet.net] has quit [Quit: leaving]
+00:34 < kcwu> 之後就可以 pack.py pack / unpack / diff, 可以把檔案最前面那幾行 copy 到 makefile
+00:35 < kcwu> 如果要做成一個檔, 那可以放個 index, 字數*4 存每個字的位置
+00:37 < kcwu> 如果是 256 個檔, 也許量一下速度, 可能不用做 index, n/256 從頭讀到尾大概不會太久
+00:44 < yhsiang> https://www.dropbox.com/s/kd8w915phvzqxv7/fdatw.png # 這裡有個好神祕的處分日期 ...
+00:51 -!- lafin [b4daa40c@gateway/web/cgi-irc/kiwiirc.com/ip.180.218.164.12] has joined #g0v.tw
+01:04 -!- lafin [b4daa40c@gateway/web/cgi-irc/kiwiirc.com/ip.180.218.164.12] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+01:10 < clkao> yhsiang: 這個資料是不是上次誰砍過
+01:10 < wayne930242> 我也想去
+01:10 < clkao> 去... 哪？
+01:17 -!- louielu [7a761a37@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.26.55] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+01:21 < wayne930242> 上海？
+01:31 -!- pm5_ [~pm5@111-248-225-246.dynamic.hinet.net] has joined #g0v.tw
+01:31 -!- pm5 [~pm5@111-248-225-246.dynamic.hinet.net] has joined #g0v.tw
+01:33 < wayne930242> 為什麼pm5和pm5_總是一起上線
+01:35 < wayne930242> http://news.gog.com.cn/system/2013/08/29/012634573.shtml
+01:35 < wayne930242> 真的還假的
+01:35 < kcwu> wayne930242's url: [两名俄罗斯游客在波兰逃票并误将一头棕熊打成了重伤-工作人员,乔装改扮,俄罗斯人-金黔新闻]
+01:36 -!- pm5_ [~pm5@111-248-225-246.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+01:36 -!- pm5 [~pm5@111-248-225-246.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+01:47 -!- georgeli2 [~george_li@211-74-92-223.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 245 seconds]
+03:07 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+03:18 < superbil> http://www.ithome.com.tw/itadm/article.php?c=82353 # 真的出現民關的控管機構了
+03:18 < kcwu> superbil's url: [iWIN網路內容防護機構正式成立 | 即時新聞 | iThome online]
+04:02 < gugod> https://twitter.com/honey_trapped/status/363698677983875072 應景漫畫
+04:02 < kcwu> gugod's url: [Twitter / honey_trapped: CONTROL OF INTERNET.... How ...]
+04:42 -!- lukas_h [2e8e006d@gateway/web/cgi-irc/kiwiirc.com/ip.46.142.0.109] has joined #g0v.tw
+04:44 < lukas_h> a
+04:47 -!- lukas_h [2e8e006d@gateway/web/cgi-irc/kiwiirc.com/ip.46.142.0.109] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+04:50 -!- cataska [~cataska@210.64.6.233] has quit [Ping timeout: 248 seconds]
+05:18 -!- Supaplextw1 [~Lucky@114-25-205-194.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:19 -!- Supaplextw [~Lucky@114-36-239-109.dynamic.hinet.net] has joined #g0v.tw
+06:25 -!- willcus_ [uid13561@gateway/web/irccloud.com/x-ftmuutdfewifvrsc] has quit [Quit: Connection closed for inactivity]
+07:22 -!- xenor [~xenor@60.245.65.128] has joined #g0v.tw
+07:32 -!- a-tsioh [~pierre@136.176.102.84.rev.sfr.net] has joined #g0v.tw
+07:44 < billy3321> OK
+07:54 -!- a-tsioh [~pierre@136.176.102.84.rev.sfr.net] has quit [Quit: WeeChat 0.3.8]
+08:12 < pofeng_> gugod++ 
+08:32 < tuiry> https://www.dropbox.com/s/8lc8c5886elgp9y/STEAK.jpg pofeng billy3321 早安，來討論下圖吧(躺
+08:32 < billy3321> tuiry: XD
+08:32 < billy3321> 早安
+08:33 < tuiry> 字是昨天晚上隨便想的，感覺好沒有氣勢喔
+08:36 < billy3321> 背後的政黨協商 一樣是民主黑箱
+08:36 < tuiry> 另外，這張有看得出來是在講服貿嗎
+08:36 < billy3321> 你要不要加個代表中國的人在背後摸兩個人的頭？
+08:37 < tuiry> 略困難
+08:37 < billy3321> 然後這兩個人拿刀叉想要打架，但是眼睛偷瞄桌上的肉，叉子上也都叉著肉？
+08:38 < billy3321> 沒眼睛，也很困難
+08:38 < billy3321> XD
+08:38 < pofeng_> tuiry:  同感 ( 元素太多 )
+08:39 < tuiry> 如果是雨蒼的想法，我會畫沙灘上有兩個小孩在玩鬧，中國大人在遠方度假喝飲料曬太陽
+08:39 < pofeng_> tuiry: 字的話我想,  我覺得還是簡單點出 "我們自己分一分就好了" 之類的說明  
+08:40 < tuiry> 嗯...目前的文字比較像是觀眾的想法...
+08:43 < tuiry> 改好了
+08:44 -!- georgeli [~george_li@211-74-92-223.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+08:44 < tuiry> 那今天把後面的文字改成"服貿政黨辯論會?"  尤其那個問號，有什麼想法嗎
+08:49 -!- mno2 [~mno2@wlan58.cc.ntu.edu.tw] has joined #g0v.tw
+08:51 < tuiry> https://www.dropbox.com/s/cg81pdzfl1dgai0/STEAK2.jpg pofeng_ billy3321 將將 Round 2
+08:53 < pofeng_> 我是覺得不用問號 ( 因為好像確定舉辦 ) 
+08:59 < tuiry> 好
+09:00 < billy3321> 分一分就好可以放上面一點，或是讓兩個人用想的方式？
+09:00 < billy3321> 標語可以放在下面的keepout區域？
+09:03 < pofeng_> billy3321: 放上面的話, (我覺得) 問題一樣是元素太多
+09:03 < billy3321> pofeng_: 理解，我只是覺得可以不要放在牛肉上，放兩個人中間
+09:05 < vv|ng> 把人民當肉放在中間?
+09:05 < vv|ng> 不過這很不容易表現就是.
+09:06 < pofeng_> billy3321: 這我就沒意見 ( 或許該相信繪圖專業 )
+09:06 < billy3321> pofeng_: 阿，我只是出一點意見而已@@
+09:06 < pofeng_> vv|ng: 其實肉的形狀是台灣 , 不果好像不容易看出 ...
+09:07 < vv|ng> pofeng_: 我還真看不出來...
+09:07 < vv|ng> 你不講的話
+09:07 < pofeng_> billy3321: 抱歉, 我有點沒禮貌 :p
+09:07 < billy3321> pofeng_: 不會，我的心靈不會那麼脆弱。銳利一點我比較聽的懂@@
+09:08 < pofeng_> billy3321: *刺*
+09:08 < tuiry> vv|ng 水母的刀遮住了QQQ
+09:09  * billy3321 噴血倒地
+09:11 -!- chuiyi [~Adium@123-204-62-144.static.seed.net.tw] has joined #g0v.tw
+09:12 < tuiry> vv|ng pofeng billy3321 https://www.dropbox.com/s/cg81pdzfl1dgai0/STEAK2.jpg 改了肉 字跟光
+09:17 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+09:19 < pofeng_> tuiry: 對不起, 最後囉唆, 那個 CC-BY g0v.tw 
+09:19 < tuiry> 哪泥，我放上去了嗎
+09:20 < pofeng_> tuiry: 掛 g0v.tw 可能要問一下高村長比較好 CC: clkao 
+09:20 < billy3321> pofeng_: 你說(c)要朝左嗎？（誤）
+09:20 -!- Lei [~test@218.32.94.101] has joined #g0v.tw
+09:21 < tuiry> 我其實是想放商用要付錢那個
+09:21 < pofeng_> CC-NC-BY 
+09:21 < tuiry> 正在找之前高村長討論的東東
+09:21 -!- Lei [~test@218.32.94.101] has quit [Remote host closed the connection]
+09:21 -!- Lei [~test@218.32.94.101] has joined #g0v.tw
+09:21 < pofeng_> sorry, NNC BY-NC
+09:21 < pofeng_> sorry, CC BY-NC
+09:22 < tuiry> pofeng 3Q
+09:23 < tuiry> 之前村長說如果用g0v掛NC，要用的就捐一筆錢去公益團體憑收據使用這樣
+09:24 < pofeng_> tuiry: 我有看到相關討論, 不過 g0v.tw 可能要掛個 email (授權中心)窗口讓人接洽
+09:24 < pofeng_> tuiry: 不過我覺得大部的會直接盜圖啦, 科科
+09:25 < tuiry> 非商用可以隨便轉吧@_@
+09:25 < tuiry> NC不是只有限制商用嗎
+09:25 < pofeng_> 對啊, 但是很多新聞網站都會盜圖啊 :p
+09:26 < tuiry> 著作權本來就防君子不防小人阿.
+09:30 < billy3321> https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-prn2/p526x296/1185228_607496439308626_1740222042_n.jpg
+09:31 -!- lcamel [~lcamel@nat/yahoo/x-hekqzxxfxaxngbsd] has joined #g0v.tw
+09:32 -!- scyen [~scyen@122.147.15.66] has joined #g0v.tw
+09:33 -!- scyen [~scyen@122.147.15.66] has quit [Remote host closed the connection]
+09:33 < tuiry> billy3321 好帥!!XD
+09:33 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+09:34 < billy3321> 進擊的阿伯XD
+09:34 < tuiry> billy3321 會把字放在牛排上，是因為放別地方，圖繪太多焦點
+09:35 < billy3321> 理解
+09:38 -!- scyen_ [~scyen@122.147.15.66] has joined #g0v.tw
+09:40 -!- scyen [~scyen@4.53.154.230] has quit [Read error: Connection reset by peer]
+09:42 < tuiry> https://www.dropbox.com/s/8lc8c5886elgp9y/STEAK.jpg pofeng billy3321 上牛排喔
+09:42 < tuiry> 感覺可以用水母跟電火球這主題畫很多圖
+09:43 < billy3321> tuiry: 可以加上表情應該會更讚....不過有點難度就是 :(
+09:44 -!- georgeli [~george_li@211-74-92-223.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 276 seconds]
+09:44 < tuiry> billy3321 我喜歡把表情留給觀眾 :)
+09:44 < billy3321> XD
+09:55 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:05 -!- andre [~andre@125-227-154-97.HINET-IP.hinet.net] has joined #g0v.tw
+10:05 -!- andre is now known as Guest82462
+10:10 -!- Guest82462 [~andre@125-227-154-97.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+10:20 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has joined #g0v.tw
+10:21 -!- scyen_ [~scyen@122.147.15.66] has quit [Remote host closed the connection]
+10:21 -!- georgeli [~george_li@114-34-17-61.HINET-IP.hinet.net] has joined #g0v.tw
+10:22 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+10:27 -!- dsewnr [~dsewnr@59-127-35-164.HINET-IP.hinet.net] has joined #g0v.tw
+10:31 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+10:36 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+10:37 -!- pm5_ [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+10:37 -!- chihchun_afk is now known as chihchun
+10:39 -!- georgeli [~george_li@114-34-17-61.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+10:42 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: leaving]
+10:43 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+10:57 < Jcrt> tuiry: 水母放在頭上，一整個就給我克蘇魯 Cthulhu 的感覺 orz 超級邪神
+11:00 < Jcrt> for ex: http://static.comicvine.com/uploads/original/5/58639/1211451-cthulhu_by_reau.jpg
+11:01 < tuiry> Jcrt: 馬皇一不留神竟被看穿了化身
+11:01 < Jcrt> tuiry: 其實是替身(?)
+11:04 < tuiry> Jcrt: 邦伯潔利，搖控型替身
+11:06 -!- andre [~andre@1.34.114.249] has joined #g0v.tw
+11:07 -!- andre is now known as Guest29905
+11:07 -!- joewang [72203482@gateway/web/cgi-irc/kiwiirc.com/ip.114.32.52.130] has joined #g0v.tw
+11:07 -!- cataska [~cataska@210.64.6.233] has joined #g0v.tw
+11:07 < pofeng_> tuiry++  
+11:11 -!- whyjaster [~whyjaster@203.73.64.128] has joined #g0v.tw
+11:16 -!- joewang [72203482@gateway/web/cgi-irc/kiwiirc.com/ip.114.32.52.130] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+11:19 < wayne930242> 有人知道 iWIN 怎麼運作的嗎？
+11:21 -!- louielu [7a761b9f@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.27.159] has joined #g0v.tw
+11:22 < louielu> clkao:我要怎麼在github.com/g0v 建 repo?
+11:23 < louielu> clkao:OK了..
+11:28 -!- kewang [2a4f79b6@gateway/web/cgi-irc/kiwiirc.com/ip.42.79.121.182] has joined #g0v.tw
+11:29 -!- Al_Cho [al_cho@nat/novell/x-ymkopaqrqxfozxsc] has quit [Remote host closed the connection]
+11:32 < pofeng_> wayne930242: FYI: https://www.facebook.com/photo.php?v=10151953571710984
+11:32 < kcwu> pofeng_'s url: [iWIN 網路內容防護機構記者會揭牌儀式 | Facebook]
+11:34 < wayne930242> pofeng: 感謝！
+11:34 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 246 seconds]
+11:40 -!- jslee [~jslee@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+11:50 -!- Al_Cho [al_cho@nat/novell/x-yadqrtugksscnpnf] has joined #g0v.tw
+11:51 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+11:52 < billy3321> 請問一下
+11:53 < billy3321> Open data 和 Open source 有沒有關聯性？
+11:53 < billy3321> 有沒有人願意對這個問題發表看法呢？
+11:55 < yhsiang> clkao: 不知道誰砍過 不過我又砍了一次 食品添加物的 ...
+11:56 < yhsiang> clkao: 處分那個都沒有廠商名字 ....
+11:57 < pofeng_> billy3321: my 2 cents, http://www.inside.com.tw/2012/02/24/open-data-business
+11:57 < kcwu> pofeng_'s url: [[投稿] 資料開放，商機無限 ? - Inside 硬塞的網路趨勢觀察]
+11:58 -!- mno2 [~mno2@wlan58.cc.ntu.edu.tw] has quit [Quit: mno2]
+12:01 < wayne930242> pofneg: 感謝！
+12:03 < pofeng_> wayne930242: my pleasure !!
+12:05 -!- kewang [2a4f79b6@gateway/web/cgi-irc/kiwiirc.com/ip.42.79.121.182] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+12:05 -!- kewang [2a4f79b6@gateway/web/cgi-irc/kiwiirc.com/ip.42.79.121.182] has joined #g0v.tw
+12:06 < wayne930242> 有點好奇，曾經出現過有人把開源軟體拿來加以包裝以後販售的例子或是醜聞嗎？
+12:06 < wayne930242> 照我的理解，似乎開源軟體也意味著你可以販賣它？
+12:06 -!- prelover [poan@123.110.8.25] has quit [Ping timeout: 260 seconds]
+12:06 < louielu> wayne930242:microsoft?
+12:07 < wayne930242> microsoft?
+12:07 < wayne930242> louielu: 怎麼說XD
+12:08 < pofeng_> wayne930242:  醜聞 ?  不是啊, 本來就可以賣啊
+12:08 < louielu> 我想起來了, Windows 7 USB/DVD download tool
+12:09 < wayne930242> 就是譬如說賣了以後被發現根本沒有改，被鄉民踢爆之類的
+12:09 < wayne930242> 然後衰的是那些跑去買的人
+12:09 < pofeng_> wayne930242: RedHat 年營業額 6.5億美元（2009年）
+12:09 < pofeng_> wayne930242: 還是合法的啊
+12:10 < pofeng_> wayne930242: 有人賣 50 , 就會有人賣 45 (沒改) 
+12:10 < wayne930242> 原來如此
+12:11 < wayne930242> louielu: Windows 7 USB/DVD download tool 怎麼了？
+12:11 < pofeng_> wayne930242: 你要買得高價, 就要加值 ( 整合硬體, 或修改 )
+12:11 < pofeng_> wayne930242: 台灣廠商主要違法的部份是, 用了, 改了GPL 軟體, 沒放出 source code 
+12:12 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: BYE]
+12:12 < wayne930242> 哦
+12:12 < louielu> wayne930242:http://www.openfoundry.org/en/component/content/2212?task=view
+12:12 < kcwu> louielu's url: [承認 Windows 7 工具程式包含 GPL 程式碼 微軟將公開原始程式 - OpenFoundry]
+12:12 < pofeng_> wayne930242: 然後被告 ( gpl-violations.org )
+12:12 < wayne930242> ++
+12:13 < louielu> pofeng_:原來GPL是差在放出 source code, 我以為是不能賣錢...
+12:13 -!- kewang [2a4f79b6@gateway/web/cgi-irc/kiwiirc.com/ip.42.79.121.182] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+12:13 < yhsiang> louielu: 開源並不一定是不能賣錢, 要看license怎麼說
+12:13 < wayne930242> 這些人怎麼知道軟體裡有沒有含GPL的code勒
+12:14 -!- kewang [2a4f79b6@gateway/web/cgi-irc/kiwiirc.com/ip.42.79.121.182] has joined #g0v.tw
+12:15 < wayne930242> yhsiang: 所以也有些開源軟體是有說不能賣錢的嗎？
+12:17 < pofeng_> wayne930242: good point , 所以很多廠商偷偷用都不講
+12:17 < louielu> =- =
+12:18 -!- georgeli [~george_li@114-34-17-61.HINET-IP.hinet.net] has joined #g0v.tw
+12:18 < wayne930242> ＝ ＝
+12:18 < pofeng_> wayne930242: 就我所知, 所有的開源軟體都可以賣 
+12:18 < yhsiang> wayne930242: http://withinwindows.com/2009/11/06/microsoft-lifts-gpl-code-uses-in-microsoft-store-tool/
+12:18 < kcwu> yhsiang's url: [Microsoft lifts GPL code, uses in Microsoft Store tool — Within Windows]
+12:18 < pofeng_> wayne930242: http://opensource.org/licenses
+12:18 < kcwu> pofeng_'s url: [Open Source Licenses | Open Source Initiative]
+12:19 < pofeng_> wayne930242: 但是有些公司走 dual license
+12:19 < wayne930242> dual license?不會衝突嗎？
+12:19 < yhsiang> 基本上反解回去發現, 某些寫的method很像某GPLv2的code就抓包了 ...
+12:20 < pofeng_> wayne930242: Dual license http://lucien.cc/?p=62 
+12:20 < kcwu> pofeng_'s url: [20070130-Dual license-雙重授權模式的美麗與哀愁]
+12:23 -!- bigsan [722bef48@gateway/web/cgi-irc/kiwiirc.com/ip.114.43.239.72] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+12:23 < pofeng_> wayne930242: open content 授權系統之一 : 創用CC ( creative common ) 則是單獨把商業運用, 另外規範
+12:23 -!- bigsan [722bef48@gateway/web/cgi-irc/kiwiirc.com/ip.114.43.239.72] has joined #g0v.tw
+12:24 < wayne930242> open content
+12:25 < pofeng_> wayne930242: eg: CC BY-NC 就是不可(免費)商業運用, 如要商業運用請洽作者另外(付費)
+12:25 < pofeng_> wayne930242: 
+12:25 < wayne930242> 嗯 我懂了
+12:26 < pofeng_> wayne930242: CC BY 則是標示作者姓名的前提下,  可以自由修改 / 散佈 / 商業運用
+12:26 -!- Guest29905 [~andre@1.34.114.249] has quit [Remote host closed the connection]
+12:27 -!- georgeli [~george_li@114-34-17-61.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+12:30 < wayne930242> open data 也是一種 open content 嗎？
+12:32 -!- bigsan [722bef48@gateway/web/cgi-irc/kiwiirc.com/ip.114.43.239.72] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+12:32 -!- bigsan [~bigsan@114-43-239-72.dynamic.hinet.net] has joined #g0v.tw
+12:33 -!- xenor [~xenor@60.245.65.128] has quit [Ping timeout: 276 seconds]
+12:34 -!- kewang [2a4f79b6@gateway/web/cgi-irc/kiwiirc.com/ip.42.79.121.182] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+12:34 -!- Lei [~test@218.32.94.101] has quit [Remote host closed the connection]
+12:36 < pofeng_> wayne930242: 從蕭景燈博士的投影片我們可以瞭解， 開放源碼運動，不但推動了後來開放內容 ( Open Content ) 的演化，如：Wikipedia，OpenStreetMap，爾後也促成了開放資料 ( Open Data )
+12:36 < pofeng_> 的風潮。開放資料，跟開放內容運動有點類似，但許多開放資料的推廣者，是希望官方機構能夠本於資訊透明的原則，釋出有利於民眾的資料，所以 Open Data 常常會與 Open Government  一同談論。 http://www.inside.com.tw/2012/02/24/open-data-business
+12:36 < kcwu> pofeng_'s url: [[投稿] 資料開放，商機無限 ? - Inside 硬塞的網路趨勢觀察]
+12:36 -!- georgeli [~george_li@114-34-17-61.HINET-IP.hinet.net] has joined #g0v.tw
+12:37 < wayne930242> 喔喔
+12:38 < louielu> 插一個問題, cronie 不能用在有 .git 的資料夾？
+12:41 -!- kewang [caad2bde@gateway/web/cgi-irc/kiwiirc.com/ip.202.173.43.222] has joined #g0v.tw
+12:41 -!- mno2 [~mno2@wlan64.cc.ntu.edu.tw] has joined #g0v.tw
+12:53 -!- georgeli [~george_li@114-34-17-61.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+12:56 -!- georgeli [~george_li@114-34-17-61.HINET-IP.hinet.net] has joined #g0v.tw
+12:59 -!- chuiyi [~Adium@123-204-62-144.static.seed.net.tw] has quit [Quit: Leaving.]
+13:00 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 276 seconds]
+13:02 -!- xenor [~xenor@60.245.65.128] has joined #g0v.tw
+13:03 -!- joyqul [~joyqul@140.113.54.52] has quit [Ping timeout: 264 seconds]
+13:03 -!- susu_ [~cwshu@140.113.54.52] has quit [Ping timeout: 264 seconds]
+13:06 -!- Lei [~test@60-251-109-66.HINET-IP.hinet.net] has joined #g0v.tw
+13:10 -!- georgeli [~george_li@114-34-17-61.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+13:11 -!- joyqul [~joyqul@140.113.54.52] has joined #g0v.tw
+13:12 -!- susu_ [~cwshu@140.113.54.52] has joined #g0v.tw
+13:15 -!- Lei [~test@60-251-109-66.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+13:23 -!- bafu [~bafu@175.41.48.77] has joined #g0v.tw
+13:28 -!- Lei [~test@210.242.160.66] has joined #g0v.tw
+13:31 -!- tpa [~poan@123.110.8.25] has joined #g0v.tw
+13:34 -!- jslee [~jslee@114-35-121-105.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+13:37 -!- andre [~andre@1.34.114.249] has joined #g0v.tw
+13:37 -!- jslee [~jslee@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+13:37 -!- andre is now known as Guest44387
+13:41 -!- bigsan [~bigsan@114-43-239-72.dynamic.hinet.net] has quit []
+13:41 -!- bigsan [~bigsan@114-43-239-72.dynamic.hinet.net] has joined #g0v.tw
+13:42 -!- jslee [~jslee@114-35-121-105.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+13:45 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has joined #g0v.tw
+13:45 < Lee1092> 世代交替阿~   http://www.wretch.cc/blog/WretchFAQ/13637135
+13:45 < kcwu> Lee1092's url: [【重要公告】Yahoo!奇摩無名小站將於2013年12月26日終止服務 - WretchFAQ - 無名小站]
+13:48 -!- chuiyi [~Adium@1.34.205.74] has joined #g0v.tw
+13:50 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+13:54 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 264 seconds]
+14:00 -!- Guest44387 [~andre@1.34.114.249] has quit [Remote host closed the connection]
+14:02 -!- georgeli [~george_li@114-34-17-61.HINET-IP.hinet.net] has joined #g0v.tw
+14:03 -!- georgeli2 [~george_li@114-34-17-61.HINET-IP.hinet.net] has joined #g0v.tw
+14:04 -!- ck [~ck@140.112.106.190] has joined #g0v.tw
+14:05 -!- lcamel [~lcamel@nat/yahoo/x-hekqzxxfxaxngbsd] has quit []
+14:05 -!- lcamel [~lcamel@nat/yahoo/x-vnixwwlogllmepiv] has joined #g0v.tw
+14:06 -!- wHisKy [~wHisKy@61-230-120-81.dynamic.hinet.net] has joined #g0v.tw
+14:07 -!- georgeli [~george_li@114-34-17-61.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+14:08 -!- jslee [~jslee@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+14:10 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+14:13 -!- lcamel_ [~lcamel@nat/yahoo/x-esgxomraartxbdse] has joined #g0v.tw
+14:13 -!- lcamel [~lcamel@nat/yahoo/x-vnixwwlogllmepiv] has quit [Read error: Connection reset by peer]
+14:16 -!- jslee [~jslee@114-35-121-105.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+14:17 < wayne930242> http://money.chinatimes.com/news/news-content.aspx?id=20130827000490&cid=1206
+14:17 < kcwu> wayne930242's url: [觀念平台－不服從 台式嬉皮運動｜財經焦點｜理財新聞｜中時理財]
+14:17 < wayne930242> 我仔細看了一下才發現
+14:17 < wayne930242> 這根本就是學術版的「高挫折」
+14:18 -!- wHisKy [~wHisKy@61-230-120-81.dynamic.hinet.net] has quit []
+14:26 < billy3321> wayne930242: 求掃盲
+14:26 < wayne930242> 掃盲是什麼？
+14:26 < billy3321> 就是把文章寫的淺顯易懂，讓不懂的人也可以看懂
+14:27 < hcchien> ipa++   # 上節目
+14:27 < wayne930242> 喔喔
+14:29 < wayne930242> 簡單來說就是：現在的公民不服從只是來自於高挫折，所以才會如此無力，對於體制只是在反抗，卻不是因為想要改變現狀，只是出於對現狀的不滿。
+14:29 < billy3321> wayne930242: 考慮自己挖坑自己跳，寫出一篇文章嗎？
+14:29 < wayne930242> 結論就是：現在的公民不服從只是一種類似「公民不服從」的運動。
+14:30 < wayne930242> 而且這個篇文章的內容，蔡正元根本都有翻譯XD
+14:30 < billy3321> wayne930242: 沒人放在一起比較過啊
+14:30 < billy3321> 最好引用一下林先生的文章，他一定有類似的論述
+14:30 < wayne930242> 我有在考慮，蔡正元的東西我算是整理好了
+14:31 < wayne930242> 我本來是打算先寫 g0v和 open data 如何改造社會
+14:31 < wayne930242> 但也可以先寫這個啦
+14:33 < miaout17> http://techorange.com/2013/08/30/uberauto/ 新聞小幫手有考慮擴展到科技部落格嗎？
+14:33 < kcwu> miaout17's url: [買下 Google 無人汽車，Uber 服務再進化，將推無人駕駛載你走透透！ | TechOrange《 創新與應用 |]
+14:33 -!- andre [~andre@125-227-154-97.HINET-IP.hinet.net] has joined #g0v.tw
+14:33 -!- andre is now known as Guest21574
+14:33 < wayne930242> 是指 OT 被頻頻打臉的事嗎
+14:33 < wayne930242> to
+14:35 < miaout17> 我已經盡量不看TO了，個人觀查如果認真看的話大概八成的文章都找的出問題。今天看到朋友在SNS轉貼點進去看，越看越生氣 Orz
+14:35 -!- jslee [~jslee@114-35-121-105.HINET-IP.hinet.net] has joined #g0v.tw
+14:37 < wayne930242> https://www.facebook.com/hashtag/techorange
+14:37 < kcwu> wayne930242's url: [Facebook]
+14:38 < miaout17> 其實中文科技blog很多都有這樣的問題（看英文文章不直接翻譯，用自己的話說一遍，把別人的觀點當自己的觀點，可能無詳加查證或校對）
+14:39 < miaout17> 題外話，我覺得把別人的觀點重說一遍當自己的觀點，雖然無抄襲之虞，還是有道德瑕疵的。這個就不只TO了，好幾家都這樣做。只是TO誤導率實在太高。
+14:42 < wayne930242> 仔細看這個還真的超荒謬的
+14:42 < wayne930242> http://techcrunch.com/2013/08/25/uberauto/
+14:42 < kcwu> wayne930242's url: [Dispatch From The Future: Uber To Purchase 2,500 Driverless Cars From Google | TechCrunch]
+14:43 < wayne930242> 高檔叫車服務 Uber 近來的募資新聞中，最引人注目的，就是 Uber 已購買了 2500 輛 Google 生產的無人駕駛車了！
+14:43 < miaout17> 長話短說：「避免假新聞（消息）誤導民眾」應是原本「新聞小幫手」的宗旨，建議新聞小幫手除了各大新聞網站外，也支援科技部落格，甚或全部開放。 ( Suggestion for ronnywang )
+14:44 < miaout17> TechCrunch說2023年，標題也寫了dispatch from the future Orz
+14:45 < wayne930242> 新聞小幫手本來也沒有限制不能用在這啦
+14:45 < billy3321> miaout17: 記得沒錯的話，新聞小幫手只針對URL。回報就是了。
+14:46 < wayne930242> http://newshelper.g0v.tw/#report
+14:46 < gugod> ronnywang 顯然可以同時用 newsdiff 與 newshelper 的資料計算出各網站的誤導率 :)
+14:46 < miaout17> 嗯嗯，一開始是打算inject在新聞網站和Facebook的DOM裡，後來只剩下SNS
+14:46 < wayne930242> http://newshelper.g0v.tw/index/log/214#logs
+14:47 < wayne930242> 不過沒有彈出警示耶
+14:49 < miaout17> 現在只有如果在Facebook中轉貼，才會跳出警示？
+14:49 < kcwu> 因為還沒人寫... # 後來只剩下SNS
+14:50 < wayne930242> 原來如此
+14:50 < wayne930242> 可惜我不會寫＠＠
+14:51  * miaout17 還只有Facebook，沒有G+, twitter等。
+14:53 < miaout17> 我在想content script是不是改成apply到任何頁面。match到假新聞就放個float element的小icon「假」，點開就跳出新聞小幫手。
+14:54 < miaout17> 這樣任何站都可以跳出新聞小幫手，不用去針對每個站的DOM處理（只有SNS要去處理DOM）。
+14:54 < miaout17> 不過extension要改要所有站的權限。
+14:54 < hcchien> 算一下每個媒體被檢舉的次數
+14:56 < yhsiang> miaout17: 只要改extension的permission就可以了 XD
+14:58 < yhsiang> miaout17: 基本上我看現在1.0.5的寫法 好像就是match 所有網站
+14:58 < yhsiang> 主不過chrome store上面好像還是1.0.4.6?
+14:59 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 264 seconds]
+14:59 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+15:00 < miaout17> 喔喔，我拉github的code試試
+15:01 < yhsiang> miaout17: 不過還不確定有沒有做你說的那種設定
+15:02 < yhsiang> 跟 firefox 版本一樣，一般頁面也加上紅色框框跳出訊息, 應該是有
+15:03 < miaout17> 喔喔，Chrome版本是跳notification. 
+15:05 < ronnywang> 加紅框框是我早上才加的功能 XD
+15:05 < ronnywang> 也把 permissions 從只有 facebook 改成 * 了
+15:05 < ronnywang> 不過還沒 deploy 到 google play, 目前自己在試用中，沒問題晚上再推
+15:05 < miaout17> ronnywang++
+15:06 < miaout17> 原本想說還沒有這些功能的話晚上就來做(被TO氣到)，然後就發現大大做好了。
+15:07 < ronnywang> 本來是想不要跟使用者要太多權限，不過說真的使用者根本不在乎啊 XD
+15:08 < ronnywang> 會在乎的人就表示至少比較謹慎，那麼就算他不裝新聞小幫手應該也比較不容易受到有害消息所害
+15:08 < ronnywang> 不在乎的人就應該要裝了 XD
+15:08 < miaout17> ronnywang: 要*的extension很多啊 XD
+15:09 < ronnywang> 如果 extension 要 * 或是 facebook oauth 要一堆東西的通常我就不會用了
+15:09 < ronnywang> 所以如果新聞小幫手不是我寫的，我自己應該也不會裝 XD
+15:09 < wayne930242> ronnywang++
+15:09 < miaout17> (個人覺得) 會在乎的人中很大比例有資訊背景，有資訊背景的人對open source可以review的東西會比較安心。
+15:09 < miaout17> 嗯嗯
+15:13 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 264 seconds]
+15:13 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+15:15 -!- Guest21574 [~andre@125-227-154-97.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+15:25 -!- ck [~ck@140.112.106.190] has quit [Remote host closed the connection]
+15:32 -!- ck [~ck@111.235.249.204] has joined #g0v.tw
+15:37 -!- jslee [~jslee@114-35-121-105.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+15:39 < ipa> hcchien: 其實就在家裡 skype :P
+15:45 -!- kewang [caad2bde@gateway/web/cgi-irc/kiwiirc.com/ip.202.173.43.222] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+15:45 -!- kewang [caad2bde@gateway/web/cgi-irc/kiwiirc.com/ip.202.173.43.222] has joined #g0v.tw
+15:47 -!- ck [~ck@111.235.249.204] has quit [Remote host closed the connection]
+15:48 < jimyhuang> 如果新聞小幫手不是 ronnywang 背書，我大概也不敢裝... XD
+15:50 < billy3321> _(:з」∠)_
+15:52 < hcchien> ipa: 害我還想像兩個人搶話的時候是什麼畫面
+15:52 < billy3321> ._./ 採訪的時候可不可以開放IRC直播XD
+15:53 < hcchien> IRC call in
+15:53 < billy3321> "現在這個問題讓我們來看看線上網友的即時回答"
+15:53 < billy3321> 然後就會滿滿的 "媽~我在這裡"
+15:53 < billy3321> XD
+15:55 -!- lcamel_ [~lcamel@nat/yahoo/x-esgxomraartxbdse] has quit [Remote host closed the connection]
+16:00 < ipa> 有搶話嗎？^^
+16:02 -!- lcamel [~lcamel@nat/yahoo/x-sxdacthkmfodpxea] has joined #g0v.tw
+16:05 < ipa> 是有擔心被引導或誤解，畢竟我們邪教欸。。不過好像還好
+16:08 < pofeng_> 邪教++
+16:11 -!- andre [~andre@125-227-154-97.HINET-IP.hinet.net] has joined #g0v.tw
+16:12 -!- andre is now known as Guest12041
+16:26 -!- vincenthsu [~vincenths@ec2-54-225-101-41.compute-1.amazonaws.com] has joined #g0v.tw
+16:27 < hcchien> 竟然沒提到邪教  (大誤
+16:33 -!- lcamel [~lcamel@nat/yahoo/x-sxdacthkmfodpxea] has quit [Remote host closed the connection]
+16:34 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has joined #g0v.tw
+16:35 -!- kewang [caad2bde@gateway/web/cgi-irc/kiwiirc.com/ip.202.173.43.222] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+16:35 < hcchien> 話說這幾天追 log 有容易許多   :D
+16:37 < cls_bsd> ?
+16:37 < hcchien> 少了很多啊
+16:40 -!- vincenthsu [~vincenths@ec2-54-225-101-41.compute-1.amazonaws.com] has left #g0v.tw ["leave"]
+16:43 < wayne930242> http://blog.udn.com/rocky8080/8192588
+16:43 < kcwu> wayne930242's url: [「拆政府」背後的真相 - 洛杉基 (Rocky) 的網誌 - udn部落格]
+16:45 < ronnywang> wayne930242: 我爸前幾天才傳這篇文章給我，叫我不要被民進黨給騙了 XD
+16:46 < wayne930242> 我很疑惑到底「幕後的政黨推手」在哪
+16:47 -!- raejin [uid12959@gateway/web/irccloud.com/x-afndkimctvcsyjjm] has quit [Ping timeout: 260 seconds]
+16:47 < wayne930242> ronnywang: 不過還真的很多人吃這一套
+16:51 < Dennisc140> 真是奇文啊
+16:51 < Dennisc140> 我真想見見傳說中的政黨推手在那
+16:56 < icemango> 有人被政黨操縱，但是沒有政黨去操縱人
+16:59 < billy3321> 乾脆自己組黨算了
+16:59 < billy3321> 對啊，有政黨黑手，就是我們自己XDDD
+17:00 < billy3321> 像是copy黨、10黨也不錯
+17:00 < billy3321> 10黨標語：世界上有10種人，懂10黨的和不懂的XD
+17:04 < wayne930242> 我打算來和十隻瑜的文章一起談
+17:05 < wayne930242> 「公民不服從」的超自然事件簿
+17:05 < wayne930242> * 政客幕後操盤手的黑影：究竟是「誰」在操盤？
+17:05 < wayne930242> * 神秘的集體精神分析：「高挫折」的傳說
+17:05 < wayne930242> * 「抵制末日說」的預言：石之瑜大師的洞見
+17:07 < wayne930242> 大概會談這一陣子的一些反動言論中的不存在的事實
+17:07 < wayne930242> 這些我認為其實是不科學的
+17:08 < hychen> hcchien: 熱度降了
+17:09 < Stranger_1980_> 組黨吧
+17:10 < dirty_> 我覺得一個可能是, 之前太熱了, 很多人打工的進度這陣子真的太少了 ^^ 該也是補一下
+17:12 < aLlia> 聯合報數十年來如一日..這應該就叫文化吧
+17:13 < wayne930242> g0v要阻擋嗎
+17:13 < wayne930242> 組黨
+17:17 < wayne930242> XD
+17:29 < hcchien> 結果是阻擋組黨   lol
+17:32 < hcchien> 又看了一次，還是覺得很經典    http://www.youtube.com/watch?v=V-pcnJ9X0j8
+17:32 < kcwu> hcchien's url: [[備份]行政院經濟動能推升方案廣告 - YouTube]
+17:32 < wayne930242> 組的話就真的變成幕後黑手了
+17:33 < wayne930242> 不是說這廣告還有第二集嗎
+17:34 -!- elleryq [3d42d1a1@gateway/web/freenode/ip.61.66.209.161] has joined #g0v.tw
+17:35 < hcchien> 我只有找到國，台語的
+17:35 < hcchien> 沒看到第二集
+17:37 < Stranger_1980_> 荒腔走板的廣告
+17:38 < wayne930242> 就創造了民間的向心力來說，他還滿成功的
+17:43 < hcchien> 對用來說明 g0v 的發起還滿成功的   (這分明是倒果為因   LOL
+17:47 -!- xenor [~xenor@60.245.65.128] has quit [Ping timeout: 276 seconds]
+17:47 < S3p_lin_> 這讓我想起洪綾的翻譯...  # miaout17> 題外話，我覺得把別人的觀點重說一遍當自己的觀點，雖然無抄襲之虞，還是有道德瑕疵的。
+17:55 -!- elleryq [3d42d1a1@gateway/web/freenode/ip.61.66.209.161] has quit [Quit: Page closed]
+17:59 -!- Lulala [uid13558@gateway/web/irccloud.com/x-xctcviwmlxvtzgcu] has quit [Quit: Connection closed for inactivity]
+18:02 -!- louielu [7a761b9f@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.27.159] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+18:03 < wayne930242> 洪綾？
+18:07 -!- bigsan [~bigsan@114-43-239-72.dynamic.hinet.net] has quit []
+18:15 -!- chuiyi1 [~Adium@1.34.205.74] has joined #g0v.tw
+18:15 -!- chuiyi [~Adium@1.34.205.74] has quit [Read error: Connection reset by peer]
+18:16 < S3p_lin_> 啊記錯了, 洪蘭
+18:18 -!- samuelololol [~samuelolo@60-251-40-253.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+18:18 -!- chuiyi1 [~Adium@1.34.205.74] has quit [Client Quit]
+18:19 -!- Al_Cho [al_cho@nat/novell/x-yadqrtugksscnpnf] has quit [Ping timeout: 245 seconds]
+18:21 -!- scyen_ [~scyen@122.147.15.66] has joined #g0v.tw
+18:24 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 264 seconds]
+18:25 -!- Dennisc140 [~Dennis_Ch@210.61.193.66] has left #g0v.tw []
+18:25 -!- scyen [~scyen@4.53.154.230] has quit [Ping timeout: 245 seconds]
+18:32 -!- ddio [~ddio@60-250-142-120.HINET-IP.hinet.net] has left #g0v.tw []
+18:33 -!- scyen_ [~scyen@122.147.15.66] has quit [Remote host closed the connection]
+18:33 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+18:34 -!- scyen [~scyen@4.53.154.230] has joined #g0v.tw
+18:35 -!- bafu [~bafu@175.41.48.77] has quit [Ping timeout: 264 seconds]
+18:35 -!- dsewnr [~dsewnr@59-127-35-164.HINET-IP.hinet.net] has quit [Quit: leaving]
+18:39 -!- Lei [~test@210.242.160.66] has quit [Remote host closed the connection]
+18:39 -!- Lei_ [~test@218.32.94.101] has joined #g0v.tw
+18:43 -!- raejin [uid12959@gateway/web/irccloud.com/x-qgrxspxjoqqvtmpe] has joined #g0v.tw
+18:43 -!- louielu [7a761b9f@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.27.159] has joined #g0v.tw
+18:44 -!- Lei_ [~test@218.32.94.101] has quit [Ping timeout: 264 seconds]
+18:49 -!- scyen_ [~scyen@122.147.15.66] has joined #g0v.tw
+18:50 -!- georgeli2 [~george_li@114-34-17-61.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+18:52 -!- scyen [~scyen@4.53.154.230] has quit [Ping timeout: 240 seconds]
+18:52 -!- mno2 [~mno2@wlan64.cc.ntu.edu.tw] has quit [Quit: mno2]
+18:58 -!- scyen_ [~scyen@122.147.15.66] has quit [Remote host closed the connection]
+18:58 -!- scyen [~scyen@122.147.15.66] has joined #g0v.tw
+18:58 -!- poga [~poga@111-241-136-251.dynamic.hinet.net] has quit [Remote host closed the connection]
+19:02 -!- tpa [~poan@123.110.8.25] has quit [Read error: Connection reset by peer]
+19:02 -!- prelover [~poan@123.110.8.25] has joined #g0v.tw
+19:02 -!- scyen [~scyen@122.147.15.66] has quit [Ping timeout: 246 seconds]
+19:05 -!- kaxing [~kaxing@175.41.48.77] has quit [Quit: BYE]
+19:06 -!- whyjaster [~whyjaster@203.73.64.128] has quit [Remote host closed the connection]
+19:08 -!- thschee_ [thschee@gateway/shell/ircrelay.com/x-wfkyjwifihzoxctt] has joined #g0v.tw
+19:13 -!- pm5_ [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+19:13 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+19:21 -!- Guest12041 [~andre@125-227-154-97.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+19:22 -!- tpa [poan@123.110.8.25] has joined #g0v.tw
+19:22 -!- prelover [~poan@123.110.8.25] has quit [Read error: Connection reset by peer]
+19:25 -!- reChing|afk [~chatzilla@host-61-70-233-22.static.kbtelecom.net] has joined #g0v.tw
+19:29 -!- reChing [~chatzilla@host-61-70-233-22.static.kbtelecom.net] has quit [Ping timeout: 245 seconds]
+19:29 -!- reChing|afk is now known as reChing
+19:40 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Quit: Lost terminal]
+19:40 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+19:41 -!- tsaiid [~tsaiid@host-219-68-13-81.dynamic.kbtelecom.net] has joined #g0v.tw
+19:49 < clkaoud> dirty_++ # 打工+1
+20:08 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+20:10 -!- chuiyi [~Adium@220-135-178-174.HINET-IP.hinet.net] has joined #g0v.tw
+20:12 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+20:33 -!- xenor [~xenor@1-164-210-55.dynamic.hinet.net] has joined #g0v.tw
+20:43 -!- lanfon72 [319e6ab1@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.106.177] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+20:44 -!- lanfon72 [319e6ab1@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.106.177] has joined #g0v.tw
+21:03 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+21:09 -!- poga [~poga@111-241-136-251.dynamic.hinet.net] has joined #g0v.tw
+21:11 < ipa> 冷一下++ 
+21:13 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+21:14 < superbil> 最近打工來的客人很多很急，完全無法 kill
+21:31 < ttcat> lol
+21:31 < ttcat> 我覺得 g0v 實在太溫馨了 T___T
+21:32 < clkao> ttcat: 花生什魔術？
+21:33 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+21:33 < pofeng_>   ttcat 你沒在跟 1985 開會嗎 ?
+21:34 < pofeng_> 我正在聽 skype ...
+21:35 < ttcat> 糟糕 露餡
+21:35 < ttcat> 摀住 pofeng 的嘴巴
+21:35 < clkao> 有提到 g0v ?
+21:35 < pofeng_> ok ok
+21:36 < pofeng_> ttcat: 討論技術的時候再叫一下 , 看看要選 drupal , wordpress or blogger 
+21:37 -!- kewang [76a835da@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.53.218] has joined #g0v.tw
+21:40 -!- Lei [~test@114-36-177-244.dynamic.hinet.net] has joined #g0v.tw
+21:43 < wayne930242> 花生什麼恕
+21:43 < ttcat> 沒 只是覺得 g0v 這邊好單純 <3
+21:44 -!- Lei [~test@114-36-177-244.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+21:45 -!- georgeli [~george_li@211-74-92-223.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+21:45 < pofeng_> 單純的軍火商++ 
+21:46 < ttcat> 他們一直在說 有一個 美國的 公民行動 平台 網站
+21:46 < ttcat> 有人有 any idea 這是什麼嗎？
+21:46 < pofeng_> 直接問 (我找一下)
+21:49 < vv|ng> 台灣的技術人員本來就很溫馨, 不然怎麼會被資方欺負假的? (今天跟某人聊天講到的)
+21:49 < clkao> 這禮拜連續做了太多耗 hp 的事情了... 下週要躲在山上認真打工跟弄立院
+21:49 < ttcat> vv|ng: ~~qq
+21:50 < pofeng_> ttcat: 找不到, 但是你可以看一下 jimyhuang 的 slide 後面有一些 demo https://speakerdeck.com/jimyhuang/cong-kai-fang-yuan-ma-dao-npocan-yu-why-and-how
+21:50 < kcwu> pofeng_'s url: [從開放源碼到NPO參與-Why and How // Speaker Deck]
+21:50 < yhsiang> clkao: 快補充e罐
+21:50 < clkao> 馬力夯?
+21:51 < ttcat> 第幾頁啊
+21:51 < pofeng_> ttcat:  討論理念好浪費時間, prototype 先行
+21:51 < pofeng_> ttcat: IMHO
+21:52 < clkao> 理念：先講求不傷身體，再講求坑符合人形
+21:52 < pofeng_> ttcat: 從最後一頁看回來
+21:53 < pofeng_> clkao: 對阿, 但是一般人很難接收
+21:53 < pofeng_> clkao: 所以你看我也不去開實體會議
+21:54 < vv|ng> 所以實體會議很容易到最後為了一個 pixel 吵架?
+21:55 < clkao> vv|ng: bikeshed 放大一百倍？
+21:55 < pofeng_> 運動不忘打工阿各位
+21:56 < vv|ng> "我覺得這圖往左邊一個 pixel 會好點"
+21:56 < vv|ng> "我覺得這圖往右邊一個 pixel 會更好"
+21:56 < vv|ng> 結論: "第一版最好"
+21:57  * clkao 正在聽: http://deepsound-twfuture.podomatic.com/entry/2013-08-29T12_54_11-07_00
+21:57 -!- louielu [7a761b9f@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.27.159] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+21:58 < pofeng_> 我聽完了 :p
+21:58 -!- louielu [7a761b9f@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.27.159] has joined #g0v.tw
+21:58 < pofeng_> ipa++
+22:00 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+22:00 < pofeng_> ttcat: 可不可以請小史丟出來 US 網站 (運動) 的 demo 
+22:01 < pofeng_> ttcat: URL
+22:01 < ttcat> https://www.aclu.org
+22:01 < kcwu> ttcat's url: [American Civil Liberties Union (ACLU)]
+22:01 < ttcat> 沒啥特別
+22:01 < pofeng_> ttcat: great !! thanks 
+22:01 -!- louielu [7a761b9f@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.27.159] has quit [Client Quit]
+22:01 < pofeng_> I know, just 筆記
+22:01 < yhsiang> drupal site
+22:02 < pofeng_> ttcat: 我聽到有講到兩個 ?
+22:03 < pofeng_> ttcat: 我覺得 jimyhuang slide 挑的比較厲害 ...
+22:05 -!- lanfon72 [319e6ab1@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.106.177] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+22:05 -!- lanfon72 [319e6ab1@gateway/web/cgi-irc/kiwiirc.com/ip.49.158.106.177] has joined #g0v.tw
+22:06 < ipa> pofeng_: 講軍火「研發」商，這樣模糊空間比較大 XD
+22:07 < pofeng_> ipa++
+22:08 < ttcat> http://standardizedtests.procon.org/
+22:08 < kcwu> ttcat's url: [Standardized Tests - ProCon.org]
+22:09 < ipa> ttcat: 運動很多考量，真的很辛苦～
+22:09 < pofeng_> ttcat: thanks 
+22:10 < pofeng_> ipa: yes, 感謝 ttcat++ 願意開實體會議
+22:13 < superbil> ipa ++
+22:25 < pofeng_> ttcat: 你手機有通嗎 ?
+22:25 < ttcat> 抱歉 我們辦公室 收訊很差
+22:25 < pofeng_> ttcat: 有市內電話嗎, 我打過去
+22:26 < ttcat> 2365 3862
+22:28 < pofeng_> ttcat: 你有想法嗎 ? 要不要和出聲一下
+22:29 < pofeng_> ttcat: 都沒聽到你意見 :p
+22:30 < ttcat> 我講很多啦 XD 可能收音太差了
+22:30 < jimyhuang> 打工不成，來寫fact
+22:31 < yhsiang> http://cyberarmedyouth.blogspot.tw/ # 音樂先關小(有點吵), 有人分享過嗎 XD 
+22:31 < kcwu> yhsiang's url: [電馭武裝青年]
+22:31 < pofeng_> jimyhuang: 想要推你去找 1985 科科 :p
+22:32 < jimyhuang>  pofeng_ 哈，1985是坑嗎？不然怎麼用「推」的
+22:33  * jimyhuang 聽PodOmatic中
+22:33 < pofeng_> jimyhuang: 他們想架個網站, 意念有點像你 slide 最後幾個
+22:34 < jimyhuang> pofeng_: 糟糕，我忘記我附上哪些了...（趕快跑去翻）
+22:34 < pofeng_> jimyhuang: 也不用啦
+22:35 < jimyhuang> hmm
+22:35 < pofeng_> jimyhuang: 反正有點想是議題平台, 讓大家討論, 找到適合的 NGO
+22:35 < jimyhuang> 說老實的，這牽涉到很多政治問題
+22:35 < ttcat> 剛剛討論過了 這個架夠不太像是一個「平台」 聽起來像是有立場的公民媒體
+22:35 < pofeng_> ttcat: ok ok 搞錯了
+22:36 < jimyhuang> oh !!
+22:36 < pofeng_> jimyhuang: 同感 .
+22:36 < ttcat> 只是不是去採訪新聞 而是整理議題資訊與評論
+22:36 -!- kewang [76a835da@gateway/web/cgi-irc/kiwiirc.com/ip.118.168.53.218] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+22:36 < jimyhuang> 其實我想自幹一個
+22:36 < jimyhuang> 把 苦勞 / 環資 / 破報 / 立報 / 四方報 都搜錄進來的index
+22:36 < ttcat> cool
+22:37 < jimyhuang> XD 但，我絕對不會想自幹一個媒體，好累啊
+22:37 < pofeng_> jimyhuang: cool, 但是不要太累啦 
+22:37 < jimyhuang> 是啊，用技術來處理是最不累的事了
+22:38 < jimyhuang> pofeng_: 其實，google custom search拼一下，好像就有一點樣子？
+22:38 < pofeng_> jimyhuang: good 
+22:39  * jimyhuang 跑去動手
+22:39 < pofeng_> jimyhuang: 感謝 
+22:40 < pofeng_> ttcat: 所以我你看我實在不喜歡討論理念, 好浪費時間 ...
+22:41  * jimyhuang ipa 講的好好
+22:41  * jimyhuang 覺得媒體人跟電腦人，果然是不同的...
+22:41 < pofeng_> jimyhuang: 弄好讓我試一下 ( 我想要嵌到 http://pttcitizen1985.blogspot.tw/ ) 
+22:42 < kcwu> pofeng_'s url: [公民 1985 行動聯盟]
+22:42 < pofeng_> jimyhuang: custom search 可以共同編輯嗎 ?
+22:43 -!- kewang [743be1a2@gateway/web/cgi-irc/kiwiirc.com/ip.116.59.225.162] has joined #g0v.tw
+22:43 < jimyhuang> 試試看
+22:43 < jimyhuang> https://www.google.com/cse/publicurl?cx=000300823391303551595:dacmu1ptct8
+22:43 < kcwu> jimyhuang's url: [Google Custom Search]
+22:43 < pofeng_> good
+22:44 -!- dsewnr [~dsewnr@114-27-215-75.dynamic.hinet.net] has joined #g0v.tw
+22:45 < yhsiang> jimyhuang: 苦勞還算好爬從node/1 - node/75472 :p
+22:45 < jimyhuang> pofeng_: 加好了
+22:46 < jimyhuang> yhsiang: e-info也是一樣 XD
+22:46 < jimyhuang> yhsiang: pots.tw也一樣！！
+22:46 < pofeng_> jimyhuang: 感謝
+22:46 < yhsiang> drupal site XD
+22:47 < jimyhuang> 我的夢想是...全部都drupalize XD /
+22:47 < pm5cloud> billy3321: 黑客當然要組黑手黨
+22:47  * jimyhuang 偷笑
+22:47 < yhsiang> hmm ...兩年前在玩的 QQ
+22:47 -!- TzJ [7222f3b8@gateway/web/cgi-irc/kiwiirc.com/ip.114.34.243.184] has joined #g0v.tw
+22:47 < pofeng_> jimyhuang: 不行啦, 絕對權力使人絕對腐化 (亂比喻) :p
+22:48 < yhsiang> 立報有個總覽...
+22:48 < yhsiang> 沒意外的話也可以直接用 ? XD
+22:48 < clkao> jimyhuang: (!)
+22:48 < jimyhuang> clkao: pong
+22:48 < yhsiang> 四方報 是越南四方網嗎 ?
+22:49 < jimyhuang> yhsiang: 是，不知道適不適合 XD
+22:49 < yhsiang> 是wordpress的
+22:49  * jimyhuang 覺得 google 產品的腦袋真厲害， youtube可以使盜版讓正版分潤，custom search也可以讓我們幫他們賺錢...
+22:49 < pofeng_> ttcat: 幫忙提醒一下柳林, 他明天還要開會,  早點睡 (散會)
+22:50 -!- kewang [743be1a2@gateway/web/cgi-irc/kiwiirc.com/ip.116.59.225.162] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+22:51 < jimyhuang> pofeng_: 比較可惜的是，google custom search沒辦法製造list ...
+22:52 < jimyhuang> 要有關鍵字才行
+22:53 -!- mno2_ [~mno2@1.34.43.236] has joined #g0v.tw
+22:54 < pofeng_> jimyhuang: 不太懂 ?
+22:55 < pofeng_> jimyhuang: 現在還有工具可以把大家的 RSS 家在一起匯入 blogger.com 嗎 ?
+22:55 < pofeng_> jimyhuang: 四方報很好 !!
+22:56 < jimyhuang> pofeng_: 我印象中yahoo有個服務
+22:56 < yhsiang> yahoo pipes ?
+22:56 < pofeng_> jimyhuang: 對就是那個
+22:57 < pofeng_> yes
+22:57 < pofeng_> processing
+22:58 < jimyhuang> pofeng_: 你在pipe 中了嗎？
+22:59 < pofeng_> jimyhuang: 還沒也, 還是你也做了, 我就省了 ( 不太會用 )
+22:59 < jimyhuang> 我剛剛看了有點暈... XD
+22:59 -!- cades [~mac@host-61-70-191-50.static.kbtelecom.net] has joined #g0v.tw
+23:00 < jimyhuang> yhsiang: 知道怎麼用yahoo pipe嗎？
+23:00 < jimyhuang> 不知道yahoo pipe是否可以把各家公民媒體的rss 吃進去，組出一個頁面...
+23:01 -!- t0mst0ne [24e61df7@gateway/web/cgi-irc/kiwiirc.com/ip.36.230.29.247] has joined #g0v.tw
+23:02 < hychen> 上次聽hc好像不怎麼推yahoo pipe?
+23:02 < pofeng_> 一定可以輸出成 RSS, 然後 drupal or blooger 再吃進來
+23:03 < t0mst0ne> .
+23:03 < hychen> https://www.youtube.com/watch?v=UpQd9cfT4w8
+23:03 < kcwu> hychen's url: [Using Yahoo Pipes For RSS Feeds - YouTube]
+23:04 < jimyhuang> hychen: tks
+23:04 < hychen> jimyhuang: http://pipes.yahoo.com/pipes/pipe.info?_id=MB7uzA7C3RG3ZG381JzWFw
+23:04 < kcwu> hychen's url: [Pipes: h4addicted]
+23:04 -!- louielu [7a761b9f@gateway/web/cgi-irc/kiwiirc.com/ip.122.118.27.159] has joined #g0v.tw
+23:05 < hychen> jimyhuang: https://groups.google.com/forum/#!topic/hackingthursday/vw2Lspb7eb4
+23:05 < kcwu> hychen's url: [Google 網上論壇]
+23:05 < pofeng_> t0mst0ne: 你幹嘛跑來這裡啊 :p
+23:05 < t0mst0ne> I was sick ....stay in hospital, children away :p
+23:06 < clkao> jimyhuang: 現在要用 pipe 做啥？
+23:06 < jimyhuang> hychen: 感覺可以把幾大分類 pipe 出來... 
+23:06 -!- dsewnr [~dsewnr@114-27-215-75.dynamic.hinet.net] has quit [Quit: leaving]
+23:06 < hychen> 不過原本需求是什麼?
+23:06 < jimyhuang> clkao: 還在想，主要是如果幾家公民媒體可以用google search
+23:06 < jimyhuang> 但少了一個類似 google news 的front page
+23:06 < pofeng_> t0mst0ne: 你住院 !?
+23:06 < yhsiang> jimyhuang: http://pipes.yahoo.com/pipes/pipe.info?_id=ce3c84ad49c9b57f6911228b10ecae54 # 可以啊
+23:07 < kcwu> yhsiang's url: [Pipes: all-news-rss]
+23:07 < yhsiang> 目前只加了 兩個網站的rss..
+23:07 < jimyhuang> ohohoh !!
+23:07 < yhsiang> 你找的到rss基本上 就丟進去就好了
+23:07 < jimyhuang> yhsiang: 太好啦 ~~~ 
+23:07 < yhsiang> +URL 會多一個input 就多放一個
+23:08 < jimyhuang> 所以如果pipe的頁面，再加上一個 google custom search，應該就算是一個簡單的公民新聞入口？
+23:08 < hychen> 所以是要弄一個類似blog planet? 
+23:08 < pofeng_> jimyhuang: yes
+23:09 < t0mst0ne> double J at my right side XD
+23:09  * jimyhuang 跑去搜尋 blog planet
+23:09 < hychen> 那種有現成系統可用
+23:09 < pofeng_> t0mst0ne: ouch !!
+23:09  * pofeng_ 拍拍 t0mst0ne
+23:09 < jimyhuang> hychen: 對啊，就是想用現成吃一吃~~
+23:09 < clkao> t0mst0ne 是.. ?
+23:09 < yhsiang> 找不到破報跟立報的rss XD
+23:10 < clkao> jimyhuang: 處理 rss 另個選擇是 feedthefire
+23:10 < t0mst0ne> pofeng 學弟
+23:10 < clkao> 然後再看怎麼 post process
+23:10 < jimyhuang> yhsiang: http://www.pots.tw/rss.xml
+23:10 < kcwu> jimyhuang's url: [[POTS]]
+23:10 < clkao> jimyhuang: 目前 g0v.tw 上的 blog rss 跟 registrano events 都是用 feedthefire
+23:10 < hychen> http://www.planetplanet.org/
+23:10 < kcwu> hychen's url: [Planet Feed Reader]
+23:11 < jimyhuang> clkao: ohoho~~ 吃進去firebase 
+23:11 < pofeng_> clkao: 喔喔, 我學弟, 神經內科醫師, 看樣子他右腎放了導管 ( double J ) 
+23:11 -!- thschee_ [thschee@gateway/shell/ircrelay.com/x-wfkyjwifihzoxctt] has left #g0v.tw ["Leaving..."]
+23:11 < pofeng_> clkao: 他以前會架簡單的 FreeBSD server 
+23:12 < jimyhuang> hychen: got it
+23:12 < clkao> tkirby: tedxtaipei 要記得提供照片跟簡介 :p
+23:12 < t0mst0ne> 正在聽 http://deepsound-twfuture.podomatic.com/entry/2013-08-29T12_54_11-07_00
+23:12 < jimyhuang> yhsiang: 破報好像是這個 ... http://feeds.feedburner.com/pots  
+23:12 < kcwu> jimyhuang's url: [[POTS]]
+23:12 < kcwu> t0mst0ne's url: [PodOmatic | Best Free Podcasts]
+23:13 < hychen> 如果只是要蒐集RSS, 那架planet就差不多了?
+23:13 < clkao> t0mst0ne: 你好! 我剛聽完 :p
+23:13 < t0mst0ne> The spirit of opensource to open goverment
+23:14 -!- taichunmin [~root@59-126-176-106.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+23:15 < t0mst0ne> 下次g0v 開會, 看看有沒有辦法過去觀摩
+23:15 < jimyhuang> hychen: 其實對啊，其實還再想有沒有更懶惰的方式... XD
+23:15 < hychen> 最好是有host的方案 XD
+23:16 < jimyhuang> hychen++ 對啊對啊
+23:16 -!- taichunmin [~root@59-126-176-106.HINET-IP.hinet.net] has joined #g0v.tw
+23:16 < hcchien> g0v 現在正在開會   lol
+23:17 < yhsiang> jimyhuang: http://pipes.yahoo.com/pipes/pipe.info?_id=ce3c84ad49c9b57f6911228b10ecae54  #除了四方報以外都放進去了
+23:17 < kcwu> yhsiang's url: [Pipes: all-news-rss]
+23:17 < yhsiang> 四方報的rss 是爛的
+23:17 -!- kewang [319f1c8d@gateway/web/cgi-irc/kiwiirc.com/ip.49.159.28.141] has joined #g0v.tw
+23:17 < jimyhuang> yhsiang++ 來試試看怎麼 mashup
+23:17 < jimyhuang> yhsiang: 對，我剛剛也在試，不知道是不是因為語言關係
+23:17 < yhsiang> jimyhuang: 以外是說 你剛剛提到的四個媒體
+23:17 < yhsiang> 應該不是語言吧 XD
+23:18 < kewang> ronnywang: 你有遇到在寫extension的時候，用messaging的狀況嗎？
+23:20 < pofeng_> yhsiang: ++  加入了 http://pttcitizen1985.blogspot.tw/ ( 公民新聞 )
+23:20 < kcwu> pofeng_'s url: [公民 1985 行動聯盟]
+23:20 < t0mst0ne> 各位都是點燈者 http://www2.pictures.zimbio.com/gi/Martin+Caulfield+Services+Last+Remaining+Gas+rcUDyPHoyKHl.jpg 加油!
+23:20 < yhsiang> pofeng_: 好快 XD
+23:21 < pofeng_> yhsiang: 你才快 (誤) (羞)
+23:21  * pofeng_ 來調一下版面
+23:24 < ipa> 四方報？在抓什麼？
+23:25 < ipa> # jimyhuang> 把 苦勞 / 環資 / 破報 / 立報 / 四方報 都搜錄進來的index
+23:25 < ipa> 喔自己找到答案
+23:27 < yhsiang> 喔耶 我找到四方報的rss
+23:27 < yhsiang> 五個都加進去了
+23:28 -!- poga [~poga@111-241-136-251.dynamic.hinet.net] has quit [Remote host closed the connection]
+23:28 < hychen> http://dlvr.it/pages/why.php
+23:28 < kcwu> hychen's url: [Why you'll love dlvr.it]
+23:29 < ipa> yhsiang++
+23:29 < jimyhuang> http://jimmyhub.net/test.html
+23:29 < kcwu> jimyhuang's url: [公民新聞大亂鬥]
+23:29 < jimyhuang> 喔，我是懶鬼... 
+23:30 < jimyhuang> 不過yahoo pipe看來沒辦法組成一個plain 頁面~~（改寫js吃吃看）
+23:30 < yhsiang> jimyhuang: get as json?
+23:30 < jimyhuang> yhsiang: yes ~~
+23:31 < jimyhuang> json to html 看有什麼懶人工具
+23:32 < yhsiang> hmm ..我該推angularjs 嗎 XD
+23:32 < billy3321> pm5cloud: 黑手黨喔....我們沒有修機車的人啊XD
+23:32 < jimyhuang> yhsiang: 哈哈，好像不大懶，但應該滿好用... 
+23:33 < hychen> tumblr現在不能吃rss了... 
+23:33 < hychen> jimyhuang: 找看看有沒有blog可以import rss
+23:33 < pofeng_> jimyhuang: 我現在先用 Y pine badge 撐一下 http://pttcitizen1985.blogspot.tw/p/news.html
+23:33 < kcwu> pofeng_'s url: [公民 1985 行動聯盟: news]
+23:33 < pofeng_> s/pine/pipe
+23:33 < hychen> jimyhuang: 如果有就收工了?
+23:33 < wHisKy-> 上下游？
+23:33 < pofeng_> wHisKy-: good, RSS address ?
+23:34 < jimyhuang> 找到snippet ~~ 
+23:34 < jimyhuang> https://code.google.com/p/jpipes/
+23:34 < kcwu> jimyhuang's url: [jpipes - jquery script to consume yahoo pipes' json - Google Project Hosting]
+23:35 < wHisKy-> http://www.newsmarket.com.tw/rss/
+23:35 < kcwu> wHisKy-'s url: [上下游News&Market新聞市集]
+23:36 < hychen> jimyhuang:  用 lfttt 吃 RSS, 然後轉到其他service? (https://ifttt.com/channels)
+23:36 < t0mst0ne> 是要弄成像 google news 一樣, 一個topic 下面有一堆media 報導嗎?
+23:37 -!- kewang [319f1c8d@gateway/web/cgi-irc/kiwiirc.com/ip.49.159.28.141] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+23:37 -!- wHisKy- [whisky@122-116-86-57.HINET-IP.hinet.net] has quit []
+23:37 < jimyhuang> hychen: 還真的差點可收工 ... http://jimmyhub.net/test.html 剩下css 
+23:37 < kcwu> jimyhuang's url: [公民新聞大亂鬥]
+23:38 < jimyhuang> t0mst0ne: 哈，應該是吧.. 只是個想法，之前就想弄了 
+23:38 < t0mst0ne> 瞭
+23:39 -!- poga [~poga@1-171-125-49.dynamic.hinet.net] has joined #g0v.tw
+23:39 < ttcat> jimyhuang: ++
+23:40 < hychen> jimyhuang: 再加上RSS來源表讓大家可以自己訂閱就差不多了
+23:40 < jimyhuang> XD yes ~
+23:40 < jimyhuang> 只是google cse不是公開的，得要分享權限
+23:42 < tuiry> 有人會想做台灣老照片的網站嗎XD
+23:44 < yhsiang> jimyhuang: 弄成HTC Bleed Feed 的風格 ? XD
+23:44  * jimyhuang 跑去搜尋htc bleed feed
+23:44 -!- mno2_ is now known as mno2
+23:44 < yhsiang> 打錯blink feed XD
+23:45 -!- wHisKy [~whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+23:45 < yhsiang> http://cdn2.ubergizmo.com/wp-content/uploads/2013/04/HTC-One-BlinkFeed-01-640x379.jpg # 大概是長這樣...
+23:45 < hychen> 不過我有個疑問... 公民新聞的定義是什麼?
+23:47 < jimyhuang> yhsiang++ 我來commit l2
+23:48 < jimyhuang> commit到github ... XD
+23:48 < jimyhuang> 應該要直接上gitpage 
+23:48 < jimyhuang> hychen: 其實...名字我是隨便取的，實際上這幾個單位稱呼她們公民媒體，可能會生氣
+23:49 < jimyhuang> 因為他們可視專業的 ...
+23:49 -!- t0mst0ne [24e61df7@gateway/web/cgi-irc/kiwiirc.com/ip.36.230.29.247] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+23:50 < wHisKy> 應該是獨立媒體
+23:50 < wHisKy> 公民媒體會比較「公民」一點，至少很多 peopo的公民記者是這樣看自己
+23:51 < wHisKy> 不過有趣的是，昨天也看到有人在問，什麼是「獨立媒體」，新頭殼算不算獨立媒體？
+23:53 < ttcat> @@ whisky!!
+23:53 < wHisKy> ttcat!! 我有看到你的信了 XD
+23:54 < jimyhuang> wHisKy: 問不完啊... 
+23:54 < jimyhuang> hychen: 總不能叫做鄉民媒體，鄉民認為的媒體又是... 
+23:54 < ttcat> wHisKy: XD
+23:56 < ipa> ttcat: 你感覺是在討債? irc變成討債平台了嗎? lol
+23:56 < clkao> 「資本額在十億以下的媒體」
+23:57 < jimyhuang> clkao++ 
+23:57 < wHisKy> 新頭殼資本額據說兩千萬（不負責任放話中），已經營運四年了
+23:57 < jimyhuang> 1元以上，10億以下
+23:57 < wHisKy> 王週刊不知道資本額會多少 ;) http://www.1111.com.tw/%E7%8E%8B%E9%80%B1%E5%88%8A_%E7%8E%8B%E9%81%93%E6%97%BA%E5%8F%B0%E5%AA%92%E9%AB%94%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E6%89%BE%E5%B7%A5%E4%BD%9C%E6%A9%9F%E6%9C%83-69415197.htm
+23:58 < pofeng_> jimyhuang: 壞了嗎 , loading ... http://jimmyhub.net/test.html
+23:58 < kcwu> pofeng_'s url: [公民新聞大亂鬥]
+23:59 < jimyhuang> pofeng_: ctrl + F5

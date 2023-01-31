@@ -1,0 +1,156 @@
+--- Day changed 六  2月 20 2016
+00:17 -!- chihchun_afk is now known as chihchun
+00:21 < slackbot8> <weilun> 0.0
+00:21 < slackbot8> <mrorz> <https://github.com/g0v/summit.g0v.tw/pull/72> 我還是開了，因為懶得對沒有 href 的狀況寫 if （炸
+00:21 < kcwu> slackbot8's url: [Add Milestone by MrOrz · Pull Request #72 · g0v/summit.g0v.tw · GitHub]
+00:26 < slackbot8> <yhsiang> mrorz: you can use do expression XD
+00:33 < slackbot8> <mrorz> 用在哪
+00:39 < slackbot8> <yhsiang> mrorz: do {  if(url) {  .. }}
+00:41 < slackbot8> <ipa> summit 報名頁要不要登錄到 http://g0v.tw <https://github.com/g0v/g0v.tw/issues/127>
+00:41 < kcwu> slackbot8's url (2/2): [在這頁登錄各松活動網址，讓程式自動更新日後活動 · Issue #127 · g0v/g0v.tw · GitHub]
+00:41 < slackbot8> <ipa> 會自動更新在 http://g0v.tw 右上方
+00:42 < slackbot8> <ipa> @mrorz: 要跳這個坑嗎？還是直接去改抓kktix的碼？
+00:43 < slackbot8> <yhsiang> kimono 要收了欸
+00:43 < slackbot8> <ipa> @yhsiang: 登錄之後其實是你要去改程式？kktix 用kimono抓？
+00:44 < slackbot8> <yhsiang> 現在好像是寫死 kktix json
+00:44 < slackbot8> <clkao> 疑 我以為 kktix 有 feed cc / @bobchao
+00:44 < slackbot8> <yhsiang> 有 feed
+00:44 < slackbot8> <yhsiang> 我來看一下 github api 研究一下
+01:04 < slackbot8> <clkao> 對了，為什麼要中間有 scrollbar 呀？
+01:12 < slackbot8> <mrorz> 我猜是 hack
+01:12 < slackbot8> 裡頭有一堆 floated div 的高度都沒有展開，所以想用 overflow: auto，利用 block formatting context 會包住 floated child 的特性來把 container 撐開
+01:13 < slackbot8> <mrorz> 結果同一個 container 又下了一個 `height:100%` (不知道為什麼要這麼下) 所以 scrollbar 就出現惹
+01:15 < slackbot8> <mrorz> 我還在研究為什麼我的 HtmlWebpackPlugin 只會噴出 `<script src="/2016/application.js"></script>/2016/index.html`
+01:15 < slackbot8> 其他人開發 summit 網站時看到的 `view-source:<http://localhost:8080/2016/>` 也是長這樣嗎 ＠＠
+01:24 < slackbot8> <clkao> yhsiang, shelling: do we need the scrollbar? it’s ugly
+01:26 < slackbot8> <clkao> 直接 height:100% 會讓裡面的東西爛掉嗎？
+01:26 < slackbot8> <yhsiang> clkao: 我好久之前有反映過
+01:27 < slackbot8> <yhsiang> 把 100% 拿掉應該不會爛掉
+01:28 < slackbot8> <yhsiang> http://g0v.tw 自動抓 issues 127 裡面的 kktix link 完成
+01:28 -GitHub41:#g0v.tw- [g0v.tw] yhsiang pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/392a3ea0ae174cc33d8d46ddd03deaf4d4f52a5c
+01:28 -GitHub41:#g0v.tw- g0v.tw/gh-pages 392a3ea g0v general (via TravisCI): regen for 56aef99
+01:28 < slackbot8> <yhsiang> mrorz: 在幫忙 fix 一下吧
+01:28 < slackbot8> <mrorz> scrollbar 在處理囉
+01:28 < slackbot8> <mrorz> lost-column 那裡我看不懂
+01:28 < slackbot8> <yhsiang> thx
+01:29 < slackbot8> <mrorz> 為什麼會要 grid @@
+01:29 < slackbot8> <yhsiang> 六個講者
+01:29 < slackbot8> <yhsiang> 記得應該是為了 RWD 吧
+01:30 < slackbot8> <mrorz> ok i’ll try
+01:30 < slackbot8> <yhsiang> @ipa: 網頁已經更新
+01:33 < slackbot8> <mrorz> 原來是我的 class 撞名 ._.
+01:33 < slackbot8> <yhsiang> mrorz: 用習慣 css modules 了嗎 :stuck_out_tongue:
+01:33 < slackbot8> <mrorz> 我在 `highlights` 外面又包了個 highlights
+01:33 < slackbot8> <mrorz> 還滿習慣的其實
+01:33 < slackbot8> <mrorz> 不過沒用 compose
+01:34 < slackbot8> <yhsiang> ...
+01:34 < slackbot8> <mrorz> 因為我用到 css modules 的那些專案有用其它 preprocessors
+01:34 < slackbot8> <mrorz> 所以我等於只用了半套 xd
+01:34 < slackbot8> <yhsiang> :global {
+01:34 < slackbot8>    …. 這樣就可以組合了啊
+01:34 < slackbot8> }
+01:35 < slackbot8> <mrorz> 可是一直用 :global 就跟「用全域變數就能傳參數了啊」
+01:35 < slackbot8> <mrorz> 一樣了
+01:36 < slackbot8> <mrorz> 雖然說 CSS selecors 在 CSS modules 出現之前本來就是 global www
+01:36 < slackbot8> <yhsiang> 問題是 你 css modules 還搭 preprocessor 也是做一樣的事情啊 :smile:
+01:36 < slackbot8> <mrorz> 沒啦他還是有好好替換 selector name
+01:37 < slackbot8> <mrorz> 只是沒有 compose 的話，都只能用 preprocessor 的 mixin 來 share code，然後 css 就膨脹膨脹膨脹
+01:37 < slackbot8> <mrorz> 因為那個 preprocessor 如果寫了 compose 就會 syntax error 超蠢 orz
+01:39 < slackbot8> <mrorz> 話說回來， summit 網頁開發時，開 `view-source:<http://localhost:8080/2016/>` 的話，
+01:39 < slackbot8> 其他人也是只有看到 `<script src="/2016/application.js"></script>/2016/index.html` 這一行嗎？還是完整的 html？
+02:03 -!- chihchun is now known as chihchun_afk
+02:07 < slackbot8> <yhsiang> （ﾟДﾟ）σ弌弌弌弌弌弌弌弌弌弌弌弌弌弌弌弌弌弌弌弌⊃
+02:10 < slackbot8> <mrorz> <https://github.com/g0v/summit.g0v.tw/pull/73> 好了
+02:10 < slackbot8> <clkao> 所以要更新一輪確認得講 者嗎？
+02:10 < kcwu> slackbot8's url: [Fix double scrollbar & other margin / padding / line-height adjustments by MrOrz · Pull Request #73 · g0v/summit.g0v.tw · GitHub]
+02:25 < slackbot8> <yhsiang> 要請 pm5 整理嗎？然後資料請 mrorz 更新? XD
+02:28 -!- DennyHuang_ is now known as Guest79682
+04:09 -!- chihchun_afk is now known as chihchun
+04:09 < slackbot8> <shelling> @clkao: 我之前沒放 scrollbar 
+04:09 < slackbot8> <shelling> 拿掉沒問題～
+06:46 -!- chihchun is now known as chihchun_afk
+09:06 < slackbot8> <kiang> 飛雁新村開放決策公民論壇網路直播 <https://www.youtube.com/watch?v=YHzYkfsst0I>
+09:06 < kcwu> slackbot8's url: [1050220 台南市飛雁新村開放決策城鄉論譠會議 - YouTube]
+09:13 < slackbot8> <kiang> 現場音響設備有很多狀況 XD
+10:18 < slackbot8> <mrorz> okok
+10:34 < slackbot8> <clkao> 疑 # <http://data.gov.tw/node/27778>
+10:34 < kcwu> slackbot8's url: [g0v Summit 零時政府 2016 高峰會 | 政府資料開放平臺]
+10:56 < slackbot8> <clkao> yhsiang: pm5 催投稿跟貢獻票今天要共筆一下嗎？
+10:57 < slackbot8> <clkao> 還是過了 deadline 就不用催了 XD
+11:30 < slackbot8> <au> <https://youtu.be/7K-_Tl-ba_k> 萌典松 @ bookshow II
+11:30 < kcwu> slackbot8's url: [moed⒁ct 第十四次萌典松 20160220 - YouTube]
+11:31 < rintarou> hi
+11:32 < slackbot8> <caasi> au++
+11:32 < slackbot8> <caasi> hi
+11:33 < a-tsioh> hi
+11:34 < a-tsioh> 快到了 ！
+11:39 < rintarou> 請問在哪可以找到所有正在進行中的坑？
+11:41 < caasih> rintarou: g0v 的看 http://hack.g0v.tw/ 上的「各期黑客松共筆」，萌典松看 https://g0v.hackpad.com/oeBceDBeNA2
+11:41 < kcwu> caasih's url (2/2): [二月第⒁次萌典松 - g0v.hackpad.com]
+12:02 < slackbot8> <billy3321> <http://gnn.gamer.com.tw/7/128077.html>
+12:02 < kcwu> slackbot8's url: [現在連遊戲名字都很長 新作《總之為了五年五百億就來一場大亂鬥吧》首次曝光 - 巴哈姆特]
+12:02 < slackbot8> <billy3321> 好棒啊XD
+12:16 < rintarou> Object Oriented 其實應該翻成 源自物件 才對.. 物件導向根本亂翻....
+12:57 < slackbot8> <etblue> 物種起源！
+13:15 < slackbot8> <yhsiang> clkao: pm5: 先 draft  一個版本
+13:15 < slackbot8> <yhsiang> <https://g0v.hackpad.com/w01v8lrMLTY#:h=g0v-summit-CFP-催稿>
+13:15 < kcwu> slackbot8's url: [新聞中心（發佈工作站） - g0v.hackpad.com]
+13:24 < slackbot8> <moon_c> @yhsiang: 你要什麼圖，尺寸給我
+13:27 < slackbot8> <yhsiang> moon_c: 臉書要用就 720x480 ?
+13:30 < slackbot8> <yhsiang> 有沒有一些專案就直接列在上面 XD
+13:30 < slackbot8> <yhsiang> 順便把 summit 網站列在上面 貢獻就可以有貢獻者票好了 XD
+13:31 < slackbot8> <yhsiang> 這邊是說催票
+13:37 < slackbot8> <moon_c> 你整理一下要放的文案給我好不，這樣講好亂～
+13:50 < slackbot8> <yhsiang> moon_c: 我那邊是在說文案 不是要跟你說的
+13:50 < slackbot8> <yhsiang> moon_c: 文案就在這邊 
+13:50 < slackbot8> <https://g0v.hackpad.com/w01v8lrMLTY#:h=g0v-summit-CFP-催稿>
+13:51 < slackbot8> <moon_c> 恩你現在是要徵稿的圖嘛？還是一般宣傳圖？
+13:51 < slackbot8> <yhsiang> 目前是要最後催稿，並且宣傳社群貢獻者票
+13:53 < slackbot8> <moon_c> 所以我這張圖一樣寫“講者徵求中”＆基礎訊息就好了吧
+13:55 < slackbot8> <yhsiang> 講者徵求即將結束
+13:56 < slackbot8> <yhsiang> 其他基礎訊息
+13:56 < slackbot8> 國際早鳥票：2/15 - 3/20
+13:56 < slackbot8> 社群貢獻票：2/15 - 3/20
+13:56 < slackbot8> 一般票： 4/1 - 4/15
+13:59 < slackbot8> <clkao> lee: early bird 只有開 30 個嗎？
+14:04 < slackbot8> <yhsiang> 我看 kktix 上沒顯示 capacity  ？
+14:05 < slackbot8> <yhsiang> 喔 ..文章裡面有寫
+14:12 < slackbot8> <clkao> 為什麼覺得 landing page 的字好像變小了？
+14:14 < slackbot8> <clkao> lee: "Ticket price is NT$800” 可以加註一下 (~US$25) 在後面嗎？
+15:08 < slackbot8> <ipa> 看新聞中心貼文，Summit 主圖光看圖只有2016 summit，不是完整活動名稱，會有點不知道是什麼活動
+15:11 < slackbot8> <ipa> 乍看以為是中央研究院的活動
+15:13 -!- chihchun_afk is now known as chihchun
+16:13 < slackbot8> <moon_c> 我找不到完整活動名稱放在哪ＱＱ然後拆後重建揪竟有沒有英文
+16:16 < slackbot8> <au> "Fork and Merge"
+16:16 < slackbot8> <au> (拆後重建)
+16:20 < slackbot8> <ttcat> 我以為會是 rebuild 之類的？XD
+16:55 < slackbot8> <saul511> 請問3/5的提案時間表，有什麼資格審查嗎？ 因為我本來10:38填的內容好像被覆蓋了 XD
+16:56 < slackbot8> <saul511> 有點傷心
+16:57 < slackbot8> <au> saul511: 沒有審查，可能是 race condition，再填一次即可 XD
+16:58 < slackbot8> <saul511> 不過我當下填時只有peggy的資料，我現在改到10:05了，希望不要再遇到race condition XDD
+17:25 < slackbot8> <ipa> @moon_c: 活動完整名稱是....g0v Summit 2016?
+17:29 < slackbot8> <ipa> @saul511: http://hack.g0v.tw 剛剛放錯了是上次黑客松的，現在才是對的 XD
+17:29 < slackbot8> <ipa> <http://beta.hackfoldr.org/g0v-hackath18n/https%253A%252F%252Fdocs.google.com%252Fspreadsheets%252Fd%252F1JZkKDGSi0GMoDxNVKn82458-chqxVm0vHfYv7aBHowg%252Fedit> 但報名都還沒開始欸。。。。
+17:40 < slackbot8> <moon_c> @ipa: 喔喔是這個啊XD剛剛好像被我刪掉了，我再補
+18:24 < slackbot8> <moon_c> @yhsiang: 補好的圖直接更新在hackpad了
+18:59 < caasih> 看病去，大家掰掰⋯ # 萌典松
+21:01 -!- chihchun is now known as chihchun_afk
+21:10 < slackbot8> <mousems> g0v Summit 2016 場務組開始招募囉！將於 5/14-5/15 在中央研究院人文社會科學館舉行的 g0v Summit 2016，議程將涵蓋開放政府、開放資料及運用新科技公民運動等內容，預計參與人數約 750 人。
+21:10 < slackbot8> 場務組在這邊跳坑：<https://goo.gl/BHqX0j>
+21:10 < slackbot8> 招募時間為：2/20-2/24，好坑不跳嗎？
+21:10 < kcwu> slackbot8's url: [g0v Summit 2016 場務組工作人員招募]
+21:10 < slackbot8> <mousems> 預備 跳
+21:38 < slackbot8> <yhsiang> @pipi: 記得報名 XD
+22:52 < slackbot8> <soidid> @yhsiang: summit 社群行日曆是我加的（超 lag回覆）
+22:54 < slackbot8> <yhsiang> soidid++ # 補給你了 :stuck_out_tongue:
+22:55 < slackbot8> <soidid> （收）
+22:56 < slackbot8> <yhsiang> <http://g0v-communique-api.herokuapp.com/api/1.0/entry/all?limit=50>. 公報好像壞很久了 ..
+22:59 < slackbot8> <yhsiang> 有人用過 flocker 嗎 0.0 docker data volume manager
+23:19 < slackbot8> <lee> yhsiang: 阿阿   我一直沒空修  orz   不過 hackpad 公報也很久沒寫就是了 XD
+23:26 < slackbot8> <lanf0n> 被潮水沖走神隱中
+23:26 < slackbot8> <yhsiang> lanf0n: 橘毛同學 ...
+23:26 < slackbot8> <lee> clkao: 我移掉了，目前沒特別限制幾人，上限我是先設 50 <https://g0v-tw.slack.com/archives/general/p1455947954000367>
+23:26 < kcwu> slackbot8's url: [Slack]
+23:27 < slackbot8> <lanf0n> yhsiang: 快來喵喵喵喵喵喵點感應
+23:28 < slackbot8> <lee> clkao US$ 25 done  <https://g0v-tw.slack.com/archives/general/p1455948865000371>
+23:31 < slackbot8> <clkao> lee++

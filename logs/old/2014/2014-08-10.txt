@@ -1,0 +1,233 @@
+--- Day changed 日  8月 10 2014
+00:00 < clkao> t0mst0ne_: 我看到你說的問題了 應該也是 stacked bar 的問題
+00:00 < clkao> 哭哭
+00:00 < t0mst0ne_> 還是調回 line ?
+00:04 < t0mst0ne_> ipa: 希望不要有記者找我 (習慣低調 orz)
+00:05 < clkao> t0mst0ne_: 回答問題後 就可以直接丟給記者 有其他問題再請他寫道 hackpad XD
+00:05 < ipa> 哈哈 記者找還是可以給他共筆就好了 也可以匿名回覆
+00:06 < t0mst0ne_> clkao: ipa 那再麻煩潤一下...普通語言能力不夠, 是不是間接影響寫程式 ? Orz
+00:06 < clkao> 不然可以請大砲醫生 pofeng 代為發言
+00:06 < ipa> t0mst0ne_: 這份共筆先給寫文案用的，要多一點背景比較不會寫錯。所以只需要背景資訊正確就好，文字就交給小幫手即可～
+00:07 < ipa> t0mst0ne_: 因為我不太懂醫療，所以要先搞清楚一下來龍去脈和未來應用
+00:07 < t0mst0ne_> ipa: 來找志華寫, 急診人應該比較可以發揮
+00:08 < ipa> t0mst0ne_: 或者你可以推坑他寫一篇專文呵！
+00:09 < ipa> 讓他試用看看，探討一下資訊透明對急診室可以產生的幫助
+00:11 < ETBlue> Lee1092: 可以回 master 再 commit 一次嗎？我不會弄… QQ https://github.com/hackfoldr/hackfoldr-2.0/commit/db94748c54c62e3033fba5d0cae054a990950f37
+00:11 < kcwu> ETBlue's url: [Add icon description via popup · db94748 · hackfoldr/hackfoldr-2.0 · GitHub]
+00:12 < ETBlue> Lee1092: 現在是改在 master 開發，然後用 .\deploy 自動推上 gh-pages
+00:12 < clkao> t0mst0ne_: grafana 可以匯入 annotation, 表示什麼時間發生什麼事件... 所以之後有大事件應該可以有方法呈現
+00:13 < t0mst0ne_> clkao: 我好想把醫院data全部丟給 grafana XD
+00:13 < clkao> ... g0v 仙人... XD
+00:13 < clkao> t0mst0ne_: 衝了吧
+00:13 < clkao> 有什麼祕辛 data 嗎
+00:13 < clkao> influxdb 真是超爽der
+00:14 < poga> 這麼爽
+00:14 < clkao> 還好沒有太早做這個 要是一年前的話可能就會卡在 graphite XD
+00:15 < t0mst0ne_> influxdb grafana 都不用錢嗎?  哭哭(之前花一對時間討論怎麼畫圖)
+00:15 < t0mst0ne_> clkao: 請問怎麼知道hackpad 某一頁最早是何時開始編輯?
+00:16 < clkao> t0mst0ne_: 右上 settings -> view history
+00:17 < clkao> t0mst0ne_: 都是 open source 的, 我已經送了兩個 patch 到 grafana 了
+00:18 < clkao> influxdb 有提供 hosted solution... 付一點點的錢她就幫你架好跟弄好 grafana
+00:20 < Lee1092> ETBlue:  阿阿  好~   我原本是想 merge 進 master  讓你 compile 在 推上去  XDD
+00:20 < Lee1092> ETBlue:  好  現在有權限  我應該可以直接  push   XD
+00:21 < clkao> Lee1092: 要把 g0v.tw 的 deploy script 變成一個 gulp plugin 嗎？
+00:22 < Lee1092> clkao !  gulp 也可以使用 git 指令?
+00:23 < clkao> 就.. shell out 啊 :p
+00:23 < clkao> 基本上就是 separate build dist directory, 但是 commit 的時候做一些手腳 讓他把目前的 tree 的 commit 也當作 parent
+00:23 < clkao> 這樣 log 的時候就可以看出是 base on 哪個版本 build 的了～
+00:25 < mrorz> 嗚嗚我的碩論收不到資料，想上來求助大家 QQ
+00:25 < clkao> mrorz: ?? polis ?
+00:25 < mrorz> 我的碩論是一個 open source 的 Chrome Extension，可以幫助 CSS 開發者快速發現 CSS 問題
+00:26 < mrorz> 前一版的 Demo video --> http://youtu.be/DABt2poDiI8 
+00:26 < kcwu> mrorz's url: [[UIST 2013] SeeSS: Seeing What I Broke -- Visualizing Change Impact of Cascading Style Sheets (CSS) - YouTube]
+00:27 < mrorz> 目前設計是讓他可以記錄開發者點過的 DOM，然後每當開發者觸發 Livereload，我就把新的 CSS 餵給這些 DOM，然後產生出「外觀變更」的視覺化列表
+00:27 < mrorz> 這樣 CSS 開發者馬上就可以知道，剛剛自己改的 CSS 變更，影響了整個網站的哪些地方
+00:27 < mrorz> 減少改了一行 CSS 結果一天後才發現另一頁被那行 CSS 弄壞的狀況
+00:28 < Lee1092> clkao:  喔喔喔~~   可是不知要怎麼跟 gulp 做結合~    是指   depoly 時 一樣下  gulp  指令 ， 然後 task 就做 你說的那樣?
+00:28 < mrorz> 目前遇到的問題是，我們想要知道 CSS 開發者開發實實際上會遇到什麼樣的問題，還有會把什麼樣的樣子稱作「壞掉」
+00:29 < mrorz> 所以我寫了另一個用來收資料的 Chrome Extension --> https://github.com/MrOrz/SeeSS-Reload
+00:29 < kcwu> mrorz's url: [MrOrz/SeeSS-Reload · GitHub]
+00:31 < mrorz> 收集的資料都只會存到參與資料收集的人自己的 Google drive 裡面，後來再選擇要分享哪一些記錄給給實驗者（我），而且收到的資料是做統計用途，不會用任何方式公開收到的資料內容
+00:31 < Lee1092> ETBlue:  推上去了  現在有 tooltip 了~ # http://hack.etblue.tw/  
+00:31 < kcwu> Lee1092's url: [hackfoldr]
+00:32 < mrorz> 不過目前收到的資料只有兩個人的資料，其中一個人是我 QAQ
+00:32 < Lee1092> 縮小版面，移到 icon  也會顯示 title  XD
+00:33 < clkao> Lee1092: right, like `gulp deploy`
+00:33 < au> Lee1092++ #真的很亮很漂亮~
+00:33 < mrorz> clkao: polis 太強了，現在我們還沒想到夠有力的改進方向，學術貢獻不太夠
+00:34 < clkao> Lee1092++ # 帥呆
+00:35 < mrorz> Lee1092++
+00:35 < poga> Legendary weapon XD
+00:36 < mrorz> 故事告訴我們 label 不可以太長
+00:36 < t0mst0ne_> 感謝 clkao au lanf0n Johnny_ , 先去zZ 
+00:36 < clkao> t0mst0ne_: 不把 dashboard 改回 line 嗎 XD
+00:37 < clkao> t0mst0ne_: 你現在應該可以直接 push 了 所以編輯那個 json 檔就行了
+00:38 < t0mst0ne_> clkao: 我在chrome 下改回line , 看得很怪, 沒把握, 還是你可以直接改回之前的? 
+00:41 < clkao> 可是你加了很多東西 改掉太可惜～
+00:43 < mrorz> 不知道有沒有人願意安裝這個 extension --> https://github.com/MrOrz/SeeSS-Reload  然後將遇到的 CSS 問題分享給我呢？
+00:43 < kcwu> mrorz's url: [MrOrz/SeeSS-Reload · GitHub]
+00:43 < clkao> 我是看手動改
+00:43 < mrorz> 感覺是個不情之請，因為寫網頁都來不及了，還要動手花時間回報 CSS 錯誤 >"<
+00:44 < Lee1092> clkao:  了~  這我要來研究 gulp 機制  目前還不熟悉 XD   我先幫 hackfoldr-2.0 加上 gulp  XD
+00:44 < clkao> t0mst0ne_: 結果是 stacked 問題
+00:45 < t0mst0ne_> clkao: ? bug ?
+00:46 < clkao> 好像是
+00:47 < au> mrorz: Explicit UXA 進入門檻好高啊... 這一般是要用 talk-aloud protocol 來做的事情 XD
+00:48 < au> 有沒有辦法轉成 Implicit UXA 呢 (像是分析 github commit log on css change 之類的)
+00:48 < au> with keyword "fix" "broken" etc
+00:48 < mrorz> au: think aloud 之前發 paper 時有做過唷，不過那次是做整個的使用者測試
+00:48 < au> 對，可是量化數據的話 implicit/passive 比較拿得到...?
+00:49 < mrorz> 嗯嗯確實如此……
+00:49 < clkao> stacked 的話 會找到目前 data point 最舊有的
+00:50 < mrorz> au: 如果不確定遇到的 bug 是什麼，也可以再去問發 commit 的人是否還記得，這也算是某種回溯型 think-aloud
+00:51 < au> yeah, 好像可以試試
+00:56 < ETBlue> Lee1092++ 潮讚der!!!
+00:58 < jimyhuang__> 大砲醫生在日本考察中
+01:01 < clkao> orz 還沒寫投影片
+01:05 < mrorz> au: 我接下來會去分析一些 github 上的明星前端專案，也會來分析g0v的一些前端專案的commit。接下來我可能會上來問關於 commit message 的奇怪問題 (?) 請多多包含好奇的我 m(_ _)m
+01:06 < au> mrorz: 不會，這比 flow 中斷去按 mhtml 存檔要順當太多了 XD
+01:09 < au> mrorz: 而且剛才忘了講，flow 可以中斷去回報的 CSS glitch 可能都偏向小問題（所以有額外的時間）與很 localize 的明顯問題（所以可以一句話解釋）
+01:09 < clkao> mrorz: 衝啊！
+01:09 < au> 拿去量化研究的話也許引入 sampling bias
+01:09 < au> (just imho)
+01:11 < clkao> au: is there a quick way to change all fonts in keynote master slides?
+01:11 < mrorz> 目前是想看看資料來得出一些 insight，例如說有多少比例的人下 position absolute 會忘記處理 containing block，或是下 margin 發現 margin 突出 container element 之類的，然後得出「哪些 CSS property 或 property 的組合很危險」的一些推測
+01:11 < au> clkao: use only just a couple master slides and manually change them :p
+01:12 < au> (supposedly exporting to keynote'09 and do a xml replace would work but I don't know of an automated way for that)
+01:12 < clkao> oh well
+01:12 < mrorz> 謝謝 au 和 clkao ~
+01:13 < au> mrorz: np, 加油~
+01:14 < xsoameix> clkao: bills/undefined 的問題解決了，需要設 $state.params.bill-id = '1374L15430' 和 location.path '/bills/1374L15430'，這樣就不用你說的 .whenGet /.*/ 了
+01:20 < jimyhuang__> Lee1092++ 感覺升到60級了
+01:37 < clkao> jimyhuang__: 搬家結束了嗎
+01:37 < clkao> jimyhuang__: 考山豬是哪天？
+02:13 < clkao> 結果 influx 跟 grafana 作者都 retweet 了 XD
+02:18 < CornGuo> clkao: GJ ww
+03:11 < clkao> ronnywang: 最近 grant 很多... # http://www.isif.asia/grant
+04:49 < xsoameix> clkao: 提案的進度條的測試做好了，正在寫 README.md ...
+05:56 -GitHub165:#g0v.tw- [ly.g0v.tw] xsoameix opened pull request #171: Feature/steps bar of bill test (master...feature/steps-bar-of-bill-test) https://github.com/g0v/ly.g0v.tw/pull/171
+05:57 < xsoameix> clkao: README.md 也寫好了，已發 pull request
+06:06 < xsoameix> clkao: travis 沒 pass ...
+06:07 < xsoameix> clkao: travis 又抱怨沒有 USERNAME, API_KEY 了：https://travis-ci.org/g0v/ly.g0v.tw/jobs/32116486
+06:07 < kcwu> xsoameix's url: [Travis CI - Free Hosted Continuous Integration Platform for the Open Source Community]
+06:08 < xsoameix> clkao: 阿，看錯，那是 test:sauce 的部份，不是我做的 unit test 的部份，unit test pass 了，可以 merge :)
+06:08 < xsoameix> clkao: https://travis-ci.org/g0v/ly.g0v.tw/jobs/32116484
+09:43 < clkao> CornGuo: 好像還有很多 Hosptial_sn XD
+09:47 < clkao> t0mst0ne_: 好怪 我看 influx 裡面最新的明明是 09:45
+09:57 < xsoameix> clkao: 還有甚麼要做的 or 調整的嗎？
+10:01 < clkao> xsoameix: looks good!
+10:01 < clkao> xsoameix++
+10:01 -GitHub105:#g0v.tw- [ly.g0v.tw] clkao closed pull request #171: Feature/steps bar of bill test (master...feature/steps-bar-of-bill-test) https://github.com/g0v/ly.g0v.tw/pull/171
+10:02 < clkao> 再看多加點測試吧 :p 還是研究一下是否有辦法對 livescript 做 coverage report (也許要對 generated js files)
+10:04 < travis-ci> [travis-ci] g0v/ly.g0v.tw#386 (master - 66f0ef7 : Chia-liang Kao): The build passed.
+10:04 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/5e208902c4d1...66f0ef78caca
+10:04 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/32125199
+10:04 -!- travis-ci [~travis-ci@ec2-54-224-140-5.compute-1.amazonaws.com] has left #g0v.tw []
+10:13 < clkao> ETBlue: hackfoldr 好像可以來申請 isif fund
+10:34 < clkao> tkirby: 這個好像可以有動態一點的版本 # https://googledrive.com/host/0Bwf-2Bbpe72nc01sVjRZbWtZN0U/CHfinal.html
+10:40 < ETBlue> clkao: 這個嗎 http://isif.asia/grant
+10:42 < ETBlue> clkao: 看到要寫計畫書就沒力 orz
+11:01 < tkirby> clkao: 竟然在看新聞所的作品!
+11:08 < pofeng> clkao: jimyhuang__ 我是剛鐵人不是大砲 ！:-)
+11:13 < tkirby> 鋼鐵大砲
+11:40 < clkaoud> 衛福部三份資料用的醫院名稱對不起來
+11:41 < clkaoud> 太厲害了
+11:42 < mrorz> isif 那個 hackfoldr 2.0 好像可以投 Code for the common good, 簡介（http://isif.asia/grant）裡面多次提到 mobile 這個字，剛好 hackfoldr 2.0 有 responsive XD
+14:03 < t0mst0ne_> clkao: update dashboard , 包含分區, 你再看看
+14:04 < t0mst0ne_> clkao: 結果雞籠長庚變慢了 oops 
+14:05 < clkao> orz
+14:32 < clkao> t0mst0ne_++ # 居然手動把分區做完了
+14:36 < clkao> t0mst0ne_: er.kcgmh.py 的 hospital_sn 還是 []
+14:41 < clkao> t0mst0ne_: 而且最外面也包了 []
+14:49 < t0mst0ne_> clkao: 阿，str(sn) ...沒想到音樂會中也可以改git
+15:46 < lanf0n> 亞東 12:40 之後就沒有資料更新了...
+15:48 < lanf0n> 呃 是 influxDB 裡面沒資料QQ
+17:07 < clkao> lanf0n: 亞東網頁好像就是比較舊
+17:19 < t0mst0ne_> 透明化之後，應該很有趣
+17:34 -!- mose_ is now known as mose
+17:41 -!- coldnew [~user@36-225-38-31.dynamic-ip.hinet.net] has left #g0v.tw ["ERC Version 5.3 (IRC client for Emacs)"]
+18:47 < xsoameix> clkao: karma 用的 coverage tool 是這個：https://github.com/yahoo/istanbul
+18:47 < kcwu> xsoameix's url: [yahoo/istanbul · GitHub]
+18:51 < xsoameix> clkao: 要用 coveralls.io 之類的工具嗎？
+18:52 < xsoameix> clkao: 剛在 coveralls.io 看到的例子，就是對 generate js files: https://coveralls.io/files/223016723
+18:53 < kcwu> xsoameix's url: [tomchentw/gulp-livescript | Job 1 | index.js | Coveralls - Test Coverage History & Statistics]
+18:59 < xsoameix> clkao: 接下來我再對熱門議案的頁面做一些測試，這樣 bills 的測試大概就大功告成了，然後我看看要怎麼用 karma 用的 coverage tool
+18:59 < t0mst0ne_> clkao: lanf0n 亞東網頁, 好像時間 06:58 但是實際是晚上6:58, 然後床位資料是有在變動...要增加判斷AM/PM機制嗎?
+19:02 < t0mst0ne_> clkao: lanf0n 或者直接用grabtime
+19:02 < lanf0n> 台大又超前了XDD 好謎....
+19:04 < lanf0n> t0mst0ne_: 天吶完全沒發現這個....
+19:27 < lanf0n> clkao: fix femh.py  am/pm problem
+19:32  * lanf0n 難怪亞東 12:40 之後就沒資料...
+19:41 < t0mst0ne_> lanf0n: ++ update_time.append( datetime.now().strftime('%p') )
+19:56 < t0mst0ne_> clkao: lanf0n 另一個小問題是 "急診等床變化" group by 30m 才OK, 小於 30m 會出現 error Datapoints (outside time range, can be caused by timezone mismatch between server and browser client)
+20:11 < clkao> t0mst0ne_: can you paste the different queries and and errors?
+20:31 < clkao> hychen: https://www.google.com/fusiontables/data?docid=1cAI2riYOV32_L6Ad16qAWoLXKw8-D7jFrYkDKASL#rows:id=1
+20:31 < kcwu> clkao's url: [Google Fusion Tables]
+20:35 < t0mst0ne_> https://www.irccloud.com/pastebin/jycMpaaZ
+20:35 < kcwu> t0mst0ne_'s url: [Pastebin: jycMpaaZ | IRCCloud]
+20:40 < czchen> Is it okay to use qs 1.2.x in api.ly? There is a vulnerability in qs 0.6.x
+20:42 < czchen> https://github.com/g0v/api.ly/pull/66
+20:42 < kcwu> czchen's url: [Use qs 1.2.x to prevent denial-of-service by czchen · Pull Request #66 · g0v/api.ly · GitHub]
+20:42 < clkao> t0mst0ne_: maybe difference is broken
+20:44 < clkao> czchen++
+20:51 < xsoameix> clkao: 有囉，我對 _public/js/app.js 做 coverage report，目前只有 25 %，這 25 % 幾乎就是 steps bar 的測試 :)
+20:52 < poga> XDD xsoameix++
+21:00 < clkao> xsoameix++
+21:04 -GitHub19:#g0v.tw- [twlyparser] czchen pushed 1 new commit to master: https://github.com/g0v/twlyparser/commit/62e3b6c6b195da682c05ceb03828534330b2b725
+21:04 -GitHub19:#g0v.tw- twlyparser/master 62e3b6c ChangZhuo Chen (陳昌倬): Add gemnasium badge
+21:04 < lanf0n> 神秘
+21:05 < xsoameix> clkao: coverage 的頁面在這：https://github.com/xsoameix/ly.g0v.tw/tree/feature/steps-bar-of-bill-coverage，你可以看看情況，可以發 pull request 嗎？
+21:07 < xsoameix> clkao: 頁面在 coverage/Firefox 31.0.0 (Ubuntu)/index.html
+21:14 -GitHub48:#g0v.tw- [twlyparser] czchen pushed 2 new commits to master: https://github.com/g0v/twlyparser/compare/62e3b6c6b195...ccae658269d4
+21:14 -GitHub48:#g0v.tw- twlyparser/master e7bad0e ChangZhuo Chen (陳昌倬): Add travis-ci badge
+21:14 -GitHub48:#g0v.tw- twlyparser/master ccae658 ChangZhuo Chen (陳昌倬): Upgrade vulnerable dependencies...
+21:18 < czchen> xsoameix: Is it possible to connect coverage report to https://coveralls.io/ ?
+21:18 < kcwu> czchen's url: [Coveralls - Test Coverage History & Statistics]
+21:19 < xsoameix> czchen: 我可以試試看，感覺還不錯 :)
+21:22 < xsoameix> czchen: 我先弄弄看，弄成功的話，我再請 clkao 弄弄看，因為我沒有 g0v.tw 的 github 帳號，我只能弄在我的 github 上的 repo
+21:26 < clkao> xsoameix: you should now be!
+21:32 < xsoameix> clkao: 是 organization 嗎？https://github.com/settings/organizations 我沒有看到我被加入耶
+21:33 < kcwu> xsoameix's url: [Sign in · GitHub]
+21:34 < xsoameix> clkao: 收到 email 了 :)
+21:44 < xsoameix> clkao: coverall.io 只會加入我的 repo (xsoameix/xxx 開頭的 repo)...
+21:46 < xsoameix> clkao: 有了 :)
+21:47 < xsoameix> clkao: 長達 12 頁的 repo，好多阿
+21:58 < ipa> hychen: http://hack.g0v.tw/g0v-summit2014/CM11AB8j3pE
+21:59 < ipa> okfn 相關：http://local.data.g0v.tw/
+21:59 < kcwu> ipa's url: [總覽 - 地方的資料需要普查]
+22:01 < xsoameix> clkao: 找到了把 coverage report 傳給 coveralls.io 的套件了 :) https://github.com/caitp/karma-coveralls
+22:01 < kcwu> xsoameix's url: [caitp/karma-coveralls · GitHub]
+22:11 < t0mst0ne_> clkao:  https://www.facebook.com/photo.php?fbid=10152626971593373&set=a.10150243947103373.376389.501068372&type=1&permPage=1   好像沒有URL 可以直接指向這個fullscreen widget ?
+22:11 < kcwu> t0mst0ne_'s url: [Tom Shih - 動態時報相片 | Facebook]
+22:14 < lanf0n> t0mst0ne_: https://www.facebook.com/photo.php?fbid=10152626971593373&set=a.10150243947103373.376389.501068372&type=1&theater
+22:14 < t0mst0ne_> lanf0n:  ?
+22:14 < lanf0n> t0mst0ne_: 咦會跳掉...
+22:25 < t0mst0ne_> lanf0n: clkao  再改了一次 layout , 看看這樣會不會好一些
+22:26 < t0mst0ne_> 看看亞東醫院, 難怪土城要再蓋一座醫院, 由塑膠醫院 BOT
+22:29 < lanf0n> 亞東感覺真的超滿的...
+22:31 < travis-ci> [travis-ci] g0v/ly.g0v.tw#387 (feature/steps-bar-of-bill-coverage - 01e079c : Lien Chiang): The build has errored.
+22:31 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/commit/01e079c6c52a
+22:31 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/32151500
+22:31 -!- travis-ci [~travis-ci@ec2-54-198-251-155.compute-1.amazonaws.com] has left #g0v.tw []
+22:46 < clkao> t0mst0ne_: [fullscreen] 對的，我已經回報 bug  xk7
+22:48 < ipa> t0mst0ne_: clkao  https://g0v.hackpad.com/w01v8lrMLTY 先寫了一版介紹文案，看一下有沒錯 
+22:48 < kcwu> ipa's url: [新聞中心（發佈工作站） - g0v.hackpad.com]
+22:49 < ipa> 亞東都在等推床真的很爆滿
+22:50 < ipa> 改版太快，早上截的圖已經不能用了 orz
+22:59 < yhsiang> ipa++ 
+23:16 < travis-ci> [travis-ci] g0v/ly.g0v.tw#388 (feature/steps-bar-of-bill-coverage - 8f71473 : Lien Chiang): The build passed.
+23:16 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/01e079c6c52a...8f7147360714
+23:16 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/32153845
+23:16 -!- travis-ci [~travis-ci@ec2-54-237-227-60.compute-1.amazonaws.com] has left #g0v.tw []
+23:23 < xsoameix> clkao, czchen: 跟 coveralls.io 整合在一起了 :)，有看到 README 有個 coverage 的 icon 嗎：https://github.com/g0v/ly.g0v.tw/tree/feature/steps-bar-of-bill-coverage
+23:23 < kcwu> xsoameix's url: [g0v/ly.g0v.tw at feature/steps-bar-of-bill-coverage · GitHub]
+23:25 < xsoameix> clkao: 如果 ok 的話，我就發 pull request
+23:25 < travis-ci> [travis-ci] g0v/ly.g0v.tw#389 (feature/steps-bar-of-bill-coverage - 452c1eb : Lien Chiang): The build passed.
+23:25 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/8f7147360714...452c1eb5e546
+23:25 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/32154456
+23:25 -!- travis-ci [~travis-ci@ec2-54-237-227-60.compute-1.amazonaws.com] has left #g0v.tw []
+23:29 < t0mst0ne_> ipa:  大致上沒問題
+23:29 < t0mst0ne_> Ipa 截圖是指？
+23:30 < czchen> xsoameix++
+23:39 < au> ipa: 文案略微編了一下，看起來很不錯!
+23:41 < t0mst0ne_> Ipa 到秋冬再和現在的data 比一比就很可觀了！ 天氣一冷，住院病人大增，但是床位依然難求，花東因為護理人力不足，縮床的結果，反應就在急診等床

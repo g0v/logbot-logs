@@ -1,0 +1,99 @@
+--- Day changed 一  5月 09 2016
+06:36 < slackbot5> <michael_li> ＠fumi　轉阿～不能轉的我會打上馬賽克　　//深夜有看到你轉臉書了
+09:23 < slackbot5> <kiang> 有個問題想要問問大家意見，我們在討論是否要將完整的門牌轉為 QRCode 貼紙在民眾申請時一併提供（或甚至直接寄給民眾），讓有意願的民眾可以在自家門口貼這個 QRCode 貼紙。掃描後會對應到台南市政府的一個網站，提供完整的住址與地理座標等資訊。只是在想會不會有更好的方式去解決這個問題（ NFC tag ? ），想知道更多
+10:26 < slackbot5> <pofeng> 好像提供地址對座標的資料庫比較有用 ? 
+10:26 < slackbot5> 或者利用發 QRCode 貼紙 的時機, 校正地址對座標的資料庫 ?
+10:30 < slackbot5> <kiang> pofeng: 這也是一個想法，大部分的座標其實是人工點選的
+10:32 < kcwu> 問題是誰來校正? 收到貼紙的民眾自行校正?
+10:33 < slackbot5> <kiang> kcwu: 掃描後會進入市政府網站，如果提供的座標資訊錯誤可以線上通報，貼紙掃描出來預期是 "http://xxx.tainan.gov.tw/uuid" 這樣的網址，網站上面的資訊保留變動可能
+10:36 < slackbot5> <kiang> 其實門牌轉經緯度的比例應該算高（七十萬個門牌大概有一千多個透過村里範圍驗證出問題），只是建檔過程是人工在地圖上一個一個點的，所以舊有不常變動的門牌可能誤差會比較大
+10:37 < slackbot5> <michael_li> 我外行　我隨意丟個點子　給你們想想有沒有可行性　就是要設計專用的ＡＰＰ　可以讀取條碼　同時也可以啟動手機的GPS資訊。　這樣的話　只要讓該住址的住戶　把ＱＲ碼貼在門牌上（原則上）　人就站在門牌旁邊掃描　自動把「地址」跟「GPS定位資訊」
+10:40 < kcwu> 技術上可以做到, 民眾掃描 QR code 連到 https://xxx.tainan.gov.tw/uuid, 該網站自動要求手機的定位權限, 於是網站就自動取得該 QR code 跟實際位址
+10:40 < slackbot5> <michael_li> 上（原則上是建物旁邊　而不是距離很遠的巷口）　人就站在門牌旁邊掃描　自動把「地址」跟「GPS定位資訊」送到中央資料庫裡　　//群眾外包　建築物GPS定位數據收集
+10:41 < slackbot5> <kiang> kcwu: 現有問題是手機取得的地理座標偏差很大，我們透過 1999 取得的資訊事實上很多都得人工重新定位，這個門牌想法有部份是想要解決這個問題
+10:42 < slackbot5> <kiang> michael_li: 其實官方已經有相當完整的住址對應座標資料庫，只是卡在相關法規並未開放
+10:42 < slackbot5> <pofeng> @kiang: 配合電線杆定位 (真的)
+10:43 < slackbot5> <kiang> pofeng: 市區電線杆蠻多都地下化了 XD
+10:43 < slackbot5> <pofeng> orz
+10:43 < slackbot5> <ttcat> <http://ly.g0v.tw/> 國會大代誌當了好幾天 @@
+10:47 < slackbot5> <pofeng> @kiang: 那只好用配電箱了 (無誤 但好像數量少)
+10:47 < slackbot5> <kiang> 其實應該沒有比門牌密度更高的定位方式？
+10:47 < kcwu> 民眾自行定位想解法怎麼樣的定位問題? 既然說資料庫內資料其實很準,只是少數人工手誤. 手機定位 50m 以內, 可以當作過濾條件找出相差太遠的, 並不是直接把手機的位置拿來用
+10:49 < kcwu> 畢竟民眾在地圖上手動點選位置你也是不能相信
+10:51 < slackbot5> <kiang> 其實民眾通報之後會進入很多人工程序，透過 QRCode 掃描後通報會簡化一些（雖然掃描的門牌並不一定是事發地點，但至少不用要求民眾輸入住址）
+10:52 < slackbot5> <pofeng> 那發個地址代碼 (類似電話號碼?)
+10:53 < slackbot5> <pofeng> 還是可以發行 QR code
+10:53 < slackbot5> <kiang> 其實設計 uuid 就是希望作為地址代碼，刻意設計編碼規則有點痛苦（也不是我的職權）
+10:53 < slackbot5> <michael_li> （我只能看　要出門　抽空再回）
+10:55 < slackbot5> <kiang> 而且在縣市合併之後接下來行政區、門牌可能會大洗牌，早點建立編碼對應應該可以避免屆時電話接不完（雖然也不是我接電話啦 XD）
+10:59 < slackbot5> <pofeng> 我是覺得另外用 uuid 不會比較好就是了, 編碼本來就是有點管理(政治)問題,  如果上面沒支持, 應該作不久, 請參考中文萬碼奔騰歷史 XD
+11:01 < slackbot5> <kiang> uuid 至少在縣市層級的實做容易些，要想根本解決這個問題就得透過中央制定標準囉
+11:02 < slackbot5> <kiang> 建立唯一編碼之後未來換成什麼都容易些，現況好像沒有這種東西（不過權限不夠沒辦法直接看到底層就是了）
+11:02 < slackbot5> <pofeng> 也對,  加油, 台南市的 地址vs定位 的資料庫有可能 open data 出來嗎?
+11:03 < slackbot5> <kiang> 還在努力中吧，遙遙無期 XD
+11:03 < slackbot5> <pofeng> ok ok 辛苦了 請原諒我嘴砲 XD
+11:06 < slackbot5> <pofeng> 啊, 有聽說我們的門牌號碼都沒預留空間, 會亂插, 所以位置定位, 沒辦法用門牌號碼猜 (內插法)
+11:06 < slackbot5> 所以可能連門牌號碼發放的行政流程都需要 review , 聽說美國門牌號碼發放比較平均分散
+11:07 < slackbot5> <kiang> 恩，門牌資料庫光是 "之" 的用法就沒有統一了，更別說舊有系統沒有樓層欄位等問題 XD
+11:08 < slackbot5> <kiang> 最訝異的就是 戶政門牌 跟 地政的權狀 居然對不起來 XD
+11:10 < slackbot5> <pofeng> 哈哈哈 所以是行政流程就有問題 資訊化只能幫忙找出 bug 沒辦法 debug XD
+12:51 < slackbot5> <muyueh> 哈囉有人知道我假如想要聯繫 g0v Facebook 的粉絲頁面的經營人員，我可以找誰嗎？
+12:52 < slackbot5> <muyueh> 因為我在幫助講者 Liz Barry 徵求風箏的事情，我想要在接下來有宣傳 g0v summit 的地方可以順勢發相關的訊息
+12:53 < slackbot5> <muyueh> <https://www.facebook.com/events/1611506835843238/>
+12:53 < kcwu> slackbot5's url: [徵求大風箏及無人機 g0v summit]
+12:55 < slackbot5> <ttcat> @muyueh: 目前負責議程跟大會宣傳的有 @joeylee @ipa 和我~
+12:56 < slackbot5> <muyueh> 嗨嗨 @ttcat
+12:56 < slackbot5> <muyueh> 我有觀察這幾天有國外講者的簡介
+12:56 < slackbot5> <ttcat> 或是將你想發布的先丟到 <https://g0v.hackpad.com/w01v8lrMLTY> 新聞中心討論
+12:56 < kcwu> slackbot5's url: [新聞中心（發佈工作站） - g0v.hackpad.com]
+12:57 < slackbot5> <muyueh> 接下來還會有 Liz 的嗎？
+12:57 < slackbot5> <muyueh> （我剛剛在 hackpad 上沒有看到）
+12:58 < slackbot5> <ttcat> yes 預計 May 11, 2016 at 6:00pm
+12:58 < slackbot5> <ttcat> 因為太多講者了所以我只留一個範例其他都直接排程 :stuck_out_tongue:
+12:59 < slackbot5> <muyueh> 喔喔
+12:59 < slackbot5> <ttcat> do you want to change wording?
+12:59 < slackbot5> <muyueh> 那我可以把 Facebook 的 post 的內容貼在 hackpad 下方嗎？
+12:59 < slackbot5> <muyueh> 等等，已經有 Liz 的文稿了嗎（因為我剛剛沒有看到）
+13:00 < slackbot5> <ttcat> <https://hackpad.com/yQxpUHhhzzT>
+13:00 < kcwu> slackbot5's url: [訪談上臉書素材處理 - hackpad.com]
+13:00 < slackbot5> <ttcat> Liz 目前排程的文稿在上面
+13:00 < slackbot5> <ttcat> 你可以看要改哪些，或是在新聞發布中心貼另外一篇？
+13:00 < slackbot5> <ttcat> 我會再 pin 其他人來看
+13:01 < slackbot5> <muyueh> 好啊！
+13:01 < slackbot5> <muyueh> 我貼現在的版本，你們審核 final 的 wording
+13:03 < slackbot5> <ttcat> 好啊，你是傾向直接改排程的還是再發一篇呢
+13:06 < slackbot5> <muyueh> 我留給你們決定
+13:06 < slackbot5> <muyueh> <https://g0v.hackpad.com/w01v8lrMLTY#:h=徵求大風箏及無人機>
+13:06 < kcwu> slackbot5's url: [新聞中心（發佈工作站） - g0v.hackpad.com]
+13:06 < slackbot5> <ttcat> okay
+13:06 < slackbot5> <muyueh> 假如你們覺得需要怎麼改就不要客氣囉！
+13:06 < slackbot5> <muyueh> 謝謝阿端！
+13:21 < slackbot5> <ipa> @muyueh: 你要不要幫忙寫一小段公民科技介紹（一兩句）+ Liz 演講簡介（一兩句），我已經寫了一點點，你來接力？
+13:23 < slackbot5> <ipa> ohoh 我錯了， @ttcat++ 已經寫在另一個pad
+13:34 < slackbot5> <muyueh> 我加了一段：
+13:34 < slackbot5> <muyueh> <https://hackpad.com/yQxpUHhhzzT#:h=Liz>
+13:34 < kcwu> slackbot5's url: [訪談上臉書素材處理 - hackpad.com]
+14:04 -!- chihchun_afk is now known as chihchun
+15:14 < slackbot5> <fumi> @michael_li: 想說你都放g0v後勤中心了應該沒什麼不能ＰＯ，想說放ＦＢ比較多人知道有機會
+15:52 < slackbot5> <fumi> @johnny 請問立委投票指南的政見是抓選舉公報API嗎？最近立委聯繫資料（立委咖電喂）方面想抓立委的專業領域，這方面想請問一下 感謝 @sodid 提供訊息 我一開始以為是ly做的（http://vote.ly.g0v.tw）實在滿丟臉的 XDD
+16:33 < slackbot5> <johnny> fumi: 不會，據 ly說很多人跟你一樣XD   是接中選會選舉公報API沒錯，<http://2016.cec.gov.tw/opendata/cec2016/getJson?dataType=2>
+16:34 < slackbot5> <johnny> 最後的數字：2 全國不分區、3區域立委、4山地原住民、5平地原住民
+16:46 < slackbot5> <yhsiang> johnny: 所以 summit 由我上台報告吧 :smile:
+16:47 < slackbot5> <yhsiang> muyueh: 請問會場在那裡？
+16:48 < slackbot5> <johnny> yhsiang: 兩年後就交給你了（握
+17:15 < slackbot5> <fumi> johnny: 謝謝。看了很久API恍然大悟是網址後面的數字改變代表不同的立委 XDD
+17:15 < slackbot5> 還好 ＠sodid
+17:38 -!- chihchun is now known as chihchun_afk
+17:49 -!- chihchun_afk is now known as chihchun
+17:58 < slackbot5> <fumi> johnny:謝謝。幫了大忙！看了很久API後發現是網址後面數字改變啊 XDD 
+17:58 < slackbot5> 還好sodid告訴我！不然我會騷擾錯人 更丟臉 XDD 我小松時還跟 @dongdongchen @meisheep 堅持是yhsiang，超蠢，以前都會先查pad的 :( (
+17:58 < slackbot5> yhsiang: 兩年後就交給你了！ ( 握
+22:28 < slackbot5> <etblue> @yhsiang @wiltchen 報告：口譯 icecast 設備看目前進度應該徵不齊，但我手上的設備再加上某台 mac 就剛好可以湊到一間會議室所需，我會再找個倒楣鬼凹 mac 筆電 XD cc @lanf0n @pennyken
+22:29 < slackbot5> <etblue> ^^^ FYI <https://g0v.hackpad.com/-g0v-summit-2016--Nfj0ncaNnhq#:h=跳坑區>
+22:29 < kcwu> slackbot5's url: [⚽ g0v summit 2016 口譯設備評估 - g0v.hackpad.com]
+22:30 < slackbot5> <lanf0n> 要失業啦~~
+22:47 < slackbot5> <clkao> yutin: <http://summit.g0v.tw/2016/live> still broken?
+22:47 < kcwu> slackbot5's url: [直播 :: 啥米零時政府 g0v 2016 summit]
+22:52 < slackbot5> <clkao> 又開了一堆 summit 網站小卡: <https://github.com/g0v/summit.g0v.tw/issues>
+22:52 < kcwu> slackbot5's url: [Issues · g0v/summit.g0v.tw · GitHub]
+22:57 < slackbot5> <pennyken> @etblue: 我沒多的mac啊

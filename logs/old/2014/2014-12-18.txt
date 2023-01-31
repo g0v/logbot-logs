@@ -1,0 +1,461 @@
+--- Day changed 四 12月 18 2014
+00:11 < t0mst0ne_> kiang: 想問一下, 這些 dataset , 有一些是 "每週與XX系統同步" , 有打算做timeseries 嗎 ?
+00:11 < t0mst0ne_> exp : 資料集提供藥品健保藥價資料，並每週與藥證業務管理系統同步   
+00:11 < t0mst0ne_> 總覺得是不是要每週parse 一次, 然後視覺化  ( 但是一般民眾可能無感, 應該是醫屆/藥屆 會 .....)
+00:13 < kiang> t0mst0ne_: 目前的想法是單純用 git 控制版本，想到的時候就 update 一下，我其實對裡面的資料大多沒什麼概念 XD
+00:15 < t0mst0ne_> kiang: 單看 74 , 如果每週update一次 => 就可以做出每個藥的週線圖 ( XD ) , 可以得知哪些藥又被砍了多少錢
+00:16 < t0mst0ne_> 然後 如果可以有使用量資料(地區 or 醫院別 or 年紀別 etc ) , 就可以知道國人每週/月/年的藥費趨勢 
+00:16 < t0mst0ne_> 看看 pofeng 有沒有覺得有趣的地方
+00:17 < kiang> t0mst0ne_: 要不要開個 hackpad ，感覺可以直接作為題目去拿獎金，下面有沒有人要報名視覺的部份啊 XD
+00:17 < kiang> <== 棒踢行特
+00:17 < t0mst0ne_> 問問看 pofeng , 看看他覺得怎樣 
+00:21 < t0mst0ne_> 有的dataset 每週, 有的每季, 有的不定期  => 如果crawler 把產出的data加上 時間戳記; 那git clone 下來的就用 crontab 每週跑即可 ; 然後再 diff data/*74*.csv 就可以知道 某個dataset 的差別   
+00:23 < t0mst0ne_> kiang: 然後之前講的是 dataset/*.csv 裡頭沒有欄位名稱 
+00:29 < kiang> t0mst0ne_: 在 https://github.com/kiang/data.fda.gov.tw/blob/master/list.csv 有抓欄位名稱，只是我沒有比對是否跟資料一致
+00:29 < kcwu> kiang's url: [data.fda.gov.tw/list.csv at master · kiang/data.fda.gov.tw · GitHub]
+00:32 < t0mst0ne_> kiang: Oh 我懂了, 在最後一欄
+00:33 < lanf0n> list 裡面看起來是沒提供藥價..... https://github.com/kiang/data.fda.gov.tw/blob/master/list.csv
+00:33 < kiang> 嗯，習慣了（攤手）
+00:35  * lanf0n ah.... id=74 有提供藥價 id=51提供管制藥品.....
+00:35 < t0mst0ne_> lanf0n: 74.csv 最後那個有小數點 => "參考價"
+00:37 < t0mst0ne_> 另外一個應用 " 暫停供應 "   => 看看每週有多少藥 變 "暫停供應" ( 原廠離台)
+00:38 -!- chihchun is now known as chihchun_afk
+00:39 < t0mst0ne_> 應該是用這個 https://raw.githubusercontent.com/kiang/data.fda.gov.tw/master/dataset/36.csv
+00:40 < kiang> 嗯，希望資料是可以串的起來的，政府資料經常有匪夷所思的驚喜
+00:43 < t0mst0ne_> kiang: https://g0v.hackpad.com/data.fda.gov.tw--OPiwIhTl684  暫時先整理到這邊, 看看其他人的想法
+00:43 < kcwu> t0mst0ne_'s url: [data.fda.gov.tw 應用 - g0v.hackpad.com]
+00:44 < kiang> t0mst0ne_++
+00:46 < t0mst0ne_> kiang: ++ 之前沒想那麼多, 看到zip 檔, 無法直接下載parse, 就暫停了 Orz
+00:46 < t0mst0ne_> 先zZ
+00:47 < lanf0n> .....json解開來之後 22mb.... 129027筆資料 囧rz
+00:51 < kiang> lanf0n: 最刺激的是 ronnywang 的公司登記資料喔
+00:51  * lanf0n 處在一個 editor 卡住的狀態
+00:52 < kiang> 請愛用 more or less XD
+00:52 < kiang> 抓 CSV 也是因為這個格式最小
+01:13 < kiang> lanf0n: 也許檔案下載網址不要用 cacheData 的網址會比較好，我猜原始網址應該會去觸發程式確認 cacheData 裡的檔案是最新的，直接抓也許會抓到舊的
+01:13 < lanf0n> ! 對欸....
+01:16 -!- pkmx1 is now known as pkmx
+01:28 < kiang> 剛剛注意到，一般講 drug 好像是偏毒品類的藥物，怎麼食藥署會用這個咧...(還是我英文太糟 XD)
+01:30 < kiang> A medicine is any substance that is designed to prevent or treat diseases and a drug is designed to produce a specific reaction inside the body. - http://www.ask.com/health/difference-between-drug-medicine-4f273e7f2142b078 XD
+01:30 < kcwu> kiang's url: [What is the difference between a drug and a medicine? | Ask.com]
+01:48 < au> 有作用的就是 drug（藥物），治療用的是 medicine（藥品），食藥署的業務範圍較廣所以用前者。
+01:48 < au> (fda.gov.tw 和 fda.gov 一樣都是這個意思)
+01:49 < kiang> 嗯，結論：英文爛（攤手）
+02:08 -!- chihchun_afk is now known as chihchun
+02:15 < kiang> fda id 36 的 csv 資料裡面直接用 tab 去切會有例外，因為部份字串裡面包含這個字元...
+02:36 < kiang> 沒事，是單行長度超過...
+04:05 < gugod> kiang: 雖然 csv 精簡.... 缺點就是每個檔案的格式跟其作者有絕對的關係... XD
+04:21 < kiang> gugod: 目前看起來是我自己的問題啦，因為切檔案時沒有注意到單行的最大長度，切下去就亂掉了。至少比起 data.gov.tw 上面的群魔亂舞， data.fda 友善多了 XD
+04:24 < kiang> 誰可以說動管媽啊 ... https://www.facebook.com/biling.kuan/posts/796260040412227 ，我不想要繳的稅金被拿來鑽牛角尖浪費掉啊...
+04:24 < kcwu> kiang's url: [管碧玲 - 北京樂視網在台沒有設公司登記，政府對ㄧ類電信機房隨便攬客完全沒有法令規範，稽查人員的機房安全審驗因此完全沒... | Facebook]
+05:36 -!- kkyo [kkyo@gateway/web/scrollback.io/x-rhlfbvkgeimwxtuv] has left #g0v.tw []
+06:05 < gugod> 順手把 fda 資料集加入 magic-mirror: https://github.com/g0v-data/mirror/tree/master/fda 
+06:05 < kcwu> gugod's url: [mirror/fda at master · g0v-data/mirror · GitHub]
+06:07 < gugod> 還有 ncc 的速度量測 https://github.com/g0v-data/mirror/tree/master/ncc
+06:07 < kcwu> gugod's url: [mirror/ncc at master · g0v-data/mirror · GitHub]
+06:29 < tonysan> http://imgur.com/01fRgD9 #g0v-US-west 人數估計表 Google Form draft
+06:29 < kcwu> tonysan's url: [imgur: the simple image sharer]
+07:58 -!- chihchun is now known as chihchun_afk
+08:14 < pofeng> 可以作藥物健保價下降趨勢圖 :p  ( 結果 kinag 和 t0mst0ne 都不在 :p ) 
+08:14 < pofeng> 同成份藥物價差比較表 :p
+08:15 < pofeng> (價格)
+10:14 < Lee1092> Travis-ci 使用 Docker 了! 只要加一行  http://blog.travis-ci.com/2014-12-17-faster-builds-with-container-based-infrastructure/
+10:14 < kcwu> Lee1092's url: [The Travis CI Blog: Faster Builds with Container-Based Infrastructure and Docker]
+10:25 < kiang> gugod++ pofeng++
+12:18 < yhsiang> superbil: 12/22要一起去江山藝改所嗎 XD
+12:21 < kkyo> 最近的win7  更新是不是會把rdp關掉阿?
+12:21 < kkyo> 我遠端都連不進去了
+12:21 < kkyo> ....
+13:30 < a0kman> 正在聽不知道為什麼要IE ONLY,介面醜又複雜的公文系統改版
+13:30 < a0kman> Orz
+13:35 < clkao> yhsiang: can you add me to the group: https://www.transifex.com/organization/g0v
+13:35 < kcwu> clkao's url: [g0v localization]
+13:38 < kkyo> 請問 RESTful   Web   API是甚麼意思
+13:38 < kkyo> 我有看沒有懂@@
+13:50 < yhsiang> clkao: sure 
+13:52 < dirty> kkyo: 不懂的是 RESTful 還是 API?
+13:56 < t0mst0ne_> kiang: pofeng 如果可以把 5.csv 和 ronnywang 的公司登記資料 連在一起 
+14:07 < superbil> yhsiang: 可以阿
+14:10 < clkao> yhsiang: 好像無法 create project
+14:12 < yhsiang> clkao: try again 我剛剛終於找到在那裡設了 XD
+14:20 < kkyo> @yhsiang1 RESTful
+14:23 < averange1ll> 請問 12/20 的大松 晚上的退票通知 會怎麼通知呢
+14:24 < averange1ll> 我想要一張票!
+14:26 < ij1iao> kkyo: 你看了哪些講 restful web api 的文件 ?
+14:26 < braned1> 安安打家豪
+14:31 < jimyhuang_> Lee1092: 居然是 sudo: false ... !
+14:31 < johnny__> averange1ll: 今晚八點會寄出活動通知提醒退票，請密切注意報名網頁名額釋出：http://g0v-tw.kktix.cc/events/g0v-hackath11n
+14:31 < kcwu> johnny__'s url: [g0v.tw hackath11n | 台灣零時政府第拾壹次開放報禁黑客松]
+14:34 < ipa> averange1ll: 會通知已經報名的人，如果不來請退票
+14:39 < averange1ll> johnny__: ipa: 謝謝你們!! 所以如果有人退票 它就會顯示在網頁上 我就趕緊去搶票嗎
+14:41 < yhsiang> averange1ll: 就隨時注意報名網頁
+14:42 < ipa> averange1ll: 如果報名頁面出現名額，就趕快報
+14:43 < yhsiang> ipa: 我到的時間比較不確定耶 XD
+14:49 < averange1ll> yhsiang: ipa: 我明白了 謝謝 : )
+15:07 < kobeyu_> 這禮拜六沒辦法過去黑客松了 想問一下如何取消票券?
+15:08 < clkao> kobeyu_: 原來的通知信應該會一個個人報名資訊的連結 可以在那邊取消
+15:10 < ipa> averange1ll: 快注意報名網址 XD
+15:14 < Lee1092> 剛與以前大學老師聊天    結果下學期也有想把  hackathon 引入課堂  XD 
+15:15 -!- chihchun_afk is now known as chihchun
+15:16 < ipa> 老師和學生都好忙 XD 
+15:17 < kobeyu_> done...
+15:18 < Lee1092> 一月要跟他計畫要怎麼呈現，  或許還有可能跟 g0v 合作，CCSP  真是很好的例子~  :p
+15:20 < ipa> Lee1092++
+15:22 < averange1ll> ipa: 已搶到!! 謝謝 kobeyu_
+15:35 < kobeyu_> averange1ll: 
+15:35 < kobeyu_> averange1ll: no problem
+15:35 < AceChen> miaoski 表示 QQ
+15:36 < miaoski> AceChen: 不是要摩斯松？(誤)
+15:45 -!- chihchun is now known as chihchun_afk
+16:34 < pofeng> t0mst0ne_: 可是剛剛找 "立祥食品行" 就找不到, 只有 立祥食品有限公司
+16:34 < pofeng> t0mst0ne_: https://github.com/g0v-data/mirror/blob/master/fda/5_2.csv
+16:34 < kcwu> pofeng's url: [mirror/5_2.csv at master · g0v-data/mirror · GitHub]
+16:38 < pofeng> ronnywang: 所以商業登記 (商行) 好像要另外爬資料 ?
+16:38 < pofeng> ronnywang: http://gcis.nat.gov.tw/moeadsBF/bms/bmsInfoListAction.do
+16:39 < pofeng> t0mst0ne_: 上面很多是商行, ronnywang 的資料目前是 有限公司和 股份有限公司
+16:41 < t0mst0ne_> pofeng:  那這些公司的資料有的茶嗎?  
+16:41 < pofeng> ronnywang: 奇怪 "立祥食品行" 用名子找不到 
+16:41 < pofeng> ronnywang: http://company.g0v.ronny.tw/index/search?q=%E7%AB%8B%E7%A5%A5%E9%A3%9F%E5%93%81%E8%A1%8C
+16:41 < kcwu> pofeng's url: [台灣公司資料]
+16:42 < pofeng> ronnywang: 但是用統編找得到 http://company.g0v.ronny.tw/id/81990827
+16:42 < kcwu> pofeng's url: [立祥食品行:81990827:台灣公司資料]
+16:42 < pofeng> ronnywang: 我晚點去開 issue 
+16:52 < t0mst0ne_> pofeng:  對 CDC 有沒有什麼comments, 下週一要去聊天
+16:53 < t0mst0ne_> http://www.cdc.gov.tw/downloadfile.aspx?fid=68941F58C8903559 這個有沒有可能結構化 raw data
+16:54 < t0mst0ne_> http://www.cdc.gov.tw/qa.aspx?treeid=5784355BFD011A1C&nowtreeid=DB3CD706FD404A01 疫苗區
+16:54 < kcwu> t0mst0ne_'s url: [衛生福利部疾病管制署一般民眾版]
+16:54 < pofeng> t0mst0ne_: 問問看他們有哪些資料可以公開 (統計法 / 政府資訊公開法 / 開放資料)
+16:54 < pofeng> t0mst0ne_: 然後他們會從健保資料庫抓資料嗎 ? 還是自己統計
+16:55 < pofeng> t0mst0ne_: 結構化 ?? 你的目的是 ??
+16:55 < t0mst0ne_> pofeng: ok, 我猜是自己統計, 因為醫院必須run一個非常複雜的通報流程
+16:56 < pofeng> t0mst0ne_: 對, 通報有個單子, 但是你應該是指傳染病防治法的部份
+16:57 < t0mst0ne_> pofeng: pdf裏的欄位, website 沒有那麼詳細; 結構化方便local 製圖統計 
+16:57 < pofeng> t0mst0ne_: 其實我的意思就是資料盤點
+16:58 < pofeng> t0mst0ne_: 我是覺得你的問題好像沒有定義清楚 (對不起)
+16:59 < t0mst0ne_> pofeng: 對, 簡單講就是, 盤點到哪裡? 開放到哪裡?
+16:59 < t0mst0ne_> pofeng: 疫苗區的information你們會用到嗎?
+17:02 < pofeng> t0mst0ne_: 對, CDC 我是想知道有多少資料, 還有資料產出的流程, (資料盤點) , 你的結構化問題, 我有點看不懂, 所以請定義一下問題,  疫苗區資料可以給我個範例嗎 ?
+17:04 < t0mst0ne_> pofeng: 疫苗區: 如果這些Q&A 轉成dataset, 歷年來用的品牌跟病毒株都釋出, 對臨床或病患衛教有幫助嗎?
+17:05 < pofeng> t0mst0ne_: 要看什麼疫苗吧, 但我猜幫助不大 (Q&A 是甚麼?)
+17:05 < t0mst0ne_> pofeng: 因為我每年打, 到底有效沒效, 不知道; 疫苗有沒有猜中流行株, 也不知道哪裡查
+17:05 < t0mst0ne_> 民眾都乖乖打嗎? 
+17:06 < t0mst0ne_> pofeng: 網址裏的Q&A ....
+17:06 < pofeng> t0mst0ne_: which 網址
+17:06 < pofeng> 喔, 看到了
+17:07 < pofeng> 流感疫苗是 WHO 選的 (三價) 這兩年有四價
+17:07 < pofeng> 有沒有效很難評估, 除非你每次都做 virus culture 
+17:08 < t0mst0ne_> pofeng: 另外想建議CDC 直接開FB粉絲頁, 他們的youtube 看的人不多
+17:09 < t0mst0ne_> 流行季節這些info 應該傳一傳 (個人bias) 
+17:09 < pofeng> CDC 會統計當年流感流行的流感病毒株 ,  好像是發 swab 給醫院診所(?)送 culture 
+17:09 < t0mst0ne_> pofeng: 我再來問問
+17:10 < pofeng> t0mst0ne_: CDC 是要問你們開放資料意見還是網路策略啊 (對不起)
+17:11 < pofeng> 總之流感病毒株是用猜的, 然後全球統一, 作三株
+17:11 < t0mst0ne_> pofeng: 想不大到還有那些data要開放;不過網路不作有點奇怪
+17:12 < pofeng> 但是 GSK 這兩年新的4 價, 第四株怎麼決定的我不知道, (但我自己是自費打四價就是了)
+17:13 < pofeng> t0mst0ne_: 所以我想是先問 CDC 需要什麼意見, 如果試開放資料相關, 可能要先釐清他們守上有哪些資料, 產出的過程
+17:14 < pofeng> t0mst0ne_: 像你對流感有興趣 (切身相關) 但是我猜 open data 這部份目前幫不上忙
+17:16 < pofeng> t0mst0ne_: 這三株資料的確應該公開, 但其實的確找就公開了, 因為 WHO 要提前數個月預測, 讓廠商作疫苗, 我們只能選擇打或不打, 資料公開對選擇並沒有幫助 (對不起)
+17:17 < t0mst0ne_> 沒關係，只是問問看！
+17:18 < t0mst0ne_> 同意，我們的選擇只有打或不打...
+17:19 < pofeng> t0mst0ne_: 你想讓流感疫苗資訊讓民眾了解得更完整, 是好事, 也是正確的, 但好像比較像政令宣導(網路行銷)和 "開放資料" 比較無關 
+17:21 < pofeng> t0mst0ne_: 突然想到, 很多人不敢打流感疫苗, 但如果我們有所有疫苗的 adverse reaction 比較表, 說不定可以說服更多人打
+17:22 < t0mst0ne_> 我有一點想法是須要串，有一點是ebm evidence based media ,從U.S. Cdc Twitter 上看到的
+17:22 < pofeng> t0mst0ne_: eg: 大家都打 MMR , 流感的 adverse reaction 比例比 MMR 更小, 那當然應該打
+17:42 < billy3321> 請問一下，開幕前IRC教學大致內容是？我可以幫忙support
+17:43 < lanf0n> billy3321: 印象中大多是教 http://hack.g0v.tw/irc 的使用 (有一次好像是教 irccloud ?
+17:51 < billy3321> 我想知道的是，
+17:51 < billy3321> 除了怎麼用IRC以外，還教了哪些東西？比如說，哪些黑話該教？
+17:52 < lanf0n> billy3321: 參考 http://youtu.be/fCmwKLtDZWA XD
+17:52 < kcwu> lanf0n's url: [06/21 09:00 g0v.tw hackath9n | 台灣零時政府第玖次還我土地黑客松 上午場 - YouTube]
+17:52 < billy3321> lanf0n: thx
+18:04 < pofeng> t0mst0ne_: 哈哈 CDC 也找 qsearch 的人去聊天耶, 你們可以再討論一下
+18:05 < pofeng> t0mst0ne_: 啊, 不對, 不同單位, 但是還是可以整合一下啦 :p
+18:15 < kiang> 一般人不敢打疫苗很多是因為媒體渲染吧，像我老婆堅持等進口疫苗補貨，也不願意先打國光的...
+18:16 < grarke> 大家好,我是恰恰 不好意思插話一下  第一次上聊天室請多指教~
+18:16 < grarke> 這次又要來幫輻射地圖APP徵招人手了 我們周六當天也會上台提案
+18:16 < grarke>  如果你對核能輻射議題有興趣 歡迎加入我們  我們目前開發缺 Android 與ios App工程師 以及以下相關:
+18:17 < grarke>   •   Ushahidi 
+18:17 < grarke>   •   Kohana 
+18:17 < grarke>   •   jQuery 
+18:17 < grarke>   •   OpenLayers 
+18:17 < grarke> 歡迎當天找我們聊天~
+18:18 < grarke> 還有我在下午的短講上也會分享 第一次選里長就上...手~先預告一下XD
+18:20 < kiang> grarke: 鄭允強?
+18:21 < grarke> 欸  上手不等於當選XDD 我是南港區舊莊里的里長競選總幹事
+18:21 < kiang> grarke++ XD
+18:21 < grarke> @kiang 但是我認識鄭允強~我們都是民主小草團隊XD
+18:21 < isacl> grarke++
+18:22 < kiang> grarke: http://k.olc.tw/elections/candidates/view/540b5303-5b34-4b9e-abc6-1926acb5b862
+18:22 < kcwu> kiang's url: [2014 > 村里長 > 臺北市 > 南港區 > 舊莊里 > 1號 王友信候選人 @ 選舉黃頁]
+18:22 < grarke> @isacl 欸  加加是什麼意思XD
+18:22 < kiang> ++ = 讚
+18:22 < grarke> XD  對 是王友信  他哥哥是王至偉  JOE WANG
+18:29 < isacl> grarke: ++ 也有統計 http://cindy.csie.org/g0v_karma.txt
+18:30  * isacl 突然發現 au 的 karma 1000 耶 XD
+18:30 < seadog007> 假的吧XDD
+18:30 < isacl> 很漂亮的數字，真捨不得再 + 了 lol
+18:30 < grarke> 原來還可以蒐集這種東西XD
+18:30 < seadog007> 真的那麼高嗎wwwww
+18:31 < isacl> 應該真的吧，剛找了有點久連結。
+18:31 < seadog007> 還是說那是標準值(#
+18:31 < seadog007> (抖 我居然有10
+18:34 < isacl> 'c' 有 14 個 ++ # lol
+18:52 < seadog007> g0v的官網有rss嗎?
+18:53 < DennyHuang> seadog007: 沒有 文章都是零散的
+18:53 -!- grarke [guest-grar@gateway/web/scrollback.io/x-xvymgnkafwgbxqdl] has left #g0v.tw []
+18:53 < DennyHuang> 阿阿 有
+18:53 < DennyHuang> http://blog.g0v.tw/
+18:53 < kcwu> DennyHuang's url: [g0v.tw 台灣零時政府部落格]
+18:53 < seadog007> (拍打
+18:53 < DennyHuang> 可是沒有 RSS
+18:54 < DennyHuang> 好..對不起..我蠢了..
+18:54 < DennyHuang> http://blog.g0v.tw/posts.atom
+18:54 < au> http://blog.g0v.tw/posts.rss
+18:54 < DennyHuang> 不顯眼的 icon XD
+19:26 < kiang> http://drugs.olc.tw/pages/about - 先做了個簡單的藥品檢索，轉身去打工了...
+19:26 < kcwu> kiang's url: [About藥要看]
+19:43 < pofeng> kiang: 太強 :p
+19:44 < kiang> pofeng: 就一種 copy & paste 的概念，其實就只有改改欄位而已，每個網站都長那個樣 XD
+19:45 < pofeng> kiang: 原始資料沒有藥價 ?
+19:46 < kiang> pofeng: 還沒做到那邊
+19:46 < pofeng> kiang: 喔喔, 瞭
+19:46 < clkao> http://www.wikiwand.com/ja/%E3%82%A2%E3%82%B9%E3%83%88%E3%83%AD%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A3%E3%83%B3%E3%82%B0
+19:46 < kcwu> clkao's url: [アストロターフィング - Wikiwand]
+19:46 < clkao> 原來五毛有專用詞
+19:48 < pcchou> kiang, 好強XDD
+19:48 < pofeng> kiang: t0mst0ne_ 可以問問 fda 願不願意開放藥物外觀註記的資料庫
+19:49 < kiang> pofeng: 我也在想這個問題，記得以前查有照片的（但是忘記哪兒查的）
+19:49 < pofeng> kiang: t0mst0ne_ 有些藥有些特定的代號刻在外面 eg: CCP32 (亂舉例)
+19:50 < pofeng> kiang: http://www.fda.gov.tw/MLMS/(S(d1ry4t3xpm2fji55mg3mzdq0))/H0004.aspx
+19:50 < kiang> pofeng++, 這個爬下來用應該會被打屁屁 XD
+19:51 < pofeng> kiang: 對, 但是刻痕文字應該還好, 很醫院都有作
+19:51 < pofeng> kiang: http://www.fdaforum.net/index.php?Itemid=57&id=25&option=com_content&task=view
+19:52 < yhsiang> http://bit.ly/reactjstw-3-ly # 今天在大船艦的 present :p
+19:52 < kcwu> yhsiang's url: [Experience in building isomorphic app // Speaker Deck]
+19:53 < pofeng> kiang: "皰" 是不是有問題 ? http://drugs.olc.tw/drugs/view/549293ea-a8b4-4009-8c26-1cffd38a10d1
+19:53 < kcwu> pofeng's url: [迪威樂（艾賽可威）眼藥膏３％ {DEVIRO OPHTHALMIC OINTMENT 3% (ACYCLOVIR) "KINGDOM"} @ 藥要看]
+19:53 < pofeng> kiang: 適應症單純？疹性角膜炎
+19:53 < kiang> pofeng: 會用全形的問號應該是原始資料問題
+19:54 < au> yhsiang++ # 好精美的簡報，reactjs 的 mockup 能用 angular 做真是太華麗了 XD
+19:54 < pofeng> kiang: 了解
+19:55 < yhsiang> au: 因為soidid++ XD
+19:55 < au> soidid++
+19:55 < pofeng> kiang: 上游是這個嗎 ? http://data.fda.gov.tw/frontsite/data/DataAction.do?method=doDetail&infoId=36
+19:55 < kcwu> pofeng's url: [食品藥物開放資料平臺]
+19:55 < kiang> pofeng: yes
+19:56 < pofeng> kiang: 我來反應看看
+19:56 < kiang> pofeng++
+20:00 < pofeng> kiang: done, https://github.com/kiang/data.fda.gov.tw/issues/1
+20:00 < kcwu> pofeng's url: ["皰"疹 文字問題 · Issue #1 · kiang/data.fda.gov.tw · GitHub]
+20:06 < isacloud_> kiang++
+20:08 < t0mst0ne_> kiang: pofeng 太快了吧，這樣同事壓力....
+20:08 < pofeng> kiang: 再兜一下應該就可以參賽了 (如果你不嫌獎金太少) :p
+20:08 < pofeng> t0mst0ne_: 同事?
+20:09 < kiang> 我是已經報名了，只是少了個前端的幫忙，每個網站都做一樣不知道會不會被拆穿 XD
+20:09 < pofeng> kiang: good !!
+20:09 < seadog007> XDD
+20:09 < kiang> seadog007: 要介紹小妹妹幫忙嗎？ XD
+20:09 < pofeng> kiang: 不會, 不會, 好用最重要
+20:10 < seadog007> kiang: 髒髒的大叔(O
+20:10 < kiang> seadog007++ (髒得很得意)
+20:11 < seadog007> 會寫前端的小妹妹嗎XDD
+20:12 < kiang> seadog007: 其實只要是小妹妹，應該教的會吧，就多花點時間，我很有耐心的 ;)
+20:12 < pofeng> kiang: 我是覺得你先抓一下外觀資料下來 demo 一下潛力, 學萌典先放棄著作權
+20:12 < pofeng> kiang: http://www2.edah.org.tw/ph/asp/med.asp?SCI_NAME=&GOODS_NAME=&ITEM_CNAME=&MED_CODE=&PREG_CATE=&FLAG=1&Submit=%ACd%B8%DF
+20:12 < kcwu> pofeng's url: [義大醫院藥品查詢系統搜尋結果]
+20:13 < kiang> pofeng: 原本就是用 CC0 ，只是、其實，打工的東西也在趕工（噓）
+20:13 < pofeng> kiang: 打工比較重要 :p
+20:18 < clkao> ndi 徵鄉民 ocr 系統: http://bit.ly/datadigitizerfp
+20:18 < kcwu> clkao's url: [(NDI) RFP - Election Results Data Digitization Tool - Google 文件]
+20:18 < clkao> spec: http://bit.ly/datadigitize
+20:18 < kcwu> clkao's url: [(NDI) Election Data Digitization Project - Functional Requirements (1 Dec 2014 version) - Google 文件]
+20:28 < t0mst0ne_> kiang: 要不要接open.fda.gov
+20:29 < t0mst0ne_> 乾脆一股作氣把藥物附作用一起作完
+20:29 < t0mst0ne_> Researchae.com 可參考
+20:30  * lanf0n 看著 kiang 被自己掉進別人挖的坑被埋
+20:30 < kiang> t0mst0ne_: 就...打工，時間拉長應該就可以做吧，但好死不死打工的死線跟比賽同一天 XD
+20:31 < lanf0n> *自己挖被別人埋
+20:31 < kiang> t0mst0ne_: 開個 issue 做記錄？
+20:32 < kiang> lanf0n: 好坑，不填嗎？ XD
+20:32 < t0mst0ne_> 其實聯結拉過去即可（英文）也棧時無法翻中文
+20:33 < kiang> t0mst0ne_: 藥物名稱檢索網址是？
+20:34 < kiang> 靠，美國 FDA 也用 github
+20:35 < t0mst0ne_> 晚點Po
+20:36 < kiang> t0mst0ne_: ok, if possible => https://github.com/kiang/drugs/issues
+20:36 < kcwu> kiang's url: [Issues · kiang/drugs · GitHub]
+20:41 < w00dstock> 請問為什麼我在讀書會多寫的東西會變成 帳號＋s
+20:43 < xavier> 還有我就是w00dstock  要如何選一個當固定的？
+20:46 < lanf0n> xavier: 用 irccloud 登入的話應該都會是相同的 nickname
+20:47 < xavier> 我用FB登入時就是xavier
+20:47 < pcchou> 「據說，clkao有一個拉動開源項目的秘訣，就是故意留下錯誤，而且經常是在文檔中留下typo。」
+20:47 < pcchou> 「這種行為，與極客們追求完美的品質是背道而馳的。但是，正由於有了簡單的錯誤，新手們多了參與的機會，這才能吸引到更多的人。」
+20:47 < xavier> 所以以後這樣就ok了？
+20:47 < pcchou> 有沒有高村長的八卦(X
+20:48  * Lee1092 正在聽 yhsiang 演講
+20:48 < clkao> 科科
+20:48 < xavier> 可以聽演講？？
+20:49 < xavier> 我是環保NGO新手
+20:50 < xavier> 法律有些概念  程式完全不會XD
+20:51 < au> xavier: 歡迎 XD
+20:51 < xavier> 現在想要參與「開放政府資料法」的提案
+20:53 < xavier> au我之前本報名上次黑客松  但老婆破水了  有寫信給你取消
+20:53 < au> 有，我記得。
+20:54 < xavier> 我想請問  GIS  應該對 g0v一些資料很重要？
+20:56 < au> 是，有一個 pad 有列相關資源和一些技術概念。 https://g0v.hackpad.com/GIS-YAuGma5fg7W
+20:56 < kcwu> au's url: [GIS(地理訊息系統)人力資源量產計畫暨自學手冊 - g0v.hackpad.com]
+20:56 < xavier> 很多政府單位都用線上GIS方式呈現資料  但無法把不同資料疊在一起
+20:56 < xavier> 謝！
+21:09 -!- chihchun_afk is now known as chihchun
+21:35 < t0mst0ne_> kiang: https://api.fda.gov/drug/event.json?search=receivedate:[2004-01-01+TO+2014-12-18]+AND+(clonazepam)&count=patient.reaction.reactionmeddrapt.exact  把 (藥物) 即可
+21:38 < t0mst0ne_> "term": "CONFUSIONAL STATE", "count": 1264    => term : 副作用名稱 count :通報次數
+21:38 < t0mst0ne_> (藥物英文)  把()中間代換即可  
+21:39 < t0mst0ne_> 晚點再找2個藥交互作用syntax
+21:42 < t0mst0ne_> DDI（drug drug interaction)作完就 perfect
+21:42 < t0mst0ne_> （然後躲起來....因為擋到別人...）
+21:44 < clkao> t0mst0ne_++ 要紅了
+21:46 < t0mst0ne_> clkao: 我不想啊, 只是很多小醫院做不出來, 又要評鑑 , 很可憐; 民眾又以為要越多越好
+21:47 < t0mst0ne_> https://www.facebook.com/photo.php?fbid=10152901781678373&set=pb.501068372.-2207520000.1418910425.&type=3&theater  我們老大看到台灣老人的未來
+21:47 < kcwu> t0mst0ne_'s url: [Tom Shih - Tom Shih 的相片 | Facebook]
+21:54 < t0mst0ne_> kiang: open.fda.gov 有說, 資料還在beta 僅供參考 (不作為正式使用)  ; 但是我查了幾個藥, 應該是非常準
+21:57 < IRC_TESTING> Test
+21:57 < IRC_TESTING> 測試
+21:57 -!- IRC_TESTING [7de73a92@gateway/web/cgi-irc/kiwiirc.com/ip.125.231.58.146] has left #g0v.tw []
+22:00 < kkyo> 最近關於藥物的 我真的看不太懂
+22:00 < kkyo> 可以給個懶人包嗎
+22:01 < clkao> 可請 t0mst0ne_ 開個 hackpad 寫一下 background
+22:02 < kkyo> @t0mst0ne 你是在找出 要五要的 交互作用嗎
+22:06 < kkyo> @t0mst0ne 因為這東西 我之前還蠻想弄得
+22:06 < kkyo> 可以的話 我想加入
+22:07 < lanf0n> kkyo: https://g0v.hackpad.com/data.fda.gov.tw--OPiwIhTl684
+22:07 < kcwu> lanf0n's url: [data.fda.gov.tw 應用 - g0v.hackpad.com]
+22:08 < lanf0n> FB 的話是後勤 kiang 貼的那討論串....XD (不過看了一下 http://drugs.olc.tw/ 感覺是已經要做完了啊 0rz
+22:08 < kcwu> lanf0n's url: [藥品一覽 @ 藥要看]
+22:09 < kkyo> @t0mst0ne 門諾醫院的醫師?
+22:14 < t0mst0ne_> clkao: kiang lanf0n 有要分出去一個pad 嗎? 
+22:16 < t0mst0ne_> kkyo: 噓....
+22:29 < kiang> lanf0n: 沒吧，藥價的資料還沒進來、很多統計圖都還沒畫，再加上一些資料的交叉連結，其實可以做的還蠻多的（這個坑也是可以變很大的，我只是先跌進去挖深一點）
+22:30 < clkao> kiang++
+22:30 < lanf0n> kiang: 就不要上來了吧(誤 XD)  剛發現外觀資料集(id=42)有提供部份的圖檔link
+22:31 < kiang> lanf0n++, 其實我都是偷看你們補充的資料在做的，壓根沒真的看過所有東西 XD
+22:32 < t0mst0ne_> clkao:  https://g0v.hackpad.com/72TVP8zYYfs  簡略背景
+22:32 < kcwu> t0mst0ne_'s url: [藥物不良作用查詢 - g0v.hackpad.com]
+22:33 < kiang> lanf0n: id=42 的資料還蠻殘缺的...
+22:36 < lanf0n> 只好移花接木了
+22:37 < kkyo> id=42 的url給我看看 好ㄇ
+22:37 < kiang> kkyo: http://data.fda.gov.tw/frontsite/data/DataAction.do?method=doDetail&infoId=42
+22:37 < kcwu> kiang's url: [食品藥物開放資料平臺]
+22:39 < kiang> http://drugs.olc.tw/drugs/index/%EF%BC%9F 還蠻多有問題的資料，一種 GIGO 的具體實現...
+22:39 < kcwu> kiang's url: [？ 相關藥品一覽 @ 藥要看]
+22:42 < lanf0n> 政府的開放資料也是有機的....
+22:43 < t0mst0ne_> kiang: "主成分" 那欄 也許可以考慮納入 search index 
+22:45 < lanf0n> t0mst0ne_: 仿單是什麼意思啊?
+22:45 < pofeng> lanf0n: 就是藥單 (藥物說明)
+22:46 < lanf0n> soga...
+22:46 < kiang> t0mst0ne_: done
+22:47 < pofeng> kiang: lanf0n 喔喔喔喔喔 , 好棒外觀真的有放出來喔 id 42 
+22:47 < t0mst0ne_> kiang: ++ 
+22:48 < t0mst0ne_> http://drugs.olc.tw/drugs/index/FUROSEMIDE  天啊,這麼多藥含 Furoxemide Orz...
+22:48 < kcwu> t0mst0ne_'s url: [FUROSEMIDE 相關藥品一覽 @ 藥要看]
+22:49 < kiang> (完全沒有概念這是什麼鬼)
+22:49 < lanf0n> kiang: 那應該串 id=39 的資料會比較全(有外盒圖、藥物說明圖)..........但藥單是 pdf/doc 檔...
+22:50 < t0mst0ne_> 4878個 '？' in 36.csv ( also 36.xml)    
+22:51 < pofeng> kiang: 這樣我真的建議外觀 (刻痕/標記) 先做, 因為民眾/醫師都很需要, 圖檔晚點再弄 
+22:51 < kiang> pofeng: 目前只有外盒圖檔資料看起來比較完整，內容物缺很大
+22:52 < pofeng> t0mst0ne_: 看起來有些是 公絲 "/" 公撮
+22:52 < pofeng> kiang: 圖檔不實際
+22:52  * lanf0n 覺得崩潰
+22:52 < pofeng> kiang: 因為目前沒辦法照相就辨識
+22:52 < kiang> pofeng: 外觀 (刻痕/標記) 是指文字描述？
+22:53 < pofeng> kiang: 反而是藥物上的記號, 形狀, 顏色比較名明確
+22:53 < pofeng> kiang: 很容易找到資料
+22:53 < pofeng> kiang: 對, 文字, 如, 黃色, 三角形, 上面寫 cp13
+22:53 < t0mst0ne_> 抓狂, Stilnox 3筆 , http://drugs.olc.tw/drugs/index/ZOLPIDEM  這麼多 ;  這個open出來 ......
+22:53 < kcwu> t0mst0ne_'s url: [ZOLPIDEM 相關藥品一覽 @ 藥要看]
+22:54 < kiang> t0mst0ne_: 要不要寫個大腸花 hackpad 啊？ XD
+22:54 < lanf0n> t0mst0ne_: 感覺會被查水錶.... 有準備不自殺聲明了嗎 (誤
+22:54 < t0mst0ne_> kiang:  藥價在哪裡
+22:54 < kiang> 我試看看能不能拉 http://www.fda.gov.tw/MLMS/(S(bbiwekyanvwz0255bm21nx3n))/H0004.aspx 的資料
+22:55 < pofeng> kiang: 舉例 http://www2.edah.org.tw/ph/asp/med_d.asp?MED_CODE=KFAMOTI
+22:55 < kcwu> pofeng's url: [義大醫院藥品外觀辨識 暨 處方集 內容]
+22:55 < kiang> t0mst0ne_: lanf0n 有整理到 hackpad - 藥品健保藥價資料集 ( id=74 )
+22:55 < t0mst0ne_> lanf0n: kiang 藥價差早就是公開的秘密, 只是大家都知道, 有些藥只有原廠有效
+22:55 < pofeng> kiang: 顏色：白色  形狀：圓凸形  劑型：錠劑 標記：有E88/CCP字樣  健保碼：AC57791100
+22:57 < kiang> pofeng: 所以要把主成份拆開去撈？我目前有看到同一種藥其實有很多藥品證號，因為銷售廠商不同
+22:57 < t0mst0ne_> 相片還有白平衡, 照相比例尺的問題 ( 有些醫院就照的不怎麼好
+22:57 < pofeng> t0mst0ne_: 藥價, http://data.fda.gov.tw/frontsite/data/DataAction.do?method=doDetail&infoId=74
+22:57 < kcwu> pofeng's url: [食品藥物開放資料平臺]
+22:58 < pofeng> kiang: 建議用健保字號 或 藥物許可證字號當 index 
+22:58 < t0mst0ne_> pofeng: kiang 整合藥價到 藥要看?  一定很刺激
+22:59 < kiang> 好像沒有一個醫院是拿 許可證字號 當作索引的
+22:59 < t0mst0ne_> 2個set 用 衛署藥製字第049217號
+22:59 < t0mst0ne_> 用衛署藥製字第xxxxx號
+23:00 < t0mst0ne_> pofeng: 好像 023871 search 也行
+23:00 < pofeng> kiang: 不一定, 有很多健保不給付的藥沒有健保字號
+23:01 < kiang>  藥物許可證字號 是目前看起來比較唯一的欄位，其他都有可能空白或重複，我有把 藥物許可證字號 重複的資料合併在一起（因為年限到了重新申請吧）
+23:01 < pofeng> t0mst0ne_: 可以做的事太多, 短時間要讓大家有感, 我是覺得外觀+藥物仿單 對民眾比較有感
+23:01 < kiang> 但單一藥物就會對應多個 藥物許可證字號 ，我也沒把握主成份一樣的東西就是相同的
+23:02 < pofeng> t0mst0ne_: 當然對醫管/醫院/健保局  藥價分析比較有趣
+23:03 < kiang> 藥價的資料比較多就是了(不知道誰想出來把所有年度資料塞在同一個檔案的)
+23:03 < pofeng> kiang: 同一個藥物也有可能健保碼會變 ( 我知道很混蛋 )
+23:03 < t0mst0ne_> pofeng: drug side effect 對臨床比較有用 (但也未必要坐在一起)
+23:04 < pofeng> kiang: 同一個藥, 因為藥廠升級了, 健保價上升, 就會改健保碼
+23:04 < t0mst0ne_> pofeng: 健保瑪 ?  不是 "許可證字號" 是唯一嗎? 
+23:04 < t0mst0ne_> 健保碼會變 => True
+23:05 < t0mst0ne_> http://drugs.olc.tw/drugs/index/pradaxa  劑量不同, 許可證號碼也不同
+23:05 < kcwu> t0mst0ne_'s url: [pradaxa 相關藥品一覽 @ 藥要看]
+23:05 < pofeng> kiang: 而且聽說是用 excel 維護, 後來大到變成兩個檔案 (不確定)
+23:05 < kiang> pofeng: 哪裡有健保號碼的對應表？
+23:05 < pofeng> kiang: 健保碼對誰 ?
+23:07 < t0mst0ne_> 74.csv 許可證字號、健保代碼
+23:07 < pofeng> t0mst0ne_: 合理啊, 不同劑量, 就是不同藥, 外觀也不同, 副作用也會有點不一樣, 當然有不同 "許可證字號"
+23:07 < kiang> 理想是 許可證字號
+23:07 < kiang> t0mst0ne_++, 我踹踹
+23:08 < pofeng> kiang: t0mst0ne_ 對 74, 有 許可證字號 健保代碼,  藥價 順便可以倒入 :p
+23:08 < kiang> 嗯，又是一個有起訖時間的資料集，他們自己的腦袋都不會打結嗎 XD
+23:08 < pofeng> kiang: 因為配合藥廠升級 ?
+23:08 -!- anivek [~pi@123-193-217-216.dynamic.kbronet.com.tw] has left #g0v.tw []
+23:09 < pofeng> kiang: 起期、終期 應該是指健保碼
+23:09 < pofeng> kiang: 許可證字號, 有點不一樣,  但是應該也有期限
+23:10 < kiang> pofeng: 對，但看起來同樣字號可以申請展延，所以可以用字號歸納就是了
+23:11 < pofeng> kiang: 健保給付的範圍一直再更動, 所以會有期限, 但是應該不會重複使用健保碼
+23:11 < pofeng> kiang: 應該也可以當 index 
+23:11 < pofeng> kiang: 對, 延展, 但是我不曉得規則 
+23:12 < lanf0n> 74 有 bug 啊.... 有些藥價的參考價是 0.00 ....
+23:12 < pofeng> lanf0n: 不是, 真的是歸零
+23:12 < lanf0n> pofeng: !?! 為何
+23:12 < pofeng> lanf0n: 就是不給付的意思, 以前曾經給付, 但是後來就歸零了
+23:13 < lanf0n> ah..............所以歸零是健保不給付的意思
+23:13 < lanf0n> pofeng: 等下那...參考價是健保給付的全額藥價?
+23:13 < pofeng> lanf0n: 對
+23:15 < kiang> 咦，所以自付額是健保藥價與實際價格的差額（腦子打結中）
+23:20 < pofeng> kiang: 不是, 
+23:20 < kiang> 健保代碼 一般英文會怎麼稱呼呢？
+23:21 < pofeng> kiang: (目前)的門診自負額是藥價的 20%,上限 200 , 連續處方 0 , 
+23:22 < pofeng> kiang: eg 健保藥價總額 201~300 , 需要補 40 元
+23:22 < Michael_LI> Lee1092／Lee你看，是時間軸的程式碼耶，被中央社拿來用了！／http://www.cna.com.tw/news/firstnews/201412185009-1.aspx
+23:22 < kcwu> Michael_LI's url: [台灣黑心食品史 我們到底吃了什麼 | 重點新聞 | 中央社即時新聞 CNA NEWS]
+23:22 < kiang> pofeng: 難怪外國藥廠都說做不下去 XD
+23:23 < lanf0n> 難怪健保坑這麼大...
+23:23 < pofeng> kiang: 健保 = nhi , , nhi_id 
+23:23 < kiang> pofeng++
+23:23 < Lee1092> Michael_LI:  之前蘋果也有~ :p
+23:24 < pofeng> kiang: 台灣藥價的問題之一是, 原廠專利藥健保藥價太低, 學名藥(台廠藥)藥價相對高一些 (但跟國外比好像還是低, 不確定)
+23:25 < pofeng> kiang: 國外原廠藥 >> 台灣原廠藥 > 台灣學名藥 
+23:26 < kiang> 所以偶爾會看到有國外藥廠不願意在台灣販售的新聞
+23:30 < pofeng> kiang: 對, 很多藥廠/藥物 都退出台灣了, (不是偶而)
+23:31 < pofeng> kiang: 狗咬人不是新聞 :p
+23:32 < kiang> <=== 只看新聞的無知大眾
+23:33 < pofeng> kiang: 對不起, 不是啦 :p
+23:35 < pofeng> kiang: 只是對媒體來說 , 這不是新聞, 醫療糾紛, 無良醫師汙健保才是新聞 :p 
+23:36 < kiang> pofeng: 沒啦，只是消遣，我當然知道新聞媒體會播什麼新聞，只是一般藥物相關的除了透過新聞媒體之外，很少會去特別注意吧
+23:37 < pofeng> kiang: :p
+23:37 < kiang> 然後， id=74 裡面居然有 id=36 的 許可證字號 (攤手)
+23:38 < kiang> 然後， id=74 裡面居然有 id=36 沒有的 許可證字號 (攤手)
+23:38 < kiang> id=36 不是集大成了嗎 XD
+23:40 < kiang> https://gist.github.com/kiang/3f0528b416ce1013a0d5
+23:40 < kcwu> kiang's url: [records of id=74 that couldn't find in id=36]
+23:42 < lanf0n> 這是 bug.......
+23:42 < seadog007> 不
+23:42 < seadog007> 那是特色(#
+23:43 < kiang> (心虛的覺得，我不是在打工嗎？) XD
+23:44 < seadog007> XD

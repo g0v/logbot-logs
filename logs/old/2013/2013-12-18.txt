@@ -1,0 +1,616 @@
+--- Day changed 三 12月 18 2013
+00:06 < kcwu> 才在想這樣的角色好像有點印象, 原來就是在說 sorrychen # < ipa> ntucsie的學弟鄉民出現說他爸爸在立院資訊處上班
+00:08 < jimyhuang> tkirby: 用新聞方式寫... 「你的學校還在排隊申請國科會補助嗎？」 http://g0v.github.io/nsc-projects/v2.html  
+00:08 < jimyhuang> 黨鞭ETBlue++ ，大喊要住率
+00:16 < clkao_> jimyhuang: legend 好像會跑到太右邊去
+00:17 < jimyhuang> 喔喔喔，你螢幕多寬~~
+00:17 -!- soidid [24e5a9f2@gateway/web/freenode/ip.36.229.169.242] has quit [Quit: Page closed]
+00:17 < clkao_> 我拉到 1800px 才看得到
+00:18 < kcwu> clkao_: 哪兩個 wave? 我沒看到 404 request?
+00:18 < clkao_> 真的有千兆嗎？？20 年一年五十兆？一年總預算不是才 1.2 兆?
+00:18 < jimyhuang> 我寫錯了... @@"
+00:19 < clkao_> kcwu: 耶？稍早有 404, 但是現在好了
+00:19 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit []
+00:19 < jimyhuang> 300兆 ... 不到千兆
+00:20 < kcwu> clkao_: 大概是前幾個小時我 server 網路斷了, 其實不是 404
+00:20 -!- macpaul [~macpaul@162.248.8.104] has quit [Ping timeout: 260 seconds]
+00:21 -!- pm5 [~Adium@111-248-224-114.dynamic.hinet.net] has quit [Quit: Leaving.]
+00:22 -!- lcamel [~lcamel@114-45-61-25.dynamic.hinet.net] has quit [Remote host closed the connection]
+00:22 < jimyhuang> clkao_: 疑... window.screen.width 會有問題嗎 @@"
+00:24 < clkao_> jimyhuang: 那就變成全寬了 XD
+00:24 < yhsiang> federico 收到諾貝爾和平獎的邀請 可是上面印錯名字 # XD
+00:24 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+00:25 < jimyhuang> clkao_: soga!!
+00:25 < clkao_> jimyhuang: maybe use $(window).width() ?
+00:27 -!- pm5 [~Adium@111-248-224-114.dynamic.hinet.net] has joined #g0v.tw
+00:28 < jimyhuang> clkao_: yep may be better ... thanks. (didn't include jquery )
+00:30 < jimyhuang> clkao_: tkirby ETBlue 有沒有排隊小人的圖案... (我記得uniqlo來台灣時，那個排隊小人好嗨... )
+00:31 < ETBlue> 1發想→2規劃→3決議→4執行，trello=>4，loomio=>3，airesis/prfb/BEO?=>2+3，open ideo=>1+2，動民主2.0=>1+2+3，irc/fb/g+/twitter/branch=>1
+00:31 < clkao_> tkirby: video+timeline 好像應該讓他讓他變成一個 panel，timeline 先藏著按下去再長上來?
+00:32 < ETBlue> ttcat: 人少到不需要解決 3 的問題的話，的確就用不到loomio了…
+00:33 < ETBlue> jimyhuang: 排什麼隊？ XD
+00:33 < ETBlue> jimyhuang: 噢噢國科會補助隊
+00:34 < jimyhuang> ETBlue: 對啊 ... XD
+00:34 < ETBlue> 原來台藝大排到這麼後面，真悲苦…還好沒去唸（？）
+00:34 < jimyhuang> 可能申請別的補助去了... ?
+00:35  * jimyhuang 應該要能夠key入搜尋後，移動到自己學校的，還沒做出來 ...
+00:35 < ETBlue> 據說政府補助款都是統一發給南藝大後才配到台藝大等其他學校，所以台藝真的很窮，唸過都說窮 XD
+00:36 < jimyhuang> 喔喔喔喔... 
+00:37 < jimyhuang> 努力找小人 webfont中 ...
+00:38 -!- george [~george@36-231-101-128.dynamic-ip.hinet.net] has joined #g0v.tw
+00:38 < clkao_> http://ly.g0v.tw/sittings/08-03-IAD-22/video#2013-05-01T16:29:17 # orz
+00:39 < kcliu> jimyhuang: http://fontawesome.io/icon/male/ ?
+00:39 < kcwu> kcliu's url: [icon-male: Font Awesome Icons]
+00:39 < M00sUltraB0t> [ icon-male: Font Awesome Icons ] - fontawesome.io
+00:39 -!- pm5 [~Adium@111-248-224-114.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+00:40 -!- pm5 [~Adium@111-248-201-157.dynamic.hinet.net] has joined #g0v.tw
+00:41 < jimyhuang> kcwu: 喔喔喔，來試試... 
+00:44 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+00:45 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+00:45 -!- george [~george@36-231-101-128.dynamic-ip.hinet.net] has quit [Ping timeout: 264 seconds]
+00:51 < yhsiang> jimyhuang: 搜尋學校名然後去找到他的排名 -> $('#circles g:nth-child({{排名}})').attr('transform') 去parse translate 的position然後再translate過去 
+00:51 -!- SupaplexTW___ [~Adium@114-36-246-211.dynamic.hinet.net] has quit [Quit: Leaving.]
+00:51 < yhsiang> 然後搜尋可以支援autocomplete XD
+00:52 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 240 seconds]
+00:53 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+00:56 -!- pm5 [~Adium@111-248-201-157.dynamic.hinet.net] has quit [Quit: Leaving.]
+00:58 < tkirby> clkao_: timeline 是指 waveforms? 我剛剛在想那些 waveform 是不是能拿來取代 playback bar.. 只是這樣 video widget 就要自己設計 
+00:58 < tkirby> jimyhuang++ # nsc visualize
+00:58 < clkao_> tkirby: yeah
+00:58 < clkao_> tkirby: 因為有有兩三條 waveform 的就會很高.. 要來來回回
+00:59 < tkirby> hmm
+01:08 -!- mno2 [~mno2@bb116-15-44-14.singnet.com.sg] has quit [Quit: mno2]
+01:11 < Michael_LI> 做了4筆回報單／商業週刊出版書籍內容有奇怪的言論／（請配合回報規範書「6.例外定律」）／http://bit.ly/ISBN：9789862724743
+01:11 < kcwu> Michael_LI's url: [新聞小幫手]
+01:11 < M00sUltraB0t> [ 新聞小幫手 ] - bit.ly
+01:15 < jimyhuang> yhsiang: thanks 明天繼續
+01:25 < jimyhuang> 突然看到  budget ... 真是經典啊  http://budget.g0v.tw/budget
+01:25 < kcwu> jimyhuang's url: [g0v.tw: 中央政府總預算]
+01:25 < M00sUltraB0t> [ g0v.tw: 中央政府總預算 ] - budget.g0v.tw
+01:36 < clkao_> jimyhuang: you mean the logo or.. ?
+01:51 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+01:54 < jimyhuang> clkao_: dynamic grouping. 
+01:55 -!- nchild_ [~nchild@61-230-132-155.dynamic.hinet.net] has joined #g0v.tw
+01:59 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+02:23 -!- nchild_ [~nchild@61-230-132-155.dynamic.hinet.net] has quit [Remote host closed the connection]
+02:24 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+02:24 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+02:24 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+02:24 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+03:28 -!- mutolisp [~mutolisp@61-62-206-66-adsl-tpe.dynamic.so-net.net.tw] has quit [Ping timeout: 245 seconds]
+04:04 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+04:04 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+04:09 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+04:09 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+04:12 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+04:16 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 250 seconds]
+04:19 -!- Supaplextw [~Lucky@114-36-246-211.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+04:20 -!- Supaplextw [~Lucky@114-36-236-49.dynamic.hinet.net] has joined #g0v.tw
+06:00 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+06:04 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+07:07 < ETBlue> 本日動民主是提案 meta 頁面…在 firefox 下莫名其妙的悲劇了 http://g0v.github.io/don-republic/proposal-content-plan-meta.html
+07:07 < kcwu> ETBlue's url: [政府 IT 委外制度，引入開源碼發展模式可能性研究既建議案 | 議題 | 動民主]
+07:07 < M00sUltraB0t> [ 政府 IT 委外制度，引入開源碼發展模式可能性研究既建議案 | 議題 | 動民主 ] - g0v.github.io
+07:18 -!- lcamel [~lcamel@114-45-61-25.dynamic.hinet.net] has joined #g0v.tw
+07:21 < OtomeSound> 和Chrome比較真的差好多....該不會是Firefox作梗八
+07:22 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+07:22 < OtomeSound> 有測試過其他瀏覽器嗎？
+07:23  * OtomeSound 正在玩goaccess，剛好路過
+07:36 < OtomeSound> http://stackoverflow.com/questions/5148041/does-firefox-support-position-relative-on-table-elements
+07:36 < kcwu> OtomeSound's url: [css - Does Firefox support position: relative on table elements? - Stack Overflow]
+07:36 < M00sUltraB0t> [ css - Does Firefox support position: relative on table elements? - Stack Overflow ] - stackoverflow.com
+07:37 < OtomeSound> 這bug好像有一段時間了
+07:44 -!- lcamel [~lcamel@114-45-61-25.dynamic.hinet.net] has quit [Remote host closed the connection]
+07:44 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+07:44 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+07:44 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+07:44 -!- zealancer [b90057@140.112.30.32] has joined #g0v.tw
+07:48 < ETBlue> OtomeSound: 早 XD
+07:48 < ETBlue> OtomeSound: 原來是 ff bug... orz
+07:48 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+07:49 < OtomeSound> https://gist.github.com/s890081tonyhsu/8014945
+07:49 < kcwu> OtomeSound's url: [Solution for page display in firefox http://g0v.github.io/don-republic/proposal-content-plan-meta.html]
+07:49 < M00sUltraB0t> [ Solution for page display in firefox http://g0v.github.io/don-republic/proposal-content-plan-meta.html ] - gist.github.com
+07:49 < M00sUltraB0t> [ Page not found · GitHub Pages ] - g0v.github.io
+07:49 < kcwu> M00sUltraB0t's url: [政府 IT 委外制度，引入開源碼發展模式可能性研究既建議案 | 提案 | 動民主]
+07:49 < OtomeSound> 這樣改就應該會有你要的結果了ww
+07:49 < ETBlue> OtomeSound: !!!
+07:51 < ETBlue> OtomeSound: 拜謝！！！
+07:52 < ETBlue> yeah XD
+07:53  * OtomeSound 是一位Chrome轉Firefox用戶~
+07:53 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 265 seconds]
+07:54 < OtomeSound> 不過話說這頁面好漂亮XD
+07:55 < ETBlue> semantic ui 的功勞 XD
+08:02 < OtomeSound> （筆記....）
+08:31 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+08:31 -!- ch0upi_bsd [r96006@140.112.30.32] has joined #g0v.tw
+08:40 -!- lcamel [~lcamel@2406:2000:efa5:9:a852:97e7:10ac:7b78] has joined #g0v.tw
+08:56 -!- LCfunPlay_op [~LC@111-250-26-46.dynamic.hinet.net] has joined #g0v.tw
+09:13 -!- lcamel_ [~lcamel@nat/yahoo/x-oudicicvvzhuinrg] has joined #g0v.tw
+09:13 -!- lcamel [~lcamel@2406:2000:efa5:9:a852:97e7:10ac:7b78] has quit [Ping timeout: 240 seconds]
+09:14 -!- george_ [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+09:18 -!- wolfenstein [~Thunderbi@60-250-73-121.HINET-IP.hinet.net] has joined #g0v.tw
+09:21 -!- zealancer [b90057@140.112.30.32] has quit [Read error: Connection reset by peer]
+09:21 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:29 -!- george_ [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+09:33 -!- pm5 [~Adium@111-248-201-157.dynamic.hinet.net] has joined #g0v.tw
+09:36 -!- george_ [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+09:36 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+09:41 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 250 seconds]
+09:46 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+10:00 -!- lcamel_ [~lcamel@nat/yahoo/x-oudicicvvzhuinrg] has quit [Remote host closed the connection]
+10:01 -!- george_ is now known as georgemei
+10:02 -!- georgemei is now known as mei9g
+10:04 -!- lcamel [~lcamel@2406:2000:efa5:9:f8f2:cd06:8332:d75d] has joined #g0v.tw
+10:06 -!- ch0upi_bsd [r96006@140.112.30.32] has quit [Read error: Connection reset by peer]
+10:06 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+10:06 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Quit: Reconnecting]
+10:06 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+10:21 < mei9g> \wc
+10:21 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has left #g0v.tw []
+10:23 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+10:30 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+10:36 -!- lcamel_ [~lcamel@nat/yahoo/x-edwnejfhyhbreepv] has joined #g0v.tw
+10:37 -!- lcamel [~lcamel@2406:2000:efa5:9:f8f2:cd06:8332:d75d] has quit [Ping timeout: 240 seconds]
+10:45 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+10:54 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+10:54 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+10:55 -!- aeil [~Adium@27.243.25.35] has joined #g0v.tw
+10:57 -!- pm5 [~Adium@111-248-201-157.dynamic.hinet.net] has quit [Quit: Leaving.]
+11:00 -!- aeil [~Adium@27.243.25.35] has quit [Ping timeout: 272 seconds]
+11:02 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+11:03 -!- pm5 [~Adium@111-248-201-157.dynamic.hinet.net] has joined #g0v.tw
+11:23 -!- chihchun_afk is now known as chihchun
+11:27 -GitHub151:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/030efc92a2fa76b088f5e4bee0741543e2be08cf
+11:27 -GitHub151:#g0v.tw- g0v.tw/gh-pages 030efc9 g0v general (via TravisCI): regen for 931bf09
+11:28 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+11:28 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+11:33  * ETBlue zzz
+11:36 < tkirby> 還沒睡!?
+11:37 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has quit [Remote host closed the connection]
+11:39 -GitHub139:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/bc96d416ae719d0ae9e145019bd6ca9a5812e2d8
+11:39 -GitHub139:#g0v.tw- g0v.tw/gh-pages bc96d41 g0v general (via TravisCI): regen for 5337806
+11:39 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has quit [Quit: leaving]
+11:39 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+11:40 -!- pm5 [~Adium@111-248-201-157.dynamic.hinet.net] has quit [Quit: Leaving.]
+11:48 -!- pm5 [~Adium@111-248-201-157.dynamic.hinet.net] has joined #g0v.tw
+11:48 -!- pm5 [~Adium@111-248-201-157.dynamic.hinet.net] has quit [Client Quit]
+11:48 < OtomeSound> @_@這是啥訊息 GitHub開頭的ID?
+11:50 < clkao_> notification 
+11:52  * OtomeSound 感覺好威www
+11:59 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has joined #g0v.tw
+12:05 -!- Phoenixmiss [~Miss@114-38-110-151.dynamic.hinet.net] has joined #g0v.tw
+12:05 -!- Phoenixmiss [~Miss@114-38-110-151.dynamic.hinet.net] has quit [Client Quit]
+12:06 -!- Phoenixmiss [~Miss@114-38-110-151.dynamic.hinet.net] has joined #g0v.tw
+12:18 -!- mutolisp [~mutolisp@61-62-206-66-adsl-tpe.dynamic.so-net.net.tw] has joined #g0v.tw
+12:43 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has quit [Quit: leaving]
+12:43 -!- 65MAAFQGJ [ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+12:43 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+12:44 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+13:24 -!- LCfunPlay_op [~LC@111-250-26-46.dynamic.hinet.net] has quit [Quit: LCfunPlay_op]
+13:40 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+13:44 -!- mno2 [~mno2@49.128.60.52] has joined #g0v.tw
+13:44 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+13:45 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+13:45 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+13:45 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+13:45 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+13:50 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+14:07 -!- mei9g_ [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+14:09 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+14:16 < mei9g_> ls
+14:32 < yhsiang> 又有一張票了 :p
+14:38 -!- LCfunPlay_op [~LC@111-250-26-46.dynamic.hinet.net] has joined #g0v.tw
+14:57 < WeiHung> 有人知道現在irc cloud 掛站會幫掛多久嗎？
+14:59 < ipa> WeiHung: 據說沒付費是幾個小時沒動作就logout？2h?
+14:59 < ipa> 「嗚嗚臨時發現時間衝突～ 太扼腕了（槌牆槌地槌枕頭」----> 取消報名好激動
+14:59 < opop> 哈哈哈
+14:59 < opop> 感覺都把家裡給拆了
+15:00 < WeiHung> 我本來也以為是很短，但是從我昨天晚上3點關電腦，剛剛上線發現他都有很盡責幫我掛站耶
+15:00 < hcchien> 上次好像有人說一小時
+15:01 -!- swem [~Thunderbi@123-194-160-52.dynamic.kbronet.com.tw] has joined #g0v.tw
+15:01 < WeiHung> 大概有12小時
+15:03 < yhsiang> Limited accounts are disconnected after 2 hours unless you have the web site or one of the mobile apps open.
+15:07 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+15:13 < tkirby> 票沒了
+15:13 < WeiHung> 想不透XD 我都沒有啊，但都這樣說我來裝一下好了
+15:20 -!- pm5 [~Adium@114-34-80-112.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+15:42 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:43 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:43 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:43 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+16:03 -!- swem [~Thunderbi@123-194-160-52.dynamic.kbronet.com.tw] has quit [Ping timeout: 272 seconds]
+16:04 -!- swem [~Thunderbi@123-194-160-52.dynamic.kbronet.com.tw] has joined #g0v.tw
+16:17 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+16:18 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:18 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+16:22 < clkao_> 有人有 n5 or android 4.4 嗎？
+16:24 < walkingice> 太座小桃大人有撿到一隻
+16:25 -!- Supaplextw [~Lucky@114-36-236-49.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+16:26 -!- Supaplextw [~Lucky@114-36-236-49.dynamic.hinet.net] has joined #g0v.tw
+16:30 < walkingice> Nexus 5 + Android 4.4.2
+16:30 < ETBlue> 小桃！ +Q+
+16:31 < clkao_> walkingice: 只好幫忙修 https://github.com/angular/angular.js/issues/5308 了
+16:31 < kcwu> clkao_'s url: [ng-model is not updated immediately in Chrome WebView or Browser · Issue #5308 · angular/angular.js · GitHub]
+16:31 < M00sUltraB0t> [ ng-model is not updated immediately in Chrome WebView or Browser · Issue #5308 · angular/angular.js · GitHub ] - github.com
+16:31 < ETBlue> 原來是坑…
+16:32 < ETBlue> 神推坑
+16:32  * edwardc hㄒㄈ New One on 4.4.2 
+16:32 < walkingice> LOL
+16:33 -!- swem [~Thunderbi@123-194-160-52.dynamic.kbronet.com.tw] has quit [Ping timeout: 240 seconds]
+16:33 < walkingice> 晚上回家再來看一看。正在文青大樓站的 insomnia 當阿宅
+16:34 -!- swem [~Thunderbi@123-194-160-52.dynamic.kbronet.com.tw] has joined #g0v.tw
+16:41 < WeiHung> 原來還可以這樣推坑（筆記）
+16:42 < clkao_> walkingice: 配眼鏡？ XD
+16:43 < clkao_> walkingice: 也可以問問 @zhusee2, 感覺是新版 chrome for android & webview 讓英文也自動進入 composition mode 了 很鳥
+16:46 -!- swem [~Thunderbi@123-194-160-52.dynamic.kbronet.com.tw] has quit [Ping timeout: 272 seconds]
+16:46 < walkingice> 原本計畫要順便配眼鏡，結果我又忘記帶原本的眼鏡了 orz
+16:46 < clkao_> XD XD
+16:46  * walkingice 在摸 express
+16:46 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+16:47 < clkao_> walkingice: 結果 monit ready 了嗎 :p
+16:47 -!- swem [~Thunderbi@60.245.65.176] has joined #g0v.tw
+16:47 < clkao_> 又到了處理新法案的日子
+16:47 < walkingice> clkao_: 我覺得應該可以了，我在 local 這邊試過許多次，只要 postgresql 關掉就會努力重開 XD
+16:47 < clkao_> 也就是 lyapi 容易 gg 的日子 XD
+16:48 < clkao_> walkingice++
+16:48 -!- swem [~Thunderbi@60.245.65.176] has quit [Read error: Connection reset by peer]
+16:48 -!- swem [~Thunderbi@60.245.65.176] has joined #g0v.tw
+16:48 < clkao_> 那我晚上來 deploy 看看
+16:48 < walkingice> ok, 有問題再來修  LOL
+16:49 < clkao_> walkingice++
+16:49 < clkao_> walkingice: you should say "Closes #48" in your commit log 
+16:49 < walkingice> 現在給 ly.g0v 弄了一個超簡單的 express server，慢慢學習怎麼把 open graph 弄進去
+16:50 < clkao_> 上次 jimyhuang 和 yhsiang 好像有討論一下
+16:50 < clkao_> angular-seo or prerender.io or something
+16:50 < walkingice> jimmy 試了 phantomjs 好像無法直接用
+16:50 < clkao_> 是噢 苦情
+16:51 -!- Phoenixmiss [~Miss@114-38-110-151.dynamic.hinet.net] has quit [Quit: Leaving]
+16:53 -!- marlboromoo [~marlborom@101.3.32.160] has joined #g0v.tw
+16:53 -!- marlboromoo [~marlborom@101.3.32.160] has quit [Remote host closed the connection]
+16:53 -!- swem [~Thunderbi@60.245.65.176] has quit [Read error: Connection reset by peer]
+16:54 -!- swem [~Thunderbi@60.245.65.176] has joined #g0v.tw
+16:54 < walkingice> 而且現在 ly.g0v 是 SPA，應該還要處理 routing 的問題？(感覺會頗複雜)
+16:54 < yhsiang> walkingice: 不如sails ?
+16:54 -!- swem [~Thunderbi@60.245.65.176] has quit [Read error: Connection reset by peer]
+16:55 -!- swem1 [~Thunderbi@60.245.65.176] has joined #g0v.tw
+16:55 < clkao_> walkingice: 單純的作法是... UA 為 bot 再自己弄 routing 產生對應的 fragment?
+16:56 -!- swem1 [~Thunderbi@60.245.65.176] has quit [Client Quit]
+16:57 < walkingice> yhsiang: sails? (yet another keyword I don't understand XD)
+16:57 < clkao_> walkingice: 不然就是, refactor ly.g0v.tw/app/app.ls 那個 state/route table 出來, 加上一個 field 作為產生 fragment 的 handler
+16:57 < clkao_> 然後前後端共用這個 route map
+16:57 -!- swem [~Thunderbi@60.245.65.176] has joined #g0v.tw
+16:58 -!- swem [~Thunderbi@60.245.65.176] has quit [Read error: Connection reset by peer]
+16:58 -!- swem1 [~Thunderbi@60.245.65.176] has joined #g0v.tw
+16:59 < walkingice> clkao_: 「聽起來」後者比較好一點，否則在 express side 自己處理 routing，Angular 那邊改一下就會產生地雷
+16:59  * clkao_ -> ♨
+16:59 < clkao_> walkingice: ya 
+16:59 < walkingice> 不過後者還沒有 idea 怎麼作 XDXDXD
+16:59 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+16:59 < walkingice> clkao_: 泡湯！好羨慕！！
+17:00 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:00 -!- swem1 [~Thunderbi@60.245.65.176] has quit [Read error: Connection reset by peer]
+17:00 -!- swem [~Thunderbi@60.245.65.176] has joined #g0v.tw
+17:01 -!- swem1 [~Thunderbi@60.245.65.176] has joined #g0v.tw
+17:01 -!- swem [~Thunderbi@60.245.65.176] has quit [Read error: Connection reset by peer]
+17:01 < clkao_> walkingice: 要去嗎？文青大樓衝去礁溪應該也還好 XD
+17:02 < walkingice> clkao_: 今天超忙碌不然好想去 Q___Q   #我超怕冷
+17:03 -!- haroldwu_ [~haroldwu@219.85.185.194] has joined #g0v.tw
+17:03 -!- kcliu_ [uid12402@gateway/web/irccloud.com/x-jyscwzuendyjzbrm] has joined #g0v.tw
+17:05 < clkao_> 今天真的蠻冷的
+17:07 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Ping timeout: 240 seconds]
+17:07 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+17:09 < hychen> 泡湯!!!
+17:09 -!- swem1 [~Thunderbi@60.245.65.176] has quit [Ping timeout: 240 seconds]
+17:10 -!- Netsplit *.net <-> *.split quits: cataska_, cpyang, poga, racklin, antliu, superbil_c, isacloud, lanf0n, donaldisfreak, tuiry,  (+25 more, use /NETSPLIT to show all of them)
+17:12 -!- Netsplit over, joins: CrBoy, czchen, Jyny, isacloud, superbil_c, cataska_, antliu, donaldisfreak, flter, superbil^^ (+23 more)
+17:12 -!- kcliu_ is now known as kcliu
+17:13 < jimyhuang> 村長超爽！
+17:16 -!- Netsplit *.net <-> *.split quits: cataska_, cpyang, poga, racklin, isacloud, antliu, superbil_c, lanf0n, tuiry, donaldisfreak,  (+23 more, use /NETSPLIT to show all of them)
+17:16 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Write error: Connection reset by peer]
+17:16 -!- ch0upi_b1d [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:21 -!- Netsplit over, joins: CrBoy, czchen, Jyny, isacloud, superbil_c, cataska_, antliu, donaldisfreak, flter, superbil^^ (+23 more)
+17:26 -!- Phoenixmiss [~Miss@114-38-110-151.dynamic.hinet.net] has joined #g0v.tw
+17:26 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:27 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:28 < jimyhuang> walkingice: 我算是用node mapping 一個routing，處理 _escaped_fragment_，然後該routing再去request另一個phantomjs nodejs service 來產生 html 網頁... 
+17:32 < jimyhuang> walkingice: for reference ... if needed http://i.jimmyhub.net/html/http://fact.g0v.tw  /  http://github.com/g0v/grabejs 
+17:32 < kcwu> jimyhuang's url (1/2): [政誌 | 勿忘政治]
+17:32 < kcwu> jimyhuang's url (2/2): [g0v/grabejs · GitHub]
+17:32 < M00sUltraB0t> [ 政誌 | 勿忘政治 ] - i.jimmyhub.net
+17:32 < M00sUltraB0t> [ g0v/grabejs · GitHub ] - github.com
+17:40 < walkingice> jimyhuang: 是在 route.js@twangry 作這件事嗎？
+17:43 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+17:48 -!- Phoenixmiss [~Miss@114-38-110-151.dynamic.hinet.net] has quit [Quit: Leaving]
+17:51 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+17:57 < jimyhuang> walkingice: 對... 1. 加 meta  2. 加 route  3. 用 nodejs 的  request request i.jimmyhub.net/html/url 模組... 
+17:58 < walkingice> jimyhuang: 好！待我研讀一下再請教！
+17:58 < walkingice> ly api GG!
+18:00 < jimyhuang> @"@
+18:03 < clkao> Grr
+18:08 -!- Phoenixmiss [~Miss@114-38-110-151.dynamic.hinet.net] has joined #g0v.tw
+18:14 -!- petercommand [~peter@unaffiliated/petercommand] has quit [Quit: Lost terminal]
+18:23 -!- wolfenstein [~Thunderbi@60-250-73-121.HINET-IP.hinet.net] has quit [Quit: wolfenstein]
+18:33 -!- lcamel_ [~lcamel@nat/yahoo/x-edwnejfhyhbreepv] has quit [Remote host closed the connection]
+18:57 -!- mei9g_ [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+19:09 -!- petercommand [~peter@unaffiliated/petercommand] has joined #g0v.tw
+19:10 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+19:13 -!- SupaplexTW___ [~Adium@wlan14.cc.ntu.edu.tw] has joined #g0v.tw
+19:20 -!- SupaplexTW___ [~Adium@wlan14.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:21 -!- SupaplexTW___ [~Adium@wlan27.cc.ntu.edu.tw] has joined #g0v.tw
+19:28 -!- SupaplexTW___ [~Adium@wlan27.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:28 -!- SupaplexTW___ [~Adium@wlan80.cc.ntu.edu.tw] has joined #g0v.tw
+19:34 -!- haroldwu_ is now known as haroldwu
+19:35 -!- haroldwu [~haroldwu@219.85.185.194] has quit [Changing host]
+19:35 -!- haroldwu [~haroldwu@unaffiliated/haroldwu] has joined #g0v.tw
+19:35 -!- SupaplexTW___ [~Adium@wlan80.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:35 -!- SupaplexTW___ [~Adium@wlan52.cc.ntu.edu.tw] has joined #g0v.tw
+19:35 -!- ch0upi_b1d [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:35 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+19:43 -!- alliao [~blah@60-234-155-32.bitstream.orcon.net.nz] has quit [Ping timeout: 256 seconds]
+19:43 -!- SupaplexTW___ [~Adium@wlan52.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:43 -!- SupaplexTW___ [~Adium@wlan41.cc.ntu.edu.tw] has joined #g0v.tw
+19:46 -!- mno2 [~mno2@49.128.60.52] has quit [Quit: mno2]
+19:49 -!- SupaplexTW___ [~Adium@wlan41.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:49 -!- SupaplexTW___ [~Adium@wlan8.cc.ntu.edu.tw] has joined #g0v.tw
+19:49 -!- SupaplexTW___ [~Adium@wlan8.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:49 -!- SupaplexTW___ [~Adium@wlan50.cc.ntu.edu.tw] has joined #g0v.tw
+19:57 -!- SupaplexTW___ [~Adium@wlan50.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:59 -!- SupaplexTW___ [~Adium@wlan65.cc.ntu.edu.tw] has joined #g0v.tw
+20:01 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+20:07 -!- SupaplexTW___ [~Adium@wlan65.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:07 -!- SupaplexTW___ [~Adium@wlan31.cc.ntu.edu.tw] has joined #g0v.tw
+20:15 -!- SupaplexTW___ [~Adium@wlan31.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:15 -!- SupaplexTW___ [~Adium@wlan31.cc.ntu.edu.tw] has joined #g0v.tw
+20:16 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Ex-Chat]
+20:18 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+20:24 -!- SupaplexTW___ [~Adium@wlan31.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:24 -!- swem [~Thunderbi@59-115-39-48.dynamic.hinet.net] has joined #g0v.tw
+20:24 -!- SupaplexTW___ [~Adium@140.112.25.33] has joined #g0v.tw
+20:25 < clkao> 遭到消除精神恢復疲勞
+20:28 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+20:29 < donaldisfreak> 政誌好Cool喔!XD
+20:32 < donaldisfreak> 政治就是管理眾人的事；政誌就是紀錄發生的事。
+20:33 -!- swem [~Thunderbi@59-115-39-48.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+20:33 -!- SupaplexTW___ [~Adium@140.112.25.33] has quit [Ping timeout: 240 seconds]
+20:34 -!- SupaplexTW___ [~Adium@wlan93.cc.ntu.edu.tw] has joined #g0v.tw
+20:36 < yhsiang> 為什麼活動訊息有一個 待刪除 XD
+20:42 -!- SupaplexTW___ [~Adium@wlan93.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:42 -!- SupaplexTW___ [~Adium@wlan91.cc.ntu.edu.tw] has joined #g0v.tw
+20:48 < jimyhuang> donaldisfreak: 要跳政誌坑嗎？
+20:48 -!- SupaplexTW___ [~Adium@wlan91.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:49 -!- SupaplexTW___ [~Adium@wlan23.cc.ntu.edu.tw] has joined #g0v.tw
+20:53 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+20:55 < clkao_> donaldisfreak 是不是前陣子 report  了一個什麼 bug
+20:56 -!- SupaplexTW___ [~Adium@wlan23.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:56 -!- SupaplexTW___ [~Adium@wlan39.cc.ntu.edu.tw] has joined #g0v.tw
+20:57 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+21:05 -!- SupaplexTW___ [~Adium@wlan39.cc.ntu.edu.tw] has quit [Ping timeout: 240 seconds]
+21:06 -!- SupaplexTW___ [~Adium@wlan84.cc.ntu.edu.tw] has joined #g0v.tw
+21:09 < ttcat> 有人有看過蔡正元的 同志伴侶法 的圖片嗎
+21:12 -!- kmtu1 [823682F5@conference/jsconf/x-kvmwcqtaacppxzow] has joined #g0v.tw
+21:12 < kmtu1> 不好意思，讓我測試一下。第一次用 scrollback 發言，想看他與 IRC 的連動狀況。謝謝。
+21:13 -!- SupaplexTW___ [~Adium@wlan84.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+21:13 -!- SupaplexTW___ [~Adium@wlan39.cc.ntu.edu.tw] has joined #g0v.tw
+21:14 < clkao_> ttcat: 你是說提案嗎？
+21:17 < ttcat> 好像還沒提案 但是有草案 我找不到了
+21:18 < clkao_> walkingice: 快來幫忙測 kitkat, 可以順便跟 angularjs 女神聊天喔
+21:18 < ttcat> 只是抱著運氣運氣問問 XD
+21:18 -!- SupaplexTW___ [~Adium@wlan39.cc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+21:18 < clkao_> ttcat: 我好像有看過連結
+21:19 < ttcat> (伴侶盟開會中)
+21:20 < clkao_> ttcat: 我找到 link 了 但是好像被移除了
+21:20 < clkao_> http://goo.gl/9l3N47
+21:20 < M00sUltraB0t> [ 1021202同性伴侶法更正版.doc ] - goo.gl
+21:22 < donaldisfreak> clkao_ 有呀！小改一下kuansim-backend的package.json
+21:22 < ttcat> 好可惡
+21:22 < ttcat> 居然移除了
+21:22 < hychen> angularjs女神是誰?
+21:22 < clkao_> hychen: caitp
+21:23 < hychen> clkao_: 我要來學angularjs了, 可惡
+21:24 < yhsiang> hychen: 先掛 #angularjs阿
+21:24 < clkao_> hychen: 快送 angular-semantic patch 
+21:24 < yhsiang> 她天天在線上 XDD
+21:24 < yhsiang> 她前陣子還說  為什麼大家都一直mention她
+21:24 < donaldisfreak> jimyhuang: 有衝動咧！
+21:24  * yhsiang 笑翻了 ...
+21:24 < hychen> 加了加了
+21:25 < clkao_> yhsiang: 為何 mention?
+21:25 < yhsiang> clkao_: 額 我也不知道 反正大家有問題 都是 caitp: blah blah 
+21:25 < ipa> kmtu1: 你覺得好用嗎？#scrollback 
+21:26 -!- nchild [~nchild@114-34-12-231.HINET-IP.hinet.net] has joined #g0v.tw
+21:26 < kmtu> 問題是我已經是 kmtu了，但在 scrollback 上變成 kmtu1 呢^^b
+21:26 < clkao_> yhsiang: 那你還都有看 XD
+21:26 < kmtu> ps. 因為我同時有用另一台主機掛著 irc.
+21:26 < yhsiang> 問題很多 我也記不了那麼多 XD
+21:27 < clkao_> kmtu: 這蠻正常的 不同方式連線 id 必須不同
+21:28 < kmtu> 嗯.我來試試如果我主機這邊斷線，scrollback 那裡會不會變回 kmtu.
+21:28 -!- kmtu [~kmtu@v157-7-143-194.myvps.jp] has quit [Quit: WeeChat 0.4.2]
+21:30 < yhsiang> 我在irc 下/last caitp 整整有兩三頁 ...
+21:30 -!- kmtu1 is now known as sb-iscore
+21:30 -!- sb-iscore is now known as kmtu
+21:30 -!- 65MAAFQGJ is now known as ychsiao
+21:31 < kmtu> 測試2. From scrollback. 看有無變回 kmtu.
+21:31 < clkao_> yhsiang: 頭號粉絲！
+21:31 < yhsiang> clkao_: 現在有個人在告白才歡樂吧 XDD
+21:31 -!- kmtu_ [~kmtu@v157-7-143-194.myvps.jp] has joined #g0v.tw
+21:31 -!- LCfunPlay_op [~LC@111-250-26-46.dynamic.hinet.net] has left #g0v.tw []
+21:35 < kmtu_> 看來是有變，所以我現在的常駐主機登入 id 變成 kmtu_ 了。這樣也不錯。不好意思打擾了。
+21:36 < ipa> kmtu_: btw, 你有報名黑客松嗎？
+21:37 < kmtu_> 想呀。不過我人不在台灣。
+21:37 < jimyhuang> yhsiang: 告白！
+21:38 < jimyhuang> donaldisfreak: 那來寫程式還是來編條目？
+21:38 < ipa> kmtu_: 不過遠端跳坑據說也是很方便 XD 
+21:39 < yhsiang> https://kktix.com/events/devhappyday
+21:39 < kcwu> yhsiang's url: [開發者忘年會（Developer Party of the Year） | KKTIX]
+21:39 < M00sUltraB0t> [ 開發者忘年會（Developer Party of the Year） | KKTIX ] - kktix.com
+21:39 < kmtu> ipa: 喔是嗎！
+21:40 < ipa> kmtu: 寫程式？編條目？畫圖？唱歌？寫文字？請選坑....
+21:40 < clkao_> yhsiang: 看來可以下飛機直接過去 XD
+21:40 < kmtu> 我必須說，scrollback 真是太讚了，好方便喔。
+21:42 < yhsiang> clkao_: 下飛機? 你去那 @@
+21:42 -!- a2n is now known as a2n_afk
+21:42 < ipa> MaD
+21:43 < ipa> o/~ hong kong hong kong o/~
+21:43 < yhsiang> 喔! 要這麼拚嗎 XD
+21:43 < yhsiang> 16-17還是ng-conf 可惜不能去 Q_Q
+21:43 < kmtu> 我很~~喜歡寫程式。不過不知道能從何處著手參與 g0v。 ps. 動民主、鄉民關心你，我都很有興趣。
+21:44 -!- yyhuang [uid13204@gateway/web/irccloud.com/x-dapurbwgntojqsfh] has quit [Read error: Connection reset by peer]
+21:44 < ipa> 鄉民組也有 irc channel：#kuansim  
+21:44 -!- yyhuang [uid13204@gateway/web/irccloud.com/x-csoepsadlavpxnpg] has joined #g0v.tw
+21:45 < yhsiang> kmtu: 有專長的程式語言嗎 還是不排斥學新的 XD
+21:46 < ipa> 動民主！那只好呼叫 tkirby ETBlue yhsiang  （這兩天大家在試用 loomio https://www.loomio.org/groups/2958 ）
+21:46 < kcwu> ipa's url: [g0v | Loomio]
+21:46 < M00sUltraB0t> [ g0v | Loomio ] - www.loomio.org
+21:46 < ETBlue> ?!?! 下線嗎
+21:46 < hychen> yhsiang: 告白在哪? 
+21:47  * hychen 拿起炸雞
+21:47 < ETBlue> 什麼告白？！？！？！
+21:47 < yhsiang> 21:31 < olivvv> caitp: but I already love you very much
+21:48 < ETBlue> !!!!!
+21:48 < tkirby> yhsiang: 這在哪, #angularjs 嗎 XD
+21:48 < yhsiang> ya
+21:48 < yhsiang> 21:32 < caitp> d'aw shucks
+21:48 < yhsiang> XDDD
+21:48 < ipa> 好刺激的channel啊
+21:49 < kmtu> 我因為是做科學研究的，所以目前最有經驗的語言是 Fortran ^^b  不過自己有稍微涉獵 Python 和 Javascript。新語言當然是不排斥啦，不過目前還沒打算看 Ruby。
+21:49 < tkirby> fortran!
+21:49 < yhsiang> fortran XD
+21:49 < donaldisfreak> jimyhuang: 編列條目~我想追環境這條線
+21:54 < ETBlue> yhsiang: angular js 竟然有開發者忘年會！而且女生票還半價… XD
+21:55 < ETBlue> ipa: 笑死我了 XDDD # 請選坑
+21:55 < yhsiang> ETBlue: 欸 這根本就是js 開發者忘年會 # 可以看一下 主辦單位 XD
+21:56 < ETBlue> kmtu: 講個秘訣，鄉民關心你缺前端，動民主缺後端，動民主後端由 tkirby 領軍，採用 python 和 django
+21:56 < yhsiang> 不過我跟blue說 改成dev drinkup 會更吸引人 XD
+21:57 -!- a2n_afk is now known as a2n
+21:57 < ETBlue> kmtu: 兩坑都跳更歡迎
+21:58 < ETBlue> kmtu: 動民主 2.0 還在規劃階段，最新進度 http://g0v.github.io/don-republic/proposal-content-plan-chapters.html
+21:58 < kcwu> ETBlue's url: [政府 IT 委外制度，引入開源碼發展模式可能性研究既建議案 | 提案 | 動民主]
+21:58 < M00sUltraB0t> [ 政府 IT 委外制度，引入開源碼發展模式可能性研究既建議案 | 提案 | 動民主 ] - g0v.github.io
+22:00 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+22:01 < kmtu> 我正在研究 loomio 中，剛註冊好
+22:01 < ETBlue> yhsiang: 喔喔是泛開發者忘年會……我以為是 angular js 開發者忘年會 XD
+22:01 -!- mno2 [~mno2@bb116-15-44-14.singnet.com.sg] has joined #g0v.tw
+22:02 < yhsiang> ETBlue: 因為提議的人是blue XDD
+22:02 < ETBlue> yhsiang: 這文案寫得真好，超嗨 XD
+22:02 < kmtu> 我今天稍早有看到動民主 2.0，介面超酷的啦
+22:04 < ETBlue> kmtu: hooray 
+22:08 -!- a2n is now known as guildwar_
+22:09 -!- guildwar_ is now known as guildwar__
+22:09 -!- guildwar__ is now known as a2n
+22:09 < ETBlue> 剛才approve了一個loomio社團成員說，是你嗎
+22:09 < ETBlue> 好像需要去信箱收邀請信的樣子
+22:11 < kmtu> ETBlue: 哈哈哇賽那麼快
+22:12 -!- a2n_ [uid13285@gateway/web/irccloud.com/x-yobhkznlmcngaivm] has left #g0v.tw []
+22:13 < ETBlue> kmtu: ㄟ，是其他人幫你 approve 的，我按的那位還沒收邀請信… XD
+22:14 < ipa> 是偶按的
+22:14 < kmtu> ETBlue: 我看到了，是 ipa 幫我的。
+22:14  * ipa 挖我剛才知道 Nally 是 yllan 做的
+22:16 < kmtu> ETBlue: 如果要先研究一下動民主的後端要從哪看呢， Github 上是只有前端是吧 https://github.com/g0v/don-republic
+22:16 < kcwu> kmtu's url: [g0v/don-republic · GitHub]
+22:16 < M00sUltraB0t> [ g0v/don-republic · GitHub ] - github.com
+22:17 -!- pm5 [~Adium@111-248-201-157.dynamic.hinet.net] has joined #g0v.tw
+22:17 < ETBlue> kmtu: 這個…要問 tkirby XD
+22:18 < ETBlue> kmtu: 因為我後端完全不會 XD
+22:18 < kmtu> 了解~
+22:19 < ETBlue> kmtu: 這裡有些我幻想的規格 http://hack.g0v.tw/don-democracy/1V1g67duANj
+22:19 < M00sUltraB0t> [ hack.g0v.tw ] - hack.g0v.tw
+22:20 < ETBlue> ipa: 我現在才知道…… # nally
+22:27 < yhsiang> kmtu: 裡面有branch是後端
+22:27 < yhsiang> dev/django
+22:31 < tkirby> XD
+22:32 < tkirby> 在想要不要換後端
+22:32 < yhsiang> tkirby: sailsjs ? :p
+22:32 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Quit: swem]
+22:32 < kmtu> tkirby: 哈把後端擺在 branch 裡
+22:33 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+22:34 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Client Quit]
+22:34 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+22:35 < tkirby> !
+22:35 < kmtu> tkirby: 對了，先表態清楚，我只是很有興趣，且樂於學習新知，但其實完全沒實務經驗，所以抱歉目前大概無法給予太高端的協助（例如推薦該採用何種後端平台）
+22:37 < tkirby> hmm
+22:37 < tkirby> http://flibs.sourceforge.net/fortran-fastcgi-nginx.html
+22:37 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Quit: Leaving]
+22:37 < M00sUltraB0t> [ Fortran + FastCGI + nginx : Possibly the fastest combination for certain web applications? ] - flibs.sourceforge.net
+22:38 < kmtu> 這...別把腦筋動到 Fortran 上呀 XD
+22:38 < dirty__> 要吸引前端工程師, 後端當然選 js 啊
+22:38 < yhsiang> tkirby: https://github.com/codegangsta/martini # 強迫自己寫go ?
+22:38 < kcwu> yhsiang's url: [codegangsta/martini · GitHub]
+22:38 < M00sUltraB0t> [ codegangsta/martini · GitHub ] - github.com
+22:39 < tkirby> go!
+22:41 < ETBlue> XDDDDD
+22:43 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Quit: swem]
+22:43 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+22:43 < iamblue_cloud_> 嗨上面有人提到忘年會聚會XD  
+22:44 < iamblue_cloud_> 歡迎大家有空來交流交流，本質就是幾個社群的聯合大尾牙～
+22:44 < iamblue_cloud_> 不過用比較不一樣的形式主辦
+22:46 < clkao_> good mojito
+22:46 < clkao_> 不過門票都 500 了，不付一杯酒嗎
+22:46 < ipa> clkao_: https://g0v.hackpad.com/g0v-hackath6n--wn7HzHhFhC5 
+22:46 < kcwu> ipa's url: [g0v hackath6n 行前通知 - g0v.hackpad.com]
+22:46 < M00sUltraB0t> [ g0v hackath6n 行前通知 - g0v.hackpad.com ] - g0v.hackpad.com
+22:47 < iamblue_cloud_> clkao來我請你一杯xD
+22:47 < yhsiang> 哼哼 可以自帶酒精飲料嗎 ?
+22:47 < yhsiang> 收開瓶費?
+22:48 < iamblue_cloud_> 不要太高調，店家應該不會怎樣XD
+22:48 < yhsiang> ok :p
+22:49 < ipa> http://hack.g0v.tw/g0v-hackath6n/0Ak0j8_vTJFGUdDI4VXI3QVlRZUh5UmFseEZCaWYxYWc 剛才發現已經有人登記報告了耶 pm5++ 頭香
+22:49 < M00sUltraB0t> [ hack.g0v.tw ] - hack.g0v.tw
+22:49 < iamblue_cloud_> 這次最主要是尾牙經費所有錢都是從報名費而來，除非是最後真的覺得預算很緊才會有募資XD
+22:50 < pm5> ipa: 其實我有點擔心那天會遲到 XD
+22:50 < iamblue_cloud_> 剛好找到一個氣氛跟場地還不錯的餐廳
+22:52 < clkao_> ipa: 要加尾牙資訊嗎
+22:53 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has joined #g0v.tw
+22:54 < clkao_> plv8x 下個版本是 0.6.4, 要被牆了
+22:57 < edwardc> XD
+22:58 -!- mei9g [~george@118-163-110-181.HINET-IP.hinet.net] has quit [Ping timeout: 250 seconds]
+22:58 < hychen> haha
+22:58 -!- pm5 [~Adium@111-248-201-157.dynamic.hinet.net] has quit [Quit: Leaving.]
+22:59 < yhsiang> 我還想了一下 orz ..
+23:02 < donaldisfreak> XD
+23:13 -!- pm5 [~Adium@111-248-201-157.dynamic.hinet.net] has joined #g0v.tw
+23:15 -!- Zespre [uid12810@gateway/web/irccloud.com/x-hsttufenipjcqggt] has quit [Read error: Operation timed out]
+23:15 -!- ddio [uid13869@gateway/web/irccloud.com/x-rfxdxlevqlngeauu] has quit [Read error: Connection reset by peer]
+23:15 -!- c9s [sid15100@gateway/web/irccloud.com/x-zjgwrlgwriwirdsu] has quit [Read error: Connection reset by peer]
+23:16 -!- ddio [uid13869@gateway/web/irccloud.com/x-oroooewhnqiaptej] has joined #g0v.tw
+23:17 -!- c9s [sid15100@gateway/web/irccloud.com/x-liekderrdihyxblc] has joined #g0v.tw
+23:18 -!- Zespre_ [uid12810@gateway/web/irccloud.com/x-uaqtdaciopovrsyt] has joined #g0v.tw
+23:22 < walkingice> @o@
+23:23 < walkingice> how to test?
+23:24 < clkao_> walkingice: go to the plunkr url in #5308 with kitkat, and see what are the {key,composition}* events like
+23:25  * walkingice 差點打成「angularjs 女神如何測試」
+23:27 -!- lcamel [~lcamel@114-45-61-25.dynamic.hinet.net] has joined #g0v.tw
+23:30 -!- kmtu [823682F5@conference/jsconf/x-kvmwcqtaacppxzow] has left #g0v.tw []
+23:32 < clkao_> walkingice++ # monit deployed, seems working
+23:34 < walkingice> yeah \o/
+23:39 -!- CJarek [3de03ac7@gateway/web/freenode/ip.61.224.58.199] has joined #g0v.tw
+23:40 < hcchien> 「angularjs 女神如何測試」  lol
+23:41 < walkingice> Chrome 31.0.1650.59 測試 http://plnkr.co/edit/ZcksakM9icREgxe38Pn
+23:41 < kcwu> walkingice's url: [Plunker]
+23:41 < M00sUltraB0t> [ Plunker ] - plnkr.co
+23:41 < walkingice> 馬上就會 udpate 呀
+23:43 < clkao_> walkingice: 英文？ 還是他有用什麼怪 keyboard
+23:43 < walkingice> 我用 offical input 輸入數字來測試
+23:45 -!- lcamel [~lcamel@114-45-61-25.dynamic.hinet.net] has quit [Remote host closed the connection]
+23:46 < clkao_> how about english that is subject for auto-correction?
+23:47 < walkingice> 有選字的輸入法的確是不會更新，送出到 INPUT 就會更新了
+23:48 < walkingice> 這應該是合理的吧？
+23:48 < clkao_> yeah for CJK
+23:48 < clkao_> but for english?
+23:49 < walkingice> 一樣沒送給 INPUT 前都不會更新
+23:50 < clkao_> right, that's the behaviour being discussed
+23:50 -!- chihchun is now known as chihchun_afk
+23:50 < walkingice> 看起來是輸入法的行為
+23:52 -!- CJarek [3de03ac7@gateway/web/freenode/ip.61.224.58.199] has quit [Quit: Page closed]
+23:52 < walkingice> 譬如說我打 Bu 兩個字，INPUT 上面顯示加上底線的 Bu，ng-model 沒有更新。而後我在選字視窗點了 But 送給 input 之後，ng-model 馬上就更新了
+23:53 < clkao_> right, apparently people are not happy with that behaviour
+23:53 < walkingice> 倘若我按 backspace 把 t 刪掉，Bu 兩個字馬上又出現底線，而後 ng-model 那邊馬上又變成空的
+23:54 < clkao_> right
+23:54 < clkao_> walkingice: can you check this as well? http://plnkr.co/edit/euPnjrLk918G31aTDPjN?p=preview
+23:54 < kcwu> clkao_'s url: [Plunker]
+23:54 < M00sUltraB0t> [ Plunker ] - plnkr.co
+23:55 < walkingice> one more second
+23:55 < clkao_> walkingice: might need to modify the eventFeedback to dump event content
+23:55 -!- haroldwu_home [~haroldwu@118-170-139-189.dynamic.hinet.net] has joined #g0v.tw
+23:55 < clkao_> if we can capture keydown that we can workaround... but usually if IME is activated keydown event's keycode is always 229
+23:56 -!- CJarek [3de03ac7@gateway/web/freenode/ip.61.224.58.199] has joined #g0v.tw

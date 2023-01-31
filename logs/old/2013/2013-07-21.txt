@@ -1,0 +1,214 @@
+--- Day changed 日  7月 21 2013
+00:03 -!- neoesque [~neoesque@122-116-18-21.HINET-IP.hinet.net] has quit [Quit: Bye!]
+00:09 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 246 seconds]
+00:32 < hychen> 看來 timeline的呈現還需要人物關係圖補強, 然後還需要一些相關法規reference 
+00:33 < hychen> 這樣湊一起對特定議題比較一目了然
+01:01 < clkao> hychen: 他有支援 oembed 嗎？
+01:04 -!- robot123 [3d39922d@gateway/web/freenode/ip.61.57.146.45] has joined #g0v.tw
+01:05 -!- robot123 [3d39922d@gateway/web/freenode/ip.61.57.146.45] has left #g0v.tw []
+01:12 -!- ymow [~Adium@1-171-50-145.dynamic.hinet.net] has joined #g0v.tw
+01:20 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+01:24 -!- chyeh [~chyeh@linux3.cs.nctu.edu.tw] has joined #g0v.tw
+01:48 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 260 seconds]
+02:16 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+02:42 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 264 seconds]
+02:45 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+03:11 -!- icman [~icman@123.240.128.193] has quit [Quit: 明天天氣晴]
+04:36 -!- bobchao [~bobchao@123-194-245-161.dynamic.kbronet.com.tw] has joined #g0v.tw
+04:41 -!- bobchao [~bobchao@123-194-245-161.dynamic.kbronet.com.tw] has quit [Ping timeout: 252 seconds]
+05:14 -!- a-tsioh [~pierre@81.179.119.80.rev.sfr.net] has quit [Ping timeout: 256 seconds]
+05:16 -!- Supaplextw [~Lucky@1-164-209-31.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:17 -!- Supaplextw [~Lucky@114-25-203-242.dynamic.hinet.net] has joined #g0v.tw
+07:25 < dirty_> clkao: hackfolder 幾乎無解, 要 tooltip 出得來, 必須 overflow: visible 而要能夠垂直捲動, 必須要 overflow-y: auto/scroll
+07:26 < dirty_> 換句話說, 是要 children 物件只在 x 方向能超出 parent, 但是在 y 方向要能 trigger parent 捲動. 試了一陣子發現現在的瀏覽器還沒這麼先進
+07:29 < dirty_> 用了 ui.bootstrap 中提供的 tooltip-append-to-body, (更新到 0.4.0 版), 有 bug 所以我想自己 hack, 但 livescript+angularjs 搞得我好亂啊, 找不到適當的地方加自訂的 event
+07:29 < dirty_> 看有沒有人有建議, 不然我先改在 ui.bootstrap.js 裡囉 :p
+07:43 < dirty_> 當我沒說, 我發現 tooltip-append-to-body 可以了
+08:21 -!- ltroot [~ltroot@140.127.182.55] has joined #g0v.tw
+09:38 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+09:49 -!- ymow [~Adium@1-171-50-145.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+09:52 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 245 seconds]
+09:54 -!- swem [~Thunderbi@36-226-19-46.dynamic-ip.hinet.net] has joined #g0v.tw
+10:10 -!- swem [~Thunderbi@36-226-19-46.dynamic-ip.hinet.net] has quit [Ping timeout: 276 seconds]
+10:45 -!- juanna [~juanna@114-25-47-145.dynamic.hinet.net] has joined #g0v.tw
+10:49 -!- juanna_ [~juanna@114-43-101-117.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+11:01 -!- swem [~Thunderbi@36-226-19-46.dynamic-ip.hinet.net] has joined #g0v.tw
+11:03 -!- hasher [~hasher@host-111-184-37-242.dynamic.kbtelecom.net] has joined #g0v.tw
+11:20 < dirty_> just updated hackfolder (especially for collapsed layout)
+11:20 < dirty_> see a demo http://zoro.ee.ncku.edu.tw:3333/g0v-hackath3n/Mvvl8HrceCV
+11:20 < kcwu_> dirty_'s url: [hack.g0v.tw]
+11:21 < dirty_> 對了, 還沒對 FF 做過 "任何" 測試 :p
+11:22 -!- swem [~Thunderbi@36-226-19-46.dynamic-ip.hinet.net] has quit [Ping timeout: 248 seconds]
+11:23 -!- neoesque [~neoesque@210.59.147.226] has joined #g0v.tw
+11:27 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+11:35 < clkao> dirty_: collapsed + 有 y scroll 時變得很小
+11:36 < clkao> ff 會跳動
+11:37 -!- ymow [~Adium@1-171-174-42.dynamic.hinet.net] has joined #g0v.tw
+11:55 < opop_> clkao: 見過不少人做那個..
+11:57 -!- hasher [~hasher@host-111-184-37-242.dynamic.kbtelecom.net] has quit [Read error: Connection reset by peer]
+12:01 < dirty_> ff 好晃 XD 應該是 ff box-resizing 實作的問題, 我可能等回到平常用的電腦時再修這種了, 這種測相容性的太吃環境了
+12:22 -!- hasher [~hasher@host-111-184-37-242.dynamic.kbtelecom.net] has joined #g0v.tw
+12:31 -!- BenDon [8c701933@gateway/web/freenode/ip.140.112.25.51] has joined #g0v.tw
+12:43 -!- BenDon [8c701933@gateway/web/freenode/ip.140.112.25.51] has quit [Ping timeout: 250 seconds]
+13:02 -!- swem [~Thunderbi@36-226-19-46.dynamic-ip.hinet.net] has joined #g0v.tw
+13:18 -!- juanna [~juanna@114-25-47-145.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+13:18 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+13:19 -!- hasher [~hasher@host-111-184-37-242.dynamic.kbtelecom.net] has quit [Ping timeout: 264 seconds]
+13:39 -!- hasher [~hasher@host-111-184-37-242.dynamic.kbtelecom.net] has joined #g0v.tw
+13:42 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+13:46 -!- hasher [~hasher@host-111-184-37-242.dynamic.kbtelecom.net] has quit [Read error: Connection reset by peer]
+13:51 -!- swem [~Thunderbi@36-226-19-46.dynamic-ip.hinet.net] has quit [Ping timeout: 276 seconds]
+13:55 -!- hasher [~hasher@host-111-184-37-242.dynamic.kbtelecom.net] has joined #g0v.tw
+14:29 -!- icman [~icman@123.240.128.193] has joined #g0v.tw
+14:54 -!- GH_J [~GH_J@118-169-176-39.dynamic.hinet.net] has joined #g0v.tw
+15:05 -!- neoesque [~neoesque@210.59.147.226] has quit [Ping timeout: 252 seconds]
+15:19 -!- neoesque [~neoesque@122-116-18-21.HINET-IP.hinet.net] has joined #g0v.tw
+15:46 -!- hasher [~hasher@host-111-184-37-242.dynamic.kbtelecom.net] has quit [Ping timeout: 260 seconds]
+15:50 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+15:56 -!- hasher [~hasher@host-111-184-37-242.dynamic.kbtelecom.net] has joined #g0v.tw
+15:57 -!- pm5 [~pm5@111-248-223-38.dynamic.hinet.net] has joined #g0v.tw
+16:04 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+16:24 -!- hasher [~hasher@host-111-184-37-242.dynamic.kbtelecom.net] has quit [Ping timeout: 248 seconds]
+16:25 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+16:36 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+17:18 < dirty_> clkao: https://github.com/hackfoldr/hackfoldr/issues?state=open #24 #22 好了
+17:18 < kcwu_> dirty_'s url: [Issues · hackfoldr/hackfoldr · GitHub]
+17:21 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+17:39 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+17:44 < jimmy> 想問問g0v的各位...
+17:45 < jimmy> 各位投身公益（應該算是吧？）如何保持心情愉悅暢快...
+17:45 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+18:02 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+18:16 < clkaoud_> jimmy: 大栽問 不過看來做了一些事後就會比較暢快 有遇到什麼特別的困擾嗎?
+18:16 -!- clkaoud_ is now known as clkaoud
+18:19 < clkaoud> (所以 Hlb 才說 g0v 超療癒)
+19:07 < mikimoto> g0v 超療癒++
+19:13 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 246 seconds]
+19:24 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+19:24 -!- ymow [~Adium@1-171-174-42.dynamic.hinet.net] has quit [Quit: Leaving.]
+19:29 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+19:37 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+19:38 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+19:56 -!- ymow [~Adium@1-171-175-126.dynamic.hinet.net] has joined #g0v.tw
+19:58 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+20:06 < ipa_> google group超傷神啊  回覆張貼之後竟然沒有回給前位發信人
+20:06 < clkao> Supaplextw: forwarded to you
+20:19 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+20:20 -!- caasiHuang [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+20:25 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+20:25 < Jedi_> google groups 陷阱多多，服用前請再三自問：G 社服務真的能讓你放心嗎(?)
+20:30 < S3p_lin> do no evil, but do error
+20:36 < ipa_> jimmy: 最近加入g0v後勤中心的人變多了，可能是綠巨人症候群開始流行
+20:43 < Jedi_> 以前我踩過的 google groups 地雷還包括了：群組管理員把我加入群組，我可以看到群組內容，也可以參與群組討論，也可以看到自己參與群組討論──但是群組的其他成員通通看不到我參與的部份
+20:43 < Jedi_> 於是就獲得了「你喊再大聲也沒有人聽到」的效果
+20:44 < ipa_> Jedi_: ORZ 那可能管理員像我一樣，在管理介面迷失了......
+20:44 -!- caasiHuang [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+20:45 < Jedi_> ipa_: 我認為是服務的邏輯有盲點 + 介面設計很爛(G 社不擅長網頁設計)，所以管理員把我加入群組後，其實我沒有真的加入群組
+20:45 < Jedi_> ipa_: 後來我自己又跑了一次「我要加入群組」的流程才真的算是有完整加入群組
+20:45 < Jedi_> (G 社的服務也是向來有很多邏輯盲點，要小心)
+20:47 < clkao> au: is there a name for the cruve like like perl6 imageinary timeline chart?  i think i've seen similar ones in other occasions... 
+20:50 -!- willy [dc884f1b@gateway/web/cgi-irc/kiwiirc.com/ip.220.136.79.27] has joined #g0v.tw
+20:50 -!- willy [dc884f1b@gateway/web/cgi-irc/kiwiirc.com/ip.220.136.79.27] has quit [Client Quit]
+20:56 -!- ltroot [~ltroot@140.127.182.55] has quit [Read error: Connection reset by peer]
+20:57 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+20:58 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+20:58 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:07 -!- lijung [~lijung@host-231.213-43-115.dynamic.totalbb.net.tw] has quit [Quit: lijung]
+21:10 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+21:10 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:16 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+21:17 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:29 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+21:30 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:30 < jimmy> clkaoud: 是因為下週要分享與NPO合作的一些經驗，其中覺得快樂很重要，但快樂好像是一種結果，過程各有途徑？
+21:33 < jimmy> ipa_: 是說變身後很療癒的意思... ？
+21:34 -!- caasiHuang [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+21:35 -!- caasiHuang [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+21:36 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+21:37 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:39 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+21:39 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:41 -!- neoesque [~neoesque@122-116-18-21.HINET-IP.hinet.net] has quit [Quit: Bye!]
+21:47 < ipa_> jimmy: 從抱怨指責轉成實作應該是蠻有療效的，開放分工會有小精靈出現突然把某些東西做好，也令人大心
+21:48 < ipa_> 像hackfoldr最近突然變美了
+21:49 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+21:49 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:49 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+21:50 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+21:50 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+21:51 < clkao> `
+21:52 < hychen> 看到有些事朝自己希望的方向前進，所以感覺身心愉悅?
+21:53 < jimmy> 看來對於事件有所進展，是滿重要的滿足感！
+21:58 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 260 seconds]
+21:58 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+21:59 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:00 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+22:01 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:08 < ipa_> 挖坑 推坑 跳坑也是樂趣 (?)
+22:11 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+22:11 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:11 < clkao> talk in: 12 hours, slides: 3
+22:20 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+22:20 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:25 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+22:26 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:29 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+22:29 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:32 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 276 seconds]
+22:32 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+22:35 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+22:35 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:36 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+22:36 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+22:50 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+22:54 -!- hasher [~hasher@1.34.23.44] has joined #g0v.tw
+22:58 < dirty_> clkao: 問一下, 我想用 jscrollpane http://jscrollpane.kelvinluck.com 來解 hackfoldr scrollbar 的問題, 但是我 trace 了 code 半天, 還是不太確定這種要怎麼加最適當
+22:58 < kcwu_> dirty_'s url: [jScrollPane - cross browser styleable scrollbars with jQuery and CSS]
+22:59 < dirty_> .js 檔直接丟進 vendor 目錄下就可以了是嗎? 那實際上呼叫要在哪比較合理?
+23:00 < clkao> dirty_: https://groups.google.com/d/msg/angular/wBKdYstTJuU/eRPOsn8PbJAJ ?
+23:00 < kcwu_> clkao's url: [Google 網上論壇]
+23:01 < clkao> dirty_: yea, 丟進 vendor 就可以用他了 不過接起來最好的方式還是像上面那篇寫的, 用 directive. 讓那個 list 改變時他自動重新 init
+23:02 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:03 < clkao> dirty_: 如果懶惰就看前一個人回的 在 controller watch 那個 doc list, 有變動就 reinit
+23:04 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+23:04 < clkao> hychen++ # pgrest feature..  要順便加個 test  嗎？
+23:04 < hychen> 正在研究怎麼寫
+23:05 < clkao> 應該從 routes那個 test 改比較快
+23:05 < walkingice> @.@
+23:05 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:05 < hychen> 對啊, 在看怎麼用mocha XD
+23:05 < hychen> 新玩意啊
+23:06 < clkao> :D
+23:06 < clkao> walkingice!
+23:07 < walkingice> 這個年紀跟家人出門，最大的任務就是當馱夫 orz
+23:07 < walkingice> clkao: <--- 魔神
+23:08 < clkao> .... 冤枉啊 我是被妖魔化的
+23:09 < walkingice> 那張照片害我在電腦前笑翻 XD
+23:10 < ipa_> 手畫的超傳神的
+23:10 -!- hasher [~hasher@1.34.23.44] has quit [Ping timeout: 248 seconds]
+23:11 < walkingice> 不知道原稿會不會 CC license 出來 XD
+23:14 < ipa_> 可以換臉？！
+23:15 < clkao> ETBlue: ^^ livense 來一下吧
+23:15 < clkao> *license
+23:15 < hychen> 投影片在哪?
+23:15 < dirty_> clkao: 不用到 ng-repeat 吧? 基本上我要的比較像是 $(document).ready() 的地方
+23:16 < clkao> hychen: https://docs.google.com/presentation/d/1kA3jf0pQbPF87mRidkp0ChlAiztGw8eOYYTasfU0yQ0/present#slide=id.gef72f66f_025
+23:16 < kcwu_> clkao's url: [Mockup 人生 - Google 雲端硬碟]
+23:16 < dirty_> 或是, 左邊 .index ready() 後的地方呼叫 jScrollPane() 就好了
+23:16 < clkao> dirty_: 但是因為 list 可能會換 (如你按了上面長期專案的另個)
+23:16 < clkao> yeah. that's what i meant, you need to $scope.watch 那個 index
+23:18 < jimmy> 牙齒也是一絕...
+23:19 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+23:20 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:20 < au> clkao: the original name is "type classes over time" by @spj http://www.slideshare.net/chenge2k/haskell-retrospective/46 
+23:20 < kcwu_> au's url: [Haskell retrospective]
+23:21 -!- hctuba [01af5049@gateway/web/cgi-irc/kiwiirc.com/ip.1.175.80.73] has joined #g0v.tw
+23:26 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+23:27 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:28 < dirty_> clkao: ok, 我找到地方放了, 可是在那裡要怎麼選到 .index, 如果我用 $('.index').jScrollPane() 你會不會瘋掉?
+23:28  * dirty_ 其實還停留在用 jquery 的時代
+23:30 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Client Quit]
+23:30 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+23:31 < clkao> 沒關係 先用 正確的用法是變成 directive
+23:31 < clkao> au: thanks!
+23:39 -!- Zespre [~starbops@140-113-121-170.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]

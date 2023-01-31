@@ -1,0 +1,1660 @@
+--- Day changed 一  2月 03 2014
+00:01 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has quit [Quit: Closing]
+00:01 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has joined #g0v.tw
+01:01 -!- Phoenixmiss [~Miss@1-161-170-129.dynamic.hinet.net] has quit [Quit: Leaving]
+01:08 -!- icman [~icman@123.240.140.154] has quit [Quit: 明天天氣晴]
+01:13 -!- travis-ci [~travis-ci@ec2-54-227-19-253.compute-1.amazonaws.com] has joined #g0v.tw
+01:13 < travis-ci> [travis-ci] g0v/ly.g0v.tw#191 (master - 36a9bbb : Chia-liang Kao): The build passed.
+01:13 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/752d2d6d9c89...36a9bbb5ffad
+01:13 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/18084136
+01:13 -!- travis-ci [~travis-ci@ec2-54-227-19-253.compute-1.amazonaws.com] has left #g0v.tw []
+01:44 -!- pm5 [~pm5@111-248-210-197.dynamic.hinet.net] has quit [Ping timeout: 253 seconds]
+02:18 -!- travis-ci [~travis-ci@ec2-54-211-113-85.compute-1.amazonaws.com] has joined #g0v.tw
+02:18 < travis-ci> [travis-ci] g0v/ly.g0v.tw#192 (master - af783b0 : Chia-liang Kao): The build passed.
+02:18 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/36a9bbb5ffad...af783b0f2d0c
+02:18 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/18086647
+02:18 -!- travis-ci [~travis-ci@ec2-54-211-113-85.compute-1.amazonaws.com] has left #g0v.tw []
+02:26 < poga> clkao_: 應該有跑吧？ 我跑起來會像這樣： https://gist.github.com/poga/8772602
+02:26 < kcwu_> poga's url: [gist:8772602]
+02:27 < clkao_> poga: 我手動跑 protractor 是長那樣... 可是 gulp 的話就像我貼的... ><
+02:30 < poga> 怪，我跑起來都一樣耶...
+02:31 < poga> clkao_: 是會卡在 Using the selenium server...那一行嗎？
+02:32 < clkao_> Selenium Process ID 後就直接 webdriver-start complete
+02:33 -!- ymow [~Adium@1-173-99-31.dynamic.hinet.net] has quit [Quit: Leaving.]
+02:33 < clkao_> 噢 我知道了 已經有 selenium 暫住了
+02:34 < clkao_> 呃 砍掉還是一樣
+02:35 < poga> 會不會有webdriver也佔住了
+02:36 < clkao_> node_modules/protractor 清掉就好了
+02:37 < clkao_> 那再來就是要讓 test server 跑起來... :p
+02:38 < poga> 要讓make dev這步也自動跑起來嗎
+02:40 < clkao_> yeah, 而且跑完 test 應該要關掉
+02:41 < poga> ok, 我來加上去...
+02:41 < clkao_> 似乎是可以 require server/app 在同一個 process 內做... ?
+02:41 < clkao_> poga++
+02:41 < poga> 應該是
+02:53 -!- mno2 [~mno2@67.151.22.2] has joined #g0v.tw
+03:22 -!- lcamel [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 252 seconds]
+04:23 < a-tsioh> TaigIME updated
+04:23  * a-tsioh should be on time for the next hackaton
+04:46 < ETBlue> a-tsioh: !!!
+04:47 < ETBlue> a-tsioh++ I'm going to install TaigIME on my dad's android tablet ^o^
+04:52 < a-tsioh> :)
+04:52 < a-tsioh> ETBlue: 又不睡！
+04:53 < ETBlue> a-tsioh: 你也是！XD
+04:53 < a-tsioh> 老樣子
+04:53 < a-tsioh> 新目的：open an access to each users's dictionnary 
+04:54 < a-tsioh> and allow edition/sharing/editing (like adding definitions) of the entries 
+04:55 < a-tsioh> I think this could be open-sourced from the start as a g0v project
+04:56 < ETBlue> oh! i didn't know there is a custom dictionary in android... now i know!
+04:57 < ETBlue> 太嗨了 XD
+04:58 < a-tsioh> well there is one that I don't use XD
+04:58 < a-tsioh> I record the new words inputed by the user in a sqlite DB
+05:00 < ETBlue> where do you put the sqlite DB files?
+05:00 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+05:00 < a-tsioh> somewhere in /data/appname/.../
+05:01 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+05:01 < ETBlue> oh.. locally
+05:01 < a-tsioh> there is a built-in way to create and access sqlite DB in the android API
+05:02 < ETBlue> i see. sounds convenient :D
+05:04 < a-tsioh> yep it's not a cordova app
+05:05 < a-tsioh> it's native, I'm not sure whether cordova has bindings and access to the IME API
+05:05 < a-tsioh> guess not
+05:05 < a-tsioh> but the sharing app could be made in cordova
+05:05 < au> like https://github.com/lite4cordova/Cordova-SQLitePlugin we need a plugin
+05:05 < kcwu_> au's url: [lite4cordova/Cordova-SQLitePlugin · GitHub]
+05:06 < au> (for IME API access)
+05:06 < a-tsioh> hey hi au !
+05:06 < au> greetings!
+05:06 < au> <- flying to paris.fr on Wednesday night and going to miss the hackath7n (on the plane)
+05:07 < a-tsioh> hoy
+05:07 < a-tsioh> say hi to Paris for me then :)
+05:07 < au> wilco :)
+05:09 < a-tsioh> my favorite bar around reopen tomorrow, do you want to share a drink ?
+05:09 < a-tsioh> ETBlue too
+05:09 < a-tsioh> and some other that are probably asleep :)
+05:10 < au> the bar opens past midnight? my waking hours are now in paris time (meaning heading to sleep soonish)
+05:11 < ETBlue> I am in Taichung for vacation ><
+05:12 < a-tsioh> huh usually 00:30 but tomorrow 11:00 only :s
+05:14 -!- travis-ci [~travis-ci@ec2-54-211-113-85.compute-1.amazonaws.com] has joined #g0v.tw
+05:14 < travis-ci> [travis-ci] g0v/ly.g0v.tw#193 (gulp-protractor - de95609 : Poga Po): The build has errored.
+05:14 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/d938b7b8102f...de95609c7f04
+05:14 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/18094425
+05:14 -!- travis-ci [~travis-ci@ec2-54-211-113-85.compute-1.amazonaws.com] has left #g0v.tw []
+05:15 < a-tsioh> time to sleep for me too !
+05:15 < au> g'nite
+05:17 < a-tsioh> bonne nuit !
+05:21 < ETBlue> nite :3 &
+05:25 -!- a-tsioh [~pierre@1-162-101-90.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+05:54 -!- mno2_ [~mno2@67.151.22.2] has joined #g0v.tw
+05:54 -!- mno2 [~mno2@67.151.22.2] has quit [Ping timeout: 240 seconds]
+05:54 -!- mno2_ is now known as mno2
+08:03 -!- aeil [~Adium@114-37-245-226.dynamic.hinet.net] has quit [Quit: Leaving.]
+08:07 -!- ymow [~Adium@1-173-99-31.dynamic.hinet.net] has joined #g0v.tw
+08:18 -!- mutolisp [~mutolisp@114-27-211-37.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+--- Log opened 一  2月 03 08:27:36 2014
+08:27 -!- ronnywan1 [~ronnywang@ec2-54-249-42-170.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+08:27 -!- Irssi: #g0v.tw: Total of 197 nicks [0 ops, 0 halfops, 0 voices, 197 normal]
+08:27 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+08:27 -!- mose_ [~mose@duo.rhack.net] has joined #g0v.tw
+08:27 -!- tkalu [~tka@li381-115.members.linode.com] has joined #g0v.tw
+08:28 -!- t3e_ [~tonie@114-32-217-236.HINET-IP.hinet.net] has joined #g0v.tw
+08:28 -!- Irssi: Join to #g0v.tw was synced in 45 secs
+08:28 -!- Goddamn_ [~goddamn@218-161-44-5.HINET-IP.hinet.net] has joined #g0v.tw
+08:28 -!- SarsTW_ [~wenpei@li407-81.members.linode.com] has joined #g0v.tw
+08:28 -!- evenwu_ [uid12958@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:28 -!- tkalu_ [~tka@li381-115.members.linode.com] has quit [Ping timeout: 272 seconds]
+08:28 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has quit [Ping timeout: 272 seconds]
+08:28 -!- walkingice [~walkingic@114-34-7-189.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+08:28 -!- bency_ [~bency@jccf.com.tw] has quit [Ping timeout: 272 seconds]
+08:28 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+08:28 -!- opop [~opop@220-135-163-184.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+08:28 -!- Netsplit *.net <-> *.split quits: privism, a2n, t3e, Custom, ychsiao, 17WAAZ0B2, fntsrlike, f0rth_, zea1_bsd, mrmoneyc,  (+1 more, use /NETSPLIT to show all of them)
+08:28 -!- Custom_ [custom@saturn.stu.edu.tw] has joined #g0v.tw
+08:28 -!- zaeneas_ [uid14129@gateway/web/irccloud.com/x-kamasgggxpctvelg] has joined #g0v.tw
+08:28 -!- BladeRunner__ [uid24720@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:28 -!- YangHung__ [uid21603@gateway/web/irccloud.com/x-oztwmpttehvlswim] has quit [Ping timeout: 245 seconds]
+08:28 -!- dkwhuang [uid15317@gateway/web/irccloud.com/x-gmzowbxgmvrbfsyk] has quit [Ping timeout: 245 seconds]
+08:28 -!- ethantw [uid15398@gateway/web/irccloud.com/x-zkndwdhbjkoqjxdp] has quit [Ping timeout: 245 seconds]
+08:28 -!- WanCW [uid12647@gateway/web/irccloud.com/x-eowdfrvyoccrqmvw] has quit [Ping timeout: 245 seconds]
+08:28 -!- FourDollars [uid12544@gateway/web/irccloud.com/x-saprpzkhndaxnlri] has quit [Ping timeout: 245 seconds]
+08:28 -!- cataska_ [uid12717@gateway/web/irccloud.com/x-zkksylyhyjbvwcdv] has quit [Ping timeout: 245 seconds]
+08:28 -!- YangHung___ is now known as YangHung__
+08:28 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+08:28 -!- dkwhuang_ is now known as dkwhuang
+08:28 -!- WanCW_ is now known as WanCW
+08:28 -!- cataska__ is now known as cataska_
+08:28 -!- ch0upi_b1d [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+08:28 -!- pofeng_ [uid13024@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:28 -!- yukiko_ [~uid19137@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:28 -!- ethantw [uid15398@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:28 -!- Lee1092 [uid13277@gateway/web/irccloud.com/x-dtvxaqdvnpukxlkf] has quit [Ping timeout: 245 seconds]
+08:28 -!- caa51 [sid13241@gateway/web/irccloud.com/x-unpafbgjcwfejaon] has quit [Ping timeout: 245 seconds]
+08:28 -!- stardog_ [uid14441@gateway/web/irccloud.com/x-byryojmstquzyynn] has quit [Ping timeout: 245 seconds]
+08:28 -!- astro^_ [r94010@linux3.csie.ntu.edu.tw] has quit [Ping timeout: 245 seconds]
+08:28 -!- pm5cloud [uid13333@gateway/web/irccloud.com/x-bmqzgzfibuwpoxwk] has quit [Ping timeout: 245 seconds]
+08:28 -!- crystaltu [uid21035@gateway/web/irccloud.com/x-bspxqpljheahyxgv] has quit [Ping timeout: 245 seconds]
+08:28 -!- cyt93cs_ [~cyt93cs@linux.cs.ccu.edu.tw] has joined #g0v.tw
+08:28 -!- Jcrt [~Jcrt@192.241.233.133] has quit [Ping timeout: 245 seconds]
+08:28 -!- ETBlue [uid12330@gateway/web/irccloud.com/x-qfvwsmqtjgxaargn] has quit [Ping timeout: 245 seconds]
+08:28 -!- johnny__ [uid19482@gateway/web/irccloud.com/x-jjzkgzuyscpenwfz] has quit [Ping timeout: 245 seconds]
+08:28 -!- caa51 [sid13241@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:28 -!- dirty___ [~dirty@zoro.ee.ncku.edu.tw] has joined #g0v.tw
+08:29 -!- anarchih_ [uid16284@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:29 -!- Michael_LI [uid13469@gateway/web/irccloud.com/x-ayssghjbtxolhcgy] has quit [Ping timeout: 245 seconds]
+08:29 -!- a2n__ [~a2n@219.85.185.194] has joined #g0v.tw
+08:29 -!- opop_ [~opop@220-135-163-184.HINET-IP.hinet.net] has joined #g0v.tw
+08:29 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 245 seconds]
+08:29 -!- pm5cloud_ [uid13333@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:29 -!- ETBlue [uid12330@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:29 -!- walkingcloudice_ [uid13955@gateway/web/irccloud.com/session] has quit [Changing host]
+08:29 -!- walkingcloudice_ [uid13955@gateway/web/irccloud.com/x-xrwtxfnkvyvefpxa] has joined #g0v.tw
+08:29 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+08:29 -!- Michael_LI_ [uid13469@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:29 -!- crystaltu [uid21035@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:29 -!- Luxun_ [~uid13676@gateway/web/irccloud.com/session] has quit [Changing host]
+08:29 -!- Luxun_ [~uid13676@gateway/web/irccloud.com/x-uxyxgwvuccwokpfd] has joined #g0v.tw
+08:29 -!- Hokila_ [uid18841@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:30 -!- ManicLF_ [~Manic@li159-81.members.linode.com] has joined #g0v.tw
+08:30 -!- klandor_ [uid13157@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- klandor_ [uid13157@gateway/web/irccloud.com/x-ditgednpevxkdklk] has joined #g0v.tw
+08:30 -!- dkwhuang [uid15317@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- dkwhuang [uid15317@gateway/web/irccloud.com/x-xrjojqyepfevwqww] has joined #g0v.tw
+08:30 -!- YangHung__ [~uid21603@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- YangHung__ [~uid21603@gateway/web/irccloud.com/x-axrmtejvyfbcbrgd] has joined #g0v.tw
+08:30 -!- WanCW [uid12647@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- WanCW [uid12647@gateway/web/irccloud.com/x-wthrsorhflnzubvs] has joined #g0v.tw
+08:30 -!- kcliu__ [uid12402@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- kcliu__ [uid12402@gateway/web/irccloud.com/x-sdkkfgdpyoxxqiub] has joined #g0v.tw
+08:30 -!- johnny__ [uid19482@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:30 -!- JonaTW__ [uid13881@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- JonaTW__ [uid13881@gateway/web/irccloud.com/x-tbcdfopblbvmgjrg] has joined #g0v.tw
+08:30 -!- weihung_ [uid13045@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- weihung_ [uid13045@gateway/web/irccloud.com/x-bqsdyxskzvdmpdxx] has joined #g0v.tw
+08:30 -!- superbil_c_ [uid12362@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- superbil_c_ [uid12362@gateway/web/irccloud.com/x-jmkutkpksyuqvvov] has joined #g0v.tw
+08:30 -!- yyhuang_ [uid13204@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- yyhuang_ [uid13204@gateway/web/irccloud.com/x-juxbqywymnnkbayi] has joined #g0v.tw
+08:30 -!- watersu__ [uid13503@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- watersu__ [uid13503@gateway/web/irccloud.com/x-wodpjjhzbtvduyij] has joined #g0v.tw
+08:30 -!- FourDollars_ [uid12544@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- FourDollars_ [uid12544@gateway/web/irccloud.com/x-sjdupxddrlnewhlo] has joined #g0v.tw
+08:30 -!- cataska_ [uid12717@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- cataska_ [uid12717@gateway/web/irccloud.com/x-tyjfsljbdvjdsetd] has joined #g0v.tw
+08:30 -!- amatecha_ [sid10006@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- amatecha_ [sid10006@gateway/web/irccloud.com/x-gwbwsffugtecyuzq] has joined #g0v.tw
+08:30 -!- glll4678__ [uid16452@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- glll4678__ [uid16452@gateway/web/irccloud.com/x-vxweljykgzgupucf] has joined #g0v.tw
+08:30 -!- othree__ [sid16133@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- othree__ [sid16133@gateway/web/irccloud.com/x-yxhuuoxtdtimudht] has joined #g0v.tw
+08:30 -!- superd_ [superd@saturn.stu.edu.tw] has joined #g0v.tw
+08:30 -!- kcwu [fakeidkcwu@kcwu.csie.org] has joined #g0v.tw
+08:30 -!- AliceWei_ [uid12990@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- AliceWei_ [uid12990@gateway/web/irccloud.com/x-ujmbgzngigmjdcel] has joined #g0v.tw
+08:30 -!- ronnywang__ [uid15193@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- ronnywang__ [uid15193@gateway/web/irccloud.com/x-qfrsalretrdrzxsg] has joined #g0v.tw
+08:30 -!- evenwu_ [uid12958@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- evenwu_ [uid12958@gateway/web/irccloud.com/x-gsqvrmtzmqmrurcr] has joined #g0v.tw
+08:30 -!- BladeRunner__ [uid24720@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- BladeRunner__ [uid24720@gateway/web/irccloud.com/x-ngyiaftqgzgxftpr] has joined #g0v.tw
+08:30 -!- pofeng_ [uid13024@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- pofeng_ [uid13024@gateway/web/irccloud.com/x-uxgwizrlapixxhec] has joined #g0v.tw
+08:30 -!- yukiko_ [~uid19137@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- yukiko_ [~uid19137@gateway/web/irccloud.com/x-uoboolepgrlxekns] has joined #g0v.tw
+08:30 -!- ethantw [uid15398@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- ethantw [uid15398@gateway/web/irccloud.com/x-hdnmmgmbnjlkqgsv] has joined #g0v.tw
+08:30 -!- caa51 [sid13241@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- caa51 [sid13241@gateway/web/irccloud.com/x-yruvvoxtwxxratiw] has joined #g0v.tw
+08:30 -!- pm5cloud_ [uid13333@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- pm5cloud_ [uid13333@gateway/web/irccloud.com/x-aylvfauvnmwlcuol] has joined #g0v.tw
+08:30 -!- anarchih_ [uid16284@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- anarchih_ [uid16284@gateway/web/irccloud.com/x-bfyrfmjockxqlcqa] has joined #g0v.tw
+08:30 -!- ETBlue [uid12330@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- ETBlue [uid12330@gateway/web/irccloud.com/x-ncqycxlgpqmgdnqw] has joined #g0v.tw
+08:30 -!- Michael_LI_ [uid13469@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- Michael_LI_ [uid13469@gateway/web/irccloud.com/x-imljnimrkeypbujw] has joined #g0v.tw
+08:30 -!- crystaltu [uid21035@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- crystaltu [uid21035@gateway/web/irccloud.com/x-cgmkfwswgvrplygm] has joined #g0v.tw
+08:30 -!- SarsTW_ [~wenpei@li407-81.members.linode.com] has quit [Ping timeout: 272 seconds]
+08:30 -!- FourDollars_ is now known as FourDollars
+08:30 -!- Hokila_ [uid18841@gateway/web/irccloud.com/session] has quit [Changing host]
+08:30 -!- Hokila_ [uid18841@gateway/web/irccloud.com/x-ptuelbsoxjksuyzn] has joined #g0v.tw
+08:30 -!- wildcat_ [3de47832@gateway/web/freenode/ip.61.228.120.50] has quit [Ping timeout: 245 seconds]
+08:30 -!- simonpai_ [uid23131@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:31 -!- nekki_ [uid16895@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:31 -!- jeffhung_ [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+08:31 -!- johnny__ [uid19482@gateway/web/irccloud.com/session] has quit [Changing host]
+08:31 -!- johnny__ [uid19482@gateway/web/irccloud.com/x-hlvcajfebsludttt] has joined #g0v.tw
+08:31 -!- simonpai_ [uid23131@gateway/web/irccloud.com/session] has quit [Changing host]
+08:31 -!- simonpai_ [uid23131@gateway/web/irccloud.com/x-wcavkejwatyzhuir] has joined #g0v.tw
+08:31 -!- nekki_ [uid16895@gateway/web/irccloud.com/session] has quit [Changing host]
+08:31 -!- nekki_ [uid16895@gateway/web/irccloud.com/x-exphkuxkwtnmglfm] has joined #g0v.tw
+08:31 -!- Lee1092 [uid13277@gateway/web/irccloud.com/x-zcjamcwewuuunvfv] has joined #g0v.tw
+08:31 -!- V1ctor_ [uid20731@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:32 -!- Netsplit *.net <-> *.split quits: jeffhung, weihung, nekki, SarsTW, simonpai, yyhuang, i3n, ttcat_, cylee_, hlb,  (+42 more, use /NETSPLIT to show all of them)
+08:32 -!- glll4678__ is now known as glll4678_
+08:32 -!- evenwu_ is now known as evenwu
+08:32 -!- nekki_ is now known as nekki
+08:32 -!- watersu__ is now known as watersu_
+08:32 -!- ronnywang__ is now known as ronnywang_
+08:32 -!- AliceWei_ is now known as AliceWei
+08:32 -!- weihung_ is now known as weihung
+08:32 -!- walkingcloudice_ is now known as walkingcloudice
+08:32 -!- superbil_c_ is now known as superbil_c
+08:32 -!- Luxun_ is now known as Luxun
+08:32 -!- klandor_ is now known as klandor
+08:32 -!- Hokila_ is now known as Hokila
+08:32 -!- V1ctor_ is now known as V1ctor
+08:32 -!- othree__ is now known as othree_
+08:32 -!- tpa [~poan@123.110.31.226] has joined #g0v.tw
+08:32 -!- JonaTW__ is now known as JonaTW_
+08:32 -!- BladeRunner__ is now known as BladeRunner_
+08:32 -!- chihhsin_cloud [uid12810@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:33 -!- simonpai_ is now known as simonpai
+08:33 -!- woodrowshen___ [uid15801@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:33 -!- privism_ [~priv@vps1.priv.tw] has joined #g0v.tw
+08:33 -!- Jcrt_ [~Jcrt@192.241.233.133] has joined #g0v.tw
+08:33 -!- 14WABZ9MO [b91103@linux9.csie.ntu.edu.tw] has joined #g0v.tw
+08:33 -!- Netsplit over, joins: silice
+08:34 -!- Netsplit *.net <-> *.split quits: jwbai, kcwu_, Goddamn
+08:34 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has joined #g0v.tw
+08:35 -!- carlcarl [uid23342@gateway/web/irccloud.com/x-eomzfailxartdmjj] has quit [Ping timeout: 264 seconds]
+08:35 -!- yyhuang_ is now known as yyhuang
+08:35 -!- softpapa___ [uid13237@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:35 -!- donaldisfreak_ [uid20928@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:36 -!- stardog__ [uid14441@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:36 -!- kcliu__ is now known as kcliu_
+08:36 -!- fntsrlike_ [uid16354@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:36 -!- carlcarl [uid23342@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:36 -!- ethantw_ [uid15398@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:36 -!- ttcat_ [sid12341@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:37 -!- Netsplit *.net <-> *.split quits: privism_, silice, Jcrt_, softpapa___, 14WABZ9MO
+08:37 -!- ChadLiuCloud___ [uid13937@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:38 -!- lanf0n_ [uid13946@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:39 -!- Netsplit *.net <-> *.split quits: tubaxenor, ymow, PipperL_
+08:39 -!- anarchih [uid16284@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:39 -!- poga [sid13935@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:39 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+08:39 -!- Netsplit over, joins: tubaxenor
+08:40 -!- scrollback1 [scrollback@conference/jsconf/session] has joined #g0v.tw
+08:40 -!- chihhsin [~starbops@winpc13.cs.nctu.edu.tw] has joined #g0v.tw
+08:41 -!- hychen_ [uid12518@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:41 -!- Netsplit *.net <-> *.split quits: Goddamn_, zaeneas_
+08:42 -!- amatecha_ is now known as amatecha
+08:42 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+08:42 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+08:42 -!- yukiko__ [uid19137@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:43 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+08:43 -!- Goddamn [~goddamn@218-161-44-5.HINET-IP.hinet.net] has joined #g0v.tw
+08:43 -!- ballII [uid22246@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:43 -!- astro^ [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+08:43 -!- zea1_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+08:43 -!- icemango [~icemango@csie1.cs.ccu.edu.tw] has joined #g0v.tw
+08:43 -!- tpa [~poan@123.110.31.226] has quit [Read error: Connection reset by peer]
+08:43 -!- tpa [paul@123.110.31.226] has joined #g0v.tw
+08:44 -!- yhsiang [yhsiang@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+08:45 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+08:45 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+08:45 -!- tubaxenor [~xenor@duo.rhack.net] has quit [Ping timeout: 252 seconds]
+08:45 -!- zaeneas [uid14129@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:45 -!- mindos_cloud____ [sid13388@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:46 -!- Netsplit *.net <-> *.split quits: raejin_, whitglint, ChadLiuCloud__, opop_, pofeng_, yukiko_, softpapa__, ch0upi_b1d, allenlinli, hychen,  (+10 more, use /NETSPLIT to show all of them)
+08:46 -!- softpapa___ [~uid13237@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:46 -!- Netsplit *.net <-> *.split quits: icemango, Goddamn, astro^, ch0upi_bsd, ballII, zea1_bsd
+08:47 -!- yukiko__ is now known as yukiko_
+08:47 -!- eternnoir [~quassel@li389-177.members.linode.com] has quit [Ping timeout: 245 seconds]
+08:47 -!- cylee [~b91103@linux9.csie.ntu.edu.tw] has quit [Write error: Broken pipe]
+08:47 -!- susu_ [~cwshu@140.113.27.39] has quit [Remote host closed the connection]
+08:47 -!- a2n [~a2n@219.85.185.194] has joined #g0v.tw
+08:47 -!- scrollback1 [scrollback@conference/jsconf/session] has quit [Ping timeout: 252 seconds]
+08:47 -!- SarsTW [~wenpei@106.187.55.81] has joined #g0v.tw
+08:47 -!- hychen_ is now known as hychen
+08:47 -!- a2n [~a2n@219.85.185.194] has quit [Changing host]
+08:47 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+08:48 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+08:48 -!- 14WAB0C4F [scrollback@conference/jsconf/session] has joined #g0v.tw
+08:48 -!- haroldwu [~haroldwu@219.85.185.194] has joined #g0v.tw
+08:48 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has joined #g0v.tw
+08:48 -!- jwbai [~jwbai@staff.kkbox.com.tw] has joined #g0v.tw
+08:49 -!- allenlinli [~uid13852@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:50 -!- Netsplit over, joins: Goddamn_
+08:50 -!- watersu__ [uid13503@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:51 -!- a2n [~a2n@unaffiliated/a2n] has quit [Ping timeout: 248 seconds]
+08:52 -!- ypcat [~ypcat@li565-27.members.linode.com] has joined #g0v.tw
+08:52 -!- pm5cloud__ [uid13333@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:53 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has quit [Ping timeout: 252 seconds]
+08:53 -!- walkingcloudice_ [uid13955@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:53 -!- isacloud_ [uid13263@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:55 -!- ronnywang__ [uid15193@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:55 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+08:56 -!- Netsplit *.net <-> *.split quits: CindyLinz, ddio, otaQ, jwbai, Goddamn_, weitsai, donaldisfreak_, NagyHsu, a0kman, chlai,  (+51 more, use /NETSPLIT to show all of them)
+08:58 -!- poga is now known as 23LAAZAKA
+08:58 -!- poga [sid13935@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:58 -!- weihung_ [uid13045@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:58 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+08:58 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+08:58 -!- chhsiao1981 [~chhsiao@li494-193.members.linode.com] has joined #g0v.tw
+08:58 -!- buganini [~buganini@61-221-51-22.HINET-IP.hinet.net] has joined #g0v.tw
+08:58 -!- AceLan is now known as 23LAAZAVX
+08:58 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+08:58 -!- silice [~silice@li470-86.members.linode.com] has joined #g0v.tw
+08:58 -!- tubaxenor [~xenor@duo.rhack.net] has joined #g0v.tw
+08:58 -!- cylee [b91103@linux9.csie.ntu.edu.tw] has joined #g0v.tw
+08:58 -!- beerlee [~beerlee@li580-199.members.linode.com] has joined #g0v.tw
+08:58 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+08:58 -!- astro^ [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+08:58 -!- zea1_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+08:58 -!- icemango [~icemango@csie1.cs.ccu.edu.tw] has joined #g0v.tw
+08:59 -!- 31NAAEE5U [uid13263@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:59 -!- 31NAAEE26 [uid13955@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:59 -!- Netsplit over, joins: ypcat
+08:59 -!- 31NAAEEE7 [uid13503@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:59 -!- Netsplit over, joins: cyt93cs, Jedi_, Goddamn_, jwbai, mindos_cloud____, tpa, ij1iao
+08:59 -!- anarchih_ [uid16284@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:59 -!- Netsplit over, joins: lanf0n_
+08:59 -!- ChadLiuCloud__ [uid13937@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:59 -!- ethantw [uid15398@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:59 -!- Netsplit over, joins: carlcarl
+08:59 -!- donaldisfreak [uid20928@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:59 -!- woodrowshen__ [uid15801@gateway/web/irccloud.com/session] has joined #g0v.tw
+08:59 -!- Netsplit over, joins: JonaTW_, billy3321, othree_, FourDollars, cataska_, wcpan, mrmoneycloud__, czchen, bobchao__, macpaul_ (+33 more)
+08:59 -!- amatecha_ [sid10006@gateway/web/irccloud.com/session] has joined #g0v.tw
+09:00 -!- Netsplit *.net <-> *.split quits: haroldwu, 14WAB0C4F, allenlinli
+09:00 -!- f0rth [~f0rth@ubuntu.amersen.com.tw] has joined #g0v.tw
+09:01 -!- allenlinli [uid13852@gateway/web/irccloud.com/x-trlsqxquqtnphueu] has joined #g0v.tw
+09:01 -!- a2n [~a2n@219.85.185.194] has joined #g0v.tw
+09:01 -!- privism [~priv@vps1.priv.tw] has joined #g0v.tw
+09:04 -!- Netsplit *.net <-> *.split quits: hychen, allenown, weihung, isacloud, stardog__, superbil_c, macpaul, pcchen, jftsai, juiz,  (+23 more, use /NETSPLIT to show all of them)
+09:04 -!- pm5cloud__ is now known as pm5cloud_
+09:04 -!- ronnywang__ is now known as ronnywang_
+09:07 -!- Netsplit *.net <-> *.split quits: chhsiao1981, buganini, poga, wHisKy, lwhsu, weihung_, Jcrt
+09:08 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 265 seconds]
+09:08 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 265 seconds]
+09:08 -!- Netsplit over, joins: allenown
+09:08 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:08 -!- macpaul__ [~macpaul@162.248.8.104] has joined #g0v.tw
+09:08 -!- jbytw [uid13105@gateway/web/irccloud.com/session] has joined #g0v.tw
+09:08 -!- Netsplit over, joins: Jcrt, chhsiao1981, poga, wHisKy, buganini
+09:08 -!- privism_ [~priv@vps1.priv.tw] has joined #g0v.tw
+09:10 -!- beerlee [~beerlee@li580-199.members.linode.com] has quit [Ping timeout: 265 seconds]
+09:11 -!- Netsplit *.net <-> *.split quits: privism, allenlinli, a2n
+09:12 -!- amatecha_ is now known as amatecha
+09:12 -!- V1ctor_ [uid20731@gateway/web/irccloud.com/session] has joined #g0v.tw
+09:12 -!- ymow [~Adium@1-173-99-31.dynamic.hinet.net] has joined #g0v.tw
+09:12 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+09:12 -!- wHisKy is now known as 45PABAF9V
+09:12 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+09:12 -!- Lee1092 [uid13277@gateway/web/irccloud.com/session] has joined #g0v.tw
+09:13 -!- V1ctor_ is now known as V1ctor
+09:14 -!- zealancer is now known as 77CABAHQG
+09:14 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:14 -!- opop [~opop@220-135-163-184.HINET-IP.hinet.net] has joined #g0v.tw
+09:15 -!- hychen_ [uid12518@gateway/web/irccloud.com/session] has joined #g0v.tw
+09:18 -!- Netsplit *.net <-> *.split quits: opop, cylee, astro^, zealancer, tubaxenor, silice, zea1_bsd, hlb, icemango
+09:18 -!- yukiko__ [uid19137@gateway/web/irccloud.com/session] has joined #g0v.tw
+09:19 -!- Netsplit *.net <-> *.split quits: 77CABAHQG, allenown
+09:21 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+09:21 -!- tonysan [~tonysan@thefst.com] has joined #g0v.tw
+09:21 -!- wHisKy is now known as 14WAB0GOH
+09:21 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+09:21 -!- SarsTW [~wenpei@li407-81.members.linode.com] has joined #g0v.tw
+09:21 -!- juiz [~juiz@solvcon.net] has joined #g0v.tw
+09:21 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+09:21 -!- yhsiang [yhsiang@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+09:21 -!- susu [~cwshu@140.113.27.39] has joined #g0v.tw
+09:21 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has joined #g0v.tw
+09:21 -!- chihhsin_cloud [uid12810@gateway/web/irccloud.com/session] has joined #g0v.tw
+09:23 -!- juiz [~juiz@solvcon.net] has quit [Ping timeout: 272 seconds]
+09:25 -!- Netsplit *.net <-> *.split quits: 14WAB0GOH, Lee1092
+09:25 -!- tonysan [~tonysan@thefst.com] has quit [Ping timeout: 252 seconds]
+09:25 -!- Netsplit *.net <-> *.split quits: macpaul__
+09:25 -!- Netsplit over, joins: Lee1092
+09:25 -!- Netsplit *.net <-> *.split quits: jbytw, poga, Jcrt, 45PABAF9V, buganini, chhsiao1981
+09:25 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Remote host closed the connection]
+09:27 -!- SarsTW [~wenpei@li407-81.members.linode.com] has quit [Ping timeout: 272 seconds]
+09:27 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has quit [Ping timeout: 272 seconds]
+09:28 -!- susu [~cwshu@140.113.27.39] has quit [Remote host closed the connection]
+09:28 -!- tonysan [~tonysan@thefst.com] has joined #g0v.tw
+09:28 -!- ymow [~Adium@1-173-99-31.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+09:28 -!- susu_ [~cwshu@140.113.27.39] has joined #g0v.tw
+09:30 -!- maximum_alumni [~maximum@Veronique.ccu.edu.tw] has joined #g0v.tw
+09:30 -!- i3n [~icman@118.233.52.11] has joined #g0v.tw
+09:30 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+09:30 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+09:31 -!- softpapa___ [~uid13237@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- softpapa___ [~uid13237@gateway/web/irccloud.com/x-jairzoueoerysvyg] has joined #g0v.tw
+09:31 -!- pm5cloud_ [uid13333@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- pm5cloud_ [uid13333@gateway/web/irccloud.com/x-zurvoxfabfivgaxy] has joined #g0v.tw
+09:31 -!- ronnywang_ [uid15193@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- ronnywang_ [uid15193@gateway/web/irccloud.com/x-sgwcwuxgeggmrhzp] has joined #g0v.tw
+09:31 -!- woodrowshen__ [uid15801@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- woodrowshen__ [uid15801@gateway/web/irccloud.com/x-deycegwhumuznfsf] has joined #g0v.tw
+09:31 -!- donaldisfreak [uid20928@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- donaldisfreak [uid20928@gateway/web/irccloud.com/x-dgpstkwrwsjourgb] has joined #g0v.tw
+09:31 -!- carlcarl [uid23342@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- carlcarl [uid23342@gateway/web/irccloud.com/x-pecaselflknrchrh] has joined #g0v.tw
+09:31 -!- ethantw [uid15398@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- ethantw [uid15398@gateway/web/irccloud.com/x-cxlaemwrkycmqdcz] has joined #g0v.tw
+09:31 -!- ChadLiuCloud__ [uid13937@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- ChadLiuCloud__ [uid13937@gateway/web/irccloud.com/x-jgcvczcuvaglrgnv] has joined #g0v.tw
+09:31 -!- lanf0n_ [uid13946@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- lanf0n_ [uid13946@gateway/web/irccloud.com/x-qyhgwwlfhgeyxclq] has joined #g0v.tw
+09:31 -!- anarchih_ [uid16284@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- anarchih_ [uid16284@gateway/web/irccloud.com/x-pmrqdbwbckuwbdfz] has joined #g0v.tw
+09:31 -!- mindos_cloud____ [sid13388@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- mindos_cloud____ [sid13388@gateway/web/irccloud.com/x-lqlpfmsugvkffgod] has joined #g0v.tw
+09:31 -!- 31NAAEEE7 [uid13503@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- 31NAAEEE7 [uid13503@gateway/web/irccloud.com/x-bdjbcwhuyukfciqq] has joined #g0v.tw
+09:31 -!- 31NAAEE26 [uid13955@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- 31NAAEE26 [uid13955@gateway/web/irccloud.com/x-azdxgtquhgdydxdp] has joined #g0v.tw
+09:31 -!- 31NAAEE5U [uid13263@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- 31NAAEE5U [uid13263@gateway/web/irccloud.com/x-qoarlsosuejftihj] has joined #g0v.tw
+09:31 -!- amatecha [sid10006@gateway/web/irccloud.com/session] has quit [Changing host]
+09:31 -!- amatecha [sid10006@gateway/web/irccloud.com/x-cglskozpxpyudeke] has joined #g0v.tw
+09:32 -!- V1ctor [uid20731@gateway/web/irccloud.com/session] has quit [Changing host]
+09:32 -!- V1ctor [uid20731@gateway/web/irccloud.com/x-bfqycbolkldcjtaq] has joined #g0v.tw
+09:32 -!- hychen_ [uid12518@gateway/web/irccloud.com/session] has quit [Changing host]
+09:32 -!- hychen_ [uid12518@gateway/web/irccloud.com/x-kpjkdeotttmjvtil] has joined #g0v.tw
+09:32 -!- yukiko__ [uid19137@gateway/web/irccloud.com/session] has quit [Changing host]
+09:32 -!- yukiko__ [uid19137@gateway/web/irccloud.com/x-lfppaycnrnpvefgi] has joined #g0v.tw
+09:32 -!- chihhsin_cloud [uid12810@gateway/web/irccloud.com/session] has quit [Changing host]
+09:32 -!- chihhsin_cloud [uid12810@gateway/web/irccloud.com/x-tfhrslkomnfwbmdu] has joined #g0v.tw
+09:32 -!- Lee1092 [uid13277@gateway/web/irccloud.com/session] has quit [Changing host]
+09:32 -!- Lee1092 [uid13277@gateway/web/irccloud.com/x-qgccjtyimsubiaxm] has joined #g0v.tw
+09:32 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 272 seconds]
+09:34 -!- ymow [~Adium@1-173-99-31.dynamic.hinet.net] has joined #g0v.tw
+09:34 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:34 -!- tubaxenor [~xenor@duo.rhack.net] has joined #g0v.tw
+09:34 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+09:36 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+09:36 -!- jbytw [~uid13105@gateway/web/irccloud.com/session] has joined #g0v.tw
+09:36 -!- walkingice [~walkingic@114-34-7-189.HINET-IP.hinet.net] has joined #g0v.tw
+09:36 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:36 -!- astro^ [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+09:36 -!- a2n [~a2n@219.85.185.194] has joined #g0v.tw
+09:36 -!- Netsplit over, joins: Jcrt, macpaul__, poga, buganini
+09:37 -!- beerlee [~beerlee@li580-199.members.linode.com] has joined #g0v.tw
+09:37 -!- ychsiao_ [ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+09:37 -!- t3e_ [~tonie@114-32-217-236.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+09:38 -!- susu_ [~cwshu@140.113.27.39] has quit [Ping timeout: 252 seconds]
+09:38 -!- ymow is now known as 77CABAJVP
+09:38 -!- ymow [~Adium@1-173-99-31.dynamic.hinet.net] has joined #g0v.tw
+09:38 -!- ychsiao_ [ychsiao@saturn.stu.edu.tw] has quit [Ping timeout: 252 seconds]
+09:38 -!- t3e [~tonie@114-32-217-236.HINET-IP.hinet.net] has joined #g0v.tw
+09:38 -!- chihhsin [~starbops@winpc13.cs.nctu.edu.tw] has joined #g0v.tw
+09:38 -!- beerlee [~beerlee@li580-199.members.linode.com] has quit [Ping timeout: 252 seconds]
+09:40 -!- i3n is now known as 20WAA2GDU
+09:40 -!- i3n [~icman@118.233.52.11] has joined #g0v.tw
+09:40 -!- softpapa___ [~uid13237@gateway/web/irccloud.com/x-jairzoueoerysvyg] has quit [Ping timeout: 252 seconds]
+09:40 -!- simonpai [uid23131@gateway/web/irccloud.com/x-wcavkejwatyzhuir] has quit [Ping timeout: 252 seconds]
+09:41 -!- simonpai_ [uid23131@gateway/web/irccloud.com/session] has joined #g0v.tw
+09:41 -!- lwhsu [~lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+09:41 -!- allenown [~allenown@devstd.in] has joined #g0v.tw
+09:43 -!- Netsplit *.net <-> *.split quits: zeal_bsd, 20WAA2GDU, maximum_alumni
+09:43 -!- softpapa___ [uid13237@gateway/web/irccloud.com/session] has joined #g0v.tw
+09:43 -!- tonysan [~tonysan@thefst.com] has quit [Write error: Broken pipe]
+09:44 -!- Netsplit *.net <-> *.split quits: 77CABAJVP, zealancer
+09:45 -!- Netsplit *.net <-> *.split quits: hlb
+09:45 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has quit [Ping timeout: 252 seconds]
+09:45 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has joined #g0v.tw
+09:47 -!- Netsplit *.net <-> *.split quits: wHisKy, AceLan, yhsiang
+09:47 -!- Netsplit *.net <-> *.split quits: t3e, privism_, Custom_, samuelololol, mikimoto_, ManicLF_, PipperL, tkalu, shr_, lwhsu,  (+8 more, use /NETSPLIT to show all of them)
+09:48 -!- bency [~bency@jccf.com.tw] has joined #g0v.tw
+09:48 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has joined #g0v.tw
+09:49 -!- Netsplit over, joins: jeffhung_, superbil_, howardsun, lwhsu, t3e, privism_, ManicLF_, OtomeSound, Guest12000, UncleHandsome
+09:49 -!- OtomeSound [~otomesoun@www.sg.nchu.edu.tw] has quit [Ping timeout: 252 seconds]
+09:49 -!- icemango [~icemango@csie1.cs.ccu.edu.tw] has joined #g0v.tw
+09:49 -!- Netsplit over, joins: maximum_alumni
+09:49 -!- zeal_bsd [b90057@140.112.30.49] has joined #g0v.tw
+09:49 -!- Netsplit *.net <-> *.split quits: poga, walkingice, a2n, jbytw, buganini, mrmoneyc, macpaul__, zeal_bsd, maximum_alumni, astro^,  (+2 more, use /NETSPLIT to show all of them)
+09:50 -!- haroldwu [~haroldwu@219.85.185.194] has joined #g0v.tw
+09:51 -!- ychsiao_ [ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+09:51 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+09:52 -!- Netsplit *.net <-> *.split quits: i3n, tubaxenor
+09:53 -!- S3p_lin [slzzp@linode64.slzzp.net] has joined #g0v.tw
+09:53 -!- chihhsin [~starbops@winpc13.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+09:53 -!- cylee [~b91103@linux9.csie.ntu.edu.tw] has joined #g0v.tw
+09:53 -!- S3p_lin [slzzp@linode64.slzzp.net] has quit [Ping timeout: 252 seconds]
+09:53 -!- cylee [~b91103@linux9.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+09:53 -!- Netsplit *.net <-> *.split quits: t3e, privism_, wHisKy, icemango, ManicLF_, bency, ychsiao_, lwhsu, jeffhung_, shhu,  (+4 more, use /NETSPLIT to show all of them)
+09:54 -!- SarsTW [~wenpei@li407-81.members.linode.com] has joined #g0v.tw
+09:55 -!- Netsplit over, joins: ychsiao_, jeffhung_, superbil_, wHisKy, icemango, bency, shhu, howardsun, lwhsu, t3e (+4 more)
+09:55 -!- Netsplit over, joins: ch0upi_bsd
+09:57 -!- Netsplit *.net <-> *.split quits: ymow
+09:57 -!- mikimoto [~mikimoto@ec2-54-201-39-142.us-west-2.compute.amazonaws.com] has joined #g0v.tw
+09:59 -!- yhsiang [~yhsiang@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+09:59 -!- ManicLF_ [~Manic@li159-81.members.linode.com] has quit [Ping timeout: 253 seconds]
+10:00 -!- Netsplit *.net <-> *.split quits: haroldwu
+10:00 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+10:01 -!- poga [sid13935@gateway/web/irccloud.com/session] has joined #g0v.tw
+10:01 -!- clkao_ [~clkao@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+10:03 -!- ManicLF [~Manic@li159-81.members.linode.com] has joined #g0v.tw
+10:03 -!- S3p_lin [slzzp@linode64.slzzp.net] has joined #g0v.tw
+10:05 -!- ManicLF [~Manic@li159-81.members.linode.com] has quit [Ping timeout: 248 seconds]
+10:05 -!- jeffhung_ [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+10:05 -!- superbil_ [~superbil@1.34.97.68] has quit [Ping timeout: 252 seconds]
+10:06 -!- clkao_ [~clkao@59-126-64-204.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+10:06 -!- beerlee [~beerlee@li580-199.members.linode.com] has joined #g0v.tw
+10:06 -!- cylee [b91103@linux9.csie.ntu.edu.tw] has joined #g0v.tw
+10:08 -!- Netsplit *.net <-> *.split quits: allenown
+10:09 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+10:09 -!- ymow [~Adium@1-173-99-31.dynamic.hinet.net] has joined #g0v.tw
+10:10 -!- superbil_ [~superbil@1.34.97.68] has joined #g0v.tw
+10:11 -!- chihchun_afk [~chihchun@218-161-0-222.HINET-IP.hinet.net] has joined #g0v.tw
+10:11 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+10:12 -!- macpaul [~macpaul@162.248.8.104] has quit [Ping timeout: 252 seconds]
+10:14 -!- tubaxenor [~xenor@duo.rhack.net] has joined #g0v.tw
+10:14 -!- tubaxenor is now known as Guest94746
+10:14 -!- tonysan [~tonysan@thefst.com] has joined #g0v.tw
+10:17 -!- shhu_ [~shhu@bsd2.cs.nctu.edu.tw] has joined #g0v.tw
+10:17 -!- a2n [~a2n@219.85.185.194] has joined #g0v.tw
+10:17 -!- a2n [~a2n@219.85.185.194] has quit [Changing host]
+10:17 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+10:19 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+10:20 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+10:21 -!- pcchen [~pcchen@qubit.phys.nthu.edu.tw] has joined #g0v.tw
+10:23 -!- chihchun_afk [~chihchun@218-161-0-222.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+10:23 -!- i3n [~icman@118.233.52.11] has joined #g0v.tw
+10:23 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+10:23 -!- Netsplit *.net <-> *.split quits: AceLan, ymow
+10:26 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+10:26 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+10:26 -!- beerlee [~beerlee@li580-199.members.linode.com] has quit [Ping timeout: 252 seconds]
+10:26 -!- S3p_lin [slzzp@linode64.slzzp.net] has quit [Ping timeout: 252 seconds]
+10:26 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+10:26 -!- ychsiao_ [ychsiao@saturn.stu.edu.tw] has quit [Ping timeout: 252 seconds]
+10:26 -!- UncleHandsome [~sora@wahaha.Dorm12.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+10:27 -!- Netsplit *.net <-> *.split quits: i3n, jeffhung
+10:28 -!- Netsplit *.net <-> *.split quits: t3e, privism_, icemango, SarsTW, bency, cylee, lwhsu, Guest12000, yhsiang, howardsun
+10:29 -!- ManicLF [~Manic@li159-81.members.linode.com] has joined #g0v.tw
+10:29 -!- Netsplit over, joins: ymow
+10:31 -!- ymow [~Adium@1-173-99-31.dynamic.hinet.net] has quit [Quit: Leaving.]
+10:34 -!- a2n [~a2n@unaffiliated/a2n] has quit [Remote host closed the connection]
+10:34 -!- shhu_ [~shhu@bsd2.cs.nctu.edu.tw] has quit [Remote host closed the connection]
+10:34 -!- zeal_bsd [~zeal_bsd@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+10:34 -!- OtomeSound [~otomesoun@www.sg.nchu.edu.tw] has joined #g0v.tw
+10:34 -!- cylee [b91103@linux9.csie.ntu.edu.tw] has joined #g0v.tw
+10:34 -!- yhsiang [~yhsiang@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+10:34 -!- icemango [~icemango@csie1.cs.ccu.edu.tw] has joined #g0v.tw
+10:34 -!- bency [~bency@jccf.com.tw] has joined #g0v.tw
+10:34 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has joined #g0v.tw
+10:34 -!- lwhsu [~lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+10:34 -!- t3e [~tonie@114-32-217-236.HINET-IP.hinet.net] has joined #g0v.tw
+10:34 -!- privism_ [~priv@vps1.priv.tw] has joined #g0v.tw
+10:34 -!- Guest12000 [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+10:34 -!- mikimoto [~mikimoto@ec2-54-201-39-142.us-west-2.compute.amazonaws.com] has quit [Write error: Broken pipe]
+10:34 -!- Guest94746 [~xenor@duo.rhack.net] has quit [Write error: Broken pipe]
+10:34 -!- tonysan [~tonysan@thefst.com] has quit [Write error: Broken pipe]
+10:34 -!- pcchen [~pcchen@qubit.phys.nthu.edu.tw] has quit [Write error: Broken pipe]
+10:34 -!- hlb [~hlb@li381-115.members.linode.com] has quit [Write error: Broken pipe]
+10:35 -!- samuelololol [~samuelolo@60.251.40.253] has joined #g0v.tw
+10:40 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+10:42 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+10:43 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has joined #g0v.tw
+10:44 -!- Netsplit *.net <-> *.split quits: ManicLF
+10:48 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+10:50 -!- tubaxenor [~xenor@duo.rhack.net] has joined #g0v.tw
+10:52 -!- S3p_lin [~S3p_lin@linode64.slzzp.net] has joined #g0v.tw
+10:52 -!- tonysan [~tonysan@thefst.com] has joined #g0v.tw
+10:53 -!- Jcrt [~Jcrt@192.241.233.133] has quit [Ping timeout: 245 seconds]
+11:05 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Quit: leaving]
+11:10 -!- beerlee [~beerlee@li580-199.members.linode.com] has joined #g0v.tw
+11:10 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+11:10 -!- Netsplit *.net <-> *.split quits: tonysan, tubaxenor
+11:11 -!- chhsiao1981 [~chhsiao@106.187.101.193] has joined #g0v.tw
+11:12 -!- SarsTW [~wenpei@li407-81.members.linode.com] has joined #g0v.tw
+11:12 < ETBlue> 赫然發現 g0v 第一年大長篇裡面文化部也出現了 XDXD
+11:12 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+11:13 -!- beerlee [~beerlee@li580-199.members.linode.com] has quit [Ping timeout: 245 seconds]
+11:14 < ETBlue> 額 irc 好像怪怪的 = ="
+11:16 -!- i3n [~icman@118.233.52.11] has joined #g0v.tw
+11:18 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 248 seconds]
+11:18 -!- SarsTW [~wenpei@li407-81.members.linode.com] has quit [Ping timeout: 248 seconds]
+11:18 -!- pcchen [~pcchen@qubit.phys.nthu.edu.tw] has joined #g0v.tw
+11:19 -!- Guest12000 [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 252 seconds]
+11:26 -!- Phoenixmiss [~Miss@1-161-170-129.dynamic.hinet.net] has joined #g0v.tw
+11:26 -!- pcchen [~pcchen@qubit.phys.nthu.edu.tw] has quit [Ping timeout: 272 seconds]
+11:26 -!- astro^ [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+11:26 -!- chhsiao1981 [~chhsiao@106.187.101.193] has quit [Ping timeout: 272 seconds]
+11:32 -!- Netsplit *.net <-> *.split quits: i3n, Jcrt
+11:34 -!- Netsplit *.net <-> *.split quits: Phoenixmiss
+11:37 -!- Netsplit over, joins: i3n
+11:45 -!- lwhsu [~lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+11:45 -!- juiz [~textual@114-45-104-39.dynamic.hinet.net] has joined #g0v.tw
+11:45 -!- i3n [~icman@118.233.52.11] has quit [Ping timeout: 245 seconds]
+11:46 < hcchien_> OSDC.tw 2014 calls for talks 最後一週囉!! 
+11:46 -!- hcchien_ is now known as hcchien
+11:48 -!- juiz [~textual@114-45-104-39.dynamic.hinet.net] has quit [Client Quit]
+11:50 < hcchien> http://osdc.kktix.cc/events/2014talks
+11:50 < kcwu> hcchien's url: [OSDC.tw 2014 Calls for talks]
+11:58 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has joined #g0v.tw
+12:02 -!- clkao_ [~clkao@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+12:04 -!- samuelol1lol [~samuelolo@118.163.170.73] has joined #g0v.tw
+12:04 -!- privism_ [~priv@vps1.priv.tw] has quit [Ping timeout: 252 seconds]
+12:04 -!- chihhsin_ [~starbops@winpc13.cs.nctu.edu.tw] has joined #g0v.tw
+12:04 -!- pcchen [~pcchen@qubit.phys.nthu.edu.tw] has joined #g0v.tw
+12:06 -!- samuelololol [~samuelolo@60.251.40.253] has quit [Remote host closed the connection]
+12:06 -!- maximum_alumni [~maximum@140.123.26.17] has joined #g0v.tw
+12:06 -!- chihhsin [~starbops@winpc13.cs.nctu.edu.tw] has joined #g0v.tw
+12:06 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has quit [Write error: Broken pipe]
+12:06 -!- S3p_lin [~S3p_lin@linode64.slzzp.net] has quit [Write error: Broken pipe]
+12:06 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has quit [Write error: Broken pipe]
+12:08 < ETBlue> 疑，村長還沒投？
+12:08 < ETBlue> 今年的logo視覺有新藝術fu
+12:14 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+12:14 -!- pcchen [~pcchen@qubit.phys.nthu.edu.tw] has quit [Ping timeout: 252 seconds]
+12:14 -!- bency [~bency@jccf.com.tw] has quit [Ping timeout: 252 seconds]
+12:15 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has joined #g0v.tw
+12:17 -!- chihhsin [~starbops@winpc13.cs.nctu.edu.tw] has quit [Remote host closed the connection]
+12:17 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Remote host closed the connection]
+12:18 -!- pcchen [~pcchen@qubit.phys.nthu.edu.tw] has joined #g0v.tw
+12:18 -!- chhsiao1981 [~chhsiao@li494-193.members.linode.com] has joined #g0v.tw
+12:19 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+12:19 -!- 23LAAZ65W [~Jcrt@192.241.233.133] has joined #g0v.tw
+12:21 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+12:22 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+12:22 -!- maximum_alumni [~maximum@140.123.26.17] has quit [Ping timeout: 272 seconds]
+12:22 -!- 23LAAZ65W [~Jcrt@192.241.233.133] has quit [Ping timeout: 272 seconds]
+12:22 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has quit [Ping timeout: 272 seconds]
+12:22 -!- ubuntu [~ubuntu@54.248.110.31] has joined #g0v.tw
+12:22 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has quit [Ping timeout: 252 seconds]
+12:24 -!- jeffhung [~jeffhung@60.250.103.120] has joined #g0v.tw
+12:24 -!- ubuntu is now known as Guest416
+12:26 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+12:26 -!- wHisKy is now known as 77CABAWTD
+12:26 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+12:26 -!- privism [~priv@vps1.priv.tw] has joined #g0v.tw
+12:27 -!- Netsplit *.net <-> *.split quits: 77CABAWTD
+12:27 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+12:30 -!- 45PABBJ9H [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+12:30 -!- tubaxenor [~xenor@duo.rhack.net] has joined #g0v.tw
+12:30 -!- S3p_lin [slzzp@linode64.slzzp.net] has joined #g0v.tw
+12:30 -!- haroldwu [~haroldwu@219.85.185.194] has joined #g0v.tw
+12:30 -!- opop [~opop@220-135-163-184.HINET-IP.hinet.net] has joined #g0v.tw
+12:30 -!- Neson [~Neson@dex.tw] has joined #g0v.tw
+12:30 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+12:30 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+12:30 -!- tkalu [~tka@li381-115.members.linode.com] has joined #g0v.tw
+12:30 -!- pm5 [~pm5@111-248-209-155.dynamic.hinet.net] has joined #g0v.tw
+12:30 -!- Netsplit *.net <-> *.split quits: pcchen, chhsiao1981
+12:30 -!- a-tsioh [~pierre@1-162-90-166.dynamic.hinet.net] has joined #g0v.tw
+12:31 -!- jftsai [~jftsai@li565-27.members.linode.com] has joined #g0v.tw
+12:31 -!- walkingice [~walkingic@114-34-7-189.HINET-IP.hinet.net] has joined #g0v.tw
+12:33 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+12:34 < ipa> 新年大斷線？
+12:34 -!- i3n [~icman@118.233.52.11] has joined #g0v.tw
+12:34 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+12:34 -!- wHisKy is now known as 14WAB02LJ
+12:34 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+12:34 -!- pm5 [~pm5@111-248-209-155.dynamic.hinet.net] has quit [Ping timeout: 272 seconds]
+12:37 -!- jftsai [~jftsai@li565-27.members.linode.com] has quit [Ping timeout: 245 seconds]
+12:37 -!- 14WAB02LJ [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+12:37 -!- a-tsioh [~pierre@1-162-90-166.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+12:38 -!- jeffhung [~jeffhung@60.250.103.120] has quit [Ping timeout: 272 seconds]
+12:40 -!- Jcrt [~Jcrt@192.241.233.133] has quit [Ping timeout: 252 seconds]
+12:40 -!- OtomeSound [~otomesoun@www.sg.nchu.edu.tw] has quit [Ping timeout: 252 seconds]
+12:40 -!- samuelol1lol [~samuelolo@118.163.170.73] has quit [Ping timeout: 252 seconds]
+12:40 -!- samuelololol [~samuelolo@60-251-40-253.HINET-IP.hinet.net] has joined #g0v.tw
+12:40 -!- a-tsioh [~pierre@1-162-90-166.dynamic.hinet.net] has joined #g0v.tw
+12:40 -!- privism [~priv@vps1.priv.tw] has quit [Ping timeout: 245 seconds]
+12:41 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+12:42 -!- Neson_ [~Neson@dex.tw] has joined #g0v.tw
+12:43 -!- shr [b89108@linux18.csie.ntu.edu.tw] has joined #g0v.tw
+12:43 -!- Neson [~Neson@dex.tw] has quit [Ping timeout: 272 seconds]
+12:43 -!- tonysan [~tonysan@176.34.58.67] has joined #g0v.tw
+12:43 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+12:43 -!- shr [b89108@linux18.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+12:44 -!- bency [~bency@118.163.44.252] has joined #g0v.tw
+12:45 -!- Netsplit *.net <-> *.split quits: i3n, ch0upi_bsd
+12:45 -!- Netsplit over, joins: ch0upi_bsd
+12:46 -!- Jcrt_ [~Jcrt@192.241.233.133] has joined #g0v.tw
+12:46 -!- OtomeSound [~otomesoun@www.sg.nchu.edu.tw] has joined #g0v.tw
+12:47 < superbil_> irccloud 好像都沒連到?
+12:48 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+12:48 -!- superbil_ [~superbil@1.34.97.68] has quit [Quit: WeeChat 0.4.0]
+12:48 -!- Neson [~Neson@dex.tw] has joined #g0v.tw
+12:48 -!- pcchen [~pcchen@qubit.phys.nthu.edu.tw] has joined #g0v.tw
+12:49 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+12:49 -!- jftsai [~jftsai@li565-27.members.linode.com] has joined #g0v.tw
+12:49 -!- a-tsioh [~pierre@1-162-90-166.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+12:49 -!- Neson_ [~Neson@dex.tw] has quit [Ping timeout: 245 seconds]
+12:49 -!- maximum_alumni [~maximum@Veronique.ccu.edu.tw] has joined #g0v.tw
+12:50 -!- shr [b89108@linux18.csie.ntu.edu.tw] has joined #g0v.tw
+12:51 -!- bency [~bency@118.163.44.252] has quit [Ping timeout: 272 seconds]
+12:55 -!- privism [~priv@vps1.priv.tw] has joined #g0v.tw
+12:55 -!- beerlee [~beerlee@li580-199.members.linode.com] has joined #g0v.tw
+12:55 -!- tubaxenor is now known as 45PABBJ6F
+12:55 -!- a-tsioh [~pierre@1-162-90-166.dynamic.hinet.net] has joined #g0v.tw
+12:55 -!- tubaxenor [~xenor@duo.rhack.net] has joined #g0v.tw
+12:57 -!- yhsiang_ [yhsiang@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+12:58 -!- hlb [~hlb@li381-115.members.linode.com] has quit [Ping timeout: 252 seconds]
+12:58 -!- cylee [b91103@linux9.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+12:58 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 252 seconds]
+12:58 -!- yhsiang [~yhsiang@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+12:58 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has quit [Ping timeout: 252 seconds]
+12:58 -!- t3e [~tonie@114-32-217-236.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+12:58 -!- ychsiao_ [~ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+12:59 -!- i3n [~icman@118.233.52.11] has joined #g0v.tw
+12:59 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+12:59 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+12:59 -!- tkalu_ [~tka@li381-115.members.linode.com] has joined #g0v.tw
+12:59 -!- cylee_ [b91103@linux9.csie.ntu.edu.tw] has joined #g0v.tw
+12:59 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+12:59 -!- tonysan [~tonysan@176.34.58.67] has quit [Ping timeout: 272 seconds]
+12:59 -!- mikimoto [~mikimoto@ec2-54-201-39-142.us-west-2.compute.amazonaws.com] has joined #g0v.tw
+13:00 -!- tonysan [~tonysan@thefst.com] has joined #g0v.tw
+13:00 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+13:01 -!- a2n [~a2n@219.85.185.194] has joined #g0v.tw
+13:01 -!- 23LAA0EKK [~walkingic@114.34.7.189] has joined #g0v.tw
+13:01 -!- a2n [~a2n@219.85.185.194] has quit [Changing host]
+13:01 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+13:02 -!- SarsTW [~wenpei@li407-81.members.linode.com] has joined #g0v.tw
+13:02 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has joined #g0v.tw
+13:03 -!- a-tsioh [~pierre@1-162-90-166.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+13:04 -!- 45PABBJ6F [~xenor@duo.rhack.net] has quit [Ping timeout: 272 seconds]
+13:04 -!- Jcrt_ [~Jcrt@192.241.233.133] has quit [Ping timeout: 272 seconds]
+13:04 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+13:04 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+13:04 -!- 45PABBJ9H [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+13:04 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+13:04 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 272 seconds]
+13:04 -!- opop [~opop@220-135-163-184.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+13:04 -!- icman [~icman@123.240.140.154] has quit [Ping timeout: 272 seconds]
+13:04 -!- tkalu [~tka@li381-115.members.linode.com] has quit [Ping timeout: 272 seconds]
+13:04 -!- walkingice [~walkingic@114-34-7-189.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+13:04 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Remote host closed the connection]
+13:04 -!- S3p_lin [slzzp@linode64.slzzp.net] has quit [Ping timeout: 272 seconds]
+13:04 -!- a2n is now known as 23LAA0EIY
+13:04 -!- a2n [~a2n@219.85.185.194] has joined #g0v.tw
+13:05 -!- Netsplit *.net <-> *.split quits: privism, beerlee
+13:06 -!- Netsplit *.net <-> *.split quits: tkalu_, cylee_, Jcrt
+13:06 -!- a2n [~a2n@219.85.185.194] has quit [Changing host]
+13:06 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+13:08 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+13:08 -!- zealancer [~zealancer@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+13:09 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has quit [Ping timeout: 252 seconds]
+13:09 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+13:09 -!- shr [b89108@linux18.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+13:09 -!- jftsai [~jftsai@li565-27.members.linode.com] has quit [Ping timeout: 252 seconds]
+13:09 -!- astro^ [r94010@linux3.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+13:09 -!- i3n [~icman@118.233.52.11] has quit [Ping timeout: 252 seconds]
+13:09 -!- ychsiao_ [~ychsiao@saturn.stu.edu.tw] has quit [Ping timeout: 252 seconds]
+13:10 -!- 23LAA0EIY [~a2n@unaffiliated/a2n] has quit [Ping timeout: 272 seconds]
+13:10 -!- a-tsioh [~pierre@1-162-90-166.dynamic.hinet.net] has joined #g0v.tw
+13:12 -!- S3p_lin [slzzp@linode64.slzzp.net] has joined #g0v.tw
+13:12 -!- bency [~bency@jccf.com.tw] has joined #g0v.tw
+13:13 -!- wHisKy- [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+13:13 -!- Netsplit over, joins: cylee_
+13:13 -!- Netsplit *.net <-> *.split quits: tubaxenor
+13:14 -!- superbil__ [~superbil@1.34.97.68] has joined #g0v.tw
+13:14 -!- jftsai [~jftsai@li565-27.members.linode.com] has joined #g0v.tw
+13:14 -!- zealancer [~zealancer@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+13:14 -!- ychsiao_ [~ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+13:14 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+13:15 -!- haroldwu [~haroldwu@219.85.185.194] has quit [Ping timeout: 272 seconds]
+13:16 -!- superbil__ [~superbil@1.34.97.68] has quit [Ping timeout: 272 seconds]
+13:16 -!- OtomeSound [~otomesoun@www.sg.nchu.edu.tw] has quit [Ping timeout: 252 seconds]
+13:17 -!- superbil__ [~superbil@1.34.97.68] has joined #g0v.tw
+13:17 -!- chhsiao1981 [~chhsiao@li494-193.members.linode.com] has joined #g0v.tw
+13:18 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+13:21 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+13:21 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+13:21 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 245 seconds]
+13:25 -!- beerlee [~beerlee@li580-199.members.linode.com] has joined #g0v.tw
+13:29 -!- Netsplit *.net <-> *.split quits: jftsai, a-tsioh, a2n, cylee_, yhsiang_, 23LAA0EKK, Guest416, ychsiao_, Neson, mrmoneyc
+13:30 -!- shr [b89108@linux18.csie.ntu.edu.tw] has joined #g0v.tw
+13:30 -!- Jcrt [~Jcrt@192.241.233.133] has quit [Ping timeout: 245 seconds]
+13:30 -!- Netsplit *.net <-> *.split quits: chhsiao1981
+13:32 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+13:32 -!- beerlee [~beerlee@li580-199.members.linode.com] has quit [Ping timeout: 248 seconds]
+13:32 -!- icman [~icman@123.240.140.154] has quit [Ping timeout: 248 seconds]
+13:33 -!- pcchen [~pcchen@qubit.phys.nthu.edu.tw] has quit [Ping timeout: 252 seconds]
+13:33 -!- S3p_lin [slzzp@linode64.slzzp.net] has quit [Ping timeout: 252 seconds]
+13:33 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+13:33 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+13:34 -!- bency [~bency@jccf.com.tw] has quit [Ping timeout: 252 seconds]
+13:34 -!- astro^ [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+13:35 -!- wHisKy- [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+13:38 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has joined #g0v.tw
+13:43 -!- Netsplit *.net <-> *.split quits: shr
+13:44 -!- mikimoto [~mikimoto@ec2-54-201-39-142.us-west-2.compute.amazonaws.com] has quit [Ping timeout: 252 seconds]
+13:45 -!- t3e [~tonie@114-32-217-236.HINET-IP.hinet.net] has joined #g0v.tw
+13:45 -!- opop [~opop@220-135-163-184.HINET-IP.hinet.net] has joined #g0v.tw
+13:45 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has joined #g0v.tw
+13:46 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+13:46 < ETBlue> 我是 irccloud 說
+13:48 -!- S3p_lin [slzzp@linode64.slzzp.net] has joined #g0v.tw
+13:48 -!- 36DACCZGP [~pipperl@Boomer.serv.idv.tw] has joined #g0v.tw
+13:48 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has quit [Ping timeout: 248 seconds]
+13:48 -!- 36DACCZGP [~pipperl@Boomer.serv.idv.tw] has quit [Ping timeout: 248 seconds]
+13:48 -!- S3p_lin [slzzp@linode64.slzzp.net] has quit [Ping timeout: 248 seconds]
+13:48 -!- OtomeSound [~otomesoun@www.sg.nchu.edu.tw] has joined #g0v.tw
+13:48 -!- Netsplit over, joins: chhsiao1981
+13:52 -!- haroldwu [~haroldwu@219.85.185.194] has joined #g0v.tw
+13:52 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+13:54 -!- pm5 [~pm5@61-230-97-158.dynamic.hinet.net] has joined #g0v.tw
+13:54 -!- Netsplit *.net <-> *.split quits: OtomeSound, chhsiao1981
+13:55 -!- icman__ [~icman@123.240.140.154] has joined #g0v.tw
+13:55 -!- bency [~bency@jccf.com.tw] has joined #g0v.tw
+13:55 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+13:56 -!- Netsplit *.net <-> *.split quits: icman
+13:59 -!- i3n [~icman@118.233.52.11] has joined #g0v.tw
+13:59 -!- pcchen [~pcchen@qubit.phys.nthu.edu.tw] has joined #g0v.tw
+13:59 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+13:59 -!- mikimoto [~mikimoto@ec2-54-201-39-142.us-west-2.compute.amazonaws.com] has joined #g0v.tw
+13:59 -!- yhsiang [~yhsiang@140.113.235.116] has joined #g0v.tw
+13:59 -!- Netsplit over, joins: OtomeSound
+13:59 -!- a2n [~a2n@219.85.185.194] has joined #g0v.tw
+13:59 -!- cylee_ [b91103@linux9.csie.ntu.edu.tw] has joined #g0v.tw
+13:59 -!- jftsai [~jftsai@li565-27.members.linode.com] has joined #g0v.tw
+13:59 -!- ychsiao_ [~ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+13:59 -!- walkingice [~walkingic@114-34-7-189.HINET-IP.hinet.net] has joined #g0v.tw
+13:59 -!- shr [b89108@linux18.csie.ntu.edu.tw] has joined #g0v.tw
+13:59 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+13:59 -!- tkalu [~tka@li381-115.members.linode.com] has joined #g0v.tw
+13:59 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+13:59 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+13:59 -!- 45PABBX6W [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+13:59 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+13:59 -!- haroldwu [~haroldwu@219.85.185.194] has quit [Ping timeout: 252 seconds]
+13:59 -!- astro^ [r94010@linux3.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+13:59 -!- samuelololol [~samuelolo@60-251-40-253.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+13:59 -!- zeal_bsd [~zeal_bsd@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+14:00 -!- Neson [~Neson@dex.tw] has joined #g0v.tw
+14:00 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+14:00 -!- a-tsioh [~pierre@1-162-90-166.dynamic.hinet.net] has joined #g0v.tw
+14:00 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+14:00 -!- ManicLF [~Manic@li159-81.members.linode.com] has joined #g0v.tw
+14:00 -!- allenown [~allenown@devstd.in] has joined #g0v.tw
+14:00 -!- simonpai_ [uid23131@gateway/web/irccloud.com/session] has quit [Changing host]
+14:00 -!- simonpai_ [uid23131@gateway/web/irccloud.com/x-bnroyqhxhjxybnys] has joined #g0v.tw
+14:00 -!- softpapa___ [uid13237@gateway/web/irccloud.com/session] has quit [Changing host]
+14:00 -!- softpapa___ [uid13237@gateway/web/irccloud.com/x-kgukajgjvlctcwab] has joined #g0v.tw
+14:00 -!- poga [sid13935@gateway/web/irccloud.com/session] has quit [Changing host]
+14:00 -!- poga [sid13935@gateway/web/irccloud.com/x-ragnpiznzxyfphbx] has joined #g0v.tw
+14:02 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+14:02 -!- a-tsioh [~pierre@1-162-90-166.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+14:02 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has quit [Ping timeout: 252 seconds]
+14:02 -!- superbil__ [~superbil@1.34.97.68] has quit [Ping timeout: 252 seconds]
+14:02 -!- maximum_alumni [~maximum@Veronique.ccu.edu.tw] has quit [Ping timeout: 252 seconds]
+14:02 -!- chihhsin_ [~starbops@winpc13.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+14:02 -!- icman__ [~icman@123.240.140.154] has quit [Ping timeout: 252 seconds]
+14:02 -!- Netsplit *.net <-> *.split quits: allenown, macpaul, ManicLF
+14:02 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has quit [Ping timeout: 252 seconds]
+14:03 -!- a-tsioh [~pierre@1.162.90.166] has joined #g0v.tw
+14:04 -!- a-tsioh is now known as 20WAA2Z1M
+14:05 -!- Neson is now known as Guest64262
+14:07 -!- hlb [~hlb@li381-115.members.linode.com] has quit [Ping timeout: 272 seconds]
+14:07 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+14:07 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+14:09 -!- S3p_lin [slzzp@linode64.slzzp.net] has joined #g0v.tw
+14:09 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+14:09 -!- superbil__ [~superbil@1.34.97.68] has joined #g0v.tw
+14:09 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+14:09 -!- pcchen [~pcchen@qubit.phys.nthu.edu.tw] has quit [Ping timeout: 272 seconds]
+14:09 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+14:09 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+14:09 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 272 seconds]
+14:09 -!- a2n [~a2n@219.85.185.194] has quit [Remote host closed the connection]
+14:09 -!- PipperL [~pipperl@198.199.109.192] has joined #g0v.tw
+14:09 -!- chihhsin [~starbops@winpc13.cs.nctu.edu.tw] has joined #g0v.tw
+14:09 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+14:10 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+14:11 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+14:11 -!- jeffhung [~jeffhung@60.250.103.120] has joined #g0v.tw
+14:11 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has quit [Ping timeout: 272 seconds]
+14:11 -!- icman [~icman@123.240.140.154] has quit [Ping timeout: 272 seconds]
+14:11 -!- PipperL is now known as 23LAA0OK1
+14:11 -!- a-tsioh [~pierre@1-162-90-166.dynamic.hinet.net] has joined #g0v.tw
+14:12 -!- 20WAA2Z1M [~pierre@1.162.90.166] has quit [Ping timeout: 272 seconds]
+14:12 -!- cylee_ [b91103@linux9.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+14:12 -!- yhsiang_ [yhsiang@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+14:12 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+14:13 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+14:13 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has joined #g0v.tw
+14:13 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+14:13 -!- yhsiang [~yhsiang@140.113.235.116] has quit [Remote host closed the connection]
+14:13 -!- cylee [b91103@140.112.30.40] has joined #g0v.tw
+14:13 -!- a2n [~a2n@219.85.185.194] has joined #g0v.tw
+14:14 -!- Jcrt [~Jcrt@192.241.233.133] has quit [Ping timeout: 272 seconds]
+14:15 -!- a2n [~a2n@219.85.185.194] has quit [Changing host]
+14:15 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+14:16 -!- chihhsin [~starbops@winpc13.cs.nctu.edu.tw] has quit [Ping timeout: 272 seconds]
+14:16 -!- Netsplit *.net <-> *.split quits: howardsun, mrmoneyc
+14:20 -!- S3p_lin [slzzp@linode64.slzzp.net] has quit [Ping timeout: 272 seconds]
+14:20 -!- icman [~icman@123.240.140.154] has quit [Remote host closed the connection]
+14:21 -!- 45PABBX6W [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 272 seconds]
+14:21 -!- haroldwu [~haroldwu@219.85.185.194] has joined #g0v.tw
+14:21 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+14:21 -!- 23LAA0OK1 [~pipperl@198.199.109.192] has quit [Ping timeout: 272 seconds]
+14:23 -!- a-tsioh is now known as 45PABB1ZS
+14:24 -!- Netsplit *.net <-> *.split quits: Guest64262
+14:24 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+14:24 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+14:26 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has joined #g0v.tw
+14:26 -!- superbil^^ [~superbil@1.34.97.68] has joined #g0v.tw
+14:28 -!- chhsiao1981 [~chhsiao@li494-193.members.linode.com] has joined #g0v.tw
+14:28 -!- 45PABB1ZS [~pierre@1-162-90-166.dynamic.hinet.net] has quit [Quit: WeeChat 0.3.8]
+14:29 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+14:30 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+14:30 -!- jftsai [~jftsai@li565-27.members.linode.com] has quit [Remote host closed the connection]
+14:31 -!- chihhsin [~starbops@winpc13.cs.nctu.edu.tw] has joined #g0v.tw
+14:31 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+14:33 -!- icman is now known as 23LAA0PY1
+14:34 -!- cylee_ [b91103@linux9.csie.ntu.edu.tw] has joined #g0v.tw
+14:34 -!- mikimoto_ [~mikimoto@ec2-54-201-39-142.us-west-2.compute.amazonaws.com] has joined #g0v.tw
+14:35 -!- Netsplit *.net <-> *.split quits: cylee, mikimoto, i3n, haroldwu, superbil__, 23LAA0PY1, jeffhung
+14:37 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+14:38 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has joined #g0v.tw
+14:39 -!- tkalu [~tka@li381-115.members.linode.com] has quit [Ping timeout: 272 seconds]
+14:39 -!- tkalu [~tka@li381-115.members.linode.com] has joined #g0v.tw
+14:41 -!- Neson_ [~Neson@dex.tw] has joined #g0v.tw
+14:42 -!- pcchen [~pcchen@qubit.phys.nthu.edu.tw] has joined #g0v.tw
+14:44 -!- Netsplit over, joins: haroldwu
+14:44 -!- tkalu [~tka@li381-115.members.linode.com] has quit [Ping timeout: 272 seconds]
+14:45 -!- S3p_lin [slzzp@linode64.slzzp.net] has joined #g0v.tw
+14:49 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has joined #g0v.tw
+14:49 -!- i3n [~icman@118.233.52.11] has joined #g0v.tw
+14:49 -!- ubuntu [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+14:50 -!- jftsai [~jftsai@li565-27.members.linode.com] has joined #g0v.tw
+14:51 -!- maximum_alumni [~maximum@Veronique.ccu.edu.tw] has joined #g0v.tw
+14:51 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+14:51 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+14:52 -!- astro^ [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+14:52 -!- 23LAA0TWL [whisky@122.116.86.57] has joined #g0v.tw
+14:54 -!- 45PABB7U1 [~S3p_lin@linode64.slzzp.net] has joined #g0v.tw
+14:54 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+14:54 -!- zeal_bsd [~zeal_bsd@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+14:55 -!- S3p_lin [slzzp@linode64.slzzp.net] has quit [Ping timeout: 252 seconds]
+14:55 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+14:55 -!- chhsiao1981 [~chhsiao@li494-193.members.linode.com] has quit [Ping timeout: 252 seconds]
+14:55 -!- clkao_ [~clkao@59-126-64-204.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+14:55 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+14:55 -!- opop [~opop@220-135-163-184.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+14:55 -!- SarsTW [~wenpei@li407-81.members.linode.com] has quit [Ping timeout: 252 seconds]
+14:55 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has quit [Ping timeout: 252 seconds]
+14:55 -!- chihhsin [~starbops@winpc13.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+14:55 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has quit [Ping timeout: 252 seconds]
+14:58 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+14:58 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has joined #g0v.tw
+15:00 -!- cylee [b91103@linux9.csie.ntu.edu.tw] has joined #g0v.tw
+15:02 -!- cpyang [~cpyang@nerv.siraya.net] has joined #g0v.tw
+15:02 -!- cylee_ [b91103@linux9.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+15:02 -!- OtomeSound [~otomesoun@www.sg.nchu.edu.tw] has quit [Ping timeout: 272 seconds]
+15:02 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+15:03 -!- Netsplit *.net <-> *.split quits: 23LAA0TWL, i3n, ubuntu
+15:04 -!- maximum_alumni [~maximum@Veronique.ccu.edu.tw] has quit [Read error: Connection reset by peer]
+15:04 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+15:04 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+15:06 -!- jftsai [~jftsai@li565-27.members.linode.com] has quit [Ping timeout: 272 seconds]
+15:07 -!- tkalu [~tka@li381-115.members.linode.com] has joined #g0v.tw
+15:07 -!- OtomeSound [~otomesoun@www.sg.nchu.edu.tw] has joined #g0v.tw
+15:08 -!- Jcrt [~Jcrt@192.241.233.133] has quit [Ping timeout: 248 seconds]
+15:08 -!- icman [~icman@123.240.140.154] has quit [Ping timeout: 248 seconds]
+15:09 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+15:09 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has joined #g0v.tw
+15:09 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Ping timeout: 245 seconds]
+15:10 -!- aLlia [~blah@121.99.149.84] has joined #g0v.tw
+15:10 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+15:10 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:10 -!- clkao_ [~clkao@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+15:10 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+15:10 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+15:13 -!- samuelololol [~samuelolo@118-163-170-73.HINET-IP.hinet.net] has joined #g0v.tw
+15:14 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+15:14 -!- maximum_alumni [~maximum@Veronique.ccu.edu.tw] has joined #g0v.tw
+15:14 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has joined #g0v.tw
+15:14 -!- SarsTW [~wenpei@li407-81.members.linode.com] has joined #g0v.tw
+15:16 -!- tubaxenor [~xenor@duo.rhack.net] has joined #g0v.tw
+15:17 -!- superbil^^ [~superbil@1.34.97.68] has quit [Ping timeout: 252 seconds]
+15:17 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+15:18 -!- tubaxenor is now known as Guest88189
+15:21 -!- clkao_ [~clkao@59-126-64-204.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+15:21 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has quit [Ping timeout: 245 seconds]
+15:21 -!- jftsai [~jftsai@li565-27.members.linode.com] has joined #g0v.tw
+15:22 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+15:23 -!- mrmoneyc_ [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+15:32 -!- Netsplit *.net <-> *.split quits: mrmoneyc
+15:33 -!- aLlia [~blah@121.99.149.84] has quit [Remote host closed the connection]
+15:33 -!- Netsplit *.net <-> *.split quits: SarsTW, a2n, maximum_alumni, mikimoto_, shr, 45PABB7U1, jeffhung, Guest88189, howardsun, astro^,  (+6 more, use /NETSPLIT to show all of them)
+15:41 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+15:41 -!- ManicLF [~Manic@li159-81.members.linode.com] has joined #g0v.tw
+15:41 -!- allenown [~allenown@devstd.in] has joined #g0v.tw
+15:44 -!- Netsplit over, joins: astro^
+15:46 -!- Netsplit *.net <-> *.split quits: astro^
+15:47 -!- shhu_ [~shhu@bsd2.cs.nctu.edu.tw] has joined #g0v.tw
+15:47 -!- alliao [~blah@121.99.149.84] has joined #g0v.tw
+15:47 -!- opop [~opop@220.135.163.184] has joined #g0v.tw
+15:47 -!- i3n [~icman@118.233.52.11] has joined #g0v.tw
+15:47 -!- ubuntu [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+15:48 -!- alliao [~blah@121.99.149.84] has quit [Ping timeout: 272 seconds]
+15:48 -!- clkao_ [~clkao@59.126.64.204] has joined #g0v.tw
+15:50 -!- alliao [~blah@121.99.149.84] has joined #g0v.tw
+15:51 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+15:51 -!- walkingice [~walkingic@114-34-7-189.HINET-IP.hinet.net] has joined #g0v.tw
+15:51 -!- shhu_ [~shhu@bsd2.cs.nctu.edu.tw] has quit [Ping timeout: 272 seconds]
+15:52 -!- Netsplit *.net <-> *.split quits: allenown, macpaul, ManicLF
+15:55 -!- walkingice [~walkingic@114-34-7-189.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+15:57 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has quit [Ping timeout: 260 seconds]
+15:58 -!- Netsplit *.net <-> *.split quits: opop, ubuntu, clkao_, i3n
+16:02 < pm5> http://api.ly.g0v.tw/v0/collections/sittings 裡面 entries 的 id 要改成正確的 sitting_id (for 委員會), 這個應該要改 calendar-sitting.ls?
+16:02 < pm5> clkao: ping
+16:02 -!- alliao [~blah@121.99.149.84] has quit [Write error: Broken pipe]
+16:03 < clkao> pm5: yes
+16:03 < clkao> 現在情況是 ly.gov 上有時委員會名稱會不完整.. 如 "教育及文化委員會-司法及法制委員"
+16:03 -!- lcamel [~lcamel@118-168-100-245.dynamic.hinet.net] has quit [Remote host closed the connection]
+16:03 < clkao> 「委員」 vs 「委員會」 所以就爛掉
+16:04 < pm5> 真的耶
+16:04 -!- chhsiao1981 [~chhsiao@106.187.101.193] has joined #g0v.tw
+16:04 -!- Netsplit over, joins: i3n
+16:04 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+16:04 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+16:04 -!- Netsplit over, joins: clkao_, opop, ubuntu
+16:07 -!- tubaxeno1 [~xenor@duo.rhack.net] has joined #g0v.tw
+16:07 -!- alliao [~blah@121.99.149.84] has joined #g0v.tw
+16:09 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+16:09 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+16:13 -!- chihhsin [~starbops@140.113.215.193] has joined #g0v.tw
+16:14 < pm5> clkao: 咦這樣的話 calendar 裡的也是錯的囉?
+16:15 < clkao> ya
+16:16 < pm5> http://api.ly.g0v.tw/v0/collections/calendar/58352
+16:17 < pm5> 那 ly.g0v.tw 的為什麼是正確的?
+16:17 < pm5> http://ly.g0v.tw/sittings/08-04-SWE-JUD-01
+16:17 -!- superbil^^ [~superbil@1.34.97.68] has joined #g0v.tw
+16:17 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+16:18 -!- Netsplit *.net <-> *.split quits: tubaxeno1
+16:20 -!- Netsplit *.net <-> *.split quits: opop, ubuntu, clkao_, chhsiao1981, i3n, Jcrt, hlb
+16:20 -!- alliao [~blah@121.99.149.84] has quit [Ping timeout: 334 seconds]
+16:22 -!- Netsplit *.net <-> *.split quits: cpyang, t3e, yhsiang_, jftsai, pcchen, icemango, wHisKy, superbil^^, bency, haroldwu,  (+9 more, use /NETSPLIT to show all of them)
+16:23 -!- chihhsin [~starbops@140.113.215.193] has quit [Ping timeout: 248 seconds]
+16:23 -!- walkingice [~walkingic@114-34-7-189.HINET-IP.hinet.net] has joined #g0v.tw
+16:23 -!- chihhsin [~starbops@winpc13.cs.nctu.edu.tw] has joined #g0v.tw
+16:24 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has joined #g0v.tw
+16:24 -!- SarsTW [~wenpei@li407-81.members.linode.com] has joined #g0v.tw
+16:24 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has joined #g0v.tw
+16:24 -!- maximum_alumni [~maximum@Veronique.ccu.edu.tw] has joined #g0v.tw
+16:24 -!- samuelololol [~samuelolo@118-163-170-73.HINET-IP.hinet.net] has joined #g0v.tw
+16:24 -!- 45PABB7U1 [~S3p_lin@linode64.slzzp.net] has joined #g0v.tw
+16:24 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+16:24 -!- shr [b89108@linux18.csie.ntu.edu.tw] has joined #g0v.tw
+16:25 -!- PipperL [~pipperl@Boomer.serv.idv.tw] has joined #g0v.tw
+16:28 -!- chadliu23 [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+16:28 -!- mikimoto [~mikimoto@ec2-54-201-39-142.us-west-2.compute.amazonaws.com] has joined #g0v.tw
+16:30 -!- juiz [~juiz@solvcon.net] has joined #g0v.tw
+16:30 -!- Netsplit over, joins: jftsai, yhsiang_, pm5, ch0upi_bsd, AceLan, haroldwu, tonysan, superbil^^, cpyang, wHisKy (+9 more)
+16:31 -!- juiz [~juiz@solvcon.net] has quit [Changing host]
+16:31 -!- juiz [~juiz@unaffiliated/yungyuc] has joined #g0v.tw
+16:31 -!- Netsplit *.net <-> *.split quits: cpyang, t3e, yhsiang_, jftsai, pcchen, juiz, wHisKy, superbil^^, icemango, bency,  (+10 more, use /NETSPLIT to show all of them)
+16:31 -!- 45PABCJEC [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has joined #g0v.tw
+16:32 -!- alliao [~blah@121.99.149.84] has joined #g0v.tw
+16:32 -!- 45PABCJEC [~chadliu23@220-133-11-33.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+16:32 -!- 45PABB7U1 [~S3p_lin@linode64.slzzp.net] has quit [Ping timeout: 272 seconds]
+16:32 -!- SarsTW [~wenpei@li407-81.members.linode.com] has quit [Ping timeout: 272 seconds]
+16:36 -!- i3n [~icman@118.233.52.11] has joined #g0v.tw
+16:36 -!- astro^ [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+16:37 -!- Netsplit over, joins: jftsai, yhsiang_, pm5, ch0upi_bsd, AceLan, haroldwu, tonysan, superbil^^, cpyang, juiz (+10 more)
+16:37 -!- S3p_lin [slzzp@linode64.slzzp.net] has joined #g0v.tw
+16:39 -!- cpyang [~cpyang@nerv.siraya.net] has quit [Write error: Operation not permitted]
+16:39 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Write error: Operation not permitted]
+16:39 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Write error: Operation not permitted]
+16:39 -!- icman [~icman@123.240.140.154] has quit [Write error: Operation not permitted]
+16:39 -!- superbil^^ [~superbil@1.34.97.68] has quit [Write error: Operation not permitted]
+16:39 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Write error: Operation not permitted]
+16:39 -!- haroldwu [~haroldwu@219.85.185.194] has quit [Write error: Operation not permitted]
+16:39 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has quit [Ping timeout: 272 seconds]
+16:39 -!- maximum_alumni [~maximum@Veronique.ccu.edu.tw] has quit [Ping timeout: 272 seconds]
+16:39 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+16:41 -!- a2n [~a2n@unaffiliated/a2n] has quit [Read error: Connection reset by peer]
+16:41 -!- juiz is now known as 16WAALSSF
+16:41 -!- juiz [~juiz@solvcon.net] has joined #g0v.tw
+16:41 -!- jbytw [uid13105@gateway/web/irccloud.com/session] has joined #g0v.tw
+16:42 -!- samuelololol [~samuelolo@118-163-170-73.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+16:42 -!- juiz [~juiz@solvcon.net] has quit [Client Quit]
+16:42 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+16:42 -!- ManicLF [~Manic@li159-81.members.linode.com] has joined #g0v.tw
+16:42 -!- allenown [~allenown@devstd.in] has joined #g0v.tw
+16:42 -!- aLlia [~blah@121.99.156.59] has joined #g0v.tw
+16:43 -!- maximum_alumni [~maximum@Veronique.ccu.edu.tw] has joined #g0v.tw
+16:45 -!- chhsiao1981 [~chhsiao@li494-193.members.linode.com] has joined #g0v.tw
+16:49 -!- shr [b89108@linux18.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+16:49 -!- ubuntu [~ubuntu@ec2-54-248-110-31.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+16:50 -!- ubuntu is now known as Guest39520
+16:53 -!- Netsplit *.net <-> *.split quits: allenown, macpaul, ManicLF
+16:54 -!- Netsplit *.net <-> *.split quits: t3e, yhsiang_, wHisKy, jftsai, icemango, pcchen, bency, tkalu, cylee, 16WAALSSF,  (+4 more, use /NETSPLIT to show all of them)
+16:56 -!- aLlia [~blah@121.99.156.59] has quit [Ping timeout: 256 seconds]
+16:56 -!- juiz [~juiz@solvcon.net] has joined #g0v.tw
+16:56 -!- Netsplit over, joins: jftsai, yhsiang_, pm5, tonysan, wHisKy, OtomeSound, tkalu, cylee, pcchen, bency (+2 more)
+16:56 -!- juiz [~juiz@solvcon.net] has quit [Changing host]
+16:56 -!- juiz [~juiz@unaffiliated/yungyuc] has joined #g0v.tw
+16:57 -!- Netsplit over, joins: maximum_alumni
+16:58 -!- mrmoneyc_ [~mrmoneyc@198.199.98.216] has quit [Write error: Broken pipe]
+16:58 -!- opop_ [~opop@220-135-163-184.HINET-IP.hinet.net] has joined #g0v.tw
+17:00 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:00 -!- aLlia [~blah@121.99.156.59] has joined #g0v.tw
+17:00 -!- clkao_ [~clkao@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+17:03 -!- Jcrt_ [~Jcrt@192.241.233.133] has joined #g0v.tw
+17:03 -!- Neson [~Neson@dex.tw] has joined #g0v.tw
+17:03 -!- opop_ [~opop@220-135-163-184.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+17:03 -!- superbil^^ [~superbil@1.34.97.68] has joined #g0v.tw
+17:03 -!- alliao [~blah@121.99.149.84] has quit [Ping timeout: 272 seconds]
+17:03 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has quit [Ping timeout: 251 seconds]
+17:03 -!- Neson_ [~Neson@dex.tw] has quit [Ping timeout: 251 seconds]
+17:03 -!- icman__ [~icman@123.240.140.154] has joined #g0v.tw
+17:03 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+17:03 -!- a2n [~a2n@219.85.185.194] has joined #g0v.tw
+17:03 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+17:03 -!- shhu [~shhu@bsd2.cs.nctu.edu.tw] has joined #g0v.tw
+17:03 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+17:03 -!- Jcrt_ [~Jcrt@192.241.233.133] has quit [Ping timeout: 272 seconds]
+17:04 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+17:04 -!- a2n [~a2n@219.85.185.194] has quit [Changing host]
+17:04 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+17:05 -!- Neson [~Neson@dex.tw] has quit [Ping timeout: 272 seconds]
+17:05 -!- icman__ [~icman@123.240.140.154] has quit [Ping timeout: 272 seconds]
+17:06 -!- Conrad [~cpyang@nerv.siraya.net] has joined #g0v.tw
+17:06 -!- jeffhung_ [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+17:06 -!- SarsTW [~wenpei@li407-81.members.linode.com] has joined #g0v.tw
+17:07 -!- jeffhung [~jeffhung@60-250-103-120.HINET-IP.hinet.net] has joined #g0v.tw
+17:08 -!- aLlia [~blah@121.99.156.59] has quit [Ping timeout: 245 seconds]
+17:08 -!- ychsiao [ychsiao@saturn.stu.edu.tw] has joined #g0v.tw
+17:10 -!- beerlee [~beerlee@li580-199.members.linode.com] has joined #g0v.tw
+17:12 -!- samuelololol [~samuelolo@60-251-40-253.HINET-IP.hinet.net] has joined #g0v.tw
+17:14 -!- tubaxenor [~xenor@duo.rhack.net] has joined #g0v.tw
+17:14 -!- shr [b89108@linux18.csie.ntu.edu.tw] has joined #g0v.tw
+17:14 -!- tubaxenor is now known as Guest66687
+17:15 -!- haroldwu [~haroldwu@219.85.185.194] has joined #g0v.tw
+17:15 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+17:16 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+17:17 -!- zea1_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+17:18 -!- 45PABCQ8M [b89108@linux18.csie.ntu.edu.tw] has joined #g0v.tw
+17:18 -!- a2n [~a2n@unaffiliated/a2n] has quit [Remote host closed the connection]
+17:18 -!- 45PABCQ8M [b89108@linux18.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+17:19 -!- Neson [~Neson@dex.tw] has joined #g0v.tw
+17:19 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+17:19 -!- zea1_bsd is now known as zeal_bsd
+17:21 -!- Netsplit *.net <-> *.split quits: Conrad, jeffhung_, SarsTW
+17:21 -!- nekki [uid16895@gateway/web/irccloud.com/x-exphkuxkwtnmglfm] has quit [Read error: Connection reset by peer]
+17:22 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has quit [Ping timeout: 272 seconds]
+17:22 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+17:22 -!- superbil^^ [~superbil@1.34.97.68] has quit [Ping timeout: 272 seconds]
+17:22 -!- Netsplit *.net <-> *.split quits: rich1iu, au, llwang
+17:23 -!- superbil^^ [~superbil@1.34.97.68] has joined #g0v.tw
+17:23 -!- a-tsioh [~pierre@123-193-6-78.dynamic.kbronet.com.tw] has joined #g0v.tw
+17:24 -!- Netsplit over, joins: Conrad
+17:24 -!- ttcat_ [sid12341@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:24 -!- c9s [sid15100@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:24 -!- allenlinli [uid13852@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:24 -!- pofeng_ [uid13024@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:25 -!- privism [~priv@vps1.priv.tw] has joined #g0v.tw
+17:25 -!- ballII [uid22246@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:25 -!- WeiHung [uid13045@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:25 -!- LexChien_ [uid22565@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:26 -!- SarsTW [~wenpei@li407-81.members.linode.com] has joined #g0v.tw
+17:26 < ballII> 我看得到 WeiHung
+17:26 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+17:26 -!- ManicLF [~Manic@li159-81.members.linode.com] has joined #g0v.tw
+17:26 -!- allenown [~allenown@devstd.in] has joined #g0v.tw
+17:26 < WeiHung> 好像恢復了耶～
+17:27 -!- Bropheus [uid22432@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:27 -!- whitglint [uid15486@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:27 -!- superbil_c_ [uid12362@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:27 -!- fntsrlike_ [uid16354@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:27 -!- johnny__ [uid19482@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:28 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+17:29 -!- howardsun [~howard@linux.cs.ccu.edu.tw] has joined #g0v.tw
+17:30 -!- kcliu__ [uid12402@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:31 -!- zaeneas [uid14129@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:31 < a-tsioh> :)
+17:36 -!- nekki_ [uid16895@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:37 -!- czchen [sid12445@gateway/web/irccloud.com/x-payzhauclqtijdql] has quit [Read error: Network is unreachable]
+17:38 -!- czchen_ [sid12445@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:38 -!- pm5 [~pm5@61-230-97-158.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+17:39 -!- raejin_ [uid12959@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:41 -!- ipa [sid12333@gateway/web/irccloud.com/x-jnhoyirrxgiablgg] has quit [Ping timeout: 276 seconds]
+17:41 -!- otaQ [uid15257@gateway/web/irccloud.com/x-cvrkcjwljpdkkwjv] has quit [Ping timeout: 276 seconds]
+17:42 -!- otaQ_ [uid15257@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:42 -!- yyhuang_ [uid13204@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:43 -!- a2n [~a2n@219.85.185.194] has joined #g0v.tw
+17:43 -!- a2n [~a2n@219.85.185.194] has quit [Changing host]
+17:43 -!- a2n [~a2n@unaffiliated/a2n] has joined #g0v.tw
+17:44 -!- Jcrt [~Jcrt@192.241.233.133] has joined #g0v.tw
+17:44 -!- ipa_ [sid12333@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:45 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+17:51 -!- opop [~opop@220-135-163-184.HINET-IP.hinet.net] has joined #g0v.tw
+17:53 -!- SarsTW [~wenpei@li407-81.members.linode.com] has quit [Ping timeout: 272 seconds]
+17:56 -!- tpa [paul@123.110.31.226] has quit [Read error: Connection reset by peer]
+17:57 -!- stardog_ [uid14441@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:57 -!- rich1iu [richliu@richliu.Math.NCTU.edu.tw] has joined #g0v.tw
+17:57 -!- llwang [llvvang@216.237.113.234] has joined #g0v.tw
+17:57 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+17:58 -!- stardog_ is now known as 13WABRTVP
+17:58 -!- stardog_ [uid14441@gateway/web/irccloud.com/session] has joined #g0v.tw
+17:59 -!- 13WABRTVP [uid14441@gateway/web/irccloud.com/session] has quit [Ping timeout: 267 seconds]
+17:59 -!- llwang [llvvang@216.237.113.234] has quit [Ping timeout: 267 seconds]
+17:59 -!- rich1iu [richliu@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 268 seconds]
+17:59 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 268 seconds]
+18:00 -!- llwang [llvvang@216.237.113.234] has joined #g0v.tw
+18:00 -!- wcpan [quassel@wcpan.info] has quit [Ping timeout: 276 seconds]
+18:00 -!- tpa [paul@123.110.31.226] has joined #g0v.tw
+18:01 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+18:01 -!- wcpan [quassel@wcpan.info] has joined #g0v.tw
+18:01 -!- rich1iu [richliu@richliu.Math.NCTU.edu.tw] has joined #g0v.tw
+18:02 -!- yyhuang_ [uid13204@gateway/web/irccloud.com/session] has quit [Ping timeout: 264 seconds]
+18:04 -!- yyhuang_ [uid13204@gateway/web/irccloud.com/session] has joined #g0v.tw
+18:04 -!- SarsTW [~wenpei@li407-81.members.linode.com] has joined #g0v.tw
+18:08 -!- prelover [poan@123.110.31.226] has joined #g0v.tw
+18:10 -!- SarsTW [~wenpei@li407-81.members.linode.com] has quit [Ping timeout: 272 seconds]
+18:10 -!- a-tsioh [~pierre@123-193-6-78.dynamic.kbronet.com.tw] has quit [Ping timeout: 245 seconds]
+18:11 -!- tpa [paul@123.110.31.226] has quit [Ping timeout: 272 seconds]
+18:12 -!- a-tsioh [~pierre@123-193-6-78.dynamic.kbronet.com.tw] has joined #g0v.tw
+18:16 -!- Jedi__ [~Jedi@jedi.org] has joined #g0v.tw
+18:17 -!- walkingcloudice_ [uid13955@gateway/web/irccloud.com/session] has joined #g0v.tw
+18:17 -!- icman [~icman@123.240.140.154] has quit [Ping timeout: 272 seconds]
+18:17 -!- ypcat_ [~ypcat@li565-27.members.linode.com] has joined #g0v.tw
+18:17 -!- SarsTW [~wenpei@li407-81.members.linode.com] has joined #g0v.tw
+18:18 -!- jwbai_ [~jwbai@staff.kkbox.com.tw] has joined #g0v.tw
+18:18 -!- CindyLin1 [~cindy_utf@112-121-80-249.mwsrv.com] has joined #g0v.tw
+18:19 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+18:22 -!- Netsplit *.net <-> *.split quits: CindyLinz, WeiHung, ddio, ypwong, t0mst0ne_, jwbai, woodrowshen__, Goddamn_, 31NAAEE5U, weitsai,  (+59 more, use /NETSPLIT to show all of them)
+18:22 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 272 seconds]
+18:23 -!- a-tsioh [~pierre@123-193-6-78.dynamic.kbronet.com.tw] has quit [Ping timeout: 272 seconds]
+18:28 -!- cpyang [~cpyang@nerv.siraya.net] has joined #g0v.tw
+18:29 -!- jwbai_ [~jwbai@staff.kkbox.com.tw] has quit [Write error: Broken pipe]
+18:30 -!- Netsplit *.net <-> *.split quits: hlb
+18:31 -!- Conrad [~cpyang@nerv.siraya.net] has quit [Remote host closed the connection]
+18:31 -!- czchen_ [sid12445@gateway/web/irccloud.com/session] has quit []
+18:35 -!- f0rth_ [~f0rth@ubuntu.amersen.com.tw] has joined #g0v.tw
+18:35 -!- CindyLin1 [~cindy_utf@112-121-80-249.mwsrv.com] has quit [Ping timeout: 272 seconds]
+18:39 -!- Netsplit *.net <-> *.split quits: opop, icman, f0rth_
+18:39 -!- Goddamn [~goddamn@218-161-44-5.HINET-IP.hinet.net] has joined #g0v.tw
+18:39 -!- cyt93cs_ [~cyt93cs@140.123.101.4] has joined #g0v.tw
+18:43 -!- wcpan_ [quassel@wcpan.info] has joined #g0v.tw
+18:44 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+18:49 -!- Netsplit *.net <-> *.split quits: cyt93cs_, wcpan
+18:53 -!- icman [~icman@123.240.140.154] has joined #g0v.tw
+18:56 -!- scrollback2 [scrollback@conference/jsconf/session] has joined #g0v.tw
+18:59 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has joined #g0v.tw
+19:03 -!- f0rth [~f0rth@ubuntu.amersen.com.tw] has joined #g0v.tw
+19:12 -!- prelover [poan@123.110.31.226] has quit [Quit: Leaving]
+19:12 -!- chihchun_afk [~chihchun@218.161.0.222] has joined #g0v.tw
+19:12 -!- chihchun_afk is now known as chihchun
+19:12 -!- f0rth [~f0rth@ubuntu.amersen.com.tw] has quit [Ping timeout: 272 seconds]
+19:14 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+19:15 -!- yyhuang_ [uid13204@gateway/web/irccloud.com/session] has quit [Ping timeout: 245 seconds]
+19:21 -!- CindyLinz [~cindy_utf@112.121.80.249] has joined #g0v.tw
+19:22 -!- f0rth [~f0rth@ubuntu.amersen.com.tw] has joined #g0v.tw
+19:24 -!- chihchun [~chihchun@218.161.0.222] has quit [Ping timeout: 272 seconds]
+19:25 -!- CindyLinz [~cindy_utf@112.121.80.249] has quit [Remote host closed the connection]
+19:33 -!- hlb [~hlb@li381-115.members.linode.com] has quit [Write error: Broken pipe]
+19:33 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has quit [Write error: Broken pipe]
+19:34 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has quit [Remote host closed the connection]
+19:34 -!- Jedi__ is now known as Jedi_
+19:35 -!- CindyLinz [~cindy_utf@112-121-80-249.mwsrv.com] has joined #g0v.tw
+19:35 -!- f0rth [~f0rth@ubuntu.amersen.com.tw] has quit [Remote host closed the connection]
+19:36 -!- CindyLinz [~cindy_utf@112-121-80-249.mwsrv.com] has quit [Ping timeout: 272 seconds]
+19:38 -!- ymow [~Adium@1-173-99-31.dynamic.hinet.net] has joined #g0v.tw
+19:43 -!- scrollback2 [scrollback@conference/jsconf/session] has quit [Ping timeout: 259 seconds]
+19:43 -!- LexChien_ [uid22565@gateway/web/irccloud.com/session] has quit [Ping timeout: 259 seconds]
+19:45 -!- opop [~opop@220-135-163-184.HINET-IP.hinet.net] has joined #g0v.tw
+19:48 -!- LexChien_ [uid22565@gateway/web/irccloud.com/session] has joined #g0v.tw
+19:50 -!- a-tsioh [~pierre@123-193-6-78.dynamic.kbronet.com.tw] has joined #g0v.tw
+19:53 -!- chihchun_afk [~chihchun@218-161-0-222.HINET-IP.hinet.net] has joined #g0v.tw
+19:53 -!- chihchun_afk is now known as chihchun
+20:02 -!- Netsplit *.net <-> *.split quits: opop
+20:08 -!- a-tsioh [~pierre@123-193-6-78.dynamic.kbronet.com.tw] has quit [Ping timeout: 245 seconds]
+20:11 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has quit [Remote host closed the connection]
+20:14 -!- ymow [~Adium@1-173-99-31.dynamic.hinet.net] has quit [Excess Flood]
+20:15 -!- eternnoir [~quassel@li389-177.members.linode.com] has joined #g0v.tw
+20:21 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+20:21 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+20:23 -!- Netsplit over, joins: opop
+20:26 -!- ymow [~Adium@1.173.99.31] has joined #g0v.tw
+20:32 -!- aitjcize is now known as 17SAAFS10
+20:32 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+20:36 -!- 17SAAFS10 [~quassel@aquarius.csie.ntu.edu.tw] has quit [Ping timeout: 269 seconds]
+20:54 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+21:03 -!- slmt [uid22524@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:05 < slmt> hello~ 有人在嗎@@?
+21:07 < clkao_> hi
+21:09 < slmt> 好奇怪喔~ 我用 irccloud 看不到 clkao_ 的回覆
+21:09 < slmt> 可是 logbot 看得到耶
+21:09 < slmt> 啊！出現了
+21:10 < slmt> clkao_ 你好~
+21:11 < clkao_> 今天 freenode 炸掉了
+21:11 < clkao_> 遭到 ddos
+21:11 < slmt> 啥=口=!!
+21:11 < slmt> 為什麼會有人想要 ddos freenode = =?
+21:12 < clkao_> dunno
+21:12 < kcwu> bug report 寫太慢就會先被解掉...
+21:13 < slmt> 我先重新自我介紹~
+21:14 -!- yyhuang_ [uid13204@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:14 -!- czchen [sid12445@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:14 -!- a0kman_ [uid15218@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:14 -!- stardog_ [uid14441@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:14 -!- WeiHung [uid13045@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:14 -!- ballII [uid22246@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:14 -!- pofeng_ [uid13024@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:14 -!- allenlinli [uid13852@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:14 -!- ttcat_ [sid12341@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:14 -!- poga [sid13935@gateway/web/irccloud.com/x-ragnpiznzxyfphbx] has joined #g0v.tw
+21:14 -!- Lee1092 [uid13277@gateway/web/irccloud.com/x-qgccjtyimsubiaxm] has joined #g0v.tw
+21:14 -!- chihhsin_cloud [uid12810@gateway/web/irccloud.com/x-tfhrslkomnfwbmdu] has joined #g0v.tw
+21:14 -!- yukiko__ [uid19137@gateway/web/irccloud.com/x-lfppaycnrnpvefgi] has joined #g0v.tw
+21:14 -!- hychen_ [uid12518@gateway/web/irccloud.com/x-kpjkdeotttmjvtil] has joined #g0v.tw
+21:14 -!- V1ctor [uid20731@gateway/web/irccloud.com/x-bfqycbolkldcjtaq] has joined #g0v.tw
+21:14 -!- amatecha [sid10006@gateway/web/irccloud.com/x-cglskozpxpyudeke] has joined #g0v.tw
+21:14 -!- 31NAAEE5U [uid13263@gateway/web/irccloud.com/x-qoarlsosuejftihj] has joined #g0v.tw
+21:14 -!- 31NAAEEE7 [uid13503@gateway/web/irccloud.com/x-bdjbcwhuyukfciqq] has joined #g0v.tw
+21:14 -!- mindos_cloud____ [sid13388@gateway/web/irccloud.com/x-lqlpfmsugvkffgod] has joined #g0v.tw
+21:14 -!- anarchih_ [uid16284@gateway/web/irccloud.com/x-pmrqdbwbckuwbdfz] has joined #g0v.tw
+21:14 -!- lanf0n_ [uid13946@gateway/web/irccloud.com/x-qyhgwwlfhgeyxclq] has joined #g0v.tw
+21:14 -!- ChadLiuCloud__ [uid13937@gateway/web/irccloud.com/x-jgcvczcuvaglrgnv] has joined #g0v.tw
+21:14 -!- ethantw [uid15398@gateway/web/irccloud.com/x-cxlaemwrkycmqdcz] has joined #g0v.tw
+21:14 -!- carlcarl [uid23342@gateway/web/irccloud.com/x-pecaselflknrchrh] has joined #g0v.tw
+21:14 -!- donaldisfreak [uid20928@gateway/web/irccloud.com/x-dgpstkwrwsjourgb] has joined #g0v.tw
+21:14 -!- woodrowshen__ [uid15801@gateway/web/irccloud.com/x-deycegwhumuznfsf] has joined #g0v.tw
+21:14 -!- Hokila [uid18841@gateway/web/irccloud.com/x-ptuelbsoxjksuyzn] has joined #g0v.tw
+21:14 -!- crystaltu [uid21035@gateway/web/irccloud.com/x-cgmkfwswgvrplygm] has joined #g0v.tw
+21:14 -!- caa51 [sid13241@gateway/web/irccloud.com/x-yruvvoxtwxxratiw] has joined #g0v.tw
+21:14 -!- evenwu [uid12958@gateway/web/irccloud.com/x-gsqvrmtzmqmrurcr] has joined #g0v.tw
+21:14 -!- AliceWei [uid12990@gateway/web/irccloud.com/x-ujmbgzngigmjdcel] has joined #g0v.tw
+21:14 -!- othree_ [sid16133@gateway/web/irccloud.com/x-yxhuuoxtdtimudht] has joined #g0v.tw
+21:14 -!- FourDollars [uid12544@gateway/web/irccloud.com/x-sjdupxddrlnewhlo] has joined #g0v.tw
+21:14 -!- glll4678_ [uid16452@gateway/web/irccloud.com/x-vxweljykgzgupucf] has joined #g0v.tw
+21:14 -!- cataska_ [uid12717@gateway/web/irccloud.com/x-tyjfsljbdvjdsetd] has joined #g0v.tw
+21:14 -!- JonaTW_ [uid13881@gateway/web/irccloud.com/x-tbcdfopblbvmgjrg] has joined #g0v.tw
+21:14 -!- WanCW [uid12647@gateway/web/irccloud.com/x-wthrsorhflnzubvs] has joined #g0v.tw
+21:14 -!- dkwhuang [uid15317@gateway/web/irccloud.com/x-xrjojqyepfevwqww] has joined #g0v.tw
+21:14 -!- klandor [uid13157@gateway/web/irccloud.com/x-ditgednpevxkdklk] has joined #g0v.tw
+21:14 -!- soidid [uid16097@gateway/web/irccloud.com/x-vmzfmanjosqebsbz] has joined #g0v.tw
+21:14 -!- chlai [uid13160@gateway/web/irccloud.com/x-qijhzqklajogybcy] has joined #g0v.tw
+21:14 -!- ypwong [ypwong@2400:8900::f03c:91ff:fe6e:a73d] has joined #g0v.tw
+21:14 -!- hccloud [uid13336@gateway/web/irccloud.com/x-qbumweldufjnjnze] has joined #g0v.tw
+21:14 -!- NagyHsu [uid23183@gateway/web/irccloud.com/x-ehhwjhjdlylnzjjd] has joined #g0v.tw
+21:14 -!- ttcat [sid12341@gateway/web/irccloud.com/x-ftmnbjbhvamhiozd] has joined #g0v.tw
+21:14 -!- onlinemad [uid22305@gateway/web/irccloud.com/x-ueyesxxnltzrpbzw] has joined #g0v.tw
+21:14 -!- louielu__ [uid13501@gateway/web/irccloud.com/x-djppzpoikyywmiys] has joined #g0v.tw
+21:14 -!- lijung__ [uid13080@gateway/web/irccloud.com/x-yrqrgfwjrwtpzcbe] has joined #g0v.tw
+21:14 -!- billy3321 [uid12904@gateway/web/irccloud.com/x-vyfbnekulchrdudr] has joined #g0v.tw
+21:14 -!- mrmoneycloud__ [uid16021@gateway/web/irccloud.com/x-qphunuoljdskzfsz] has joined #g0v.tw
+21:14 -!- PikaLeo [uid22575@gateway/web/irccloud.com/x-zzygmgotofujybgx] has joined #g0v.tw
+21:14 -!- tuiry [uid12761@gateway/web/irccloud.com/x-uiqsrabgqqfphobe] has joined #g0v.tw
+21:14 -!- clkao [sid12095@gateway/web/irccloud.com/x-errzaefppoxuwejz] has joined #g0v.tw
+21:14 -!- ddio [uid13869@gateway/web/irccloud.com/x-ipayptruekyclmjp] has joined #g0v.tw
+21:14 -!- weitsai [uid13944@gateway/web/irccloud.com/x-hrvhwezrbvysawub] has joined #g0v.tw
+21:14 -!- bobchao__ [sid13148@gateway/web/irccloud.com/x-oikxmckmjjphuyxt] has joined #g0v.tw
+21:14 -!- dirty_ [uid13417@gateway/web/irccloud.com/x-moljifhsxupyoabd] has joined #g0v.tw
+21:14 -!- macpaul_ [uid13286@gateway/web/irccloud.com/x-krbjtvockbnkmqhl] has joined #g0v.tw
+21:14 -!- jimyhuang_ [uid12523@gateway/web/irccloud.com/x-wzvqjuiixfrttpzn] has joined #g0v.tw
+21:14 -!- nchild [uid16194@gateway/web/irccloud.com/x-udhtwxkczzczwefj] has joined #g0v.tw
+21:14 -!- iamblue_cloud__ [uid13120@gateway/web/irccloud.com/x-kcoouttnxtexfunr] has joined #g0v.tw
+21:14 -!- t0mst0ne_ [uid13954@gateway/web/irccloud.com/x-pordjenykhdpxzsh] has joined #g0v.tw
+21:14 -!- yhsiangCloud [uid12363@gateway/web/irccloud.com/x-tnlidjpcnplcfzml] has joined #g0v.tw
+21:14 < kcwu> 唔
+21:14 < slmt> 我是在 g0v 潛水一段時間的新人
+21:14 < slmt> 本業是大學生
+21:14 < slmt> 來這裡是想看看自己的能力是否能幫忙寫出甚麼有幫助的東西
+21:15 < hcchien> 所以會 coding?
+21:16 -!- otaQ_ [uid15257@gateway/web/irccloud.com/session] has quit [Ping timeout: 264 seconds]
+21:16 -!- ronnywang_ [uid15193@gateway/web/irccloud.com/x-sgwcwuxgeggmrhzp] has quit [Ping timeout: 264 seconds]
+21:16 -!- YangHung__ [~uid21603@gateway/web/irccloud.com/x-axrmtejvyfbcbrgd] has quit [Ping timeout: 264 seconds]
+21:16 -!- Barrett__ [uid23720@gateway/web/irccloud.com/x-hfgtylujvmiyhslt] has quit [Ping timeout: 264 seconds]
+21:16 -!- YangHung___ [uid21603@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:16 -!- LexChien_ [uid22565@gateway/web/irccloud.com/session] has quit [Ping timeout: 245 seconds]
+21:16 -!- raejin_ [uid12959@gateway/web/irccloud.com/session] has quit [Ping timeout: 245 seconds]
+21:16 -!- zaeneas [uid14129@gateway/web/irccloud.com/session] has quit [Ping timeout: 245 seconds]
+21:16 < hcchien> 咦，大爆炸還沒恢復
+21:17 -!- c9s [sid15100@gateway/web/irccloud.com/session] has quit [Ping timeout: 264 seconds]
+21:17 -!- simonpai_ [uid23131@gateway/web/irccloud.com/x-bnroyqhxhjxybnys] has quit [Ping timeout: 264 seconds]
+21:17 -!- pm5cloud_ [uid13333@gateway/web/irccloud.com/x-zurvoxfabfivgaxy] has quit [Ping timeout: 264 seconds]
+21:17 -!- Luxun [~uid13676@gateway/web/irccloud.com/x-uxyxgwvuccwokpfd] has quit [Ping timeout: 264 seconds]
+21:17 -!- venev [uid22431@gateway/web/irccloud.com/x-krbnediucjxskwem] has quit [Ping timeout: 264 seconds]
+21:17 < slmt> 還有對社會現況的種種不滿
+21:17 < slmt> 請各位多多指教^^
+21:17 < slmt> 會~
+21:17 < slmt> 我現在都要一邊看 logbot 一邊切換 irccloud 打字= ="
+21:17 -!- walkingcloudice_ [uid13955@gateway/web/irccloud.com/session] has quit [Ping timeout: 264 seconds]
+21:17 -!- ipa_ [sid12333@gateway/web/irccloud.com/session] has quit [Ping timeout: 264 seconds]
+21:17 -!- softpapa___ [uid13237@gateway/web/irccloud.com/x-kgukajgjvlctcwab] has quit [Ping timeout: 264 seconds]
+21:17 -!- Michael_LI_ [uid13469@gateway/web/irccloud.com/x-imljnimrkeypbujw] has quit [Ping timeout: 264 seconds]
+21:17 -!- ljm [uid21192@gateway/web/irccloud.com/x-issqpefbwbrslizd] has quit [Ping timeout: 264 seconds]
+21:17 < slmt> 我 irccloud 這邊都只看得到我剛剛打的字@@
+21:18 -!- fntsrlike_ [uid16354@gateway/web/irccloud.com/session] has quit [Ping timeout: 264 seconds]
+21:18 -!- Barrett__ [uid23720@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:18 -!- Luxun_ [uid13676@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:18 -!- raejin__ [uid12959@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:18 < kcwu> 問: android 上抓圖要怎麼最方便貼上 github 的 issue report? 我現在要先 share 到 dropbox, 然後再到電腦上開 github, drag file 上去.... 覺得有點麻煩, 使得我 bug report 不順暢...
+21:18 -!- venev_ [uid22431@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:18 -!- pm5cloud__ [uid13333@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:18 -!- venev_ is now known as venev
+21:18 -!- Luxun_ is now known as Luxun
+21:19 -!- simonpai__ [uid23131@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:19 -!- pm5cloud__ is now known as pm5cloud_
+21:19 -!- otaQ_ [uid15257@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:19 < kcwu> 常常抓完圖就放好幾天, 然後可能就忘了 report issue ...
+21:19 -!- raejin__ is now known as raejin_
+21:19 -!- c9s [sid15100@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:19 -!- ronnywang__ [uid15193@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:20 -!- LexChien_ [uid22565@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:20 -!- fntsrlike_ [uid16354@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:20 -!- softpapa___ [uid13237@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:20 -!- zaeneas [uid14129@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:20 -!- ljm [uid21192@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:23 < clkao_> slmt: 對什麼專案有興趣嗎 :D
+21:23 -!- ipa_ [sid12333@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:23 -!- walkingcloudice_ [uid13955@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:24 -!- Michael_LI_ [uid13469@gateway/web/irccloud.com/session] has joined #g0v.tw
+21:24 -!- BV1AL [~bmc@114.32.53.236] has joined #g0v.tw
+21:24 -!- ipa_ is now known as ipa
+21:24 -!- lcamel [~lcamel@118-169-214-66.dynamic.hinet.net] has joined #g0v.tw
+21:25 < clkao_> kcwu: github android app 可以貼圖嗎？
+21:25 -!- lcamel [~lcamel@118-169-214-66.dynamic.hinet.net] has quit [Remote host closed the connection]
+21:26 < slmt> 我目前有被拉進服貿的專案~
+21:26 < slmt> 不過還沒開始做事@@
+21:26 < kcwu> clkao_: 不行
+21:33 < slmt> 話說我想請問有沒有正在進行的專案是在量化每個政治人物政績
+21:33 < slmt> 或者依政治人物來分類記錄政績資訊的？
+21:34 < clkao_> poga: 喔耶 sauce 會動了 https://travis-ci.org/g0v/ly.g0v.tw/jobs/18126825
+21:34 < kcwu> clkao_'s url: [Travis CI - Free Hosted Continuous Integration Platform for the Open Source Community]
+21:35 < clkao_> slmt: 目前是沒有 這個範圍有點模糊 而且政績如何量化很難有定論... 但是如果寫到 wikipedia 上至少可以用 fact.g0v 呈現
+21:35 < poga> clkao_: 喔喔喔喔 clkao_++
+21:37 < clkao_> poga: https://saucelabs.com/tests/2a738497573a4bef81a6b9d42ba3024b
+21:37 < kcwu> clkao_'s url: [Sauce Labs: Test Session Details]
+21:37 < clkao_> 可以點選每個步驟 XD
+21:39 < poga> clkao_: 天阿好潮 XD
+21:40 < clkao_> 真的 接下來就是要有人幫忙寫測試了 :D
+21:42 -!- pm5 [~pm5@111-248-209-155.dynamic.hinet.net] has joined #g0v.tw
+21:45 < slmt> clkao_: 恩恩~ 我個人是還蠻想要這種平台的啦XD
+21:45 < slmt> clkao_: 這樣就可以在選舉的時候有個參考依據
+21:46 < slmt> clkao_: 不過我想也許可以建立一個專門用政治人物做分類並記錄每個人政績的平台
+21:48 < slmt> clkao_: 也許可以透過讓網友投票或者寫評論的方式來做量化
+21:52 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+21:52 -!- cyt93cs [~cyt93cs@140.123.101.4] has joined #g0v.tw
+21:52 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+21:52 -!- f0rth [~f0rth@ubuntu.amersen.com.tw] has joined #g0v.tw
+21:52 -!- CindyLinz [~cindy_utf@112.121.80.249] has joined #g0v.tw
+21:53 < clkao_> slmt: 選票成分分析可能比較接近
+21:53 < slmt> clkao_: 怎麼說@@?
+21:55 < clkao_> 應該是有預計作一些政績紀錄 可以看看 bater 最新的設計
+21:55 < ipa> www.facebook.com/VotesAnalysis
+21:55 < clkao_> poga: 現在剩一個問題... test:* 因為用 gulp-exec, 失敗時還是 exit 0  就永遠 pass 了 XD ... 有空幫忙看一下嗎？
+21:56 < ipa> slmt: 選票成分分析是一個專案，可以參考上面那個連結
+21:56 < poga> clkao_: XD 好，我看看
+21:56 -!- kcliu__ [uid12402@gateway/web/irccloud.com/session] has quit [Ping timeout: 245 seconds]
+21:56 < ipa> 小光 url 機器人休年假 @@
+21:57 < slmt> clkao_: =口=!!
+21:57 < slmt> clkao_: 這個點子真好!!!
+21:59 < clkao_> poga: 我猜是 gulp-exec map-stream 要 somehow emit 'close' with error
+21:59 < clkao_> poga: 我已經去 gulp-exec 開 issue 了 :p
+21:59 -!- kcliu__ [uid12402@gateway/web/irccloud.com/session] has joined #g0v.tw
+22:00 < poga> clkao_: 好快 XD 我還想說要不要用gulp-karma試試
+22:01 < clkao_> 也行啊 只是下面還有一個 mocha... 想說先修 exec 再慢慢 port :p
+22:02 < poga> 也對，我來看看該怎麼修exec
+22:03 -!- softpapa____ [uid13237@gateway/web/irccloud.com/session] has joined #g0v.tw
+22:03 -!- Luxun_ [uid13676@gateway/web/irccloud.com/session] has joined #g0v.tw
+22:04 -!- Michael_LI__ [uid13469@gateway/web/irccloud.com/session] has joined #g0v.tw
+22:04 -!- walkingcloudice_ [uid13955@gateway/web/irccloud.com/session] has quit [Ping timeout: 272 seconds]
+22:04 -!- zaeneas [uid14129@gateway/web/irccloud.com/session] has quit [Ping timeout: 272 seconds]
+22:04 -!- softpapa___ [uid13237@gateway/web/irccloud.com/session] has quit [Ping timeout: 272 seconds]
+22:04 -!- ronnywang__ [uid15193@gateway/web/irccloud.com/session] has quit [Ping timeout: 272 seconds]
+22:04 -!- Luxun [uid13676@gateway/web/irccloud.com/session] has quit [Ping timeout: 272 seconds]
+22:04 < slmt> clkao_: 不過我要如何加入這個計畫呢@@?
+22:04 -!- Luxun_ is now known as Luxun
+22:04 -!- softpapa____ is now known as softpapa___
+22:04 -!- zaeneas [uid14129@gateway/web/irccloud.com/session] has joined #g0v.tw
+22:04 -!- Michael_LI_ [uid13469@gateway/web/irccloud.com/session] has quit [Ping timeout: 272 seconds]
+22:04 -!- pm5cloud_ [uid13333@gateway/web/irccloud.com/session] has quit [Ping timeout: 272 seconds]
+22:04 -!- Michael_LI__ is now known as Michael_LI_
+22:04 -!- walkingcloudice_ [uid13955@gateway/web/irccloud.com/session] has joined #g0v.tw
+22:04 -!- BV1AL [~bmc@114.32.53.236] has quit [Ping timeout: 272 seconds]
+22:04 -!- ronnywang__ [uid15193@gateway/web/irccloud.com/session] has joined #g0v.tw
+22:04 -!- raejin_ [uid12959@gateway/web/irccloud.com/session] has quit [Ping timeout: 272 seconds]
+22:05 -!- raejin__ [uid12959@gateway/web/irccloud.com/session] has joined #g0v.tw
+22:05 -!- pm5cloud__ [uid13333@gateway/web/irccloud.com/session] has joined #g0v.tw
+22:08 -!- jbytw [uid13105@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- jbytw [uid13105@gateway/web/irccloud.com/x-csjbrijxuonujyyw] has joined #g0v.tw
+22:08 -!- Bropheus [uid22432@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- Bropheus [uid22432@gateway/web/irccloud.com/x-ipiqhiiubxzyuzxy] has joined #g0v.tw
+22:08 -!- whitglint [uid15486@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- whitglint [uid15486@gateway/web/irccloud.com/x-ekplpwwfkjmpzgrc] has joined #g0v.tw
+22:08 -!- superbil_c_ [uid12362@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- superbil_c_ [uid12362@gateway/web/irccloud.com/x-ghlkbexfmakbwucc] has joined #g0v.tw
+22:08 -!- johnny__ [uid19482@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- johnny__ [uid19482@gateway/web/irccloud.com/x-dxaxcfaitbiqnbno] has joined #g0v.tw
+22:08 -!- nekki_ [uid16895@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- nekki_ [uid16895@gateway/web/irccloud.com/x-nrtkwcaogebgjadv] has joined #g0v.tw
+22:08 -!- slmt [uid22524@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- slmt [uid22524@gateway/web/irccloud.com/x-rpscwiaearuaslvc] has joined #g0v.tw
+22:08 -!- ttcat_ [sid12341@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- ttcat_ [sid12341@gateway/web/irccloud.com/x-vezdfsxjukggdufp] has joined #g0v.tw
+22:08 -!- pofeng_ [uid13024@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- pofeng_ [uid13024@gateway/web/irccloud.com/x-kfklecktszcxrpvi] has joined #g0v.tw
+22:08 -!- allenlinli [uid13852@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- allenlinli [uid13852@gateway/web/irccloud.com/x-srznevziontirima] has joined #g0v.tw
+22:08 -!- ballII [uid22246@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- ballII [uid22246@gateway/web/irccloud.com/x-xpgajikyjdpshhdp] has joined #g0v.tw
+22:08 -!- WeiHung [uid13045@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- WeiHung [uid13045@gateway/web/irccloud.com/x-jvlhiswtrrhnmmei] has joined #g0v.tw
+22:08 -!- stardog_ [uid14441@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- stardog_ [uid14441@gateway/web/irccloud.com/x-xkbdwbvdieijidmr] has joined #g0v.tw
+22:08 -!- a0kman_ [uid15218@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- a0kman_ [uid15218@gateway/web/irccloud.com/x-srravkxnxmmrotwf] has joined #g0v.tw
+22:08 -!- czchen [sid12445@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- czchen [sid12445@gateway/web/irccloud.com/x-xiarcadlnxvsgfgb] has joined #g0v.tw
+22:08 -!- yyhuang_ [uid13204@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- yyhuang_ [uid13204@gateway/web/irccloud.com/x-eigrykpewwpzppmc] has joined #g0v.tw
+22:08 -!- YangHung___ [uid21603@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- YangHung___ [uid21603@gateway/web/irccloud.com/x-zxakbuouswqhqmud] has joined #g0v.tw
+22:08 -!- Barrett__ [uid23720@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- Barrett__ [uid23720@gateway/web/irccloud.com/x-pawniybhkcfgtpve] has joined #g0v.tw
+22:08 -!- c9s [sid15100@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- c9s [sid15100@gateway/web/irccloud.com/x-kkayjgwnhhbudqbu] has joined #g0v.tw
+22:08 -!- venev [uid22431@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- venev [uid22431@gateway/web/irccloud.com/x-ywksvihocwprjxpj] has joined #g0v.tw
+22:08 -!- simonpai__ [uid23131@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- simonpai__ [uid23131@gateway/web/irccloud.com/x-vqjsmpjlcxwjrctd] has joined #g0v.tw
+22:08 -!- otaQ_ [uid15257@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- otaQ_ [uid15257@gateway/web/irccloud.com/x-meafmegksnmgaifq] has joined #g0v.tw
+22:08 -!- LexChien_ [uid22565@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- LexChien_ [uid22565@gateway/web/irccloud.com/x-usffknvyivaatoyl] has joined #g0v.tw
+22:08 -!- fntsrlike_ [uid16354@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- fntsrlike_ [uid16354@gateway/web/irccloud.com/x-veotosfmfmswpobe] has joined #g0v.tw
+22:08 -!- ljm [uid21192@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- ljm [uid21192@gateway/web/irccloud.com/x-rqtgsjlnguilseyq] has joined #g0v.tw
+22:08 -!- ipa [sid12333@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- ipa [sid12333@gateway/web/irccloud.com/x-dfhqpyzcftbpmoyp] has joined #g0v.tw
+22:08 -!- kcliu__ [uid12402@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- kcliu__ [uid12402@gateway/web/irccloud.com/x-bvknlxhzhhonxqvv] has joined #g0v.tw
+22:08 -!- softpapa___ [uid13237@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- softpapa___ [uid13237@gateway/web/irccloud.com/x-segdpqaphjvfdjno] has joined #g0v.tw
+22:08 -!- Luxun [uid13676@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- Luxun [uid13676@gateway/web/irccloud.com/x-zuoimjaxrjjklded] has joined #g0v.tw
+22:08 -!- Michael_LI_ [uid13469@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- Michael_LI_ [uid13469@gateway/web/irccloud.com/x-zzbfbjomcpnnwyna] has joined #g0v.tw
+22:08 -!- walkingcloudice_ [uid13955@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- walkingcloudice_ [uid13955@gateway/web/irccloud.com/x-kvepuagfyfanmsyz] has joined #g0v.tw
+22:08 -!- zaeneas [uid14129@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- zaeneas [uid14129@gateway/web/irccloud.com/x-rasdcdgfcnzowzee] has joined #g0v.tw
+22:08 -!- ronnywang__ [uid15193@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- ronnywang__ [uid15193@gateway/web/irccloud.com/x-vurayitnkuybrqlq] has joined #g0v.tw
+22:08 -!- raejin__ [uid12959@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- raejin__ [uid12959@gateway/web/irccloud.com/x-gusjfckuogvxkslt] has joined #g0v.tw
+22:08 -!- pm5cloud__ [uid13333@gateway/web/irccloud.com/session] has quit [Changing host]
+22:08 -!- pm5cloud__ [uid13333@gateway/web/irccloud.com/x-sdjannlstaffuiaf] has joined #g0v.tw
+22:09 -!- venev_ [uid22431@gateway/web/irccloud.com/session] has joined #g0v.tw
+22:09 -!- venev_ [uid22431@gateway/web/irccloud.com/session] has quit [Changing host]
+22:09 -!- venev_ [uid22431@gateway/web/irccloud.com/x-cwfxhwfkzanvofvr] has joined #g0v.tw
+22:12 -!- ymow [~Adium@1.173.99.31] has quit [Ping timeout: 272 seconds]
+22:12 -!- venev [uid22431@gateway/web/irccloud.com/x-ywksvihocwprjxpj] has quit [Ping timeout: 272 seconds]
+22:12  * slmt 這是測試
+22:12 -!- kcliu__ [uid12402@gateway/web/irccloud.com/x-bvknlxhzhhonxqvv] has quit [Ping timeout: 272 seconds]
+22:12 -!- venev_ is now known as venev
+22:13 -!- kcliu__ [uid12402@gateway/web/irccloud.com/session] has joined #g0v.tw
+22:13 -!- kcliu__ [uid12402@gateway/web/irccloud.com/session] has quit [Changing host]
+22:13 -!- kcliu__ [uid12402@gateway/web/irccloud.com/x-iwmayjttyivpsjbr] has joined #g0v.tw
+22:14 -!- lcamel [~lcamel@118-169-214-66.dynamic.hinet.net] has joined #g0v.tw
+22:16 -!- ronnywang___ [uid15193@gateway/web/irccloud.com/x-sxfshetvztnoxntx] has joined #g0v.tw
+22:16 -!- zaeneas_ [uid14129@gateway/web/irccloud.com/x-twfjlpkithjyzvxr] has joined #g0v.tw
+22:18 -!- simonpai_ [uid23131@gateway/web/irccloud.com/x-fhploabnsseoibny] has joined #g0v.tw
+22:19 -!- slmt_ [uid22524@gateway/web/irccloud.com/x-skascidhchawfkly] has joined #g0v.tw
+22:21 -!- ronnywang__ [uid15193@gateway/web/irccloud.com/x-vurayitnkuybrqlq] has quit [Ping timeout: 272 seconds]
+22:21 -!- zaeneas [uid14129@gateway/web/irccloud.com/x-rasdcdgfcnzowzee] has quit [Ping timeout: 272 seconds]
+22:21 -!- slmt [uid22524@gateway/web/irccloud.com/x-rpscwiaearuaslvc] has quit [Ping timeout: 272 seconds]
+22:21 -!- ronnywang___ is now known as ronnywang__
+22:21 -!- zaeneas_ is now known as zaeneas
+22:21 -!- slmt_ is now known as slmt
+22:21 -!- kcliu__ [uid12402@gateway/web/irccloud.com/x-iwmayjttyivpsjbr] has quit [Ping timeout: 272 seconds]
+22:21 -!- simonpai__ [uid23131@gateway/web/irccloud.com/x-vqjsmpjlcxwjrctd] has quit [Ping timeout: 272 seconds]
+22:21 -!- simonpai_ is now known as simonpai__
+22:22 -!- travis-ci [~travis-ci@ec2-23-22-169-84.compute-1.amazonaws.com] has joined #g0v.tw
+22:22 < travis-ci> [travis-ci] g0v/ly.g0v.tw#208 (master - 7e1f592 : Chia-liang Kao): The build passed.
+22:22 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/cbf1759b5b8e...7e1f5920a744
+22:22 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/18130047
+22:22 -!- travis-ci [~travis-ci@ec2-23-22-169-84.compute-1.amazonaws.com] has left #g0v.tw []
+22:22 -!- lcamel [~lcamel@118-169-214-66.dynamic.hinet.net] has quit [Remote host closed the connection]
+22:23 -!- kcliu__ [uid12402@gateway/web/irccloud.com/x-yydolkoyoytqypik] has joined #g0v.tw
+22:24 < venev> au++ 零時第一年之中文版已經可以張貼在 g0v.tw 部落格了嗎？還是要等台權會那邊先上稿？
+22:28 -!- cyt93cs [~cyt93cs@140.123.101.4] has quit [Ping timeout: 261 seconds]
+22:28 -!- hlb [~hlb@li381-115.members.linode.com] has quit [Ping timeout: 261 seconds]
+22:28 -!- f0rth [~f0rth@ubuntu.amersen.com.tw] has quit [Ping timeout: 261 seconds]
+22:28 -!- CindyLinz [~cindy_utf@112.121.80.249] has quit [Ping timeout: 261 seconds]
+22:29 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has quit [Ping timeout: 458 seconds]
+22:34 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+22:36 -!- CindyLinz [~cindy_utf@112-121-80-249.mwsrv.com] has joined #g0v.tw
+22:36 < poga> clkao_: 疑，我試了一下 https://gist.github.com/poga/8784854 這樣跑, 他會return error code耶
+22:36 < kcwu> poga's url: [fail_process.ls]
+22:36 -!- f0rth [~f0rth@ubuntu.amersen.com.tw] has joined #g0v.tw
+22:41  * poga 繼續研究...
+22:44 -!- kcliu___ [uid12402@gateway/web/irccloud.com/x-ajjsbhzhdqlddasq] has joined #g0v.tw
+22:45 < clkao_> poga: 可能因為有 end() ? pipe 時可能爛掉.. ?
+22:46 -!- superbil^^ is now known as superbil_
+22:47 -!- Netsplit *.net <-> *.split quits: f0rth, kcliu__, hlb
+22:47 -!- kcliu___ is now known as kcliu__
+22:55 -!- BV1AL [~bmc@114-32-53-236.HINET-IP.hinet.net] has joined #g0v.tw
+22:57 -!- scrollback [scrollback@conference/jsconf/x-jxydgelpfvxabysr] has joined #g0v.tw
+22:57 -!- chihchun [~chihchun@218-161-0-222.HINET-IP.hinet.net] has quit [Ping timeout: 282 seconds]
+22:58 < au> venev: 授權是 CC-By 4.0 但不確定季報出刊前先發線上版怎麼措辭，也許加注？我問問，明天回覆。
+23:06 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has joined #g0v.tw
+23:06 -!- chihchun_afk [~chihchun@218-161-0-222.HINET-IP.hinet.net] has joined #g0v.tw
+23:06 -!- chihchun_afk is now known as chihchun
+23:06 -!- Netsplit over, joins: f0rth
+23:12 < clkao_> poga: rm -rf _public && gulp --require LiveScript test:karma 就可以重現了
+23:13 < poga> clkao_: ok, 正在找問題出在哪
+23:15 -!- haroldwu [~haroldwu@219.85.185.194] has quit [Quit: leaving]
+23:20 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 247 seconds]
+23:21 -!- au_ [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+23:29 < poga> clkao_: 看起來gulp-exec跟map-stream都有把error emit出來... 只要在後面接上.on \error 就能接到，只是gulp沒有把他throw出來@@
+23:34 -!- au [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+23:40 -!- au_ [~audreyt@ec2-175-41-252-43.ap-northeast-1.compute.amazonaws.com] has quit [Ping timeout: 272 seconds]
+23:40 -!- chihchun [~chihchun@218-161-0-222.HINET-IP.hinet.net] has quit [Ping timeout: 272 seconds]
+23:40 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has quit [Ping timeout: 272 seconds]
+23:40 -!- haroldwu_ [~haroldwu@219.85.185.194] has joined #g0v.tw
+23:40 -!- hlb [~hlb@li381-115.members.linode.com] has joined #g0v.tw
+23:42 -!- chihchun_afk [~chihchun@218-161-0-222.HINET-IP.hinet.net] has joined #g0v.tw
+23:42 -!- chihchun_afk is now known as chihchun
+23:43 -!- haroldwu_ is now known as haroldwu
+23:49 -!- travis-ci [~travis-ci@ec2-54-242-221-94.compute-1.amazonaws.com] has joined #g0v.tw
+23:49 < travis-ci> [travis-ci] g0v/ly.g0v.tw#209 (gulp-protractor - 9509f35 : Poga Po): The build passed.
+23:49 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/aa90701b159d...9509f35d600a
+23:49 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/18135871
+23:49 -!- travis-ci [~travis-ci@ec2-54-242-221-94.compute-1.amazonaws.com] has left #g0v.tw []
+23:59 -!- Netsplit *.net <-> *.split quits: allenown, macpaul, ManicLF

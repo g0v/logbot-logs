@@ -1,0 +1,597 @@
+--- Day changed 日  6月 09 2013
+00:02 < clkao> au: is there better idioms for something like: insert into contact (member_id, other_member_id, public) select 2, member_id,   't' from member as t(member_id, other_member_id, public) where login in ('ipa','au') and member_id not in (select other_member_id from contact where member_id = 2);
+00:02 < clkao> au: it's like upserting multiple entries for a relation
+00:03 < au> not right off the top of my head
+00:09  * au 開始上載 3.6G 的客語發音檔 (共 14 萬項四海大平安) 給 akamai... 看這個速度醒來可能剛好傳完
+00:09 < au> -> zzz &
+00:15 < hlb_> ETBlue 的流程圖，實在有種從 alpha 象限一路出發到 delta 象限的 fu
+00:15 < ETBlue> hlb_: 哪...哪個流程圖
+00:16 < ETBlue> hlb_: 喔喔網站 orz 請問你有還什麼感覺（遞麥克風
+00:16 < ETBlue> hlb_: 正確來說那已經超過網站本身了，很多是hackfoldr的功能惹
+00:17 < ETBlue> 不過反正都是一起搞的，所以就..
+00:17 < hlb_> ETBlue: 已經是 g0v roadmap 了
+00:17 < ETBlue> hlb_: 真的 orz
+00:18 < ETBlue> hlb_: 而且今天阿修沒來 QAQ
+00:18 < hlb_> ETBlue: 革命事業藍圖的總工程師
+00:18 < hlb_> ETBlue: 舵手！
+00:18 < ETBlue> hlb_: 囧rz
+00:18 < hlb_> ETBlue: 有一些在圈外的是..? ex, "沒有，我要自幹"
+00:19 < hlb_> # 數位檔案的紙不夠大
+00:19 < Jedi_> 就說 ref VOY
+00:19 < hlb_> Jedi_: 的確
+00:20 < ETBlue> hlb_: 理論上同一組想法的東西在圈在一起，外面的小圈圈是想法的轉折點...但不一定是獨立頁面 @@
+00:21 < ETBlue> hlb_: 純粹角色扮演user然後把直覺想到的念頭打上去而已 = ="
+00:21 < clkao> 進擊的巨g0v
+00:21 < clkao> 進擊的巨0v
+00:21 < ETBlue> hlb_: 所以還沒有去思考實際上的分頁什麼的...
+00:22 < clkao> ETBlue: 外星藍！
+00:23 < ETBlue> hlb_: 今天 ipa 有先整理了一份分頁，我再看看流程圖上的動作有沒有哪些沒有分頁可以處理的
+00:23 < hlb_> 想必外星藍會變成 2014 Q1 的流行色
+00:24 < ETBlue> clkao: 神L高有何貴幹
+00:25  * ETBlue 追今天的 irc log
+00:25 < hlb_> ETBlue: 像 "要錢嗎" "用什麼技術" 似乎不大必要
+00:25 < hlb_> ETBlue++ # 媒體報導素材
+00:25 < hlb_> clkao: g0v 首頁放個 mediakit 吧
+00:26 < hlb_> # logo, 報導用中/英文案, 專案列表, etc.
+00:26 < hlb_> 為了避免別人亂報，所以先幫人做好功課
+00:26 < clkao> hlb_: 是啊
+00:27 < Jedi_> 先寫好可以直接抄的新聞稿（？）跟適合 retweet 的文案....
+00:28  * ETBlue 追 irc log 中，覺得已經離線的 a-tsioh 真是太偉大了...
+00:28 < hlb_> 寫文案這種事情 Jedi_ 真是超適合的
+00:28  * hlb_ 挖... 挖...
+00:28 < Jedi_> 噗
+00:29 < Jedi_> 我很願意寫喔～ 但是手上正在趕別的功課 orz
+00:29 < Jedi_> 要寫衛教文刊在敝院門診表上 zz
+00:29 < hlb_> 衛教 跟 g0v
+00:29 < hlb_> 嗯
+00:29 < Jedi_> KD
+00:29 < hlb_> g0v 勝
+00:30 < Jedi_> 如果是同時來的 request 當然是選 g0v
+00:30 < hlb_> Jedi_: 我有一個很好用的文刊產生器可以幫你完成衛教文刊 http://more.handlino.com/?corpus=chung
+00:30 < kcwu> hlb_'s url: [MoreText.js: 一用就愛上的中文假文產生器]
+00:30 < clkao> hlb_++
+00:30 < clkao> hlb_: 快回到衛教 request 出現的時候送出 g0v request
+00:31 < Jedi_> hlb_: 不行啦，有 domain specific
+00:31 < clkao> 都已經在 VOY 了 這應該不難
+00:31 < hlb_> 去念三類組。然後每天操他們18個小時不用付加班費，難道你真的認為我們選出來的立法委員夠國際化？
+00:31 < hlb_> # 好通順
+00:31 < Jedi_> orz
+00:31 < clkao> moretext++
+00:31 < Jedi_> 這真是貼近事實
+00:31 < Jedi_> # 不，根本就是事實
+00:32 < hlb_> Jedi_: 謝謝你認同鍾子偉
+00:32 < hlb_> 在ECFA簽署的過程中，我沒有刪減過外交的經費……如果把那些都算在內，難道就不能考量更寬廣的同理心問題嗎？
+00:32 < Jedi_> hlb_: @@"
+00:35 < hlb_> Jedi_: 可見你不愛白副
+00:35 < Jedi_> 白副？
+00:36 < icman> 副總統姓白
+00:36 < hlb_> Jedi_: 白海豚的良師益友
+00:36 < Jedi_> icman: i see
+00:36 < clkao> 白水母的益世良友?
+00:37 < hlb_> 他的哥哥和姐姐都在上大學，我們繼續走著，難道你真的認為我們選出來的立法委員夠國際化？
+00:37 < hlb_> ...... 隨便選了三次都出現這句
+00:37 < hlb_> 這一定是什麼天啓
+00:38 < hlb_> 他聳肩。或是他們認知到雖然他們的確想要一個改變，兄弟，現在你第一步要做什麼？
+00:38 < hlb_> # 政變！
+00:39  * ETBlue 現在才看到 .... Borg 的超曲速通道 .... 什麼的... orz
+00:39  * ETBlue 還有... 富有星際觀什麼的... = =bbbbb
+00:45  * ETBlue 繼續追 log 中，果然沒人會想到要去看 hackfoldr 的 About 嗎 orz
+00:45 < au> 我有認真看 \o
+00:48 < ETBlue> au: 謝謝 >///< 
+00:49 < ETBlue> 發現 logbot.g0v.tw 的時間變正常了？
+00:49 < au> ?? 我看起來還是 GMT
+00:50 < au> 對耶，新的 entry 是正常的
+00:50 < au> 只有第一次載入是 GMT
+00:50 < ETBlue> 是噢，我看起來變正常了，但變正常以後全部的人講話都變兩份
+00:50 < ETBlue> refresh 看看...呃時間又變回去了 @@
+00:51 < ETBlue> 似乎是從 00:00 開始產生變化
+00:52 < ETBlue> 現在 refresh 過後，舊的訊息仍是 GMT，新 push 的訊息則是 +8 同時變成雙份
+00:54 -!- logbot_gqv_tw [cinch@2400:8900::f03c:91ff:fe70:416a] has quit [Remote host closed the connection]
+00:55 -!- logbot_gqv_tw [cinch@2400:8900::f03c:91ff:fe70:416a] has joined #g0v.tw
+00:55 < au> testing
+00:55 < au> ok GMT should be fixed
+00:56  * au 亂改了一些 ruby
+00:56 < au> ETBlue: 還是雙份嗎
+00:56 < ETBlue> 是的 
+00:56 < ETBlue> 但時間正確 @o@
+00:57 < ETBlue> refresh 一出來的是時間+份數都正確，新 push 出來的是時間正確+雙份
+00:57 -!- logbot_gqv_tw [cinch@2400:8900::f03c:91ff:fe70:416a] has quit [Remote host closed the connection]
+00:57 < hychen> http://hack.g0v.tw/kuansim/
+00:57 < au> ETBlue: try shift-refresh
+00:57 -!- logbot_gqv_tw [cinch@2400:8900::f03c:91ff:fe70:416a] has joined #g0v.tw
+00:57 < hychen> 弄了一份hackfolder
+00:58  * au 改完 ruby 繼續改 js
+00:58  * ETBlue 看著 au 變魔術 *^-^*
+00:58 < hychen> 好像沒有什麼比較好用的issue tracking solution XD
+00:58 < au> 如果還是雙份那暫時沒辦法... 因為這裡無法重現
+00:59 < au> hmm
+00:59 < ETBlue> au: 那就先不管他了，反正只要 refresh 就好了 XD
+00:59 < au> alright XD
+00:59 < au> hychen: 好完整啊
+01:00 < au> hychen: github issue tracking 有覺得缺什麼嗎
+01:00 < ETBlue> hychen: 這.... 這應該加到長期專案的選單裡吧 @@ 超完整
+01:01 < hychen> au, 只有engineer會想用...
+01:01 < hychen> au, 就是只有這個缺點
+01:01 < ETBlue> 我想他說的是今天那個社會議題追蹤的 issue tracking
+01:01 < au> 嗯嗯
+01:02 < ETBlue> 後來他們一陀人圍起來討論的結果好像是要用 facebook open graph 的原理去搞
+01:02 < ETBlue> 然後就變成世界奇觀..... 我是不太懂... = =
+01:03 < au> 果然是世界奇觀
+01:03 < hychen> ETBlue, 我是說團隊的issue tracking 
+01:03 < ETBlue> hychen: 喔喔喔原來如此 orz
+01:03 < superbil> hychen: trello XD
+01:03 < hychen> au, 因為大家會共用的元件是DB
+01:03 < ETBlue> 之前用 trello ... 不過現在荒廢惹 XD
+01:04 < hychen> 要我來說, launchpad滿好用的
+01:04 < hychen> 而且我手上一堆automatic script XD
+01:04 < ETBlue> hackpad 也是有文件異動通知啦 @@"
+01:04 < au> launchpad++
+01:04 < hychen> 缺點也是只有engineer 會想用
+01:06 < hychen> launchpad 有serias, milestone, tag, team management, sharing control
+01:07 < hychen> superbil, trello 那種方式只有在任務跟團隊都簡單下好用
+01:07 < hychen> superbil, 需要做跨組協調就很麻煩
+01:09 < hychen> superbil, 為什麼我會這麼說呢, 因為之前PyConTaiwan2012用過trellow做tracking
+01:09 < hychen> superbil, 後來中途就換系統了
+01:10 < au> Pivotal Tracker ? BugHerd?
+01:10 < hychen> au, 沒聽過這兩個, let me see see
+01:10 < superbil> hychen: 原來是這樣，親身經歷 XD
+01:10 < hychen> superbil, 話說回來, 我們現在只有engineer耶 XD
+01:10 < au> pivotal 比較全 (親身經歷), bugherd 主推上手容易
+01:10 < au> +github integration
+01:11 < hychen> superbil, basecamp我也用過, 其實我對它評價也很低
+01:11 < superbil> hychen: 不是還在蓋世界奇觀嗎 XD
+01:11 < hychen> superbil, 在世界奇觀蓋起來前，我們也是要先把砲塔做出來 
+01:13 < superbil> hychen: 我以前是用過 Jira 感覺還可以， launchpad 我等等開個來玩看看
+01:14 < hychen> superbil, 應應該也不會用lp
+01:14 < hychen> superbil, 因為它是軟體開發追蹤, 不是團隊事務追蹤
+01:15 < hychen> superbil, 開發軟體用github issue就可以了
+01:16 < hychen> superbil, 等有非engineer 加入再說 XD
+01:16 < superbil> hychen: 我剛還想到 hipchat，看來也不太合用
+01:16  * ETBlue 現在才發現 gdocs drawing 預設分享只能 view .... orz 已改成 anyone can edit
+01:17 < hychen> superbil, 我們可以用動民主來討論 
+01:17 < hychen> superbil, 我來開一個議題
+01:17 < ETBlue> ipa: 架構圖也需要改成 anyone can edit QAQ
+01:17 < ETBlue> 用動民主做 issue tracking？
+01:18 < hychen> ETBlue, 不是, 事用來做倡議
+01:18 < hychen> s/事/是/
+01:18 < ETBlue> hychen: 喔喔 XD
+01:19 < ETBlue> 我要廣告一下據說沒人看過的動民主行動版網頁 mockup 相簿... https://picasaweb.google.com/110174937980629662857/G0v?authuser=0&feat=directlink
+01:19 < kcwu> ETBlue's url: [Picasa Web Albums - ET Blue - g0v]
+01:20 < au> 非常有 Android 風味
+01:21 -!- VoidChen [~VoidChen@118-160-162-3.dynamic.hinet.net] has quit [Remote host closed the connection]
+01:21 < ETBlue> 這是 lqfb 的版本，prfb 的不太一樣，之後相簿會持續更新 @@
+01:21 < au> 有種想讓人包成 app 的感覺 XD
+01:21 < ETBlue> 你好敏銳 @@"
+01:21 < Jedi_> 據說有人啃了 android dev style guide 之類的東西（？）
+01:22 < ETBlue> 我全部先用 android 官方 stencil 的圖示
+01:22 < au> 難怪
+01:22 < hlb_> 還不賴
+01:22 < Jedi_> ETBlue the Borg Queen
+01:23 < Jedi_> 施展了同化技能（？）
+01:23 < ETBlue> 之前為了作全民公投的 app 所以啃完了文件... 結果後來專案合併到台灣連署資源運籌平台去了 XD
+01:23 -!- kong0107 [3a72d83d@gateway/web/freenode/ip.58.114.216.61] has joined #g0v.tw
+01:23 < ETBlue> 我還是去查一下 Borg 到底是什麼好惹
+01:23 < ETBlue> 聽不懂... = =
+01:24 < Jedi_> ETBlue: 嗯，從光頭畢凱開始看
+01:24 < hlb_> !
+01:24 < ETBlue> ......
+01:24 < Jedi_> ETBlue: 看到女海賊珍威回家就可以了
+01:24 < hlb_> ETBlue: 妳的宅度大輸 ipa 
+01:24 < ETBlue> 輸這種東西一點都不覺得有什麼好惋惜...
+01:25 < hlb_> ETBlue: 可是裡面有很多很棒的 UI
+01:25 < hlb_> ETBlue: 值得學習
+01:25 < Jedi_> ETBlue: http://www.thinkgeek.com/product/60fd/
+01:25 < kcwu> Jedi_'s url: [ThinkGeek :: resistance is futile]
+01:26 < hlb_> ETBlue: 1x 年前影集的內容現在正好流行
+01:26 < hlb_> ex... um.. flat design
+01:26 < Jedi_> hlb_: 不如說，例如，平板電腦
+01:27 < ETBlue> prfb 的議案列表的 filter 其實也跟 lqfb 不太一樣，多了針對投票的 filter
+01:28 < hlb_> Jedi_: "正好流行"
+01:28 < Jedi_> hlb_: Star Trek 的 LCARS 現在也沒有真的在流行啊，而且其實不是很好用 KD
+01:28 < Jedi_> 只是用在影集裡面很好看而已
+01:29 < Jedi_> 真的想不開的話，就，例如...   https://play.google.com/store/apps/details?id=com.omnicorp.lcarui.test&hl=en
+01:29 < kcwu> Jedi_'s url: [LCARS UI - Android Apps on Google Play]
+01:29 < hlb_> Jedi_: 我也沒說 flat design 好用啊......
+01:29 < hlb_> # 完全符合我對 flat design 的偏見
+01:30 < Jedi_> LCARS 喜歡用弧線，這跟現在的 flat design 方向還是不同的啦。
+01:31  * ETBlue 遵循 android ics design guide line 對 flat design 無感中 XD
+01:31 < au> 發現 jQuery Mobile 有 holo 的 skin 
+01:31 < au> http://nativedroid.godesign.ch/
+01:31 < kcwu> au's url: [nativeDroid a jQuery Mobile Theme]
+01:32 < Jedi_> ETBlue: 不過你要知道，G 社很喜歡大改 design guide  KD
+01:32 < ETBlue> 今天吃飯時小Q提到mobile web 的效能問題主要是卡在 render，其實我的平板跟手機開網頁都爆炸慢的，很擔心prfb的網頁版爆炸慢
+01:33 < au> ETBlue: 所以要包成 app 啊
+01:33 < ETBlue> 小Q = LittleQNCCU 
+01:33 < Jedi_> ETBlue: 所以要包成 app 啊
+01:33  * Jedi_ 跟著推一下
+01:33 < au> Jedi++
+01:34 < ETBlue> au: 據說 web app 也要全部先 render 出來，只是讓 view 疊在一起，然後在互動時調換 layer 順序？
+01:34 < au> 是的，jQuery mobile 正是這樣
+01:34 < au> app 的好處只是所有的 view 一次在安裝時下載完了
+01:34 < ETBlue> 不然用 toggle display 一樣會 render 很久...
+01:34 < au> （而安裝時使用者的耐心比平時好很多）
+01:35 < ETBlue> au: 那麼議案清單需要分頁嗎？還是一直往下捲捲捲... 據說 js 不清記憶體的，捲到後面會爆炸慢 orz
+01:37 < au> 我覺得如果同時進行的議案不太多
+01:37 < au> =看歷史議案不是常態
+01:37 < ETBlue> nativeDroid 看起來好方便 :D
+01:37 -!- kong0107 [3a72d83d@gateway/web/freenode/ip.58.114.216.61] has quit [Quit: Page closed]
+01:37 < au> =有需要時(捲到後面)再載入 = 就還好。
+01:38 < ETBlue> au: 喔喔喔理解，我想應該不是常態，這冷門的系統有人用就要偷笑了...
+01:38  * ETBlue 悲觀主義者
+01:38  * au 偷笑
+01:38 < ETBlue> XDXDXDXD
+01:43 < hlb_> 也有怎麼樣都卷不完，但是每次只 render 出一些資料的方法喲 :p
+01:44 < au> 聽說叫做 grid :p
+01:45 < tkirby> http://zbryikt.github.io/ppllink/?g0v # 可以線上新增資料了~!
+01:45 < kcwu> tkirby's url: [公眾人物關係圖產生器]
+01:49 < au> 好讚, 可是一 refresh 就卡在載入中，出現 ᗧᗧᗧᗧ 一 Pᗣᗧ•••MᗣN
+01:50 < au> 修好了
+01:56 < ETBlue> 政治人物關係圖好壯觀XDDDD
+01:58 < Jedi_> 布丁！
+01:59 < au> tkirby: firefox 切換領域會出現奇妙的圖片錯亂... 剛才看到 ipa 的頭像底下標註「蔣經國」
+01:59 < au> 可能是 render 不夠快 (chrome 就沒問題)
+02:00 -!- a-tsioh [~pierre@175.176.102.84.rev.sfr.net] has joined #g0v.tw
+02:00 < a-tsioh> hi
+02:01 < ETBlue> a-tsioh : m(_ _)m
+02:03 < Jedi_> 來去睡了，早上六點還要起床去研討會 *_*   大家加油～！  &
+02:03 < ETBlue> a-tsioh: 剛才看了今天的 irc log 感到非常敬佩... 您睡飽了嗎？ XD
+02:03 < ETBlue> Jedi_: 晚安
+02:03 < au> tkirby: firefox 選 g0v => 政治人部 => 變這樣
+02:03 < au> http://imgur.com/UmIW7LW 
+02:03 < kcwu> au's url: [imgur: the simple image sharer]
+02:03 < au> *政治人物
+02:08 < a-tsioh> :-)
+02:08 < a-tsioh> ETBlue: 有了有了
+02:09 < a-tsioh> 而且一起牀就可以上客語詞典，很爽！
+02:09 < au> (大自家正做得摎事情做到恁好)++
+02:09 < ETBlue> XDXDXD
+02:10 < a-tsioh> ：）
+02:11 < a-tsioh> 舉手之勞:p
+02:12 < a-tsioh> (不過整個晚上一直舉手都不睡也會算有一點累的勞　：D）
+02:14 < au> MDR
+02:14 < au> # 據說是法文的 LOL
+02:15 < a-tsioh> Mort De Rire
+02:15 < a-tsioh> 笑死了 的意思 :)
+02:16 < a-tsioh> 還有ptdr
+02:16 < a-tsioh> 笑到壞掉了
+02:17  * a-tsioh 想用opalang寫個網路版的臺語輸入法
+02:19 < au> a-tsioh: pcchen 後來做了一些 design work
+02:19 < au> http://hack.g0v.tw/g0v-hackath3n/jBwY0uGjPfB => 閩南語 羅馬字 輸入界面
+02:19 < au> 就是給網路版的臺語輸入法 (POJ + TL) 用的
+02:20 < au> 如果 opalang 寫得出來就太讚了
+02:20 -!- icman [~icman@123.240.147.165] has quit [Quit: 明天天氣晴]
+02:25 < a-tsioh> 我要看一下
+02:26 -!- mindos [~mindos@116.59.233.28] has joined #g0v.tw
+02:28 < a-tsioh> 可是可能lookup和IME的design會有查
+02:29 < au> 確實，但 IME 似乎是 superset
+02:29 < au> lookup 可以從 IME customize 出來
+02:29 < a-tsioh> 恩沒錯
+02:30 < au> 小坑蘊含於大坑 這樣的關連
+02:30 < a-tsioh> need some api in-between
+02:30 < au> up
+02:30 < au> yup
+02:32 < a-tsioh> 我也是在想這個user scenario ：先打TL打完文章，才有滑鼠改聲調和漢字
+02:33 < au> whole document as buffer
+02:33 < a-tsioh> 這樣應該跟lookup差不多
+02:33 < a-tsioh> yep
+02:36 < a-tsioh> whole doc as buffer才可以用計算語言學的一些技術
+02:36 < au> indeed
+02:36 < a-tsioh> using the context
+02:36 < a-tsioh> 這就是我明年的工作
+02:37 < au> 聽來是很讚的工作
+02:37 < au> alright, hitting the hay here... have a good night too
+02:37 < a-tsioh> 現在可以先準備簡單的基礎
+02:37 < a-tsioh> okay
+02:37 < au> ttyt \o
+02:37 < a-tsioh> good night !
+02:46 < hychen> superbil, http://lqfb-test.g0v.tw/pf/initiative/show/25.html?tempstore=dvfxlk4qjjq5ntd7jf5r87g9fj
+02:46 < kcwu> hychen's url: [即時線上討論主要採用IRC - 方案 i25 - 「動民主」 - g0v.tw]
+02:46 < hychen> superbil, 你的帳號是哪個?
+02:49 -!- hychen [~hychen@host-219-68-121-62.dynamic.kbtelecom.net] has quit [Quit: Leaving]
+03:18 -!- a-tsioh [~pierre@175.176.102.84.rev.sfr.net] has quit [Ping timeout: 260 seconds]
+03:21 -!- a-tsioh [~pierre@175.176.102.84.rev.sfr.net] has joined #g0v.tw
+04:06 -!- juanna_ [~juanna@114-37-97-7.dynamic.hinet.net] has joined #g0v.tw
+04:06 -!- mhs1n [~mhsin@114-32-9-83.HINET-IP.hinet.net] has joined #g0v.tw
+04:08 -!- mhsin [~mhsin@114-32-9-83.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+04:08 -!- cpyang [~cpyang@nerv.siraya.net] has quit [Remote host closed the connection]
+04:08 -!- astro_ [~r94010@linux3.csie.ntu.edu.tw] has quit [Write error: Broken pipe]
+04:09 -!- juanna [~juanna@114-37-97-7.dynamic.hinet.net] has quit [Remote host closed the connection]
+04:11 -!- astro [r94010@linux3.csie.ntu.edu.tw] has joined #g0v.tw
+04:12 -!- cpyang [~cpyang@nerv.siraya.net] has joined #g0v.tw
+04:35 -!- chhsiao2081 [~chhsiao@118-168-217-83.dynamic.hinet.net] has joined #g0v.tw
+04:35 -!- chhsiao1981 [~chhsiao@114-43-149-21.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+04:50 -!- poga_ [~poga@1-171-115-164.dynamic.hinet.net] has joined #g0v.tw
+04:52 -!- poga [~poga@111-241-131-234.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+05:17 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 276 seconds]
+06:09 -!- Supaplextw [~Lucky@114-25-207-218.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+07:02 -!- ETBlue_ [~chatzilla@175.182.237.104] has joined #g0v.tw
+07:03 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Ping timeout: 260 seconds]
+07:03 -!- ETBlue_ is now known as ETBlue
+07:29 < ETBlue> hackfoldr頁面應該沒辦法只 zoom-in 預覽視窗的區塊對嗎 ^^b  hackpad 預設字體比較小，常常需要為了它按 ctrl+ ，結果 hackfoldr 也跟著變胖了 orz
+07:32 < ETBlue> 目前的應對方式是在新視窗打該純 hackpad，不過 hackfoldr 的文件目錄好像也沒辦法用 ctrl - left click 在新視窗打開連結，所以我通常都是按 hackpad g0v collection 然後從裡面找我要的文件，從標題 link 按 ctrl - left click
+07:33 < ETBlue> 或者是開 etherpad 去複製網址自己貼 chrome 網址列
+07:42 -!- ymow [01aba9b1@gateway/web/freenode/ip.1.171.169.177] has quit [Ping timeout: 250 seconds]
+08:13 -!- whyjaster [~whyjaster@220-130-136-72.HINET-IP.hinet.net] has joined #g0v.tw
+08:14 -!- whyjaster [~whyjaster@220-130-136-72.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+08:30 -!- chhsiao2081 [~chhsiao@118-168-217-83.dynamic.hinet.net] has quit [Remote host closed the connection]
+08:44 -!- Supaplextw [~Lucky@114-36-247-123.dynamic.hinet.net] has joined #g0v.tw
+09:40 -!- ronychen [~seathief@118-167-221-184.dynamic.hinet.net] has joined #g0v.tw
+09:40 -!- mindos [~mindos@116.59.233.28] has quit [Read error: Connection reset by peer]
+09:52 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has joined #g0v.tw
+10:09 < clkao> ETBlue: hackfoldr ctrl click should work
+10:14 < ETBlue> clkao: 我在 chrome 跟 ff 裡面按好像不行 @@ 是左邊文件清單的 link @@" inspect elemet 得到 <a ng-click="godoc(doc)" ngx-click-meta="open(doc)" ngx-final="ngx-final" ui-if="doc.type != 'dummy'" class="link ng-scope">
+10:15 -!- a-tsioh [~pierre@175.176.102.84.rev.sfr.net] has quit [Quit: WeeChat 0.3.8]
+10:44 -!- chhsiao1981 [~chhsiao@111-241-123-130.dynamic.hinet.net] has joined #g0v.tw
+10:45 -!- ronychen [~seathief@118-167-221-184.dynamic.hinet.net] has quit [Quit: ronychen]
+10:51 < clkao> ya click meta open 就是 也許 windows 有問題 orz
+10:52 < clkao> 晚點看看
+10:53 < ETBlue> 對不起我用的是 windows = =bbb
+10:57 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+10:58 < pcchen> au: 客語萌典連不上.
+11:12 < clkao> ETBlue: 組了 g0v 樂團了？
+11:13 < ETBlue> clkao: 科比說想在台北組團 \>o</
+11:13 < clkao> !!
+11:14 < ETBlue> clkao: 可是我不會樂器，最好找個簡單的來練，據說最容易上手的可能是貝斯...或木箱鼓 XD
+11:16 < ETBlue> 爵士鼓要拆手腳好難（又很吵），keyboard練起來也好費時... 以前鋼琴學沒多久就放棄惹，有點後悔 = = 深深覺得樂器真的是最好小時後練 >_<
+11:23 < opop> 我會製造噪音。
+11:25 < clkao> ETBlue: 慘 我在 vmware 無法模擬 ctrl click.. 下次有見面在修吧
+11:26 < ETBlue> clkao: 感謝 ><
+11:26 < clkao> 看來好像是 http://bugs.jquery.com/ticket/11328
+11:26 < kcwu> clkao's url: [#11328 (Ctrl key doesn't set event.metaKey to true on Windows) – jQuery Core - Bug Tracker]
+11:27 < ETBlue> clkao: 噢噢... jquery 的 orz
+11:27 < clkao> windows 上 .ctrl key 不會變成 metaKey ... 要特別處理
+11:27 < clkao> 應該是 in general
+11:27 < clkao> 所以 要特別判斷 windows
+11:27 < ETBlue> 提醒我該回去 code school 上課了
+11:27 < clkao> userAgent.match  /Window/ ?
+11:32 < clkao> ETBlue: 試試看 我沒測過 - 確定一下右上角版本是 git-460a6e2
+11:35 -!- rad [~anonymous@118-169-200-62.dynamic.hinet.net] has joined #g0v.tw
+11:37 < ETBlue> !!!!!!!!!!!!!!!!!!! F5 更新到目前版本就現可以了
+11:37 < ETBlue> clkao 萬歲 >o<
+11:37 -!- rad [~anonymous@118-169-200-62.dynamic.hinet.net] has quit [Client Quit]
+11:39 < clkao> woot
+11:48 -!- Custom_ is now known as Custom
+11:53 < superbil> 我使用 "Login with g0v hub"，看到畫面出現 authz request 就不動了 x_x
+11:59 < superbil> 剛剛是從動民主登入的，我換成使用Hub 簽到處那邊登入 Oauth 就可以
+12:01 < superbil> s/Oauth/OAuth With g0v hub
+12:05 -!- caasiHuang [~caasi@114-46-152-252.dynamic.hinet.net] has joined #g0v.tw
+12:19 < clkao> superbil: 要先在 hub 登入後，再去 lqfb-test 點 login with g0v hub
+12:19 < clkao> superbil: 應該要 authz 那邊可以 prompt login, 昨天已經推 fourdollars 坑了
+12:23 < clkao> opop: 我要聽八卦～
+12:24 < opop> clkao: 請 tkirby 說會比較中肯
+12:24 < opop> clkao: 我有先入為主的觀念了 XD
+13:16 -!- icman [~icman@123.240.147.165] has joined #g0v.tw
+13:24 < clkao> http://murmur.caasigd.org/post/52519795740/hackath3n
+13:24 < kcwu> clkao's url: [人雞介面 - hackath3n - hackath3n]
+13:24 < clkao> cassi++
+13:32 < tkirby> XD?
+13:34 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+13:35 < clkao> 話說 newsdiff project 好像可以直接叫真理部
+13:35 < clkao> truth.g0v.tw
+13:35 < caasiHuang> clkao: 謝謝，雖然這樣貼出來好害羞，但希望寫一寫可以更認識自己為什麼覺得 g0v 很讚。
+13:35 < tkirby> 等價交換!
+13:35 < clkao> 「真理部根據政府資訊公開法，在本網站公布業務資訊」
+13:36 < ipa> caasiHuang: 可以去後勤中心貼一下喔 
+13:37 < caasiHuang> ipa: 貼了XD
+13:37 < ipa> caasiHuang: 管理員看到會收到 http://blog.g0v.tw/media  應該沒問題吧？
+13:37 < kcwu> ipa's url: [台灣零時政府 / g0v.tw • 媒體資訊]
+13:37 < clkao> 部長: George Orwell 聯絡地址: 22 Portobello Road, Notting Hill, London
+13:37 < clkao> caasiHuang++
+13:38 < caasiHuang> clkao: 那保存知識的是不是可以叫 fireman 跟 451 呼應一下XD
+13:38 < clkao> 以前去菜市場常常經過 george orwell 故居...
+13:38 < ipa> txt組 \o/
+13:38 < clkao> 發現有這個: http://openplaques.org/plaques/2825
+13:38 < kcwu> clkao's url: [George Orwell blue plaque in London]
+13:38 < caasiHuang> clkao++
+13:39 < clkao> 倫敦歷史名人住所都會有貼藍色牌子 居然有 api 可以查
+13:40 < tkirby> au: fixed >.o # firefox 切換領域會出現奇妙的圖片錯亂
+13:40 < tkirby> 看來可以來弄 project list 了.. XD
+13:40 < tkirby> ipa: 這次的錄影會 release 嗎 XD
+13:41 < tkirby> caasiHuang++ # 出門在外手腳真快
+13:41 < ipa> tkirby: 會低！今天已經有人跟我要老爹講話片段 我已經在抓圖了
+13:41 < tkirby> 噢噢噢~ >///<
+13:42 < clkao> 白客混入黑客松
+13:42 < ipa> 不會特別剪接，整理一下就會上傳，給大家寫文參考
+13:42 < tkirby> ipa++
+13:42 < tkirby> 這次照片數量應該會比較少... 果然下次還是要專心拍照嗎 (!?)
+13:42 < tkirby> 阿, 對噢還有照片要修
+13:44 < clkao> tkirby: 下次換你主持好了
+13:44 < tkirby> clkao: 呃呃呃 XDDD
+13:45 < tkirby> 主持人 kirby: "歡迎我們開場跟閉幕的串場人 clkao 上場!" (拍拍拍)
+13:45 < clkao> ....
+13:47 < clkao> 呼叫維基魔人 Supaplextw, http://en.wikipedia.org/wiki/Deliberative_democracy 這頁居然沒有中文版
+13:47 < kcwu> clkao's url: [Deliberative democracy - Wikipedia, the free encyclopedia]
+13:50 < clkao> tkirby: 原來你是 jpg 組!
+13:50 < ipa> XD
+13:51 < clkao> ipa: mov 組！
+13:52 < chhsiao1981> 關於路見不平. 首先是 Monjour 提出了構想. 然後 ronnywang 整理了一下大致要做哪些事情. 然後找到了台北市和台南市的資料. 然後有發現到其實台北市的資料還算 ok. 已經有提供以工號為 query input 的 json 的 api. 然後 manic 就把資料抓出來. 然後 Willy 和 ronnywang 就先把資料灌到 mongolab. 然後我把 api server 架起來. 讓其他人可以 query by start_da
+13:52 -!- caasiHuang [~caasi@114-46-152-252.dynamic.hinet.net] has quit [Quit: leaving]
+13:53 < chhsiao1981> 所有 code 都有放在 ronnywang 的 github 下: https://github.com/ronnywang/roadpin/
+13:53 < kcwu> chhsiao1981's url: [ronnywang/roadpin · GitHub]
+13:54 < clkao> chhsiao1981++
+13:55 < clkao> jeffhung_++ # incoming twbudget pullreq
+13:56 < tkirby> clkao: 喔喔, 我忽然知道為什麼我要主持了... 因為你要拍照!!! XDDDDDD
+13:57 < ipa> chhsiao1981: 把這貼到blog生一篇出來 再貼到後勤中心分享一下吧～
+13:57 < ipa> 好好奇路見不平的工作過程
+13:57 < tkirby> g0v band 可以寫一些革命用的歌來宣傳... XD
+13:58 < ipa> 強哥會寫歌？
+13:58 < chhsiao1981> ipa: 找 ronnywang 或是 monjour 或是 zoe 來寫可能比較適合 XD.
+13:59 < tkirby> 應該找得到人會寫?
+13:59 < clkao> freddy 說 共和 直接拿去用 不過好像過激了 XD
+14:01 < clkao> 可是裡面又有萌 又有雲端 還蠻科技的？「氣勢拼山河石獅嘛喝振動 意志撼天地虎爺嘛來護航 苗生衝雲頂 文毅鬥武藝  義理堂堂 天理昭昭 歷史明黑白」
+14:09 < clkao> 我好像漏一堆 log 沒追悼
+14:10 < CindyLinz> 熊熊覺得「追悼」這辭用在這邊感覺不錯 :p
+14:11 < clkao> ....
+14:13 < clkao> tkirby++ # http://zbryikt.github.io/ppllink/ 上限!
+14:13 < kcwu> clkao's url: [公眾人物關係圖產生器]
+14:15 < ipa> ETBlue: hychen: 結構圖改成anyone can edit了 
+14:19 < clkao> au: what's next after moedict hakka?  seaurchin-up pgrest a bit more? ;)
+14:19 < ETBlue> 以上txt jpg mov 各組++
+14:19 < clkao> (wanted to say beef but i think you prefer sea urchin to beef)
+14:19 < tkirby> XD
+14:21 < ipa> clkao: 可以把鄉民關心你的hackfoldr加到長期專案嗎？
+14:23 < ipa> http://hack.g0v.tw/kuansim/mynkDCEAXgc #hychen++
+14:24 < clkao> 更新了
+14:40 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has joined #g0v.tw
+14:44 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+14:44 < clkao> tkirby: 要來實驗一下 g0v auth 嗎？
+15:00 < tkirby> clkao: 要怎麼實驗
+15:03 < clkao> tkirby: 我想想看... lqfb 我是用 secret key 寫入 firebase authz 這個 queue, redirect 給 hack.g0v.tw/authz/:authzreq, 然後 hub.ls 就會寫回該 authz req (with username, following etc)
+15:03 < clkao> tkirby: 但如果 pplink 只有前端, 要用什麼 auth token 寫入 authz queue 呢
+15:19 -!- bafu [~bafu@175.181.37.241] has joined #g0v.tw
+15:29 -!- bafu [~bafu@175.181.37.241] has quit [Ping timeout: 264 seconds]
+15:34 -!- juanna [~juanna@114-37-97-7.dynamic.hinet.net] has joined #g0v.tw
+15:35 -!- Howar31 [~howar31@Autumn.cs.ccu.edu.tw] has joined #g0v.tw
+15:35 -!- V1ctor_ [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:38 -!- Howar31_ [~howar31@Autumn.cs.ccu.edu.tw] has quit [Ping timeout: 276 seconds]
+15:38 -!- juanna_ [~juanna@114-37-97-7.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+15:38 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 276 seconds]
+15:44 < tkirby> 不太懂.. 主要是不知道 ppllink 的 secret key 不知道藏哪嗎? 不然 hack.hub 來個 secret key 代管服務? XD
+15:47 < clkao> yeah 主要就是要想辦法解決 key 的問題
+16:01 < clkao> ep_author_neat 代工 request 送出
+16:16 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has quit [Quit: leaving]
+16:17 -!- Zespre [~starbops@140-113-123-194.Dorm13.NCTU.edu.tw] has joined #g0v.tw
+16:28 < tkirby> !!
+16:28 < tkirby> clkao: ep_author_neat 是那個眼睛痛造成的產物嗎
+16:39 < clkao> tkirby: yes
+16:39 < clkao> 已經習慣了 hackpad style... 在看 ep 就覺得很痛苦
+16:39 < clkao> 所以請了某個 etherpad maintainer 把那個 plugin 寫完
+16:39 < tkirby> XD
+16:43 < tkirby> oops, 出現零異照片
+16:43 -!- Echo [dc80d8ea@gateway/web/freenode/ip.220.128.216.234] has joined #g0v.tw
+16:43 -!- Echo is now known as Guest89071
+16:43 < tkirby> 還兩張
+16:47 -!- Guest89071 [dc80d8ea@gateway/web/freenode/ip.220.128.216.234] has quit [Ping timeout: 250 seconds]
+16:59  * ETBlue 期待靈異照片
+17:02 < tkirby> ...很恐怖耶 xD
+17:03 < ipa> 想看
+17:05 < tkirby> 看來只好一起 release 出來了.. xD
+17:05 < tkirby> 話說那張照片裡面有 ipa 的背影
+17:07 < ipa> ok啊 
+17:34 < clkao> ronnywang: 上回畫子公司、轉投資那個有在 github 上嗎？
+17:39 < clkao> ronnywang: 然後公司資料 entry 裡面有公司名稱最後是「（新增統編）」，應該要 filter 掉嗎？
+17:40 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+17:40 < hychen> superbil, ping
+17:54 < tkirby> ETBlue,ipa: 既然你們這麼想看: http://www.flickr.com/photos/tkirby/8994984302/lightbox/
+17:54 < kcwu> tkirby's url: [DSC_9060 | Flickr - Photo Sharing!]
+17:58 < opop> 靈異在？
+18:00 < opop> 喔喔我懂了
+18:00 < opop> 後面有個人 XD
+18:01 < ipa> 眼睛還往上翻
+18:02 < ipa> 恐怖鵝
+18:04 < tkirby> 這個我拍了兩張.. 第二張看到後面是沒人的
+18:04 < tkirby> 不曉得是不是剛好沒拍到
+18:07 < tkirby> 這一定是人民的怨氣！
+18:08 < ipa> 髮型有點像ETblue
+18:09 < ETBlue> 可是我完全沒參與那邊的討論耶... @@
+18:10 < ETBlue> 而且我眼睛沒那麼大... XD
+18:10 < tkirby> ipa: 你不是在場, 有印象那邊還有誰嗎
+18:11 < ETBlue> 好啦說正經的，其實有可能是小蟹的學妹，他也是 txt 組的，會到處晃 XD
+18:11 < ipa> 好像是anna su
+18:11 < ETBlue> 嗯嗯 XD
+18:12 < ipa> 我好像剛好跟她說完話，一起走過去 
+18:12 < tkirby> 這位嗎 http://www.flickr.com/photos/tkirby/8994995488/
+18:12 < kcwu> tkirby's url: [DSC_9023 | Flickr - Photo Sharing!]
+18:12 < ipa> ya 還好女生不多，一下就filter出來 
+18:12 < ETBlue> 是的 XD
+18:12  * ipa 嚇
+18:23 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+18:23 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+18:23 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+18:23 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+18:32 -!- hychen [~hychen@175.41.48.77] has quit [Quit: 暫離]
+18:55 -!- Manic_mac [~manic@101.3.9.192] has joined #g0v.tw
+19:00 -!- Manic_mac [~manic@101.3.9.192] has quit [Client Quit]
+19:01 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:01 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:01 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+19:01 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+19:01 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+19:01 -!- untitledc [b88052@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+19:16 -!- Manic_mac [~manic@101.3.9.192] has joined #g0v.tw
+19:23 < superbil> hychen: pong
+19:30 -!- Manic_mac [~manic@101.3.9.192] has quit [Quit: Manic_mac]
+19:45 < ETBlue> ipa: 今天拿你的架構圖要開始弄，結果突然就叮咚～所以架構圖就改到一半放著...
+19:45 < ETBlue> https://picasaweb.google.com/lh/photo/p4vZgA7y6jqkDaN51H7EstMTjNZETYmyPJy0liipFm0?feat=directlink
+19:45 < kcwu> ETBlue's url: [Picasa Web Albums - ET Blue]
+19:48 < ETBlue> 我在想，所有 about 屬性的東西似乎共用同一個入口好像就可以了，包括g0v宣言，什麼是黑客松，影音圖文集等，這樣首頁就只剩下：
+19:49 < ETBlue> 1. slogan「g0v是屬於你的gov」 2. 明星產品（列出三樣） 3. about 屬性頁面的共用入口 4. 加入 g0v 入口
+19:51 < ETBlue> 呼應「g0v是屬於你的gov」的概念，在每個明星產品底下加註「from你的教育部/勞工局/社會局...」的註解
+19:53 < ETBlue> 東西剩下這麼少的話，首頁在 mobile 載入應該不會慢才是（思
+19:55 < ETBlue> 如果有新的黑客松活動，顯示在「加入g0v」按鈕旁邊的空白
+19:59 < ETBlue> 首頁（歡迎頁）長的比較空曠，level 1 頁面開始放比較多內容可以再回來用一般正常的 layout...
+20:11 -!- rad [76a9c83e@gateway/web/freenode/ip.118.169.200.62] has joined #g0v.tw
+20:31 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:31 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+20:31 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+20:31 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+20:48 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Ping timeout: 256 seconds]
+20:51 -!- haroldwu [~user@118-170-194-248.dynamic.hinet.net] has quit [Remote host closed the connection]
+20:51 -!- haroldwu [~user@118-170-194-248.dynamic.hinet.net] has joined #g0v.tw
+20:54 -!- ETBlue [~chatzilla@175.182.237.104] has joined #g0v.tw
+20:59 < chhsiao1981> 關於 roadpin. 其實北市府的網站有 2 個在提供如此的資訊. 其中一個有做的還算 ok.
+20:59 < chhsiao1981> http://www.road.tcg.gov.tw/ROADRCIS/
+20:59 < kcwu> chhsiao1981's url: [道路施工案件查詢服務網]
+20:59 < chhsiao1981> 有提供 G map 讓人比較容易知道查到的地方在哪裡. 
+21:00 < chhsiao1981> 也有提供 json format 的 api. (讓會使用 developer console 的人知道 api 在哪裡 XD)
+21:00 < chhsiao1981> http://www.road.tcg.gov.tw/ROADRCIS/GetCaseGeo.ashx?CASE_ID=5883
+21:01 < chhsiao1981> 關於這樣子的 project. 可能考慮的是要如何幫助廠商跟政府說提供 api 是有意義的. 然後我們是利用他們的基本 api 來做更多更有用的 api. 和更多更好用的 ui. 
+21:02 < chhsiao1981> 而不是直接說政府的外包廠商做的不夠好之類的. 
+21:04 < chhsiao1981> roadpin 存在的意義. 對於我來說. 是想要能夠提供容易統計資料的方式. 然後是更簡易使用的 ui. 然後是想要做能夠跨縣市的. 
+21:10 < ronnywang> clkao: 沒有放上 github ，因為我那個會直接存取我的 company.g0v.ronny.tw 的一個 API ，但是因為效能寫的不好，如果公開會被打掛，之前一直想改寫不過都沒寫好 XD # 17:34 < clkao> ronnywang: 上回畫子公司、轉投資那個有在 github 上嗎？
+21:10 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+21:11 < ronnywang> 有哪個公司有這個資料錯誤?? 17:39 < clkao> ronnywang: 然後公司資料 entry 裡面有公司名稱最後是「（新增統編）」，應該要 filter 掉嗎？
+21:11 < hychen> clkao, recipe[postgresql::ppa_pitti_postgresql]
+21:12 < hychen> clkao, 這個會說找不到
+21:21 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Ping timeout: 256 seconds]
+21:23 -!- pm5 [~pm5@111-248-213-191.dynamic.hinet.net] has joined #g0v.tw
+21:27 -!- hychen [~hychen@175.41.48.77] has quit [Quit: 暫離]
+21:30 -!- pm5 [~pm5@111-248-213-191.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+21:49 < clkao> ronnywang: 是噢， api 長怎麼樣？也許 pgrest 可以瞬間 implement 一個 compatible 又快的 api ? (com.g0v.tw? c0m.tw 好像被註冊了？ XD)
+21:49 < clkao> ronnywang: 00000064,{"公司狀況":"核准設立","公司名稱":"豐彥玻璃廠有限公司（新增統編）",
+21:50 < clkao> 成功推坑瞿老爹開始使用 hackpad: http://hack.g0v.tw/g0v-ly/J8httBQHSOd
+21:50 < Jedi_> 賀
+21:51 < superbil> 賀
+21:59 -!- rad [76a9c83e@gateway/web/freenode/ip.118.169.200.62] has quit [Quit: Page closed]
+22:01 < cpyang> 賀
+22:03 -!- hychen [~hychen@host-219-68-120-113.dynamic.kbtelecom.net] has joined #g0v.tw
+22:08 < ipa> 噗
+22:11 < ipa> ETblue++ 超讚的
+22:12 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has joined #g0v.tw
+22:38 -!- exe [722dc852@gateway/web/freenode/session] has joined #g0v.tw
+22:38 -!- exe is now known as Guest55619
+22:39 -!- Guest55619 [722dc852@gateway/web/freenode/session] has quit [Client Quit]
+22:48 -!- mindos [~mindos@111-250-184-124.dynamic.hinet.net] has joined #g0v.tw
+22:49 < ronnywang> 我現在寫法是以一家公司出發，往下去他所有有持股的公司名稱繼續查資料，往上用 elastic search 去搜尋董監事名單的有這名字的公司..然後往外三層
+22:51 < ronnywang> 這樣的寫法有時正好經過一家被 N 個集團一起持股的某一家公司時，圖就會變得超大的了
+22:51 < clkao> ronnywang: 對 因為他是 graph 不是 tree... 
+22:52 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has joined #g0v.tw
+22:53 < ronnywang> pgrest 可以處理 graph ?
+22:54 < ronnywang> 之前我也想找專門處理 graph 的 database 來存公司資料，這樣應該是正解吧
+22:56 < clkao> 應該是正解。我想一下 pgrest 如何處理
+22:56 < clkao> 應該是希望 api 能直接 query n-depth connections?
+22:57 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+22:57 < ronnywang> yes
+22:58 < clkao> 是說 pgrest 的話，可以把 traversal 用任何 PL 語言 (包括 livescript) 寫成 database function
+22:58 < clkao> 類似這樣: http://stackoverflow.com/questions/4074794/simple-graph-search-algorithm-in-sql-postgresql
+22:58 < kcwu> clkao's url: [Simple Graph Search Algorithm in SQL (PostgreSQL) - Stack Overflow]
+22:59 < clkao> 應該有現成的 extension
+23:00 < ronnywang> 這樣其實作法還是跟我的差不多，只是差在做在 web 層跟 db 層的分別?
+23:00 < clkao> right, 但 db 曾的好處是, function result 可以被 index
+23:00 < clkao> nji3u3
+23:01 < clkao> 所以... 常用的就等於 cache 住了
+23:01 < clkao> 不用自己處理 cache invalidation... 當資料更新時
+23:01 < clkao> neo4j 還沒去看他可以幹嘛
+23:02 -!- hlb_ is now known as hlb
+23:07 < ronnywang> elasticsearch 0.90 好像加了 social-graph 的功能
+23:10 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has joined #g0v.tw
+23:11 < clkao> (!)
+23:11 < clkao> 剛看到 http://www.slideshare.net/quipo/rdbms-in-the-social-networks-age
+23:11 < kcwu> clkao's url: [Graphs in the Database: Rdbms In The Social Networks Age]
+23:11 < clkao> 這 sql-fu 太威了
+23:27 < clkao> ronnywang: 話說路見不平還有人希望獲得 coscup ticket 嗎？
+23:28 -!- kong0107 [3a72d83d@gateway/web/freenode/ip.58.114.216.61] has joined #g0v.tw
+23:31 -!- kong0107 [3a72d83d@gateway/web/freenode/ip.58.114.216.61] has quit [Client Quit]
+23:40 -!- swem [~Thunderbi@host-61-70-210-208.static.kbtelecom.net] has quit [Ping timeout: 264 seconds]
+23:45 -!- pm5_ [~pm5@111-248-213-191.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+23:56 -!- hychen [~hychen@host-219-68-120-113.dynamic.kbtelecom.net] has quit [Ping timeout: 252 seconds]

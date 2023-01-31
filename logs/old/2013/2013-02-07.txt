@@ -1,0 +1,400 @@
+--- Day changed 四  2月 07 2013
+00:03 -!- thschee is now known as zz_thschee
+00:12 -!- jpsun [~jpsun@114-37-179-216.dynamic.hinet.net] has quit [Quit: Leaving.]
+00:17 -!- KNY [~Adium@111-253-144-95.dynamic.hinet.net] has quit [Quit: Leaving.]
+00:21 -!- awaw [650a4936@gateway/web/freenode/ip.101.10.73.54] has joined #g0v.tw
+00:30 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+00:43 < favonia> pcchen: CJK EXT-C/D/E 的意思是？
+00:44 < favonia> pcchen: 你是說 Unicode 的分塊嗎？
+00:45 < favonia> EXT-E 大概沒辦法，不過其他有希望 xD
+00:52 < au> api server done
+00:52 < au> http://api.moedict.tw/pua/%E8%90%8C
+00:52 < au> http://api.moedict.tw/uni/%E8%90%8C
+00:52 < au> http://api.moedict.tw/raw/%E8%90%8C
+00:52 < au> 去掉前綴的 api. 應該也可以
+00:55 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+01:00 < clkao> au++ # domain 狂
+01:00 < au> 哈
+01:01 < clkao> updated pgrest readme: https://github.com/clkao/pgrest
+01:01  * clkao -> zzz
+01:01 < kcwu> clkao's url: [clkao/pgrest · GitHub]
+01:04 < au> 源碼： https://github.com/g0v/moedict.tw
+01:04 < kcwu> au's url: [g0v/moedict.tw · GitHub]
+01:04 < au> add_before_body 真是好用
+01:05 -!- awaw [650a4936@gateway/web/freenode/ip.101.10.73.54] has quit [Ping timeout: 245 seconds]
+01:09 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+01:10 < au> -> zzz &
+01:17 -!- awaw [cb4d4895@gateway/web/freenode/ip.203.77.72.149] has joined #g0v.tw
+01:21 < kcwu> moedict 轉出來的 json 檔, 著作權標示可以這樣寫嗎? https://gist.github.com/kcwu/953a793aea223e1869a6
+01:22 < au> 由 ...人名... 以 CC0 釋出。
+01:22 < au> 寫 @kcwu 也行
+01:22 < au> 其他 ok
+01:22 < au> 之後 moedict.tw 每次 dotcloud push 時，postinstall deployment 會直接去 github 抓
+01:23 < au> 應該就可以保持 (一定程度的) consistency
+01:23 < kcwu> 聽起來我若改欄位就炸了 XD
+01:23 < au> 其實只用 title 切　
+01:23 < au> 只要 "title" 還在一切好談
+01:23 < au> :p
+01:24 < au> kcwu: 然後兩側加上了 {"dict"  ...   }
+01:24 < au> (as per API doc)
+01:24 < au> jsonp 明天再來弄完
+01:24 < au> 晚安 :) ttyt
+01:47 < kcwu> https://github.com/g0v/moedict-data
+01:47 < kcwu> kcwu's url: [g0v/moedict-data · GitHub]
+02:28 < kcwu> http://kcwu.csie.org/~kcwu/moedict/
+02:28 < kcwu> kcwu's url: [Index of /~kcwu/moedict/]
+03:58 < itsZero> ls
+03:58 < itsZero> oops... sorry :p
+04:33  * gugod ponder
+04:57 -!- zz_thschee [thschee@2a00:dcc0:eda:88:245:71:872b:8f0b] has quit [Remote host closed the connection]
+05:06 < favonia> gugod: 你有看到我和 au 丟給你的訊息嗎？
+05:07 -!- miaout17 [6e1bddd7@gateway/web/freenode/ip.110.27.221.215] has joined #g0v.tw
+05:07 < miaout17> favonia: Thx. 有看到log
+05:13 < favonia> miaout17: :)
+05:16 -!- miaout17 [6e1bddd7@gateway/web/freenode/ip.110.27.221.215] has quit [Quit: Page closed]
+05:23 -!- zz_thschee [thschee@2a00:dcc0:eda:88:245:71:872b:8f0b] has joined #g0v.tw
+05:34 < gugod> 有
+05:34 < gugod> 轉碼問題
+05:35 < gugod> html2json 部份寫得差不多了，不過發現晚天抓下來的 html 有空白，正在手動重抓
+05:51 -!- mutolisp_ [~mutolisp@1-162-67-24.dynamic.hinet.net] has joined #g0v.tw
+05:54 -!- mutolisp [~mutolisp@1-162-79-3.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+06:18 < favonia> gugod: 是因為流量太大被檔嗎 lol
+06:19 < gugod> json 建完了
+06:20 < gugod> https://github.com/g0v/moedict-epub/blob/master/data/radical-strokes.json 是由 {部首}{筆畫} 查到字的 hash
+06:20 < kcwu> gugod's url: [moedict-epub/data/radical-strokes.json at master · g0v/moedict-epub · GitHub]
+06:20 < gugod> https://github.com/g0v/moedict-epub/blob/master/data/reverse-radical-strokes.json 是由 {字} 查到部首筆畫的 hash
+06:20 < kcwu> gugod's url: [moedict-epub/data/reverse-radical-strokes.json at master · g0v/moedict-epub · GitHub]
+06:21 < gugod> 部首在這裡面都改成編號了
+06:26 < favonia> gugod: 反查表第 10 行的空字是怎麼回事呢？
+06:39 < gugod> 問得好..
+06:41 < gugod> 好像是 sym.txt 沒有的某個字
+06:42 < gugod>  9ce9 9058 fef6 fdeb 8fe8 8fda 97e0 9769 fec6 95ef fec5 8fa3
+06:42 < gugod> 找到這幾個 sym.txt 沒有的 imgfont .
+06:46 < gugod>  json 更新了，先把空字串換成 imgfont 的碼
+07:18 -!- miaout17 [~miaout17@li494-208.members.linode.com] has joined #g0v.tw
+07:19 -!- miaout17 [~miaout17@li494-208.members.linode.com] has quit [Client Quit]
+07:23 -!- miaout17 [~miaout17@li494-208.members.linode.com] has joined #g0v.tw
+07:25 < favonia> gugod++
+07:45 < favonia> au: medicalwei: hackpad-linkify.pl 還需要嗎？
+07:46 < favonia> 剛才看一看總覺得跟 epub 沒啥關係 xD
+07:57 -!- awaw [cb4d4895@gateway/web/freenode/ip.203.77.72.149] has quit [Ping timeout: 245 seconds]
+08:19 < hlb> au: 剛剛想到萌典 web 界面好像應該擺個  comment 功能
+08:20 < hlb> au: 用戶補綴
+08:22 -!- medicalwei [~medicalwe@140.121.80.62] has quit [Ping timeout: 264 seconds]
+08:23 -!- TigerHuang [~tiger@2001:288:6004:34:68e7:fe38:1be5:16cb] has quit [Ping timeout: 264 seconds]
+08:24 -!- TigerHuang [~tiger@2001:288:6004:34:99cc:e369:ab8c:5888] has joined #g0v.tw
+08:42 < au> hlb: 對，好主意。還有部首（艸 + 8 = 12），以及也許可切換的兩種拼音
+08:43 < au> 然後部首連到檢字表 etc
+08:43 < au> 然後 responsive layout 螢幕夠寬的話做成 zonble ipad 版那樣把 autocomplete 固定在左側等等
+08:44 < au> hlb: 而且 styles.css 要換成語法超讚樣式表 :p
+08:45 < au> hlb: static markup/mockup welcome XD 
+08:45 < au> gugod++ # radical!
+08:48 < favonia> au: 如果想要設計特別的 Web 介面來對校，應該把資料放哪裡呢？你有推荐的地方嗎 :P
+08:48 < au> favonia: json 資料?
+08:49 < au> 靜態檔案放 GitHub repo with only gh-pages branch as primary branch + CNAME 檔?
+08:49 -!- zz_chihchun is now known as chihchun
+08:49 < favonia> 如果是特別寫，什麼格式應該都可以
+08:49 < favonia> 喔我是說動態檔案
+08:50 < au> 動態檔案像是... ? (抱歉剛醒腦子不是很清楚)
+08:52 < kcwu> 在想部首檢字找出來的字的數量, 跟我這邊找到的數量會不會一樣多...
+08:52 < favonia> au: 造字圖對照表 xD
+08:53 < au> favonia: 那不是 .json 嗎
+08:53 < au> favonia: 可以放 github 有人改就 auto commit 啊..?
+08:53 < favonia> au: er 之前不是說要弄一個國文教授可以提意見的系統嗎 @@
+08:54 < au> favonia: 我以為是請教授們上 spreadsheet 改，不會改就寫信提意見 @@
+08:54 < favonia> au: 現在問題是那個 spreadsheet 實在太不穩了 orz
+08:55 < favonia> 我在想要怎麼把他換掉
+08:55 < au> 提意見可以用 google forms... 不然 ethercalc 也有 rest api
+08:55 < hlb> au: zonble ipad 版在哪兒？
+08:55 < favonia> ok
+08:55 < au> favonia: 因為我不是 owner 不能加字 (copy locked cell)
+08:55 < au> 後來都是用 http://www.ethercalc.org/3du-map 在加新字
+08:55 < kcwu> au's url: [EtherCalc - Share the URL to your friends and edit together!]
+08:56 < au> 好像堪用
+08:56 < au> hlb: https://github.com/zonble/MOEDict -- 聽說現在叫「三隻小豬」
+08:56 < kcwu> au's url: [zonble/MOEDict · GitHub]
+08:56 < favonia> au: lol 我之前在測試鎖住功能
+08:57 < favonia> au: 那就把 ethercalc 當後端好了
+08:58 < au> favonia: OK 啊, public server REST API 見 https://github.com/audreyt/ethercalc/#rest-api
+08:58 < kcwu> au's url: [audreyt/ethercalc · GitHub]
+08:58 < favonia> au: 嗯謝啦
+08:59 < au> favonia++
+08:59 < favonia> au: 這樣好像也很方便---資料爛掉修後端很方便
+08:59 < favonia> 我的意思是說打開 ethercalc 就好了
+08:59 < hlb> 要 build xml 好像超級久...
+08:59 -!- zz_thschee is now known as thschee
+08:59 < au> hlb: http://d.pr/i/AKMu
+09:00 < au> 其實一張圖就說完了 :p
+09:01 < au> 我是想 responsive width>... => .ui-autocomplete { display: block !important } 然後 style 成左側欄
+09:01 < kcwu> 我以為三隻小豬是成語典?
+09:02 < au> kcwu: 對啊，萌典裡只有三隻手沒有三隻小豬
+09:02 < kcwu> http://zh.wikipedia.org/wiki/%E4%B8%89%E9%9A%BB%E5%B0%8F%E8%B1%AC#.E6.88.90.E8.AA.9E.E7.88.AD.E8.AD.B0
+09:02 < kcwu> kcwu's url: [三隻小豬 - 维基百科，自由的百科全书]
+09:05 < kcwu> https://github.com/zonble/MOEDict 這是萌典還是成語典?
+09:05 < kcwu> kcwu's url: [zonble/MOEDict · GitHub]
+09:05 < au> 看 https://github.com/zonble/MOEDict/blob/master/get_db.sh 是萌典
+09:05 < kcwu> au's url: [MOEDict/get_db.sh at master · zonble/MOEDict · GitHub]
+09:06 < au> (bbiab)
+09:12 < favonia> au: 我把 spreadsheet 的 lock 都拿掉了 orz
+09:12 < favonia> au: 感覺好像沒啥用 xD
+09:13 < hlb> au: cordova.js, js-gzip.js, inflate.js 實際有用到嗎? O_O
+09:13 < au> hlb: 只有在很 cordova package 時填入
+09:13 < au> s/很//
+09:26 < hlb> font-weight: 501 是什麼妙招 XD
+09:27 -!- KNY [~Adium@111-253-144-95.dynamic.hinet.net] has joined #g0v.tw
+09:30 < au> workaround chrome / mac bug on one of the Kai fonts 
+09:30 < clkao> orz
+09:31 < clkao> greetings
+09:31 < au> o/
+09:31 < hlb> au: https://dl.dropbox.com/u/132028/Screenshots/Screen%20Shot%202013-02-07%20at%209.30.53%20AM.png
+09:41 -!- awaw [01ab75a2@gateway/web/freenode/ip.1.171.117.162] has joined #g0v.tw
+09:47 < hlb> au: https://github.com/hlb/moedict-webkit-prototype
+09:47 < kcwu> hlb's url: [hlb/moedict-webkit-prototype · GitHub]
+09:48 < hlb> au: screenshots: http://goo.gl/kSPLL and http://goo.gl/D7IB2
+09:49 < au> hlb++ # 專業!
+09:56 < hlb> au: 買完今日的贖罪券，可以認真上班了！
+09:58 < au> 上班愉快 :p
+09:58  * au 打開 hlb 的作品來聽歌修 bug
+10:03 -!- Ben_chou [Ben_chou@nat/novell/x-hamklixdagliraug] has joined #g0v.tw
+10:04 -!- mutolisp_ [~mutolisp@1-162-67-24.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+10:06 < kcwu> 我想把 moedict 中的 「､」都換成「、」
+10:06 -!- MnO2 [~mno2@nat/yahoo/x-llgdsfnlvcfdwrvt] has joined #g0v.tw
+10:08 < clkao> ､... 原來有半型的頓號？
+10:08 -!- KNY [~Adium@111-253-144-95.dynamic.hinet.net] has quit [Quit: Leaving.]
+10:08 < au> kcwu: 好主意 # json 版本控制++
+10:11 < clkao> 每日一詞: 爭先恐後：搭乘公共汽車不爭先恐後，才能表現秩序之美。
+10:11 < kcwu> 看起來網頁上用的是 big5 偏左下的頓號, (python內建的big5表)轉成 unicode 變成半形頓號
+10:12 < au> 那可能是建表時未考慮到 EastAsianWidth 
+10:14 < pcchen> 好苦，2013年還在處理big5轉碼
+10:14 < au> XD
+10:15 < favonia> pcchen: /___\
+10:16 < pcchen> 我恨big5（無誤）
+10:18 < walkingice> big5......(遠目)
+10:19 < au> pcchen: Unicode 這十年到 6.3 才比較能當完整的 migrate path...
+10:20  * au 這十天跟著 favonia 惡補 IRG/IVD 進度的心得
+10:24  * walkingice 現在才知道 unicode 有版本
+10:24 < pcchen> cc-by-sa/2.5/ 跟 by-sa/3.0/ 有什麼差別嗎？
+10:27 < pcchen> au: 位什麼要到6.3才能當晚整 migration?
+10:29 < au> pcchen: ideograph variation sequence 切出來不佔碼位
+10:29 < favonia> au: 我正遠眺著 Unicode 7.0
+10:30 < au> pcchen: 就是花園字形的那 24 個「邊」
+10:30 < au> favonia: 有看到什麼風景嗎 XD
+10:30 < favonia> au: 感覺有點希望 xD
+10:31 < au> 真不錯
+10:31 < favonia> 我開玩笑的啦 xD Unicode 7.0 根本連影子都還沒有吧...
+10:33 < pcchen> 看起來需要惡補一下ideograph variation sequence
+10:34  * au 之前幫忙建議了一個斷句碼位希望 7.x 有機會進
+10:35 < au> ...但是大概要等比較久 XD
+10:35 < pcchen> 斷句碼位!
+10:35 < pcchen> 有斷句碼位的參考資料嗎？
+10:35 < au> pcchen: uax29
+10:36 < au> 想像 U+2063 但是算做 ATerm 即可
+10:36 < kcwu> data uploaded (http://kcwu.csie.org/~kcwu/moedict/ and https://github.com/g0v/moedict-data )
+10:36 < kcwu> kcwu's url (1/2): [Index of /~kcwu/moedict/]
+10:36 < au> kcwu++
+10:36 < kcwu> kcwu's url (2/2): [g0v/moedict-data · GitHub]
+10:37 < pcchen> 有submit到unicode?
+10:37 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 252 seconds]
+10:37 < au> pcchen: 還在 uli 吧
+10:37 -!- KN16H7 [knight@saturn.stu.edu.tw] has quit [Ping timeout: 240 seconds]
+10:38 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 264 seconds]
+10:39 < kcwu> 這個修好後, 「萌」的第三義, example 才會 parse 出來
+10:40 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+10:40  * kcwu 看 screenshot 就知道大家用哪一版的 data XD
+10:41 < kcwu> pcchen: 什麼 submit 到 unicode?
+10:41 < au> kcwu++ # 見微知著，睹始知終
+10:41 < clkao> kcwu++ # 淵藪：淵，魚所居之處。藪，獸所聚之處。淵藪比喻人或物聚集的地方。
+10:42 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:42 < pcchen> 斷句碼位希望 7.x 有機會進--->有正式的proposal submit 到 unicode.org?
+10:43 < au> 有，但還在 uli@
+10:43 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+10:44 < kcwu> i see
+10:44 -!- KN16H7 [knight@saturn.stu.edu.tw] has joined #g0v.tw
+10:44 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+10:44 < pcchen> I see
+10:45 < yllan> jenkins 的 github plugin 好像沒辦法設定讓多個 github repository 有 new commits 時就 trigger build 一個專案？
+10:46  * yllan 手動 build 中
+10:46 -!- yllan [~yllan@122-116-177-245.HINET-IP.hinet.net] has quit [Quit: yllan]
+10:54 -!- thschee is now known as zz_thschee
+11:15 < au> moedict.tw 的資料更新到 、 了，首頁的萌例句 OK (可能要 shift-reload)
+11:15 < au> kcwu++
+11:16 < zonble> au: 三隻小豬是在成語典裡頭
+11:16 < zonble> au: 可是我喜歡三隻小豬（茶）
+11:17 < au> 名從主人，我沒有意見 XD
+11:17 < clkao> 三隻小豬和 3du 好像有種不可言喻的曖昧
+11:18 < clkao> 3 d = 三豬
+11:18 < au> lol
+11:18 < walkingice> clkao: ++++
+11:19  * walkingice 開始不自覺唸成 3d小u
+11:19 < kcwu_mobile> 我一開始看到 3du 就以為是三隻小豬，還在想  u 是什麼
+11:20 < kcwu_mobile> 大概半天後才想到不是…
+11:20 < clkao> LOL
+11:20 < au> 「三豬典：從五筒到八萬」
+11:21 < favonia> 3d小u++
+11:23 < clkao> kcwu_mobile: 原來 u = unit... 隻 in this case... XD
+11:24  * au 筆記下來準備 OSDC 簡報
+11:27 -!- yllan [~yllan@114-45-176-50.dynamic.hinet.net] has joined #g0v.tw
+11:27 < au> zonble: 這次有打算要講嗎? # "我從「三隻小豬」學到的事情"? XD
+11:33 < yllan> kcwu: 這樣是正確的嗎？ http://cl.ly/image/0i3w1v3C1Y3I
+11:33 < kcwu> yllan's url: [Screen Shot 2013-02-07 at 11.32.58 AM.png]
+11:36 < au> yllan: 例句間的半形逗點怪怪的
+11:36 < au> moedict.tw 是各自一列, 原站是直接 concat
+11:43 < ipa> 3du --> 三豬大學? XD
+11:44 < kcwu> 那個半形逗點(in sqlite)是我弄的. 用來切開不同的例句.
+11:45 < favonia> 有人有 JavaScript grid library 的推荐嗎？剛才看 SlickGrid 覺得滿喜歡的不過想問問看還有哪些。
+11:45 < kcwu> 如果不想切開, 那 s/,// 接起來比較好看
+11:46 < kcwu> yllan: quote,example,link 都是這樣
+11:47 < kcwu> 這幾個欄位有需要 db normalize 嗎...
+11:48 < yllan> kcwu: souka, 這樣子自己切開好了 XD
+11:48 < yllan> 比較省事
+11:48 < au> favonia: bootstrap 內建 grid?
+11:48 < au> oh, sorry, grid as in grid
+11:48  * kcwu 還沒寫 json 檔使用上的細節 orz
+11:48 < kcwu> (and db)
+11:49 < au> favonia: http://demos.kendoui.com/web/grid/editing-inline.html 可參考
+11:49 < kcwu> au's url: [Kendo UI jQuery Grid Cells editing sample]
+11:49 < au> (GPL3)
+11:49 < favonia> au: thanks
+11:50 < zonble> au: 我寫到目前為止沒什麼好講的啊？@_@
+11:51 < au> zonble: 那講點別的有趣的吧 :D
+11:56 < favonia> au: Kendo UI 的下載頁讓我想先抓其他 library 玩 xD
+11:56 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+11:56 < au> :D
+11:57 < au> kendo 很適合懶得自己畫 UI 的人用
+11:57 < au> (意思是不是非常容易改樣式)
+11:57 < au> s/是/是:/
+12:00 < au> favonia: http://www.kendoui.com/downloads/productfiles/bdkad/kendoui.web.2012.3.1114.open-source.zip
+12:01 < au> # 跳過下載頁
+12:01 < favonia> au: 我的沒跳過 \o/
+12:01 < au> XD
+12:01 < favonia> au: 沒關係啦，我想要玩一下 UI
+12:01 < au> OK
+12:01 < favonia> 謝謝
+12:02 -!- zz_thschee is now known as thschee
+12:04 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+12:05 < miaout17> 昨天弄了一下big5 <-> cns111643 <-> unicode的json，先丟S3 https://m17pub.s3.amazonaws.com/moedict-encoding-map.tgz
+12:08 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+12:10 < miaout17> favonia: 我先把每一種轉換都壓成一個json了，雖然覺得這樣好像不太好… unicode <-> big5 是彃cns11643 join出來的
+12:10 < favonia> miaout17++
+12:11 < favonia> 所以實際上是兩個表格 CNS11643<->Unicode 和 CNS11643<->Big5 這樣嗎
+12:11 < miaout17> 你說原始檔嗎？
+12:12 < miaout17> Big5分成big5和big5e兩個txt
+12:13 < miaout17> Unicode用版本切有11個txt
+12:14 < miaout17> 嗯，讀進來後可以視作兩個表格沒錯
+12:14 < kcwu> btw, big5 是哪個 big5?
+12:15 < miaout17> kcwu: Sorry, 那個big5是指？
+12:17 < miaout17> 應該就是Big-5 + Big-5E吧，共17447字
+12:17 < kcwu> big5e 我知道, big5 是指哪個 variant? 12:12 < miaout17> Big5分成big5和big5e兩個txt
+12:21 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+12:24 < miaout17> Oops... I found I'm not sure. Variant是指櫻花、unicode補完之類的嗎？
+12:25 < kcwu> yes, 或是 big5-eten, cp950, big5-2003, etc.
+12:25 < kcwu> http://moztw.org/docs/big5/
+12:25 < kcwu> kcwu's url: [Big5 Variants in Mozilla: Mozilla 系列與 Big5 中文字碼]
+12:26 < kcwu> 想到之前的某事件, 應該備份一下這個 page 的...
+12:31 < favonia> miaout17: big5e 自成一套
+12:31 < favonia> kcwu: 政府當然是用純 big5 xD
+12:31 < au> kcwu: big5-unicode-pretty.json 沒有收 big5(C6BF)
+12:31 < au> 所以有可能是 big5-1984
+12:33 < favonia> au: y
+12:33 < au> 有控制碼 A3C0 無誤
+12:33 < au> (看這兩個大概就知道了)
+12:33 < favonia> kcwu: 啊我這樣講好像不太對，big5-2003也算國家認証...
+12:34 < favonia> au: C6BF 在政府有提到的版本裡面只有 1984 年版本沒有...
+12:34 < au> big5e 也沒有吧?
+12:34 < favonia> 喔我是說 big5
+12:35 < au> *nod*
+12:36 < favonia> miaout17: 嗯不好意思，我剛才講錯，還是應該把 big5 當 extension. 雖然我比較習慣把合起來的結果一起算...
+12:41 -!- MindosCheng [~mindos@42-68-80-51.dynamic-ip.hinet.net] has quit [Read error: Connection reset by peer]
+12:44 < favonia> 喔對了，Unihan 的資料應該是 big5-1984 的，因為文件寫 extension 都沒有，而且這從 2.0 就引進了
+12:44 < clkao> au: osdc 不是要講 pgrest? 要把 moedict 放進去今天的梗才能用上 :p
+12:45 < au> clkao: 把半形逗點 normalize 之後突然就變成 pgrest-relevant relational data set 了 :p
+12:45 < au> lunch, bbl &
+12:54 -!- tonytonyjan [~tonytonyj@218-166-168-63.dynamic.hinet.net] has joined #g0v.tw
+13:21 < thschee> “@mshouji: @tkb @openbudgets It provides in PDF, XML(IE 7 or 8 recommended), and XLS(recent year). XML data is from 1947!  http://t.co/oeQPVAnj”
+13:21 < thschee> “@mshouji: @tkb @openbudgets Japanese govt has its budget and spending database. It provides in PDF, XLS, and XML format. http://t.co/oeQPVAnj”
+13:23 -!- jpsun [~Adium@111-251-202-86.dynamic.hinet.net] has joined #g0v.tw
+13:30 -!- MindosCheng [~mindos@115.82.17.232] has joined #g0v.tw
+14:15 -!- hychen [~hychen@175.41.48.77] has quit [Ping timeout: 255 seconds]
+14:28 -!- jpsun [~Adium@111-251-202-86.dynamic.hinet.net] has quit [Quit: Leaving.]
+14:29 -!- jpsun [~jpsun@111-251-202-86.dynamic.hinet.net] has joined #g0v.tw
+14:30 < gugod> greetings
+14:31 < gugod> 好餓
+14:38 -!- wenpei [~wenpei@nw188.csie.ncu.edu.tw] has quit [Ping timeout: 244 seconds]
+14:38 -!- wenpei [~wenpei@nw188.csie.ncu.edu.tw] has joined #g0v.tw
+14:53 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+15:23 < clkao> gugod!
+15:25 < clkao> au: please elaborate... ?
+15:27 < au> clkao: 舉例來說要建部首往字的 lookup，或是反向的同義詞，或是產生預先 autolink 好的 json
+15:27 < au> 現在是用半形逗號連接同義詞 (ad-hoc array)
+15:27 < au> 但是如果拆出來變成 table 就可以 sequelize 它
+15:27 < au> etc
+15:28 < au> 理想狀態是可以從 pgselect bulk 出所有 .json feed 寫進磁碟
+15:29 < clkao> 賀 接軌成功
+15:29 < au> 然後 dotcloud rsync push 讓 EC2 IOPS store 放 materialized view
+15:29 < au> 又可以接 CDN 什麼的
+15:29 < au> 就不用撞到 micro instance burst CPU throttle 的 bug
+15:29 < au> 以上。:)
+16:09 -!- chihchun is now known as zz_chihchun
+16:13 -!- zz_chihchun is now known as chihchun
+16:22 < miaout17> kcwu: au: favonia: 感謝解說
+16:28 < au> yw
+16:36 -!- miaout17 [~miaout17@li494-208.members.linode.com] has quit [Quit: leaving]
+16:42 -!- miaout17 [~miaout17@li494-208.members.linode.com] has joined #g0v.tw
+16:43 -!- miaout17 [~miaout17@li494-208.members.linode.com] has quit [Client Quit]
+16:50 -!- miaout17 [~miaout17@li494-208.members.linode.com] has joined #g0v.tw
+16:51 -!- miaout17 [~miaout17@li494-208.members.linode.com] has quit [Quit: leaving]
+16:52 -!- miaout17 [~miaout17@li494-208.members.linode.com] has joined #g0v.tw
+16:55 -!- miaout17 [~miaout17@li494-208.members.linode.com] has quit [Client Quit]
+16:56 -!- miaout17 [~miaout17@li494-208.members.linode.com] has joined #g0v.tw
+17:11 < billy3321> @@
+17:39 -!- miaout17 [~miaout17@li494-208.members.linode.com] has quit [Quit: Lost terminal]
+17:41 -!- miaout17 [~miaout17@li494-208.members.linode.com] has joined #g0v.tw
+17:43 -!- miaout17 [~miaout17@li494-208.members.linode.com] has quit [Client Quit]
+17:47 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+17:52 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+17:52 -!- miaout17 [~miaout17@li494-208.members.linode.com] has joined #g0v.tw
+18:08 -!- shawnwan1 [~shawn@163.16.5.181] has quit [Ping timeout: 240 seconds]
+18:10 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 245 seconds]
+18:10 -!- KN16H7_ [knight@saturn.stu.edu.tw] has joined #g0v.tw
+18:11 -!- KN16H7 [knight@saturn.stu.edu.tw] has quit [Read error: Connection reset by peer]
+18:16 -!- shawnwang [~shawn@163.16.5.181] has joined #g0v.tw
+18:17 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+18:20 -!- MindosCheng [~mindos@115.82.17.232] has quit [Ping timeout: 252 seconds]
+18:23 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+18:40 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+19:00 -!- yllan [~yllan@114-45-176-50.dynamic.hinet.net] has quit [Quit: yllan]
+19:31 -!- Ben_chou [Ben_chou@nat/novell/x-hamklixdagliraug] has quit [Ping timeout: 256 seconds]
+19:31 < chhsiao1981> clkao: 剛剛把 index-merger 做完 clean-up push 上去. 
+19:37 < chhsiao1981> clkao: 這個星期我還有嘗試從 parse-list.ls 裡把 index.json 做 clean-up. 已經有把 summary 部分都做完了. 並且也有把 3635 裡應該是 3710 的部份搬到 3710 那裡. 然後發現到還要做 populate-sitting 和 format-committee-log 才能讓 index.json 跟現在的 index.json compatible (這兩個 script 是都不用更改). 目前已經做完了 populating-sitting (也已經 update 到 4030). 等到 format-committee-
+19:38 < chhsiao1981> clkao: 原本是想要一起更新上去的. 不過發現到需要 format-committee-log 才可以跟現在的 index.json compatible 以後. 就決定先上 index-merger 做完的版本了.
+19:44 -!- MnO2 [~mno2@nat/yahoo/x-llgdsfnlvcfdwrvt] has quit [Quit: Leaving]
+19:56 -!- mutolisp [~mutolisp@ap1.cpbae.nccu.edu.tw] has joined #g0v.tw
+20:16 -!- mutolisp [~mutolisp@ap1.cpbae.nccu.edu.tw] has quit [Ping timeout: 255 seconds]
+20:24 -!- mutolisp [~mutolisp@ap1.cpbae.nccu.edu.tw] has joined #g0v.tw
+20:30 -!- mutolisp [~mutolisp@ap1.cpbae.nccu.edu.tw] has quit [Ping timeout: 252 seconds]
+20:33 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+20:34 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+20:47 -!- ctf_ [~ctf@118-166-155-91.dynamic.hinet.net] has joined #g0v.tw
+20:48 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+20:54 -!- mutolisp [~mutolisp@ap1.cpbae.nccu.edu.tw] has joined #g0v.tw
+21:10 -!- mutolisp [~mutolisp@ap1.cpbae.nccu.edu.tw] has quit [Ping timeout: 252 seconds]
+21:26 -!- S3p_lin_ [slzzp@li475-173.members.linode.com] has joined #g0v.tw
+21:26 -!- S3p_lin_ [slzzp@li475-173.members.linode.com] has quit [Client Quit]
+21:28 -!- mutolisp [~mutolisp@ap1.cpbae.nccu.edu.tw] has joined #g0v.tw
+21:34 -!- jpsun [~jpsun@111-251-202-86.dynamic.hinet.net] has quit [Quit: Leaving.]
+21:34 -!- mutolisp [~mutolisp@ap1.cpbae.nccu.edu.tw] has quit [Ping timeout: 255 seconds]
+21:50 -!- KNY [~Adium@111-253-144-95.dynamic.hinet.net] has joined #g0v.tw
+21:50 -!- KNY [~Adium@111-253-144-95.dynamic.hinet.net] has left #g0v.tw []
+21:50 -!- KNY [~Adium@111-253-144-95.dynamic.hinet.net] has joined #g0v.tw
+22:33 -!- chihchun is now known as zz_chihchun
+23:02 -!- ctf_ [~ctf@118-166-155-91.dynamic.hinet.net] has quit [Quit: 暫離]
+23:07 < ericyu> https://www.facebook.com/photo.php?fbid=10151402240173618&set=a.378937658617.159895.747873617&type=1
+23:07 < kcwu> ericyu's url: [凌宗魁的相片 | Facebook]
+23:08 < ericyu>  《臺灣木造文化資產火災年表》 XD
+23:12 < ck_> 這算是 biased samples 吧？
+23:14 < walkingice> 宗魁，剛好是認識的朋友 XD
+23:14 -!- mutolisp [~mutolisp@1-162-67-24.dynamic.hinet.net] has joined #g0v.tw
+23:19 -!- yllan [~yllan@122-116-177-245.HINET-IP.hinet.net] has joined #g0v.tw
+23:19 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 248 seconds]
+23:21 < clkao> 發現全國法規資料庫其實有所有法條的英文版本
+23:49 -!- awaw [01ab75a2@gateway/web/freenode/ip.1.171.117.162] has quit [Ping timeout: 245 seconds]

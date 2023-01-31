@@ -1,0 +1,142 @@
+--- Day changed 六  1月 24 2015
+00:05 < miaoski> au: push 好惹。感謝... 
+00:06 < slackbot> <yhsiang> miaoski++
+00:07 < miaoski> yhsiang: 不用 ++ 啊，你看那是個坑 (順手一推)
+00:08 < slackbot> <yhsiang> miaoski 什麼東西?
+00:08 < slackbot> <yhsiang> 狀況外中
+00:08 -!- chihchun_afk is now known as chihchun
+00:13 < miaoski> yhsiang: APK 做出來卻跑不動的坑啊 XD
+00:13 < slackbot> <yhsiang> XD
+00:35 < slackbot> <johnny> ㄏㄏ 指南自我亂搞中
+01:05 < clkao> jung__++
+01:17 < chhsiao1981> kiang: 其實還是可以偷偷拿 XD. # http://data.fda.gov.tw/cacheData/69_3.json # < slackbot> <kiang> FDA 又一個 醫療器材詳細處方成分資料集 消失了
+01:23 -!- chihchun is now known as chihchun_afk
+01:30 < slackbot> <kiang> chhsiao1981: github repo 一直有備份啊 XD
+01:35 < au> miaoski: 「國語辭典」應該是在 72a2fbb92 2607e2a95c 就修好的 (STANDALONE 和 DEBUGGING 設定) ，9104a7e5f0 87a80f256 只是減少 apk 大小
+01:36 < au> 我看一下 docker :0.4...
+01:40 < slackbot> <kiang> "Oops... A database error may have occurred. Please try again shortly" cloudflare 也被打掛了嗎 XD
+01:41 < slackbot> <kiang> 不知道跟今天中國開始封鎖 VPN 有沒有關係... <http://news.ltn.com.tw/news/world/breakingnews/1214069>
+01:41 < kcwu> slackbot's url: [無法翻牆了？ 傳中國加強封殺VPN - 國際 - 自由時報電子報]
+02:14 < au> miaoski: 從 :0.4 開始，我在 platforms/android 裡 git checkout 2607e2a9 -- assets/www && make 出來，emulator 裡就跑得動了
+02:14 < au> audreyt.org/tmp/amis.apk
+02:14 < au> 可能 master 裡的 webpack 狀態還沒和 cordova 整合好，我醒來再 merge 一次。
+08:55 < miaoski> au: 我睡醒後發現做了白痴的事情... 重新 build 的時候我忘了 index.json -> index.1.json 這些事了 
+09:13 < lafin> @@
+09:45 -!- seadog007_ is now known as seadog007
+10:02 < miaoski> 不對，index.1.json 已經在 amis branch 裡了。啊啊啊啊 >_<
+10:44 < miaoski> 詭異。我在 :0.4 裡 git checkout 2607e2a9 -- assets/www && make  雖然沒有「國語字典」了，但裝在手機上依然沒有任何動靜... 
+10:46 < miaoski> audreyt.org/tmp/amis.apk 在手機上的表現和我剛剛 make 出來的一樣。
+10:47 < miaoski> https://i.imgur.com/GOLnaLe.jpg
+10:55 -!- xiuzhaoyang [6fcd823e@gateway/web/cgi-irc/kiwiirc.com/ip.111.205.130.62] has left #g0v.tw []
+11:24 < lafin> miaoski: 我妹沒接電話，圖可能要晚點喔！
+11:24 < miaoski> lafin: 沒關係啊，不急
+11:26 < miaoski> lafin: ㄟ 叫她不要打我 ... 我看到 au 用的是 204x204 的 icon
+11:26 < lafin> miaoski: = =
+11:26 < miaoski> 所以她的圖輸出成 204x204 的 png 就好。那個圖會被縮成 36x36, 48x48, 72x72, 96x96 她可以先看一下效果
+11:26 < lafin> Ok
+12:43 < miaoski>  load resource: net::ERR_FILE_NOT_FOUND file:///android_asset/www/fonts/FiraSansOT-Regular.otf
+12:43 < miaoski> Uncaught TypeError: Cannot read property 'call' of undefined deps.js:1
+12:43 < miaoski> 我猜是 deps.js
+12:46 < xsoameix> cloc 不認得 livescript orz
+12:52 < slackbot> <yhsiang> Webpack 會轉成js跟ls應該無關
+12:55 < miaoski> yhsiang: 找到原因了。我沒在 moedict-webkit 跑 gulp build 所以 deps.js 是舊的
+12:55 < miaoski> 但。找到原因後目前仍然沒有文字輸入框... >_<   http://miaoski.idv.tw:8080/MoeDict-debug.apk 
+13:01 -!- ipa___ is now known as ipa
+13:40 < au> miaoski: 看起來 amis-react 的 make 本來就不會動, 和 app 無關
+13:41 < au> 我先 check in deps.js 再調整 cordova, a sec
+15:26 < au> miaoski: 應該可以了。最簡版的 Dockerfile 已 commit, 正在 push to hub
+15:29 < au> miaoski: https://registry.hub.docker.com/u/audreyt/moedict_amis 收工 :D 感謝，休息一下再來做 csld 和 main app 的更新
+15:29 < kcwu> au's url: [audreyt/moedict_amis Repository | Docker Hub Registry - Repositories of Docker Images]
+16:02 < miaoski> au: 哇怎麼可以這麼簡單... 我昨天寫的 Dockerfile 長到快吐出來了
+16:02 < miaoski> au: ++
+16:02 < au> miaoski: ln -s 解決一切 XD
+16:04 < miaoski> au: 呃，不是，所以這是沒有去抓 moedict-webkit 的版本 :P
+16:05 < miaoski> 立馬來試試 :)
+16:05 < au> 對，我想說你有 moedict-webkit 的 docker 了，真的需要時再 link 起來
+16:07 < slackbot> <mingtsay> 如果能 ln -s dream ~/come_true 感覺還不錯
+16:08 < miaoski> au: dispatcher.java 和 Failure.java ? 不知道我把東西搞爛，和我做了 cordova platofrm update android 有沒有關係
+16:09 < au> miaoski: 應該是說原本的 src/ 似乎連動舊版的 CordovaLib/ 所以更新 CordovaLib 都會爆炸
+16:09 < miaoski> 了解 au++
+16:09 < au> 但我還沒有仔細看要怎麼搭配新版的
+16:10 < au> 就先 ln -s 了
+16:19 < miaoski> au: 太棒了，晚一點會拿到新的 icon ，然後漢字搜尋的部份我先硬幹看速度能不能接受。本來想用 cordova 內建的 sqlite 支援... 還沒搞懂 ^^;
+16:30 < miaoski> au: 請問要怎麼 push 上 Google Play?
+16:31 < au> miaoski: https://support.google.com/googleplay/android-developer/answer/6112435?hl=zh-Hant
+16:31 < kcwu> au's url: [第一次使用 Google Play 開發人員帳戶嗎？請參考基本須知事項 - Android 開發人員說明]
+16:33 < miaoski> au: OK. 來申請。iOS 的就麻煩你了 (鞠躬) 那個 key 太貴惹 :P
+16:34 < au> sure
+17:09 < miaoski> au: 宣傳用圖片？
+17:12 < au> miaoski: 用 logo 放大或抓 screenshot
+17:17 < miaoski> au: Privacy Policy ...
+17:18 < miaoski> 嗯可以勾「不設定」 :P
+17:18 < au> 可以不放，因為沒有收集任何資料... 
+17:19 < miaoski> au: https://play.google.com/store/apps/details?id=org.audreyt.dict.moe_p 大感謝!等它 populate 惹~
+17:20 < au> miaoski++ \o/
+17:27 < lafin> miaoski: ++
+17:27 < lafin> au: ++
+18:22 < lafin> https://i.imgur.com/MWqPBLh.jpg
+18:22 < lafin> \o/
+18:39 < slackbot> <yhsiang> miaoski++ au++ XD
+19:42 < slackbot> <kiang> miaoski++ au++
+20:36 < slackbot> <seadog007> kiang: 看到的話就去merge吧
+20:36 < slackbot> <https://github.com/kiang/drugs/issues/16>
+20:36 < slackbot> <https://github.com/kiang/drugs/pull/17>
+20:36 < kcwu> slackbot's url: [還我邊界啊 嗚嗚嗚~~~ · Issue #16 · kiang/drugs · GitHub]
+20:36 < kcwu> slackbot's url: [Fixed #16 我的邊界終於回來了 by seadog007 · Pull Request #17 · kiang/drugs · GitHub]
+20:43 < slackbot> <yhsiang> seadog007++
+21:10 < slackbot> <seadog007> 又開了三個可能要自己解的issue@__@
+21:10 < slackbot> <seadog007> <https://github.com/kiang/drugs/issues/18>
+21:10 < kcwu> slackbot's url: [這個樣式... 這個排版... · Issue #18 · kiang/drugs · GitHub]
+21:10 < slackbot> <seadog007> <https://github.com/kiang/drugs/issues/19>
+21:10 < slackbot> <seadog007> <https://github.com/kiang/drugs/issues/20>
+21:10 < kcwu> slackbot's url: [資料排版問題 · Issue #19 · kiang/drugs · GitHub]
+21:10 < kcwu> slackbot's url: [表格排版問題 · Issue #20 · kiang/drugs · GitHub]
+21:10 < slackbot> <seadog007> 然後都是用意義不明的標題XDD
+21:41 < lychee> 求救 我在hackpad用google帳號登入後, 修改了email地址(用gmail的+功能), 現在在其他電腦登入, 同樣用google帳號登入, 卻會重新創一個新帳號
+21:42 < lychee> 用修改後的email登入也不行 因為根本沒設置密碼
+21:43 < a-tsioh> pm5: 你確定要用Flux ? T.T
+21:44  * a-tsioh 沒用過，同事都用Backbone
+21:49 < lychee> 用忘記密碼功能解決了lol
+21:58 < slackbot> <kiang> seadog007++  繼續加油 :simple_smile:
+21:58 < slackbot> <kiang> seadog007: 你本地端自己有裝起來看嗎？
+21:59 < slackbot> <seadog007> 沒有
+21:59 < slackbot> <seadog007> 直接code視覺化XDDDDD
+21:59 < slackbot> <kiang> seadog007: XD ，裝起來看比較好啦
+22:01 < slackbot> <seadog007> Packets                                                Pings
+22:01 < slackbot>  Host                                                                                    Drop   Rcv          Avg      Gmean   Jttr  Javg   Jmax    Jint
+22:02 < slackbot> 10. http://59-127-163-155.HINET-IP.hinet.net      19         13099   15.3    15.3         1.1    1.0      56.5    14.0
+22:02 < slackbot> <seadog007> 還蠻穩的誒
+22:02 < slackbot> <seadog007> 從前天開始的ping
+22:03 < slackbot> <kiang> seadog007: 你說 http://drugs.olc.tw ?
+22:03 < kcwu> slackbot's url: [藥品一覽 @ 藥要看]
+22:03 < slackbot> <seadog007> 我家server啊
+22:03 < slackbot> <seadog007> 你上次說的家用線路
+22:04 < slackbot> <kiang> seadog007: 撥接拿到的固定 IP 有很多狀況，要觀察久一點囉
+22:04 < slackbot> <kiang> 單純用 ping 可能不容易出現問題吧，可以用來架站試試 :simple_smile:
+22:06 < slackbot> <seadog007> 我有架站啊w
+22:07 < slackbot> <seadog007> 洗完澡繼續解issue XD
+22:10 < slackbot> <kiang> seadog007++
+22:38 < slackbot> <mingtsay> @seadog007: 可以順便觀察我家的 PPPoE 拿到的固定 IP 嗎？
+22:38 < slackbot> <mingtsay> @seadog007: http://rmstudio.tw 有 IPv4 和 IPv6
+22:38 < kcwu> slackbot's url: [Welcome to RM Studio!]
+23:07 -!- seadog007_ is now known as seadog007
+23:08 < slackbot> <seadog007> @@
+23:08 < slackbot> <seadog007> 是可以啦www
+23:08 < slackbot> <seadog007> IP呢
+23:15 < miaoski> mingtsay: 固定 IP 你用 @ip.hinet.net 撥接就拿得到啦
+23:37 < pm5> a-tsioh: 嗯? 你這樣正好可以為了台語專案來用一下呀
+23:38 < a-tsioh> 呵呵
+23:38 < a-tsioh> 好吧
+23:39 < a-tsioh> 可是serverside拜託要用python (flask)寫 :)
+23:42 < slackbot> <seadog007> CSS優先級好煩~~
+23:42 < slackbot> <seadog007> @miaoski: 他是說他的IP啊
+23:45 < miaoski> a-tsioh: Flask 好好用，我最近也時愛
+23:45 < miaoski> 很愛//
+23:54 < slackbot> <seadog007> @kiang: 是說我為什麼找不到某段程式碼XD
+23:55 < slackbot> <seadog007> .cf-hidden { display: none; } .cf-invisible { visibility: hidden; }
+23:56 < slackbot> <yhsiang> cloudflare 塞的 ?
+23:56 < slackbot> <seadog007> 到底是從哪裡塞進去的
+23:56 < slackbot> default.ctp只有到上一行 還是說他跟js塞在一起 應該不會那麼蠢吧.....
+23:56 < slackbot> <seadog007> 原來是CF嗎....
+23:56 < slackbot> <seadog007> 好吧 那自己加上去XD
+23:58 < slackbot> <kiang> 應該是 CF 自動塞的

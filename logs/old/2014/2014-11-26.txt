@@ -1,0 +1,160 @@
+--- Day changed 三 11月 26 2014
+00:00 < kiang> c9sould__++
+00:01 < t0mst0ne_> isacl: ++
+00:02 < isacl> 因為 crawler 只是一段 shell + curl, 而且要帶 cookie (跟很醜的很長的 asp.net viewstate ), 不確定換機器能不能跑，就暫時先不放了
+00:05 < mcdlee> isacl: ++
+00:17 < mcdlee> request 里的資料好像會被 server 討厭
+00:31 < kiang> http://www.chinatimes.com/vote/municipalmayors/county/100 - 看樣子他們也是砸重本呢
+00:31 < kcwu> kiang's url: [台北市長 - 2014九合一選舉即時開票 - 中時電子報]
+00:34 < t0mst0ne_> mcdlee: isacl  https://gist.github.com/t0mst0ne/019ec211dffb954ddf6a  可是json 格式不大會定
+00:34 < kcwu> t0mst0ne_'s url: [Fetch daily new confirmed dengue case from kcg]
+00:35 < t0mst0ne_> mcdlee: 找到 datetime.date(2014,11,1)   可以更換起始日 2014,11,1 ;  然後 range(365) 就抓一年 XD
+00:55 < clkao> orz! 我是今天要出 5050 圖嗎 哭哭
+01:00 < clkao> johnny__: 記得開始找苦主幫忙 merge / 測試 以免自己累壞 :P
+01:01 < isacloud> t0mst0ne_++ 你的 crawler 讚多了
+02:13 < gugod> kiang, Lee1092: 我目前是專門處理純圖像的 pdf (pdftotext 拆不出字的) -- 一樣是手動切字，然後餵給 tesseract
+02:13 < gugod> kiang, Lee1092: hmm... 手動 = 寫程式尋找夠好的切字邏輯
+02:52 < ethantw_> au, a-tsioh, 抱歉問個笨問題，萌典裡的closure compiler要怎麼跑起來呢？
+02:53 < au> ethantw_: 不用跑起來... cat $(JS_DEPS) > js/deps.js 也可以動
+02:54 < au> (我是用 brew install closure-compiler 安裝的)
+02:54 < ethantw_> 了解惹～
+02:55 < au> 有空時應該要來把 Makefile 裡 deps 的部份換成 webpack+react-hot-loader ... https://github.com/audreyt/500lines/tree/master/spreadsheet/as-react-livescript 已經換了，還沒空動萌典的 build system
+02:55 < kcwu> au's url: [500lines/spreadsheet/as-react-livescript at master · audreyt/500lines · GitHub]
+02:56 < au> 這周先把 ethercalc hackfoldr/multi-sheet native support 做完再回來做萌典。
+02:56 < ethantw_> 可以用uglifyjs嗎？
+02:57 < au> 也可以啊
+02:58 < ethantw_> thanks!
+04:54 < yehes> Hi, 各位好 我是 DC hackathon 政治獻金視覺化的作者之一．
+04:55 < yehes> 我聽說紐約場已經有場地了？
+04:55 < yehes> 有人可以透露更多細節嗎？
+05:02 < carolineee> 有場地了嗎?  我只聽說他們12月中要開第一次的籌備會議
+05:02 < carolineee> yehes也是神...視覺化超厲害...  ((拜一下
+05:05 < yehes> teammates carried ...
+05:57 < clkao> 紐約的朋友應該跟beta nyc 認識一下
+08:24 < mcdlee>  t0mst0ne: https://github.com/wrobstory/folium 這個可以銜接 pandas 和 leaflet
+08:24 < kcwu> mcdlee's url: [wrobstory/folium · GitHub]
+08:24 < mcdlee> 預設可以產生靜態網頁，動點手腳可以用在 iPython notebook，但不知道可不可以跟 django 之類的 framework 搭配
+08:41 < Tzu-Yao> yehes: https://www.facebook.com/events/1513245478926425/?ref_dashboard_filter=upcoming
+08:41 < kcwu> Tzu-Yao's url: [G0V NYC Hackathon Planning Committee | Facebook]
+08:43 < Tzu-Yao> 12/14紐約要開planning commitee會議
+08:51 < pofeng> Tzu-Yao: 喔喔用 debut 一詞讓我想到 SOB 耶 (被打)
+08:52 < pofeng> Tzu-Yao: (12/14 FB event )
+09:04 < caroline_> 好希望是一月底的週末黑客松耶.....因為剛好有一張機票.......  ((默默祈禱))  XDDD
+09:19 < ETBlue> 機票 driven development XD
+09:38 < Lee1092> caroline_:  看時間點應該差不多  XD   不然也可以回來發起小松  哈哈
+09:43 < caroline_> Lee1092 我去幫忙打雜~  XDDDD
+09:44 < t0mst0ne_> isacloud: 可是還有點問題 , 得要把 ' ' 拿掉; 再加上日期  .... 
+09:50 < mcdlee> t0mst0ne:     Area = match[0].split(',')
+09:50 < mcdlee> IndexError: list index out of range
+10:13 < fufubear> Tzu-Yao: 先別管紐約了~~ 你DC這邊的任務還沒結束押~~~
+10:27 < Tzu-Yao> 我...馬上回去解...
+10:35 < Lee1092> ETBlue: semantic-ui 協作翻譯~ https://www.transifex.com/projects/p/semantic-ui-docs/language/zh_TW/
+10:35 < caroline_> fufubear 好嚴格....
+10:36 < caroline_> ETBlue 其實本來是要從紐約去歐洲的說.............  現在看來應該是無法成行了...  但還是有機票...所以就...默默許願阿~~  XDDD
+10:37 < fufubear> caroline_ 因為我不想再跳坑了... XD
+10:38 < caroline_> fufubear....  我今天又默默的被推了說..........  OTZ
+10:50 < isacl> t0mst0ne_: 可以對 list strip("' "), eg. listRes = [x.strip(" '") for x in listOrig], 或是其它的 iterate list elements 的方式都可以
+10:52 < fufubear> caroline_ 確定一下，現在活動紀錄是 Hsin-Hui 在弄吧...?  我想說感恩節前要發感謝函出去
+10:54 < caroline_> fufubear 應該是吧...但你可能要跟她說時間...  不過...感恩節前也太趕...後天耶.................
+10:56 < t0mst0ne_> isacl: oh yes!
+10:56 < fufubear> caroline_ 這應該有時效性吧 通常是一周內要寄出
+10:57 < caroline_> fufubear 也是啦...可是剛好碰到感恩節...星期五發應該也還好吧?!  XDDDDD  而且我們的照片和影片~~~~~~~~~~
+10:59 < fufubear> caroline_ 影片不附上沒關係 老人家習慣看圖文 XD
+11:00 -!- c is now known as Guest68534
+11:00 < Guest68534> d
+11:00 < Guest68534> n
+11:00 < Guest68534> 測試
+11:00 < Guest68534> OK
+11:07 < ronnywang> http://vote2014.g0v.ronny.tw/ 補上候選人名單的 API 了
+11:15 < Lee1092> ronnywang:  有政黨得票率的 json 格式可以參考嗎?  @@
+11:27 < pofeng> ronnywang++
+11:34 < kiang> ronnywang: 這些候選人資料都是開票系統提供的嗎？還是你自動配對的結果？
+11:37 < ronnywang> 中選會API說明文件提供的一堆 excel 檔中整理出來的
+11:38 < kiang> ronnywang++, 晚點試著匯入 :)
+11:38 < ronnywang> https://github.com/ronnywang/vote2014/tree/master/webdata/data  CSV 放在這邊
+11:38 < kcwu> ronnywang's url: [vote2014/webdata/data at master · ronnywang/vote2014 · GitHub]
+11:48 < kiang> ronnywang++
+12:09 < mcdlee> t0mst0ne_: https://gist.github.com/mcdlee/8cf459fa3b3c490dc67d 我加上了倒進 pandas 的功能
+12:09 < kcwu> mcdlee's url: [dengue.kcg.py]
+12:12 < t0mst0ne_> mcdlee: I update if :continuous flow control 不然沒new case 會break
+12:14 < t0mst0ne_> https://gist.github.com/t0mst0ne/019ec211dffb954ddf6a
+12:14 < kcwu> t0mst0ne_'s url: [Fetch daily new confirmed dengue case from kcg]
+12:15 < t0mst0ne_> So far so good 至少已經有daily data ;再等看看有沒有強者填坑
+12:29 < ronnywang> Lee1092: 加上政黨投票率的 json 格式了
+13:00 < t0mst0ne_> mcdlee: 需要找一個可以快速將資料弄上網的方式像d3.js 然後可以dynamic query ; 之前pandas 作者跑去cloudera 可能將來會有 bi ,但不確定市否open source
+13:07 < mcdlee> t0mst0ne_: https://gist.github.com/mcdlee/8cf459fa3b3c490dc67d I update again
+13:16 < mcdlee> t0mst0ne_: query 太頻繁會被市政府的 server 討厭 我們是否自己弄個資料庫裝資料呢？要以何種形式比較適合
+13:22 < Lee1092> ronnywang++  thx
+14:13 -!- miaoski_ is now known as miaoski
+15:48 -!- 7F1ABWGDI is now known as Irvin
+16:06 < ronnywang> http://vote2014.g0v.ronny.tw/ # 文件和政黨列表API以及整理好的csv都補上去了，再來就星期五演練時看看大家有沒有什麼需求了
+16:08 < yhsiangCloud> tokuo again~
+16:25 -!- chihchun_afk is now known as chihchun
+16:45 < a0kman> 夭壽 12/27是補上班日 如果那天開大松我就爆炸了
+16:45 < a0kman> (顯示驚呆了
+16:58 < superbil> ronnywang: ++
+17:05 < CindyLinz> 最近作的一個用來在網頁裡面選擇 crop 圖片範圍的 js lib.. 嗯, 不知道有沒有人會需要~  # https://cindylinz.github.io/JS-Crop-Image/
+17:05 < CindyLinz> source 和用法說明在這邊.. https://github.com/CindyLinz/JS-Crop-Image
+17:05 < kcwu> CindyLinz's url: [CindyLinz/JS-Crop-Image · GitHub]
+17:13 < Lee1092> CindyLinz:  可以選取範圍後  裁圖 匯出嗎?  XD
+17:14 < CindyLinz> Lee1092: 只會給範圍.. 然後是看應用端想要怎麼運用
+17:15 < Lee1092> CindyLinz: 了解~
+17:15 < CindyLinz> 也許有人想在 browser 用 canvas 截圖, 也許有人想把整張圖傳到 server 上再用 convert 之類的處理
+17:34 < au> a0kman: 剛從行政院出來。你提的黑客松<->進修時數，這個想法很受歡迎。 明年初蔡政委辦公室打算請各局處長先聚會傳教一次（也算進修時數），然後請各局處長主/協辦在地黑客松，同仁參加視為進修。 以上。
+17:35 < a0kman> 好耶!
+17:36 < Lee1092> au++  cool  政府由內而外黑客松!
+17:36 < a0kman> au: 來繼續在公部門傳教! A_A
+17:36 < au> 第一次萌典松原本就想跟國教院借禮堂辦的 XD
+17:37 < a0kman> 安捏我也可以藉機會跑各單位了(大誤
+17:37 < au> 但承辦同仁可能覺得沒有先例，後來只好自己找場地。有先例就比較容易了
+17:38 < a0kman> 部過有些場地會有飲食限制  或是太大(像華山那樣)  不過反正這些是後話了
+17:39 < au> yeah, well 中研院資訊所也是有飲食限制的優質政府場地 XD 主要是這樣公務員比較容易體驗到不同的工作方式吧。
+17:40 < a0kman> 至於之前有人提到的假日辦松(應該大多都是吧) 的公務員參加人數問題 我覺得這些都不會是問題
+17:40 < a0kman> 因為會想來的人 假日還是會出現  比較要注意的可能就是舉辦以後 和管場地的人的互動而已
+17:41 < au> *nod*
+17:41 < Lee1092> CindyLinz++  會支援 CommonJS 格式嗎?  放到 npm 上 XD
+17:42 < a0kman> 或許這一些裡面 除了大家自己的松和大松以外  針對公務員的體驗說明松  也可以考慮的樣子  (感覺辦起來有些難度)
+17:42 < CindyLinz> Lee1092: 我不會... 囧   我要先讀讀 CommonJS 是什麼東東 @_@"
+17:44 < Lee1092> CindyLinz: OK  我也來改看看， 簡單來說  可以用 require 的方式引用 lib 
+17:44 < CindyLinz> 這個 require 是這個嗎? # http://requirejs.org/
+17:44 < kcwu> CindyLinz's url: [RequireJS]
+17:54 < Lee1092> CindyLinz:  這是 browser 上用來引用其他 module 的 lib， 目前處理 module 引用有 AMD(browser) 跟 commonJS(node) 兩種格式  可以看這篇 http://requirejs.org/docs/whyamd.html
+17:54 < kcwu> Lee1092's url: [Why AMD?]
+17:55 < Lee1092> 這是 browser 上用來引用其他 module 的 lib，這段話我是指 requirejs  
+17:56 < kiang> ronnywang: 同樣是中選會的資料，一堆名字對不起來，罕見字一直換…
+17:56 < CindyLinz> 嗯嗯 我有用過這個..
+17:58 < CindyLinz> 也曾經因為用得很生氣, 寫了替代品來用 ^^| # https://github.com/CindyLinz/JS-GreenDefine
+17:58 < kcwu> CindyLinz's url: [CindyLinz/JS-GreenDefine · GitHub]
+17:59 < Lee1092> CindyLinz: XDD   用 CommonJS 便可以用 browserify 直接包成一包!  還可以用 npm 管理版本  :p
+18:02 < CindyLinz> 的確是還不太想在 browser 以外的地方用 javascript.. o.o
+18:03 < yhien> why not
+18:04 < CindyLinz> 環境異質性太大了, 負擔好重 @_@"
+18:05 < CindyLinz> yhien: 例如說這個 require.js 的 plugin text, 用來載入文字檔的.. # https://raw.githubusercontent.com/requirejs/text/latest/text.js
+18:06 < CindyLinz> yhien: 一個 module, 四份程式碼... 再加上一坨環境測試.. 但永遠只會用到環境測試和這四份的其中一份...
+18:07 < CindyLinz> 從程式碼裡面的註解可以看到 plugin 作者的憤怒... XD # //Why Java, why is this so awkward?
+18:07 < CindyLinz>  //Avert your gaze!
+18:12 < yhien> 嘩，看到了， Byte Order Mark XD
+19:13 -!- yhien [yhien@conference/jsconf/x-irrvuqtadaundjst] has left #g0v.tw []
+21:18 < yhsiangCloud> 回來啦~~
+21:21 < pm5> yhsiangCloud++
+21:23 < caroline_> yhsiangCloud++  辛苦了!!!  
+21:28 < jimyhuang> yhsiangCloud: 明年挑戰環球？
+21:50 < yhsiangCloud> 環球XD
+21:50 < yhsiangCloud> caroline_: 你的鳳梨酥安全抵達台灣
+22:01 < a0kman> yhsiangCloud: +++
+22:02 < a0kman> 推坑英國松這樣
+22:07 -!- AceChen__ [uid27976@gateway/web/irccloud.com/x-dkgszxalpzdftpty] has left #g0v.tw []
+22:08 -!- AceChen__ is now known as AceChen_
+22:28 < Michael_LI> 今夜最新消息　台灣執政黨（國民黨）要鬧國際醜聞了　［引述］@韓半島新聞平台，韓國三大通訊社之一的newsis報導：「台灣執政黨 利用韓國當作地方選舉負面電視廣告題材」
+22:29 < Michael_LI> （來源）https://www.facebook.com/knewsonline/posts/1503699586559592
+22:29 < kcwu> Michael_LI's url: [韓半島新聞平台 - 晚上，韓國三大通訊社之一的newsis已經發出報導了：「台灣執政黨... | Facebook]
+22:40 < kiang> ronnywang++, 號次跟生日全部匯入選舉黃頁了
+22:42 < au> kiang++ ronnywang++
+22:47 < Michael_LI> G8V有人嗎
+22:48 < Michael_LI> G8V有人在嗎？　＜－－修辭　
+23:25 < Michael_LI> 摘要一下　這件事情代表新聞傳播的糟糕現況　https://www.facebook.com/lihsingyu/posts/961119760568329
+23:25 < kcwu> Michael_LI's url: [Hsingyu Li - 各位同學　我摘要一下　這件事情代表新聞傳播的糟糕現況。 /*　韓半島新聞平台... | Facebook]
+23:32 -!- yhsiang_ is now known as yhsiang
+23:33 < kiang> ronnywang: 然後發現資料並不完整 XD ，像是 花蓮縣 的 鄉鎮市民代表 全部沒有進來
+23:44 < johnny__> ronnywang++  居然有這麼完整的候選人資訊！
+23:59 -!- chihchun is now known as chihchun_afk

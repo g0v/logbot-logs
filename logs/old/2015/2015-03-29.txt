@@ -1,0 +1,116 @@
+--- Day changed 日  3月 29 2015
+00:33 < jimyhuang__> clkao: 可惡，人家都上外太空，我還在那殺豬公 QQ
+01:05 < slackbot6> <mgdesigner> sry今天有事，沒能報萌典松，只能看直播/_\
+01:11 < au> mgdesigner: yapcheahshen++ 寫出好詳細的 https://github.com/g0v/idskage 了
+01:11 < au> =意傳組字的 JS port 雛形，加上自動寬度調整
+01:13 < au> 吳老辭典 ( https://g0v.github.io/koktai/ ) 難字 IDS 取得後，少數需要手動調整的，可以 5/1 國教院松來分散式做。
+01:14 < a-tsioh> 逐家好!
+01:14 < a-tsioh> 我也是剛看完直播
+01:14 < au> hi a-tsioh, we missed you! tomorrow I'll be @paris
+01:14 < a-tsioh> really ?
+01:14 < a-tsioh> cool
+01:14 < au> monday early morning to be exact
+01:14 < a-tsioh> (although I won't :p )
+01:15 < au> yeah I know :p
+01:15 < a-tsioh> I'll be back on monday too
+01:15 < a-tsioh> (back to Paris)
+01:15 < a-tsioh> and in Taiwan someday in April
+01:16 < au> 那也許可以 April 18 大松見 or 5/1 國教院辭典松 (yapcheahshen 說他應該也會到)
+01:16 < a-tsioh> 5/1 for sure, 4/18 I hope too
+01:17 < a-tsioh> we should try machine learning based on kageids
+01:17 < a-tsioh> seems awesome
+01:20 < au> +++
+01:22 < a-tsioh> I guess it should be possible to learn transformation based on existing glyphs
+01:22 < a-tsioh> question is how to define the transformations to build the training set
+01:23 < au> I was wondering if we can redefine it as a constraint problem with exact solutions in z3 or something
+01:23 < au> but learning seems more feasible (aesthetics wise there may not be an exact solution)
+01:25 < a-tsioh> I think the folks at Wenlin Institute did something like this
+01:25 < au> awesome
+01:29 < a-tsioh> http://www.wenlin.com/cdl/coord/
+01:29 < kcwu> a-tsioh's url: [Illustration of CDL Coordinate Adjustment]
+01:31 < a-tsioh> apparently they "just" learn translations of some keypoints
+01:31 < a-tsioh> make sense and sound feasible
+01:33 < au> yup, afaicr that's what yap meant by "找出構字能力強的常用部件，放到庫存字框(可從glyphwiki dump 抽取)，只需放一兩千個庫存字框就可以涵蓋大部份的組字式(比方說「明」就是一個構字能力很強的部件)。常用部件才值得放入庫存，以降低client side開銷，罕用複合部件使用率極低，醜一些無妨。"
+01:43 < a-tsioh> 這個檔案很適合練習ML
+01:44 < a-tsioh> 其實也可以用zh-stroke的svg
+01:45 < au> the count seems to be <2000 and there's already WSL_Ming_TPS.ttf as hand-adjusted fallback
+01:45 < au> WSL_Kai_TPS PUA 可以用來配筆劃 if we really want to go that far :p
+01:46 < a-tsioh> :)
+01:46 < a-tsioh> but the extended part seems different in the .dic and in the .pdf (so I guess in the .tff as well)
+01:47 < a-tsioh> I'm a bit puzzled about this
+01:47 < au> yeah that's what I asked derming about (Cc'ed you)
+01:47 < au> best case we get a mapping, slightly okay case we get IDS, worst case we crowdsource the IDS from both sides
+01:48 < au> with some visual similarity prefiltering, hopefully won't be too hard to match one among a few candidates
+01:51 < a-tsioh> oh great (saw the mail but didn't read it until now 歹勢orz)
+01:51 < au> np at all XD
+01:53 < a-tsioh> another (much smaller issue) is the mapping for zhuyin in 國語
+01:54 < a-tsioh> I did only the Taiwanese part, I don't know it the Mandarin is somewhere to be found or if I have to build it from 萌典 data
+01:56 < au> shouldn't be hard to retroactively guess it from 國語一字多音審訂表
+01:57 < au> (in best case we'll also get that mapping from derming)
+02:05 < a-tsioh> ok, so first thing is to wait for his answer, easy enough :)
+02:08 < slackbot6> <mgdesigner> au: yes當初yep是教我組字的老師，今天聽到他講的好懷念，哈哈
+02:16 < slackbot6> <mgdesigner> 關於組合的比例，我以前有寫過自動的算法。按照筆劃的分析。左右組合時，部件有順勾的會有需要比較大的空間（例如：口、日、田、一類）給比較大的權重，而直豎的筆劃佔的橫向寬度最小，就是最低的權重
+02:19 < slackbot6> <mgdesigner> 模擬寫毛筆字時，該怎麼在九宮格分配適當的比例。
+02:26 < a-tsioh> 我聽說日本有一些人用 3d scanner或類似工具來錄音書法
+02:27 < slackbot6> <mgdesigner> 以前我寫的的雛型，在400~447行  <https://github.com/MGdeisgner/libdgg/blob/master/libdgg/src/dgg/CharComponent.java#L400>
+02:27 < kcwu> slackbot6's url: [libdgg/CharComponent.java at master · MGdeisgner/libdgg · GitHub]
+02:31 < slackbot6> <mgdesigner> 主要還是比組合兩邊的筆劃多少，然後再來看裡面某幾種筆劃，只要有勾的，就會要比較大的空間（因為會行成一個方塊型），還是很粗淺的作法，大概像小學生寫毛筆吧XD
+02:38 < MGdesigner> a-tsioh: 錄音書法？
+02:42 < a-tsioh> 可能也不算錄「音」
+02:42 < MGdesigner> a-tsioh: 那是錄什麼？
+02:42 < a-tsioh> 後來有人來用這個資料和3d printer
+02:43 < a-tsioh> 我也不太清楚，打聽一下再跟你講
+02:43 < MGdesigner> a-tsioh: ok~
+02:53 < MGdesigner> 希望我的小分享，有些幫助～
+02:56 < caasihuang> au: 又可以讀 binary data 了。
+03:02 < au> caasihuang++
+03:04 < au> MGdesigner: 感謝~ 目前我們所知最全的應是丞宏的 https://github.com/sih4sing5hong5/han3_ji7_tsoo1_kian3/tree/master/src/cc/adjusting/piece
+03:04 < kcwu> au's url: [han3_ji7_tsoo1_kian3/src/cc/adjusting/piece at master · sih4sing5hong5/han3_ji7_tsoo1_kian3 · GitHub]
+03:05 < MGdesigner> au: 我看看
+03:07 < MGdesigner> au: 他是明天回營嗎？
+03:07 < au> MGdesigner: 不確定~ 今天新臺語沒有併松，可能另外約松
+03:08 < MGdesigner> au: I see.
+03:09 < MGdesigner> au: 他真的蠻熱血的，2012以前有兩三個人來信請教組字的技術，好像只有他有做到這樣
+03:10 < au> sih4sing5hong5++
+03:38 < MGdesigner> au: 我覺得所有IDC都實作出來就不簡單了。 不過按照部件複雜度挑整組合時的比例，我剛才大致trace了一下，好像是還沒有，應該是均分組合
+03:39 < MGdesigner> au: 其實均分組也無仿，要讓程式自動算能算得漂亮，也不是很急迫的事。
+03:40 < au> MGdesigner: ref http://漢字.意傳.台灣/%E5%AE%8B%E9%AB%94/%E2%BF%B4%E8%BE%B6%E2%BF%B4%E5%AE%80%E2%BF%B1%E7%8F%A4%E2%BF%B0%E9%9A%B9%E2%BF%B0%E8%B2%9D%E6%8B%9B.png 
+03:40 < au> vs http://漢字.意傳.台灣/%E5%AE%8B%E9%AB%94/%E2%BF%B4%E8%BE%B6%E2%BF%B4%E5%AE%80%E2%BF%B1%E7%8F%A4%E2%BF%B0%E9%9A%B9%E2%BF%B0%E5%89%8D%E5%BE%8C.png
+03:41 < au> 看起來是均分後再縮放到 best fit
+03:42 < au> 只是縮放後寬度沒有調整，所以才想引進 KAGE 的資料
+03:42 < MGdesigner> au: 我覺得很難的就是像這種「珤」的
+03:45 < MGdesigner> au: 以後實作呼叫看看我的libdgg的比例評估看看，也許有點幫助
+03:49 < MGdesigner> au: 不過需要拿既有已經大家習慣的美感的既有組合字來實驗，賦予比較好的權重，以及增加rule，例如說只要筆劃一橫後面接一豎，例如「十」，他站的空間權重，應該等效於有一順彎的的「口」
+03:50 < au> 嗯嗯。KAGE 有很多手組好的（就是花園明朝），所以阿石說的用機器學習也是一條路
+03:50 < MGdesigner> au: 順彎完的下一筆是一橫，那是無效加權（因為封閉了一個方塊），大概這一類的
+03:51 < MGdesigner> au: 也對
+03:52 < au> 不過你說的 heuristics 也很重要，可以加速一開始的 training set
+03:52 < au> 就都趁機試看看嘍 XD
+03:52 < MGdesigner> au: :)
+03:54 < MGdesigner> au: 說到這裡，我想起一個有趣的事情，就是寫毛筆字的布局決定有沒有一種可傳授的客觀rule？
+03:57 < au> MGdesigner: 是說單字像 楷書九十二法 還是多字的布局？
+03:58 < MGdesigner> au: 是一個字如何塞進九宮格，有好看的布局，其實就是我們關心的部件佔有空間比例
+04:00 < au> 嗯，這我不清楚，可能要請教專業的字型設計師
+04:02 < MGdesigner> au: 是的，其實我的意思是「美感」。我在08年以後轉去學音樂，玩音樂，然後高中時也學過西畫，不管音樂或者西畫，我發現其實誕生自歐洲的美學，非常注重精準的計算
+04:04 < au> *nod*
+04:05 < MGdesigner> au: 好聽、好看的東西，其實都是「算」出來的，很大程度可量化，也使得在Computer science發展的歷史上，到某個技術成熟點，過去用傳統媒介的藝術型態，可以數位化。例如實際畫筆繪畫的繪圖理論，可以量化成精準的3D繪圖
+04:08 < MGdesigner> au: 這個我超有感觸的，西洋美術學習關於光影如何「著色」在物體上，中階段很重要的是畫上半身石膏像。第一步是練習畫塊狀的人頭，標準SOP都是練阿古利八，或者維納斯 http://lh5.ggpht.com/_RanT11YA5Ss/SjJOfa65yZI/AAAAAAAAJfU/GgEsKrY_VpQ/L1040673.JPG
+04:12 < MGdesigner> au: 第二步，才是畫正常平滑面的，步驟，也是先畫polygon，然後在每一面相接的地方開始畫中間色調，最後就變成平滑面的了。後來電腦3D圖學發展，也是按照這個順序來進化，很有趣。 我是在想，東方的好像比較缺少這種「量化」美學的論述，害得我們現在好辛苦XD
+04:13 < au> 嗯不過這是機器學習和統計方法的時代，質化有質化的做法 XD
+04:28 < MGdesigner> au: 其實西洋美學還是有不可量化的部份，那是最後一點點，也就是稱為藝術的東西。我是覺得洋人很幸福，機器學習是用在最後一段，例如學習出某個音樂家最喜歡的即興手法，喜歡在A 結構從某音開始，B結構從某音開始，他們已經知道一曲子，可以拆成好幾塊有某種邏輯的「結構」，所以不須用統計一首曲子用了多少個do�
+04:28 < MGdesigner> 而我們得在這幾十年，一個字就是一個字->原來一個字可以再被拆解->我們是怎麼設定出一個字比例該怎麼設的 XD XD
+04:28 < MGdesigner> au: sry半夜小打屁XD
+04:29 < MGdesigner> 我就不打哈哈了 XD
+04:32 < au> 不會，很高興可以聊天 XD
+--- Log opened 日  3月 29 05:30:45 2015
+05:30 -!- Irssi: #g0v.tw: Total of 145 nicks [0 ops, 0 halfops, 0 voices, 145 normal]
+05:30 -!- Irssi: Join to #g0v.tw was synced in 14 secs
+10:23 < slackbot6> <miaoski> 阿美語-法語萌典需要誠徵編輯。
+10:24 < slackbot6> <miaoski> 嗯，因為 OCR 的準確度不算低 (都是字母啊) 所以校對 &amp; 編輯其實佔了工作量的各 50%
+10:24 < slackbot6> <miaoski> 晚一點再來寫誠徵的文案。
+15:04 < slackbot6> <clkao> sdc-docker 看起來很猛
+19:10 -!- flter_ is now known as flter
+21:19 -!- pcchou is now known as spcchou
+21:23 -!- ychsiao__ is now known as ychsiao
+21:24 -!- ychsiao is now known as Guest48971
+21:52 -!- spcchou is now known as pcchou

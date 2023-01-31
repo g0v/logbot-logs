@@ -1,0 +1,356 @@
+--- Day changed 一 11月 17 2014
+00:02 < shelling_> clkao_: 剛加了 booth list sidenav
+00:02 < thea> 內湖有鄉民收到選舉公報了...
+00:02 < shelling_> clkao_: http://i.imgur.com/WLOlXPK.png
+00:03 < clkao_> shelling_: which one do i merge?
+00:03 < shelling_> clkao_: 先這樣當做 5050 的一份好了 // 富堅太久
+00:03 < shelling_> clkao_: https://github.com/clkao/comap/pull/6
+00:03 < kcwu> shelling_'s url: [4 columns layout by shelling · Pull Request #6 · clkao/comap · GitHub]
+00:03 < clkao_> thanks
+00:03 < shelling_> clkao_: 👏
+00:03 < t0mst0ne_> johnny__: 有包括, 但是很奇怪 6月的單位是元; 12月單位是千元, 因此12月data 有4捨5入 , 
+00:06 < t0mst0ne_> johnny__: correct , 只有101年6月是用元 其他都是千元
+00:06 < kiang> 台南也收到選舉公報了
+00:07 < t0mst0ne_> johnny__: xml 檔麻煩您了, 我先休息, 明天來弄
+00:08 < clkao_> shelling_: something is broken with my gulp dev
+00:08 < johnny__> t0mst0ne_: 我也遇到問題了，只好向求救
+00:09 < shelling_> clkao_: I upgraded ng-material with bower. probably the issue?
+00:10 < johnny__> 只好向 au求救，au 可以幫忙轉這裡的 pdf嗎？遇到字型錯誤轉不動  http://www1.hl.gov.tw/ousv/parliament/index.asp
+00:10 < kcwu> johnny__'s url: [花蓮縣全球資訊服務網]
+00:10 < shelling_> clkao_: bower should ask you the proper version
+00:10 < shelling_> of dependencies
+00:10 < clkao_> ok works now with clean install
+00:10 < clkao_> deploying... 
+00:11 < shelling_> clkao_: nice
+00:11 < clkao_> shelling_: anyway to see the goecoded ones?
+00:11 < aucloud> johnny__: ok 我回電腦前再來看， 15min
+00:11 < shelling_> clkao_: TPE/1223 is one geocoded
+00:11 < johnny__> aucloud: thanks!
+00:11 < clkao_> i mean list of geocoded ones
+00:12 < shelling_> clkao_: nope, do we have a column to mark entries as geocoded?
+00:12 < clkao_> if it has coordinates or osm object it's geocoded
+00:13 < kiang> johnny__: 至101年6月止 那份看起來是圖片
+00:14 < shelling_> clkao_: so that we can query with q={ county: "TPQ", osm_data: "??" } for this?
+00:14 < johnny__> kiang: 有12月的話，就可以忽略6月的
+00:14 < johnny__> 會包含
+00:14 < clkao_> osm_data: {"$not": null} i think
+00:15 < shelling_> clkao_: cool. implement it soon
+00:15 < shelling_> clkao_: get back to you later
+00:24 < au> johnny__: http://audreyt.org/tmp/20141117.zip
+00:25 < johnny__> stardog_++ 嘉義縣、嘉義市上線  http://councils.g0v.tw/
+00:25 < kcwu> johnny__'s url: [議員投票指南: 2014候選人]
+00:25 < au> 裡面有一個是圖檔，沒辦法轉（解析度過低），ClearScan 的結果放在 zip 裡為 2013101716483974269.xlsx (其他是 html)
+00:27 < kiang> au++, 剛用 PDFBox 轉成文字而已 XD
+00:27 < au> 那用 kiang 的版本吧，Acrobat 看起來有少數字還是辨識錯誤
+00:28 < johnny__> au: 謝謝
+00:28 < kiang> 目前只有未格式化的文字
+00:29 < kiang> johnny__: 可以看看 https://gist.github.com/kiang/cdc11bc515984de49fb4 版本有沒有比較好用
+00:29 < kcwu> kiang's url: [gist:cdc11bc515984de49fb4]
+00:32 < johnny__> kiang: 謝謝，html搞不定的話可用這個，但可能沒時間寫到這部份了XD
+00:37 < thea> stardog_++ 
+00:45 < au> johnny__: pdf2htmlEX 的狀態看起來比 Acrobat 好，我重新上傳了一份
+00:46 < au> see http://audreyt.org/tmp/20141117/pdf2htmlEX/ - 字型破碎是正常的，字碼是正確的
+00:53 < kiang> 裝 pdf2htmlEX 立刻卡關 XD- https://github.com/coolwanglu/pdf2htmlEX/issues/118
+00:53 < kcwu> kiang's url: [Cannot build on Ubuntu: `.../libfontforge.so: undefined reference to ...` · Issue #118 · coolwanglu/pdf2htmlEX · GitHub]
+00:55 < au> brew 裝的話很好裝 XD 不過有 Ubuntu PPA 可以直接裝
+00:55 < au> # https://launchpad.net/~coolwanglu/+archive/ubuntu/pdf2htmlex
+00:55 < kcwu> au's url: [pdf2htmlEX : WangLu]
+00:56 < kiang> au: 就是在 ppa 卡關的，試試 brew 好了，感謝
+00:57 < kiang> au: 嗯， brew 是 mac os ...
+01:24 < isacl> kiang: 多補上 ppa:fontforge/fontforge 就可以了
+01:25 < isacl> sudo add-apt-repository ppa:fontforge/fontforge && sudo apt-get update && sudo apt-get install libfontforge1
+01:31 < kiang> isacl++, 目前 ppa 不知道為什麼下載速度超慢
+01:32 < isacl> 這工具有點神 @@ 感謝推薦 # pdf2htmlEX
+01:32 < isacl> kiang: 我剛剛滿順的
+01:33 < kiang> 10 kB/s ...
+01:39 < isacl> ...那估計五分鐘可以下載完 libfontforge1-blahblah.deb
+01:40 < isacl> 所以現在應該下載完
+01:40 < isacl> 了 (flee)
+01:41 < kiang> pdf2htmlEX 真的超神，連選舉公報都可以轉成網頁，只是有些字還是出不來就是了
+01:41 < isacl> kiang: 我剛轉了些自己的東西， 100% 完美，你指得出不來的是一些特殊字嗎？（sorry 沒追前面 log)
+01:42 < kiang> isacl: 選舉公報很多直書資料，也有可能原始資料就轉成圖片了
+01:44 < kiang> isacl: 如果有好一點的電腦可以跑跑看這些夭壽大的東西 - https://github.com/kiang/bulletin.cec.gov.tw/blob/master/Console/Command/data/bulletin.csv
+01:44 < kcwu> kiang's url: [bulletin.cec.gov.tw/bulletin.csv at master · kiang/bulletin.cec.gov.tw · GitHub]
+01:44 < kiang> 大概 6GB 吧 XD
+01:46 < kiang> http://www.uploady.com/#!/download/Z3ikHGxTZv4/nsxfNre8d6YJ61UX - 沒有 highlight 的就是轉不出來的部份
+01:46 < kcwu> kiang's url: [File Upload - Uploady.com]
+01:48 < kiang> 不過 pdf2htmlEX 連表格裡面多欄文字都能正確抓出來還蠻神奇的
+01:50 < kiang> 嗯，確定是原始資料就圖片化了，所以 pdf2htmlEX 解出來的文字基本上是完美的
+01:58 < isacl> 嗯，破碎字改一下 css font-family 就好了。
+02:00 < isacl> oh, @font-face 拿掉似乎比較快 :)
+02:02 < isacl> 不過我們應該是要給程式去讀的？所以沒差
+02:05 < isacl> kiang: highlight 是怎麼標示的？很酷
+02:09 < kiang> isacl: 就用瀏覽器打開按下 Ctrl + A ... XD
+02:12 < isacl> kiang: XD.
+02:12 < isacl> kiang: 是這些 pdf 要全轉 html 嗎？ http://tinyurl.com/pks9c7l
+02:13 < kcwu> isacl's url: [bulletin.cec.gov.tw/Console/Command/data/pdf at master · kiang/bulletin.cec.gov.tw · GitHub]
+02:13 < kiang> isacl: 理想狀況是把文字都解出來，只是得先搞懂 pdf2htmlEX 的頁面排版邏輯
+02:15 < isacl> 嗯，那待搞懂一個再一起轉也不遲。
+02:15 < kiang> 如果能夠順利轉出，再跟 https://github.com/kiang/db.cec.gov.tw 做些比對，大概主要選舉的資料都可以串起來了
+02:15 < kcwu> kiang's url: [kiang/db.cec.gov.tw · GitHub]
+02:16 < kiang> 至於鄉鎮市區層級以下的就要看有沒有心，因為資料挺分散的 XD
+02:20 < kiang> 把主要內容取出，去除圖片跟 span tag 可以得到這樣的成果 - https://gist.github.com/kiang/156e919412803b473d18 ，比以前硬拆舒服多了 XD
+02:20 < kcwu> kiang's url: [gist:156e919412803b473d18]
+02:31 < isacl> kiang: 嗯，可以直接用 html2text. 不過全攤開後反而不好 parse 出結構. 可想想看轉成什麼會比較好 parse. 
+09:01 < miaoski_> RzChen: 按讚的意思
+09:16 -!- sweemeng_ [~sweemeng@li528-6.members.linode.com] has left #g0v.tw []
+10:57 < a0kman> au: 目前針對公部門的OD這一塊，除了raw data以外，對於專業資料在運用或搜尋之類的原始單位設定規則，也就是原有政府平台上的相關程式內容，也有進行OD的談論嗎?
+11:18 < yhsiang> http://2014final.wethepeople.tw/ 據說上線了 ...
+11:18 < kcwu> yhsiang's url: [市長給問嗎！最後一役 政策問答大亂鬥]
+11:20 < au> a0kman: 是說程式（碼），還是內容（字）？前者適用開源的部份，據我所知還沒有規範
+11:21 < a0kman> au: 應該是 碼 沒錯
+11:21 < a0kman> 例如 我手邊的一堆農業藥劑對應作物和病蟲的資料
+11:21 < au> 當然科技術有一些研究案的補助，像是 自由軟體暨雲端計算與資訊安全技術研發補助專案 等
+11:21 < au> *科技部
+11:21 < a0kman> 有可能有多重的比對需要(因為分類)
+11:22 < a0kman> 如果單純只有文字部分的話 有可能會在開源社群中要製作時  造成困難 或 該領域技術上的障礙
+11:23 < au> 是。如果可以把 domain-specific 程式邏輯用表格的方式輸出，也就是從程式碼轉成資料集，應該會比較容易釋出成 data.gov.tw 上的資料集，或是 API
+11:23 < Wei-Chih> 問個問題
+11:23 < a0kman> 如果相關單位不把程式碼  搜尋規則之類的也釋放出來的話  有可能有些raw data會變成半垃圾狀態 除非後續有該領域的人X資訊一起重新架好，但是會面臨公部門不承認的困境
+11:24 < a0kman>  恩
+11:24 < a0kman> 這應該也是一種形式的raw data
+11:24 < Wei-Chih> 有關coucilors的crawler的部份，我是抓現任議員的資料，也就是還在任的
+11:25 < Wei-Chih> 那今年要選的候選人資料也是放到coucilors裡嗎？
+11:25 < a0kman> 或許針對公部門也可以強調這一點  以免全部丟出來的都只有文字(目前我也卡在這一塊XD 就算我知道規則可能性  但是因為目前沒有OD 我也沒辦法有動作)
+11:25 < au> a0kman: 如果原本的程式是這樣 if (month == 1) { return '一月' } else if (month == 2) { return '二月' } ...
+11:25 < au> 輸出成 { 1: '一月', 2: '二月' } 的資料集就可以 OD 了
+11:26 < a0kman> hummm
+11:26 < a0kman> 舉例來說 http://otserv.tactri.gov.tw/ppm/  該網站有可能會改版，最重要的改版就是搜尋邏輯的改變(群集定義搜尋)
+11:26 < kcwu> a0kman's url: [植物保護資訊系統]
+11:27 < a0kman> au: 不過我想你剛才的舉例應該和政府單位合作的資訊公司應該有能力看懂和釋出才對xd  如果他們真的要釋出的話
+11:29 < au> 是，這可能要實際去談他們的實作方式。如果測試夠詳細，或是本來就用 data-driven design 方式開發，則容易很多
+11:31 < au> Wei-Chih: data/ 裡好像現任和應選的資料都有
+11:37 < johnny__> Wei-Chih: crawler 抓議員即可，候選人資料是另外從中選會來的 https://github.com/g0v/councilor-voter-guide/tree/master/data/candidates/2014
+11:37 < kcwu> johnny__'s url: [councilor-voter-guide/data/candidates/2014 at master · g0v/councilor-voter-guide · GitHub]
+11:38 < johnny__> Wei-Chih: 目前進度可參考 https://github.com/g0v/councilor-voter-guide/tree/master/crawler#%E5%90%84%E7%B8%A3%E5%B8%82
+11:38 < kcwu> johnny__'s url: [councilor-voter-guide/crawler at master · g0v/councilor-voter-guide · GitHub]
+11:42 < a0kman> (筆記
+12:25 < Wei-Chih> @johnny_ 好的謝謝johnny，只是要確認我抓的是不是對的lol
+12:35 < Wei-Chih> johnny_: 好的謝謝johnny，只是要確認我抓的是不是對的lol
+12:37 < Wei-Chih> au: 恩 我有看到裡面兩者都有，想說在網站上看到的好像都是2014要選的候選人名單和他是否為現任的~~所以才有點搞混lol
+13:49 -!- chihchun is now known as chihchun_afk
+13:51 < kiang> 之前好像有一個表在蒐集這次的選舉公報位置，有人記得網址或相關 hackpad 嗎？
+13:53 < miheille> https://docs.google.com/spreadsheets/d/11s321198FnY3UiFSXmNfHCWcasbcN0eJY6wr189jG_s/edit?pli=1#gid=0
+13:54 < kcwu> miheille's url: [2014選舉公報 - Google 試算表]
+13:55 < kiang> miheille++
+13:56 < miheille> kiang: 屏東跟基隆的公報也出了
+14:22 < kiang> 看樣子有集中選舉公報的網站了 - http://103bulletin.cec.gov.tw/103/ ，只是資料不完整
+14:22 < kcwu> kiang's url: [系統]
+14:30 < thea> 賀
+14:30 < miheille> 可能人工打電話去問會加快公報速度
+14:31 < kiang> 我先爬爬看，避免打了電話網站就消失 XD
+14:31 < thea> 103bulletin.cec 裡面沒有南投議員的~ 真的不完整@@
+14:32 < kiang> 應該會陸續補進去吧，如果真的是集中的系統
+14:33 < miheille> kiang: 縣市長有投票指南嗎
+14:34 < kiang> miheille: 縣市長很多單位都有做，包括 http://www.google.com.tw/elections/
+14:34 < kcwu> kiang's url: [台灣 – Google政治與選舉]
+14:35 < kiang> 我是有做 http://k.olc.tw/elections/ ，雖然有所有候選人，但缺乏像議員投票指南這樣的交叉分析資訊
+14:35 < kcwu> kiang's url: [2014行政區 @ 選舉黃頁]
+14:36 < miheille> kiang: ;g4h4
+14:36 < miheille> 上次thea 有做一個gsv的縣市圖
+14:37 < kiang> 地圖的部份應該都生的出來了，因為村里界圖還算完整，只是沒有應用囉
+14:40 -!- chihchun_afk is now known as chihchun
+14:44 < miheille> http://sos.tw/media/i1WCP 
+14:44 < kcwu> miheille's url: [流浪漢去餐廳用餐不但被嘲笑還被趕出餐廳！本來覺得生氣，但沒想到劇情竟然這麼展開...]
+14:45 < caasihuang_> au: 今天會來打工嗎？
+14:57 < miheille> kiang++ 你給的孤狗網頁裡面的文章都很不錯
+15:25 < kiang> 砍站ing ;)
+15:25 < kiang> 咕狗那個不知道是不是認識的 沒有人 做的 XD
+15:30 < ipa> http://bit.ly/11uF4Xd 這裡講的氣象圖應該就是 g0v 雨量圖吧 @@ 
+15:30 < kcwu> ipa's url: [福音戰士補完計畫的未成作：《新世紀福音戰士完全攻略讀本》 | T客邦 - 我只推薦好東西]
+15:31  * ipa 正在研究 eva
+15:39 < yhsiang> ipa: XD
+16:09 < miheille> http://acg.178.com/201206/133653681554_s.html
+16:09 < kcwu> miheille's url: [天气报告也能很宅 电视台雨量图使用EVA风格]
+16:11 < miheille> 做這樣滿好玩的ㄝ
+16:30 < au> caasihuang_: 不會... 我之前有回覆 calendar event 了。
+16:31 < caasihuang_> au: 瞭解
+16:57 < kiang> https://github.com/kiang/bulletin.cec.gov.tw/blob/master/Console/Command/data/bulletin_103.csv 看起來只有彰化選委會比較認真（嘆）
+16:57 < kcwu> kiang's url: [bulletin.cec.gov.tw/bulletin_103.csv at master · kiang/bulletin.cec.gov.tw · GitHub]
+16:58 < kiang> 然後也不知道桃園為什麼要開兩個目錄 XD
+16:58 < miheille> 桃園有縣跟市
+16:59 < kiang> miheille: 這一次選舉桃園直接以直轄市喔
+16:59 < kiang> 所以不再有桃園縣
+17:02 < miheille> 那可能是重複開了吧
+17:07 < t0mst0ne_> au: kiang johnny__ ++  到現在才有時間看, pdf2htmlEX 果然強 !
+17:38 < johnny__> t0mst0ne_: 請你先試試看把html當xml來轉轉看了，我還在雲林
+17:43 < stardog_> johnny__: 問一下, 第一提案人是哪個欄位？連署人與提案人都塞在"proposed_by"?
+17:48 < kiang> 唉，選舉公報裡面關鍵的姓名欄位是圖片...
+18:00 < seadog007> = =
+18:01 < seadog007> 什麼鬼 node.js做爬蟲遇到文字溢位
+18:01 < seadog007> 是說 解決這個問題就好了:)
+18:01 < johnny__> stardog_: 提案人：proposed_by  連署人：petitioned_by  兩個都是list型態，第一提案人就是proposed_by list 的第一個 element
+18:02 < johnny__> stardog_: 詳細可參考  https://github.com/g0v/councilor-voter-guide/tree/master/crawler#%E8%AD%B0%E6%A1%88%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%B3%87%E8%A8%8A
+18:02 < seadog007> johnny__: 恩恩 我剛剛也想問這個問題
+18:02 < kcwu> johnny__'s url: [councilor-voter-guide/crawler at master · g0v/councilor-voter-guide · GitHub]
+18:02 < seadog007> 然後看到有多個人 就 直接弄成Array了
+18:02 < johnny__> 我再補一些說明上去
+18:58 < seadog007> johnny__
+18:58 < seadog007> category 是array嗎?
+19:13 -!- CelloCello [~Cello@119.77.223.31] has left #g0v.tw []
+19:18 < johnny__> seadog007: 不是，是民政、警備、交通等類別
+19:35 < seadog007> 可是同時有兩個類別
+19:35 < seadog007> like http://www.cyscc.gov.tw/chinese/Discussing_Detail.aspx?s=332
+19:35 < kcwu> seadog007's url: [嘉義縣議會全球資訊網]
+19:36 < seadog007> 就同時有三個類別
+19:36 < seadog007> johnny__
+19:37 < reswind> XDDDDDD 不愧是嘉義縣, 現在看起來要改那格的格式應該有點難？不如就先塞在一起？剛剛看了一下界面，那欄位目前似乎也還沒有特殊的功能？？
+19:38 < seadog007> 可是我做成array了耶@@
+19:39 < seadog007> 看起來應該會拿去做filter之類的
+19:39 < seadog007> 所以應該?
+19:39 < seadog007> 砍掉重練?
+19:40 < reswind> seadog007: XDD 先不要衝動，那你等 johnny__ 回你好了～～
+19:40 < seadog007> XDD
+19:40 < seadog007> 我做兩份好了
+19:41 < seadog007> 來幫忙喔
+19:41 < reswind> seadog007: 你現在是用 crawler 產生的嗎？
+19:41 < seadog007> reswind: ummm 應該算吧
+19:41 < seadog007> 但是原本的資料很悲劇 所以要手動改
+19:41 < reswind> seadog007: 如果還是半手動的，那就先不要改格式等 johnny__ 回應你 XDD 
+19:42 < seadog007> 我可以copy 一份啦
+19:42 < seadog007> 不痛不癢
+19:42 < seadog007> 用regex改
+19:42 < reswind> seadog007: XDDD OK
+19:42 < reswind> seadog007: 可是很有可能我是錯的，到時候 johnny__ 說沒差的時候請不要打我臉 T_T
+19:43 < seadog007> 不會怎樣啦www
+19:46 < johnny__> seadog007: 那就直接 "綜合規劃、經濟發展、農業" 吧
+19:46 < johnny__> 只是一個資訊，各縣市都不太一樣
+19:47 < seadog007> 所以沒有打算做filter嗎?
+19:52 < johnny__> 目前是沒做，可以開 issue  XD
+19:53 < reswind> 我發現 pdf2htmlEX 會把選舉公報的名字部份變成圖片，實際去解析 PDF 檔，會發現名字那個部份應該不是圖片才對 ... 
+20:03 < kiang> reswind: 目前看到的幾個例子是原始的 pdf 真的把姓名轉成圖片
+20:06 < johnny__> RzChen++ 基隆市上線 http://councils.g0v.tw/candidates/2014/%E5%9F%BA%E9%9A%86%E5%B8%82/  stardog_++ 雲林縣上線  http://councils.g0v.tw/candidates/2014/%E9%9B%B2%E6%9E%97%E7%B8%A3/
+20:06 < kcwu> johnny__'s url (2/2): [議員投票指南: 2014雲林縣候選人]
+20:06 < kcwu> johnny__'s url (1/2): [議員投票指南: 2014基隆市候選人]
+20:17 < reswind> kiang: 喔喔，像哪個縣市呢？
+20:17 < kiang> reswind: 彰化，不過有些資料是看得到名字，有些沒辦法，看起來並不是相當統一
+20:18 < kiang> reswind: 臺灣省基隆市議會第 18 屆議員選舉【第一、八選舉區】選舉公報 - 可以看到名字
+20:18 < reswind> 不過各個地區的選舉公報格式都不太相同，真的很麻煩。所以等這屆的選舉公報出來之後。看來需要手工了？
+20:18 < kiang> reswind: 看起來沒辦法輕易批次處理沒錯
+20:20 < seadog007> 那資料... 要弄成 "綜合規劃、經濟發展、農業" 都有困難...
+20:20 < seadog007> 它是用\r
+20:20 < seadog007> 跟空格...
+20:22 < reswind> seadog007: ? 不太懂～他不是放在一個 span 的 tag 裡面嗎？
+20:22 < seadog007> 對啊 他用了空白還用了\r
+20:23 < seadog007> 很好 來取代吧ww
+20:23 < reswind> seadog007++ XDDD 
+20:25 < seadog007> \r要弄掉嗎? 其他欄位的
+20:27 < seadog007> reswind, johnny__
+20:30 < reswind> seadog007: 有看到的話我都會弄掉 ... 
+20:30 < seadog007> OK 那我弄掉
+20:30 < reswind> seadog007: 尤其是姓名欄
+20:31 < johnny__> seadog007: 恩可以的話盡量
+20:31 < reswind> seadog007: 我之前才弄了一個坑給 johnny__，因為名字空白沒有處理掉 XDD 所以讓 johnny__ 花時間去修那個空白 
+20:32 < johnny__> seadog007: 例如這樣 https://github.com/g0v/councilor-voter-guide/blob/master/crawler/kcc/kcc/spiders/bills.py#L110
+20:32 < kcwu> johnny__'s url: [councilor-voter-guide/bills.py at master · g0v/councilor-voter-guide · GitHub]
+20:32 < CornGuo> 發現投票指南好實用.. 正在憂愁該選誰才對..
+20:32 < seadog007> reswind: 姓名一定會弄掉
+20:32 < seadog007> 因為有些是用\r來分隔姓名的= =
+20:47 < RzChen> 剛剛發現議員投票指南..基隆市分區錯誤...
+20:47 < seadog007> done
+20:47 < RzChen> http://councils.g0v.tw/candidates/2014/%E5%9F%BA%E9%9A%86%E5%B8%82/
+20:47 < kcwu> RzChen's url: [議員投票指南: 2014基隆市候選人]
+20:47 < seadog007> 科科 我要丟PR嗎?
+20:47 < Wei-Chih> 新的版面的看起來還不錯
+20:47 < RzChen> parser 之前有地方取錯 重改了 ，請 johnny__ 過目 QQ
+20:48 < seadog007> BTW 要弄成\u嗎?
+20:48 < seadog007> 還是中文就可以
+20:50 < johnny__> RzChen: 我有改過了XD，你可以git pull https://github.com/g0v/councilor-voter-guide.git master 試試看
+20:50 < kcwu> johnny__'s url: [g0v/councilor-voter-guide · GitHub]
+20:50 < seadog007> ~~~
+20:50 < seadog007> 要弄成\u嗎?
+20:51 < RzChen> fix kmc councilors crawl  #76 
+20:51 < seadog007> ...
+20:52 < RzChen> https://github.com/g0v/councilor-voter-guide/pull/76 這個!!
+20:52 < kcwu> RzChen's url: [fix kmc councilors crawl by rz12345 · Pull Request #76 · g0v/councilor-voter-guide · GitHub]
+20:53 < seadog007> 要弄成\u嗎? QQ
+20:53 < johnny__> seadog007: 是 ping我嗎XD
+20:53 < seadog007> 都可以啊 ww
+20:53 < johnny__> RzChen: 恩恩 因為我有改過，可能要麻煩git pull 成最新後再pr，麻煩啦
+20:54 < seadog007> 可以ACK握手成功就好了ww
+20:54 < johnny__> seadog007: 哪一部分要改\u?
+20:54 < seadog007> 全部中文
+20:54 < RzChen> 我研究一下~
+20:54 < RzChen> 拍謝QQ
+20:55 < seadog007> johnny__ 要嘛?
+20:55 < johnny__> seadog007: 哦懂了，可以參考這段，輸出就會是中文字了  https://github.com/g0v/councilor-voter-guide/blob/master/crawler/tcc/tcc/settings.py#L8-L25
+20:55 < kcwu> johnny__'s url: [councilor-voter-guide/settings.py at master · g0v/councilor-voter-guide · GitHub]
+20:56 -!- pcchou__ is now known as pcchou
+20:57 < seadog007> johnny__ 我是說json可以放中文嗎
+20:57 < johnny__> RzChen: 應該 git pull https://github.com/g0v/councilor-voter-guide.git master  解除一些衝突，再重發pr即可，試試看吧 :)
+20:57 < seadog007> 還是要弄成\u
+20:57 < johnny__> seadog007: 是說像這樣的中文嗎?  https://github.com/g0v/councilor-voter-guide/blob/master/data/pretty_format/chcc/councilors.json是說像這樣的中文嗎?  
+20:57 < johnny__> https://github.com/g0v/councilor-voter-guide/blob/master/data/pretty_format/chcc/councilors.json
+20:57 < kcwu> johnny__'s url: [councilor-voter-guide/councilors.json at master · g0v/councilor-voter-guide · GitHub]
+20:59 < seadog007> 對啊
+20:59 < seadog007> 還是要弄成\uxxxx
+20:59 < johnny__> 能中文盡量中文XD，比較好debug
+21:08 < seadog007> OK
+21:13 < seadog007> 我需要把所有json轉成中文嗎?
+21:17 < johnny__> seadog007: 這個setting 可以讓該是中文的都用中文字顯示，參考一下吧 https://github.com/g0v/councilor-voter-guide/blob/master/crawler/tcc/tcc/settings.py#L8-L25
+21:17 < kcwu> johnny__'s url: [councilor-voter-guide/settings.py at master · g0v/councilor-voter-guide · GitHub]
+21:23 < seadog007> johnny__: 我知道
+21:23 < seadog007> 我是說其他的檔案
+21:23 < seadog007> 有用\u的
+21:23 < seadog007> 可以順便全部轉成json
+21:23 < seadog007> s/json/中文
+21:23 < johnny__> 恩恩都轉吧
+21:23 < seadog007> OK
+21:41  * seadog007 回家 等等發PR
+22:28 < RzChen> johnny__ 我發新的 pull request 了! .... github 需要好好的學習><
+22:40 < mmis1000> 嘉義市的database居然用post...難怪到現在還生不出crawler
+22:40 < mmis1000> 發錯...抱歉
+22:44 < johnny__> RzChen: 好像還是沒變??
+22:44 < reswind> johnny__: 嘉義市議員我從選舉公報補上他們的 education, experience 與 platform 了
+22:45 < johnny__> districtXpath  好像沒assign給 item
+22:50 < johnny__> reswind: !! pr 吧
+22:51 < reswind> johnny__: 等等我，我去翻一下黑話集～ XDD pr 是什麼阿
+22:52 < thea> 應該是......git的.....
+22:53 < reswind> 喔喔 pull request 嗎 XDDD
+22:53 < reswind> johnny__: 已經 pr 了！
+22:53 < thea> 哈
+22:57 < johnny__> 哈哈
+22:57 < johnny__> RzChen: 已修，OK囉，晚點會上線
+23:00 < reswind> 話說，寫程式去讀選舉公報的內容的時間，搞不好比手動複製還要長 Orz ..... 
+23:00 < thea> johnny__: 我看有宜蘭的議案爬蟲，不過為何沒上線呀
+23:01 < johnny__> 因為有少一些重要的欄位，我還在修...
+23:01 < johnny__> 例如id
+23:02 < thea> soga... 需要幫忙嗎 還是已經差不多了
+23:05 < johnny__> 還在encoding問題中，例如 http://www.ilcc.gov.tw/CSource/C06/C0601M01.aspx?Fmotion_instanceOS=%C4%B3%AD%FB%B4%A3%AE%D71000523001&System_work=6&Sysno=H_08&code=e&item=1&btSearch=%20-%B7j%B4M-
+23:05 < kcwu> johnny__'s url: [議案資料]
+23:06 < johnny__> 想要抓出 Fmotion_instanceOS的參數當 id使用，但編碼一直錯
+23:08 < thea> soga...
+23:12 < stardog_> johnny__: 彰化縣議案好了~
+23:13 < thea> johnny__: 原來那幾個字是"議員提案"
+23:15 < johnny__> stardog_: 收到，來merge
+23:19 < thea> johnny__: 既然都是相同的字，是不是寫死固定的就好～？  http://www.ilcc.gov.tw/CSource/C06/C0601M01.aspx?Fmotion_instanceOS=%C4%B3%AD%FB%B4%A3%AE%D7920728001
+23:20 < johnny__> stardog_: proposed_by 中的人有逗號，可用split(u'、')分開
+23:21 < johnny__> thea: 還有一類是臨時提案也可能有議員，寫死可能會少抓
+23:23 < thea> johnny__: 可以先把url先抓好再用scrapy抓下來... 因為只有四種議案來源..
+23:25 < johnny__> thea: 因為希望這個 crawler以後也可以繼續用，先把 url 抓下來就只能用一次了
+23:26 < johnny__> stardog_: petitioned_by 和 proposed_by麻煩有逗號都把它分開哦，謝謝
+23:30 < thea> 嗯嗯!
+23:32 < jimyhuang> stardog_!!!
+23:36 < thea> hi jimmy大大
+23:36 < thea> 我跟stardog週末相見歡了~~ XD
+23:38 < stardog_> jimyhuang: 我最近都沉浸在中南部議會, 要一起來玩嗎？XD
+23:39 < jimyhuang> thea: stardog_ 看到兩位，突然就有種書還沒看得感覺
+23:39 < thea> stardog_: 雲林的議案我打包囉～你應該還沒抓吧
+23:39 < stardog_> johnny__: 好, 我改一下
+23:39 < thea> jimyhuang: 真的...預計明日拿到
+23:39 < stardog_> thea: 還沒抓議案, 也還沒買書....
+23:40 < jimyhuang> stardog_: 感覺新工作頗悠哉的樣子 :D
+23:40 < thea> stardog_: 還有馬祖議案我也有點興趣 研究一下看有沒有辦法抓
+23:41 < isacl> 請問一下，下次大松是在一月嗎？
+23:41 < stardog_> jimyhuang: 現在有更重要的事(握拳) !
+23:41 < jimyhuang> 也是，瘦小腹嗎... XD 
+23:43 < stardog_> thea: 想做就趕快認領喔, 不然咻一下就被做完了, 呵呵
+23:43 < stardog_> jimyhuang: 那個...就隨風去吧
+23:44 < thea> stardog_: 真的...................... 我hackpad上已經做好記號了 QQ! 若明天還找不出解法再放出來
+23:44 < RzChen> johnny__ thanks~~~
+23:49 < superbil> isacl: 目前好像沒有確定的消息耶
+23:54 -!- chihchun is now known as chihchun_afk
+23:56 < isacl> superbil: 了解，謝謝！剛剛朋友在問。
+23:58 < yhsiang> jimyhuang: 瘦小腹 ....
+23:58 < isimpt> ＠＠
+23:59 < stardog_> johnny__: 改好了, 你看看

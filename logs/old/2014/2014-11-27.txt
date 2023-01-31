@@ -1,0 +1,134 @@
+--- Day changed 四 11月 27 2014
+00:09 < kiang> 看起來有許多原本登記參選的村里長最後並沒有取得號次，不知道中間到底出了什麼情況...
+00:12 < johnny__> kiang,  ronnywang : 議員名字錯別字問題 https://github.com/g0v/councilor-voter-guide/issues/132  https://github.com/g0v/councilor-voter-guide/issues/99
+00:12 < kcwu> johnny__'s url (2/2): [新竹市第4選區 李妍慧 中選會檔案名字錯別字 · Issue #99 · g0v/councilor-voter-guide · GitHub]
+00:12 < kcwu> johnny__'s url (1/2): [臺南市第9選區 林慶鎮 中選會候選人檔案名字錯別字 · Issue #132 · g0v/councilor-voter-guide · GitHub]
+00:13 < johnny__> 等下再用 ronny的資料跑一次看還有沒有
+00:18 < kiang> johnny__: 我目前都直接用中選會給的字，雖然很多錯誤... 名字裡面有  不知道是什麼情況......
+00:18 < caroline_> yhsiangCloud 你可以趕快吃掉嗎?!  OTZ  我覺得他門會壞掉了
+00:20 < johnny__> kiang: Orz  做不到現任的對應我會很難過
+00:20 < kiang> johnny__: 嗯，你那邊資料的關聯性比較強 XD
+00:21 < kiang> 村里長幾乎是罕見字大亂鬥的情況，字會換來換去的很討厭，造成批次更新的困擾
+00:22 < kiang> 最後把它拆成一個一個字元，找出碰撞次數最多的就直接串起來，原住民這樣子處理掉的
+00:23 < kiang> 理想狀況是有一個類似身份證字號的識別代號，可惜中選會完全沒想要做這個
+00:24 < johnny__> kiang ronnywang 有空來寫吧 https://g0v.hackpad.com/2014-DjHEyHcmR9o
+00:24 < kcwu> johnny__'s url: [2014選舉資料檢討改進 - g0v.hackpad.com]
+00:25 < kiang> johnny__++
+00:30 < clkao> kiang: 但是現在有 選舉名稱、區域、候選人號次 可以當 unique identifier :p
+00:30 < clkao> johnny__++
+00:30 < clkao> 要上飛機了 不過應該會有 wifi
+00:30 < clkao> 終於要回家了 zzz
+00:32 < kiang> clkao: 號次是剛出現的，在這之前只能從選舉公報挖... 。現在單一年度的資料可以透過號次識別，但跨多年度的選舉就沒辦法了，比如說想要歸納一個人參與過的選舉，現在很難作到
+00:43 < au> 出生年月日 + 姓名裡的常用字 不夠 unique 嗎？
+00:45 < kiang> au: 出生年月日跟號次的問題一樣，中選會第一時間並沒有公佈，也得從選舉公報挖
+00:46 < kiang> 在選舉公報出現之前，能夠取得的只有 登記日期,選舉區,姓名,推薦之政黨 ，少部份選委會有公佈出生年月日
+00:47 < au> 瞭解，那這樣出生年月日應該登記時就統一公佈的，作為 semi-unique id（既然候選人名冊已經在用了，顯然沒有個資問題）
+00:48 < johnny__> 也蠻怕改名的
+00:48 < kiang> au: 是的，發信給中選會要，他就制式官腔回應說等選舉公報，但選舉公報就是一堆格式混亂的 pdf ...
+00:50 < kiang> 現在比對之後有許多村里長沒有號次，也才發現選舉公報沒有他，但並不知道是放棄參選還是走了之類的
+01:01 < kiang> 選舉公報的配對除了村里長之外大部分都做好了（但不保證正確性 XD ），村里長還有一千多筆，暫時就不理它了 XD
+02:43 < ETBlue> 製作了各縣市的 og image， if needed XD https://drive.google.com/folderview?id=0B0NsS2a-Qx8ZWHRCaU9WNmtPbDg&usp=sharing
+02:43 < kcwu> ETBlue's url: [v1-thin]
+02:50 < au> ETBlue++ # 底部橫幅替換一下的話，選舉黃頁大部份的頁面也可以用
+02:53 < ETBlue> and facebook cover photo, if needed XD https://drive.google.com/file/d/0B0NsS2a-Qx8Za1lQV1haeXk1QUk/view?usp=sharing
+02:53 < kcwu> ETBlue's url: [facebook-page-cover.png - Google 雲端硬碟]
+02:54 < ETBlue> facebook cover photo 實際顯示模擬 https://drive.google.com/file/d/0B0NsS2a-Qx8ZcGxEUlBVRGZMbFU/view?usp=sharing
+02:54 < kcwu> ETBlue's url: [facebook-page-cover-mockup.png - Google 雲端硬碟]
+02:56 < ETBlue> 選舉黃頁是什麼……我問下狗 XD
+02:58 < ETBlue> 喔喔喔 XD http://k.olc.tw/elections/
+02:58 < kcwu> ETBlue's url: [2014行政區 @ 選舉黃頁]
+03:08 < ETBlue> kiang: 選舉黃頁的精神，在選舉前期類似 SEO 登錄網址的網站那樣，讓想參選的人可以自己上來登記……然後中選會正式公布後，則將官方資料數位化？
+03:10 < ETBlue> 一時抓不太到方向無法做圖，先去睡覺好了 XD
+03:10 < au> ...然後繼續開放網友編輯更新（除了好像有人填了陳水扁選台北市長之外，似乎來亂的人不多（或是 kiang 反應很快 XD））
+03:10 < au> gn
+03:10 < ETBlue> nite XD
+05:11 < clkao> zzz 爆 delay
+05:11 < clkao> 轉機應該接不上 orz
+05:12 < clkao> ETBlue++ # og imae
+08:34 < clkao> http://www.setn.com/News.aspx?PageGroupID=4&NewsID=50000
+08:34 < kcwu> clkao's url: [毛骨悚然！網友空污實紀錄　為何南投入夜總出現大黑丸│三立新聞網 SETN.COM]
+08:34 < clkao> 截圖十張就變新聞了
+09:12 < yhsiangCloud> XD
+09:34 < Lee1092> 零時政府的版面好大~  XD
+09:58 < kiang> ETBlue: you got it, 剛開始就是到處匯入現任資料，中選會的資料出現後再將資料設定為已登記，但還是保留那些未登記的資料提供參考（因為我未登記，這是自肥）
+09:59 < kiang> 來亂的真的不多，因為還沒吸引那些政治魔人吧 XD
+09:59 < kiang> 但有遇到幾次候選人刻意去改別人的資料，把同一個選區的候選人都改成自己的名字 XD
+10:01 < kiang> 新增資料是直接進去，編輯資料則是會經過審核，所以就做了很多家庭代工的事情...
+10:01 < kiang> 話說徵求家庭代工那麼久，也只有一個人跳坑，然後那個人拿了帳號後就消失了...
+10:04 < kiang> http://k.olc.tw/e.sql.gz <== 剛剛有人要資料庫，我壓了一份選舉黃頁目前狀態，有興趣可以自己下載去玩囉，放到晚上吧
+10:11:49 < a0kman> Lee1092: XDDDDDDD專案一分鐘  填坑十年工  XDDDDD
+11:53 < johnny__> ronnywang, kiang : 兩位議員候選人名字是簡體字...彰化縣第2選舉區	3	陳秀寳；屏東縣第3選舉區	14	潘淑眞
+11:56 -!- caasihuang_ is now known as caasihuang
+11:57 < kiang> johnny__: 就 GIGO XD
+12:00 -!- Weilin [cb451e78@gateway/web/cgi-irc/kiwiirc.com/ip.203.69.30.120] has left #g0v.tw []
+12:08 < johnny__> ronnywang, kiang : 除了名字以外，還有一個應該已非現任的資料可能有誤  https://github.com/g0v/councilor-voter-guide/issues/133
+12:08 < kcwu_> johnny__'s url: [中選會議員候選人資料錯誤 · Issue #133 · g0v/councilor-voter-guide · GitHub]
+13:07 < moon_c__> 填坑十年工XD g0v還沒成立就開始填了
+13:26 < yhsiang> clkao: 大概找到問題了
+14:10 -!- shhu_cloud__ is now known as shhu_cloud
+14:27 -!- a0000778_ is now known as a0000778
+14:33 -!- CelloCello [~Cello@119.77.223.31] has left #g0v.tw []
+15:03 -!- seadog007_ is now known as seadog007
+15:10 -!- jimyhuang is now known as jimyhuang_
+15:51 < clkao> 有點好笑，一打開 http://whitebook.kptaipei.tw/ 就看到 hlb 講個秘訣
+15:51 < kcwu_> clkao's url: [柯文哲【柯Ｐ新政】市政白皮書]
+16:07 < kiang> au: http://eword.ntpc.edu.tw/ - 萌典也許可以做類似的事情 :)
+16:07 < kcwu_> kiang's url: [自編國小一至六年級生字簿]
+16:12 < miaoski> pofeng: 賀! ocf 成立的消息刊載在自由軟體工作坊
+16:13 < pofeng> miaoski: 是啊, 拜託 Rock 幫忙廣告的 :p
+16:57 < jimyhuang_> 感覺10年和1分鐘的提示，又想看 interstellar
+17:02 < pofeng> jimyhuang_: 我覺得這是在炫耀 哼哼 :p
+17:58 -!- chihchun is now known as chihchun_afk
+18:02 < seadog007> 居然是Word
+18:18 -!- chihchun_afk is now known as chihchun
+18:25 < caasihuang> kiang:（筆記）
+19:27 -!- pcchou__ is now known as pcchou
+20:13 < yhsiangCloud> 有紐約startup徵 遠端工作者。需要有node/angular 經驗。 意者請PM我~~
+20:19 < a0kman> au: 之後萌典會有機會做到結合語音辨識的搜尋嗎? 還是其實有了@@
+20:25 < hychen> yhsiangCloud: 不是就你嗎? XD
+20:26  * hychen 消化美東的PR中....
+20:44 < ennern> 緊急更新 https://gist.github.com/anonymous/d03d8962982391cbb9b0
+20:44 < kcwu_> ennern's url: [g0v專案池 所有專案清單(已分類) (至20141126)]
+20:45 < seadog007> 緊急更新!!
+20:56 -!- sh-hu_ is now known as sh-hu
+21:10 -!- chihchun is now known as chihchun_afk
+21:44 < yhsiang> clkao: 抓到問題 可是解不了 XD
+22:51 -!- chihchun_afk is now known as chihchun
+22:58 < t0mst0ne_> http://logbot.g0v.tw/channel/g0v.tw/today 連不大到 ??
+22:58 < kcwu_> t0mst0ne_'s url: [Logbot | #g0v.tw]
+22:59 < yhsiang> t0mst0ne_: 可以?
+22:59 < ennern> 看log要等很久才會回應
+22:59 < t0mst0ne_> yhsiang: 反應有點慢 ...
+23:00 < yhsiang> 除了訊息會重複pub 好像也還好 @@?
+23:00 < yhsiang> 掛了 XD
+23:00 < ennern> 不知道有沒有備用連結
+23:02 < yhsiang> au: help to check logbot @@?
+23:04 < kiang> logbot 睡著了？
+23:05 < ennern> 那請大家進來SB 慢慢用滑鼠滾輪看(?
+23:05 < t0mst0ne_> reload 有時就出現 '沒有收到資料'
+23:06 < ennern> 反正 如果logbot疑似掛了 還有SB可以看 只是那個滾動介面比較麻煩..
+23:10 < au> yhsiang: 回來了。
+23:10 < yhsiang> au++ 
+23:10 < yhsiang> 是因為有兩隻logbot 所以會pub兩次嗎 XD
+23:12 < au> 是硬碟被萌典字圖的 png 占滿了 XD 不確定為什麼會 pub 兩次
+23:17 < au> a0kman: 語音辨識輸入是 OS 要做的，iOS Android Windows OSX 都有內建了
+23:18 < au> kiang: (re eword) 之前有 https://www.moedict.tw/dodo/moecard.html -- 歡迎繼續加強 XD
+23:18 < kcwu_> au's url: [萌典閃卡]
+23:19 < yhsiang> au: http://eword.ntpc.edu.tw/ 應該可以來做這個? XD
+23:19 < kcwu_> yhsiang's url: [自編國小一至六年級生字簿]
+23:19 < yhsiang> 直接網頁顯示print就好了 竟然是下載word 
+23:20 < au> 所以才會叫 eword XD
+23:20 < yhsiang> XD
+23:20 < yhsiang> 對耶 
+23:21 < kiang> au: 閃卡是用來背誦的？
+23:21 < caasihuang> 好像加一個 react comp 就做好了...
+23:21 < yhsiang> caasi顯示已經跳坑
+23:21 < yhsiang>  \caasi/
+23:21 < kiang> caasihuang++
+23:38 < Lee1092> caasihuang++  
+23:42 < au> kiang: 是的。 # caasihuang++
+23:43 -!- chihchun is now known as chihchun_afk
+23:50 < a0kman> au: 因為我在想，是不是也可以開發出fit老農、資訊能力相對較弱者的 農藥或農業資訊查詢方法
+23:56 < au> a0kman: 如果建立起可用的指令的文法，那可以做語音識別，網頁就可以了。 https://alexandre.alapetite.fr/doc-alex/web-speech-api/index.en.html https://www.google.com/intl/en/chrome/demos/speech.html etc
+23:56 < kcwu_> au's url (2/2): [Chrome Browser]
+23:56 < kcwu_> au's url (1/2): [Multimodal demo - Web speech API - Doc’ Alex]

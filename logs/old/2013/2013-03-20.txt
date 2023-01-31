@@ -1,0 +1,309 @@
+--- Day changed 三  3月 20 2013
+00:02 < au> kcwu: fixed (most of them) thx
+00:04 < clkao> http://npl.ly.gov.tw/do/www/overallInter?startYear=89&startMonth=1&startDay=1&endYear=91&endMonth=1&endDay=1 可以取舊的, 但 rss 沒吃 query 參數, 殘念
+00:30 -!- ck___ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+00:31 < kcwu> 這個好
+00:33 < kcwu> 部會報告還有 slides 圖片
+00:37 -!- Supaplextw [~Lucky@114-25-196-201.dynamic.hinet.net] has joined #g0v.tw
+00:40 < kcwu> 國會圖書館裡滿多東西都值得 parse
+00:40 -!- Supaplextw1 [~Lucky@114-25-196-201.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+00:42 -!- Netsplit *.net <-> *.split quits: adaam
+00:42 -!- Netsplit over, joins: adaam
+00:44 < kcwu> hmm, 這就有發言次數記錄了... http://lis.ly.gov.tw/ttscgi/ttsweb2?@@11739633D771F0025210
+00:44 < kcwu> kcwu's url: [TTSweb(16)]
+00:45 < kcwu> 有些我們在 parse 的東西這邊就已經有了...
+00:45 < clkao> kcwu: yeah
+00:45 < clkao> kcwu: 只是他那個系統是 per session. 完全沒辦法貼給別人
+00:45 < clkao> 但他發言是連去影像 也沒辦法檢索 :/
+00:46 < kcwu> orz
+00:46 < clkao> 他一共大概有二十個系統
+00:47 < clkao> 我剛才發現原來還有另一個綜合查詢, 不知道從那邊連過去的
+00:47 < clkao> http://lis.ly.gov.tw/lgcgi/ttsalldb?@0^0^1^alldbout!%28%ACr%A9%CA%A4%C6%BE%C7%AA%AB%BD%E8%BA%DE%B2z%AAk%29%40LW%2CWL%2CKW%2CTI%2CMC@@
+00:47 < clkao> victor 那時 parse 法案歷史好像沒有抓法條編號... 
+00:47 < kcwu> 在想 parse 這邊的 page, 來輔助使用, 不知道會不會比現在直接 parse 文字檔來得輕鬆
+00:47 < clkao> 但立院的編號和全國法規資料庫又不同
+00:48 < clkao> kcwu: 你剛貼的是哪個？發言查詢嗎？
+00:48 < clkao> kcwu: 法案的結果應該要參考那邊
+00:51 -!- chihchun is now known as zz_chihchun
+00:52 < kcwu> "立法委員發言系統(34445筆)" 有這些欄位: 會期,日期,資料來源(ex公報:102卷005期 總號:4030四 1783頁~1790頁),會議名稱,會議及提案內容,決議,發言委員
+00:53 < clkao> kcwu: 這個應該是公報最後的索引 parse 出來的
+00:53 < kcwu> http://npl.ly.gov.tw/do/www/dbMaintainNew?dbKind=%E7%AB%8B%E6%B3%95%E9%99%A2%E6%99%BA%E5%BA%AB# 第8個
+00:53 < kcwu> kcwu's url: [立法院智庫]
+00:53 < kcwu> yes
+00:55 < clkao> kcwu: 點欄位索引、drop down 選「會議別」、再選「委員會」
+00:55 < clkao> 就爆炸了
+00:56 < kcwu> 爆炸?
+00:56 < clkao> 很多 entry 完全是亂碼 還有欄位爛掉的
+00:56 < clkao> very orz
+00:57 < kcwu> hmm, 我沒看到亂碼.. 
+00:58 < clkao> perhaps just broken in my session
+01:01 < kcwu> 從那個欄位索引看來, 每段發言都有 tag 很多東西上去
+01:02 < kcwu> 喔, 在 search result 那邊選 "詳目輸出" 就會看到了
+01:02 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 240 seconds]
+01:02 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+01:02 < kcwu> 覺得應該先來 parse 這個才對....
+01:04 < kcwu> 先不要 parse txt 了
+01:07 < clkao> kcwu: 你說哪些 tag?  但這邊還是沒有全文呀
+01:08 < clkao> kcwu: 但他這個厲害的是非文字的公報也有. 可以找到陳委員水扁 XD
+01:08 < clkao> 第二屆立委 XD
+01:12 < kcwu> 是沒有全文, 但有 tag 像: 案別 人民請願案, 主題 請願, 類別 政治體制, 機關 國家通訊傳播委員會, 提案編號 1550政13436, 進度 委員會, 法編號 03706000, 法名稱, 幾乎我們想 parse 的東西都有了
+01:12 < clkao> kcwu: (現在還是說第八個嗎?)
+01:12 < kcwu> yes
+01:19 < clkao> kcwu: right. 不過他是有發言的議案或質詢. 像是一讀類沒發言就沒有
+01:19 -!- zz_chihchun is now known as chihchun
+01:21 < clkao> kcwu: 系統號 17129, 像這種主題就沒分了 因為整日質詢算一個 entry
+01:23 < clkao> 剛才那個就有細的... 而且不用等到公報出來就有. 但多多益善 多 parse 多贏 :P
+01:26 < clkao> kcwu: 詳目輸出 -> 下載本次檢索結果
+01:27 < clkao> kcwu: 天啊 而且他 utf-8 是好的 不是用 PUA
+01:29 < clkao> <<本系統設定每次下載資料最多不超過1000筆>>
+01:46 < clkao> kcwu: 發言系統和議事系統好像 primary key shared
+01:49 < clkao> .. 不過系統號不是 primary key... orz... 17121 在裡頭 一個有兩個 一個有三個
+01:54 < kcwu> 法律系統要 cross ref 到立法過程或是法條延革也滿完整的
+01:58 < kcwu> 有個懶人想法是, 就不要自己 parse 了, 做 browser extension 的修他網頁的問題, 或做 agent 自動 query 他各系統組合出我們想要的 data ....
+02:01 < clkao> 這也是一招... 但無法解決週休二日的問題? 
+02:02 < kcwu> 對 orz
+02:04 < clkao> 以他這個系統的資料量... 其實不大 而且他 export 的格式也蠻好 parse 的 :p
+02:05 < clkao> 拿來當作 skeleton 加上我們已經處理好的東西 (議案 diff, 單筆發言對話) 應該不錯. 另外就是非公報 base 的東西
+02:06 < clkao> 如 ivod, npl 剛才那個質詢主題摘要
+02:06 < clkao> 會議紀要
+02:06 < kcwu> yeah
+02:09 < kcwu> 各系統的 parse 比 txt 來得較簡單/單純, 可以 hackthon 號召不知道做什麼的人領一塊去做(?)
+02:16 < kcwu> hmm, 看起來好幾個系統的 query system 都是同一個. 寫一個就可以給好幾個用
+02:17 < clkao> 應該是. 主要是要切 1000 筆下載. 還有不知道 pkey 到底是啥, 要有個方法 incremental update. 
+02:18 < clkao> 下來的 txt 就蠻單純的
+02:18 < clkao> kcwu: 感覺議事系統是發言系統的 superset
+02:18 < clkao> 可能只是不同的 db view 而已
+02:23 < kcwu> "總統府公報" 裡有 "任免官員", 所以可以 extract 出全部官員的 change history (?)
+02:23 < clkao> !!
+02:24 < kcwu> 	
+02:24 < kcwu> 27. 總統府公報影像系統
+02:37 < kcwu> 原來以前總統府公報是可以花錢訂閱的, 民國六十年一份零售一元, 訂一年 156 元 XD
+02:38 < clkao> kcwu: 5 質詢系統有口頭跟書面質詢 就是剛才那個 npl 細項的內容
+02:38 < clkao> 只是他要等公報出來才會進去的樣子
+02:40 < clkao> 這裡人工下的關鍵字 應該就可以拿來作 tag cloud 了
+02:41 < kcwu> 洪憲元年一月六日 的總統府公報.... 資料真完整
+02:44 < kcwu> 舊公報 scan image resolution 有點低, 字都糊糊的看不清楚(maybe印刷沒印好)
+02:45 < clkao> 立院影像還有速記手稿
+02:49 < clkao> 終於找到立委名字重複的範例
+02:49 < clkao> 陳進興(第一屆) vs 陳進興
+02:52 < clkao> kcwu: 你要寫那個 ttsweb 的 crawler 嗎？ 我可以明天衝一下 txt parser. 感覺有一些有趣的圖表可以很快做出來
+02:53 < clkao> 看來之後可以 recaptcha 做古代公報數位化 :P
+02:53 < kcwu> http://lis.ly.gov.tw/lghtml/report/help/report_table.htm # 常設委員會名稱一覽表
+02:54 -!- chihchun is now known as zz_chihchun
+02:55 < clkao> kcwu: http://www.tbmc.com.tw/ttshtml/yshelp.htm
+02:56 < kcwu> clkao's url: [TTSWEB線上說明檔]
+02:58 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 256 seconds]
+03:00 -!- Custom [~Custom@saturn.stu.edu.tw] has joined #g0v.tw
+03:03 < clkao> kcwu: https://github.com/victorhsieh/twlaw#crawling # almost there :P
+03:03 < kcwu> clkao's url: [victorhsieh/twlaw · GitHub]
+03:06  * clkao -> zzz
+04:56 -!- juanna [~juanna@114-43-99-205.dynamic.hinet.net] has joined #g0v.tw
+04:59 -!- juanna_ [~juanna@114-37-87-207.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+06:04 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has quit [Ping timeout: 245 seconds]
+06:11 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has joined #g0v.tw
+07:11 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+07:16 -!- milnex [~milnex@ta221.csie.ntu.edu.tw] has joined #g0v.tw
+09:24 -!- MnO2 [~MnO2@nat/yahoo/x-hnclgoziaehkubgv] has joined #g0v.tw
+09:25 -!- Tunghua [~textual@1.34.114.149] has quit [Quit: Computer has gone to sleep.]
+09:52 -!- SarsTW [~wenpei@nw188.csie.ncu.edu.tw] has quit [Ping timeout: 245 seconds]
+10:00 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:04 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has joined #g0v.tw
+10:12 -!- kanru` [~kanru@111-249-147-169.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+10:14 -!- SarsTW [~wenpei@nw188.csie.ncu.edu.tw] has joined #g0v.tw
+10:14 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:24 -!- KNY [~Adium@118-170-64-135.dynamic.hinet.net] has joined #g0v.tw
+10:24 -!- KNY [~Adium@118-170-64-135.dynamic.hinet.net] has left #g0v.tw []
+10:25 -!- KNY [~Adium@118-170-64-135.dynamic.hinet.net] has joined #g0v.tw
+10:32 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+10:52 -!- zz_chihchun [~chihchun@114-34-10-226.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+10:55 -!- zz_chihchun [~chihchun@114-34-10-226.HINET-IP.hinet.net] has joined #g0v.tw
+10:55 -!- zz_chihchun is now known as chihchun
+11:10 < clkao> kcwu: 發現 google doc upload pdf 可以選要中文 ocr 耶. 效果還不錯 那種分欄的也抓對.
+11:13 -!- idlecafe [idlecafe@li475-173.members.linode.com] has quit [Ping timeout: 240 seconds]
+11:13 -!- hychen [~hychen@175.41.48.77] has quit [Ping timeout: 240 seconds]
+11:14 -!- idlecafe [idlecafe@li475-173.members.linode.com] has joined #g0v.tw
+11:14 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+11:36 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+11:37 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+11:38 -!- ericyu_ [ericyu@216.237.113.237] has joined #g0v.tw
+11:39 -!- ericyu [ericyu@216.237.113.237] has quit [Ping timeout: 240 seconds]
+11:46 -!- ericyu_ is now known as ericyu
+11:54 < cls_bsd> clkao: just released: https://developers.google.com/drive/realtime/
+11:54 < kcwu> cls_bsd's url: [Google Drive SDK — Google Developers]
+12:01 < clkao> cls_bsd: fascinating
+12:04 < clkao> https://github.com/googledrive/realtime-playground
+12:04 < kcwu> clkao's url: [googledrive/realtime-playground · GitHub]
+12:16 -!- KNY [~Adium@118-170-64-135.dynamic.hinet.net] has left #g0v.tw []
+12:27 < clkao> tkirby: 如果把昨天那個打開 會看到進行中的會議被標上紅色 on air :P
+12:51 -!- Rae_ [~raejin@c-24-130-21-242.hsd1.ca.comcast.net] has joined #g0v.tw
+12:51 -GitHub156:#g0v.tw- [twlyparser] clkao pushed 1 new commit to master: https://github.com/g0v/twlyparser/commit/8fd449e5fb9ba29ccf545c4a0c562feea7e8a571
+12:51 -GitHub156:#g0v.tw- twlyparser/master 8fd449e Chia-liang Kao: more obsolete commitees according to http://lis.ly.gov.tw/lghtml/report/help/report_table.htm
+12:52 < clkao> kcwu: ^^ updated committee map
+13:00 < clkao> mikimoto: 咦 結果高雄有下文嗎? :P
+13:06 -!- chihchun is now known as zz_chihchun
+13:09 -!- zz_chihchun is now known as chihchun
+13:11 -!- chihchun is now known as zz_chihchun
+13:13 -!- zz_chihchun is now known as chihchun
+13:15 -!- Rae_ [~raejin@c-24-130-21-242.hsd1.ca.comcast.net] has quit [Quit: Rae_]
+13:31 < tkirby> clkao: 喔喔喔!!
+13:40 -!- Rae_ [~raejin@c-24-130-21-242.hsd1.ca.comcast.net] has joined #g0v.tw
+13:47 -!- Rae_ [~raejin@c-24-130-21-242.hsd1.ca.comcast.net] has left #g0v.tw []
+14:00 -!- showjackyanhg [dc84ed0c@gateway/web/freenode/ip.220.132.237.12] has joined #g0v.tw
+14:03 -!- showjackyanhg [dc84ed0c@gateway/web/freenode/ip.220.132.237.12] has quit [Client Quit]
+14:04 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+14:05 -!- showjackyang [dc84ed0c@gateway/web/freenode/ip.220.132.237.12] has joined #g0v.tw
+14:16 -!- showjackyang [dc84ed0c@gateway/web/freenode/ip.220.132.237.12] has quit [Quit: Page closed]
+14:16 -!- ck_ [~ck@60-199-208-5.static.tfn.net.tw] has joined #g0v.tw
+14:34 -!- chihchun is now known as zz_chihchun
+14:37 -!- zz_chihchun is now known as chihchun
+14:44 < clkao> kcwu: 結果那個 ttsweb download 有動嗎？在想好像可以用 phantomjs 把 V1ctor 的 script 包一下 :P
+14:47 < kcwu> clkao: 還沒玩 ttsweb
+15:14 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has joined #g0v.tw
+15:28 < kcwu> clkao: 臨時會 session 跟 sitting 要怎麼寫?
+15:31 < clkao> 8-1T1-1
+15:31 < clkao> "第八屆" "第一會期第一次臨時會" "第一次會議"
+15:31 < clkao> 臨時會等於是一個迷你會期, sitting 重算
+15:32 < clkao> { extra => 1 }
+16:07 -!- MnO2 [~MnO2@nat/yahoo/x-hnclgoziaehkubgv] has quit [Quit: MnO2]
+16:11 -!- ck_ [~ck@60-199-208-5.static.tfn.net.tw] has quit [Remote host closed the connection]
+16:38 -!- MnO2 [~MnO2@nat/yahoo/x-mxmnxblezfeyxxvl] has joined #g0v.tw
+16:57 -!- alcho__ [~al_cho@59-124-67-67.HINET-IP.hinet.net] has joined #g0v.tw
+17:07 -!- KNY [~Adium@118-170-64-135.dynamic.hinet.net] has joined #g0v.tw
+17:14 -!- shawnwan1 [~shawn@163.16.5.181] has quit [Ping timeout: 252 seconds]
+17:16 -!- shawnwang [~shawn@163.16.5.181] has joined #g0v.tw
+17:25 -!- alcho__ [~al_cho@59-124-67-67.HINET-IP.hinet.net] has quit [Quit: Leaving]
+17:29 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 252 seconds]
+17:33 < kcwu> au: 現在 tooltip 有時會好幾個疊在一起....
+17:36 < kcwu> # http://awesomescreenshot.com/0c412h4we0
+17:36 < kcwu> kcwu's url: [萌典 — 教育部國語詞典（民間線上版） | Awesome Screenshot]
+17:37 -!- MnO2 [~MnO2@nat/yahoo/x-mxmnxblezfeyxxvl] has quit [Quit: MnO2]
+17:41 -!- MnO2 [~MnO2@nat/yahoo/x-tdqgwfkkhjwciqsa] has joined #g0v.tw
+17:46 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+18:04 -!- KNY [~Adium@118-170-64-135.dynamic.hinet.net] has left #g0v.tw []
+18:13 < au> kcwu: fixed
+18:15 < kcwu> clkao: 話說這邊也有 http://hichannel.hinet.net/ly/ 不知道 quality 一不一樣
+18:16 < kcwu> kcwu's url: [立法院議事轉播]
+18:25 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+18:26 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:42 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+18:49 < clkao> 明天來看看
+18:58 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+18:59 < clkao> kcwu: _TTS.DISPLAYPAGE 設成所有筆數就可以了 :P
+19:05 < clkao> 一個 18m 的 html :P
+19:07 < clkao> kcwu: orz by day range 就可以拿出所有了
+19:43 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+20:04 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 256 seconds]
+20:21 -!- pm5 [~pm5@111-248-226-120.dynamic.hinet.net] has joined #g0v.tw
+20:45 -!- Tunghua [~Tunghua@1.34.114.149] has joined #g0v.tw
+20:53 -!- chihchun is now known as zz_chihchun
+20:54 < kcwu> clkao: http://kcwu.csie.org/~kcwu/tmp/ivod/whole.json.txt
+20:54 < kcwu> 要怎麼把這東西餵到 api.ly.g0v.tw 裡面?
+21:03 -!- swem [~Thunderbi@host-61-70-226-12.static.kbtelecom.net] has joined #g0v.tw
+21:07 -!- MnO2 [~MnO2@nat/yahoo/x-tdqgwfkkhjwciqsa] has quit [Quit: MnO2]
+21:09 -!- KNY [~Adium@118-170-64-135.dynamic.hinet.net] has joined #g0v.tw
+21:09 -!- KNY [~Adium@118-170-64-135.dynamic.hinet.net] has left #g0v.tw []
+21:10 < clkao> kcwu: 現在可以用 PUT 的了 但 public endpoint 是 read only.. 我待會試試看
+21:10 < clkao> tts parser 快好了
+21:11 -!- KNY [~Adium@118-170-64-135.dynamic.hinet.net] has joined #g0v.tw
+21:12 < clkao> 慘了 column name 有 . 應該會炸掉 |D
+21:21 < clkao> kcwu++ # api.ly.g0v.tw/v0/collections/ivod?s={"time":-1}
+21:21 < clkao> kcwu: 我把. 先換成 _
+21:22 < clkao> 然後那個 time 變成 without timezone.. 好像不大隊
+21:24 < clkao> kcwu: 另外 tts 的 encoding 是 big5-2003
+21:24 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+21:54 < clkao> http://dl.dropbox.com/u/30657009/ly/08-01.json # also -02, -03
+21:54 < clkao> 先稍微處理過 把 link 清乾淨一點.
+21:54 -!- zz_chihchun is now known as chihchun
+21:57 -!- swem [~Thunderbi@host-61-70-226-12.static.kbtelecom.net] has quit [Quit: swem]
+21:57 < clkao> (!) pg 的 column 可以用中文
+21:59 < clkao> select * from (select 系統號, 議案代碼, count(*) as cnt from ttsmotions group by 系統號, 議案代碼) a where cnt > 1
+21:59 < clkao> good, 系統號, 議案代碼 = unique
+22:01 < clkao> pgrest 跑起來後, 直接: curl -i -H "Content-Type: application/json" -X PUT -d @./08-02.json  http://127.0.0.1:3000/collections/ttsmotions
+22:01 < clkao> au++ # schema auto vivification
+22:01 < au> :D
+22:05 < clkao> select 提案編號  from ttsmotions  where 系統號 = '17099' =>  ["618委13424","618委14032","618委13297"]
+22:05 < clkao> and json works too
+22:05 < clkao> au: 快 blog 一篇火力展示 => 2013 年了, 資料抓下來還要寫程式慢慢 insert? :p
+22:06 < au> XD
+22:07 < zonble> @_@
+22:07 < clkao> zonble: !
+22:07 < zonble> clkao: 怎麼啦？
+22:07 < clkao> zonble: nothing, just saying hi ;)
+22:08  * au 剛好正在聽＜撲鼻乍似青春魂＞
+22:09 < zonble> Kurt 都死了快二十年了（茶）
+22:09 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 260 seconds]
+22:09 < au> |D
+22:10 < clkao> kcwu: session 其實應該還是 plain number 就好，不用 nTm, 那個 representation 由 extra 算出就好
+22:10 < clkao> (ivod)
+22:11 < zonble> 話說最近萌典的 DB 有改東西嗎？
+22:11 < au> https://github.com/g0v/moedict-data last update 23 days ago
+22:11 < kcwu> au's url: [g0v/moedict-data · GitHub]
+22:12 -!- KNY [~Adium@118-170-64-135.dynamic.hinet.net] has left #g0v.tw []
+22:13 < zonble> 有空來把三隻小豬的 DB 也換一下好了
+22:13 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 272 seconds]
+22:13 < zonble> https://itunes.apple.com/hk/app/san-zhi-xiao-zhu-3-piggies/id601941116?mt=8
+22:13 < clkao> |D
+22:14 < au> http://files.tonyq.org/export.json 裡的條目如果萌典都有，也許可以作為額外資料顯示
+22:15 < au> 不過＜三隻小豬＞可能只有成語典有...
+22:24 < clkao> au: 發言有人名, 次數, reference. 這樣不另外存table好像太苦了... 
+22:25 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+22:26 < kcwu> au: mouse over 上去, 會先看到一個小方框, 之後才會 load tooltip. 有時 tooltip 出現那個小方框還不會消失
+22:26 < au> kcwu: 那是 title=""
+22:26 < au> title=" "
+22:26 < kcwu> @@
+22:26 < au> jQuery UI tooltip 好像要設 title 才會顯示
+22:27 -!- chihchun is now known as zz_chihchun
+22:27 < au> 好像應該來改一下
+22:27 < kcwu> zonble: 更新 db 也許可以 check 一下 https://github.com/g0v/moedict-process/wiki/Checklist
+22:27 < kcwu> kcwu's url: [Checklist · g0v/moedict-process Wiki · GitHub]
+22:30 < au> kcwu: fixed thx
+22:30 < au> kcwu++ # 見微知萌
+22:33 < au> clkao: I thought you said computed index is sufficient :p
+22:33 < au> but yeah, we need normalization vivification too
+22:37 < kcwu> 有時本來右邊沒有 scrollbar, tooltip 跑出來後 scrollbar 就跑出來, 寬度改變重新 layout, 字就移位了...
+22:37 < kcwu> http://direct.moedict.tw/#六君子
+22:37 < kcwu> kcwu's url: [萌典 — 教育部國語詞典（民間線上版）]
+22:40 < au> tooltip 超過螢幕下緣似乎可以 clip 掉
+22:40 < au> 總之應該不要參與 scrolling 纔是
+22:42 < kcwu> 另外的小問題是, 最右邊的字 tooltip 可能出現在最左邊, 而不是滑鼠附近
+22:44 < kcwu> au: 現在 direct.moedict.tw 有時 tooltip 還會同時出現疊在一起
+22:44 < au> 有看到了
+22:44 < au> 明天來試試 Bootstrap Tooltip + hoverIntent
+22:44 < au> 看會不會比 jQuery UI tooltip 好用
+23:03 < clkao> kcwu: ivod.txt 中好像都是委員會的，沒有院會？
+23:07 < kcwu> clkao: 你說 whole.json.txt ?
+23:09 < kcwu> 我以為 "WHL" 就是院會的意思?
+23:09 < kcwu> no?
+23:12 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+23:17 < clkao> kcwu: no, 有院會 和全院委員會
+23:17 < clkao> 是不同的
+23:17 < clkao> committee null = 院會
+23:17 < kcwu> @@
+23:18 -!- kong0107 [770e57e2@gateway/web/freenode/ip.119.14.87.226] has joined #g0v.tw
+23:18 < kcwu> 我檔案裡的 WHL 都是院會, 我沒看到全院委員會
+23:19 < clkao> 應該是 ivod 沒分.. 因為全院委員會應該也是在議場 
+23:23 < clkao> kcwu: 有: 第8屆第2會期第1次全院委員會會議
+23:24 < kcwu> clkao: 網頁上寫院會
+23:25 -!- kanru` [~kanru@111-249-147-169.dynamic.hinet.net] has joined #g0v.tw
+23:25 < clkao> kcwu: 另外 summary 中陳冲變成陳?
+23:26 < kcwu> http://ivod.ly.gov.tw/new_vod_3t.jsp?day=2012/09/21&loc=%B0|%B7|&udlang=ch
+23:26 < kcwu> kcwu's url: [立法院 議事轉播 網際網路多媒體隨選視訊(ivod)系統-會議隨選記錄-會議室資料查詢]
+23:26 < kcwu> clkao: 那是原本字就壞了
+23:27 < clkao> 苦
+23:28 -!- Tunghua [~Tunghua@1.34.114.149] has quit [Quit: Computer has gone to sleep.]
+23:29 < kcwu> clkao: time 要怎麼寫才對?
+23:30 < clkao> kcwu: 就照目前這樣吧，到時應該是 calibrate 成那個影片的 first frame
+23:32 -!- icman [~icman@123.240.139.67] has joined #g0v.tw
+23:33 -!- Tunghua [~Tunghua@1.34.114.149] has joined #g0v.tw
+23:33 < kcwu> ok, whole.json.txt updated
+23:34 < clkao> ivod.ly 區間查詢好像壞掉了... ?
+23:34 < kcwu> 時好時壞
+23:35 < clkao> :/
+23:45 < clkao> kcwu: 2013-01-03 的會議相當複雜. http://ivod.ly.gov.tw/new_vod_3t.jsp?day=2013/01/03&loc=%A5q%AAk%A4%CE%AAk%A8%EE&udlang=ch 他其實有兩個會議 可以看到下面的 clip summary 不同
+23:46 < clkao> 所以那整日的其實是 per-room
+23:54 < kcwu> clkao: http://ivod.ly.gov.tw/new_vod_3t.jsp?day=2012/12/24&loc=%A4%BA%ACF&udlang=ch 上面的 "完整錄影" 有兩段
+23:54 < kcwu> kcwu's url: [立法院 議事轉播 網際網路多媒體隨選視訊(ivod)系統-會議隨選記錄-會議室資料查詢]
+23:57 < clkao> kcwu: 這個在 calendar 也是兩個 entry
+23:57 < clkao> mms://mediavod01.ly.gov.tw/wmv/2013_01_03/%e7%b4%85%e6%a8%93302%e6%9c%83%e8%ad%b0%e5%ae%a4(WMV)_2013_01_03_083005.wmv # 好像抓不下來
+23:59 < kcwu> clkao: 我這邊可以
+23:59 < clkao> 可以了, 換成 void02

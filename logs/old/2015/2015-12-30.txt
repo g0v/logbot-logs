@@ -1,0 +1,162 @@
+--- Day changed 三 12月 30 2015
+00:11 < slackbot4> <au> charl: <https://github.com/ronnywang/data.g0v.ronny.tw/blob/master/webdata/init.inc.php#L18>  不能直接改，那樣改是從 ENV 裡讀 key
+00:11 < kcwu_> slackbot4's url: [data.g0v.ronny.tw/init.inc.php at master · ronnywang/data.g0v.ronny.tw · GitHub]
+00:12 < slackbot4> <au> 請看 <https://github.com/ronnywang/data.g0v.ronny.tw> `新增 webdata/config.php ，內容增加: `<?php putenv('PGSQL_DATABASE_URL=pgsql://{user}:{password}@{host}/{db_name}') `
+00:12 < slackbot4> <charl> webdata裡沒有config
+00:12 < slackbot4> <au> 那就是要自己新增了
+00:12 < slackbot4> <charl> 哦 知道了
+00:12 < slackbot4> <charl> 我明天試試啊 謝謝AU大大 又碰見你了
+03:36 < slackbot4> <kiang> 司法院網站直接開大絕...關閉網站 XD
+04:01 < gugod> meh
+04:41 < slackbot4> <kiang> 看樣子是每天凌晨定時重新啟動，因為原本被封鎖的 IP 現在又可以使用了 XD
+10:55 < slackbot4> <miaoski> @kiang: 需要 Tor 嗎~~~~ XD
+10:55 < slackbot4> <miaoski> @au: iOS 版再麻煩你了 (鞠躬)
+10:55 < slackbot4> <kiang> 原本以為快跑完了，結果跑到某個菜市場名字發現一個人就可以跑到被封鎖很多次...
+10:56 < slackbot4> <kiang> 只好開始看文件了 XD - <https://www.torproject.org/docs/debian.html.en>
+10:56 < kcwu_> slackbot4's url: [Tor Project: Debian/Ubuntu Instructions]
+11:00 < slackbot4> <miaoski> 講個密訣... 下載 Tails 裝在 VM (直接用 ISO 檔開起來) 最快
+11:01 < slackbot4> <miaoski> 然後記得在被封鎖後，把抓到的東西 upload 到別的地方去
+11:01 < slackbot4> <miaoski> 因為重開機後這個 VM 的東西會通通消失.
+11:02 < slackbot4> <kiang> miaoski++
+11:02 < slackbot4> <miaoski> kiang: <https://tails.boum.org/>
+11:02 < kcwu_> slackbot4's url: [Tails - Privacy for anyone anywhere]
+11:04 < kcwu_> 我現在覺得光世代浮動 ip 滿好用的, 台灣的 service 不太可能 ban 整個 hinet
+11:05 < slackbot4> <kiang> 可惜我用固定制，殘念 XD
+11:07 < kcwu_> hinet 的浮動制可以申請成 1 固定 + n 浮動
+11:08 < slackbot4> <kiang> 企業用固定 6 ip ...（拿對外網站的 ip 做這種事情好像怪怪的就是了 XD ）
+11:24 < kcwu_> XD
+11:28 < kcwu_> 大概多少 qps? (若不想公開說沒關係 :Q)
+11:29 < slackbot4> <kiang> kcwu: 是指對外還是對內流量啊？
+11:30 < kcwu_> kiang: 我是問多少 qps 抓資料
+11:31 < slackbot4> <kiang> 其實流程只是找個主機開下去，被封鎖了就換一個，所以 qps 很低吧？因為每次只會用一台主機，開下去就不理它一陣子
+11:32 < slackbot4> <kiang> 之前還都是用 ronnywang 的版本，每抓到一個檔案就 sleep 一秒，後來發現它好像是依據總量去封鎖，所以就把 sleep() 拿掉了
+11:32 < slackbot4> <kiang> kcwu: 要支援 DDOS 嗎？ XD
+11:36 < kcwu_> 我有做一個 fake proxy, 透過這個 proxy 會自動每幾百個 request 就換 ip 一次. 我在想若你的量不是很誇張的話可以開給你
+11:37 < slackbot4> <kiang> kcwu++, 我可以開 sleep XD
+11:41 < kcwu_> kiang: 我等會 email 跟你說細節
+11:42 < slackbot4> <kiang> ok (溜去吃飯)
+11:47 < slackbot4> <johnny> 剩下新北、苗栗、連江選委會沒資料了，看到苗栗就想tag  walkingice
+13:34 < slackbot4> <kiang> kcwu: 踹了一下 hinet 的 proxy ，目前那邊是可以正確回應的 XD
+13:35 < slackbot4> <kiang> 看起來 hinet proxy 會自動 load balance 呢（換 ip ），真好 XD
+13:41 < slackbot4> <jeanwang> 請問各位大大，對這件事的看法？台灣戶政機關漏洞
+13:41 < slackbot4> <http://www.wooyun.org/bugs/wooyun-2015-0164499>
+13:41 < kcwu_> slackbot4's url: [台灣戶政事務所4处通用SQL注入漏洞（dba权限） | WooYun-2015-164499 | WooYun.org]
+13:42 < slackbot4> <kiang> jeanwang: 那你覺得這些事件要不要有看法呢？ - <https://www.google.com.tw/search?q=台灣+www.wooyun.org>
+13:42 < kcwu_> slackbot4's url: [台灣 www.wooyun.org - Google 搜尋]
+13:44 < slackbot4> <kiang> 我覺得最大的漏洞不是技術性的就是了 XD
+13:45 < slackbot4> <jeanwang> 所以是互相挖洞？！
+14:00 < slackbot4> <kiang> yeah, 成功讓某個 hinet proxy ip 被 block 了
+14:27 < slackbot4> <johnny> kiang: 昨天才知道這兩個取消參選資格，給你參考一下 (u'桃園市', 5, u'羅文欽'), (u'桃園市', 3, u'黃志浩')
+14:31 < slackbot4> <kiang> johnny++, 黃志浩是登記兩個選區那位，我就想說奇怪怎麼還能在公報中看到他
+14:34 < slackbot4> <kiang> 用了 hinet irc 之後人生就變彩色的了，進度已經是 503/535 ，只是單純用名字搜尋應該還要做蠻多過濾的
+14:38 < slackbot4> <jeanwang> 還是謝謝kiang
+14:39 < slackbot4> <kiang> 咦，我只是想嘴砲而已，別當真 XD
+14:40 < slackbot4> <jeanwang> 哈！至少知道狀況！
+15:10 < slackbot4> <kiang> kcwu++, 可以了
+15:13 < slackbot4> <miaoski> @kiang: (筆記) Hinet Proxy
+15:20 < kcwu_> kiang: 如果有什麼需求再告訴我, 像是改換 ip 的頻率, sleep time, etc
+15:24 < slackbot4> <kiang> 目前 <https://github.com/kiang/bribes_map/tree/gh-pages/2016/raw> 已經是跑完一輪的結果，只是因為過程中經常遇到封鎖而出現錯誤，所以放下去跑第二輪確認看看，感謝 kcwu 的 proxy ，當然 hinet 的也潮好用 XD
+15:24 < kcwu_> slackbot4's url: [bribes_map/2016/raw at gh-pages · kiang/bribes_map · GitHub]
+15:25 < kcwu_> kiang: 請再 start 一次, 剛又發現 bug :P
+15:27 < slackbot4> <kiang> kcwu: 開啟了
+15:56 < slackbot4> <mrorz> 是說戶政系統要 VPN 才進得去，應該沒有直接對外連網的地方吧 ._.
+15:56 < slackbot4> 希望只是某戶政事務所網站有漏洞，而不是戶役政系統有洞⋯⋯
+15:57 < slackbot4> <kiang> mrorz: 聽說還有這個情況 - <http://www.wooyun.org/bugs/wooyun-2010-0165441>
+15:57 < kcwu_> slackbot4's url: [台湾交通部观光局某分站注入点直入内网\影响超300万用户身份证+电话号码+邮箱+家庭住址等信息 | WooYun-2015-165441 | WooYun.org]
+15:57 < slackbot4> <kiang> (還好我沒有去申請補助)
+15:57 < slackbot4> <mrorz> 喔這個昨天有在 fb 看到
+15:57 < slackbot4> <mrorz> 幸好我也沒有（欸
+15:59 < kcwu_> kiang: 有時一個 request 超過 10 秒, 是正常的嗎?
+16:00 < slackbot4> <kiang> kcwu: 表示被鎖定了 XD
+16:02 < kcwu_> kiang: 有經驗大概要多久換一次 ip ? 我調調參數
+16:02 < slackbot4> <kiang> kcwu: 其實我沒有特別注意頻率，有時候查個兩三次就會被鎖，有時候可以存在很長一段時間 XD
+16:03 < kcwu_> 反正你會 retry? 那我就先不改了
+16:04 < slackbot4> <kiang> kcwu: yes
+16:04 < slackbot4> <kiang> 現在已經會判斷錯誤的回應放棄，所以應該就重新啟動程式即可
+16:05 < slackbot4> <kiang> 就先讓子彈飛吧 - <https://www.ptt.cc/bbs/Gossiping/M.1451462430.A.6C0.html>
+16:05 < kcwu_> slackbot4's url: [[爆卦] 透過立委候選人姓名檢索司法判決初步成果 - 看板 Gossiping - 批踢踢實業坊]
+16:08 < slackbot4> <kiang> @billy3321: 也可以考慮把這堆資料拉回去，只是也許得額外整理就是了 XD
+16:30 < slackbot4> <kiang> 重跑一次才發現缺蠻多的，原來我被擋這麼多次了(驚)
+16:32 < slackbot4> <yurenju> @kiang: 做這個真的要小心一點 ^^;
+16:32 < slackbot4> <kiang> yurenju: 反正司改會的陽光網好像還沒收到傳票？（誤）
+16:33 < slackbot4> <yurenju> 比較怕私下來的～
+16:34 < slackbot4> <kiang> 恩，我有不自殺聲明的（誤）
+17:00 < slackbot4> <billy3321> @kiang: 感謝！
+17:00 < slackbot4> <billy3321> 可是怎麼拉回去啊＠＠
+17:00 < slackbot4> <billy3321> 你要把mysqldump給我嗎？
+17:00 < slackbot4> <kiang> 整包下載回去拆開 XD
+17:00 < slackbot4> <billy3321> XDD
+17:00 < slackbot4> <kiang> 我沒有用 mysql 耶，都是文字檔
+17:00 < slackbot4> <billy3321> Q_Q
+17:00 < slackbot4> <billy3321> 好喔，我再看看
+17:00 < slackbot4> <billy3321> 話說，我發現當時有調閱第1屆新北市市長擬參選人朱立倫政治獻金專戶
+17:01 < slackbot4> <billy3321> 但是好像沒有人調閱第1屆新北市市長擬參選人蔡英文政治獻金專戶
+17:01 < slackbot4> <billy3321> 朱立倫的把隱名處理好了
+17:01 < slackbot4> <billy3321> <https://docs.google.com/spreadsheets/d/114Ww-fTFH6u9BJ86Mf8pAl6wle1k8vibuTMTqj1-jdA/pubhtml>
+17:01 < kcwu_> slackbot4's url: [第1屆新北市市長擬參選人朱立倫政治獻金專戶（已隱名）]
+17:01 < slackbot4> <kiang> billy3321: 好像有耶 - <https://www.facebook.com/cy.sunshine/photos/a.586795871432930.1073741828.581133401999177/621967117915805/>
+17:01 < kcwu_> slackbot4's url: [開放政治獻金，陽光照亮政商 - 動態時報相片 | Facebook]
+17:02 < slackbot4> <billy3321> <https://github.com/ronnywang/GovCash/tree/master/accounts>
+17:02 < kcwu_> slackbot4's url: [GovCash/accounts at master · ronnywang/GovCash · GitHub]
+17:02 < slackbot4> <billy3321> 這邊沒有
+17:02 < slackbot4> <billy3321> 還是放到哪裡了？
+17:02 < slackbot4> <billy3321> 想拉蔡英文和朱立倫的出來比較一下
+17:03 < slackbot4> <kiang> 可能要問問 @ronnywang  XD (我都沒備份)
+17:05 < slackbot4> <billy3321> Q_Q，跪請 @ronnywang
+17:06 < slackbot4> <billy3321> @kiang 話說，我記得報導者有類似的計畫
+17:06 < slackbot4> <billy3321> 你資料有丟給他們嗎？
+17:06 < slackbot4> <kiang> 第一時間就丟了 -<https://news-hackathon.hackpad.com/r3mwpLmeALP>
+17:06 < kcwu_> slackbot4's url: [司法 - news-hackathon.hackpad.com]
+17:06 < slackbot4> <billy3321> Goooood
+17:07 < slackbot4> <billy3321> 之前我跟他們說可以幫忙，想說我有elasticsearch
+17:07 < slackbot4> <billy3321> 結果一直無法抓好抓滿
+17:07 < slackbot4> <billy3321> Q_Q
+17:08 < slackbot4> <billy3321> 你有抓所有的判決嗎？還是根據關鍵字去搜尋的判決？
+17:08 < slackbot4> <kiang> 恩， biglaw 說他們有 30 萬筆， 法源說有 1291 萬筆，這真的要有愛 XD
+17:08 < slackbot4> <kiang> 只用關鍵字而已 <https://github.com/kiang/bribes_map/blob/gh-pages/2016/crawler.php>
+17:08 < kcwu_> slackbot4's url: [bribes_map/crawler.php at gh-pages · kiang/bribes_map · GitHub]
+17:09 < slackbot4> <kiang> 台灣平均有 0.5 個人被告上法院過（誤）
+17:09 < slackbot4> <billy3321> 這檔案好熟悉
+17:09 < slackbot4> <kiang> 都是來自 @ronnywang 啊
+17:10 < slackbot4> <billy3321> 話說我改進過，不過方向應該跟你不一樣
+17:10 < slackbot4> <billy3321> <https://github.com/JRF-tw/jrf_data/blob/master/get_judgements.php>
+17:10 < kcwu_> slackbot4's url: [jrf_data/get_judgements.php at master · JRF-tw/jrf_data · GitHub]
+17:10 < slackbot4> <kiang> 我有看過你的，我主要處理封鎖跟快取部份吧
+17:10 < slackbot4> <kiang> 而且我沒有隨機的 sleep ，現在用 kcwu 的 proxy 快速掃第二輪中 XDE
+17:11 < slackbot4> <billy3321> 什麼！ @kcwu 有proxy？
+17:12 < slackbot4> <billy3321> 用proxy就可以上班時間抓嗎？
+17:12 < slackbot4> <kiang> 潮好用，會自動換 ip XD
+17:12 < slackbot4> <kiang> 是說 hinet proxy 也不錯用，只是回應速度比較慢一點
+18:12 < slackbot4> <charl> @au:
+18:12 < slackbot4> <charl> postgresql需要啥版本
+18:13 < slackbot4> <charl> 哦 我看到了
+19:56 < slackbot4> <charl> undefined
+19:56 < slackbot4> <charl> psql都能连得上 为什么这里不行
+20:30 < slackbot4> <au> charl: 如果是在同一台的話，可能 postgresql 有 listen to local interface 但沒有 listen to 外部網卡的 interface。試著把 ip 改成 localhost 看看。
+23:01 < jnana0812> hallo
+23:02 < jnana0812> 我是一個剛畢業於中壢資策會的Java後端網頁工程師，會Servlet、JSP和jQuery、Javascipt 我想加入g0v，想找個坑跳，有人可以跟我聊聊嗎
+23:03 < caasih> jnana0812: 您好
+23:04 < jnana0812> 你好~
+23:04 < caasih> jnana0812: 您好，我是會 Javascript 的潛水宅宅一名
+23:05 < caasih> 想跳怎麼樣的坑？是要找自己會做的？還是要從議題出發？
+23:05 < jnana0812> 我偏向技術方面耶
+23:06 < jnana0812> 若要說議題，主要關注的是性別和勞工吧
+23:07 < jnana0812> 之前有走街頭啦，但現在退下來後反而不知道手上的技術該怎麼跟議題結合
+23:07 < caasih> jnana0812: 想起這個 http://g0v.github.io/projectPool/ ，您先看看，讓我翻翻 github ...
+23:07 < kcwu_> caasih's url: [g0v 零時政府 Hackfoldr專案池]
+23:07 -!- tah is now known as Guest87044
+23:07 < jnana0812> 我先看看，感恩！
+23:12 < jnana0812> 我能知道現在有哪些專案比較活躍嗎？
+23:13 < caasih> jnana0812: 這邊可以看到最近有活動的案子 https://github.com/g0v
+23:13 < kcwu_> caasih's url: [g0v · GitHub]
+23:14 < jnana0812> 好！這樣我比較有方向了
+23:14 < caasih> blood 我不知道，立委投票指南應該不需說明。itaigi 在上週的大黑客松很活躍，印象中有用到 React (JavaScript)
+23:15 < jnana0812> 謝謝解惑
+23:15 < caasih> datasmith 是 poga 做的資料視覺化工具...
+23:16 < caasih> er.mohw 是全國重度級急救責任醫院急診即時訊息， charl 正好最近也在修改...
+23:16 < caasih> jadahl: 喔喔，不會。希望幫得上忙。
+23:16 < caasih> oopn
+23:16 < caasih> jnana0812: 希望幫得上忙。
+23:27 < slackbot4> <charl> 我就改了下redme
+23:27 < slackbot4> <charl> 实在没有太多的才能 不好意思 没能榜上忙
+23:27 < slackbot4> <charl> 帮

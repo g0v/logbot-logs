@@ -1,0 +1,516 @@
+--- Day changed 五  2月 14 2014
+00:01 -!- M00sL0gB0t [~r0b0t@192.241.232.223] has joined #g0v.tw
+00:03 -!- clkao [~clkao@59-126-64-204.HINET-IP.hinet.net] has quit [Ping timeout: 265 seconds]
+00:04 < Lee1092> 剛把公報的條目簡介掃過一遍  更新了一下 https://g0v.hackpad.com/Fe3VpeN42w9 
+00:04 < kcwu> Lee1092's url: [月份公報條目簡介 - g0v.hackpad.com]
+00:04 < Lee1092> 歡迎各位或各專案歡迎 update 最新情況 XD
+00:05 < Lee1092> 之後會把這個 pad parse 成 json api 以便利用
+00:05 -!- clkao [~clkao@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+00:09 < hcchien> 其實我明明是說 summit
+00:11 < kcwu> billy3321: ivod 新版上線, 所以原來的程式就壞了要重寫
+00:11 < billy3321> 是只要執行download client那隻程式就可以看到錯誤嗎？
+00:11 < billy3321> 是的話我等等試試看
+00:12 < billy3321> 看能不能找錯誤吧
+00:16 -!- pm5 [~pm5@111-248-205-233.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+00:19 < kcwu> 新版網站的 html 都換了, 所以 get_metadata.py 要重寫, 影片部份要再研究怎麼抓比較對
+00:21 < kcwu> http://newtalk.tw/news/2014/02/13/44399.html
+00:21 < kcwu> kcwu's url: [1個月2萬 1家投標 立院拒蘋果轉播視訊 - 新頭殼 newtalk]
+00:22 < billy3321> kcwu: OK，那我先看一下這個檔案
+00:23 < billy3321> 這個檔案主要是做什麼的？
+00:23 < billy3321> 是你的server上，解析html找出檔案用的程式嗎？
+00:24 -!- icman [~icman@123.240.130.138] has quit [Quit: 明天天氣晴]
+00:25 < kcwu> billy3321: 依日期抓出所有的影片時間、標題、會議室、檔名、發言人等等資料
+00:25 < clkao> kcwu: 影片我記得是 rtmp, 所以直接 ffmpeg 就可以了
+00:25 < clkao> 我記得現在依照會議室改成 ajax request, 不知道是 html fragment 還是 structural data 就是了
+00:26 < clkao> 但是現在有發言登記名單 是 structural data
+00:26 < clkao> 所以之後可以作跑馬燈了
+00:26 < kcwu> clkao: 話說 bitrate 變高, 恐怕沒辦法再 full backup 了
+00:29 < clkao> 全天的有變高嗎?
+00:30 < clkao> 還有一週開議..... .
+00:33 < clkao> ㄟ！新版 plunker 是用 angular/coffee 寫的耶
+00:41 < billy3321> kcwu: OK，我明天有空看看到底哪裡有問題
+00:41 < billy3321> 所以應該是執行get_metadata.py就對了吧
+00:51 < clkao> 莫名其妙開了兩個 plunkr PR... ><
+00:53 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Quit: Leaving]
+00:55 -!- Missphoenix [~Miss@vpn02.tsunagarumon.com] has joined #g0v.tw
+00:56 -!- Miphix [~Miss@1-161-161-154.dynamic.hinet.net] has joined #g0v.tw
+00:56 -!- Missphoenix [~Miss@vpn02.tsunagarumon.com] has quit [Read error: Connection reset by peer]
+00:58 -!- Phoenixmiss [~Miss@1-161-161-154.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+01:02 < clkao> yhsiang: 要把 g0v.tw 換成用 gulp build 嗎? 試試看 generator 夠不夠力 :p
+01:05 -!- a-tsioh [~pierre@1-162-108-207.dynamic.hinet.net] has joined #g0v.tw
+01:24 -!- Miphix [~Miss@1-161-161-154.dynamic.hinet.net] has quit [Quit: Leaving]
+01:25 -!- Phoenixmiss [~Miss@1-161-161-154.dynamic.hinet.net] has joined #g0v.tw
+02:11 -!- Supaplextw [~Lucky@114-36-230-225.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+02:17 -!- Supaplextw [~Lucky@114-36-230-225.dynamic.hinet.net] has joined #g0v.tw
+02:40 < clkao> yhsiang: jade ->angular-templatecache 搞定了... 那天看到的 html2js 太弱
+02:46 -!- a-tsioh [~pierre@1-162-108-207.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+03:26 -!- Supaplextw [~Lucky@114-36-230-225.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+03:48 -!- Phoenixmiss [~Miss@1-161-161-154.dynamic.hinet.net] has quit [Remote host closed the connection]
+03:52 -!- 16WAAOWWZ [scrollback@conference/jsconf/x-surgxljybnevrfbj] has quit [Remote host closed the connection]
+03:52 -!- 21WACC2CW [scrollback@conference/jsconf/x-jqhraqihbcphdejr] has joined #g0v.tw
+04:59 -!- ymow1 [~Adium@1-171-179-140.dynamic.hinet.net] has joined #g0v.tw
+05:01 -!- ymow [~Adium@61-230-102-167.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+05:39 -!- 21WACC2CW [scrollback@conference/jsconf/x-jqhraqihbcphdejr] has quit [Remote host closed the connection]
+05:39 -!- 18WAFR5MG [scrollback@conference/jsconf/x-yhqgzljwksiguxcf] has joined #g0v.tw
+07:30 -!- pm5 [~pm5@111-248-205-233.dynamic.hinet.net] has joined #g0v.tw
+08:09 -!- lcamel [~lcamel@118-168-97-42.dynamic.hinet.net] has joined #g0v.tw
+08:09 -!- lcamel [~lcamel@118-168-97-42.dynamic.hinet.net] has quit [Remote host closed the connection]
+08:14 -!- aeil [~Adium@111-243-168-53.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+08:28 < dirty__> clkao: brunch 不是幾乎不用設定嗎?
+08:29 < dirty__> gulp 我覺得不錯, 我記得剛在這頻討論時, 我想用 gulp 取代 brunch (因為我的 brunch 會產生空檔案), 大家還跟我說這兩個用途不太一樣
+08:43 -!- pm5 [~pm5@111-248-205-233.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+08:44 < yhsiangCloud> dirty__: 用途是不一樣沒錯 (堅持) *逃*
+08:46 -!- mutolisp [~mutolisp@27.105.3.224] has joined #g0v.tw
+08:56 -!- wolfenstein [~Thunderbi@60-250-73-121.HINET-IP.hinet.net] has joined #g0v.tw
+09:00 -!- mk56 [~chatzilla@122-117-40-2.HINET-IP.hinet.net] has quit [Quit: ChatZilla 0.9.90.1 [Firefox 27.0/20140130193255]]
+09:10 -!- swem [~Thunderbi@host-184.92-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+09:11 -!- swem [~Thunderbi@host-184.92-43-115.dynamic.totalbb.net.tw] has quit [Client Quit]
+09:12 -!- mno2 [~mno2@42.60.173.63] has quit [Quit: mno2]
+09:13 -!- 18WAFR5MG [scrollback@conference/jsconf/x-yhqgzljwksiguxcf] has quit [Remote host closed the connection]
+09:13 -!- 18WAFR8VK [scrollback@conference/jsconf/x-avkirwgtlsucjivu] has joined #g0v.tw
+09:13 -!- 18WAFR8VK [scrollback@conference/jsconf/x-avkirwgtlsucjivu] has quit [Remote host closed the connection]
+09:13 -!- scrollback [scrollback@conference/jsconf/x-uuunqagducggkbay] has joined #g0v.tw
+09:16 -!- scrollback [scrollback@conference/jsconf/x-uuunqagducggkbay] has quit [Read error: Connection reset by peer]
+09:16 -!- 6JTAA73BG [scrollback@conference/jsconf/x-ynrthpeimpycicxd] has joined #g0v.tw
+09:16 -!- 6JTAA73BG [scrollback@conference/jsconf/x-ynrthpeimpycicxd] has quit [Remote host closed the connection]
+09:17 -!- 92AAAE2HI [scrollback@conference/jsconf/x-dvvizrxtdqpvnrsc] has joined #g0v.tw
+09:17 -!- 92AAAE2HI [scrollback@conference/jsconf/x-dvvizrxtdqpvnrsc] has quit [Remote host closed the connection]
+09:18 -!- 77CABGLUX [scrollback@conference/jsconf/x-rnkcmopciagsdnyo] has joined #g0v.tw
+09:18 -!- 77CABGLUX [scrollback@conference/jsconf/x-rnkcmopciagsdnyo] has quit [Remote host closed the connection]
+09:18 -!- 92AAAE2H4 [scrollback@conference/jsconf/x-oibhwwnuzsigmbht] has joined #g0v.tw
+09:19 < dirty__> yhsiangCloud: 現在流行 gulp 的原因是?
+09:19 < dirty__> brunch 太肥?
+09:20 < yhsiangCloud> dirty__: simple?
+09:22 -!- 92AAAE2H4 [scrollback@conference/jsconf/x-oibhwwnuzsigmbht] has quit [Remote host closed the connection]
+09:23 -!- 16WAAO8JQ [scrollback@conference/jsconf/x-tmeqjsgxajrboota] has joined #g0v.tw
+09:24 -!- 16WAAO8JQ [scrollback@conference/jsconf/x-tmeqjsgxajrboota] has quit [Read error: Connection reset by peer]
+09:25 -!- 92AAAE2KV [scrollback@conference/jsconf/x-tkkwfkbreyillftl] has joined #g0v.tw
+09:25 -!- lyanchih_ [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has joined #g0v.tw
+09:27 -!- LCfunPlay [~chatzilla@111-250-22-157.dynamic.hinet.net] has joined #g0v.tw
+09:30 -!- lcamel [~lcamel@2406:2000:efa5:9:c13c:6afe:5e3c:2e9d] has joined #g0v.tw
+09:31 -!- lcamel [~lcamel@2406:2000:efa5:9:c13c:6afe:5e3c:2e9d] has quit [Remote host closed the connection]
+09:31 -!- lcamel [~lcamel@2406:2000:efa5:5:e044:ce60:f75f:251e] has joined #g0v.tw
+09:35 -!- 92AAAE2KV [scrollback@conference/jsconf/x-tkkwfkbreyillftl] has quit [Remote host closed the connection]
+09:35 -!- 36DACHZFE [scrollback@conference/jsconf/x-stvgzxzlwiiwytnn] has joined #g0v.tw
+09:36 -!- lyanchih_ [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has quit [Quit: lyanchih_]
+09:38 -!- 36DACHZFE [scrollback@conference/jsconf/x-stvgzxzlwiiwytnn] has quit [Remote host closed the connection]
+09:39 -!- 77CABGL7I [scrollback@conference/jsconf/x-yjuftuxxckicdwqd] has joined #g0v.tw
+09:39 -!- lyanchih_ [~lyanchih@202.39.219.19] has joined #g0v.tw
+09:40 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+09:40 < clkao> yhsiang: see ly.g0v.tw gulp branch
+09:46 -!- 77CABGL7I [scrollback@conference/jsconf/x-yjuftuxxckicdwqd] has quit [Remote host closed the connection]
+09:47 -!- 36DACHZLG [scrollback@conference/jsconf/x-eskjkuuzehaojbhp] has joined #g0v.tw
+09:48 -!- lcamel_ [~lcamel@2406:2000:efa5:9:c13c:6afe:5e3c:2e9d] has joined #g0v.tw
+09:49 -!- 36DACHZLG [scrollback@conference/jsconf/x-eskjkuuzehaojbhp] has quit [Remote host closed the connection]
+09:49 -!- 36DACHZMD [scrollback@conference/jsconf/x-gavrsabmzbfaidey] has joined #g0v.tw
+09:50 -!- 36DACHZMD [scrollback@conference/jsconf/x-gavrsabmzbfaidey] has quit [Remote host closed the connection]
+09:50 -!- 16WAAO8V0 [scrollback@conference/jsconf/x-ynvecfrpqwhgotmu] has joined #g0v.tw
+09:51 -!- juanna [~juanna@220-136-214-226.dynamic.hinet.net] has joined #g0v.tw
+09:51 -!- lcamel [~lcamel@2406:2000:efa5:5:e044:ce60:f75f:251e] has quit [Ping timeout: 272 seconds]
+09:53 -!- 16WAAO8V0 [scrollback@conference/jsconf/x-ynvecfrpqwhgotmu] has quit [Remote host closed the connection]
+09:53 -!- 20WAA7Z5Y [scrollback@conference/jsconf/x-warhovwmqqkzzyne] has joined #g0v.tw
+09:57 -!- 20WAA7Z5Y [scrollback@conference/jsconf/x-warhovwmqqkzzyne] has quit [Remote host closed the connection]
+09:57 -!- 6JTAA73UT [scrollback@conference/jsconf/x-nrloamkbysjttqpk] has joined #g0v.tw
+09:58 -!- 6JTAA73UT [scrollback@conference/jsconf/x-nrloamkbysjttqpk] has quit [Remote host closed the connection]
+09:58 -!- 18WAFR9IP [scrollback@conference/jsconf/x-laokyohsefrvwbch] has joined #g0v.tw
+10:00 -!- 18WAFR9IP [scrollback@conference/jsconf/x-laokyohsefrvwbch] has quit [Remote host closed the connection]
+10:00 < kiang> https://docs.google.com/spreadsheet/ccc?key=0AvjtJvqC91TNcFFNQjFqZ0twRzA0cUFaUjR5c1RsV1E
+10:00 < kcwu> kiang's url: [Google Drive]
+10:01 < kiang> ptt 過去發起的薪資調查表，也許可以作為 2/22 提案參考
+10:01 -!- 92AAAE20Y [scrollback@conference/jsconf/x-enrpurxwybczzlbt] has joined #g0v.tw
+10:01 -!- mutolisp [~mutolisp@27.105.3.224] has quit [Ping timeout: 252 seconds]
+10:01 -!- 92AAAE20Y [scrollback@conference/jsconf/x-enrpurxwybczzlbt] has quit [Remote host closed the connection]
+10:02 -!- lcamel [~lcamel@nat/yahoo/x-rarrkbcvkgwftecs] has joined #g0v.tw
+10:02 -!- 77CABGMI9 [scrollback@conference/jsconf/x-clbijmrlqqmutifo] has joined #g0v.tw
+10:02 -!- macpaul_ [~macpaul@162.248.8.104] has quit [Ping timeout: 248 seconds]
+10:02 -!- macpaul__ is now known as macpaul_
+10:03 -!- lcamel_ [~lcamel@2406:2000:efa5:9:c13c:6afe:5e3c:2e9d] has quit [Ping timeout: 265 seconds]
+10:05 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has joined #g0v.tw
+10:16 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+10:18 < juanna> 這次hackath有什麼大家特別想吃的嗎
+10:21 < hychen_> gulp比較好用? # g0v 一日三千里...
+10:21  * walkingice 前些日子在 irc 看見才知道有 gulp
+10:23 -!- macpaul [~macpaul@162.248.8.104] has quit [Ping timeout: 260 seconds]
+10:23 < clkaould> walkingice: 今天有在辦公室嗎?
+10:23 < walkingice> clkaould: 沒耶，今天雲端打工
+10:24 < clkaould> 待會想晃過去趕稿
+10:24 < walkingice> 喔？演講稿？
+10:26 < dirty__> 我覺得 brunch 也很好用啊 :p 反正就是順手了
+10:27 < dirty__> anyway, 順應潮流, 我有空來 gulp
+10:27 -!- Isken [~isken@yplee-2-pt.tunnel.tserv3.fmt2.ipv6.he.net] has joined #g0v.tw
+10:30 -!- 77CABGMI9 [scrollback@conference/jsconf/x-clbijmrlqqmutifo] has quit [Remote host closed the connection]
+10:30 -!- 45PAAEB59 [scrollback@conference/jsconf/x-ajnzcmofrghscbrx] has joined #g0v.tw
+10:31 < clkaould> dirty__: 要整合自動測試有點礙手礙腳
+10:32 -!- evan3rd [~evan3rd@61-227-249-100.dynamic.hinet.net] has joined #g0v.tw
+10:36 -!- Isken [~isken@yplee-2-pt.tunnel.tserv3.fmt2.ipv6.he.net] has quit [Remote host closed the connection]
+10:42 -!- evan3rd [~evan3rd@61-227-249-100.dynamic.hinet.net] has quit [Quit: evan3rd]
+10:42 -!- 45PAAEB59 [scrollback@conference/jsconf/x-ajnzcmofrghscbrx] has quit [Remote host closed the connection]
+10:42 -!- 92AAAE3MI [scrollback@conference/jsconf/x-dmbbkygpdsseczri] has joined #g0v.tw
+10:42 -!- 92AAAE3MI [scrollback@conference/jsconf/x-dmbbkygpdsseczri] has quit [Remote host closed the connection]
+10:43 -!- 18WAFR957 [scrollback@conference/jsconf/x-xkxxqbxbskpddjvd] has joined #g0v.tw
+10:44 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+10:50 < dirty__> clkaould: 沒在測試的 :p
+10:51 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+10:59 -!- chihchun_afk is now known as chihchun
+11:05 -!- Isken_ [~isken@60-251-40-253.HINET-IP.hinet.net] has joined #g0v.tw
+11:13 < clkao> dirty__: ... 要讓人送 patch 的話 加一點最基本的測試很重要 :p
+11:14 < dirty__> clkao: i know, 但目前都還沒這種需求過
+11:14 < clkao> tkirby: 昨天送的 plunker patch 瞬間 deploy 了, ls/stylus 有 syntax hilight 了 # http://plnkr.co/edit/23cfehsiW1Mt0ivjQy8g?p=info
+11:14 < kcwu> clkao's url: [Plunker]
+11:15 < dirty__> 我沒什麼 open repo 在 github 上啊 :p
+11:18 -!- chihchun is now known as chihchun_afk
+11:23 -!- 18WAFR957 [scrollback@conference/jsconf/x-xkxxqbxbskpddjvd] has quit [Remote host closed the connection]
+11:24 -!- 36DACH050 [scrollback@conference/jsconf/x-aqphxkvytrjjarep] has joined #g0v.tw
+11:25 -!- chihchun_afk is now known as chihchun
+11:33 -!- 36DACH050 [scrollback@conference/jsconf/x-aqphxkvytrjjarep] has quit [Remote host closed the connection]
+11:34 -!- 20WAA71NW [scrollback@conference/jsconf/x-fikamkrpfhshcdam] has joined #g0v.tw
+11:36 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+11:41 -!- macpaul [~macpaul@162.248.8.104] has quit [Ping timeout: 252 seconds]
+11:47 -!- Isken_ [~isken@60-251-40-253.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+11:47 -!- ddio [uid13869@gateway/web/irccloud.com/x-hlejrgdnxhgvoumx] has quit [Ping timeout: 265 seconds]
+11:47 -!- mrmoneycloud__ [uid16021@gateway/web/irccloud.com/x-jxknyjdvgxziovvz] has quit [Ping timeout: 265 seconds]
+11:47 -!- hccloud_ [uid13336@gateway/web/irccloud.com/x-alwpccyhiosdnfoa] has quit [Ping timeout: 265 seconds]
+11:47 -!- watersu__ [uid13503@gateway/web/irccloud.com/x-omgbfzlobeuwzjuy] has quit [Ping timeout: 265 seconds]
+11:48 -!- hccloud_ [uid13336@gateway/web/irccloud.com/x-hsbxsxdbyeibnnpd] has joined #g0v.tw
+11:48 -!- ddio [uid13869@gateway/web/irccloud.com/x-izdlufpwprfihxul] has joined #g0v.tw
+11:48 -!- mrmoneycloud__ [uid16021@gateway/web/irccloud.com/x-nhijsprfecmhbopi] has joined #g0v.tw
+11:48 -!- watersu__ [uid13503@gateway/web/irccloud.com/x-yglndhkcrrzizvbg] has joined #g0v.tw
+11:53 -!- a-tsioh [~pierre@1-162-53-229.dynamic.hinet.net] has joined #g0v.tw
+12:00 -!- lyanchih_ [~lyanchih@202.39.219.19] has quit [Quit: lyanchih_]
+12:04 -!- LCfunPlay [~chatzilla@111-250-22-157.dynamic.hinet.net] has quit [Quit: ChatZilla 0.9.87-rdmsoft [XULRunner 1.9.2.19/20110707195905]]
+12:08 -!- chihchun is now known as chihchun_afk
+12:11 < tkirby> clkao++ 
+12:12 -!- Isken [~isken@60-251-40-253.HINET-IP.hinet.net] has joined #g0v.tw
+12:12 -!- travis-ci [~travis-ci@ec2-50-19-145-172.compute-1.amazonaws.com] has joined #g0v.tw
+12:12 < travis-ci> [travis-ci] g0v/ly.g0v.tw#255 (ly-diff - a5df871 : Chia-liang Kao): The build passed.
+12:12 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/0764c55c65f4...a5df8717b91f
+12:12 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/18856741
+12:12 -!- travis-ci [~travis-ci@ec2-50-19-145-172.compute-1.amazonaws.com] has left #g0v.tw []
+12:12 < tkirby> 看來應該來用一下 :d
+12:12 < clkao> 潮爽der
+12:13 < clkao> 不過因為他沒有 +bare, 所以得加一個 d3 = window.d3
+12:13 < tkirby> hmmm
+12:15 < clkao> 只好再送 pr
+12:15 < tkirby> XDD
+12:16 < clkao> ww寫稿的障礙 ;P
+12:18  * tkirby 前往電腦公會
+12:19 < clkao> tkirby: 要來趕稿鬆嗎
+12:20 < clkao> https://github.com/filearts/plunker_run/pull/3 XD
+12:20 < kcwu> clkao's url: [compie livescript with bare option on by clkao · Pull Request #3 · filearts/plunker_run · GitHub]
+12:22 -!- chihchun_afk is now known as chihchun
+12:36 -!- wolfenstein [~Thunderbi@60-250-73-121.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+12:39 -!- Isken [~isken@60-251-40-253.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+12:40 -!- lcamel [~lcamel@nat/yahoo/x-rarrkbcvkgwftecs] has quit [Remote host closed the connection]
+12:42 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+12:43 < yhsiangCloud> dirty__: 可以參考env.g0v.tw或之後使用genetator
+12:45 < clkao> yhsiangCloud: 無聊的話可以玩一下 ly-diff branch, npm run dev 後可以用 http://embed.plnkr.co/soTzVJqHSyBHS4pxuBJl/preview 測試... 不過目前似乎 left/right 抓取爛掉了
+12:45 < kcwu> clkao's url: [Plunker - Untitled]
+12:47 -!- lcamel [~lcamel@nat/yahoo/x-uiqwvepqwcazchqp] has joined #g0v.tw
+12:48 < dirty__> yhsiangCloud: doing, env 那個 gulpfile 已經有點肥了, 我覺得
+12:49 -!- juiz [~juiz@unaffiliated/yungyuc] has quit [Ping timeout: 253 seconds]
+12:49  * ETBlue 醒
+12:52 < ETBlue> clkao tkirby 趕稿松 (☆_☆)
+12:52 -!- ManicLF [~Manic@li159-81.members.linode.com] has quit [Ping timeout: 252 seconds]
+12:53 < yhsiangCloud> dirty__: 有更肥的吧 https://gist.github.com/joeLepper/8360399
+12:53 < kcwu> yhsiangCloud's url: [My Gulpfile]
+12:53 -!- ManicLF [~Manic@li159-81.members.linode.com] has joined #g0v.tw
+12:55 -!- juiz [~juiz@unaffiliated/yungyuc] has joined #g0v.tw
+12:55 < isacloud> 疑 irccloud 居然會顯示 gist 內容
+12:59 < clkao> hychen_: 幫忙包一下 skytools3 pg9.3 的 deb 吧
+13:00 -!- lcamel [~lcamel@nat/yahoo/x-uiqwvepqwcazchqp] has quit [Remote host closed the connection]
+13:07 -!- lcamel [~lcamel@2406:2000:efa5:9:686d:bcc6:94e3:c600] has joined #g0v.tw
+13:09 < ETBlue>  
+13:09 < ETBlue> clkao 我吃早餐後過去 lol
+13:11 -!- lyanchih [~lyanchih@118.163.141.228] has joined #g0v.tw
+13:12 < dirty__> yhsiangCloud: 我說就一個小 project 來說啊
+13:13 < dirty__> 我發現 fire.app 真的很不友善(包太好了)
+13:14 < dirty__> 有人能說一下 https://github.com/g0v/don-press 裡的 tilt_jade.rb 要怎麼用 gulp 包嗎?
+13:14 < kcwu> dirty__'s url: [g0v/don-press · GitHub]
+13:14 < dirty__> 現在是卡在
+13:14 < dirty__> Error: TypeError: /home/dirty/git/g0v/don/views/library.jade:23
+13:14 < dirty__>     21| else
+13:14 < dirty__>     22|   //- from local
+13:14 < dirty__>   > 23|   if lib.jquery
+13:14 < dirty__>     24|     script(type="text/javascript",src="#{assets}/jquery/1.10.2/jquery.min.js")
+13:14 < dirty__>     25|   if lib.d3js
+13:14 < dirty__>     26|     script(type="text/javascript",src="#{assets}/d3js/3.3.11/d3.v3.min.js")
+13:14 < dirty__> Cannot read property 'jquery' of undefined
+13:16 < clkao> try if !!lib.jquery ?
+13:16 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+13:16 < dirty__> clkao: 我本來是不想改 library.jade, 因為 ETBlue 是用 fire.app, 而我沒辦法測, 怕弄爛他的環境
+13:17 < dirty__> 不過這樣改好像不會影響, okok
+13:17 < clkao> 應該是 jade 版本不同 新版的 jade 機車很多
+13:17 < dirty__> the same
+13:18 < dirty__> 我知道, 我被 doctype html 婊過一次
+13:19 < lijung__> ronnywang: 我把整個 data.gov 的資料 download 下來了 XDDDD
+13:20 < lijung__> 更正 data.gov.tw
+13:21 < yhsiangCloud> 哪個是要require obj
+13:22 < yhsiangCloud> 要pass locals給他
+13:28 < clkao> right, local vars
+13:29 < ETBlue> dirty__: library.jade 是科比寫的神奇外掛 switch XDXD 改了的確不會影響
+13:30 < yhsiang> 如果是cli 要 -O 或 --obj 是api的話要傳locals 進去 https://github.com/g0v/don-republic/blob/gulp/gulpfile.ls#L16
+13:30 < kcwu> yhsiang's url: [don-republic/gulpfile.ls at gulp · g0v/don-republic · GitHub]
+13:31 < clkao> ETBlue: 呃啊 你有什麼要逃避的嗎 可以來充一下 hotbills 嗎 :p 放太久了要生鏽了
+13:32 < yhsiang> dirty__: 因為gulp的概念是plugin只做一件事情, 不然大概可以寫個gulp-jade-livescript-angular 之類的 
+13:32 < clkao> 可以把 common tasks 一起 require 一下
+13:33 < yhsiang> clkao: blue 是想寫個新的yeoman 我自己也是在想 XD
+13:33 < yhsiang> 我自己的已經取好名字了 XDD
+13:34 < yhsiang> 可惡被用過了!
+13:34 < tkirby> D/win 18
+13:37 < ETBlue> clkao: 我想衝記者會……一股氣還沒消 XDXD
+13:37 < walkingice> 激動民主
+13:37 < kcwu> lijung__: 有些 data 是 external site, 也抓了?
+13:37 < lijung__> yep
+13:38 < tkirby> ETBlue: 衝! 小松?
+13:38 < ETBlue> tkirby: 我正要收東西，等一下去星際遺址！一起來嗎
+13:39 < tkirby> ETBlue: 我在等慕約講完, 接下來換我.. xD  # open data camp
+13:39 -!- lcamel_ [~lcamel@nat/yahoo/x-rlpmaixccvuhbiuu] has joined #g0v.tw
+13:39 < ETBlue> tkirby:  啊！！ +++
+13:39 < tkirby> 也許我應該要把簡報 summarize 成一篇 blog post
+13:39 < tkirby> 有空來寫好了
+13:40 < tkirby> 阿啊啊要上了
+13:40 < clkao> tkirby: open data camp 是啥.... ? 
+13:40 -!- lcamel [~lcamel@2406:2000:efa5:9:686d:bcc6:94e3:c600] has quit [Ping timeout: 265 seconds]
+13:41 < yhsiang> clkao: muyueh之前糾的那個吧
+13:41 -!- Phoenixmiss [~Miss@1-161-161-154.dynamic.hinet.net] has joined #g0v.tw
+13:41 < yhsiang> facebook event
+13:41 < yhsiang> 疑 那是周六 ...
+13:43 < clkao> yhsiang: 好像默默的 assign 了超多 issue 給你 XD
+13:47 < yhsiang> clkao: 天氣冷也只能默默解issue ...
+13:48 -!- lcamel_ [~lcamel@nat/yahoo/x-rlpmaixccvuhbiuu] has quit [Remote host closed the connection]
+13:48  * yhsiang 準備移動到台北
+13:52 -!- lcamel [~lcamel@2406:2000:efa5:9:88fe:4cea:2864:17bb] has joined #g0v.tw
+13:54 < clkao> yhsiang: 要先解哪一個呢 :
+13:56 -!- a-tsioh [~pierre@1-162-53-229.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+14:02 < lijung__> data.gov.tw: external data: https://www.dropbox.com/sh/dsq4lytk82hlxej/O5lfmJqqzt
+14:02 < kcwu> lijung__'s url: [Dropbox - gov.data]
+14:03 < lijung__> 我現在只有抓這四種格式
+14:03 < lijung__> 發掘有很多link跟是 dead 的
+14:04 < lijung__> still loading data to dropbox...
+14:05 < dirty__> yhsiangCloud: solved, thx
+14:06 < dirty__> yhsiang: 我是說, 可以不要用到那麼多功能(不是單指 code 的長度), 例如 tiny-lr 就不一定需要啊
+14:06 < dirty__> 有哪個 project 用 gulp, 然後有用到 compass 的?
+14:06 < kiang> lijung__> 其實我也有抓... https://github.com/kiang/data/blob/master/app/tasks/MainTask.php
+14:06 < kcwu> kiang's url: [data/app/tasks/MainTask.php at master · kiang/data · GitHub]
+14:06 < dirty__> 我發覺這也不好接
+14:07 < lijung__> kiang: ... 你還有抓其他 format的嗎？
+14:07 < lijung__> 我現在只有抓四種而已
+14:08 < kiang> 我目前是抓了之後只用 header 放在 https://github.com/kiang/data/blob/master/public/files/data.gov.tw.json
+14:08 < kcwu> kiang's url: [data/public/files/data.gov.tw.json at master · kiang/data · GitHub]
+14:08 < yhsiangCloud> dirty__: 要livereload 就要tinylr  compass就是don republic
+14:09 < yhsiangCloud> 昨天接了 gulp ruby sass 剛剛哪個ls裡面有
+14:09 < kiang> 主要用意是確認有沒有掛掉的連結，但其實之前有全部砍下來。只是沒有做後續動作吧
+14:09 < dirty__> yhsiangCloud: 就是說不一定要 livereload 啊 :p 而且我現在在試只用 gulp-livereload
+14:10 < dirty__> gulp-ruby-sass 那個命名(gulp-sass 不支援 sass 格式)超討厭, 剛剛才被婊
+14:10 < yhsiangCloud> dirty__: 因為那是用node sass
+14:11 < lijung__> kiang: ++
+14:11 < clkao> dirty__: you mean... 只支援 scss?
+14:11 < kiang> 不過我沒有放排程，所以需要的時候再跑一次就是了
+14:11 < yhsiangCloud> dirty__: gulp-livereeload 沒tinylr 好像不會動
+14:11 < dirty__> yhsiangCloud, clkao: yep, 好爛的命名法
+14:12 < dirty__> yhsiangCloud: 我也在猜是這樣, 所以我只是想試試
+14:12 < yhsiangCloud> 之前有文章看你要不要參考
+14:13 < hcchien> yhsiangCloud++   # 13:47 < yhsiang> clkao: 天氣冷也只能默默解issue ...  //LOL
+14:14 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Leaving]
+14:14 < hcchien> 竟然不小心就按下綠色按鈕了   lol
+14:14 -!- taihsiang [~taihsiang@175.41.48.77] has joined #g0v.tw
+14:15 -!- lyanchih [~lyanchih@118.163.141.228] has quit [Quit: lyanchih]
+14:15 < dirty__> oh yeah, 我就是要這個 .pipe gulp-ruby-sass compass: true
+14:15 -!- lyanchih_ [~lyanchih@202.39.219.19] has joined #g0v.tw
+14:15 < dirty__> yhsiangCloud++
+14:16 < dirty__> 雖然我找到這個 https://www.npmjs.org/package/gulp-compass 但一看就覺得不對 XD
+14:16 < yhsiangCloud> 之前沒找到 不知為啥昨天弄動民主就找到了 
+14:20 < kiang> http://newtalk.tw/news/2014/02/14/44413.html
+14:20 < kcwu> kiang's url: [段宜康爆料：新戶政電腦已過保固期 - 新頭殼 newtalk]
+14:21 < kiang> 戶政系統還真是一波很多折...
+14:25 -!- lcamel_ [~lcamel@nat/yahoo/x-tmfizvubeagwnphs] has joined #g0v.tw
+14:25 < kiang> http://kcwu.csie.org/~kcwu/ircstat/g0v.html
+14:25 < kcwu> kiang's url: [#g0v.tw @ IRCNet 由 kcwu 所統計]
+14:25 < kiang> clkao 有在睡覺嗎？ XD
+14:25 -!- lcamel [~lcamel@2406:2000:efa5:9:88fe:4cea:2864:17bb] has quit [Ping timeout: 265 seconds]
+14:25 < clkao> ....
+14:26 < clkao> ETBlue 已經超越 au 惹
+14:44 < ETBlue> dirty__: 額，是不是只要我換個開發環境問題就解決惹 QQ
+14:45 < ETBlue> au不在台灣的時候乘虛超越 XDXD
+14:45 < dirty__> ETBlue: 不用, 反正我就是打發時間 XD
+14:46 < dirty__> 而且現在差不多了 <- 我決定放棄 livereload
+14:46 < ETBlue> dirty__++ ^o^
+14:47 < dirty__> 因為我其實很少用, 大概是因為我的開發環境比較不一樣 (我用 windows 開 pietty+chrome, 網頁是放在 linux 上用 lighttpd)
+14:47 < dirty__> 只有偶爾用 MBA 開發時會比較像大家的環境
+14:49 < opop> 啊～錯過一位司機～
+14:49 < ETBlue> 我是用 windows+fire.app，只有偶爾開VM進ubuntu的時候……還是不像大家的環境，但至少很多東西可以正常跑
+14:50 < ETBlue> opop: 錯過哪位? XD
+14:58 < hcchien> http://www.taylorhu.com/web-design/cwb-website-revamp/
+14:58 < kcwu> hcchien's url: [Taylor Hu - 中央氣象局 - 網站設計概念稿]
+14:58 < hcchien> 可以挖坑給他嗎   lol
+14:59 -!- lyanchih_ [~lyanchih@202.39.219.19] has quit [Quit: lyanchih_]
+14:59 -!- a-tsioh [~pierre@wl071.cc.ntu.edu.tw] has joined #g0v.tw
+15:00 < hcchien> 該不會是斃公司的吧   XD
+15:00 < hcchien> 原來已經離職了
+15:07 -!- lyanchih [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has joined #g0v.tw
+15:11 -!- lyanchih [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has quit [Client Quit]
+15:11 -!- lyanchih [~lyanchih@202.39.219.19] has joined #g0v.tw
+15:26 < clkao> dirty__: gulp 在 windows 上看起來很順暢
+15:26 < clkao> opop: jimmy 嗎
+15:28 < ETBlue> 新的中央氣象局網站好漂亮啊……會上線嗎 +_+
+15:31 < clkao> cwb.g0v 可以搶先上線
+15:32 -!- Missphoenix [~Miss@1-161-162-90.dynamic.hinet.net] has joined #g0v.tw
+15:34 < walkingice> cwb.g0v++  XD
+15:35 < walkingice> 我每次開中央氣象局的網站都是手打網址(比較快)，昨天真的不小心打成 www.cwb.g0v.tw
+15:35 -!- Phoenixmiss [~Miss@1-161-161-154.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+15:49 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:49 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+15:49 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:49 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+15:50 -!- a-tsioh [~pierre@wl071.cc.ntu.edu.tw] has quit [Ping timeout: 248 seconds]
+15:56 -!- a-tsioh [~pierre@wl071.cc.ntu.edu.tw] has joined #g0v.tw
+16:14  * clkao 交稿了... 來打工
+16:24 < hcchien> cwb.g0v++
+16:27 < hcchien> 上班時還喝了四種酒，這哪招
+16:27 < clkao> ....
+16:50 < tkirby> clkao: 你推我坑的那個, Open Data創意研習營
+16:50 < tkirby> 推坑者自己忘了坑了.. 嗚嗚...
+16:52 < clkao> 我怎麼記得是二月底
+16:52 < clkao> tkirby: 好玩嗎？要趕過來吃鼎泰豐嗎？
+16:53 < ETBlue> 全民記者會 單一問題頁面的上半部 http://g0v.github.io/don-press/public/question.html
+16:53 < kcwu> ETBlue's url: [首頁| 全民記者會]
+16:54 < tkirby> clkao: 感覺還不錯, 順便跟電腦公會聊了一下.. 他說他可以幫大家跟政府發公文要資料, 只要我們匯整需求過去
+16:55 < tkirby> 也有提到願意贊助黑客松場地, 不過我們現在似乎不缺這點就是了
+16:55 < tkirby> clkao  啊不過鼎泰豐的話等一下有事應該沒辦法
+16:56 < hcchien> 這麼早吃鼎泰豐是哪招
+16:59 -!- lyanchih [~lyanchih@202.39.219.19] has quit [Quit: lyanchih]
+17:00 < clkao> 肚子餓了
+17:01 < ipa> tkirby: 可以贊助小松場地？
+17:02 < ipa> tkirby: 30人小松可以再累積一些可能地點
+17:04 < tkirby> ipa: hmm 那我把它記到小松 hackpad, 有需要的人可以接洽
+17:05 -!- lyanchih_ [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has joined #g0v.tw
+17:07 < hcchien> 創意研習營   XD
+17:11 -!- Missphoenix [~Miss@1-161-162-90.dynamic.hinet.net] has quit [Quit: Leaving]
+17:15 < a-tsioh> orz
+17:15 < a-tsioh> 又沒申請
+17:16 < tkirby> ?
+17:16 < a-tsioh> 黑客松
+17:16 < tkirby> XDDDD
+17:16 < tkirby> 沒關係總是會有人退出的
+17:17 < tkirby> 寫個 poller 來監視.. XD
+17:18 < hcchien> 應該已經有 bot 了，不知道有沒有 open source   # 大誤
+17:20 -!- travis-ci [~travis-ci@ec2-54-242-250-217.compute-1.amazonaws.com] has joined #g0v.tw
+17:20 < travis-ci> [travis-ci] g0v/ly.g0v.tw#256 (ly-diff - 3ac8aaf : Chia-liang Kao): The build passed.
+17:20 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/a5df8717b91f...3ac8aaf3775e
+17:20 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/18866349
+17:20 -!- travis-ci [~travis-ci@ec2-54-242-250-217.compute-1.amazonaws.com] has left #g0v.tw []
+17:20 -!- macpaul [~macpaul@162.248.8.104] has quit [Ping timeout: 248 seconds]
+17:21 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw
+17:22 < OtomeSound> 不要有專門找人跳坑的BOT就好(?
+17:27 < hcchien> 這應該可以開發
+17:27 < hcchien> lol
+17:34 -!- a-tsioh [~pierre@wl071.cc.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+17:43 -!- evan3rd [~evan3rd@61.227.249.100] has joined #g0v.tw
+17:46 -!- evan3rd [~evan3rd@61.227.249.100] has quit [Client Quit]
+17:48 -!- aitjcize_ [~quassel@aquarius.csie.ntu.edu.tw] has quit [Quit: http://quassel-irc.org - Chat comfortably. Anywhere.]
+17:48 -!- aitjcize [~quassel@aquarius.csie.ntu.edu.tw] has joined #g0v.tw
+17:50 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has joined #g0v.tw
+17:52 -!- Stranger_1980 [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+17:52 -!- juanna [~juanna@220-136-214-226.dynamic.hinet.net] has quit [Quit: Lost terminal]
+17:58 -!- Stranger_1980_ [~Stranger_@114-32-237-110.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:01 -!- Stranger_1980 [~Stranger_@114.32.237.110] has joined #g0v.tw
+18:06 < a0kman> 情宵節快樂~( శ 3ੜ)～♥
+18:22 < hcchien> 不是猿人節快樂!?    lol
+18:29 < a0kman> 瓦倫泰吃湯圓XD
+18:32 < ipa> 來顆玫瑰口味的湯圓 XD
+18:35 < a0kman> 感覺超恐怖的，不然來顆玫瑰型狀得好了
+18:40 -!- chihchun is now known as chihchun_afk
+18:44 -!- wowjim [3cf5418f@gateway/web/cgi-irc/kiwiirc.com/ip.60.245.65.143] has joined #g0v.tw
+18:45 -!- wowjim [3cf5418f@gateway/web/cgi-irc/kiwiirc.com/ip.60.245.65.143] has left #g0v.tw []
+18:53 -!- lcamel_ [~lcamel@nat/yahoo/x-tmfizvubeagwnphs] has quit [Remote host closed the connection]
+18:57 -!- ymow1 [~Adium@1-171-179-140.dynamic.hinet.net] has quit [Quit: Leaving.]
+19:06 -!- pm5 [~pm5@114-34-80-112.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+19:14 -!- lyanchih_ [~lyanchih@118-163-141-228.HINET-IP.hinet.net] has quit [Ping timeout: 253 seconds]
+19:22 < clkao> iamblue_cloud__: 我開 issue 給你了 # https://github.com/g0v/ly.g0v.tw/issues/152
+19:22 < kcwu> clkao's url: [switch to angularytics · Issue #152 · g0v/ly.g0v.tw · GitHub]
+19:26 < iamblue_cloud__> 看起來很有趣XD
+19:27 -!- 20WAA71NW [scrollback@conference/jsconf/x-fikamkrpfhshcdam] has quit [Remote host closed the connection]
+19:27 -!- taihsiang [~taihsiang@175.41.48.77] has quit [Quit: Leaving]
+19:27 -!- 92AAAFBPF [scrollback@conference/jsconf/x-jzswhnfnfgixymrq] has joined #g0v.tw
+19:29 < iamblue_cloud__> 不過～  怎不用這個@@?
+19:29 < iamblue_cloud__> http://luisfarzati.github.io/angulartics/
+19:29 < kcwu> iamblue_cloud__'s url: [Angulartics | Web analytics for AngularJS applications]
+19:29 < iamblue_cloud__> 少一個y  ＸＤ
+19:35 < clkao> 不知道... 哪個比較威？
+19:37 < iamblue_cloud__> 下禮拜公司也有個patch也是做這個  來一併處理好了～
+19:37 < clkao> 簡易修法對照產生器 # http://plnkr.co/edit/RQjkyh?p=preview
+19:37 < kcwu> clkao's url: [Plunker]
+19:40 -!- a16g_ [~anthony@124244232015.ctinets.com] has joined #g0v.tw
+20:19 -!- 92AAAFBPF [scrollback@conference/jsconf/x-jzswhnfnfgixymrq] has quit [Remote host closed the connection]
+20:19 -!- 92AAAFCHO [scrollback@conference/jsconf/x-qnnploszobnwkwxd] has joined #g0v.tw
+20:39 < jimyhuang__> opop: 啊？
+20:48 < clkao> www
+20:58 -!- travis-ci [~travis-ci@ec2-50-19-145-172.compute-1.amazonaws.com] has joined #g0v.tw
+20:58 < travis-ci> [travis-ci] g0v/ly.g0v.tw#257 (ly-diff - 51791e7 : Chia-liang Kao): The build passed.
+20:58 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/3ac8aaf3775e...51791e7abbaf
+20:58 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/18876998
+20:58 -!- travis-ci [~travis-ci@ec2-50-19-145-172.compute-1.amazonaws.com] has left #g0v.tw []
+21:22 -!- pm5 [~pm5@111.248.205.233] has joined #g0v.tw
+21:26 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has joined #g0v.tw
+21:30 < caasih> clkaould yhsiang: 我把前天的結果 merge 到 master ？
+21:30 < caasih> 然後來看村長昨天提的 $interpolate() ...
+21:31 < caasih> 還是說 merge 由誰專門負責？
+21:34 < clkao> caasih: 開一下 PR 讓他 跑一下測試? 覺得 ok 的話就自己按巨大的綠色按鈕吧
+21:35 < caasih> clkao: 好，我看一下怎麼樣從 branch 弄出個 PR
+21:35 < clkao> 應該有個綠色的 compare 按鈕
+21:36 < caasih> 看到了 XD
+21:42 -GitHub191:#g0v.tw- [ly.g0v.tw] caasi opened pull request #153: Fix proposed and scroll (master...fix-proposed-and-scroll) https://github.com/g0v/ly.g0v.tw/pull/153
+21:42 < caasih> clkao: 還改了個小地方，排隊等它跑。
+21:43 < clkao> caasih++
+21:43 < clkao> 還是過了後接著要幫忙 merge 下來到 ly-diff branch? 順便解 #149
+21:43 < caasih> clkao yhsiang: 多虧各位的協助！
+21:44 -!- travis-ci [~travis-ci@ec2-107-20-103-170.compute-1.amazonaws.com] has joined #g0v.tw
+21:44 < travis-ci> [travis-ci] g0v/ly.g0v.tw#258 (fix-proposed-and-scroll - 4d31a78 : caasi Huang): The build has errored.
+21:44 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/3e109c0aea05...4d31a783a449
+21:44 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/18879425
+21:44 -!- travis-ci [~travis-ci@ec2-107-20-103-170.compute-1.amazonaws.com] has left #g0v.tw []
+21:44 < clkao> 動一下 diff directive, 順便接著 easyread 先從那邊接接看
+21:44 < caasih> clkao: 喔喔，那我等的時候先去看看 ly-diff 有啥不一樣，跟 #149 先
+21:44 < caasih> 爆炸了 XDD
+21:45 < clkao> 等不及了
+21:45 < clkao> 噢 應該是你沒 merge master... cz 已經把他的 branch 砍了
+21:45 < clkao> 不過 PR 的還沒跑 在上面應該不會有這個問題
+21:46 < caasih> 咦？喔喔，因為剛剛 merge master 他是說 up to date...
+21:46 < caasih> 好，我等 PR 的...XD
+21:46 < clkao> 你可能要 merge origin/master
+21:47 < Lee1092> clkao ++  感覺不只修法可以這樣用XD #  http://plnkr.co/edit/RQjkyh?p=preview
+21:47 < kcwu> Lee1092's url: [Plunker]
+21:48 < clkao> Lee1092: yeah! 來想 use case 吧！你按右上角那個 share 出來的 url, 可以 iframe embed 到其他地方
+21:48 < clkao> 非常方便
+21:48 -!- lcamel [~lcamel@118-168-97-42.dynamic.hinet.net] has joined #g0v.tw
+21:52 < Lee1092> cool~   這網站 livedemo 也很方便 ，還有跟 github 做連結 (y)
+21:53 -GitHub17:#g0v.tw- [ly.g0v.tw] caasi closed pull request #153: Fix proposed and scroll (master...fix-proposed-and-scroll) https://github.com/g0v/ly.g0v.tw/pull/153
+21:53 < clkao> caasih++
+21:53 < clkao> Lee1092: 斷開連結！
+21:57 -!- travis-ci [~travis-ci@ec2-54-204-68-226.compute-1.amazonaws.com] has joined #g0v.tw
+21:57 < travis-ci> [travis-ci] g0v/ly.g0v.tw#260 (master - 21871f7 : caasi Huang): The build passed.
+21:57 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/a867c428e2e3...21871f73ab2b
+21:57 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/18880320
+21:57 -!- travis-ci [~travis-ci@ec2-54-204-68-226.compute-1.amazonaws.com] has left #g0v.tw []
+21:58 < Lee1092> XDDD
+22:00 < clkao> caasih: 呃 結果 left-item 那邊在 ly-diff branch 上整個改掉了.. 剛好 test 可以派上用場 :p
+22:01 < caasih> clkao: 剛剛有預感 merge 應該會花不少功夫，是的，還好寫了 test XD
+22:07 < hcchien> http://www.appledaily.com.tw/realtimenews/article/new/20140214/344365/
+22:07 < kcwu> hcchien's url: [馮光遠：政媒不能兩棲大家都要瞭解 | 即時新聞 | 20140214 | 蘋果日報]
+22:18 -!- lioktsut [a312208b@gateway/web/cgi-irc/kiwiirc.com/ip.163.18.32.139] has joined #g0v.tw
+22:37 < tkirby>   
+22:39 -!- a16g_ [~anthony@124244232015.ctinets.com] has quit [Quit: cya]
+22:39 -!- a16g__ [~anthony@124244232015.ctinets.com] has joined #g0v.tw
+22:40 -!- lioktsut [a312208b@gateway/web/cgi-irc/kiwiirc.com/ip.163.18.32.139] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+22:43 -!- a16g_ [~anthony@124244232015.ctinets.com] has joined #g0v.tw
+22:43 -!- a16g__ [~anthony@124244232015.ctinets.com] has quit [Read error: No route to host]
+22:45 < clkao> caasih: 今天會 merge 嗎？還是要在別的 branch 上 merge? 因為我還想改一些東西
+22:46 < caasih> clkao: 今天不會，得先讀讀她現在是怎麼運作的 XD
+22:48 < clkao> caasih: ok!
+22:52 -!- caasih [~caasiHuan@59-126-194-108.HINET-IP.hinet.net] has quit [Quit: leaving]
+22:54 -!- Phoenixmiss [~Miss@1-161-160-139.dynamic.hinet.net] has joined #g0v.tw
+23:06 -!- lcamel [~lcamel@118-168-97-42.dynamic.hinet.net] has quit [Remote host closed the connection]
+23:10 < kcwu> 發現新的 single.fnt 在這維護 https://code.google.com/p/libdgg/source/list # 雖然這幾年都沒變
+23:10 < kcwu> kcwu's url: [Changes - libdgg - dynamically generates Han glyphs - Google Project Hosting]
+23:32 -!- macpaul [~macpaul@162.248.8.104] has quit [Ping timeout: 260 seconds]
+23:34 -!- macpaul [~macpaul@162.248.8.104] has joined #g0v.tw

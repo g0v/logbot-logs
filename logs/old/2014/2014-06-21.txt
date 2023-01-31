@@ -1,0 +1,975 @@
+--- Day changed 六  6月 21 2014
+00:01 < yhsiangCloud__> lanf0n: 要不要報一下politwoops
+00:03 < moon_c_> 我也是活動前戰力十足（？
+00:06 < lanf0n> yhsiangCloud__: 我在北上的客運上QQQQ
+00:07 < yhsiangCloud__> lanf0n: 做幾張投影片就好XD 說明概念
+00:07 < jimyhuang__> hychen: 有... 
+00:08 < jimyhuang__> 我試了半天，還是找不出你的哪個 recline branch 是真正有multi-layer
+00:08 < jimyhuang__> (一定有神密組合)
+00:08 < clkao> what is using recline?
+00:08 < b0t-general> Sorry. This entry is empty. Welcome to add the entry in https://g0v.hackpad.com/Fe3VpeN42w9
+00:09 < lanf0n> yhsiangCloud__: ! 這樣要徵啥囧?
+00:09 < kiang> nchild++ 看到 http://www.slideshare.net/nchild/nchildstsfju
+00:09 < kcwu> kiang's url: [化怒氣為場上動力 一個很不懶的懶人包 @STS]
+00:09 < hychen> jimyhuang__: 有個branch 是custom-map
+00:10 < jimyhuang__> 所以是 timemapper - feature/muti-layer  + recline - custom-map ?
+00:12  * jimyhuang__ trying fetch custom0map
+00:14  * Rhozan 提案 g0v x 黑客健康松 ...... 向安麗拉贊助 (誤)
+00:14 < hychen> 安麗不健康吧...
+00:16 < AceChen> 有種招兵路過的fu… https://www.facebook.com/groups/294171667382837/permalink/487456541387681/
+00:16 < kcwu> AceChen's url: [Facebook]
+00:16 < jimyhuang__> hychen: 嗚，成功了，但中文不見了
+00:17 < AceChen> 路過相當歡迎，但是總該留個坑下來吧 :P
+00:17 < hychen> jimyhuang__: 我看一下
+00:17 < Rhozan> 隨便講講的啦~~  對安麗沒概念
+00:17 < kiang> AceChen++, 就幫他們備份一下貼回來？ XD
+00:17 < jimyhuang__> 似乎 feature/muti-layer + recline - custom-map 讓中文不見 @@"
+00:18 < AceChen> kiang: 樓快滿了，貼這個連結在最底下讓大家有個去處續攤繼續療 :P
+00:19 < hychen> jimyhuang__: 用一下${host}/zh-TW
+00:20 < hychen> 'http://localhost:3000/zh-TW/annon/.....'
+00:20 < jimyhuang__> hychen: 我試過，沒反應
+00:21 < jimyhuang__> 404 not found. 但master 是完全中文化的
+00:21 < hychen> jimyhuang__: 噢, 我沒merge
+00:21 < jimyhuang__> 原來如此
+00:21 < hychen> jimyhuang__: re-fetch again
+00:22 < jimyhuang__> 出現了
+00:22 < hychen> cool
+00:22 < hychen> 結果我現在睡不著了....
+00:22 < jimyhuang__> hychen: 搜尋資料中]
+00:23 < hychen> moon_c_: 啥資料?
+00:23 < jimyhuang__> hychen: [搜尋資料中] 的框框是你加上的？
+00:23 < hychen> moon_c_: sorry, wrong person.
+00:23 < hychen> jimyhuang__: no
+00:23 < jimyhuang__> 那我先把一些css 修一修
+00:23 < yhsiangCloud__> lanf0n: 徵你需要的
+00:24 < hychen> jimyhuang__: ok
+00:25 < hychen> 中文修辭可以也要tune一下，我自己是不覺得通順
+00:25 < clkao> hychen: 直接 order 明天台南會後烤山豬了？
+00:26 < hychen> clkao: ?
+00:28 < lanf0n> yhsiangCloud__: ok
+00:28 < ipa> 100了
+00:30 < au> 等到現在終於可以睡了 XD
+00:30 < au> 大家明天鍵 \o
+00:30 < hychen> 我只能遙想你們的大食團...
+00:30 < hychen> 可惡, 明天我也要約一團
+00:30 < ETBlue> 堅持等到完結篇才睡？
+00:33 < clkao> 大家明天↩︎
+00:33 < jimyhuang__> 等啥？
+00:33 < ipa> jimyhuang__: 等後勤累積100舉紅牌
+00:33 < jimyhuang__> hychen: 我順手修了幾個錯誤 (view 翻譯 檢視，結果body class整個爛掉、js include error)
+00:33 < clkao> 可是我剛怎麼看到是 xx of 93
+00:33  * walkingice 好想看足球 (扭)
+00:34 < hychen> jimyhuang__: 你有rebuild po files?
+00:34 < jimyhuang__> oh !! 原來是為了黃牌和紅牌
+00:34 < jimyhuang__> hychen: 嘖，沒有... @@"
+00:35 < hychen> jimyhuang__: 看一下readme裡面翻譯的instructions.
+00:35 < jimyhuang__> got it 來看
+00:35 < au> clkao: 似乎是 event propagation 的關係... 中間原 po 有刪文
+00:35 < AceChen> 為什麼我也看到是93...
+00:35 < au> (我是看到 99 時 po 的)
+00:36  * AceChen 我想貼這篇結束這回合XD https://www.facebook.com/groups/294171667382837/permalink/487456541387681/
+00:37 < au> refresh 完之後現在是 94 ... 不過刪掉的回覆算不算總數呢，這是技術性問題，之後有 bot 再說
+00:37 < au> AceChen: 先休息吧XD
+00:37 < AceChen> au++
+00:41 < jimyhuang__> hychen: Orz 可惡... 需要換到vm去 re-gen po ..
+00:41 < hychen> jimyhuang__: why?
+00:42 < hychen> jimyhuang__: linux or windows?
+00:42 < hychen> 話說okfm說要幫我設的transfix admin還沒設...
+00:42 < hychen> s/okfm/okfn/
+00:43 < jimyhuang__> 我是 windows，要切到linux，因為 extract-pot 、 merge-po 無法執行
+00:44 < hychen> jimyhuang__: hmm, it is just javascript?
+00:45 < jimyhuang__> hychen: 我不管了 XD 先把 body class 的 gettext wrapper 拿掉，view應該還是可以被翻譯沒差，class不要包gettext就好
+00:45 < hychen> jimyhuang__: 你改哪個地方??
+00:46 < jimyhuang__> hychen:  https://github.com/g0v/timemapper/commit/e549a4fee61e02cc4ac2a5c195ecdc4c86c26d6b
+00:46 < kcwu> jimyhuang__'s url: [Remove body class translate gettex wrap. · e549a4f · g0v/timemapper · GitHub]
+00:47 < hychen> jimyhuang__: 原本它是class name ?
+00:49 < jimyhuang__> hychen: 對啊，剛剛發現後面的 embed 也得改一下 XD
+00:51 < jimyhuang__> hychen: 我差不多弄熟了，明天來松
+00:51 < hychen> jimyhuang__: ok
+00:55 < sb-ovenge> 抱歉,我是新手,請問三分鐘提案報名,是否還能填呢?>"<謝謝
+01:02 < nchild> sb-ovenge 有空位就可以吧！我還在想等會感冒頭痛會不會好，也想要來填。
+01:03 < sb-ovenge> 但在專案介紹那目前是提案報名截止了耶
+01:04 < hcchien> 那應該就是滿了吧
+01:04 < sb-ovenge> 想提的專案是：https://g0v.hackpad.com/--h6fOoDAd9qZ
+01:04 < kcwu> sb-ovenge's url: [民間司改會-陪偵平台 - g0v.hackpad.com]
+01:06 < Rhozan> 妳不是下午就說要提了XD  剛剛想說怎麼沒看到
+01:06 < sb-ovenge> 我在準備PPT..QAQ
+01:07 < sb-ovenge> 想說整理好再提，沒想到會有限制>"<
+01:10 < Rhozan> 囧...
+01:11 < sb-ovenge> 只能明天到現場直接搭訕找夥伴了XD
+01:12  * pipi_ 興奮ing
+01:12 < Rhozan> 個人覺得這工具很適合和其他計畫合作，明天你可以拿去介紹給inLive.TW團隊或其他合適的方案
+01:14 < sb-ovenge> 了解，謝謝協助:") 我會試試看的！
+01:23 < kiang> 他們還是不甘心... https://www.facebook.com/groups/g0v.general/permalink/639844669425276/
+01:23 < kcwu> kiang's url: [Facebook]
+01:37 -!- sb-emadid [76A16027@conference/jsconf/x-bcjljgqdriwffyfe] has left #g0v.tw []
+01:41 < mouthbrother> 明天有人會去台南 Hackthon 嗎~~
+01:41 -!- mouthbrother is now known as Mouther
+01:41 < kiang> mouthbrother: me?
+01:41 < kiang> Mouther: me?
+01:42 < Mouther> 聽說有人會去發貼紙 @@?
+01:43 < AceChen> 好像要重新定義百樓 Orz  cc: clkao au
+01:44 < kiang> 這次換我幫忙蓋？ XD
+01:45 < kiang> Mouther: 你想要有什麼貼紙？
+01:46 < Mouther> 只是在 clkao 的FB看到 XD
+01:46 < kiang> Mouther: 那個是台北限定的吧？問問 au ？
+01:47 < Mouther> kiang: 好像是這樣... Q 只好等 COSCUP 
+01:49 < pipi_> QQ 都幾點了
+01:52 < pipi_> 對不起我胡言亂語XD
+02:41 -!- sb-ovenge [6FF89138@conference/jsconf/x-gmvjejxgetogjfly] has left #g0v.tw []
+02:55 < lanf0n> 有點擔心明天會遲到QAQ....(剛到台北...
+04:04 < kiang> http://goo.gl/tjEHeL - 下午介紹時會使用的投影片，希望 clkao 不會介意我拿網路上找到的照片塞進去 XD
+04:04 < kcwu> kiang's url: [g0v 零時政府的公民參與 - Google 簡報]
+04:22 < ETBlue> lee1092 ... 啊不在 QQ
+04:22 < ETBlue> lee1092: 我想問你今天能不能當這個組頭 http://hack.g0v.tw/meta/CPsHrGu1qLA
+04:24 < ETBlue> tkirby: ddio poga walkingice 有什麼針對這次黑客松想說的可以一起寫在這 XD http://hack.g0v.tw/don-democracy/Ejozjt0LSZm
+04:31 < kcwu> 竟然還沒睡
+04:34 < lanf0n> 完全沒靈感...好想睡.....0rz
+04:47 < hychen> 我也還沒睡...
+05:28 -!- flter_ is now known as flter
+07:13 < ipa> hychen: 你是昨天chanel上第ㄧ個說要去睡的人 XD
+08:01 < simonpai> 崩~ 潰~
+08:01  * simonpai 打開衣櫃發現有口袋的上衣都洗掉了
+08:04 < venev> 可惡北區經貿國是會議來攪局（今年第二次「看網路新聞才知道被列名」），害我們要發新聞稿澄清 -> 提案投影片還沒作啊啊啊
+08:05 < ETBlue> simonpai: .... 早 = =|||
+08:10 < yhsiangCloud__> simonpai: XD
+08:11 < yhsiangCloud__> venev: XD
+08:11 < venev> yhsiangCloud__: 早上五點起來（準備提案）的好心情都被阿雜化了啊（抱頭）
+08:11 < yhsiangCloud__> lanf0n: 你有沒有睡啊
+08:19 < NewCliCker> 剛剛看 hackath9n 有空出兩張票囉
+08:22 < mrbigmouth_> 8:15到果然太早了一點....龜回萊爾富吹冷氣...
+08:34  * Rhozan 崩潰，錯過車了會遲到
+08:35 < hcchien> 原來才八點半
+09:19 < caasihuang> 推 mrbigmouth_ 寫自介中 XD ETBlue 快來看，又是位全端～
+09:22 < caasihuang> 需要聽眾的 poga www
+09:24 < au> 文播在 https://g0v.hackpad.com/hackath9n--FOS817Wrzg6
+09:24 < kcwu> au's url: [hackath9n - 第玖次還我土地黑客松 - g0v.hackpad.com]
+09:24 < clkao> iopipo: !!!
+09:25 < A-Han> 下面的對話框可以拉一下視窗邊緣 就會出現
+09:25 < pofeng> 有轉撥嗎 ?
+09:25 < caasihuang> iopipo: 還有 logbot ！
+09:25 < clkao> hcchien: erin 說還沒見過你
+09:25 < moon_c_> 한녕~~~~
+09:25 < au> 目前只有文播的樣子，不知道待會專案報告會不會直播
+09:25 < hcchien> macpaul 應該有在直播
+09:25 < opop> 忘了帶咖啡濾紙 Orz 有人可以順便帶請告訴我，感謝
+09:26 < hcchien> clkao: 對啊，我也沒見過他  # 廢話
+09:26 < yhsiang> lanf0n: 來了嗎
+09:27 < pofeng> 啊看到了 https://www.youtube.com/watch?v=fCmwKLtDZWA
+09:27 < kcwu> pofeng's url: [06/21 09:00 g0v.tw hackath9n | 台灣零時政府第玖次還我土地黑客松 上午場 - YouTube]
+09:31 < pofeng> 太可怕, 文播比轉撥快 :p
+09:31 < hcchien> 「高達八成」！！
+09:32  * pipi_ 報到待機中
+09:33 < a0000778_MB> 召喚 NewCliCker
+09:33 < hcchien> 稍早看到 ihower 飄過
+09:33 < kerrytang> Hi
+09:33 < hcchien> kerrytang: hi
+09:34 < kerrytang> 剛剛不小心插了ihower大大的隊
+09:34 < kerrytang> 覺得過意不去
+09:36 < caasihuang> 地方的 mrbigmouth_ 需要坑： http://community.g0v.tw/t/mrbigmouth/222
+09:36 < kcwu> caasihuang's url: [mrbigmouth自我介紹 - 新． g0v 後勤中心]
+09:37 < hcchien> 「需要坑」聽起來很嗨
+09:38 < ihower> 得到小鹿貼紙，第一次來請多指教 
+09:38 < mrbigmouth_> 其實是很內向的需要坑.....把自己埋起來
+09:38 < macpaul> 直播的url已經在 hackpad上面了
+09:39 < macpaul> 今天分工應該是這樣: macpaul 錄影/剪段落, 阿哲直播
+09:39 < hcchien> 看到久違的榮尼王
+09:39 < macpaul> pofeng: 問一下，你直播可以看1080p 嗎？
+09:40 < pofeng> macpaul: option 只顯示到 720
+09:40 < macpaul> ok
+09:40 < hcchien> 哨子超好笑
+09:40 < sb-sketel> 黃牌跟紅牌有趣
+09:41 < pofeng> ihower: 大神竟然只拿小鹿貼紙 !!
+09:41 -!- sb-sketel is now known as sb-sketel1
+09:41 < hcchien> pofeng: 因為他第一次來吧   lol
+09:42 < sb-sketel1> 會有多少人被紅牌呢  期待
+09:42 < ihower> pofeng & hcchien: 慚愧 orz
+09:42 < hcchien> 結果大家都為了拿紅牌而故意超時   lol
+09:42 < hcchien> ihower: 只好贊助 summit 了  # 逃
+09:43 < pofeng> ihower: 快來幫 ocf.tw 開 ruby 課, 就不會慚愧  (認真)
+09:43 < pofeng> hcchien: 不要跟我搶 ihower *瞪* (誤)
+09:43 < ihower> ocf.tw 還有開課喔
+09:43 < hcchien> pofeng: 你這樣踩到別人的五顆鑽石啦  (誤
+09:44 < pofeng> ihower: 嗯嗯 籌備中 目前有規劃 arduino 和 3dp  但不確定開得起來, 算測試市場
+09:44 < tuiry> 小鹿比較可愛啊
+09:44 < Lee1092> 英文公報組！！！  
+09:45 < wHisKy-> pofeng 今天沒來？
+09:45 < pofeng> hcchien: 會想辦法座事場區隔啦, 比如作進階的, 貴一點的
+09:45 < hcchien> 大驚  (我貼黑熊
+09:45 < pofeng> wHisKy-: 要顧店耶 .. 不好意思
+09:45 < clkao> hcchien: !!
+09:46 < yhsiang> lanf0n: where r u ~~
+09:46 < hcchien> 只好在電腦貼黑熊，衣服貼梅花鹿
+09:47 < pofeng> "出了 Hackfoldr 給 Poplus 用" clkao++
+09:47 < clkao> tkalu
+09:47 < hcchien> g0v.photos!!
+09:47 < clkao> tkirby++ # g0v.photos!
+09:48 < tuiry> 0好可愛 tkirby ++
+09:48 < a0kman> 阿嗚嗚！
+09:48 < tuiry> 嗚啊啊
+09:48 < a0kman> 噗
+09:49 < a0kman> 超農域是幾點報啊
+09:49 < hcchien> 截至目前為止竟然都還沒亮牌
+09:49 < clkao> a0kman: 預計 10:10
+09:49 < wHisKy-> 我知道台中政府會公佈這些資訊（當作政績來談）
+09:50 < a0kman> 這次超時亮紅牌嗎xd
+09:50 < a0kman> clkao: 感恩感恩
+09:51 < yhsiang> hack.g0v現在第一次好像都會跑兩個scrollback
+09:52 < hcchien> 第一張紅牌
+09:52 < miaoski> 賀
+09:52 < yurenju> \o/
+09:52 < ETBlue> simonpai: 你吹的哨子好有fu
+09:52 < miaoski> 有沒有人可以借我電腦... 我忘了帶 acer 專用的轉接頭
+09:52 < clkao> tkirby: 要拍下吹哨者
+09:52 < au> whistleblower
+09:53 < pipi_> 看有人被吹下場，有點愧疚XD
+09:53 < simonpai> 我有點不好意思 XDDD
+09:54 < tuiry> 下次就習慣了（拍
+09:54 < ETBlue> 忘了帶小黑電源線…有誰可以跟我輪著用 XD
+09:54 < a0kman> 恥力啊！恥力！
+09:54 < hychen> jimyhuang__: 別人都是一組一組的...
+09:54 < jimyhuang__> hychen: 你也是啊XD
+09:54 < pipi_> 出來混這算啥，自己挖的坑喔
+09:55  * hychen slap jimyhuang__
+09:55 < pipi_> XD
+09:55 < ddio> ETBlue: 我是 x220 ，你可用嗎？
+09:55 < hychen> jimyhuang__: 快點上工
+09:55 < yurenju> 舉牌好有梗 XD
+09:55 < yhsiang> lanf0n: 在那在那 ...orz
+09:55 < jimyhuang__> hychen 不是還有一個前端？
+09:55 < hychen> jimyhuang__: 噢, 忘了跟你說，他要趕公司project
+09:55 < hychen> jimyhuang__: 所以不會來, just u & me
+09:55 < wHisKy-> 下次要排舉牌女郎嗎（男士）要繞場一圈
+09:56 < ipa> Lee1092: 一直要貼粉絲頁都懶惰 orz 今天來貼好了
+09:56 < ipa> yurenju: 開好了請報
+09:56 < hychen> 台南現場 live-band中...
+09:56 < yurenju> ipa, 我報了 XD
+09:57 < pipi_> 舉牌找正妹吧，如果我舉會被丟鞋子
+09:57 < ETBlue> ddio: 可，我 x220T ^O^
+09:57 < yurenju> 剛剛的網址？
+09:57 < yurenju> 議員投票指南
+09:58 < ETBlue> ddio: hooray 
+09:58 < ddio> XD
+09:58 < Lee1092> 啊啊   投影片太多頁    人生第一張紅牌 GET   lol
+09:59 < yurenju> 我錯了嗎 XDD
+09:59 < shenkyw> https://www.itri.org.tw/chi/tech-transfer/04.asp?RootNodeId=040&NodeId=041&id=3608 p2p 的 live 技術，不曉得這個技術可不可以供公民使用
+09:59 < kcwu> shenkyw's url: [工業技術研究院 - 可移轉技術 - P2P 即時影音直播系統軟體]
+09:59 < ddio> fb collector++
+09:59  * jimyhuang__ 趕車中.... 希望10：19趕的上
+10:00 < hcchien> 10:19 是怎麼樣
+10:00 < kiang> <-- 剛剛跑錯地方，沒有遲到變成遲到 XD
+10:00 < yurenju> 有相關的東西， Facebook 有 interest list https://www.facebook.com/help/interest-lists
+10:00 < kcwu> yurenju's url: [興趣主題清單 | Facebook 使用說明 | Facebook]
+10:00 < ipa> ETBlue: 身為宅宅竟然忘記帶電源線～ 不過 clkao 上次出門忘記帶電腦 XDDD
+10:00 < pipi_> 晚來要請大家喝飲料
+10:00 < yurenju> 像這個 https://www.facebook.com/lists/10152175626526631
+10:01 < clkao> ...
+10:01 < kiang> 台南上面的表演團體希望台下的聽眾可以不要只看電腦，但黑客松本來就是電腦為先啊 XD
+10:01 < jimyhuang__> ipa: 忘記帶電腦是哪招
+10:01 < shenkyw> 還有另一個 p2p 的 live, btlive (http://labs.bittorrent.com/experiments/bittorrent-live.html), 可是他 coming soon 好久了><
+10:01 < kiang> clkao 已經進化到不需要電腦就可以寫程式？ XD
+10:01 < hychen> 咖啡不冰...
+10:02 < jimyhuang__> kiang: 需要教育...
+10:02 < hcchien> 黑客松的表演每次都被嫌棄
+10:02 < hychen> live-band 跟 hackton 不太對tone
+10:02 < ipa> jimyhuang__: 可能新背架太像背包....穿了就覺得什麼都帶了 
+10:02 < hychen> 熱舞表演亦然...
+10:02 < hcchien> hychen: 應該是台南太熱吧   lol
+10:02 < kiang> 黑客松的表演每次都被嫌棄+1, 話說背景音樂小提琴手今天會表演嗎？ XD
+10:03 < jimyhuang__> 沒帶電腦比沒帶腦好多了
+10:03 < pipi_> 有來嗎?
+10:03 < hcchien> jimyhuang__: 那沒腦可以帶情何以堪
+10:04 < pofeng> kiang: 台南有轉撥嗎 ?
+10:04 < kiang> 台南場感覺幾乎都是生面孔，希望不會是動員來的 XD (不過好處是妹比較多）
+10:04 < jimyhuang__> hcchien: 這就要講個秘訣了
+10:04 < kiang> pofeng: 我沒有準備耶，現場看起來沒有 XD
+10:04 < hychen> kiang: I would like to argue this ....
+10:04 < hychen> kiang: 男生還是比較多啊
+10:04 < pofeng> kiang: 沒問題, 辛苦了
+10:04 < hcchien> kiang: 沒圖沒真相
+10:04 < kiang> hychen: 但女生人數比一般的黑客松多啊
+10:04 < hychen> hcchien: 對不起，我沒有腦...
+10:05 < ETBlue> ipa: 因為我專注於帶延長線…就忘了電源線 XD
+10:05 < hcchien> hychen: blame jimyhuang__   # 逃
+10:05 < ipa> 這次專案怎麼那麼多 CC0 授權 @@
+10:05 < ddio> ETBlue: 專注於延長線是什麼概念阿 XDD
+10:06 < hcchien> ipa: 因為進入黃金比例了
+10:06 < Lee1092> shenkyw:  好酷   感謝提供資訊~  
+10:06 < hychen> 長官致辭也不對tone..
+10:06 < hcchien> hychen: 官方活動，這部份還有很長的路......
+10:07 < hcchien> 說到這個就有八卦了....
+10:07 < kiang> 目前成大校長哈拉中
+10:07 < macpaul> 沒關係長官致詞不對也不是第一天的事情了.... 長官太忙，總是搞不清楚狀況. XD
+10:07 < caasihuang> kiang: clkao 用腦波推人寫程式？ XD
+10:07 < hychen> 市長有來我倒是滿訝異的
+10:07 < hychen> hcchien: 有什麼八卦
+10:07 < kiang> caasihuang++, 高天師不是喊假的？ XD
+10:08 < kiang> 恩，看到賴清德了(完全狀況外) XD
+10:09 < yurenju> 台南場有 live stream 嗎？
+10:09 < hychen> yurenju: no, 但是現場有攝影機
+10:09 < kiang> yurenju: 看起來沒有
+10:09 < yurenju> hychen, kiang, thanks
+10:09 < miaoski> 看到黃牌了 (抖抖)
+10:09 < ETBlue> mrorz++ 哇哇哇……動民主正反意見元件有譜了
+10:09 < hcchien> hychen: 只是很久以前 osdc 贊助商長官想要致詞
+10:10 < clkao> 不知道 tkirby 有沒有抓到舉牌的那個瞬間
+10:10 < clkao> mrorz++
+10:10 < ipa> mrorz++
+10:10 < hychen> hcchien: 好想聽....
+10:10 < ETBlue> 外面有 t shirt!!!
+10:10 < yurenju> !!
+10:10 < miaoski> ETBlue: 上次也有發喲! CCSP
+10:10 < tuiry> 免費的！！
+10:10 < sb-sweels> 免費T
+10:11 < ETBlue> 聽說有女生版 ^o^
+10:11 < kiang> 賴清德講話中
+10:11 < miaoski> 背面有 g0v 走在路上太高調了 XD
+10:11 < miaoski> kiang: 求文字轉播 (咦)
+10:11 < kiang> (感謝詞ing)
+10:11 < clkao> miaoski: lol
+10:11 < jimyhuang__> 看來只好跟慕約換場 Q
+10:11 < jimyhuang__> miaoski: 幫高調
+10:12 < sb-sweels> 我比較想要g0v 的T
+10:12 < pipi_> 賴神！？
+10:12 < pofeng> 國是經貿會議 北區場直播 https://livehouse.in/channel/watchout
+10:12 < kcwu> pofeng's url: [【沃草直播】經貿國是會議北部場 - LIVEhouse.in - 線上直播平台]
+10:13 < miaoski> 測量完再拍照、打卡、上傳，感覺很不直觀
+10:13 < kiang> 台南咖啡跟洋芋片無限量供應
+10:13 -!- sb-sweels is now known as bater
+10:13 < kiang> pipi_: 現在搭高鐵下來也許還有機會握手？
+10:13 -!- bater is now known as Guest33890
+10:13 < hcchien> g0v 的 T 請等 summit  lol
+10:13 < Guest33890> 我記得輻射偵測的儀器 有很多等級?
+10:13 < pipi_> 你出錢
+10:14 < kiang> 目前聽到就是一堆客套話
+10:14 < kiang> pipi_: ok 的，我出 5 塊
+10:14 < tuiry> 他怕講錯話吧 大人的技巧
+10:14 < pipi_> kiang: 你出錢我就去，想買台南的小吃
+10:14 < kiang> (台南主辦單位好像還是刻意把我塑造成 g0v 代表，但從來不是這樣子講的...）
+10:15 < miaoski> 敝社另一個免費送的玩具是 TI Sensor Tag ... 可惜上面沒有輻射偵測的 sensor XD
+10:15 < superbil> kiang: 趕快掛上名牌寫"沒有人"，還來的及?
+10:16 < macpaul> 要報告的人要用VGA喔 聽說HDMI不能用
+10:16 < tuiry> Guest33890 自然發展
+10:16 < yurenju> sensor 可以接到數據邊對 location 邊上傳輻射量好像比較有效率
+10:17 < tuiry> a0kman 超濃鬱登場拉
+10:17 < miaoski> yurenju: +1 
+10:17 < miaoski> yurenju: 不知道 shihta 他們有沒有興趣做這塊
+10:17 < yurenju> 拿那台來查它的型號看看有 spec 沒有提到 chip
+10:18 < miaoski> yurenju: 如果發現它的誤差值是 0.1 就好笑了 (大誤) (逃)
+10:18 < yurenju> ＸＤＤ
+10:20 < kiang> 台南這邊的流程是用創業競賽的流程，不是典型黑客松（所以 live band 又開始了）
+10:20 < miaoski> kiang: 叫他們閃開讓專業的來
+10:20 < hcchien> 又要被扭曲了嗎
+10:21 < macpaul> 沒有舞者應該被扭曲的程度應該會有限 ＊誤＊
+10:21 < Lee1092> jimyhuang__:  到了！  
+10:21 < hcchien> 結果 jimyhuang__ 10:21 才到   # 我好無聊
+10:21 < yurenju> 誒有這個輻射地圖 是同一群人做的嗎？ http://gammausv.blogspot.tw/
+10:21 < kcwu> yurenju's url: [台灣環境輻射地圖]
+10:21 < ipa> jimyhuang__及時到場 @@
+10:22 < kiang> 台南妹： http://ppt.cc/FfZ9
+10:22 < kcwu> kiang's url: [來個 PPT 短網址 :: 縮圖剪剪樂!]
+10:22 < A-Han> jimmy在irc上我一直以為他在現場啊XDD
+10:22 < pipi_> Jimmy來了，可以收攤了
+10:22 < clkao> lol
+10:22 < hcchien> http://request.data.g0v.tw/ 遭到恐怖的 spam
+10:22 < kcwu> hcchien's url: [Taiwan Open Data 台灣開放資料]
+10:23 < jimyhuang__> XD 
+10:24 < kiang> 台南贊助商提供咖啡： http://ppt.cc/o908
+10:24 < macpaul> 這年頭開播前的雪花和殘影都得自己DIY  xddd
+10:25 < yurenju> g8v XDD
+10:26 < kerrytang> 監視器啊～～～
+10:26 < gigen> 看電視牆作筆記也太用功XD
+10:27 < caasihuang> g8v 太威了
+10:28 < mrbigmouth_> 要雙紅了(?)
+10:28 < miaoski> NewCliCker: 你霸佔發言台了 XDDDDD
+10:28 < tuiry> 這是少數人的暴力啊！！
+10:28 < kiang> （台南現場太吵，沒有帶耳機，所以沒有開台北直播）
+10:28 < NewCliCker> XD XD
+10:29 < caasihuang> 啊，朋友 tonypai 有去台南黑客松 XD
+10:29 < pofeng> kiang: 有文播
+10:29 < kiang> 台南場簡單的錄了一下： http://youtu.be/VFC-aFico68
+10:29 < kcwu> kiang's url: [2014台南黑客松-HackTainan上午實況 @ 10:25am - YouTube]
+10:30 < kiang> pofeng++, 四點多才睡，看文播應該會睡著 XD
+10:30 < Lee1092> jimyhuang__++
+10:30 < hcchien> 霸佔發言台!!!
+10:30 < pofeng> kiang: 也是 :p
+10:30 < Guest33890> 真不小心
+10:30 < Guest33890> XDD
+10:32 < caasihuang> 傳說中的世界奇觀要復活了？
+10:32 < caasihuang> hcchien: ping ping ronnywang~
+10:33 < hcchien> ??!!
+10:33 < yurenju> band... 認真的嗎 XD
+10:34 < caasihuang> hcchien: #遭到恐怖的 spam
+10:34 < jimyhuang__> A-Han: welcome
+10:34 < ETBlue> moon_c_: 的字型出現好好看 <3
+10:35 < A-Han_> irccloud 果然比較好用 
+10:35 < hychen> jimyhuang__: what are u doing now?
+10:35 -!- A-Han_ is now known as A-Han
+10:36 < jimyhuang__> hychen: 剛提案完
+10:36 < hychen> jimyhuang__: 提啥案?
+10:36 < jimyhuang__> hychen: hackthon data.g0v.tw http://hack.g0v.tw/g0v-hackath9n/0AjGJ4qvz2D3EdFVEZUROdDQxTGV6MzVWUlh5Mmd2bXc
+10:36 < miaoski> 好棒的字體
+10:36 < yhsiang> 監察娘 XD
+10:37 < sb-clevil> 想知道字體+1
+10:37 < pofeng> 監察娘 最高
+10:38 -!- sb-clevil [CAA9A47B@conference/jsconf/x-agabpsopsldbrwvp] has left #g0v.tw []
+10:38 < sb-sketel1> 監察娘 最高
+10:38 < ETBlue> 光……光譜儀………
+10:38 < miaoski> ETBlue: 對啊，我手上還有一份，妳要不要?
+10:38 < kiang> 光譜儀？之前不是用雷射筆？ XD
+10:38 < pofeng> ETBlue: 我很怕以後會有 GC/MS 抖
+10:39 < ETBlue> miaoski: 呃好宅
+10:39 < miaoski> kiang: Liz 來訪之後就用光譜儀了 (笑)
+10:39 < kiang> （有種越玩越大的感覺）
+10:39 < pofeng> kiang: 鐳射光, 就是光啊 :p
+10:39 < miaoski> kiang: 不對 還是需要雷射光啊
+10:39 < ipa> 我有帶橄欖油 XD
+10:39 < miaoski> 不然哪來的光源 :P
+10:39 < hcchien> 帶油!! 身上都是油   orz
+10:39 < mrbigmouth_> 等等一邊吃炸雞一邊測嗎
+10:39 < kiang> 雷射筆跟光譜儀應該是兩種不同等級的東西吧 XD
+10:39 < ipa> 我帶了兩瓶油 哈哈
+10:40 < venev> 開放政獻的 logo 字體是 moon_c_  用 illustrator 手刻的；簡報用的字體是 HangWang HeiHeavy 王漢宗粗黑
+10:40 < miaoski> venev: 手刻 >_<
+10:40 < kiang> 我隨身都帶有大量的鮪魚肚油 XD
+10:40 < ETBlue> 城市畫報！
+10:40 < hcchien> 手刻!!
+10:40 < yhsiang> lanf0n: 該不會睡死了吧 囧a
+10:40 < pofeng> 食用油資料庫太讚 
+10:40 < simonpai> http://www.businessinsider.com/scio-handheld-food-scanner-calorie-counter-2014-5
+10:40 < kcwu> simonpai's url: [SCiO Handheld Food Scanner Calorie Counter - Business Insider]
+10:41 < simonpai> 之前 kickstarter 有一個相關產品
+10:41 < Lee1092> jimyhuang__:   我重建 g0v 公報，選 json 儲存之後還是變 data   orz...
+10:41 < miaoski> kiang: 嗯，我最後知道的是用雷射光當光源，手機的相機 + 紙版。原理是差不多的，只是沒那麼精確。
+10:42 < jimyhuang__> Lee1092: 對～ 他自動偵測... 沒有.json就會被改成data Orz Orz https://github.com/g0v/dkan-core/issues/2 
+10:42 < miaoski> simonpai: 你想到的是那個發藍光掃食物的東西? XD
+10:42 < kcwu> jimyhuang__'s url: [Add message notify when automatic data format detect · Issue #2 · g0v/dkan-core · GitHub]
+10:42 < kiang> miaoski: 原本的組合不知道核能留言終結者那群會不會又跳出來批評數據不準確 XD
+10:42 < pofeng> 城市畫報的 g0v 報導可以掃描或照相一下放上來嗎  , 大感謝 !!
+10:43 < yhsiang> venev: 監察娘的pic在那?
+10:43 < venev> yhsiang: 還沒完稿所以沒在 drive，請到 https://g0v.hackpad.com/525--NxMrvI4uYcP
+10:43 < kcwu> venev's url: [525 萌典併政治獻金松：實作提案 - g0v.hackpad.com]
+10:43 < venev> 問一下 moon_c_ 她希望的授權噢
+10:44 < miaoski> kiang: http://a-chien.blogspot.tw/2012/09/webcam.html #  一定會被批評吧 XD
+10:44 < kcwu> miaoski's url: [阿簡生物筆記: webcam和手機改造成光譜儀]
+10:45 < simonpai> 我印象中有個相同原理的產品, 應該是那個 XD
+10:45 < yurenju> 倒數計時氣怎麼用點卡
+10:45 < hcchien> 財政資料可以放上 data.g0v.tw 吧
+10:45 < miaoski> kiang: 還是你想買一台這個 https://tw.page.bid.yahoo.com/tw/auction/b62880743;_ylt=AvvP_Ki9wZgva.JZZUUFXHNyFbN8;_ylv=3
+10:46 < kcwu> miaoski's url: [Anritsu "安立知" MS9710C Optical Spectrum Analyzer 光頻譜分析儀 (光譜儀) - Yahoo! 奇摩拍賣]
+10:46 < kiang> miaoski: 我只想要提供鮪魚肚油 XD
+10:46 < Lee1092> jimyhuang__:  原來如此！！！    所以 API端 解決辦法就是  結尾要 .json 就是了  XD
+10:46 < mrorz> 如果像是光譜這樣的資料庫，需要準確的量測方式才能得到有價值的數字，在資料庫登錄數據的介面上提供 checklist，讓登錄人去檢查自己的資料是否有按照某些標準程序來量測
+10:47 < mrorz> 不知道會不會有幫助呢？
+10:47 < jimyhuang__> Lee1092: 感覺應該是 dkan 這裡要改，也偵測 mime 的話，應該較準確
+10:47 < Lee1092> 恩恩恩  了解~
+10:47 < kiang> mrorz: 應該會有幫助的，但是擔心誤差值太大
+10:47 < clkao> ddio 名牌的字體也不賴 XD
+10:47 < simonpai> DDIO 體嗎
+10:48 < tuiry> ＤＯＩＯＤＤＩＯＯＤＩＯＯＤＩＤ
+10:48 < mrorz> kiang: 只好希望正確量測的樣本夠多，能稀釋誤差 XD
+10:48 < pipi_> \ddio/\ddio/
+10:48 < ipa> tuiry: XDDDD
+10:49 < kiang> 核能流言終結者那群人就是一直在攻擊數值不準確的問題，但要他們直接跳下來幫忙就開始跳針，所以讓人很懷疑他們的動機就是了
+10:49 < simonpai> tuiry 這樣是替身使者嗎 XD
+10:49  * pipi_ 對ddio一見如故(？)
+10:49 < poga> wryyyyy~
+10:50 < ddio> 為什麼 console 要開著 XDD
+10:50 < tuiry> simonpai 是密碼
+10:50 < ddio> pipi_: ？！
+10:51 < miaoski> UI Designer 正夯... 每個案子都缺 T_T
+10:51 < tuiry> 比較接近ddio體
+10:51 < yhsiang> bindo.la++
+10:51 < ipa> 很愛買domain name
+10:51 < clkao> bindo! fanzo!
+10:51 < yhsiang> 先講個祕訣
+10:52 < Lee1092> fanzo.la !!!!
+10:52 < miaoski> ipa: 菜市場概念 XD
+10:52 < tuiry> miaoski 想學UI Q_Q
+10:52 < pipi_> 開個專門買domain的？
+10:53 < caasihuang> tkirby: bindo.la 需要 fb 登入，但在這邊好像連不上 fb
+10:53 < caasihuang> 還是只有我連不上 0rz
+10:53 < yhsiang> caasihuang: 我可以噢
+10:53 < miaoski> pipi_: 開個專門賣 domain 的
+10:53 < yhsiang> caasihuang: \o/
+10:53 < caasihuang> yhsiang: 哭哭
+10:53 < yhsiang> 這個話題還是我開的
+10:53  * yhsiang orz
+10:54 < pipi_> 哪裡來的service?
+10:54 < ddio> clkao: 名牌只是一般的胖子 POP 而已 XD
+10:55 < miaoski> ETBlue: 賀! 紅牌成就
+10:55 < tuiry> 賀! 
+10:56 < NewCliCker> ETBlue++ 加入紅牌俱樂部吧 XD 
+10:56 < moon_c_> 老師突然停課，老天要我去黑客松~~~~耶
+10:56 < simonpai> 賀! XD
+10:56 < tuiry> 賀～
+10:56 < Lee1092> moon_c_++
+10:56 < kiang> moon_c_++
+10:57 < ddio> caasihuang: 我也連不上  囧...  卡在登入畫面
+10:57 < ipa> http://gr33n.kktix.cc/events/gr33nkerthon-party-1
+10:57 < kcwu> ipa's url: [第零次綠客松：分身不乏術/伐樹]
+10:57 < caasihuang> ddio: 我用 edge-star-shv-13-frc1.facebook.com 可以上，
+10:57 < mrbigmouth_> yhsiang:ptt id是誰啊?  為啥翻我老底(抖)  我在那兩個板應該不怎麼醒目吧....(抖抖抖)
+10:57 < ipa> moon_c_: 來呀來呀
+10:57 < caasihuang> 也 ping 得到，但是用 facebook.com 上不去
+10:57 < ETBlue> 第一次紅牌就上手 lol
+10:57 < mrbigmouth_> yhsiang: 剛剛嚇得跑回去檢查我在那兩個板有沒有啥笨蛋文章...
+10:58 < miaoski> tonyq: 出來面對!
+10:58 < Lee1092> tonyq++ # 陪偵平台
+10:58 < yhsiang> mrbigmouth_: lyforever
+10:58 < kiang> tonyq: 出來面對!
+10:58 < kiang> (跟著喊就對了？)
+10:58 < yhsiang> mrbigmouth_: 回g0v技術的就是我發的
+10:58 < mrbigmouth_> yhsiang:喔喔
+10:58 < miaoski> ipa: 取得「大家好」成就
+10:59 < ipa> 有史以來第一次講出大家好
+11:04 < Lee1092> a0000778++  XD
+11:05 < kiang> 台南現在台上團隊說：有黑客松就有我 XD
+11:05 < a0000778_MB> 好久沒用MIC說話過了 一說話就口吃 XD
+11:05 < miaoski> a0000778_MB: 賀 本尊出現
+11:05 < pofeng> 原來還有 (蘋果遭DDOS ) 譴責網軍攻擊，捍衛言論自由  記者會轉播 
+11:05 < pofeng> http://m.ustream.tv/channel/%E6%96%87%E6%BA%90live%E7%A7%80
+11:05 < kcwu> pofeng's url: [USTREAM: 文源LIVE秀: Call in或直播邀約：0970-495268 文源臉書：www.facebook.com/sleepyuan 歡迎各位加我個人臉書，未來將繼續為任何一場正當公共議題發聲！ 贊助一天 600 元，文源為你多守一天街頭！ 銀行名：臺灣企銀　新竹分行 帳　號：３２０６２８...]
+11:17 -!- ctiml_ is now known as ctiml
+11:18 < mrbigmouth_> 吃的東西會不會太高級了啊啊啊     (背後出現天使)
+11:19 < kiang> （台南只有洋芋片...）
+11:24  * pipi_ 好熱鬧
+11:25 < jeffhung> yhsiang: 請問 politwoops.tw 會在哪邊？
+11:30 < mrbigmouth_> 有沒有各組分部位置圖啊?  不知道何去何從 XD
+11:32 < pipi_> 自己到處喊比較快XD
+11:35 < caasihuang> g8v 在會場中間像蛇一樣的桌子，動民主在...外面廁所前的邊邊角落
+11:36 < caasihuang> 其他歡迎補充。
+11:37 < poga> 動民主在旁邊會議室
+11:37 < yurenju> 立委選區裡面有包含哪些村里的，這資料有人整理了嗎？
+11:37 < yurenju> 喔喔我找到了
+11:37 < Guest33890> 選票成份分析也在小會議室
+11:38 < yurenju> 第八屆立委資料裡面有
+11:38 < kiang> yurenju: https://github.com/kiang/MyServant/tree/master/myservant/json
+11:38 < kcwu> kiang's url: [MyServant/myservant/json at master · kiang/MyServant · GitHub]
+11:38 < yurenju> kiang, thanks \o/
+11:41 < opop> https://docs.google.com/forms/d/1Qi7qYsh6qsmMsuI9lUDN6vrBzkPntkMPT0gR-EPERZI/viewform?usp=send_form 11/8(六) g0v summit 場務工作人員報名表，請欲參與場務者踴躍報名參與～
+11:42 < mrbigmouth_> jeffhung:yhsiang: 我也想知道politwoops.tw在哪邊
+11:42 < yurenju> 要來切資料了，切切切切切切切！！！
+11:43 < venev> 開放政治獻金在剛才提案大會議室右前方
+11:44 < Meisheep> 想請問data.g0v在哪呢?
+11:45 < kiang> 看起來台北活動需要有地圖這種東西了（台南完全沒有這種困擾，唉 XD ）
+11:46 < macpaul> 問一下 ~有人有帶網路線來的嗎？徵求一下 謝謝！
+11:47 < Meisheep> 我有一條兩公尺的
+11:47 < mrorz> Open data 衣服放在入口處唷～ 目前只剩下大眾版 XS 了，上面寫是 for 160cm 的人～ 詳細大小請看 http://goo.gl/hQnWrw
+11:47 < kcwu> mrorz's url: [LOGOless - 設計自己的T-shirt，一件T恤也能做 -]
+11:48 < mrorz> 另外，T-shirt 圖稿放在 http://bit.ly/open-data-tee ，CC0 授權
+11:48 < kcwu> mrorz's url: [Redirecting...]
+11:48 < kiang> mrorz++
+11:49 < mrorz> 字樣是悲慘世界 castle on a cloud 的梗 XD
+11:50 < yurenju> kiang 什麼地圖？
+11:51 < kiang> yurenju: 現場團隊專案分佈地圖，很多人找不到位置
+11:51 < yurenju> 室內地圖嗎，是不是寫在白板上比較快？
+11:53 < kiang> yurenju++, 來一張嗎？ （台南人無聊好奇台北有哪些專案在加速）
+11:54 < hcchien> AceLan: https://docs.google.com/forms/d/1Qi7qYsh6qsmMsuI9lUDN6vrBzkPntkMPT0gR-EPERZI/viewform?usp=send_form
+11:54 < kcwu> hcchien's url: [11/8(六) g0v summit 場務工作人員報名表]
+11:54 < hcchien> 咦，傳錯人
+11:54 < hcchien> XD
+11:55 < caasihuang> hcchien: 填寫中...
+11:55 -!- Meisheep [CAA9A698@conference/jsconf/x-zuyidtilkfmbezur] has left #g0v.tw []
+11:56 < yurenju> superbil 正在生出一個地圖中
+11:57 < yhsiang> miaoski: https://github.com/rabit/wiki/blob/master/HTTP_Adaptive_Streaming.md
+11:57 < kcwu> yhsiang's url: [wiki/HTTP_Adaptive_Streaming.md at master · rabit/wiki · GitHub]
+11:57 < kiang> https://github.com/kiang/parliamentary - 預期會用 cakephp 生一個議員資訊網站，歡迎遠端跳坑 ;)
+11:57 < kcwu> kiang's url: [kiang/parliamentary · GitHub]
+11:58 < Rhozan> 【G8VTV、太陽花盒子、inLiveTW、全民除黴計畫、律師陪偵平台】在同一個併成波浪狀的桌子喔，要找人可以過來~~
+11:59 < miaoski> yhsiang: ++
+11:59 < caasihuang> mrbigmouth_: 現在在那一組？
+12:01 < superbil> 想起來專案報名列表第二頁就有簡單的地圖可用 
+12:01 < superbil> https://docs.google.com/spreadsheet/ccc?key=0AjGJ4qvz2D3EdFVEZUROdDQxTGV6MzVWUlh5Mmd2bXc&usp=drive_web#gid=3 
+12:02 < kcwu> superbil's url: [Google Sheets - create and edit spreadsheets online, for free.]
+12:02 < superbil> 直接在那頁寫上就可以惹
+12:02 < Guest33890> 求助
+12:02 < Guest33890> 有人可以教學一下git發佈到heroku嗎
+12:03 < Guest33890> 遭遇基本的問題 = =??
+12:03 < Lee1092> Guest33890:  什麼語言?  
+12:04 < Guest33890> PHP
+12:04 < Guest33890> 不過跟PHP應該無關
+12:06 < Guest33890>  could not lock config file .git/config:no such file or directory
+12:08 < opop> 素食 pizza 請到報到區食用～！！
+12:08 < opop> 午餐到了
+12:09 < jimyhuang__> Meisheep: data.g0v在大教室桌子
+12:09 < Meisheep> 大教室是剛剛presentation的地方嗎?
+12:10 < Lee1092> Guest33890:  是 push 的時候發生的??  有先產生 git repository
+12:10 < Lee1092> Meisheep:  Yes   在大教室面對白板右手邊
+12:10 < Lee1092> 零食直播工廠這裡
+12:10 < Lee1092> 桌上有個排字 XD
+12:10 < Lee1092> oklachumi:  嗨
+12:11 < oklachumi> HI~
+12:11 < Meisheep> ok, thanks><
+12:11 < Guest33890> @Lee1092 我可以直接過去找你嗎?
+12:11 < Lee1092> Guest33890:  好啊  XD  我在 零食直播這裡
+12:11 < Guest33890> OK
+12:12 < Guest33890> 是說你在哪
+12:13 < Guest33890> 大教室裡?
+12:15 < ronnywang> ihower: https://github.com/ronnywang/sunshine.cy.gov.tw/blob/master/list.csv
+12:15 < kcwu> ronnywang's url: [sunshine.cy.gov.tw/list.csv at master · ronnywang/sunshine.cy.gov.tw · GitHub]
+12:15 < Mouther> kiang: k大 閃電秀是你嘛 ？ XD
+12:18 < yhsiang> lanf0n: 你在那啊 XDD
+12:21 < tonyq> 怎麼一堆人叫我出來面對XD 一定是因為陪偵QQ
+12:21 < yhsiang> tonyq: 對
+12:22 < tonyq> 哈哈哈
+12:22 < yhsiang> 不應該報你名字  這樣大家就想有tonyq就好了 XDD
+12:22 -!- ihower [~ihower@202.169.163.58] has left #g0v.tw []
+12:23 < tonyq> 最近的研發能量都用在柯p 了 哈哈哈
+12:23 < tonyq> 如果有人要接手陪偵後台或重寫應該是 ok 的，陪偵概念上應該很單純
+12:26 < tonyq> 今天是很想去的，卡到女友家庭聚餐
+12:26 < tonyq> QQ
+12:30 -!- Guest33890 [CAA9A4E0@conference/jsconf/x-mfwhjczvtpsccufe] has left #g0v.tw []
+12:32 < Lee1092> Guest33890  Yes  XD
+12:32 < Lee1092> 在大教室面對白板右手邊
+12:32 < walkingice> 所以女友家庭聚餐下次約在中研院？XD  (誤)
+12:35 < pipi_> 偷放閃光
+12:35 < kiang> Mouther: 速啊，臉皮厚的一定要搶第一個
+12:42 < Mouther> kiang: 蠻好奇會有多少人報名 XD
+12:43 < kiang> Mouther: 衝一個吧？ XD
+12:45 < Mouther> kiang: 我才疏學淺 XDD 聽k大講就好
+12:59 < miaoski> a0000778: 你有沒有空幫忙看一下，像 http://www.ustream.tv/embed/17894339?wmode=direct&autoplay=true 這樣的 link 沒辦法在 ChromeCast 播? 
+12:59 < kcwu> miaoski's url: [Ustream.Tv]
+12:59 < miaoski> a0000778: sorry 貼錯 link
+12:59 < miaoski> http://iphone-streaming.ustream.tv/uhls/17894339/streams/live/iphone/playlist.m3u8",
+12:59 < miaoski> 我以為它是 HLS 了.. 
+13:15  * pipi_ 放空中
+13:16 < miaoski> Chromecast 連不上 AS_Public ... GG
+13:19 < Guest33890> git問題解決了 感謝johnny
+13:30 < hcchien> jimyhuang__ 正在教 393 把資料放上 data.g0v
+13:32 < macpaul> https://www.youtube.com/playlist?list=PLdwQWxpS513DbZEAbqv8Yp43AkYGSgzaX 今天早上的提案報告播放清單
+13:32 < kcwu> macpaul's url: [g0v.tw hackath9n - Opening 開幕、提案、徵人 - YouTube]
+13:32 < macpaul> 有要早上的影片檔的可以來找我拿檔案了～
+13:39 < hcchien> tuiry: https://docs.google.com/document/d/1aS5nuO8zFfsxsUL_aP_pXR6v0psOQNw-csDPddrQxcY/edit
+13:40 < kcwu> hcchien's url: [g0v summit 2014 行銷動畫 - Google 文件]
+13:58 < A-Han> au 是不是在休息 XD
+13:58 < au> A-Han: 在公民憲政會議坑
+13:58 < au> A-Han: 在食物區的邊邊
+13:59 < A-Han> soga... 我也在找坑 不過我想趁機先測試一下給力萌典好了 XDD
+13:59 < A-Han> 有上傳到伺服器可線上測試的話 今天就完工了 然後我再去跳其他坑
+13:59 < au> A-Han: ok 給我 10min
+14:00 < A-Han> au: 太感謝惹
+14:00 < A-Han> 那我乾脆也在這裡公開徵坑好了XD
+14:01 < A-Han> 哪一個坑缺人 我超大隻的可以一人抵十人喔
+14:02 < sb-funcra> test
+14:02 -!- sb-funcra is now known as pcbill
+14:03 < kiang> A-Han: https://g0v.hackpad.com/KjfdRZ08FZ3 ？
+14:03 < kcwu> kiang's url: [議員投票指南 - g0v.hackpad.com]
+14:05 < A-Han> kiang: 坑點在？
+14:05 < A-Han> 大型會議室？
+14:05 < pcbill> 請問一下 這裡和 irc 有什麼不同？
+14:05 < kiang> A-Han: 問問 johnny__ ，我在台南 ;) 
+14:06 < kiang> pcbill: 就另一個 irc ？
+14:06 < pcbill> 我想也是
+14:06 < AceChen> hcchien: 今天會把 summit 場務徵人文案生出來
+14:07 < A-Han> kiang: 好我找一亞
+14:07 < kiang> A-Han++
+14:13 < opop> 對不起因為個人疏失，請已報名者再告訴我 irc id >"<，謝謝 https://docs.google.com/forms/d/1Qi7qYsh6qsmMsuI9lUDN6vrBzkPntkMPT0gR-EPERZI/viewform
+14:13 < kcwu> opop's url: [11/8(六) g0v summit 場務工作人員報名表]
+14:19 < caasihuang> opop: 沒問題，看來要整個重填？
+14:23 < pcbill> kiang: 所以挖坑  填坑可以在這裡嗎？人不再現場XD
+14:25 < caasihuang> poga: 要用 gulp-bower 跟 gulp-bower-files 嗎？ XDD #gulp all the things
+14:30 < poga> caasihuang: 好啊 幫忙改吧
+14:31 < caasihuang> ok, forking...
+14:31 < kiang> pcbill: 從 https://g0v.hackpad.com/ 開始？
+14:33 < Mouther> 等等 台南hackthon的公民論壇是哪位大大要開講阿？
+14:35 < venev> 要開講的應該是 kiang
+14:36 < johnny__> A-Han: Hi, 我在小會議室門口
+14:36 < Mouther> kiang 大不是要講 閃電秀？
+14:36 < opop> caasihuang: 差 irc id 而已，ping 我讓我對應一下就好，重填也可啦 XD
+14:37 < caasihuang> opop: 啊，已經填完了 XD 再麻煩你 merge 了。
+14:38 < simonpai> 短講是不是要開始 XD
+14:38 < t0mst0ne_> 隨亂問，如果hk 投票的server 放在台灣，會如何？ ddos 一樣倒嗎？
+14:39 < caasihuang> poga: 你的 gulp version ？
+14:40 < poga> 3.6.x
+14:40 < caasihuang> 感謝 XD
+14:40 < opop> okok
+14:42 < macpaul> 短講快要開始啦！
+14:42 < poga> caasihuang: 3.8.1 才對 XD 正在補版本設定
+14:43 < clkao> 晚上在磚窯有訂三桌 要去的話可以到 hackpad 上先簽一下
+14:43 < clkao> poga: 可以參考 g0v.tw 的 gulp 用 bower & bower-files
+14:43 < au> A-Han: http://dodo.moedict.tw/
+14:43 < kcwu> au's url: [萌典啄木鳥：挑錯字活動]
+14:44 < A-Han> au: 感謝！
+14:44 < A-Han> 神速啊 XD
+14:45 < A-Han> johnny__: 我被ET拉到 人人有案提
+14:45 < A-Han> johnny__: 等會去找你
+14:45 < A-Han> :D
+14:45 < clkao> (!)
+14:46 < poga> clkao: ok 我看看 <(_ _)>
+14:49 < pipi_> clkao: 在哪簽@@
+14:52 < clkao> hack.g0v.tw 進去一開頭那頁
+14:52 < caasihuang> poga: conflict 啦，麻煩你了 XD
+14:52 < lanf0n> yhsiang: 睡死了現在才醒 囧囧囧
+14:53 < pipi_> 找到了，感恩
+14:54 < clkao> poga: 太強了，code 比 build rules 還短
+14:55 < miaoski> FourDollars: T_T 今天盒子只有我來 (而且我的 Chromecast 無法 Live Demo ... 忘了帶隨身 AP T_T)
+15:03 < lanf0n>  yhsiang QAQ!!!! 不該睡的sorry 囧囧
+15:03 < ETBlue> tkirby: bindo.la 能不能發起新提案？我想做動民主人體試驗… QQ
+15:03 < lanf0n> 現在去也結束了 囧....貼紙QAQ..
+15:07 < FourDollars> miaoski: 今天有什麼活動嗎？
+15:07 < miaoski> FourDollars: 黑客松 :P 
+15:08 < miaoski> ipa: 樂捐二台網樂通。不過.... 我們好像沒有進度 XD
+15:08 < AceChen> hcchien: 呃，原來招生宣傳已經放出去了…
+15:08 < poga> caasihuang: done
+15:08 < caasihuang> poga: \o/
+15:08 < poga> clkao: code 還是稍微長了幾行... XD
+15:09 < FourDollars> miaoski: 嗯嗯
+15:16 < au> ipa: https://en.wikipedia.org/wiki/The_Greens%E2%80%93European_Free_Alliance
+15:16 < kcwu> au's url: [The Greens–European Free Alliance - Wikipedia, the free encyclopedia]
+15:17 < yhsiang> lanf0n: XDD
+15:17 < yhsiang> macpaul: yoyo
+15:17 < yhsiang> macpaul: 看一下PM
+15:17  * lanf0n 土下座式 sorry 囧囧囧rz
+15:18 < yhsiang> lanf0n: 你不來嘛?? @@
+15:18 < yhsiang> lanf0n: https://sites.google.com/site/ccwdata/monitoring/whosmylegislator
+15:18 < kcwu> yhsiang's url: [我的選區立委是誰？ - 社團法人公民監督國會聯盟]
+15:18 < lanf0n> yhsiang: 淡水到那大概快2hr...囧(都五點了...
+15:18 < yhsiang> 寫個parser 去把fb跟pages爬下來吧
+15:18 < lanf0n> ok
+15:29 < pipi_> 我以後要直接叫孝先哥了(敬禮)
+15:44 < johnny__> A-Han: 沒關係，我一直在吃東西XD
+15:51 < ETBlue> walkingice: 跑起來了但有點怪怪的 XD 疑似 angular 出包
+16:00 < tkirby> ETBlue: 嘎?
+16:00 < tkirby> ETBlue: 喔可以啊~
+16:03 < tkirby> ETBlue: 你再開一次 bindo.la 看看, 應該會出現
+16:10 < kiang> Mouther_: 我就手太滑，都有報
+16:15 < yhsiang> lanf0n: 我們架起來了
+16:15 < yhsiang> lanf0n: A__A
+16:15 < lanf0n> yhsiang: !!
+16:23 < isacloud__> tkirby++ 謝謝你。不過說明不需要提到我啦 XD
+16:34 < lanf0n> yhsiang: 話說原本中文好像是 我說錯了嘛 囧(少了個說 XD
+16:39 < isacloud__> jimyhuang__: 臺南場好像額滿了，接受短時間亂入嗎 XD
+16:41 < jimyhuang__> isacloud__: 不確定耶... @@"
+16:41 < jimyhuang__> 我可能明天才知道
+16:42 < kiang> isacloud__: 可以啦，很空 XD
+16:42 < isacloud__> jimyhuang__:  嗯我應該會去路過看看，如不行就自己找咖啡廳了。 See u
+16:42 < jimyhuang__> isacloud__: kiang 說了算 XD
+16:43 < isacloud__> kiang: ! cool
+16:43 < kiang> 台南場吃完 pizza 之後就多了很多空位
+16:46 < pipi_> XDD 
+16:47 < macpaul> https://www.youtube.com/playlist?list=PLdwQWxpS513Dk5cZvNt_t24qoyuM3E_Ll
+16:47 < kcwu> macpaul's url: [g0v.tw hackath9n - 中場短講 - YouTube]
+17:01 < AceChen> hcchien: 場務40人會不會太多？開銷吃得下來嗎？
+17:02 < AceChen> opop: 可以share表單後台給我嗎？thanks~~ 
+17:07 < miaoski> kiang: pizza++
+17:08 < macpaul> 直播delay阿
+17:17 < macpaul> g0v有神常駐，所以會填坑神速 ＊誤＊
+17:21 < tuiry> A-HAN ++ AU ++
+17:22 < ETBlue> poga: 便利貼要報告嗎 XD 或進度寫一下？ http://hack.g0v.tw/don-democracy/Ejozjt0LSZm
+17:23 < poga> ETBlue: 我寫進度XD
+17:24 < ETBlue> poga++
+17:24 < lanf0n> 直播陣亡中QQ
+17:25 < macpaul> 太多人用網路了～～
+17:25 < macpaul> 我們需要 5GHz 線路組的支援   XD
+17:27 < lanf0n> 真的要還我土地了XDD #popfire
+17:28 -!- chihchun_afk is now known as chihchun
+17:28 < pipi_> 下次要想辦法惹，記得寫在hackpad裡
+17:31 < yurenju> 剛剛的地圖 http://blog.yurenju.info/mlymap/
+17:31 < kcwu> yurenju's url: [台灣立委選票分佈地圖]
+17:32 < bater> 第一次看到純後端的DEMO
+17:32 -!- bater is now known as Guest21062
+17:34 < mindos> jeffhung: 「因為是純後端 demo 所以我們就 show 資料庫」
+17:35 < simonpai> jeffhung++ XD
+17:36 < mrbigmouth_> 其實可以弄個phpmyadmin之類的web介面 XD   用mysql cmd也太痛苦了
+17:39 < yhsiang> mrbigmouth_: 因為jeffhung是真男人
+17:39 < caasihuang> yhsiang++ jeffhung++ XDDDDD
+17:40 < jeffhung> 今天很多時間都卡在裝東西，不想再多裝一個 phpmyadmin。XD
+17:40 < yhsiang> %i 實在太表了 ...
+17:40 < jimyhuang__> jeffhung: maker精神 XD
+17:41 < macpaul> 真男人的典範轉移.. XDD
+17:43 < kiang> 值得一提的是這次台南黑客松網路很穩定，因為有高手把關 ;)
+17:44 < hcchien> 現在還在 demo 嗎
+17:44 < pipi_> Demo ing
+17:45 < jeffhung> 投票是不是開始表决後才新增的選項，投了不會出現在表决狀態裡？
+17:46 < au> tkirby: ^^^^^^
+17:48 < ipa> justin++ 漂亮的data.g0v.tw主圖
+17:48 -!- chihchun is now known as chihchun_afk
+17:49 < yhsiang> 是justine ~
+17:50 < lanf0n> 啊 好像可以直接放data.g0v.tw (?
+17:50  * hcchien 在永春附近接人準備去吃飯，等等要過去吃飯時叫一下   :D
+17:50 < yhsiang> lanf0n: 整理成repo吧 :)
+17:50 < yhsiang> crawler and data
+17:50 < miaoski> mrbigmouth_: mysql cmd 很 nice  的 ...
+17:51 < hcchien> data.g0v 質感完全不同了   # justine++
+17:55 -!- chihchun_afk is now known as chihchun
+17:56 < ipa> http://gr33n.kktix.cc/events/gr33nkerthon-party-1 綠客松
+17:56 < kcwu> ipa's url: [第零次綠客松：分身不乏術/伐樹]
+17:59 < yhsiang> jeffhung: 要reload # < jeffhung> 投票是不是開始表决後才新增的選項，投了不會出現在表决狀態裡？
+17:59 < lanf0n> 直播又斷了QAQ
+17:59 < yurenju> Firefox 不能？
+18:00 < lanf0n> yhsiang: 其實沒有用 php爬(艸) 想說才一頁就直接用 excel 整理了
+18:01 < yhsiang> lanf0n: hmm ... ok
+18:02 < walkingice> ETBlue: 我 merge 到 don-republic 的 master 了
+18:02 < mrbigmouth_> NewClicker霸佔二連發
+18:02 < caasihuang> NewCliCker++
+18:03 < miaoski> NewCliCker: 持續佔領
+18:03 < NewCliCker> XDDDDDD
+18:04 < Michael_LI> 今天新手好多
+18:04 < yhsiang> tonyq: 出來面對!
+18:04 < jimyhuang__>  以「熱血青年tony為例」 XD
+18:04 < pipi_> 踹共
+18:04 < yhsiang> 歡迎大家叫 tonyq 出來面對 :p
+18:04 < mrbigmouth_> 熱血不Q的青年TonyQ
+18:05 < pipi_> TonyQQQQQQQ
+18:05 < Michael_LI> 正在挖坑，有新人可以來幫忙／https://g0v.hackpad.com/--ATtAnSyQnOM
+18:05 < kcwu> Michael_LI's url: [公民直播＆文播　分工方法 - g0v.hackpad.com]
+18:05 < Michael_LI> 有心人
+18:08 < Michael_LI> ＰＳ／現場網路慢／晚點回去繼續丟資料／ #老坑新挖
+18:13 < caasihuang> ihower++ mrbigmouth_++
+18:14 < yurenju> dns 還沒生效？
+18:14 < yhsiang> ihower++ mrbigmouth_++ 
+18:15 < ttcat> ipa: ++ 
+18:16 < ETBlue> ihower 大神！
+18:17 < pipi_> 坑坑相連到天邊 坑坑坑坑坑坑坑坑
+18:17 < ETBlue> ihower 大神沒上 irc
+18:17 < miaoski> CY Sister 是單數 Q.Q
+18:17 < mrorz> ihower++ venev++
+18:17 < Lee1092> ihower++  mrbigmouth_ ++
+18:17 < Lee1092> venev++
+18:18 < A-Han> ihower++ mrbigmouth++ venev++
+18:18 < hcchien> ihower 早上有上來的樣子
+18:19 < ipa> ihower!
+18:19 < tuiry> ihower++     mrbigmouth++    venev++
+18:19 < A-Han> 今天好多人都好厲害
+18:19 < A-Han> 大型松 好多坑又厲害又好玩
+18:21 < hcchien> hackfolder iOS 聽來很厲害
+18:22 < ipa> superbil++
+18:22 < shenkyw> ihower++ mrbigmouth++ venev++
+18:22 < Lee1092> superbil++
+18:23 < ronnywang> XD
+18:23 < yurenju> XD
+18:23 < jimyhuang__> XD XD
+18:23 < ipa> XD
+18:23 < walkingice> XD
+18:23 < ronnywang> hackath9n ++
+18:23 < shenkyw> XD
+18:24 < mindos> XD 
+18:24 < lanf0n> XDD
+18:24 < mindos> QAQ
+18:24 < isacloud__> 跪求文字轉播 
+18:24 < Lee1092> XD
+18:24 < yurenju> 講個祕訣
+18:24 < hcchien> 講個祕訣  XD
+18:24 < walkingice> 講個祕訣.g0v.tw
+18:24 < hcchien> walkingice++
+18:24 < mindos> 講個祕訣.g0v.tw
+18:24 < venev> 好歡樂的 IRC～～～
+18:25 < ttcat> 糟糕忘了講 COSCUP 攤位的事惹我出門前還記得 ><
+18:25 < jeffhung> XDD
+18:25 < au> isacloud__: https://g0v.hackpad.com/hackath9n--FOS817Wrzg6 都有文播啊
+18:25 < kcwu> au's url: [hackath9n - 第玖次還我土地黑客松 - g0v.hackpad.com]
+18:25 < hcchien> isacloud__: 你雷格了  # 看文播中
+18:26 < isacloud__> au: thanks!! 
+18:26 < miaoski> 沒有斷詞? 
+18:26  * isacloud__ 出發往臺南中
+18:26 < au> 看起來是沒有斷詞
+18:26 < au> 或是說是 naive 斷詞吧
+18:27 < au> (whitespace)
+18:28 < kiang> isacloud__++
+18:28 < pipi_> 啊啊啊啊 好像是我講的XD
+18:29 -!- Guest21062 [CAA9A4E0@conference/jsconf/x-ffaheeogqffazllq] has left #g0v.tw []
+18:29 < jimyhuang__> 終於全部按完 QAQ http://prntscr.com/3v05ly
+18:29 < kcwu> jimyhuang__'s url: [Screenshot by Lightshot]
+18:30 < Lee1092> lanf0n:  來不及 demo XD  http://jessy1092.github.io/g0vTxT/views/communiqueViewer.html 
+18:30 < kcwu> Lee1092's url: [g0ver TxT]
+18:30 < macpaul> 這是g0v第一次公開監票嗎？ XDD
+18:31 < lanf0n> !!! Lee1092++ XDD
+18:31 < macpaul> G0V普選開票中
+18:31 < au> #popvote
+18:32 < Lee1092> lanf0n: 還沒完成    明天再把它弄好
+18:32 < Lee1092> lanf0n 無聊你也可以接力 XDD
+18:34 < lanf0n> Lee1092: 只好送pr了XDD
+18:36 < hychen> 台南場食物好多
+18:36 < hcchien> hychen: 可惡，好閃
+18:38 < hcchien> g0v.photos 照片都疊一起!?
+18:40 < hcchien> 咦，出發吃飯了嗎
+18:40 < Mouther_> 無止盡的食物....
+18:41 < Mouther_> hcchien: 是台南場 ((飽
+18:41 < hcchien> ....
+18:41 < hcchien> 台北場大家都消失，看來我應該出發吃飯了  XD
+18:42 < lanf0n> Lee1092: index 的 pr 少空了一格...
+18:51 < tuiry> 有人撿到耳機嗎
+18:51 < tuiry> 普通的耳塞耳機
+18:52 < isacloud__> 謝謝 au 幫忙計票
+18:52 < au> 文播組幫到底 XD
+19:03 < isacloud__> BTW, 因為 coscup 贊助票尚未寄出，屆時我們會記錄領取人的 id，預計 coscup 當天早上報到時，寄放在 g0v 攤位，或是報到台。謝謝大家!
+19:03 < au> isacloud++ cool!
+19:04 < kiang> isacloud__++
+19:05 < pipi_> 我第一個到是怎樣XD
+19:05 < pipi_> 除了Hc之外
+19:06 < jimyhuang__> isacloud__: 服務真好
+19:06 < isacloud__> kiang: 明天早上會去台南松打擾兩個小時，中午前得離開，需要什麼臨時工請儘管說! 
+19:06 < kiang> isacloud__++, 幫忙吃東西？ XD
+19:07 < isacloud__> jimyhuang__: 哈哈 coscup 票好珍貴啊，一定要服務一下的。
+19:08 < Mouther_> kiang 開講囉
+19:09 < isacloud__> tkirby: 有空請再告訴我是哪四個  id, 感激。
+19:09 < isacloud__> kiang++
+19:15 < kiang> （成果不多，一下子就講完了）
+19:16 < Mouther_> kiang: 太謙虛了 XD
+19:16 < shelling> clkao: ipa: 臨時有事，無法過去吃飯了
+19:18 < pipi_> 還有誰沒到的(咦)
+19:52 < miaoski> 捕獲野生的 gavin-^^ 和音地
+20:00 < miaoski> 台灣獨立！原住民族自治！
+20:13 < miaoski> twWatch: 史明又講話了，還好這次很短 ^_^
+20:13 < miaoski> NewCliCker: 怎麼還沒來？
+20:28 < au> ethercalc 自動備份 api endpoint 寫好了... UI 稍後補上
+20:28 < au> e.g. https://ethercalc.org/static/history/g0v-cy/
+20:28 < kcwu> au's url: [Index of /g0v-cy/]
+20:31 < ipa> tuiry: 耳機在我這
+20:44 < tuiry> QAQ太好了～ 謝謝ipa
+20:54 < twWatch> miaoski: 隨時準備好逐字 XD
+21:00 < Rhozan> 文播、錄影和策辦的各位++
+21:32 < kerrytang> quit
+22:04 < star00rain> 0.0
+22:05 < a0kman> 總感覺今天好像錯過很多什麼@@
+22:13 < hychen> 錯過了舉紅牌...
+22:13 < star00rain> 0.0
+22:13 < star00rain> 黑客松  無直播....
+22:14 < hychen> 台南 gov 黑客鬆有攝影機採訪說
+22:14 < star00rain> 0.0
+22:17 < a0kman> 紅牌QAQ
+22:20 < NewCliCker> star00rain: 已經有 g0v hackath9n 的錄影檔可以看囉 https://www.youtube.com/user/g0vTW/playlists
+22:20 < kcwu> NewCliCker's url: [g0v.tw 台灣零時政府 - YouTube]
+22:22 < ddio> isacloud__: tkirby 如果有需要幫忙代送門票給公有地組，我可以幫忙 XD  我每週都會碰到他們。如果要問 id 的話，我再問問是誰要去～
+22:35 < pipi_> \ddio/\ddio/\ddio/\ddio/
+22:45 < mrorz> miaoski: 如果是問 shelling 的 g0v 嚴選，他是用 ngram 斷詞唷
+22:46 < mrorz> IRC 這麼多黑話，應該沒有會 work 的斷詞用字典 XD
+22:56 < ipa> ＼DDIO／
+22:59 < isacloud__> ddio: 好的，謝謝
+22:59 < isacloud__> 請問是什麼專案需要用到斷詞?
+23:00 < tkirby> jeffhung: 選項太多所以跑出區塊外看不到, 我那時候修了一下 push 了所以 reload 就好了 # 表决後新增的選項
+23:02 < tkirby> isacloud__: 公有地組只需要兩張, 我先問問看活動自己拍組有沒有人需要, 再跟你確定 # cc ddio
+23:07 < isacloud__> tkirby: 好。謝謝!
+23:20 < A-Han> au: 我想好網站修正的方式了 一點小修正但需要說明
+23:20 < A-Han> au: 我寫在hackpad好了
+23:20 < A-Han> au: 我們萌典有沒有固定的hackpad呢？ 或者上一次的萌典松hackpad？
+23:22 < A-Han> au: 如果有萌典hackpad 以後我就把相關系列的架構發想和補充修正全都放一塊
+23:22 < A-Han> au: 近義詞的視覺化系統我也很有興趣 （我記得還有其他兩個正在進行的部分
+23:22 < Michael_LI>  <a0kman> ／剛才我花了快一小時研究日本這次　國立故宮　名字的問題（新聞事件）／表面上看來日本官方機構都沒問題／
+23:23 < au> A-Han: 有 http://hackfoldr.org/3du ，但每個活動開一個新的吧，開了之後再加到 hackfoldr
+23:25 < Michael_LI>  <a0kman> ／只有民間的潛規則不敢提及臺灣的　國立　機關全名而已／感覺上這個絕對不會突然撤展的計畫／喊說要撤展是喊假的／
+23:27 < A-Han> au: 每個活動開一個新的 是指 比如「給力萌典」就在 http://hackfoldr.org/3du  下面開一個新的hackpad嗎？
+23:28 < tw_80827> Michael_LI: https://www.ptt.cc/bbs/Gossiping/M.1403249088.A.7A5.html
+23:28 < kcwu> tw_80827's url: [Re: [新聞] 故宮珍藏赴日展出 "國立"名稱問題? - 看板 Gossiping - 批踢踢實業坊]
+23:29 < lanf0n> A-Han: 3du 的 hackfoldr 左上角可以點編輯(to collect another pad
+23:29 < Michael_LI>  <tw_80827> ／有有有／收集過了／
+23:30 < tw_80827> 中國黨在操作仇日
+23:30 < au> A-Han: 是，先到 g0v.hackpad.com 開一個新的 pad，再將網站加到 ethercalc.org/3du 下即可
+23:31 < A-Han> lanf0n, au 感謝！
+23:31 < tw_80827> 但能力太差操作不起來 可以留意台灣的日本相關新聞
+23:32 < Michael_LI>  <tw_80827>／本人大前天看到公視新聞知道要出展／之後看到這則新聞覺得奇怪／剛剛查閱過去２天資訊進行判讀／全部工作都已經完成只剩下媒體曝光而已／
+23:34 < yhsiang> au++ # 自動備份
+23:34 < Michael_LI> 真的說撤可不是開玩笑的事情／臺灣的學者國際地位會先受到打擊／其他的政治猜想就不多說了／
+23:36 < tw_80827> 台灣形象應不受影響 中國黨如果惡搞只會提早結束政治生命
+23:41 < Michael_LI> ＰＳ／新聞報這個爭議時刻／東西正在打包出發／沒有下令停止行動／現在東西都送到日本去了／工作邏輯不通／
+23:44 < NewCliCker> 大家夜安，感謝今天黑客松大家對 G8VTV 電視牆的投票支持（感動落淚），在這邊想謹慎詢問我們簡報裡面有一頁引用了 G0V 後勤 FB 擁核反核大論戰一事是否會冒犯相關專案人員（輻射地圖APP、參與討論的沒有人、提醒版規的 au ）http://goo.gl/ajZoJv
+23:44 < kcwu> NewCliCker's url: [第五權電視牆監看「評」台g8v.tv 的副本 - Google 簡報]
+23:45 < yhsiang> 應該去後勤問 ? XD
+23:45 < macpaul> https://www.youtube.com/playlist?list=PLdwQWxpS513CJHIEaM4wK2V1CFOyLAb8B 終場報告的錄影也上傳好了
+23:45 < kcwu> macpaul's url: [g0v.tw hackath9n - Closing and Demo 成果報告 - YouTube]
+23:45 < a0kman> 偷渡議題專用
+23:46 < lanf0n> 公開資料有註明出處應該沒有斷章取義的問題...吧(?)
+23:49 < NewCliCker> yhsiang: 嗯，先在 IRC 問一下，待會兒我就會貼在後勤，只是我不想害 au 又要熬夜把版規插在第一百篇
+23:50 < yhsiang> XDDD
+23:57 < caasihuang> macpaul++

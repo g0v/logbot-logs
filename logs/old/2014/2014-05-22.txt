@@ -1,0 +1,471 @@
+--- Day changed 四  5月 22 2014
+00:05 < sb-lefece> 請問... 我想要在空氣品質監測的專案加一些東西 但它似乎已經不在開發中專案的列表裡了 這代表那個專案已經不能庚動了嗎?
+00:05 -!- sb-lefece is now known as changsy
+00:05 < changsy> *更動
+00:06 < yhsiang> changsy: 可以啊 env.g0v.tw
+00:06 < yhsiang> changsy: github.com/g0v/env.g0v.tw
+00:06 < pofeng> 可以先 fork 改(吧)
+00:06 < yhsiang> 還有很多issue待解
+00:06 < ipa> hcchien: 但現在來活動會寫code的只有四成
+00:07 < ipa> hcchien: 比例一直在下降，所以還是需要維持一點寫code的人 lol
+00:08 < yhsiang> 請大家幫忙檢舉 跟揪出團長應該算是有提出 解決的問題跟方案吧? 
+00:09 < lanf0n> NewCliCker: 可以先 cp 靜態版的 hackpad 到其他 .hackpad 下編輯 之後再cp回來 (?
+00:11 < ipa> hcchien: 昨天接受藝文雜誌訪問，訪問者是說g0v宣傳讓他覺得藝文工作者也可參與.... 怎麼會差那麼多 @@
+00:11 < hcchien> ipa: 果然差很多
+00:12 < hcchien> 藝文雜誌也想寫 g0v. 真妙
+00:13 < NewCliCker> lanf0n: 這樣碰到多人協作的文字段落會造成所有協作者的名字變成 ?? 
+00:14 < ipa> hcchien: 之前訪問過我的書，這次問為何文藝青年會跑去參加g0v....還有其他文藝青年要怎麼參加 XDD
+00:15 < hcchien> 咦， changsy 直接上 irc 了  :D
+00:15 < hcchien> ipa: lol
+00:16 < jimyhuang_> 藝文工作者，若上irc，的確可以參與 XD
+00:17 < lanf0n> NewCliCker: 只 cp 後來(自己)修改的部分應該就不會造成這個問題了 (((可以善用history 功能
+00:18 < yhsiang> ipa: 哼哼 身為一個文青偶爾也想入世一下 XD
+00:18 < yhsiang> 結果變成憤青 ...
+00:18 < ipa> yhsiang: 你是詩人～
+00:21 < yhsiang> 是說寫詩的人要有超然的大愛去看和觀察這個世界，所以很適合參加g0v阿 XD
+00:21 < yhsiang> 如果對政府沒有愛怎麼改造政府 :p
+00:24 < changsy> hcchien 我覺得這一切對我來說都好陌生啊 XD
+00:25 < twWatch> 不是愛政府啦 是愛社會 但歷史證明政府的bug多到一種無法改造的程度就會被重寫 XD
+00:25 < NewCliCker> lanf0n++ 現在困在靜態版的comment不會顯示是誰說的話...整個文件閱讀起來開始產生困難...orz，所以現在跑去非g0v的hackpad撒野(誤)，希望明天g0v的hackpad恢復正常
+00:26 < yhsiang> twWatch: 我沒有說是那個政府阿 :p
+00:27 < twWatch> "沒有人"在討論政府啊 XD
+00:27 < hcchien> changsy: 先回答一個問題，沒有 open source 基本上沒辦法用來當 g0v project，至於用什麼寫不是太重要
+00:27 < yhsiang> twWatch: 所以還是可以講愛政府的 :p
+00:28 < twWatch> 可以啦 沒有人愛政府啦 XD
+00:28 < changsy_> hcchien 好的好的 如果MATLAB也行的話那問題會簡單很多
+00:29 < yhsiang> changsy: matlab當然可以, 只要open source 
+00:30 < changsy_> 嗯 這個我會聯絡一下開發者 (UNC的老師) 但基本上這套library本身是公開給大眾使用的 所以我想問題不太大
+00:30 < yhsiang> changsy: 那注意一下license就好了 XD
+00:31 < kiang> 沒有人愛政府++ XD
+00:31 < hcchien> 好奇，那個 lib 是做什麼的啊?!  XD
+00:31 < changsy_> 只是套空間統計的library
+00:31 < changsy_> 簡單說就是空間時間的內插外推
+00:33 < changsy_> 比如說臺北和新竹各有一個空氣品質監測站 我就可以用這兩個站測到的資料推估桃園的資料
+00:33 < hcchien> 了解
+00:34 < hcchien> 所以就可以把 http://env.g0v.tw/air/ 的數據變得比較準
+00:34 < changsy_> 我會拉我前室友一起跳坑 但我們都沒有網頁開發的經驗 只會地理統計 XD
+00:34 < changsy_> 對 
+00:35 < hcchien> 其實應該只要把所有的點算出，網頁還是可以用本來的這個架構來畫
+00:35 < changsy_> 對 但就是要online算還是offline算
+00:35 < kiang> changsy_: 不妨用你們熟悉的方式先組合出 prototype ，在黑客松活動交流後說不定就自然生出來了 ;)
+00:35 < hcchien> 我個人建議 offline
+00:36 < NewCliCker> twWatch++ 早上的g0v待婊的討論整個歡樂 XD 每次當我以為「沒有人」的梗已經山窮水盡，總是會有新梗柳暗花明
+00:36 < hcchien> 但以實作方便為主
+00:36 < changsy_> 所以我們可以上傳raw data 剩下畫圖的就用現在的code畫?
+00:36 < hcchien> changsy_: 如果這是你們最方變得方式
+00:36 < NewCliCker> 待婊(X) 代表(O)
+00:37 < changsy_> kiang 我們的code應該已經有了 只是不確定要怎麼弄到網頁上 XD
+00:37 < kiang> changsy_++, 就先推到 github 觀賞？ XD
+00:37 < hcchien> 先確定 license 沒問題就先把東西 release 出來
+00:38 < changsy_> 嗯好的 我去聯絡一下那個老師
+00:38 < kiang> "沒有人待婊" 無誤 XD
+00:38 < twWatch> 無違和 XD
+00:39 < twWatch> 還真以為有個"待婊" (認真態) XD
+00:39 < NewCliCker> XDD http://logbot.g0v.tw/channel/g0v.tw/2014-05-21#36
+00:39 < kcwu> NewCliCker's url: [Logbot | #g0v.tw]
+00:40 < changsy_> 另外就是台灣的資料比較特別 我們可能要用另外的方法來估計濃度 這部分的code我們還沒研究 可能需要一點時間 我人在美國 不過我會逼我前室友去參加黑客松的 XD
+00:41 < kiang> changsy_++, 感覺好像很威
+00:42 < changsy_> 其實是臺大的余化龍老師很威 XD 這方法是他想出來的 發在去年的journal article
+00:43 < yhsiang> changsy: 台灣的資料有比較特別嗎? 你抓的是air的原始資料嗎 ? 那個csv
+00:43 < twWatch> 所謂的特別是指政策還是測量標準?
+00:44 < changsy_> 台灣的資料特別是因為在處理daily或是hourly的資料時 濃度在空間上和時間上的covariance會很醜
+00:44 < changsy_> 如果很醜的話這個方法就不能用了
+00:45 < twWatch> 是資料量造成的?
+00:45 < changsy_> 所以基本上是把各個測站的點先轉換成Gaussian distribution
+00:45 < changsy_> 可能是台灣獨特的emission pattern
+00:45 < changsy_> 然後用quantile去做估計 最後再轉換回濃度
+00:46 < kiang> changsy_: 可以先傳幾張輸出結果讓大家聞香一下嗎？（我只會嘴砲，所以只看得懂圖片 XD ）
+00:46 < yhsiang> twWatch: 應該不是資料量吧  我猜是資料特性
+00:47 < changsy_> 對 資料特性 比如說交通相關污染物就有diurnal pattern
+00:47 < changsy_> 如果拿hourly data來處理就會看到一個M字形的分佈 上下班時間濃度很高 其他時間比較低
+00:48 < changsy_> 我找一下那篇paper好了
+00:49 < changsy_> http://pubs.acs.org/doi/full/10.1021/es302539f
+00:49 < kcwu> changsy_'s url: [An Error Occurred Setting Your User Cookie]
+00:49 < changsy_> 做出來的圖就會像Fig. 7的圖
+00:50 < kiang> $35.00 for 48 hours of access XD
+00:50 < changsy_> 啊.....對喔 XD 我在學校所以有access
+00:51 < kiang> 這讓我想到 Aaron Swartz ...
+00:51 < changsy_> 是啊 他在的話說不定就免費看了
+00:54 < yhsiang> 有 2 for 1 ticket for the summit 有要揪團的嗎 :p
+00:55 < hcchien> 其實如果數據檔案 format 跟本來的一樣，應該有機會直接套吧
+00:56 < jimyhuang_> changsy_: 上述算法，是針對空污的數據嗎？還是其他一些以監測站點為基礎的數據，也合用（ 先轉換成Gaussian distribution）
+00:57 < jimyhuang_> yhsiang: g0v summit  耶
+00:57 < changsy_> 目前只有用在空污的數據上 但是我覺得地下水的數據應該也適用
+00:58 < yhsiang> jimyhuang_: dublin不去嗎~
+00:58 < jimyhuang_> 了解～ http://opendata.epa.gov.tw/Data/KeywordQuery 有滿多我有興趣的資料
+00:58 < kcwu> jimyhuang_'s url: [OpenData.epa 行政院環境保護署 環境資源資料開放平台]
+00:59 < jimyhuang_> yhsiang: 想啊，但 summit 11/8
+00:59 < changsy_> 應該說這套方法(BME)是一種地理統計的方法 任何用這種測站資料的數據都適用 但轉換成Gaussian的方法 (Quantile BME)我個人會覺得比較適用非河道的污染物
+00:59 < jimyhuang_> changsy_: 果然是需要專業背景啊... 
+01:00 < twWatch> 非河道是指擴散型嗎?
+01:00 < yhsiang> jimyhuang_: 11/4-6 回來衝g0v summit XD
+01:00 < changsy_> 哈 XD 我之前修課時就用過美國地下砷濃度來算
+01:00 < jimyhuang_> yhsiang: 這太操了啦靠
+01:00 < yhsiang> jimyhuang_: g0v summit完還有jsconf.asia
+01:01 < jimyhuang_> yhsiang: 又不是日本香港還是菲律賓的
+01:01 < changsy_> 對 擴散型 不過像PM2.5這種有化學生成的污染物也適用
+01:01 < jimyhuang_> yhsiang: 對啊 11月好忙啊
+01:01 < hcchien> 專業的果然有差  # 插不上話
+01:04 < jimyhuang_> changsy_: 焚化爐呢？
+01:05 < changsy_> sorry XD 不該bug大家 所以我剛剛在想說是不是要直接找專案的人來討論 XD
+01:06 < yhsiang> changsy: 不用擔心啦
+01:06 < yhsiang> changsy: 給大家長知識 !
+01:07 < jimyhuang_> changsy_++ 真的長知識啊
+01:07 < changsy_> 焚化爐是說要只看來自焚化爐的污染物嗎?
+01:07 < changsy_> 大家太客氣了 XD 我也還在學啊
+01:10 < jimyhuang_> changsy_:  http://opendata.epa.gov.tw/Data/Contents/SWIMSAir/ 不過每月只有一次...金害
+01:10 < kcwu> jimyhuang_'s url: [OpenData.epa 行政院環境保護署 環境資源資料開放平台]
+01:10 < twWatch> changsy_++ (筆記中)
+01:13 < changsy_> 各焚化爐的監測資料嗎 我會覺得不行 因為每一個source都只有一個測量值 所以當計算covariance時 距離很遠的兩個站會有很高的covariance 這違反地裡統計的假設 就是covariance應該隨距離下降
+01:14 < changsy_> 但是如果能夠把環保署一般的空氣品質測站資料裏面焚化爐所占的比例算出來 那麼就可以
+01:16 < twWatch> 核汙染分析有相關適用的方法嗎?
+01:17 < changsy_> 理論上輻射值也是可以用一樣的方法進行推估
+01:17 < jimyhuang_> 獲益良多啊！
+01:18 < twWatch> 像汙染統計是否能回推汙染源及時間點?
+01:19 < changsy_> 時間點可能有困難 污染源的種類的話大概就是多變量分析 污染源的位置的話我以前是用光學遙測的方法做過
+01:20 < changsy_> 但就我的經驗... 當建築形態很複雜的時候(比如工業區) 要找到污染源位置真的很困難
+01:20 < twWatch> 都市區
+01:22 < changsy_> 來自都市區的污染源嗎? 除了汽機車我想不到還有什麼 XD
+01:24 < anon1269> changsy_: 人類？XD
+01:24 < twWatch> 主要應該都是空汙 其他汙染應該也很難找出來
+01:25 < changsy_> XD 人類的話可能要出動Dexter了
+01:25 < changsy_> 是 我專長是空氣污染 水或土壤的話就難倒我了 XD
+01:28 < tkirby> 前天與公衛系教授聊了個天, 他們也有做污染相關的研究, 像是 pm2.5 vs asthma
+01:28 < changsy_> 我是臺大公衛系畢業的 XD 
+01:29 < yhsiang> tkirby: 要在foundi揭露一下嗎, 那邊居住的空氣品質比較好
+01:29 < changsy_> 事實上我目前的研究就是要把model出的濃度拿去做健康影響評估
+01:30 < jimyhuang_> tkirby: 要在demo day揭露一下嗎... 哪裡是核爆安全範圍之外 XD
+01:30 < changsy_> 核災的評估是不是用dispersion model做的嗎?
+01:33 -!- changsy [980248D3@conference/jsconf/x-pngjadpwnfeczbjb] has left #g0v.tw []
+01:34 < changsy_> 好的謝謝大家的回答 我會跟我前室友討論一下看之後要怎麼處理比較方便 非常感謝大家
+01:34 < twWatch> 可能要先定義一下核災後的"安全" XD
+01:34 < lanf0n> yhsiang: 管理員中的客製化 -> CSS&HTML 客製化 不會動 QAQ ((新增完樣式之後存不進去... #新後勤
+01:35 < tkirby> changsy_: 我剛剛說的教授是郭育良老師 XD
+01:35 < tkirby> jimyhuang_: demo day 已經結束了說 XD
+01:35 < tkirby> yhsiang: 這主意好 XD
+01:35 < changsy_> XD 郭老師以前常跟我們打球 XD
+01:35 < tkirby> (y)
+01:41 < kiang> http://www.unitizen.com.tw/ - 好像很熱血的東西，這兒有聊過嗎？
+01:41 < kcwu> kiang's url: [聯合公民 Unitizen]
+01:41 < yhsiang> tkirby: 需要更多的idea嗎 A_A
+01:51 < tkirby> yhsiang: 需要幫你留個位子嗎 A_A
+01:51 < kiang> 輕輕的提到了 g0v - https://www.facebook.com/technewsinside/posts/677508892302364
+01:51 < kcwu> kiang's url: [Technews 科技新報 - 在台灣的「制度」下，這種網站應該不太可能獲得合法投資，不知道 g0v... | Facebook]
+01:52 < venev> 修了 5/20 演講的投影片 http://www.slideshare.net/venev/media-at-0am-g0v-in-sunflower-movement 不知道為什麼 G0V 的 logo 好抖
+01:52 < kcwu> venev's url: [Media at 0AM 太陽花運動的零時媒體經驗]
+01:52 < yhsiang> tkirby: 可以出idea 不用位子阿 A_A
+01:52 < yhsiang> 反正不是我做 XDDD
+01:53 < venev> 明明本機上看超平順，slideshare 轉檔是不是有問題啊（ evenwu 對不起 <(_ _)> ）
+01:55 < yhsiang> venev: 應該是被轉檔處理了 XD
+01:55 < kiang> slideshare 會調降解析
+01:56 < tkirby> XD
+01:56 < kiang> venev: 有錄影嗎？
+01:57 < venev> kiang: 有。當天來不及搞直播，要進後製剪輯
+01:58 < kiang> venev++, 期待ing
+01:59 < twWatch> venev++ 可以用大一點的Logo
+02:07 -!- chihchun is now known as chihchun_afk
+02:07 < lanf0n> venev++ 話說第3頁的link無作用
+02:12 < lanf0n> p41 右邊的 link也不能點XD
+02:34 < Rhozan> venev+++++
+02:42 < Lee1092> g0v.hackpad 壞掉之際   用現有 api 寫了個 hackpad Viewer  http://jessy1092.github.io/g0vTxT/views/hackpadViewer.html
+02:42 < kcwu> Lee1092's url: [g0ver TxT]
+02:42 < Lee1092> 不過還沒有搜尋功能   故會看到一長串 pad list  XD
+02:43 < Lee1092> venev:  給hackpad 臨時壞掉或者只需瀏覽時用  XDD
+02:44 < Lee1092> 不過 g0v 的 pad  有夠多的  目前已經九百多個...  快破千了...
+02:45 < Rhozan> Lee1092++ 正需要..大感謝
+02:45 < Lee1092> 然後有一堆空白 pad   看來是很多人誤按   找時間可以清一清  cc lanf0n  venev  
+02:46 < Lee1092> Rhozan:  現在可能先麻煩用  ctrl+f 搜索  title 關鍵字  <(_ _)>  
+02:46 < Lee1092> 要來去睡了   明天在來弄更完整 XD
+02:47 < Rhozan> 阿，可能我的pad權限沒設到最大  看不到XD
+02:49 < Lee1092> Rhozan!!! 你的 pad title 是什麼?   我明天來測一下  看是不是權限問題  還是我漏抓  XD
+02:50 < lanf0n> Lee1092: 沒 admin 不能刪其他人的 pad 0rz
+02:50 < Rhozan> Lee1092: APP4AM  再麻煩你了!
+02:52 < Lee1092> Rhozan: 目前看起來 API還真沒抓到   不過這個還是看得到 # https://g0v.hackpad.com/ep/pad/static/YGd0FvMp9Vr
+02:52 < kcwu> Lee1092's url: [/683$YGd0FvMp9Vr]
+02:53 < Rhozan> Lee1092:喔喔!! 感恩  原來要這樣才看的到
+02:54 < Lee1092> lanf0n: 囧>  只好等待 hackpad 把 manage account 修好  在幫你增加權現了
+02:55 < Lee1092> Rhozan:  (y) 
+02:55 < lanf0n> left container裡面可以放drop-down list嗎 (? pad list 下來頁面變超長....0rz
+02:56 < Lee1092> lanf0n:  好~   再加搜索鈕  XDD  明天再戰...    有空也可以幫忙 pr   XD
+02:57  * Lee1092 zzz &
+02:57 < lanf0n> Lee1092: XD (( trying night~
+05:16 < poga> ttcat__: http://airesis.tw 試試看？現在暫時只能用 facebook 登入
+05:16 < kcwu> poga's url: [Airesis - Make a decision]
+05:20 < poga> 嗯... 新增提案就卡住了
+05:39 < ttcat__> poga: ++
+05:40 < ttcat__> 可是還是好厲害，我註冊了，等信件中
+05:41 < poga> ttcat__: 那個寄信有問題... 所以得用 facebook 登入 XD
+05:42 < caasihuang> poga++ ，但是遇到這個問題「應用程式尚未設定: 此應用程式的開發商還未設定適用於 Facebook 登入的應用程式。」
+05:43 < poga> caasihuang: 啊... 忘了把 facebook app 送審 Orz
+05:43 < caasihuang> XDDDD 辛苦了。
+05:46 < poga> 開成 public 了 :D
+06:08 < ttcat__> XD 我剛剛用 facebook 帳號註冊完後，變成成功連結稍早的 email 帳號了 lol 
+06:35 < seikon> ttcat: 想不到 g0v 有這麼早起床的人呢。(是測試新後勤中心嗎？)
+06:38 -!- c9sloud_ is now known as c9sloud
+06:38 -!- coldturnip_ is now known as coldturnip
+06:38 -!- tylerlin_ is now known as tylerlin
+06:38 -!- Michael_LI_ is now known as Michael_LI
+06:38 -!- mingtsay_ is now known as mingtsay
+06:38 -!- lanf0n_ is now known as lanf0n
+06:38 -!- ttcat___ is now known as ttcat__
+06:38 -!- OilleYao_ is now known as OilleYao
+06:38 -!- softpapa_ is now known as softpapa
+06:55 -!- zea1ancer is now known as zealancer
+07:28 < ttcat__> seikon: 動民主的學習系統~
+07:34 < lancetw> cool
+07:36 < lancetw> 但我用 FB 登入一片空白 = =
+07:42 < ttcat__> me 2
+07:42 -!- ttcat__ is now known as ttcat
+07:43 < poga> ttcat: lancetw 修了一下，再試試看？
+07:47 < ttcat> poga: 太辛苦了, home 出現了，但提案頁與設定頁也是空白
+08:01 < yhsiangCloud_> clkao: http://blog.maxcdn.com/purge-maxcdn-cache-github-services/  #要設嗎？
+08:01 < kcwu> yhsiangCloud_'s url: [Purge your MaxCDN Cache with GitHub Services » MaxCDN Blog]
+08:01 < poga> ttcat: 又修了一些 XD 可以試試，不過db被我清掉要重新用facebook註冊了
+08:09 < yhsiangCloud_> clkao: 我好像搞錯了  沒事orz
+08:17 < lancetw> poga: 有了，不過這個平台有翻譯的地方嗎？
+08:20 < lancetw> 一開始的導覽教學沒有翻譯 XD
+08:21 < poga> lancetw: 有，我整理一下貼到 hackpad 好了
+08:21 < lancetw> poga++
+08:44 < poga> lancetw: https://g0v.hackpad.com/airesis.tw--h9p1w34Tal5
+08:44 < kcwu> poga's url: [airesis.tw 翻譯補完計畫 - g0v.hackpad.com]
+08:47 < lancetw> poga: 是不是應該整合在 https://www.transifex.com/projects/p/g0v-airesis/language/en/
+08:47 < kcwu> lancetw's url: [g0v airesis localization]
+08:47 < poga> lancetw: 原來有這東西 XD 那我搬過去
+08:51 < lancetw> poga: 問一下上面那排 maintainers 吧 :P
+08:51 < poga> yhsiang_: 戳
+08:52 < lancetw> g0v airesis 好像翻譯資源是手動加的，不是整個 project
+08:52 < poga> 好像是
+08:55 < yhsiangCloud_> poga: yo?
+08:55 < poga> yhsiangCloud_: 我要加新檔案到這 https://www.transifex.com/projects/p/g0v-airesis/ 該怎麼作 XD
+08:56 < yhsiangCloud_> 我幫你加權限？
+08:57 < poga> yhsiangCloud_: 我帳號 = poga
+08:57 < yhsiangCloud_> 等等喔
+08:58 < poga> yhsiangCloud_++ <(_ _)>
+08:59 < poga> yhsiangCloud_: 可以加了，感恩
+09:00 < yhsiang_> 我好像有設自動接受加入團隊請求
+09:00 < yhsiang_> XD
+09:00 < yhsiang_> 好像是預設的
+09:00 < poga> 疑我怎麼完全沒看到加入按鈕 XD
+09:01 < yhsiang_> 可能要找?
+09:02 < poga> https://www.transifex.com/projects/p/g0v-airesis/ 上傳好了，譯者自取 XD
+09:02 < kcwu> poga's url: [g0v airesis localization]
+09:14 < lancetw> 好像怪怪的 = =
+09:14 < lancetw> volunteers.en.yml （语言故障）
+09:14 < lancetw> 然後我不是 Chinese Team 所以不給翻
+09:17 < lancetw> poga: 目前設定怪怪的，麻煩看一下
+09:17 < seikon> 問一下，開放政治獻金是不是在切豆腐的部份(分頁或分欄)有麻煩？
+09:17 -!- wenchien- is now known as wenchien
+09:18 < seikon> 身為一個小小兵，太多天沒上工，也是會想上街爭取工作權的。
+09:19 -!- linpc_ is now known as linpc
+09:20 < lancetw> poga: volunteers.en.yml 被我弄壞了 XD
+09:20 < lancetw> poga: 然後要怎麼加入 Chinese Team @_@
+09:21 < poga> lancetw: 我看每個都是語言故障，那好像沒差
+09:21 < poga> lancetw: 我研究一下... XD
+09:21 < lancetw> poga: 我剛誤入 English 區，然後翻譯了一條 發現怪怪的
+09:21 < seikon> 呃，我又來了，剛發問完就在後勤中心看到隕石坑內的說明了。 (可惜沒有刪除自已發言的方法)
+09:21 < lancetw> poga: 發現我把 source 改了 XD
+09:22 < lancetw> 正常來說不應該會這樣 XDD
+09:23 < poga> lancetw: 我重新上傳了 XD
+09:23 < poga> lancetw: 沒看到 Chinese Team 的設定耶... 囧
+09:24 < poga> lancetw: 你的帳號是啥
+09:24 < yhsiang_> seikon: 下面刪除就是拉
+09:25 < yhsiang_> seikon: 噢 ..我懂了沒事
+09:25 < lancetw> poga: g0v-airesis 這區的設定應該要有可以申請加入 Chinese Team 的 XD
+09:26 < poga> lancetw: 我邀請了一個lancetw 進來，應該是你？ XD
+09:28 < yhsiang_> 他的權限好複雜
+09:28 < Lee1092> g0v hackpad 恢復了!!!
+09:28 < lancetw> poga: 沒看到 @@
+09:29 < lancetw> 太神秘了 ...
+09:29 < poga> 好糾結... 不太懂 -_-|
+09:30 < lancetw> poga: 有了 @@
+09:30 < anon1269> transifex阿？
+09:30 < anon1269> 要不要手把手圖文教學？:~
+09:30 < anon1269> XD
+09:30 < lancetw> poga: Transifex 有時差 XD
+09:30 < poga> XDD
+09:31 < poga> 先暫離... &
+09:31 < lancetw> 不過正常來說要有分單純的翻譯者
+09:31 < lancetw> 現在都是維護管理員 XDD
+09:33 < yhsiang_> XD
+09:33 < yhsiang_> 因為不知道權限差異 先設定這樣
+09:53 < yllan__> changsy_++  algorithm 會很複雜嗎？現在用 js 跑起來已經有點慢了;;
+09:54 < lancetw> anon1269: 目前是管理的設定問題，不是使用問題 :P
+09:56 < anon1269> :P
+10:19 < ddio> poga++  !
+10:29 < hcchien> yllan__: 我覺得應該 offline 算好比較實際   lol
+10:39 < yhsiang_> 中間跑個server 算資料 順便吐成json format 然後現在的改一點code就接上:p
+10:39 -!- yhsiang_ is now known as yhsiang
+--- Log opened 四  5月 22 10:56:59 2014
+10:56 -!- Irssi: #g0v.tw: Total of 243 nicks [0 ops, 0 halfops, 0 voices, 243 normal]
+10:57 -!- Irssi: Join to #g0v.tw was synced in 20 secs
+11:08 -!- chris930921_ is now known as chris930921
+11:08 -!- V1ctor_ is now known as V1ctor
+11:08 < hcchien> 來寫個 storm 好了   lol
+11:08 < yhsiang> hcchien: storm ?
+11:08 < hcchien> yhsiang: http://storm.incubator.apache.org/
+11:08 < yhsiang> hcchien: 強!
+11:08 < kcwu> hcchien's url: [Storm, distributed and fault-tolerant realtime computation]
+11:11 < kiang> seikon: 切豆腐的實際執行要問 ronnywang ，或是可以幫忙看看 https://github.com/polor1010/tw-campaign-finance-recogntion
+11:11 < kcwu> kiang's url: [polor1010/tw-campaign-finance-recogntion · GitHub]
+11:14 < yhsiang> 額 .. 剛剛有個看起來像廣告的photo 貼在fb後勤  我就刪了
+11:14 < yhsiang> 好像是財報分析的廣告
+11:15 < seikon> kiang: 收到。感謝分享資訊
+11:56 < yllan__> hcchien: 不過 offline 算好，變成要傳輸大量點的資料，latency 不見得比較低喔
+11:58 < mrorz> 下下週四（6/5）11:30 ~ 14:00 就是 CCSP 的期末成果展囉！
+11:59 < mrorz> 我們希望邀請 G0V、CfT、政大 Jones 老師與陳恭老師來參觀成果展；如果可以的話，也希望社群朋友們可以擔任評審，給予學生們直接的 feedback。
+11:59 < hcchien> yllan__: 也是，因為我也不知道算出來的點會有多少  XD
+11:59 < tkirby_> 時間過得真快
+12:00 < mrorz> 請問有沒有前輩有意願擔任 CCSP 成果展的評審呢？
+12:01 < mrorz> （偷瞄 tkirby_ 學長
+12:01 < tkirby_> XD
+12:01 < tkirby_> 需要找多少人呢
+12:03 < mrorz> tkirby_: 希望有幸能在 G0V 邀請到 1~3 位 contributor 擔任評審
+12:05 < hcchien> tkirby_ 就一個了   :D
+12:06 < kiang> tkirby_ 一個抵三個 :D
+12:09 < mrorz> tkirby_+=3
+12:10 < tkirby_> <0>
+12:10 < tkirby_> 看來只好把剛剛有發言的 hcchien 跟 kiang 都抓來了
+12:10 < tkirby_> 推人者人恆推之 (逃)
+12:10 < hcchien> 我很想去啊，可惜要上班，殘念
+12:11 < tkirby_> 竟然使出班遁之術
+12:11 < mrorz> 作用力與反作用力
+12:13 < mrorz> 今年雲端學程就結束了，明年的 CCSP 課不知道還在不在 QQ
+12:13 < tkirby_> no~~~~~ >"<
+12:13 < hcchien> 反應不好嗎
+12:14 < tkirby_> 只好來創辦 CC5P 了
+12:14 < tkirby_> 以下開放報名
+12:14 < tkirby_> ----------
+12:14 < mrorz> 反應很不錯，只是目前不確定有沒有資源開課 QQ
+12:15 < mrorz> CC5P wwwwww
+12:16 < mrorz> 好像和 R2D2 可以成為好朋友似的
+12:17 < tkirby_> XD
+12:30 < Lee1092> 後勤不是有人提議要辦  summer code  XD
+12:31 < Lee1092> summer school!!!
+12:54 -!- chihchun_afk is now known as chihchun
+12:55 < hcchien> 那 summit 順便來個 tutorial 好了
+13:02 < yhsiangCloud_> mrorz: ccsp++
+13:20 < kiang> tkirby_: 我很想去啊，可惜在台南，殘念
+13:25 < tkirby_> >"<
+13:27 < kiang> 另外， 6/5 我還在沖繩 XD
+13:28 < hcchien> tkirby_ 推坑失敗
+13:46 < dirty_> kiang 應該會來台南的 XD
+13:47 < kiang> dirty_: 會來台南? XD
+13:49 -!- Custom_ is now known as Custom
+13:51 < ipa> http://shaform.github.io/csdream/ 這個不錯耶
+13:51 < kcwu> ipa's url: [Introduction | 資夢]
+13:51 < ipa> 跟小學校有點像
+13:52 < poga> 喔喔
+13:52 < lancetw> wow
+13:52 < kiang> ipa++, 看起來很威
+14:01 < Lacutos> 請問一下，我有朋友在學運期間留下了聯絡電話給貴組織
+14:01 < Lacutos> 但是她的電話和 ID 被記在 Logbot 上
+14:02 < Lacutos> 造成很多人都能搜到，是否有辦法請貴組織移除呢？
+14:25 -!- Jarvis [7069906f@gateway/web/cgi-irc/kiwiirc.com/ip.112.105.144.111] has left #g0v.tw []
+14:28 < yhsiang> au: logbot的log是要請你處理嗎? @@a
+14:29 -!- cyen_ is now known as cyen
+14:36 < ipa> Lacutos: 可以寫信到 g0v-talks@googlegroups.com 說明希望刪除的個資，這邊要問一下誰可處理
+14:37 < lancetw> 危險的 logbot XD
+14:45 < hcchien> 凡走過必留下痕跡
+14:48 < a0000778> 不可能完全清掉的記錄
+14:52 < lancetw> poga: yhsiang:  tutorial.en.yml 目前已 100%
+14:59 < poga> lancetw++
+14:59 < poga> 該修這個 tutorial 完全不遵守 I18N 的問題了... XD
+15:05 -!- ufreeirc [72280d5f@gateway/web/freenode/ip.114.40.13.95] has left #g0v.tw []
+15:06 < lancetw> em.yml 裡的 "Add a new paragraph” 翻譯是「上傳一張圖片」＠＠
+15:06 -!- s is now known as Guest23223
+15:08 < lancetw> 看來之前翻好的 en.yml 還要再修 
+15:09 < lancetw> 不確定 paragraph 在這套平台裡是甚麼意思，還沒實際用過 XD
+15:15 < TW_35521> hackpad 2014/04/21~04/30公報，其中04/22的一個項目連結有問題，請求修改。 https://g0v.hackpad.com/201404210430--uqGrO6KHnjC
+15:15 < kcwu> TW_35521's url: [2014/04/21~04/30 公報 - g0v.hackpad.com]
+15:19 < pofeng> TW_35521: fixed ( technews URL )
+15:21 < TW_35521> pofeng++ 感謝
+15:31 < ttcat> lancetw: 啊啊抱歉 當時翻譯沒注意到
+15:31 < ttcat> lancetw: poga 剛剛測試是新增提案和建立群組還不行
+15:31 < ttcat> & 我如果現在繼續翻譯要用去哪裡抓什麼檔案、翻譯完後要怎麼 update 呢？
+15:32 < lancetw> ttcat: https://www.transifex.com/projects/p/g0v-airesis/
+15:32 < kcwu> lancetw's url: [g0v airesis localization]
+15:34 < ttcat> lancetw: 哎呀
+15:34 < lancetw> ttcat: 現在還有滿多待翻譯的 :P
+15:34 < ttcat> lancetw: 我後來都翻在這：https://crowdin.net/project/airesis/zh-TW
+15:35 < kcwu> ttcat's url: [Translating Airesis to Chinese Traditional language]
+15:35 < lancetw> ttcat: 是喔 ＠＠
+15:35 < ttcat> 對方給我的翻譯系統 所以我才說有 75%
+15:35 < ttcat> hmm 他那邊的 github 上有嗎？
+15:35 < lancetw> 那應該是 crowdin 的會回上游？
+15:36 < pofeng> 鄉民有人翻外交官那篇 http://www.ptt.cc/bbs/FuMouDiscuss/M.1397728649.A.D9B.html
+15:36 < kcwu> pofeng's url: [Re: [外媒] How Technology Revolutionized Taiwan - 看板 FuMouDiscuss - 批踢踢實業坊]
+15:37 < truman> ttcat 已經決定要使用了嗎？ 先不管Xdite 的修正和 .cn 的問題？
+15:37 < ttcat> truman: 現在就是用 xdite 的修正再繼續往下修啊 poga 對吧？
+15:37 < poga> truman: airesis.tw 目前是用接著 xdite__ 的修正後面繼續修出來的版本
+15:37 < poga> ttcat: y
+15:38 < lancetw> ttcat: 我把我剛的翻譯搬過去好了 XD
+15:38 < ttcat> lancetw: (y)
+15:39 < truman> poga++; 看之前的對話，以為還卡關
+15:40 -GitHub51:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/ece85a3cd051f0779561760ebbf3f431891c5cfd
+15:40 -GitHub51:#g0v.tw- g0v.tw/gh-pages ece85a3 g0v general (via TravisCI): regen for f7195eb
+15:40 < poga> truman: 其實還是在卡... 問題還是很多 XD
+15:41 < ttcat> truman Xdite 幫我們破了第一關 build up https://www.facebook.com/xdite/posts/10152458993848552
+15:41 < kcwu> ttcat's url: [鄭伊廷 - 剛剛跑去跳坑。花了大概一個小時多 build 起來。雖然我強烈建議整個重寫。下次 hackathon... | Facebook]
+15:41 < truman> 嗯，就是有看到那個，所以才有些擔心
+15:46 < lancetw> ttcat: g0v 那邊的是不是要關掉比較好 XD
+15:47 < ttcat> 哪邊？
+15:48 < lancetw> ttcat: transifex
+15:49 < ttcat> hmm 可是 Airesis 那邊的可以抓得下來嘛？我是找不到載點啦
+15:49 < ttcat> 除非他們有更新到他們的 github
+15:53 < lancetw> ttcat: crowdin 的資源會自動更新嗎？
+15:53 < ttcat> lancetw: no idea
+15:53 < poga> ttcat: 是說，如果只是要從 Airesis 蒐集 spec 出來另外作的話，我覺得用 airesis.cn 就可以先研究了
+15:54 < poga> 按照我現在一路看到的問題... 我覺得要修到能動大概年底都選完了 XD
+15:54 < lancetw> ttcat: 反正我先把 Tutorial 的翻譯放過去了 ＠＠
+15:55 < ttcat> poga: 是沒錯，差別在於如果是 .tw 的話，可以直接用真的議題號召大量的人來真的討論，一邊收集回饋 .cn 大概就是我們自己要找一小群人下去測
+15:55 < ttcat> .tw 是誰買的網域？或者我寫信去請他架在 .tw
+15:55 < poga> ttcat: 我感覺這東西已經沒人在維護了... XD
+15:55 < poga> 我買的
+15:56 < poga> ttcat: 可以直接問他們 DNS 要指到哪看看
+15:56 < ttcat> poga: 真的不知道他 3 月更新是更新殺小
+15:57 < lancetw> 為什麼會有 .cn @@
+15:57 < kiang> 我還是覺得公眾討論的東西放 reddit 去大亂鬥比較好 XD
+15:57 < ttcat> poga: thanks 真的辛苦了 那我先寫信去問問 也順便問一下翻譯檔案會不會自動更新
+15:57 < poga> ttcat++
+15:57 < kiang> .cn 大概是懷抱著偉大夢想吧？ XD
+15:58 < ttcat> kiang: 長期來說動民主的群眾審議系統還是要自己開發比較好，現在就是當成學習系統在測試  :p
+15:58 < kiang> ttcat: reddit is just another open source project
+15:59 < kiang> try: https://github.com/reddit/reddit
+15:59 < kcwu> kiang's url: [reddit/reddit · GitHub]
+17:01 -!- mode/#g0v.tw [+o ipa] by ChanServ
+17:05 -!- ipa changed the topic of #g0v.tw to: irc log:http://logbot.g0v.tw | 注意：這裡有公開紀錄，請留意個資安全 | 如何加入 http://g0v.tw/join.html | 新後勤中心試用中 http://community.g0v.tw | 下次大型黑客松在 6/21
+17:06 -!- mode/#g0v.tw [-o ipa] by ChanServ
+17:16 < au> yhsiang, Lacutos: godfat 提了一個好主意，就是進 redis 改成隱碼
+17:17 < au> 已經改好了 ( http://logbot.g0v.tw/channel/g0v.tw/2014-04-04/704 ), 頁面存檔也提請 google 稍後刪除。
+17:17 < kcwu> au's url: [Logbot | #g0v.tw | g0v-Jinan> KUMO 電話xxxxxxxxxx]
+17:22 < yhsiang> au: ya 我有看到 XD
+17:23 < tonyq_> 問一個問題，有 hackpad 的操作說明嗎  我在找怎麼加既有的 pad 進 collection
+17:23 < yhsiang> 是不是patch一下code遇到email或09開頭的數字就不進log ?
+17:23 < yhsiang> 或者變成隱碼
+17:23 < au> tonyq_: https://hackpad.com/Using-Collections-Theyre-like-Folders-bAv65MhuBFp
+17:23 < kcwu> au's url: [Using Collections - They're like Folders - hackpad.com]
+17:23 < tonyq_> au: thanks!
+17:24 < yhsiang> 先開issue討論看看?
+17:24 < au> yhsiang: 在顯示層做吧
+17:24 < yhsiang> au: ohoh 這樣比較好 XD
+17:27 < tkirby_> D/win 9
+19:08 < yhsiangCloud_> 第一次來新竹碼農@@
+20:20 -!- CelloCello [~Sero@1.34.191.8] has left #g0v.tw []
+21:08 -!- tubaxeno1 is now known as tubaxenor
+21:36 < clkao> tkirby_: 要去政大跟各學校的老師分享一下校園合作的經驗嗎 :p
+21:37 < yhsiangCloud_> tkirby_++ 衝！！
+22:18 < clkao> pg_prewarm 太邪惡了吧
+22:19 < yhsiang> 9.4 @@
+23:15 < pipi_> 大家好，請問有人知道與沃草、媒觀類似的機構有哪些？
+23:16 < pipi_> 不要跟我說NCC。。。。
+23:17 < mrorz> 公督盟？
+23:17 < pofeng> pipi_: http://taiwancmca.blogspot.tw/ 算嗎 ?
+23:17 < kcwu> pofeng's url: [台灣公民媒體文化協會]
+23:24 < pipi_> 我在嘗試從這些機構"找工作"（舉牌子）
+23:35 < tkirby_> clkao: 校園合作??
+23:35 < jimyhuang_> yhsiangCloud_: 咦應該要晃去找你的
+23:37 < clkao> tkirby_: check email
+23:45 < yhsiang> jimyhuang_: XD
+23:45 < yhsiang> jimyhuang_: 你在那
+23:49 < mrorz> 校園合作 ._./ hi
+23:59 < jimyhuang_> yhsiang:  清大，回台北了

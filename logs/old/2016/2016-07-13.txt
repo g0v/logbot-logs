@@ -1,0 +1,230 @@
+--- Day changed 三  7月 13 2016
+00:22 < slackbot2> <c9s> @caasi: 好像有東西可以玩了 XD
+00:29 < slackbot2> <caasi> 剛 pull 完，還落後 6 個 commits 要看 XD
+00:32 < slackbot2> <c9s> XD
+00:32 < slackbot2> <c9s> 看最新的就好 XD
+02:36 < slackbot2> <clkao> jackymaxj: <https://yhatt.github.io/marp/>
+02:36 < kcwu> slackbot2's url: [Marp - Markdown Presentation Writer]
+02:37 < slackbot2> <jackymaxj> 有我剛剛看到，蠻有趣的
+02:45 < slackbot2> <clkao> hackmd 居然沒有 group editable permission!
+02:46 < slackbot2> <jackymaxj> 現在沒有
+02:46 < slackbot2> <jackymaxj> 那不是 org 的功能嗎 (暈
+02:46 < slackbot2> <jackymaxj> 說個祕訣：沒有祕訣啦
+05:23 < slackbot2> <caasi> PR 發了，可以做正事了（眼神死）
+09:13 < slackbot2> <ipa> <http://g0v-jothon.kktix.cc/events/infrath3n> 7/23 基礎建設閃電松一下，hack 半天！
+09:13 < kcwu> slackbot2's url: [g0v 第參次基礎建設閃電松 - 7/23]
+09:13 < slackbot2> <ipa> 8/6 大松前兜一下，讓各自開發的東西更能動
+09:16 < slackbot2> <ipa> tag 一下有報過的 @allanfann @nell @jackymaxj @kcliu @jme @ronnywang @superbil @lee @poga @moon_c
+10:18 < slackbot2> <nell> 已報名～
+10:38 < ronnywang> +1
+12:18 -!- chihchun is now known as chihchun_afk
+12:33 -!- chihchun_afk is now known as chihchun
+12:37 < slackbot2> <c9s> @caasi: 哇賽收到你六點發的 PR ... XD
+12:37 < slackbot2> <c9s> 究竟是太早起還是太晚睡 ... XD
+12:43 < slackbot2> <c9s> 有誰有興趣增加一些問題? <https://github.com/c9s/qama/blob/master/src/QAApp.tsx#L38>
+12:43 < kcwu> slackbot2's url: [qama/QAApp.tsx at master · c9s/qama · GitHub]
+12:43 < slackbot2> <caasi> @c9s: 一天有 48 小時就好了 XDDD
+12:44 < slackbot2> <c9s> 48 小時... 別想了，越接近中年時間越短（菸） XDDDD
+12:44 < slackbot2> <c9s> 我現在都覺得一天只有 16 小時 XD
+12:45 < slackbot2> <kiang> 別想了，越多小孩子時間越短（菸），我現在都覺得一天只有 8 小時
+12:46 < slackbot2> <c9s> XDDD
+12:52 < slackbot2> <c9s> readme added
+12:52 < slackbot2> <yurenju> 最近用早上跟晚上的空檔改計算機，上班時間還真有點精神不濟...
+12:53 < slackbot2> <clkao> 不妨來寫一下新聞中心提振精神 :stuck_out_tongue:
+12:53 < slackbot2> <yurenju> 靠我忘了這件事情
+12:53 < slackbot2> <yurenju> 晚上吧 Orz...
+12:53 < slackbot2> <c9s> @caasi: 我在想 "question" 可以改成 "title", answers 改成 "next", 這樣感覺更 generics XD
+12:54 < slackbot2> <c9s> @clkao: 新聞中心是啥
+12:54 < slackbot2> <clkao> 發 fb 粉絲頁貼文的共筆
+12:54 < slackbot2> <c9s> 哦哦哦
+12:55 < slackbot2> <c9s> 不知道有什麼 web service 可以存 JSON 又可以同時做統計的?
+12:56 < slackbot2> <c9s> 有推薦的嗎?
+12:56 < slackbot2> <yurenju> @c9s 你要做啥統計啊？
+12:57 < slackbot2> <c9s> @yurenju: qama 的問答存起來，然後做 summarize
+12:58 < slackbot2> <yurenju> 目前只有想到 firebase, 不過也沒有 summarize 的功能
+12:58 < slackbot2> <c9s> 看來還是要自己做 XD
+12:59 < slackbot2> <yurenju> 可能也可以 S3 + lambda?
+12:59 < slackbot2> <c9s> 聽起來好像 firebase 比較快?
+13:00 < slackbot2> <yurenju> 沒錯，想到還要兜就懶了...
+13:00 < slackbot2> <c9s> 超懶的...
+13:03 < slackbot2> <caasi> @c9s: 如果 question 只有 title ，那直接塞在 children 裡面好像也沒什麼不可，上一層還能多點控制 XD
+13:03 < slackbot2> <caasi> 這樣 QuestionSection 的存在價值岌岌可危 XDDD
+13:04 < slackbot2> <c9s> @caasi: 哈哈哈
+13:04 < slackbot2> <c9s> 規劃那塊出來是想說未來可以增加 context
+13:04 < slackbot2> <c9s> context 可以有不同的 style
+13:04 < slackbot2> <c9s> 譬如說 "情境 .... "
+13:05 < slackbot2> <c9s> 所以QuestionSection 就負責 handle 不同 structure 的 rendering
+13:06 < slackbot2> <caasi> `next` 改成 `then` ，然後 type 是 `(a -> (a | Question a)) -> Question a` ，然後就可以一直 then then then （誤
+13:07 < slackbot2> <caasi> 原來如此， QuestionSection 還是有存在意義 XD
+13:09 < slackbot2> <c9s> XDD
+13:09 < slackbot2> <c9s> @caasi++
+13:09 < slackbot2> <c9s> @yurenju: 超過兩小時，是兩小時之後的才用 1 又 2/3 算 還是當天總時數又 1 又 2/3 算?
+13:09 < slackbot2> <caasi> then then then 是開玩笑的（逃走
+13:10 < slackbot2> <yurenju> 一例一休還是現行勞基法？是平日還是週六？
+13:10 < slackbot2> <yurenju> @c9s: ^^^^^^^^^^
+13:11 < slackbot2> <c9s> 一例一休勞基法~
+13:11 < slackbot2> <c9s> 週六
+13:12 < slackbot2> <yurenju> 如果是一例一休，如果你平日已經做滿四十個小時，兩個小時後就開始用 1 又 2/3 計
+13:12 < slackbot2> <c9s> 了解
+13:13 < slackbot2> <yurenju> 勞基法同樣情形，兩個小時後是用 2/3 算，沒有 1
+13:15 < slackbot2> <c9s> 了解
+13:18 < slackbot2> <c9s> @caasi: one more commit !
+13:19 -!- chihchun is now known as chihchun_afk
+13:19 < slackbot2> <c9s> 兩小時內加班，現行是 ⅓ 而一例一休是 ¾
+13:20 < slackbot2> <c9s> errr.. unicode 沒有 4/3
+13:25 < slackbot2> <c9s> <https://github.com/c9s/qama/commit/24e82859db2c556f80c653cf97f1be447d750a8d>
+13:25 < kcwu> slackbot2's url: [update messages · c9s/qama@24e8285 · GitHub]
+13:27 < slackbot2> <c9s> <http://todomvc.com/examples/typescript-react/#/> 這個 style 還不錯，晚點來套看看 XD
+13:27 < kcwu> slackbot2's url: [React • TodoMVC]
+13:35 -!- chihchun_afk is now known as chihchun
+13:59 -!- chihchun is now known as chihchun_afk
+14:08 -!- chihchun_afk is now known as chihchun
+14:46 -!- chihchun is now known as chihchun_afk
+15:02 -!- chihchun_afk is now known as chihchun
+15:18 -!- chihchun is now known as chihchun_afk
+15:20 -!- chihchun_afk is now known as chihchun
+16:47 < slackbot2> <c9s> <https://c9s.github.io/qama/> 有緣的隨便玩玩看
+16:55 < slackbot2> <yurenju> 最後的好像要加一個「週六沒有加班」
+16:55 < slackbot2> <yurenju> 然後跟他說這次修法對你沒有影響？
+17:02 < slackbot2> <c9s> 對
+17:02 < slackbot2> <c9s> PR welcome XD
+17:02 < slackbot2> <c9s> 正在忙別的 sorry XD
+17:07 < slackbot2> <othree> 裝好多東西XD
+17:07 < slackbot2> <chucklee> 週六沒加班 會少七天假啊~
+17:10 < slackbot2> <c9s> babel 好像可以拿掉 XD
+17:10 < slackbot2> <c9s> 因為 typescript 已經可以 transpile EC6 class 了
+18:01 < slackbot2> <yurenju> PR 送了
+18:03 < slackbot2> <yurenju> 來寫新聞中心，今天不寫計算機了，好累
+18:08 < slackbot2> <yurenju> @clkao: 新聞中心的寫作風格是隨意嗎？
+18:13 < slackbot2> <yurenju> 好了，先寫了一段，如果需要我修改什麼在跟我說。
+18:13 < slackbot2> <yurenju> 雖然剛說不要寫計算機，不過好像該把分享功能補進去 Orz...
+18:22 < slackbot2> <c9s> @yurenju: 感謝！ 收到!
+18:54 -!- chihchun is now known as chihchun_afk
+19:04 -!- chihchun_afk is now known as chihchun
+19:06 < slackbot2> <yurenju> 分享功能做好了 \o/
+19:11 < slackbot2> <yurenju> 靠有問題 Orz...
+19:43 < slackbot2> <ipa> yurenju: 新聞中心寫作風格隨意，我加了 repo link
+20:12 < slackbot2> <c9s> @caasi: EntryStore 好像應該存一個 tracks <String, Array<Answer>>;
+20:12 < slackbot2> <c9s> 這樣可以同時 track 多個 answers &amp; states
+20:12 < slackbot2> <c9s> 然後還是讓 QuestionSection / AnswerSection 跟 Store binding, 讓他自己從 store 拿不同 track 的 state
+20:13 < slackbot2> <c9s> property 傳 track ID
+20:20 -!- chihchun is now known as chihchun_afk
+20:56 < slackbot2> <c9s> 然後好像 QuestionSection/AnswerSection 其實可以合併 XD
+21:19 < slackbot2> <caasi> @c9s: 所以目標還是希望能同時呈現好幾個 Question+Answer section ，像你一開始說的，樹狀圖囉？
+21:21 < slackbot2> <caasi> 好奇想存下多個 answers 是希望能倒帶還是可以 save/load XD
+21:26 < slackbot2> <c9s> @caasi: 可以分不同的方向作問答 然後得到多個結論
+21:27 < slackbot2> <c9s> 譬如... 七天假的部分，是問 "你平常國定假日有在放假嗎？" 然後結論是 "刪七天假對你來說根本沒差"
+21:28 < slackbot2> <c9s> 然後第二條線才是問加班狀況 XD
+21:28 < slackbot2> <c9s> 那最後的話就是可以把所有 tracks submit 存檔案, 或載入來看...
+21:29 < slackbot2> <c9s> @caasi: yeah  N * Track(Question + Answer section)
+21:32 < slackbot2> <c9s> 同一個 graph 裡面不同的 track 就是彼此不聯通的 subgraph
+21:44 < slackbot2> <chucklee> 去年之前可能沒有放  如果沒有刪的話今年開始都有放  從可以放又變成沒有放  我不覺得這個是沒差啦...
+21:50 -!- chihchun_afk is now known as chihchun
+21:51 < slackbot2> <yurenju> @chucklee: 問一下，以現行勞基法為例以 150
+21:52 < slackbot2> <yurenju> 週六加班的第一小時，加班費真的是 50 元？
+21:52 < slackbot2> <chucklee> "可以是"50元
+21:52 < slackbot2> <yurenju> 所以最低加班費為 50 元，這樣的說法對吧？
+21:53 < slackbot2> <chucklee> 對~
+21:53 < slackbot2> <yurenju> 實務上不會有人給那麼低對吧？
+21:53 < slackbot2> <clkao> 介面旁邊是不是要開外掛，「月薪是週末也有付你薪水所以加班時薪以月薪除以三十日」卡
+21:54 < slackbot2> <chucklee> 不敢保證
+21:54 < slackbot2> <chucklee> 尤其是一些很血汗的產業  保全什麼的
+21:54 < slackbot2> <yurenju> 這真是我最震驚的一點...
+21:54 < slackbot2> <clkao> 讓人自己輸入 然後看看是否合理或合法？
+21:54 < slackbot2> <clkao> 真的，修掉那個 base 其實應該比較容易達到折衷
+21:55 < slackbot2> <yurenju> `讓人自己輸入 然後看看是否合理或合法？` 什麼意思啊？
+21:56 < slackbot2> <c9s> 剛剛才知道 "月薪是週末也有付你薪水所以加班時薪以月薪除以三十日" XD
+21:56 < slackbot2> <yurenju> @c9s: 這件事情影響超大
+21:57 < slackbot2> <yurenju> 第一是領加班費時，基數會變小
+21:57 < slackbot2> <yurenju> 第二是導致週六加班費薪水超少
+21:57 < slackbot2> <yurenju> 雙重打擊啊...
+21:57 < slackbot2> <c9s> 不過這是現行吧?
+21:57 < slackbot2> <c9s> 對嗎?
+21:57 < slackbot2> <yurenju> 沒錯
+21:57 < slackbot2> <yurenju> 修了之後就好了（如果是一例一休的話）
+21:58 < slackbot2> <yurenju> 兩例的話狀況也不會太差
+21:58 < slackbot2> <chucklee> 一例一休的草案  會讓違法在一例加班的成本低於在一休加班  很微妙
+21:59 < slackbot2> <yurenju> 但是不是還要再補休一天？
+21:59 < slackbot2> <yurenju> 這樣加起來成本應該不會比較低吧？
+22:00 < slackbot2> <chucklee> 函釋只說違法一例加班的時候  加班費要照付  但是沒有說要賠補休
+22:00 < slackbot2> <yurenju> @chucklee: 對誒我今天加了這個功能
+22:00 < slackbot2> <yurenju> 我自己都忘了
+22:01 < slackbot2> <yurenju> 現在如果勞工同意例假日加班，會顯示違法，但是不會顯示補休
+22:01 < slackbot2> <yurenju> 因為法律規定好像不用補修
+22:02 < slackbot2> <yurenju> @chucklee: 違法的話，如果他是罰 30 萬其實也可以
+22:02 < slackbot2> <yurenju> 這樣成本就提高了
+22:03 < slackbot2> <chucklee> 不知道要連續開罰幾次才會累積到30萬啊～　如果公司很大　罰30萬可能還是很划算
+22:03 < slackbot2> <yurenju> 嘖嘖...
+22:03 < slackbot2> <chucklee> 如果是偶爾要週末加班　拼一次一例加班只會罰2萬
+22:06 < slackbot2> <c9s> 這個計算機好像蠻實用的
+22:06 < slackbot2> <c9s> 以後如果要討加班費的話 XD...
+22:07 < slackbot2> <chucklee> 討加班費困難的地方不是算錢  是舉證有加班啊~
+22:07 < slackbot2> <jedi> @yurenju: 現行的話，先前敝院助理員據說加班一小時是給加班費 25 元……然後據說因為是醫院所以全部員工比照彈性工時，沒在分週末與否；護理師的部份則是一小時加班費給 33 元
+22:07 < slackbot2> <yurenju> @c9s: 你老闆不是跟你很熟 XD 還是你就是你老闆 XDDDDDDDDD
+22:08 < slackbot2> <c9s> XDDD 突破盲腸
+22:08 < slackbot2> <yurenju> @jedi: 囧...... 所以是真的會發生的，天啊....
+22:08 < slackbot2> <c9s> 客戶都是老闆  (計算機無用 XDDDD)
+22:08 < slackbot2> <jedi> @yurenju: 當然更多時候是 0，因為不允許報加班
+22:08 < slackbot2> <chucklee> 怎麼算出那麼低的加班費的啊 XD
+22:09 < slackbot2> <yurenju> 前幾天有人舉 22k 的例子，算下去真的蠻心酸的
+22:09 < slackbot2> <yurenju> 22k 的話，週六第一個小時加班費是 30 元台幣
+22:10 < slackbot2> <chucklee> 但是非週末不可能算到25塊啊~
+22:10 < slackbot2> <yurenju> 法定最低薪資是 20000 上下對吧？
+22:10 < slackbot2> <yurenju> 那也才 27 元
+22:11 < slackbot2> <yurenju> 25 是怎麼做到的...
+22:11 < slackbot2> <chucklee> 20008
+22:11 < slackbot2> <chucklee> (印象中)
+22:11 < slackbot2> <jedi> 以前啦，當時的最低薪資比現在再低一點
+22:12 < slackbot2> <jedi> 而且當然醫院都亂算（違法），只從「固定薪資」的部份去乘，另外弄了個「變動薪資」的結構
+22:12 < slackbot2> <clkao> yurenju: 這直接可以變 headline 了：加班一小時三十，合法！
+22:13 < slackbot2> <jedi> 然後還有很厲害的，要求員工用「勞務承攬」的方式去加班
+22:13 < slackbot2> <jedi> （這個就離題了）
+22:14 < slackbot2> <yurenju> @clkao: headline 改成「你知道現制 22k 薪資週六加班第一小時薪水 30 元是合法的嗎？」
+22:14 < slackbot2> <chucklee> 路邊舉建商廣告牌的都是用勞務承攬避掉勞基法啊~
+22:15 < slackbot2> <chucklee> 臨時會開完這個headline大概就沒用了 XD
+22:15 < slackbot2> <clkao> 一例一休的話第一小時是?
+22:16 < slackbot2> <yurenju> 150 計算，是 200
+22:16 < slackbot2> <yurenju> 但是未滿四小時得以四小時計
+22:16 < slackbot2> <yurenju> 但是未滿四小時得以四小時計
+22:16 < slackbot2> <yurenju> 所以是 900 元
+22:16 < slackbot2> <chucklee> 22K的話是667 (明明就有計算器了啊 XD)
+22:16 < slackbot2> <yurenju> 如果只上一個小時
+22:16 < slackbot2> <clkao> 做出來變成護航一例一休? XD
+22:17 < slackbot2> <yurenju> 還是讓大家自己算好了...
+22:17 < slackbot2> <clkao> 或者舉 common use case 在三個方案的差異
+22:17 < slackbot2> <yurenju> 最常見的 case 應該就是週六加班半天吧？
+22:17 < slackbot2> <chucklee> 就看到底訴求重點到底是增加加班費還是減少工時了...
+22:17 < slackbot2> <yurenju> 我有聽說在南部工作的朋友有幾個這樣的情形
+22:18 < slackbot2> <c9s> hyperdrive 這個看起來蠻厲害的
+22:18 < slackbot2> <yurenju> @c9s: 玩了一下覺得有趣，不過沒認真用
+22:18 < slackbot2> <yurenju> 誒我記錯了，那是 hyperdev
+22:19 < slackbot2> <c9s> 就這個 <https://github.com/datproject/dat.land> Dat project
+22:19 < kcwu> slackbot2's url: [GitHub - datproject/dat.land: the hosted web application for dats]
+22:20 < slackbot2> <c9s> 不過...感覺大家還是比較偏向想要七天假
+22:21 < slackbot2> <c9s> 由於對一例一休不了解所以覺得是政院在呼弄大家
+22:24 < slackbot2> <yurenju> 一例一休或兩例都比現況好，現在是最糟的了...
+22:40 < slackbot2> <chucklee> 如果留著七天假  一例一休對勞團來說可能就是可以接受的讓步惹
+23:05 < slackbot2> <c9s> @yurenju: <http://web2.bola.taipei/cutweb/a2.asp>
+23:05 < kcwu> slackbot2's url: [便民試算專區-工時及加班費試算]
+23:05 < slackbot2> <c9s> 這邊這個算法
+23:05 < slackbot2> <c9s> 有把 1 算進去耶
+23:07 < slackbot2> <c9s> 是不是有什麼地方搞錯了? XD
+23:07 < slackbot2> <c9s> 還是我的理解錯誤?
+23:10 < slackbot2> <c9s> @yurenju: @wancw 回的 <https://twitter.com/wancw/status/753236919530639360>
+23:10 < kcwu> slackbot2's url: [WanCW on Twitter: "時薪 150，超時加班費最低應該是 200 喔（1 + 1/3），兩小時以後是 1 + 2/3。 假日加班 8 小時以內就是全薪，超時照樣照前面方式算。 可以參考試算表：https://t.co/9VYUabbyWD https://t.co/UTKaz16FxJ"]
+23:12 < slackbot2> <c9s> 他的第一個案例的確是月薪
+23:12 < slackbot2> <c9s> 不過這個版本是 2012
+23:13 < slackbot2> <c9s> <http://www.lawbank.com.tw/treatise/lawrela.aspx?lsid=FL014930&amp;ldate=20090422&amp;lno=24,30,30-1,32,33,35,36,49,79,84-1> 這邊的確是寫  `延長工作時間在二小時以內者，按平日每小時工資額加給三分之一以
+23:13 < kcwu> slackbot2's url: [法源法律網-相關法條]
+23:13 < slackbot2>     上。`
+23:15 < slackbot2> <yurenju> 但是假日不是已經有給薪了嗎？
+23:15 < slackbot2> <c9s> 哦哦看到你的回應了
+23:17 < slackbot2> <c9s> 他那個時數 240 是怎麼來的?
+23:18 < slackbot2> <chucklee> 第一個案例是"上班日加班"  加班前工時已經滿8小時了  就要加班費要1+1/3
+23:18 < slackbot2> <c9s> yeah
+23:20 < slackbot2> <chucklee> 週六加班當天工時是從0開始算  所以前八個小時已經內建了1
+23:20 < slackbot2> 月薪制工時以240計是勞委會的函釋來著
+23:22 < slackbot2> <chucklee> 台北市勞動局的試算工具沒辦法計算一到五上滿40小時  週六又加班的狀況
+23:25 < slackbot2> <chucklee> 站在勞動局的角度  把加班費算高一點也算是對勞工的保護吧 XD
+23:27 < slackbot2> <clkao> yurenju: screenshot 好像可以加一些大字卡，告訴大家 step 1 (輸入月薪、平常工時）-> step 2 (看各版本)
+23:29 < slackbot2> <c9s> yurenju: jumbotron !

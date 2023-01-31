@@ -1,0 +1,119 @@
+--- Day changed 日  2月 10 2013
+00:11 -!- AndChat|513876 [~AndChat51@49.217.74.184] has joined #g0v.tw
+00:11 -!- thschee_autobahn [~AndChat51@49.217.74.184] has quit [Read error: Connection reset by peer]
+00:48 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+01:13 -!- AndChat|513876 [~AndChat51@49.217.74.184] has quit [Quit: Bye]
+01:33 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Quit: Leaving.]
+01:39 < kcwu> 發現這個(在 3du.tw 之前)有人做的 android 教育部國語字典, 只有字, 沒有詞, https://play.google.com/store/apps/details?id=org.hisand.zidian.zht
+01:39 < kcwu> kcwu's url: [國語字典 - Google Play Android 應用程式]
+01:39 < kcwu> au: http://www.moedict.tw/#華
+01:39 < kcwu> kcwu's url: [3du.tw 萌典測試版]
+01:41 < kcwu> sym.txt bug ...
+01:46 -!- awaw [cb4d4895@gateway/web/freenode/ip.203.77.72.149] has quit [Ping timeout: 245 seconds]
+02:37 -!- hychen [~hychen@host-58-114-183-61.dynamic.kbtelecom.net] has quit [Quit: Leaving]
+02:39 -!- tonytonyjan [~tonytonyj@218-166-166-219.dynamic.hinet.net] has quit [Quit: Lost terminal]
+03:34 -!- superd [superd@saturn.stu.edu.tw] has quit [Read error: Connection reset by peer]
+03:34 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+03:35 -!- dryman [~dryman@OpenISDM.iis.sinica.edu.tw] has quit [Ping timeout: 248 seconds]
+03:35 -!- dryman [~dryman@OpenISDM.iis.sinica.edu.tw] has joined #g0v.tw
+03:35 -!- mhsin_bsd [b7506043@bsd1.csie.ntu.edu.tw] has quit [Ping timeout: 240 seconds]
+03:37 -!- mhsin_bsd [b7506043@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+04:54 -!- superbil [~superbil@114-34-221-169.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+10:02 < chhsiao1981> clkao: I hoped to be a different pullreq XD. (what can I do for that?)
+10:03 < chhsiao1981> s/what can I do for that/how can I do for that/
+10:13 < clkao> chhsiao1981: just create another branch and send a pullreq from that branch
+10:20 < chhsiao1981> ok! thanks! I'll make it so when I go back to TPE (or whatever makes the progress.)
+10:38 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+10:38 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: Leaving]
+10:53 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+11:07 < yllan> traceroute 216.81.59.173 #好玩
+11:14 < kcwu> 這是改 routing table 就能做出來嗎, 還是要改 icmp packet 才行
+11:15 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Quit: Leaving.]
+11:21 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+11:23 -!- KNY1 [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+11:26 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Ping timeout: 256 seconds]
+11:53 -!- KNY1 [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Quit: Leaving.]
+12:10 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+13:42 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Quit: Leaving.]
+13:44 -!- tonytonyjan [~tonytonyj@218-166-170-51.dynamic.hinet.net] has joined #g0v.tw
+14:00 -!- awaw [cb4d4895@gateway/web/freenode/ip.203.77.72.149] has joined #g0v.tw
+14:18 -!- hychen [~hychen@host-58-114-183-61.dynamic.kbtelecom.net] has joined #g0v.tw
+14:49 -!- mutolisp [~mutolisp@111-255-206-190.dynamic.hinet.net] has joined #g0v.tw
+15:17 < V1ctor> hychen: md2json 主要的問題是 文章的 heading 結構很可能會錯 當時沒處理好就去玩其他東西了.. XD
+15:17 < hychen> V1ctor, 後來產生的md 檔結構會變, 要一次通殺可能不是那麼容易
+15:22 < V1ctor> hychen: 對，當時是有想過在 md 的每個 '# 段落' 結尾塞 comment, 就可以清楚知道結束。現在常常上下層會搞錯
+15:23 < hychen> V1ctor, 我後來在discussion ctx 裡面結尾會塞一個tag
+15:23 < hychen> V1ctor, 要不然很難知道什麼時候是end
+15:24 < V1ctor> 等等 也許是我沒 implement 好，不然結構上應該只能有一種 output
+15:25 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+15:25 < hychen> V1ctor, hmmm, 何謂一種output?
+15:28 < V1ctor> hychen: 就是 md 怎麼被 github render 出來，第 x 層就應該在 json 的第 x 層。但是現在的 output 有些會錯掉
+15:28 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Client Quit]
+15:29 < V1ctor> 理論上應該不需要有結尾的 hint 就可以做到
+15:29  * V1ctor 無腦放空中...
+15:29 < hychen> 如果這樣應該是要可以
+16:09 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+16:25 -!- KN16H7 [knight@saturn.stu.edu.tw] has joined #g0v.tw
+16:26 -!- Custom_ [custom@saturn.stu.edu.tw] has joined #g0v.tw
+16:27 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 252 seconds]
+16:27 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+16:27 -!- KN16H7_ [knight@saturn.stu.edu.tw] has quit [Ping timeout: 255 seconds]
+16:27 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 276 seconds]
+16:29 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+16:38 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Ping timeout: 252 seconds]
+17:12 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 245 seconds]
+17:14 -!- superd [superd@saturn.stu.edu.tw] has joined #g0v.tw
+17:32 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has joined #g0v.tw
+17:32 -!- KNY [~Adium@124-9-116-91.dynamic.tfn.net.tw] has quit [Client Quit]
+17:55 < clkao> 無(腦(放(空中)))
+17:56 -!- hychen [~hychen@host-58-114-183-61.dynamic.kbtelecom.net] has quit [Quit: Leaving]
+18:01  * tkirby 冷
+18:28 < clkao> au: moved plv8x* stuff into the plv8x schema. also triggers can be defined in any pg custom language just fine ;)
+18:29 < au> awesome. how does one return NEW? just literal?
+18:33 < clkao> i i think so,  but i haven't really tried that. just created something.  but dinner now bbl ;)
+18:34 < au> lol. enjoy
+18:37 -!- mutolisp [~mutolisp@111-255-206-190.dynamic.hinet.net] has quit [Quit: leaving]
+18:37 < au> . o O ( 「無黨無派，無錢倘買菜」 / 「無名無功，無腦放空中」 )
+19:00 < kcwu> http://gazette.nat.gov.tw/robots.txt 行政院公報不讓 search engine index... 誰可以幫忙反應嗎?
+19:07 < kcwu> http://web.pcc.gov.tw/robots.txt 政府電子採購網
+19:09 < kcwu> http://gaz.ncl.edu.tw/robots.txt 國圖的政府公報資訊網
+19:18 -!- t3e [~tonie@114.34.217.3] has quit [Ping timeout: 245 seconds]
+19:21 -!- t3e [~tonie@114.34.217.3] has joined #g0v.tw
+19:22 < kcwu> http://law.moj.gov.tw/robots.txt 全國法規資料庫
+20:12 < walkingice> 等一下寫春聯想要寫「年年有糖」 XD
+20:13 < S3p_lin> "年年有蛇麼"
+21:56 -!- ck_ [~ck@61-31-166-224.dynamic.tfn.net.tw] has joined #g0v.tw
+22:07 -GitHub87:#g0v.tw- [twlyparser] victorhsieh pushed 1 new commit to master: https://github.com/g0v/twlyparser/commit/251972b38154d30494bad237746ac07606c5139a
+22:07 -GitHub87:#g0v.tw- twlyparser/master 251972b Victor Hsieh: md2json: fix json structure
+22:14 < ericyu> github 給這種網址還真長... 他們怎麼不給六碼就好
+22:24 < kcwu> favonia: 發現異體字字典也有提供 "形構查詢". 不知道跟中研院那套是不是一樣
+22:24 < kcwu> # http://dict2.variants.moe.edu.tw/variants/rbt/query_by_composite_tiles.rbt?command=clear
+22:25 < kcwu> kcwu's url: [教育部異體字字典]
+22:26 < favonia> 這個形構查詢不錯耶。不過要是有 CNS 部件資料這個也很簡單
+22:27 < favonia> 應該可以用部件 substring xD
+22:28 < kcwu> 想像中異體字字典的字應該會比 cns 有編碼的來得多
+22:30 < favonia> kcwu: 募款 1500 去買 DVD 回來 parse www
+22:31 < kcwu> favonia: 異體字字體?
+22:32 < favonia> 字典
+22:32 < kcwu> 這有在賣嗎, url?
+22:33 < favonia> http://dict.variants.moe.edu.tw/yitisetup/index.htm
+22:33 < kcwu> favonia's url: [DVD版相關訊息]
+22:33 < kcwu> 我是有點懶得玩異體字字典, 太累了
+22:34 < kcwu> favonia: 1992 年版, 你真的有興趣買嗎
+22:34 < favonia> kcwu: 我個人沒有
+22:34 < kcwu> s/1992/2002/
+22:35 < clkao> 還需要 PentiumⅢ500 以上電腦唷 
+22:38 < kcwu> 若真的要玩, 我對中研院那個構形資料庫比較有興趣, 好像附 library, 不用自己搞
+22:39 < favonia> 嘗試用 html 刻出 inkscape 隨便拉一拉就做出來的 UI 好累...
+22:40 < favonia> 乾脆嵌 svg 好了（自暴自棄）
+22:49 < ericyu> kcwu: http://beaglenetworks.net/
+22:49 < kcwu> ericyu's url: [BeagleNetworks]
+22:52 < kcwu> hmm
+22:54 -!- hychen [~hychen@host-58-114-183-61.dynamic.kbtelecom.net] has joined #g0v.tw
+23:02 < clkao> au: yeah both NEW and OLD work in plls triggers
+23:07 -!- zz_chihchun is now known as chihchun
+23:07 -!- chihchun is now known as zz_chihchun
+23:49 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit []
+23:51 -!- hychen [~hychen@host-58-114-183-61.dynamic.kbtelecom.net] has quit [Quit: Leaving]
+23:51 -!- ck__ [~ck@61-31-165-41.dynamic.tfn.net.tw] has joined #g0v.tw
+23:54 -!- ck_ [~ck@61-31-166-224.dynamic.tfn.net.tw] has quit [Ping timeout: 276 seconds]

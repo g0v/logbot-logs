@@ -1,0 +1,376 @@
+--- Day changed 四 10月 02 2014
+00:05 < shadowcrow> pipi 可以跟你要 summit 直播組負責人了聯絡資料嘛？
+00:05 < shadowcrow> 有些訊息要跟他確認
+00:16 -!- chihchunl is now known as chihchun
+00:16 < johnny__> CornGuo: 感謝幫忙把卡住的斧拔出，完成了 => http://councils.g0v.tw/bills/%E6%96%B0%E5%8C%97%E5%B8%82/normal/
+00:16 < kcwu> johnny__'s url: [議員投票指南:新北市-議案檢索]
+00:25 < pipi> shadowcrow: 可以直接跟我說，大家最近都很忙XD
+00:25 < miaoski> au: revised-pua 現在會用到 link 了... 
+00:26 < miaoski> view.ls #524 我如果 if lang is \p ... 的話，怎麼做都不對。可是我需要把 <[ example quote link ]> 裡的 link 拿掉
+00:41 < miaoski> 陷入困難了... example quote link 在 onMouseOver 都是不會顯示的。這樣很好。但我把 link 從 #524 拿掉就會顯示了... 把 synonym hack 成相關詞好像是個選擇
+00:44 < miaoski> 但 synonyms 是在 heteronyms 下一層的，可是 link 卻是在 definitions 的下一層...
+00:44 < shadowcrow> pipi   可以幫我確認無線電數量嘛？
+00:44 < shadowcrow> 是只要一隻還是都要
+00:49 < miaoski> 好。決定用 synonyms 了... 看起來好像沒問題，可以用。只剩「例」不會乖乖換行的問題了。
+00:53 < pipi> shadowcrow: 剛剛正好回在trello 只要一隻
+01:05 < racklin> au 萌典桌面版 1.1.0 放出來，會直接在 moedict-app 中置入一個安裝的 icon , 且套件直接在桌面版中下載安裝，不用再用技術人的方式教學了。https://racklin.github.io/moedict-desktop/help.html
+01:06 < racklin> 生日當天還在弄萌典。。 XD
+01:12 < au> racklin++ # 生日快樂!
+01:13 < racklin> au 你看那 help 的說明，已經不用再利用 Browser 下載到電腦了，可以在萌典中直裝安裝。應該非技術人也懂了吧！？
+01:14 < au> 應該是。我打算稍後把它放上 moedict.tw/moedict.org
+01:14 < au> 同一個圖示就可以下載桌面版安裝
+01:15 < au> 但是要先趕周五要用的花傘簡報 XD
+01:16 < racklin>  au 我是覺得在右上方 android / apple 旁加一個 desktop 的 link, 用 font-awesome 的 fa-desktop 圖示？ 
+01:17 < miaoski> au: 我也要問一下... mouseover 的時候，a href 到底是哪一行生出來的啊? 我一直惡搞 main.ls #577 卻完全沒效果
+01:18 < au> mouseover 的 node 本身就是 href 啊
+01:18 < au> #577 無效是因為不在 rb[word] (#571) selector 裡，因為沒有標注音?
+01:18 < racklin> au 另外，我用 patch 一行 moedict-app , 請您 merge https://github.com/racklin/moedict-app/commit/5063204a4fe393318e0ff1e9bfa231ef4035beda
+01:18 < kcwu> racklin's url: [Added download addon link when running in Moedict-Desktop · 5063204 · racklin/moedict-app · GitHub]
+01:20 < au> racklin: done!
+01:24 < miaoski> au: 啊，所以它 a href 不是因為 #575-578 把它 wrap 起來的關係? ... @@
+01:26 < au> no...  https://www.moedict.tw/%E5%AD%97.json 裡面就有一堆 a href
+01:26 < au> (bbiab)
+01:27 < miaoski> 嗯。我好像沒說清楚... 如果有空的話請幫忙 pull amis-react 
+01:27 < miaoski> 然後，以 raraw 那個詞為例.
+01:28 < miaoski> 第二個例句有 mararaway ，在 mouseover 的時候，因為我寫了 stemmer 所以它會去抓 raraw.json 來當提示框，這是正確的
+01:28 < miaoski> 可是它的 a href 是 #;mararaway 這是錯的，它應該指到 #;raraw
+01:30 < kiang> racklin++, 其實最常用萌典的功能是用它來產生圖片，目前離線版還沒有這個功能，圖片也不能另存新檔 XD
+01:33 < racklin> kiang 舉牌小人功能大家還沒玩膩呀～～～ 弄個擴充套件來試試！
+01:34 < kiang> racklin++, 就找不到人畫圖的時候只好先塞個文字圖充充場面 XD
+01:35 < racklin> kiang: 好沒說服力的理由，request denied 。
+01:35 < kiang> XD
+01:37 < miaoski> au: 好吧... view.ls #721 才是我要找的地方
+01:37 < miaoski> 這蠻頭痛的...
+01:41 < miaoski> 我不知道怎麼從 view.ls # 721 去 call main.ls 裡的 function.
+01:42 < au> just define it in view.ls then?
+01:42 < au> or pass it as an argument
+01:42 < au> (...afk again)
+01:43 < racklin> 萌典的圖示，真的很萌。。想弄一個 wrapper ，把 shell 通知，都用萌典來通知了。。。我溶化了！https://twitter.com/racklin/status/517365502536978433?utm_source=fb&utm_medium=fb&utm_campaign=racklin&utm_content=517365502536978433
+01:43 < kcwu> racklin's url: [阿土伯 on Twitter: "萌典 @moedict 圖示出現在 MacOSX 的通知中心，真的蠻萌的～～ http://t.co/axR2Vwnvhu"]
+01:43 < miaoski> au: 那樣感覺破壞了程式的架構 (雖然目前也反正雜在一起了
+01:45 < miaoski> pass as argument 沒機會。因為每個在例句裡的阿美語的字，都要用 stemmer parse 過才行. 
+01:47 < miaoski> tooltip 在 view.ls 沒有啊... so. 看來還是得交給你了... 麻煩了。
+01:48 < hlb_> 看到萌典提示，忽然想到入力娘這個東西......
+01:55 < miaoski> au: 然後，全文檢索的部份我不知道該怎麼加進去。可能就暫時另外做一頁吧。
+01:57 < miaoski> 雖然不知道那樣做的話，手機板該怎麼辦... 等你有空再指點我一下。感謝。
+03:02 < hychen> uconof 沒報到啊....
+04:29 < au> miaoski: view.ls decodeLangPart 的地方，main.ls 如果 export function 的話，view.ls 可以直接用（類似全域變數這樣）
+04:30 < au> 或是在 json 層次先 pre-stem/decorate 好? (目前還沒有完全看懂架構)
+07:18 < clkao> ETBlue++ # another hackfoldr site http://www.hk926.hk/
+07:19 < lafin> miaoski: ++
+08:07 < miaoski> au: OK.. 我再看一下怎麼 export ... 我完全不會用 React :P  它原先的用意是要 MVC 嗎? 現在有麵糰的感覺了 :P
+08:09 < miaoski> 嗯 不能先 decorate. 萌典每個 example 都可以點，然後 mouseover 會有提示框。漢語`做~`好~`斷詞~ 然後就可以像現在這樣
+08:11 < miaoski> 但阿美語顯示 mapararaw 卻是 ma- pa- raraw 這樣加前綴. 嗯。好啦其實可以切成 `ma~`pa~`raraw~ 不過不知道丟進 oktavia.js 會怎樣 ...
+08:28 < miaoski> lafin: 工作中的版本請看 http://ckhis.ck.tp.edu.tw/~ljm/moedict-amis/#;raraw
+08:28 < kcwu> miaoski's url: [萌典 – 教育部國語、臺語、客語辭典民間版]
+08:28 < miaoski> 也可以請朋友幫忙測一下... 把 github 上直接 checkout 出來就是上面的版本
+08:28 < miaoski> 感謝
+08:31 < lafin> miaoski: ++  我再宣傳一下
+10:13 < pipi> Lee1092: 戳戳
+10:13 < Lee1092> ?
+10:14 < hcchien> 竟然到現在還沒報滿
+10:14 < hcchien> 真意外   :p
+10:15 < pipi> Lee1092: 只是想戳戳看XD
+10:17 < a0000778> 384人 其實上限是多少人?
+10:25 < ipa_> 這報名速度據說比較正常，不要拿宅界標準來比。。。
+10:26 < pm5> ipa_: 報過 g0v 黑客松, 就回不去本來的速度了...
+10:33 < miaoski> pm5: +1
+10:48 < Lee1092> 結果是 unconference 先來要哭哭票了  XD
+10:49 < Lee1092> ipa_:  unconference 會開 哭哭票 嗎?  還是 跟黑客松一樣  沒搶到就沒了~    XD
+11:00 < ipa_> Lee1092: unconf 沒有哭哭票，空間已經緊繃了。。。。
+11:01 < ipa_> 那封我順手回了，之後可以照差不多意思回 XD
+11:02 < ipa_> pm5: 很快滿的問題可能是，之後貼議程和贊助簡介，會引來更多哭哭票（哭）
+11:22 -!- mark86092 [~ycchen@140.112.187.33] has left #g0v.tw []
+11:51 < Lee1092> ipa_:  耶   g0v-summit-staff-2014 沒看到回信~ XD
+11:55 < hychen> uconf 沒報到, 只好來約中研院米粉湯亂聊...
+11:55 < hcchien> hychen++
+12:02 < pm5> ipa++
+12:03 < pm5> hychen++
+12:04 < hychen> 按++的是要報名米粉湯嗎?
+12:04 < hychen> ipa_: 中研院附近的米粉湯在哪邊?
+12:05 < pcchen> miaoski 阿美語聖經出現在這頁了 http://www.bstwn.org/
+12:05 < kcwu> pcchen's url: [台灣聖經公會]
+12:05 < miaoski> !
+12:05 < miaoski> pcchen: 我寫信過去，賴牧師還沒回信呢
+12:06 < miaoski> 咦等等，有全文嗎？
+12:07 < pcchen> 不確定
+12:07 < pcchen> 前面的部份應該有
+12:08 < pcchen> https://www.facebook.com/isak.afo
+12:08 < kcwu> pcchen's url: [Isak Afo | Facebook]
+12:08 < lafin> !aa
+12:09 < clkao> hychen: 你看 osm 上面後門 134 巷那邊
+12:09 < pcchen> Ta tahira sato ca Yis iti:raw a lawac no fanaw i Kirasa a pala. => 查 pala 查的到！
+12:10 < pcchen> Yo ma^pod ci Yis nai tamina i, ira a militmoh ci Yisan ko ccay a naitademay a maaro'ay no kaackan a 'adingo. 
+12:10 < pcchen> mo^pod 這個 ^ 是什麼？
+12:11 -!- caasih__ is now known as caasih
+12:12 < miaoski> ^ 是個有爭議的符號 :P 是很重的 ' 或是 ' 後面加 h
+12:12 < miaoski> 就是... ^ = ['h]
+12:13 < miaoski> 像 肝 = ^tai. 你仔細聽，就知道和  'tai 的音值不一樣，但說真的它沒有 phoneme 的效果.... (當然我只是隨口說說，前兩天和宋麗梅老師談，才發現敝所目前只有 2x 本南島語的論文，根本就不夠)
+12:13 < miaoski> lafin: a'a ? :P
+12:14 < pcchen> 所以可以開始實證 阿美語詞典 夠不夠 查聖經了
+12:14 < lafin> pcchen: 後面好像還沒數位化完(阿美語)
+12:14 < miaoski> 還不行哦
+12:14 < pcchen> 能查到 tamina, pala
+12:15 < pcchen> 總之是個好的開始
+12:15 < pcchen> lafin: 對，好像後面還沒有上
+12:44 < ipa_> hychen: 還好你沒去報 unconf，因為你在主持人票就已經選了報名 unconf 
+12:46 < hychen> ipa_: 是喔@@
+12:46 < hychen> 不過米粉湯還是要約
+12:46 < ipa_> hychen: 但還是可去吃米粉湯，就在研究院後門外巷子 研究院路x段148巷吧
+12:47 < ipa_> hychen: unconf 來發起個議程吧
+12:50 < hychen> ipa_: 有限定主題嗎?
+12:51 < ipa_> 哭哭 摩滋工寮的 google group 和 irc 連結還是壞的 http://moztw.org/space/
+12:51 < kcwu> ipa_'s url: [摩茲工寮 Mozilla Community Space Taipei | MozTW, Mozilla Taiwan Community]
+12:51 < ipa_> hychen: 沒有啊 就跟黑客松一樣但可不開幹
+12:52 < wistie> 呵呵
+12:54  * pipi 中午才吃了米粉炒
+12:59 < hychen> ipa_: 當天發起嗎?
+13:18 -!- wistie [guest-wist@conference/jsconf/x-dafjhljcriqodfwz] has left #g0v.tw []
+13:24 < clkao> 前一天就可以 submit 了
+13:58 < bobchao> ipa_: IRC... 應該不是壞的？
+13:58 < bobchao> google groups 我看一下
+14:03 < bobchao> ipa_: http://www-stage.moztw.org/space/ 麻煩看看是否 ok
+14:24 < yhsiang> hychen: 不是要發起上次講的那個? XD
+14:24 < hychen> yhsiang: 對啊
+15:14 < a-tsioh> au 在嗎？
+15:16 < a-tsioh>  回去阿美萌典的坑
+15:20 < ipa_> 票卷完售
+15:21 < jimyhuang__> 賀！！
+15:22 < clkao> 還有 75 人未付款，大家還有機會
+15:22 < clkao> 要學 dsc 貼一張 sold out 嗎 XD
+15:22 < walkingice> unconf 嗎？
+15:22 < yhsiang> XD
+15:33 < jimyhuang__> 想當初 HITCON我就是忘記付款被別人有機會的
+15:52 < johnny__> clkao++ 出場音樂害我笑了 https://www.youtube.com/watch?v=diEXolZicsw
+15:52 < kcwu> johnny__'s url: [【2014 udn talks聯合大講堂】高嘉良：資料、社群、大協作 - 零時政府的數位革命 - YouTube]
+16:07 < lanf0n> XDDD
+16:07 < hychen> 什麼音樂?
+16:08 < hychen> 這什麼爛音樂...
+16:09 < clkao> 我還沒聽耶 提示一下 現在無法聽
+16:10 < jimyhuang__> 我也笑了
+16:10 < jimyhuang__> 差點要打開世紀帝國
+16:11 < hychen> 動畫好多...
+16:15 < hychen> jimyhuang__: 給我木材
+16:15 < jimyhuang__> hychen: 我只有山豬而已
+16:15 < jimyhuang__> 更正，我只有綿羊，山豬要找 hlb
+16:15 < johnny__> 問題好深入，第一個問題最近也有遇到
+16:18 < hychen> jimyhuang__: 綿羊是什麼梗?
+16:18 < jimyhuang__> 綿羊是開始採集時，最好牽來城鎮的動物之一...
+16:18 < hychen> 噢喔噢
+16:22 < johnny__> clkao: 想 feedback跟大家討論一下別介意，第三個"雲"的問題不知大家覺得有沒有其他的回答方式，畢竟不是大家都使用過雲端服務
+16:31 < clkao> 純對不知自己在問啥的問題不耐 不過也許太兇了
+16:32 < clkao> 但今天看 Paul graham 回答不知所云問題時覺得自己也沒很兇 XD
+16:33 < clkao> "Are we in a bubble ? " "You sound like a reporter asking nonsense and wasting everyone's time"
+16:34 < hychen> clkao: 我看到這個第一個想到的是"提問的智慧"
+16:34 < clkao> 我需要不耐煩的智慧
+16:36 < clkao> johnny__: any suggestion? 應該講個笑話或秘訣帶過？
+16:36 < kiang> clkao: 生個小孩應該就可以自然學會？ XD
+16:36 < lanf0n> 他私下有再深入問嗎XD
+16:40 < hychen> I'll be very nice if he/she is a student now days...
+16:50 < yhsiang> clkao: XD 我看到你的不耐煩了
+16:51 < yhsiang> johnny__: 我覺得不是大家沒使用過雲端服務 而是不知道自己已經在用所謂的雲端服務了 XD
+16:51 < yhsiang> 這其實是一種數位落差  XD
+16:58 < hcchien> bdexit
+17:00 < yhsiang> johnny__: 其實我覺得主持人回答的方式就很好啊 XD
+17:03 < dirty_> 這邊多人都看完了? 怎麼這麼閒, 應該要來個時間點啊 :p # 目前只看出場音樂而已
+17:10 < yhsiang> dirty_: https://www.youtube.com/watch?v=diEXolZicsw#t=1722
+17:10 < kcwu> yhsiang's url: [【2014 udn talks聯合大講堂】高嘉良：資料、社群、大協作 - 零時政府的數位革命 - YouTube]
+17:12 < ipa_> 直接快轉到雲問答，覺得回答還蠻nice的啊 XD 有時間的話可多說明一點，不過跟主題可能就離比較遠
+17:17 < ipa_> 不過可以轉到現在default雲端，所以可討論如何open如何協作等(凹回來)
+17:18 < dirty_> 問題是 "酸" 吧
+17:19 < dirty_> "十年前" 這回答對一般人來說有點嗆?
+17:19  * lanf0n 只有我覺得是陳述事實嗎...囧
+17:20 < dirty_> 俗話說, 自己懂的叫常識, 自己不懂的叫知識
+17:21 < dirty_> 另外, 陳述事實本來就常常很嗆啊 XD
+17:22 < au> 我也覺得還好。 要多說的話，就是說這十年來採用雲端架構的好處，主要是可隨著計算需求而延展資源， 但也會造成依賴於特定營運平台的問題，所以專案常會提供 Vagrantfile、Dockerfile、或像 sandstorm image 這些， 讓雲端的程式在本地端也可以執行、開發、驗證的方式。
+17:22 < dirty_> 回答冒出 Vagrantfile, Dockerfile 這種新詞超囂張的啊~~~
+17:23 < au> 關鍵字推播~
+17:23 < dirty_> 起手式應該是 "你這個問題很好" :p
+17:23 < hychen> 新名詞洗腦~~~
+17:23 < hychen> 每週都有新單字
+17:23 < lanf0n> 回那麼長又一堆專有名詞他應該會崩潰吧XD
+17:24 < hychen> 紅藥丸跟藍藥丸你要哪個，歡迎來到真實世界
+17:24 < kiang> vincent-code4hk: 一切還好嗎？
+17:24 < vincent-code4hk> hi 有人試過用新的hackfoldr 怎用google doc 嗎
+17:24 < vincent-code4hk> 我們ethercalc 開始有人來亂
+17:25 < vincent-code4hk> 我試了一下好像不成
+17:25 < vincent-code4hk> http://today.code4.hk/hktest
+17:25 < kiang> 恩，我想說下午看到有些欄位被清空
+17:25 < lanf0n> vincent-code4hk: 和舊版的一樣
+17:25 < vincent-code4hk> 可以給我你的gmail 嗎
+17:25 < lanf0n> vincent-code4hk: 2.0主要是改介面...XD
+17:25 < au> vincent-code4hk: 在 A0 放 google spreadsheet id
+17:25 < au> er, A1
+17:25 < vincent-code4hk> https://docs.google.com/spreadsheets/d/1VJPg85Ub1rcSpH1Hr0PZ7ybBuepxFWi6QEBtO6qMsZs/edit#gid=0
+17:25 < kcwu> vincent-code4hk's url: [Google Sheets - create and edit spreadsheets online, for free.]
+17:26 < vincent-code4hk> ok
+17:26 < vincent-code4hk> I am testing this   https://ethercalc.org/testhk
+17:26 < kcwu> vincent-code4hk's url: [EtherCalc - Share the URL to your friends and edit together!]
+17:26 < dirty_> 單論這個問題我大概會這樣回 "你這個問題很好, 現在很多詞有一窩瘋的現象, 例如雲端這件事, 我個人有不同的理解, 正好可以借這個問題跟大家分享一下" <- 超客套的 XD
+17:26 < hychen> dirty_: 果然是老師....
+17:27 < dirty_> 接下來再開罵就好了
+17:27 < au> vincent-code4hk: 然後要 publish 出來，見 https://g0v.hackpad.com/ep/pad/static/b80fhUVlnBe 下半
+17:27 < hychen> ......
+17:27 < kcwu> au's url: [/683$b80fhUVlnBe]
+17:27 < vincent-code4hk> ui 有打開 google 的json
+17:28 < vincent-code4hk> https://docs.google.com/spreadsheets/d/1VJPg85Ub1rcSpH1Hr0PZ7ybBuepxFWi6QEBtO6qMsZs/edit?usp=sharing
+17:28 < kcwu> vincent-code4hk's url: [today.code4.hk - Google 試算表]
+17:28 < dirty_> hychen: 但不是罵提問人啊, 實際上也是, 通常是被灌輸的吧
+17:31 < kiang> 港「藍絲帶」挺警... 怎麼覺得劇本都類似，該不會背後都是同一批人操刀吧......
+17:33 < au> vincent-code4hk: 有一個格式... a sec
+17:34 < vincent-code4hk> seems old version work http://hackfoldr.org/1VJPg85Ub1rcSpH1Hr0PZ7ybBuepxFWi6QEBtO6qMsZs/
+17:34 < vincent-code4hk> @au thanks
+17:35 < au> vincent-code4hk: 新版的話前四列請做成和 https://docs.google.com/spreadsheets/d/1WVWrKC-Tbry3ltgouQPpZH2Cd2HkKeZ8DjLs4PWa1z4 相同
+17:35 < kcwu> au's url: [ks0801 - Google 試算表]
+17:37 < au> vincent-code4hk: 然後因為是自己的 domain，改好後在 https://github.com/code4hk/hackfoldr-2.0/blob/master/index.jade#L118 把 hkstudentstrike 改成 1VJPg85Ub1rcSpH1Hr0PZ7ybBuepxFWi6QEBtO6qMsZs 即可，就不用經過 A1 redirect
+17:37 < kcwu> au's url: [hackfoldr-2.0/index.jade at master · code4hk/hackfoldr-2.0 · GitHub]
+17:38 < au> 建議直接 var ethercalc_name = '1VJPg85Ub1rcSpH1Hr0PZ7ybBuepxFWi6QEBtO6qMsZs'; # 這樣舊網址 http://today.code4.hk/hkstudentstrike/ 就不需要再到 ethercalc.org roundtrip 一次。
+17:38 < au> .
+17:39 < au> 有人來亂的話可以用 https://ethercalc.org/static/history/hkstudentstrike/ 來還原，或是挑適合的版本貼到 google spreadsheet 裡即可。
+17:39 < kcwu> au's url: [Index of /hkstudentstrike/]
+17:40 < vincent-code4hk> 成了謝謝！！ 很趕情況urgent對不起
+17:40 < au> 不會！glad to help
+17:40 < miaoski> dirty_: +1 ... # 你這個問題很好 -> 意思是很爛. 但反正聽的人會爽就好 。
+17:40 < au> all the best
+17:40 < johnny__> clkao: yhsiang : 對這問題我也沒什麼好答案，因為什麼公益雲的我是不太懂
+17:41 < miaoski> kiang: +1 
+17:42 < dirty_> johnny__++ 這也不錯, 我覺得要捧提問人, 承認自己不懂有這樣的效果. 就看後面想不想花力氣講觀念
+17:42 < upprou> 。。。
+17:44 < vincent-code4hk> au var ethercalc_name = '1VJPg85Ub1rcSpH1Hr0PZ7ybBuepxFWi6QEBtO6qMsZs'; 是指定直接到google spreadsheet 吧？
+17:45 < au> vincent-code4hk: 對，不然原先 http://today.code4.hk/hkstudentstrike/ 的網址還是去讀 hkstudentstrike，雖然可以用 A1 白底白字來重導向，但比較慢。
+17:46 < upprou> ..\"'
+17:46 < kiang> upprou: ?
+17:47 < lanf0n> ipa_: 啊啊啊囧...問一下 group 那封 nchild 的信會一併回給他嗎...(剛發現票賣完了囧>
+18:15 < au> 在歷史悠久的 vienna metalab 加映一場演講，明後天要連講兩場了 XD  https://metalab.at/wiki/Talk_by_Audrey_Tang
+18:15 < kcwu> au's url: [Talk by Audrey Tang – Metalab]
+18:17 < kiang> au++, The Sunflower Movement - Online Communities, Governments And Transparency, 要不要帶香蕉上台呢？ XD
+18:17 < ipa_> lanf0n: 沒注意 你要看一下收件欄
+18:18 < au> 帶鉛筆好了 https://dakdwippfbduw.cloudfront.net/static/img/pencil-love.png (hackpad og:image logo)
+18:20 < au> 開場應該是說「向日葵運動從 2003 年 (MediaWiki 1.1) 到今天，已經有十年的歷史了...」
+18:22 < lanf0n> ipa_: 看來是沒有...囧> (其實不太會用gmail的網頁版...) 之後是會有慢手票...嗎?
+18:23 < ipa_> No
+18:33 < clkao> au: auf deutsche?
+18:36 -!- upprou [guest-uppr@conference/jsconf/x-ejgoujgbfplnxgmv] has left #g0v.tw []
+18:37 < au> Wahrsheinlich, ja
+18:38 < clkao> Wunderbar!
+18:43 < vincent-code4hk> Alles Gute!
+18:43 < yhsiang> vincent-code4hk: 不是在學日文? XD
+18:53 < vincent-code4hk> 十二月考n1
+18:54 < vincent-code4hk> 我之前在德國留學一年
+18:54 < yhsiang> vincent-code4hk: ! XD
+18:54 < vincent-code4hk> btw, google doc column C打expand 好像不會自動打開？
+18:54 < yhsiang> vincent-code4hk: 甚麼都會 好厲害
+18:55 < vincent-code4hk> 廣東話有一句：周身刀冇把利
+18:56 < yhsiang> vincent-code4hk: 身體還好吧?
+19:13 < ETBlue> vincent-code4hk: 我也上來irc了XD
+19:15 < yhsiang> ETBlue: hi 大大
+19:19 < ETBlue> yhsiang: 鄭董好XD
+19:25 < Lee1092> ETBlue:  好久不見~
+19:27 < kiang> 投開票所的資料已經上線 - http://web.cec.gov.tw/files/11-1000-5368.php
+19:27 < kcwu> kiang's url: [投開票所設置地點 - 中央選舉委員會]
+19:33 < kiang> 有些還是掃描圖檔，真是...
+19:36 < ETBlue> Lee1092: 好久不見我還在逃坑中XD
+19:38 -!- pcchou_ is now known as pcchou
+19:39 -!- chihchun is now known as chihchun_afk
+20:03 < ipa_> http://g0v-tw.kktix.cc/events/g0v-summit-2014-con-nor 還有一張票，因為有工作人員誤報剛退掉了 XD
+20:04 < kcwu> ipa_'s url: [g0v Summit 2014 - Conference - Contributor and Normal]
+20:57 < Michael_LI> 問問，有誰明天晚上會去台北的哲五？
+20:59 < Michael_LI> （明天討論航空城）
+21:19 -!- clkao is now known as clkao_
+21:20 -!- ipa_ is now known as ipa
+21:20 -!- clkao_ is now known as clkao
+21:56 < clkao> tkirby++ # http://www.tcfsh.tc.edu.tw/news/u_news_v2.asp?id={F846CE17-E78D-4182-A023-B7A1FA203E1E}&newsid=7759
+21:56 < kcwu> clkao's url: [臺中一中校園訊息]
+21:58 < johnny__> 哈哈哈  tkirby++
+22:07 < Michael_LI> tkirby　明天的梗用試試用　海賊王　的第一代ＯＰ　　／我現在已經在用了／
+22:10 < Lee1092> tkirby++
+22:11 < Michael_LI> PS　https://www.youtube.com/watch?v=dIZixZyfS3k&list=PLn7CPpVp9BT2fjZ9g14xpQIEQiZMH0MW_&index=25
+22:11 < kcwu> Michael_LI's url: [海賊王 OP1 「ウィーアー!」 北谷洋 (HD) - YouTube]
+22:27 -!- WHY is now known as Guest49637
+22:28 < Guest49637> 請問g0v 11/8的conference報名時看到是系統說5 day內繳費 怎麼剛剛一瞧 居然是12:00報名截止 13:01要截止繳費？ T T
+22:31 < Guest49637> "訂單已保留，請於 2014/10/01 13:01 前繳費，以確保報名資格"
+22:32 < Guest49637> 我沒有胡說喔 email真的這樣寫
+22:33 < Guest49637> 我從app上看到繳費資訊了 是10/07 00:00但是email 真的有誤
+22:34 < Guest49637> 都沒人＠＠？
+22:35 < au> 有人，但可能剛好沒有票務的人
+22:38 < Michael_LI> ／票務／票亭資訊有點奇怪／http://logbot.g0v.tw/channel/g0v.tw/2014-09-26#11
+22:38 < kcwu> Michael_LI's url: [Logbot | #g0v.tw]
+22:38 < au> *nod*
+22:43 < tuiry> 不好意思，我這裡多了一張第一天的票，有需要的請ping我，當天領取T_T
+22:47 < pipi> tuiry: ping
+22:48 < tuiry> 又
+22:48 < tuiry> pipi大人有何吩咐
+22:48 < pipi> 先搶先贏
+22:48 < tuiry> 好的
+22:48 < tuiry> [sold out]
+22:48 < pipi> 又不是女僕店XD
+22:49 < tuiry> 哦 pipi去過女僕店嗎 感覺如何
+22:49 < pipi> tuiry: 你被誰賣惹
+22:49 < pipi> 沒去過，恥力沒這麼高
+22:50 < kiang> http://occupycentral.sayit.mysociety.org/speeches - sayit 原來可以這樣用 XD
+22:50 < kcwu> kiang's url: [Speeches :: Occupy Central / Umbrella Revolution :: SayIt]
+22:51 < tuiry> pipi 往事莫再提
+22:52 < pipi> 有卦！？
+22:55 < tuiry> 沒有卦
+22:55 < tuiry> 大概是皮皮去了女僕咖啡廳的程度而已
+22:55 < miaoski> 萬事問噗友... 為什麼 console.log dict 結果是 null
+22:55 < miaoski> https://www.irccloud.com/pastebin/eftIbbjj
+22:55 < kcwu> miaoski's url: [Pastebin: eftIbbjj | IRCCloud]
+22:56 < pipi> 囧
+22:57 < Lee1092> Michael_LI:  剛看了一下發現系統 有分 即時付款方式 跟  延時付款方式 ，可能 kktix 一開始顯示時間不一
+22:57 < miaoski> 啊。大概知道了... 因為 non-blocking
+22:57 < tuiry> pipi 那當天見，記得給我500
+22:58 < Lee1092> miaoski: 恩恩  node.js   non-blocking 緣故 XD
+23:00 < pipi> tuiry: 好滴
+23:01 < Michael_LI> Lee1092: 收到，先睡了，又燒起來了，
+23:01 < Lee1092> hlb_:  kktix 繳費提示  似乎會讓人誤會 http://logbot.g0v.tw/channel/g0v.tw/2014-10-02#277  # 即時付款方式:60 分鐘、延時付款方式: 5日
+23:01 < kcwu> Lee1092's url: [Logbot | #g0v.tw]
+23:01 < Lee1092> 或者是有 bug ?  XD
+23:05 < hlb_> Lee1092: 這兩者付款時間不一樣
+23:05 < hlb_> Lee1092: 什麼地方讓你誤會了呢
+23:06 < ipa> hlb_: http://logbot.g0v.tw/channel/g0v.tw/2014-10-02#277
+23:07 < ipa> hlb_: http://logbot.g0v.tw/channel/g0v.tw/2014-09-26#11
+23:07 < hlb_> 報名的時候哪裡會有寫 5 日內繳費完畢 ?_?
+23:08 < hlb_> ipa: 因為選了會更新, 但是不會變魔術改原本的那封信 ._.
+23:09 < Lee1092> hlb_: 可能是那個人選了  ATM  付款 ，結果 email 顯示 60分鐘後繳費? 
+23:09 < Lee1092> 猜測~  XD
+23:10 < ipa> hlb_: 選什麼會更新，原本哪封信？
+23:10 < hlb_> Lee1092: 應該是吧, 其實訂單的繳費通知信有 delay 一下才會寄出 ._.
+23:10 < hlb_> ipa: 原本沒有選繳費方式，在畫面上猶豫很久（這時候繳費通知信寄出去了），最後選了 ATM
+23:11 < hlb_> ipa: 因此系統會用比較寬鬆的時間給他，避免他來不及出門繳錢...
+23:11 < Lee1092> hlb_:  看起來是這樣  XD  我也是最後才點 付款方式
+23:11 < ipa> 這是屬於使用者介面內心戲研究的部份。。。。
+23:12 < hlb_> 下次更晚一點寄 .)_(.
+23:12 < Lee1092> hlb_:  那如果我即時付款方式設  5 日 ， 繳費通知信 預設會五日嗎?  XD
+23:12 < Lee1092> 這樣問題好像就解決了
+23:13 < ipa> 「猶豫的介面時間差使用者介面研究」
+23:13 < hlb_> Lee1092: 會 :p
+23:13 < hlb_> Lee1092: 是 :p
+23:14 < Lee1092> 繳費通知信 預設是 即時付款時間 # kktix 設定小知識
+23:14 < hlb_> m(_ _)m
+23:17 < pipi> 筆記
+23:19 < clkao> hlb_: 魔術香腸
+23:22 < hlb_> clkao: 明天又要上台北耶
+23:26 < kiang> http://www.visionplatform.tw , http://thisregion.com/e/2014/ - 選舉黃頁的同業競爭越來越激烈了 XD
+23:26 < kcwu> kiang's url (1/2): [觀政見]
+23:26 < kcwu> kiang's url (2/2): [2014 七合一大選 / 九合一大選 / thisregion好地方 - 探索您的生活圈]
+23:30 -!- CelloCello1 [~Cello@119.77.223.31] has left #g0v.tw []
+23:35 < kiang> 梁振英 的談話不知道會不會有即時文播 XD
+23:38 < jimyhuang__> au: 所以升級成大腸花了
+23:39 < clkao> kiang: 應該只有你有 api 吧  :P
+23:40 < au> jimyhuang__: XD
+23:42 < au> -> vienna &
+23:43 < pipi> 壹電視是派製作人直接口譯XD
+23:44 < kiang> 看樣子就等看看 12 點會發生什麼事情好了，粵語聽不懂...
+23:44 < kiang> clkao: 其實他們可以直接拿 db dump 比較快 XD
+23:47 < kiang> http://doncarlisi.wix.com/ophongkong - 不知道會花多少時間
+23:49 < t0mst0ne_> 應該不會對證交所吧 
+23:50 < kiang> 梁振英記者會的摘要出來了，好像跟沒講一樣...
+23:50 < kiang> 有人把名單整理好了 - http://www.ptt.cc/bbs/PublicIssue/M.1412264086.A.8C5.html
+23:50 < kcwu> kiang's url: [[情報] Anonymous公佈31個網站攻擊名單 - 看板 PublicIssue - 批踢踢實業坊]
+23:51 < pipi> 個人覺得至少比馬先生會講XD
+23:51 < kiang> 馬先生是低標...
+23:54 < pipi> 最近的只能拿他來比惹。。。
+23:58 -!- chihchun_afk is now known as chihchun
+23:58 < Lee1092> 看了八卦版   好像也沒什麼重點  = ="
+23:59 < Lee1092> 又是個 拖 字訣

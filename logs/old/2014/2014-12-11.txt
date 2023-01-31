@@ -1,0 +1,269 @@
+--- Day changed 四 12月 11 2014
+00:03 < kiang> CindyLinz++, 掃描的可以先略過吧，至少有文字的看起來數量不少，應該有處理的價值 ;)
+00:05 < t0mst0ne_> clkao: er 有 crawlers/1145010010 update ;
+00:05 < t0mst0ne_> clkao: 
+00:06 < t0mst0ne_> clkao: linode update 
+00:06 < clkao> t0mst0ne_++ # updated
+00:06 < t0mst0ne_> clkao: ++
+00:06 < t0mst0ne_> clkao: 後來有gov 跟你要資料嗎
+00:07 < clkao> 算是一個研究計畫吧
+00:07 < clkao> 就跟他說 influxdb 的 api
+00:09 -!- chihchun is now known as chihchun_afk
+00:11 < t0mst0ne_> clkao: ++  
+00:16 < CindyLinz> kiang: 這張不乖.... 欄位跟別人不一樣, 把學歷經歷縮成同一格.. QQ  而且性別和生日跟別人相反..
+00:17 -!- chihchun_afk is now known as chihchun
+00:18 < CindyLinz> 這張要放棄了 XD
+00:19 < kiang> CindyLinz: 這就是探索政府開放資料的樂趣，什麼都有、什麼都不奇怪 XD
+00:43 < CindyLinz> kiang: 好了.. 我把猜欄位的程式放上去了, guess_field.pl 在同一個 github repo 裡面.. # https://github.com/CindyLinz/BulletinCEC-LocateBlockFromPNG
+00:43 < kcwu> CindyLinz's url: [CindyLinz/BulletinCEC-LocateBlockFromPNG · GitHub]
+00:46 < kiang> CindyLinz++, try try
+00:46 < kiang> http://www.tynker.com/hour-of-code/puzzle - 這個好威，都是用 canvas 畫的遊戲
+00:46 < kcwu> kiang's url: [Tynker | Coding for kids - Tynker | Coding for kids]
+00:47 < CindyLinz> :D
+00:52 < hychen> ETBlue: 我要加個免責聲明.... 只是在咖啡店跟even閒聊, 為什麼會有逐字稿online...
+00:53 < CindyLinz> 免責聲明只對法律責任有效, 對輿論好像沒什效.. (逃
+00:55 < kiang> CindyLinz: 54735d55-0af4-4c80-a747-21eacf91e152_bg1 的輸出結果 - https://gist.github.com/kiang/547823e49498c3919e6f
+00:55 < kcwu> kiang's url: [guessing result for http://k.olc.tw/bulletin/54735d55-0af4-4c80-a747-21eacf91e152/54735d55-0af4-4c80-a747-21eacf91e152.html]
+00:56 < kiang> 還沒有跟文字做配對，先等它跑完好了 XD
+00:56 < CindyLinz> kiang: 這個相片和號次的大小太相近了... GG
+00:56 < CindyLinz> 號次的寬度 * 2.5 < 相片寬度 才行... QQ
+00:57 < CindyLinz> 右半的 潘杰 蔡玉春 的部分應該可以
+00:57 < kiang> CindyLinz: http://k.olc.tw/bulletin/546b0806-6e9c-46d6-b93c-2ff0cf91e152/546b0806-6e9c-46d6-b93c-2ff0cf91e152.html 則是無法判斷
+00:57 < CindyLinz> 這個我來處理看看
+00:59 < CindyLinz> 太扁了.. XD 高度我設 230.... ^^|
+00:59  * hychen 要黑了....
+00:59 < CindyLinz> 改成 210 好了, 這張最扁 216
+01:00 < CindyLinz> 希望不會放行到一些比較高的欄位名稱格..
+01:00 < kiang> CindyLinz: 這是目前看到沒辦法猜出結果的清單 - https://gist.github.com/kiang/deb362ae03365f168c4c
+01:00 < CindyLinz> 改成 210 這一張可以過了 :p
+01:00 < kcwu> kiang's url: [list of files that have empty result]
+01:01 < kiang> find . -type f -size 3c 的結果
+01:01 < CindyLinz> kiang: 這個字都沒抓出去的.. 就算了吧? XD # http://k.olc.tw/bulletin/546c8095-7418-4586-b07a-61a3cf91e152/bg1.png
+01:02 < kiang> CindyLinz: 對啊，都沒有字的就不理它了 XD
+01:02 < CindyLinz> 不過這一張也是改成 210 以後抓到了....
+01:02 < CindyLinz> 欸 幫我重跑一次 210 的 ^^|
+01:02 < CindyLinz> 這張是 22x
+01:05 < kiang> CindyLinz: 改成 210 了，這張拿不到 - http://k.olc.tw/bulletin/54735d55-ecf8-43f9-bc79-21eacf91e152/54735d55-ecf8-43f9-bc79-21eacf91e152.html
+01:06 < CindyLinz> 好~~
+01:07 < CindyLinz> 208..............||
+01:07 < CindyLinz> 被挑戰下限.. QQ  (現在放 200...)
+01:09 < kiang> CindyLinz: 210 拿不到的清單： https://gist.github.com/kiang/deb362ae03365f168c4c ，改用 200 重跑
+01:09 < kcwu> kiang's url: [list of files that have empty result]
+01:09 < CindyLinz> ._.
+01:10 < CindyLinz> 也許該把程式弄聰明一點.. 先用 250 去跑.. (其實我初版用 400...) 抓不到以後開始逐漸挑戰下限 XD
+01:11 < kiang> 因為原始資料格式亂吧，這沒辦法怪你 XD
+01:11 < CindyLinz> 目前看 header line 比較大的有 15x
+01:12 < kiang> CindyLinz: 200 拿不到的清單更新到同樣一個 gist 了
+01:12 < CindyLinz> 哎哎哎 ^^|
+01:13 < kiang> 找出方塊讓鄉民幫忙完成拼圖應該會好一點 :)
+01:15 < CindyLinz> 都可都可 ^^|
+01:17 < kiang> CindyLinz: 對 html5 canvas 熟嗎？
+01:20 < CindyLinz> 兩年前熟過.. 後來如果有加東西就不熟了 XD
+01:21 < kiang> CindyLinz: 嗯，不過如果在現有圖片上面堆疊你程式產出的座標應該很容易吧（又站到許願池前了） XD
+01:27 < kiang> 有人熟 健保免費連線 嗎？
+01:28 < CindyLinz> 太好了.. 這 195 張抓不到東西的圖, 除了第 108 張我要檢查一下以外.. 剩下的 194 張都是投票規定或是抓不出字的掃圖 ^^
+01:29 < kiang> CindyLinz++, 所以改 200 就可以了，明天再找時間跟文字配對看看 :)
+01:29 < CindyLinz> 這張圖的高度 93...
+01:30 < CindyLinz> 高度 193..
+01:30 < kiang> XD
+01:30 < CindyLinz> 好了改 192.. QQ
+01:31 < CindyLinz> 嗯 不過要疊這個還可以不用 canvas..  用 position:absolute 和 left, top 設坐標, 疊有框 div 到圖片上?
+01:34 < kiang> CindyLinz: 是可以用 position ，只是覺得 canvas 應該可以做比較多的互動，像是直接拖曳內容到指定候選人區塊完成操作？
+01:35 < kiang> 雖然 position 也是可以做到啦
+01:35 < kiang> 健保免費連線 要找我去聊天，我應該不會被怎麼樣吧？ XD
+01:35 < CindyLinz> 給別人用的 UI 我就不確定怎麼設計好了... 我只知道迎合自己習慣的 UI 可以怎麼設計 唉唉 ^^|
+01:35 < kiang> CindyLinz: OK, 我先踹踹好了，感謝
+01:36 < CindyLinz> 竟然是政黨.... # http://zh.wikipedia.org/wiki/%E5%81%A5%E4%BF%9D%E5%85%8D%E8%B2%BB%E9%80%A3%E7%B7%9A
+01:36 < kcwu> CindyLinz's url: [健保免費連線 - 维基百科，自由的百科全书]
+01:36 < CindyLinz> 光看這六個字還以為是一個網站.. XD
+01:37 < kiang> 是啊，感覺是一群政治狂熱的老人
+01:37 < kiang> 中華民國第七大政黨 XD
+01:39 < kiang> 跟 趙衍慶 好像有點關係 XD
+01:39 < CindyLinz> 國民親台新綠健?
+01:40 < kiang> CindyLinz: 不知道它怎麼算的，臉書上面標示
+01:40 < CindyLinz> mmm
+01:42 < kiang> 臺中市長擬參選人，最後沒有登記，應該跟我一樣是沒有籌到保證金吧
+01:51 < kiang> "不分區立委政黨票得到十六萬三千三百四十四票，得票率為一．二四%，雖尚未跨過五%門檻，卻僅次於綠黨與新黨，得票暫居第七" 是這樣來的...
+01:55 < kiang> http://blog.udn.com/MeiFeng/19409885 ... 開始後悔答應要過去聊天了 XD
+01:55 < kcwu> kiang's url: [健保免費連線 聯合參選立委 說明會 - 梅峰健保免費公投 - udn部落格]
+01:57 < CindyLinz> XDXD
+01:58 < CindyLinz> 這什麼東西啊... 囧
+01:59 < CindyLinz> "任何廿三歲以上中華民國國民或僑胞或代理人，只要十二月卅一日前付頭款十萬元（可分十一期，利息一萬，您甚至可以與競選有關之薪資預支、租金、物資、車輛、總部、顧問費等等資源扣抵），明年九月底前再付尾款四十五萬元，即有八成可能當選有權無責，可不用上班的不分區政黨票選出之立法委員，薪水至少一百五十萬，其他�
+02:00 < kiang> 就一種把選舉當作投資的概念 XD
+02:00 < kiang> 雖然很多人的確是這麼想，但這實在太直白了
+02:01 < CindyLinz> wwww
+02:05 < CindyLinz> kiang: 點了幾篇文... 嗯, 你就是要跟這位 梅峰 聊嗎?
+02:05 < kiang> CindyLinz: you got it...
+02:06 < CindyLinz> (一直笑...w)
+02:06 < CindyLinz> "西方個人主義講男女平權，讓女性蠟燭兩頭燒的內外勞苦工作，就是目前同性戀氾濫，流浪狗滿街，單親窮媽媽一堆，青年失業，經濟蕭條，學校關門，人口老化等等，甚且如古往今來卻仍然只有極少數女性領導人與執行長的結果；女性捨棄垂直生育，上天賦予創造宇宙繼起生命的天性，造就這種損人不利己之女人與人類大不幸，值得�
+02:06 < CindyLinz> "
+02:07 < kiang> 希望我不會被下藥...
+02:08 < CindyLinz> 對不起... ._.
+02:12 < kiang> 先把新程式產出的座標資料丟上去了，去跟周公商討一下怎麼面對 XD
+02:13 < CindyLinz> 加油.. @@"
+02:13 < CindyLinz> 晚安~~~
+02:48 -GitHub63:#g0v.tw- [ly.g0v.tw] kiya69 opened pull request #183: fix issue #182 (master...master) https://github.com/g0v/ly.g0v.tw/pull/183
+03:05 -!- tritin [guest-trit@gateway/web/scrollback.io/x-ebfbvjesyyhhzwuz] has left #g0v.tw []
+04:01 < gugod> CindyLinz, kiang: https://github.com/g0v/process-bulletin-cec-pdf/tree/master/data 我已經把 pdf 檔粗略分類過了， "notext" 表示檔案中沒有 "pdftotext" 拆得出來的文字部分。
+04:01 < kcwu> gugod's url: [process-bulletin-cec-pdf/data at master · g0v/process-bulletin-cec-pdf · GitHub]
+04:02 < gugod> CindyLinz, kiang: 另外 https://github.com/g0v/process-bulletin-cec-pdf/tree/master/data/pdf 底下的 json 檔則是 切字 + tesserract 的結果。已經全部跑完。下一步是對答案... XD
+04:02 < kcwu> gugod's url: [process-bulletin-cec-pdf/data/pdf at master · g0v/process-bulletin-cec-pdf · GitHub]
+04:03 < au> 聲音後製完成，感謝 AceChen 提醒 typo ，SoundCloud 網址更新：
+04:04 < au> https://soundcloud.com/audrey-tang/g0v-gongbao-1 # 中文
+04:04 < kcwu> au's url: [g0v 地下電臺 有聲公報 第一期 by audrey.tang - Hear the world’s sounds]
+04:04 < au> https://soundcloud.com/audrey-tang/g0v-1st-audio-gazette # English
+04:04 < gugod> CindyLinz:, kiang: 除此之外還要把結果合併在一起，把單字組成段落... 得要參考 CindyLinz 切格子的結果 :)
+04:04 < kcwu> au's url: [g0v 1st audio gazette by audrey.tang - Hear the world’s sounds]
+04:17 -!- chihchun is now known as chihchun_afk
+07:01 < eighte> 有人可以幫忙測試一下連線嗎..疑似清晨大地震好像很多連外都有問題
+07:23 < poga> eighte: http://www.hinet.net/notifyPage.html?id=14a19090823000004a82&type=0 也許是這個的關係？
+07:23 < kcwu> poga's url: [HiNet - 網站公告]
+07:24 < eighte> 原來如此..不過剛才進來SB也很久才有反應..看來也有受影響?
+07:25 < poga> 連外應該都有影響... 不過據說現在恢復了
+07:26 < eighte> 有了 剛才要測試http://www.jma.go.jp 都不行...
+10:15 < miaoski> CindyLinz: 妳需要自動判別內容是什麼欄位的程式 /flee
+11:21 < kiang> gugod++ （這兒怎麼一堆時區怪怪的人，都在睡覺的時候把東西做完）
+11:21 < hychen> gugod 在荷蘭啊 XDXDXD
+11:22 < kiang> XD
+11:24 < pm5> au++ # podcast
+11:28 < kiang> http://www.setn.com/News.aspx?PageGroupID=6&NewsID=52177 - 三立、蘋果，傻傻分不清楚
+11:28 < kcwu> kiang's url: [別管阿基師、劉喬安了　你今天關心過這十件事嗎？│三立新聞網 SETN.COM]
+11:39 -!- chihchun_afk is now known as chihchun
+11:50 < CindyLinz> gugod++   (好多新柴..... XD)
+11:53 < kiang> https://g0v.hackpad.com/-i-voting--yJIrjXLKtZ9 - 這樣子就突然有很多票選系統的意見可以參考了，柯p真好用 XD
+11:53 < kcwu> kiang's url: [柯文哲 i-voting 意見蒐集 - g0v.hackpad.com]
+11:55 < hychen> kiang++++
+12:02 -!- chihchun is now known as chihchun_afk
+12:04 -!- chihchun_afk is now known as chihchun
+12:11 -!- chihchun is now known as chihchun_afk
+12:14 -!- chihchun_afk is now known as chihchun
+12:28 -!- chihchun is now known as chihchun_afk
+12:36 -!- chihchun_afk is now known as chihchun
+12:38 < ipa> http://hack.g0v.tw/  壞了？
+12:52 -!- chihchun is now known as chihchun_afk
+12:58 < yhsiang> ipa: 好的?
+13:00 < ipa> reload 就好了  @@ 
+13:01 -!- chihchun_afk is now known as chihchun
+13:05 < AceChen> 剛剛 github.io down for maintenance 一下下
+13:08 < AceChen> Fastly 竟然不幫忙 cache XD 難道還要另外掛 CloudFlare 嗎 Orz
+13:10 < hychen> gh-pages爆炸了...
+13:11 < yhsiang> 快用cloudflare cache everything XD
+13:12 < clkao> yhsiang: 最後有決定要衝台南嗎？
+13:13 < AceChen> 一起加入 CloudFlare Galileo XD
+13:13 < yhsiang> clkao: 後來hychen沒講耶? 有食團? XD
+13:14 < clkao> 禮拜六中午高鐵直奔牛肉鍋
+13:14 < yhsiang> 沖完再衝回新竹嗎 XD
+13:15 -!- chihchun is now known as chihchun_afk
+13:16 < clkao> 看你要不要混兩天啊 光吃太拼了啦
+13:18 < hychen> yhsiang: 這樣很傷體力
+13:25 < yhsiang> 周日要當評審阿
+13:25 < yhsiang> 囧oo
+13:25 < yhsiang> hychen: 話說新竹也有牛肉湯 
+13:25 < yhsiang> hychen: 冉牛土產牛肉湯－台南牛肉湯老師傅新竹再起 XD
+13:26 < tonysan> https://g0v.hackpad.com/g0v.us-SUV-LzHTm5oiO1M g0v 美西松 Hackpad
+13:26 < kcwu> tonysan's url: [g0v.us-SUV - g0v.hackpad.com]
+13:26 < yhsiang> tonysan++ XD
+13:26 < tonysan> 請以 idea 支援我
+13:26 < hychen> yhsiang: XD
+13:26 < hychen> tonysan+++=
+13:26 < tonysan> Y! 不給借場地我就沒梗了orzzz
+13:27 < yhsiang> 辦去facebook 哼哼
+13:27 < tonysan> 只能說 yhsiang 推坑功力已經爐火純青...
+13:27 < tonysan> ok啊...
+13:27 < yhsiang> 我來問facebook員工 XD
+13:27 < tonysan> fb/g/甚至 Stanford, UCBerkeley都可以是選項
+13:28 < tonysan> Santa Clara Convention Center 地點還不錯，可以當 backup plan
+13:29 < clkao> 那個 github 一樓空間（超大的）好像可以無償借給 open source 相關活動
+13:29 < clkao> 可以請 muan 問問?
+13:29 < tonysan> clkao++
+13:30 < yhsiang> cool!
+13:30 < yhsiang> clkao: sounds great!
+13:30 < tonysan> in SOMA (SF) 感覺不錯
+13:30 < yhsiang> hychen: clkao: 那看來這兩天無法下去台南 QQ
+13:30 < clkao> ok ;)
+13:31 < clkao> 而且有個很誇張的酒吧
+13:31 < seadog007___> 台南有什麼嗎w
+13:31 -!- seadog007___ is now known as seadog007
+13:33 -!- chihchun_afk is now known as chihchun
+13:37 < pm5> tonysan++
+13:41 < hychen> yhsiang: 放心, 會拍照給你看的
+13:51 < yhsiang> hychen: ........ -_-
+13:53  * AceChen 這週末也會在台南 lol
+13:53 < kiang> 咦，這個週末台南好熱鬧
+13:58 < yhsiang> .....
+13:59 -!- chihchun is now known as chihchun_afk
+14:02 < ipa> AceChen: 要一起來吃牛肉鍋嗎？週六中午
+14:06 -!- chihchun_afk is now known as chihchun
+14:09 < hychen> AceChen: 這牛肉鍋好吃喔!
+14:16 < ETBlue> 去變胖吧你們 =3=
+14:17 < kiang> 我...胖很久了......
+14:18 < AceChen> ipa: hychen: 在哪兒？早上有些事情，中午來得及就過去 :P
+14:18 < AceChen> yhsiang: ETBlue: 放心, 會拍照給你看的
+14:19 < ipa> AceChen: 在仁德
+14:20 < yhsiang> AceChen: 胖死你 =3=
+14:24 < AceChen> yhsiang: 府城飲食調查建檔而已，屬於專案的一部分 別放在心上 lol
+14:26 < hychen> AceChen++
+14:59 < clkao> github pages GG
+15:16 < clkao> ronnywang: land data 有好像有土地使用區分了? # http://zoning.dev.sanfranciscocode.org/map/
+15:16 < kcwu> clkao's url: [Zoning Map—San Francisco Decoded]
+15:19 < ronnywang> clkao: 你是指地號資訊嗎? 那個沒有包含土地使用分區
+15:19 < clkao> 哭哭
+15:21 < ronnywang> 不過地號可以一筆一筆去各地方政府的都市計劃處去查土地分區、公告地價之類資訊
+15:21 < ronnywang> http://gemvg.com/www/zone/twzone.htm
+15:21 < kcwu> ronnywang's url: [台灣都市計畫(2001)]
+15:23 < ronnywang> 這個網站裡面的分區是 polygon 資料，不是 wms ，不知道他從哪裡收集來的
+15:24 < ronnywang> http://gemvg.com/archives/480 # 花錢買來的
+15:24 < kcwu> ronnywang's url: [2001年台灣都市計畫圖Google Earth版 | GEmVG Blog]
+15:30 < kcwu> 他說的買是shp->kml轉檔程式, 不是資料
+15:31 < ronnywang> 喔喔，看錯 XD
+16:25 < clkao> github pages still down ?
+16:27 -GitHub5:#g0v.tw- [ly.g0v.tw] clkao pushed 2 new commits to master: https://github.com/g0v/ly.g0v.tw/compare/1e820d9031cc...f23a384fb0ae
+16:27 -GitHub5:#g0v.tw- ly.g0v.tw/master c13b306 kiya69: fix issue #182
+16:27 -GitHub5:#g0v.tw- ly.g0v.tw/master f23a384 Chia-liang Kao: Merge pull request #183 from kiya69/master...
+16:27 -GitHub164:#g0v.tw- [ly.g0v.tw] clkao closed pull request #183: fix issue #182 (master...master) https://github.com/g0v/ly.g0v.tw/pull/183
+16:33 < travis-ci> g0v/ly.g0v.tw#423 (master - f23a384 : Chia-liang Kao): The build passed.
+16:33 < travis-ci> Change view : https://github.com/g0v/ly.g0v.tw/compare/1e820d9031cc...f23a384fb0ae
+16:33 < travis-ci> Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/43690119
+16:33 -!- travis-ci [~travis-ci@ec2-54-196-42-248.compute-1.amazonaws.com] has left #g0v.tw []
+16:33 -GitHub68:#g0v.tw- [ly.g0v.tw] clkao pushed 1 new commit to master: https://github.com/g0v/ly.g0v.tw/commit/1c4db5fc68a8f9dd3067bf321bef29adf7a0409c
+16:33 -GitHub68:#g0v.tw- ly.g0v.tw/master 1c4db5f Chia-liang Kao: really disable sauce for PR
+16:36 < travis-ci> g0v/ly.g0v.tw#424 (master - 1c4db5f : Chia-liang Kao): The build was broken.
+16:36 < travis-ci> Change view : https://github.com/g0v/ly.g0v.tw/compare/f23a384fb0ae...1c4db5fc68a8
+16:36 < travis-ci> Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/43690540
+16:36 -!- travis-ci [~travis-ci@ec2-54-162-117-233.compute-1.amazonaws.com] has left #g0v.tw []
+17:11 < AceChen> 可是 g0v.tw 是好的？
+17:13 < clkao> 好像回來了
+17:18 < tonysan> wow github + irc
+17:43 -!- adaam_ is now known as adaam
+19:04 -!- slovers [uid56156@gateway/web/irccloud.com/x-ddlmkucidzqughyw] has left #g0v.tw []
+19:18 < fersol> 問問大家
+19:18 < fersol> 大家對中企在台高額借款後快速倒帳這件事
+19:18 < fersol> 有興趣嗎
+19:20 -!- fersol [guest-fers@gateway/web/scrollback.io/x-coakoxxxwsmkjnny] has left #g0v.tw []
+19:22 < eighte> 好像沒有相關hackpad 或許可以來建立 或者用hackfoldr做外部資料連結?
+21:57 < ETBlue> 只好來個中倒資料視覺化了……額，我 lag 兩小時
+21:58 < tkirby> 中倒資料視覺化!
+22:14 < dirty> 中倒資料視覺化有資料了嗎? 我課程這週的作業就是視覺化, 來推個坑
+22:16 < lanf0n> 看 log 好像是一個剛出現的生坑...
+22:40 < tkirby> a(y)
+22:41 -!- chihchun is now known as chihchun_afk
+22:56 < kiang> dirty: 國民黨黨產的資料應該可以先玩吧？ XD
+22:57 < CindyLinz> kiang: 你今天去 健保免費連線 有什麼有趣的見聞嗎?
+23:00 < kiang> CindyLinz: 沒耶，是下星期
+23:01 < kiang> CindyLinz: 你要當保鏢一起去嗎？ XD
+23:05 < CindyLinz> 喔喔..
+23:05 < CindyLinz> 保不了 XD
+23:08 < CindyLinz> 我覺得是這樣啦.. 其實不太想去 QQ  但如果有人出於種種原因或無奈而去了, 那會有點好奇有沒有有趣的事 ._.
+23:08 < kiang> -.-
+23:09 < arride> 嗨
+23:09 < CindyLinz> 從他的 blog 文章看.. 覺得我自己跟他的基本價值觀的差距有點太大, 大概沒辦法聊得上話 orz
+23:11 < CindyLinz> arride: 嗨~
+23:11 < au> arride: hi \o
+23:12 < arride> 第一次逛到這裡 正在看長期專案列表, 想看看有沒有什麼可以參與的
+23:12 < arride> 還不太會使用, 這畫面真酷
+23:13 < jimyhuang_> arride: 歡迎找找看自己想要參與的主題
+23:14 < arride> 恩恩 謝謝~
+23:14 < arride>   我先到處看看, 不打擾你們 : )
+23:21 < clkao> dirty: 話說你的課有機會請學生幫忙補完 local.data.g0v.tw 嗎
+23:21 -!- arride [guest-arri@gateway/web/scrollback.io/x-tpepvxxehmcjeuip] has left #g0v.tw []
+23:22 < au> local.data.g0v.tw heroku down?

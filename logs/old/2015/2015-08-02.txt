@@ -1,0 +1,119 @@
+--- Day changed 日  8月 02 2015
+10:45 < efteld> .
+12:15 < slackbot7> <lydian> 我想利用github的code review 來把大家對課綱的疑問還有正反意見列出來，大概是像這樣：<https://github.com/lydian/tw_curriculum/pull/2/files>
+12:15 < kcwu> slackbot7's url: [歷史第一冊95 及 98課綱比較 by lydian · Pull Request #2 · lydian/tw_curriculum · GitHub]
+12:16 < slackbot7> <lydian> 不過發現github的比較是以句子為單位，不知道有沒有辦法換成以char 為單位
+12:21 < kcwu> 之前做的法條 diff 可能比較適合一點
+12:22 < kcwu> 一時找不到, 應該是 clkao 做的
+12:23 < kcwu> 不過那只有 diff mode, 沒有 comment 功能
+12:26 < tinghsieh> .
+12:30 < kcwu> (可以顯示 comment, 不過沒有讓 user 加新 comment 的功能)
+12:37 < slackbot7> <lydian> 不然我們公司自己用的reviewboard(<https://www.reviewboard.org/>)其實還不錯，不過有點懶得架出來 XD
+12:37 < slackbot7> <lydian> 我也不確定讓user 加新comment是不是好主意
+12:38 < slackbot7> <lydian> 我怕死五毛党了，到時候真正的討論全部都會被蓋掉
+12:44 < slackbot7> <clkao> lydian: hi! 這個問題在討論法條時也會發生，所以後來想的是每個一 change 衍生出一個 polis conversation
+12:45 < slackbot7> <clkao> 然後整大分文件也可以有一個 global polis conversation… 之前也有討論說如果有 nested conversation 也許可以作一些有趣的呈現... 不過他們還沒支援這樣的功能
+12:45 < slackbot7> <clkao> 但是現在有 api 可以取出所有 comment 了， mrorz 也許可以作一些加工
+12:48 < slackbot7> <lydian> clkao:  sorry 我沒有follow到，請問法條的是哪一個project
+12:48 < slackbot7> <clkao> lydian: <http://billab.io/tipo/copyright-reform-act-2014>
+12:49 < slackbot7> <clkao> 不過後來就一直沒有作 comment 的部分..
+12:49 < slackbot7> <lydian> tks
+12:49 < slackbot7> <clkao> lydian: 課綱文字版手動轉的嗎？
+12:49 < slackbot7> <lydian> 對啊
+12:49 < slackbot7> <clkao> 要不要先拆成 md 的 heading, 這樣比較好切主題
+12:49 < slackbot7> <mrorz> 我覺得 github 的 line comment 很夠用呀 XD
+12:50 < slackbot7> <clkao> 是啦 只是要再多接其他東西就比較難 reference 到
+12:50 < slackbot7> <lydian> pdf 轉檔格式都會整個跑掉
+12:50 < slackbot7> <clkao> 而且 diff 我們看很懂 過去經驗是丟給一般人看 還是有困難
+12:51 < slackbot7> <lydian> 是唷，我一直覺得很明顯， 看來我還是太biased了
+12:51 < slackbot7> <clkao> split (left-right) 好一點 但是整大份還是不容易看 有先切分主題 分開呈現會比較好
+12:51 < slackbot7> <clkao> 因為有時那個「主題」的那行不會在 diff context 中
+12:51 < slackbot7> <clkao> 就會難以閱讀
+12:52 < slackbot7> <lydian> 對耶，有可能，而且github界面對一般人可能太難用了
+12:52 < slackbot7> <clkao> 先轉 md 吧，晚點看看能不能自動轉到 billab 用的 json
+12:53 < slackbot7> <clkao> 現在有地方蒐集所有的版本了嗎 ?
+12:53 < slackbot7> <clkao> (各學科)
+12:53 < slackbot7> <lydian> 我現在都是自己找的
+12:53 < slackbot7> <clkao> 先開個 hackpad ? :stuck_out_tongue:
+12:54 < slackbot7> <lydian> 而且下午的時候還拿不到104 ，因為教育部網站被打掛了xD
+12:54 < slackbot7> <lydian> <https://g0v.hackpad.com/LUXl1KVH4ys>
+12:54 < kcwu> slackbot7's url: [課綱正反意見表列 - g0v.hackpad.com]
+12:54 < slackbot7> <lydian> 開了開了
+12:54 < slackbot7> <lydian> 可惜美西松還有一個月 太晚了
+12:55 < slackbot7> <lydian> 不然應該在美西松做的:p
+12:55 < slackbot7> <clkao> lydian++
+12:56 < slackbot7> <clkao> 只好緊急美西松了
+12:56 < slackbot7> <lydian> 對啊
+12:57 -!- Quality [6a69ba36@gateway/web/cgi-irc/kiwiirc.com/ip.106.105.186.54] has left #g0v.tw []
+13:08 < slackbot7> <lydian> clkao:  billab的json檔格式長什麼樣啊？我手動轉的那幾個txt都是tab分層，應該很好轉
+13:09 < slackbot7> <lydian> 104的是pdf 檔，我要先跑轉檔看會出來什麼東西
+13:10 < slackbot7> <clkao> lydian: 蠻單純的左右比較 <https://github.com/clkao/billab/blob/master/app/assets/data/copyright-reform-act-2014.json>
+13:10 < kcwu> slackbot7's url: [billab/copyright-reform-act-2014.json at master · clkao/billab · GitHub]
+13:11 < slackbot7> <clkao> yhsiang: redux 的 reducer 跟 action 好囉唆... 感覺可以 introspect 一個 class 還是什麼自動生成... 有這樣的東西了嗎？
+13:39 < quality> 請問要當一個Anonymous 剛學習什麼東西呢?
+13:42 < jimyhuang> quality: 是說，想要不被追蹤的意思嗎？
+13:42 < slackbot7> <lydian> 囧　以為的課綱是照學期分的，104課綱是照中國史跟世界史分的 ~”~
+13:48 < quality> 學習proxy和vpn的意思
+13:50 < tkirby> 中天網站又掛了嗎
+13:52 < slackbot7> <yhsiang> clkao: <https://github.com/acdlite/redux-actions> 是想要這種東西 ?
+13:52 < kcwu> slackbot7's url: [acdlite/redux-actions · GitHub]
+13:54 < Lee1092> quality: 不如當個 Nobody XD
+14:00 < slackbot7> <mrorz> 我在想，針對課綱的正反意見，真的都是圍繞在課綱本文的差異上嗎
+14:00 < slackbot7> 整理「正反意見」與[]
+14:00 < Michael_LI> lydian　新聞松也可以搞　不過上個月臨時啟動第四次　針對八仙災難　都沒人來陪我好灰心
+14:00 < slackbot7> <mrorz> 與「呈現 101 / 104 課綱差異」，或許應該用不同界面呈現
+14:01 < slackbot7> <mrorz> 而不是放在同一頁
+14:01 < slackbot7> <clkao> yhsiang: 之前看到不大像，原來是 createAction 是 createActionCreator 的意思.... XD
+14:01 < slackbot7> <yhsiang> XD
+14:03 < quality> Lee1092: why?
+14:08 < slackbot7> <clkao> redux 其實是 fp &amp; monad redux 的意思... ? XD
+14:09 < slackbot7> <yhsiang> XD 作者最愛用 (state) => (action) => … blah XDD
+14:11 < slackbot7> <clkao> redux 是 fp 史觀，可以這樣嗎？
+14:15 < slackbot7> <clkao> 那個要 bindActionCreator &amp; @connect 的 container component 好像也是 boilerplate… .
+14:16 < slackbot7> <yhsiang> 充滿 decorator + fp XD
+14:16 < slackbot7> <clkao> but it’s a solid abstraction..
+15:41 -!- YOLO is now known as Guest74195
+15:51 < slackbot7> <lydian> mrorz: 我覺得課綱爭議要分兩塊，一塊是程序上，另一塊是內容，比較是突顯在內容上的正反意見
+15:51 < slackbot7> <lydian> 程序上我還不確定應該要怎麼做才對
+15:52 < slackbot7> <lydian> michael_li:  新聞松是在台灣辦的嗎？
+15:57 < slackbot7> <yhsiang> 程序上，可以反映給 au XD
+15:57 < slackbot7> <yhsiang> au++
+15:59 < slackbot7> <au> lydian: 我先只處理紀錄程序... 如果通過，再延伸做別的程序。紀錄程序不能阻止被微調，但是至少不黑箱 XD
+16:01 < slackbot7> <au> <http://www.slideshare.net/autang/83-51169490> <https://g0v.hackpad.com/VReH0BtYG5f> patches welcome
+16:01 < kcwu> slackbot7's url (1/2): [8/3 課發會臨時動議]
+16:01 < kcwu> slackbot7's url (2/2): [課發會紀錄要點（提案） - g0v.hackpad.com]
+20:17 < Polo> 你好我想加入匿名者
+20:19 < slackbot7> <acechen> 歡迎(?!) 這裡發言一切匿名
+20:39 < Michael_LI> lydian　是在台灣辦理　但是理論上　可以佈局城大型的國際通訊社一樣　變成多（物理性）地點同步舉行的"聯合黑客松"
+20:46 < Michael_LI> lydian　現在沒玩這麼大　找個小地方　弄一弄即可　有機會才啟動大型方案　／　平常都有跟新聞圈　阿宅圈　等等人士私下說話了
+21:33 < slackbot7> <miaoski> au: 雖然 PM2.5 測不準，不過有沒有什麼平台可以上傳測量資料 + 經緯度的.
+21:35 < kcwu> 聽起來像 ushahidi ... 
+21:35 < slackbot7> <miaoski> 剛看了 openHAB 和 http://opensensors.io 似乎都不適合
+21:35 < kcwu> slackbot7's url: [OpenSensors.io – Connecting Things]
+21:36 < slackbot7> <miaoski> kcin: 感謝，來研究一下...
+21:37 < slackbot7> <miaoski> openHAB 適合個人用。要做一個「這個 sensor 的歷史資料、各項數據目前資料、趨勢圖」很方便，但像這種一堆 device 的似乎不行，而且沒地圖 (要和 Google Maps 接?)
+21:38 < slackbot7> <miaoski> http://opensensors.io 適合一堆 devices 但沒有接 map (?)
+21:40 < slackbot7> <miaoski> Egg 一直是推到 http://xively.com
+21:40 < kcwu> slackbot7's url: [Xively by LogMeInXively]
+21:40 < slackbot7> <au> miaoski: <https://www.firebase.com/docs/rest/api/#section-post> ?
+21:40 < kcwu> slackbot7's url: [REST API - Firebase]
+21:41 < slackbot7> <miaoski> au: 嗯 http://opensensors.io 和這個差不多喲!
+21:41 < slackbot7> <miaoski> 看起來就很 MQTT
+21:42 < slackbot7> <au> 都好啊，隨便選一個做之後都可以匯出
+21:42 < slackbot7> <au> 不然在 http://sheethub.com 開一個 POST data 的 request XD
+21:42 < kcwu> slackbot7's url: [SheetHub.com]
+21:43 < slackbot7> <miaoski> ah OK. 我本來是想找有沒有已經存在的 solution (給定經緯度開始塞時間、資料)
+21:43 < slackbot7> <au> <https://hackpad.com/SheetHub.com-API-Public-gtQm8vtBXLH> 有 insert
+21:43 < kcwu> slackbot7's url: [SheetHub.com API (Public) - hackpad.com]
+21:44 < slackbot7> <au> 那的確是 Ushahidi 最接近了
+21:44 < slackbot7> <miaoski> OK.  http://sheethub.com 看來有客後服務 (咦) 這個不錯 XD
+21:45 < slackbot7> <miaoski> hosting 不是問題，我目前用家裡的 RPi 隨便寫 flask 也有順手丟 sqlite … 但重做輪子反正不好 XD
+21:46 < slackbot7> <miaoski> [ 統一的 API 接口 ] 看了讓人不開心 XD 應該來開個 issue
+22:17 < slackbot7> <kiang> ushahidi 比較像是地圖介面的回報追蹤，對於單一點持續產生的數據好像沒有很好的呈現方式（或是沒用過）
+22:52 < slackbot7> <miaoski> @kiang: 那就先丟 http://sheethub.com 然後再看有沒有人要把它和現在的空污結合在一起
+22:53 < slackbot7> <miaoski> 不過。你家的經緯渡要怎麼抓... GeoIP 偶爾會不準，但這個應用我可不希望太精確。差個幾十公尺對隱私比較有保障。
+22:55 < slackbot7> <kiang> miaoski: 就抓開元派出所？
+22:55 < slackbot7> <miaoski> @kiang: 可以喲。不過之後總是要自動抓吧... 我來看一下 geoip
+23:03 < slackbot7> <kiang> geoip 可能要付費的資料庫比較有參考價值，否則有些情況下我明明在其他縣市，取得的定位還是三重機房
+23:17 < slackbot7> <miaoski> @kiang: GeoIP2 給我 23.5, 121 真是太有隱私了  XD
+23:18 < slackbot7> <kiang> XD

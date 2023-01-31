@@ -1,0 +1,178 @@
+--- Day changed 日  2月 24 2013
+00:00 -!- thschee_autobahn [~AndChat51@49.217.71.17] has quit [Quit: Bye]
+00:31 -!- gdx_ [~gdx@staff.kkbox.com.tw] has quit [Quit: leaving]
+00:31 -!- gdx [~gdx@staff.kkbox.com.tw] has joined #g0v.tw
+00:48 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+01:09 -!- nchild [~nchild@111-243-91-125.dynamic.hinet.net] has quit [Remote host closed the connection]
+01:49 -!- icman [~icman@123.240.140.81] has quit [Quit: 明天天氣晴]
+02:01 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: Leaving]
+02:56 -!- evenwu [~evenwu@linode.evendesign.tw] has joined #g0v.tw
+02:57 < evenwu> 回報萌典的小問題
+02:57 < evenwu> http://d.pr/i/okOl
+02:58 < evenwu> 不字怪怪的
+02:59 < evenwu> 實驗後把 font-family 裡面的 "subset" 拿掉就好了
+03:00 -!- MindosCheng [~mindos@223-140-243-172.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+03:01 < evenwu> font-family 會這麼雜不知是有什麼特殊意義？
+03:03 -!- MindosCheng [~mindos@223-140-243-172.dynamic.hinet.net] has joined #g0v.tw
+03:10 < au> evenwu: 原本是為了使用者端如果只有 big5 字型
+03:11 < au> 外字都要能正常顯示
+03:11 < au> 但 subset 的過程中因為沒有篩 big5，「不」變外字了 orz
+03:17 < au> evenwu: fixed thx
+03:18 < au> evenwu: cloudflare 要一陣子再 refresh... 請試試 http://direct.moedict.tw/ ?
+03:18 < kcwu> au's url: [萌典 — 教育部國語詞典（民間線上版）]
+03:19 < au> (perhaps clear browser cache first)
+03:22 < kcwu> au: android 的 soft info button 出現了 (0.1.6)
+03:29 < au> cool! kcwu++
+03:44 -!- MindosCheng [~mindos@223-140-243-172.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+03:50 < kcwu> au: subset 包含哪些字? moedict.tw 有些字看不到是預期中的行為嗎? (ex 因為我沒裝某 font?)
+03:50 < au> kcwu: subset 包含 cp950 以外的所有字
+03:51 < au> 所以... 不應該看不到字
+03:51 < kcwu> http://www.moedict.tw/#不受苦中苦，難為人上人
+03:51 < au> 哪個字看不到?
+03:51 < kcwu> 在 mac chrome 看到方框, 在 android 是空白, 秦*夫
+03:52 < au> OK it's U+25CD1
+03:52 < au> 可能是在 medicalwei 做完 otf 之後 新檢出的外字
+03:52 < au> (i.e. from favonia's revised effort)
+03:52 < au> just a sec
+03:55 < au> 對，有 268 個 BMP 之外的外字沒有加上去
+03:57 < au> I'll add an issue for that
+03:59 -!- MindosCheng [~mindos@223-140-243-172.dynamic.hinet.net] has joined #g0v.tw
+04:02 < MindosCheng> au++ # I used 萌典 in real life.  The team is amazing!
+04:02 < au> kcwu: filed https://github.com/g0v/moedict-epub/issues/1
+04:02 < kcwu> au's url: [Subset 字型未包含 BMP 以外的 HAN NOM B 字型 · Issue #1 · g0v/moedict-epub · GitHub]
+04:02 < au> MindosCheng: glad you like it!
+04:06 < au> kcwu: 在修正前， mac chrome 裝 http://fonts.jp/hanazono/ 的 HanaMinB 就可以看到了
+04:06 < kcwu> au's url: [Hanazono fonts]
+04:06 < au> # http://sourceforge.jp/projects/hanazono-font/downloads/58164/hanazono-20130222.zip/
+04:06 < kcwu> au's url: [hanazono-20130222.zipをダウンロード - 花園フォント - SourceForge.JP]
+04:09 < kcwu> 沒裝才有辦法 report bug (?) XD
+04:09 < evenwu> 喔喔
+04:10 < au> 也是有道理 XD
+04:10 < evenwu> 學問真大
+04:11 < au> evenwu: http://direct.moedict.tw/ fixed?
+04:11 < kcwu> au's url: [萌典 — 教育部國語詞典（民間線上版）]
+04:11 < evenwu> yes
+04:11 < evenwu> 舒服了
+04:11 < au> 然後 http://www.moedict.tw/ 理論上 shift-refresh 也會修得好
+04:11 < au> (假設我 cloudflare 沒設錯)
+04:12 < evenwu> 沒關係 有修好就好了...
+04:12 < au> evenwu++
+04:12 < evenwu> 只是個眼睛不舒服的問題
+04:12 < au> well that's the whole point of this project...
+04:13 < au> i.e. 「看 http://dict.revised.moe.edu.tw/ 眼睛會不舒服」 XD
+04:13 < kcwu> au's url: [教育部重編國語辭典修訂本－主站]
+04:13 < evenwu> 哈哈哈
+04:14 < evenwu> 確實原本非常不蘇胡！
+04:14 < au> :D
+04:15 < evenwu> 不過我reload之後發現還是沒變 清cache了
+04:15 < au> 所以是 cloudflare hard cache 住了
+04:15 < au> 那要等 24hr
+04:15 < evenwu> cloudflare 裡面有一個強制重新產生的按鈕
+04:16 < au> 真的耶，按了
+04:17 < evenwu> 成功了 :p
+04:17 < au> evenwu++
+04:17 < au> 每天在 #g0v.tw 都學到新知識 XD
+04:18  * au 先去打包睡了，今晚飛巴黎
+04:18 < au> -> zz \o
+04:18 < evenwu> cool 安
+04:32 < MindosCheng> au 旅途平安
+04:37 -!- MindosCheng [~mindos@223-140-243-172.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+04:42 -!- MindosCheng [~mindos@223-142-161-97.dynamic.hinet.net] has joined #g0v.tw
+05:26 -!- juanna_ [~juanna@114-37-98-187.dynamic.hinet.net] has joined #g0v.tw
+05:26 -!- juanna [~juanna@114-37-93-132.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+07:57 < kcwu> 有懂日文的人嗎, http://www.moedict.tw/#俳句 裡頭的例句 「古池せ蛙とびこむ水の音」, google 查到的都是 「古池や 蛙飛び込む 水の音」
+07:57 < kcwu> kcwu's url: [萌典 — 教育部國語詞典（民間線上版）]
+07:57 < kcwu> 是字典抄錯還是其實都可以？
+08:10 -!- MindosCheng [~mindos@223-142-161-97.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+08:58 -!- ddio [~ddio@220-133-98-228.HINET-IP.hinet.net] has joined #g0v.tw
+09:21 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has joined #g0v.tw
+09:26 < favonia> kcwu++
+09:29 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+09:29 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has joined #g0v.tw
+09:31 < favonia> miaout17: 請問你上次整理出來的表格放在哪裡呢？
+09:33 < favonia> miaout17: 就是從那個轉碼工具挖出來的
+09:35 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+09:36 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has joined #g0v.tw
+09:48 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+09:48 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has joined #g0v.tw
+09:55 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+09:56 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has joined #g0v.tw
+10:08 -!- ddio [~ddio@220-133-98-228.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+10:08 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+10:12 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+10:13 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has joined #g0v.tw
+10:14 -!- charleschuang [~charlesc@115.82.155.181] has joined #g0v.tw
+10:15 -!- zz_chihchun is now known as chihchun
+10:16 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+10:17 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has joined #g0v.tw
+10:19 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+10:20 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has joined #g0v.tw
+10:23 -!- chihchun is now known as zz_chihchun
+10:24 -!- zz_chihchun is now known as chihchun
+10:46 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+10:46 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has joined #g0v.tw
+10:50 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+10:50 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has joined #g0v.tw
+11:04 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+11:04 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has joined #g0v.tw
+11:12 -!- chihchun is now known as zz_chihchun
+11:12 -!- ddio [~ddio@220-133-98-228.HINET-IP.hinet.net] has joined #g0v.tw
+11:20 -!- ddio [~ddio@220-133-98-228.HINET-IP.hinet.net] has quit [Quit: ddio]
+11:28 -!- ddio [~ddio@60-248-96-211.HINET-IP.hinet.net] has joined #g0v.tw
+11:29 -!- jpsun [~jpsun@114-37-175-131.dynamic.hinet.net] has quit [Quit: Leaving.]
+12:24 -!- charleschuang [~charlesc@115.82.155.181] has quit [Ping timeout: 260 seconds]
+12:30 -!- ddio [~ddio@60-248-96-211.HINET-IP.hinet.net] has quit [Quit: ddio]
+12:44 -!- zzz_walkingice is now known as walkingice
+12:44 < walkingice> 有個當國小老師的朋友，看見萌典瞬間超 high  XD
+12:44 < clkao> http://blog.clkao.org/post/43865956046/api-pre-alpha # 議案 api 
+12:45 < walkingice> (y)
+12:57  * clkao &
+12:58 < miaout17> favonia: http://m17pub.s3.amazonaws.com/moedict-encoding-map.tgz
+12:58 < miaout17> 這個嗎？
+13:04 -!- ddio [~ddio@60-248-96-211.HINET-IP.hinet.net] has joined #g0v.tw
+13:12 < favonia> miaout17: y
+13:34 -!- icman [~icman@123.240.140.81] has joined #g0v.tw
+13:35 < au> walkingice: (心)
+13:36 < au> clkao: s/[“”]/"/g in your blog
+13:37 < au> also {"proposal.0":"吳育昇"} 沒有 {]
+13:57 < kcwu> au: 不太理解 moedict.tw 支援的 wildcard 語法...譬如 ^一* 跟 ^一? 都是空的
+14:04 < kcwu> regex -= /\^/g 改成 regex -= /^\^/g ?
+14:04 < kcwu> # [^一]
+14:59 < au> kcwu: 那是 shellglob, SQL 和 regex 的混搭
+15:00 < au> 大意是希望 ? _ . 都有「單字」
+15:00 < au> * % 都有「任意字」
+15:00 < au> 然後無萬用字元時無 anchor，有時預設兩邊 anchor
+15:00 < au> 但可用 ^$ 控制 anchor
+15:01 < au> 但是因為是臨時亂寫的... 所以大概問題很多
+15:01 < au> commits welcome XD
+15:02 < au> （後綴和後綴空白也相當於 *）
+15:16 < clkao> au: orz. pesky tumbler
+15:16 < clkao> was working during preview!
+15:19 < clkao> au: fixed, thanks!
+15:22 < clkao> weird. still looking so odd
+15:33 < clkao> tumblr--
+15:33 < clkao> tumblr--
+15:47 < au> clkao: 不然要 URI Escape 看看
+15:47 < au> http://api.ly.g0v.tw/collections/bills?q=%7B%22proposal.0%22:%22%E5%90%B3%E8%82%B2%E6%98%87%22%7D
+15:48 < au> http://api.ly.g0v.tw/collections/bills?q=%7B%22proposal%22:%7B%22$contains%22:%5B%22%E5%90%B3%E8%82%B2%E6%98%87%22%5D%7D%7D
+15:48 < au> -> otg, bbl
+16:37 -!- zz_chihchun is now known as chihchun
+16:38 -!- nchild [~nchild@111-243-89-197.dynamic.hinet.net] has joined #g0v.tw
+16:53 -!- nchild [~nchild@111-243-89-197.dynamic.hinet.net] has quit [Remote host closed the connection]
+16:54 -!- nchild [~nchild@111-243-89-197.dynamic.hinet.net] has joined #g0v.tw
+16:58 -!- nchild [~nchild@111-243-89-197.dynamic.hinet.net] has quit [Ping timeout: 244 seconds]
+17:09 -!- ddio [~ddio@60-248-96-211.HINET-IP.hinet.net] has left #g0v.tw []
+17:16 -!- chihchun is now known as zz_chihchun
+17:50 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+18:39 -!- nchild [~nchild@111-243-91-125.dynamic.hinet.net] has joined #g0v.tw
+20:06 -!- mno2 [~mno2@1.34.43.236] has quit [Ping timeout: 276 seconds]
+20:49 -!- nchild [~nchild@111-243-91-125.dynamic.hinet.net] has quit [Remote host closed the connection]
+21:52 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+22:21 -!- superbil [~superbil@114-34-221-169.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+22:46 -GitHub35:#g0v.tw- [twlyparser] clkao pushed 3 new commits to master: https://github.com/g0v/twlyparser/compare/6f0fa5507ac8...6aabb49afafc
+22:46 -GitHub35:#g0v.tw- twlyparser/master 6c2b506 Chia-liang Kao: when converted html is present, skip fetching doc
+22:46 -GitHub35:#g0v.tw- twlyparser/master fc3cdc5 Chia-liang Kao: disable chute for bills for now
+22:46 -GitHub35:#g0v.tw- twlyparser/master 6aabb49 Chia-liang Kao: use explicit splice to workaround lsc 1.1.1 issue
+23:23 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 260 seconds]
+23:39 -!- icman [~icman@123.240.140.81] has quit [Quit: 明天天氣晴]
+23:57 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw

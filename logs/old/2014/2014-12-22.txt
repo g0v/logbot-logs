@@ -1,0 +1,499 @@
+--- Day changed 一 12月 22 2014
+00:00 < t0mst0ne_> kiang: 啊, 不是直接對到藥物
+00:01 < kiang> t0mst0ne_: 只是想說能不能先有總表再去配對，現在看起來只能從非常難以信任的資料來源去拼湊了 XD
+00:02 < kiang> 天知道 41.csv 裡面的 ATC 資料是否正確 XD
+00:16 < t0mst0ne_> http://www.nhi.gov.tw/Resource/webdata/2399_1_all_1031125.b5.zip  partial 健保給付藥物 (含ATC)
+00:17 < t0mst0ne_> 預期(健保不給付藥物, 或之前藥物 不在 檔案中)
+00:20 < t0mst0ne_> kiang: 應該是有健保碼的, 會有 ATC code
+00:20 < kiang> t0mst0ne_++, 不過這個檔案的資料沒有像 41 一樣有樹狀結構
+00:21 < t0mst0ne_> kiang: 對, 不知道是給什麼程式input 用的 XD, 健保局的資料,應該不會差
+00:22 < kiang> 看起來跟 FDA 的資料集是重疊的，只是不知道哪個比較完整，可能還是先用 41 處理分類的部份
+00:23 < kiang> 不是很愛 big5 的資料 XD
+00:45 < chhsiao1981> kiang: 根據昨天的胖胖(藥師)的說法. 健保局裡的藥的資料是只有健保藥物而已. 
+00:45 < chhsiao1981> 另外昨天想到對應於 fda 的網站是 f6a XD. 
+00:45 < kiang> chhsiao1981: 嗯，那就只能期待 FDA 沒有藏私（或是埋炸彈了） XD
+00:48 < kiang> chhsiao1981: 是說胖胖有聯絡方式或是對我目前做的有 comment 嗎？
+00:49 < kiang> 目前就像瞎子摸象一樣，我只試著看懂資料結構，至於那些文字代表什麼其實完全沒有概念 XD
+02:13 -!- jksonc_ [sid13988@gateway/web/irccloud.com/x-hsmdhxmiidoreggg] has left #g0v.tw []
+07:40 < a0kman> au: 抱歉我忘記那個12職等的講說會相關資訊是在哪邊了@___@"
+07:40 < a0kman> 找了一找不知道在哪XD"
+08:00 < a0kman> 低技術PK  XDDD
+08:00 < a0kman> http://vlog.xuite.net/play/czRuNEo0LTIwOTE5OTkzLmZsdg==
+08:00 < kcwu> a0kman's url: [HEBOCON 日本超廢柴機器人大戰！ @ 隨意窩 Xuite 影音]
+08:48 < kazami> 胖胖的fb ID Yu-Cheng Tu
+09:43 -!- tubaxeno1 is now known as tubaxenor
+10:52 < au> a0kman: g0v.tw 右下角的行事曆有
+10:53 < a0kman> 喔喔喔 原來在行事曆XD
+10:53 < a0kman> <(_ _)>
+10:53 < a0kman> au: +++++ 感恩~
+12:16 -!- petercommand is now known as Guest52641
+12:19 < au> 感謝給問團隊繼 ly 和 billy 之後紛紛跳入 vtaiwan.tw 坑... pm5++ soidid++
+12:20  * au -> 出門到 stli.iii 做 user profiling & user story gathering
+12:26 < pm5> au++
+12:35 < clkao_> t0mst0ne_: 結束後要約 etblue 嗎
+12:46 < t0mst0ne_> clkao_: I'm here
+12:57 < clkao_> ETBlue: 有要去怡樂嗎？ XD
+13:14 < ETBlue> clkao_: t0mst0ne_ 我今天4:30 開會約 6pm 前可到.. 你們呆到幾點
+13:18 < ETBlue> pofeng: kiang: t0mst0ne_ :我知道了，我這週二開始全部請假好了，弄藥典
+13:19 < pofeng> ETBlue: !! 會不會太嗨啊，打工還是重要吧，你老公會抱怨我們讓你太累喔 *啾咪* 
+13:19 < ETBlue> XD
+13:34 < yhsiangCloud> XD
+13:35 < ETBlue> jimyhuang: project hub 有 hack.g0v.tw 裡的，e04 人力資源部的，我之前弄的，hychen 跟美東重寫的 oh my hub，hychen 的台南幫強者新弄的 om hub，跟前天 isacl 那邊公益媒合平台的（mockup
+13:37 < ETBlue> 額這樣不只4.5，是5.5個
+13:45 < isacl> ETBlue: lol project hub hub++
+14:44 < dirty> 弄那麼多 hub 的原因是什麼? 大家都覺得別人的不好看?
+14:45 < caasihuang> publish first, filter later?
+14:48 < CindyLinz> 1001 個 todo list 實作.. XD
+14:53 < caasihuang> XD
+14:57 < yhsiang> dirty: 各種實作project hub :p
+15:06 < yhsiang> clkao_: https://phptw.herokuapp.com/ # php社群有弄欸  正在問這有沒有open source XD
+15:06 < kcwu> yhsiang's url: [phptw.slack.com]
+15:08 < yhsiang> gasolwu++ 
+15:10 < tkirby> yet another project hub YAPH... XD
+15:10 < tkirby> 需要 one hub to rule them all
+15:10 < poga> http://xkcd.com/927/
+15:10 < kcwu> poga's url: [xkcd: Standards]
+15:11 < yhsiang> clkao_: 馬上來merge gasolwu的commit :)
+15:11 < tkirby> poga 你的 avatar 產生器做好了嗎
+15:11 < poga> tkirby: 還沒 Orz
+15:11 < tkirby> XD!
+15:11 < Lee1092> XD
+15:11 < tkirby> 這樣會出現 yet another avatar generator
+15:11 < tkirby> YAAG! 好名字
+15:12 < caasihuang> poga: 約一天來個 avatar 產生器松？我要逼自己做那個 colorpicker XD
+15:12 < tkirby> 你們兩個要自己松嗎  再多湊幾咖吧
+15:12 < poga> caasihuang: 我是想說寄生個什麼松把他弄完...
+15:13 -!- Guest52641 is now known as petercommand
+15:14 < caasihuang> poga: 那我就寄生在 poga 上面... XD
+15:18 < dirty> tkirby++ # YAPH
+15:19 < moon_c__> 寄生：覺得肩膀重重der
+15:20 < Lee1092> 寄生獸!!
+15:20 < Lee1092> 目標 把坑吃掉
+15:20 < moon_c__> 然後收割
+15:21 < tkirby> 用 colorpicker 來選 avatar 的顏色, 用 avatar 產生器來製作 hub 裡登錄的人像, 用 hub 來 .... (是個無限寄生松坑坑相連的概念)
+15:21 < tkirby> 還會有被上下游追殺的優點
+15:53 < kiang> t0mst0ne_: 用 ATM 分類實作了樹狀導覽的部份 - http://drugs.olc.tw/drugs/category/99
+15:53 < kcwu> kiang's url: [Respiratory system > Cough and cold preparations 藥品一覽 @ 藥要看]
+15:53 < kiang> ATC 分類...
+15:55 < t0mst0ne_>  kiang ++++
+15:56 < t0mst0ne_> Cdc 的防疫醫師都覺得不可思議
+15:57 < kiang> 就只是把以前做的東西換個資料來源拼拼湊湊吧，現在畫面的問題還是比較傷腦筋，太多資料了 XD
+16:01 < tkirby> kiang++
+16:02 < tonysan> 用 t1.micro build node from source... build到天荒地老
+16:05 < kiang> 仿單資料也是下載到天荒地老，已經下載了 33GB 程式還沒跑完，下載完還要想辦法塞進 github XD
+16:06 < Michael_LI> ［消息］聽廣播整點新聞，Uber被交通部認定違法（資訊服務業vs運輸業），看來會跟法國一樣禁止！
+16:06 < lanf0n> XD
+16:06 < kcwu> 是包括圖嗎, 還是光文字就那麼大了?
+16:07 < kiang> kcwu: 大量的圖跟文書檔案，單一檔案最大 94MB
+16:07 < kcwu> 文書檔是指像 word pdf ?
+16:08 < kiang> kcwu: yes, 還包括 ppt, xls, ...
+16:10 < kiang> https://github.com/kiang/data.fda.gov.tw/tree/master/39_file - 想到的時候就偷偷塞個一兩千個檔案進去 github ，副檔名都拿掉了，後面再補上包含 mime 資訊的檔案清單
+16:10 < kcwu> kiang's url: [data.fda.gov.tw/39_file at master · kiang/data.fda.gov.tw · GitHub]
+16:11 < kiang> 原始系統可能廠商想要給什麼就收什麼，結果就一堆混亂的資訊，要想從中過濾出重要的（像是副作用等）應該會有些費力，理想是能夠請食藥署重新規範，讓資料乾淨一點
+16:16 < pofeng> kiang: 聽說健保碼資料是用 excel 維護的 ( orz ) cc: t0mst0ne_ 
+16:17 < kiang> pofeng: 其實多個資料集之間就有對不起來的情況了，我只是先都忽略 36 沒有的資料
+16:17 < kiang> 該開發系統的不開發，不該開發的卻一直做...
+16:17 < pofeng> kiang: 感謝抓 bug (Y)
+16:19 < pofeng> kiang: 突然想到每個資料集, 應該要有 bug report 的窗口, 向上次 "皰" 的問題, 還沒人理我們
+16:20 < kiang> pofeng: 是啊，目前他們可能只是被逼著做出這個東西吧（從資料的混亂去感受怨念）
+16:21 < pofeng> kiang: 哈
+16:21 < miaoski> kiang: 你需要 OCR
+16:22 < kiang> miaoski: 要踹嗎？我是覺得請他們訂個規則要廠商照著給容易些，畢竟廠商不得不做 XD
+16:23 < miaoski> kiang: 訂規則當然好啊 XD ... 仿單的 OCR 我想應該不難 (字體一致，仿單兩邊有影印的對齊線) . 不過這個有沒有鄉民願意校對就很難說了... 
+16:23 < miaoski> 話說 有沒有比丹青更好用的中文 OCR ...? 別給我 tesseract XD
+16:24 < a0kman> QAQ 人類用藥好火熱喔喔喔
+16:24 < kiang> tesseract 的確比 丹青 好啊，只是沒有公開的資料庫吧，問問 gugod ?
+16:24 < a0kman> (畫圈圈)
+16:24 < a0kman> XD"
+16:24 < miaoski> a0kman: 寵物即將不能用人藥，我也想哭了 T_T
+16:24 < miaoski> 到時候動物用藥說不定會比農藥還好做...
+16:25 < miaoski> (因為品項太少)
+16:25 < a0kman> XDDDD
+16:25 < miaoski> kiang: 確定？我試用的結果，還是丹青最好啊 XDDDD 呼叫 gugod ~~~~
+16:25 < a0kman> 不過很明顯的 動物 人類 植物 藥劑 官方的資料都零散到一個有剩
+16:26 < miaoski> a0kman: 人藥的話，國家藥典很完整啊. 好多人都有做.
+16:26 < kiang> miaoski: Acrobat 是用 丹青 的系統嗎？之前 au 用 Acrobat 掃出來的品質不賴
+16:26 < a0kman> 話說我某一天在雲林的某家"人"醫院看到醫護人員再分裝動物用的抗生素
+16:26 < miaoski> au: ping 
+16:26 < a0kman> 有點小小驚了一下
+16:26 < au> miaoski: pong
+16:27 < miaoski> kiang: 我不知道 :P 我也覺得 au 掃出來的不賴. 雖然我比較想要 txt 檔... (望向被我轉壞的阿美語字典...)
+16:27 < au> Acrobat ClearScan 確實還不錯
+16:27 < miaoski> au: 它和丹青是類似的嗎？還是 Adobe 自幹了一套...?
+16:28 < au> 應該是 Adobe 自己的
+16:28 < a0kman> warfarin 也很有趣 用在人類好像是打通血栓???  但是農業界就是拿來殺老鼠
+16:28 < a0kman> 稱"殺鼠靈"
+16:28 < miaoski> a0kman: warfarin 是打通血栓沒錯. 也是常見的心臟科濫用藥 (逃)
+16:29 < pofeng> kiang: 其實藥典做完我比較想做化妝品 :p
+16:29 < a0kman> 說道化妝品
+16:29 < miaoski> 副作用是老人家吃完常常會瘀血，因為抗凝血的關係...........
+16:29 < a0kman> 我有朋友本來在台灣的某化妝品公司當生物技術開發
+16:29 < a0kman> 結果...........
+16:29 < kiang> http://drugs.olc.tw/drugs/category/2592 (跟著關鍵字找到一堆自己看不懂的東西)
+16:29 < kcwu> kiang's url: [Blood and blood forming organs > Antithrombotic agents > antithrombotic agents > Vitamin K antagonists 藥品一覽 @ 藥要看]
+16:29 < a0kman> "因為數據"
+16:29 < pofeng> kiang: 我認真想找藥商來 sponsor 你的計畫 ... 只是懶惰還沒打電話 :p
+16:29 < miaoski> 有個朋友叫 Heparin ，在獸醫院是用來做上留置針的時候防止凝血用的
+16:29 < a0kman> 他寧願不幹XD
+16:30 < miaoski> a0kman: 因為數據？
+16:30 < kiang> pofeng: 藥商應該會想要殲滅這個計畫吧 XD
+16:30 < pofeng> kiang: 不會不會
+16:30 < a0kman> wj/ t;65k45j/3
+16:30 < a0kman> 通常這類 大藥商應該很歡迎吧
+16:30 < a0kman> 像農藥相關的計畫  大的農藥商也很歡迎
+16:30 < kiang> 大藥商不是都走暗盤的嗎？（連續劇看太多）
+16:31 < miaoski> kiang: 跟著藥典走一趟可以學到很多有趣的東西... 不過什麼都取代不了臨床經驗豐富的醫生 (看看豪斯醫生就知道了... 有夠慘的)
+16:31 < a0kman> 因為可以減少偽劣藥劑的囂張
+16:31 < a0kman> 甚麼都取代不了仙豆!
+16:32 < a0kman> 這邊詢問一下各位的看法@@"
+16:32 < kiang> http://zh.wikipedia.org/zh-tw/%E8%B1%AA%E6%96%AF%E5%8C%BB%E7%94%9F （有種跟世界脫節的感覺，不太看電視影集的）
+16:32 < kcwu> kiang's url: [怪醫豪斯 - 維基百科，自由的百科全書]
+16:32 < a0kman> 廣告領域 廣告創意在OPEN DATA方面
+16:33 < miaoski> kiang: 我也不太看，昨天在我獸醫家看了一集，快吐出來了
+16:33 < a0kman> 有甚麼可以做的 或是有甚麼需要OPEN出來的嗎
+16:34 < miaoski> 這個影集其實做得蠻好的。然後它有點諷刺醫院做了很多很貴的檢查，但卻漏掉一些最基本的東西。裡面也有因為戲劇效果做出來的部份，比方說(昨天看的)黃膽的眼睛搞到像蛇眼一樣黃...
+16:34 < kiang> a0kman: 就廣告立牌字號申請資料吧，就可以做檢舉達人的程式 XD
+16:34 < miaoski> 或是看到黃膽就直接 claim 說肝出問題之類的 ... 
+16:34 < miaoski> au: 再請教一下，有沒有比丹青好用的中文 OCR ... Adobe 好用可是我沒買...XD
+16:35 < kiang> miaoski: 美國影集很多都蠻有深度的，之前迷過 Lost ，但發現很花時間 XD
+16:35 < kiang> （看完腦子還會打結半天）
+16:35 < S3p_lin> Newsroom
+16:35 < a0kman> kiang: 我說的比較像是 在廣告傳播領域的人，如果他有廣告技術或是活動，和g0v可以有的相互關係或許可以是甚麼之類的:Q
+16:35 < miaoski> kiang: 或是像 CSI ... 上過刑事鑑試就知道，裡面戲劇效果滿點.... XD
+16:35 < a0kman> 因為有來接觸了
+16:36 < miaoski> 可是真的好好看 :D
+16:36 < kiang> a0kman: 或是活動資訊的開放吧，類似 rss feed ，讓人可以輕易取得個別單位最新活動，再進行混搭？
+16:37 < au> miaoski: g0v 豆腐平台比丹青好用 XD 純軟體的話應該目前沒有比 Adobe 和丹青好的了
+16:37 < a0kman> kiang: 好像是個不錯的概念
+16:38 < kiang> g0v 豆腐平台的問題是需要有強烈誘因 XD
+16:38 < a0kman> kiang: 其中還有講到 科技創意師這種工作@@
+16:39 < a0kman> kiang: 例如可口可樂之前不是有一個可以在A國買某可樂，然後販賣機螢幕在你買了以後會出現 對立國B國的畫面(另外一個人)
+16:39 < a0kman> 然後就打招呼什麼的
+16:39 < kiang> 科技創意師 應該蠻接近 maker 領域吧，就透過各種新科技的混搭去做新型態的廣告，像是之前就有街頭大螢幕可以讓你站在特定地點跟它做互動（投籃之類的）
+16:40 < a0kman> 這種類似 以前有某些創意概念 然後要到現在的技術發展才有機會出現
+16:40 < a0kman> 對
+16:41 < kiang> 那種實驗很有趣，但是很花錢，如果有公司願意開設這種實驗室應該會搶破頭吧
+16:41 < a0kman> 印度 VS 巴基斯坦  https://www.youtube.com/watch?v=ts_4vOUDImE&feature=youtu.be
+16:41 < kcwu> a0kman's url: [Coca-Cola Small World Machines - Bringing India & Pakistan Together - YouTube]
+16:41 < a0kman> 根據知道的資料是 當初設計出這樣的廣告模式後 一~~~~~大堆業主都不能接受 覺得不可行
+16:42 < a0kman> 後來被可口可樂拿去用了
+16:44 < a0kman> 不過還是可以繼續想 究竟廣告創意  廣告領域  和g0v可以有如何的互動或有趣的坑可以做
+16:44 < a0kman> 但是另外又要注意專案被可能商業掉的問題XD"
+16:46 < kiang> 廣告創意 其實根源就是要透過各種形式的包裝去產生宣傳效益，包裝過程本來就有些排他性，比較不容易有開放的想像就是了（酸民）
+16:46 < kcwu> abbyy finereader 跟 omnipage 的 ocr 好像也很強
+16:47 < clkao_> t0mst0ne_++ open health data is philosophically our political responsibility
+16:49 < a0kman> kiang: 這坑真不容易挖(鏟)
+17:12 < miaoski> au: ++ , kiang 要不要去買個丹青 (還買得到嗎？)
+17:18 < Lee1092> kiang++  太猛了   # 一堆專有名詞看不懂  XDD
+17:21 < caasihuang> a0kman: 以前朋友給我看過這個 https://www.youtube.com/watch?v=k-Cv_8QyPO8
+17:21 < kcwu> caasihuang's url: [TEDTalks 》JR's TED 獎項願望：用藝術顛覆世界（中英字幕） - YouTube]
+17:22 < caasihuang> 他們也在台中想做類似的計畫，但想貼的不是衝突的兩方，而是各種職人： https://www.facebook.com/craftsmanTaichung
+17:22 < kcwu> caasihuang's url: [薪新職人 | Facebook]
+17:24 < clkao_> stardog++ # http://star-dog.blogspot.tw/2014/12/blog-post_21.html
+17:24 < kcwu> clkao_'s url: [寂寞的人坐著看花: 議員投票指南與零時政府]
+17:42 < dirty> yet another product 最近聽到好多
+17:43 < dirty> 大家都要自己重做很像的東西 orz
+17:43 < dirty> 如果成大想要做一個 "社群媒體", 大家有沒有什麼想法?
+17:44 < dirty> 計中的計畫, 主要是想利用現有的雲端資源, 提出一個夠炫的 application
+17:45 < dirty> 我提的意見是, 重點是 "社群", 而不是平台, 像現在再做一個跟 ptt 一模一樣甚至更好的平台, 也不會發展出現在 ptt 的模式
+17:45 < dirty> 不過這種計畫通常都是以平台為重點...
+17:46 < CindyLinz> 目的是「提出一個夠炫的 application」的話.. 好像有一點點瞎的感覺 *_*
+17:46 < dirty> 明天要開會, 有想法的可以說一下, 我再反應上去, 看會不會有人聽進去
+17:46 < dirty> CindyLinz: 以後會聽到成大雲, 成大 youtube, 成大 dropbox...
+17:47 < CindyLinz> *_*
+17:47 < dirty> 其實都有了啦, 台大應該也都有? 開發得很辛苦
+17:48 < CindyLinz> 我指的不是專案本身, 而是目的.. ^^|
+17:48 < dirty> 所以, 總之是個機會, 看能不能提出點什麼東西. 我覺得不如花錢養成大附近的社群, 不用再開發一個已經存在的平台
+17:49 < dirty> CindyLinz: 一般的說法是要有 "特色" :) 對不起我擅自翻譯了
+17:49 < CindyLinz> 如果以後社群不想維護了, 校方的人員會不會被怎麼樣?
+17:49 < dirty> 感覺 "社群媒體" 不應該是某個計畫的產物吧? 應該由社群自然而然孕育出來的吧
+17:50 < dirty> CindyLinz: 現在沒有社群啊, 校方應該會是做一個平台, 然後想像會有一堆人上來分享, 留言, 形成一個社群
+17:50 < CindyLinz> 計劃的產物.. 那就是人工漁礁了 XD
+17:50 < t0mst0ne_> clkao_: 在想最後一張slide 該怎麼做時，想到要雜湊一下，然後亂亂湊就變這樣：）
+17:51 < dirty> CindyLinz: 所以, 如果能想點辦法讓它更可行是不賴
+17:52 < dirty> 蓋個鳥巢, 然後期待有鳥搬進來住 :)
+17:55 < CindyLinz> 不經意想到 au 的話, 可能也要納入考慮.. @@ # 自嗨的事收了錢反而不嗨，但是原本就不嗨的事收了錢會嗨一點點
+17:56 < dirty> CindyLinz: 這點不用擔心, 錢不會進到社群口袋裡的 XD
+17:57 < CindyLinz> 嗯嗯
+17:57 < dirty> 應該就是給計中專案人員薪水, 開發出一個... 還算能動的東西吧. 我可以強烈建議一定要 open source, 不然就不 "社群" 了 :p
+17:58 < hychen> dirty: 這些hub都很像不代表背後的需求一樣 
+17:58 < dirty> 所以, 我目前是傾向用來養社群啊, 這樣應該會對伙食費有很大的幫助 XD
+17:58 < hychen> dirty: om-hub 是for另一種pupose用的, ideally是只是個JS UI
+17:59 < dirty> hychen: yep, 但是理想上來說還是有很多東西可以 share/re-use, 不過我也知道很難
+17:59 < t0mst0ne_> clkao_: 有前輩說，最後一張slide最重要，因為擺最久，同時聽眾可能整場只記得最後一張，所以我才克意丟最有挑戰性的話放最後XD
+17:59 < dirty> hychen: 對了, 成大附近有社群媒體 or 媒體社群嗎?
+17:59 < hychen> dirty: 什麼媒體?
+18:00 < hychen> dirty: 媒體社群就台南在地誌跟TedxTainan?
+18:00 < dirty> sounds great
+18:00 -!- chihchun is now known as chihchun_afk
+18:01 < hychen> 不過在討論這之前, 先定義什麼叫做社群媒體? XD
+18:01 < dirty> hychen: 我覺得大家想得都不一樣, 不過, 這邊的人可能只是小微調, 我要灌輸的是另一群我完全不知道他們怎麼樣的人
+18:02 < CindyLinz> orz..
+18:02 < CindyLinz> hychen 的問題好難....
+18:02 < hychen> dirty: 我覺得要先挖掘出他們的期待是什麼?
+18:02 < dirty> 不過有一點還不錯啦, 他們知道應該要找我來討論 :)
+18:03 < dirty> hychen: 這個很簡單, 一個新的媒體, 影響力跟... ptt 一樣好了
+18:03 < Lee1092> dirty 社群是人自我產生的  或許提供場地給人辦活動  比較實際(!?  XD
+18:03 < hychen> CindyLinz: 需求沒釐清，會結不了岸 XD
+18:03 < dirty> 然後是成大弄出來的, ya~
+18:03 < dirty> Lee1092: 嗯嗯, 你的想法跟我很接近
+18:03 < ETBlue> clkao_: 結果我現在才要離開小巨蛋
+18:03 < dirty> hychen: 不會, 錢花完就結案了
+18:04 < CindyLinz> hychen: 可是真的難 o.o
+18:05 < hychen> dirty: ptt喔... 成大有那麼努力嗎?
+18:05 < clkao_> dirty: 走全 decentralized 比較有機會... 類似 cimba.co
+18:05 < clkao_> ETBlue: too late lah
+18:06 < hychen> 而且成大願意不要有主導權嗎? 
+18:06 < dirty> hychen: 我覺得立場不同, 想法真的不同. 他們也知道要多問問像我這種人, 而我就是知道要來這邊問, 僅此而已. 又不是很好教他們 irc
+18:06 < dirty> hychen: 不可能, 我一直覺得 yet another... 最大的原因就是主導權
+18:07 < dirty> 所以要折衷, 從社群的角度來講, 還是多了一點資源, 所以願意與成大合作
+18:07 < ETBlue> clkao_: gg 只好晚餐自理
+18:07 < hychen> dirty: 那可能問問吳啟豪他們的想法
+18:07 < hychen> dirty: 跟賴嘉恩
+18:08 < dirty> who?
+18:08 < miaoski> kiang: http://www.newsoft.com.tw/download/download_style.php?P_Id=16&F_Id=18 有 30 天試用版可以下載，夠處理完手上的仿單了 (笑) 
+18:08 < kcwu> miaoski's url: [丹青文件管理系統 9 試用版 / 免費下載 / 下載專區 / 歡迎來到力新國際!]
+18:08 < dirty> anyway, 先去打桌球 :p # 每次問題丟上來就多了一堆東西要去搜尋 orz
+18:08 < miaoski> MGdesigner: 抓到了! 你和正妹合照! (OP 很久)
+18:08 < MGdesigner> ????
+18:09 < hychen> dirty: 吳啟豪是 Wu Talk！台南在地誌
+18:09 < MGdesigner> miaoski （嚇）
+18:09 < hychen> dirty: 賴嘉恩是TedTaina這屆的ldead, 然後也是成大學生
+18:09 < MGdesigner> miaoski 有嗎
+18:09 < MGdesigner> XD
+18:10 < pofeng> MGdesigner: 割闌尾最強高中生 ? CC: miaoski 
+18:10 < hychen> 然後台南應該還有一些大大小小的媒體社群
+18:10 < MGdesigner> pofeng: 那是未來的正妹？
+18:10 < t0mst0ne_> 有人提warfarin 嗎？ 那是最常用的抗凝血藥，會和很多藥物，食物起交互作用。如果warfarin 的DDI 做的好，那大概所有藥都ok
+18:10 < hychen> 而且跟成大都有一些接觸, 活動也好像是辦在成大內
+18:11 < miaoski> MGdesigner: 有啊. 臉書上還有照片，哼哼
+18:11 < miaoski> t0mst0ne_: 剛剛有人提  :p 來個 Wafarin 配葡萄柚 (大誤)
+18:12 < hychen> 我覺得yet another hub一直出現，只是因為看起來很像.... 真的下去做才發現期望值差很多
+18:12 < MGdesigner> miaoski XD
+18:12 < MGdesigner> miaoski 我現在旁邊就坐著一位女神？？
+18:13 < miaoski> MGdesigner: 如果是你的話，我猜只會坐初音
+18:13 < hychen> miaoski: 貝爾丹蒂啦
+18:13 < miaoski> hychen: 那是我那個年紀的 =,=
+18:13 < MGdesigner> hychen: 把我的梗搶走了XD
+18:13 < miaoski> kiang: http://cash.fibit.net/index.php?no=16 一套也只要 2,300 不貴
+18:13 < kcwu> miaoski's url: [Welcom to NewSoft!-飛比特科技提供線上金流服務]
+18:14 < hychen> MGdesigner: 我剛掐指一算算出來的(誤)
+18:14 < miaoski> kiang: 如果你下載 30 天覺得有幫助的話，我就贊助一套吧
+18:14 < MGdesigner> XD
+18:14 < MGdesigner> 坐在我旁邊---> https://flic.kr/p/qr6h11
+18:14 < kcwu> MGdesigner's url: [DSCF6468 | Flickr – 相片分享！]
+18:15 < kiang> miaoski: 我想要 Linux 版 XD
+18:15 < miaoski> kiang: 沒人做啊...
+18:16 < miaoski> Linux 版只有 tesseract 吧？
+18:16 < MGdesigner> 丹青？不是時代物嗎？好久的東西啊
+18:16 < miaoski> MGdesigner: 這不科學... 3D 化的貝爾丹蒂有這麼瘦？
+18:16 < kiang> miaoski: 所以我說它比較好啊，可以批次處理
+18:17 < MGdesigner> miaoski gimp的神乎其技？
+18:17 < miaoski> au: 不知道你手上的 Adobe 要多少... 比個價看買哪一個比較划算 ^^;
+18:17 < miaoski> kiang: 你真的覺得 tesseract 辨識中文很好用？快講個秘訣... 
+18:17 < MGdesigner> miaoski 還有照相的魔法 :) （我手動控曝光的喔）
+18:18 < kiang> miaoski: 純粹可以批次處理吧，很討厭顧電腦…
+18:18 < au> miaoski: 我是 Creative Cloud
+18:18 < miaoski> MGdesigner: 我已經不是純潔的國中生了 (爆)
+18:19 < miaoski> au: 哦哦有無料體驗版 :D
+18:20 < miaoski> au: 需要有什麼？ adobe reader?
+18:20 < miaoski> s/adobe reader/acrobat/ ?
+18:21 < MGdesigner> 給大家補給一點體力 https://flic.kr/p/q27bGF 
+18:21 < kcwu> MGdesigner's url: [DSCF5744 | Flickr – 相片分享！]
+18:21  * miaoski 已經在 creative cloud 裡迷路了
+18:22 < MGdesigner> 吃了女神咬過的甜甜圈，疲勞完全回覆
+18:25 < au> miaoski: 是，就 acrobat
+19:08 < miaoski> au: ++ ... 其實我看不懂它的 creative cloud .. 迷路了。月費 320 元的 plan 就有吧........
+19:51 -!- s8321414_ is now known as s8321414
+20:07 < t0mst0ne_> https://api.fda.gov/drug/label.json?search=drug_interactions:warfarin&count=openfda.pharm_class_epc.exact
+20:09 < t0mst0ne_> 我有一個問題、如果要放DDI 到底要放多細？ 是否只要放有沒有即可，然後請民眾問專業人士做諮詢？
+20:12 < t0mst0ne_> 還是要像open.fda 一樣把仿單資料做structure 分類，然後parse 出來？等於是把仿單data mining ? 但這個好麻煩
+20:13 < miaoski> 先有原始資料再決定要不要 mining 吧 :P
+20:13 < kiang> 理想狀況是後者，但目前沒有結構化資料
+20:14 < kiang> 我以為 DDI 這種資訊會有個橫向的交流平台說，看起來國內沒有這種東西
+20:14 < miaoski> kiang: 先有原始資料再 parse...
+20:14 < miaoski> #先求有再求好 XD
+20:15 < kiang> miaoski: 是啊，所以正在砍仿單的資料，但看到格式的多元就會嘆氣吧 XD
+20:15 < miaoski> kiang: 最終決定用 tesseract?
+20:15 < miaoski> 仿單其實還算單純吧？(還是我見的世面^H^H仿單不夠多)
+20:15 < kiang> miaoski: 沒有耶，目前只是嘴泡階段，是否進行還沒想法
+20:16 < miaoski> kiang: 科科 你去下載那個 30 天版啦。兩個都用一次，就會有答案了
+20:16 < Jedi_> iamblue_cloud___: ping~
+20:16 < miaoski> 有了答案後，我們再來分一分
+20:16 < miaoski> 不過下午呼叫 gugod 好像還沒回音~~~~ XD
+20:17 < t0mst0ne_> https://api.fda.gov/drug/label.json?search=drug_interactions:warfarin 這個就是parse 完仿單的raw data ,但是人家美國有要求仿單要有structure report ...,
+20:17 < kiang> gugod 據說時區不太一樣
+20:17 < miaoski> kiang: 他在 UTC+1 現在正是午餐吃完的時候
+20:17 < kiang> 6742/19729 (34%) 目前進度， 38GB
+20:18 < miaoski> t0mst0ne_: 好噁心，內含 table :P
+20:18 < miaoski> kiang: 不錯了，至少不用掃描仿單 (笑)
+20:19 < t0mst0ne_>  所以....再看看不急XD
+20:19 < kiang> miaoski: 這樣說也是啦，但沒有結構化還是挺討厭的
+20:20 < miaoski> kiang: OK 啦，先有原始資料，剩下的再說
+20:20 < kiang> miaoski: 要寫個雲端 OCR 丟給高網中心跑嗎？ XD
+20:21 < miaoski> kiang: 你不如直接在 g0v 挖個 OCR 坑
+20:21 < miaoski> 反正 OCR 的需求這麼大 (攤手)
+20:21 < kiang> miaoski: 這兒 OCR 的坑已經多到滿出來了
+20:21 < miaoski> kiang: 所以直接寫個 OCR 算了
+20:22 < ETBlue> t0mst0ne_: clkao_ 你們這週還有要衛福松嗎？沒的話我可能回台中
+20:22 < kiang> miaoski++, 就交給你了
+20:22 < kiang> t0mst0ne_ 不是在花蓮？
+20:22 < miaoski> kiang: 我如果能寫早寫了。我一直很想要有個很強力的 OCR ...
+20:22 < ETBlue> kiang: 是喔我不知道 @@"
+20:23 < pofeng> kiang: t0mst0ne_ & clkao 今天去 cdc 演講
+20:24 < kiang> pofeng: 有看到，只是 t0mst0ne_ 不回花蓮？
+20:24 < pofeng> kiang: 也對 :p
+20:24 < ETBlue> pofeng: 對不起我今天才寄出發票…囧
+20:24 < pofeng> ETBlue: 沒問題, 感謝 !
+20:25 < miaoski> kiang: 我覺得這種大神級的問題，需要召喚 au 或 kcwu /flee
+20:26 < dirty> clkao_: cimba.co 不註冊什麼都看不到 :(
+20:27 < kiang> miaoski: 感覺 CindyLinz 就做的到的樣子 (推坑)
+20:28 < dirty> 喔喔, 從 github 上看到了
+20:40 < kiang> data.fda 上面號稱 每週 更新的資料看起來也不是真的每週更新（或也許是 meta data 沒有更新，因為沒有進一步全部重新下載看）
+20:40 < kcwu> 仿單有規定要定期更新嗎?
+20:41 < kiang> kcwu: 個別資料集有標示更新頻率，所以會去看更新日期有沒有照著頻率跑，目前看起來沒有
+20:41 < tkirby> 最近好無聊, 快來個坑給我跳
+20:41 < kiang> 表示這也許是人工作業吧（不意外）
+20:42 < kiang> tkirby: 阿就 map component 啊（繼續老梗）
+20:42 < kcwu> 有的話推衛福部規定要求 structure data, 效益就很大, 就不用處理舊資料了 XD
+20:43 < kiang> kcwu: 是啊，政府機關要求自己人很難，但是對外要求倒是很樂意的樣子 XD
+20:43 < clkao_> dirty: 或是架個成大的 diaspora 就結束了 :p
+20:46 < kiang> 多了一個 食品業者登錄資料集 ，也許可以做美食地圖吧 （補個掛， id 序號從 74 直接跳到 97 ，不知道有多少不可告人的資料被拿掉了 XD）
+20:59 < dirty> clkao_: 喔喔, 原來有, 我一直想做的說
+20:59 < dirty> decentralized socical network
+21:00  * miaoski 推 CindyLinz 進 OCR 的坑
+21:01 < miaoski> tkirby: OCR 好坑不跳嗎？XD
+21:01 < clkao_> dirty: 好坑，不跳嗎
+21:02 < dirty> tkirby: http://mulicia.pixnet.net/album/photo/199857034 # 最近好無聊, 快來個坑給我跳
+21:02 < kcwu> dirty's url: [九品芝麻官 - 這種要求我一輩子沒聽過.png @ mulicia的相簿 :: 痞客邦 PIXNET ::]
+21:03 < dirty> clkao_: 好想啊... 等 12 月底死線過後
+21:03 < dirty> 我本來還在想用 btsync 的原理來做呢
+21:04 < dirty> btsync 好物, 請擺脫 dropbox
+21:13 < hychen> 自己的slack email自己寄有open source嗎?
+21:13 < clkao_> inviteyoself ?
+21:14 < kiang> hychen: 目前沒看到
+21:22 < hychen> clkao_: http://phptw.herokuapp.com/ #像這樣
+21:22 < kcwu> hychen's url: [phptw.slack.com]
+21:22 < hychen> https://github.com/seabre/inviteyoself
+21:22 < kcwu> hychen's url: [seabre/inviteyoself · GitHub]
+21:22 < hychen> nice!
+21:22 < clkao_> 不知道修好了沒
+21:23 < clkao_> yhsiang 的 pr merge 了，應該是好了
+21:30 < t0mst0ne_> kiang: ETBlue 已回後山
+21:31 < t0mst0ne_> ETBlue: 原本是要討論什麼嗎?
+21:38 < pofeng> kiang: chhsiao1981 又有 feature request 了, 現在是想要找出同時有三種成份 bacitracin,.gramicidin and polymyxin 的藥膏, 不過我覺得這次是不是要想一下 query 的 API ( 怕右邊搜尋按鈕越來越多 ) 
+21:45 < pofeng> chhsiao1981 : 你的 github account 是 ?
+22:02 < miaoski> pofeng: 這個 request 蠻好的
+22:03 < miaoski> Google? (誤)
+22:03 < pofeng> miaoski: 可以喔, 如果像萌典全部變成 static html 就可以了 (認真)
+22:04 < miaoski> pofeng: no no ... 我是認真的。直接 Google 可以找到
+22:06 < miaoski> pofeng: Triple Antibiotic Ointment by Melaleuca 很容易...
+22:07 < kiang> 藥物資訊其實有做全文檢索的價值，靜態網頁形式等 g社 快取是比較簡單的做法
+22:07 < pofeng> miaoski: 我也是認真的, 他應該是要找健保藥 + 加健保碼 , 所以單純 google 還是沒辦法
+22:08 < miaoski> pofeng: sokka... 那目前就真的沒辦法了
+22:08 < pofeng> kiang: 那你要有空生出 Sitemap 讓 google 抓嗎 ? 
+22:09 < yhsiang> clode__: https://github.com/seabre/inviteyoself/pull/6 # gasol的才是修好的 :)
+22:09 < kcwu> yhsiang's url: [Workaround for send invites by Gasol · Pull Request #6 · seabre/inviteyoself · GitHub]
+22:09 < yhsiang> 丟錯 XD
+22:09 < yhsiang> clkao_: gasolwu的是修好的 :)
+22:10 < ETBlue> t0mst0ne_: 沒特別想法，反正通常一旦開始小松就會出現坑 XD
+22:10 < kiang> pofeng: 我先加多條件搜尋吧，五個條件應該就夠用了？
+22:10 < yhsiang> hychen: phptw有正式再用了  it works!
+22:11 < pofeng> kiang: 我覺得先不用理那個人耶 :p 等下又來問 軟膏 or 水劑 :p
+22:12 < yhsiang> 看來是我沒update buildpack來上 XD
+22:12 < kiang> pofeng: ok, 如果靜態化就直接塞進另外一個 github page 就可以吧，只是需要留意快取資料
+22:12 < pofeng> kiang: 以後有空全部 export 成 static html 或者程式生成 sitemap 讓 google 抓才是正本之道
+22:13 < kiang> 目前的形式 google bot 已經抓得很開心了（看流量統計圖的感覺）
+22:14 < pofeng> kiang: 直接塞到同一個 project 的, gh-pages branch
+22:15 < kiang> 124034 pages 不知道 github 會不會抗議 XD
+22:15 < pofeng> kiang: 讓 github 變成 web page 
+22:15 < pofeng> kiang: 應該不會吧(?) 萌典就是啊 :p
+22:16 < pofeng> kiang: 擔心的話就是作 sitemap 囉 (嘴砲)
+22:16 < kiang> sitemap 還比較麻煩 XD
+22:17 < hychen> yhsiang: coool!
+22:17 < yhsiang> 我正在把g0v的修好
+22:18 < yhsiang> hychen: 然後你就把bj4搞起? XD
+22:19 < pofeng> kiang: 也是, 格式好像有點怪 :p
+22:22 < clkao_> ETBlue, t0mst0ne_ 我記得上次講到的好像是一個由 症狀 出發的 decision tree?
+22:36 < yhsiang> clkao_: 好了 XD
+22:38 < yhsiang> gasolwu++ 
+22:43 < yhsiang> g0v-slack.herokuapp.com # 現在可以自己邀請自己了~~~ XD
+22:44 < pofeng> yhsiang: g0v 的 slack ?
+22:44 < yhsiang> yes :)
+22:44 < pofeng> 喔喔  來玩玩看
+22:45 -!- pcchou___ is now known as pcchou__
+22:46 < clkao_> 順了之後就學 bj4 把 #general 跟這邊串起來？
+22:47 < pofeng> yhsiang: 奇怪 ... 還沒收到 email 
+22:48 < kiang> 依據之前的經驗 very soon 要等半個鐘頭吧 XD
+22:48 < pofeng> :p
+22:48 < pofeng> 瞭
+22:50 < gasolwu> 十分鐘...
+22:50 < gasolwu> schedular 是這樣子設的...
+22:50 < kiang> gasolwu++, 我沒有很精確的計算 XD
+22:52 -!- kkyo [~kkyo@gateway/web/scrollback.io/x-kiuojkzybgaouzut] has left #g0v.tw []
+22:53 < yhsiang> pofeng: 不然我可以直接run command :p
+22:54 < pofeng> yhsiang: 剛收到 (Y)
+22:54 < yhsiang> hychen: 你用哪個串?
+22:54 < yhsiang> clkao_: 我之前有串過 XD
+22:58 < clkao_> superbil: 現在機關的 popolo file 在哪呢？有存 parent/child 關係嗎？
+22:59 < yhsiang> 晚上才跟superbil去吃牛肉湯~
+23:01 < clkao_> pgrest 存 jsonld + context for serialization 好像可以直接變成 rdf store 內建 optimized index
+23:07 < clkao_> ooo https://groups.google.com/forum/#!topic/freebase-discuss/s_BPoL92edc
+23:07 < kcwu> clkao_'s url: [Google 網上論壇]
+23:18 < kiang> FDA 的活動截止時間悄悄的從 1/17 改為 1/7 ，不知道有什麼八卦
+23:20 < pofeng> @kiang !! 內定得獎的團隊作好了 (誤)
+23:20 < kiang> 看起來是我自己行事曆設錯了（沒八卦）
+23:20 < yhsiang> kiang: hi 得獎團隊
+23:20 < pofeng> 哈, 我被騙了 :p
+23:21 < kiang> XD
+23:22 < t0mst0ne_> clkao_: ETBlue 大家念念不忘那個坑 XD
+23:32 < t0mst0ne_> kiang: pofeng 我來問問看 www.cde.org.tw 有沒有結構化的仿單資料 ;  如果有, 中文仿單寫的真的還超多, 如果能有純文字, 應該很可觀
+23:33 < kiang> t0mst0ne_++
+23:34 < pofeng> t0mst0ne_ ++
+23:34 < clkao_> czchen_, rschiang: 有空 update https://github.com/g0v/laweasyread-data 嗎？
+23:34 < kcwu> clkao_'s url: [g0v/laweasyread-data · GitHub]
+23:38 < clkao_> t0mst0ne_: 今天講到有的應該是這個，不過看來是每月的 # http://data.gov.tw/node/6879
+23:38 < kcwu> clkao_'s url: [地區年齡性別統計表-登革熱 | 政府資料開放平臺]
+23:40 < t0mst0ne_> clkao_: 國外這種隨時間update的data都用csv 供人下載?  還是直接API ?   
+23:40 < t0mst0ne_> clkao_: 後來我是抓這邊 http://dengue.kcg.gov.tw/KCGDengue/Mobile.aspx
+23:40 < kcwu> t0mst0ne_'s url: [登革熱防治公開閱覽平台-行動版]
+23:41 < clkao_> 理想上是有 api 也有 bulk download
+23:43 < t0mst0ne_> clkao_:  你離開後, 不少人提出很好的問題 ;  exp: 院內感控通報是靠護理師通報, 但是萬一要按院呈獻, 就怕會開始虛報; 然後影響後續判斷; 有些疾病又怕因為太明顯對弱勢有害, 所以太方便查到資料反而對疫情控制不利; 
+23:44 < t0mst0ne_> 看起來 data is really political , 大家都很擔心 ...
+23:45 < a0kman> 福利請聽爆炸了嗎@@? 
+23:45 < a0kman> http://listening.g0v.tw/
+23:48 < clkao_> iamben_cloud: ^^^^
+23:48 < clkao_> oops
+23:48 < clkao_> iamblue_cloud___: ^^^^
+23:48 < pofeng> t0mst0ne_: 院內感控不太適合 open data 吧 ? 
+23:49 < t0mst0ne_> pofeng: why ? only statistics 
+23:50 < pofeng> t0mst0ne_: 就是怕作弊啊 ... (究責) 一下太開放會有害 ...
+23:50 < t0mst0ne_> pofeng: 除了 submit 的 data完整性的考量外 ; 其實不同家醫院的感控情形應該可以比較一下 
+23:50 < pofeng> t0mst0ne_: eg: 公佈醫師手術死亡率
+23:51 < pofeng> t0mst0ne_: 某醫師手術的死亡率高, 可能是疾病嚴重度高, 不是他技術差
+23:52 < t0mst0ne_> pofeng: 是的.  不過可以和全國benchmark 來比 ( 但是不要大家都作弊)
+23:52 < pofeng> t0mst0ne_: 沒有配套的資料一起公佈, 會 GIGO , garbage in , garbage out 
+23:52 < pofeng> t0mst0ne_: 這樣更是鼓勵作弊啊 :p ( 大家往中間值靠龍 )
+23:53 < t0mst0ne_> pofeng: 就像 ICD9 一樣. OPD Diagnostic code 就是 GIGO
+23:53 < pofeng> t0mst0ne_: 醫院評鑑的苦還不夠嗎 :p
+23:53 < pofeng> 可能我比較保守吧, 還是要考慮人性 (作弊) 
+23:54 < t0mst0ne_> pofeng: 不知道ㄟ, 如果文化使然, 那真的是做白工
+23:54 < hychen> yhsiang: 還沒架誒, 在等勇士不小心掉進去坑裡面
+23:55 < hychen> yhsiang: 不過現在都有小精靈在幫忙加人, 也ok
+23:56 < yhsiang> hychen: 你有串slack + irc?
+23:57 < yhsiang> 我申請一個bj4好了 
+23:57 < yhsiang> 多架一個也不困難 :p
+23:57 < t0mst0ne_> pofeng: 所以考量data的正確可靠性, 其實盤點很快就結束; 只是回過頭來, 那每家醫院感控師在那邊key data 都是key 好玩的 XD 
+23:57 < hychen> yhsiang: cool喔
+23:57 < hychen> yhsiang: 那我先把你加進BJ4
+23:57 < pofeng> t0mst0ne_: key 好玩意思是 ? 沒用 ?
+23:58 < hychen> yhsiang: yes, startups.tw <-> bj4 slack
+23:58 < yhsiang> hychen: 那g0v 的交給你串了 :p
+23:58 < hychen> yhsiang: sent
+23:58 < hychen> yhsiang: 那也不是我串的 XD, 有小精靈弄的
+23:59 < yhsiang> bj4有github org嗎?
+23:59 < hychen> yhsiang: 不過那個雙向binding不是很優誒
+23:59 < yhsiang> 喔 如果跟我的串法同一個
+23:59 < yhsiang> 我也覺得不太優 XD
+23:59 < hychen> yhsiang: 有, 但是那個code還沒upload, 明天來upload
+23:59 < t0mst0ne_> pofeng: 不知道ㄟ, 也許不open 還有用; open -> 作假 -> 無用

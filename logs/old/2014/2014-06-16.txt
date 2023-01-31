@@ -1,0 +1,429 @@
+--- Day changed 一  6月 16 2014
+00:00 < kiang> gugod: https://drive.google.com/folderview?id=0BzG4NH1Ti5o1eU9PaVUtUDVxckE&usp=sharing
+00:00 < kcwu> kiang's url: [public]
+00:13 < kiang> chihhsin_wego: 是在微閣工作嗎？XD （就恍神的時候看到這個帳號）
+00:15 < kiang> gugod: 目前蒐集到的所有政治獻金檔案（部份是圖片格式） - http://203.69.90.98/tw-campaign-finance/pdf-files.tar (3.5GB) ，也歡迎大家幫忙備份 ;)
+00:15 < gugod> kiang: 我本機試沒有問題，麻煩你試著傳到 http://dev.gugod.org/upload 看看
+00:15 < kcwu> gugod's url: [Upload]
+00:16 < kiang> gugod: 413 Request Entity Too Large
+00:16 < kiang> 我猜是 proxy 的 2MB 預設限制吧？
+00:17 < gugod> err, crap
+00:17 < gugod> wait
+00:18 < gugod> kiang: 重試看看
+00:19 < kiang> gugod: 500 Internal Server Error
+00:21 < gugod> 啊, / 滿了orz
+00:22 < gugod> 怎麼這麼白爛
+00:22 < kiang> XD
+00:26 < gugod> kiang: http://g0cr.gugod.org/ 直接重傳到這裡看看吧 
+00:26 < kcwu> gugod's url: [Welcome]
+00:28 < kiang> gugod: http://g0cr.gugod.org/document/f3d3980968fa9a78fb6830d29bec1fe5aba69da3 - 所以要等排程跑完才看得到內容嗎？
+00:28 < kcwu> kiang's url: [Browse]
+00:28 < gugod> kiang: yes
+00:28 < kiang> gugod++
+00:28 < gugod> 沒那麼快
+00:28 < gugod> kiang: pdf-files.tar 備份中... eta 14h XD
+00:29 < kiang> 恩，檔案有點大，那台主機不會關，就掛著下載吧 XD
+00:29 < a0000778> kiang: 備份中 3.2MB/s 15分鐘
+00:30 < kiang> a0000778 搶走頻寬了 XD
+00:35 < xsoameix> clkao: 我發現把 git：// 改成 git@ 即可
+00:38 < a0000778> kiang: 等等我傳上MEGA分流好了
+00:39 < kiang> a0000778++, 我這邊水管不夠大
+00:58 < clkao> xsoameix: 不過 url 還是改一下好了.. git@ 不知道沒 key 的人是不是無法 clone.. 不果理論上應該是要改用 release 版本.. 
+01:01 < xsoameix> clkao: 恩，url 我有改。我用 git：// 會出現 fatal: read error: Connection reset by peer，不管 twlyparser 還是 pgrest 都一樣
+01:01 < xsoameix> clkao: 有可能 ubuntu 要做一些設定 git clone 才不會出錯
+01:05 < caasihuang> clkao xsoameix: 恩，沒 key 無法 clone
+01:05 < clkao> pofeng: http://www.theguardian.com/society/2014/jan/19/nhs-patient-data-available-companies-buy
+01:05 < kcwu> clkao's url: [NHS patient data to be made available for sale to drug and insurance firms | Society | The Guardian]
+01:11 < xsoameix> clkao: 不知道為何我用 git：// 不行，換成 git+https：// 就 ok Xk7
+01:12 < xsoameix> clkao: 不知道為何我用 git：// 不行，換成 git+https：// 就 ok 了
+01:13 < a0000778> xsoameix: clone什麼？我試試看(Ubuntu 14.04)
+01:13 < xsoameix> git clone git://github.com/g0v/twlyparser.git
+01:16 < a0000778> 指令 git clone git@github.com:g0v/twlyparser.git
+01:16 < a0000778> 成功
+01:17 < caasihuang> git@ 這邊也成功，也是 Ubuntu 14.04
+01:17 < caasihuang> git:// 卡 25%
+01:18 < caasihuang> 過了， https 也正常。
+01:18 < a0000778> 指令 git clone git://github.com/g0v/twlyparser.git 成功
+01:19 < a0000778> ※但25%那段比較慢
+01:19 < pofeng> clkao: thanks for the info
+01:23 < xsoameix> a0000778 caasihuang: 感謝測試，那看來是我自己的問題... orz
+01:36 < xsoameix> clkao: ubuntu 14.04 裡沒有 skytools3 skytools3-ticker postgresql-9.2-pgq3，看來要去 14.10 抓了
+01:37 < ETBlue> au: https://g0v.hackpad.com/g0v-Media-Policy--Rbpc5FiUyA5 跟 https://g0v.hackpad.com/g0v-Foreign-Policy--V3vsVkRAGnC 也算是 coc 的一種嗎？
+01:37 < kcwu> ETBlue's url (2/2): [g0v Foreign Policy | 零時政府外交政策 - g0v.hackpad.com]
+01:37 < kcwu> ETBlue's url (1/2): [g0v Media Policy | 零時政府媒體政策 - g0v.hackpad.com]
+01:38 < ETBlue> 啊還有這個 https://g0v.hackpad.com/-g0ver--p91yfZBbUG1
+01:38 < kcwu> ETBlue's url: [自稱 g0ver 的幾種方式 - g0v.hackpad.com]
+01:38 < ETBlue> 還是說以上全部加起來叫做「遊戲規則」之類的………
+01:38 < a0000778> xsoameix: 是9.3的樣子
+01:38 < ETBlue> 或者就叫「g0v 手冊」
+01:39 < clkao> xsoameix: 那個是在 postgres ppa
+01:40 < ETBlue> 詞彙是要放在 http://g0v.github.io/g0v-tour-guide/public/hack-panel-project.html 的 menu 中用的
+01:40 < kcwu> ETBlue's url: [hackspace | g0v]
+01:41 < clkao> xsoameix: 發現文件好像沒有，順便幫忙更新吧 deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
+01:41 < kcwu> clkao's url: [Index of /pub/repos/apt/]
+01:41 < clkao> xsoameix: see also https://wiki.postgresql.org/wiki/Apt
+01:41 < kcwu> clkao's url: [Apt - PostgreSQL wiki]
+01:43 < au> ETBlue: 可以算作廣義的 code of conduct, yeah
+01:44 < au> 但是「手冊」很中性, 更好
+01:45 < xsoameix> clkao: 我試試看
+01:57 < ETBlue> au: roger
+01:58 < ETBlue> au: 想說把 http://hack.g0v.tw/g0v-hackath9n/http%253A%252F%252Ftw.confcodeofconduct.com%252F 改成符合 g0v 的樣子（比方說工作人員沒有穿制服），不過一貼到 hackpad 看起來好怪 XDDD https://g0v.hackpad.com/Cxui7FuCExG
+01:58 < kcwu> ETBlue's url (2/2): [黑客松活動守則 - g0v.hackpad.com]
+01:58 < ETBlue> 可能是沒在 hackpad 看過用詞這麼嚴謹的文字… 
+02:03 < au> 只好超展開一下了
+02:03 < ETBlue> 好難……
+02:03 < a0000778> kiang: 已分流 https://mega.co.nz/#!pohAyZSK!_btAYd4Z6gO4cntwAVgt6XC290mxc0LIFahP4OmVwZ4
+02:04 < kcwu> a0000778's url: [MEGA]
+02:04 < au> <- 不幸正在趕 FLOLAC 簡報，趕完才能幫忙潤稿
+02:05 < ETBlue> au: 原來是明天啊，好你加油 XD
+02:07 < au> 其實演講是 7/1... 但是列印用講義稿件 deadline 是今天 10am XD
+02:09 < ETBlue> ......
+02:10 < xsoameix> a0000778 caasihuang: 我這樣子就行了：git clone --depth 1 git://github.com/clkao/pgrest.git，原因出在於 rep 太大
+02:12 < caasihuang> xsoameix++
+02:12 < xsoameix> a0000778 caasihuang: 我在學校的機房，用的網路應該是最快的，反而卻有這個問題
+02:14 < xsoameix> a0000778 caasihuang: 也許就差那麼一點吧 orz
+02:22 -!- ShivaHua_ is now known as shivahuang_
+02:40 < xsoameix> clkao: 我終於架起來了...有許多東西需要另外安裝
+03:39 < Vdragon> 一個最近很熱門的 GitHub repo https://github.com/greatfire/wiki 
+03:39 < kcwu> Vdragon's url: [greatfire/wiki · GitHub]
+04:14 < kiang> a0000778++
+--- Log opened 一  6月 16 06:50:31 2014
+06:50 -!- Irssi: #g0v.tw: Total of 201 nicks [0 ops, 0 halfops, 0 voices, 201 normal]
+06:50 -!- Irssi: Join to #g0v.tw was synced in 24 secs
+07:43 -!- RJHsiao [uid28324@gateway/web/irccloud.com/x-mspvltviixcluutm] has left #g0v.tw []
+08:54 -!- scorpionx is now known as scorpionx1025
+09:24 < jimyhuang__> clkao: 若add dataset 直接在data.g0v的話是否合適？然後餵給okfn清單或什麼的
+09:36 < jimyhuang__> hychen: 本週得來衝一下週末松的東西，方向沒變吧？
+11:00 -!- AliceWei [uid12990@gateway/web/irccloud.com/x-zfuzrszbhodhvzit] has left #g0v.tw []
+11:01 -!- chihchun_afk is now known as chihchun
+11:18 -!- AliceWei [uid12990@gateway/web/irccloud.com/x-zfuzrszbhodhvzit] has left #g0v.tw []
+11:27 < clkao> jimyhuang__: 不過 dataset 指的是一個 meta 的東西 (各地方可以有的一種資料).. 放 data.g0v 會不會已經是一個特定資料集?
+11:28 < hcchien> clkao: Izero 那邊你回跟他講？   # sponsor
+11:28 < clkao> hcchien: 你說哪件事情... ?
+11:28 < hcchien> clkao: summit sponsor
+11:54 < hcchien> 應該來找個人專門負責贊助
+11:55 < kiang> 測試直播ing - https://livehouse.in/channel/115436
+11:56 < kcwu> kiang's url: [江明宗 . 政 . 路過 - LIVEhouse.in - Online Broadcasting Service]
+11:58 < kiang> livehouse.in 的直播，剛開始開通只允許 35 人同時觀看 XD
+11:59 < clkao> hcchien: 我以為已經有找 XD
+12:00 -!- shivahua_ is now known as shivahuang_
+12:00 < hcchien> clkao: 沒耶，不然我就不用自己生 proposal 了   lol
+12:01 < hcchien> clkao: 還是你是說 kkbox
+12:02 < clkao> 銷售組.. XD
+12:03 < hcchien> 現在找也還不晚   # 其實之前在某次黑客松有人自告奮勇
+12:08 < hcchien> http://blog.coscup.org/2014/06/coscup-2014_16.html
+12:08 < kcwu> hcchien's url: [COSCUP 開源人年會: COSCUP 2014 社群攤位徵選結果出爐囉！]
+12:08 < hcchien> 擺攤了
+12:23 < jimyhuang__> clkao: 以data.g0v, 其實可以用他的submit介面，看還缺什麼meta data可再開欄位。架構上可能一個主題是一種 dataset，再到這個dataset加入各縣市的reaource. 如福利資料是dataset, resource可以用各地的
+12:25 < kiang> 誤會了 livehouse.in 的介面， 35 人指的是同時瀏覽人數超過 35 人就會升級，工程師表示預設都是開放 1000 人同時觀看
+12:27 < a0000778> livehouse其實是用YT的資料 怎不直接用YT?
+12:29 < kiang> a0000778: 他們有提供直接直播的功能，只是目前要提出申請才有機會測試（開發中吧）
+12:30 < clkao> jimyhuang__: sounds good. api endpoint 來一下吧 :p
+12:30 < Lee1092> COSCUP 攤位  g0v 上了!!!
+12:30 < a0000778> kiang: 原來如此 看來不得不支援了 livehouse好像沒API?
+12:31 < kiang> a0000778: 看起來應該還要一段時日才會有這種神奇的東西吧？
+12:33 < a0000778> kiang: 只能努力自己解了 早些測之前加進g8v電視牆的livehouse竟然失敗
+12:34 < kiang> a0000778: 也許是 cross domain 的問題吧？
+12:34 < a0000778> kiang: 那個問題之前解了 除非又改了
+12:39 < hychen> 講個祕訣 ODI 的BP好完整, 改一改就可以變成另一個領域的孵化器BP
+12:43 < Michael_LI> 洗腎機大戰葉克膜／剛才看到這句話／「74歲沈富雄」也要選舉......
+12:46 < hcchien> 話說 g8v 還需要壹通網嗎  (是叫這名字嗎)
+12:47 < Michael_LI> .//G8 TV   XDDD
+12:51 < a0000778> XD 壹通網? 不是網樂通?
+12:52 < yhsiang> hychen: 一杯花茶就搞定了?
+12:52 < hychen> yhsiang: 我比較弱, 一杯花茶的時間讀不完
+12:52 < hychen> yhsiang: 大概需要10次吃牛肉湯的時間
+12:52 < hcchien> 那就是網樂通吧，我一直記不起名字
+12:53 < a0000778> 我這邊只弄網頁電視牆 不清楚還有沒有需求
+12:54 < jimyhuang__> clkao: census 的分類，預計以縣市做分類？
+12:59 < clkao> jimyhuang__: 縣市算是 places... 不算分類, 分類應該是說各種 dataset 有主管機關 or 業務類別去分
+12:59 < pofeng> hychen: 喔喔, 在哪邊看 ? 
+13:00 < hychen> pofeng: http://theodi.org/about-us
+13:00 < kcwu> hychen's url: [About the ODI | Open Data Institute]
+13:00 < clkao> hychen: 只好禮拜三順便去跟科科部匯報一下? XD
+13:00 < hychen> pofeng: 最下面
+13:00 < jimyhuang__> clkao:  http://tw-city.census.okfn.org/ <-- 是跟這個一樣，在左邊對嗎？所以如果每個dataset底下的 resource，加上縣市
+13:00 < kcwu> jimyhuang__'s url: [Overview - Your Open Data Census]
+13:01 < clkao> jimyhuang__: 對的 等於橫軸變成更細的各 specific dataset
+13:01 < pofeng> hychen: 快成立 OCF 台南辦公室 (認真)
+13:01 < jimyhuang__> clkao: 細的spec應該是跟著 dataset，還是跟著resource？（雖然之後可再說）
+13:01 < hychen> clkao: 我還沒消化完畢 , 還有cloudstore + government digital service 要讀
+13:02 < clkao> jimyhuang__: 等等 你說的 resource 指的是... ?
+13:03 < hychen> clkao: ODI是在GDS之後成立的, 所以我覺得GDS比較算是key
+13:03 < jimyhuang__> http://data.g0v.tw/node/15  這個是 dataset，下面的每個api，是resourec ( g0v 公報詳細內容 、 g0v 公報條目內容)
+13:03 < kcwu> jimyhuang__'s url: [g0v公報 | data.g0v.tw]
+13:04 < clkao> hychen: 兩者無直接關係, 跟 odi 比較有關的是 cloudstore (g-cloud) - 因為可以方便的賣數位服務給政府... 5k4g4是在 gds 之前
+13:05 -GitHub157:#g0v.tw- [hack.g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/hack.g0v.tw/commit/44641cf400075e603c0708e815aff0f6e553d9e4
+13:05 -GitHub157:#g0v.tw- hack.g0v.tw/gh-pages 44641cf g0v general (via TravisCI): regen for f737bb5
+13:05 < hychen> "the launch of the Government Digital Service (GDS) provides an excellent opportunity to ensure  that  OGD  can  be  a  foundation  for  the  delivery  of  its  service"
+13:06 < hychen> ODI的籌備BP提到這段話，所以我以為是GDS之前
+13:06 < clkao> 噢，因為 GDS 會順便推 open data
+13:07 < clkao> 等於供給方確認... cloudstore 等於是需求方順暢化
+13:07 < hychen> ok
+13:08 < hychen> 我個人是覺得台灣的應用方起不來, 想賣data 分析的價值服務的廠商就起不了，但目前後者最多
+13:08 < clkao> 科科
+13:08 < hychen> 所以想賣訓練的，賣資料的都很苦
+13:08 < clkao> yhsiang: 我把 hackfoldr 那些 param 塞到 config.jsenv 了... template 那邊可能要改一下 盡量不要用 replace 的.. 不然會 out of sync
+13:09 < clkao> require 'config.jsenv' .FOO 就可以取了.. (而且還可以 build time override with env)
+13:09 < hychen> 更慘的是網路時代，人家還不一定要台灣的訓練
+13:09 < jimyhuang__> clkao:  http://data.g0v.tw/node/15  這個是 dataset，下面的每個api，是resourec ( g0v 公報詳細內容 、 g0v 公報條目內容)   現在在看哪個要加詳細的meta
+13:09 < kcwu> jimyhuang__'s url: [g0v公報 | data.g0v.tw]
+13:09 < jimyhuang__> hychen: 那個週末的打算怎麼弄 XD
+13:09 < clkao> jimyhuang__: 應該是 dataset 需要一個 "
+13:10 < jimyhuang__> ok
+13:10 < clkao> metadata, 說這個 dataset 是跨縣市的 本身不見得有 data... 然後有個 api endpoint 可以 qquery 所有有這個 tag 的 dataset
+13:11 < jimyhuang__> clkao: ok got it
+13:11 < jimyhuang__> 我弄弄看
+13:12 < hychen> jimyhuang__: 現在需要修一下中文化後CSS跑掉
+13:12 < hychen> jimyhuang__: 然後建立頁面要再加上疊加塗層的欄位
+13:13 < pofeng> ParliamentWatch ( Gregor Hackmack ) 要來耶 ... http://uknowiknow.com/pages/events/e2014master.html
+13:13 < kcwu> pofeng's url: [拼經濟又改變世界？ 看台灣德國六大團隊如何實現！- 你知我知大師講座]
+13:14 < jimyhuang__> hychen:   是這裡 https://g0v.hackpad.com/f4DSkbYYXsi  todo 的 overlap layers configuration？ 
+13:14 < kcwu> jimyhuang__'s url: [台南百年文史古地圖 - g0v.hackpad.com]
+13:14 < hychen> jimyhuang__: yes
+13:15 < jimyhuang__> hychen: 能否在該todo 加點描述，看不大懂
+13:15 < hychen> jimyhuang__: ok, will do it
+13:18 < Mouther> 
+13:18 < Mouther> 
+13:19 < clkao> pofeng: 對, 還有在 gis forum 和我同台...
+13:20 < pofeng> clkao: 賀
+13:20 < pofeng> clkao gis forum 的介紹 ?
+13:21 < clkao> http://gis-taiwan.ntu.edu.tw/
+13:21 < kcwu> clkao's url: [Global Initiatives Symposium in Taiwan 2014]
+13:21 < hychen> pofeng: 成立辦公室要做什麼事?
+13:22 < pofeng> hychen: 詐騙^H^H 吸金, 辦活動 :p
+13:22 < pofeng> hychen: 台南市政府看起來很支持這類的活動
+13:23 < clkao> pofeng: 不過這活動不是和 coscup 衝堂
+13:24 < pofeng> clkao: 阿真的耶 ...
+13:28 < clkao> hack.g0v.tw 從 hackfoldr merge 下來了...  有問題請回報
+13:35 < kiang> 我以為 gis 是 Geographic Information Systems ，想說怎麼網頁打開是一個女人的頭 XD
+13:41 < clkao> 本週好像欠很多文件債... 
+14:13 < isacl> hackath9n 現在還有票
+14:20 < ipa> 剛釋出邀請名額 
+14:29 < Rhozan> NewCliCker:  快衝
+14:32 < gugod> 發現 imagemagick convert 很多頁的 pdf 時會生出非常多暫存檔。100 頁可能會吃掉 5GB 的空間。 (輸出成 300 dpi 的話)。需要調成讓它一次出一頁之類的，比較不會太爆炸。
+14:38 < NewCliCker> Rhozan: 報好了，剛剛還被搶票 bot 自己設定的音效給嚇的跳起來 XD (感謝意味)
+14:39 < ipa> isacl: 你是用程式偵測嗎？
+14:44 < ttcat> ipa: NewCliCker: ++
+14:44 < ttcat> NewCliCker: 是用什麼搶票 bot
+14:48 < NewCliCker> ttcat: https://github.com/mrbigmouth/kktixRobot #感謝 mrbigmouth
+14:48 < kcwu> NewCliCker's url: [mrbigmouth/kktixRobot · GitHub]
+14:48 < miaoski> 有沒有人有興趣去 Intel 工作? JD Chromebook Mfg Technologist 有缺。
+14:52 < isacl> ipa: 程式還沒開，剛剛是用人腦的直覺。
+14:52 < clkao> isacl: 太強！
+14:52 < isacl> 科科
+14:55 < NewCliCker> isacl++ 佩服! 讓我聯想到 Matrix 電影第二集裡 Neo 腦袋不用接線就與母體連線 XD 
+14:57 < NewCliCker> (糟糕，這樣好像沒看過電影的人就被我破梗了._.)
+15:00 < isacl> 嗯某種力量驅使我上來看看 kktix. XD
+15:04 < Lee1092> isacl:  g0v 的神秘力量  lol..
+15:04 < pipi_> g0v有種神秘力量是坑的藝術
+15:06 < NewCliCker> 咦， isacl 您是在 6/14 前端教學松之後的三隻小豬聚餐上說 「coscup 票有搶到，g0v hackathon 的卻沒搶到」的那位大大嗎？ #我人臉辨識能力比海關還差
+15:08 < ttcat> XD
+15:09 < a0000778> NewCliCker: 看前端教學松實況看了好一陣子才認出門口的是 NewCliCker 的我 辨識能力肯定也很差
+15:17 -!- nyli` is now known as nyli
+15:17 < caasih> NewCliCker: 都多久的電影了 XD
+15:21 < NewCliCker> 6/14 教學松當天因為跟音地大帝、新聞e論壇、文源等實況主 demo g8vtv 電視牆，導致 14:30 才到 bookshow，害 pipi_ 找不到人，真不好意思 # 報學生票還這麼囂張 XD 
+15:23 < NewCliCker> a0000778: 感謝您 6/14 在IRC上留守，結果反而是我這邊 IRC 一直 reconnect 導致沒甚麼討論到，真是不好意思 <(_ _)>
+15:27 < a0000778> NewCliCker: 這好像是第二次說了... 是說那天最後有做出什麼來？
+15:29 < NewCliCker> a0000778: 咦，原來這句話我說過了喔...人老了常常在 FB 講過一遍又在 IRC 上重複一遍 XD
+15:32 < a0000778> NewCliCker: IRC上講兩遍 http://logbot.g0v.tw/channel/g0v.tw/2014-06-14/477
+15:32 < kcwu> a0000778's url: [Logbot | #g0v.tw | NewCliCker> a0000778: 感謝您下午一直在 IRC 上留守，結果反而是我在現場 IRC 訊息傳不出去 XD 真不好意思]
+15:33 < NewCliCker> 教學松當天我就是把 g8v 的 CSS 部分亂亂玩，弄了半個暗色系的 theme，之後可能會嚐試著利用之前 tkirby 教的 svg 弄個新介面之類的，有成果我在拉去 a0000778 您的 github 上
+15:35 < NewCliCker> a0000778: 慘了，連自己在同一個地方講重複的話都記錯 # 老人痴呆早發症候群
+15:38 < xsoameix> clkao: 請問可以當我的指導者嗎？我架構的地方還不熟，還得請教您
+15:39 < a0000778> NewCliCker: 剛剛去看 發現github上權限什麼都沒開 剛剛開了
+15:40 < NewCliCker> a0000778: roger roger~
+15:40 < clkao> xsoameix: 可以啊，我覺得從你選的那個 issue 出發，把他變成完善議案追蹤的提案 如何？
+15:41 < clkao> 可以想一下最後希望達成哪些 也許可以作一些新的呈現
+15:41 < xsoameix> clkao: 恩，我正打算這樣做
+15:42 < xsoameix> clkao: 我希望是最後加上一些 test，程式更好維護這樣
+15:44 < xsoameix> clkao: 會先替把重要的部份寫 test，然後接下來再看看有沒有更重要的部份要做
+15:44 < clkao> xsoameix++
+15:51 < xsoameix> clkao: 以後我要更新程式碼要先 fork 出來，再發 pull request 嗎？
+16:01 < clkao> xsoameix: 是
+16:03 < pm5> xsoameix++
+16:12 < kiang> gugod: 可以試試用 ghost script - https://github.com/kiang/tw-campaign-finance/blob/master/scripts/kiang/1_pdf2jpg.php line # 99
+16:12 < kcwu> kiang's url: [tw-campaign-finance/scripts/kiang/1_pdf2jpg.php at master · kiang/tw-campaign-finance · GitHub]
+16:13 < ETBlue> mary++ tkirby++ 啥密有了網站就是不一樣 +Q+ http://summit.g0v.tw/
+16:13 < kcwu> ETBlue's url: [g0v Summit 2014 啥米零時政府]
+16:14 < ETBlue> 噢，是啥米…
+16:20 < walkingice> xsoameix++
+16:27 < clkao> 為什麼最下面是個地圖 :p
+16:30 < xsoameix> clkao: 可以稍微講一下大致的架構嗎？
+16:31 < hcchien> 那一定是設計師的巧思   lol
+16:31 < isacl> NewCliCker: no, 我沒去前端松，不過你提到的那句話我在 irc 說過
+16:32 < hcchien> xsoameix++
+16:34 < clkao> xsoameix: dataflow.png, 基本上 api.ly 就是一個 postgresql database, 跑 pgrest 把他變成 rest endpoint
+16:35 < NewCliCker> isacl: 這麼說來有不只一位苦主與您有相同遭遇 #「coscup 票有搶到，g0v hackathon 的卻沒搶到」
+16:35 < hcchien> 話說好多人沒搶到星期六的票，所以 summit 工作會議好像要另外找時間   XD
+16:37 < moon_c_> 啥米的網頁～～～！！！＋＋＋＋
+16:37 < clkao> 跪求英文 banner 與英文版  XD
+16:41 < Lee1092> summit 網頁好高級!! wow  
+16:52 < lanf0n> summit++ XD
+16:54 < hcchien> clkao: 正在加速進行中   lol
+17:10 < clkao> http://blog.delib.net/digital-hero-fran-bennett/
+17:10 < kcwu> clkao's url: [Digital Hero – Fran Bennett | Digital democracy, news, thinking, tips & tricks]
+17:11 < clkao> ] Best gov site you’ve seen and why? Other than GOV.UK.
+17:11 < clkao> @fhr> I just this week came across g0v.tw, run by a civic group which remixes Taiwanese government websites to make them more transparent and more useful. They’ve explained more at http://g0v.asia/tw/. I think their approach is really constructive and impressive.
+17:11 < kcwu> clkao's url: [First Year of g0v.tw – Dismantling our Government and Building It Anew]
+17:18 < poga_> !!
+17:19 -!- poga_ is now known as poga
+17:26 < NewCliCker> clkao++++ #沒出國比賽還真不知道自己是第一名
+17:29 < Lee1092> !!!!  
+17:55 < isacl> NewCliCker: lol
+17:59 < ipa> hcchien: summit++ 我可以把還沒確定的邀請單位先刪掉嗎？
+17:59 < ipa> hcchien: 找到repo，但是哪個檔案啊？
+17:59 < hcchien> ipa: 你說哪一部分？
+18:00 < ipa> 公督盟 因為是大方向，但還沒實際確認
+18:00 < hcchien> 喔喔
+18:01 < ipa> 除了社會所現在列出都是大方向，只有一個是特定列名，但確定了再公布比較好
+18:02 < hcchien> ipa: 應該是 index.html
+18:02 < hcchien> src/index.html
+18:02 < xsoameix> clkao: 大致的提案是這樣子：g0v.hackpad.com/--iPNL16x8zdp
+18:03 < hcchien> 咦，兩個檔都有
+18:03 < ipa> 恩？ 我來試試 :P
+18:04 < hcchien> 直接把初步規劃整個拿掉好了
+18:04 < hcchien> <ul> 到 </ul> 全部拿掉如何
+18:05 < ipa> hcchien: 也行 
+18:05  * tkirby 坐在 mary 旁邊
+18:05 < hcchien> 咦，這有什麼祕辛
+18:06 < tkirby> 就.. cowork (咦)
+18:06 < ipa> hcchien: done 等下看看對不對 XD
+18:07 < hcchien> ipa: 問 tkirby 看這是怎麼 deploy 的了
+18:07 < tkirby> gh-pages 所以不用 deploy, push 之後就等 cache refresh
+18:08 < ipa> tkirby: 所以改好commit 等他自動好? 
+18:08 < tkirby> yeah
+18:08 < hcchien> tkirby: co-work summit pages?
+18:10 < tkirby> hcchien: XD
+18:10 < hcchien> 科科
+18:37 < pipi_> tkirby: 我想學攝影（拉衣角）
+19:03 -!- CelloCello1 [~Sero@1.34.191.8] has left #g0v.tw []
+19:38 < caasihuang> mary++ tkirby++ #summit!!!
+19:40 < lijung__> clkao: 123.g0v.today 是不是掛了我可以換到 123.g0v.tw 的 domain 嗎？
+19:44 < clkao> lijung__: ask isacl ?
+19:45 < lijung__> but isabel 好像之前說想要換到 123.g0v.tw 我先問一下好了... thanks
+19:48 < isacl> lijung__: 123.g0v.today 我這邊看正常
+19:49 < clkao> isacl: 我看 404 哩
+19:49 < lijung__> 咦詭異...我 github 上設定沒動...
+19:49 < lijung__> 我也 404
+19:49 < isacl> 疑, 我清完 cache 後變 404 了. checking...
+19:50 < lijung__> thanks
+19:52 < isacl> lijung__: 它的 github repo 在？
+19:52 < lijung__> https://github.com/chilijung/ly-tel
+19:52 < kcwu> lijung__'s url: [chilijung/ly-tel · GitHub]
+19:54 < isacl> lijung__: 現在 cname 被改掉了 https://github.com/chilijung/ly-tel/commit/c049299b5a90aae4c9eb644268b5430b1864c6b3
+19:54 < kcwu> isacl's url: [Update CNAME · c049299 · chilijung/ly-tel · GitHub]
+19:55 < isacl> s/現在/剛剛/ 等更新回來要一段時間
+19:55 < lijung__> 喔因為我原本以為要換到 g0v.tw 但我剛剛有改回去
+19:56 < lijung__> 原本是 cname 在 g0v.today status 404 剛剛問 clkao 我才把 cname 換到 g0v.tw 後來又換回來 (有點複雜哈哈)
+19:56 < lijung__> 嗯嗯好等等看
+19:58 < lijung__> http://123.g0v.today/ # 有了，感謝
+19:58 < kcwu> lijung__'s url: [「123。打。道。掛。」三動作護台灣系列]
+19:59 < isacl> lijung__: np.
+20:08 < ipa> tkirby: 好像沒有 deploy 成功
+20:08 < ipa> summit.g0v.tw
+20:09 < ipa> lijung__: 考完試囉？
+20:09 < lijung__> ipa: 要到下禮拜四才結束...所以無法去 hackathon :(
+20:10 < ipa> lijung__: 要去當兵了嗎？不然應該來 summer of code 一下？
+20:11 < lijung__> wow cool~! 不過應該會先去當兵，看那時候有沒有放假
+20:14 < lijung__> summer of code 是 summit.g0v.tw 嗎？我好像搞錯了...
+20:15 < yhsiang> clkao: xsoameix 沒問題的話 我push他去報名囉?
+20:16 < ipa> lijung__: https://www.facebook.com/photo.php?fbid=308856959272524&set=a.276078935883660.1073741828.240170506141170&type=1&theater
+20:16 < kcwu> ipa's url: [沃草！（Watchout） - 動態時報相片 | Facebook]
+20:17 < xsoameix> yhsiang: 耶？有大大也想要參加？
+20:19 < lijung__> ipa: thanks!
+20:22 < pm5> clkao: yhsiang 要約 6/21 討論 SoC 提案. 當天晚上有零食松嗎?
+20:23 < clkao> orz 對喔 黑客松晚上... 
+20:25 < jimyhuang__> pm5: 其實上週開的是零食團，不是零食松...零食松，感覺會一直吃吃吃
+20:25 < pm5> jimyhuang__: 對喔感覺很飽 XD
+20:27 < yhsiang> 問題是有個g0v.kktix.cc害我每次都走錯  XD 
+20:34 < lijung__> clkao: isabel 想要把 123.g0v.today 轉到 123.g0v.tw 可以嗎？
+20:43 < a0kman> au: 抱歉，21號的大松因事會缺席，simon我有先請他代理幫忙超農域，先告知你一下
+20:47 < ipa> a0kman: 記得取消一下票喔 :P
+20:49 < au> a0kman: 收到
+20:51 < jimyhuang__> pipi_: ping 
+20:52 < a0kman> Ok
+20:54 < moon_c_> a0kman: 噢嗚你不會來喲ＱＱ
+20:55 < a0kman> 恩 因為家人登出人生伺服器了
+20:56 < jimyhuang__> a0kman:  節哀
+20:57 < moon_c_> 節哀....相信他去了更好的伺服器
+20:58 < jimyhuang__> 更好的伺服器++
+21:01 < lijung__> ipa: http://watchout.kktix.cc/events/g0vxwatchout # 如果我當兵放假做這樣可以嗎ㄏㄏ，只要在 8/20, 9/20 有些成果就可以嗎？
+21:01 < kcwu> lijung__'s url: [g0v X Watchout! : Summer of Code]
+21:04 < yhsiang> lijung__: 可是你當兵是軍人 ..
+21:05 < lijung__> 喔喔對吼...ㄏㄏ
+21:05 < lijung__> ok 我找一些我認識的學弟妹看要不要去～～
+21:08 < pm5> a0kman: 節哀
+21:09 < a0kman> 退票了， 有需要的g0ver記得暴民喔
+21:09 < a0kman> ……報名
+21:10 < a0kman> 感謝各位
+21:13 < simonpai> a0kman 超農域到時候我先和大家 sync 一下
+21:13 < pipi_> jimyhuang__: 在，我跟 NewCliCker一樣都是臉盲
+21:13 < a0kman> simonpai: 太感恩
+21:14 < a0kman> simonpai: （跪謝
+21:14 < pipi_> 目前好奇的是前端松後晚餐時坐我左前方的大哥
+21:36 < Michael_LI> 小道消息～～中天新聞的員工心裡頭可能正在想造反！　http://goo.gl/EssWU8
+21:36 < kcwu> Michael_LI's url: [＜中天新聞＞員工：自己的媒體自己救！.png - Google 雲端硬碟]
+21:41 < yurenju> night
+21:41  * yurenju 的晚間 hacking 時間
+21:54 < hcchien> github gg 了？
+22:11 < walkingice> still alive
+22:20 < mingtsay> a0000778++
+22:21 < a0000778> mingtsay: 怎突然冒出我的ID
+22:21 < mingtsay> a0000778: 看到 history messages 裡面有人打 a0000778++ 所以就跟著打…
+22:22 < mingtsay> a0000778: 時間點在：2014/6/16 04:14:11
+22:23 < mingtsay> a0000778: 不過還沒看前後文（？）因為前後都剛好斷線還沒爬 log （？
+22:23 < a0000778> mingtsay: 不帶這樣隨便+的
+22:24 < kiang> mingtsay: http://logbot.g0v.tw/channel/g0v.tw/2014-06-16/73
+22:26 -GitHub91:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/694c67b66294eb8bc94c95acd5f5d774d8cf7ac9
+22:26 -GitHub91:#g0v.tw- g0v.tw/gh-pages 694c67b g0v general (via TravisCI): regen for 81b11f5
+22:39 < mrbigmouth_> 隨便+  XDDDD
+22:59 < tkirby> ipa: 因為是 check-in 到 master.. 我 merge 到 gh-pages 了
+22:59 < tkirby> 現在 list 已經不見了
+23:00 < clkao> jimyhuang__: 我看了一下 dkan 那邊可以對 dataset 下 tag.. 也許直接下 localdata:meta 和 localdata:id:{id}, 然後有個方式 query 所有有 localdata:meta 的?
+23:00 < clkao> 需要取一個 id
+23:01 < jimyhuang__> 好像也行
+23:01 < jimyhuang__> clkao: 我今天有測試一下 http://goo.gl/FF77yH 
+23:01 < kcwu> jimyhuang__'s url: [社會福利 | data.g0v.tw]
+23:03 < jimyhuang__> 想說，再直接加個區域的欄位，讓為dataset 加入 resource 時，直接選縣市～  tag 的 meta 是會存什麼？
+23:03 < tkirby> hmm? 好像應該要用 deploy script XD
+23:03 < clkao> jimyhuang__: 表示這個 dataset 是指各縣市都該有這個 不是實際的資料
+23:04 < clkao> 之後實際的再用 localdata:{id}:{iso3166-2} 對應起來
+23:04 < jimyhuang__> clkao: 喔喔喔！那我加個欄位來處理好了～今天來繼續奮起
+23:05 < clkao> 他 api 怎麼 search by tag 呢?
+23:05 < jimyhuang__> 其實是我拉一個 api 給你（後台按一按，限定這個欄位有值才撈給你）
+23:06 < jimyhuang__> 還是你想要全部的？自己在filter ... 
+23:06 -!- chihchun is now known as chihchun_afk
+23:08 < clkao> 全部的太苦啦 他本來沒有 generic search param 嗎?
+23:08 < jimyhuang__> 嗯，我來撈給你，等我一下，移動中
+23:21 < ipa> https://www.facebook.com/ttcat0902/posts/867015919979243 有人說全然看不懂 orz
+23:21 < kcwu> ipa's url: [吳銘軒 - ++++++ http://summit.g0v.tw/ | Facebook]
+23:22 < ipa> hcchien: 看來要來 patch 一下簡介文字 @@
+23:23 < clkao> 全然看不懂 XD
+23:23 < clkao> 呼喚 txt 組
+23:24 < ipa> 我以為我自我呼喚要來 patch 了 lol
+23:27 < kiang> https://g0v.hackpad.com/HcQXqvjplUq - 求 patch +1
+23:27 < kcwu> kiang's url: [臺澎主權的未來請交給臺澎人民決定 - g0v.hackpad.com]
+23:27 < kiang> 只是好像又開錯地方了吧 XD
+23:30 < yurenju> 加上 progressive loading geojson http://blog.yurenju.info/mlymap/
+23:30 < kcwu> yurenju's url: [台灣立委選票分佈地圖]
+23:31 < yurenju> 好像資料還是要 sample 過，好大
+23:32 < NewCliCker> mrbigmouth_++++ 今天下午靠您的搶票 bot 順利取得 hackath9n 入場券，不過因為是使用上個星期五自己打包的版本，所以最後票並未送出，好在爆炸音效+喇叭開很大聲所以有趕在 15 min 以內填完送出 ，感謝 <(_ _)>
+23:34 < mrbigmouth_> XDD
+23:34 < mrbigmouth_> 所以沒有自動購票成功?
+23:34 < mrbigmouth_> 是因為版本沒更新還是有bug?
+23:42 -!- goddamn is now known as Goddamn
+23:45 < NewCliCker> mrbigmouth_: 因為我上星期五開始掛在電腦上的版本還是 v1.1 ，看起來應該是卡在是否吃素那個問題不能留白，所以今天自動購票功能沒送出的樣子
+23:46 < mrbigmouth_> 咦咦  是否吃素是什麼型態的格子?
+23:46 < mrbigmouth_> checkbox?
+23:47 < a0000778> 單選吧
+23:47 < mrbigmouth_> radio的話之前應該是設成隨便點選....可能有bug....
+23:47 < mrbigmouth_> 要找個適合的活動測試才行 ~"~
+23:48 < mrbigmouth_> NewCliCker:有空的話可以去github填一下issue...這樣我比較會記得去修 XD
+23:49 < NewCliCker> mrbigmouth_: 吃素那一欄長這樣 http://i.imgur.com/sJp6pW6.png?1 
+23:50 < mrbigmouth_> 嗯  radio型態的話可能會有bug....目前還是搞不太懂該用什麼方式去觸發angular的model資料變化...
+23:50 < NewCliCker> mrbigmouth_: 因為下午才看到有 v1.2 版，還沒測試 1.2 版是否有同樣問題呢
+23:50 < mrbigmouth_> 要多加實測才能完善
+23:50 < mrbigmouth_> NewCliCker: v1.2版肯定有同樣問題  因為我沒修 XD
+23:55 < NewCliCker> mrbigmouth_: Done #github填issue #NewCliCker這個帳號的首封 issue 很榮幸的貢獻給 kktixRobot (被打
+23:56 < hychen> g0v 高峰會我看成gov高峰會 orz

@@ -1,0 +1,43 @@
+--- Day changed 一  8月 22 2016
+03:55 < slackbot2> <au> whatis enspiral 有中文版 <https://audreyt.github.io/whatis.enspiral.com>
+03:57 < slackbot2> <au> 正在試著輸入「定期黑客松」的概念給他們 XD
+07:36 < slackbot2> <miaoski> @kiang: 幾間大公司都有用 HBase 或 Cassandra, 不過台GG找到的是敝司提供建置維護。公開招標我怕你會進大坑。
+09:25 < slackbot2> <kiang> @miaoski 我這邊也只是建議，實際執行應該不是我，所以坑大一點沒關係 XD
+09:30 < slackbot2> <pofeng> @kiang @miaoski  可不可以好奇問一下 多大資料你們才會考慮用 HBase 啊 ?
+09:30 < slackbot2> <kiang> PB ?
+09:31 < slackbot2> <miaoski> @pofeng: 說真的要看資料特性，因為你要把 HBase 看成一個大的 key-value DB (當然不止啦... 簡化來說) 所以不是每個 case 都適合用它。
+09:31 < slackbot2> <miaoski> 但我這邊 > 100 GB 就會用了。100 GB 用 MySQL 有時候會不太開心
+09:31 < slackbot2> <miaoski> @kiang: 在沒有高級、資深、無敵 DBA 的情況下，我不會建議任何 RDBMS 超過 1TB
+09:32 < slackbot2> <kiang> 恩，一開機光索引就佔滿記憶體的感覺很糟 XD
+09:32 < slackbot2> <miaoski> 那可能表示你 schema 要重新設計...
+09:33 < slackbot2> <kiang> 沒，這只是幻想，資料還沒都進來
+09:33 < slackbot2> <miaoski> 主機的性能也是要考慮的，像 T 社十分愛用 VM, 這種情況下我們不能對 RDBMS 有過高的要求
+09:34 < slackbot2> <kiang> 主要是會有很多時間序列的資料持續塞進來，所以希望有個不會被塞爆的資料儲存介面，目前看起來 HBase 很多東西都成熟了，只是國內廠商比較難找 XD
+09:36 < slackbot2> <miaoski> @kiang: HBase 建議你先 study 一下… 時間序列的話，可能有人會建議 Splunk ($$$$), ElasticSearch (問題同 HBase) 也要 study 之後可能怎麼用
+09:37 < slackbot2> <miaoski> 外包廠商能不能找到具有二年以上 > 10TB 資料的處理經驗，我就不清楚。但自己架 PoC 和實際有 10TB 資料在上面的感覺不太一樣
+09:37 < slackbot2> <kiang> @miaoski 就是沒有 $$$$ 才看 HBase 的 XD ，主要是會延伸一些資料轉換、搬移需求，所以只要介面固定即可
+09:39 < slackbot2> <miaoski> T 社這邊以前的做法 (現在不確定，我二年沒碰了) 大概是會在 table 上加時間，然後 <http://d.hatena.ne.jp/wyukawa/20120723/1343055747>
+09:39 < kcwu> slackbot2's url: [HBaseのRow Keyの設計についてのメモ - wyukawa’s blog]
+09:39 < slackbot2> <miaoski> ColumnQualifier 之前好像因為 shard balance 的考量，我們不會希望同一個 table 裡超過 3 個.
+09:41 < slackbot2> <miaoski> 原因你在同一頁的下面 SlideShare 那邊可以很清楚看到... 我不確定二年多以來 HBase 有沒有改善這個問題
+09:42 < slackbot2> <miaoski> 然後同一個 table 超大，一直塞時間序列，可能也不是那麼理想。如果你們處理資料的方式允許，把它按時間切成不同的 table 比較好, 像 table-yyyymm 這樣
+10:11 < slackbot2> <kiang> @miaoski ++ ，主要是會分內部與外部，外部使用時會希望使用的人都透過統一資料表存取， ACL 不希望弄的太複雜
+11:48 -!- chihchun_afk is now known as chihchun
+15:18 < slackbot2> <lanf0n> 請問有人實做過點下載直接跳另存新檔的功能嗎QQ?
+15:22 < slackbot2> <kiang> lanf0n <http://hatsukiakio.blogspot.tw/2009/08/php-header.html> ?
+15:22 < kcwu> slackbot2's url: [東方和風語: PHP 學習筆記 header:下載與轉址等等]
+15:26 < slackbot2> <clkao> lanf0n client side only: <https://github.com/jimmywarting/StreamSaver.js>
+15:26 < kcwu> slackbot2's url: [GitHub - jimmywarting/StreamSaver.js: StreamSaver writes stream to the filesystem directly asynchronous]
+15:27 < slackbot2> <ronnywang> js 點選直接另存新檔 Mac 上面常會有問題
+15:27 < slackbot2> <lanf0n> !! 感恩<(_ _)>
+16:03 < slackbot2> <lanf0n> 看來是 chrome 預設就不會跳另存....囧
+16:29 < slackbot2> <billy3321> 請教一下大家，我可以把「g0v零時政府參與者」放上個人履歷嗎？
+16:41 < slackbot2> <ttcat> @billy3321: <https://g0v.hackpad.com/-g0ver--p91yfZBbUG1>
+16:41 < kcwu> slackbot2's url: [自稱 g0ver 的幾種方式 - g0v.hackpad.com]
+16:48 < Lee1092> 我個人是放 貢獻者  @@
+16:50 < slackbot2> <yurenju> 我好像都是說我是「g0v 參與者」這樣
+16:53 < Lee1092> 聊天的話  會說我平常在 g0v 打工 XDD
+17:48 < slackbot2> <ipa> 我有陣子會寫 g0v 零時政府重度上癮者 XD
+20:49 < g0vtelegrambot> <gugod> /me ⬅️ flatlander of g0v.tw
+22:38 < slackbot2> <void> @miaoski @kiang elasticsearch目前在time-based data（和timeseries不完全一樣）的發展還不錯，但要先確定沒有transaction的需求，還有可以接受大多數的aggregation都只是估計值
+23:49 < slackbot2> <clkao> kiang 也可以考慮 g0v summit 贊助單位 teradata (不過可能頗貴 XD)

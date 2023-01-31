@@ -1,0 +1,769 @@
+--- Log opened 五  2月 01 00:00:15 2013
+00:00 < chhsiao1981> vol/book/seq/page and vol/book/seq will not be the unique id, and will be considered as ref id. 
+00:03 < clkao> that's what i meant.  it can be a column for each resource... basically just gazette/page.  but some items are from agenda doc, not part of gazette.
+00:05 < clkao> tka_: tender_buddy 好像應該加個有緣總金額
+00:05 < clkao> 科科科
+00:05 < clkao> 雖然緣份無價.... 
+00:06 < tkirby> xDD
+00:06 < clkao> tka_: 然後該金額佔所有發標單位全部標案比例
+00:06 < chhsiao1981> hmm. I didn't check out agenda part. 
+00:07 < chhsiao1981> I just realized that there is also the "agenda" part.
+00:09 < chhsiao1981> http://lci.ly.gov.tw/LyLCEW/communique1/work/102/03/LCIDC01_1020304_00002.doc
+00:09 < chhsiao1981> 好像 404 了!
+00:09 < tkirby> oh no
+00:10 < tkirby> 恩? 今年是幾年
+00:10 < chhsiao1981> 102 吧. 
+00:10 < clkao> 有時最新的會 404
+00:10 < clkao> 他們很慢
+00:10 < chhsiao1981> 好像是最新的關係.
+00:11 < chhsiao1981> 好險舊的還可以看得到. 
+00:14 < chhsiao1981> clkao: so maybe the api for the 2nd system: [type]/[type-info-id]. and if type == 'gazette': type-info-id = 'vol/book/seq/page/line'
+00:15 < chhsiao1981> if type == 'gazette.page': type-info-id = 'vol/book/seq/page'
+00:17 < clkao> i think we don't need line ref -> resource mapping. just resource -> line ref
+00:18 < chhsiao1981> clkao: hmm. yes. it should be resource -> line ref. 
+00:20 < clkao> so just additional column in each resource
+00:27 < chhsiao1981> clkao: ok. sounds great. and the default spec for that line ref will be vol/book/seq/page/line. (and we can have page ref and seq ref. or put unknown as '_' or 'null' or some symbol.)
+00:30 < clkao> gazette id = vol/book/seq.. so that's probably easier.  also when referencing agenda document... which is a lot more tricky.  feel free to experiement unoconv and see if we can annotate page numbers in the output html
+00:43 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+00:44 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+00:45 < clkao> soidid++ # https://moqups.com/soidid/bWm0QVhK/p:ac6d874a6
+00:45 < kcwu> clkao's url: [Moqups Viewer]
+00:46 -!- thschee is now known as zz_thschee
+00:46 < hlb> 怎麼忽然變成輸入法了啊...
+00:47 -!- tonytonyjan [~tonytonyj@140.113.54.52] has joined #g0v.tw
+00:48 < mjhsieh> 什麼輸入法？
+00:50 < kcwu> 有小麥注音, mac輸入法很難用是偽議題(?)
+00:50 < mjhsieh> orz
+00:50 < clkao> kcwu++
+00:51 -!- tonytonyjan [~tonytonyj@140.113.54.52] has left #g0v.tw []
+00:51 < tkirby> 我有裝小麥!
+00:52  * tkirby 結果還是選擇用預設注音... XD
+00:53 < kcwu> yllan: 有人說破音字好像都不能查
+00:59 < favonia> kcwu: au: 我忘記說有個「鐗」打成「鐧」，這個很明顯是錯字可以先改。
+00:59 < yllan> kcwu: 破音字？能舉個例子嗎？
+01:00 < au> favonia: ok
+01:01 < kcwu> yllan: 他說查不到 "票"
+01:01 < favonia> au: kcwu: 目前大部分的怪字都還找得到 CNS, 所以異體字也許可以連到 CNS 之類的
+01:02 < favonia> au: kcwu: 我昨天想了一下 Unicode 的精神覺得還是不要碰相容區算了。尤其 Unicode 也沒有想要跟 CNS 可以雙向轉
+01:02 < favonia> 我們希望能雙向轉的字集 Unicode 放棄了 xD
+01:02 < au> ok
+01:02 < au> bbiab &
+01:03 < yllan> kcwu: 他是抓第一次 build 的版本嗎？我昨天放在 github 上的版本應該就已經有了。不過我找不到地方可以讓我當 CI server 生 artifact，因為是要 Mac 才能 build XP
+01:04 -!- Chuiyi1 [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+01:04 < yllan> kcwu: 公司機房裡是有，但頻寬超小 orz   每次 build 都傳個幾百 MB 我們公司網站會哭哭
+01:05 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+01:05 < kcwu> yllan: 他抓的應該是 180.235.254.126 上面那個 (你貼在 irc 上的)
+01:06 -!- tonytonyjan [~tonytonyj@f5hc35.RAS.nctu.edu.tw] has joined #g0v.tw
+01:07 < yllan> kcwu: 對，那個的確有問題，而且後來都沒更新過。我等一下把 CSS 微調一下以後，手動丟一個更新過後的版本上去好了。不過要這樣搞實在有點苦，有新版大家也要手動抓，好苦啊 XQ
+01:09 < kcwu> yllan: 幾百 mb? mac dict 沒壓過?
+01:10 < tkirby> yllan: 你那個.. sbt get-db blah 之後下載的東西一共多大啊
+01:11 < tkirby> 剛剛我的 macbook 告訴我我的硬碟空間用完了... XD
+01:11 < kcwu> XD
+01:12 < yllan> tkirby: 其實就是下載 development.sqlite3.bz2 大概 7x MB 然後編好上傳 dictionary 好像 70MB，一次上下流量約 140MB 吧
+01:12 < tkirby> souka
+01:13 < yllan> tkirby: 喔喔～如果是空間的話沒算過 XD sbt 會把需要的 lib 和 runtime 版本都抓下來放在 .ivy cache 所以可能會滿大的
+01:14 < tkirby> hmm .ivy2 目前 29M, 好像還好
+01:14 < tkirby> 我到底是放了些什麼把硬碟放滿了呢?
+01:14 < tonytonyjan> 想做離線版的 Chrome Extension 字典，剛才把 development.sqlite3 裡面的東西寫入 Web SQL，但發現速度太慢了，有其他建議嗎？
+01:15 < yllan> 那…大概是 patch-db 的時候 dump sqlite, 產生 unicode.sqlite3 檔，等於是 70MB x 3?
+01:15 < clkao> tkirby: /cores 看看
+01:15 < favonia> yllan: 你設計的介面真的很漂亮... 有什麼奇怪資料你覺得我在查字時可以幫忙的嗎？
+01:15 < yllan> favonia: 不是我設計的，那是 Apple 內建的…
+01:15 < tkirby> nothing
+01:16 < favonia> yllan: 喔我應該說那個注音排版 xD
+01:16 < tkirby> clkao: 我發現 twbudget 前身 ppl 80MB... 我 clone 了好幾個... XD
+01:17 < tkirby> yllan++ # 漂亮
+01:19 < albb0920> kcwu: tonyq__ 有看到 google groups 上面的 JSON 匯入 proposal 嗎?
+01:19 < yllan> favonia: 注音竪排還是會爛，我暫時先弄成橫排釋出 XD    資料的話，我先想到的就是索引可以增加通同字
+01:20 < favonia> yllan: 喔喔～你是指異體那些嗎？
+01:21 < yllan> favonia: 嗯嗯，像「靑」目前就查不到，也許可以把「靑」加到「青」的 index 裡面，之類的。不過我對 unicode 沒很瞭解，所以你之前講的我都聽不太懂是什麼 XD;
+01:21 < walkingice> clkao: 把宣言補完之後，我 push 到 master branch 了
+01:22 < favonia> yllan: 這大概不是我現在處理的範圍，但我可以告訴你怎麼解決這問題
+01:23 -!- walkingice is now known as zz_walkingice
+01:23 < favonia> yllan: Unihan 資料庫裡面有個叫「kZVariant」的東西，專門講字型相似意思一樣但因為種種理由編兩個字
+01:23 < favonia> Unicode 資料庫裡面有 pointer 互指
+01:24 < clkao> 話說注音可以用 ruby 旁注 render 嗎?
+01:24 < yllan> clkao: 無法 render，我是用 dirty hack 模擬的
+01:25 < favonia> yllan: 靑 和 青 在 Unicode 裡面是互指的，tab 分隔的資料庫可以從 ftp://ftp.unicode.org/Public/UNIDATA/Unihan.zip 抓或是...
+01:25 < favonia> yllan: 理論上 icu library 應該也有做
+01:25 < favonia> yllan: 我講的是 IBM 的 icu 還有他的一堆 bindings
+01:25 < yllan> w3c 好像還在制定 ruby-position 的標準，其中有 inter-character。就算如此，要擺 tone symbol 還是不夠用啊～
+01:26 < clkao> zz_walkingice: 應該是要 push 到 gh_pages 才會 live 喔
+01:26 < yllan> favonia: Cool，所以這種通同字叫做 kZVariant。那你在進行的工作是什麼呢？
+01:27 < favonia> yllan: 之前圖檔或是使用者造字區大家瘋狂檢字
+01:27 < favonia> 可是有幾個問題
+01:27 < favonia> 首先是因為之前介面不怎麼友善有些字打錯，我看到就改一改
+01:27 < favonia> 再來是很多沒有寫 CNS 編碼
+01:28 < favonia> 例如勺的兩個寫法遵照 Unicode 精神的話是同一個字
+01:28 < kcwu> raw data 有一些奇怪 case, "　ㄅㄚ　ㄐㄧㄢㄦ　ㄏㄠˋ　ㄕㄥˋ　(變)ㄅㄚ　ㄐㄧㄚㄦ　ㄏㄠˋ　ㄕㄥˋ",   bopomofo 欄位不是直接能夠 1:1 對到字...
+01:29 < favonia> 如果我們字典用 Unicode 編碼的話（而且不管其他編碼）大概統一比較合理 xDDD 這種異體字改用 CNS 圖片
+01:29 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+01:29 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+01:29 < favonia> （我是主張如果用 Unicode 就統一吧，不然用這編碼卻違反這編碼的精神感覺以後會出狀況）
+01:29 < kcwu> albb0920: yes, 我正在抓新版資料, 還有 parser. 大概這週末會弄好
+01:30 < favonia> 所以我現在就是檢查這些怪東西，順便補上 CNS11643 編碼（方便抓台灣標準寫法）
+01:30 < au> tonytonyjan: 有 :-) 我做了一個 prototype
+01:30 < yllan> favonia: 了解。不過 CNS11643 編碼 Mac 有支援嗎？
+01:31 < au> tonytonyjan: 你手邊有 yllan 的 MoeDictionary.xml 嗎?
+01:31 < favonia> yllan: 如果改成圖案應該就無所謂了吧。我是不知道政府提供多少 Mac 支援...
+01:32 < kcwu> yllan: sql db 若 bz2 後大概只有 20mb, 7xmb 是沒壓過的大小
+01:33 < favonia> au: 我忘記跟你確認，這個表格已經包含所有造字了嗎？
+01:33 -!- MnO2 [~mno2@1.34.43.236] has quit [Quit: Leaving]
+01:33 < au> favonia: medicalwei 之前手動加好的，和我建的符號，沒有在裡面
+01:34 -!- superd_ [superd@2001:e10:c41:112::221] has joined #g0v.tw
+01:34 -!- Custom [custom@saturn.stu.edu.tw] has quit [Read error: Connection reset by peer]
+01:34 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+01:34 < au> tonytonyjan: http://www.audreyt.org/tmp/moedict-phonegap/
+01:34 < yllan> favonia: OK. 其實現在資料裡面有圖的我都直接略過，所以之後可能是用對照表，把那些造字區之類的弄成圖片
+01:35 -!- superd [superd@saturn.stu.edu.tw] has quit [Ping timeout: 276 seconds]
+01:35 < au> 這應該可以做 Chrome Extension etc 的開始點
+01:35 < au> (可能要用 chrome 開, firefox 不支援 <input list="">)
+01:35 -!- favonia [~favonia@pdpc/supporter/student/favonia] has left #g0v.tw ["Leaving"]
+01:35 < yllan> 如果在 title 有圖字的可能就要代換成通同字，或者 merge 到含異體字的兄弟 entry
+01:35 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+01:36 < favonia> yllan: 了解。但有些有簡單的 Unicode 對應我覺得不用很可惜
+01:36 < au> tonytonyjan: 其中 data/* 是用 http://www.audreyt.org/tmp/moedict-phonegap/xml2data.pl 從 yllan 的 .xml 轉出來的 -- 並且把破音字 (一) (二) (三) 重新排序了
+01:36 < favonia> 像那個大唐三藏... 「唐」不知道為什麼用造字的
+01:37 < favonia> yllan: 我覺得弄成唐可能會更方便 xD
+01:37 < yllan> favonia: 那個應該包含在 au 的 db2unicode.pl 裡面吧？
+01:37 < au> 有包含了
+01:37 < favonia> au: 可是那個篆書圖還在耶
+01:37 < favonia> 我不太了解你的意思
+01:37 < au> entry 裡留異體字，definition 裡用常用字　
+01:38 < au> favonia: 圖還在... 哪裡? :)
+01:38 < favonia> au: Google 表格中有 9868 (水A) 啊？
+01:44 < au> I meant there were some entries like punctuation and japanese and tonal tvowels not in there 
+01:44 < yllan> au: 那個 xml 我不太建議拿來做事耶，因為 structure 一直在改
+01:45 < au> unrelated to the font work later 
+01:46 -!- tonytonyjan [~tonytonyj@f5hc35.RAS.nctu.edu.tw] has quit [Ping timeout: 256 seconds]
+01:46 < favonia> au: ok. 就是那些絕對沒爭議，有超簡單 Unicode 對應的 xD
+01:47 < au> 對
+01:47 < au> yllan: 收到。我之後改用 sqlite 生
+01:48  * au 好像應該來學 scala 幫忙把 join '<h1 class="title">', sort(split(/<h1 class="title">/, $out)); 的邏輯加回 moedict-mac 
+01:49 < au> (= 「車　㊀ㄔㄜ」 排在 「車　㊁（讀音）ㄐㄩ」 前面)
+01:50 < kcwu> 這個之後 parser 的 output 會處理, sqlite 的話 order by xxx 可以了.
+01:51 < au> kcwu++
+01:51  * yllan 推廣 scala 計畫失敗
+01:52 < favonia> au: 唔不過像 8e42 好像沒有在裡面耶
+01:55 < au> favonia: 對... medical 當時有一個列表，裡面已經有些字找好了
+01:55 < au> 那些我就沒有放上 context 或 hackpad
+01:55 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+01:55 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+01:55 < favonia> au: ok. 但實際上我之前至少找到那個表兩個錯誤
+01:55 < au> 是，所以現在應該補上（中文字部份）
+01:56 < favonia> au: 嗯嗯
+01:56 < favonia> 話說我覺得我表格的設計快完成了 xDDD
+01:56 < au> 好棒 :D
+02:03 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+02:03 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+02:06 < favonia> au: 大概最後就是要佣人眼仔細看最後那一排圖是不是真的一樣
+02:10 < au> *nod*
+02:25 -!- Chuiyi1 [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+02:26 -!- KNY [~Adium@118-170-77-30.dynamic.hinet.net] has quit [Quit: Leaving.]
+02:50 < yllan> 手動放上來最新 build 好的 mac 字典： http://jp.hypo.cc/moe.dictionary.tbz  明天來設個 CI
+02:51 < favonia> au: 91c9 䁮 => 䐶
+02:52 < au> fixed
+02:52 < au> yllan++
+02:52 < yllan> 然後剛 au 講的 sorted 我也 push 到 github 了。這個「㊀㊁（讀音）」居然放在 bopomofo 欄位，感覺有點怪怪… XD
+02:53 < au> 這個據說 kcwu 下一版會修
+02:54 < yllan> http://cl.ly/image/041L2C143Z0z 所以現在看起來長這樣
+02:54 < kcwu> yllan's url: [Screen Shot 2013-02-01 at 2.53.02 AM.png]
+02:55 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+02:57 < yllan> 不過各解釋的內容看起來還是滿亂的，現在有點看不懂解釋裡面那些 ㊀ 接著注音是什麼意思，看起來是某種 reference?
+02:58 < au> 是往其他讀音的參照
+02:58 < au> http://dict.revised.moe.edu.tw/cgi-bin/newDict/dict.sh?idx=dict.idx&cond=%5E%B1o%24&pieceLen=50&fld=1&cat=&imgFont=1
+02:58 < kcwu> au's url: [教育部重編國語辭典修訂本]
+02:59 < au> 既然整併了條目，這些可以拿掉
+02:59 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+02:59 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+03:01 < yllan> I see. 之後拿掉應該會比較乾淨。
+03:02 < favonia> kcwu: au: 你們對於對照表有什麼想法嗎？ xD 我大概設計完了～我維持了個人小堅持：原則上我不想用 Unicode 相容區
+03:02 < favonia> 再來就是填資料跟睜大眼睛看圖
+03:04 < au> favonia: 我覺得新的 layout 很棒
+03:04 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+03:04 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+03:04 < au> 至少 MindosC 提到如果國文教授們有意見，可以給他們這個 URL 幫忙校訂 :p
+03:04 < favonia> au: thanks
+03:05 < favonia> au: 異體字字典我還沒有擺東西/測試過
+03:05 < favonia> 不過好像大部份 CNS 收的就夠了所以先沒有管他
+03:05 < au> *nod*
+03:05 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+03:07 < favonia> au: 另外我希望這有很明顯... 那就是藍底的地方才應該改
+03:07 < au> 寫在試算表上吧
+03:08 < favonia> 嗯
+03:16 < favonia> au: done. 先離開了。現在就缺人力這樣 xD
+03:17 < au> favonia++
+03:27 -!- jpsun1 [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+03:28 -!- MindosCheng [~mindos@42-72-46-46.dynamic-ip.hinet.net] has joined #g0v.tw
+03:36 < au> MindosCheng: hi, 之前你提到可以給國學人士校訂的共筆， favonia 建好了: https://docs.google.com/spreadsheet/ccc?key=0AttD1zENsweydFhtZXhKVjdId1JTRkFrSmhvZXozNGc 
+03:40 < favonia> au: 我想到一個 design 原則可能有人會不同意。我沒有直接從 TSource 轉成 CNS 的原因是因為我覺得現在真的需要人一個字一個字看
+03:40 < au> favonia: 如果手邊有 Chrome (桌面版) 的話，幫忙測看看 http://www.audreyt.org/newdict/moedict-webkit/ 載入畫面的篆書（在「隸變」條目也有）是否正常顯示?
+03:40 < favonia> 自動轉會有種「啊好像都結束了」的錯覺 xD
+03:41 < au> favonia: OK, 這也寫到試算表裡？
+03:41 < favonia> au: 我有寫說可以參考 TSource 來填 CNS
+03:41 < au> OK
+03:41 < au> cool then
+03:41 < favonia> 我大概知道轉換規則，但我就是不想用自動轉的結果
+03:41 < au> 懂了
+03:42 < favonia> au: Chromium 很正常
+03:42 < au> excellent
+03:43 < au> 「安步」條的乞賜度牒修<U+2A818>應該也正常
+03:45 < favonia> au: 那些標點符號 "˙" 是最正確的標點符號嗎？
+03:45 -!- jpsun1 [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+03:46 < au> 02D9 ˙ DOT ABOVE
+03:46 < favonia> 我以為會是很大顆的球之類的
+03:46 < au> 原文如此
+03:46 < MindosCheng> au++ favonia++ # 對照共筆
+03:47 < au> favonia: 我也覺得是 U+FF0E ． 專名號纔多
+03:47 < favonia> au: 嗯我知道...
+03:47 < au> *纔對
+03:47 < au> 那... 順手修掉了
+03:47 < favonia> 嗯總之覺得很不美觀 xD
+03:48 < favonia> au: 喔我剛才說我知道原文就很醜，我還沒查正確的
+03:48 < MindosCheng> 載入畫面的 JS 久到 FF 想停掉它 :P
+03:48 < au> MindosCheng: Chrome only atm
+03:49 < au> 雖然 FF 或許可以動
+03:49 -!- jpsun1 [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+03:50 < MindosCheng> FF Chrome 都有顯示出來
+03:50 < au> (y)
+03:50 < favonia> au: FF 卡卡的
+03:50 < au> favonia: http://www.edu.tw/files/site_content/M0001/hau/h14.htm 說是 U+FF0E
+03:50 < kcwu> au's url: [《重訂標點符號手冊》修訂版--間隔號]
+03:51 < favonia> au: 喔天啊這個好看多了.....
+03:51 < au> OK cool
+04:00 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+04:00 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+04:02 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+04:02 -!- mutolisp_ [~mutolisp@1-162-65-27.dynamic.hinet.net] has joined #g0v.tw
+04:02 < au> web 版 clear cache 之後應該 OK 了
+04:04 < yllan> au: Cool! 
+04:04 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+04:04 < favonia> au++
+04:04 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 255 seconds]
+04:05  * favonia 已經不太想開萌典原網站了 xD
+04:05 < au> XD
+04:06 -!- Goddamn [~goddamn@114-34-87-138.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+04:06 -!- mutolisp [~mutolisp@1-162-73-6.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+04:06 -!- Goddamn [~goddamn@114-34-87-138.HINET-IP.hinet.net] has joined #g0v.tw
+04:07 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+04:50 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Quit: Leaving]
+05:00 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+05:02 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+05:05 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+05:07 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+05:36 -!- MindosCheng [~mindos@42-72-46-46.dynamic-ip.hinet.net] has quit [Ping timeout: 264 seconds]
+05:36 -!- jpsun1 [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:36 -!- jpsun1 [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+05:39 -!- MindosCheng [~mindos@42-72-46-46.dynamic-ip.hinet.net] has joined #g0v.tw
+05:39 -!- jpsun1 [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:39 -!- jpsun1 [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+05:45 -!- MindosCheng [~mindos@42-72-46-46.dynamic-ip.hinet.net] has quit [Ping timeout: 240 seconds]
+05:45 -!- jpsun1 [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:46 -!- jpsun1 [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+05:56 -!- jpsun2 [~Adium@111-251-192-142.dynamic.hinet.net] has joined #g0v.tw
+05:59 -!- jpsun [~Adium@111-251-216-237.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+06:00 -!- favonia [~favonia@128.237.237.125] has joined #g0v.tw
+06:00 -!- favonia [~favonia@128.237.237.125] has quit [Changing host]
+06:00 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+06:00 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+06:02 -!- Chuiyi [~Chuiyi@118-165-73-134.dynamic.hinet.net] has joined #g0v.tw
+06:06 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+06:07 -!- Chuiyi [~Chuiyi@118-165-73-134.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+06:32 -!- swem [~Thunderbi@host-61-70-227-173.static.kbtelecom.net] has joined #g0v.tw
+06:32 -!- jpsun1 [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+06:33 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+06:56 < favonia> kcwu: au: 我無聊加上註解了，希望每個欄位的意思有好懂一點
+07:01 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+07:01 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+07:03 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+07:05 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+07:05 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+07:06 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+07:07 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+07:07 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+07:10 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+07:10 -!- jpsun1 [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+07:15 -!- zz_thschee is now known as thschee
+07:15 -!- jpsun1 [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+07:16 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+07:22 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+07:28 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Quit: Leaving.]
+07:33 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+07:34 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 246 seconds]
+07:34 -!- swem [~Thunderbi@host-61-70-227-173.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+07:40 -!- KN16H7 [knight@saturn.stu.edu.tw] has quit [Remote host closed the connection]
+07:40 -!- KN16H7 [knight@saturn.stu.edu.tw] has joined #g0v.tw
+07:42 -!- thschee is now known as zz_thschee
+07:54 -!- Goddamn [~goddamn@114-34-87-138.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+07:59 -!- Goddamn [~goddamn@114-34-87-138.HINET-IP.hinet.net] has joined #g0v.tw
+08:03 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+08:08 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+08:10 -!- swem [~Thunderbi@host-61-70-227-173.static.kbtelecom.net] has joined #g0v.tw
+08:14 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+08:14 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+08:20 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+08:20 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+08:21 < chhsiao1981> 話說有看到新聞有報故宮 22k 的消息!
+08:21 < chhsiao1981> 22kopendata.org 有影響力了!
+08:35 -!- GD__ [~GD__@round214.mc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+08:35 -!- GD__ [~GD__@round214.mc.ntu.edu.tw] has joined #g0v.tw
+08:36 -!- yurenju_ [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 248 seconds]
+08:36 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 255 seconds]
+08:38 < chhsiao1981> 關於 22k 的事情. 就勞方來說. 一直有個問題是臺灣勞方能得到的資訊太有限了. 很多消息是由資方掌握住的. 以致於做同樣的事情. 在其他地方少很多倍. 
+08:39 < chhsiao1981> 剛剛突然網路怪怪的 XD. 打出來的句字變成不完整了XD. 
+08:40 < chhsiao1981> 很多消息是由資方掌握住的. 以致於做同樣的事情. 在臺灣硬是比在其他地方少很多倍. 
+08:41 < chhsiao1981> 不論是做旅遊打工的那些事情. 或是做所謂的科技業的事情. 
+08:41 < chhsiao1981> (可能資方這時候就會說中國 xxx. 那是因為那些地方的資訊更有限.)
+08:44 < chhsiao1981> 臺灣還是有少數不錯的公司. 但是那些在臺灣只是少數. 
+08:47 < chhsiao1981> 如果 22k 變成 66k 的話. 很可能牛肉麵會變成 nt$200- nt$250. 但是全球性產品很可能還是跟現在一樣的價錢. (不過這很可能也會牽扯到匯率的問題.)
+08:48 < chhsiao1981> 至少 22kopendata.org 就是一個在資方如此資訊封鎖以後. 勞方嘗試回應的方式的一種. 
+08:52 < xdite> "一直有個問題是臺灣勞方能得到的資訊太有限了. 很多消息是由資方掌握住的. 以致於做同樣的事情. 在其他地方少很多倍. "
+08:53 < xdite> 我覺得這句話是矛盾的耶。你知道台灣比其他地方薪資少很多倍。為何不去找那邊的資訊？
+08:53 < xdite> 別的國家應該沒有被台灣的政府和資方鉗制住「職缺資訊」啊。
+08:55 -!- zz_walkingice is now known as walkingice
+08:56 < walkingice> clkao: 好的，我會 push 到 gh-pages
+08:57 < chhsiao1981> xdite: 所以就有旅遊打工這種事情. 而且這個是對於想賺錢的臺灣年輕人來說一個很 optimal 的方式. 
+08:59 < chhsiao1981> xdite: 另外是就那些會上街頭的人來說. 可能他們本身不會知道旅遊打工的事情. 也可能他們本身外語能力不夠好. 而外語能力不夠好. 某種程度上也是古代臺灣政府控制思想/資訊的方式之一. 又或者是當初整個社會導致如此. 
+09:00 -!- bananapple [3b781c23@gateway/web/freenode/ip.59.120.28.35] has joined #g0v.tw
+09:02 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+09:03 -!- swem [~Thunderbi@host-61-70-227-173.static.kbtelecom.net] has quit [Ping timeout: 252 seconds]
+09:06 < chhsiao1981> xdite: 就護士職而言. 臺灣有辦法的護士就直接到美國找工作了. 但是在臺灣大部分的護士原本家裡就不是很富裕了. 另外是還有很多比錢更重要的考量. 像是希望可以常常見到爸爸媽媽. 或是希望爸爸媽媽突然有預期外的事情發生的時候. 可以能夠馬上在旁邊處理問題. 讓爸爸媽媽平安度過預期外的事情.  
+09:08 -!- zz_thschee is now known as thschee
+09:21 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+09:27 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Quit: Leaving.]
+09:29 -!- yllan [~yllan@122-116-177-245.HINET-IP.hinet.net] has quit [Quit: yllan]
+09:31 -!- yllan [~yllan@122-116-177-245.HINET-IP.hinet.net] has joined #g0v.tw
+09:33 -!- Dennisc140 [d23dc13c@gateway/web/freenode/ip.210.61.193.60] has joined #g0v.tw
+09:43 -!- zz_chihchun is now known as chihchun
+09:44 -!- evan3rd [~mac@114-47-4-108.dynamic.hinet.net] has joined #g0v.tw
+09:46 -!- MnO2 [~mno2@nat/yahoo/x-pxjoijysnhtccbfe] has joined #g0v.tw
+09:48 -!- jpsun [~jpsun@111-251-192-142.dynamic.hinet.net] has joined #g0v.tw
+09:49 -!- yllan [~yllan@122-116-177-245.HINET-IP.hinet.net] has quit [Quit: yllan]
+09:50 -!- tonytonyjan [~tonytonyj@42-72-52-25.dynamic-ip.hinet.net] has joined #g0v.tw
+09:51 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+09:55 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+09:55 -!- yurenju_ [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+09:56 < tonytonyjan> 不好意思請問一下，MoeDictionary.xml 要去哪裡索取
+09:56 < tonytonyjan> 我在 hackpad 乍看找不到
+09:58 < tonytonyjan> 啊……我在 github 上找到了Orz
+09:59 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+10:05 < xdite> chhsiao1981: 你講的跟箝制資訊一點關係都沒有吧。事實上就是台灣市場和經濟力就在萎縮。
+10:06 < xdite> 需求下降，所以價錢就當然不可能高。別的地方需求高，價格自然高。
+10:07 -!- Sorry [~admin@mail.cna.ccu.edu.tw] has joined #g0v.tw
+10:09 < xdite> 沒有那個價值又想要賣高價（？）我本身就是覺得很奇怪的事。當然拿 22k 去 hire 一些 44k 的 job 實在太離譜。
+10:10 < xdite> 但是那些人也不可能買得到不是嗎？而且照網站上面看的趨勢，幾乎都是服務業居多。這些 22k 公司你怎麼舉報都舉不完的。
+10:10 < xdite> 有這個精力，還不如作舉報哪一些工作薪水很高的網站不是嗎？
+10:10 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:11 -!- KNY [~Adium@118-170-77-30.dynamic.hinet.net] has joined #g0v.tw
+10:11 < xdite> 鼓勵人民去投那些工作。而不是大家都擠往想做沒那麼高價值，卻又不想領 22k 的工作...
+10:13 < cpyang> 資訊落差還是存在的，尤其是資訊受到某些媒體及管道的操作；經濟力跟供需當然也有影響... 還有資^H勞委會的作為也讓很多問題沒被攤出來處理
+10:13 < xdite> 那精力應該放在解決「資訊落差」吧.......(?)
+10:13 < tkirby> ? 22kopendata 列的各種職位都有阿, 軟體工程師, 網頁設計, PM, 電腦繪圖..
+10:13 < cpyang> 不過當然，舉報正常薪資的工作，效果可能勝過公佈低薪的工作
+10:13 < xdite> 22K 的公司殺都殺不完的 =_=|||
+10:14 < cpyang> 而且低薪找得到人，本來就是資方跟政府立場會宣傳的啊 ... 好像不需要幫忙
+10:14 < tkirby> 我猜應該還是常態分布吧, 兩端應該會比較少
+10:16 < xdite> cpyang: 你覺得低薪能找得到的人，有真的那種很厲害卻被打壓，甚至是資質普通被打壓的嗎？
+10:16 < xdite> 我覺得可能性很低吧。這些公司不賺錢也用了沒那麼大生產力的人。自己最後也容易被市場淘汰。
+10:17 < xdite> 與其去殺這些公司。我覺得不如去公布哪些公司願意高薪請人（？）還比較來的實際。
+10:17 < xdite> 不過話說回來.....
+10:17 < xdite> 我過去一年間接觸的幾十家獵頭公司（特別指 software 公司
+10:18 < xdite> /s/職缺。
+10:18 < xdite> 薪水至少在台灣都願意開 70k /month - 150k+ month 以上
+10:18 < cpyang> xdite: 這要看資方的心態了，人員週轉率超高的公司，即使在軟體業都有啊... 
+10:18 < xdite> 但問題是，qualified 的人實在太少了。少到沒辦法 recommend ...
+10:19 < xdite> 因為國際上要的「基本」條件。
+10:19 < thschee> 這道理就是像是在台灣要找會開手排車的人一樣
+10:19 < tkirby> 那麼這個問題要怎麼解決呢?
+10:19 < xdite> 台灣人連符合資格的人都沒有那麼幾個。
+10:19 < cpyang> xdite: 那是另外一端的問題 ... # 10:18 < xdite> 但問題是，qualified 的人實在太少了。少到沒辦法 recommend ...
+10:20 < xdite> 所以我覺得「符合基本資格」這才是要被解決的吧....?
+10:20 < xdite> 那些「基本」資格，我講出來甚至在這邊的各位可能也覺得很「基本」
+10:20 < xdite> 1. 幾年的 scripting 經驗，有 full stack 佳
+10:21 < xdite> 2. 有數個 opensource project
+10:21 < xdite> 3. 有自己的 blog, 平常會寫技術文章
+10:21 < xdite> That's all
+10:21  * tkirby not qualified... XD # 不寫技術文章
+10:22 < xdite> 沒有這些東西，連 refer 的人都不知道怎樣幫你推薦....
+10:22  * cpyang not qualified...
+10:22  * thschee 感覺跟開手排車一樣啊，不是很簡單嗎...
+10:22 < thschee> 歐洲出車九成是手排、台灣九成是自排
+10:23 < tkirby> 這個要靠教育部 3du 來努力了
+10:23 < thschee> 所以 qualification 和 software industry 和薪資和台灣，其實討論的切入點還蠻多的
+10:23 < thschee> 能動手的，就動手吧 :D
+10:24 -!- Ben_chou [~Ben_chou@59-124-67-67.HINET-IP.hinet.net] has joined #g0v.tw
+10:24  * thschee 偷偷廣告 http://registrano.com/events/odd2013
+10:24  * thschee logistics 搞定，就來玩吧 :p
+10:24 -!- tonytonyjan [~tonytonyj@42-72-52-25.dynamic-ip.hinet.net] has quit [Read error: Connection reset by peer]
+10:25  * thschee 下次會試試看在地方政府辦 hackathon ;)
+10:27 -!- Guest52247 [~jsa@42-66-187-161.dynamic-ip.hinet.net] has joined #g0v.tw
+10:28  * cpyang 相較於軟體業，覺的傳產、餐飲之類的比較需要被關心... 
+10:28 < ipa> 台南小吃黑客松
+10:30 -!- tonytonyjan [~tonytonyj@223-142-221-230.dynamic.hinet.net] has joined #g0v.tw
+10:31 < chitat> 感覺22k 可以做分類，因為有些工作22K看起來很正常　當列表太長的時候也就不夠專注～只是個列表
+10:31 < chitat> 可以有一區是在那些薪水明明就開低~然後又請了一堆外勞的公司～～
+10:32 < clkao> walkingice++ # g0v.tw updated
+10:32 < KNY> ＊＊當基礎資料的平台有基本的建立後，接著是應用層將他轉為生活的近用，會讓社會大眾更有感覺，距離才能拉的近一點。
+10:33 < tkirby> ohoh! bootstrap!
+10:33 < walkingice> clkao: yeah~~~我有看到 :D
+10:33 < clkao> 可惜 ETWu 沒在 irc 上
+10:34 < ipa> walkingice++ \o/
+10:34 < tkirby> 把 log 打包寄給他 (!?)
+10:34 < clkao> 現在可能 信箱塞爆中吧.. XD
+10:34 < tkirby> XDDD
+10:35 < tkirby> 22k 目前資料都是人工整理.. 不知道有沒有什麼方式可以 parse, 或是用表單的方式?
+10:36 < walkingice> ipa: 也可以幫忙補資料，現在大家的成果太多我都不知道該從何找起了 XD
+10:36 < tkirby> 這幾天我會弄個 sitemap... (說好的 sitemap...)
+10:37 < chitat> 我想到的只有人力網站上的可能可以parse ，薪資單之類的東西，應該可以做成一個上傳的form，不要用Email的～這樣就不用人工整理～只要人工審查即可
+10:37 < ipa> walkingice: 好啊，我想過年來整理一下連結，順便寫幾個介紹文
+10:38 < walkingice> ipa: ++
+10:39 -!- racklin [~racklin@114-34-0-29.HINET-IP.hinet.net] has joined #g0v.tw
+10:39 < clkao> 乃特也寫 22k! http://knightfeng.org/blog/archives/1483
+10:39 < kcwu> clkao's url: [- The Dark Knight Rider Returns & Rises – 黑暗乃特之回歸與崛起 - » 22k 的問題到底在哪]
+10:39 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:39 < ipa> 我對聽障的計畫很有興趣，想多了解一點～ 聽障組的有需要寫文案可以找我！
+10:40 < clkao> 好像已經有人致敬了... 稍微自動化一點? http://anti22k.org/
+10:40 < kcwu> clkao's url: [不是為了反22K而反22K的不正式網站]
+10:40 < tkirby> oops 這誰做的 XD
+10:41 < clkao> 而且昨天還看到有人提供設計: http://minipai.tumblr.com/post/41882685541/22k
+10:41 < clkao> 一整個離線黑客松起來了... 
+10:41 < tkirby> 真棒
+10:41 < tkirby> 手癢阿~
+10:43 < tkirby> ipa: 阿, 你打算怎樣整理連結  如果我們想做的是同件事, 也許可以分工?
+10:44 < ipa> tkirby: 我還沒仔細看，可能就從hackpad各處撈到github wiki？你跟我說一下怎麼做好了
+10:45 < tkirby> ipa: 我想做的也是撈 link, 不過會分類列一下, 類似 blog.g0v.tw/media 那頁.. 還在想要不要也來個視覺化
+10:45 -!- jsa_ [~jsa@1.34.42.41] has joined #g0v.tw
+10:45 < tkirby> 建好分類大綱之後就是要怎樣讓其他人也能簡單的更新他..
+10:46 -!- jsa_ is now known as Guest69428
+10:46 < ipa> 好啊 我要到年假才有空動吧 你可以先分類一下 大家都可以更新撈連結
+10:46 < tkirby> okok
+10:46 < ipa> 教育部、內政部、經濟部 XD
+10:46 < Guest69428> 請教一個教育部字典檔的問題，使用下載的方式在轉檔是因為要回避版權的問題嗎？
+10:47 < tkirby> xD
+10:48 < tkirby> Guest69428: 感覺應該不是..?
+10:50 < clkao> 訂一下 project g0v.json 應該有哪些 field?  {department[], coordinator, description: {zh, en}, screenshot[], link: {discussion, source} } ?
+10:50 < tkirby> XD!
+10:50 < tkirby> 這主意不錯
+10:51 < tkirby> 看來要建一個管理 project 的 project 了
+10:51 < clkao> 到時候就一個 script 從各 repo 抓吧
+10:51 -!- Chuiyi [~Chuiyi@118-165-73-134.dynamic.hinet.net] has joined #g0v.tw
+10:52 < tkirby> hmm
+10:52 -!- Guest52247 [~jsa@42-66-187-161.dynamic-ip.hinet.net] has quit [Quit: Colloquy for iPhone - http://colloquy.mobi]
+10:53 -!- Guest69428 [~jsa@1.34.42.41] has quit [Remote host closed the connection]
+10:54 < ericyu> anti22k.org 下面還有個連結耶「想告我的請寄這裡」
+10:54 -!- _ [~jsa@1.34.42.41] has joined #g0v.tw
+10:54 -!- _ is now known as _jsa
+10:55 -!- edwardc [~edwardc@60-199-248-174.static.tfn.net.tw] has joined #g0v.tw
+10:55 -!- Chuiyi [~Chuiyi@118-165-73-134.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+10:57 -!- _jsa is now known as jsa__
+10:57 < kcwu> ericyu: it's blank
+10:59 < ericyu> 意思就是你告不了 XD
+10:59 -!- aar0ntw [~ubuntu@ec2-204-236-166-4.us-west-1.compute.amazonaws.com] has joined #g0v.tw
+11:00 < opop> http://opop.pixnet.net/blog/post/28432721
+11:00 < tkirby> 我還以為 opop 要分享 g0v 心得
+11:00 < opop> # 軟白板採購心得
+11:00 < tkirby> 結果是白板
+11:01 < opop> g0v 有空再寫吧，明天如果有去聽演講之類的應該生得出來 Orz
+11:01 < opop> 不對
+11:01 < opop> 我還有兩個 app 待產
+11:01 < opop> 哎
+11:01 < kcwu> 剖腹吧
+11:01 < tkirby> XD
+11:01 < tkirby> 一針見血光又出現了 XD
+11:02 < opop> 交給小光馬上就生出來了 Q_Q
+11:03 < walkingice> 如果有專案要放上 g0v.tw 的鄉親請看這裡 https://github.com/g0v/g0v.tw/wiki/Add-project
+11:03 < kcwu> walkingice's url: [Add project · g0v/g0v.tw Wiki · GitHub]
+11:07 < tkirby> 手腳真快!
+11:07 < walkingice> 先應急 XD
+11:08 < tkirby> XD
+11:08 < clkao> 可能要註明一下程式、文件需以 OSI-approved license 釋出
+11:09 < walkingice> ok
+11:11 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+11:13 < opop> g0v 的粉絲團留言....# 看清楚這一張張宅宅的臉，他們是台灣的救星；還有那些披薩，工程師怎麼能夠離開他們
+11:13 < tkirby> 哭哭, 下次要改買麥當勞
+11:13 < opop> 好
+11:15 < edwardc> 麥當勞漲價惹
+11:15 < opop> o.o 有媽
+11:16 < opop> 下一次時間是三月幾號啊
+11:16 < clkao> 看來是 23 比較適合
+11:16 < opop> mmm 到時候再看速食店哪家比較 ok XD
+11:16 < opop> 現在都還沒有到 3/23 的優惠券
+11:18 < jpsun2> 突然想到，兩黨在執政時期，政策都偏向資方，財團挾著財勢，獲得政府的權勢，我們寫程式救國家，是否能從此處把財團給「切開」？ 唉！看著我們的人民，很多生活都有問題，愈看愈難過！
+11:18 -!- Ben_chou [~Ben_chou@59-124-67-67.HINET-IP.hinet.net] has quit [Ping timeout: 255 seconds]
+11:19 < edwardc> 台灣麥當勞昨（31）日宣布，自今日凌晨開始，共有57項產品價格調漲，飲料全部漲3元；另有5項產品降價。這波平均漲幅為1.9%。
+11:19 < tkirby> 可以先還新聞於民 (?)
+11:19 < edwardc> 全文網址: 麥當勞57項產品漲價 調幅1.9% | 生活新聞 | 生活天氣 | 聯合新聞網 http://udn.com/NEWS/LIFE/LIF1/7676431.shtml#ixzz2Jc7kUj7w 
+11:19 < edwardc> Power By udn.com 
+11:19 < tkirby> ......... 不買麥當勞了
+11:19 < edwardc> 麥當勞表示：不 __ 不要 __ 
+11:19 < clkao> tkirby: 快發明食物 replicator 吧... 
+11:19 < tkirby> 沒關係, 還有肯德雞 (淚)
+11:19 < tkirby> clkao: 我們需要那個什麼礦的...
+11:20 < tkirby> 還需要 warp engine 跟傳送機?
+11:20 < opop> 還有漢堡王
+11:20 < clkao> dilithium?
+11:20 < tkirby> XD
+11:22 < walkingice> 漢堡王快變漢堡孩子王了(Burger kid)，份量比手掌還要小 \___/#
+11:22 < opop> XDDDDDD
+11:22 < tkirby> 沒關係我們還有美而美跟弘爺.. Q.Q
+11:28 < edwardc> 傳說中的丹丹
+11:29 -!- thschee is now known as zz_thschee
+11:31 -!- Ben_chou [Ben_chou@nat/novell/x-zozcoscdmpubmqcg] has joined #g0v.tw
+11:33 -!- jsa__ [~jsa@1.34.42.41] has quit [Remote host closed the connection]
+11:34 -!- jsa__ [~jsa@1.34.42.41] has joined #g0v.tw
+11:34 -!- Chuiyi [~Chuiyi@118-165-73-134.dynamic.hinet.net] has joined #g0v.tw
+11:35 -!- tonytonyjan [~tonytonyj@223-142-221-230.dynamic.hinet.net] has quit [Read error: No route to host]
+11:36 < clkao> ;win 24
+11:45 -!- mutolisp_ [~mutolisp@1-162-65-27.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+11:52 -!- zz_thschee is now known as thschee
+11:53 -!- yllan [~yllan@114-45-179-81.dynamic.hinet.net] has joined #g0v.tw
+11:55 -!- hychen [~hychen@175.41.48.77] has quit [Remote host closed the connection]
+12:08 -!- MindosCheng [~mindos@42-72-46-46.dynamic-ip.hinet.net] has joined #g0v.tw
+12:11 -!- thschee is now known as zz_thschee
+12:13 -!- yurenju_ [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+12:13 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 240 seconds]
+12:16 -!- cataska [~user@210.64.6.233] has quit [Remote host closed the connection]
+12:18 -!- racklin [~racklin@114-34-0-29.HINET-IP.hinet.net] has quit [Quit: racklin]
+12:20 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+12:22 -!- cataska [~user@210.64.6.233] has quit [Remote host closed the connection]
+12:23 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+12:40 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+12:41 -!- MindosCheng [~mindos@42-72-46-46.dynamic-ip.hinet.net] has quit [Ping timeout: 252 seconds]
+12:49 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+12:50 -!- mutolisp [~psilotum@inventory16.fo.ntu.edu.tw] has joined #g0v.tw
+12:52 -!- pct [~pct@220-134-39-129.HINET-IP.hinet.net] has joined #g0v.tw
+13:02 < tka_> opop: 請問你買的軟性白板用酒精的白板筆寫了之後好擦嗎？ 因為我之前在光南買的用酒精白板筆寫上去超級難差擦, 想問這款有沒有比較好
+13:03 < opop> tka_: 我沒有酒精的白板筆 o.o 我買了樓下最便宜的總務倉庫白板筆
+13:04 < opop> 紅色特難擦，但用濕布就清乾淨了，其他顏色都很好擦
+13:05 < opop> https://dl.dropbox.com/u/13701231/IMG_20130201_130356.jpg
+13:06 < tka_> opop: 那我來換擦拭工具看看 XD
+13:10 -!- jpsun [~jpsun@111-251-192-142.dynamic.hinet.net] has quit [Quit: Leaving.]
+13:16 -!- Chuiyi [~Chuiyi@118-165-73-134.dynamic.hinet.net] has quit [Quit: Leaving.]
+13:29 -!- racklin [~racklin@114-34-0-29.HINET-IP.hinet.net] has joined #g0v.tw
+13:34 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+13:41 -!- Chuiyi [~Chuiyi@123-204-62-144.static.seed.net.tw] has joined #g0v.tw
+13:48 < tka_> 昨天晚上重爬政府電子採購網的資料, 發現資料不一樣了, 例如 2012-01-02 的決標公告的比去年爬的時候多出了 99 筆
+13:48 < tkirby> !
+13:49 < tkirby> 所以有最近才上線的資料?
+13:49 < tka_> 有人知道可能是什麼行政流程倒置的嗎？
+13:50 < tka_> tkirby: 可是我是搜尋公告日期, 所以不是我 code 寫錯就是他們上公告資料的時候, 可以設定時間是過去式
+13:56 < au> moedict-webkit 每個字都可以按了 :D
+13:56 < au> http://www.audreyt.org/newdict/moedict-webkit/#%E8%B2%A2%E7%8D%BB # e.g. 「荀子」可以按
+13:57 < tkirby> hmm
+13:58 < tkirby> au++
+13:58 < au> (hypertext dictionary)++
+13:59 < albb0920>  http://www.audreyt.org/newdict/moedict-webkit/#%E8%B2%A2%E7%8D%BB
+13:59 < albb0920> 不好意思，手滑
+13:59 < clkao> au++
+14:00 < clkao> dict.3du.tw 指日可待
+14:00 < albb0920> au: 你的斷詞是怎麼做的啊@@
+14:01 < au> albb0920: longest token match
+14:01 < albb0920> 喔喔喔，好酷!!
+14:01 < au> # https://github.com/audreyt/moedict-webkit/blob/master/main.ls#L57
+14:01 < au> :D
+14:01 < kcwu> au's url: [moedict-webkit/main.ls at master · audreyt/moedict-webkit · GitHub]
+14:01 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+14:01 -!- yurenju_ [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+14:04 -!- jpsun [~jpsun@111-251-192-142.dynamic.hinet.net] has joined #g0v.tw
+14:04 < yllan> au++
+14:25 -!- yurenju_ [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+14:25 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 276 seconds]
+14:31 < clkao> yllan: 要棄 scala 學 livescript 了嗎
+14:32 < au> 可以都用啊
+14:32  * au 覺得 scala 的 xml literal 相當不賴
+14:35 < yllan> clkao: 技多不壓身，能都學當然是最好 XD 不過連 coffeescript 都沒學啊，感覺還不會走路就想飛了（？）
+14:37 < yllan> javascript 系真是我很苦手的語言哪。 ['10','10','10','10','10'].map(parseInt) 這個出來的結果就好困惑了
+14:39 < au> $ lsc -dep 'map parse-int, [10 10 10 10 10]'
+14:39 < au> [ 10, 10, 10, 10, 10 ]
+14:40 < au> 就不會有 parseInt(10, 0) / parseInt(10, 1) / ... 的 radix 
+14:41 < au> $ lsc -dep 'for v, i in [10 10 10 10 10] => parse-int v, i'
+14:41 < au> [ 10, NaN, 2, 3, 4 ]
+14:46 < hcchien> 真是不能同意更多了   # javascript 系真是我很苦手的語言哪
+14:47 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+14:47 < clkao> 超苦的 直到我認識了 LiveScript
+14:48 < hcchien> 但沒學好 javascript 好像看 livescript 也是一知半解啊
+14:48  * au 其實只看了「優良部份」這本書
+14:48 < au> 好在 livescript 產生的也只有這部份
+14:49 -!- nctusdk [~nctusdk@220-135-58-34.HINET-IP.hinet.net] has joined #g0v.tw
+14:50 -!- zz_thschee is now known as thschee
+14:53 < hcchien> 之前就被 closure 弄得頭暈~~
+15:01 -!- KNY [~Adium@118-170-77-30.dynamic.hinet.net] has quit [Quit: Leaving.]
+15:01 -!- Sorry [~admin@mail.cna.ccu.edu.tw] has quit [Remote host closed the connection]
+15:03 -!- racklin [~racklin@114-34-0-29.HINET-IP.hinet.net] has quit [Quit: racklin]
+15:07 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 245 seconds]
+15:09 < hychen> 應該還好吧...
+15:10 < jpsun2> au: 想了一下，如果 client 安裝 Hannom (~20M) 又裝離線的 sqlite db (~20M), 或許不如不要下載 sqlite db， 直接 query dict.3du.tw ...
+15:11 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+15:11 < hychen> http://www.anobii.com/books/Professional_JavaScript_for_Web_Developers/9780764579080/0096f693445711d83f/
+15:11 < kcwu> hychen's url: [Professional JavaScript for Web Developers - aNobii]
+15:12 < hychen> Good Part  那本書, 再加一下這本書的Object Model Chapter, 用livescript應該ok?
+15:12 -!- jsa__ [~jsa@1.34.42.41] has quit [Remote host closed the connection]
+15:13 -!- jsa__ [~jsa@1.34.42.41] has joined #g0v.tw
+15:13 < au> jpsun2: yeah... http://api.3du.tw/字.json should be OK
+15:13 < au> 但是 index 可以放本地端?
+15:14 < jpsun2> 什麼 index ?
+15:14 < au> (= 詞㞞" data-id="136730" />
+15:14 < au> <option value="㟏" data-id="70514" />
+15:14 < au> <option value="㟏岈" data-id="70515" />
+15:14 < au> (etc)
+15:14 < au> # https://raw.github.com/audreyt/moedict-webkit/master/options.html
+15:14 < au> 做 lookahead 和判斷使用者鍵入的詞要不要送 api request
+15:15 < au> 不然會有很多不必要的 404 佔據 3G connection。
+15:15 < au> 也許只取 entries 的 value 然後建成 lookahead trie 之類
+15:15 < au> .
+15:17 < jpsun2> 這個 index 會常常變動嗎？
+15:18 < au> 應該只有 kcwu 周末抓完後會變動一次。
+15:18 < albb0920> pingooo: 授權條款要用什麼啊? API Server 的
+15:19 < au> albb0920: 你平常習慣用什麼呢... ?
+15:20 < albb0920> au: 我之前是都用 GPL v3，不過 3du project 的話統一比較好吧@@
+15:20 < au> OK... 我是用 https://github.com/audreyt/moedict-webkit#cc0-10-%E5%85%AC%E7%9C%BE%E9%A0%98%E5%9F%9F%E8%B2%A2%E7%8D%BB%E5%AE%A3%E5%91%8A
+15:20 < kcwu> au's url: [audreyt/moedict-webkit · GitHub]
+15:21 < au> (保證跟所有人的都相容)
+15:22 < albb0920> au: jpsun2 查詢 end point 是 /dict/字.json 
+15:23 < au> albb0920: oops thx
+15:23 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+15:23 < jpsun2> au: index 約 7M，將來跟著 dict 版本更新就重抓一次，可以嗎？
+15:23 -!- yurenju_ [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+15:23 < jpsun2> albb0920: thx
+15:24 < au> jpsun2: 是，當然如果 albb0920 可以幫忙建 api.3du.tw/dict/index.json (id to title mapping) 的話也可以從 api server 抓?
+15:24 < au> or api.3du.tw/dict.json
+15:24  * au 不太會挑 api endpoint 
+15:26 < albb0920> au: 有需要的話在訂個 spec 丟給我吧w
+15:30 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 256 seconds]
+15:30 < au> albb0920: 寫好了 ... https://hackpad.com/95jKjray8uR 
+15:30 < kcwu> au's url: [3du.tw API Design - hackpad.com]
+15:30 < au> 「索引 URL 設計」
+15:30 < au> 這樣 jpsun2 可以在 app build time 抓一次然後 bundle
+15:31 < jpsun2> au: 大心!
+15:32 < albb0920> au: 好的，我看到了，這個周末一起處理
+15:32 < au> albb0920++
+15:32 < jpsun2> au++ , albb0920++
+15:32 < edwardc> albb0920++
+15:33 < edwardc> albb0920: 研究所考完了？ XD
+15:33 < albb0920> edwardc: 去年就考完了XD 現在在交大
+15:33 < edwardc> albb0920: 喔喔，那是 hrs ? XD
+15:34 < albb0920> edwardc: 對，他還在努力XD
+15:34 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+15:34 < edwardc> XD ..
+15:37 -!- Sorry [~admin@mail.cna.ccu.edu.tw] has joined #g0v.tw
+15:38 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+15:45 -!- cyt93cs [~cyt93cs@linux.cs.ccu.edu.tw] has joined #g0v.tw
+15:45 < lwhsu> albb0920: 資工?
+15:46 < albb0920> lwhsu: Y
+15:49 < kcwu> Hannom 有做成 webfont 嗎?
+15:54 < au> kcwu: 我們用到的部份有
+15:54 < au> https://github.com/g0v/moedict-epub/tree/master/fontforge #  HannomMoeSubset
+15:55 < kcwu> au's url: [moedict-epub/fontforge at master · g0v/moedict-epub · GitHub]
+15:55 < au> # http://www.audreyt.org/newdict/moedict-webkit/styles.css
+15:55 < au> big5 range 和沒用到的部份沒有
+16:09 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 276 seconds]
+16:09 -!- jpsun [~jpsun@111-251-192-142.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+16:15 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+16:21 -!- jpsun [~jpsun@111-251-192-142.dynamic.hinet.net] has joined #g0v.tw
+16:39 < yllan> http://www.cppgm.org/index.html 好硬的課…
+16:39 < kcwu> yllan's url: [C++ Grandmaster Certification [CPPGM]]
+16:40 < pingooo> albb0920: 你寫的，你的意見比較重要。 :)
+17:05 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+17:12 -!- jsa__ [~jsa@1.34.42.41] has quit [Remote host closed the connection]
+17:25 -!- Dennisc140 [d23dc13c@gateway/web/freenode/ip.210.61.193.60] has quit [Quit: Page closed]
+17:26 -!- bananapple [3b781c23@gateway/web/freenode/ip.59.120.28.35] has quit [Ping timeout: 245 seconds]
+17:33 < au> clkao: 詞條名稱改成逐字 hyperlink 了, ++
+17:40 < clkao> woot
+17:41 < lwhsu> clkao: 你最近會 relesae 新版的 Plack-App-PgREST 嗎? 現在不 skip test 的話, 不能直接 cpanm 裝
+17:44 -!- BlueT_ [~bluet@ubuntu/member/BlueT] has quit [Ping timeout: 252 seconds]
+17:48 < kcwu> (還沒抓完) http://kcwu.csie.org/~kcwu/tmp/fontlist.txt moedict 現在用到的 font image 至少 2262 個...
+17:51 -!- chph_ [3cc7d005@gateway/web/freenode/ip.60.199.208.5] has joined #g0v.tw
+17:54 -!- thschee is now known as zz_thschee
+17:59 -!- GD__ [~GD__@round214.mc.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+17:59 -!- GD__ [~GD__@2002:8c70:7cd6::8c70:7cd6] has joined #g0v.tw
+18:02 < au> kcwu: 只看 definition, 不管 title 的話... ?
+18:05 < au> (目前 sym.txt 有 1493 個，是從 definition 和 synonym etc 來的)
+18:05 < au> (如果某字只出現在 definition，很可能是異體字自成一條)
+18:06 < au> /bbiab
+18:10 -!- Netsplit *.net <-> *.split quits: Ben_chou, jpsun2, zeal_bsd, mikimoto
+18:13 -!- Netsplit over, joins: Ben_chou, jpsun2, zeal_bsd, mikimoto
+18:15 -!- nctusdk [~nctusdk@220-135-58-34.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+18:15 -!- nctusdk_ [~nctusdk@220-135-58-34.HINET-IP.hinet.net] has joined #g0v.tw
+18:16 < hychen> 真的讓人覺得不管什麼事情，不捲起袖子下去做，只是拍廣告是不會開始加速進行的。 # tk++
+18:24 -!- mutolisp [~psilotum@inventory16.fo.ntu.edu.tw] has quit [Quit: leaving]
+18:33 -!- zz_thschee is now known as thschee
+18:34 -!- Sorry [~admin@mail.cna.ccu.edu.tw] has left #g0v.tw []
+18:46 -!- chph_ [3cc7d005@gateway/web/freenode/ip.60.199.208.5] has quit [Ping timeout: 245 seconds]
+18:53 -!- yllan [~yllan@114-45-179-81.dynamic.hinet.net] has quit [Quit: yllan]
+18:53 -!- yllan [~yllan@114-45-179-81.dynamic.hinet.net] has joined #g0v.tw
+18:59 -!- yllan [~yllan@114-45-179-81.dynamic.hinet.net] has quit [Quit: yllan]
+19:03 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 246 seconds]
+19:03 -!- nctusdk_ [~nctusdk@220-135-58-34.HINET-IP.hinet.net] has left #g0v.tw []
+19:04 -!- Ben_chou [Ben_chou@nat/novell/x-zozcoscdmpubmqcg] has quit [Ping timeout: 244 seconds]
+19:05 -!- Chuiyi [~Chuiyi@123-204-62-144.static.seed.net.tw] has quit [Quit: Leaving.]
+19:09 -!- jpsun [~jpsun@111-251-192-142.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+19:10 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+19:11 -!- MnO2 [~mno2@nat/yahoo/x-pxjoijysnhtccbfe] has quit [Quit: Leaving]
+19:16 -!- wHisKy [wHisKy@114-34-52-19.HINET-IP.hinet.net] has joined #g0v.tw
+19:26 -!- tonytonyjan [~tonytonyj@218-166-174-7.dynamic.hinet.net] has joined #g0v.tw
+19:41 < kcwu> au: ok, 不含 title 的話目前不到 1400
+19:46 < au> kcwu: 那應該是對的
+19:46 < au> 其他 variant-only 詞條可以之後再處理
+19:49 -!- chihchun is now known as zz_chihchun
+19:53 -!- yurenju_ [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+20:03 -!- thschee is now known as zz_thschee
+20:10 -!- evan3rd [~mac@114-47-4-108.dynamic.hinet.net] has quit [Quit: evan3rd]
+20:10 -!- bcse [76a354eb@gateway/web/freenode/ip.118.163.84.235] has joined #g0v.tw
+20:10 < bcse> http://www.audreyt.org/newdict/moedict-webkit/#ㄧ 這個應該是不小心 replace 到了？
+20:14 < au> bcse: yeah, thx
+20:16 < chhsiao1981> au++ #http://www.audreyt.org/newdict/moedict-webkit/#%E8%B2%A2%E7%8D%BB
+20:16 < au> 4E28, 2F01, 甚至 3021 都好，可是萌典原始資料編成了 FF5C
+20:17 < au> (以上均為 U+)
+20:22 -!- bcse [76a354eb@gateway/web/freenode/ip.118.163.84.235] has quit [Quit: Page closed]
+20:23 < au> ㄧ => ⼁ fixed in both moedict-webkit & db2unicode
+20:25 -!- bcse [76a354eb@gateway/web/freenode/ip.118.163.84.235] has joined #g0v.tw
+20:25 < bcse> au++
+20:32 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+20:44 -!- bcse [76a354eb@gateway/web/freenode/ip.118.163.84.235] has quit [Ping timeout: 245 seconds]
+20:59 < clkao> lwhsu: hmmm, which test is failing?
+20:59 < clkao> au: woot!
+21:00 -!- zz_thschee is now known as thschee
+21:06 -!- MnO2 [~mno2@1.34.43.236] has joined #g0v.tw
+21:07 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+21:18 < favonia> medicalwei: 問一下，你還有保留當初「找出」的漢字名單嗎？
+21:19 < favonia> medicalwei: 最一開始的
+21:26 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+21:33 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has quit [Quit: ChatZilla 0.9.89 [Firefox 18.0.1/20130116073211]]
+21:55 -!- yllan [~yllan@122.116.177.245] has joined #g0v.tw
+22:42 -!- hychen [~hychen@host-58-114-180-227.dynamic.kbtelecom.net] has joined #g0v.tw
+22:43 < lwhsu> clkao: the only one, 00_compile.t
+22:44 < lwhsu> it just needs File::Slurp
+22:51 -!- hychen [~hychen@host-58-114-180-227.dynamic.kbtelecom.net] has quit [Ping timeout: 264 seconds]
+22:53 -!- hychen [~hychen@host-58-114-180-227.dynamic.kbtelecom.net] has joined #g0v.tw
+22:55 -!- hychen [~hychen@host-58-114-180-227.dynamic.kbtelecom.net] has quit [Client Quit]
+22:57 < clkao> oh ok. 那來 release 一下 都忘了其實已經有放上 cpan
+22:59 < clkao> 遭到 perl critic 抱怨
+23:10 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+23:12 < clkao> lwhsu: on its way to cpan
+23:12 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:13 < lwhsu> clkao++
+23:13 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+23:13 < clkao> lwhsu++ # thanks for prodding
+23:25 < clkao> lwhsu: more exciting stuff is in clkao/plv8x, which can load clkao/sequelize and does query composed by sequelize within plv8 (!)
+23:25 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:25 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+23:46 < lwhsu> clkao: nice, so plv8x is an addon of plv8js?
+23:46 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:47 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+23:47 < clkao> yes, for managing js packages inside postgres and also user-defined functions
+23:47 < clkao> (not really any document yet... well..)
+23:48  * au takes the hint
+23:48 < au> (there's a manifesto in postgre.st and not much else)
+23:54 < clkao> au: might be also useful if npm i actually builds plv8x binary form bin/cmd.ls
+23:54 < clkao> havent managed to look at things like that in npm
+23:54  * clkao -> zz
+23:55 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:56 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+23:57 < au> clkao: implemented
+23:57 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:57 < clkao> au++ # spdy
+23:58 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+23:58  * au multiplexes some more
+23:58 < clkao> au: do we want -e for calling plv8x_eval from cli?
+23:59 < au> sounds god
+23:59 < au> *good

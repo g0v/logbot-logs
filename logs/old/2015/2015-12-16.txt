@@ -1,0 +1,126 @@
+--- Day changed 三 12月 16 2015
+00:03 < slackbot13> <kiang> 民間其實有一群人也在試著 DIY 監測 pm 2.5 的資料( LASS ) ，可以透過 ftp / mqtt 拿到最新資料 - <https://lass.hackpad.com/How-to-get-data-log-from-server-Ztu9mpUsGL9>
+00:03 < kcwu_> slackbot13's url: [How to get data log from server - lass.hackpad.com]
+00:05 < slackbot13> <kiang> 只是數值相對需要做些過濾與驗證就是了 XD ，目前一個成員繪製的地圖把 LASS 資料跟環保署的拼在一起長這樣 <http://iot.sparkfuture.io/pm25>
+00:06 -!- VP is now known as Guest58836
+00:15 -!- Guest58836 [24efbfc6@gateway/web/cgi-irc/kiwiirc.com/ip.36.239.191.198] has left #g0v.tw []
+00:18 < slackbot13> <mrorz> 原本的 cors proxy 是 <https://github.com/Rob--W/cors-anywhere> 的 demo app，怕會撞到 heroku 強制 6 小時睡眠
+00:18 < slackbot13> 所以 clone 回來自己架，然後兩台 heroku free dyno 輪班。<https://github.com/g0v/env.g0v.tw/pull/34>
+00:18 < kcwu_> slackbot13's url: [Rob--W/cors-anywhere · GitHub]
+00:18 < kcwu_> slackbot13's url: [Use CORS proxy that is dedicated to env.g0v.tw by MrOrz · Pull Request #34 · g0v/env.g0v.tw · GitHub]
+00:47 < slackbot13> <yhsiang> 偉哉 ETBlue
+00:48 < slackbot13> <yhsiang> etblue: 容許小的給你磕十個響頭 ...
+00:49 < slackbot13> <caasi> 行前通知耶！
+00:49 < slackbot13> <yhsiang> 磕十個不夠，我可以在磕十個 ….
+00:50 < slackbot13> <caasi> 我也要磕 <O>
+01:12 < slackbot13> <shadowcrow> 發現消失的新大陸，感謝 ETBlue Q_Q
+03:35 < slackbot13> <etblue> 我幹了什麼？
+03:36 < slackbot13> <caasi> @etblue: @shadowcrow 發現你留下的 g0v summit 2014 hackfoldr
+03:37 < slackbot13> <etblue> 喔喔喔 XD 那是我幹的嗎（抓頭）
+03:38 < slackbot13> <etblue> 總之...賀XDD
+03:39 < slackbot13> <caasi> 入坑嗎？
+03:41 < slackbot13> <caasi> 的確入了坑，謝謝你的恭喜 XD
+05:09 < gugod> heroku 勞基法... (Y)
+05:09 < gugod> 其實可以在 openshift 跑個 cors proxy
+08:06 < slackbot13> <kiang> 原來還有 <http://env.qov.tw/air/>
+10:26 < slackbot13> <miaoski> http://qov.tw !!!
+10:49 < slackbot13> <shelling> @mrorz: 輪班！
+10:49 < slackbot13> <shelling> 機器人勞基法
+10:58 < slackbot13> <hlb> @au: <http://chinesedigger.blogspot.tw/2008/02/practice-sheet.html> 有提到一個 翰林中文 ，可以產生生字簿，好厲害的 XD
+10:58 < kcwu_> slackbot13's url: [Chinese Digger: 自製生字簿]
+11:02 < caasih>  /_\
+11:46 < slackbot13> <kiang> hlb: 記得之前萌典好像有人提過類似的
+11:46 < slackbot13> <caasi> 教育部的 <http://stroke-order.learningweb.moe.edu.tw/character_practice.do>
+11:46 < kcwu_> slackbot13's url: [常用國字標準字體筆順學習網]
+11:47 < slackbot13> <mrorz> gugod: wow 沒用過 openshift 耶
+11:47 < slackbot13> 他會像 heroku 那樣是 read only file system 嗎
+11:48 < slackbot13> <hlb> @caasi++
+12:23 < slackbot13> <hcchien> <https://www.twreporter.org/>
+12:23 < slackbot13> <hcchien> android 手機好像都有 certificate 的問題
+12:27 < slackbot13> <hychen> hcchien:  圖片解析度好低
+12:30 < slackbot13> <hcchien> 哈哈，我要先來看看 certificate 怎麼弄
+12:36 < slackbot13> <clkao> 不改用 letsencrypt 嗎
+12:36 < slackbot13> <kiang> hcchien++
+12:37 < slackbot13> <clkao> hcchien: 有好幾個 303 轉到 cloudfront 很慢
+12:38 < slackbot13> <hcchien> clkao: 那個是 atavist 做 redirect
+12:38 < slackbot13> <clkao> 3s 太慢了吧
+12:39 < slackbot13> <hcchien> letsencrypt 在 android 的 default browser ok 嗎
+12:40 < slackbot13> <clkao> 而且 303 好像不會  cache 耶
+12:41 < slackbot13> <clkao> `curl -D - <https://www.twreporter.org/data/files/organization/60826/image/derivative/scale\~800x0\~008photo20-1450169181-86.jpg>` 就可以發現光等 location header 就很慢
+12:41 < slackbot13> <clkao> 完全不像有 varnish 的感覺... zz
+12:42 < slackbot13> <hcchien> 這個還想到好解法耶，有建議嗎。圖上到 atavist 就會被丟去 cloudfront
+12:42 < slackbot13> <hychen> 小遊戲好好玩!
+12:43 < slackbot13> <clkao> hcchien: 一個解法是 include 圖的時候就直接用 cloudfront url 呀
+12:43 < slackbot13> <clkao> 省掉 translation
+12:44 < slackbot13> <hcchien> 我只能先換成 atavist 的 url
+12:44 < slackbot13> <clkao> 好潮喔 用 redux
+12:44 < slackbot13> <hcchien> 因為他會縮圖改成 cloudfront
+12:45 < slackbot13> <hcchien> 所以我這邊不知道 cloudfront 實際的 url
+12:46 < slackbot13> <hychen> 有空加個usersnag讓人可以做user feedback report :stuck_out_tongue_winking_eye:
+12:46 < slackbot13> <hcchien> 是說 letsencrypt 好像也有人回報 android 手機的 certificate 有問題
+12:47 < slackbot13> <clkao> hcchien: 是喔，我以為看 curl -D - output 似乎是簡單的網址代換
+12:55 < slackbot13> <hlb> 似乎有時候會點不到病人 (?)
+12:56 < slackbot13> <hcchien> 只好 tag @tkirby
+12:56 < slackbot13> <pofeng> 好像要先點紅色 ?
+12:56 < slackbot13> <hlb> 只好翻 source code
+12:56 < slackbot13> <hcchien> 要先點紅色
+12:57 < slackbot13> <pofeng> 急症要先處理
+12:59 < slackbot13> <hlb> 原來如此！
+13:00 < slackbot13> <hlb> <https://github.com/zbryikt/ergame/blob/master/index.ls#L232> magic number!
+13:00 < kcwu_> slackbot13's url: [ergame/index.ls at master · zbryikt/ergame · GitHub]
+13:33 < slackbot13> <kiang> 結果被分享的都是遊戲連結，報導大概被無視了吧 XD
+13:38 < slackbot13> <kiang> hcchien: 在 FB 分享時下面都會顯示網址 http://twreporter.atavist.com ，也許需要修改 canonical url ?
+13:39 < slackbot13> <hcchien> yeap. 有人回報了
+13:39 < slackbot13> <hcchien> thanks
+13:48 < walkingice> 遊戲太好玩了，本日無法工作 orz
+14:39 < slackbot13> <moon_c> 遊戲害我本日產值大減....
+15:01 < Goddamn> 原來這也是 g0v 做的 !?
+15:02 < au> Goddamn: 零傳媒歡迎跳坑 http://0media.tw/
+15:04 < slackbot13> <hcchien> 報導者X零傳媒
+15:12 < Goddamn> au: (Y)
+15:58 < gugod> mrorz: opeshift 的 container 有特定部份可以寫入，可以在裡面自行安裝程式等等。
+15:59 < gugod> mrorz: 我想多數人都會自行裝個新版 nodejs 之類的，因為原廠 (redhat) 提供十分古早的版本
+16:00 < gugod> mrorz: RoR 倒是 3 跟 4 都有提供
+16:16 < slackbot13> <johnny> 這個表決今天被抓出來討論了，歡迎大家幫忙上標籤，個人覺得有點難一句解釋
+16:16 < slackbot13> <http://disp.cc/b/163-98ob>
+16:16 < kcwu_> slackbot13's url: [[新聞] 朱立倫：我早反對中資投資IC設計，蔡呢？(是嗎?來看看) - Gossiping板 - Disp BBS]
+16:25 < slackbot13> <mrorz> @johnny: 有 list of existing tags 嗎
+16:26 < slackbot13> <clkao> johnny: 這感覺不是法律提案 是其他提案還是.. ?
+16:27 < slackbot13> <mrorz> 某個⋯⋯表決？
+16:28 < slackbot13> <clkao> 通常臨時提案很少不過的 也有一些這種東西在討論事項要立院做成決議的
+16:41 < slackbot13> <johnny> mrorz: 目前沒有特定頁面會列出所有標籤，只有使用者輸入的時候會auto complete
+16:42 < slackbot13> <johnny> clkao: 翻了一下公報，是"經濟委員會 -> 歲出部分 -> 第 13 款 經濟部主管" 時的黨團提案
+16:43 < slackbot13> <clkao> 那就是委員會討論預算時的附帶提案 最難搞的部分
+16:46 < slackbot13> <johnny> 為什麼這種是最難搞的阿
+17:53 < slackbot13> <clkao> 藏在預算的附帶決議 （通過的話）後續回應很難對起來
+20:46 < slackbot13> <kiang> 原來 javascript 塞進物件的屬性並不一定會依照塞進去的順序排列，造成 Firefox 看起來正常但 Google Chrome 排序亂掉的情況...
+20:56 -!- caasih is now known as Mori_L
+20:56 -!- Mori_L is now known as caasih
+20:57 -!- caasih is now known as morisilicon
+20:58 -!- morisilicon is now known as caasih
+21:02 < slackbot13> <mrorz> 喔對呀，因為 spec 沒有規範
+21:03 < slackbot13> <mrorz> ecmascript 對於 object enumeration 的順序並沒有任何的定義
+21:04 < slackbot13> <kiang> 變成需要把 key 全部拉出來塞進陣列，排序之後再用這些存取原本的物件（已經太習慣 PHP 那種萬能陣列的環境，所以覺得水土不服 XD ）
+21:09 < slackbot13> <mrorz> 如果你需要支持 insertion order traversal 的 map，可以試試 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map>
+21:09 < kcwu_> slackbot13's url: [Map - JavaScript | MDN]
+21:11 < slackbot13> <kiang> mrorz: IE 會抗議 XD - <https://kangax.github.io/compat-table/es6/>
+21:11 < kcwu_> slackbot13's url: [ECMAScript 6 compatibility table]
+21:12 < slackbot13> <mrorz> 那上 polyfill 呀 XD
+21:13 < slackbot13> <lanf0n> lodash?
+21:13 < slackbot13> <mrorz> 如果有用 babel 的話，core.js 有做 es6 Map
+21:14 < slackbot13> <mrorz> 的 polyfill
+21:17 < slackbot13> <mrorz> 啊對齁  難 polyfill 的不是 Map 本身，而是 `for…of` 會需要 transpile XD
+21:21 < slackbot13> <kiang> 其實只是簡單的程式，所以已經先用醜醜的方式解了 XD <http://kiang.github.io/chimney_map/#2015-12-16/L0200473>
+21:21 < kcwu_> slackbot13's url: [固定污染源管制地圖]
+21:22 < slackbot13> <kiang> 原本沒注意到瀏覽器實做差異，所以一直有人反應排序有問題，我在 Firefox 沒看到，等他擷取畫面我才知道
+21:22 < slackbot13> <mrorz> 隨便寫個 class 把 array 跟 object 包進去，提供 `set()` 與 `items()` 就好了 XD
+22:06 < slackbot13> <clkao> mrorz: 話說端傳媒那個總統遊戲之前好像有看過類似的 應該可以用承諾表做 :stuck_out_tongue:
+22:41 < slackbot13> <mrorz> clkao: 咦，端傳媒有做過遊戲？
+22:44 < slackbot13> <soidid> @mrorz <http://mayorgame.thenewslens.com/>
+22:44 < kcwu_> slackbot13's url: [市長，安安，政見給窺嗎？]
+22:44 < slackbot13> 跟去年 re-lab 做的「市長，安安，政見給窺嗎？」模式蠻像的
+22:45 < slackbot13> <mrorz> 喔喔喔
+22:48 < slackbot13> <mrorz> <http://i.imgur.com/4wLvTtQ.png> 我之前都有做呀
+22:48 < slackbot13> 只用嘴巴就是了 xd
+22:48 < slackbot13> <mrorz> slide 大錯字，應該是 CC BY 4不是 CC-By
+22:51 < slackbot13> <mrorz> 喔喔我看到了 <http://tw2016.initiumlab.com/?lng=zh-TW>

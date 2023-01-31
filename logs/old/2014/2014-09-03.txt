@@ -1,0 +1,435 @@
+--- Day changed 三  9月 03 2014
+00:00 < CindyLinz> :D
+00:01 < a0000778> 終於不是空白字典了
+00:02 < xsoameix> clkaoud: 耶，明天了，coveralls.io 還是爆的 orz
+00:03 < clkaoud> orz
+00:03 < clkaoud> did you mail to their support?
+00:04 < CindyLinz> miaoski: 覺得以後還要 OCR 字典的話, 出的豆腐不要太隨機, 最好是剛打過的附近, 因為出現類似的字眼的機會比較大, 打起來會比較快 :p
+00:04 < xsoameix> 還沒沒找到他們的聯絡連結
+00:05 < miaoski> CindyLinz: 隨機是故意的。
+00:05 < xsoameix> 我 try push 令一個 branch 好了
+00:05 < CindyLinz> 應該是還是得隨機啦, 不然如果不同的人一直打一樣的也很浪費 XD
+00:05 < CindyLinz> 校到自己打的, 這樣是不是不好 XD
+00:05 < lanf0n> xsoameix: https://coveralls.io/docs/support
+00:06 < miaoski> 降低關連性會讓人驚訝，然後疲勞的程度會低一點，錯誤率(應該)也會低一點
+00:06 < xsoameix> lanf0n: 感謝
+00:06 < miaoski> CindyLinz: 問題是我不知道哪一句是妳打的 XD 避不開
+00:06 < lanf0n> 國外時間應該是還沒明天....XD
+00:06 < CindyLinz> miaoski: XDXD
+00:06 < yhsiang> xsoameix: https://coveralls.io/docs/troubleshooting ? https://github.com/lemurheavy/coveralls-public/issues ?
+00:06 < kcwu> yhsiang's url (2/2): [Issues · lemurheavy/coveralls-public · GitHub]
+00:06 < kcwu> yhsiang's url (1/2): [Troubleshooting | Coveralls - Test Coverage History & Statistics]
+00:07 < CindyLinz> miaoski: 阿美語的字已經讓我很驚訝了 XDrz
+00:07 < a0000778> miaoski: 在用戶端稍微記一下 重複就再請求一次XD
+00:07 < yhsiang> 然後下面feedback有個email
+00:07 < miaoski> CindyLinz: 好了，我得躲起來去處理 mt 的事情了... (工作上的事)
+00:07 < xsoameix> yhsiang: 感謝
+00:07 < miaoski> a0000778: 邪惡一點就在 server 上記誰打了多久、花幾個 ms ....
+00:08 < a0000778> miaoski: 那樣感覺容易不準 還是讓用戶端做吧XD
+00:08 < miaoski> a0000778: 可以偷偷放 cookie
+00:08 < miaoski> 算了不要再講下去，不然我都把 CindyLinz 的招式講出來了 /flee
+00:08 < CindyLinz> 可以偷偷放 evercookie
+00:09 < a0000778> 偷偷放local storage
+00:09 < CindyLinz> 差不多要用重灌的才能徹底閃掉惹..
+00:09 < CindyLinz> evercookie 有用到 local storage 嗯嗯
+00:09 < miaoski> CindyLinz: 看吧妳露餡了
+00:09 < CindyLinz> 還有 flash share object, silverlight 的 storage, java applet, html5 image cache..
+00:10 < CindyLinz> 然後他還歡迎大家提供新招給他做進企...!
+00:10 < a0000778> 長期關Flash, Linux不吃silverlight, JAVA也是關的 XD
+00:11 < CindyLinz> 它不需要你都有啦, 是有多少就埋多少...
+00:12 < CindyLinz> browse history 也會埋 o.o
+00:12 < miaoski> CindyLinz: 黑辛蒂 (指)
+00:12 < CindyLinz> 又不是我做der.....orz
+00:12 -!- dirty is now known as Guest6651
+00:12 < CindyLinz> http://samy.pl/evercookie/
+00:12 < kcwu> CindyLinz's url: [evercookie - virtually irrevocable persistent cookies]
+00:13 < CindyLinz> 這也太髒惹 orz # Java CVE-2013-0422 exploit (applet sandbox escaping)
+00:13 < a0000778> 太多地方可以存了...
+00:13 < CindyLinz> 出現 exploit 字樣的都不是好東西 orz
+00:14 < shuhua_> 看了一串，完全不懂。（攤手
+00:15 < CindyLinz> 看起來開無痕瀏覽可以擋掉一大半
+00:17 < a0000778> CindyLinz: 關掉外掛程式應該就全滅了
+00:18 < CindyLinz> a0000778: 那個用 exploit 的不知道關不關得掉 orz
+00:19 < CindyLinz> 可能要刪掉 XD
+00:19 < shuhua_> 所以不應該用外掛？
+00:19 < CindyLinz> 哪裡有軟體, 哪裡就有漏洞 OAO
+00:19 < a0000778> CindyLinz: 沒有外掛程式 沒有JAVA!
+00:20 < a0000778> 建議設定預設不啟動(點一下啟動)
+00:20 < a0000778> 增加安全性 降低資源使用 還可以過量微量廣告
+00:20 < a0000778> 過濾
+00:21 < xsoameix> 找到最可能的原因了，我 commit 了 41,293 行的 vendor.js 檔，coveralls.io 不能處理太多行的檔案
+00:21 < shuhua_> 那以ABP來說呢？他不是拿來擋廣告的嗎？
+00:21 < a0000778> 但是某些網站Flash疊在一起也會略有不便
+00:21 < shuhua_> (可能是笨蛋問題....)
+00:22 < a0000778> shuhua_: abp是專門寫規則去檔廣告的 停用外掛是讓那些Flash之類的廣告不執行
+00:22 < a0000778> shuhua_: abp的阻擋範圍不限於外掛程式
+00:23 < xsoameix> 我用 .gitignore 過慮掉除了 _public/js/ 以外的資料夾，而 _public/js 下有個 _public/js/vender.js
+00:24 < xsoameix> 我再把 _public/js/vender.js 過慮到，應該就 ok 了 :)
+00:24 < xsoameix> s/到/掉/g
+00:24 < shuhua_> a0000778: 所以是全都擋的意思？
+00:24 < a0000778> shuhua_: 規則完美的話 可以擋掉所有廣告 但世上沒有完美的規則XD
+00:26 < shuhua_> a0000778: XDDDD
+00:26 < shuhua_> 了解！
+00:34 -GitHub22:#g0v.tw- [ly.g0v.tw] xsoameix force-pushed another-coverage from 6699b55 to 74d15f6: https://github.com/g0v/ly.g0v.tw/commits/another-coverage
+00:34 -GitHub22:#g0v.tw- ly.g0v.tw/another-coverage 74d15f6 Lien Chiang: Test.
+00:35 < xsoameix> 這次應該可以成功
+00:42 < travis-ci> [travis-ci] g0v/ly.g0v.tw#410 (another-coverage - 74d15f6 : Lien Chiang): The build passed.
+00:42 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/6699b55310c9...74d15f68d63c
+00:42 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/34205123
+00:42 -!- travis-ci [~travis-ci@ec2-54-90-52-62.compute-1.amazonaws.com] has left #g0v.tw []
+00:43 -!- japie_ is now known as japie
+00:44 -GitHub52:#g0v.tw- [ly.g0v.tw] xsoameix force-pushed master from db5fa7b to 79ce484: https://github.com/g0v/ly.g0v.tw/commits/master
+00:45 < xsoameix> 按錯了 orz
+00:49 < CindyLinz> shuhua_, a0000778: 我同事用過一款手機上用的擋廣告的瀏覽器插件
+00:50 < CindyLinz> 然後他看不知道哪家新聞.. 現在不是常常都會跳出一個擋住整頁的廣告嘛?
+00:50 < CindyLinz> 插件就發揮了作用, 把廣告的圖擋掉了.. 然後他的新聞頁就被一個白底擋住 XD
+00:51 < CindyLinz> 有一次更慘的是連那一塊的叉叉都拔掉了, 所以還按不掉 XDrz
+00:52 < travis-ci> [travis-ci] g0v/ly.g0v.tw#411 (master - 79ce484 : 廉強): The build passed.
+00:52 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/db5fa7b36bd5...79ce484ecd5d
+00:52 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/34206060
+00:52 -!- travis-ci [~travis-ci@ec2-54-81-124-233.compute-1.amazonaws.com] has left #g0v.tw []
+00:53 < xsoameix> clkaoud: 不小心 force push 把 master 替換成沒有做提示頁的舊版 master 了 orz
+00:53 < shuhua_> CindyLinz: XDDDD
+00:53 < clkaoud> xsoameix: 呃...  還好 gh-pages 有 history?
+00:54 < xsoameix> 我大叫了五分鐘，嚇死我了 orz
+00:55 < CindyLinz> 那鄰居有沒有嚇到 OAO
+00:55 < xsoameix> 我再重新 merge 提示頁再重新 push (非 force push) 一次，讓 master 變回來，這樣可以嗎？
+00:55 -GitHub46:#g0v.tw- [ly.g0v.tw] clkao pushed 1 new commit to master: https://github.com/g0v/ly.g0v.tw/commit/db5fa7b36bd55cdd584045726e368bd6b01a876c
+00:55 -GitHub46:#g0v.tw- ly.g0v.tw/master db5fa7b Chia-liang Kao: Merge pull request #179 from xsoameix/feature/steps-bar-of-bill-coverage...
+00:55 < clkaoud> i just pushed
+00:56 < clkaoud> 這是對的吧？還是中間還有
+00:56 < xsoameix> 恩，好，謝謝你
+00:56 < xsoameix> 沒有了
+00:58 -GitHub138:#g0v.tw- [ly.g0v.tw] xsoameix force-pushed another-coverage from 74d15f6 to bd00004: https://github.com/g0v/ly.g0v.tw/commits/another-coverage
+00:58 -GitHub138:#g0v.tw- ly.g0v.tw/another-coverage bd00004 Lien Chiang: Test.
+01:02 < travis-ci> [travis-ci] g0v/ly.g0v.tw#412 (master - db5fa7b : Chia-liang Kao): The build passed.
+01:02 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/79ce484ecd5d...db5fa7b36bd5
+01:02 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/34207114
+01:02 -!- travis-ci [~travis-ci@ec2-54-235-51-84.compute-1.amazonaws.com] has left #g0v.tw []
+01:02 < a0000778> CindyLinz: 我沒遇過 我裝AdBlock 不過不行手動修正規則?
+01:02 < a0000778> CindyLinz: 不過確實有些網站會針對擋廣告做一些動作
+01:03 < travis-ci> [travis-ci] g0v/ly.g0v.tw#413 (another-coverage - bd00004 : Lien Chiang): The build passed.
+01:03 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/74d15f68d63c...bd000047aa02
+01:03 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/34207263
+01:03 -!- travis-ci [~travis-ci@ec2-54-235-51-84.compute-1.amazonaws.com] has left #g0v.tw []
+01:05 -GitHub128:#g0v.tw- [ly.g0v.tw] xsoameix force-pushed another-coverage from bd00004 to 2582c3f: https://github.com/g0v/ly.g0v.tw/commits/another-coverage
+01:05 -GitHub128:#g0v.tw- ly.g0v.tw/another-coverage 2582c3f Lien Chiang: Test.
+01:10 < travis-ci> [travis-ci] g0v/ly.g0v.tw#414 (another-coverage - 2582c3f : Lien Chiang): The build passed.
+01:10 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/bd000047aa02...2582c3fac03b
+01:10 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/34207950
+01:10 -!- travis-ci [~travis-ci@ec2-54-235-51-84.compute-1.amazonaws.com] has left #g0v.tw []
+01:14 < yutin> ping mingtsay
+01:14 < CindyLinz> a0000778: 看起來不是被反制.. 是插件自己對廣告範圍的認定剛好造成很窘的情況 XD
+01:15 < a0000778> CindyLinz: 我遇過只要拿掉廣告 全站排版會直接亂掉的就是了XD
+01:16 < CindyLinz> 可能把某些非廣告用的 CSS 也摘掉了 XD
+01:17 < a0000778> CindyLinz: 手工實驗證實 只要沒有一個東西在那邊占空間 排版就會跑掉XD
+01:18 < CindyLinz> wwww
+01:23 < xsoameix> clkaoud: 看來不是 vendor.js 的問題，我已經開了 issue，寫給 coveralls.io 我遇到的問題：https://github.com/lemurheavy/coveralls-public/issues/355
+01:23 < kcwu> xsoameix's url: [link of source is broken. · Issue #355 · lemurheavy/coveralls-public · GitHub]
+01:24 < xsoameix> 生平第一次開外國人的 issue 0.0
+01:24 < clkaoud> xsoameix++
+01:30 < xsoameix> 我先去睡了，掰掰
+01:46 -!- amatecha_ is now known as amatecha
+01:53 < hychen1> xsoameix++
+03:20 < mingtsay> yutin: pong (但看起來已經離線了？
+06:32 < mingtsay> 請問誰負責阿美語的？
+06:36 < mingtsay> 是不是說明不夠清楚，邊邊索引進去了…
+06:36 < mingtsay> https://www.dropbox.com/s/jgfaa39l8n28t5c/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-09-03%2006.30.13.png?dl=0
+06:36 < kcwu> mingtsay's url: [Dropbox - 螢幕快照 2014-09-03 06.30.13.png]
+06:55 < mingtsay> 校稿時還看到有人打「我愛你」…
+08:08 < miaoski> mingtsay: 我啦
+08:08 < miaoski> 別太介意，還會二校，或是直接丟進去程式...
+09:08 < lafin> 我想問一下，每次辨識到有錯的，看到已經被檢查2-3次時，是大家認為是錯的，還是上一個更改的人？
+09:52 < miaoski> lafin: 都有可能... 傻傻按 enter 的話，檢查次數就 +1 了
+09:53 < miaoski> lafin: 上一個改的人也可能，這就要去查log (告訴我頁碼和行數就可以查)
+09:54 < lafin> @miaoski 好的
+10:00 < mrsere> 我怎麼一直收到重複的對校內容..短短數分鐘已經收到3次一樣的 # 阿美語萌典
+10:07 < miaoski> mrsere: 可能是我的 random 不夠亂...
+10:07 < miaoski> 我把 pool 拉大一點看看
+10:09 < miaoski> mrsere: 請再試試看 :) 我自己試了一下，好像好多了。我早上在家校對的時候，也有遇到和你一樣的問題...
+10:20 < mrsere> 右邊按鈕改到左邊去了 / Win7_64 safari5_17 Opera24 IE10 目前均無發現有擠到第二行問題 / 發現Opera改得越來越像前幾個版本的firefox
+10:24 < a0000778> 還有人在OCR裡道晚安XD
+10:24 < t0mst0ne_> au: 
+10:25 < miaoski> a0000778: 我覺得那個「我愛你」的比較經典 XD
+10:26 < a0000778> miaoski: XD
+10:27 < t0mst0ne_> au:  請問 https://maps.googleapis.com/maps/api/geocode/json?address=XD  出來有3個經緯度, 分別是  location northeast southwest , 請問一般都用哪一個?   
+10:28 < t0mst0ne_> au: 取 location 是否就可以了 ?
+10:40 < miaoski> 有興趣做資料分析的人，可以去下載 http://ckhis.ck.tp.edu.tw/~ljm/amis-toufu/anon-submit.log.gz 裡面已經暱名化過了.... 這是輸入的時候的資料，不包含校對
+10:43 < miaoski> ch0upi_bsd 說他覺得這樣妨害隱私權
+10:43 < miaoski> 所以抱歉啦，想分析的人私下找我吧
+10:47 < miaoski> https://www.irccloud.com/pastebin/LJA1YKY5
+10:47 < kcwu> miaoski's url: [Pastebin: LJA1YKY5 | IRCCloud]
+10:48 < miaoski> https://www.irccloud.com/pastebin/DQdkam7N
+10:48 < kcwu> miaoski's url: [Pastebin: DQdkam7N | IRCCloud]
+10:49 < miaoski> https://www.irccloud.com/pastebin/4KrNekbe
+10:49 < kcwu> miaoski's url: [Pastebin: 4KrNekbe | IRCCloud]
+10:56 < miaoski> 以上不代表真正的數據，因為上面是掛在 index.php (入口) 那一頁的統計資料.. .XD
+10:57 < lafin> @miaoski 為什麼我看不到你的貼的網址＝ ＝
+10:57 < miaoski> lafin: 哪一個?
+10:58 < lafin> @miaoski https://www.irccloud.com/pastebin/LJA1YKY5   https://www.irccloud.com/pastebin/DQdkam7N    https://www.irccloud.com/pastebin/4KrNekbe
+10:58 < lafin> @miaoski 每一個xd
+10:59 < ipa> miaoski: 為什麼網只是在建中底下啊？
+10:59 < clkaoud> 因為愛...? XD
+10:59 < pipi_> 因為愛～所以愛～
+11:00 < miaoski> ipa: 因為這是學術案子，掛 TANET 名正言順啊 xd
+11:01 < ipa> 建中校友可以畢業二十年繼續掛喔？XD
+11:01 < ipa> 好啦沒有二十年 XDDD
+11:02 < pipi_> 難怪看到
+11:02 < pipi_> tp.edu 覺得很熟悉
+11:02 < miaoski> ipa: 有... 20 年了
+11:02 < miaoski> 不對 沒有畢業 20 年
+11:02 < miaoski> 入學 20 年了 XD
+11:03 < pipi_> miaoski: 如果你說你離開高中20年
+11:03 < lafin> @miaoski 啊哈 原來是北科這網路掛了
+11:04 < lafin> @miaoski 可以知道是昨天g0v po fb 之後的前後差距嘛？
+11:05 < lafin> @miaoski 人數方面
+11:10 < miaoski> lafin: 可以給個時間嗎?
+11:10 < miaoski> 比方說 9/2 的幾點以後
+11:16 < lafin> @miaoski 9/1 大該晚上10：30-11:30之間是我第一次看到g0v、村長、什麼妳也愛原住民等有人氣人開始協助宣傳
+11:17 < lafin> 突然%數開始增長
+11:18 < miaoski> lafin: 嗯，第一次的高峰是星期二的 0:00 前後 2 小時
+11:18 < miaoski> 然後是星期二中午 12 點前後二小時
+11:19 < miaoski> 人最多的時候是快結束的星期二晚上 10 點。不過這些數據都是以 index.php 那邊做計算的...
+11:19 < miaoski> 要算真的有 key 資料有貢獻的話，要去分析原始資料了...
+11:21 < lafin> @miaoski 了解，星期二中午的話再去研究一下是誰有轉貼好了
+11:22 < miaoski> 總共提交筆數是 48,724 筆 (平均每一行有 3.3 次提交)
+11:23 < miaoski> https://www.irccloud.com/pastebin/6HC8RqpJ
+11:23 < kcwu> miaoski's url: [Pastebin: 6HC8RqpJ | IRCCloud]
+11:24 < miaoski> 不過這邊沒辦法知道誰是誰，所以只能從 IP 來看...
+11:36 < lafin> @miaoski 嗯嗯
+11:46 -!- chihchun_afk is now known as chihchun
+11:54 < ch0upi_bsd> https://gist.github.com/choupi/b97646461b983033e53a
+11:54 < kcwu> ch0upi_bsd's url: [阿美語submit分析]
+12:21 < mrsere> inLivetw的mobile_WEB版已無作用約數個月 但chrome擴充功能是沒問題的
+12:45 < caasih> yhsiang: 支持什麼？ #在地同胞
+12:46 < yhsiang> caasih: 台中市長給問嗎 :p
+12:46 < yhsiang> caasih: flyingv.cc/project/4436
+12:47 < caasih> 太棒了，讓我登入一下...
+12:48 < yhsiang> caasih: 台中棋感覺很不錯啊
+12:55 < caasih> yhsiang: 支持完畢，剩六天有點不樂觀 0rz
+12:58 < xsoameix> coveralls.io J 回覆說，_public/js/app.js 有 3 千行 code 要 render，所以 timeout 了，他們正在想辦法處理
+13:00 < yhsiang> XD
+13:01 < Lee1092> XD
+13:03 < xsoameix> 每次 travis deploy 時，都會生成 coverage report 的靜態 html，這個靜態 html 不會有 timeout 的問題，可以將就點用
+13:07 < clkaoud> 不然就是要 reference 回 compiled js (but before concat)
+13:10 < a-tsioh> au: Hi ! , any clue on https://github.com/g0v/moedict-data-twblg/issues/3 ?
+13:10 < kcwu> a-tsioh's url: [building everything on a fresh install · Issue #3 · g0v/moedict-data-twblg · GitHub]
+13:11 < a-tsioh> I fixed my previous issue by setting my user as a postgres admin
+13:11 < clkaoud> a-tsioh: the csv support was somehow broken a while back.. not sure if au's latest release fixed that
+13:12 < xsoameix> clkaoud: 有辦法弄嗎？coveralls.io 有提供 api 可以指定哪些檔案的 coverage report：https://coveralls.io/docs/api
+13:12 < a-tsioh> (otherwhise the plv8x extension won't load)
+13:12 < kcwu> xsoameix's url: [Documentation | The Coveralls API | Coveralls - Test Coverage History & Statistics]
+13:12 < a-tsioh> clkaoud: in pgrest ?
+13:12 < clkaoud> a-tsioh: yeah
+13:12 < a-tsioh> $  pgrest --version
+13:12 < a-tsioh> PgRest v0.1.2
+13:17 < xsoameix> clkaoud: coveralls.io 介面上沒有類似的選項可以 reference 回多個檔案，我不清楚要怎麼弄
+13:30 < kiang> http://web.cec.gov.tw/files/15-1000-23952,c4133-1.php ... 感覺像是用傳真機掃描的結果...
+13:30 < kcwu> kiang's url: [103地方公職人員選舉候選人第二天登記情形 - 中央選舉委員會]
+13:36 < au> a-tsioh: yes I have a fix... publishing now
+13:37 < au> a-tsioh: npm i -g pgrest@0.1.3 
+13:38 < au> pgrest v0.1.3 now restores CSV header guessing support as before
+13:43 < a-tsioh> au++ 
+13:53 < a-tsioh> everything seems fine \o/
+13:54 < au> woot
+14:10 < pipi_> 趕快來一校喔
+14:55 < yhsiang> ETBlue: 不愧是ETBlue XD
+14:59 < ETBlue> yhsiang: 打工卡關時就只好打嘴砲 XD...
+15:07 < ETBlue> clkaoud: 透過 fb 確認中 # hangee 報名頁面沒註明 open source
+15:09 < lololol> 我是剛才的swesup
+15:09 < lololol> 好想寫萌典的ios版
+15:09 < yhsiang> lololol: 就寫啊? XD
+15:09 < lololol> XP  這應該超爽
+15:10 < lololol> 下一次黑客我要玩這個
+15:10 < mrsere> lololol: https://itunes.apple.com/tw/app/meng-dian-jiao-yu-bu-guo-yu/id599429224?mt=8
+15:10 < kcwu> mrsere's url: [萌典—教育部國語、臺語、客語辭典民間版 on the App Store on iTunes]
+15:11 < lololol> 啊  算了
+15:11 < lololol> 有人寫了
+15:11 < lololol> 不好玩
+15:11 < au> lololol: 可是還沒有人用 Swift 寫~
+15:11 < miaoski_bot> au: 先承認你就是沒有人
+15:12 < lololol> swift bug超多...
+15:14 < yhsiang> 沒有人說 不能寫自己的iOS版? :p
+15:14 < miaoski_bot> yhsiang: 先承認你就是沒有人
+15:15 < lololol> 這樣會搶到  搶贏搶輸都不好看艸
+15:17 < lololol> 唯一缺點是：
+15:17 < lololol> 手機app的圖示只有「萌」字，而沒有更新前的萌女圖？哈哈。   <-.........
+15:17 < lololol> 好用 
+15:17 < lololol>        by
+15:17 < lololol>         
+15:17 < lololol>           賣樓收
+15:17 < billy3321> 沒有人是沒有人(TEST)
+15:17 < miaoski_bot> billy3321: 先承認你就是沒有人
+15:17 < lololol> 打壞了
+15:29 -!- mrsere [guest-mrse@conference/jsconf/x-clbxcezyutlmephm] has left #g0v.tw []
+15:53 -!- iMac [~iMac@cm61-10-83-5.hkcable.com.hk] has left #g0v.tw ["Leaving"]
+16:01 < kiang> 這兒有人可以回答 ocf 問題嗎？目前據說政治獻金在這個時間點是不能夠做捐贈的，所以想要確認 ocf 有沒有辦法開立選舉相關費用的發票或收據？而且 9/5 之後就不能支用這筆錢 XD
+16:03 < lanf0n> pofeng:  ^^^^ # ocf
+16:03 < kiang> pofeng 應該在忙，還是有會計的電話？ XD
+16:04  * lanf0n 感覺好像沒有請會計...:3
+16:05 -!- chihchun is now known as chihchun_afk
+16:05 < kiang> 應該會有合作的會計師做基本的帳務稽核？
+16:07 < au> 摩茲工寮下午不曉得多早開門... 剛好在附近，等下晃過去看看
+16:11 -!- lololol [lololol@conference/jsconf/x-pvklpgvipbwbtunb] has left #g0v.tw []
+16:13 -!- chihchun_afk is now known as chihchun
+16:16 < hlb> 這邊有人在用 Fire.app，可以幫忙測試 final 版本的嗎 :p
+16:17 < au> sure, 要測哪些項目？
+16:20 < miaoski> 一校結束了，謝謝大家
+16:20 < miaoski> 我來想想該怎麼辦... @@ 
+16:21 < miaoski> 拼成一個大版，讓大家一人認領一頁，不知道好不好
+16:21 < lafin> 左右這樣對照嘛？
+16:23 < miaoski> lafin: 對啊
+16:24 < miaoski> 不知道拼起來效果怎樣.... 我先在 local 試試看
+16:24 < lafin> @miaoski 嗯嗯
+16:34 < ETBlue> au: 一般7：30後到工寮比較保險，上次太早到在外面等好熱XD
+16:41 < pipi_> miaoski: 好想玩二校喔
+16:48 < au> ETBlue: 沒關係，已找到附近有可以待的地方 XD
+16:59 -!- chihchun is now known as chihchun_afk
+16:59 < mrseno> 專案池(自製仿造hackfoldr)剛才做了小東西上去 http://imgur.com/O87LIIG (方法是在div裡加入title) 請教ETBlue和Lee1092 這小東西是否適合加入hackfoldr(含2.0) 還是只能適用於g0v專案池本身
+17:00 < kcwu> mrseno's url: [imgur: the simple image sharer]
+17:11 < clkaoud> au: 咦 你在哪
+17:11 < au> clkaoud: 摩茲工寮旁邊
+17:45 -!- mrseno [guest-mrse@conference/jsconf/x-ghxbqeibelutbqte] has left #g0v.tw []
+17:46 < caasih> 這是表示有摩茲工寮小松的意思嗎？ :D
+17:48 < au> yeah
+17:53 < a-tsioh> 結果好像加兩個",2,"就行
+17:54 < a-tsioh> 比較難的部分是看得懂plv8在幹嘛
+17:56 < caasih> 啊，筆電放在中和住處無法亂入 0rz
+17:58 < a-tsioh> 啥是「摩茲工寮小松」？
+17:59 < au> a-tsioh: http://moztw.org/space/ = 摩茲工寮 , small adhoc hackathon = 小松
+17:59 < kcwu> au's url: [摩茲工寮 Mozilla Community Space Taipei | MozTW, Mozilla Taiwan Community]
+18:01 < a-tsioh> 每個禮拜？
+18:02 < au> every two weeks it seems (see schedule on the moztw.org/space page)
+18:03 < a-tsioh> 有寫every weeks
+18:04 < a-tsioh> 我不是很懂gen.ls 和　gen-ext.ls是分開的motivation
+18:04 < yhsiang> caasih: 每周三都有
+18:04 < a-tsioh> （#moedict-data-twblg)
+18:05 < caasih> 下次會記得帶電腦的 =_=+
+18:07 < au> a-tsioh: -ext has no definition of their own and uses moedict revised for definition
+18:12 < a-tsioh> ok
+18:12 < a-tsioh> for 5 (臺華共同詞) it totaly makes sense
+18:13 < a-tsioh> but the 2 (單字不成詞者) could be put in gen.ls
+18:13 < a-tsioh> so it's straigthforward to add the 音讀　ａｎｄ文白讀 into the json
+18:14 < au> awesome. please feel free to commit and adjust accordingly
+18:14 < miaoski> pipi_: 二校很頭痛... 我想要一次一頁，但外觀設計起來一定不好看 :(
+18:15 < yhsiang> lanf0n: xsoameix: 有空可以check一下戶頭囉 ~
+18:15 < lanf0n> yhsiang: ok
+18:15 < yhsiang> 明天以後 XD
+18:16 < yhsiang> xsoameix: 你學姊我也通知了~
+18:23 < a-tsioh> (在跑一次看看）
+18:24 < lafin> @miaoski 是有多醜＠＠
+18:29 -!- lafin [lafin@conference/jsconf/x-dosmbkcbqufivjxr] has left #g0v.tw []
+18:49 < lanf0n> yhsiang: 上次去簽名好像把coscup RS送的筆丟在草辦了...XD
+18:50 -!- CelloCello [~Cello@119.77.225.117] has left #g0v.tw []
+18:50 < yhsiang> lanf0n: hmm 是3.18深藍?
+18:50 < lanf0n> yhsiang: 不是是那種 3合一的筆吧 上面印 RS XD
+18:51 < yhsiang> hmm ... 有可能在我桌上 我桌上多好多我不知道那裏來的東西
+18:51 < lanf0n> 囧
+20:29 < ipa> http://g0v.tw/zh-TW/projects.html
+20:30 < ipa> http://hack.g0v.tw/projectpool
+20:37 < yhsiang> ipa: 後來gulp 好了?
+21:16 < a-tsioh> :s 還有一些plv8 encoding的問題
+21:16 < a-tsioh> TT
+21:23 < billy3321> 今天去參加中央政府總預算的研習營
+21:23 < billy3321> 拿到了一份講義，上傳給大家參考
+21:23 < billy3321> http://bit.ly/1r15Ong
+21:23 < kcwu> billy3321's url: [104年度中央政府總預算編製規定及重點內容介紹 - Google 簡報]
+21:25 < kiang> billy3321++
+21:26 < johnny___> kiang: 請問你知道議員候選人名單什麼時候會公布嗎?
+21:29 < kiang> johnny___: 沒看過他們有這方面的規劃 XD
+21:31 < kiang> 看到了， 103年11月18日 ... http://web.cec.gov.tw/files/15-1000-21532,c4133-1.php
+21:31 < kcwu> kiang's url: [中選會委員會議討論通過103年地方公職人員選舉投票日及工作進行程序表 - 中央選舉委員會]
+21:32 < johnny___> kiang: 好晚...要讓我請一周假就對了
+21:34 < kiang> 所以才要事先蒐集吧，靠中選會太慢，只是一般民眾沒有這樣動力吧 XD
+21:35 < johnny___> kiang: 最後決定要登記參選嗎
+21:36 < kiang> johnny___: 沒耶，應該是放棄吧，只募得 4 萬，孤獨木喊一兩個星期就應該有 20 萬了，我差太遠 XD
+21:36 < yhsiangCloud__> 獨立啤酒got
+21:36 < clkaoud> yhsiangCloud__: 機車！
+21:37 < clkaoud> johnny___: 9/5 就登記完畢了 好像會先出現一個登記概況表
+21:37 < yhsiangCloud__> 店家說也是剛到
+21:37 < yhsiangCloud__> 還沒冰  那家都是買進口啤酒
+21:38 < kiang> clkaoud: 登記概況表每天都有，只是都只有首長資料，其他只用數字替代
+21:38 < clkaoud> soga
+21:38 < kiang> 而且， pdf 是圖片，還是那種用傳真機拼湊出來那種...
+21:40 < johnny___> kiang: 可惜阿...
+21:40 < johnny___> clkaoud: 了解，都忘了還沒做候選人的功能
+21:41 < kiang> johnny___: 或許可以跟 孤獨木 聯絡，看起來他應該會直接登記，後續可以從他那邊取得相關資訊（如果他有空的話）
+21:41 < kiang> 獨孤木
+21:42 < kiang> http://singlelog.pixnet.net/blog
+21:42 < kcwu> kiang's url: [獨孤木 (林群森）- 騎馬救台灣 :: 痞客邦 PIXNET ::]
+21:46 < johnny___> kiang: 應該不用麻他拉，如果一般市民還要靠候選人才能拿到資料，那就該提出來改正了
+21:47 -!- Guest6651 is now known as dirty_
+21:51 < sucked> @kiang
+21:51 < kiang> sucked: ?
+21:56 < sucked> 按到 sorry
+21:56 < kiang> ok :)
+22:13 < awayst> 地壹次土地松－土地是我們的老師 09/28 http://poponfire.kktix.cc/events/hackath1n 歡迎參加～
+22:16 < Michael_LI> awayst++
+22:17 < kiang> awayst++
+22:18 < Michael_LI> awayst／2014-10-04新聞松／今晚工作會議也確認了／之後可以交流／（ＰＳ如果有航空城的秘密可以跟我私下對話研究）／
+22:42 -!- awayst [guest-away@conference/jsconf/x-jjfdhlijqmfdwkrz] has left #g0v.tw []
+23:02 < AceChen_> Lee1092: 改成 $500/票 囉，看一下pad
+23:10 < pipi_> AceChen_: 開會的大家辛苦了，外面下大雨！
+23:13 < shuhua_> 高雄是一直不下雨....
+23:15 < miaoski> 我自己覺得是蠻醜的 http://i.imgur.com/qfBieRH.jpg
+23:15 < miaoski> 還沒開放，不知道該怎麼辦好.
+23:19 < lafin> @miaoski  就慢慢對
+23:19 < miaoski> lafin: 蠻醜的 XD
+23:19 < lafin> @miaoski  我覺得要考慮到被鬧時，一頁就不見了
+23:19 < CindyLinz> 被搶怪了 XD
+23:20 < miaoski> lafin: 被鬧?
+23:20 < miaoski> CindyLinz: 搶怪
+23:20 < miaoski> ?
+23:20 < lafin> @miaoski  無聊的人啊，給你刪字送出XD
+23:21 < hcchien> au: 要跟你那軌講者確認沒有講師費   :p
+23:21 < miaoski> lafin: 那倒是還好。反正都有存檔...
+23:23 < lafin> @miaoski 喔喔
+23:23 < au> hcchien: OK 沒問題
+23:24 < au> hcchien: 他們都有乖乖報名，所以在通知信裡寫就可以了其實 XD
+23:24 < miaoski> lafin: 我只是在想這樣左右對照方便，還是校對的人自己切分頁方便... 剛剛那張預覽的字其實蠻小的
+23:26 < miaoski> 而且在不同瀏覽器裡看起來也會差蠻多的... 頭痛 >_<
+23:26 < lafin> @miaoski  所以就以單頁呈現? 上訪附上當頁圖像連結，讓使用者自己開啟校對?
+23:27 < ipa> hcchien: 開了一個 trello summit organization，要請你把 board 搬過去
+23:27 < hcchien> au: 好地
+23:27 < miaoski> lafin: 我試試
+23:27 < au> miaoski: 左右不錯啊，然後建議右欄 readonly，用「這沒問題」或「這有問題」按鈕，按有問題時再開放編輯
+23:27 < miaoski> au: 每一頁一定都會有一點點問題的 :P 
+23:28 < au> 好吧 :p
+23:28 < ipa> hcchien: 但我找不到你的 trello 帳號。。。
+23:28 < lanf0n> miaoski: 改成單欄 mark "這有問題" 再各別校對呢(?
+23:28 < hcchien> ipa: 我好像看不到新的 board
+23:28 < lanf0n> s /欄/行/g
+23:28 < hcchien> ipa: https://trello.com/hcchien1
+23:28 < kcwu> hcchien's url: [Trello]
+23:28 < miaoski> lanf0n: 單行? 像昨晚那樣嗎? 
+23:29 < lanf0n> miaoski: 對啊XD 但一次顯示整張, 不允許修改只允許標示 "有問題的行"
+23:30 < ipa> hcchien: 現在看得到嗎？是 org 不是 board
+23:30 < lafin> @lanf0n 然後三校?
+23:30 < hcchien> 然後誰把預算表的 google docs 鎖了呢   XD
+23:31 < lafin> @lanf0n 三校把有問題標示出來嗎?
+23:31 < lanf0n> lafin: miaoski 這樣的前提是假設已經OCR成數位化(開放閱讀)，但可能會有點問題 (變成 mark = feedback XD
+23:31 < hcchien> ipa: g0v summit?
+23:31 < miaoski> lanf0n: 蠻有趣的想法。我想想看怎麼做
+23:31 < miaoski> OCR 早就開放閱讀整頁了... 好幾年前就開放了 :P
+23:32 < miaoski> 不對... 我的意思是掃描圖案
+23:32 < hcchien> ipa: 看到了，研究怎麼加過去
+23:33 < lanf0n>  I mean as moedict ...XD
+23:35 < lafin> 乾脆後面加得票數好了，對(5) 錯(1) 幻想中@@
+23:42 < miaoski> lafin: lanf0n: 像這樣? http://i.imgur.com/E2gJbXd.jpg
+23:43 < lanf0n> miaoski: 嗯 不過行數可能要隔開囧..
+23:43 < miaoski> 看到有錯不能改好痛苦 XD
+23:43 < CindyLinz> miaoski: pat
+23:44 < lanf0n> miaoski: 但可以避免掉像是 "善作主張" 之類的被改成現在正確的用法....XD ((看到用錯字就很想改...
+23:45 < CindyLinz> lanf0n: 負評網嗎... XD
+23:45 < miaoski> lanf0n: 我看到 "a sentence" 的 "a" 沒打，手好癢....
+23:45 < lafin> @lanf0n 有些字還找不到哩
+23:45 < miaoski> 嗯。害我想直接跳過二校了
+23:46 < miaoski> 就簡單看一下有沒有問題，沒有就直接轉格式
+23:46 < miaoski> 放出去以後就會有人回報說哪裡錯了 (大誤)
+23:46 < lanf0n> lafin: 嗯有可能是用注音輸入法所以不知道那個字怎麼唸之類的....XD
+23:46 < lafin> @miaoski  哈
+23:48 < lafin> @lanf0n 其實我有試著用手寫，google，也都找不到
+23:48 < lanf0n> 囧...
+23:49 < lafin> 雨變小 先回家><
+23:49 -!- lafin [lafin@conference/jsconf/x-upppguzcyogfbftz] has left #g0v.tw []
+23:58 < Michael_LI> 請問au大神／http://hackfoldr.org／感覺怪怪的聯不太上去／！！！／

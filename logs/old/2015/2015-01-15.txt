@@ -1,0 +1,261 @@
+--- Day changed 四  1月 15 2015
+01:43 -!- veloci85_ is now known as veloci85
+02:31 -!- veloci85_ is now known as veloci85
+03:01 -!- chihchun_afk is now known as chihchun
+04:01 < slackbot> <lancetw> 有其他的版本 XD?
+06:25 < gugod> 目前 moedict 拼音的輸入進度 https://www.youtube.com/watch?v=81vG1XwfK1I&feature=youtu.be -- 可在 http://moedict.gugod.org/  測試
+06:25 < kcwu> gugod's url (2/2): [萌典 – 教育部國語、臺語、客語辭典民間版]
+06:25 < kcwu> gugod's url (1/2): [moedict pinyin - YouTube]
+06:26 < gugod> 音對詞 inverted index 是事先全部建好 (共 756 個 json 檔， 7.4M)，再於 client 端取交集
+06:26 < gugod> 所以 query 時沒有 server side 
+06:27 < gugod> ... 的 logic
+06:27 < gugod> 目沒有特別處理兒化音之類的，單純只是把字典中的拼音去掉聲調後建 index
+06:50 < slackbot> <yhsiang> gugod++
+08:40 < slackbot> <caasi> gugod++
+08:41 < slackbot> <yhsiang> au: vultr 現在東京有位子了 linode有了嗎? XD
+08:54 < miaoski_home> gugod: ++
+10:35 -!- ryan is now known as Guest3316
+10:53 < slackbot> <adaam> 在翻記錄的時候發現好像有的在slack的發言沒有到irc那邊
+11:08 < slackbot> <yhsiang> 可能是機器人維修，或是上傳附件
+11:14 < kcwu> 上傳附件 bot 會不會收到 event? 至少說一下有附件
+11:15 < slackbot> <yhsiang> kcwu; 都不會
+11:15 < slackbot> <yhsiang> kcwu: 正在改用 websocket 解決這問題
+11:15 < kcwu> 是 slack api bug?
+11:15 < slackbot> <yhsiang> kcwu: 不算 bug 吧 ?
+11:20 < slackbot> <johnny> 這周二跟北市議員討論議員投票指南的會議紀錄，給有興趣但無法前來的 <https://g0v.hackpad.com/G42NiAL0qmj>
+11:20 < kcwu> slackbot's url: [與台北市議員談「議員投票指南」、「開放資料」會議紀錄 - g0v.hackpad.com]
+11:29 < slackbot> <kiang> johnny++
+11:33 < slackbot> <kuochunhung> @johnny: 可以參考以色列國會的即時出缺席紀錄 <http://www.knesset.gov.il/presence/eng/PresentList_eng.aspx>
+11:33 < kcwu> slackbot's url: [MK Attendance]
+11:33 < slackbot> <kuochunhung> 頭像有亮的表示有在國會大樓內
+11:34 < slackbot> <kiang> 該不會跟打卡機整合了吧 XD
+11:36 < slackbot> <johnny> 停車場嗎XD 國會辦公室目前尚有：113個空位
+11:37 < slackbot> <kuochunhung> 去以色列國會參觀時 導覽人員是說由大門警衛人員負責記錄
+11:39 < slackbot> <kuochunhung> 所以也要考量建築物進出入管道的問題  台灣立法院恐怕就無法這樣搞
+11:47 < tonyq_____> @au:  https://vtaiwan.tw/#!/closelyheld/2 這一頁好像有兩個不同議題被連在一起了？
+11:47 < kcwu> tonyq_____'s url: [vTaiwan]
+11:50 < pm5> tonyq_____: 看起來是
+11:52 < tonyq_____> 我對機制不太熟 不太確定要怎麼修 哈哈  下次應該問一下ＡＵ 
+11:54 < pm5> tonyq_____: 已開 issue https://github.com/g0v/vtaiwan.tw/issues/15
+11:54 < kcwu> pm5's url: [Two issuse got mixed up in web page. · Issue #15 · g0v/vtaiwan.tw · GitHub]
+11:54 < pm5> tonyq++
+11:55 < slackbot> <yhsiang> 因為 + 了 lexicon 判斷錯誤 or ? @@
+11:56 < slackbot> <yhsiang> 似乎是
+12:00 < slackbot> <yhsiang> 加一個 trim 就可以修好了
+12:01 < pm5> yep
+12:15 < pm5> 不過有時候 tooltips 裡還是會換行?
+12:15 < pm5> parser 也 patch 一下好了
+12:25 < slackbot> <yhsiang> 我是打算修parser的 XD
+12:35 < pm5> well, gitbook 那邊的資料對了, 不過 mockup 選單出現新 bug XD
+12:36 < pm5> https://demo.vtaiwan.tw/mockup/#/closelyheld/1
+12:36 < kcwu> pm5's url: [vTaiwan]
+12:39 < slackbot> <yhsiang> fixed
+12:40 < slackbot> <yhsiang> au++ 手腳好快 @_@
+12:42 < au> tonyq_____: 都在 hackpad 上 XD https://g0v.hackpad.com/vTaiwan.tw--RxmNaJogwnc
+12:42 < kcwu> au's url: [vTaiwan.tw 後端架構 - g0v.hackpad.com]
+12:45 < au> 技術機制就是四層 api (gdoc spreadsheet (小字典) -> gitbook (內文) -> discourse (討論) -> gh-pages (前端界面) ) 各一兩個端點串起來，就這樣了
+12:46 < au> yhsiang: 感謝，我找到之前閒置的 linode 2G 塔位了，現在 talk.vtaiwan 自己一台，應該還行(吧)
+12:47 < yhsiang> au: vultr 的 tokyo transfer 似乎是 6T XD
+12:50 < au> OK... 我在 linode 合起來有 11T
+12:50 < au> 你想試 vultr 嗎？或是 discourse 專門在 linode，所有其他 (vtaiwan.tw, gitbook, cors relay) 放 vultr?
+12:51 < slackbot> <yhsiang> 我有在試vultr XD
+12:52 < slackbot> <yhsiang> 不過玩了一早上coreOS 最後還是換回ubuntu QQ
+12:56 < au> ok 那就 discourse linode 這台我先留著, vultr 那台 vtw link team 一起當網管。萌典松時來 transfer 吧
+13:44 < tonyq_____> au: 那天我們展示的兩個 ronny 做的資料網站網址 是 data.g0v.tw 嗎
+13:45 < au> http://data.g0v.ronny.tw/ 
+13:45 < kcwu> au's url: [政府資料開放平臺資料備份]
+13:45 < tonyq_____> << 正在跟北市資訊局長討論 
+13:45 < tonyq_____> au: 感謝
+13:45 < au> 還有 https://sheetdb.com/veggie.muyueh.com/
+13:47 < tonyq_____> au: 維斌的意思是北市府就不要自建平台 直接沿用我們的就好
+13:47 < tonyq_____> au: 他們準備資料 我們協助ＡＰＩ化 跟我們之前討論的ＣＡＳＥ很像  
+13:47 < au> 好的，那就是市府出硬體流量，軟體架構沿用
+13:48 < tonyq_____> 除了ＦＴＰ以外 他們希望我們能有ＡＰＩ介接資料 這部分我想沒什麼問題 
+13:48 < au> 都有 REST API
+13:48 < au> GET 沒問題，POST PUT DELETE 可再約定。
+13:48 < tonyq_____> au:咦 我以為根據之前跟 ben 談的 他們是 push 檔案或API 到我們平台
+13:49 < tonyq_____> 我覺得硬體面應該不是問題 只是要談一下細節
+13:49 < tonyq_____> 現在是他們提供硬體 我們給軟體處理這件事情，還是資料通通集中到我們的 warehouse ，我們負責ＡＰＩ跟推廣
+13:50 < au> 是，那是 raw import，我會建議 rsync，FTP 也行。
+13:51 < au> 兩件事。一件是在市府內網架 raw data archive。一件是約定民間 bulk import 的 API
+13:51 < au> bulk import 之後再由民間做單項的 api 和視覺化
+13:51 < tonyq_____> 理解 
+13:52 < au> pofeng 介意的就是 bulk import 不能特許，然後兩端通訊的軟體架構都要開源
+13:52 < au> 不能特許的意思是誰都可以申請來接。
+13:52 < tonyq_____> 這沒問題
+13:52 < au> 以上
+13:52 < au> cool
+13:54 < tonyq_____> au: 是說我再確認一次 所以我們的 data 存放的點 是我們的民間 storage  還是政府內網
+13:55 < au> 內網放所有找得到的資料的後設資料（網址、更新頻率、授權... clkao 有詳細的欄位表）
+13:55 < tonyq_____> 好，那資料真正的儲存點在？
+13:56 < au> 由後設資料決定每日要 sync 哪些，所有介接點都有一份
+13:56 < au> 你可以內外都放一份，或只有外沒有內
+13:57 < au> 這應該是由維斌方面決定，像國發會說他們內網可以放委員會的，不能放部的
+13:57 < au> 經過過濾/去識別機制後, 外網都可以放。
+14:10 < au> 如果是內外都放一份，就是 https://g0v.hackpad.com/Meeting-Notes-2015-01-12-R4w7Sd5Ti46 ben jai 的第一張拓樸
+14:10 < kcwu> au's url: [Meeting Notes 2015-01-12 - g0v.hackpad.com]
+14:10 < au> 如果是只放外，內是 proxy 和後設為主，就是同一頁我們討論後的第二張拓樸
+14:11 < au> 其他 user-visible 機制完全相同。
+14:12 < tonyq_____> au: 惟彬想弄 hackathon
+14:13 < tonyq_____> au: 或許可以在這處理我們之前沒搞定的政府 hackathon 
+14:14 < au> 那就是出場地頻寬材料即可... 這方面 http://hackfoldr.org/meta/IvlC3MmKsS8 有資訊
+14:14 < au> 以及 https://docs.google.com/document/d/1fBuisDTIiBAz9u2tr7sgv6GdDLOV_aHbafjqHXSkNB0/edit
+14:14 < kcwu> au's url: [Open Data Hackathon How to Guide - Google 文件]
+14:15 < au> 人事和媒體經營方面，我推薦專業的 tonyq
+14:15 < au> XD
+14:16 < tonyq_____> 嘖嘖 XD
+14:16 < tonyq_____> 他的想法是 他出資料 弄ＨＡＣＫＡＴＨＯＮ 然後交給研考評定，最後丟給產發局帶向世界
+14:16 < au> 政院野生官網後來把 UX 和 value-add 分開了，前者（設計松）應該還是會做
+14:17 < au> 後者國發會尚未回應。我的考量主要是希望市府內第一線作業者可以多參加，我們可以加印貼紙
+14:18 < au> 研考評定和產發加值都是正確的思路。
+14:44 < tonyq_____> au: 北市現在各局處資訊主管績效會是資訊局長算
+14:45 < au> 收到，瞭解
+14:45 < au> 那等黑客松辦個幾次就可以試著做局處級的 IT fellow 了
+14:46 < au> (所謂 IT fellow 就是你現在在 EY 做的事 XD)
+14:47 < au> 詳細辦法見 http://www.codeforamerica.org/about/fellowship/
+14:47 < kcwu> au's url: [Fellowship — Code for America]
+14:56 < tonyq_____> au: 他們要做教育訓練
+14:57 < tonyq_____> 先做局處首長的教育訓練
+14:58 < au> ok, 局處首長可能比較難一下黑客松起來
+14:59 < au> 可以參考 http://g0v.tw/zh-TW/talk.html 的材料，或 https://g0v.hackpad.com/EY--yPncicVQ4Kg 的形式（數位教材之類）
+14:59 < kcwu> au's url (1/2): [演講資訊]
+14:59 < kcwu> au's url (2/2): [EY 局處長宣教會 - g0v.hackpad.com]
+15:00 < au> 維斌的經驗較為豐富，可以結構想好後在 g0v hackpad 和大松挖坑
+15:00 < au> .
+15:02 < tonyq_____> 他現在也是想跟時間賽跑
+15:03 < tonyq_____> 我們之前不是抓三月 要有平台  他也想搶三月
+15:04 < tonyq_____> 我整理一下資料 
+15:06 < au> 好的，感謝。我 3/29 就去歐洲了，四月下旬才回台
+15:06 < au> 回台還要調時差，所以實體部份我四月幫不上什麼忙
+15:06 < slackbot> <c9s> 去歐洲!
+15:06 < slackbot> <clkao> hi
+15:06 < au> c9s: 我固定三月底九月底去歐洲啊
+15:06 < au> clkao_: hi! how's the recovery?
+15:07 < slackbot> <clkao> slowly
+15:07 < au> but surely :)
+15:10 < tonyq_____> au: 維斌說希望能跟你交流一下 
+15:10 < tonyq_____> au: 你有時間安排嗎
+15:11 < slackbot> <jimyhuang> clkao !!!
+15:12 < au> tonyq_____: 我今天 4pm~5pm 可以 skype，他是我臉友，私訊給我 skype id 即可
+15:13 < au> 但就是逐字稿 CC BY 4.0 上 hackpad (除非特別 off record)
+15:13 < au> 要實體的話，看周日要不要來萌典松
+15:14 < au> 報名網址在 http://g0v-tw.kktix.cc/events/moedict-1-18 要帶朋友來的話給我 email 就開邀請票。以上
+15:14 < kcwu> au's url: [1/18 第八次萌典松 moed8ct]
+15:18 < jimyhuang__> tonyq_____: 可是台北市政府目前狀態是在這標案內？（103年度臺北市政府資料開放平台系統委託資訊服務案
+15:18 < jimyhuang__> ） http://web.pcc.gov.tw/tps/main/pms/tps/atm/atmAwardAction.do?newEdit=false&searchMode=common&method=inquiryForPublic&pkAtmMain=51313318&tenderCaseNo=10346
+15:18 < kcwu> jimyhuang__'s url: [政府電子採購網]
+15:20 < au> ZTHY 的約今年三月底到期，不曉得這和三月的 deadline 是否有關 XD
+15:20 < jimyhuang__> 感覺到相關 XD
+15:21 < tonyq_____> @au: 好 我覺得他應該是會想跟你當面聊聊 XD
+15:21 < tonyq_____> jimyhuang: 那個再說 XD
+15:22 < jimyhuang__> tonyq_____++ 
+15:22 < au> tonyq_____: 那就萌典松來玩嘛~ 可以一次認識很多人
+15:22 < tonyq_____> au: 我問問 
+15:23 < tonyq_____> 他說禮拜天他有點事情 但如果是到九點的話 他晚一點可以過去
+15:23 < au> 好的，那就寄邀請碼了，九點前見，照之前的經驗，需要的話可以加開到半夜 XD
+15:25 < tonyq_____> 我看看  我如果搞得定我女友的話我也去
+15:25 < tonyq_____> 我最近工作太忙 有點冷落他了
+15:25 < au> 一起帶來啊 XD
+15:25 < slackbot> <moon_c> 一起帶來啊～
+15:29 < slackbot> <mingtsay> 一起帶來啊～ 
+15:34 < slackbot> <yhsiang> 一起帶來啊～
+15:37 < gugod> RT 一起帶來啊～
+15:41 < slackbot> <a0kman> <https://www.facebook.com/video.php?v=820180314694800>
+15:41 < kcwu> slackbot's url: [Mavi Kocaeli | Facebook]
+15:41 < slackbot> <a0kman> 促V!
+15:43 < slackbot> <kiang> 女友這種生物一般是會抗拒宅男聚會的 XD
+15:44 < slackbot> <yhsiang> 萌典松不是宅男聚會
+15:44 < au> diversity index 25% 起跳
+15:44 < kcwu> 會場有些宅女跟非宅女
+15:44 < CindyLinz> kcwu: 宅男 包含於 非宅女 ?
+15:44 < tonyq_____> 整理了一下跟維斌討論的點
+15:44 < slackbot> <yhsiang> 我從來不參加宅男聚會
+15:45 < tonyq_____> 1. 他不擔心我們平台，但他擔心他資料盤整速度，他會全力處理。另外如果我們願意協助盤點，有一起進去看 SCHEMA 的可能性。
+15:46 < tonyq_____> 2.戰略勉資源到位，他有所有局處的資訊人員考評權力，應該可以作為加速進行的基礎。
+15:47 < dirty> 萌典松是不是宅男聚會別人不知道, 但是光 "萌"典 這名稱就宅爆了啊~
+15:47 < CindyLinz> dirty: 精譬...... XD
+15:47 < tonyq_____> 3. 開放 hackathon 他會願意盤整政府空間跟頻寬，產發也有意願加入規劃。
+15:48 < tonyq_____> 4. 萌典松他會可能下午時間儘量過來。(我也是)
+15:49 < tonyq_____> 5. 內部行政能用的人力相當有限，希望第一年民間能儘量多多協力。
+15:49 < tonyq_____> 以上，我覺得聊的很愉快。
+15:50 < au> 1. 好的，我自己二月會全部放在動民主 SOP 建立上 (包含憲動和政院兩端)，所以無法實際執行，但來黑客松可以找到許多人幫忙
+15:50 < au> 2. 3. 理解，太好了
+15:50 < au> 4. 我寄邀請碼給你和你女友了。
+15:50 < slackbot> <yhsiang> XDD au++
+15:50 < au> 5. 那是當然。以上 XD
+15:50 < tonyq_____> au: 我覺得他需要的是信心，那塊我們儘量媒合有意願人力
+15:50 < au> ok
+15:51 < tonyq_____> 我留我 20%資源在開放資料上
+15:52 < tonyq_____> 另外直接對外開放schema ，他有提出擔心廠商會有智財的爭議， 可能分階進行先跟各局處首長打個招呼。也可能先找我們去幫忙盤，在思考公開可能。
+15:53 < tonyq_____> 但我認為智財影響不大
+15:55 < clkao_> tonyq_____: 前幾天有想到一件事情 各種政府委外營運的資訊系統，應該要揭露是哪個計畫、預算科目、標案、哪個廠商
+15:56 < tonyq_____> clkao_: 我想想
+15:56 < clkao_> (tonyq 現在是讓中央跟北市競速的媒人？ XD)
+15:56 < clkao_> 新型態的媒有人
+15:56 < au> strange attractor
+15:56 < tonyq_____> (我只是來亂的)
+15:57 < tonyq_____> (竟然被發現了)
+15:59 < au> 你寫得很明白啊，一望即知是 multiscroll attractor 結構 XD
+16:15 < slackbot> <hychen> 弱後也是一種優勢，因為可以直接跳到下一代的技術 , tonyq++
+16:26 < clkao_> 為什麼 c4 instance 一定要 vpc 呢
+16:27 < slackbot> <yhsiang> c4 解決一切！
+16:39 < jimyhuang__> 剛剛發現 https://www.flickr.com/photos/g0v/with/15730665046/ 都是版權所有不得轉載 Q_Q
+16:39 < kcwu> jimyhuang__'s url: [Flickr: g0vphoto 的所有相片]
+16:40 < au> 是嗎? https://www.flickr.com/photos/g0v/15754209115/ 就是 CC-BY
+16:40 < kcwu> au's url: [DSC_4847 | Flickr – 相片分享！]
+16:41 < au> 最新的一張也是 CC BY https://www.flickr.com/photos/g0v/15568925158/
+16:41 < kcwu> au's url: [DSC_0513 | Flickr – 相片分享！]
+16:41 < au> 好像很混雜 XD
+16:46 < jimyhuang__> 喔，我用條件搜尋好了～～ 
+16:52 < jimyhuang__> 條件找到了 :D https://www.flickr.com/search/?license=1%2C2%2C3%2C4%2C5%2C6&contacts=g0vphoto  ，要把 g0vphoto 在 flickr 加成「自己人」
+16:52 < kcwu> jimyhuang__'s url: [Flickr 搜尋]
+16:53 < slackbot> <yhsiang> jimyhuang: 原來沒有人是自己人
+16:56 < jimyhuang__> yhsiang: XD 有種毛毛的感覺
+17:20 < gugod> au: https://github.com/audreyt/moedict-webkit/pull/152  我把建立拼音索引的步驟寫在這個 PR ，只要全部 rsync 就 deploy -- 可以在 http://moedict.gugod.org/ 嘗試。
+17:20 < kcwu> gugod's url (2/2): [萌典 – 教育部國語、臺語、客語辭典民間版]
+17:20 < kcwu> gugod's url (1/2): [拼音輸入與選詞 by gugod · Pull Request #152 · audreyt/moedict-webkit · GitHub]
+17:24 < slackbot> <yhsiang> gugod++ !!
+17:55 < au> gugod++ 有沒有這麼強大!
+17:58 < au> gugod: 跑完出現「欸? 誒ề」是正常的吧，好幽默
+17:58 < slackbot> <wildsky> Statuscake
+18:05 < au> gugod: moedict.tw moedict.org 都上線了。
+18:09 -!- chihchun is now known as chihchun_afk
+18:20 < jimyhuang__> 好幽默 +1
+18:24 -!- veloci85_ is now known as veloci85
+18:51 < isacl> gugod++
+18:54 < slackbot> <mingtsay> gugod++
+19:06 -!- chihchun_afk is now known as chihchun
+19:11 < Lee1092> gugod++  tonyq_____ ++ au++   有加速進行中的 fu 了
+19:12 < jimyhuang__> tkirby: g0v.photos 502
+19:21 < jimyhuang__> tkirby: 而且你的照片看了都好餓... https://www.flickr.com/photos/tkirby/sets/72157636741475916/page2/
+19:21 < kcwu> jimyhuang__'s url: [20131020 / g0v hackath5n - Flickr 上的相簿]
+19:21 < slackbot> <mingtsay> 你們好快ww
+19:48 -!- pcchou_ is now known as pcchou
+20:18 < gugod> au: XD 出現「欸? 誒ề」 是因為那兩個音無法轉換... :p
+20:28 -!- chihchun is now known as chihchun_afk
+20:29 < clkao_> 欸？
+20:36 -!- chihchun_afk is now known as chihchun
+21:01 < slackbot> <yutin> 嗡嗡嗡 <https://drive.google.com/a/inlive.tw/file/d/0B2ZuxLBauUNvNWVCNGoxbmtGQ2s5NklHUEItVmZ6WXp5M2FB/view>
+21:01 < kcwu> slackbot's url: [IMAG0716.jpg - Google 雲端硬碟]
+21:04 < slackbot> <clkao> yutin: 發哥！
+21:09 < slackbot> <yutin> 發哥 ＠＠？
+21:10 -!- chihchun is now known as chihchun_afk
+21:10 < slackbot> <yutin> 赫然發現公司內有6+人 參加過g0v活動
+21:19 < slackbot> <hychen> 沒有人發了!
+21:31 -!- chihchun_afk is now known as chihchun
+21:49 -!- veloci85_ is now known as veloci85
+21:54 < tkirby> jimyhuang__: g0v.photos 使用率不高所以一陣子沒開了.. XD 
+22:00 -!- chihchun is now known as chihchun_afk
+22:24 < hcchien> 問一下，有人知道立院提案表決資料在哪裡嗎
+22:37 < slackbot> <kiang> hcchien: api - <http://docs.twly.apiary.io/> , frontend - <http://vote.ly.g0v.tw/> ?
+22:37 < kcwu> slackbot's url (1/2): [TW ly api v0—by apiary.io]
+22:37 < kcwu> slackbot's url (2/2): [立委投票指南:全表決檢索]
+22:40 < hcchien> kiang++
+22:40 < hcchien> # 用 slack 後我都不能用 tab 了...
+22:41 < slackbot> <kiang> hcchien: 另一種沒有人的概念（因為 tag 不到） XD
+22:44 -!- chihchun_afk is now known as chihchun
+22:45 -!- chihchun is now known as chihchun_afk
+23:27 < miaoski> hcchien: tab?
+23:43 < hcchien> miaoski: auto complete   :D
+23:45 < slackbot> <acechen> hcchien: 在打字框裡面還是可以tab
+23:48 < slackbot> <acechen> 喔我懂了，是 irc 上 tag 不到 slack 上面的人 XD

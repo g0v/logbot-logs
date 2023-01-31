@@ -1,0 +1,663 @@
+--- Day changed 五  1月 25 2013
+00:00 < hlb> 2/2 我在日本 XD
+00:00 < hlb> 真是不巧 XD
+00:01 < MindosCheng> 應景一下
+00:02 < MindosCheng> 有0比較厲害: 0-time attack / 0-knowledge schema
+00:04 < clkao> hlb: apple store 優惠揭曉 好像比你的燦坤價還弱... ?
+00:22 < ETBlue> clkao: mikimoto: 週日會提早測試 hangout 嗎？個人偏好 9 am 前測試，因為 9-10 am 失蹤兒童少年資料管理中心的 404 負責人會來台中場，想趁機討論事情順便一起請教 isabel 法律問題... XD 
+00:22 < ETBlue> 不然到時候再現場看看有誰能幫忙測也可以
+00:23 < hlb> clkao: 差個 3000
+00:35 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+00:39 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+00:51 -!- lonely [~lonely@111-251-163-212.dynamic.hinet.net] has joined #g0v.tw
+01:03 -!- lonely [~lonely@111-251-163-212.dynamic.hinet.net] has left #g0v.tw []
+01:16 -!- rexcheng [~Rex@111-251-163-212.dynamic.hinet.net] has joined #g0v.tw
+01:17 -!- rexcheng [~Rex@111-251-163-212.dynamic.hinet.net] has left #g0v.tw []
+01:19 -!- R3xTW [~Rex@111-251-163-212.dynamic.hinet.net] has joined #g0v.tw
+01:19 -!- timdream [~timdream@host-111-184-37-40.dynamic.kbtelecom.net] has quit [Quit: timdream]
+01:21 -!- R3xTW [~Rex@111-251-163-212.dynamic.hinet.net] has left #g0v.tw []
+01:27 -!- timdream [~timdream@host-111-184-37-40.dynamic.kbtelecom.net] has joined #g0v.tw
+01:27 -!- R3xTW [~rex@111-251-163-212.dynamic.hinet.net] has joined #g0v.tw
+01:27 -!- R3xTW [~rex@111-251-163-212.dynamic.hinet.net] has left #g0v.tw []
+01:30 -!- R3xTW [~r3xtw@111-251-163-212.dynamic.hinet.net] has joined #g0v.tw
+01:31 < mikimoto> ETBlue: 當天我人不在現場，確定的話我可以請工作人員先來測試
+01:31 -!- R3xTW [~r3xtw@111-251-163-212.dynamic.hinet.net] has quit [Remote host closed the connection]
+01:33 -!- R3xTW [6ffba3d4@gateway/web/freenode/ip.111.251.163.212] has joined #g0v.tw
+01:34 -!- R3xTW [6ffba3d4@gateway/web/freenode/ip.111.251.163.212] has quit [Client Quit]
+01:36 -!- timdream [~timdream@host-111-184-37-40.dynamic.kbtelecom.net] has quit [Quit: timdream]
+01:49 -!- timdream [~timdream@host-111-184-37-40.dynamic.kbtelecom.net] has joined #g0v.tw
+01:57 -!- MnO2 [~mno2@1.34.43.236] has quit [Ping timeout: 245 seconds]
+02:09 -!- mkfsn_ [~mkfsn@mkfsn.CDPA.nsysu.edu.tw] has quit [Ping timeout: 276 seconds]
+02:09 -!- mkfsn [~mkfsn@mkfsn.CDPA.nsysu.edu.tw] has joined #g0v.tw
+02:12 < tka> http://goo.gl/gl2oi 補了一些簡單搜尋條件的功能, 可以找出得標率比較低的公司
+02:12 < kcwu> tka's url: [政府標案]
+02:16 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+02:16 -!- liic [~liic@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 255 seconds]
+02:17 -!- liic [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+02:17 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Ping timeout: 256 seconds]
+02:18 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+02:19 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+02:20 -!- timdream [~timdream@host-111-184-37-40.dynamic.kbtelecom.net] has quit [Quit: timdream]
+02:21 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+02:22 -!- liic [~liic@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 255 seconds]
+02:23 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+02:23 -!- liic [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+02:27 < ETBlue> tka 好棒喔！ ^-^
+02:30 -!- liic [~liic@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 255 seconds]
+02:31 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+02:31 -!- liic [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+02:31 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+02:31 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Ping timeout: 248 seconds]
+02:33 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+02:58 -!- ETBlue [~chatzilla@123-204-142-108.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 248 seconds]
+03:44 -!- MindosC [~MindosC@101.12.27.204] has quit [Ping timeout: 246 seconds]
+04:13 -!- juanna_ [~juanna@114-37-94-112.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+04:17 -!- juanna [~juanna@114-43-108-155.dynamic.hinet.net] has joined #g0v.tw
+04:50 -!- MindosC [~MindosC@101.12.27.204] has joined #g0v.tw
+05:22 -!- tomjpsun [722586be@gateway/web/freenode/ip.114.37.134.190] has joined #g0v.tw
+05:23 -!- tomjpsun [722586be@gateway/web/freenode/ip.114.37.134.190] has quit [Client Quit]
+08:00 -!- GD__ [~GD__@round214.mc.ntu.edu.tw] has joined #g0v.tw
+08:04 -!- GD_ [~GD__@round214.mc.ntu.edu.tw] has quit [Ping timeout: 276 seconds]
+08:17 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+09:13 -!- ETBlue [~chatzilla@123-204-142-108.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+09:19 -!- MindosCC [~MindosC@115.80.27.122] has joined #g0v.tw
+09:21 -!- MindosC [~MindosC@101.12.27.204] has quit [Ping timeout: 248 seconds]
+09:32 -!- happyman_eric [~happyman@210.59.147.226] has left #g0v.tw []
+09:43 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+09:54 -!- MnO2 [~mno2@nat/yahoo/x-hltptmxziltmcoge] has joined #g0v.tw
+10:02 < clkao> ETBlue: 不然週六先測一下 :p 然後 9am 前 establish link
+10:09 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:09 -!- Ben_chou [Ben_chou@nat/novell/x-ubqskvfrpdsvfxor] has joined #g0v.tw
+10:10 < jeffhung> clkao: e.g., git push origin refs/notes/<namespace>, see http://git-scm.com/2010/08/25/notes.html # 19:05 < clkao> jeffhung: you mean the line based notes?  也可以 push/pull 喔? 奧義!
+10:10 < kcwu> jeffhung's url: [Git]
+10:12 -!- evan3rd_ [722f1594@gateway/web/freenode/ip.114.47.21.148] has joined #g0v.tw
+10:13 -!- MindosCC [~MindosC@115.80.27.122] has quit [Ping timeout: 246 seconds]
+10:24 -!- MindosC [~MindosC@115.80.27.122] has joined #g0v.tw
+10:30 -!- kanru [~kanru@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+10:56 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+11:03 -!- MindosC [~MindosC@115.80.27.122] has quit [Ping timeout: 256 seconds]
+11:05 -!- Luba_ [73502f36@gateway/web/freenode/ip.115.80.47.54] has joined #g0v.tw
+11:06 -!- Luba_ [73502f36@gateway/web/freenode/ip.115.80.47.54] has quit [Client Quit]
+11:12 -!- johnny5tw [~johnny5@111-252-51-173.dynamic.hinet.net] has joined #g0v.tw
+11:15 -!- timdream [~timdream@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+11:18 -!- zz_chihchun is now known as chihchun
+11:20 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+11:25 < clkao> hychen: 開了個 trello: https://trello.com/g0vly 有空玩玩看 順便加一下人吧:p 今天有點忙... 晚上再繼續
+11:25 < kcwu> clkao's url: [Trello]
+11:26 < clkao> 好像沒辦法 public-writable? 一定要把人加成 member? XD
+11:43 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Remote host closed the connection]
+11:47 -!- johnny5tw [~johnny5@111-252-51-173.dynamic.hinet.net] has quit [Quit: This computer has gone to sleep]
+11:50 < opop> 大家好，我的 app design 被抄襲了，如果大家可以的話請幫我做個簡單小分享～ 抱歉打擾 >o<
+11:50 < opop> http://opop.pixnet.net/blog/post/28423629
+11:58 -!- swem [~Thunderbi@host-116.68-43-115.dynamic.totalbb.net.tw] has joined #g0v.tw
+12:00 -!- hychen [~hychen@175.41.48.77] has quit [Ping timeout: 245 seconds]
+12:06 -!- MindosC [~MindosC@115.80.18.56] has joined #g0v.tw
+12:07 -!- tonypai [76a3c798@gateway/web/freenode/ip.118.163.199.152] has joined #g0v.tw
+12:07 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 245 seconds]
+12:08 < MindosC> ET Wu 竟然認領了開場就不做 project 了 lol
+12:09 < tonypai> 哈囉~ 
+12:09 < MindosC> 午安
+12:10 < tonypai> 嗨你好 這邊都是周末要參加g0v.tw的人嗎? 好多
+12:11 < opop> 沒錯 A___AY，超強勢力！
+12:11 < tonypai> 主要應該集中在台北場吧~
+12:12 < tonypai> 有台中場的朋友嗎? XDD
+12:12 < MindosC> opop 辛苦了 # http://opop.pixnet.net/blog/post/28423629
+12:12 -!- KNY [~Adium@118-170-70-100.dynamic.hinet.net] has joined #g0v.tw
+12:13 -!- KNY [~Adium@118-170-70-100.dynamic.hinet.net] has left #g0v.tw []
+12:13 < MindosC> 我啊我啊
+12:13 < tonypai> 耶~
+12:14 < tonypai> 想找專案一起合作說
+12:14 < MindosC> tonypai : 有想做什麼呢？
+12:14 < opop> MindosC: 咦，是你還欠我稿嗎 XD
+12:15 < opop> 星期天快到了唷 A_A
+12:16 < MindosC> opop : 我不知道有沒有後端 >_<
+12:16 -!- thschee [~thschee@114-42-21-251.dynamic.hinet.net] has joined #g0v.tw
+12:16 < opop> MindosC: 後端 google doc!!
+12:17 < MindosC> opop 蝦米？
+12:18 < opop> 你的後端是指連結點進去後的顯示頁面嗎？
+12:18 < opop> 還是~ 抓資料 xD
+12:18 < MindosC> tonypai : 耶，這樣台中 data vistualization 又多一人
+12:19 < MindosC> opop : 是指整個網站沒想好 Q.Q
+12:19 < opop> MindosC: 哈，那加油，我等你 :P
+12:20 < MindosC> opop : 這次不一定等得到 :)
+12:23  * thschee maybe somebody has posted it already http://citypatterns.blogspot.tw/2013/01/blog-post.html
+12:24 < MindosC> tonypai : 我們有一些鄉鎮資料視覺化的東西。
+12:24 < opop> ok XD
+12:24 -!- Ben_chou [Ben_chou@nat/novell/x-ubqskvfrpdsvfxor] has quit [Ping timeout: 246 seconds]
+12:25 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+12:25 < MindosC> 或許資料視覺化中心可以成一
+12:26 < MindosC> 個支援單位？像文案配送這樣
+12:29 < MindosC> tonypai++ # Handling d3js.org
+12:29 < tonypai> 另一個channel?
+12:31 < MindosC> kirby 有一些台灣鄉鎮市相關的模組可以玩 :)
+12:32 < tonypai> 喔? 方便參考一下嗎? :D
+12:33 < tkirby_> 這幾天在試著模組化 twgeojson
+12:34 -!- Johnny5TW [~johnny5tw@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+12:34 < tkirby_> 目前 twgeojson 有 WebGL 版, SVG3D 版, 也有 dorling & continuous cartogram View
+12:34 < tkirby_> http://g0v.github.com/twgeojson/ <- check this
+12:34 < kcwu> tkirby_'s url: [TW]
+12:34 < tkirby_> http://g0v.github.com/twgeojson/topojson.html <- cartogram transition 在這裡
+12:35 < MindosC> tkirby_ : 成立視覺化配送中心吧！
+12:35 < tkirby_> XD
+12:36 < MindosC> 都要寫成 libraray 了不是 :)
+12:36 < tkirby_> 這東西貌似沒辦法量產.. 配送中心有點困難 XD
+12:37 < MindosC> 丟
+12:38 < MindosC> 丟 library 叫大家自己用，提供 consult 服務 lol
+12:42 -!- Ben_chou [Ben_chou@nat/novell/x-ppwoxtozqrgpmdds] has joined #g0v.tw
+12:42 < MindosC> 也能減少視覺化的進入障礙。
+12:48 -!- cyt93cs_ [~cyt93cs@linux.cs.ccu.edu.tw] has quit [Ping timeout: 252 seconds]
+12:51 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+13:00 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+13:03 < tkirby_> XD
+13:04 < tkirby_> 想做的事好多
+13:05 < opop> 科比想做的有哪些!!
+13:06 < tkirby_> 爬山, 出國旅遊, 組樂團, 人像攝影..  (咦)
+13:07 < tkirby_> 我列了一些 todo.. 比方說 人物關係圖, 總預算, 房價實價登錄之類的..
+13:09 < tkirby_> 咦, trello 就是用來管理 task 的嗎
+13:09 < opop> ya
+13:09 < tkirby_> !
+13:10 < tkirby_> 這樣以後就可以知道大家在幹嘛了
+13:10  * tkirby_ 開個 todo 給 opop do 好了
+13:11 < opop> 那那那先邀請我 yuyuopop@gmail.com
+13:12 -!- swem [~Thunderbi@host-116.68-43-115.dynamic.totalbb.net.tw] has quit [Ping timeout: 252 seconds]
+13:12 < opop> 咦，不對，有兩個
+13:14 < opop> 還是不知道要怎樣才能成為 member ~_~
+13:15 -!- evan3rd_ [722f1594@gateway/web/freenode/ip.114.47.21.148] has quit [Ping timeout: 245 seconds]
+13:16 < tkirby_> 要被加
+13:16  * tkirby_ 還是不知道要怎樣才能加 member >,<
+13:18 < tkirby_> oh, 看來是因為我不是 admin 所以不能加
+13:18 < tkirby_> lalala~
+13:19 < tkirby_> 嗯? 
+13:20 < tkirby_> opop: 你應該要 new 一個 logistics.g0v
+13:20 < tkirby_> 以後文案 todo 丟進去就好了 XD
+13:23 < opop> 我～進～不～去～
+13:23 < tkirby_> 你是說進不去 ly.g0v ?
+13:24 < opop> https://trello.com/c/M4BlPw8C 無法成為 member, https://trello.com/g0vly 進不去～
+13:24 < kcwu> opop's url (2/2): [Trello]
+13:25 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+13:26 < hcchien> tkirby_++   # 13:06 < tkirby_> 爬山, 出國旅遊, 組樂團, 人像攝影..  (咦)
+13:27 < hcchien> lol
+13:27 < tkirby_> open data day 是誰發起的? 可能要問他?
+13:27 < tkirby_> hcchien: XD
+13:28 < ipa> http://citypatterns.blogspot.tw/2013/01/blog-post.html
+13:28 < kcwu> ipa's url: [城市格局: 立委現形記]
+13:28 < ipa> CK++
+13:29 < thschee> opop: 你 email 是？我把你加入 https://trello.com/c/M4BlPw8C
+13:32 < thschee> comment 應該是開放的，所以喊一下就有人會看到了
+13:33 < opop> thschee: yuyuopop@gmail.com
+13:37 < opop> 得到他了～感謝
+13:38 < thschee> opop: 不過 g0v 應該沒開 logistics 的 trello... 所以不要認錯了 XD
+13:39 < opop> 睡眠不足腦中一片空白，想不出還有什麼事情該做
+13:39 < opop> 想不出來我就要開始做精美的餐飲表 xD
+13:40 < opop> 喔不這次場地又是 B1 >o<
+13:41 < opop> 手機會沒收訊 QQ
+13:42 < tkirby_> XD
+13:45 < MindosC> CK++
+13:48 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+13:48 -!- Dennisc140 [d23dc13c@gateway/web/freenode/ip.210.61.193.60] has joined #g0v.tw
+14:09 < ETBlue> clkao: 我想到了，台北場地應該沒啥問題，需要測的是台中這邊的收音、投影、網路，所以我明天挑個人少的時段去默契咖啡，抓 tka 來幫我測連線就可以了... XD
+14:15 < Johnny5TW> ETBlue:還是現在跟我測試HANGOUT連線看看嗎？
+14:15 < Johnny5TW> 或是明天上午我會在
+14:15 < Johnny5TW> 默契
+14:16 < clkao> tkirby_: 我不是加你了
+14:17 < ETBlue> Johnny5TW: 我現在人不在默契 @@ 難道你在那？
+14:18 < Johnny5TW> 我在台中我公司內
+14:18 < ETBlue> tonypai: 台中場舉手~
+14:19 < tkirby_> clkao: 你的 invite 我有收到.. 不過 admin 是 ipa 給的
+14:19 < Johnny5TW> 明天上午我會去默契參加IOS DEV聚會，11：30結束後可以順便測試連線
+14:19 < tkirby_> MindosC: 結果今天開會就碰到昨天的兩位碼農... 
+14:22 < clkao> ok ok 我晚上再 resume
+14:22 < clkao> 可以動就好
+14:23 < ETBlue> Johnny5TW: 那我也明天早上去！明天見！ ^o^
+14:24 < Johnny5TW> ETBlue:OK
+14:26 < ETBlue> Johnny5TW: 原來你是寫 iOS 的！（筆記） XD
+14:29 < Johnny5TW> ETBlue:目前正在學習APP開發中，你要註記為（新新手）～呵
+14:34 < ETBlue> clkao: https://trello.com/g0vly 是一片空白 /OoO/
+14:34 < kcwu> ETBlue's url: [Trello]
+14:34 < ETBlue> Johnny5TW: 好的，那表示我的手還沒長出來...
+14:37 < Johnny5TW> ETBlue:...參加各種聚會是多多學習，有一天會長出翅膀的
+14:37 < ETBlue> Johnny5TW: 我明天會帶小黑一台，外接麥克風一個... 就只有這樣 @@"
+14:37 < MindosC> tkirby_ : lol
+14:39 -!- Luba_ [73502f36@gateway/web/freenode/ip.115.80.47.54] has joined #g0v.tw
+14:45 -!- Luba_ [73502f36@gateway/web/freenode/ip.115.80.47.54] has quit [Ping timeout: 245 seconds]
+14:47 < Johnny5TW> ETBlue: 好的
+14:53 -!- markwu [~markwu@116.50.34.246] has joined #g0v.tw
+14:54 < Johnny5TW> 請問大家，我用XChat，某人傳訊息給我，會有提示及顯示紅字，我要在前面加什麼指令
+14:54 < markwu> 剛剛打電話去經濟部商業司查詢有關公司資料登陸的 Open Data 計畫，或是我自己抓取加值使用的授權，一問三不知，語氣還很怕 ... orz。
+14:55 < markwu> 這 … open data 有這麼可怕嘛？當然我也可以不要問，直接就去 parse 來用。
+14:55 -!- markwu [~markwu@116.50.34.246] has left #g0v.tw []
+14:55 -!- markwu [~markwu@116.50.34.246] has joined #g0v.tw
+14:55 < thschee> markwu: 因為研考會的辦法還沒有出來啊...
+14:55 < tkirby_> 可能不小心被忙著看報紙冗員接到電話了 (?!)
+14:56 < markwu> 她說她會請示他們科長，請他們科長回我 … orz 
+14:56 < markwu> 我是想如果公司登陸資料 + 標案資料
+14:56 < markwu> 這個應該可以非常強大！
+14:57 < markwu> 標案資料有人 parse 了，我就來 parse 公司登陸資料。
+14:58 < tka> markwu: 我記得上次有人 parse 過公司資料了耶, 我還查了一下我公司, 的確有被parse 出來
+14:58 < MindosC> 寫 email 會不會比較正式？
+14:59 < markwu> tka ，我說的公司登入資料是 http://gcis.nat.gov.tw/pub/cmpy/cmpyInfoListAction.do
+14:59 < kcwu> markwu's url: [公司及分公司基本資料查詢]
+15:00 < markwu> MindosC, 但是我習慣先打電話確認再寫信 ….
+15:02 < markwu> 這個公司登陸資料還包含營業項目，董監事，經理人，分公司等等等  …
+15:03 < markwu> 我們目前營利事業登記證雖然已經廢除，但是營業項目還是有
+15:03 < tka> 從 irc 歷史裏面翻出來 https://www.dropbox.com/s/txxuwhwdlemuy41/company.zip 
+15:03 < markwu> 而營業項目、公司成立日期，董監事 … 跟標案有絕對相關
+15:03 < markwu> 太好了 ....
+15:04 < opop> 我覺得我把 open data day 搞混了....o.o
+15:04 < thschee> markwu: 麻煩您把台灣的倒一倒了 http://opencorporates.com/companies/tw <- 目前還沒有
+15:04 < kcwu> thschee's url: [Companies in Taiwan, Province of China :: OpenCorporates]
+15:04 < opop> open data day & g0v
+15:05 < tka> 某一天 15:41 < ronnywang> http://ronny.tw:5566/?name=%E9%80%A3%E5%8B%9D%E6%96%87 可以玩玩看，但請先不要公開，等我爬完資料我再把資料丟出來 XD
+15:07 < tka> markwu: 應該是 2012/12/05 ronnywang 有爬了一份, 也許再問問看他
+15:07 < MindosC> Province of China...
+15:11 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+15:13 < markwu> http://ronny.tw:5566/?name=%E9%80%A3%E5%8B%9D%E6%96%87
+15:13 < markwu> 貼錯 … :P
+15:13 < markwu> 剛剛經濟部商業司有一位黃先生打電話來
+15:14 < markwu> 他說有這樣的計畫，但是 5 月底才會開始 ….建置完可能到年底
+15:14 < markwu> 目前我可以直接抓取，只要我能破解 Captcha
+15:15 < thschee> 5月底開始只是上繳 data set 吧
+15:15 < markwu> 抓下來的資料，基本上只要不做違法使用應該沒有問題
+15:15 < markwu> 是的！！
+15:15 < thschee> 他們要繳給 data.gov.tw
+15:15 < thschee> 以上都是公開資訊（新聞有寫）
+15:15 < markwu> 所謂的違法使用，他是怕我拿去買錢 … orz
+15:18 -!- evan3rd_ [722f1594@gateway/web/freenode/ip.114.47.21.148] has joined #g0v.tw
+15:20 < thschee> 輕鬆一點的 http://www.opendatacookbook.net/wiki/recipe/start
+15:20 < kcwu> thschee's url: [recipe:start – Open Data Cook Book]
+15:20 < thschee> open data 食譜...
+15:20 < thschee> :ppp
+15:21 < ETBlue> opop: 你的網誌文章裡自己的 app 的連結好像設錯了，結尾多了一段 op.phind.twcoupon 導致連不過去
+15:21 < markwu> 他剛剛請示長官後，又特別打了一次電話給我，就是我現在寫信給他，他也不會承諾任何事（包含授權），但是電話中可以告訴我，這個就是我抓的下來就可以拿去用
+15:21 < ETBlue> opop: 變成 " https://play.google.com/store/apps/details?id=opop.phind.twcouponop.phind.twcoupon "
+15:21 < markwu> 只要不要影響到他們網站流量
+15:22 < markwu> ronnywang, http://gcis.nat.gov.tw/pub/cmpy/cmpyInfoListAction.do 請問這個資料你抓過了嘛？如果抓過，我就可以不用自己寫 parser 了 ...
+15:22 < kcwu> markwu's url: [公司及分公司基本資料查詢]
+15:24 < thschee> 可以拿硬碟去拷嗎...
+15:24 < markwu> 不行:(
+15:25 < markwu> 不過有可能到時 open 出來的資料會比現在少
+15:25 < opop> Ben_chou: 3Q
+15:26 < Ben_chou> :) 
+15:27 < opop> done，他立刻找好多人幫我給一星評價
+15:27 < opop> 不過我已經寄信關信他們公司與HR了
+15:27 < opop> s/關信/關心
+15:27 < markwu> 大家都是怎麼破解 Captcha，我查了一下好像是用 gocr 跟 tesseract
+15:29 < MindosC> opop : 不能檢舉他們嗎？
+15:30 < ETBlue> opop: 不知為何這個 pixnet 版型在 chrome 裡面文章淡黃色的背景色會不見，整頁都是土黃色圖也出不來 XD 大概是 pixnet 秀抖了...
+15:30 < ipa> 公司登記資料扒出來還可以作個「立委兼職大公開」
+15:33 < ETBlue> MindosC: 找不到檢舉按鈕
+15:34 < opop> MindosC: 這沒有可以檢舉的部份，法律管不著
+15:35 < opop> MindosC: 不過其實我不在意，我只是很想關心他 XD
+15:35 < kcwu> captcha 的量有多少? http://antigate.com/ 每一千個大約 $1~2 USD
+15:35 < kcwu> kcwu's url: [Antigate.Com: automated captcha guessing, recognition service. API.]
+15:36 < opop> pixnet 鎖我文 -___=
+15:37 < opop> 貼別人網頁連結算個資嗎
+15:37 < markwu> 量喔？如果從統編 00000001 到 99999999 應該有這麼多吧 … 實際趴了才知道
+15:37 < opop> 誰有文章文字備份 囧
+15:37 < markwu> 等一下用 gocr 與 tesseract 先來試試
+15:37 < opop> 請幫我複製寄給我 yuyuopop@gmail.com 囧
+15:37 < thschee> markwu: 中小企業有130萬家？
+15:37 < thschee> XD
+15:37 < tkirby_> opop: pixnet 文章被鎖喔!?
+15:37 < markwu> orz ...
+15:37 < tkirby_> 對方也太過份了一點..
+15:37 < opop> tkirby_: yes
+15:38 < opop> 超賤
+15:38 < tkirby_> 我把他貼我板上好了
+15:38 < opop> google 庫存也還沒有
+15:39 < markwu> 八卦，什麼文章會被鎖文啊？
+15:40 < opop> 我有放他 fb  link
+15:40 < opop> pixnet 說個資
+15:40 < opop> 我只要重 po 就好了
+15:40 < opop> 沒關係
+15:40 < opop> 不過文字有人還有在嗎
+15:40 < tka> fb link 是個資 @_@
+15:40 < opop> 我剛好都沒有了
+15:40 < tkirby_> check @ ptt2
+15:40 < tkirby_> complete backup
+15:40 < opop> 感謝！！
+15:41 < opop> 那他的 blog link 算個資嗎？
+15:41 < tkirby_> 當然是不算阿~ XD
+15:42 < tkirby_> 個資法不是很懂, 不過如果他自己有開放的東西, 在移除前你分享都不算違法?
+15:42 < opop> 真的很機耶
+15:45 < ETBlue> opop: 剛才還沒被鎖時打開的頁面剛好可以抓 html 檔，寄到你信箱了 XD
+15:46 < ETBlue> pixnet 這鎖文法真爛... = =
+15:47 < tkirby_> 只好改用 tumblr 了
+15:48 < MindosC> 寫信給 google 檢舉
+15:49 < opop> 感謝 XD
+15:49 < opop> MindosC: 我覺得檢舉無用，UI/UX/創意的抄襲很難界定
+15:50 -!- Conrad__ [~cpyang@42-75-156-195.dynamic-ip.hinet.net] has joined #g0v.tw
+15:50 < opop> 剛好我在準備 po mobile01 的文章..
+15:52 < MindosC> opop : Google 為什麼把妳下架呢？
+15:52 < tkirby_> opop: 他寫了不少 ap, 一個一個看有沒有侵權或有問題的.. 
+15:54 < ronnywang> markwu: 抓過了 # 15:22 < markwu> ronnywang, http://gcis.nat.gov.tw/pub/cmpy/cmpyInfoListAction.do 請問這個資料你抓過了嘛？如果抓過，我就可以不用自己寫 parser 了 ...
+15:54 < kcwu> ronnywang's url: [公司及分公司基本資料查詢]
+15:54 < ronnywang> markwu: 我等等把 json 資料丟上 dropbox
+15:55 < opop> MindosC: 這個故事就遠了，第一次有用到商標我認了，第二次我商標全拿掉還是被下，第三次改手繪還是被下
+15:55 < opop> 剛好我有內部人員協助，所以都有去問原因
+15:55 < opop> 第二次詢問結果我徹底改了也都符合
+15:55 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+15:55 < tkirby_> opop: 拿同樣的理由去檢舉他有用嗎?
+15:55 < opop> 第三次被下、內部人員又去問，但他沒告訴我答案
+15:56 < tkirby_> 話說... 
+15:56 < tkirby_> 本頻道有在 log XDDDDD
+15:56 < opop> 我就火了，寄信給他們總經理，但這段其實我花了很多的時間。我當時對於寫信給總經理其實有一道心理障礙很難跨。
+15:57 < opop> 然後總經理馬上就處理了，他們審查單位寄信給我說我都沒改
+15:57 < opop> 我就回信說他馬的你哪隻眼睛看到我沒改？我每次都改了一天一夜你說得出我沒改？
+15:57 < opop> 你有種就來跟我對質
+15:58 < opop> 後來從此沒有回應，我上架了第三次版本，從此沒備下架
+15:58 < opop> 所以我覺得同樣理由檢舉應該無用，因為 google 被我罵過了
+15:58 < tkirby_> 試試看? XD
+15:58 < opop> 不了
+15:59 < MindosC> opop 分享心路歷程。
+15:59 < opop> 我不期待 google
+15:59 < tkirby_> 人家抄你, 檢舉你的文章, 刪你的留言.. 你打算就這樣算了?
+15:59 < opop> 雖然我對簡立峰還是充滿了愛
+15:59 < MindosC> 他如果直接 copy 妳的圖就不行。
+15:59 < opop> tkirby_: 沒，下週沒回應我就 tvbs 晚間新文件
+15:59 < opop> tkirby_: 沒，下週沒回應我就 tvbs 晚間新聞見
+16:00 < tkirby_> hmm
+16:00 < opop> 某記者已經採訪我兩次了
+16:00 < opop> 我相信他會有興趣
+16:01 < markwu> ronnywang, 感激 … 這個 parser 在 github 看的到嘛？
+16:02 < markwu> ronnywang: 請問他 captcha 部分你是怎麼解決的啊？
+16:03 < ronnywang> markwu: 說到這就很有趣 XD
+16:03 < ronnywang> 用程式爬資料不需要 captcha
+16:03 < ronnywang> 人看才要
+16:03 < MindosC> captcha 做在前端？
+16:03 < markwu> 哇勒 …. 太有趣了！所以 captcha 是在 client
+16:03 < markwu> 哈！
+16:03 < hychen> lol
+16:04 < clkao> fnord
+16:04 < S3p_lin> 有些檔案分享服務的 captcha 也是在 client 用 js 摳出來跑的, 所以就可以 greasemonkey 破
+16:05 < markwu> 我還在看 gocr 跟 tesseract 在測呢！
+16:05 < markwu> 哈哈哈～～
+16:05 < clkao> 科科
+16:10 < tkirby_> opop: 我把文章移到你的板喔
+16:13 < opop> tkirby_: 3Q
+16:13 < opop> 在忙公司 app 上架
+16:13 < opop> 還要開週會
+16:28 -!- MindosC [~MindosC@115.80.18.56] has quit [Ping timeout: 240 seconds]
+16:28 -!- MindosC [~MindosC@115.80.18.56] has joined #g0v.tw
+16:34 -!- KNY [~Adium@118-170-70-100.dynamic.hinet.net] has joined #g0v.tw
+16:35 -!- timdream [~timdream@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: timdream]
+16:36 -!- thschee [~thschee@114-42-21-251.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+16:39 -!- KNY [~Adium@118-170-70-100.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+16:39 -!- KNY [~Adium@220-133-164-49.HINET-IP.hinet.net] has joined #g0v.tw
+16:47 < ronnywang> markwu: https://www.dropbox.com/sh/42oyn4ustp4ilhy/FRQA56UbG0 這樣子好下載嗎？
+16:47 < ronnywang> 匯出中
+16:58 < ronnywang> 我加了一個 index.csv.gz  裡面是統一編號和公司名稱的對照表，然後再用統一編號前三碼 result.xxx00000.json.gz 去找 json 就行了
+16:59 < ronnywang> 好像還是有點難抓.. XD 換個格式好了
+17:03 -!- MindosC [~MindosC@115.80.18.56] has quit [Quit: Bye]
+17:07 < ronnywang> markwu: 現在格式改成一行是一家公司資料，每一行是 {統一編號},{json格式的完整資料}
+17:07 -!- chihchun is now known as zz_chihchun
+17:08 < ronnywang> markwu: 其中 10000000.json.gz 裡面是是統編介於 10000000 ~ 19999999 的公司
+17:08 < ronnywang> 所以總共會有 10 個 json.gz
+17:11 -!- MindosC [~MindosC@115.80.18.56] has joined #g0v.tw
+17:12 -!- MindosC [~MindosC@115.80.18.56] has quit [Client Quit]
+17:16 -!- thschee [~thschee@60.245.79.164] has joined #g0v.tw
+17:16 -!- cataska [~user@210.64.6.233] has quit [Read error: Connection reset by peer]
+17:17 -!- KNY1 [~Adium@118-170-70-100.dynamic.hinet.net] has joined #g0v.tw
+17:17 -!- KNY [~Adium@220-133-164-49.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+17:17 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+17:18 -!- zz_chihchun [~chihchun@114-34-10-226.HINET-IP.hinet.net] has quit [Excess Flood]
+17:18 -!- chihchun [~chihchun@114-34-10-226.HINET-IP.hinet.net] has joined #g0v.tw
+17:23 < clkao> ronnywang++
+17:23 < clkao> 晚點把他放到 pgrest 裡面
+17:25 < clkao> 頭好暈啊 今天空氣是不是特別差
+17:27 < ronnywang> http://mops.twse.com.tw/nas/t10img/29122011.pdf # 這種檔案要怎麼處理好呢 XDD ，證交所公開的關係企業資料
+17:27 < ronnywang> http://mops.twse.com.tw/nas/t10img/{4碼股市代號}2011.pdf
+17:28 < ronnywang> 可以 pdftohtml ，好像 ok
+17:29 -!- Ben_chou [Ben_chou@nat/novell/x-ppwoxtozqrgpmdds] has quit [Ping timeout: 255 seconds]
+17:34 -!- cataska [~user@210.64.6.233] has quit [Read error: Connection reset by peer]
+17:34 -!- timdream [~timdream@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+17:36 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+17:37 < tkirby_> 空氣品質監測 # http://taqm.epa.gov.tw/taqm/zh-tw/PsiMap.aspx 
+17:37 < kcwu> tkirby_'s url: [行政院環保署－空氣品質監測網]
+17:38 < markwu> ronnywang, 下載完畢！
+17:39 < markwu> e03ru !
+17:39 < markwu> 感激！
+17:43 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+17:44 -!- cataska [~user@210.64.6.233] has quit [Read error: Connection reset by peer]
+17:47 -!- Ben_chou [Ben_chou@nat/novell/x-cdoyujcusmybrhmh] has joined #g0v.tw
+17:48 -!- thschee [~thschee@60.245.79.164] has quit [Remote host closed the connection]
+17:50 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+17:51 -!- KNY1 [~Adium@118-170-70-100.dynamic.hinet.net] has quit [Quit: Leaving.]
+17:51 -!- KNY [~Adium@118-170-70-100.dynamic.hinet.net] has joined #g0v.tw
+17:51 -!- cataska [~user@210.64.6.233] has quit [Read error: Connection reset by peer]
+17:53 -!- MindosCheng [~mindos@42-72-144-213.dynamic-ip.hinet.net] has quit [Read error: Connection reset by peer]
+18:01 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+18:04 -!- MindosCheng [~mindos@42-68-93-230.dynamic-ip.hinet.net] has joined #g0v.tw
+18:04 -!- cataska [~user@210.64.6.233] has quit [Read error: Connection reset by peer]
+18:05 -!- KNY [~Adium@118-170-70-100.dynamic.hinet.net] has quit [Quit: Leaving.]
+18:05 -!- KNY [~Adium@118-170-70-100.dynamic.hinet.net] has joined #g0v.tw
+18:05 -!- thschee [~thschee@27.105.21.105] has joined #g0v.tw
+18:07 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+18:09 -!- KNY [~Adium@118-170-70-100.dynamic.hinet.net] has left #g0v.tw []
+18:15 -!- Conrad__ [~cpyang@42-75-156-195.dynamic-ip.hinet.net] has quit [Quit: Bye]
+18:21 -!- MindosC [~MindosC@115.80.18.56] has joined #g0v.tw
+18:24 -!- cataska [~user@210.64.6.233] has quit [Ping timeout: 255 seconds]
+18:33 -!- Dennisc140 [d23dc13c@gateway/web/freenode/ip.210.61.193.60] has quit [Quit: Page closed]
+18:37 -!- Ben_chou [Ben_chou@nat/novell/x-cdoyujcusmybrhmh] has quit [Ping timeout: 245 seconds]
+18:42 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+18:50 -!- cataska [~user@210.64.6.233] has quit [Ping timeout: 256 seconds]
+18:54 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+19:06 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+19:25 < clkao> timdream: tag cloud generator 可以 blacklist 一下 http 嗎 XD
+19:25 < clkao> timdream: 還有可以 analyze 自己的朋友們嗎 XD
+19:25 < timdream> clkao: 不懂
+19:26 < timdream> clkao: 其實可以
+19:26 < timdream> clkao: blacklist http 是指？
+19:26 < timdream> clkao: Hash 用 #facebook:<fb object id> 可以讀別人的 stream
+19:29 -!- cataska [~user@210.64.6.233] has quit [Read error: Connection reset by peer]
+19:33 < chhsiao1981> 關於公司登陸資訊. 不建議跟現在 open data 綁在一起做. (私下做是還算 ok.) 畢竟目前號招的是取得跟政府部門高度相關的資訊. 
+19:36 < chhsiao1981> 個別公司的相關資訊. 是比較危險的. 即使真的想要跟 open data 綁在一起做. 比較建議是等這些觀念被一般人都容易接受並且經常使用以後. 才跟 open data 綁在一起做.
+19:37 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+19:41 -!- cataska [~user@210.64.6.233] has quit [Ping timeout: 255 seconds]
+19:45 -!- evan3rd_ [722f1594@gateway/web/freenode/ip.114.47.21.148] has quit [Ping timeout: 245 seconds]
+19:47 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+19:47 < clkao> timdream: "http" 整個好大在我的 word cloud 正中間 XD
+19:48 < clkao> chhsiao1981: anything on gov.tw is considered public information
+19:48 < timdream> clkao: 喔喔，那自己把詞頻弄出來放到 wordcloud2.js 去吧
+19:50 < clkao> timdream++
+19:52 < timdream> clkao: 我把詞頻和文字排版的 library 都 git filter-branch 出來了 … 只差抓取遠端文字的那個沒做，做完重新就可以重新改版文字雲了（「只要我有時間的話」）
+19:52 < timdream> http://bit.ly/ifavailable
+19:52 < kcwu> timdream's url: [提姆．提拉米蘇 我要來做一個網站，叫做「等我有空的時候就世界末日了」，每次人家說「你有空的話」就貼連結給他（ bitly 網址） - #g78rbh]
+19:53 < clkao> timdream: http://timc.idv.tw/wordcloud/zh/#facebook:329332277137213 # 好像不會動? 
+19:53 < kcwu> clkao's url: [HTML5 文字雲：文章詞彙分析機]
+20:02 -!- johnny5_ [~johnny5@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+20:02 -!- MnO2 [~mno2@nat/yahoo/x-hltptmxziltmcoge] has quit [Quit: Leaving]
+20:03 < timdream> clkao: 可以動，但是因為授權的關係你要先在介面上先算自己的 #facebook:me
+20:04 -!- timdream [~timdream@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: timdream]
+20:27 -!- chihchun is now known as zz_chihchun
+20:30 -!- MindosC [~MindosC@115.80.18.56] has quit [Ping timeout: 248 seconds]
+20:34 -!- MindosC [~MindosC@115.80.18.56] has joined #g0v.tw
+20:44 -!- johnny5_ [~johnny5@114-33-113-125.HINET-IP.hinet.net] has quit [Quit: This computer has gone to sleep]
+20:50 < clkao> MindosC: https://trello.com/card/csv-export-for-graph-analysis/5101f9b07a65525358001c2c/3 # 交給你練習一下 ls?  :p
+20:50 < kcwu> clkao's url: [Trello]
+20:51 < MindosC> 哈哈，好啊。
+20:55 < clkao> MindosC: 應該都是一行.. 當初在 command line 打的.. 沒存起來... zzz
+20:59 < clkao> 先從 mly 開始吧.. lsc -e 'x = require \./data/mly-8.json; for {....} in x => console.log {...} '
+21:06 < opop> 請問 g0v logo 有 png 檔嗎 by又想做餐飲表的食物組
+21:07 < opop> (透明底的)
+21:07 < opop> 好吧沒耐新的我又自己去底了，別理我 XD
+21:08 < clkao> opop: XD
+21:09 < ipa> opop: tkirby_ 好像曾經有順手去背過，但既然你已經在弄，就...別理我 XD
+21:16 -!- thschee_ [~thschee@27.105.21.105] has joined #g0v.tw
+21:19 -!- thschee [~thschee@27.105.21.105] has quit [Ping timeout: 240 seconds]
+21:32 < opop> https://dl.dropbox.com/u/13701231/g0vfood.png
+21:32 < opop> A_____AY
+21:32 < clkao> 殘念 大台攝影機要接來當 hangout 攝影機失敗
+21:32 < opop> 怎麼看起來好多 (扶額)
+21:32 < clkao> opop++ # 奧義
+21:32 < MindosC> clkao 
+21:32 < clkao> MindosC
+21:33 < MindosC> 真的看fnord不到字嗎？
+21:33 -!- Johnny5TW [~johnny5tw@114-33-113-125.HINET-IP.hinet.net] has quit [Quit: Leaving]
+21:34 < S3p_lin> 餵食(X) 黑客松(O)
+21:34 < MindosC> clkao : 先出去吃宵夜，晚點在研究 :)
+21:38 < clkao> S3p_lin: 考布雷也能吞嗎
+21:38 < S3p_lin> clkao: 理論上可以, 可是韌性不夠吸不出來, 而且烤的會跟外殼黏比較緊
+21:41 < clkao> tkirby_: dynamic dorling 好噁~~
+21:49 -!- thschee [thschee@2a00:dcc0:eda:88:245:71:872b:8f0b] has joined #g0v.tw
+21:49 < opop> S3p_lin: 你這次會來嗎？我幫你定五打大布丁！
+21:50 < Supaplextw> http://vimeo.com/37997015#
+21:50 < Supaplextw> 不知道台灣何時能走到這一步
+21:50 < clkao> 「公地放領」 google 也到第一頁啦 :D
+21:51 < opop> (y)
+21:51 < S3p_lin> opop: 呃... 周末是修養日 :~
+21:52 < clkao> 疑 還是只有我自己 search 才是.. XD
+21:52 < au> clkao: welcome to the bubble XD
+21:52 < opop> clkao: 我 search 也是
+21:52 -!- timdream [~timdream@123-204-174-202.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+21:53 < au> (我 search 「"公地放領"」 是, 「公地放領」 還不是)
+21:53 < opop> [facebook粉絲團管理權限放領] 需要者請告訴我 #http://www.facebook.com/g0v.tw
+21:53 < kcwu> opop's url: [g0v.tw 台灣零時政府 | Facebook]
+21:55 < clkao> 科科
+21:56 < clkao> hopefully 之後粉絲團和 blog.g0v 一樣 真人寫了之後再 轉貼/reblog 就好了
+21:56 < opop> ok
+21:59 -!- johnny5tw [~johnny5@111-252-51-173.dynamic.hinet.net] has joined #g0v.tw
+22:01 -!- thschee_ [~thschee@27.105.21.105] has quit [Quit: Leaving...]
+22:04 -!- MnO2 [~mno2@1.34.43.236] has joined #g0v.tw
+22:04 -!- superbil [~superbil@114-34-221-169.HINET-IP.hinet.net] has quit [Quit: WeeChat 0.3.9.2]
+22:09 -!- ETBlue [~chatzilla@123-204-142-108.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 252 seconds]
+22:10 < markwu> 慘了，我吐血了 ….
+22:10 < markwu> 1/27 不是禮拜六，是禮拜天 ….
+22:11 < markwu> 啊 …. 我一直記成是週六，週日我去不了啊！我是剛剛要查地址時才發現的
+22:14 < MindosC> 2/2 來新竹團吧 :)
+22:14 < clkao> markwu: orz orz
+22:14 < clkao> 只好讓給 Jcrt 了
+22:14 < markwu> 我為什麼會一直記成週六呢？？
+22:15 < clkao> 因為.. 上次是週六... ?
+22:15 -!- thschee is now known as zz_thschee
+22:15 < markwu> 哭哭！
+22:15 < markwu> 嗚嗚 … 
+22:15 < clkao> 那只好... 明天線上先 hack 一下 XD
+22:15 < clkao> 看週日誰接手
+22:15 < markwu> 嗚嗚 ...
+22:16 -!- zz_thschee is now known as thschee
+22:17 -!- swem [~Thunderbi@host-61-70-211-134.static.kbtelecom.net] has joined #g0v.tw
+22:19 < clkao> timdream: 先 facebook:me 過就 ok 了, 但 object 一定得是 id, alias 不行
+22:19 -!- cataska [~user@210.64.6.233] has joined #g0v.tw
+22:19 < timdream> clkao: yes ...
+22:19 < chhsiao1981> clkao: what I concern is that the action may be accused by the private company saying that we are manipulating data by highlighting some specific info. (It's not necessary through the formal legal system. As long as they spread out the accusation through the tradtional media, then we are done.) (That's also the reason why I say maybe it's better to bundle the info of private companies AFTER many people can understand/accept/appreciate what we ar
+22:21 < opop> 話說我好想做人物對照表，才知道 irc 跟真實人物的對應
+22:21 < opop> 所以我們開場或中午先來個大合照吧 XD
+22:22 < opop> 我超不會認人的!!
+22:25 -!- thschee is now known as zz_thschee
+22:27 < Jcrt> 有名額了嘛！？
+22:27 < chhsiao1981> clkao: but it's ok to do so individually, and once many people can understand/accept/appreciate the concept, the data can be revealed immediately. 
+22:27 < markwu> Jcrt, 有 … 你接替我去
+22:27 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+22:27 < markwu> 我把 1/27 記成週六(結果是週日)，去不了啊 
+22:28 < markwu> 哭哭！
+22:28 < markwu> chhsiao1981, after phone call this after noon with 經濟部商業司， they have plan to release the data in end of this year … so, it is not a problem ...
+22:28 < Jcrt> markwu: 囧 還有時間橋開事情吧 今天才週五～
+22:29 < markwu> 週日的事沒辦法橋 … 吐血
+22:29 -!- zz_thschee is now known as thschee
+22:29 < Jcrt> 那…… 小弟跪謝 <(_ _)>
+22:30 < markwu> 我會在家作，反正 coding 在哪都一樣，只是少了跟各位見面的機會啊！哭哭 ...
+22:30 < opop> markwu: 先補上假裝拍大合照的照片，我們幫你補上去！
+22:30 < markwu> 嗚嗚！哭哭 ...
+22:30 < ipa> markwu: 只好臨時揪一團明天 pre-hackathon？
+22:31 < markwu> 哈哈！！！
+22:31 < markwu> 我們夢中相見嘛？
+22:33 < clkao> 只好明天下 13:00 - 17:00 在東湖 tutti home pre-hackathon 了.. ? XD
+22:38 < clkao> opop++
+22:38 < clkao> markwu: 好奇問一下，是什麼機緣下跟商業司的人聊呀?
+22:40 < markwu> clkao, 因為我本來就對公司資料登陸很有興趣，下午就直接打電話從 e 網通（課服），問到經濟部第四科（先是一位小姐接的，聽了問題後說要問科長），然後問到資策會在經濟部商業司註點人員，然後他說  ...
+22:41 < markwu> 五月份就有 open data 計畫，但是要完工預計要到年底 ...
+22:41 < clkao> markwu++ # 0800 精神
+22:41 < markwu> 然後，目前如果我要自己 parse 資料，只要不要妨礙網站運作，他們也不會有意見
+22:42 < clkao> markwu: 所以目前有打算做什麼呈現了嗎 還是 mash 一下立委+親人資料?
+22:42 < markwu> 我說我需要寫 mail 要授權嘛？他說，不需要。因為目前寫了，也不會有授權。只要不做違法使用，就不會有任何問題。
+22:43 < markwu> 但是他們不會 endorse 任何自己 parse 資料得來去作加值處理的網站
+22:43 < clkao> 其實現在很多人應該已經在用了 公司登記本來就是公開資料了... 你一登記公司 大概就會收到二十封 spam 要提供你註冊商標 etc 的服務
+22:43 < markwu> 至於 open data 後的授權，他們"應該會"不做限制，也不做收費 ，但是都不肯定。
+22:44 -!- johnny5tw [~johnny5@111-252-51-173.dynamic.hinet.net] has quit [Quit: This computer has gone to sleep]
+22:44 -!- rsghost [72297530@gateway/web/freenode/ip.114.41.117.48] has joined #g0v.tw
+22:44 < markwu> 所以目前正常使用只要不涉及違法（例如個資的連結）等等 … 我猜都不會有問題。
+22:44 < markwu> 有問題的會是把這些資料 mash up 所展現的脈絡
+22:44 < tkirby_> opop: 要做 g0v 人物關係圖了嗎?
+22:45 < markwu> 擔心太露骨了 ….
+22:45 < clkao> clkao ---崇拜---> tkirby 
+22:45 < tkirby_> XD!
+22:46  * au ---仰慕---> tkirby
+22:46 < tkirby_> oooooops XDDD
+22:46 < clkao> 擔心的話 就把分析程式透過 tor 匿名 push 到 github ... XD
+22:46 < chhsiao1981> 原來"登陸"是指"登錄" XD. 那就還 ok XD. 
+22:46  * tkirby_ 因為擔當不起吐血而死了
+22:46 < clkao> 每個人都可以架
+22:47 < au> tikrby ---吐---> 血    （咦）
+22:47 < tkirby_> ...XD
+22:47 < clkao> 血 ----開刀輸給---> clkao
+22:47 < markwu> chhsiao1981 orz … 抱歉，我用智慧型輸入法，就懶得改了
+22:48 < au> (cyclic graph)++
+22:48 < opop> 嗯？什麼？我忽然看不到你打的字 o.o
+22:48 < opop> 好啦聽起來很有趣 XD
+22:48 < markwu> 我是不擔心我自己，我是擔心跟其他資料 mesh up 出來的結果太露骨了 … 哈！
+22:48 < tkirby_> 喔喔, 這個意思是你要認領嗎 XD
+22:49 < chhsiao1981> 公司登錄資料應該是還蠻中性的. 登陸資料可能就是比較危險的資料 XD. 
+22:49 < markwu> 因為公司登記資料有 1. 公司基本資料 2. 董監事名冊 3. 經理人 4. 分公司 …. 
+22:49 < opop> 不過的確怕資料外洩...所以就是大家走過來給我登錄這樣子吧，應該還可以。你有後台嗎？不用編 xml 吧 ＠＠
+22:50 < markwu> 董監事一搜尋下去原來有 10 家公司
+22:50 < tkirby_> 其實弄個  au 同事 clkao  這樣的一行一行的文字即可, 隨便寫個 python 就可以轉成可讀的 json 了
+22:50 < clkao> 壹傳媒的鹹濕路線已經滿足不了大眾了 要把皮肉刮掉 漏骨才行..! 這就是零傳媒！
+22:50  * opop 盤算的是自願就不會有人來了 A_A
+22:50 < markwu> 然後 …  又都接了某些案子 ...
+22:50 < markwu> 然後 … 啊 … 滅口了！
+22:51 < clkao> 反正 我們不評論.. 只是揭露你要按二十次滑鼠才能得到的資料... 違不違法也不是我們說的... 一切依法辦理 XD
+22:51 < tkirby_> 這樣說來/na
+22:51 < markwu> 其實這些資料手動查很慢，放在一起查就很恐怖
+22:51 < tkirby_> 就開個 hackpad 來寫吧! # https://hackpad.com/thoOhWFIx7T
+22:51 < kcwu> tkirby_'s url: [g0v.tw 人物關係圖 - hackpad.com]
+22:52 < clkao> tkirby_: 應該要 讓人編輯 然後 可以 fork, send pull request
+22:52 < tkirby_> clkao: hackpad 有這些功能嗎 XD
+22:52 < clkao> 然後 fork 的版本可以 select 要 show 哪些
+22:52 < clkao> tkirby_: 我說你的 renderer host 啦 XD
+22:52 < tkirby_> 喔我懂了, 是指關係圖資料庫嗎 orzzz
+22:52 < tkirby_> XDDD
+22:52 < clkao> yeah
+22:53 < tkirby_> ypcat: ↑↑↑
+22:53 < tkirby_> 如果 人物關係圖是系統呼叫的話.. 視覺化 widget 就是 softirq... 兒子就是 hardware interrupt... 
+22:53 < tkirby_> XD
+22:53 < clkao> au: 還是直接用 dot syntax 好了? :P
+22:54 < clkao> tkirby_: quadcore
+22:54 < au> 還是直接用 Notation3 好了? :p
+22:54 < au> j/k
+22:55 < clkao> clkao -- au [label=同事]
+22:55 < clkao> opop -> phind [label=CEO]
+22:56 < au> 綜合了一下
+22:59 < tkirby_> hmm 人物關係圖應該要有群組的 schema, 這樣才不會出現完全圖..
+22:59 < clkao> 出現後可以算 bridge 呀 XD
+22:59 < clkao> 真是令人懷念的 graph 時光... 
+22:59 < ipa> freedom <bsd> clkao ?
+22:59 < tkirby_> XD
+23:00 < tkirby_> 阿, 這樣說來也可以做自動計算比方說遞移律之類的
+23:00 < clkao> indeed
+23:01 < opop> 我覺得不公平所以我要先刪掉～～～可惡，也不能寫工讀生，我很久沒上學了
+23:01 -!- MindosC [~MindosC@115.80.18.56] has quit [Ping timeout: 240 seconds]
+23:01  * au 有一種 OWL2 很快就用得到的預感
+23:01 < clkao> 加速進行中
+23:02 < tkirby_> OWL2!
+23:02 < tkirby_> opop: 竟然偷刪!
+23:02 < opop> 單向關係好難解釋喔 @_@
+23:03 < tkirby_> opop 不見以後全變雙向關係了
+23:03 < opop> opop--信仰--> clkao 
+23:03 < opop> 喔喔，原來如此！
+23:05 < opop> 結果 pizza 不是我訂的耶 o.o
+23:05 < clkao> 原碼大明神!!
+23:05 < clkao> opop: 那是... ?
+23:05 < tkirby_> 咦, 那 opop 訂什麼
+23:05 < opop> clkao: 我找了小幫手幫我訂餐 XD
+23:05 < opop> tkirby_: 不告訴你～拉拉
+23:05 < tkirby_> ..............
+23:06 < clkao> 可以看到大家的生產力都消耗在 kuso 上.... XD
+23:06 < opop> XD
+23:06 < hlb> 搞笑 driven design
+23:07 < tkirby_> XD
+23:07 < tkirby_> 先來寫 parser... XD
+23:07 -!- KNY [~Adium@118-170-70-100.dynamic.hinet.net] has joined #g0v.tw
+23:33 -!- markwu [~markwu@116.50.34.246] has left #g0v.tw ["暫離"]
+23:45 -!- swem [~Thunderbi@host-61-70-211-134.static.kbtelecom.net] has quit [Ping timeout: 246 seconds]
+23:52 -!- timdream [~timdream@123-204-174-202.adsl.dynamic.seed.net.tw] has quit [Quit: timdream]

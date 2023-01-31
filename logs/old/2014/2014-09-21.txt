@@ -1,0 +1,613 @@
+--- Day changed 日  9月 21 2014
+00:09 < xsoameix> clkao: create table 應該是寫在 api.ly.bz2 裡，但是這是 dump 的資料，我應該把 create table 加在裏面嗎？
+00:10 < xsoameix> 我想說有沒有 migration 甚麼的，這樣我加在裏面好像比較適當
+00:12 < xsoameix> 像 rails 有 migration，改那個檔就好了，不知道 api.ly 有沒有類似的東西
+00:17 < miaoski> a-tsioh: https://www.dropbox.com/sh/rg7xdpl8bw0mzmo/AAApfs9-s9kaQXkWONHt-b3Ja?dl=0
+00:17 < kcwu> miaoski's url: [Dropbox - ntuling]
+00:17 < miaoski> 還在上傳中.. 300MB 左右
+00:35 < a-tsioh> miaoski++
+00:38 -!- tylerlin_ [uid28096@gateway/web/irccloud.com/x-satkmlcbaeehjcsq] has left #g0v.tw []
+00:40 -!- tylerlin_ is now known as tylerlin
+02:44 -!- kkkk123123 [~chatzilla@220-137-4-232.dynamic.hinet.net] has left #g0v.tw []
+05:17 < evenwu> au 喔喔 感謝幫收集
+05:17 < evenwu> 接下來就是排排看怎樣會更整齊了
+08:31 < Michael_LI> 早安各位～今天也要黑客松～感覺怪怪的(因為第一次2天份)
+08:52 < ipa> tkirby: summit網站好像壞了？
+09:01 < a0000778> ipa: 我這邊看是正常的
+09:03 < ipa> a0000778: tkirby @@ 喔。。。。點進去如果是英文，「中文」的按鈕按不過去
+09:08 < a0000778> ipa: 還是正常的...
+09:09 < a0000778> ipa: 我是手動切英文 再切中文 測的
+09:10 < ipa> a0000778: 因為你的browser預設是中文吧，如果browser設英文，連結過去是 summit.g0v.tw/index.html，就鬼打牆了 :/
+09:10 < ipa> 可能需要設 /zh-TW/index.html 不然會一直跳瀏覽器預設
+09:17 < a0000778> ipa: 我看原始碼 除了zh-TW以外 其他都是導到/en-US/index.html...
+09:18 < a0000778> 判斷條件 navigator.userLanguage 優先 navigator.language 其次
+09:18 < ipa> 嗯嗯 我先開了 issue，昨晚 tkirby 似乎大動了 summit 結構，說不定我能看懂送 patch 
+09:28 < clkao> xsoameix: no, api-ly dump is data only. Table schema can be defined in meta.ls
+10:05 < ipa> au: 你之前有翻議程大標放在哪裡啊？open parliament... etc..
+10:22 < hcchien1> https://g0v.hackpad.com/g0v-summit-2014--N8vF6GbXjb6   # 需要翻譯喔
+10:22 < kcwu> hcchien1's url: [g0v summit 2014 文件翻譯 - g0v.hackpad.com]
+11:10 -!- linpcc_ is now known as linpcc
+11:48 < tkirby> ipa: 我把他修好了
+11:57 < au> ipa: https://docs.google.com/spreadsheets/d/14D-Vt-iysQ3Czqj8IN-ov6krvQlC06ny-6CxF49hsCk/edit#gid=726275408
+11:57 < kcwu> au's url: [g0v summit 2014 議程(暫定） - Google 試算表]
+11:58 < ipa> au: 噢我眼殘沒看到標題 >< 
+12:01 < au> XD np
+12:55 < dirty_> 有人現在能測一下 clone summit.g0v.tw 出來, npm i 是順的嗎?
+12:55  * dirty_ got so many errors :(
+12:56  * dirty_ used MacBook Air
+12:56 < dirty_> 啊, 記得要先 ulimit -n 1000 之類的
+13:10 < tkirby> npm i 碰到了什麼問題
+15:01 < Lee1092> clkao: ipa  政府邀請票，多開一個票種在 VIP 底下就可以了吧?  :p
+15:02 < Lee1092> clkao: ipa  BTW   早鳥跟貢獻者 申請方案都結束，可以開始審核資料了，我是沒權限看到報名的人  @@
+15:02 < ipa> Lee1092: ya, clkao 會跟國發會橋一下，可能由國發會給個別參加者邀請碼
+15:02 < ipa> Lee1092: 我開一下 a sec
+15:02 < Lee1092> ipa:  thx
+15:02 < ipa> Lee1092: 基本上全部ok XD
+15:03 < Lee1092> ipa:  那我就照報名人數開邀請碼囉 XDDDDD   
+15:03 < ipa> Lee1092: 好, 就kktix系統寄送嗎？
+15:05 < ipa> Lee1092: 好像要寫信？兩種票報名時間連結不同 
+15:06 < Lee1092> ipa:  恩恩  還是需要一封信 
+15:06  * Lee1092 其實不知道 kktix 系統寄送的會長怎樣 XD
+15:07 < ipa> Lee1092: 你寫一下吧「貢獻者，來吧你」XDDDD 系統信好像只會有個邀請碼，但連結回該報名頁
+15:07 < ipa> 但現在是： A 報名頁的結果，要請他到 B 報名頁報名
+15:08 < Lee1092> 原來如此 
+15:09 < Lee1092> ipa:  上次有修個樣本了  在 VIP 信下一封 https://g0v.hackpad.com/vip-summit-invitation-SZ7ZZ3KaHSJ 
+15:09 < Lee1092> XD
+15:09 < kcwu> Lee1092's url: [vip summit invitation - g0v.hackpad.com]
+15:11 < a-tsioh> miaoski | au 在無？
+15:12  * a-tsioh 想買一個raspberry加webcam參加summit
+15:12 < a-tsioh> 機器人也需要報名嗎？
+15:12 < miaoski> a-tsioh: 在啊
+15:12 < miaoski> RPi + webcam + 網路線比較好
+15:13 < miaoski> 可是應該會有直播? 看直播就好啦...
+15:13 < a-tsioh> miaoski: 我在想作reversed search應該同時catch up with 現在的　upstream/master
+15:14 < miaoski> a-tsioh: 是啊... 
+15:14 < a-tsioh> yep有網路也會好一點XD
+15:14 < a-tsioh> 要怎麼做，之用你的dict-amis.json嗎？
+15:15 < miaoski> 雖然我在想手機板是不是應該另外做. 手機的離線版應該會是主要的使用情境。
+15:15 < a-tsioh> 還是有其他事要小心？
+15:15 < ipa> Lee1092: 我加了 unconf 要另外報名的訊息。國際早鳥也弄封信，把contributer改為 international early bird 就好
+15:15 < miaoski> 這個我也想聽聽 au 的意見...
+15:15 < Lee1092> ipa:  OK
+15:16 < ipa> Lee1092: 我等下會請作網站的 mary 在首頁加報名訊息，還有什麼要溝通的嗎？（我們四點要 hangout）
+15:16 < miaoski> 目前只用 dict-amis.json 就好。之後還有台語信望愛詞典的部份 (那個還沒公開，也要看 pek-tiong 打算做多久)
+15:16 < ipa> Lee1092: 你要一起加入 hangout 嗎？
+15:17 < a-tsioh> "作多久”的意思是。。。　？
+15:17 < Lee1092> ipa:  歐歐   好阿~ 
+15:18 < Lee1092> 那我先把報名頁生出來~  
+15:18 < ipa> Lee1092: 主要看一下網站跟複雜的報名流程有沒有接軌
+15:18 < ipa> ok 我把你加到 event，四點上線聊一下
+15:18 < Lee1092> ipa:  恩恩  好的~
+15:19  * ipa 暫離 &
+15:21 < miaoski> 嗯，他只有一個人，然後目前也不知道想不想搞大..
+15:21 < a-tsioh> mmm
+15:22 < miaoski> 有很多不同來源的資料(我們昨天看過了，有廈英、台日、等等舊的資料，也有教會那邊一直在編的)
+15:22 < a-tsioh> 信望愛那邊的人是什麼態度？
+15:22 < miaoski> 要整理在一起需要很多編輯工作，crowd sourcing 都有些困難，更別說 sourcing 完之後編輯
+15:23 < miaoski> 呃，信望愛就他一個人搞的 :P 教會那邊應該是完全沒意見
+15:23 < miaoski> (i.e. 輸入法他搞的，字典好像是另一個先生)
+15:24 < miaoski> http://taigi.fhl.net/dict/
+15:24 < kcwu> miaoski's url: [台語辭典(台日大辭典台語譯本)查詢]
+15:24 < a-tsioh> 這跟我夢中的flyingv計劃是會有關係
+15:24 < miaoski> 你夢中的 flyingV ?
+15:25 < miaoski> 他們已經電子化的還有甘字典。不知道後面的苦力有哪些人...
+15:25 < a-tsioh> 我覺得是值得變成幾個人的full time job
+15:26 < a-tsioh> 有一點不想萌典到現在的情況
+15:27 < miaoski> full time job 要 $$ :P
+15:27 < a-tsioh> 我想作的比較想Text Editor加NLP和lexica 
+15:27 < a-tsioh> 對呀所以想到flyingv
+15:28 < a-tsioh> 因爲我想作免費的
+15:28 < miaoski> 年薪 50 萬 (感覺好少) 二個人就 100 萬... 開公司薪水支出 100 萬算少，但 flyingV 募到 100 萬以後只能撐一年...
+15:28 < miaoski> lexica?
+15:29 < a-tsioh> 一年已經可以作很多
+15:30 < a-tsioh> 我本來想作Lexical Network,詞目靠open data
+15:30 < a-tsioh> 可是也可以幫忙舉辦crowdsourcing definition
+15:30 < a-tsioh> 萌典加一個edit button
+15:30 < miaoski> definition 用 crowd sourcing 我還是不太放心 :P
+15:31 < miaoski> 阿美語字典是打算有「回報錯誤」的功能 (目前偷懶放了 hackpad)
+15:31 < CindyLinz> 嗯, 敢做只能做一年的工作的人, 應該都不是一年 50w 能打發的人啊 @_@"
+15:31 < a-tsioh> 可是我現在的影響是這不是萌典的目的
+15:31 < miaoski> 萌典的目的是...?
+15:31 < a-tsioh> 問au吧
+15:32 < miaoski> 等他著陸 (?) 才問得到了 xd
+15:32 < a-tsioh> 可是原來只是吧opened 的data邊現代化
+15:32 < a-tsioh> 不是自己寫詞典
+15:32 < miaoski> https://g0v.hackpad.com/3du.tw-ZNwaun62BP4
+15:32 < kcwu> miaoski's url: [3du.tw - g0v.hackpad.com]
+15:33 < miaoski> 「還文於民」 
+15:33 < a-tsioh> CindyLinz: 基本上是沒錯，關心臺語的人才會接受
+15:34 < miaoski> 我是覺得沒關係啦，自己的字典自己編... ça fait part de déconcentration
+15:34 < a-tsioh> 想賺很多錢的話，要作其他計劃，可能比較沒有那麼好玩，也比較懷的
+15:35 < a-tsioh> miaoski: 是的
+15:35 < a-tsioh> definition可以讓大家來寫
+15:36 < a-tsioh> 可是我還是希望有比較專業的lexicographers來作graph
+15:36 < miaoski> 貴國文化政策我還記得 XD ... 大概大學時被那本 la politique culturelle 虐待的記憶太深刻了
+15:36 < a-tsioh> 這就需要薪水
+15:36 < miaoski> 那可能不是薪水可以搞定的 (哈) 昨天 au 最後秀的那個字帖
+15:37 < miaoski> 是很有名的書法家寫的... 
+15:37 < a-tsioh> XD
+15:38 < a-tsioh> 其實我明天要去Bureau Français de Taipei談這件事
+15:38 < miaoski> :D
+15:38 < miaoski> 怎麼談?
+15:38 < lafin> ！！
+15:38 < a-tsioh> (你知道Alliance Française不會覺得很恐怖嗎？)
+15:39 < a-tsioh> 隨便談
+15:39 < Lee1092> clkao:  好了  我把政府票種設好了
+15:39 < miaoski> ? 什麼覺得很恐怖?
+15:39 < miaoski> a-tsioh: 我開始認真覺得我們應該在你回國前，跑一趟花蓮了 XD
+15:39 < a-tsioh> 看他們能不能幫我開一個作免費的東西的分公司XD
+15:39 < miaoski> :D ... 可能會有預算哦
+15:39 < Lee1092> clkao:  http://g0v-tw.kktix.cc/events/g0v-summit-2014-con-vip   ，邀請碼再 邀請碼名單與紀錄大表(原手慢) 裡，一樣是明天報名 XD
+15:39 < kcwu> Lee1092's url: [g0v Summit 2014 - Conference - VIP and Early Bird]
+15:40 < a-tsioh> 可以啊，回國之前離開天龍國一下也不錯！
+15:40 < miaoski> 我認真覺得台灣還沒經歷 mai 68 ... 即使我們有野百合和太陽花了。畢竟台灣人並不是個很哲學的民族...
+15:41 < miaoski> 不過這很有趣的。我們那屆的同學被課本虐待完後，有 2 個人去法國唸了文化政策(碩士)
+15:41 < a-tsioh> 我常常覺得法國人應該去佔領Assemblée Nationale XD
+15:42 < a-tsioh> （雖然我覺得會進不去，警察太專業）
+15:43 < miaoski> 有 3 個人回國後在當表演團體的仲介，1 個在法國在台協會(啊離職了) 2 個去當專業表演者...
+15:43 < miaoski> 你不會知道 Jack Lang 和 Jacque Duhamel 在我們心裡佔了多大的份量 (大誤) (他們又不帥)
+15:44 < miaoski> ㄟ 你們佔領巴士底就好啦了 XDDD
+15:44 < miaoski> 國會讓台灣人來 (誤)
+15:45 < miaoski> lafin: 10/10 以前有沒有空啊，一起回花蓮一趟?
+15:45 < miaoski> 剩下 2 個週末囉
+15:47 < lafin> OK
+15:49 < lafin> 最近去的話因該可以去看一下東昌的祭典
+15:49 < a-tsioh> XD 要爲了Jack Lang 抱歉ｏｒｚ
+15:49 < miaoski> a-tsioh: ㄟㄟ 那個當部長的 Toubon 是提出 Loi Toubon 的同一個人嗎??? 法國文化部果然也有腦殘的部長...
+15:49 < miaoski> lafin: ++
+15:50 < a-tsioh> Loi Toubon以後,大家都叫他 Mister AllGood
+15:50 < miaoski> 哈哈... 
+15:52 < miaoski> lafin: 方便先請你阿姨問問看嗎? 我怕我們去的時候剛好神父外出訪友什麼的
+15:53 < Lee1092> ipa:  設好了!     http://g0v-tw.kktix.cc/events/g0v-summit-2014-con-nor 
+15:53 < kcwu> Lee1092's url: [g0v Summit 2014 - Conference - Contributor and Normal]
+15:54 < lafin> 我問一下噢
+15:54 < au> miaoski: a-tsioh: 沒有啦，我要先去 DOIT 再去機場...
+15:54 < miaoski> au: ++
+15:54 < au> re moedict, it's whatever we make it to be!
+15:54 < au> # http://www.slideshare.net/autang/railsgirlstw-20140427/51
+15:54 < kcwu> au's url: [程式語言與軌道女孩]
+15:55 < au> crowd-primary-source 也很好啊，目前的 wikitionary 前端很需要改善
+15:55 < au> (其實徐老師的客語典和兩岸詞典也不是 gov project)
+15:55 < a-tsioh> ?
+15:56 < au> a-tsioh: 這是回你剛才萌典的目的是什麼那句話
+15:56 < au> 就是 whatever we make it to be :p
+15:58 < a-tsioh> 哦我誤會了，以為o 是0XD
+15:58 < a-tsioh> 就不懂怎麼不是g0v project :p
+15:58 < au> :p
+15:59 < a-tsioh> crowdsourcing definitions 我想這應該是萌典的功能
+16:00 < au> main.ls line 285 有做到一半的
+16:00 < au> $ \body .on \dblclick \.entry -> $(@).css {borderRadius: \10px background: \#eeeeff} .attr \contentEditable true
+16:00 < au> $ \#sendback .fadeIn!
+16:00 < a-tsioh> 可是我計劃的一些部分可能不太適合
+16:00 < a-tsioh> senback到哪？
+16:00 < au> 這是編現有的詞條。加詞條要改「分享這些字」加上「創建詞條」
+16:00 < a-tsioh> ：）
+16:01 < au> sendback 現在是 email 到 upstream
+16:01 < au> 還是要有一個 upstream... 即使是 wikitionary 或自己建後端之類
+16:01 < miaoski> 阿美語目前是開了 hackpad . 應該有更好的做法... 
+16:02 < ipa> Lee1092: tkirby 我和mary上線了
+16:02 < a-tsioh> 其實後面用etherpad會不錯
+16:03 < tkirby> ipa: ok i'll be right back
+16:03 < miaoski> 也不錯。不過我們應該是只需要一個搜集的地方，最後還是會去問族語老師(們)(吧) (望向 lafin)
+16:04 < lafin1> @miaoski 我們去找潘神父要幹嘛＠＠，是訪問字典嗎？
+16:04 < miaoski> lafin1: 是滴~ 
+16:05 < lafin1> @miaoski ＯＫ
+16:05 < miaoski> 趁法文很罩的人還在台灣的時候... (笑)
+16:06 < ipa> Lee1092: 我進不去～～
+16:06 < ipa> Lee1092: 請把我加入 video chat
+16:06 < Lee1092> XDD OK
+16:08 < miaoski> a-tsioh: 你要不要也和教會 or Pek-tiong 談，看他那邊有沒有可能有經費 or 老師可以代為申請國科會計劃?
+16:08 < a-tsioh> miaoski: 是
+16:08 < miaoski> a-tsioh: ++
+16:08 < lafin1> @miaoski 假日嗎？
+16:09 < miaoski> lafin1: 是吧，不然你也要請假?
+16:09 < lafin1> @miaoski 不要逼我衝
+16:09 < a-tsioh> 可以當國科會計劃會很棒
+16:10 < miaoski> 能假日就假日啦... 雖然二個週末我都有婚禮要參加，需要和其中一對新人說抱歉 XD
+16:10 < miaoski> a-tsioh: 要寫結案報告，而且薪水不多 Q.Q
+16:14 < miaoski> 阿美語字典裡竟然也有「三隻小豬」! (杜正勝表示....)
+16:14 < lafin1> @miaoski 阿姨說颱風後再去跟鐵份找他談
+16:15 < miaoski> lafin1: OK.
+16:19 < xsoameix> clkao: 喔，感謝
+16:25 < johnny__> 宜蘭議員網頁很有趣 每個議員url是一樣的  關cookie會爛掉 http://www.ilcc.gov.tw/H0051.aspx
+16:25 < kcwu> johnny__'s url: [宜蘭縣議會 - 議員便民服務]
+16:26 < Michael_LI> 有沒有人來陪我一下／Call in／快結束了／https://www.facebook.com/groups/HanGee/permalink/1504692173103967/
+16:26 < kcwu> Michael_LI's url: [Facebook]
+16:29 < a-tsioh> miaoski: 你原來也有hack autolink.ls
+16:29 < miaoski> a-tsioh: 被發現了 xd
+16:30 < a-tsioh> 新萌典就make amis 會die
+16:31 < lafin1> @a-tsioh 你認識劉柏桑或彭保羅嗎？
+16:34 < a-tsioh> 彭保羅是Paul Jobin 嗎？
+16:35 < a-tsioh> 劉柏桑呢?!?
+16:36 < a-tsioh> Paul Jobin 我認識
+16:37 < lafin1> Tanguy LE PESANT
+16:37 < a-tsioh> 欸對啊我很笨，已經要去找Elisabeth Zeitoun
+16:37 < a-tsioh> Tanguy我有看過他的研究，沒有見過面
+16:38 < ipa> tkirby: 請把我加回去～
+16:38 < tkirby> ipa: xDDDDD
+16:40 < ipa> 進不去 orz
+16:41 < ipa> tkirby: 好痛苦 XD
+16:41 < tkirby> ipa: 神秘
+16:42 < tkirby> ipa: 我們要重開
+16:42 < ipa> tkirby: ok 我等待你們加我好了
+16:43 < ipa> i'm not allowed
+16:43 < tkirby> 我開了
+16:44 < tkirby> 我要再開一次
+16:50 < tkirby> (y)
+16:52 < a-tsioh> huhu 阿美語萌典裏碰到"ㄧ ㆰ ㄨpsㆤㆵ/dㄧstㄨrbㆤd (by ㄚ sㄧㄧtㄨㄚtㄧㄜn )​。"
+16:53 < a-tsioh> 這樣寫英文很不錯
+16:53 < a-tsioh> 而且很有dㄧstㄨrbㆤd 的感覺
+17:03 < miaoski> a-tsioh: orz
+17:03 < miaoski> 你把兩種 hack 合在一起了 XD
+17:03 < a-tsioh> 我不是故意的！
+17:04  * ipa 重開真的治百病
+17:06  * a-tsioh 沒用過React T.T
+17:06 < miaoski> *拍拍* 我也沒用過
+17:07 < tkirby> (y)
+17:07 < a-tsioh> 其實hack萌典的門檻有一點高
+17:07 < miaoski> a-tsioh: 要語音語料的話， http://globalrecordings.net/zh-Hans/program/C09170#download 這樣的地方其實很不少
+17:07 < a-tsioh> follow up也不簡單
+17:07 < kcwu> miaoski's url: [Words of Life - Amis - 圣经故事和讲解音频 - 福音,教堂组建资源和圣经的教学]
+17:08 < miaoski> 然後台語語料，我第一個就想到聖經全本，都有人用台語唸過 (上網) 了
+17:08 < miaoski> 對。我也是這麼覺得的... 萌典沒那麼好 hack. 
+17:09 < a-tsioh> miaoski: o_O Copyright © 1962 Global Recordings Network
+17:09 < miaoski> a-tsioh: 台語有聲聖經不意外(?)是信望愛 http://bible.fhl.net/new/audio_hb.php?version=1
+17:10 < a-tsioh> 有沒有人在做所有sinitic languages神經的數位化
+17:11 < miaoski> 不知道 :P 中國的方言的消失也很快...
+17:13 < miaoski> 阿美語的錄音還蠻清楚的 xd
+17:18 < miaoski> lafin1: 阿美語聖經有線上版嗎? 我 Google 了一下，聖經公會寫「修訂中」...
+17:22 < pcchen> hi miaoski a-tsioh 
+17:23 < miaoski> pcchen: Hi 
+17:23 < miaoski> pcchen: 其實我對信望愛的歷史不了解啦。我怕我和 a-tsioh 講錯
+17:24 < lafin1> @miaoski 我只有看過實體版
+17:24 < pcchen> 我來解釋一下：
+17:24 < miaoski> 變調就算了... 該拼音的發明人，決定怎樣就那樣吧 :)  尊重原創
+17:25 < miaoski> lafin1: 還好 OCR 對拼音文字的準確度很高....
+17:26 < lafin1> @pcchen 呵呵
+17:26 < lafin1> 打錯
+17:26 < lafin1> ＝＝
+17:27 < pcchen> 信望愛的部份是這樣：字典（台日，甘字典）的原始資料數位化大多是林俊育先生自己弄的（有可能有外包一部分，但是例如把台日的日文寫成台文是他一人弄的）
+17:27 < pcchen> 然後網路詞典介面是信望愛網站技術長弄的（崑山科技大學教授）
+17:28 < pcchen> 然後他們也數位化了很多如台語聖經的台語文本。
+17:28 < pcchen> 詞典的部份他們後來有scan，所以查詞典的時候可以查圖。
+17:29 < lafin1> @pcchen ！！！
+17:29 < pcchen> 後來中央研究院語言學研究所「閩客語典藏」計畫有出一些錢。（這些scan可能是從這個資源來的）
+17:30 < pcchen> 所以這個網頁 http://taigi.fhl.net/dict/ 下面有 本工作為中央研究院語言學研究所「閩客語典藏」計畫ê一部分，資訊技術由台語信望愛站提供， 圖形調號使用的Unicode字型來自拋荒台語文工作室，並蒙允許使用。
+17:30 < kcwu> pcchen's url: [台語辭典(台日大辭典台語譯本)查詢]
+17:30 < pcchen> 甘字典也有寫 字典內容獲得台灣教會公報社授權中央研究院語言學研究所「閩客語典藏」計畫使用，本工作為中央研究院語言學研究所「閩客語典藏」計畫與台語信望愛ê合作成果，資訊技術由台語信望愛站提供， 圖形調號使用的Unicode字型來自拋荒台語文工作室，並蒙允許使用。
+17:31 < miaoski> lafin1: 對，線上就可以用了. 如果會日文的話，很容易就看得懂用日文拼寫的台語以及例句
+17:31 < pcchen> 中研院敏客語典藏的廈英大辭典and英廈辭典是另外的團隊做的
+17:31 < pcchen> 有偷放台語UI http://minhakka.ling.sinica.edu.tw/bkg/chong-su-tian.php?gi_gian=tai
+17:31 < kcwu> pcchen's url: [soàⁿ-téng-sû-tián]
+17:32 < pcchen> 至於信望愛台語輸入法，詞條的部份來自「台語信望愛」＋「楊允言文中文辭典
+17:32 < pcchen> 請輸入中文或台語文 
+17:32 < pcchen> 想知道 樟 台語怎麼說嗎？
+17:33 < pcchen> 至於信望愛台語輸入法，詞條的部份來自「台語信望愛」＋「楊允言文中文辭典」但當初只有使用詞條作為輸入法entry。解釋，或是華語對應等都沒有收錄。
+17:33 < lafin1> @pcchen ㄐ ㄩ ㄥ四聲？
+17:34 < miaoski> lafin1: chiuN 1
+17:34 < pcchen> 請忽略 想知道 樟 台語怎麼說嗎？ 請請
+17:35 < a-tsioh> pcchen: 出現了！我等我一下下我先看
+17:35 < pcchen> 我講很慢的
+17:35 < miaoski> 慢慢打，我先把剩下的 3% 打完上線
+17:36 < pcchen> 望愛台語輸入法的詞庫的維護經過改變，這幾年穩定使用 WeSay 這個軟體，本來是自己架 hg server，現在直接 sync 到 bitbucket
+17:37 < pcchen> https://bitbucket.org/pcchen/nan
+17:37 < kcwu> pcchen's url: [pcchen / nan — Bitbucket]
+17:38 < pcchen> 現在比較長期想完成的事情是(1)輸入法的規範化。
+17:39 < lafin1> 小川有編喔
+17:40 < pcchen> 輸入法的漢字及羅馬字輸出，希望能夠(1)建立在教育部規範之上(2)引入民間認為需要的修正(3)以有version control概念的方式逐漸規範化書寫標準。
+17:40 < pcchen> 可稱為 信望愛書寫標準(ver2014,ver2015, etc)
+17:42 < pcchen> 然後一直有想過詞典軟體的問題，因為目前台語詞典都是「網路版」所以。off-line 版，手機版都很缺
+17:42 < pcchen> 但是沒有好的方案（stardict, goldendict 等都不好用
+17:44 < a-tsioh> 那萌典有offline
+17:44 < a-tsioh> 好也有stardict conversion
+17:44 < a-tsioh> 沒有的話這很快就可以作
+17:44 < pcchen> 現在既然有了 萌典教育部台語版，那自然就會思考有沒有辦法把資料整理起來，透過萌典來使用
+17:45 < pcchen> 所以才有 wesay's XML => 萌典's jason (之前miaoski hack的)
+17:45 < a-tsioh> 所以你bitbucket那邊的資料都沒有權利的問題了？
+17:46 < pcchen> bitbucket那邊算是已經洗過，然後跟上游打過招呼大家都覺得OK
+17:47 < pcchen> 雖然嚴格來說如果一直往上游的上游追上去總會出現灰色地帶。
+17:48 < miaoski> lafin1: 對於錄音我的想法是: 直接從字典抓字 & 句子出來，然後一頁就是一個字或一句，上面有「錄音」「重錄」「播放」，然後可以選是哪個方言。族語老師錄完後，馬上 sync 到萌典可以用，檔案公開放在 github (所以要請老師簽個授權、或是錄音前按「我同意」之類的 XD)
+17:49 < a-tsioh> pcchen: 羅馬字的規範化我可以幫忙
+17:49 < miaoski> 這個介面很好作，寫起來應該也很快，然後老師們就可以直接被推坑開始錄了... (除非他們自己在家不會用電腦，要我們陪著做)
+17:49 < pcchen> 長期的目標是產生一個 台語=>台語，英語，華語，日語，（客語，etc）的詞典資料。
+17:49 < a-tsioh> 雖然我不是很喜歡「規範化」這個詞
+17:49 < pcchen> 可以叫做「建議標準」「推薦寫法」
+17:49 < a-tsioh> （－>法語:p)
+17:50 < miaoski> a-tsioh: langue d'oc 的消失 XD
+17:50 < pcchen> 反正我們不是官方單位所以再怎麼也不算是規範
+17:50 < pcchen> FHL spec 這樣
+17:50 < miaoski> 還有路易14以後各地方言通通消失...
+17:51 < pcchen> 所以我會選擇先aggregate 廈英，台日，甘字典的語料。
+17:53 < lafin1> @miaoski 年輕一點(50-60)的因該可以，老一點(60up)的就要在想辦法。
+17:53 < a-tsioh> pcchen: ok
+17:53 < lafin1> @miaoski 這是考慮的馬蘭阿美之類的
+17:54 < pcchen> 信望愛那邊的詞典，如果需要可以跟他們直接要data應該可以得到。但是因為拼寫不一定有統一，不能全自動的倒進去 wesay 
+17:55 < pcchen> 然後現在沒有一本 台語to台語 的詞典存在。這我希望找台語文人來幫忙。但是可以從（已經簡單翻譯成台語的）台日資料bootstrap
+17:55 < a-tsioh> pcchen: 可以考其他的資料自動判斷
+17:56 < pcchen> 我今天有想到，可以用現在的輸入法的entry當key去收尋，然後把搜尋到的資料判斷後填入，只要有80%成功率我就很高興了
+17:56 < pcchen> 因為這些線上詞典本身都有錯誤，所以最後還是需要工人智慧
+17:57 < pcchen> 向 廈英詞典的書寫
+17:58 < pcchen> 像 廈英詞典的書寫 跟現在的差異比較大，漢字部分也很亂，所以要直接抓比較困難。
+17:59 < pcchen> 總之這些都是用來 bootstrap data
+18:00 < a-tsioh> 如果想full time找一兩個人幫你和寫edition的平臺，你覺得flyingV計劃會成功嗎？
+18:00 < miaoski> http://ckhis.ck.tp.edu.tw/~ljm/moedict/#;ta%27ngad # 阿美語 T 字頭上線了。只剩 P R S
+18:00 < kcwu> miaoski's url: [萌典]
+18:01 < pcchen> 在這之外，有跟清大語言所張月琴老師談過，只要找的到錄音人，他們可以幫忙詞條錄音。
+18:01 < pcchen> flyingV計劃是什麼？
+18:01 < miaoski> pcchen: 阿美語可以用土炮的... (笑) 錄音室太專業，還要搞到請學生幫切... 
+18:02 < pcchen> 可以雙贏啊，因為他們需要語料作研究XD
+18:02 < a-tsioh> pcchen: crowdsource 臺語－>臺語詞典可以靠萌典
+18:02 < a-tsioh> 我也覺得是需要的
+18:02 < a-tsioh> 只要hack一下萌典
+18:02 < miaoski> pcchen: 別擔心，我們的語料也通通是 CC 的... (噁心一點 EULA 就直接寫 CC BY 或 CC0)
+18:02 < a-tsioh> 然找處理一下成果
+18:02 < pcchen> 萌典因為是教育部版權，所以有點避免直接去翻譯他們的資料。
+18:03 < miaoski> pcchen: 不是不希望他們幫忙，是因為老師們常常把事情搞得很盛大... 
+18:03 < a-tsioh> flyingv是crowdfounding
+18:04 < miaoski> (然後真的盛大的事，像是編字典打字校對這種，反而找不到人幫忙 XD)
+18:04 < pcchen> miaoski: 哈哈我懂。
+18:04 < a-tsioh> (的臺灣平臺）
+18:06 < miaoski> flyingV 雖然蠻好的，不過要成功的話，還是要拉一拉贊助... xD
+18:06 < pcchen> 所以剛剛問的問題是：如果在flyingv上提一個計畫，會不會有人來贊助，這樣嗎？
+18:07 < miaoski> pcchen: a-tsioh 大概是想說，這樣的案子值得養 2 個(或更多)人，一年或更久的時間，專職來做
+18:07 < miaoski> 所以他想在 flyingV 上提案
+18:07 < pcchen> 之前信望愛輸入法有募款，大概可以募到十幾萬。
+18:07 < miaoski> 然後他因為接下來要回法國了 (幾個月，之後怎樣看情況?)
+18:08 < miaoski> 他剛剛有提到他要去和法國駐台的辦室處聊聊，看能不能補助他在台灣開個公司 (處理台語的資料?)
+18:08 < miaoski> 不知道我 summary 有沒有說錯什麼.
+18:09 < a-tsioh> 成功的話我就明年四五約趕快回來:p
+18:09 < pcchen> 2個人，一年的話，這個總金額大概是在什麼範圍？
+18:09 < a-tsioh> 沒說錯
+18:10 < a-tsioh> （只是開分公司或是什麼代表處）
+18:10 < au> https://github.com/HanGee/Hankathon QML 煙火畫面好有效果 ( http://broadcast.skywatch24.com/ )
+18:10 < kcwu> au's url (1/2): [HanGee/Hankathon · GitHub]
+18:11 < miaoski> pcchen: 人事費用約 100 萬 (不好意思開 22K 吧?) 加勞健保什麼的，我不確定實領月薪能多少... 可能只有 3 萬出頭
+18:11 < a-tsioh> pcchen: 還在考錄，應該是我和剛語言學碩士畢業的臺灣人（一兩個）不會太貴XD
+18:12 < miaoski> 辦公室可能借借看，不然房租一個月一萬出頭可以租到那種合租的、小間辦公室
+18:12 < a-tsioh> 22k我會太不好意思
+18:12 < a-tsioh> 臺灣年輕人有夠辛苦
+18:13 < miaoski> 如果希望實領 4 萬元的話，加上勞健保、雇主提撥，大概每人每月的費用會到 55k 左右 (我不確定精確的數字。是時候該 cue hychen 出來說明了? XD)
+18:13 < hychen> miaoski: 為什麼要cue我 =.=
+18:14 < hychen> kiang 不在, 他之前有個試算表
+18:15 < hychen> miaoski: 不一定要辦公室吧?
+18:15 < pcchen> 有沒有比較類的案子的 flyingV 成功案例？
+18:16 < miaoski> hychen: 因為我沒開過公司，完全不懂啊啊啊啊啊
+18:17 < a-tsioh> hychen: 辦公室是浪費錢:p
+18:17 < miaoski> 然後為了避免會計事務上很麻煩，不知道能不能和別人借工作室的掛人頭 xd ...
+18:17 < hychen> a-tsioh: yap
+18:17 < a-tsioh> 去朋友的咖啡廳吧
+18:18 < hychen> a-tsioh: 但你需要個地址登記
+18:18 < hychen> 然後外國人在台灣開公司似乎很麻煩
+18:18 < hychen> 之前聽一個芬蘭的朋友說的
+18:18 < hychen> miaoski: 不過為什麼要開公司?
+18:18 < miaoski> hychen: 借工作室掛人頭比較容易。除非 a-tsioh 要自己開公司，那還要每年 25,000 的會計費用... 說不定還有機會要買發票
+18:19 < hychen> miaoski: 噢，我是指為什麼你們要法人實體?
+18:19 < miaoski> 因為要給人家勞、健保吧。總不能私下發錢打黑工 (笑)
+18:19 < a-tsioh> 這個法國在臺協會應該可以幫忙
+18:19 < miaoski> 我們不用啦。借朋友的工作室掛個勞健保就好了。我剛剛沒想清楚。
+18:19 < a-tsioh> 公司好像可以住他們那邊
+18:20 < pcchen> 一定要開公司嗎？
+18:20 < miaoski> a-tsioh 是想開自己的公司來處理這方面的事務? (順便把來台簽證和工作證一起搞定?)
+18:21 < hychen> miaoski: 這channel有logger噢, 留意一下發言  XD
+18:21 < miaoski> hychen: ㄟ對耶 XDDD 國稅局會來關心 XD
+18:22 < CindyLinz> miaoski: 糟糕, 你以後不能選市長惹~ XD
+18:22 < a-tsioh> 其實在法國公司已經在開
+18:22 < hychen> miaoski: 應該是還好啦，只是大家這邊講太high都會忘了有logger
+18:22 < miaoski> CindyLinz: 我的單據只留一年，被抹黑我就 GG 了
+18:22 < hychen> miaoski: 這不是重點啊，重點是你沒錢
+18:22 < miaoski> a-tsioh: 台灣分公司，聽起來好威  XD
+18:22 < a-tsioh> 加一個分公司或代表處應該不會太難
+18:23 < miaoski> hychen: 可是不能讓 2 個雇員打黑工，那要怎麼處理他們的勞健保? 還有勞基法上的一切權利...
+18:23 < a-tsioh> 一年以後還可以繼續作其他計劃
+18:24 < hychen> miaoski: 就跟a-tsioh說的一樣, 弄個台灣辦公室的樣子吧?
+18:24 < miaoski> 我懂了. 應該 cue pofeng__ 
+18:24 < a-tsioh> XD
+18:24 < miaoski> 雇員反正是做沒營業收入的事情，掛在開放文化基金會應該也是合理的
+18:24 < au> CC content productino 的話確實好像是 ocf 的業務範圍 XD
+18:24 < hychen> miaoski: 我有開一個 startups.tw channel 在亂聊這些有的沒的
+18:25 < miaoski> 意思是大家快加進去 XD
+18:25 < hychen> au++
+18:25 < hychen> 好像滿適合開放基金會的 XD
+18:25 < CindyLinz> miaoski: 職銜可以掛「亞太區總編輯」 # 18:22 < miaoski> a-tsioh: 台灣分公司，聽起來好威  XD
+18:26 < miaoski> 合理。而且這樣 flyingV 募款也才不會被人家講「怎麼公司還募款做自己的生意」 XD
+18:26 < hychen> CindyLinz: 你開心要掛什麼都可以，像是萌典佈道士之類的
+18:26 < hychen> miaoski: well, 群眾募資也是很多人募款做自己的生意
+18:27 < a-tsioh> OCF ?
+18:27 < miaoski> hychen: 噗.
+18:27 < hychen> miaoski: 本來的目的就是攤掉早期投入的開發風險
+18:27 < miaoski> OCF = open culture foundation
+18:27 < hychen> a-tsioh: http://ocf.tw/
+18:27 < kcwu> hychen's url: [開放文化基金會]
+18:27 < CindyLinz> hychen: 他想聽起來威嘛 XD
+18:27 < au> 字宙科學研究所總監督
+18:27 < miaoski> 地球分社代表取締役
+18:28 < au> +1
+18:28 < hychen> miaoski: 只是台灣的群幕比較偏向預購...
+18:28 < au> patreon 了啦 XD
+18:28 < miaoski> hychen: 台語字典 pBook
+18:28 < au> 比較有星際^W國際觀
+18:29 < hychen> 為了蔚藍清靜的地球~~~
+18:29 < miaoski> 白洞，白色的明天，正在等著我們~~
+18:29  * miaoski 晚餐。颱風天家裡竟然開伙了
+18:29 < a-tsioh> 而且這個計劃想作open的資料和免費的服務，可是如果以後只有有其他的機會繼續我不太想先拒絕
+18:30 < a-tsioh> 一年後就關也太可惜
+18:30 < miaoski> a-tsioh: 所以台灣分公司還是要開的。只是不一定和台語工讀生有關係?
+18:30 < au> a-tsioh: patreon 的特色就是可以... 一直玩一直玩
+18:30 < a-tsioh> ：）
+18:31 < a-tsioh> miaoski: 是，我跟人比較想作臺語
+18:31 < a-tsioh> 可是這樣不一定活得下去
+18:39  * a-tsioh 活下去也需要晚餐
+18:42  * miaoski 一直玩一直玩一直玩一直玩一直玩一直玩一直玩
+18:42 < miaoski> a-tsioh: 我懂. 晚餐我可以請客 XD
+18:45 < pcchen> 我想證明作台語也可以有市場，也活的下去
+18:45 < pcchen> 煮飯中
+18:46 < miaoski> 其實錢是小事情 (望向 clkao )
+18:49 < pcchen> 那什麼是大事情呢？
+18:52 < dirty_> tkirby: npm ERR! code ENOENT
+18:52 < dirty_> npm ERR! errno 34
+18:52 < dirty_> 一大堆
+18:55 -!- lafin1 [lafin@conference/jsconf/x-dldqieskxvkjwehc] has left #g0v.tw []
+18:56 < ipa> tkirby: 我 push 回 master，需要另外 deploy 嗎？@@ 
+18:56 < ipa> dirty_: 你是在 npm i summit.g0v.tw 嗎？
+18:58 < tkirby> ipa: 要
+18:59 < tkirby> dirty_: 神秘
+18:59 < ipa>  tkirby 可以再說一次打什麼 XD
+18:59 < ipa> 在哪裡打？
+18:59 < lafin> @a-tsioh 阿美語需要你！
+19:00 < miaoski> pcchen: 民族獨立是大事情 (咦)
+19:00 < a-tsioh> 我其實在弄阿美萌典而不吃晚飯
+19:01 < a-tsioh> 可是React的版本有一些我不懂的事
+19:01 < lafin> @a-tsioh 辛苦了！我是因為沒辦法回家只好在所內煮飯（咦）
+19:01 < miaoski> a-tsioh: ++ ... 去花蓮的話， lafin 的家人會請你吃晚餐。那我幫忙出火車票好了 XD
+19:01 < a-tsioh> XD
+19:02 < lafin> @miaoski 我請吃玉里麵
+19:02 < miaoski> lafin: 先說我不能吃豬肉... T_T 很多好料只能看你們吃
+19:02 < lafin> 我媽沒回去別哮響吃多好
+19:02 < lafin> 那我們吃蝸牛好了
+19:04 < lafin> 規劃一下玉里之行好了
+19:05 < au> a-tsioh: 不懂請問，我在 DOIT 還有 55min 
+19:05 < au> 可以回答問題（正在弄給 evenwu 的字重 subset）... 接下來就要往桃園了，路上只有 3½ g
+19:07 < a-tsioh> au: 在以前的版本miaski 加了一些 if LANG is \p then ... (change stuffs like how \ufff[9ab] are processed)
+19:07 < a-tsioh> now it seems to have moved to the function "h" in view.ls
+19:08 < a-tsioh> but h doesn't know about LANG
+19:08 < a-tsioh> I tried to create h_map by language but somehow failed
+19:08 < au> $?('body').hasClass('lang-p')
+19:08 < au> 先這樣
+19:08 < a-tsioh> 也可以
+19:08 < au> 那就這樣
+19:09 < au> main.ls line 459 還是會  $('body').addClass("lang-#LANG")
+19:09 < au> 要用 $ 不是 $? 是因為 server 端沒有 jQuery (for now)
+19:09 < au> er
+19:09 < au> 要用 $? 不是 $ 是因為 server 端沒有 jQuery (for now)
+19:09 < au> 等阿美要做字圖和斷詞再來 worry 後端... 先用 hasClass 擋一下吧 XD
+19:10 < a-tsioh> au++
+19:10 < a-tsioh> it's working with $?('body').hasClass('lang-p') 
+19:10 < au> awesome
+19:10 < tkirby> ipa: 在 repo 根目錄打 ./deploy
+19:10 < miaoski> a-tsioh: ++
+19:12 < au> evenwu: 做好了!
+19:12 < au> https://www.moedict.tw/SourceHanSansTW.ttf?subset=%E8%AA%8D%E5%BE%97%E5%B9%BE%E5%80%8B%E5%AD%97&weight=100
+19:12 < au> weight=100 200 300 400 500 700 900 都可以
+19:12 < au> 不然 ExtraLight|Light|Normal|Regular|Medium|Bold|Heavy 也可以
+19:13 < miaoski> au++
+19:13 < au> font-face 裡七個字重的 subsetting 都可以... CDN cloudflare cache 住，所以歡迎儘量用不用擔心頻寬
+19:13 < au> source 在 https://github.com/g0v/moedict.tw (app.psgi 和 utils 裡修 .ttf)
+19:13 < kcwu> au's url: [g0v/moedict.tw · GitHub]
+19:14 < au> 一開始的 .otf 是用 Glyph Mini 手動 de-autohint 掉。(for the record)
+19:14 < au> 以上忙完了，可以出國了 XD
+19:15 < miaoski> 賀! 飛行平安。
+19:15 < a-tsioh> 其實make amis 有交朋友的意思（英法混在一起）
+19:15 < miaoski> xd
+19:15 < lafin> ＠＠
+19:15 < a-tsioh> au++
+19:15 < au> o/~ make amis, not war o/~
+19:15 < a-tsioh> :)
+19:16 < ipa> tkirby: \o/ thanks~
+19:16 < dirty_> ipa: 是, 本來是想順手弄一下, 不過不怎麼順手 XD 然後就去顧小孩了
+19:17 < dirty_> tkirby: 所以如果你重新 clone 呢?
+19:18 < a-tsioh> mmm
+19:18 < a-tsioh> `make amis` doesnt not create =.json and index.json 
+19:19 < a-tsioh> ( au ? any clue ?)
+19:22 < au> index.json is out of band
+19:22 < a-tsioh> o 是要從amis-data cp而已
+19:22 < au> =.json too
+19:22 < au> yeah
+19:24 < a-tsioh> =.json seems contain only []
+19:25 < dirty_> tkirby: 似乎是 node 版本太久
+19:27 < kiang> miaoski: 一年 50 萬，一個月約 42000 ，薪水含勞健保是 35075 吧
+19:28 < kiang> http://kiang.github.io/salary/ - 已經被遺忘很久的東西 XD
+19:29 < a-tsioh> query box 不見了orz
+19:29 < miaoski> kiang: 好像還不錯 XD kiang ++
+19:30 < a-tsioh> kiang++
+19:35 < au> a-tsioh: check index.jade and jade version (may need jade@latest)
+19:36 < a-tsioh> ok
+19:37 < dirty_> 然後, 我發現所有的 issue 都被 kirby 解了 XD
+19:37 < a-tsioh> pushing the new branch to my forked repo is like 50Mo ?!?
+19:39 < a-tsioh> miaoski: tu peux essayer ça : https://github.com/a-tsioh/moedict-webkit/tree/amis-renew
+19:39 < kcwu> a-tsioh's url: [a-tsioh/moedict-webkit at amis-renew · GitHub]
+19:42 < a-tsioh> au I'll change the index.jade after diner 
+19:43  * a-tsioh 先去吃！
+19:43 < miaoski> a-tsioh: ++
+19:54 < au> https://www.moedict.tw/about.html 加了「一秒變思源」 bookmarklet
+19:54 < au> (目前需要網頁上有 jquery，像是 http://law-out.mof.gov.tw/index.aspx)
+19:54 < au> 只是 demo 用，之後會放在比較有意義的位置~
+19:54 < au> -> airport &
+20:04 < a-tsioh> au : bon voyage !
+20:04 < caasih> au: (^q^)|~/ 路上小心！
+20:17 < miaoski> 我又被 mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h 卡住了... @@ # debian wheezy
+20:18 < miaoski> sudo gem install compass 的時候
+20:26 < miaoski> 太詭異了. Debian wheezy 的 ruby-dev 沒有 ruby.h 但是 ruby2.1-dev 就有
+20:28 < CindyLinz> 竟然自己編 ruby....
+20:32 < miaoski> CindyLinz: 沒有，我是用 apt-get install ... 是萌典的 gem install compass 需要編 native module
+20:34 < lafin> @miaoski 給我Ｒ的txt
+20:34 < miaoski> lafin: https://github.com/miaoski/amis-data/blob/master/r.txt
+20:34 < lafin> @miaoski 我github 下載不下來
+20:34 < miaoski> 不知道怎麼指定 gem install 用哪版 ruby T_T
+20:34 < miaoski> lafin: 那我寄過去
+20:35 < lafin> @miaoski 謝謝
+20:35 < CindyLinz> miaoski: 嗯...有聽過一些這樣的故事 orz # ...不知道....用哪版 ruby T_T
+20:36 < miaoski> lafin: 寄到 gmail 了
+20:37 < lafin> @cindylinz 寄了Ｐ
+20:39 < CindyLinz> lafin: 啊 ?_?
+20:41 < lafin> ＝＝
+20:41 < lafin> 又回錯了ＸＤ
+20:44 < miaoski> 每次遇到 ruby 都很頭痛... ← Python 的腦袋.
+20:45 < miaoski> 到現在還搞不定。只是 gem install compass 為什麼這麼難 T_T
+20:48 < CindyLinz> lafin: XD
+20:48 -!- enavarro__ [~navarro@197.64.124.78.rev.sfr.net] has left #g0v.tw []
+20:49 < miaoski> 怒了 $ sudo apt-get install ruby-sass ruby-compass
+20:49 < CindyLinz> miaoski: 沒有富貴命, 用 gem 大兇 (逃)
+20:49 < miaoski> CindyLinz: 哼哼 ruby 和 gem 一看就知道是資產階級的玩意兒
+20:50 < miaoski> python 才是無產階級的好朋友
+20:50 < CindyLinz> XD
+21:17 < miaoski> a-tsioh: 跑起來了 ^^ 不過，切到阿美語就沒有全文檢索了 (印象中應該是連到 Google Search ?)
+21:19 < miaoski> 印象中還有改一些 .jade 和 .scss ...
+21:22 < miaoski> a-tsioh: 有參考這裡嗎? https://github.com/audreyt/moedict-webkit/commits/amis
+21:23 < kcwu> miaoski's url: [Commits · audreyt/moedict-webkit · GitHub]
+21:24 < pcchen> 請問現在是要如何 make amis?
+21:24 < miaoski> pcchen: 去 a-tsioh fork 的那邊 git clone 然後 git checkout amis-renew 
+21:25 < miaoski> 看起來還沒寫完... 不過我想先搞定資料... 
+21:25 < a-tsioh> miaoski: yep,我也沒有那麼快
+21:25 < miaoski> a-tsioh: ++
+21:25 < a-tsioh> 這部分還沒做好
+21:26 < pcchen> 看起來超過我本晚的腦容量
+21:26 < a-tsioh> ：）
+21:26 < miaoski> XD
+21:29 < lafin> = ="...
+21:31 < lafin> rakes
+21:31 < lafin> camphor - tree
+21:31 < lafin> 樟樹
+21:42 -GitHub129:#g0v.tw- [g0v.tw] ipaaa pushed 1 new commit to master: https://github.com/g0v/g0v.tw/commit/bb9efefcf9d6ebbdb5e79a673c3d964bf39ab68b
+21:42 -GitHub129:#g0v.tw- g0v.tw/master bb9efef ipa: update about page
+21:44 -GitHub105:#g0v.tw- [g0v.tw] yhsiang pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/946bee3e4ba381cd8e9f0ed17cfcbbedc6dd37f9
+21:45 -GitHub105:#g0v.tw- g0v.tw/gh-pages 946bee3 g0v general (via TravisCI): regen for bb9efef
+21:46 < a-tsioh> miaoski: 你希望有的功能是full text search 還是reversed dict ?
+21:47 < a-tsioh> (都要也可以，我覺得reversed dict比較好玩）
+21:47 < miaoski> a-tsioh: 都可以，看哪個做起來容易
+21:47 < a-tsioh> full text search 比較直接
+21:47 < miaoski> 那可以先做這個嗎? :D
+21:47 < a-tsioh> reversed dict需要一些heuristic rules
+21:48 < miaoski> a-tsioh: ++  #  加速進行中的感覺還不錯
+21:48 < a-tsioh> or we present both results in the popup
+21:49 < miaoski> nice ^^
+22:02 < tkirby> dirty_: 後來有成功嗎
+22:04 < pcchen> nice
+22:14 < xsoameix> ruby 和 python 我都有用一些，那我是中產階級囉 XD
+22:17 < xsoameix> ruby => 權貴語言, python => 平民語言
+22:18 < xsoameix> (ruby + python) / 2 => 中產階級
+22:19 < lafin> ＠＠
+22:33 < clkao> Lee1092++ # gov 票
+22:34 < xsoameix> 那如果在玩組合語言，就是囚犯囉 ...？
+22:53 -!- lafin [lafin@conference/jsconf/x-dnjdcczocmmgfpdo] has left #g0v.tw []
+23:16 < Lee1092> au++  # 一秒變思源
+23:19  * a-tsioh 屬於平民
+23:19 < Lee1092> 有人有 a0kman 的連絡方式嗎?   想問他 超農域 有沒有要擺攤  :P
+23:20 < a-tsioh> xsoameix: Perl呢？OCaml呢？
+23:20 < xsoameix> Perl => 小資族
+23:22 < xsoameix> OCaml ? 不認識，新的階層？
+23:31 < xsoameix> Ocaml 好像跟 java 同年紀，大約是差一歲
+23:46 < ipa> tkirby++ 改了架構後造成多人一直 commit 
+23:50 < shuhua__> AceChen: 你在嗎？
+23:54 < venev> Lee1092: 路過看到，我幫你問 a0kman ＃超農域擺攤
+23:55 < Lee1092> venev  好歐  感謝~!
+23:57 < venev> Lee1092: 已私訊問 a0kman, simonpai, 子龍, tuiry 等 contributors，請他們討論一下來 IRC 回你囉

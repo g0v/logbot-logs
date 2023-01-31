@@ -1,0 +1,1363 @@
+--- Day changed 日  8月 18 2013
+00:02 < weitsai> mindos
+00:02 < weitsai> :mindos
+00:02 < weitsai> mindos: 處理經緯度的問題 其他應該暫時沒有
+00:02 -!- KuoE0 [~KuoE0@218-164-19-234.dynamic.hinet.net] has quit [Remote host closed the connection]
+00:02 < billy3321> tuiry: 是我要謝謝你願意幫忙畫 :)
+00:03 < clkao> 我裝的是這個 https://play.google.com/store/apps/details?id=com.lordmarty.mumbleclient
+00:03 < mindos> gh-pages 裡有一些套經緯度的例子，不知道你合不合用
+00:03 < mindos> au : Android 真不知首用那一套
+00:03 < clkao> billy3321: 自主參與啊 反正有做相關的事情就自然加入了
+00:03 < clkao> mindos: ^^^
+00:05 < lanfon72> ipa: sorry 整理的時候沒看到 3du.tw 的 project...所以就先叫教育部了0rz
+00:05 -!- brecht___ [~brecht@114-32-101-249.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+00:06 -!- KuoE0 [~KuoE0@218-164-19-234.dynamic.hinet.net] has joined #g0v.tw
+00:06 < weitsai> mindos: 目前正在參考別人的寫法改寫成 java
+00:07 < lanfon72> Stranger_1980_:身為多次申請(?)低收的人, 只能說社福法某些部份真的很有問題(也就是您說的不是個案), 但也有些人的確是利用漏洞申請低收來賺補助錢...
+00:07 < ttcat> 我不知道怎麼講話
+00:09 < mindos> 我記得 lefty 是用 geojson 比較好上手
+00:09 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has joined #g0v.tw
+00:10 < mindos> ttcat : 我聽到啦啦啦
+00:10 < ttcat> 那不是我！！
+00:10 < ttcat> 那是 clkao 
+00:10 < clkao> where's the speak button for mac client
+00:10 < ttcat> 我用 mac client 找不到誒 
+00:10 < au> 都是用 mute button
+00:10 < clkao> au: i've unmuted
+00:10 < au> 但是 preference 裡 (advanced?) 可以改成 push to talk
+00:11 < clkao> but my mouth doesn't turn red
+00:11 < mindos> 按 PTT 那個按鈕 ( Android )
+00:11 < au> must be a mic problem then
+00:11 < mindos> I am push-to-talk by default.
+00:14 < ttcat> push-to-talk 找不到 (mac client
+00:14 < mindos> weitsai : 我是說這個 # http://g0v.github.io/twgeojson/map.html
+00:14 < kcwu> mindos's url: [D3 + Leaflet]
+00:15 < weitsai> mindos: 這個我看過今天 clkao 有給我
+00:17 < clkao> au: 應該是 voice activities threshold 太高
+00:19 -!- tsaiid [~tsaiid@host-219-68-13-81.dynamic.kbtelecom.net] has quit [Quit: tsaiid]
+00:24 < hychen> mumble 人太多會有雜訊
+00:24 < hychen> 之前公司開會有用mumble
+00:24 < clkao> hychen: 要都 mute.. 當對講機用... 開會就說... 接下來誰發言 
+00:24 < hychen> yap
+00:24 < hychen> default是push2talk
+00:27 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+00:27 -!- KuoE0 [~KuoE0@218-164-19-234.dynamic.hinet.net] has quit [Remote host closed the connection]
+00:27 < Michael-Li> 哇靠！回頭來看，連通訊加密方案都出來了....
+00:28 -!- KuoE0 [~KuoE0@218-164-19-234.dynamic.hinet.net] has joined #g0v.tw
+00:28 < Michael-Li> 唐鳳大神也在...（抖抖抖）
+00:33 -!- KuoE0 [~KuoE0@218-164-19-234.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+00:33 < Michael-Li> 挖～～好像有人給我３小時前的解決方案mumble
+00:34 < Michael-Li> 再貼一次我的問題，請教各位神人大大（膝蓋抖抖抖，準備下跪拜神）
+00:34 -!- threewood [76ab2408@gateway/web/cgi-irc/kiwiirc.com/ip.118.171.36.8] has joined #g0v.tw
+00:34 < hychen> mumble  是吃網路的, 遊行時大概都沒用...
+00:34 < hychen> 不過如果架個local network+mumble?
+00:34 < clkao> yeah
+00:35 -!- KuoE0 [~KuoE0@218-164-19-234.dynamic.hinet.net] has joined #g0v.tw
+00:35 < clkao> local mesh + mumble ... one channel for coordinating, and one channel for casting
+00:35 -!- KuoE0 [~KuoE0@218-164-19-234.dynamic.hinet.net] has quit [Remote host closed the connection]
+00:35 < Michael-Li> 我來問個跟校友會網站有關的問題
+00:35 < clkao> hychen: 你不連上來？
+00:35 < Michael-Li> 就是不知道各位用過RC語音沒？如果想在全球性的校友會網站加上這種程式功能，是否有開放原始碼的工具可以使用呢？
+00:35 < hychen> clkao: 讓我裝一下tool
+00:35 < clkao> mumble
+00:36 < hychen> mumble 要tune audio wizard .. 有點懶 XD
+00:36 < clkao> hychen: 改 push to talk
+00:36 < Michael-Li> 想想RC的方便性不錯，可惜沒有可靠性......太多天朝的安全保護
+00:36 < Michael-Li> 先拜謝神人^^
+00:36 < clkao> 德國人設計的介面雨 UX 點點點
+00:37 < ttcat> hychen: 如果可以架遊行現場 local network + mumble 就可以取ㄉㄞˋ
+00:37 < hychen> http://www.asterisk.org/
+00:37 < kcwu> hychen's url: [Asterisk custom communications - PBX, VoIP gateways, IVRs and more...]
+00:37 < au> Michael-Li: 如果是網站要內嵌（而不是要求下載），有開放源碼的 https://github.com/wearefractal/holla
+00:37 < ttcat>  取代無線電對講機了
+00:37 < kcwu> au's url: [wearefractal/holla · GitHub]
+00:38 < ttcat> （常常無線電因為距離、雜訊，遊行現場會變成災難，3G又塞車）
+00:38 < hychen> 但我很好奇wifi的狀況會比較好...
+00:38 < au> (或是類似的 WebRTC 實作，但目前 Chrome/Firefox 限定)
+00:38 < Michael-Li> PS.（這是以前亂想的遊行方案，遊行的時候，請用海軍使用的光線通訊法則，LED與解碼...醬子）
+00:38 < ttcat> 最後要測試耗電
+00:38 < clkao> ttcat: 加到那個 hackpad? 
+00:39 < ttcat> Michael-Li: 攔截？成本高嗎？
+00:39 < ttcat> clkao: ok 
+00:39 < Michael-Li> au 謝謝
+00:41 < hychen> 有聽到我的聲音嗎?
+00:41 < Michael-Li> ttcat （我這個亂想的...因為用光線可以傳輸聲音我記得莫斯科美國大使館用過，傳指令給特務可行）
+00:42 < clkao> 如果沒有 commodity hardware 的話 實際運用應該蠻困難的
+00:42 < au> local network 用Serval Mesh ?
+00:42 < au> (Android 限定)
+00:42 < clkao> yeah
+00:43 < clkao> rooted android 限定
+00:43 < clkao> 但我還沒成功用過 設定也是很雜亂
+00:44 < Michael-Li> au 大大謝謝，我這個比較個人的問題，使用與架設，另外用外場通訊與您請教細節。
+00:44 < au> clkao: 新版好像可以 piggyback 在現有的 ssid 80211 (ap mode, e.g. WiFly, taipei-free) 上，就不用 root
+00:45 < clkao> oh that must be something new
+00:45 -!- threewood [76ab2408@gateway/web/cgi-irc/kiwiirc.com/ip.118.171.36.8] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+00:49 -!- pobontex [poan@123.110.8.25] has joined #g0v.tw
+00:50 -!- prelover [poan@123.110.8.25] has quit [Read error: Connection reset by peer]
+00:51 < ttcat> au: Michael-Li: 下次有千人戶外行動，晚會 or 遊行，來實作看看？
+00:51 < Michael-Li> ......要我跟神一起嗎？？？ＸＤ
+00:52 < au> ttcat: sounds good
+00:52 < clkao> 聽說 16 小時候有？
+00:52 < ttcat> 目前已知需求：1. 記者發稿專用網路 2. 媒體組即使上傳影像、新聞稿、臉書 3. 工作人員（e.g. 交通組）無障礙通訊 4. 核心幹部機密加密通訊
+00:52 < ttcat> clkao: 你好狠！
+00:52 < au> 16 小時後的那區剛好有 wifly...
+00:53 < clkao> uplink 我看只能靠 wimax :P
+00:53 -!- weitsai [df8d44a3@gateway/web/cgi-irc/kiwiirc.com/ip.223.141.68.163] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+00:56 < ttcat> https://g0v.hackpad.com/Jwu1z932KKt
+00:56 < kcwu> ttcat's url: [通訊加密方案 - g0v.hackpad.com]
+00:56 < ttcat> 更新了一些討論，去吃宵夜了
+00:56 < clkao> ttcat++
+00:56 < Michael-Li> 有點沒自信～～因為不要先把我想的太接近技術工程師...其實我不是我學工業工程出來，在外面工作很多年，都是雜學，去年才開始補習過JAVA想進入程式工程師這條道路...所以沒自信在於用很硬底子的技術，實在比不過這裡很多人
+00:58 < clkao> pm5cloud++ # multievent!!
+00:58 < au> Michael-Li: 幸好這裡是用來合作的，不是用來比的 :p
+00:59 < Michael-Li> 謝謝 au 厚愛^^ ／充其量只能當個顧前顧後的（沒有自宮）小李子...這是過去多年工作內容。
+00:59 < au> cool
+01:00 < Stranger_1980_> Michael-Li 我也在學Java 之前近十年都只有做IT 有空多交流
+01:01 < Michael-Li> ［認真］我這裡確認一下討論情況，就是有說要馬上趕時間架構出遊行用的網路通訊系痛嗎？
+01:01 -!- dsewnr [~dsewnr@111-255-198-175.dynamic.hinet.net] has quit [Quit: leaving]
+01:01 < ttcat> au: 最近一次是 9/7 伴侶盟凱道辦桌（沒有遊行，凱道晚會吃辦桌，為了多元成家法案要送立法院的工作募款造勢）
+01:02 < Michael-Li> 訂正：系統嗎？
+01:02 < ttcat> 1. 2. 3. 可能可以試做，我當天會顧媒體組
+01:02 < au> Michael-Li: 完全沒有 WebRTC 網站技術背景的話，也可以付一點錢用別人寫好的 http://tokbox.com/opentok/webrtc/demo/index.html 之類
+01:02 < kcwu> au's url: [OpenTok on WebRTC Demo]
+01:02 < hccloud> 應該來問問蘋果803那晚怎麼發稿的
+01:03 < Stranger_1980_> 是要自己寫一個 IM嗎？
+01:03 < au> ttcat: 伴侶盟++ # 但 9/7 我還在歐洲只能隔空加油
+01:03 < Michael-Li> au 上一句話是接我校友會的問題吧？
+01:04 < au> (是的)
+01:04 < Michael-Li> ()
+01:04 < Michael-Li> (收下)
+01:04 < ETBlue> 用 google+ 轉發文章的同時整理 idea pool 好方便啊！不僅可以 tag，還能修改之前的文章追加 tag，搜尋結果超完整...（感動） https://plus.google.com/u/0/s/g0v%20idea%20pool
+01:04 < kcwu> ETBlue's url: [搜尋 - Google+]
+01:05 < ttcat> au: 沒關係，這個政府 .... 還是有機會
+01:05 < clkao> ETBlue: 順便加一下文化部授權中心到  ideapool 吧 
+01:05 -!- KuoE0 [~KuoE0@218-164-19-234.dynamic.hinet.net] has joined #g0v.tw
+01:05 < ETBlue> clkao: 那幹嘛的？授權教學嗎
+01:06 < clkao> ETBlue: 一時找不到 log
+01:06 < ETBlue> clkao: 如果是最近兩天的 irc 那我趕完稿追 log 時會加
+01:07 < Michael-Li> ［回到剛才的認真］還是這個遊行系統架構，沒有十萬火急？
+01:07 < clkao> ETBlue: http://logbot.g0v.tw/channel/g0v.tw/2013-08-16#737
+01:07 < kcwu> clkao's url: [Logbot | #g0v.tw]
+01:08 < clkao> Michael-Li: 沒有任何事情是十萬火急的 除非你覺得他十萬火急
+01:08 < clkao> ETBlue: 不過你 hash tag 有空格 好像就不是一個 hashtag 了耶？
+01:08 < lanfon72> 剛好像看到一個坑叫文化部授權中心...
+01:09 < Michael-Li> 嗯嗯.....所以剛才ttcat說
+01:09 < Michael-Li> au: Michael-Li: 下次有千人戶外行動，晚會 or 遊行，來實作看看？
+01:10 -!- a-tsioh [~pierre@136.176.102.84.rev.sfr.net] has joined #g0v.tw
+01:10 < ttcat> Michael-Li: 我覺得
+01:10 < ttcat> 有機會都可以做啊
+01:10 < ETBlue> clkao: oh, ok, done, 暫時放在懶人藝術家的 todo，這樣就一定會看到 XD http://hack.g0v.tw/g0vMOC/aebl3KvR82s
+01:11 < mindos> Mumble 可以設定成，需要 certificate 才能進去。但手機就不能上去了。
+01:11 < Michael-Li> 這句話...偶的想法就是嘗試配合，也學習相關技術的整合應用，是個好事情^^
+01:11 < ttcat> 試試看 一次次 檢討改進 解決問題、低成本、使用方便性、穩定、可模組化自己架 etc..
+01:11 < clkao> 可能要 client 有支援... ios 的不知道有沒有支援 certs?
+01:11 < au> mindos: Plumble 好像有支援 cert
+01:12 < clkao> 居然有高分 mumble client!
+01:13 < mindos> 我在 mac 上可以 generate 我身為 user 的 cert
+01:13 < mindos> 我現在設成用密碼了
+01:13 -!- KuoE0 [~KuoE0@218-164-19-234.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+01:14 < mindos> 要上去看看的可以從 au server 我傳給你
+01:14 < ETBlue> clkao: lanfon72: 由於組織膨脹很容易在不知不覺中發生，沒有固定客群的「部門」我先盡量以專案的形式（而不是成立組織單位的形式），所以就先把授權中心的 idea
+01:14 < ETBlue> 整併到懶人藝術家底下，哪天需要專門替授權中心做個網站什麼的時候，再獨立出來變成專案（或許外界看來會像是組織單位，但對內是專案這樣）
+01:14 < Michael-Li> （狀態：這件事記下筆記本中，重點１先把以前亂想的東西，花個２～３天找一下相關技術資料，發給這兩位朋友）
+01:14 < hychen> 剛才是誰說要睡的... 
+01:15 < hychen> 現在還在發言
+01:15 < ttcat> mindos: 有辦法把頻道變成加密嗎
+01:15 < ETBlue> clkao: 對呀空白會變成不同 tag，所以就用搜尋的，因為 google+ 的搜尋很好... 這樣也可以避免 tag 膨脹 XD
+01:15 < hychen> ios 的 mumble 有支援cert吧, 我看rex都用ipad 連公司的mumble
+01:16 < lanfon72> ETBlue++ 好深奧的問題(想了三遍還在想...0rz
+01:16 < Michael-Li> ［宣告］很累了，眼睛痛要睡了，早上睡飽後看紀錄補課。
+01:17 < ttcat> Michael-Li: (wave)
+01:17 < mindos> ttcat : mumble 本來勍加密吧
+01:17 < yhsiang> ttcat: 我想到我兩年前的遊行, 用鉛電池+webcam 自己弄video streaming 遊行實況, 還有進去過行政院
+01:18 < ETBlue> lanfon72: 比方說，g0v 文化部是個單位（有一群明確的客群：非資訊宅），而教育部和新聞局對我來說算是專案（屬於零時通關的一部份）
+01:18 < mindos> 問題在於，server 只要有 cert 的 user 都可以進去啊
+01:18 < mindos> 鉛電池！
+01:19 < clkao> acl
+01:19 < ttcat> mindos:沒有讓我輸入密碼的地方誒
+01:19 < yhsiang> 一定要鉛電池, 然後我用msi wind 100 換ssd 
+01:19 < ttcat> yhsiang: !!!
+01:19 < yhsiang> 電池放在mos的手提袋 拿著小筆電 到處去video stream
+01:19 < clkao> hychen: btw pgrest state api 更新了, lfrest 也更新了塞 session/member_id 的方式 可以看看你 passport 取得 user 後用同樣的方式塞進去
+01:20 < yhsiang> 兩年前的稅務人權遊行...然後也有進去總統府 (almost?)
+01:20 < hychen> clkao: 我正在改
+01:20 < ttcat> yhsiang: 那時候應該 3G 不普及?
+01:20 < mindos> ttcat : 對啊，沒密碼可輸入 QQ
+01:20 < clkao> yhsiang: 好像要用買菜那種推車
+01:20 < hychen> clkao: 不過pgpram什麼時候會被reset?
+01:20 < yhsiang> ttcat: 3G+ fms encode 300k就夠了
+01:20 < lanfon72> ETBlue: 突然很想深入了解QQ 有書可以推薦閱讀嗎...0rz
+01:20 < yhsiang> clkao: 不用推車阿 XD 我把webcam夾在帽子上面, XDD
+01:21 < clkao> yhsiang: 我是說鉛電池 XD
+01:21 < yhsiang> 肩背袋裡面放筆電跟電池
+01:21 < yhsiang> clkao: 喔喔 是比較小的那種 
+01:21 < mindos> yhsiang++ # yhglass
+01:21 < yhsiang> 然後我老爸他們有自幹  遊行用的車子
+01:21 < yhsiang> 上面有放柴油發電機, 和改造過的喇吧
+01:21 < clkao> yhsiang: 原來是造反世家！
+01:21 < hychen> yhsiang++++
+01:21 < hychen> 這車子太威猛了
+01:22 < mindos> 還是乾脆不要密碼，反正 server name 可以改 lol
+01:22 < clkao> mindos: http://mumble.sourceforge.net/ACL_Tutorial/English
+01:22 < kcwu> clkao's url: [ACL Tutorial/English - Mumble]
+01:22 < Michael-Li> ［最後一口氣］PS.可同時傳遞光和聲音的無線喇叭LED燈泡http://www.ledinside.com.tw/news/20100802-13232.html
+01:22 < kcwu> Michael-Li's url: [可同時傳遞光和聲音的無線喇叭LED燈泡_LEDinside – LED, LED照明, LED交易, LED研究報告, LED市場, 所有LED專業資訊都在LED產業網]
+01:22 < yhsiang> hychen: 就是把 那種載貨用的 自己改造 裝上喇叭 XDD
+01:23 < yhsiang> 可以當臨時舞台 , 可以有人發言
+01:23 -!- bluedog8080 [76e9db94@gateway/web/freenode/ip.118.233.219.148] has joined #g0v.tw
+01:23 < yhsiang> mindos: 兩年前我用的server支援iphone了  現在不用拿webcam了 XDD
+01:24 < ETBlue> lanfon72: 你想瞭解哪方面？XD 組織設計的原理和流程設計類似，如果已經有一兩年以上職場經驗，可參考 tom peters 的可愛小書，應該是在這本提到的 http://www.anobii.com/books/%E6%B6%88%E8%B2%BB%E9%AB%94%E9%A9%97%E8%90%AC%E8%90%AC%E6%AD%B2%EF%BC%81/9789862160008/01f41bf617ce48ccda/
+01:24 < kcwu> ETBlue's url: [消費體驗萬萬歲！ - aNobii]
+01:25 < mindos> clkao 
+01:26 -!- watersu [~water@host-129.70-14-119.dynamic.totalbb.net.tw] has joined #g0v.tw
+01:28 < ttcat> mindos: ++
+01:29 < ttcat> yhsiang: 那你說我能不推你坑嗎
+01:29 < mindos> 我覺得重點是 mobile 上的 non-offical client 不能設 cert & pass
+01:30 < clkao> au 不是說 pumble 可以？
+01:31 < jimyhuang> 話說上次8/3，我的手機完全不通
+01:31 < jimyhuang> 3G視同廢掉
+01:33 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+01:33 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has joined #g0v.tw
+01:33 < yhsiang> 所以可能兩年前3G 不普及 所以就不容易視同被廢掉?, 但我記得我沒碰上3G連線問題過 orz..
+01:34 < jimyhuang> 可能0803的規模、密度太高了（跟演唱會一樣）
+01:34 < yhsiang> 不過通常 我的位置都是在遊行最前面 XD
+01:35 < evenwu> 大家知道 flickr 台灣帳號跟美國帳號能搜到的東西不一樣嗎？不能取消安全搜尋了。
+01:35 < yhsiang> evenwu: yllan稍早有說了
+01:35 < evenwu> 嗯嗯 太扯。
+01:36 < ttcat> 其實不用 803, 309 那樣就很慘了
+01:36 < clkao> evenwu: lcamel_ 說內部已經有人 report issue 了
+01:36 < isacloud> 已經有朋友 (camel) 向 y! 提問了，希望快點有回應
+01:36 < evenwu> hmmmmm
+01:37 < isacloud> 咦，欺負我手機打得慢 XD
+01:37 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+01:38 < mindos>  Android 有 plumble    iOS 要用什麼
+01:39 < mindos> isacloud++
+01:39 -!- KuoE0 [~KuoE0@218-164-19-234.dynamic.hinet.net] has joined #g0v.tw
+01:40 < lanfon72> ETBlue: "組織膨脹" 之類的問題吧0rz...(感覺像是管理學的範圍?)  職場經驗應該是沒有...  改天去學校圖書館借回來看 感謝QAQ
+01:40 < yhsiang> hychen:  https://www.dropbox.com/s/o12am8fk7n6s6vz/car.png # 我找到圖了 感謝youtube
+01:40 < yhsiang> 大概長這樣 遊行戰車 XDD
+01:41 < isacloud> 才剛弄好 safeslinger 大家已經改玩別套了?
+01:42 < billy3321> http://billy3321.blogspot.sg/2013/08/otrgtalkfacebook.html
+01:42 < kcwu> billy3321's url: [雨蒼的終端機: 使用OTR進行加密聊天（適用於Gtalk、Facebook聊天室）]
+01:42 < jimyhuang> 話說g0v的github加member，有沒有什麼限制或guide ... 我目前是管他的都加入，但好像不大好？
+01:42 < billy3321> 太多內容，乾脆寫一篇blog
+01:42 < billy3321> 以後大家都找的到
+01:42 < clkao> jimyhuang: 管他的都加入++
+01:43 < mindos> isacloud : SafeSlinger 很不錯啊。有彼此認證的功能
+01:43 < yhsiang> billy3321: linux上怎麼不用finch QQ
+01:43 < Michael-Li> ［睡覺前的書包收拾好了，請檢查］我剛才設定一個文件，如果關於剛才製作遊行現場可以暢通的網路系統有人有資料要先彙整的，請開始在這裡留言，感謝各位大大 https://docs.google.com/document/d/1Zw1Bj0AQwDg8_ll8quiks3jkREoeOsqz1IFhvXIFpuw/edit
+01:43 < kcwu> Michael-Li's url: [［聯絡簿］製作遊行現場可以暢通的網路系統 - Google 雲端硬碟]
+01:44 < mindos> billy3321++
+01:44 < ETBlue> lanfon72: 我之前當菜鳥主管時幹過「SOP膨脹」的勾當，後來看到 tom peters 這本書才開竅，其實只要有心好好管理，相關的組織單位流程表單真的很容易膨脹，最後疊床架屋，變成恐怖的官僚大象...
+01:44 < ETBlue> 後來就想說防微杜漸，每次增加常規性事務時都再三問自己是否真的無法整併到現有的架構之下
+01:44 < jimyhuang> clkao: o!
+01:44  * billy3321 不會用finch 0,0
+01:45 -!- KuoE0 [~KuoE0@218-164-19-234.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+01:45 < ttcat> billy3321: ++
+01:45 < isacloud> mindos: 可能要另開 channel 交換 key, 不然這邊要變成報明牌的奇怪團體了 lol
+01:46 < ttcat> billy3321: 有沒有 mobile 版
+01:46 < mindos> isacloud : 也可以 hackathon 時交換啦 :)
+01:47 < ttcat> yhsiang: 穿制服的該不會是你？
+01:47 < yhsiang> ttcat: 額 我應該在那台車子上
+01:47 < billy3321> ttcat: 我不會抓手機的圖 0.0
+01:47 < mindos> 明早來 root android，這樣可以 try serval mesh
+01:47 < isacloud> mindos: yeah 現場換當然更安全！
+01:47 < mindos> billy3321 : iPhone?
+01:47 < ttcat> billy3321: 所以也有手機版？
+01:47 < billy3321> Andorid
+01:47 < billy3321> ttcat: 有呀
+01:48 < billy3321> 但是iOS好像沒找到client端
+01:48 < lanfon72> ETBlue:0rz...漸漸發現大家其實都大有來頭(哭)
+01:48 < ttcat> billy3321: orz
+01:48 < ETBlue> lanfon72: 所以才會每個人都是部長呀 XD
+01:48 < billy3321> 找到了
+01:49 < billy3321> http://chrisballinger.info/apps/chatsecure/
+01:49 < kcwu> billy3321's url: [ChatSecure]
+01:49 < lanfon72> ETBlue:太慘了我只是雜魚啊...
+01:51 < billy3321> ttcat: 晚點我補上iOS和Android吧
+01:51 < billy3321> 基本上用法相同
+01:53 < mindos> Android screen capture : power + volume down
+01:54 < mindos> iOS screen capture : power + home
+01:54 < billy3321> mindos: thx
+01:54 < mindos> lanfon72 : 我也是雜魚 ＱＱ
+01:55 < lanfon72> mindos:明明每一個都超強的....0rz
+01:55 < yllan> 五餅二魚
+01:56 < yllan> 怎麼魚越來越多，永遠分不完呢？
+01:56 < yhsiang> lanfon72: 我是修卡戰鬥員!
+01:57 < ETBlue> lanfon72: 你是文化部長（無誤）
+02:02 < billy3321> 先睡了，大家晚安
+02:02 < mindos> billy3321 晚安～
+02:06 < yllan> mindos: 你之前不是有個網站有賣一堆便宜的遊戲？
+02:06 < lanfon72> 0rz
+02:07 < mindos> humble bundle ? 有很多啊，這個 Jedi 最內行了
+02:07 < mindos> https://www.humblebundle.com/
+02:07 < kcwu> mindos's url: [Humble Origin Bundle (pay what you want and help charity)]
+02:08 < mindos> yllan : 嗚嗚，你害我點進去了
+02:08 < yllan> Thanks. 要買遊戲前還是要先確認一下有沒有別的地方特價，以免到時候怨嘆自己買貴。
+02:13 -!- watersu [~water@host-129.70-14-119.dynamic.totalbb.net.tw] has quit [Quit: watersu]
+02:17 -!- a-tsioh [~pierre@136.176.102.84.rev.sfr.net] has quit [Ping timeout: 260 seconds]
+02:27 -!- lcamel_ [~lcamel@vpn-nat.corp.tw1.yahoo.com] has quit [Ping timeout: 248 seconds]
+02:29 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has joined #g0v.tw
+02:33 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+02:37 < ETBlue> tuiry: 請教妳繪圖軟體的問題... XD 是不是 SAI 適合描線（明度），PS 適合調色（彩度）和特效？剛才在 youtube 上看作畫過程影片，發現 SAI 描線過程中竟然可以任意旋轉畫布... 
+02:38 < ETBlue> tuiry: 而且竟然只要台幣一千多元，好便宜（望向 adobe 系列）
+02:39 < ETBlue> tuiry: 不過好像是點陣的，對我來說似乎沒辦法用在工作上，我平常畫的都是人體構造，需要容易縮放、可高度模組化方便日後重複利用，這樣的條件非 AI 莫屬
+02:40 < ETBlue> tuiry: 但據說畫 ACG 圖（懶人藝術家圖）很適合？ XD
+02:43 -!- icman [~icman@123.240.128.193] has quit [Quit: 明天天氣晴]
+02:45 -!- AndroUser [~androirc@220-135-195-237.HINET-IP.hinet.net] has joined #g0v.tw
+02:45 < AndroUser> X
+02:45 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+02:57 < gugod> 下午把停水資訊 ( http://data.gov.tw/opendata/Details?sno=313520000K-00001 ) 的轉檔做完了。每日更新。 github 網址： http://g0v-data.github.io/mirror/water/suspension.json 
+02:57 < kcwu> gugod's url (1/2): [政府資料開放平臺>資料分類>服務分類>公共資訊>rawData]
+02:58 < gugod> 這些 csv 都很有手工打造的味道
+02:59 < gugod> 感覺，在某個 excel 裡加一列新的資料後，匯出成 csv
+03:00 < gugod> 日期時間的格式都是隨心所欲...
+03:11 < yllan> ETBlue: 而且據說 SAI 畫的線特別平滑特別順
+03:12 < evenwu> PS 近期版本也可以旋轉畫布
+03:13 < evenwu> PS 的筆順很爛
+03:14 < evenwu> SAI 抖動修正很強大
+03:25 < ETBlue> yllan: evenwu: 喔喔喔喔喔 OoO 看來SAI很適合我這種手抖族畫點陣圖... PS的線條即使反鋸齒硬度0還是超醜 orz
+03:29 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has joined #g0v.tw
+03:31 -!- AndroUser [~androirc@220-135-195-237.HINET-IP.hinet.net] has quit [Quit: AndroIRC - Android IRC Client ( http://www.androirc.com )]
+03:35 -!- KuoE0 [~KuoE0@36-239-241-28.dynamic-ip.hinet.net] has joined #g0v.tw
+03:35 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+03:36 -!- KuoE0 [~KuoE0@36-239-241-28.dynamic-ip.hinet.net] has quit [Remote host closed the connection]
+03:39 -!- PipperL_Cloud [uid13267@gateway/web/irccloud.com/x-jepqrdkxaigwpjql] has quit [Quit: Connection closed for inactivity]
+03:57 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 264 seconds]
+04:14 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+04:34 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has joined #g0v.tw
+04:34 -!- poshenghsu1 [~poshenghs@106.1.25.81] has joined #g0v.tw
+04:38 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+04:43 -!- caasih [~caasiHuan@114-46-147-227.dynamic.hinet.net] has joined #g0v.tw
+04:45 < caasih> ttcat: mindos_cloud: 啊，一時鬼遮眼，沒注意到 SafeSlinger 沒開源
+04:45  * caasih 也來看看 mumble
+04:45 -!- poshenghsu1 [~poshenghs@106.1.25.81] has quit [Ping timeout: 256 seconds]
+04:56 < gugod> 完成了 台電機組發電量 , 每10分鐘更新 http://g0v-data.github.io/mirror/taipower/generators.json
+05:01 < caasih> gugod++
+05:05 -!- angus [6ff220cf@gateway/web/cgi-irc/kiwiirc.com/ip.111.242.32.207] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+05:06 -!- angus [6ff21a38@gateway/web/cgi-irc/kiwiirc.com/ip.111.242.26.56] has joined #g0v.tw
+05:51 -!- poshenghsu [~poshenghs@111-246-233-19.dynamic.hinet.net] has joined #g0v.tw
+05:52 -!- poshenghsu1 [~poshenghs@111-246-233-19.dynamic.hinet.net] has joined #g0v.tw
+05:52 -!- poshenghsu [~poshenghs@111-246-233-19.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:55 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 246 seconds]
+05:56 -!- poshenghsu1 [~poshenghs@111-246-233-19.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+05:59 < mikimoto> gugod++
+06:40 -!- Foulke [b6eb3a45@gateway/web/cgi-irc/kiwiirc.com/ip.182.235.58.69] has joined #g0v.tw
+07:02 -!- Foulke [b6eb3a45@gateway/web/cgi-irc/kiwiirc.com/ip.182.235.58.69] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+07:03 -!- Foulke [b6eb3a45@gateway/web/cgi-irc/kiwiirc.com/ip.182.235.58.69] has joined #g0v.tw
+07:04 -!- was17lo [~ltya99m@csie0.cs.ccu.edu.tw] has quit [Read error: Connection reset by peer]
+07:04 -!- was17lo [~ltya99m@140.123.101.220] has joined #g0v.tw
+07:16 -!- cylee [b91103@linux9.csie.ntu.edu.tw] has quit [Ping timeout: 256 seconds]
+07:16 -!- Custom [custom@saturn.stu.edu.tw] has quit [Ping timeout: 256 seconds]
+07:17 -!- cylee [~b91103@linux9.csie.ntu.edu.tw] has joined #g0v.tw
+07:17 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+07:17 -!- Foulke [b6eb3a45@gateway/web/cgi-irc/kiwiirc.com/ip.182.235.58.69] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+07:17 -!- Foulke [b6eb3a45@gateway/web/cgi-irc/kiwiirc.com/ip.182.235.58.69] has joined #g0v.tw
+07:24 < caasih> lijung_: 發現 node http-server 的一大缺點，不會回報 content-length ，害我的 progress.total 都是 0 XD
+07:30 < ETBlue> clkao , tuiry , ipa , lanfon72 : 說到授權中心，先講圖的部分好了，將來需要讓創作者上傳檔案到某個固定地方（像是 download.g0v.tw 或 gallery.g0v.tw 之類的好記網址）、像 soundcloud 那樣上傳的同時選擇授權（甚至直接把圖片壓上授權標章）、像 ubuntu
+07:30 < ETBlue> 那樣付款時可選擇捐贈對象、然後所有作品可以像 icomoon 那樣能搜尋或依照 tag/授權方式/主題等來排序嗎？
+07:33 < ETBlue> 之前寫美術館手冊的時候覺得壓標章跟縮網址很麻煩，不過想到要幹出一套自動壓標章+縮網址+壓上縮過的網址+肥大圖檔儲存空間的系統更麻煩，所以馬上放棄這念頭，繼續用 google drive 跟手動壓標章還有縮網址... XD
+07:35 < ETBlue> ...... 到現在想起來還是覺得宇宙無敵麻煩，nvm 當我沒說好惹 = =b 音樂的部分倒是簡單，soundcloud 都弄好好的，直接放那邊就行了... 耶，還是圖可以放到 the noun project 去
+07:36 < ETBlue> 對噢這世界上有一堆現成的圖庫平台可以放圖... 
+07:40 -!- godfat [~Adium@114-24-0-32.dynamic.hinet.net] has quit [Quit: Leaving.]
+07:41 < caasih> ETBlue: 自動壓水印不知道能不能用 imagemagick 處理。
+07:43 < caasih> ETBlue: 然後記得 flickr 可以選 license ，只是不會壓到圖上？
+08:02 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+08:07 -!- a-tsioh [~pierre@136.176.102.84.rev.sfr.net] has joined #g0v.tw
+08:10 -!- caasih [~caasiHuan@114-46-147-227.dynamic.hinet.net] has quit [Quit: leaving]
+08:19 < ipa> 早
+08:21 < pofeng_> @@
+08:22 < joyqul> 早安 0.0
+08:35 < pm5cloud> 早
+08:40 < tuiry> Etblue,是的 sai很適合畫簡單的圖
+08:42 < tuiry> Etblue ps的線條銳利度怎麼調都不比不上sai ，一些基礎變化的筆刷sai也有，又不像ps老是吃資源
+08:45 < tuiry> 而且除了轉畫布以外，按h就可以左右翻轉檢視，要畫平滑線條也有類向量的方法支援
+08:45 < tuiry> 居家旅行必備良伴〜
+08:55 -!- a-tsioh [~pierre@136.176.102.84.rev.sfr.net] has quit [Ping timeout: 264 seconds]
+09:00 -!- MichaelLi [~androirc@220-135-195-237.HINET-IP.hinet.net] has joined #g0v.tw
+09:02 < MichaelLi> 早安…(一覺睡天亮)
+09:03 < MichaelLi> 
+09:13 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has joined #g0v.tw
+09:14 -!- lcamel [~lcamel@118-168-101-176.dynamic.hinet.net] has joined #g0v.tw
+09:14 < Michael-Li> ［通知］需要快速大量縮網址的人，我推薦使用這支小軟體：URLShortens 批次縮網址的小工具（免安裝）http://www.freegroup.org/2013/03/urlshortens/
+09:14 < kcwu> Michael-Li's url: [URLShortens 批次縮網址的小工具（免安裝） | 免費資源網路社群]
+09:15 < Stranger_1980_> https://www.facebook.com/profile.php?id=100004863458854&sk=photos&collection_token=100004863458854%3A2305272732%3A69&set=a.143877302451051.1073741827.100004863458854&type=1
+09:18 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+09:18 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+09:18 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Read error: Connection reset by peer]
+09:19 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:19 -!- ch0upi_bsd [r96006@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:20 < Michael-Li> Stranger_1980_ ++ 不錯之物，我記得公視有話好說有請人深入討論方案，我找一下錄影檔
+09:24 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+09:31 < Michael-Li> ［這是討論台南鐵路地下化］http://talk.news.pts.org.tw/2013/08/407.html
+09:31 < kcwu> Michael-Li's url: [公共電視 有話好說: 台南也要強拆民房？賴清德的最大考驗！ 鐵路地下化 拆407戶！大埔重演？真無替代方案？]
+09:31 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+09:41 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has joined #g0v.tw
+09:45 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has joined #g0v.tw
+09:54 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+09:57 -!- CalvinWu [721b7db0@gateway/web/cgi-irc/kiwiirc.com/ip.114.27.125.176] has joined #g0v.tw
+10:04 < billy3321> 我記得台南有反自救會的聲音
+10:04 < billy3321> 之前聽到的
+10:05 < billy3321> 就是有人很反感自救會"要政府去拆別人家，反正不要拆到自己家就好"
+10:05 < billy3321> 記得民進黨立委陳亭妃也是支持鐵路地下化
+10:06 < billy3321> 另外，看有沒有工程專業的可以幫忙分析看看自救會提出的方案（若有提出）是否可行
+10:06 < Michael-Li> 快看完這次節目了，自救會也是支持地下化，但是
+10:06 < billy3321> 我想現在的問題是資訊不足
+10:06 < billy3321> 大家先收集資料吧
+10:07 < billy3321> Michael-Li: 恩，我聽到的說法就是自救會也覺得鐵路很吵，支持地下化
+10:07 < billy3321> 可是覺得不要拆到他們家，要拆請去拆別人家zzzz
+10:07 < billy3321> 再來就是台灣土地徵收補助款過低的老問題
+10:08 < billy3321> 所以，我覺得應該直接問自救會：請問如果錢夠多，你們願不願意搬？
+10:08 < Michael-Li> 非常討厭自己的土地本來８９年政院方案是借給政府之後會欲歸原主，然後一夕之間變成通通政府拿來做賣土地的收入，來籌措資金
+10:09 < billy3321> 現在看起來如果市政府沒說錯
+10:09 < billy3321> 他是想要蓋公園
+10:09 < billy3321> 蓋公園好像也不能圖利財團啊
+10:11 < Michael-Li> 看完之後......先去吃飯！（其中一定有詐～！而且我非常先去相信是政府官員要耍詐）
+10:12 < billy3321> Michael-Li: 我建議你多調查一下資訊來源啦。因為我身邊認識的台南人沒有太多意見，我覺得資訊先收集好，不要先急著找地方站隊
+10:12 < billy3321> Michael-Li: 不然你會出現確認偏誤和逆火效應
+10:12  * billy3321 目前沒有太多立場
+10:13 < Michael-Li> 要注意的事情很多，台南是我最不重視的一件事情
+10:13 < billy3321> 我家在鐵路旁邊，如果鐵路地下化只徵收必要土地，上方其實很難蓋啥建築物或房屋。
+10:13 < billy3321> 因為土地的確不夠大
+10:14 < billy3321> 那如果徵收不必要部份，當然就有問題了，至於徵收的地方是否必要，可能要問問工程學的朋友
+10:14 < Michael-Li> 偶唯一的超級重視就是１００％懷疑政府官員....醬子
+10:14 < billy3321> Michael-Li: 你這樣看事情一定會看走眼。
+10:15 < Michael-Li> 嗯嗯...我不會反對你說的話
+10:15 < billy3321> Michael-Li: 就我所知，賴清德這個人就是喜歡捅馬蜂窩，但他有時候會看準了才捅
+10:15 < billy3321> Michael-Li: 剛上任他就去捅黑道議員這個馬蜂窩.....
+10:16 < billy3321> Michael-Li: 所以我個人覺得，還是先收集資料，別急著站隊，也先別有立場。等收集夠證據了，再來站地方會比較好。
+10:17 < Michael-Li> ［100％懷疑政府官員的思想依據］權力導致腐敗，絕對權力導致絕對腐敗。（Power tends to corrupt, and absolute power corrupts absolutely.）阿克頓1887年著作《自由與權力》,亦為阿克頓最廣為人知的格言
+10:18 < billy3321> Michael-Li: 1.名言不一定正確，2.照你的邏輯，有權力的人做什麼東西都有陰謀了
+10:18 < billy3321> Michael-Li: 我並不是叫你不要質疑，而是要你在證據還沒收集完整之前不要先有成見
+10:18 < Michael-Li> 嗯嗯...我不會反對你說的話
+10:18 < billy3321> 不然會影響到你收集的證據，以及你看證據的眼光
+10:19 < Michael-Li> 嗯嗯...我不會反對你說的話ＸＤＤ
+10:20 -!- CalvinWu [721b7db0@gateway/web/cgi-irc/kiwiirc.com/ip.114.27.125.176] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+10:38 -!- CalvinWu [721b7db0@gateway/web/cgi-irc/kiwiirc.com/ip.114.27.125.176] has joined #g0v.tw
+10:43 -!- Michael-Li [dc87c3ed@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.195.237] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+10:44 -!- Michal--LI [dc87c3ed@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.195.237] has joined #g0v.tw
+10:44 -!- Michal--LI is now known as Michael-Li
+10:45 < Michael-Li> ［心得］（20130814有話好說）非常仔細看「王偉民工程師」手上的很多報表工程數據很合理，我已經第一時間５０％相信「民間版本工程技術」絕對不是問題。而且第一個電話CALL-IN很奇怪，明明自救會都沒有提出「火車上面跑，下面挖」這件事（還說出0.5cm下沉），這個人根本有問題！
+10:54 -!- KuoE0 [~KuoE0@60-248-15-129.HINET-IP.hinet.net] has joined #g0v.tw
+11:03 -!- KuoE0 [~KuoE0@60-248-15-129.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+11:12 -!- MichaelLi [~androirc@220-135-195-237.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+11:14 -!- brecht [uid12997@gateway/web/irccloud.com/x-xnsedfybtfapgriq] has joined #g0v.tw
+11:16 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+11:22 < mindos> 開始有人覺得不是苗栗人，去抗議沒有正當性了。
+11:24 < billy3321> 對了
+11:24 < billy3321> 有人可以幫我把我的教學文轉上g0v blog嗎？
+11:24 < mindos> 但是人權的事不該限地方的
+11:25 < billy3321> http://billy3321.blogspot.sg/2013/08/otrgtalkfacebook.html
+11:25 < kcwu> billy3321's url: [雨蒼的終端機: 使用OTR進行加密聊天（適用於Gtalk、Facebook聊天室）]
+11:25 < Stranger_1980_> 我以前用的是simp pro
+11:27 < Stranger_1980_> 看起來方法是一樣的 用公私密鑰
+11:27 < Stranger_1980_> 可是這有一個問題
+11:27 < Stranger_1980_> 要是其中有一方沒有加密 就形同虛設
+11:28 < mindos> billy3321 是不是可以投稿?
+11:28 < billy3321> Stranger_1980_: 雙方都要加密喔
+11:28 < Stranger_1980_> 舉例: a在a公司,該公司有監聽, b在外面,裝了加密.  當a與b對話時 即使b有裝加密 也會被a的公司監聽到
+11:30 < mindos> billy3321 : 我來貼
+11:30 < billy3321> 只要無法控制到a和b的客戶端
+11:30 < billy3321> 中間是無法監聽的
+11:31 < billy3321> mindos: 晚點會補上手機端用法
+11:32 < Stranger_1980_> 研發一個預設就加密的聊天軟體！
+11:32 < clkaoud> 如果竊聽器裝在耳朵旁或者針孔拍你電腦螢幕那當然怎莫加密都沒用 但我想那不是要解決的問題
+11:32 < Stranger_1980_> 聽說QQ就是這樣
+11:32 < billy3321> ......
+11:32 < billy3321> Stranger_1980_: 你是認真的嗎？
+11:33 < billy3321> QQ在Server端的存放訊息可沒有加密，政府全都看的到
+11:33 < Stranger_1980_> 我有能力就做了啊- -
+11:33 < clkaoud> 嗯 他有加密 但是是同時加密給對方和政府機關
+11:33 < mindos> billy3321 : 我打算這樣寫 "如何在現有通訊平台上，增加加密功能，就看這味了。"
+11:33 < Stranger_1980_> 但是QQ很難被一般內容管理器監聽
+11:34 < mindos> Stranger_1980 : 用 SafeSlinger ?
+11:34 < Stranger_1980_> 其實台灣有機會做一個聊天軟體的
+11:34 < Stranger_1980_> 華人圈就那樣 現在顯然被QQ佔領了 msn又不蒸氣 最近msn倒了 卻沒有第二家聊天崛起
+11:35 < billy3321> 我寧可內容被台灣政府拿到，我也不要讓中國政府拿到
+11:35 < mindos> 那個　pidgin　應該沒有掛在其它服務下?
+11:35 < Stranger_1980_> 其實被拿到就輸了 不管是被誰
+11:35 < clkaoud> 據說現在在 irc 上聊的很愉快
+11:35 < pofeng_> billy3321: do u have tumblr account ?
+11:35 < mindos> Stranger_1980 : 聊天軟體很多啊，像 cube messenger
+11:36 < Stranger_1980_> 我的irc是透過ssh tunnel連的 ....理論上也是有加密..
+11:36 < mindos> 都不缺耶，只是不紅
+11:36 < pofeng_> billy3321: or put it here: https://g0v.hackpad.com/w01v8lrMLTY
+11:36 < kcwu> pofeng_'s url: [新聞中心 - g0v.hackpad.com]
+11:36 < mindos> Stranger_1980 : 你有加密可是別人沒有啊
+11:36 < Stranger_1980_> mindos 對啊..
+11:36 < Stranger_1980_> 所以你們沒加密就會把我暴露了
+11:36 < Stranger_1980_> XD
+11:38 < billy3321> pofeng_: done
+11:38 < billy3321> pofeng_: yes，I have
+11:38 < mindos> pofeng : 像雨蒼這篇算是新聞中心的範圍嗎
+11:38 < Stranger_1980_> 以前還用過PGP
+11:39 < mindos> billy3321 : 這樣寫可以嗎
+11:39 < Stranger_1980_> 裝一個外掛在outlook 寄的信就會有加密
+11:39 < Stranger_1980_> 對方也要有PGP才能看
+11:39 < billy3321> mindos: 晚一點還會加上手機用法
+11:39 < billy3321> mindos: 屆時請你依且修改喔
+11:39 < jeffhung> 10+ 年前有一堆台灣人做 IM，後來都被 msn 打死了。 # 11:35 < Stranger_1980_> 其實台灣有機會做一個聊天軟體的
+11:40 < billy3321> mindos: Where？
+11:40 < mindos> billy3321 : 我打算這樣寫 "如何在現有通訊平台上，增加加密功能，就看這味了。"
+11:40 < billy3321> mindos: 謝謝。這個可以用在gtalk
+11:41 < billy3321> facebook似乎也可以，但我這邊沒辦法試
+11:41 < Stranger_1980_> 我記得在qq出來之前有各種 "x"+icq 的聊天產品 台灣也有
+11:41 < Stranger_1980_> 後來只有qq撐下去
+11:43 < billy3321> 防火牆是中國網路產業的關稅
+11:43 < billy3321> qq確實好用，但是他有政治問題
+11:43 < pofeng_> Stranger_1980_: I am not sure , but why not  ? 
+11:45 < mindos> 現在要做一個 IM 要打敗的人很多，所以我不覺得是真空耶，如 Line, fb, (gtalk?), whatsapp, cubie messenger, 中國im,.....
+11:48 < Stranger_1980_> 說實在我不覺得line比qq好用...而且他是手機起家...
+11:48 < Stranger_1980_> qq在pc已經被磨得很不錯了
+11:48 < Stranger_1980_> 大陸沒有其他IM是因為QQ太硬了
+11:48 < Stranger_1980_> 台灣完全沒這顧慮
+11:49 < Stranger_1980_> 但是台灣卻沒研發
+11:49 < Stranger_1980_> 真是可惜
+11:49 < Stranger_1980_> gtalk原地踏步很久了
+11:50 < miaout17> Cubie是台灣的 http://cubie.com/
+11:50 < kcwu> miaout17's url: [Cubie ˋ(°▽ ° )ノ - Chat can be so much FUN!]
+11:50 < Stranger_1980_> pofeng_ : go XD
+11:52 < jeffhung> 偷偷推了可 filter project 的 issues 上去<
+11:52 < jeffhung> 下班收工。
+11:53 < Stranger_1980_> qq內鬥狠嚴重 還跟微信互搶資源
+11:53 < Stranger_1980_> 台灣完全沒顧慮again..XD
+11:53 < clkaoud> jeffhung++
+11:53 < Stranger_1980_> 如果台灣不研發 市場遲早被微信吃了
+11:54 < Stranger_1980_> 為什麼大家不用QQ 因為大家都知道QQ是"中国"的
+11:54 < Stranger_1980_> 微信也是中國的但是行銷成華人圈
+11:54 < Stranger_1980_> 我手機的通訊錄朋友已經不少台灣人都加入了
+11:56 < Stranger_1980_> 然後微信現在也有電腦版、網頁版了...你懂的
+11:57 < yhsiang> Stranger_1980_: 不是有YY嗎 XD
+11:57 < Stranger_1980_> YY語音嗎
+11:57 < Stranger_1980_> 還有阿里旺旺呢..
+11:58 < Stranger_1980_> 他們的功能全都被QQ抄了...
+11:58 < Stranger_1980_> 簡單的說大陸要是有創新的東西 QQ一定會抄
+11:58 < yhsiang> 不過至少介面來講 YY比QQ好
+11:58 < Stranger_1980_> QQ的抄也不簡單　
+11:59 < Stranger_1980_> 小公司被他一抄就活不下去了　而且他不只抄　有時候還買呢
+11:59 < Stranger_1980_> 假如台灣要做的話　要對抗的就是這麼一個大鯨魚　可是人家起步還比台灣晚呢...唉
+12:03 < clkaoud> 也沒聽英國人或丹麥人說覺得有必要做自己的 im
+12:11 < Stranger_1980_> http://mplusasps.tfn.net.tw/
+12:11 < kcwu> Stranger_1980_'s url: [M+ Messenger]
+12:12 < Stranger_1980_> 我的意思不是為了劃分種族或地域做　而是沒有人做才不正常
+12:13 < clkao> 前面有說了 cubie. 不過話說回來... 「先承認你就是沒有人！」
+12:15 < Stranger_1980_> --_-- 衝啊
+12:16 < clkao> ETBlue: re 授權中心 也許可以直接用 www.gettyimages.com ? 不過不知道支部支援奇怪的「捐款收據」作為贖金的模式
+12:18 < mindos_cloud> Stranger_1980 : 可能先問問 cubie 的情況? 道不同再來做一個。
+12:19 -!- CalvinWu [721b7db0@gateway/web/cgi-irc/kiwiirc.com/ip.114.27.125.176] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+12:19 < mindos_cloud> getty 在台灣有代理啊，我認識......
+12:20 < clkao> mindos_cloud++
+12:20 -!- jeekid [6ffc6750@gateway/web/cgi-irc/kiwiirc.com/ip.111.252.103.80] has joined #g0v.tw
+12:20 < Stranger_1980_> Cubie is a free mobile messaging app that lets you create and share drawings, photos, video, and voice messages while chatting with your friends. Friend me on Cubie!
+12:21 -!- jeekid [6ffc6750@gateway/web/cgi-irc/kiwiirc.com/ip.111.252.103.80] has quit [Client Quit]
+12:21 -!- caasih [~caasiHuan@114-46-147-227.dynamic.hinet.net] has joined #g0v.tw
+12:22 < mindos> 而且 Cubie 就在台北
+12:22 < clkao> mindos: 話說 64885 有進展嗎？
+12:22 < Stranger_1980_> - -搞不好我認識..
+12:24 < Stranger_1980_> 嗯　應該沒認識的　我認識的是一個半年前才開始做的
+12:24 < caasih> 說到竊聽，想起這篇回應中講到的東西：http://security.stackexchange.com/questions/23322/keyboard-sniffing-through-audio-recorded-typing-patterns
+12:24 < kcwu> caasih's url: [attacks - Keyboard sniffing through audio recorded typing patterns - IT Security Stack Exchange]
+12:24 < clkao> Stranger_1980_: ... 你剛不是說沒有人做？還是你認識的就是沒有人？ XD
+12:25 < mindos_cloud> clkao : 在 coding 不過不是很確定進展 ping Conrad :)
+12:25 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has joined #g0v.tw
+12:25 < caasih> 在學時聽過一個 session 就是講這個，光綠音，然後對按鍵聲出現的頻率分析就能知道你在打啥鬼了。
+12:26 < clkao> cpyang: ping! 要 update 一下進展或看開一下 issues 需要什麼幫忙嗎？
+12:26 < Stranger_1980_> clkao : 沒有人做"能取代MSN"的聊天軟體, PC platfrom
+12:26 < mindos_cloud> Stranger_1980 : 先承認你就是你朋友！
+12:27 < Stranger_1980_> mindos_cloud 我只是個做遊戲的(急撇清
+12:27 < Stranger_1980_> 你知道　遊戲裡面聊天功能其實很普及的
+12:27 < clkao> caasih: 我懷疑他如何判斷我 ctrl/shift 按下有沒有放開
+12:27 < Stranger_1980_> 不過我是做手游的　不用聊天
+12:29 < caasih> clkao: 好問題，當初我只問了在有背景噪音下還那麼威嗎。沒問這個，但印象中是每個鍵的下去跟上來都有特徵。只差軟體多久可以學到那個是 ctrl/shift
+12:29 < caasih> 來查一下有沒有實作可以試好了...
+12:29 < Stranger_1980_> skype的聊天實在太渣了..
+12:30 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+12:30 < pofeng_> 為什麼有人要找 Cubie 的 Tempo 哥 ? ( 需要牽線嗎 ? )
+12:30 < mindos_cloud> caasih : 可以幫忙 bug report 嗎 Q.Q SafeSlinger 改密碼的功能是壞的
+12:30 < yhsiang> caasih: 頻率分析是對英文有用吧? 換作是中文輸入呢?
+12:30 < mindos_cloud> Stranger_1980 要發挑戰信給 Cubie
+12:31 < caasih> mindos_cloud: 我只能用 skype 做 bug report ，不見得有效率 Q_Q
+12:31 < mindos_cloud> caasih : 我相信夠快了 Q.Q
+12:31 < caasih> mindos_cloud: 但記下來了，回家碰到電腦就 report
+12:32 < clkao> 請他 open source 一下吧 這樣也許就有人幫他修了 :p
+12:32 < caasih> yhsiang: 猜不同輸入法也有自己的特徵？密碼學這邊只看過碼書，只是恰好聽過那個 session /flee
+12:32 < caasih> clkao++
+12:33 < pofeng_> mindos_cloud: Stranger_1980_ 喔喔, 瞭 ( 紅海喔 ) 
+12:33  * pofeng_ 移動 &
+12:33 < Stranger_1980_> ......
+12:33 < au> clkao: re CC (by, by-nc, by-sa etc) 授權中心，之前 trc 有提到想找人架一個 MediaGoblin，也有撥 (CC & iis) 的編制
+12:34 < hychen> safeslinger 如果沒有open source, 我覺得還是不能用ㄟ
+12:34 < au> 詳見 http://www.iis.sinica.edu.tw/~trc/public/p/cc13grants/PD4PD.txt # 過一陣子可能會徵人，也許可以就近使用?
+12:34 < yhsiang> caasih: 碼書好久了 ..記得是我國中買來看得 orz...
+12:34 < yhsiang> caasih: 但是中文輸入有很多種阿, 所以他把所有的輸入法的特徵都做進去了?
+12:34 < billy3321> 徵人接手拉ui喔
+12:34 < billy3321> O. O
+12:36 < yhsiang> caasih: 還是說這只是個概念 orz...
+12:36 < caasih> yhsiang: 想要做壞事的人自然會依目標使用的輸入法準備攻擊方案？貼出來只是想說有這樣的技術，萬一真的有誰要用，換輸入法擋得了一時不是一世
+12:36 < caasih> 然後找到 python 的實作：https://github.com/zeroXzero/acoustic_crypt XDDDD
+12:37 < kcwu> caasih's url: [zeroXzero/acoustic_crypt · GitHub]
+12:37 < caasih> 可是這邊一個人只能自己錄自己 0rz
+12:39 < yhsiang> caasih: 那如果我打字沒有聲音, 就沒辦法被錄到嗎 ?
+12:41 < Michael-Li> ［我不在這裡］Dear 雨蒼：
+12:41 < caasih> yhsiang: 大概喔XD
+12:44 < yhsiang> caasih: 那你可以試試看蓋上毛巾打字還能錄到多少, 判斷的準確度又如何 XD
+12:45 < caasih> yhsiang: XDDDD 排進 TODO 中！
+12:46 < Michael-Li> ［我不在這裡］Dear 雨蒼,Stranger_1980_：請看稍早幾個鐘頭前對話，可以登記資料 http://logbot.g0v.tw/channel/g0v.tw/2013-08-18#220
+12:46 < kcwu> Michael-Li's url: [Logbot | #g0v.tw]
+12:52 < dannvix> jeffhung: 剛才偷偷幫 issues 加了 loading indicator ><
+12:54 < caasih> mindos_cloud: 想起在 fb 有加該學長，已 report
+12:55 < tuiry> Michael-Li 很簡單，如果有其他工程師願意為自救會版本背書，爭議會少很多簽字
+12:56 < tuiry> Michael-Li 有很清楚的反自救會懶人包，可以參考看看
+12:56 < caasih> pofeng_: hp51t 那篇連結失效了，正在找 HPX 是不是重新發了文
+12:57 < clkao> au: thanks for the info, 果然是就近使用 超近的
+12:58 < clkao> caasih: http://www.hpx-party.com/hpx-events/hp51 ?
+12:58 < kcwu> clkao's url: [HP51 – Open Data x Open Design | HPX Party]
+12:58 < caasih> clkao: 謝謝！已修正連結！
+12:58 -!- ypwong [~anthony@123.121.18.118] has quit [Ping timeout: 246 seconds]
+13:03 -!- godfat [~Adium@114-24-0-32.dynamic.hinet.net] has joined #g0v.tw
+13:06 < hcchien> gugod++  # 04:56 < gugod> 完成了 台電機組發電量
+13:10 < mindos> caasih++
+13:11 < jeffhung> dannvix++
+13:16 < dannvix> jeffhung: 如果我改得不好再麻煩您幫忙修
+13:18 < isacloud> dannvix++
+13:22 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+13:30 < caasih> hackppad 出現 PDF 軟體廣告文？
+13:38 -!- whyjaster [~whyjaster@118-160-235-176.dynamic.hinet.net] has joined #g0v.tw
+13:42 < lanfon72> ETBlue:先memo成一個坑...上傳的部份可以 壓印跟短網址則是完全沒有想法...0rz
+13:42 -!- mindos [~mindos@114.44.224.3] has quit [Remote host closed the connection]
+13:44 < Michael-Li> ［小小的口碑行銷］新聞小幫手很有用，可以把這麼瞎的新聞資訊馬上讓人知道http://farm6.staticflickr.com/5484/9536322930_a0cc46f3c0_o.png
+13:44 < lanfon72> ETBlue:不過感覺做成gallery的話應該可以順便(?)把轉post到各社群的功能也做上去...(好像把坑挖大了0rz
+13:45 < Michael-Li> 新聞小幫手／搶先下載／http://blog.g0v.tw/post/58554149183
+13:45 < kcwu> Michael-Li's url: [台灣零時政府 / g0v.tw • 新聞小幫手]
+13:51 < dannvix> ronnywang: 有使用者回報 http://newshelper.g0v.ronny.tw 新增後會停在空白頁，不會 redirect 回去
+13:51 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has joined #g0v.tw
+13:55 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+13:56 < lijung_> 昨天好像有講到加密訊息，有找到這個嗎？ http://tox.im/
+13:58 < yhsiang> lijung_: 有的, 一開始就講這個 XD
+13:58 -!- icman [~icman@123.240.128.193] has joined #g0v.tw
+13:58 < lijung_> 哦哦 XD
+13:58 < jimyhuang> Michael-Li++
+13:58 < yhsiang> 只是後來討論到mobile 就開始找別的了
+14:00 < clkao> ETBlue: 對了 突然想到小幫手前面的幫幫幫 有點像這個: http://www.youtube.com/watch?v=I6IQ_FOCE6I
+14:00 < kcwu> clkao's url: [Here Comes Another Bubble v1.1 - The Richter Scales - YouTube]
+14:01 < lijung_> yhsiang: 了解 tks
+14:03 < Michael-Li> clkao 你的聯想力XDDD
+14:03 < lanfon72> caasih: 偶爾好像會出現有人po奇怪的英文句...不太確定那是活人還是機器人=_=
+14:04 < caasih> lanfon72: 先手動移除掉了。 :/
+14:07 < ipa> 新聞小幫手的fb在哪？一時找不到
+14:07 < caasih> clkao: 之前到底是在哪邊聽過XDDD
+14:11 < yhsiang> ipa: https://www.facebook.com/pages/%E6%96%B0%E8%81%9E%E5%B0%8F%E5%B9%AB%E6%89%8B%E6%B8%AC%E8%A9%A6%E5%B0%88%E7%94%A8/494676360619618
+14:11 < kcwu> yhsiang's url: [新聞小幫手測試專用 | Facebook]
+14:11 < yhsiang> 這個?
+14:11 < ipa> 喔喔 現在是測試專用
+14:11 < yhsiang> 恩, 好像還沒有正式的?
+14:12 < ipa> ok thanks~
+14:14 < lanfon72> caasih++
+14:16 -!- weitsai [dc86cb22@gateway/web/cgi-irc/kiwiirc.com/ip.220.134.203.34] has joined #g0v.tw
+14:21 -!- caasih [~caasiHuan@114-46-147-227.dynamic.hinet.net] has quit [Quit: leaving]
+14:28 < gugod> http://statis.moi.gov.tw/micst/stmain.jsp?sys=100 有人抓過這裡的資料嗎
+14:28 < kcwu> gugod's url: [內政統計查詢網]
+14:32 < clkao> gugod: 這個有些和主計處重複（等於是內政部報給主計處的資料），那些就有再 g0v/twstats 裡面
+14:32 < gugod> ok 來看一下
+14:33 < ipa> 新聞小幫手貼了某則錯誤新聞之後，沒有出現警告，但換一個帳號卻可以 @@?
+14:34 -!- tsaiid [~tsaiid@host-219-68-13-81.dynamic.kbtelecom.net] has joined #g0v.tw
+14:37 < clkao> ronnywang, dannvix: newshelper 沒有寫 license, 我把它加上 g0v.mit-license.org 可以嗎？
+14:37 < clkao> 趁 commit 的人少時趕快問... XD
+14:38 -!- EuniceLu [6ff83a40@gateway/web/cgi-irc/kiwiirc.com/ip.111.248.58.64] has joined #g0v.tw
+14:38 < EuniceLu> #kuansim
+14:40 -!- tsaiid [~tsaiid@host-219-68-13-81.dynamic.kbtelecom.net] has quit [Quit: tsaiid]
+14:40 < dannvix> clkao: 沒問題，謝謝
+14:41 -!- tsaiid [~tsaiid@host-219-68-13-81.dynamic.kbtelecom.net] has joined #g0v.tw
+14:41 -!- frouscy [uid13088@gateway/web/irccloud.com/x-wdolundwbdfzhaal] has quit [Quit: Connection closed for inactivity]
+14:44 < Michael-Li> dannvix 您好，榮尼王不在就先跟您回報我剛才測試一下後台的經驗
+14:46 < Michael-Li> 目前我輸入３筆資料，也就是我們內部工作試算表（網址不貼了）的這一區段［下標題目的是傳遞錯誤訊息］
+14:47 < Michael-Li> FB測試專頁就留言兩次，沒有呈現提醒字樣
+14:49 < clkao> Michael-Li: 可以到這邊回報 https://github.com/g0v/newshelper-extension/issues/new
+14:49 < kcwu> clkao's url: [Sign in · GitHub]
+14:49 < Michael-Li> ２）第一筆輸入跟第二筆輸入是一樣內容，原因是前面別人說過是因為空白頁跟新  ～中斷OK～
+14:50 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: mno2]
+14:53 < dannvix> 目前 ronnywang 的新聞小幫手 backend 好像還沒推上 GitHub
+14:54 < clkao> 應該是 ronnywang/newshelper-backend-php
+14:54 < dannvix> clkao: 喔喔！原來不在 g0v 下面，謝謝
+14:57 -!- LeeM [dc87c3ed@gateway/web/cgi-irc/kiwiirc.com/ip.220.135.195.237] has joined #g0v.tw
+14:58 < kcwu> 有人在 freebsd 上玩過 phantomjs 嗎? 我不知道怎麼設中文字型
+14:58 < kcwu> 現在都是方框
+14:59 < dannvix> 剛才 Michael-Li 回報的問題我一併開在 https://github.com/ronnywang/newshelper-backend-php/issues 了
+14:59 < kcwu> dannvix's url: [Issues · ronnywang/newshelper-backend-php · GitHub]
+14:59 -!- fetag [~fetag@d01.fetag.net] has joined #g0v.tw
+14:59 < clkao> dannvix++
+15:01 < Michael-Li> dannvix++ 我研究一下如何銜接你們正在用的回報機制，再來繼續補充，剛才沒說完
+15:06 < dannvix> kcwu: http://wg.drive.ne.jp/miura/archives/1208 不知道這不是你需要的
+15:06 < kcwu> dannvix's url: [FreeBSDとPhantomJSでスクリーンショットを撮る その2 | work.log]
+15:20 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+15:25 -!- aeil [~Adium@111-249-2-172.dynamic.hinet.net] has joined #g0v.tw
+15:29 < miaout17> https://github.com/g0v/newshelper-backend 改了一下readme，以免找不到目前的新聞小幫手backend
+15:29 < kcwu> miaout17's url: [g0v/newshelper-backend · GitHub]
+15:30 < dannvix> miaout17++
+15:30 < miaout17> 其實我覺得可以把g0v上的code移到另一個branch(ex. hackath4n)，把ronnywang的code推到g0v上的master
+15:31 < dannvix> miaout17: 好建議，看看 ronnywang 的想法吧！
+15:32 -!- aeil [~Adium@111-249-2-172.dynamic.hinet.net] has quit [Quit: Leaving.]
+15:33 < ETBlue> Kong: 有沒有聽完編曲後接續的譜會冒出來的八卦 XDXD https://gist.github.com/ETBlue/6260380 這個也要練一下才能錄音，大概明天吧 XDXD
+15:33 < kcwu> ETBlue's url: [鄉民關心你之歌 - 完整版]
+15:33 -!- weitsai [dc86cb22@gateway/web/cgi-irc/kiwiirc.com/ip.220.134.203.34] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+15:35 < clkao> 太厲害了
+15:35 -!- Foulke [b6eb3a45@gateway/web/cgi-irc/kiwiirc.com/ip.182.235.58.69] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+15:35 -!- weitsai [dc86cb22@gateway/web/cgi-irc/kiwiirc.com/ip.220.134.203.34] has joined #g0v.tw
+15:36 -!- weitsai [dc86cb22@gateway/web/cgi-irc/kiwiirc.com/ip.220.134.203.34] has quit [Client Quit]
+15:38 < miaout17> dannvix: 嗯嗯，當然尊重作者想法為主
+15:43 -!- fetag [~fetag@d01.fetag.net] has quit [Remote host closed the connection]
+15:46 < evenwu> 裝了新聞小幫手！！
+15:47 < evenwu> 可是看自己牆上的藍光DVD報導沒有顯示耶
+15:49 < ipa> evenwu: 我也是
+15:53 < dannvix> 因為現在自動更新資料庫的功能是壞的 XD
+15:55 < evenwu> 網友可以回報假新聞嗎？
+15:56 -!- weitsai [dc86cb22@gateway/web/cgi-irc/kiwiirc.com/ip.220.134.203.34] has joined #g0v.tw
+15:56 < dannvix> evenwu: http://newshelper.g0v.ronny.tw
+15:58 < evenwu> 喔喔 謝謝
+16:01 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: mno2]
+16:09 -!- pichuang [~pichuang@linux2.cs.nctu.edu.tw] has quit [Quit: leaving]
+16:12 -!- weitsai [dc86cb22@gateway/web/cgi-irc/kiwiirc.com/ip.220.134.203.34] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+16:16 -!- lcamel [~lcamel@118-168-101-176.dynamic.hinet.net] has quit [Remote host closed the connection]
+16:16 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+16:21 -!- KuoE0 [uid13416@gateway/web/irccloud.com/x-dgnzjjfzifkvhtro] has joined #g0v.tw
+16:29 -!- wayne930242 [uid13045@gateway/web/irccloud.com/x-kvivgpurwgodbfun] has joined #g0v.tw
+16:31 < wayne930242> 想請問新聞小幫守的問題
+16:31 < wayne930242> 新聞小幫手
+16:32 -!- wayne930242 [uid13045@gateway/web/irccloud.com/x-kvivgpurwgodbfun] has left #g0v.tw []
+16:32 < lanfon72> 結果發現大家好像都不在(咦
+16:32 -!- wayne930242 [uid13045@gateway/web/irccloud.com/x-kvivgpurwgodbfun] has joined #g0v.tw
+16:33 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has joined #g0v.tw
+16:34 < yhsiang> lanfon72: 在阿:D
+16:35 < yhsiang> wayne930242: 甚麼問題? @@
+16:35 < lanfon72> yhsiang:XDD
+16:35 < lanfon72> yhsiang:感覺可以順便推下坑裡一起做(無誤
+16:43 -!- rich1iu_ [richliu@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 260 seconds]
+16:55 < walkingice> 打工一週回來，g0v 的進展一日千里
+16:55 < walkingice> clkao: 太厲害了！
+17:07 -!- whyjaster [~whyjaster@118-160-235-176.dynamic.hinet.net] has quit [Remote host closed the connection]
+17:07 -!- whyjaster [~whyjaster@118-160-235-176.dynamic.hinet.net] has joined #g0v.tw
+17:16 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+17:16 < Michael-Li> ［說一個小小心得］剛才正在設計一個（物理）看板，因為是給８０多歲老人用的，所以我要採用防呆設計，畢竟老人家眼睛不好。突然聯想到新聞小幫手就是一種（社會上）防呆設計。
+17:19 < Michael-Li> PS.防呆是個簡單觀念，不難理解，但是影響力卻很大，有人不知道防呆這個詞可以看維基百科http://zh.wikipedia.org/wiki/%E9%98%B2%E5%91%86
+17:19 < kcwu> Michael-Li's url: [防呆 - 维基百科，自由的百科全书]
+17:50 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has joined #g0v.tw
+17:53 < clkaoud> Etbue 強哥哼起鄉民主題曲
+17:54 < clkaoud> 好像已經開始編挖坑曲了
+17:54 < clkaoud> ETBlue: ↑
+17:55 < ETBlue> clkaoud: !
+17:56 < ETBlue> clkaoud: 挖哈哈哈哈 太好了 XDD
+17:56 < clkaoud> 炒一盤米粉還是值得的
+17:57 < ETBlue> clkaoud: 鄉民曲完整版光看簡譜好像很難想像...我明天趕快錄一錄好了
+18:01 < clkaoud> 對 他說沒有高低很難想像
+18:02 < pofeng_> 明天下午幫孝先 (網路中立性) 去跟賴律師 (反黑箱服貿協議) 開會, 有意見或想法請直接提出 ...
+18:03 -!- CalvinWu [721b7145@gateway/web/cgi-irc/kiwiirc.com/ip.114.27.113.69] has joined #g0v.tw
+18:04 < Michael-Li> 働
+18:08 -!- brecht__ [~brecht@114-32-101-249.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+18:12 < Michael-Li> 哇！萌典糗了～原來沒有"働"這個字
+18:14 < au> 嗯，那是日文漢字。
+18:15 < Michael-Li> 不好意思...我只是嘗試查詢一下工業工程常用的辭彙
+18:17 < au> *nod* 如果是現代常用的日文（重新輸入）漢字，請附定義寫信到 onile@mail.naer.edu.tw
+18:17 < Michael-Li> 很多是日本的漢字，課本或是工廠的人都習以為常，已經當成國與使用。例如：稼動率
+18:17 < au> 一旦教育部詞典加上這個字，定期更新程式時會擷取到萌典裡。
+18:17 < Michael-Li> （點點頭）嗯嗯嗯
+18:17 < au> 也可以附上例詞，如 稼働率 = Availability
+18:18 < Michael-Li> 訂正：國語使用
+18:19 < buganini> http://www.zdic.net/z/15/js/50CD.htm http://www.cns11643.gov.tw/AIDB/query_general_view.do?page=3&code=403E
+18:19 < kcwu> buganini's url (1/2): [働的解释|働的意思|汉典“働”字的基本解释]
+18:19 < kcwu> buganini's url (2/2): [CNS11643 中文全字庫-字碼查詢與下載]
+18:22 -!- brecht__ [~brecht@114.32.101.249] has joined #g0v.tw
+18:23 -!- brecht__ [~brecht@114.32.101.249] has quit [Client Quit]
+18:24 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: mno2]
+18:28 < isacloud> 有沒有一個「請推我入坑」專區，給想跳坑但不知道怎麼跳的人填。填了之後會有小天使來聯絡我之類。
+18:29 < isacloud> BTW, 請問 eo4 有什麼進展或要幫忙的地方嗎？
+18:29 -!- weitsai [dc86cb22@gateway/web/cgi-irc/kiwiirc.com/ip.220.134.203.34] has joined #g0v.tw
+18:38 < Michael-Li> ［小拋球］柏峰，您去的時候，順便問問「WIN網路單e窗口」的法律依據，有沒有接近天朝的審核管理 http://www.twbbs.us/showthread.php?100543-%E5%A4%A9%E5%95%8A%EF%BC%81%E8%B7%B3%E9%81%8E%E7%AB%8B%E6%B3%95%E7%A8%8B%E5%BA%8F%E7%9B%B4%E6%8E%A5%E5%B0%81%E7%B6%B2%EF%BC%81%EF%BC%81%EF%BC%81%E9%A6%AC%E8%8B%B1%E4%B9%9D%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%B8%8D%E6%80%95%E9%9D%A9%E5%91%BD%E4%BA%86%E
+18:38 < Michael-Li> 1
+18:38 < kcwu> Michael-Li's url: [天啊！跳過立法程序直接封網！！！馬英九你真的不怕革命了！！]
+18:42  * walkingice 看了快半小時才看 8/16 的 irc log   orz
+18:43 < jimyhuang> walkingice 好勤勞
+18:44 < Michael-Li> PS.這則比較詳盡http://disp.cc/b/163-6hsh
+18:44 < kcwu> Michael-Li's url: [關於NCC封網疑雲，個人推理 - Gossiping板 - Disp BBS]
+18:54 < isacloud> walkingice: 我很依賴公報 https://g0v.hackpad.com/201381218--9ICR8E1BNry XD
+18:54 < kcwu> isacloud's url: [2013/8/12~18 公報 - g0v.hackpad.com]
+18:54 < Michael-Li> PS.還有這則（延續上則）http://disp.cc/b/163-6hKU
+18:54 < kcwu> Michael-Li's url: [Re: 關於NCC封網疑雲，個人推理 - Gossiping板 - Disp BBS]
+18:59 -!- whyjaster [~whyjaster@118-160-235-176.dynamic.hinet.net] has quit [Remote host closed the connection]
+19:05 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+19:07 -!- weitsai [dc86cb22@gateway/web/cgi-irc/kiwiirc.com/ip.220.134.203.34] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+19:09 -!- CalvinWu [721b7145@gateway/web/cgi-irc/kiwiirc.com/ip.114.27.113.69] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+19:11 -!- a-tsioh [~pierre@136.176.102.84.rev.sfr.net] has joined #g0v.tw
+19:19 < clkao> tkirby: 今天好玩嗎
+19:23 -!- caasih [~caasiHuan@223-141-6-45.dynamic.hinet.net] has joined #g0v.tw
+19:38 -!- pengpong [3d3a4298@gateway/web/cgi-irc/kiwiirc.com/ip.61.58.66.152] has joined #g0v.tw
+19:41 -!- poga [~poga@1-171-118-148.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+19:53 -!- EuniceLu [6ff83a40@gateway/web/cgi-irc/kiwiirc.com/ip.111.248.58.64] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+20:18 < clkao> 強哥吃了我米粉又喝了我啤酒後就入坑了: https://github.com/g0v/dev/issues/18
+20:18 < kcwu> clkao's url: [標準授權 · Issue #18 · g0v/dev · GitHub]
+20:19 < clkao> 他有登記 irccloud 排隊了, 有 invite 的人請幫忙一下 ;)
+20:24 -!- pengpong [3d3a4298@gateway/web/cgi-irc/kiwiirc.com/ip.61.58.66.152] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+20:25 < yhsiang> g0v智財局 ?
+20:26 -!- ypwong [~anthony@123.121.50.73] has joined #g0v.tw
+20:26 < clkao> XD
+20:27 < clkao> yhsiang: lfrest 新的 ok 嗎？若 pgrest 用 link 的
+20:28 < yhsiang> 我有跑起來 但是還沒弄session那邊 XD
+20:33 < clkao> ok, 看下一部想先接哪個跟我說，或直接自己衝了
+20:33 < clkao> 我想 refactor cli 的部份一下
+20:39 < caasih> 呼叫 venev ？想問問兩份逐字稿要上了嗎？再來您的文字寫得比這邊好得多。
+20:39 < clkao> yhsiang: 還是要先加一下 tests? :p
+20:39 < caasih> 於是想問問有沒有打算要引幾段重要的話？
+20:39 < clkao> caasih: 好像沒掛 irc. 你有 gplus 嗎?
+20:39 < caasih> clkao: 喔喔，感謝，我去那邊找看看 :D
+20:40 -!- AndroUser [~androirc@111.235.215.28] has joined #g0v.tw
+20:41 -!- AndroUser is now known as FBI-MAN
+20:44 < FBI-MAN> 大家都去拆苗栗政府嗎？
+20:45 < pofeng_> Michael-Li: thanks for the info
+20:46 < yhsiang> 神奇的是昨天跑得起來的lfrest 現在跑不起來 orz...
+20:50 < ipa> g0v有youtube channel了嗎？macpaul 有開嗎？沒follow到
+20:50 < clkao> yhsiang: error message?
+20:51 < yhsiang> 沒有error msg@@, 我看postgres 這邊有connection
+20:51 < yhsiang> 我看這邊有沒有error @@
+20:51 < ronnywang> ok, 我把 newshelper-backend-php 搬到 g0v 吧
+20:52 < dannvix> ronnywang++
+20:52 < ronnywang> 那個 fb 專頁只是我開發時要測試有沒有效果用的 XD
+20:52 < ronnywang> 應該要開另一個意見收集的公開用的
+20:52 < ronnywang> 先來搬 code 和解 issue
+20:53 < clkao> yhsiang: 那不動的症狀是... ? request hang 住?
+20:53 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: mno2]
+20:54 < clkao> 連 gslin 也送 patch
+20:55 < yhsiang> 我也還在找, 目前就是看到postgres的process是這樣 postgres: yhsiang liquid_feedback 180.177.13.52(49365) PARSE  
+20:55 < clkao> yhsiang: 試試看 drop schema plv8 cascade; drop schema pgrest cascade;
+20:55 < clkao> s/plv8/plv8x
+20:57 < yhsiang> drop schema waiting ..
+20:58 < yhsiang> 好像是postgres 的問題-_-||
+20:59 < clkao> orz
+20:59 < clkao> 9.2 ?
+20:59 < yhsiang> yes
+21:00 -!- FBI-MAN [~androirc@111.235.215.28] has quit [Ping timeout: 264 seconds]
+21:02 < clkao> 靠 小幫手跳出 notification
+21:02 < clkao> 35 分鐘前看的新聞... xxx 
+21:03 < jimyhuang> 哪一則啊 ..
+21:04 < ronnywang> XDD 因為我剛剛把 API 修好了
+21:04 < clkao> 什麼徐若瑄什麼的
+21:04 < ronnywang> 他是真的有 notification 功能的 XD
+21:04 < clkao> ronnywang++ ＃太威了
+21:04 < jimyhuang> ronnywang++
+21:05 < yhsiang> 女神嚇傻！徐若瑄恐怖男粉絲緊黏如廁（NOWnews 今日新聞網） XD
+21:06 < jimyhuang> clkao: 所以米粉收攤了...
+21:07 < ronnywang> 我已經把 ronnywang/newshelper-backend-php 搬到 https://github.com/g0v/newshelper-backend-php
+21:07 < kcwu> ronnywang's url: [g0v/newshelper-backend-php · GitHub]
+21:07 < ronnywang> 不過要怎麼把 g0v/newshelper-backend 的 code 搬到那個 repository 的 hackath4n 的 branch 下啊 XD
+21:08 < clkao> ronnywang: 到 newshelper 的 checkout 裡, add remote 那個 -php 的, 再 push
+21:09 -!- lcamel [~lcamel@118-168-101-176.dynamic.hinet.net] has joined #g0v.tw
+21:09 -!- caasih [~caasiHuan@223-141-6-45.dynamic.hinet.net] has quit [Quit: leaving]
+21:10 < clkao> (應該是反過來, 到 -php 的 checkout, git add remote foo git@github.com:g0v/newshelper-backend; git push foo master:hackath4n)
+21:11 < clkao> err 我又講反了 花哄了.. but you know what i mean
+21:11 < ronnywang> i try
+21:13 < ronnywang> ok, done https://github.com/g0v/newshelper-backend-php/tree/hackath4n
+21:13 < ronnywang> 1. git remote add github2 git@github.com:g0v/newshelper-backend-php  # on g0v/newshelper-backend
+21:14 -!- Oberon [0122a3a0@gateway/web/cgi-irc/kiwiirc.com/ip.1.34.163.160] has joined #g0v.tw
+21:14 < ronnywang> 2. git push github2 master:hackath4n
+21:14 < clkao> *nod*
+21:14 < ronnywang> 那再來就是砍掉舊的 newshelper-backend ，然後再把 -php 的 rename 過去
+21:14 < clkao> 話說 facebook 上出現的 link  aj4fu06
+21:14 < clkao> g4
+21:14 < clkao> 目前是連到 backend, 還是要直接連到打臉文？
+21:15 < ronnywang> 我是比較想連到 backend ，這樣子可以直接在 backend 增加讓網友回報錯誤回報
+21:16 < clkao> 有道理
+21:16 < ronnywang> backend 要改東西比 extension 要改容易多了..最近 chrome extension 更新都要等快一小時
+21:18 < ronnywang> 我先把 g0v/newshelper-backend rename 成 newshelper-backend-old ，明天再刪掉好了，以防有意外發生
+21:18 < Michael-Li> ronnywang++ （修好API） 我正在關心您這些討論，只不過忙整天累了不加入對話^^
+21:20 < ronnywang> 有人寄信給我要我拿掉在 company.g0v.ronny.tw 上面他的公司的資料 XD
+21:20 < clkao> LOL
+21:20 < yhsiang> ronnywang: 你有拿嗎 XD
+21:20 < ronnywang> 不會拿啊，這是公開資料啊
+21:21 < yhsiang> 我想也是 幹的好! XD
+21:21 < ronnywang> 不過等等要想一下怎麼回 XD
+21:22 < jimyhuang> 他有說原因嗎
+21:22 < ronnywang> 沒說
+21:22 < ronnywang> 您好, 我這邊xx科技 您提供的查詢介面顯示我司公司登記資料，煩請拿掉 謝謝
+21:23 < jimyhuang> !! 那就一樣簡短！
+21:23 < jimyhuang> 『您好，公司資料來自經濟部商業司，據查，商業司上仍顯示該資料，謝謝』
+21:23 < ronnywang> 喔喔~讚
+21:23 < superbil> jimyhuang: ++
+21:24 < yhsiang> 他寫我司 你要寫 貴司回回去 XD
+21:24 < ipa> jimyhuang++ 帥啊
+21:25 < ronnywang> 哈哈，我回了
+21:26 < yhsiang> 甚麼神祕公司....還怕人家查 XD
+21:26 < ronnywang> 之前還收到一封超沒禮貌的  標題:[請聯絡] 內容:[你的專業。另人佩服。有空請聯絡有需要請教與幫忙。 x特助]
+21:26 < ronnywang> 我就連回信都懶得回了
+21:27 < ronnywang> (不知道寄信的人會不會來看 irc XD)
+21:27 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has joined #g0v.tw
+21:28 < yhsiang> ronnywang: 應該只會用google, 然後只查到logbot ...
+21:29 < jimyhuang> logbot要不要robots加一下 XD
+21:29  * jimyhuang 來去凱道晃一下
+21:42 < tuiry> https://www.dropbox.com/s/pm2uiogms0rb3ie/war.jpg 服貿網路業
+21:42 < tuiry> https://www.dropbox.com/s/3rmjir61ui5l8a2/triplehead_v.jpg 服貿出版業
+21:42 < tuiry> https://www.dropbox.com/s/zdco7e5sdu5jsry/%E6%9C%8D%E8%B2%BF%E5%85%A8%E9%83%BD%E9%9C%B2.jpg 服貿郵寄名單編輯服務業 pipperl pofeng
+21:43 < clkao> tuiry: ㄟ.. 應該是 CC-BY-NC 好像沒有 CC-NC 的
+21:43 < tuiry> 好喔
+21:44 < clkao> tuiry: 然後... 因為有 NC 的部份 要考慮如果有媒體想要轉載 要如何處理
+21:44 < Michael-Li> 服貿郵寄名單編輯服務業 有敗筆！ 中文字直寫要從右到左，不然閱讀起來很奇怪！
+21:44 < tuiry> 真想不加版權標記阿XP
+21:44 < tuiry> michael-li 這太複雜我不想更正......orz
+21:45 < Michael-Li> orz...
+21:45 < clkao> 那就... 標註 CC0 :p 就不用放名字了
+21:45 < dirty_> logbot 加 robots 之類的措施的確是值得考慮一下, 因為這裡的環境很容易讓人覺得是 private (or at least protected), 但有了 logbot 就變 public 了~
+21:45 < clkao> dirty_: topic 有寫哩
+21:45 < tuiry> CC0是什麼意思?
+21:46 < clkao> tuiry: CC0 等同 public domain, 放棄一切權利 也不用標註元作者
+21:46 < walkingice> 學習了！
+21:46 < tuiry> 左右寫其實是西方文字右排的問題
+21:46 < clkao> dirty_: 咦 本來有寫有 log, 顯在只有寫 log url
+21:46 < dirty_> clkao: 因為 g0v 才知道 irc 的大概沒問題, 我說的是常常掛在 irc 上, 會覺得就算是 public channel, 也不可能被 google 到啊 ^^
+21:47 < tuiry> 只寫CC0嗎?
+21:47 < clkao> tuiry: 可以用這個 logo: http://creativecommons.org/publicdomain/zero/1.0/
+21:47 < kcwu> clkao's url: [Creative Commons — CC0 1.0 Universal]
+21:47 < tuiry> 我不想用logo 跟重新排版差不多
+21:47 < dirty_> 至少我有時會忘, 而且按 enter 出去就 bye 了
+21:47 < au> tuiry: 不用加 logo
+21:48 < tuiry> au 寫CC0就好嗎
+21:48 < au> 寫 CC0 就可以了，後面可以選擇性加上說明文字如「版權所無」etc
+21:48 < au> 但要不要加都可
+21:48 < tuiry> 嗯
+21:49 < au> 像 http://xkcd.com/radiation/ 是把 CC0 logo 和圖分開放的
+21:49 < tuiry> 那寫版權所無歡迎轉載呢
+21:49 < au> 反正版權所無，怎樣放都無所謂 XD
+21:49 < au> 很 OK 啊
+21:50 < tuiry> 寫public domain好像比較帥
+21:50 < au> (CC0 Public Domain)++ # 帥氣
+21:51 < clkao> au: aren't you flying?
+21:51 < au> clkao: 還有一個小時多一點點登機
+21:51 < tuiry> au clkao ++
+21:55 < clkao> au: fly safe!
+21:55 < au> thx!
+21:57 < tuiry> 改完了，一件落著\O/
+21:57 < wHisKy> XD 原來在這邊有討論
+21:57 < au> tuiry++ # \o/
+21:57 < clkao> tuiry++ # \o/
+21:57 < clkao> wHisKy: ?
+21:57 < tuiry> whisky剛剛在論壇跟村長講了一樣的事
+21:57 < walkingice> clkao: 十月確定要去高雄了？
+21:58 < isacloud> wow 原來 github 可以 send pull request 到 repo A 去 resolve repo B 的 issue. lol 太有趣
+21:58  * isacloud 孤陋寡聞
+21:58 < wHisKy> 哈哈，因為我剛也是看到 CC-NC 時楞了一下，特別去查這樣的用法
+21:58 < clkao> 反正是想去 mopcon 啊! 至於黑客松, 上次 ipa 是建議 10/19 照原來方式 pre-hackathon, mopcon 時再美麗島主場 XD
+21:59 < clkao> isacloud: 這功能才加一兩個月而已
+21:59 < isacloud> clkao: cool!
+21:59 < isacloud> clkao: 頗合我們這邊用 XD
+21:59 < tuiry> 其實想想畫這些圖是為了讓更多人知道訊息，特地設版權並沒有意義
+21:59 < wHisKy> WTFPL 也很帥氣而且很「屌」的感覺 XD
+22:00 < walkingice> clkao: I see !
+22:02 < clkao> tuiry: cc-by 主要是防止別人聲稱那是他的作品. 不過不介意的話, 原作者最大 :p
+22:03 -!- brecht [uid12997@gateway/web/irccloud.com/x-xnsedfybtfapgriq] has quit [Disconnected by services]
+22:03 < isacloud> 下午有丟了一個排隊線上的 irccloud 邀請，然後就砍掉 email 了，不曉得是不是強哥的
+22:03 < tuiry> clkao 宣稱是自己的作品並沒有意義阿，畫出來就是自己的，畫不出來也沒有用
+22:03 < clkao> isacloud: 應該是
+22:05 < clkao> tuiry: 是的 :p 只是有些人發現別人偷作品去說是自己的會覺得很鳥 所以如果不在意(覺得反正畫出來才是我的)就無所謂
+22:06 < tuiry> 有碰過拿別人作品去應徵的人，結果一上電腦，畫出來的東西慘不忍睹...
+22:08 < clkao> ronnywang: newshelper fb reach 達到 22k XD
+22:09 < walkingice> 火紅！
+22:09 < ronnywang> 沒有 k 啊 XDDDD
+22:10 -!- caasih [~caasiHuan@223-141-6-45.dynamic.hinet.net] has joined #g0v.tw
+22:10 < clkao> ronnywang: 我是說 g0v 上那個 post
+22:10 < clkao> walkingice: 有測了我更新後的 cookbook? 應該是一鍵完成 6987 了
+22:11 < walkingice> clkao: yup...works like a charm
+22:11 < clkao> \o/
+22:11 < walkingice> clkao: 超強大
+22:11 < clkao> cronjob 呢？那個 script 要改一下 不然有 stdout 會有無限多通知
+22:11 < isacloud> ronnywang++  公司資料查詢那個站，真好用
+22:12 < walkingice> clkao: 我來看看
+22:12 < ronnywang> XDDD 那看來那個測試版的 extension 要直接轉換成正式版了 XD
+22:12 < isacloud> 官方頁不是有 captcha 嗎？被高手破掉了？之前沒跟到。
+22:12 < walkingice> clkao: 如果要去高雄，是在 hackpad 那一頁登記一下是嗎？
+22:13 < ronnywang> isacloud: 基本上經濟部商業司的網站的 captcha 只有人看才需要輸入， crawler 看不需要 XD
+22:13 < clkao> LOL
+22:13 < isacloud> ronnywang: 囧a，這麼人性化
+22:13 < ronnywang> 希望他不要修好這個，請大家不要太高調啊 XD
+22:13 < isacloud> 低調低調...
+22:13 < clkao> walkingice: 阿阿 哪一頁？
+22:14 < walkingice> clkao: https://g0v.hackpad.com/g0v-x-MOPCON-VNUEogAQ1cm
+22:14 < kcwu> walkingice's url: [g0v x MOPCON - g0v.hackpad.com]
+22:15 < clkao> 那就登記吧 :P 我沒注意到這頁  XD
+22:15 < walkingice> XD
+22:17 < walkingice> clkao: 那房間跟高鐵會是自己想辦法搞定嗎？
+22:21 < ronnywang> clkao: 可以幫我把 newshelper.g0v.tw CNAME 到 kaohiung-wei-233594.middle2.me 嗎
+22:23 < CindyLinz> XD # https://www.facebook.com/photo.php?fbid=10201092096562239&set=a.10201040775279239.1073741826.1163451609&type=1&theater
+22:23 < kcwu> CindyLinz's url: [Feliciano Yang 的相片 | Facebook]
+22:23 < CindyLinz> 圖 only: https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-prn2/1170654_10201092096562239_223903858_n.jpg
+22:23 -!- Oberon [0122a3a0@gateway/web/cgi-irc/kiwiirc.com/ip.1.34.163.160] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+22:23 < ronnywang> XDDDD 這個工程應該沒有簡單到改善就可以好的
+22:25 < clkao> ronnywang: done!
+22:25 < ronnywang> clkao: thanks!
+22:26 < clkao> walkingice: 高鐵應該是，房間應該是那邊登記後 看有沒有辦法找到優惠啥的? 
+22:26 < walkingice> clkao: 好
+22:27 < clkao> ronnywang: 這感覺是真理部業務啊！改寫新聞
+22:30 < Stranger_1980_> http://disp.cc/b/27-6brN
+22:30 < kcwu> Stranger_1980_'s url: [[爆卦] 請容許我向各位學長報告立委做啥去了 - FW板 - Disp BBS]
+22:30 < Stranger_1980_> 這個人很厲害
+22:30 < ronnywang> 和平部負責戰爭，真理部負責造謠，友愛部負責拷打，富裕部負責挨餓
+22:31 < ronnywang> 1984 真的是經典，而且越來越近 orz
+22:31 < tkirby> 國防布負責        
+22:31 < tkirby>                 (看不到)
+22:31 < jeffhung> tuiry: 不管標註 CC0 還是 CC-BY-NC，建議前面加個 "License:"，要不然還是有人會看不懂。
+22:31 < caasih> mindos_cloud: 可以修改密碼，你用的是哪個版本，iOS右上角有個gear icon可以進入設定，可以修改密碼。Android可以按設button，會出現設定(Seetings)，就可以修改密碼。
+22:31 < caasih> mindos_cloud: open source是我們會做的，不過因為我目前會在下一版加入STMP與IMAP的設定，之後便可以使用
+22:32 < caasih> mindos_cloud: 可以使用 gmail
+22:32 < caasih> mindos_cloud: open source會在年底！
+22:32 < clkao> !!!!
+22:33 < caasih> mindos_cloud: 以上來自林岳勳學長，他說不久會到 g0v.tw fb 那邊發文XDD
+22:33 < tuiry> jeffhung 沒關係，看到的人想做什麼都可以
+22:34 < clkao> caasih++
+22:34 < yhsiang> caasih++
+22:35 -!- pengpong [3d3a4298@gateway/web/cgi-irc/kiwiirc.com/ip.61.58.66.152] has joined #g0v.tw
+22:36 < jeffhung> 終於追完 irc 了。XDD  # issues filter by label 搞定。
+22:36 < isacloud> jeffhung++ !!!
+22:36 < isacloud> jeffhung: 剛好不小心 create label 的 script 也好了, 現在差 label 定義了 XD
+22:37 < caasih> clkao: yhsiang: 努力拐學長來這邊聊聊，只是他說好多個專案有點忙XD
+22:37 -!- Tenma [43ba3892@gateway/web/freenode/ip.67.186.56.146] has joined #g0v.tw
+22:37 < jeffhung> isacloud: 現在 labels 已經很多了，dropdown 應該轉用 tag cloud 來顯示，要不然只有一欄太高了。XDD
+22:39 < isacloud> jeffhung: 嗯，現在是單選吧？
+22:39 < dannvix> jeffhung++
+22:39 < jimyhuang> wHisKy: 如果可能，我希望之後自己的project都wtfpl
+22:39 < dannvix> jeffhung: 有考慮使用 http://harvesthq.github.io/chosen/ 嗎？
+22:39 < kcwu> dannvix's url: [Chosen: A jQuery Plugin by Harvest to Tame Unwieldy Select Boxes]
+22:40 < jeffhung> isacloud: 是，也想做多選，不過 all/none 要處理一下。
+22:40 -!- Tenma [43ba3892@gateway/web/freenode/ip.67.186.56.146] has quit [Client Quit]
+22:40 -!- tenmalin [43ba3892@gateway/web/cgi-irc/kiwiirc.com/ip.67.186.56.146] has joined #g0v.tw
+22:40 -!- tenmalin [43ba3892@gateway/web/cgi-irc/kiwiirc.com/ip.67.186.56.146] has quit [Client Quit]
+22:40 < isacloud> jeffhung: 等定義統一完，希望就不會這麼多了.  這個坑該開工了: https://github.com/g0v/dev/issues/15
+22:41 < kcwu> isacloud's url: [定義 g0v repo issue 常用 tag · Issue #15 · g0v/dev · GitHub]
+22:41 -!- tenmalin [43ba3892@gateway/web/cgi-irc/kiwiirc.com/ip.67.186.56.146] has joined #g0v.tw
+22:41 < isacloud> 所以 create label script 看似要能把舊 label 清空？
+22:41 < caasih> tenmalin: 學長晚安！XDDDD
+22:41 < jeffhung> dannvix: 看起來不錯耶，我來研究看看怎麼用。
+22:41 < tenmalin> hello
+22:41 < caasih> tenmalin 是 SafeSlinger 的作者之一。
+22:42 < tenmalin> 大家好我是developer
+22:42 -!- CalvinWu [72270b73@gateway/web/cgi-irc/kiwiirc.com/ip.114.39.11.115] has joined #g0v.tw
+22:42 < caasih> tenmalin: clkao 是 g0v 的村長（？）
+22:42 < tenmalin> now safeslinger有ios與andriod兩個平台
+22:42 < jeffhung> isacloud: 小心不要亂砍 labels，好像如 kuansim 那邊有在用 label 做專案協調。
+22:43 < tenmalin> 上來跟大家說聲hi
+22:43 < dannvix> jeffhung: 或是開一張 issue，我晚點來做也可以 :P
+22:43 < isacloud> jeffhung: 冤枉啊，我只是做刀子的 XD
+22:43 < jeffhung> isacloud: 我現在是把(所選專案的)所有issue的label聯集列出來讓大家選。
+22:44 < isacloud> tenmalin: Hi!!
+22:44 < caasih> tenmalin: 昨天對 SafeSlinger 有興趣的前輩現在應該都還在凱道？XD
+22:44 < jeffhung> isacloud: 如果要有特殊定義的 label 的話，等定義表出來之後，我再把 dropdown 改成只列特殊定義的 labels。這樣就不用砍原來的 label 了。
+22:44 < tenmalin> 基本上年底之前會release source code
+22:45 < isacloud> jeffhung: good idea. Agreed!
+22:45 < tenmalin> project developer太少人
+22:45 < tenmalin> 我跟一個老美
+22:45 < jeffhung> dannvix: 那你先等我做完 multi-select 好了。這樣到時換前端理論上後端就不用動了。
+22:46 < yhsiang> tenmalin: open source大概就會有人了 XD
+22:47 < tenmalin> :D
+22:47 < tenmalin> 這當然
+22:47 < dannvix> jeffhung: 了解
+22:47 < tenmalin> 下一步是voice encryption
+22:47 < isacloud> tenmalin++
+22:47 < jimyhuang> tenmalin: 真是不簡單的計畫
+22:48 < tenmalin> 我第一次來
+22:48 < tenmalin> 自我介紹一下好了
+22:48 < tenmalin> 我算老人了
+22:48 < tenmalin> hex age 20
+22:48 < tenmalin> 目前在cmu cylab工作
+22:48 < tenmalin> 整個lab都是做資訊安全的
+22:48 < clkao> jeffhung++
+22:49 < clkao> isacloud++ # 分身伐樹!
+22:49 < tenmalin> 你們先忙吧 ;-0
+22:49 < jimyhuang> walkingice: clkao 所以你們是剛好都會去mopcon ?
+22:49 < yhsiang> tenmalin: 可以繼續說沒關係 XD
+22:49 < clkao> tenmalin++
+22:50 < clkao> tenmalin: release 後 issue 開一開 這邊很多人可以幫忙分身伐樹
+22:50 < yhsiang> tenmalin: 要習慣一下 這裡的multi session XD
+22:50 < tenmalin> 我習慣
+22:50 < tenmalin> never mind
+22:51 < tenmalin> safeslinger open source我會盡量push我們team 其實就兩個人
+22:51 < tenmalin> 應該會很快
+22:51 < tenmalin> 因為9月底有個conference
+22:51 < clkao> tenmalin: woot!
+22:52 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+22:52 < tenmalin> 結束之後就會公佈
+22:52 < tenmalin> 大家有用過Tor嗎
+22:52 < tenmalin> Tor也很不錯
+22:52 < jimyhuang> tenmalin: 不好意思問個外行問題，open source跟security是否會有衝突
+22:52 < au> tenmalin++ # paper 寫得很棒，期待看到源碼。 :) 我同事 lenzo@ 之前在 speech.cs.cmu，之前說服校方開源 Sphinx，如果需要協助可以連絡他
+22:52 < tenmalin> no
+22:53 < clkao> hychen: 我把原來的亂七八糟 cmd 清到 pgrest.cli, lfrest 變得超清爽. 你能 merge 你新改的 (conf reader etc) 進去嗎？
+22:53 -!- samichang [81f2a9af@gateway/web/cgi-irc/kiwiirc.com/ip.129.242.169.175] has joined #g0v.tw
+22:53 < tenmalin> 完全沒有衝突���ㄝㄧㄡ
+22:53 < clkao> jimyhuang: security through obscurity ... 你知道的
+22:53 < tenmalin> 不是完全沒有畫面 ckck
+22:53 < tenmalin> 那是另一種
+22:53  * jimyhuang 所以說是外行問題
+22:53 < jimyhuang> tor之前有裝過
+22:53 < superbil> tenmalin: cool!
+22:53 < tenmalin> 不會外行啊
+22:54 < tenmalin> 沒什麼內外行的
+22:54 -!- ljm_tw [~ljm@223-140-125-118.dynamic.hinet.net] has joined #g0v.tw
+22:54 < tenmalin> Tor也是很不錯的
+22:54 < tenmalin> privacy protection
+22:54 < tenmalin> 不會被trace
+22:54 < tenmalin> 如果真有所謂的網路警察的話
+22:54 -!- ljm_tw [~ljm@223-140-125-118.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+22:54  * jimyhuang 筆記 ...
+22:54 < yhsiang> 喔喔 pgrest.cli 
+22:55 < tenmalin> 我的專長比較偏密碼
+22:55 < lijung_> shelling: 我現在 backend 的 api 我可以用了嗎？
+22:55 -!- samichang [81f2a9af@gateway/web/cgi-irc/kiwiirc.com/ip.129.242.169.175] has quit [Client Quit]
+22:55 < tenmalin> 大多是向加密
+22:55 < tenmalin> 認證
+22:55 < tenmalin> 之類的
+22:55 < tenmalin> 有需要提供任何資訊的都可以跟我說
+22:56 < tenmalin> open data是很好的idea
+22:56 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+22:56 < tenmalin> 一個平台如果可以提供有公信力的服務
+22:56 < tenmalin> 很棒
+22:56 < jimyhuang> tenmalin++
+22:57 < clkao> yhsiang: 看看有沒問題 我手測了
+22:57 < tenmalin> 先去吃個早餐
+22:57 < tenmalin> 挂在線上摟
+22:57 < jimyhuang> 時區不同？
+22:58 < jimyhuang> byebye
+22:58 < tenmalin> 我在pittsburgh
+22:58 < tenmalin> 我應該比各位更能晚睡
+22:58 < tenmalin> 因為時差 :P
+22:58 < jimyhuang> 有些時候發覺 g0v 的人越夜越有活力 Orz
+22:58 < clkao> yhsiang: 現在剩下 middleware (pgparam) 還需要寫在 entrance, 之後看有個 convention 塞到 lib 裡面 (如 .bootstrap) 就可以直接用 bin/pgrest 了
+22:58 < clkao> jimyhuang: http://kcwu.csie.org/~kcwu/ircstat/g0v.html
+22:58  * jimyhuang au safe fly
+22:58 < kcwu> clkao's url: [#g0v.tw @ IRCNet 由 kcwu 所統計]
+22:58 < caasih> tenmalin: 學長這邊也一大推人不是過 GMT+8 的XD
+22:59 < tenmalin> 這邊快中午
+22:59 < au> jimyhuang: thx!
+22:59 < tenmalin> EST here
+22:59  * au -> boarding, bbi~18
+22:59 < clkao> au: bon voyage
+22:59 < tenmalin> 我很驚訝這社群很大
+22:59 < tenmalin> 也很開心
+22:59 < tenmalin> 抱歉廢文一堆
+23:00 < jimyhuang> tenmalin: 開心說...有宅人聊天室 XD 
+23:00 < clkao> tenmalin: not at all! 而且生產力超強
+23:00 < jimyhuang> true ... 
+23:00 < jimyhuang> 才一天沒上來，感覺進展飛速都不知道哪去了
+23:00 < clkao> g0v 公報，又要翻過一頁了
+23:01 < yhsiang> clkao: 喔喔 我也想直接用bin/pgrest @@, 我可能要明天測了 
+23:01 < yhsiang> 還在想我的posgtres怎麼辦 XD
+23:01 < clkao> yhsiang: 嗯～還要等 hychen 的 cli+config merge 近來
+23:01 < jimyhuang> 自從我開始上irc後，打字速度都變快了
+23:02 < clkao> yhsiang: .... 只好 yak shaving 一下，把 cookbook 修好，重回 vagrant 的懷抱？ XD
+23:02 < clkao> yhsiang: 整個 restart 呢？
+23:02 < pm5cloud> irccloud 好... 現在搭捷運都在追 irc log
+23:02 < hcchien> tenmalin++
+23:02 < caasih> tenmalin++
+23:02 < yhsiang> 看來只能restart ..orz
+23:02 < tenmalin> 我剛有看到一些專案
+23:02 < clkao> https://github.com/g0v/dev/issues/23
+23:03 < kcwu> clkao's url: [irc karma bot · Issue #23 · g0v/dev · GitHub]
+23:03 < hcchien> [新聞插播]內政部被佔領了
+23:04 < lijung_> https://github.com/4movement/movement # clkao movement 的 open source 有人有興趣來改嗎？
+23:04 < kcwu> lijung_'s url: [4movement/movement · GitHub]
+23:04 < yhsiang> 不知道是postgres9.2還是hicloud的問題...
+23:04 < clkao> lijung_: woot! 請他們加個 license 先？
+23:04 < lijung_> ok!
+23:05 < jimyhuang> hcchien: 1hr前才路過
+23:06 < tenmalin> movement是用來管理什麼的
+23:06 < hcchien> jimyhuang: 沒進去休息一下!?
+23:06 < dirty_> movement 是個社會運動 hub
+23:06 < jimyhuang> 載人去趕高鐵
+23:06 < lijung_> http://merry.ee.ncku.edu.tw/~smart0eddie/cur/
+23:06 < kcwu> lijung_'s url: [Movement]
+23:07 < tenmalin> so cool
+23:07 < tenmalin> 好fancy
+23:07 < jimyhuang> lijung_: fact.g0v.tw 的資料看來可以有用途
+23:08 < dirty_> 理念很好, 可惜核心要出國了. 不過說不定丟到這邊來更威?
+23:08 < lijung_> jimyhuang: 用在 movement?
+23:08  * jimyhuang 得了看到時間軸就興奮的病 ..
+23:08 < lijung_> 哦哦了解 XD
+23:08 -!- tsaiid [~tsaiid@host-219-68-13-81.dynamic.kbtelecom.net] has quit [Quit: tsaiid]
+23:08 < lijung_> 對阿感覺可以把 fact parse 的資料拿來用
+23:09 < jimyhuang> 疑，她們現況是有要營運這movement平台對吧？
+23:11 -!- pengpong [3d3a4298@gateway/web/cgi-irc/kiwiirc.com/ip.61.58.66.152] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+23:11 < dirty_> jimyhuang: 好像只剩一位大二剩大三的有時間, 這也是他們開放的原因吧
+23:11 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+23:12 < lijung_> jimyhuang: 應該沒有繼續維護了..
+23:13 < jimyhuang> 瞭解了
+23:13 -!- pigwalki1g [~lsh95u@csie1.cs.ccu.edu.tw] has joined #g0v.tw
+23:15 < walkingice> jimyhuang: 希望可以去 mopcon 看看 :D
+23:16 < clkao> walkingice: 記得投稿喔 :P
+23:17  * walkingice 想不到能講啥 (抓頭)
+23:18 < jimyhuang> walkingice++
+23:18 < clkao> 我如何從 mobile developer (android 底層) 變成 mobile web developer (g0v projects) ? XD
+23:19 < walkingice> 哈哈哈哈哈
+23:19 < jimyhuang> !!!
+23:19 < jimyhuang> 我要聽
+23:19 < yhsiang> 就決定是這個了 ! XD
+23:19 < clkao> tkirby: 結果今天如何呢
+23:19 < walkingice> 「我只是打開 irc 就變成這樣了」
+23:20 < clkao> 「我只是去村長家吃了一盤米粉就變成這樣了」
+23:20 < ipa> irc = 潘朵拉的坑子
+23:20 < clkao> 「我只是摔了一跤就變成這樣了」 # orz orz orz
+23:21 < jeffhung> dannvix, isacloud: issues 的多選推上去了。
+23:21 < dannvix> jeffhung++
+23:21 < clkao> jeffhung++ # 瞬間!
+23:21 < dannvix> 「直到我膝蓋中了一箭」 #老梗
+23:22 -!- a55660988 [464bb9d1@gateway/web/freenode/ip.70.75.185.209] has joined #g0v.tw
+23:22 < isacloud> jeffhung++ 神
+23:23 < isacloud> http://scratchpad.io/broken-apparatus-429 #這不知道合不合用, 剛找到的服務
+23:23 < kcwu> isacloud's url: [Scratchpad - Realtime HTML and CSS Editor]
+23:23 < isacloud> 咦, # 在 irccloud 會自己有 link.
+23:23 < isacloud> 大家來定義 github labels
+23:25 < jeffhung> dannvix: 我有把 issues 這個 branch 放到 github 上 ( origin/issues )，如果有需要 (e.g., work-in-progress) 可以一起用。:-)
+23:25 < tkirby> clkao: 今天在 frogcafe,大約30人;有人對lqfb有興趣,有設計師想幫忙立院組.座談時間左邊坐ck,右邊坐thschee XD
+23:26 < clkao> isacloud++ # oh! 是為了順便定義顏色？ :p 從原來 hackpad copy 過去？
+23:26 < hcchien> tkirby++
+23:26 < clkao> tkirby++
+23:26 -!- willcus [daa406d3@gateway/web/cgi-irc/kiwiirc.com/ip.218.164.6.211] has joined #g0v.tw
+23:26 < jeffhung> 明天要上班，該睡覺了。大家晚安。
+23:26 < tkirby> clkao: 今天主題主要是社群運作, 投影片我傳到 https://speakerdeck.com/tkirby/g0v-hackathon 了
+23:26 < kcwu> tkirby's url: [g0v hackathon // Speaker Deck]
+23:26 < isacloud> clkao: 好我來 copy 一下. 不過沒有研究這東西可保留多久，要是一覺起來不見就哭哭
+23:26 < jimyhuang> jeffhung gn
+23:26 < walkingice> jeffhung: night~
+23:27 < tenmalin> slide做得好棒
+23:27 < jimyhuang> 投影片有烤肉
+23:27 < tenmalin> jeffhung: good night ;-)
+23:28 < isacloud> jeffhung: 晚安
+23:28 -!- a55660988 [464bb9d1@gateway/web/freenode/ip.70.75.185.209] has quit [Quit: Page closed]
+23:28 < tkirby> XD
+23:28 < tenmalin> 可惜我人在米國 看起來有很多很棒的聚會
+23:30 < walkingice> 米國的 g0v party  XD
+23:30 < clkao> tenmalin: 這邊也不少人遠端參加的 :D
+23:30 -!- pm5 [~pm5@111-248-204-115.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+23:30 < tkirby> 3du 好像是從米國響應回來的 XD
+23:30 < tenmalin> soga
+23:30 < tkirby> 只好來個 mi1.tw 了
+23:31 < shelling> @lijung_ not yet 
+23:31 < dirty_> willcus!
+23:31 < willcus> Hi!
+23:31  * shelling 參加了 818 拆政府 XD
+23:31 < willcus> 大家好!
+23:31 < lijung_> shelling++
+23:31 < dirty_> willcus 就是 movement 的作者, 他剛問我版權要怎麼設
+23:32 < shelling> @lijung_ 明天應該會好
+23:32 < lijung_> willcus: hi!
+23:32 < dirty_> 我說直接來這問比較快 XD 就推進來了
+23:32  * jimyhuang 推的好啊
+23:32 < lijung_> shelling: ok
+23:32 < clkao> willcus: 如果沒特別考量，現在 github 上最流行的是 mit license
+23:33 < clkao> 25% # http://www.flickr.com/photos/51724787@N06/6837508999/
+23:33 < kcwu> clkao's url: [Top Licenses on Github | Flickr – 相片分享！]
+23:33 < tenmalin> GPL很可怕是真的
+23:33 -!- TaiZai [~sct99m@csie2.cs.ccu.edu.tw] has joined #g0v.tw
+23:33 < shelling> @lijung_ 你那邊要改 jade 什麼都可以先改沒關係
+23:34 < willcus> 了解
+23:34 < tuiry> 一點點問題._./ https://www.dropbox.com/s/7iwv0oe3p7a8hu6/netF.jpg 
+23:34 < shelling> @lijung_ 我這邊想辦法直接使用 jade
+23:34 < jimyhuang> tenmalin: 是說感染力嗎？
+23:34 < tuiry> 請問以這個懶人包而言，需不需要標上具體的業者名稱呢XP
+23:34 < tenmalin> 哈
+23:34 < jimyhuang> clkao: 沒想到GPL這麼少！
+23:34 < tenmalin> 我有讀過條文
+23:34 < tenmalin> 不方便
+23:34 < tenmalin> 只能這麼說
+23:35 < dirty_> 大家都怕 GPL 的感染性啊
+23:35 < lijung_> shelling++ ok! thanks
+23:35 < clkao> jimyhuang: 我覺得對新的小 project 來說，GPL 不利於讓商業公司貢獻，所以就減少動機了
+23:35 < tenmalin> mit在讚啊
+23:35 < tenmalin> 不能同意clkao更多
+23:35 < tenmalin> 有些人還是得吃飯
+23:35 < clkao> 今年 oscon 有一個 talk 是 hp 的 legal 講 openstack & ... 另一個啥
+23:35 < clkao> 可以看一下
+23:36 < dannvix> jeffhung: 謝謝，我正在試試看怎麼接 chosen :P
+23:36 < jimyhuang> willcus: movement開放出來，主要的源由是？希望有人能夠一起投入幫手？
+23:36 < clkao> 她說她以前認為除非是 GPL, 不然很難由商業公司互相參與變成一個蓬勃的社群，但最近幾年的發展，她發現她錯了
+23:36 < vv|ng> 大肥姐說的: license & eula 超過一頁的, 非娼即盜.
+23:37  * jimyhuang 學習了
+23:37 < clkao> tuiry: 問題是... ?
+23:38 < willcus> 因為目前團隊裡面有很多成員都有另外專注的事情,同時也不希望這個網頁就此荒廢下去
+23:38 < isacloud> http://scratchpad.io/broken-apparatus-429 剛把 clkao 之前在 hackpad 的 issue label 定義貼上去了，接下來就請大家多幫忙了。
+23:38 < kcwu> isacloud's url: [Scratchpad - Realtime HTML and CSS Editor]
+23:39 < tuiry> clkao 做這樣的東西，總覺得有種希望人不要用/支持某某網站的反面思考
+23:40 < tenmalin> 先吃中飯 掰
+23:40 -!- willcus [daa406d3@gateway/web/cgi-irc/kiwiirc.com/ip.218.164.6.211] has quit [Quit: http://www.kiwiirc.com/ - A hand crafted IRC client]
+23:40 < jimyhuang> willcus: MIT如clkao所述，比較自由，彈性較大
+23:41 < jimyhuang> 兌現況不一定很明確的話，彈性也較大
+23:41  * caasih 對 tenmalin 揮手掰掰
+23:41 < hcchien> jimyhuang: 他不在了   :p
+23:41 < jimyhuang> hcchien: 剛發現了
+23:42 < dirty_> 應該是不熟 kiwiirc 吧
+23:42 < clkao> 有現場直播耶 http://www.ustream.tv/channel/nonukestw
+23:42 < kcwu> clkao's url: [USTREAM: [不要核四、五六運動]: 本頻道以LIVE直播為主，分段精華影片請到 YouTube 觀賞。 http://www.youtube.com/user/antinucleartw. 公民記者...]
+23:42 < hcchien> clkao: 我剛剛也看到了
+23:42 < clkao> 看來現在正在把台北變成設計之都
+23:42 < hcchien> 但好像抓不到   XD
+23:43 -!- willcus [8c741401@gateway/web/cgi-irc/kiwiirc.com/ip.140.116.20.1] has joined #g0v.tw
+23:43 < isacloud> clkao: 忘記問，請問我剛剛那個 link, 別人可以編嗎？
+23:43 < clkao> isacloud: 似乎可以
+23:43 < dirty_> willcus: 23:40 < jimyhuang> willcus: MIT如clkao所述，比較自由，彈性較大
+23:44 < dirty_> 23:41 < jimyhuang> 兌現況不一定很明確的話，彈性也較大
+23:44 < isacloud> clkao: 只測了不同 browser 可編，但萬一它是看 IP XD
+23:44 < isacloud> clkao: ok
+23:44 < jimyhuang> tuiry: 我個人感覺不加上即可耶
+23:44 < hcchien> willcus: 23:40 < jimyhuang> willcus: MIT如clkao所述，比較自由，彈性較大
+23:44 -!- hyu [01a8d74f@gateway/web/cgi-irc/kiwiirc.com/ip.1.168.215.79] has joined #g0v.tw
+23:45 < willcus> 了解,感謝大家
+23:45 < dirty_> hcchien: 你慢了一步 XD
+23:45 < lijung_> 一直搞不懂 mit 和 BSD 差別在哪...
+23:45 < clkao> lijung_: bsd 打字只要用左手
+23:45 < hcchien> dirty_: XDD
+23:46 < jimyhuang> XD 
+23:46 < vv|ng> clkao: 所以右手在?
+23:46 < lijung_> XD 是這樣嗎ㄏㄏ
+23:46 < hyu> 第一次用，好酷
+23:46 < clkao> 寫其他的 code? XD
+23:46 < lijung_> 因為看起來感覺根本差不多...
+23:46  * jimyhuang 打 XD 也只需要用左手
+23:46 < clkao> vv|ng: 來個 devops 的中文吧 想不出來
+23:46 < dirty_> 喔喔, hyu!
+23:46 < dirty_> movement 組長!
+23:47 < clkao> hyu 也是成大電機知名張教授的高徒嗎
+23:47 < dirty_> 聽說這邊只要講出她是女生, 人氣就會爆表是嗎?
+23:47 < jimyhuang> dirty_++
+23:47 < lijung_> XD
+23:47 < tuiry> jimyhuang 哇T_T 謝謝寶貴的意見，如果可以不指涉名稱，真的是很棒的選擇
+23:48  * jimyhuang 感覺瞬間歪掉
+23:48 < dirty_> hyu 很猛, movement 設計幾乎她一手包辦, 不過我覺得更威的是, 整個概念也是她的, 至於怎麼能自己想出這麼有深度的題目, 跟老師上課是一點關係都沒有
+23:49 < hyu> 不是匿名嗎?怎麼被爆了
+23:49 < dirty_> hyu: 還是暱名啊 :p[C
+23:49 < tkirby> 糟糕, 人氣要開始爆表了
+23:49 < jimyhuang> hyu: 人緣太好總是會被爆的
+23:49 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: mno2]
+23:50 < clkao> hyu: jimyhuang 是 fact.g0v.tw 的始作俑者
+23:51 < lijung_> jimyhuang++
+23:51  * jimyhuang 自掘坑入
+23:51 < tuiry> jimyhuang ++
+23:51 < hcchien> jimyhuang++
+23:51 < walkingice> jimyhuang++
+23:52 < vv|ng> clkao: 單指職務還是?
+23:52 < clkao> vv|ng: 就這件事 (是要放在 issue label 的 但想說 ui 上可能會有中文翻譯)
+23:52 < clkao> 結果人氣爆表的事 jimyhuang
+23:52 < lijung_> 結果 jimyhuang 人氣報表
+23:52 -!- maximum [~maximum@maximum.cna.ccu.edu.tw] has joined #g0v.tw
+23:52 < lijung_> clkao: 跟我想的一樣 XD
+23:53 < jimyhuang> 感覺要一起跳坑的越來越多 XD
+23:53 < clkao> jinx!
+23:53 < jimyhuang> hyu: 你們的專案好完整~~
+23:53 < vv|ng> 我的認知裡面, 理論上他應該代表的是, 維運相關的所有事宜, monitor/ depoy/ performance
+23:54 < walkingice> 「bsd 打字只要左手」 <-- 被這句戳中笑點
+23:54 < clkao> vv|ng++ # 維運
+23:54 < jimyhuang> walkingice: 真的，我剛剛試著打了gnu / mit / gpl / apache ... 都要左右手！
+23:55 < hyu> jimyhuang: 因為組員優秀XD
+23:55 < clkao> 我有測過才說的好嗎 :p # bsd
+23:55  * vv|ng 原來玩 bsd 的, 右手都比較強健.
+23:55 < lijung_> XD # 太歡樂了
+23:56 < buganini>  個人支持給developer用的東西用bsd, 給user用的暫時用gpl
+23:56  * jimyhuang 果然是村長大人
+23:57 < vv|ng> clkao: 不過在台灣的網路公司, 有 devops 這種概念的不多啦.
+23:57 < jimyhuang> hyu: 話說，你們的movement時間軸，本來的想法是？
+23:57 < walkingice> https://www.facebook.com/photo.php?fbid=10151602435197308&set=a.432212097307.221600.643632307&type=1
+23:57 < kcwu> walkingice's url: [王鐘銘的相片 | Facebook]
+23:58 < hyu> jimyhuang 一開始是想讓使用者知道最近將發生什麼事，可以很快地找到資訊，畢竟不是所有人都會一直關注遊行資訊
+23:58 < jimyhuang> WOW ... 開始後悔剛剛怎麼沒下車
+23:59 < jimyhuang> hyu: willcus 所以是社運動態，而非社運事件~？

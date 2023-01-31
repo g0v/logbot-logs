@@ -1,0 +1,566 @@
+--- Day changed 日  2月 03 2013
+00:00 < clkao> hychen: 還有奧義的 moqups by soidid: https://moqups.com/soidid/bWm0QVhK/p:ac6d874a6
+00:00 < kcwu> clkao's url: [Moqups Viewer]
+00:00 < hychen> clkao, 我看到了....
+00:01 < favonia> au: 我先試試看，怎樣惡搞都繞不過的話再跟你講
+00:01 < clkao> hychen: walkingice 把 g0v.tw 首頁改用 jekyll 生了
+00:01 < favonia> au: 我是說 ethercalc
+00:01 < hychen> jekyll 我知道, 因為我blog是用octopress :D
+00:02 < clkao> oops 新單字失敗 
+00:03 < tkirby> clkao: XD
+00:04 -!- copyleft [~copyleft@utcr.org] has quit [Quit: leaving]
+00:04 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+00:05 -!- jpsun [~jpsun@114.37.129.219] has joined #g0v.tw
+00:07 < hychen> walkingice, twparser 其實應該要考慮拆開來寫test case
+00:07 -!- jpsun [~jpsun@114.37.129.219] has quit [Read error: Connection reset by peer]
+00:07 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+00:07 < au> favonia: ok... 可能要參考 socialtext wikitext 語法和 socialcalc formula 定義
+00:07 < au> http://www.ethercalc.org/3du-map # 先做兩欄出來
+00:07 < kcwu> au's url: [EtherCalc - Share the URL to your friends and edit together!]
+00:07 < clkao> hychen: 把那個 testing 的 card 拆一下？
+00:08 < hychen> clkao, ok
+00:08 < hychen> 我剛發現Question 有一個公報炸了
+00:08 < favonia> au: 嗯我還在看技術文件
+00:08 < au> 可以從 google spreadshet 剪下貼上文字但不能貼公式
+00:09 < hychen> walkingice, 你要先從test case開始嗎? :p
+00:09 < favonia> au: 了解，不過感覺不是大問題，因為公式每列都一樣
+00:09  * au 來把 dotCloud RAM 開大一點免得當站
+00:10 < au> 有缺功能隨時可以加 XD
+00:10 < favonia> au: VLOOKUP 有 cache 之類的機制嗎？之前第一版是因為這個爆炸
+00:10 < favonia> 不知道為什麼 Google 每次都在重算 orz
+00:10 < clkao> http://www.dcard.tw/index.php?p=question&id=406 # 這 forum 好妙... 男同學、女同學
+00:10 < kcwu> clkao's url: [Dcard 在每個午夜與命運交會 為你蒐集全宇宙的勇氣]
+00:11 < au> favonia: 試了就知道了
+00:11 < au> 炸了也只炸這個線程， refresh 就回來了
+00:11 < au> 輕量級架構++
+00:11 < favonia> au: 讚
+00:11 < favonia> au: Google 是整個表格都變超卡 xDDD
+00:13 < au> :p
+00:13 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+00:13 -!- copyleft [~copyleft@utcr.org] has joined #g0v.tw
+00:13 -!- copyleft [~copyleft@utcr.org] has quit [Client Quit]
+00:13 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+00:13 < hychen> https://hackpad.com/ep/group/-3QdcWfPX3RVU6L6qlUjcUN
+00:13 < kcwu> hychen's url: [g0v - hackpad.com]
+00:14  * favonia 先離開
+00:14 < hychen> g0v 新單字表 
+00:15 -!- copyleft [~copyleft@utcr.org] has joined #g0v.tw
+00:15 < clkao> hychen: lol
+00:15  * clkao -> zzz
+00:17 < au> favonia: 缺 =CODE 和 =DEC2HEX... 正在加
+00:17 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+00:18 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+00:18 < clkao> au++ # lightweight awesomeness
+00:24 < favonia> au: 啊，你動作好快。我要先忙別的 orz 這是我用來測試和開發的 Google spreadsheet https://docs.google.com/spreadsheet/ccc?key=0AsuY9qzoYnUAdG5ZVk5tQVAtdEJ4YjlndU5wSkNWa2c
+00:25 < favonia> tools->script editor 裡面有現在 3du.tw 用的 script 函式庫
+00:25 -!- MindosCheng [~mindos@42.72.57.86] has joined #g0v.tw
+00:26 < favonia> 我是邊查文件邊寫 JavaScript... 大概很醜很沒效率 lol
+00:29 < au> favonia: 沒關係... 我加了 =HEXCODE()
+00:30 -!- Chuiyi [~Chuiyi@122.116.128.3] has joined #g0v.tw
+00:30 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+00:31 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+00:33 -!- Jasper_ [76a97c47@gateway/web/freenode/ip.118.169.124.71] has quit [Quit: Page closed]
+00:38 < au> favonia: shift-refresh 就可以看到 glyph wiki 的圖了
+00:38 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+00:39 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+00:39 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+00:42 < xdite> aria2c -c -s10 -x10 --out \生\活\向\前\冲\.Go\.On\.S01E15\.Chi\_Eng\.HDTVrip\.624X352\-YYeTs\人\人\影\视\.rmvb --header 'Cookie: gdriveid=8D7C2EB01D055A7D861077C3739A1578;' 'http://gdl.lixian.vip.xunlei.com/download?fid=Ip90Q1gvQrinW4MFvGutc2OT0Nk7oe0FAAAAAMKY2DB5a/Sd8RS/V7DplBvXl56v&mid=666&threshold=150&tid=46BA59AB5898B3250B66DAB586F4A7C1&srcid=4&verno=1&g=C298D830796BF49DF114BF57B0E9941BD7979EAF&scn=t5&i=8A4DC4265F5DACE3065F607BBF
+00:42 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+00:42 < xdite> 阿..不小心貼錯 XD
+00:42 < au> aria2c++ # 好用
+00:42 < au> #劃錯重點
+00:42 < xdite> XDDDDD
+00:42 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+00:44 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+00:46 < dannvix> xdite: 「人在做，Log 在看」XDXD
+00:48 < tkirby> log 如果加上 #link 跟搜尋應該會更方便幫糟糕物高調^H^H^H^H^H^H紀錄資訊...
+00:48 < mjhsieh> xdite: XD
+00:49 < xdite> orzzzzzz
+00:49 < xdite> 假日果然大家都不睡 XD
+00:50 < dannvix> tkirby: 這應該不是在許願吧 :P
+00:51 < tkirby> clkao: 剛剛想說不然還是補個 cartogram 上去, 補到一半才想起來.. 不相容 d3js.v3 # 慘死
+00:51 < clkao> 來想個炫的民意施壓 tag line 吧... we do not forgive. we do not forget. 中文怎麼講好像聽起來都不威... 
+00:51 < tkirby> dannvix: 神龍你好!
+00:51 < clkao> tkirby: orz! 只好 fork 他幫他修好了... :p
+00:51 < tkirby> 我們不原諒. 我們不忘記. 
+00:51 < tkirby> XD
+00:51 < clkao> 原諒、遺忘 有押韻
+00:51 < clkao> 可是聽起來不威啊
+00:52 < S3p_lin> never surrender, never give up~
+00:52 < tkirby> 送你一桶汽油跟一枝番仔火 # 劉文聰 style
+00:52 < clkao> 我們投票、我們上網，我們不原諒、我們不遺忘
+00:52 < clkao> 有種弱弱的在嗆聲的感覺... 
+00:52 < tkirby> XDDDDD
+00:53 < clkao> 最好是語音合成後聽起來令人毛骨悚然的 XD
+00:53 < tkirby> 「可是立委先生，」我在網路上說，「選票回不去了。」 # 犀利 style
+00:53 < S3p_lin> 還要忍多久 還要沉默多久~
+00:54 < tkirby> 像這時候光靠宅宅是不夠的
+00:54 < tkirby> momiz1: 有請眸神
+00:55 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+00:56 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+01:00 -!- little [76a07770@gateway/web/freenode/ip.118.160.119.112] has joined #g0v.tw
+01:01 < mjhsieh> clkao: 「相遇會到，不會手軟」這樣嗎
+01:01 < clkao> 只好安裝萌典在床上亂翻 看看有沒有靈感
+01:01 < tkirby> mjhsieh++ # 俗又有力
+01:02 -!- little [76a07770@gateway/web/freenode/ip.118.160.119.112] has quit [Client Quit]
+01:02 < au> 「爾俸爾祿，民脂民膏。下民易虐，天網難欺。」# 變成 Skynet 了
+01:02 < untitledc> 之前說到在人力銀行顯示公司新聞的點子 我開了 https://hackpad.com/LAfUgFqufk9
+01:02 < mjhsieh> keke
+01:02 < kcwu> untitledc's url: [Company News (在人力銀行顯示公司資訊) - hackpad.com]
+01:02 < untitledc> 希望最終能達到公司資訊透明 (誤
+01:05 < clkao> 書經．益稷：「洪水滔天，浩浩懷山襄陵，下民昏墊。」文選．曹植．與楊德祖書：「猶庶幾戮力上國，流惠下民，建永世之業，留金石之功。」
+01:05 -!- wenpei [~wenpei@nw188.csie.ncu.edu.tw] has joined #g0v.tw
+01:06 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+01:07 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+01:07 < clkao> https://play.google.com/store/apps/details?id=com.cmoremap.evermore.nctutest6&feature=search_result#?t=W251bGwsMSwxLDEsImNvbS5jbW9yZW1hcC5ldmVybW9yZS5uY3R1dGVzdDYiXQ.. # play market 上萌典的另外一個 search result
+01:07 < kcwu> clkao's url: [花式綁鞋帶 - Google Play Android 應用程式]
+01:07  * clkao -> really zzz
+01:07 < tkirby> 感覺這個應該刻在石板上
+01:10 < tkirby> btw 在想是不是應該也來整理個歷任官員的資料..
+01:10 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+01:10  * tkirby zz
+01:10 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+01:21 -!- hychen [~hychen@host-58-114-180-227.dynamic.kbtelecom.net] has quit [Quit: Leaving]
+01:21 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+01:21 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+01:23 < untitledc> tkirby: 職位昇降圖!
+01:25 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Client Quit]
+01:29 < momiz1> tkirby: @@"
+01:30 < momiz1> 真的要有標語的話, 請簡潔有力
+01:30 < MindosCheng> 有民意施壓 project 了嗎！？
+01:36  * MindosCheng & ＃ 明天再寫新竹施政報告書
+01:40 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+01:41 < MindosCheng> 食物組口頭報告:準備了紅茶酸梅湯熱飲等各式飲品，與五個 pizza 炸薯條厚片。喝得很開心。
+01:41 < MindosCheng> tkirby : 抱歉不能 upload 過去。
+01:44 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+01:56 -!- swem [~Thunderbi@host-61-70-212-156.static.kbtelecom.net] has joined #g0v.tw
+02:13 -!- swem [~Thunderbi@host-61-70-212-156.static.kbtelecom.net] has quit [Quit: swem]
+02:27 -!- swem [~Thunderbi@host-61-70-212-156.static.kbtelecom.net] has joined #g0v.tw
+02:27 -!- swem [~Thunderbi@host-61-70-212-156.static.kbtelecom.net] has quit [Client Quit]
+02:40 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+02:44 -!- KNY [~Adium@118-170-77-30.dynamic.hinet.net] has quit [Quit: Leaving.]
+02:49 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+03:29 < favonia> au: ethercalc 有方法可以引入資料庫嗎？我後來想想，也許 fork ethercalc 做一個特殊版本比較快...
+03:31 < favonia> 有3個很花時間的操作，基本上是 CNS<->Unicode 互查和 Unicode->Big5
+03:44 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+03:49 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+03:52 < au> favonia: 你的意思是不要用 vlookup 做查表
+03:52 < au> favonia: 目前用到的這兩個表 url 給我一下
+03:53 < au> 也許我直接做成 built-in function
+03:53 < favonia> 啊我還在生... xD
+03:53 < au> ok
+03:54 < favonia> 之前為了配合 Google 加了一堆垃圾，我想直接生 JSON 之類的
+03:54 < au> OK
+03:54 < au> 聽來不錯
+03:54 < au> 也許可以加 dblookup(url-to-json)
+03:59 < favonia> au: 這種可以直接用嗎？ https://github.com/favonia/ethercalc/blob/master/3du/kBigFive.json
+03:59 < kcwu> favonia's url: [ethercalc/3du/kBigFive.json at master · favonia/ethercalc · GitHub]
+03:59 < favonia> 不知道我有沒有看錯 spec xD
+04:00  * favonia 之前都在躲 JavaScript
+04:01 < au> favonia: 要加功能
+04:01 < au> 我想一想怎麼弄，明天來寫
+04:02 < au> 先填別的部份?
+04:02 < favonia> au: 嗯
+04:02 < favonia> 我大概也會明天之類的才弄 xDD
+04:02 < au> OK, 屆時 CNS<>Unicode 的 .json 也麻煩給一下
+04:02 < favonia> 先弄好 json 格式（如果我沒看錯 spec...）
+04:02 < favonia> 嗯
+04:04 < favonia> au: 都按照同樣的格式放在同一個目錄下了
+04:05 -!- MindosCheng [~mindos@42.72.57.86] has quit [Ping timeout: 245 seconds]
+04:06 < favonia> 之前寫很多東西只是為了能（快速）查這三個表格。我想這應該是（除了抓圖外）最耗時間的部份
+04:06 -!- juanna_ [~juanna@114-37-109-229.dynamic.hinet.net] has joined #g0v.tw
+04:06 < favonia> 假的CNS<->Unicode 有 5~6 萬比
+04:08 < au> ok
+04:09 -!- juanna [~juanna@114-37-103-135.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+04:25 < au> kcwu: http://www.audreyt.org/newdict/moedict-webkit/ updated to your latest API json
+04:25 < kcwu> au's url: [3du.tw 萌典測試版]
+04:57 -!- Chuiyi [~Chuiyi@122.116.128.3] has quit [Quit: Leaving.]
+05:09 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+05:23 < favonia> au: 唔剛才成功了... 原來擺 Google spreadsheet 不如擺個超大 json 在外面...
+05:24 < favonia> au: 我應該可以用 Google + GitHub 弄出好介面了 xD 雖然 json 檔好像應該擺在我們主機上比較對 xD
+05:25 < favonia> au: 不好意思，顯然我之前還沒有把 Google App 的潛能都挖出來
+05:25 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:26 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has joined #g0v.tw
+05:26 < au> favonia: 那太好了
+05:26  * au 把 dotcloud RAM 再降回來
+05:29 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+05:30 < au> Android 萌典 v0.0.5 也更新到 kcwu 新抓的詞條庫了（而且速度快很多。）
+05:30  * au -> zzz &
+05:40 -!- jpsun1 [~jpsun@114-37-174-192.dynamic.hinet.net] has joined #g0v.tw
+05:41 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+05:43 -!- jpsun [~jpsun@114-37-129-219.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+06:17 < jpsun1> au: ping dict.3du.tw 現在 ping 不到...
+06:18 < jpsun1> au: 你也是嗎？
+06:22 < au> jpsun1: yeah
+06:22 -!- jpsun1 [~jpsun@114-37-174-192.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+06:23 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has joined #g0v.tw
+06:25 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has left #g0v.tw []
+06:26 < au> jpsun2: 可以先用 http://www.audreyt.org/newdict/moedict-webkit/api/data/字.json
+06:26 < au> (少一個 "dict": prefix)
+06:28 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has joined #g0v.tw
+06:28 < jpsun> au: thx
+06:30 -!- MindosCheng [~mindos@42.72.57.86] has joined #g0v.tw
+06:30 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+06:35 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has joined #g0v.tw
+06:36 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+06:38 -!- MindosCheng [~mindos@42.72.57.86] has quit [Ping timeout: 245 seconds]
+06:38 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+06:38 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has joined #g0v.tw
+06:44 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+06:49 -!- Silmarils [~wHisKy@114.34.52.19] has quit [Ping timeout: 245 seconds]
+06:50 -!- Silmarils [wHisKy@114-34-52-19.HINET-IP.hinet.net] has joined #g0v.tw
+06:50 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+06:51 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has joined #g0v.tw
+07:42 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+07:42 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+07:42 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has joined #g0v.tw
+07:46 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+08:15 -!- zz_thschee is now known as thschee
+08:42 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+08:46 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+08:46 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+08:47 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has joined #g0v.tw
+08:49 -!- jpsun [~jpsun@114-37-174-192.dynamic.hinet.net] has quit [Client Quit]
+09:10 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+09:26 -!- tonytonyjan [~tonytonyj@218-166-155-220.dynamic.hinet.net] has joined #g0v.tw
+09:33 -!- hychen [~hychen@host-58-114-180-227.dynamic.kbtelecom.net] has joined #g0v.tw
+10:05 -!- Jasper_ [6ff3a206@gateway/web/freenode/ip.111.243.162.6] has joined #g0v.tw
+10:05 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+10:05 -!- Jasper_ [6ff3a206@gateway/web/freenode/ip.111.243.162.6] has quit [Client Quit]
+10:06 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+10:17 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+10:17 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+10:18 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+11:02 -!- John___ [dc896083@gateway/web/freenode/ip.220.137.96.131] has joined #g0v.tw
+11:07 -!- KNY [~Adium@111-253-148-81.dynamic.hinet.net] has joined #g0v.tw
+11:07 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+11:08 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+11:08 -!- John___ [dc896083@gateway/web/freenode/ip.220.137.96.131] has quit [Ping timeout: 245 seconds]
+11:09 < favonia> au: 我希望我成功 scale 到 1300 字了...
+11:09 < favonia> au: 看等一下會不會炸 xD
+11:09 < favonia> au: 如果沒有炸，就把符號以外的字全都收進來了，包括 medicalwei 一開始說找到的字
+11:29 -!- KNY [~Adium@111-253-148-81.dynamic.hinet.net] has quit [Quit: Leaving.]
+11:29 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+11:29 -!- KNY [~Adium@111-253-148-81.dynamic.hinet.net] has joined #g0v.tw
+11:29 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+11:58 -!- Johnny5TW [~chatzilla@111-246-69-32.dynamic.hinet.net] has joined #g0v.tw
+12:17 < xdite> https://github.com/yeoman/yeoman.io
+12:17 < kcwu> xdite's url: [yeoman/yeoman.io · GitHub]
+12:18 < xdite> 剛剛在這個 repo 看到一招，用 jekyll + gitsubmodule 把 Github Wiki 當作 content manage system
+12:18 < xdite> i.e. https://github.com/yeoman/yeoman.io/blob/gh-pages/faq.html  
+12:19 < kcwu> xdite's url: [yeoman.io/faq.html at gh-pages · yeoman/yeoman.io · GitHub]
+12:19 < xdite> 也許是一個作內容網站不錯的技巧? 
+12:21 -!- Johnny5TW [~chatzilla@111-246-69-32.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+12:37 < clkao> xdite: 不過 jekyll 和 gfm 的 markdown 好像略為不同? 
+12:40 < tonytonyjan> jekyll 的 markdown 可以替換的
+12:40 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+12:40 < tonytonyjan> 拿來換 pandoc，又有 latex 可以支援，爽度很高
+12:43 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+12:46 < clkao> right, 不過 github pages 自動幫你 render 的 jekyll 好像不能換?
+12:47 < dannvix> 說到這個，昨天看到有人把 LaTeX Math 加到 Markdown 裡 # http://socrates.io
+12:47 < kcwu> dannvix's url: [Socrates]
+12:49 < tonytonyjan> 這裡也是 http://tj-markdown-paste.herokuapp.com/
+12:49 < kcwu> tonytonyjan's url: [TJMarkdownPaste]
+12:49 < tonytonyjan> 支援程式馬上色和 tex 數學式
+12:50 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has quit [Quit: leaving]
+12:53 -!- zeal_bsd [b90057@bsd1.csie.ntu.edu.tw] has joined #g0v.tw
+12:53 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+12:53 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+12:54 < clkao> tonytonyjan++
+12:54 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+12:54 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has quit [Quit: leaving]
+12:55 -!- jpsun [~jpsun@118.169.106.7] has joined #g0v.tw
+13:00 -!- zealancer [b90057@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+13:01 -!- MindosCheng [~mindos@111.80.194.225] has joined #g0v.tw
+13:01 -!- jpsun [~jpsun@118.169.106.7] has quit [Read error: Connection reset by peer]
+13:02 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+13:03 -!- timdream [~timdream@112-104-45-68.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+13:03 -!- timdream [~timdream@112-104-45-68.adsl.dynamic.seed.net.tw] has quit [Client Quit]
+13:23 < clkao> ronnywang: 話說判決有爬完了嗎 :p 昨天聽說司改會正在進行追緝惡檢... 看哪些檢察官常起訴人最後卻常常判無罪的
+13:23 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+13:23 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+13:28 < favonia> kcwu: 現在有這網頁的更新版嗎？ http://www.audreyt.org/newdict/968-context.html
+13:28 < kcwu> favonia's url: [EtherCalc @ OSDC.tw 2012]
+13:28 < favonia> kcwu: 奇怪，好像換成別的東西了
+13:34 -!- hychen [~hychen@host-58-114-180-227.dynamic.kbtelecom.net] has quit [Read error: Connection reset by peer]
+13:34 < favonia> kcwu: 我是指說造字的 context
+13:35 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+13:36 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+13:56 < favonia> au: 我想我應該弄完了，然後我把詳細說明寫近 https://hackpad.com/3du.tw-UnicodeCNS-Map-uGgOPAFgxDM
+13:56 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+13:56 < kcwu> favonia's url: [3du.tw Unicode/CNS Map - hackpad.com]
+13:57 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+14:05 < favonia> 想要幫忙把終極對應表完成的人，可以參考上面 hackpad 的說明。
+14:06 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+14:06 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+14:07 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+14:35 -!- Jasper_ [8c71f08d@gateway/web/freenode/ip.140.113.240.141] has joined #g0v.tw
+14:35 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+14:36 -!- Jasper_ [8c71f08d@gateway/web/freenode/ip.140.113.240.141] has quit [Client Quit]
+14:36 -!- Jasper_ [8c71f08d@gateway/web/freenode/ip.140.113.240.141] has joined #g0v.tw
+14:47 -!- Jasper_ [8c71f08d@gateway/web/freenode/ip.140.113.240.141] has quit [Quit: Page closed]
+14:49 < lwhsu> clkao: 把 ly-gazette 裡 parse 好的 md 塞到 pgsql 這部份的的 code 在哪呀?
+14:49 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+14:50 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+14:52 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+14:52 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+14:53 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+15:01 -!- tonytonyjan [~tonytonyj@218-166-155-220.dynamic.hinet.net] has quit [Ping timeout: 276 seconds]
+15:14 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+15:14 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+15:15 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+15:15 < favonia> au: 之前發現的錯字 (8ff7 禼 => 𥜾, 91f3 㺎 => 𧴄, 9340 闃 => 𨵢, 98fb 鐧 => 鐗, 946d 䉵 => 籑) && 避開相容字（8ffc 宂 => 冗, 99c4 𠘺 => 充)
+15:37 < favonia> 歡迎大家來完成對校 & CNS 對照表
+16:32 < au> favonia++ # 讚
+16:32 < au> 968-context 放回去了
+16:57 -!- hinet60613 [86d00057@gateway/web/freenode/ip.134.208.0.87] has joined #g0v.tw
+16:58 < hinet60613> Hi! :)
+17:01 < hinet60613> 請問一下現在g0v.tw的專案都是用Python做的嗎? 想幫忙可是Python不太熟
+17:01 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+17:02 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+17:11 -!- Chuiyi [~Chuiyi@118-165-83-14.dynamic.hinet.net] has joined #g0v.tw
+17:11 -!- hinet60613 [86d00057@gateway/web/freenode/ip.134.208.0.87] has quit [Quit: Page closed]
+17:15 -!- JOJO_ [01223ba4@gateway/web/freenode/ip.1.34.59.164] has joined #g0v.tw
+17:40 < xdite> 你可以用任何你想的語言寫吧 (?) XD
+17:49 -!- timdream [~timdream@112.104.45.68] has joined #g0v.tw
+17:49 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+17:49 -!- timdream [~timdream@112.104.45.68] has quit [Client Quit]
+17:49 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+18:04 -!- KNY [~Adium@111-253-148-81.dynamic.hinet.net] has quit [Quit: Leaving.]
+18:05 -!- tonytonyjan [~tonytonyj@218-166-166-36.dynamic.hinet.net] has joined #g0v.tw
+18:09 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has quit [Ping timeout: 256 seconds]
+18:09 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+18:09 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+18:20 -!- KNY [~Adium@111-253-148-81.dynamic.hinet.net] has joined #g0v.tw
+18:32 -!- thschee is now known as zz_thschee
+18:32 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+18:32 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+18:59 -!- Johnny5TW [~chatzilla@111-252-51-76.dynamic.hinet.net] has joined #g0v.tw
+19:25 < clkao> lwhsu: 目前尚未存在... 有放進 db 的是 get-summary 弄下來的
+19:27 < billy3321> @@
+19:27 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+19:28 < billy3321> 好久沒來了"Orz
+19:28 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+19:29 < clkao> 今天昏睡一天.. orz
+19:30 < clkao> billy3321!
+19:34 < billy3321> clkao: 對不起啊，過年前事情多
+19:34 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+19:34 < billy3321> 等周二就解放了！！
+19:34 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+19:44 < lwhsu> clkao: get-summary?
+19:46 < clkao> lwhsu: sorry, should be populate-summary.ls
+19:47 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+19:47 -!- jpsun [~jpsun@118.169.106.7] has joined #g0v.tw
+19:47 < ipa> billy3321: 應該是g0v對lman不起？XD 
+19:52 < billy3321> ipa: 我本來就對lman不起，只是看時間用到哪裡XD
+19:56 < billy3321> 很好，hackpad也被牆了
+19:56 -!- jpsun [~jpsun@118.169.106.7] has quit [Read error: Connection reset by peer]
+19:56 < billy3321> XD
+19:57 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+19:58 < clkao> billy3321: .... 科科科
+19:59 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+19:59 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+20:03 -!- Johnny5TW [~chatzilla@111-252-51-76.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+20:13 < clkao> 稍微整理一下 ly 相關資訊來源跟處理狀況: https://hackpad.com/VnmuUDtLKjw
+20:13 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+20:13 < kcwu> clkao's url: [立法院資料來源及目前處理 - hackpad.com]
+20:14 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+20:15 -!- zz_thschee is now known as thschee
+20:16 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+20:16 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+20:39 < clkao> pingooo: 話說 3du.tw 下還有什麼怪東西可以放嗎?
+20:40 < favonia> au: 謝謝。當初用來產生的 scriyt 還有嗎？
+20:40 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+20:40 -!- jpsun [~jpsun@118.169.106.7] has joined #g0v.tw
+20:45 < au> favonia: 產生 context?
+20:46 < au> favonia: 可能要用 kcwu 的新 json 再寫一次 ( 找裡面 {[abcd]} 字樣 )
+20:47 -!- jpsun [~jpsun@118.169.106.7] has quit [Read error: Connection reset by peer]
+20:48 -!- KNY [~Adium@111-253-148-81.dynamic.hinet.net] has quit [Quit: Leaving.]
+20:48 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+20:50 < favonia> 喔喔
+20:51 -!- Jasper_ [b4b10c39@gateway/web/freenode/ip.180.177.12.57] has joined #g0v.tw
+20:51 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+20:51 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+20:53 < favonia> au: 另外我想問個問題，我提出的「異體字資訊用 CNS 11643 編碼保留」可行嗎？
+20:53 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+20:53 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+20:54 < au> favonia: 可行，但詞條條目本身如果有 Unicode 異體字碼會比較方便
+20:54 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+20:55 < au> 可以從 cns map 過去自成一欄嗎?
+20:55 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+20:55 < favonia> au: 喔喔... 所以還是應該寫下相容表意字碼？
+20:56 < favonia> au: 可以，不過讓我想一下...
+20:57 < favonia> au: 如果 CNS 11643 的網站有好的 API
+20:57 < favonia> 我想可以有自動計算的方法
+20:57 < favonia> 但是我一時找不到 orz 我也不太想裝那個 Windows 程式
+20:57 < favonia> 裡面應該有對照表
+20:58 < favonia> 意思是理論上只要紀錄 CNS 11643 就好了
+20:58 < au> 是的
+20:58 < favonia> 因為叫 Google 算東西實在太困難了，我想就不要加在表格裡這樣？
+20:59 < au> yup
+20:59 < au> 之後再用程式 merge
+20:59 < au> 那就不自成一欄了
+20:59 < favonia> 那就是另外一個 todo 了 xD 推荐給有 Windows 的人做
+20:59 < favonia> 嗯嗯
+20:59 < favonia> 把 CNS 11643 的真。對照表抓出來...
+21:00 < favonia> 我現在的惡搞方法很多都自動逆算成功，但還是有幾個失敗
+21:01 < favonia> 我想得靠真。對照表才能解決這些問題
+21:03 -!- Johnny5TW [~chatzilla@111-252-51-76.dynamic.hinet.net] has joined #g0v.tw
+21:04 < favonia> au: 我之前一直沒有想要用相容區的原因是，Unicode 只要換個字型顯示正字就變異體字了
+21:04 -!- swem [~Thunderbi@203-70-92-3.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+21:05 < favonia> 沒辦法真的區辨，除非我們想要把東西再轉回 CNS
+21:05 < gugod> 唔，萌典進度一日千里啊
+21:06 < au> 0.0.7.apk pushed for Android 2.1
+21:06 < favonia> au: 我仔細考量以後覺得，既然我們要在 Unicode 定居就不太能用相容區。我用的一些字型也隨便亂做相容區的字體 orz
+21:07 < favonia> 以上是個人意見～
+21:07 < au> # http://www.audreyt.org/newdict/moe.apk?7
+21:07 < au> favonia: 對，這只是為了「x 是 y 的異體字」那些條目
+21:08 < au> 內文一律用 unified ideograph
+21:08 < favonia> 了解。（真是麻煩的問題 xD）
+21:08 < au> kcwu 這次抓完又有一堆純異體字未 map
+21:09 < au> 只在條目出現
+21:09 < favonia> au: 還好現在已經 scale 到千字了
+21:09 < favonia> 希望再多不要又炸掉
+21:10 < favonia> 大概再多加兩百字還是很穩 xD
+21:12 < favonia> au: 另外 csv 在 https://docs.google.com/spreadsheet/pub?key=0AttD1zENsweydFhtZXhKVjdId1JTRkFrSmhvZXozNGc&single=true&gid=0&output=csv 我想寫程式產生 moedict 可以自動用的格式不過不清楚要弄成怎樣 @@
+21:12 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+21:12 -!- Johnny5TW_ [~chatzilla@111-252-52-238.dynamic.hinet.net] has joined #g0v.tw
+21:12 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+21:12 < au> favonia: OK... 既然你這樣說...
+21:13 -!- Johnny5TW [~chatzilla@111-252-51-76.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+21:13 < au> http://www.audreyt.org/newdict/916-variant-entries.txt
+21:13 -!- Johnny5TW_ is now known as Johnny5TW
+21:14 < au> 916 個只在條目裡出現的未對映字 \o/
+21:14 < favonia> au: lol lol 感覺真刺激
+21:14 < au> 也許複製一份 spreadsheet 專門做這個的一校?
+21:14 < favonia> 每次 double 都有問題
+21:14 < favonia> 嗯...
+21:14 < au> fecf [{"":[{"":"「兩」的異體字。"}]}]
+21:14 < au> fed0 [{"":[{"":"「兩」的異體字。"}]}]
+21:14 < au> fed1 [{"":[{"":"「兩」的異體字。"}]}]
+21:14 < kcwu> 我會再弄一個 json to sqlite db
+21:14 < au> ... 好刺激
+21:15 < favonia> au: .....
+21:15 < kcwu> @@
+21:15 < favonia> au 這麼多異體字是想怎樣
+21:15 < au> 目前萌典 (json2unicode) 是忽略這些條目
+21:15 < kcwu> fe40 [{"":[{"":"「寧」的異體字。"}]}]
+21:15 < kcwu> fe42 [{"":[{"":"「寧」的異體字。"}]}]
+21:15 < kcwu> fe43 [{"":[{"":"「寧」的異體字。"}]}]
+21:15 < au> 應該八成都在 ideograph compatibility 區吧
+21:15 < favonia> au: 我猜有些甚至沒有
+21:15 < au> 所以... 有空再說
+21:16 < favonia> Unicode 根本不想跟 CNS 雙向轉
+21:16 < kcwu> 這種 case 還好幾個
+21:16 < clkao> 不是有很多差
+21:16 < favonia> au: 我想合理的作法，是把 「X的異體字」當作該編碼的預設字
+21:16 < au> 不過其中 15 個字是有定義的
+21:16 < au> 也許先弄那 15 個
+21:16 < au> *12
+21:16 < favonia> 就像周跟廣一樣
+21:17 < au> # http://www.audreyt.org/newdict/12-variant-entries.txt
+21:17 < favonia> 然後就可以貼到 Google spreadsheet
+21:17 < au> poying: 也許幫忙手動先加這 12 個到 google spreadsheet?
+21:17 < au> er
+21:17 < au> sorry
+21:17 < au> favonia: 也許幫忙手動先加這 12 個到 google spreadsheet?
+21:17  * au 去找點喫的，一會回來 &
+21:18 < kcwu> "新發現的化學元素。目前相關資料仍未公布，故其化學性質及其效用均不詳。" 真神秘
+21:18 < favonia> au: 我先離開 @@ 我今天大概會很忙 orz
+21:18 < au> 好，那就看誰有空加到 https://docs.google.com/spreadsheet/ccc?key=0AttD1zENsweydFhtZXhKVjdId1JTRkFrSmhvZXozNGc#gid=0 看看
+21:18 < au> bbiab &
+21:24 -!- Chuiyi [~Chuiyi@118-165-83-14.dynamic.hinet.net] has quit [Quit: Leaving.]
+21:24 -!- Chuiyi [~Chuiyi@122-116-128-3.HINET-IP.hinet.net] has joined #g0v.tw
+21:38  * gugod 來把 epub 照部首排
+21:44 -!- swem1 [~Thunderbi@203-70-92-3.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+21:44 -!- swem [~Thunderbi@203-70-92-3.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+21:47 -!- KNY [~Adium@111-253-148-81.dynamic.hinet.net] has joined #g0v.tw
+21:47 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+21:47 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+21:58 -GitHub117:#g0v.tw- [twlyparser] clkao pushed 1 new commit to master: https://github.com/g0v/twlyparser/commit/b4a9a1aeefca2e80aeee4ab9bd73c8fffcfcd363
+21:58 -GitHub117:#g0v.tw- twlyparser/master b4a9a1a Chia-liang Kao: update unoconv to xrmx/unoconv that supports lodev
+22:05 -!- swem [~Thunderbi@203-70-92-3.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+22:05 -!- swem1 [~Thunderbi@203-70-92-3.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+22:06 -!- swem1 [~Thunderbi@203-70-92-3.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+22:06 -!- swem [~Thunderbi@203-70-92-3.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+22:08 -!- swem1 [~Thunderbi@203-70-92-3.adsl.dynamic.seed.net.tw] has quit [Read error: Connection reset by peer]
+22:08 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+22:09 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+22:10 -!- swem [~Thunderbi@203-70-92-3.adsl.dynamic.seed.net.tw] has joined #g0v.tw
+22:10 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+22:10 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+22:14 -!- swem [~Thunderbi@203-70-92-3.adsl.dynamic.seed.net.tw] has quit [Ping timeout: 252 seconds]
+22:17 -!- Jasper_ [b4b10c39@gateway/web/freenode/ip.180.177.12.57] has quit [Quit: Page closed]
+22:24 < kcwu> 覺得 https://hackpad.com/%E6%88%91%E6%98%AF...-%E5%A6%82%E4%BD%95%E5%8F%83%E8%88%87%E9%BB%91%E5%AE%A2%E6%9D%BE-ZYU6qiYaQLo 這頁的內容滿值得加到 http://g0v.tw/join.html 
+22:24 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+22:24 < kcwu> kcwu's url (2/2): [參與我們]
+22:24 < kcwu> kcwu's url (1/2): [我是... 如何參與黑客松 - hackpad.com]
+22:25 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+22:27 < gugod> kcwu: 發現幾個沒部首的字... https://gist.github.com/4702000
+22:27 < ipa> kcwu: good idea
+22:28 -!- clkao [~clkao@59-126-64-204.HINET-IP.hinet.net] has quit [Ping timeout: 255 seconds]
+22:29 < kcwu> gugod: 這是新的 json 轉出來的 sqlite?
+22:30 < gugod> 我不知道多新... 大概一個小時前 curl 你的 development.sql 然後跑 db2unicode.pl
+22:30 < kcwu> ok, 那個是舊的
+22:30 < gugod> I see
+22:30 < gugod> sqlite> SELECT title FROM entries WHERE length(title) = 1 AND radical is NULL;
+22:30 < gugod> 灃
+22:30 < gugod> 簆
+22:30 < kcwu> 大概今晚或明天才會有新的 sqlite db
+22:30 < gugod> coo
+22:31 < gugod> cool
+22:48 -!- hinet60613 [dc86be60@gateway/web/freenode/ip.220.134.190.96] has joined #g0v.tw
+22:53 < chhsiao1981> 剛剛發現立法院公報網站恢復正常. 不正常期間應該是在 update 新資料. 並且也確定 LCIDC01_999901_00002.doc (隱藏版) 跟 LCIDC01_996301_00003.doc (公開版) 內容應該是一樣的. 所以可能是製作網頁的外包廠商忘記拿掉. 
+22:56 < chhsiao1981> 不過 search "核四"或是"龍門核能"或是"輻射應用科技研究"都沒有辦法 search 到民國 99 年以前的. search "南山人壽"可以 search 到民國 98/99 年的.
+22:56 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+22:56 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+22:58 -!- yurenju [~yurenju@122-116-170-241.HINET-IP.hinet.net] has joined #g0v.tw
+22:58 -!- clkao [~clkao@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+23:02 < clkao> chhsiao1981: is your extra branch ready for merge?  please remove the extra json files under data/, because they can be confusing... perhaps rebase to remove them during commits as well?
+23:05 < chhsiao1981> clkao: ok. no problem! 
+23:05 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:05 < clkao> chhsiao1981: please comment on the pull req when you think it's ready.  thanks ;)
+23:05 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+23:06 < chhsiao1981> clkao: I also made some shell scripts to get the pdf version/convert to html. 
+23:07 < chhsiao1981> clkao: maybe I'll move the scripts to some dir (script).
+23:07 < clkao> *nod*
+23:07 < clkao> not sure if that's useful... if we can extract the page info during unoconv that's good enough
+23:12 < chhsiao1981> clkao: my experiment of current version of unoconv is that unoconv convert the doc to pdf, and then extract page from pdf. but I'll take a deeper look into LibreOffice to see whether we can get more info. 
+23:13 < clkao> it's more useful if we can annotate the html converted from doc with page number
+23:13 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:14 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+23:16 < chhsiao1981> saw some anomaly of gazette 3635 in the index.json (book 01, seq 15+). trying to figure out whether I broke anything, or whether I can fix that. 
+23:17 < chhsiao1981> btw, I am wondering what's the definition of "seq"? I thought it is the last part of the file (ex. 00001 in LCIDC01_895004_00001.doc). but maybe not?
+23:21 < clkao> no
+23:21 < chhsiao1981> I suspect whether there is page info in doc. Or the pages are totally dependent on the renderers. 
+23:22 < chhsiao1981> clkao: (so what's the definition of "seq"?)
+23:22 < clkao> if you look at lci, each book has multiple parts.  and that's just the item number within each "book"
+23:26 < chhsiao1981> clkao: I see. (where can I put screenshots on website?)
+23:29 < chhsiao1981> clkao: so based on the definition, the hidden seq number should be a special one?
+23:29 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:29 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+23:29 < chhsiao1981> (maybe 'hidden', or '-1'?)
+23:30 < chhsiao1981> (or '999'?)
+23:31 < chhsiao1981> (the concern of 'hidden' is it's not compatible with numbers. the concern of -1 is it's not compatible with unsigned int.
+23:32 < chhsiao1981> maybe 999 is a good choice. 
+23:32 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:32 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+23:34 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 248 seconds]
+23:38 -!- SatoshiRyou [650a1e21@gateway/web/freenode/ip.101.10.30.33] has joined #g0v.tw
+23:39 < chhsiao1981> I'll figure out what happened and fix that soon. 
+23:40 -!- SatoshiRyou [650a1e21@gateway/web/freenode/ip.101.10.30.33] has quit [Client Quit]
+23:41 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:42 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+23:43 -!- hychen [~hychen@host-111-184-12-139.dynamic.kbtelecom.net] has joined #g0v.tw
+23:47 -!- hychen [~hychen@host-111-184-12-139.dynamic.kbtelecom.net] has quit [Ping timeout: 245 seconds]
+23:47 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:48 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+23:49 -!- hychen [~hychen@host-111-184-12-139.dynamic.kbtelecom.net] has joined #g0v.tw
+23:49 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:49 -!- hychen [~hychen@host-111-184-12-139.dynamic.kbtelecom.net] has quit [Client Quit]
+23:50 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+23:51 < chhsiao1981> openDivMask seems behave strange in 3635 (from lci)
+23:52 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+23:52 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has joined #g0v.tw
+23:59 -!- hinet60613 [dc86be60@gateway/web/freenode/ip.220.134.190.96] has quit [Quit: Page closed]
+23:59 -!- jpsun [~jpsun@118-169-106-7.dynamic.hinet.net] has quit [Read error: Connection reset by peer]

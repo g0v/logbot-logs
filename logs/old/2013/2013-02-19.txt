@@ -1,0 +1,196 @@
+--- Day changed 二  2月 19 2013
+00:04 -!- icman [~icman@123.240.140.81] has quit [Quit: 明天天氣晴]
+00:05 -!- KNY [~Adium@111-253-152-8.dynamic.hinet.net] has joined #g0v.tw
+00:28 < favonia> mno2: 按照目前的設計，status 和 timestamp 應該都可以拿掉？
+00:28 < favonia> mno2: 喔喔你希望保留被刪除的東西這樣嗎？
+00:29 < mno2> favonia: 上次不是有討論是說要保留?
+00:29 < favonia> mno2: 唔我以為只有講說要 audit @@
+00:30 < favonia> 我是無所謂啦 xD 反正不會影響介面
+00:31 < mno2> er ，我記得你有提過說不要讓使用者刪，然後 miaout17 也有提過一次
+00:33 < favonia> 喔喔... 我想我和 miaout17 討論的比較像是對外不要讓使用者刪除。後來我強調是 DELETE 以後好像他就沒有什麼意見（？）
+00:34 < favonia> 資料庫後端要不要刪比較像是... 我們在留紀錄方便復原時，是不是要保留整欄資訊
+00:35 < favonia> 我沒研究過 postgres 的 audit 怎樣 @@
+00:35 < favonia> 如果他連 delete 都可以復原，我覺得有沒有保留可能沒有很大的差別
+00:38 < favonia> mno2: 突然覺得應該是我的 spec 沒有寫清楚 @@
+00:39 < mno2> 我沒有仔細測，但看起來只有紀錄到 statement, 我是傾向於連線帳號能不要開 DELETE 權限就不要開
+00:40 < favonia> 喔喔
+00:40 < favonia> 這樣好像也可以啦但感覺好不方便
+00:41 < favonia> 這代表要從頭跑到惡搞前的那個 statement
+00:41 < favonia> mno2: 我個人建議後端還是實作這個功能
+00:41 < favonia> 跟前端溝通的地方擋掉就好了
+00:42 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+00:43 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has joined #g0v.tw
+00:43 < favonia> 就是我寫的程式碼中把 DELETE 擋掉就好了
+00:43 < favonia> 丟個 405 Method Not Allowed 回去 xD
+00:45 < mno2> 我不懂，是要預留做管理者登入嗎？
+00:45 < favonia> no 是給後端執行的。
+00:46 < favonia> 就是可以另外在產生一個程式用來方便後端管理
+00:47 < favonia> 例如 ssh 登入後執行 > admin delete xxx 之類的
+00:48 < mno2> 所以這個程式要用 Snaplet 來寫？ 
+00:48 < favonia> 不然先拿掉應該也無所謂啦 @@ 是想說同樣的東西可以編譯成很多程式
+00:48 < favonia> 嗯好問題耶
+00:48 < mno2> CharDatabase 裏面都是 Handler 
+00:48 < favonia> 我不知道把 Snaplet 硬加進一般命令列程式會怎樣....
+00:48 < mno2> 要也是可以，就是像 Snaplet.Test 那樣
+00:49 < mno2> 不過至少要 export function
+00:49 < favonia> 嗯
+00:49 < favonia> 我是想說這樣就只要寫一次就好了
+00:49 < favonia> 那個 SQL dump 之類的 內部就是一直用 updateChar
+00:49 < favonia> 這樣子轉換 script 就不需要管內部資料庫
+00:50 < favonia> 讓內部資料庫的格式只有 CharDatabase 知道
+00:51 < favonia> 這是我原本的企圖啦 @@ 我不信任 web 驗證所以想說用 ssh 之類的來維護 xD
+00:52 < favonia> mno2: 你覺得呢？
+00:52 < mno2> 用 Snaplet 的話資料庫連線帳號好像沒辦法跟前端連線帳號分開，一般原則應該是不會共用，不過一般的 project 我是不介意
+00:53 < favonia> 是喔... :/ :/
+00:53 < favonia> 有辦法吧，加個參數進 initCharDatabase
+00:53 < favonia> 如果 postgres snaplet 的 init 可以控制帳號
+00:56 < mno2> 要研究一下
+01:10 -!- wHisKy- [~whisky@114-24-68-55.dynamic.hinet.net] has joined #g0v.tw
+01:11 -!- wHisKy [whisky@1-160-245-56.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+01:11 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+01:12 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has joined #g0v.tw
+01:16 -!- KNY [~Adium@111-253-152-8.dynamic.hinet.net] has left #g0v.tw []
+01:16 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+01:16 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has joined #g0v.tw
+01:24 -!- mno2 [~mno2@1.34.43.236] has quit [Quit: Leaving]
+01:28 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has quit [Quit: Leaving.]
+01:31 -!- Netsplit *.net <-> *.split quits: ccn
+01:36 -!- Netsplit over, joins: ccn
+02:13 < favonia> mno2: 如果太麻煩的話... 就算了 @@
+02:14 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has joined #g0v.tw
+02:25 < kcwu> albb0920: 喔...大概要再找 tony 問問...
+02:25 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+02:25 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has joined #g0v.tw
+02:39 -!- KN16H7_ [knight@saturn.stu.edu.tw] has quit [Read error: Connection reset by peer]
+02:39 -!- Custom [custom@saturn.stu.edu.tw] has quit [Read error: Connection reset by peer]
+02:39 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+02:39 -!- KN16H7 [knight@saturn.stu.edu.tw] has joined #g0v.tw
+02:39 -!- Custom [custom@saturn.stu.edu.tw] has joined #g0v.tw
+02:39 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has joined #g0v.tw
+03:48 -!- jpsun [~jpsun@114-37-170-131.dynamic.hinet.net] has quit [Quit: Leaving.]
+06:23 -!- jpsun [~jpsun@114-37-133-229.dynamic.hinet.net] has joined #g0v.tw
+08:27 -!- jpsun [~jpsun@114-37-133-229.dynamic.hinet.net] has quit [Quit: Leaving.]
+09:13 -!- jpsun [~jpsun@111-251-194-240.dynamic.hinet.net] has joined #g0v.tw
+09:25 -!- evan3rd [~mac@114-47-18-21.dynamic.hinet.net] has joined #g0v.tw
+09:41 -!- mno2 [~mno2@202.89.121.16] has joined #g0v.tw
+10:12 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has quit [Ping timeout: 252 seconds]
+10:13 -!- V1ctor [r95017@linux1.csie.ntu.edu.tw] has joined #g0v.tw
+10:20 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+10:31 < walkingice> @o@
+10:32  * walkingice 趕工人生
+10:34 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+10:34 -!- locy [~star@60-251-149-160.HINET-IP.hinet.net] has quit [Ping timeout: 264 seconds]
+10:38 < clkao> walkingice!
+10:39 < clkao> 因為立法院的關係，已經回報 了 4 個 libreoffice bugs ... zzz
+10:39 < walkingice> clkao: XDXDXD ++
+10:40 < clkao> 只有一個 crash 的被修掉
+10:41 < walkingice> 我還要把手上的工作做到一個段落才會有時間回來忙 g0v，希望這幾天衝一下可以
+10:42 < clkao> 衝啊!
+10:42 < walkingice> clkao: (y)
+10:43 -!- ck_ [~ck@124-9-9-69.static.tfn.net.tw] has joined #g0v.tw
+10:53 -!- chihchun [~chihchun@175.41.48.77] has joined #g0v.tw
+10:54 -!- chihchun [~chihchun@175.41.48.77] has quit [Read error: Connection reset by peer]
+10:57 -!- zz_chihchun is now known as chihchun
+11:00 -!- antliu [dc845984@gateway/web/freenode/ip.220.132.89.132] has joined #g0v.tw
+11:20 < clkao> 又多一個 bug report... ><
+11:42 -!- KNY [~Adium@118-170-66-67.dynamic.hinet.net] has joined #g0v.tw
+12:07 -!- adaam [~adaam@2001:288:5009:1390:219:b9ff:fe08:260d] has quit [Ping timeout: 256 seconds]
+12:08 -!- adaam [~adaam@2001:288:5009:1390:219:b9ff:fe08:260d] has joined #g0v.tw
+12:55 -!- ck_ [~ck@124-9-9-69.static.tfn.net.tw] has quit [Remote host closed the connection]
+13:07 -!- antliu_ [dc845984@gateway/web/freenode/ip.220.132.89.132] has joined #g0v.tw
+13:07 -!- antliu [dc845984@gateway/web/freenode/ip.220.132.89.132] has quit [Ping timeout: 245 seconds]
+13:22 -!- antliu_ [dc845984@gateway/web/freenode/ip.220.132.89.132] has quit [Ping timeout: 245 seconds]
+13:27 -!- ck_ [~ck@124-9-9-69.static.tfn.net.tw] has joined #g0v.tw
+13:32 -!- evan3rd [~mac@114-47-18-21.dynamic.hinet.net] has quit [Quit: evan3rd]
+13:34 -!- evan3rd [~mac@114.47.18.21] has joined #g0v.tw
+13:58 -!- hcchien_ is now known as hcchien
+14:06 < hcchien> OSDC.TW 2013，預計 2/27 18:00 開放報名
+14:10 < walkingice> hcchien: ++
+14:42 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Ping timeout: 252 seconds]
+14:56 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+15:21 -!- susu is now known as susu__
+15:37 -!- ck_ [~ck@124-9-9-69.static.tfn.net.tw] has quit [Remote host closed the connection]
+15:53 -!- KNY [~Adium@118-170-66-67.dynamic.hinet.net] has quit [Quit: Leaving.]
+16:06 -!- kaxing [~kaxing@1.160.27.133] has joined #g0v.tw
+16:27 < clkao> au++ # 釐清立院資料關係 https://github.com/g0v/ly.g0v.tw/blob/master/SCHEMA.md
+16:27 < kcwu> clkao's url: [ly.g0v.tw/SCHEMA.md at master · g0v/ly.g0v.tw · GitHub]
+16:33 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has joined #g0v.tw
+16:41 -!- ctf_- [~ctf_-_@175.41.48.77] has joined #g0v.tw
+16:42 -!- S3p_lin [slzzp@li475-173.members.linode.com] has quit [Quit: leaving]
+16:42 -!- S3p_lin [slzzp@li475-173.members.linode.com] has joined #g0v.tw
+16:42 -!- ctf_- [~ctf_-_@175.41.48.77] has quit [Remote host closed the connection]
+16:43 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Ping timeout: 252 seconds]
+16:44 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+16:49 -!- Johnny5TW [~chatzilla@114-33-113-125.HINET-IP.hinet.net] has quit [Quit: ChatZilla 0.9.90 [Firefox 18.0.2/20130201065344]]
+17:37 < clkao> au: making pgrest available globally is tricky... might need to provide a binary so it can be used after npm i -g
+17:37 < clkao> anyway just pushed plack::app::pgrest update
+17:42 < au> clkao: maybe just server.ls becomes main:
+17:42 < au> and depend on express anyway
+17:43 < au> seems most straightforward
+17:43 < au> pgrest ly # server it in port 3000
+17:43 < au> pgrest --boot ly # just boot then quit
+17:43 < au> etc
+18:03 < au> bbiab
+18:21 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+18:22 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+18:30 -!- susu__ [~cwshu@bsd1.cs.nctu.edu.tw] has quit [Remote host closed the connection]
+18:40 -!- kaxing [~kaxing@1.160.27.133] has quit [Ping timeout: 245 seconds]
+18:52 -!- mno2 [~mno2@202.89.121.16] has quit [Quit: Leaving]
+19:10 -!- jpsun [~jpsun@111-251-194-240.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+19:13 < clkao> ok done
+19:17 -!- chihchun is now known as zz_chihchun
+19:17 -!- zz_chihchun is now known as chihchun
+19:19  * clkao -> ♨
+19:20 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+19:20 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has quit [Ping timeout: 252 seconds]
+19:20 -!- LHD [~lhd@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 260 seconds]
+19:21 -!- LHD [~lhd@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+19:21 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has quit [Ping timeout: 255 seconds]
+19:21 -!- liic_ [~liic@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 252 seconds]
+19:21 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has quit [Ping timeout: 245 seconds]
+19:21 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has quit [Ping timeout: 246 seconds]
+19:21 -!- lwhsu [lwhsu@tinderbox.cs.nctu.edu.tw] has joined #g0v.tw
+19:21 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has quit [Ping timeout: 276 seconds]
+19:21 -!- ij1iao [ijliao@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+19:21 -!- allan914 [~cssuen@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+19:22 -!- momiz1 [momizi@richliu.Math.NCTU.edu.tw] has joined #g0v.tw
+19:22 -!- cls_bsd [clsung@FreeBSD.cs.nctu.edu.tw] has joined #g0v.tw
+19:22 -!- liic [~liic@alumni.cs.nctu.edu.tw] has joined #g0v.tw
+19:23 -!- yyhuang [~yyhuang@alumni--cis.cs.nctu.edu.tw] has joined #g0v.tw
+19:37 -!- evan3rd [~mac@114.47.18.21] has quit [Quit: evan3rd]
+19:45 -!- susu [~cwshu@140.113.54.52] has joined #g0v.tw
+19:46 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+19:49 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+20:02 -!- kaxing [~kaxing@1-160-27-133.dynamic.hinet.net] has joined #g0v.tw
+20:03 -!- kaxing [~kaxing@1-160-27-133.dynamic.hinet.net] has quit [Client Quit]
+20:10 < knight> clkao↗ 
+20:17 -!- icman [~icman@123.240.140.81] has joined #g0v.tw
+20:18 -!- mno2 [~mno2@1.34.43.236] has joined #g0v.tw
+20:29 -!- jpsun [~jpsun@114-37-133-229.dynamic.hinet.net] has joined #g0v.tw
+20:38 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+20:44 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+20:44 -!- jpsun [~jpsun@114-37-133-229.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+20:44 -!- jpsun [~jpsun@114-37-133-229.dynamic.hinet.net] has joined #g0v.tw
+20:45 -!- jpsun [~jpsun@114-37-133-229.dynamic.hinet.net] has left #g0v.tw []
+20:48 -!- kcwu [fakeidkcwu@kcwu.csie.org] has quit [Read error: Connection reset by peer]
+20:48 -!- kcwu [fakeidkcwu@kcwu.csie.org] has joined #g0v.tw
+20:53 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has quit [Ping timeout: 255 seconds]
+20:54 -!- opop [~opop@220-133-60-215.HINET-IP.hinet.net] has joined #g0v.tw
+21:00 -!- allenlinli [3cf541a7@gateway/web/freenode/ip.60.245.65.167] has joined #g0v.tw
+21:00 < allenlinli> fdsfs
+21:00 < allenlinli> hihi
+21:01 -!- allenlinli [3cf541a7@gateway/web/freenode/ip.60.245.65.167] has quit [Client Quit]
+21:08 < clkao> fnord
+21:22 -!- kcwu_mobile [quasselcor@kcwu.csie.org] has quit [Read error: Connection reset by peer]
+21:23 -!- kcwu_mobile [quasselcor@kcwu.csie.org] has joined #g0v.tw
+21:42 -!- antliu [0122de46@gateway/web/freenode/ip.1.34.222.70] has joined #g0v.tw
+22:31 -!- KNY [~Adium@118-170-66-67.dynamic.hinet.net] has joined #g0v.tw
+22:51 -!- chihchun is now known as zz_chihchun
+23:01 < thschee> proactive transparency 線上會議的簡報 https://docs.google.com/file/d/1LE1ZwUoueQ-uKz0lSWVX4RHw9Sz92ysXk2fu26lAnO1pVys8gllyx2JcOydd/edit?usp=sharing
+23:01 < kcwu> thschee's url: [OGP NM-Webinar-Pro Active Transparency-FINAL-Feb 19 2013.pptx - Google 雲端硬碟]
+23:01 < thschee> 對法政研究的朋友比較有幫助
+23:04 -!- antliu [0122de46@gateway/web/freenode/ip.1.34.222.70] has quit [Ping timeout: 245 seconds]
+23:07 -!- ken [76a076c2@gateway/web/freenode/ip.118.160.118.194] has joined #g0v.tw
+23:07 -!- ken is now known as Guest68180
+23:21 -!- Guest68180 [76a076c2@gateway/web/freenode/ip.118.160.118.194] has quit [Quit: Page closed]
+23:28 -!- antliu [0122de46@gateway/web/freenode/ip.1.34.222.70] has joined #g0v.tw

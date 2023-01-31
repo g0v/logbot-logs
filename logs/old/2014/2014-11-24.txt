@@ -1,0 +1,248 @@
+--- Day changed 一 11月 24 2014
+00:00 < yhsiang> jimyhuang
+00:02 < clkao> 政誌噴發!
+00:03 < t0mst0ne_> kiang: 請問pdf2htmlEX的座標 是怎麼弄出來的?  我用 regrex parse pdf2htmlEX 產出的 html 還是很難搞 
+00:07 < yhsiang> project hub
+00:07 < ipa> ETBlue 被叫仁兄，立馬被指正為「人姐 -> 人妻」
+00:10 < clkao> yhsiang: inviteyoself 好的話待會可以介紹 因為這樣大家可以自己開 per-project channel
+00:12 < yhsiang> clkao: 目前是scheduler有問題
+00:12 < yhsiang> https://github.com/seabre/inviteyoself/issues/5
+00:12 < kcwu> yhsiang's url: [lein send-invites failed · Issue #5 · seabre/inviteyoself · GitHub]
+00:14 -!- tripleh [6c2d6d26@gateway/web/cgi-irc/kiwiirc.com/ip.108.45.109.38] has left #g0v.tw []
+00:14 < ipa> nchild++
+00:15 < kiang> superbil: 沒特定耶，想到就更新 XD
+00:15 < kiang> t0mst0ne_: 可以參考 https://github.com/kiang/bulletin.cec.gov.tw/blob/master/Console/Command/ExtractShell.php
+00:15 < kcwu> kiang's url: [bulletin.cec.gov.tw/ExtractShell.php at master · kiang/bulletin.cec.gov.tw · GitHub]
+00:16 < superbil> kiang: 原來如此，辛苦了
+00:16 < kiang> superbil++, 開始更新ing
+00:18 < t0mst0ne_> kiang: thanks !  
+00:22 < lanf0n> Lee1092: 這樣會有一組(中-英) tag 是對應的吧? 還是照順序接在原本的 tag list 後面.......(思
+00:23 < t0mst0ne_> johnny__: 請問 suggesion.json 當中 "謝文進等32位議員" 這種多人一起提的案子, 網站上的統計圖表會呈現嗎 ?
+00:24 < johnny__> t0mst0ne_: 這邊我是hard code，因為是32位議員就是所有的議員
+00:25 < lanf0n> Lee1092: ahhhhhh...還是你 parser 是抓條目簡介( https://g0v.hackpad.com/Fe3VpeN42w9 )的話，乾脆就在原本條目後面[] or () 記錄mapping 的英文 tag ?
+00:25 < kcwu> lanf0n's url: [條目簡介 - g0v.hackpad.com]
+00:25 < johnny__> t0mst0ne_: https://github.com/g0v/councilor-voter-guide/blob/master/parser/suggestions/xml2json.py#L74-L75
+00:25 < kcwu> johnny__'s url: [councilor-voter-guide/xml2json.py at master · g0v/councilor-voter-guide · GitHub]
+00:26 < lanf0n> 這樣 [EN] 的公報也可以用中文的 tag (再靠parser 去換成英文的?).... tag list 也可以少一點(嗎 囧?
+00:26 < t0mst0ne_> johnny__: 那 得標廠商有 (1), (2), (3) , 您怎麼處理 ?
+00:27 < Lee1092> lanf0n:  我是抓條目簡介的  
+00:27 < johnny__> t0mst0ne_: 目前不會去分，全部當成一個得標廠商
+00:28 < Lee1092> lanf0n: 但也可以動態增加  XD   假如條目上沒有，會成為一個沒有內容的 tag 
+00:28 < clkao> yhsiang: 是 heroku 要開 background dynamo?
+00:29 < Lee1092> lanf0n:  感覺都增加在 條目簡介  比較集中
+00:30 < lanf0n> Lee1092: 如果是抓條目簡介應該可以直接共用原本的.... 不過可能要請 RSChiang 把原本中文的簡介翻一版英文的XDD ((立馬有坑
+00:30 < yhsiang> hmm eric 不知道怎麼弄起來的
+00:30 < yhsiang> readme好像沒寫background dynamo
+00:30 < superbil> yhsiang: 地址好像 ronnywang 也有弄
+00:30 < Lee1092> lanf0n:  可歐~  XDDD   這樣連說明都順便翻譯了   RSChiang++
+00:33 < t0mst0ne_> johnny__: ok I see , 我code parse 都不完整, 先手動pdf to text , 
+00:33 < Lee1092> 歡迎華府朋友  編寫這兩天成果 到公報上~  :p  https://g0v.hackpad.com/201411171123--OoaP1AzVuQL
+00:33 < kcwu> Lee1092's url: [2014/11/17~11/23 公報 - g0v.hackpad.com]
+00:33 < lanf0n> ya, 我在 條目簡介 tag 了 RSChiang++ XDDD
+00:34 < Lee1092> 能順便翻譯就更好了  (y)
+00:35 < ipa> 翻吧！(y)
+00:37 < clkao> 公報會自動出現在這邊: http://g0v.tw/zh-TW/communique.html
+00:38 < clkao> Lee1092: 要用 https://g0v-communique-api.herokuapp.com/api/1.0/tags/all 
+00:38 < clkao> 用 http 會被 https everywhere 擋掉 ><
+00:39 < Lee1092> !!  歐歐歐
+00:39 < clkao> 政治獻金 opensecret 化!
+00:41 < ipa> http://chungheng.github.io/g0v/page/index.html
+00:41 < kcwu> ipa's url: [Visual Legislative Yuan - 視覺立法]
+00:43 < yhsiang> 他們沒寫過網頁
+00:43 < yhsiang> QAQ
+00:43 < lanf0n> 0rz
+00:43 < superbil> QAQ
+00:44 < ipa> 他們在昨天之前沒有碰過前端
+00:44 < kiang> -.-||
+00:44 < superbil> 各種神 (拜
+00:44 < johnny__> 強強的
+00:45 < Lee1092> 好猛....  0.0
+00:45 < yhsiang> 好像每一組我都有參與 XD
+00:45 < yhsiang> 這是怎麼回事 XD
+00:45 < Lee1092> 一目了然耶~
+00:46 < Lee1092> yhsiang++  填坑推手~
+00:46 < lanf0n> repo: https://github.com/chungheng/g0v/tree/master
+00:46 < kcwu> lanf0n's url: [chungheng/g0v · GitHub]
+00:46 < lanf0n> Orz
+00:51 < yhsiang> 要講inviteyoself嗎 XD
+00:53 < Lee1092> clkao:  改了 https  雖然是偽裝的 XD
+01:11 < pcchen> 請問「推坑」有標準的英文講法嗎？
+01:12 < superbil> dig a hole ?
+01:14 < superbil> 我看錯... 
+01:16 < superbil> 個人感覺比較像 You can do it !
+01:19 < jimyhuang> superbil++
+02:46 < pofeng> 我更新了 https://github.com/g0v/g0v.tw/blob/master/md/zh-tw/about/media.md
+02:46 < kcwu> pofeng's url: [g0v.tw/media.md at master · g0v/g0v.tw · GitHub]
+02:46 < pofeng> 想要 deploy
+02:46 < pofeng> 不過: "stream.js:94
+02:46 < pofeng>       throw er; // Unhandled stream error in pipe."
+02:47 < pofeng> 有解嗎 ?
+03:21 < ETBlue> 挖，一覺醒來已經成果報告完了……原本想請 ipa 幫我報告議員投票指南的新 logo 跟 VI >///<
+03:47 < ETBlue> 看成果報告發現 project hub 有編輯介面了！！（感動
+03:48 < ETBlue> 我是被忘記名字的仁兄 XD
+04:19 < ETBlue> 活動成果報告有人在每個專案下面補網址真是太佛心 XD
+04:52 < ETBlue> yhsiangCloud: 巡坑高手 XD
+04:54 < ETBlue> pcchen: pushing pitward ? XD
+04:54 < yhsiangCloud> ETBlue: 囧
+04:54 < yhsiangCloud> 他們超強
+04:55 < ETBlue> yhsiangCloud: 你們現在是結束了還是還在搞
+04:55 < ETBlue> pcchen: 對了女 M 的 t shirt 用不到的話我要還給 ipa 囉
+05:01 < yhsiangCloud> 已經結束一陣子了
+05:01 < yhsiangCloud> 正在逛space musem
+05:49 < kiya> 那個...我fork來的議員投票指南要怎麼pull from https://github.com/g0v/councilor-voter-guide 啊？
+05:49 < kcwu> kiya's url: [g0v/councilor-voter-guide · GitHub]
+05:53 < kiya> 嗯好像有看到教學 別理我XD
+05:53 < ETBlue> XD
+06:45 < clkao> kiya: 你在 space museum 發 PR?
+08:34 < yhsiangCloud> 真的假的 XD
+08:57 < caroline_> 怎麼明明一堆吃飯恍神的人...現在還醒著還在更新Hackpad...  XDDDDD
+09:17 < yhsiangCloud> caroline_: 一定是加了92的油
+09:17 < caroline_> 我現在知道你是誰了....
+09:19 < ipa> caroline_: 噗 XD
+09:21 < caroline_> ipa:誰叫他名字要用不一樣啦~~~~  
+09:33 < Tzu-Yao> LY 在我家開講中！！
+09:34 < caroline_> Tzu-Yao你竟然還醒著
+09:35 < caroline_> 我準備要去昏倒了........
+09:36 < Tzu-Yao> 學crawler基本概念中.....
+09:37 < caroline_> 好厲害........... 
+09:37 < Tzu-Yao> 是Ly好厲害
+09:37 < caroline_> 都很厲害~~~~~~~~~~
+09:57 < yhsiangCloud> caroline_: 早知道不要跟你講
+10:08 -!- chihchun_afk is now known as chihchun
+10:23 < yhien> @pcchen 「推坑」-> to trap some volunteer
+10:27 -!- chihchun is now known as chihchun_afk
+10:31 -!- chihchun_afk is now known as chihchun
+10:43 < au> pcchen: pushing [someone] to fulfill [something] # 中規中矩的翻譯
+10:44 -!- chihchun is now known as chihchun_afk
+10:52 -!- chihchun_afk is now known as chihchun
+10:57 -!- seadog007_ is now known as seadog007
+11:03 < ipa> Tzu-Yao: !! 你不是應該馬上昏倒嗎？@@
+11:06 < Tzu-Yao> ipa: 我下午一上車立馬昏倒了一陣子，然後才開車回家
+11:13 < ipa> Tzu-Yao: XDD 
+11:27 < H2b2t> 0.0
+11:33 < clkao> yhsiangCloud 開講了什麼
+11:35 < hychen> 美國黑客松海high啊
+11:40 < ipa> hychen: 紐約幫似乎已經接下了美東下屆黑客松的棒子了 \o/ 
+11:41 < ipa> 長輩們也認領了紐約黑客松的食物.... 這邊辦黑客松要自己煮50+ 人份量的台灣小吃，挑戰超高，但同鄉會媽媽超強
+11:44 < clkao> 據說昨天開飯時學生們在魯肉飯、碗糕、豬腳前驚呆了
+11:44 < ipa> 美國辦黑客松還要幫忙分派住宿補助交通，在地還要帶音響、麵包機、備三餐點心..... 真的好強好辛苦 Tzu-Yao+++ caroline_+++ 
+11:46 -!- chihchun is now known as chihchun_afk
+11:47 < au> Tzu-Yao+++ caroline_+++ 紐約黑客松++
+12:01 < hychen> ipa: clkao 台灣輸了.............
+12:02 < ipa> hychen: 我們贏了啊，只要坐高鐵就可以全台都來黑客松 XDDD（而且沒有補助）
+12:02 < hychen> ipa: 我是說食物....
+12:03 < hychen> “要贏過g0v, 炸雞是不夠的" 
+12:03 < ipa> 那....我們有磚窯 超台大食團 來個酥炸大腸立馬贏了
+12:04 < hychen> ipa: 大腸花配大腸, 好吧! 贏了 XD
+12:04 < clkao> 餓了
+12:04 < clkao> 回去要怒吃米粉湯
+12:05 < hychen> clkao: 我先為您吃碗牛肉湯
+12:06 < pofeng> 請大大幫忙測一下兩個信箱感謝 !!
+12:06 < pofeng> donation@ocf.tw 
+12:06 < pofeng> ocf-enquiry@googlegroups.com
+12:10 < jimyhuang> 餓
+12:16 < hychen> 自己煮50+的台灣小吃實在是很厲害 =.=
+12:17 < jimyhuang> hychen: 直接搬到可以吃 50+ 台南小吃的，也很厲害啊
+12:34 < jimyhuang> clkao: yhsiangCloud 求政誌噴發 link XD
+12:35 < hlb> 烤豬烤豬
+12:48 < yhsiang_> jimyhuang: 我有叫他送PR
+12:48 < yhsiang_> XD
+12:48 < yhsiang_> clkao: 講怎麼寫crawler 還有跟他的室友在介紹一下g0v XD
+12:53 < yhsiang_> 結果又開始松起來
+12:55 < yhien> 少年仔要松一下否
+13:01 < hychen> jimyhuang: 沒有很厲害，只是要很有愛.....
+13:02 < hychen> 久了就會變哎.....
+13:16 -!- yhien [yhien@conference/jsconf/x-idyxrycwfdfjsqab] has left #g0v.tw []
+13:55 < kiya> clkao: 對我在space museum發pr XDDD 因為實在太累想說坐著休息一下 坐著坐著想到bug就好像心頭刺不解不舒服啊
+14:00 < hychen> kiya: 這是一種怕別人解掉的感覺!
+14:00 < kiya> hychen: 也可以這麼說XDD
+14:04 -!- pc31 [cb4557f0@gateway/web/cgi-irc/kiwiirc.com/ip.203.69.87.240] has left #g0v.tw []
+14:08 < YCJ> hi 想請問有人爬過 法人登記資料 的資料庫嗎？ http://cdcb.judicial.gov.tw/abbs/wkw/WHD6K00.jsp 最近看到雨蒼用RonnyWang爬的公司資料在寫國民黨黨產，找一找發現有這個資料庫，應該可以找到很多政治人物的基金會
+14:08 < kcwu> YCJ's url: [法人及夫妻查詢系統]
+14:33 < jimyhuang> YCJ: https://github.com/g0v/foundationtw 
+14:33 < kcwu> jimyhuang's url: [g0v/foundationtw · GitHub]
+14:37 < jimyhuang> YCJ: http://foundations.olc.tw/
+14:37 < kcwu> jimyhuang's url: [法人一覽 @ 社團/財團法人資料檢索]
+14:56 < YCJ> @jimyhuang 收到了！謝謝！
+15:11 < hcchien> 咦，又有烤豬了!?
+15:33 < ETBlue> johnny__: 收集完各縣市的徽章（多數有向量檔，含授權），給指南用的話，檔案名稱中文還是英文好？輸出成多大尺寸好（長寬 1:1）？
+15:42 < johnny__> ETBlue: 中文好XD，"台"最好都改成"臺" ，尺寸我沒什麼概念，要不要先弄個你順眼的尺寸然後發個 issue，看要用在哪些頁面
+15:43 < ETBlue> johnny__: roger XD
+17:05 < ETBlue> johnny__: done https://drive.google.com/folderview?id=0B0NsS2a-Qx8ZeTA0MlRBdnVqMDQ&usp=sharing , 尺寸暫用 600 x 600 可再調
+17:05 < kcwu> ETBlue's url: [city-county-logos]
+17:05 < ETBlue> 文件 http://beta.hackfoldr.org/taiwan-region-logo-download
+17:07 < johnny__> ETBlue++ "隆基"驚嚇到我了，好多縣市logo都好屌
+17:08 < ETBlue> 高雄的不賴，桃園也蠻妙的 XDD
+17:47 < moon_c__> 嘉義縣跟宜蘭縣可以手牽手去自殺算了
+17:48 < moon_c__> 高雄那個是名設計師之手唷：D
+17:49 < moon_c__> 雖然說背後也是很鳥的故事（八卦
+18:14 < hcchien> 基隆那個從我小時候就長那樣了  *茶*
+18:40 < BV1AL> 苗栗縣也夠醜的, 還以為是基隆市, 簡直是「基」少兩橫
+18:40 < ETBlue> moon_c__: 什麼八卦 XD
+18:41 < ETBlue> 苗栗縣據說是以油井為傲所做的設計
+18:41 < ETBlue> 我看下
+18:44 < ETBlue> ㄟ，苗栗縣政府官網 GG 了，就在我下載完他們檔案以後…
+18:44 < seadog007> ..
+18:45 < seadog007> 被黑黑弄掛了(O
+18:45 < ETBlue> 無辜啊
+18:50 < BV1AL> 發現是一個比一個醜, 當初是怎麼徵圖的啊？ XD
+18:52 < lychee> 高雄NO.1
+18:52 < BV1AL> 想到的是日本的家徽, 完全沒得比
+18:53 < ETBlue> 台北把標準字拿掉的話也不賴
+18:57 < miheille> https://drive.google.com/file/d/0BwPaHSTiwhagdjFEY1NfcE1Hb1k/view?usp=sharing
+18:57 < kcwu> miheille's url: [2014CONCIL.png - Google 雲端硬碟]
+18:59 < ETBlue> 連宣傳圖都出現了 XD
+19:12 < lychee> miheille
+19:12 < lychee> miheille 這個放大鏡好像壞了XD
+19:14 < miheille> 0[]0??
+19:14 < lychee> 沒有放大效果0.0
+19:15 < miheille> 凹凸效果?
+19:16 < lychee> 紅&綠的標籤角(放大鏡外)  感覺上與放大鏡內的區域是一致的
+19:17 < lychee> 沒有被放大的感覺
+19:17 < miheille> 對呀~=v=
+19:17 < lychee> :))
+19:21 < miheille> 改這樣 https://drive.google.com/file/d/0BwPaHSTiwhagWWo5NWlGNDVoY3c/view?usp=sharing
+19:21 < kcwu> miheille's url: [2014CONCIL2.png - Google 雲端硬碟]
+19:26 < lychee> 也ok~
+19:56 < pofeng> jimyhuang: 奇怪 http://foundations.olc.tw/ 找不到 臺灣綜合研究院 的資料
+19:56 < kcwu> pofeng's url: [法人一覽 @ 社團/財團法人資料檢索]
+20:10 < miheille> http://foundations.olc.tw/foundations/view/544137a6-a3a8-4954-b81c-2b20acb5b862 這個嗎
+20:10 < kcwu> miheille's url: [財團法人台灣綜合研究院 @ 社團/財團法人資料檢索]
+20:10 < pofeng> miheille: 喔喔, 對對,  謝謝 
+20:17 < moon_c__> 高雄那個原本是高雄世運的logo，之後市長覺得好看拿來用，雖然說不是不行但是這樣非常的詭異，就設計來說他是專屬于高雄世運的形象，整體配套也是為了世運而做，所以才會有體操的緞帶感
+20:19 < johnny__> miheille++
+20:25 < miheille> johnny好久不見 :D
+21:17 < esicen> 請問過去的專案要在哪裡查
+21:18 < esicen> 找到了!
+21:25 -!- johnny___ is now known as johnny__
+21:25 -!- caroline___ is now known as caroline_
+21:25 -!- amadalo_ is now known as amadalo
+21:25 -!- planetoid____ is now known as planetoid___
+21:25 -!- aaronlin____ is now known as aaronlin___
+21:25 -!- soidid_ is now known as soidid
+21:25 -!- shhu_cloud__ is now known as shhu_cloud_
+21:26 -!- linpcc_ is now known as linpcc
+21:26 -!- poga_ is now known as poga
+21:27 -!- jksonc_ is now known as jksonc
+21:43 -!- esicen [guest-esic@conference/jsconf/x-odbrrudfrvbwdkai] has left #g0v.tw []
+21:56 < jimyhuang> isacl: 可以問問看你朋友有沒看過善耕365 https://www.facebook.com/harvest365
+21:56 < kcwu> jimyhuang's url: [善耕365 | Facebook]
+21:59 < yhsiangCloud> Morning :p
+22:17 < jimyhuang> yhsiangCloud: 今日行程是？
+22:18 < johnny__> 請問縣市議員可以圈選幾位的法規，有沒有人有官方連結，找不太到...，好多使用者在問
+22:20 < yhsiangCloud> jimyhuang: 下午拜訪sunlight foundation
+22:20 < jimyhuang> !!!
+22:55 < fufubear> 昨天恍神把筆電電源線和相機電池放在會場... 果然熬夜會神智不清
+22:56 < fufubear> 還好早上有時間去拿回來 哈哈
+23:21 < kcwu> http://env.g0v.tw/air/ js console 有些 error message, 右上角的 "i" 好像也壞掉了
+23:23 < kcwu> btw, 有人有存空污指標的歷史資料嗎?
+23:29 < au> kcwu: http://opendata.epa.gov.tw/ws/Data/AQF/?$orderby=AreaName&$skip=0&$top=1000&format=csv 404 了
+23:30 < au> AQF 改成 AQX 就好了...
+23:32 < au> 所以「空氣品質預報資料」下架了，只剩「
+23:32 < au> 空氣品質即時污染指標 」
+23:37 < yhsiang_> 囧
+23:38 < yhsiang_> fufubear: 要拿回來就好 掉東西也是黑客松的備忘錄 :p
+23:51 -!- chihchun_afk is now known as chihchun
+23:58 < stardog_> johnny__: 議員建議款的json file 長什麼樣子? 你有放在某處嗎?
+23:59 < johnny__> stardog_: 有的 https://github.com/g0v/councilor-voter-guide/blob/master/data/suggestions.json
+23:59 < kcwu> johnny__'s url: [councilor-voter-guide/suggestions.json at master · g0v/councilor-voter-guide · GitHub]

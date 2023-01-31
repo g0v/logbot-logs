@@ -1,0 +1,196 @@
+--- Day changed 日  5月 11 2014
+00:03 < yhsiang> https://gist.github.com/yhsiang/de8a1daf99d634bfc2db 
+00:03 < kcwu> yhsiang's url: [gist:de8a1daf99d634bfc2db]
+00:04 < eyes1971>    
+00:41 < yhsiang> clkao: 我幫你剛剛那個順便轉給小Q, 另外他已經跌入angular-livescript-seed坑中 wwww
+00:41 < clkao> 噢... 可是 seed 已經太舊了
+00:42 < yhsiang> XD
+00:42 < yhsiang> 他應該會自己弄一個 gulpfile XD
+00:42 < clkao> 噢噢 你說的是新的那個
+00:42 < clkao> 不是已經有 gulp 了?
+00:43 < yhsiang> 他現在是要轉他自己的BigQuery Taiwan 想把前端的code也改用ls
+00:52 < jimyhuang_> 長知識 http://cloudhead.headmine.net/post/3279118157/cooperation-vs-collaboration
+00:52 < kcwu> jimyhuang_'s url: [Cooperation vs Collaboration - cloudhead]
+02:36 < yhsiang> clkao: 感覺是browserify 出來的東西有問題 
+05:30 -!- kaxing is now known as Guest87668
+10:18 < kiang> 有人在 iOS 上面透過 geojson or topojson 畫過 polygon 嗎？昨天幫忙的朋友在這邊卡關： https://github.com/Hokila/TownCandidateMap
+10:18 < kcwu> kiang's url: [Hokila/TownCandidateMap · GitHub]
+10:44 < clkao> github GG... 
+13:18 -!- chihchun_afk is now known as chihchun
+13:41 < chihchun> FourDollars: SPI: ST M25P80 (1MiB) device (page=256,erase=4096)
+13:42 < FourDollars> chihchun: 蛤？
+13:43 < chihchun> FourDollars: 只有 1MiB 存 uboot config
+13:43 < chihchun> FourDollars: kernel 塞不進去
+13:44 < FourDollars> chihchun: 喔喔 I C. Thx
+13:45 < FourDollars> chihchun: 那 uboot 塞在哪裡？
+13:45 < chihchun> FourDollars: 就這裡麵阿
+13:45 < FourDollars> chihchun: I C
+13:45 < FourDollars> chihchun++
+13:46 < chihchun> FourDollars: 你可以補一下 debian archive 昨天的結論嗎？ https://g0v.hackpad.com/20140510--QZ7WShK1gPu
+13:46 < kcwu> chihchun's url: [20140510支持松-太陽花盒子 - g0v.hackpad.com]
+13:49 < exFREEzy> 看到了這篇　http://techorange.com/2014/05/11/interview-with-foundi/
+13:49 < kcwu> exFREEzy's url: [《 橘子創業家專欄 》 前台灣 Google Maps 計劃主持人創辦 foundi ，要用地圖摧毀台灣買房資訊的不對等 | TechOrange《 爆橘 |]
+13:49 < FourDollars> chihchun: 就做出來了啊？
+13:50 < FourDollars> 還要什麼結論？
+13:53 < chihchun> FourDollars: debarchiver 那些東東？
+13:55 < FourDollars> chihchun: 我後來不是用 debarchiver 做的
+13:55 < FourDollars> chihchun: 我有寫在 Hackpad 上面
+13:56 < FourDollars> chihchun: 還弄了一個 git 放一些 script
+13:56 < fuyei> http://fuyei.github.io/cf-viz/viz.htm
+13:56 < kcwu> fuyei's url: [政治獻金視覺化]
+13:56 < FourDollars> chihchun: 我打算下週二 TOSSUG 聚會做一下心得分享
+13:57 < chihchun> FourDollars: k
+14:16 -!- fuyei [3DE6CE29@conference/jsconf/x-ismdkzqjgwypennu] has left #g0v.tw []
+14:22 -!- bronx0807 [db4725b1@gateway/web/cgi-irc/kiwiirc.com/ip.219.71.37.177] has left #g0v.tw []
+14:37 < clkao> fuyei++
+14:49 < miaoski_home> chihchun: vmlinux.ub 要放在 partition 2 
+14:53 < chihchun> miaoski_home: 我都直接改 uboot 讓它去正確的位址載
+14:55 < miaoski> chihchun: 改 uboot.sh ?
+14:56 < chihchun> miaoski: 開機的時候可以 設定 bootcmd
+14:56 < chihchun> setenv bootcmd "ext2load usb 0:2 80000000 vmlinux.xbmc; bootm 80000000"
+14:56 < chihchun> setenv bootargs "console=ttyAS0,115200 root=/dev/sdb1  rootfstype=ext3 rw rootflags=data=journal nwhwconf=device:eth0,hwaddr:10:08:E2:12:06:BD phyaddr:0,watchdog:5000 mem=120M bigphysarea=2048"
+14:56 < miaoski> chihchun: 不過目前還不知道 Hans Yu 在他的 xbmc 那裡的 audio_dts.elf, audio.elf, video.elf 是怎麼生出來的 @@
+14:57 < miaoski> chihchun: 了解
+14:57 < chihchun> miaoski: 昨天從 usb 開機的方法
+14:57 < miaoski> chihchun: 你其實可以 mem=240M 沒問題的
+14:57 < miaoski> bigphysarea = 2048 意思是留 8M 給它。
+14:59 < chihchun> miaoski: 我昨天 240M 開機 framebuffer 就死了
+14:59 < chihchun> miaoski: audio_*.elf 疑似 stlinux.com 來的？
+14:59 < miaoski> chihchun: 然後那個 e2 (啊我寫在 FB) 裡面的其實不是 mplayer. 剛剛解開來竟然是 gst-launch-1.0
+15:00 < miaoski> chihchun: 嗯? 不過我也不知道這幾個 elf 是幹嘛用的....
+15:01 < chihchun> miaoski: firmware binary 開機的時候餵給 st 
+15:01 < miaoski> chihchun: 我昨天的 framebuffer 下的是 mem=256M xd
+15:01 < chihchun> miaoski: like /bin/ustslave /dev/st231-1 /boot/audio.elf
+15:01 < miaoski> https://www.irccloud.com/pastebin/3Or1KZqs
+15:01 < kcwu> miaoski's url: [Pastebin: 3Or1KZqs | IRCCloud]
+15:01 < chihchun> miaoski: 我看文件那個 8M 是留給 audio
+15:01 < miaoski> 這是我昨天開機用的參數。可以畫 framebuffer 
+15:02 < chihchun> miaoski: 這樣你昨天應該沒聲音？ 然後 coprocessor 不能用？
+15:02 < miaoski> chihchun: 原來 ustslave 這樣用! 我之前一直想用，卻不知道要載入什麼...
+15:02 < clkao> 這看起來蠻威的 可是怎麼都沒有人 star? # https://github.com/vseryakov/backendjs
+15:02 < kcwu> clkao's url: [vseryakov/backendjs · GitHub]
+15:02 < miaoski> chihchun: 昨天只有試畫面, so ... >///<
+15:03 < miaoski> chihchun: 看到了，他改在 rc.S 裡啊....
+15:04 < chihchun> miaoski: 可是...xbmc 就算 256M 全開也不夠用...
+15:05 < miaoski> chihchun: XDDD 要不要試他的 e2 ? 有 gst-launch 感覺有希望 
+15:07 < miaoski> chihchun: open duckbox / duckbox 不知道和 Hans Yu 的關係是什麼。是他的案子 or 他加入的案子..
+15:07 < miaoski> http://dev.duckbox.info/cgi-bin/cgit.cgi/tdt/diff/tdt/cvs/cdk/root/release?id=bf6f81864cfffaa60a13ec7673ae0f5c36362109
+15:07 < kcwu> miaoski's url: [tdt - Duckbox repository]
+15:07 < miaoski> chihchun: 這裡有謎般的 mailbox command (然後 STM 官網上沒看到)
+15:08 < clkao> hcchien 出沒！ # http://crosspoint.tw/newsall/380-doit201405.html#chuangvol7
+15:08 < kcwu> clkao's url: [05/21【DOITx交點換桌論壇】創新生態的社會影響力 | crosspoint 交點]
+15:08 < chihchun> miaoski: 應該是他加入的案子？
+15:09 < chihchun> miaoski: duckbox 支援很多 stlinux-based 的 set top box
+15:09 < miaoski> chihchun: 對啊.. 然後 duckbox 有沒有 open 的不知道差在哪
+15:09 < miaoski> sh4 在 open 的那個
+15:10  * miaoski afk
+15:11 < chihchun> miaoski: mailbox command 那個是 STM 的 multicom 用的。那是 memory 管理的工具 http://www.stlinux.com/howto/multiple-CPUs/memory-partitioning
+15:11 < kcwu> chihchun's url: [Memory partitioning | STLinux]
+15:12 < chihchun> miaoski: 我還沒搞懂哪些 coprocessor 參數是要留了多少記憶體
+15:35  * FourDollars mplayer 相依的套件一大陀~
+15:38 < chihchun> FourDollars: 不要 port mplayer 啦。除非你要寫 stapi driver
+15:39 < FourDollars> chihchun: miaoski 想要用 mplayer 播到 framebuffer 試試看
+15:39 < chihchun> FourDollars: 那是 cpu 硬幹耶 XDDD
+15:39 < FourDollars> chihchun: So?
+15:40 < clkao> FourDollars 認為... how hard could it be
+15:40 < FourDollars> chihchun: 先求有再求精 
+15:41 < FourDollars> chihchun: 反正多弄一些 sh4 deb 想使用的人也可以直接使用
+15:45 < miaoski> chihchun: 沒關係啦，先硬幹再說
+15:45 < miaoski> chihchun: 至少那會是一個 milestone (或是直接用 gst ... 喂0
+15:45 < chihchun> miaoski: FourDollars 只是這些三年前有人做了... (扭手指)
+15:48 < miaoski> chihchun: 我們跟本是在他們後面追... 然後還沒追上 QQ
+15:49 < chihchun> miaoski: XDDD
+15:51 < ipa> g0v 荷蘭分部似乎要奮起了 gugod++ tvcafe++
+15:58 < clkao> 好嗨啊 遠端 infrath0n
+15:58 < clkao> hychen: 我要來改 pgrest-passport 了... auth provider 跟 user 要拆開
+16:03 < hychen> clkao: 請.. 我最近又不太能看電腦了 orz
+16:03 < clkao> hychen: ... 你又做了啥
+16:04 < hychen> clkao: 也沒啥，就作息失調跑調，造成眼睛毛病發作
+16:04 < hychen> 一熬夜隔天就眼睛有小黑點在飄 
+16:05 < clkao> ... 這不是大家都有嗎
+16:05 < clkao> 講個秘訣... 從事極限運動發生意外住院三週... 小黑點就幾乎都不見了........
+16:05 < hychen> 問題在於盯電腦螢幕太久視線模糊
+16:06 < hychen> clkao: 我之前有不看電腦一個星期，什麼眼睛毛病都沒有 =.=
+16:06 < hychen> 只好來練習手寫程式，人腦compile
+16:09 < clkao> 間歇休息很重要啊~
+16:10 < hychen> 來把timeout 從新active...
+16:13 < gugod> ipa: 留學生們自已就頂熱血的，還說每個月輪流要辨讀書討論會
+17:04 < yhsiang> clkao: 目前追到sequelize browserify出來的東西是爛掉的 沒錯 orz
+17:04 < yhsiang> 還在想要怎麼解
+19:01 -!- apple [3b7eff54@gateway/web/cgi-irc/kiwiirc.com/ip.59.126.255.84] has left #g0v.tw []
+19:38 < hcchien> http://www.ptt.cc/bbs/PublicIssue/M.1399801050.A.45C.html
+19:38 < kcwu> hcchien's url: [[動員] 甲級動員PTT鄉民!!(國難) - 看板 PublicIssue - 批踢踢實業坊]
+19:38 < hcchien> 竟然 ptt 也有甲級動員
+19:55 < lancetw> 有 500 P 嘛XD
+20:05 < syln> 感覺好像蠻認真的XD
+20:05 < syln> 看了一下 情況果然需要認真了orz
+20:17 < anon1269> 糟糕糟糕糟糕
+20:35 < syln> http://www.ptt.cc/bbs/PublicIssue/M.1399810780.A.C4B.html
+20:35 < kcwu> syln's url: [[動員] 請今明立刻發動國會議員施壓作戰 - 看板 PublicIssue - 批踢踢實業坊]
+20:35 < yhsiangCloud_> tkirby:  我快抓完粗率了
+20:35 < syln> 配票XDD
+20:45 -!- VictorZ_ [~VictorZ@122-116-72-112.HINET-IP.hinet.net] has left #g0v.tw []
+20:48 < jimyhuang_> hychen: 補血補太多？
+21:28 < Rhozan> 請問新後勤現在是不是沒辦法加入？ 用gmail或Github都說信箱已使用，然後收不到重設密碼信 Orz
+21:51 < tkirby> yhsiangCloud_: (y)
+22:06 < chihchun> 欸，有沒有什麼 index 是收集 g0v 做過得網站服務？ (ex 想找薪資資料相關的 hacks)
+22:06 < CindyLinz> chihchun: 這東西聽起來好像是 g0v 的 g0v...
+22:07 < chihchun> CindyLinz: XDDDD
+22:07 < chihchun> CindyLinz: g0v 太強大了阿，太多網站....
+22:09 < yhsiangCloud_> 薪資資料？
+22:09 < yhsiangCloud_> 我怎麼記得這不是g0v做的
+22:11 < twWatch> log search index 或是以後大家討論時加[prefix] 專案編號
+22:11 < hcchien> http://g0v.github.io/g0vis/#!/project/0
+22:11 < eyes1971>    
+22:18 < tkirby> http://g0v.github.io/g0vis/#!/project/1 的專案是用 google search api 找 site:github.com filetype:json g0v.json 列出的
+22:18 < eyes1971>    
+22:18 < tkirby>  
+22:18 < tkirby> http://localhost
+22:42 < miaoski> 為什麼要非粗口 @
+22:42 < miaoski> @@
+22:48 < tkirby> yhsiang: 癌症資料好像有問題
+22:49 < tkirby> yhsiang: 看 CRA_3213.xls, 3213 是復興鄉, 可是若看 excel 檔裡面他是中壢市, 大溪鎮, 楊梅鎮, 蘆竹鄉, 大園鄉, 龜山鄉, 八德市, 龍潭鄉, 平鎮市, 觀音鄉, 復興鄉 合計
+22:49 < tkirby> 結果資料就變得特別大
+22:54 < syln> miaoski: 和理非非是香港那邊的自我規範，不過臺灣應該不在意（看大腸花XD）
+22:55 < miaoski> syln: 感謝說明... 不爆粗口根本沒辦法過活 (誤)
+22:57 < tkirby> yhsiang: 我寫了個 script 檢查 (cris/verify.ls) 直接執行即可.. 發現大部份的 xls 檔都有這個問題 orz
+22:58 < tkirby> yhsiang: 這樣的話你正在抓的粗率應該會有同樣的狀況
+23:00 < clkao> hychen: 我把 pgrest-passport v2 改成 token-based... /auth 回來成功的話會把 jwt 放在 # 後面.. 之後就用他作 Bearer token.... 所以這樣會需要 client 有簡單的 wrapper 處理這些
+23:01 < clkao> hychen: 就不用再 cookie 了... zzz
+23:01 < clkao> yhsiang: 要玩玩看嗎 :p
+23:03 < isacl> 今天看到這個: http://bowery.io/ 很酷. 應該可以比 koding 更簡單把開發/測試環境跑起來
+23:03 < eyes1971>    
+23:03 < kcwu> isacl's url: [Bowery - Home]
+23:04 < isacl> 實驗中，不知道大家玩過了嗎？
+23:11 < pofeng> isacl: 看起來要在本機裝東西, 這樣就輸(?) koding.com 了耶 ...
+23:14 < ggm> 嗨問一下 http://community.g0v.tw/ 這裡的註冊帳號 
+23:14 < kcwu> ggm's url: [新． g0v 後勤中心]
+23:14 < eyes1971>    
+23:15 < ggm> 他說我的信箱使用過的 叫我使用取回密碼 但是打完信箱按取回密碼等很久了都沒收到信
+23:15 < isacl> pofeng: 本機裝完 bowery 指令後，註冊，接著 bowery add example 再 bowery ssh example 就有完整 linux 環境的樣子。不過我也只玩到這邊, 還再等它同步 hackfoldr 過去。
+23:16 < ggm> 我也檢查過沒有在垃圾信裡面＠＠
+23:16 < pofeng> 臧家宜: "我在 peoplefinders.com找到不少郭家的資料" http://www.ptt.cc/bbs/Gossiping/M.1399809377.A.F0D.html
+23:16 < eyes1971>    
+23:16 < kcwu> pofeng's url: [[爆卦] 臧家宜談郭台銘 - 看板 Gossiping - 批踢踢實業坊]
+23:17 < isacl> 講錯, bowery ssh 之前，要先 bowery connect
+23:17 < pofeng> isacl: 喔喔 瞭 好像也不錯 ... 不過我是懶人 ... 覺得 koding.com web ssh 直接連 vm 也不錯 ( 但的確有點慢 )
+23:19 < isacl> pofeng: 嗯我明天繼續試試看。不確定 server 是不是會像 koding 這樣當免洗餐具，沒使用就停掉。
+23:22 < clkao> ggm: 剛才有人回報過類似問題...可能要等 Jcrt 或 xdite__ 看看
+23:24 < ggm> thx!! 
+23:29 < isacl> pofeng: 可能是太多人用掛掉了，官方說 30 秒內會建立完成，但我卻一直卡在 bowery is currently building. (anyway, 下回再繼續玩)
+23:31 < yhsiang> tkirby: 對 我剛剛也有發現
+23:31 < tkirby> yhsiang: 剛剛話才講完又多了 28 個讚... XD
+23:32 < yhsiang> tkirby: 可能是我少甚麼參數 我正在檢查 orz
+23:32 < yhsiang> pofeng: 臧家宜專打郭台銘 XD
+23:32 < tkirby> yhsiang: 好的, 反正有警語應該沒很緊急.. 我順便再來看看有沒有其他問題好了 XD
+23:33 < pofeng> yhsiang: 那個我是要推 peoplefinders.com 你不要劃錯重點 (誤)
+23:33 < yhsiang> pofeng: 我跟臧家宜修過同門課 孩童一組過喔 
+23:33 < yhsiang> s/孩童/還同
+23:34 < clkao> tkirby: 要貼粉絲頁增加一點緊急性嗎？
+23:34 < pofeng> yhsiang: 喔喔 *指*
+23:34 < tkirby> clkao: 這樣會挫賽 XD
+23:36 < twWatch> 所以 yhsiang 也是keyman? XD
+23:36 -!- dm4_ [~dm4@ec2-54-251-97-226.ap-southeast-1.compute.amazonaws.com] has left #g0v.tw ["WeeChat 0.3.7"]
+23:43 -!- dm4_ [~dm4@ec2-54-251-97-226.ap-southeast-1.compute.amazonaws.com] has left #g0v.tw ["WeeChat 0.3.7"]
+23:52 < clkao> tkirby: 話說你有報 infrath0n 嗎
+23:57 -!- chihchun is now known as chihchun_afk

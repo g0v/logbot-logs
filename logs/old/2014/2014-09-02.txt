@@ -1,0 +1,613 @@
+--- Day changed 二  9月 02 2014
+00:00 < tkirby_> yhsiang_: 有機會可以用 XD
+00:01 < tkirby_> shuhua_: 可是都是 .NEF 檔說 xD
+00:01 < lololol> g0v食指指著對方的那張畫有作者嗎?
+00:01 < lololol> 我記得以前有人在問靈感XD
+00:04 < shuhua_> tkirby_: XDDD 那果然需要時間～
+00:05 < shuhua_> tkirby_: 因為它應該沒得批次～
+00:09 < tkirby_> 是的
+00:12 < yhsiang_> tkirby_: 因為他列了好多
+00:12 < yhsiang_>  可能爬梳跟整理資料就要花幾個天 XD
+00:13 < tkirby_> XD
+00:14 < pipi_> 柯p松（？）的票怎麼都沒釋出的QQ
+00:16 < yhsiang_> 至少也要周四周五才會有人釋出吧?
+00:17 < pipi_> 只好等了QQ 不然我跳工作人員的坑可以嗎
+00:18 < Michael_LI> 23:22:47 shuhua(我是文播組唯一會用irc的～)  說個秘訣：開個文字檔，把常接觸的人名字跟IRC名字登記下來，方便比對以及記憶。
+00:19 < hcchien> 阿美語已經 31% 了
+00:19 < Lee1092> hcchien:  這次難度比較高  要中英文切換  XD
+00:20 < hcchien> Lee1092: 重點是句子都比較長
+00:21 < pipi_> yhsiang_: 好像常跟你糾纏不清（大誤）
+00:22 < shuhua_> 好吧，繼續回去寫企劃書和弄脈絡.....語音OCR.............
+00:22 < yhsiang_> pipi_: 要當工作人員跟我講沒用 XD
+00:24 < lololol> 好扯  瞬間爆滿
+00:25 < shuhua_> Michael_LI: 對了，問一下～有些ustearm的聯結已經失效，你知道要怎找到對應的youtube的聯結嗎？
+00:25 < pipi_> yhsiang_: 可惡XD，我要找誰
+00:27 < lanf0n> 阿美語的有些可能是古用語(?) 或是原住民當年代的慣用字....  OCR 的部份也許還是照字面 key 之後再人工 check 會比較好 QQ
+00:29 < clkaoud> miaoski: 字典裡面沒有 mikasoy 這個字阿~
+00:29 < miaoski> lanf0n: ++
+00:30 < lanf0n> yhsiang_: 啊噢... 所以薪水會比較晚發嗎QAQ
+00:31 < yhsiang_> lanf0n: 是獎金
+00:31 < lanf0n> yhsiang_: 噢獎金QQ
+00:31 < yhsiang_> 目前看來就在等 xsoameix @@a
+00:31 < miaoski> clkaoud: p.139 kasoy 
+00:32 < clkaoud> miaoski: 我是說你的 demo site :p
+00:32 < xsoameix> 對不起 0.0
+00:32 < miaoski> 前面的 mi- 是主事焦點動詞前綴. 所以其實字典要能用，需要先處理過詞根 (或是用萌典暴力搜尋，咦?)
+00:33 < miaoski> clkaoud: demo site 只有 ' 開頭的字啦~~~ 我如果整理到 m 就不用鄉民 OCR 了 XDDD
+00:33 < clkaoud> 不先放這個詞怎麼 link 過去 self-referral :p
+00:34 < kcwu> miaoski,CindyLinz: 疑, 你們有沒有試過 auto deskew?
+00:34 < miaoski> clkaoud: 科科 那個慢慢再頭痛吧。我的 branch 離萌典的 head 已經超過半年了，根本不敢想 merge 這件事 T_T
+00:34 < miaoski> kcwu: 咦? 完全沒有 wwww
+00:35 < Michael_LI> Shuhua 唉～我心中的痛
+00:35 < miaoski> kcwu: 不過用 CindyLinz 的程式切好一行一行後，如果能餵進像 acrobat 那種程度的 OCR, 其實也不用鄉民這麼辛苦了....
+00:35 < miaoski> open source OCR 讓人傷心
+00:36 < shuhua_> Michael_LI: 什麼意思？
+00:38 < shuhua_> 因為如果檔案消失那要等我整個整理完然後詢問～(但怕的是資料都沒存這樣)
+00:38 < kcwu> miaoski: 譬如 ImageMagick 的 auto deskew 效果就不錯了, command line 用 convert -deskew 40 就好了
+00:38 < miaoski> kcwu: (筆記)
+00:39 < kcwu> deskew 完再跑 CindyLinz 的 tool
+00:39 < Michael_LI> shunua 簡單的來說兩點介紹
+00:39 < miaoski> kcwu: 試跑好像不行
+00:40 < miaoski> kcwu: 原來是我的 convert 沒有 deskew ... 
+00:40 < kcwu> 疑
+00:41 < shuhua_> Michael_LI: ps.我的id是「shuhua_」
+00:43 < miaoski> kcwu: Google 有看到，但 man convert 沒有，跑起來也沒作用. Version: ImageMagick 6.7.7-10 2014-08-15 Q16 http://www.imagemagick.org
+00:43 < kcwu> miaoski's url: [ImageMagick: Convert, Edit, Or Compose Bitmap Images]
+00:44 < shuhua_> Michael_LI: 所以...是怎麼了啊～
+00:45 < kcwu> 或是用 netpbm, command line 用法是 pngtopnm image/1.png | pamtilt 先拿到要轉的角度, 再用 pngtopnm a.png | pnmrotate $degree | pnmtopng > b.png 來轉
+00:45 < Michael_LI> 第一，超鏈接難搞，如果沒有另外挖個坑讓工程師大量抓影片檔下載，我幫忙存檔重新上傳到youtube，其實很難用人工搞定也會遺失錄影數據，去年內政部佔領時我就發現到這個bug
+00:46 < kcwu> convert -deskew 40% 才對
+00:46 < shuhua_> 所以...u系列的基本上都死掉了，對吧？
+00:46 < lanf0n> shuhua_: 有 url 嗎?
+00:47 < shuhua_> lanf0n: 死掉的嗎？ http://www.ustream.tv/recorded/46088592
+00:47 < Michael_LI> 華山黑客松跟宇庭討論過，後來個忙個的就沒管了
+00:48 < shuhua_> 我要吐血了....
+00:49 < miaoski> kcwu: 不知道中間出過什麼事。我用的是 Debian ... netpbm 套件裡有 pamcut, pamdeinterlace, pamstack, pamstretch 就是沒有 pamtilt 
+00:52 < lanf0n> shuhua_: 查到來源應該是 https://www.facebook.com/nthusa/posts/629906887085665 (? 直播帳號應該是 swarchen
+00:52 < kcwu> lanf0n's url: [國立清華大學學生會 - 【服貿錯了嗎？剖析服貿四面向】影片!! [第一場] 自由貿易下的台灣科技產業定位... | Facebook]
+00:52 < Michael_LI> 第二，所以學運那個時，我只有全力鞏固能力可及的Youtube那些列表就很多了，組織人馬消化它們吧！
+00:53 < lanf0n> shuhua_: trace 看看當時是否有其他共同直播的記錄, or 直接 mail 給直播帳號的擁有者 看是否有留備份檔
+00:53 < miaoski> kcwu: 一定有什麼誤會... convert -help 有 deskew, man page 沒有，然後 convert -deskew 40 139.jpg 139-de.jpg 卻沒有真的 deskew
+00:53 < shuhua_> lanf0n: 你怎挖出來的？需要技術....
+00:54 < lanf0n> shuhua_: 把 .tv/ 後面那串丟給 google... XD
+00:54 < shuhua_> lanf0n: 這種資訊應該有上百條～(沒清算過.....
+00:54 < yhsiang_> 但是應該只剩下第一場的影像了
+00:56 < shuhua_> 我快暈倒了.....(所以接下來除了影音OCR以外，還要聯絡原始擁有的人......
+00:56 < lanf0n> shuhua_:  有可能他們有另外備份，或是同時有別台在錄所以刪除... 這部份其實直接 mail 問會比較快...XD  ((而且說不定對方也已經有做逐字了XD
+00:56 < Michael_LI> 也不用吐血，至少第一天夜晚的議場內影片我已經存檔下來了，他們3G斷斷續續，雲端主機也是切成好幾個檔案，
+00:56 < shuhua_> 我吐血的是資料量.....
+00:57 < lanf0n> shuhua_: 頁面不存在的部份, 可以直接把 urls 都列出來, 可以用程式去跑 (check whether 404
+00:58 < CindyLinz> kcwu: 沒有聽過 deskew... o.o
+00:58 < kcwu> miaoski: 40% 不是 40
+00:58 < Michael_LI> 說到這邊，我爬起床去上傳這一部份檔案，好了就通知各位
+00:58 < shuhua_> lanf0n: 呃，跑什麼？
+00:59 -!- walkingice is now known as walkingice_zZ
+00:59 < shuhua_> Michael_LI: 感謝～
+00:59 < lanf0n> shuhua_: 呃 就是用程式去檢查錄影檔是否還存在...XD 這樣就不用人工一個一個點
+00:59 < miaoski> kcwu: ++ ... 我該睡了
+01:00 < miaoski> CindyLinz: 也可以用邪惡(?) 的 OpenCV 來做哦~~
+01:01 < Michael_LI> shuhua_剩下就交給妳們了  (我好像說出魔咒台詞了)
+01:01 < clkaoud> 照這速度應該中午前就結束了... 
+01:01 < shuhua_> lanf0n: 欸欸～有這種東西？
+01:02 < shuhua_> Michael_LI: 沒關係，先把有的搞出來吧～剩下的再說～
+01:02 < shuhua_> 反正影音OCR也要很多時間，文播組什麼沒有，耐心很多.......
+01:03 < CindyLinz> miaoski: 人家沒有用過 OpenCV... ._.
+01:03 < CindyLinz> 突然有種既視感... ww # 00:53 < miaoski> kcwu: 一定有什麼誤會... convert -help 有 deskew, man page 沒有，然後 convert -deskew 40 139.jpg 139-de.jpg 卻沒有真的 deskew
+01:04 < CindyLinz> miaoski: libgd 的 doc 超難找, 找到一個是善意第三方做的..
+01:04 < CindyLinz> 然後我原本懷疑是 int 角度不夠細緻的時候跑去翻 gd.h, 找到 float 角度的函數
+01:05 < CindyLinz> 然後.... 這個文件裡沒有, 所以我就直接照 type 和參數名稱猜測用法來使用
+01:05 < miaoski> CindyLinz: 還好沒人叫我們直接去看 source code (咦?)
+01:05 < CindyLinz> 沒有想到遇到的問題是.. undefined reference to ooo function......||
+01:05 < CindyLinz> 那幾個函數只有宣告沒有實作的感覺 orz
+01:05 < miaoski> 噗 
+01:05 < CindyLinz> gd.h 詐騙啊 OAO
+01:05 < kcwu> CindyLinz: 如果已經有角度可以 call pnmrotate 轉
+01:06 < miaoski> CindyLinz: 新聞小幫手 (遞)
+01:06 < kcwu> 只是要先 save to file...
+01:06 < miaoski> 不過既然現在可以用 conver -deskew 40% ... 就不用管 pnmrotate :P
+01:07 < CindyLinz> kcwu: 那個是 imagemagick 的功能嗎?
+01:07 < miaoski> 通通 OCR 後，接下來讓鄉民可以一次編輯一整頁就好了 (?) 
+01:07 < CindyLinz> 有人做成 captcha 圖庫嗎?
+01:08 < CindyLinz> 我們家遊戲註冊帳號有 captcha, 也許可以拿來 recaptcha 認圖 :p
+01:09 < miaoski> 我還是乖乖認命想辦法接上萌典的 head 吧.... 大家晚安 9 9~
+01:10 < CindyLinz> 晚安 ^^
+01:10 < au> 晚安~
+01:12 < yhsiang_> 晚安~
+01:13 < lanf0n> shuhua_: 許願池功能吧XD
+01:15 < shuhua_> lanf0n: XDDDDD
+01:15 < xsoameix> 還剩下兩個禮拜，我做的完嗎？QAQ
+01:16 < shuhua_> lanf0n: 不過知道這消息還是有點崩潰，打算先去睡了～怕再想下去我會棄坑.......
+01:18 < lanf0n> xsoameix: 還有 18 天XD
+01:18 < xsoameix> 我 15 號開學 QAQ
+01:19 < lanf0n> xsoameix: 第一週不是通常都.....(((被拖走
+01:19 < xsoameix> 放空嗎 ... 這樣肯定 gg 的阿
+01:20 < xsoameix> 要搶密碼卡，不然選不到課
+01:20 < xsoameix> 學分不足就掰了 orz
+01:22 < xsoameix> 學姊跟我同一天開學，不知道情況怎麼樣 ~
+01:23 < xsoameix> 說起來昨天是 九一記者節 耶
+08:41 -!- walkingice_zZ is now known as walkingice
+08:48 < a0000778> au: 連線時返回錯誤 應該是沒有 access-control-allow-origin 的關係
+09:59 -!- Gilbert is now known as gilbertliou_tw
+10:04 < gilbertliou_tw> hi~我是 Gilbert，第一次加入請多指教
+10:05 < hcchien> hi
+10:05 < Rhozan_> hi 
+10:06 < yhsiang_> gilbertliou_tw: hi
+10:17 < clkaoud> gilbertliou_tw!!
+10:49 < tkirby_> ipa: 禮拜六說想聽 clkao 演講的那位香港朋友我後來發現有在吳瑪悧老師的展覽裡參展
+10:59 < pipi_> gilbert你好
+11:06 < clkaoud> gilbertliou_tw++ # https://weichengliou.github.io/blog/blog/2014/09/01/twcom_todo/
+11:22 -!- CelloCello [~Cello@49.159.32.45] has left #g0v.tw []
+11:34 < caasih> gilbertliou_tw++ 您好
+11:41 < pipi_> 電腦版irc怎麼tag人＠＠
+11:42 < a0000778> pipi_: 打ID不就好(IRC還有分電腦手機版麼?
+11:42 < yhsiang_> 打id按tab
+11:43 < yhsiang_> a0000778: irccloud有android和ios app
+11:43 < pipi_> 喔喔喔 謝謝ly大師
+11:43 < a0000778> yhsiang_: 那是irccloud 不是IRC吧XD
+11:44 < yhsiang_> a0000778: irccloud很多東西也是follow irc client的spec
+11:46 < a0000778> yhsiang_: 這就不知道了 沒在用irccloud
+11:48 < Rhozan_> cloud不錯用~ 有推薦別款嗎?
+11:49 < a0000778> Rhozan_: irssi XD
+11:50 < pipi_> Rhozan_: 問你的問題還沒回答我QQ
+11:51 < Rhozan_> pipi_: 村長說限定3個關鍵字，所以不能想太多啦，CLBC，全能，公關   perfect
+11:52 < superbil> Rhozan_: WeeChat
+11:52 < pipi_> Rhozan_: 我是問你最好快想到其他職稱可以塞給我喔QQ
+12:02 < yutin> 「工商服務」音地大帝策劃的巨獸搖滾活動, 歡迎NGO.社群...等組織去免費擺攤. 聯絡窗口 https://www.facebook.com/100001559545109
+12:02 < kcwu> yutin's url: [李名紘 | Facebook]
+12:04 < Rhozan_> pipi_: 整理一下..前端松助教、媒體專案公關、人力資源部專員、特約直播組成員、接待處服務員、...
+12:04 < pipi_> Rhozan_: 繼續寫沒關係XD
+12:24 < yhsiang_> 大寫的O 不會是0阿 XD
+12:25 < Lee1092> miaoski:  阿美族字典 OCR 掛了?  http://ckhis.ck.tp.edu.tw/~ljm/amis-toufu/index.php
+12:25 < kcwu> Lee1092's url: [阿美語萌典]
+13:01 < au> a0000778: sample code 貼一下？我應該有開 cors... 
+13:20 < xsoameix> yhsiang_: 身分證辦好了
+13:20 < xsoameix> yhsiang_: 我剛去全家，全家沒有掃描的機器
+13:25 < xsoameix> yhsiang_: 沃草辦公室有開嗎？我可以把身份證影本拿過去
+13:37 < miaoski> Lee1092: 咦? 迷有啊
+13:38 < a0000778> au: socket.io似乎是獨立的 所以/src/app.ls的options.io.origin也要 
+13:40 < Lee1092> miaoski: !  現在看恢復了!!  XD
+13:40 < a0000778> au: https://gist.github.com/a0000778/91de6afb199bcb6b3800
+13:40 < kcwu> a0000778's url: [ethercalc socket.io api test]
+13:41 < miaoski> Lee1092: 感謝 ^^
+13:41 < miaoski> Lee1092: ++
+13:45 < Lee1092> 不會  我只是想闖關  XDD
+13:48 < miaoski> Lee1092: ++ # 感謝你的參與 
+13:48 < miaoski> ipa: ++ # 看到妳在編輯 hackpad
+13:50 < ipa> miaoski: 作一下客服  XD
+13:50 < ipa> 大家都對字典原本漢字有誤相當介意 
+13:50 < au> a0000778: ok try again
+13:51 < miaoski> ipa: ++ ... 糟糕我一點都不介意 XD
+13:52 < ipa> 撲哈哈 就讓大家去共筆先群包抓錯吧
+13:54 < ipa> miaoski: 已經83%了 所以這是整本全部喔？
+13:54 < a0000778> au: 似乎還是同一個問題 要了解一下怎改了...
+13:55 < ipa> 打完就要等下一本了？昨天晚上十二點大概 28%，14小時後變 83%
+13:56 < au> a0000778: 好像我看到的是  "Cannot use wildcard in Access-Control-Allow-Origin when credentials flag is true." 
+13:56 < au> a sec
+13:57 < a0000778> au: 我看到的也有那一句 只是沒注意到跟SSL有關XD
+14:04 < xsoameix> yhsiang_: 在嗎？
+14:04 < yhsiang_> xsoameix: yes
+14:04 < xsoameix> yhsiang_: 沃草辦公室有開嗎？我可以把身份證影本拿過去
+14:05 < xsoameix> yhsiang_: 身分證剛剛辦好了
+14:06 < xsoameix> yhsiang_: 我剛去全家，全家沒有掃描的機器
+14:08 < lololol> 全家沒有  但小七似乎有
+14:08 < lololol> 哦不對
+14:08 < lololol> 好像是小七是有彩印  全家沒
+14:08 < lololol> 可能不一定
+14:11 < yhsiang_> xsoameix: 附近沒有7-11嗎??
+14:12 < au> a0000778: 解了，見 gist
+14:12 < xsoameix> 有，我去問看看有沒有掃描的機器
+14:13 < au> 先用 'forceJSONP': true, 'transports': ['polling'] 吧，應該是跨域 ssl/non-ssl cors 最 portable 的方式了
+14:18 < a0000778> au: OK 謝
+14:19 < miaoski> ipa: 對。整本全部。下來後還需要做第二階段的校對。到時候再想想怎麼做比較好... 我是想做成像 wiki 那樣
+14:19 < miaoski> ipa: 但... 還沒想到怎麼做。
+14:20 < miaoski> ipa: 打完就要等下一本。然後下一本很有可能已經有電子檔了。
+14:21 < miaoski> Sin 'Olam 牧師編的阿美語實用字典，能不能談還不知道，這個就靠 Lafin 了 ^^
+14:22 < Lee1092> au++  
+14:24 < Rhozan_> miaoski++
+14:26 < johnny___> miaoski: 請問破折號要打一個-   還是兩個--  比較正確  # 阿美語萌典
+14:27 -!- lololol [lololol@conference/jsconf/x-qtanqnslsszvhdsv] has left #g0v.tw []
+14:36 < miaoski> johnny___: 都可以喲，之後會再用程式處理 謝謝~
+14:37 < johnny___> 了解，謝謝
+14:52 -!- mark86092 [8c70fc99@gateway/web/cgi-irc/kiwiirc.com/ip.140.112.252.153] has left #g0v.tw []
+15:04 -!- mark86092_ [8c70fc99@gateway/web/freenode/ip.140.112.252.153] has left #g0v.tw []
+15:13 -!- mark86092 [8c70fc99@gateway/web/cgi-irc/kiwiirc.com/ip.140.112.252.153] has left #g0v.tw []
+15:19 < ETBlue> Michael_LI: 請問為什麼把 g0v 文化部的 folder 移出 g0v google drive 放到你私人帳號底下，又更改權限？現在因為你的這個 folder 權限鎖死，所以我還沒辦法把自己開的資料夾搬回去 g0v google drive https://drive.google.com/#folders/0B6ASgY1GMSOhekRGaGMxTUNraFU
+15:19 < kcwu> ETBlue's url: [Redirecting...]
+15:21 < Michael_LI> ETBlue　！！？？　　我檢查看看，可能使用誤用了方法了　Sorry　
+15:21 < ETBlue> Michael_LI: 請幫忙搬回去，謝謝
+15:23 < Michael_LI> ETBlue　你先看一下，我移出私人目錄了，是不是有恢復正常？
+15:25 < ETBlue> Michael_LI: 可以了，謝謝
+15:25 < Michael_LI> 呼～！！！　　Sorry 之前弄錯管理方法，學到了錯誤經驗
+15:49 < miaoski> 阿美語OCR那邊我先調整以下，優先把還沒輸入的丟 上去
+15:54 < hcchien> ipa: erin 問 11/9 目前三間會議室夠嗎
+16:05 < CindyLinz> miaoski: 輸入框可不可以大一點, 或是輸入框裡面的字小一點.. 因為我輸入的字會有一部分被遮掉看不見, g 看起來像 o, 自己看第二遍檢查的時候不方便 ^^|
+16:06 < CindyLinz> 不對, g 是像 a.. 然後 y 像 v
+16:06 < CindyLinz> 像非印刷體的 a
+16:06 < CindyLinz> 非鉛字體 orz
+16:16 < xsoameix> yhsiang_: 在嗎？
+16:17 < yhsiang_> xsoameix: ?
+16:17 < xsoameix> yhsiang_: 我弄好了，寄給你就好了嗎？
+16:19 < yhsiang_> xsoameix: yes
+16:22 < miaoski> CindyLinz: Sure... 妳的瀏覽器用什麼字體這麼可怕 XD
+16:22 < xsoameix> yhsiang_: 寄囉
+16:23 < miaoski> CindyLinz: http://i.imgur.com/Wi9zt7K.png
+16:23 < miaoski> 請愛用思源沒豆腐 (咦)
+16:23 < yhsiang_> xsoameix: got it
+16:24 < miaoski> CindyLinz: 所以是要高一點的輸入框... 來調調 css
+16:24 < xsoameix> yhsiang_: 恩，太好了
+16:25 < yhsiang_> xsoameix: 好像...有點小張...
+16:25 < CindyLinz> miaoski: 用moto @@"
+16:25 < miaoski> CindyLinz: moto @@ .....?
+16:25 < miaoski> 手機器四/
+16:25 < miaoski> 手機嗎?
+16:26 < xsoameix> yhsiang_: 超大喔，1654 x 2340 pixel
+16:27 < xsoameix> yhsiang_: 需要我用 gimp 裁剪一下寄給你嗎？
+16:27 < miaoski> CindyLinz: check 看看 1.5em 對妳來說 ok 不 ok 
+16:28 < CindyLinz> miaoski: http://ppt.cc/BAD9 http://ppt.cc/j2~5
+16:28 < kcwu> CindyLinz's url (2/2): [來個 PPT 短網址 :: 縮圖剪剪樂!]
+16:29 < CindyLinz> 現在好了 ^^
+16:29 < CindyLinz> miaoski: 是思源沒錯 :p
+16:30 < miaoski> CindyLinz: 妳之前用的是 Ubuntu 預設吧XD
+16:31 < CindyLinz> miaoski: 就是我圖上貼的這樣啊
+16:32 < au> hcchien: summit 連絡信寄了，抱歉稍微 delay 到
+16:32 < CindyLinz> kcwu 在 FB 上面貼思源字體那天開始我瀏覽器就用了 :p
+16:32 < miaoski> CindyLinz: 不是喲。那個「入」的寫法怪怪
+16:33 < miaoski> CindyLinz: 啊等等，因為我調成日文優先 XDDDDD
+16:33 < miaoski> 日文字體比較漂亮啊啊啊啊啊
+16:33 < CindyLinz> ww
+16:34 < CindyLinz> 難怪逗點沒有飛高高? XD
+16:34 < CindyLinz> 剛截圖的時候也是覺得怪怪 XD
+16:44 < xsoameix> yhsiang_: 我調整好囉，寄給你了
+16:46 < hcchien> au: 收到了，謝謝
+16:46 < yhsiang_> ok 其實我已經弄好了
+16:47 < xsoameix> 恩
+16:48 -!- iMac [~iMac@cm61-10-83-5.hkcable.com.hk] has left #g0v.tw ["Leaving"]
+17:28 < AceChen_> hcchien: 記得借11/8的遠距會議室
+17:32 < miaoski> ipa: 求助
+17:32 < miaoski> 收到大愛電視台的某個節目的來信
+17:32 < miaoski> https://www.irccloud.com/pastebin/hB3rQOnI
+17:32 < kcwu> miaoski's url: [Pastebin: hB3rQOnI | IRCCloud]
+17:33 < miaoski> ipa: 我記得之前是請媒體寫 hackpad 採訪共筆... 可是實際上怎麼做我不知道。我想專注在工作上說，不想被和媒體有關係 :P
+17:36 < ipa> miaoski: 可以就說開共筆，你也可選擇不用本名，如果真的不想也可說暫時沒有受訪的規劃
+17:36 < miaoski> ipa: 了解。看看 lafin 想不想好了 xd
+17:40 < yhsiang_> miaoski: 是要紀錄片耶 XD
+17:40 < miaoski> yhsiang_: 那你願意出面受訪嗎? :D
+17:41 < yhsiang_> miaoski: 我沒在坑裡面啊 orz 
+17:41 < miaoski> yhsiang_: (推) 好了你現在在坑裡了
+17:46 < lanf0n> XDDD
+17:46 < miaoski> ipa: lafin 說他目前不想受訪
+17:46 < miaoski> 所以我就按妳說的回答好了。感謝 ^^
+17:52 < Lee1092> miaoski++  XDDDDDDD   #(推) 好了你現在在坑裡了
+17:55 < ipa> miaoski: 只好發好人卡了?
+18:00 < miaoski> ipa: sure.
+18:03 < japie> 想問一下有沒有人遇過送 pr 很奇怪 github 無法 auto merge 的情況？在百分之兩百確定沒有 conflict 在 console 也可以 merge 沒有 conflict 的情況下,,,,
+18:03 < miaoski_bot> japie: 先承認你就是沒有人
+18:04 < japie> 樓上嚇到我...
+18:04 < CindyLinz> miaoski_bot: 沒有 人
+18:04 < CindyLinz> miaoski_bot: 有沒有人要吃晚餐~~?
+18:04 < miaoski_bot> CindyLinz: 先承認你就是沒有人
+18:05 < a0000778> miaoski: 這觸發率XD
+18:05 < CindyLinz> miaoski_bot: 你真是看到關鍵字就高潮的典範 (逃)
+18:05 < miaoski> CindyLinz: 被妳發現了 XD
+18:06 < CindyLinz> miaoski: 嚇!
+18:06 < miaoski> miaoski_bot: moe 高潮
+18:06 < miaoski_bot> 查無資料, 詳見 https://www.moedict.tw/%E9%AB%98%E6%BD%AE
+18:06 < kcwu> miaoski_bot's url: [高潮 - 萌典]
+18:06 < miaoski> 萌典沒這個詞 sorry 囉
+18:07 < CindyLinz> 並不太想查它的原意 XD
+18:07 < yhsiang_> moe 喵斯基
+18:08 < yhsiang_> miaoski: moe 喵斯基
+18:08 < yhsiang_> ....
+18:08 < yhsiang_> 我放棄了
+18:08 < CindyLinz> yhsiang_: 你丟錯對象了....
+18:08 < japie> 嗚嗚 拜託沒有人理我～～
+18:08 < miaoski_bot> japie: 先承認你就是沒有人
+18:08 < a0000778> miaoski_bot: moe 村長
+18:08 < miaoski_bot> 查無資料, 詳見 https://www.moedict.tw/%E6%9D%91%E9%95%B7
+18:08 < kcwu> miaoski_bot's url: [村長 - 萌典]
+18:09 < CindyLinz> miaoski_bot: moe 喵斯基
+18:09 < miaoski_bot> 查無資料, 詳見 https://www.moedict.tw/%E5%96%B5%E6%96%AF%E5%9F%BA
+18:09 < kcwu> miaoski_bot's url: [喵斯基 - 萌典]
+18:09 < lanf0n> miaoski_bot: 晚餐
+18:09 < yhsiang_> CindyLinz: 我知道  我每次都丟錯
+18:09 < CindyLinz> 貓叫的聲音劈裂建築物的底部
+18:10 < CindyLinz> miaoski: 聽起來好厲害 OAO
+18:10 < mingtsay> a0000778: ping
+18:10 < lanf0n> miaoski_bot: moe 晚餐
+18:10 < miaoski_bot> 查無資料, 詳見 https://www.moedict.tw/%E6%99%9A%E9%A4%90
+18:10 < kcwu> miaoski_bot's url: [晚餐 - 萌典]
+18:10 < lanf0n> ....
+18:10 < a0000778> mingtsay: bomb!
+18:11 < Lee1092> miaoski_bot: moe 沒有人
+18:11 < miaoski_bot> Lee1092: 先承認你就是沒有人
+18:12 < a0000778> miaoski_bot: 好多人
+18:12 < pipi_> miaoski: 每次看到這個帳號就想喵~一下
+18:12 < a0000778> miaoski_bot: moe 好多人
+18:12 < miaoski_bot> 查無資料, 詳見 https://www.moedict.tw/%E5%A5%BD%E5%A4%9A%E4%BA%BA
+18:12 < kcwu> miaoski_bot's url: [好多人 - 萌典]
+18:13 < Lee1092> 不會去查 沒  有   人  QQ
+18:13 < CindyLinz> XDDD
+18:13 < yhsiang_> miaoski: 下次丟你  你也要回啊
+18:13 < CindyLinz> 先看到關鍵字, 別的什麼都忘惹 XDXD
+18:15 < mingtsay> a0000778: （被炸了
+18:43 < pipi_> Lee1092: 你還好嗎QQ
+19:00 < miaoski> 。。。。。
+19:01 < miaoski> 別讓大家嫌 bot 吵啊
+19:23 < pipi_> 新聞用 政治動盪+1 這種標題適當嗎？？？
+19:36 < clkaoud> xsoameix: https://coveralls.io/files/275929641 coveralls 找不到 generated file... 有辦法讓他 refer 到 concat 前的檔案嗎？
+19:36 < kcwu> clkaoud's url: [g0v/ly.g0v.tw | Job 1 | ./_public/js/app.js | Coveralls - Test Coverage History & Statistics]
+19:38 < xsoameix> clkaoud: 看起來 _public/js/app.js 不見了？
+19:39 < mingtsay> 請問，今天要來摩茲工寮辦活動的人在嗎？
+19:42 < xsoameix> clkaoud: 好，我知道你的意思了
+19:42 < clkaoud> 得看他有沒有辦法用 source mapping, 還有我們的 concat 如何加上他看得懂的 source mapping
+19:46 < mingtsay> 宇庭提出的，但看起來好像沒有人出現？
+19:46 < miaoski_bot> mingtsay: 先承認你就是沒有人
+19:46 < mingtsay> https://groups.google.com/d/msgid/moztw-space-keyholders/CAJxgFT3AYdaptBLBFHMOFVRcPxE2gjPsBvP-jRLFOqHCf%2BsF6w%40mail.gmail.com?utm_medium=email&utm_source=footer
+19:46 < kcwu> mingtsay's url: [Google 網上論壇]
+19:47 < mingtsay> miaoski_bot: help
+19:47 < mingtsay> 可惡bot沒有說明文件嗎？
+19:47 < bobchao_> XD
+19:48 -!- bobchao_ is now known as bobchao
+19:48 < xsoameix> clkaoud: gulp-livescript 的作法是保留 js 檔：https://coveralls.io/files/223016725
+19:49 < kcwu> xsoameix's url: [tomchentw/gulp-livescript | Job 1 | index.js | Coveralls - Test Coverage History & Statistics]
+19:49 < clkaoud> 那太苦了... ><
+19:49 < clkaoud> 還是有辦法把 cover 跑在 gh-pages 上? 好像也很苦... 
+19:52 < xsoameix> gh-pages 不是一般作為 mockup 的地方嗎？
+19:56 < xsoameix> clkaoud: 我用 livescript coverage test 去搜，可是沒有甚麼資料 orz
+19:56 < clkaoud> 不然就是 push generated files 到另外一個 coverage branch
+20:00 < mingtsay> bobchao: 我們遇到問題，今天本來宇庭說要辦活動（就是上次你回 8/2 已經過了，是不是 9/2 的那篇）結果還沒看到人QAQ
+20:02 < xsoameix> clkaoud: 在 .travis.yml 裡加上 git push xxx coverage ?
+20:02 < mingtsay> miaoski_bot: top10
+20:02 < miaoski_bot> au: 872, ETBlue: 471, clkao: 412, ronnywang: 385, tkirby: 360, yhsiang: 347, ipa: 316, kcwu: 211, tuiry: 204, Lee1092: 202
+20:02 < clkaoud> right... 可以先手動測看看
+20:05 < kiang> miaoski_bot: google 帥哥
+20:06 < a0000778> mingtsay: 我幫你抓他問問看?
+20:06 < kiang> 恩，也許可以塞個 google lucky search 結果 XD
+20:11 < xsoameix> clkaoud: git 的 deploy key 要怎樣設會比較好？
+20:12 < clkaoud> 就是要 add key... 不過你可以先手動 push 到 coverage branch 先讓 coverall 連得回來再看怎麼全自動
+20:17 -GitHub166:#g0v.tw- [ly.g0v.tw] xsoameix created another-coverage (+1 new commit): https://github.com/g0v/ly.g0v.tw/commit/aa9a1b56ac73
+20:17 -GitHub166:#g0v.tw- ly.g0v.tw/another-coverage aa9a1b5 Lien Chiang: View counts.
+20:22 < travis-ci> [travis-ci] g0v/ly.g0v.tw#407 (another-coverage - aa9a1b5 : Lien Chiang): The build passed.
+20:22 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/commit/aa9a1b56ac73
+20:22 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/34181240
+20:22 -!- travis-ci [~travis-ci@ec2-54-167-80-134.compute-1.amazonaws.com] has left #g0v.tw []
+20:27 < xsoameix> clkaoud: 話說那個瀏覽人次我已經做好了，要 merge 嗎
+20:28 < mingtsay> a0000778: 後來已經確認是回覆的 mail 沒有寄到她那邊QQ
+20:28 < clkaoud> 好
+20:28 < lanf0n> yhsiang_: 我把 deleted notify 改 po 在 wall post 了....所以艸艸現在會講話了 (呃
+20:30  * lanf0n ((一個 fb feed collector 機器人講話的概念
+20:31 < a0000778> mingtsay: 早些把IRC訊息丟給他了...
+20:32 -GitHub96:#g0v.tw- [ly.g0v.tw] xsoameix pushed 1 new commit to another-coverage: https://github.com/g0v/ly.g0v.tw/commit/efd0040421f08f2daaf3d5145aff41f09e076e0f
+20:32 -GitHub96:#g0v.tw- ly.g0v.tw/another-coverage efd0040 Lien Chiang: Allow  directory.
+20:37 < travis-ci> [travis-ci] g0v/ly.g0v.tw#408 (another-coverage - efd0040 : Lien Chiang): The build passed.
+20:37 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/aa9a1b56ac73...efd0040421f0
+20:37 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/34182585
+20:37 -!- travis-ci [~travis-ci@ec2-54-197-159-97.compute-1.amazonaws.com] has left #g0v.tw []
+20:38 < lanf0n> 之後再把 error notify 跟一般的 notify ( capture a deleted feed ) 用 po 文權限分隔開來，就可以在即時讓重度 fb user 知道哪些人剛刪了什麼東西...XD
+20:45 -GitHub20:#g0v.tw- [ly.g0v.tw] xsoameix force-pushed another-coverage from efd0040 to 6699b55: https://github.com/g0v/ly.g0v.tw/commits/another-coverage
+20:45 -GitHub20:#g0v.tw- ly.g0v.tw/another-coverage 6699b55 Lien Chiang: Added generated .js files for coveralss.io source.
+20:49 < travis-ci> [travis-ci] g0v/ly.g0v.tw#409 (another-coverage - 6699b55 : Lien Chiang): The build passed.
+20:49 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/efd0040421f0...6699b55310c9
+20:49 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/34183503
+20:49 -!- travis-ci [~travis-ci@ec2-54-197-159-97.compute-1.amazonaws.com] has left #g0v.tw []
+21:04 < xsoameix> clkaoud: https://coveralls.io/builds/1158326 這個 branch 裡有 _public/js/app.js，我點 coveralls.io 的 files 連結(https://coveralls.io/files/281306091)時，coveralls.io 就爆掉了
+21:04 < kcwu> xsoameix's url (1/2): [g0v/ly.g0v.tw | Build #409 | Coveralls - Test Coverage History & Statistics]
+21:09 < clkaoud> GG XD
+21:12 < xsoameix> clkaoud: 我不知道發生甚麼事，看起來應該不會有問題，只是用另外一個 branch 罷了，不過還是爆了
+21:13 < xsoameix> clkaoud: 我明天再測試一下好了，時間會沖淡一切
+21:14 < xsoameix> -_- ...
+21:16 < xsoameix> clkaoud: 說不定明天 coveralls.io 就活蹦亂跳的
+21:16 < clkaoud> 寄信給他們的 support 吧
+21:17 < lanf0n> 時間會沖淡一切XDD
+21:18 < yhsiang_> lanf0n++
+21:19 < lanf0n> yhsiang_: 然後就一直要面對 capture deleted feed 錯誤的 bug....(已哭
+21:19 < yhsiang_> hmm
+21:19 < lanf0n> 單純從 url 去抓 title 果然還是不太準...
+21:23 < clkaoud> mikasoy 快結束了耶
+21:32  * lanf0n 結果是判斷式寫錯(艸)
+21:34  * hcchien 剛剛又打了幾格
+21:36 < au> 剩最後 0.99% 了
+21:37 < yhsiang_> caasih: poga: 在地同胞支持一下啊~~
+21:37 -!- yhsiang_ is now known as yhsiang
+21:57 < miaoski> mingtsay: 有啊，它不會太吵，所以會私訊 help 給你
+21:57 < lanf0n> miaoski_bot: help
+21:58 < lanf0n> wow
+21:58 < miaoski> clkaoud: 結束才是痛苦的開始 (誤) 
+21:58 < miaoski> 不過會比單純 OCR 的輕鬆太多了.... 感謝鄉民參與 (喂，其實貢獻的人數很集中的... 我有留 IP )
+22:03 < CindyLinz> 留IP...ww
+22:04 < hcchien> 留 IP...
+22:04  * hcchien 停筆
+22:04 < miaoski> hcchien: apache 的 access log 啦... 
+22:04 < miaoski> 沒有留哪一筆是你寫的，也沒留 timestamp
+22:05 < miaoski> 好歹我是 T 社的，鄉民的隱私權會顧 XDDD ← 黑黑喵的概念? (誤)
+22:05 < hcchien> 圖片出不來
+22:06 < miaoski> 賀 全破了
+22:06 < lanf0n> Lee1092: summit 擺攤的陳列有主軸嗎? hackpad 現在的列表方式是以種類(?)為主，但各專案完成度其實不太一樣 囧...(而且 size 也...)
+22:07 < Lee1092> lanf0n:  對呀 目前是 以種類為主
+22:07 < Lee1092> size ?
+22:07 < lanf0n> Lee1092: 像是宇宙坑的動民主跟萌典....(呃
+22:08 < Lee1092> 恩恩?  意思是?
+22:08 < hcchien> lanf0n: 跟完成度應該有點關，就至少要有可以 demo 的東西，跟 size 就無關了
+22:10 < lanf0n> Lee1092: 我是以徵求填坑獸的角度去思考的(顧擺目的XD)，但其實有些專案已經做完了(?
+22:10 < au> miaoski: 賀全破~ 之後還會進入 phase 2 交叉校對? 或是先 postprocess 一次？
+22:10 < lanf0n> hcchien: !!
+22:11 < hcchien> lanf0n: 其實目的比較像是火力展示
+22:11 < Lee1092> lanf0n:  耶  我是以展示的角度  XD 
+22:11 < Lee1092> lanf0n:  所以才有  影片呈現，不求每個專案都要派人來
+22:12 < miaoski> au: 會先 post process 一下下，把全形半形破折號稍微處理一下
+22:12 < lanf0n> Lee1092: hcchien 所以擺攤條件是接近成品的專案...XD
+22:12 < miaoski> 預計今晚上線一校
+22:12 < hcchien> 比較像是讓對 g0v 沒那麼了解的人知道 g0v 做了什麼
+22:12 < Lee1092> lanf0n:  不用接近成品也沒關係呀~  
+22:12 < hcchien> lanf0n: 成品很難定義啊
+22:13 < lanf0n> 囧rz
+22:13 < Lee1092> lanf0n:  很多專案都是在加速進行中
+22:13 < lanf0n> 也對欸萌典跟動民主.....
+22:14 < lanf0n> Lee1092: hcchien 在思考要發 fb 後勤QQ... 畢竟有些專案主(?) 不上 irc 好久惹...
+22:14 < hcchien> lanf0n: 個人覺得個別聯絡比較方便
+22:16 < lanf0n> hcchien: ok!! (沒去summit 開會不太確定這部份預計是怎麼處理...XD
+22:20 < hcchien> 明天再跟 AceChen_ sync 一下
+22:21 < lanf0n> 我先改成 checkbox 比較好確認XD
+22:28 < pipi_> lanf0n: ++
+22:29 < pipi_> 明天是summit議程組開會嗎？
+22:30 < miaoski> 阿美語萌典開放一校了... 不過現在只有 350 個柴要砍....
+22:31 < miaoski> 請大家繼續支持... 感恩 ^^   http://bit.ly/mikasoy
+22:36 < ipa> miaoski: 如果覺得圖片其實很清楚，就打字嗎？
+22:37 < miaoski> ipa: 是的...
+22:37 < miaoski> 畢竟還是有人按錯鈕、或是來亂來
+22:42 < lanf0n> miaoski: enter 會送出的是「這答案沒錯」還是送出...QQ
+22:43 < miaoski> lanf0n: 會送出輸入文字列 (<input type="text">) 裡的答案
+22:43 < lanf0n> miaoski: ok
+22:43 < miaoski> 意思和「這答案沒錯」其實是一樣的 xd
+22:49 < pipi_> 我覺得根本是來亂的，有字還按空白。。。
+22:56 < a0000778> 很多來亂的+1 空白還丟不清楚
+22:56 < lanf0n> 100%
+22:57 < ipa> 已經完成了
+22:58  * lanf0n 準備三次大戰 (X)
+22:59 < ipa> 完成度好像變成負的
+22:59 < miaoski> 下一階段... 「這是空白」 XD
+22:59 < miaoski> ipa: bug :P
+23:00 < pipi_> 負的
+23:01 < pipi_> 又看到眼殘的，拜託去看醫生好嗎
+23:07 < miaoski> pipi_: XDD 別太介意啊
+23:07 < a0000778> 話說 頁碼要不要打XD?
+23:09 < lanf0n> 頁碼no
+23:10 < a0000778> 進度變成228%了XD
+23:10 < a0000778> 肯定有程式寫錯
+23:11 < a0000778> 816/350
+23:12 < a0000778> 在想頁面排版可能可以改一下了
+23:13 < a0000778> 剛剛修正完答案 然後很順手的按了"這答案沒錯"...
+23:13 < miaoski> 我還看到有 3 人填寫確認是空白的，其實不是空白... XD
+23:13 < miaoski> a0000778: XDDDDD
+23:14 < a0000778> & "這答案沒錯"的快速鍵壞了
+23:15 < miaoski> a0000778: 那個快速鍵要在 input 框裡才有用，我也不知道為什麼 XD
+23:15 < a0000778> miaoski: 我在input框裡也沒用XD
+23:15 < miaoski> 囧
+23:15 < a0000778> 應該是掛事件掛錯了
+23:18 < a0000778> 把事件掛到window上面應該救可以全頁有效XD
+23:20 < pipi_> miaoski: 衝組就是容易爆氣XD
+23:21 < a0000778> 有種整本字典裡有一半以上是空白的錯覺XD
+23:22 < miaoski> a0000778: 它是掛在 #ans 我抄 ronnywang 的 XDDDD
+23:22 < miaoski> 別介意了，空白是蠻多的... 因為我們沒有先砍過一輪
+23:24 < a0000778> miaoski: 掛到window上吧 jQuery怎掛上去我就不知道了XD
+23:29 < miaoski> a0000778: $(document).keypress(...)
+23:29 < miaoski> 要掛 document 不然 IE 會掛掉 (有人用 IE 嗎? XD)
+23:30 < miaoski> a0000778: 改了，能麻煩你 reload 試試看?
+23:30 < a0000778> miaoski: 還是一樣壞掉狀態
+23:31 < miaoski> a0000778: 囧 你該不會和 hitcon 講的一樣，裝了什麼奇怪的 extension XD
+23:31 < miaoski> 專門看有沒有 sql injection 之類的 (誤0
+23:31 < a0000778> 印象中掛在document上 會有某些奇怪的狀況導致無法觸發
+23:32 < miaoski> a0000778: 那我們就不管 IE 用戶了 咦
+23:32 < miaoski> 好我掛 window
+23:33 < a0000778> miaoski: 不然就只好偵測是不是IE了XD
+23:33 < a0000778> 似乎還是壞掉狀態XD
+23:34 < CindyLinz> miaoski: hitcon 都沒有講 SQL injection 啊~ 厚~ 都是你在腦補哄~~!
+23:34 < miaoski> a0000778: 那你真的要看一下，是不是你裝了什麼奇怪的 extension XD
+23:34 < miaoski> CindyLinz: 啊對不起，是 Hitcon217 來敝公司專題分享的時候講的
+23:34 < CindyLinz> XD
+23:34 < miaoski> CindyLinz: 羨慕嗎? ← 才怪，都是妳學弟
+23:34 < a0000778> miaoski: 剛剛全關+無痕也一樣是壞掉狀態
+23:34 < miaoski> a0000778: 超怪 XD 不過我也只測了 Chrome ..
+23:35 < CindyLinz> 這啥推論.. 是學弟又沒有 dominate 的關係在 XD
+23:35 < caasih> 看得到進度真是太過分了，意圖使人一直玩下去
+23:35 < a0000778> Ubuntu Linux 14.04 / Chrome 37.0.2062.94 (64bit)
+23:35 < miaoski> 版本 37.0.2062.94 (64-bit) / Debian Wheezy
+23:35 < CindyLinz> 咦 為什麼現在進度 73.xx 我下午看已經 91.xx 了說?
+23:36 < miaoski> CindyLinz: 因為做的東西不一樣啦
+23:36 < a0000778> CindyLinz: 剛剛好像又多了一批
+23:36 < CindyLinz> !
+23:36 < miaoski> 現在是為了檢查「這是空白」裡面有沒有其實有字的。有些人來亂...
+23:36 < CindyLinz> 有人在一個看起來應該是空白的豆腐輸入: [這是空白]
+23:36 < CindyLinz> 我該改輸入為: [這答案沒錯] 嗎? 囧
+23:38 < miaoski> CindyLinz: 不用啊。講個秘訣，這在 ronnywang 的系統裡是一模一樣的。資料庫存的就是 [這是空白] 
+23:38 < miaoski> 然後 [這答案沒錯] 就是把答案填進輸入框，然後幫妳按送出 XD
+23:38 < CindyLinz> wwww
+23:39 < CindyLinz> 寫一本有些行是 [這答案沒錯] 有些行是 [這是空白] 有些行真的全空白的書給你 OCR... OAO
+23:39 < miaoski> XD
+23:39 < CindyLinz> 再加一些 [這答案有錯] [這不是空白]
+23:39 < shuhua_> 發問：要怎麼跟「某個人」私訊啊？我用irccloud然後按了[freenode]結果創了個群組.....
+23:40 < lanf0n> shuhua_: 那就是私訊(?
+23:40 < a0000778> 我只知道/msg <ID> 訊息
+23:40 < a0000778> 能不能在irccloud用就不知道了
+23:40 < miaoski> CindyLinz: 不要~~~ UI 不可以複雜
+23:40 < miaoski> a0000778: 可以哦
+23:40 < shuhua_> lanf0n: 所以這個只有我們兩個看得見？
+23:40 < lanf0n> shuhua_: yes
+23:40 < CindyLinz> [這答案可能有錯] [這答案可能不是空白]
+23:41 < lanf0n> shuhua_: irccloud 的私訊一樣會出現在右手邊的 Freenode，但右上上會有一個 archive
+23:41 < a0000778> [null] [true] [false]
+23:42 < shuhua_> lanf0n: hmmmm~~可是我看得到樓上miaoski用這樣方法跟別人說的話耶！這樣正常嗎？
+23:42 < miaoski> =,= ...
+23:42 < lanf0n> shuhua_: 那就不是XD 妳可以直接點 id 會出現對話框 那個算是私訊的 ui (沒記錯的話...)
+23:43 < shuhua_> miaoski: 對不起.....最近在學習新功能～你的表情是對我說的嗎？
+23:43 < a0000778> shuhua_: 你應該是看到"<發言者ID>: <目標ID>: 訊息" 這種吧 這不是私訊
+23:43 < shuhua_> miaoski: 還是只是剛好？
+23:43 < miaoski> shuhua_: 別介意了 XD
+23:43 < shuhua_> XDDDDDD 
+23:44 < lanf0n> shuhua_: 或是妳可以看左上角 icon 下是否是 " Conversation with { id } "
+23:44 < shuhua_> miaoski: 所以是我們現在的對話別人都看得到的意思？
+23:44 < miaoski> shuhua_: 在這邊是
+23:44 < shuhua_> XDDDDDDD
+23:44 < hlb> shuhua_: 是喔
+23:44 < miaoski> 我剛剛有在另一個對話窗私訊給妳，那邊就看不到
+23:44 < CindyLinz> shuhua_: 我覺得機器人喵斯基對長得像 [null] 這樣的對話比較有感, 應該不是在回應你.. (逃)
+23:44 < miaoski> CindyLinz: ... =,=
+23:44 < hlb> 趁亂告白還可以有公證 (Y)
+23:44 < lanf0n> XDD
+23:44 < CindyLinz> shuhua_: 你看, 我不小心對話裡面出現了一樣的句式, 他又回應了 (Y)
+23:45 < miaoski> CindyLinz: =,=
+23:45 < hlb> CindyLinz: 句式聽起來像是魔法咒文
+23:45 < CindyLinz> ww
+23:45 < hlb> CindyLinz: [[]]][[[]]][[]]]]]
+23:45 < miaoski> CindyLinz: 應該要 deskew 的...
+23:45  * hlb 等著看 CindyLinz parse error
+23:45 < CindyLinz> hlb: 不成對, 退回!
+23:45 < hlb> 哈！
+23:46 < hlb> CindyLinz: 好乖 :3
+23:46 < a0000778> hlb: SyntaxError: Unexpected token ]
+23:46 < CindyLinz> ww
+23:46 < shuhua_> CindyLinz: 不要這樣....orz
+23:46 < a0000778> [undefined]
+23:46 < shuhua_> 那「CindyLinz: 」的功能到底是....？
+23:46 < miaoski> CindyLinz: unsafeCoerce unsafeCoerce
+23:46 < CindyLinz> shuhua_: 帶來 peace (?
+23:47 < shuhua_>  xdddd
+23:47 < au> shuhua_: 是讓 CindyLinz 眼前一亮（無誤）
+23:47 < a0000778> shuhua_: 只是指對誰說而已 公開對誰說
+23:47 < shuhua_> 不是吧！！
+23:47 < CindyLinz> 一亮 XD
+23:47 < shuhua_> 還好沒拿來告白！！
+23:47 < lanf0n> shuhua_: +id 是 tag XD... 這樣如果不是在 irccloud 的畫面的話右下角會跳提醒
+23:47 < a0000778> 還真的是要告白的嗎！XD
+23:47 < hlb> 對 CindyLinz 放閃！
+23:47 < CindyLinz> (看看 topic) log 都有在記...
+23:48  * miaoski 向 CindyLinz 告白
+23:48 < lanf0n> shuhua_: 如果有裝手機版的話手機也會跳提醒XD
+23:48 < shuhua_> 我沒有要告白～～>"<
+23:49 < au> 咦 /action 的 logbot layout 壞掉了
+23:49 < au> http://logbot.g0v.tw/channel/g0v.tw/2014-09-02/562
+23:49 < CindyLinz> 我覺得我打了不少組索引進去 orz
+23:49 < au> 現在才發現
+23:49 < miaoski> CindyLinz: =,=
+23:49 < shuhua_> lanf0n: 原本以為只是加底色比較好便是這樣
+23:49 < a0000778> 主機負載是不是太高了 圖片載入好久
+23:49 < miaoski> CindyLinz: 只好等 phase 1.3 的時候把錯誤更正了
+23:50 < miaoski> a0000778: 不是，是 sqlite3 的 global lock ...
+23:50 < hlb> 為什麼打開 http://logbot.g0v.tw/channel/g0v.tw/2014-09-02/562 就覺得應該要有撒花特效？
+23:50 < CindyLinz> 鄉民太熱情
+23:50 < CindyLinz> orz...
+23:50 < au> 導致告白和被告白的人名重疊 (好應景) (灑花)
+23:50 < a0000778> miaoski: 為什麼是splite...
+23:50 < miaoski> a0000778: split?
+23:50 < shuhua_> 那個是什麼...(慌張
+23:50 < CindyLinz> 以為很 lite (逃)
+23:50 < hlb> 告白之後就重疊在一起了 QQ
+23:51 < a0000778> miaoski: sqlite 打錯
+23:51 < miaoski> hlb: (色) (指0
+23:51 < miaoski> a0000778: 我只剩 1 小時做完就要上台報告嘛
+23:51 < CindyLinz> 3767/3767 惹
+23:51 < miaoski> 懶得架 MySQL
+23:51 < hlb> 皮影戲偶都要這樣啊... 疊在一起 ._.
+23:51 < CindyLinz> miaoski: 豆腐缺貨惹~
+23:52 < a0000778> miaoski: 快來批新的~
+23:56 < miaoski> 一校 phase 1.3 上線囉

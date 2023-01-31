@@ -1,0 +1,60 @@
+--- Day changed 二  5月 12 2015
+00:03 -!- chihchun is now known as chihchun_afk
+01:27 < slackbot2> <clkao> cfa summit 投稿 6/1 截止
+01:49 < slackbot2> <pofeng> @yhsiang: 其實我不知道怎樣買 " 開放*電子報" adword :stuck_out_tongue:
+02:26 -!- zea1_bsd is now known as zeal_bsd
+09:46 < slackbot2> <pofeng> @clkao: 有要動用國際交流的錢, 鼓勵學生投稿 cfa summit 嗎 ?
+11:31 < slackbot2> <clkao> yes, 這本來就在規劃中有寫的
+11:54 < slackbot2> <pofeng> @clkao: 好 我請 singing 忙完 ELC 去吵你 :open_mouth:
+11:54 < slackbot2> <yurenju> up
+14:20 < d0p> https://www.youtube.com/watch?v=xcUOTrlpSuI
+14:20 < kcwu> d0p's url: [How To Order Mcdonald's Like A Boss! - YouTube]
+16:52 -!- chihchun_afk is now known as chihchun
+17:52 -!- anta is now known as HowDa
+19:31 < slackbot1> <ipa> @Net Tuesday 聽 <@U039K9UR5|billy3321> <@U02L4T467|etblue> <@U0385906H|ddio> dd分享
+21:23 < a-tsioh> 有沒有吳老師詞典templates的消息？
+22:56 < slackbot1> <kiang> <https://stats.moe.gov.tw/files/detail/103/103_basec.txt> - 有人知道這個檔案應該用什麼編碼讀取嗎？看起來是 UTF-16 ，但是轉了第二行以後中文都是亂碼(utf-16 => utf-8)
+22:57 < slackbot1> <kiang> 瀏覽器看起來可以直接讀取
+22:58 < slackbot1> <clkao> tkirby: <http://data.taipei/opendata/datalist/datasetMeta?oid=1d71c478-205f-42c5-8386-35f86d74fdd1>
+22:58 < kcwu> slackbot1's url: [臺北市政府資料開放平台]
+23:06 < slackbot1> <kiang> 恩，改用 iconv 轉就 OK 了（收工）
+23:07 < slackbot1> <yhsiang> 需要 sayit 的功能 … 挖 source code 看到 TODO …. QQ
+23:09 < slackbot1> <yhsiang> 成功 hack 出來 XD
+23:11 < slackbot1> <clkao> yhsiang: 分享一下秘訣吧
+23:12 < slackbot1> <yhsiang> <https://github.com/mysociety/sayit/blob/master/speeches/search_indexes.py#L6>
+23:12 < kcwu> slackbot1's url: [sayit/search_indexes.py at master · mysociety/sayit · GitHub]
+23:12 < slackbot1> <yhsiang> 所以無法用speaker name 當作 filter
+23:12 < slackbot1> <yhsiang> name = indexes.CharField(model_attr='speaker__name’)
+23:13 < slackbot1> <yhsiang> 這樣 ./manager.py rebuild_index 之後就會多出 name 的 field 就可以 filter by name 了 xD
+23:14 < slackbot1> <johnny> yhsiang: django + hatstack
+23:14 < slackbot1> <yhsiang> 主要是濾掉 只搜尋委員的發言 目前作法相當 hacky … XD
+23:14 < slackbot1> <johnny> haystack
+23:14 < slackbot1> <yhsiang> johnny: 對啊一直搞不定本來想問你的 XD
+23:15 < slackbot1> <yhsiang> <http://sayit.musou.tw/search/?q=%E5%A5%BD%E6%9C%8B%E5%8F%8B> # 可以這樣搜 XD
+23:15 < kcwu> slackbot1's url: [:: SayIt]
+23:18 < slackbot1> <clkao> 神煩好朋友 XD
+23:26 < slackbot1> <johnny> yhsiang: 目的是除了講話內容，也可搜尋講者名稱嗎
+23:26 < slackbot1> <yhsiang> johnny: 可以喔
+23:26 < slackbot1> <yhsiang> johnny: 還是有一些問題就是了 例如 <http://sayit.musou.tw/speaker/%E5%A0%B1%E5%91%8A%E5%A7%94%E5%93%A1%E6%9C%83%E5%87%BA%E5%B8%AD%E5%A7%94%E5%93%A1>
+23:26 < kcwu> slackbot1's url: [View Speaker: 報告委員會，出席委員 :: SayIt]
+23:26 < slackbot1> <yhsiang> XDDD
+23:27 < slackbot1> <yhsiang> 一個會一直叫人家答覆跟質詢的人 .. 很可怕
+23:27 < slackbot1> <johnny> 但我搜尋 <http://sayit.musou.tw/search/?page=2&amp;q=%E6%9E%97%E5%A7%94%E5%93%A1%E6%AD%A3%E4%BA%8C>
+23:27 < slackbot1> <johnny> 好像沒辦法搜尋單人ㄟ，還是我會錯意
+23:27 < slackbot1> <yhsiang> 講者
+23:27 < slackbot1> 林委員正二
+23:27 < slackbot1> <yhsiang> 有啊 XD
+23:28 < slackbot1> <yhsiang> Mentions of “林委員正二” in speeches 上面有一塊是講者的搜尋結果
+23:28 < slackbot1> <yhsiang> johnny: 還是你的意思是 ?
+23:29 < slackbot1> <johnny> 喔喔我以為上面那個搜尋就會把講者是林委員正二的抓出來
+23:30 < slackbot1> <yhsiang> 他有一頁是 speaker
+23:30 < slackbot1> <yhsiang> 所以好像不需要特別做這個搜尋
+23:30 < slackbot1> <yhsiang> <http://sayit.musou.tw/speaker/%E6%9E%97%E5%A7%94%E5%93%A1%E6%AD%A3%E4%BA%8C>
+23:30 < kcwu> slackbot1's url: [View Speaker: 林委員正二 :: SayIt]
+23:30 < slackbot1> <yhsiang> 而且你要專門搜尋他的話 是做在這一頁
+23:32 < slackbot1> <johnny> 哦懂了
+23:32 < slackbot1> <yhsiang> 恩這個是我看 source code 才知道der ...
+23:33 < slackbot1> <johnny> 我知道的也是像你這樣寫
+23:33 < slackbot1> 對了debug mode要記得關哦
+23:33 < slackbot1> <yhsiang> 好～目前還在測試中 XD
+23:49 -!- chihchun is now known as chihchun_afk

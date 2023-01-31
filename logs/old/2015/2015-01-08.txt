@@ -1,0 +1,131 @@
+--- Day changed 四  1月 08 2015
+00:14 -!- blackca_ is now known as blackca
+00:21 -!- fntsrCloud is now known as david50407
+00:21 -!- david50407 is now known as fntsrCloud
+00:22 -!- fntsrCloud is now known as __
+00:23 -!- __ is now known as fntsrCloud
+00:27 -!- fntsrCloud is now known as chldBot
+00:28 -!- chldBot is now known as fntsrCloud
+00:29 -!- fntsrCloud is now known as chld
+00:29 -!- chld is now known as fntsrCloud
+00:42 < au> yhsiang: 會，但 cloudflare 有 cache for 1hr
+01:16 -!- chihchun_afk is now known as chihchun
+01:29 -!- passby [8c714567@gateway/web/cgi-irc/kiwiirc.com/ip.140.113.69.103] has left #g0v.tw []
+01:30 < passby> https://g0v.hackpad.com/Kbw8wn6vhYg
+01:30 < kcwu> passby's url: [台大新聞所專書採訪逐字稿 - g0v.hackpad.com]
+01:42 < yhsiang> pm5: https://vtaiwan.tw/?_escaped_fragment_=/crowdfunding/1 # 經過測試, 可能要recache就會正常 
+01:42 < kcwu> yhsiang's url: [vTaiwan]
+01:43 < yhsiang> http://service.prerender.io/https://vtaiwan.tw/?_escaped_fragment_=/crowdfunding/1 # 看起來是好的
+01:43 < au> ok, 手動 recache 中
+01:43 < yhsiang> au: thx
+01:44 < yhsiang> au: 你local測試是直接跑 docker ? XD
+01:44 < au> 比較 lowtech 是手動改 DNS XD
+01:44 < au> ( /etc/hosts )
+01:44 < yhsiang> oh 那 http / https 是怎麼解決的 @@
+01:45 < au> App::TLSMe
+01:45 < yhsiang> oh! thx 來研究看看
+01:46 < au> 不然也許帶一個 env var 來決定是不是 always https 也可以
+01:49 < yhsiang> 這個對我來說好像比較快 XD
+01:50 < yhsiang> 另外prerender 應該也有支援 facebook, 所以加個 meta 的 controller 應該就可以解決
+01:50 < au> cool, 那 og:image twitter:card etc 也可以加一下
+01:51 < yhsiang> ya, 剛剛看code 其實還有支援 slackbot XDD
+01:51 < au> ...加上小字典，竟然就做完了，離上線還有三星期 XD
+01:52 < yhsiang> XD
+02:01 < yhsiang> fb gg
+02:11 < slackbot> <clkao> yhsiang: 我有一個 prerender plugin 可以定義截圖 viewport
+02:12 < slackbot> <yhsiang> jimyhuang: 之前那個是用prerender 跑的 service嗎?
+02:12 < slackbot> <yhsiang> 不然 自己來 run 一個prerender docker service  :stuck_out_tongue:
+02:13 < slackbot> <yhsiang> clkao: 這樣兜起來 就可以screenshot了?
+02:28 < slackbot> <jimyhuang> yhsiang: <https://github.com/g0v/grabejs>
+02:28 < kcwu> slackbot's url: [g0v/grabejs · GitHub]
+02:30 < slackbot> <jimyhuang> yhsiang: 不是，是用 phantomjs + imagemagick
+02:30 < slackbot> <yhsiang> jimyhuang: prerender 也是phantom XD
+02:30 < slackbot> <yhsiang> 但是他有寫接到s3
+02:34 < slackbot> <jimyhuang> yhsiang: 喔對啊對啊
+02:34 < slackbot> <jimyhuang> yhsiang: 就等你架一個  prerender service來了
+02:35 < slackbot> <jimyhuang> 倒是 prerender 可不可以順利把 <http://beta.hackfoldr.org/> 捷圖啊？之前用自幹的一直試不出來
+02:36 < slackbot> <jimyhuang> 會變成這樣 <http://i.jimmyhub.net/shot/http://beta.hackfoldr.org/>
+02:38 < slackbot> <yhsiang> jimyhuang: 不行因為沒有設base, 所以 css會 GG
+02:38 < slackbot> <yhsiang> <https://s3.amazonaws.com/prerender/3520/http%3A%2F%2Fbeta.hackfoldr.org%2F>
+02:38 < kcwu> slackbot's url: [高雄市戶政資料 Open Data 化 | Code for Kaohsiung | hackfoldr]
+02:38 < slackbot> <jimyhuang> 那 hackpad 呢？我抓 hackpad 變成：「完全沒有畫面」
+02:38 < slackbot> <http://i.jimmyhub.net/shot/https://g0v.hackpad.com/100-O4aKEld471K>
+02:39 < slackbot> <jimyhuang> （有hack的都不給我抓就是了 QQ）
+02:39 < slackbot> <yhsiang> jimbow: hackpad沒問題
+02:41 < slackbot> <yhsiang> jimyhuang: <https://s3.amazonaws.com/prerender/3520/https%3A%2F%2Fg0v.hackpad.com%2F100-O4aKEld471K>
+02:41 < kcwu> slackbot's url: [憲餅廚房：憲餅食譜100招 - g0v.hackpad.com]
+04:28 -!- meimei [24e71218@gateway/web/cgi-irc/kiwiirc.com/ip.36.231.18.24] has left #g0v.tw []
+07:59 < gugod> au: 我打算最近花點時間替 moedict.{tw,org} 加上拼音搜字。有討論過這方面的 URL convention 嗎？ 目前 http://www.moedict.org/#meng 就是空的，直接拿來用有什麼考量嗎？
+07:59 < kcwu> gugod's url: [萌典 – 教育部國語、臺語、客語辭典民間版]
+08:45 -!- French [3b7f6fa7@gateway/web/cgi-irc/kiwiirc.com/ip.59.127.111.167] has left #g0v.tw []
+08:48 < FrenchTaipei> 你好 Hello, I am a French people living in Taipei. With other friends we would like to organize a silent gathering tomorrow (Friday) evening at 7pm at 自由廣場 in memory of the victims of the attack on French satirical magazine CHARLIE HEBDO. Does anyone here could help us to register this gathering with the local authorities so that it becomes a legal g
+08:48 < FrenchTaipei> athering that foreigners are allowed to attend? Thanks for your help or advice!
+10:25 < tkirby> 這是要透過集會遊行申請嗎, 好像要6天前提出?
+10:26 < tkirby> FrenchTaipei: Weiliu Lin has done that several times before so I think you can ask him for advice.. his facebook: http://goo.gl/5ghSaO
+10:36 < slackbot> <yhsiang> 不是馬路的話
+10:36 < slackbot> <yhsiang> 是要跟自由廣場租場地
+10:36 < slackbot> <yhsiang> <http://npac-ntch.org/place/show?categoryName=areaPlaza&amp;lang=zh>
+10:36 < kcwu> slackbot's url: [國家表演藝術中心-國家兩廳院-場地租用]
+11:12 < FrenchTaipei> Ok ! 謝謝
+11:54 < slackbot> <kiang> <http://www.bnext.com.tw/article/view/id/34931> - 李慕約有限公司創辦人李慕約 ，講起來有點繞口 XD
+11:54 < kcwu> slackbot's url: [政府Open Data想像力不足！張善政：應「換腦袋」]
+12:05 < slackbot> <kiang> <http://gmo.agron.ntu.edu.tw/cases/wheat.htm> - 看起來很難不吃到孟山都的東西...
+12:21 < au> gugod: 之前 main.ls line 809 台語是用 a_tsioh 寫的 trs_lookup，但沒有 URI。請隨意定址，之後 amis.moedict.tw 要引入時再加個 prefix。
+12:50 < ipa> 【幫找人】有台大社會系的同學在做「工程師之婚姻與算命態度」的研究，想要找工程師填問卷，有興趣幫忙的請丟訊息給我～ 
+13:17 < AceChen> 自由廣場牌樓裡面才是兩廳院，牌樓外是「道路」
+13:17  * AceChen 曾經住在那裡兩個月XD
+13:18 < miaoski> AceChen: ++
+13:18 < AceChen> 兩廳院超貴的... 所以請待在外面就好 :P
+13:19 < slackbot> <yhsiang> acechen: 那個網頁裡面有示意圖
+13:19 < slackbot> <yhsiang> 樓牌位置是屬於小廣場 還是要收費喔
+13:19 < ipa> AceChen 在廣場吃草莓? @@
+13:22 < AceChen> yhsiang: 我不確定這幾年有沒有改，但一般 NGO/NPO 應該都付不起租金，我猜是三不管?!
+13:23 < AceChen> 那兩個月台北市警局千方百計要把我們趕進去，這樣就沒他們的事了XDD
+13:23 < slackbot> <yhsiang> acechen: 應該不是三不管吧，只是看有沒有要管? XD
+13:24 < slackbot> <yhsiang> 記得之前長年在那邊 參與國慶或某些活動練習
+13:24 < slackbot> <yhsiang> 不過場地租用的事情我就不清楚了 XD
+13:25 < MGdesigner> 自由廣場牌樓可以住？@@
+13:26 < AceChen> yhsiang: 但後來第二次警察驅離不用集遊法改用道路交通管理條例，所以我蠻確定那裡是「道路」XD
+13:26 < slackbot> <yhsiang> 我猜你應該講的是 那邊的人行道吧
+13:27 < slackbot> <yhsiang> 他其實有畫一個 42 公尺的長度，所以的確有可能剩下的是人行道  所以可以算是道路?
+13:28 < AceChen> yhsiang: 牌樓外都算同一塊
+13:29 < AceChen> 旗竿過去算中正紀念堂管理處，比較便宜一點XD
+13:31 < slackbot> <yhsiang> acechen: 但是廣場跟道路 有衝突嗎?
+13:31 < slackbot> <yhsiang> 廣場租用
+13:31 < AceChen> 有人知道圖博抗暴紀念或核456有租用嗎
+13:44 < AceChen> MGdesigner: ipa: 2008/11/7 - 2009/1/5 中間還被警察抬一次
+13:44 < MGdesigner> AceChen: 那是什麼活動？？
+13:45 < ipa> 野草莓阿
+13:46 < AceChen> 話說集遊法今年起變成undefined了，如果 FrenchTaipei 或其他團體沒申請不知道會怎樣...
+14:09 < slackbot> <mrorz> 恩是的，他無法解決直接傳進 slack 的問題 XD
+14:10 < slackbot> <yhsiang> 同樣的slack plugin 加個 proxy 功能不知道可不可行
+14:11 < slackbot> <yhsiang> listen 在另一個 port 當slack 圖片, 檔案傳送門 之類的
+14:44 < slackbot> <fntsrlike> 原來如此
+15:37 < nchild> clkao Billab.io 不能用了？
+15:45 < slackbot> <kiang> "中華民國廚師證書資料集" 不知道有什麼狀況，被拿掉了耶（看起來這個備份價值持續上揚）
+15:51 < clkao> nchild: 因為種種悲劇被 .io 搶劫... 考慮等三月 expire 再重買
+15:52 < nchild> XD
+16:30 < MGdesigner> ipa: 原來如此
+18:07 < pofeng> @au 贛, 原來你已經退休了, 超羨慕 ( https://g0v.hackpad.com/Kbw8wn6vhYg )
+18:07 < kcwu> pofeng's url: [台大新聞所專書採訪逐字稿 - g0v.hackpad.com]
+18:10 < au> pofeng: 就 socialtext 賣給 peoplefluent 之後就沒有固定工時了
+18:12 < au> (而且也找到了強者同事做 system architect 顧問 XD)
+18:12 < slackbot> <pofeng> 我也好想賣掉診所, 但是一直賣不掉 (無誤)
+18:12 < au> XDD
+18:13 < slackbot> <pofeng> @au: 你應該去當現在很流行的創業 mentor (大誤)
+18:13 < slackbot> <hychen> 當mentor, 當mentor \o/
+18:14 < au> 這也有啊，最近幫 rex how 當了半年的創業 mentor，剛好到一個段落
+18:56 < slackbot> <kiang> @pofeng 沒有賣不掉的東西，只有賣不掉的價格 (逃)
+19:27 -!- chihchun is now known as chihchun_afk
+19:34 -!- chihchun_afk is now known as chihchun
+19:52 -!- chihchun is now known as chihchun_afk
+20:06 -!- chihchun_afk is now known as chihchun
+22:02 < slackbot> <lanf0n> irc 上的 /me action 是不是不會同步到 slack 啊...?
+22:09 < miaoski> lanf0n: 來試試
+22:10  * miaoski 正在測試一個使用 /me 的動作
+22:10 < miaoski> 看到了嗎？
+22:11 < slackbot> <lanf0n> no.... 然後 logbot 是不是掛了QAQ?
+22:11 < Lee1092> 看起來是掛了  XD  
+22:26 < au> 回來了
+22:34 < lanf0n> au++
+23:11 < clegen1> mmm

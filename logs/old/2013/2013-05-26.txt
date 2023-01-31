@@ -1,0 +1,782 @@
+--- Day changed 日  5月 26 2013
+00:12 -!- jslee [~jslee@175.96.186.57] has quit [Remote host closed the connection]
+00:13 -!- hychen [~hychen@220-133-235-224.HINET-IP.hinet.net] has joined #g0v.tw
+00:16 < clkao> 只好濫用一下 github pages 的 404.html
+00:24 -!- icman [~icman@123.240.147.165] has quit [Quit: 明天天氣晴]
+00:27 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has quit [Quit: Leaving.]
+00:27 < ETBlue> ubuntu 13 在 virtualbox 裡慢到掉渣，來把機器資源加大看看 ~_~
+00:27 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has joined #g0v.tw
+00:33 < ETBlue> 加大一樣 laggy ... 打下去的字要頓一下才會出現 = =
+00:34 < ETBlue> 據說是 ubuntu 13 用了 3d 技術什麼的... 換一套瘦一點的 linux 看看好惹 = =
+00:39 < tkirby> ETBlue: 既然 tka 醒來了那試著把 git + nodejs on windows 弄好看看? xD
+00:45 < hychen> 居然都沒睡@@
+00:45 < hychen> ETBlue, 可以換成unity-2d呀 (flee)
+00:46 < au> ETBlue: 既然 tka 醒來了那試著把 vagrant ssh + PuTTY 弄好看看? XD
+00:46 < ETBlue> tka__ 表示： XD XD XD XD
+00:47 < ETBlue> hychen: ubuntu 2d 是什麼東 = =????? 世界上真的有這東西嗎
+00:47 < hychen> apt-cache search unity-2d
+00:47 < ETBlue> hychen: 喔喔是 unity 2d ... 那不就扯更遠 = =?
+00:47 < ETBlue> unity 不是做遊戲用的嗎？！
+00:48 < tkirby> 是說換掉內含的 lib 嗎 (不懂)
+00:48 < hychen> ETBlue, it is also a name of desktop environment 
+00:48 < ETBlue> hychen: 噢噢 @@" 理解，菜市名 orz
+00:48 < hychen> ETBlue, 13.04你看到的那個界面就是unity, 跟遊戲engine不一樣
+00:49 < ETBlue> hychen: 原來如此！！！！！！！！！！
+00:49 < hychen> tkirby, 就把Desktop environment換掉
+00:49 < tkirby> hmmm
+00:49 < hychen> ETBlue, 要不然你也可以換裝LXDE
+00:49 < ETBlue> Jedi_: 柏儒在 fb 上看到 msg 了，他正在看我們的 irc 記錄 https://gist.github.com/ETBlue/5649693
+00:49 < hychen> ETBlue, 不過為什麼你需要ubuntu?
+00:50 < tkirby> 他為了要寫個 html ... XD
+00:50 < ETBlue> hychen: 因為我想要輕鬆的安裝開發環境不用踩到一堆奇怪的 windows 問題... 對，就是 tkirby 說的 QAQ
+00:50 < tkirby> xD
+00:50 < hychen> ETBlue, ubuntu 如果有問題可以問我, 我在Canonical工作
+00:50 < ETBlue> hychen: !!!!!!!!!!!
+00:51 < tkirby> ETBlue: 其實不太懂你為什麼會碰到問題, nodejs 跟 git 要在 windows 上裝應該很容易阿~
+00:51 < ETBlue> tkirby: https://gist.github.com/ETBlue/5645490 https://gist.github.com/ETBlue/5645529 https://gist.github.com/ETBlue/5645539
+00:51 < hychen> ETBlue, 13.04是嘗鮮版, 一般user還是裝12.04比較好
+00:52 < clkao> hychen!
+00:53 < ETBlue> hychen: 說來話長，會裝 13 是因為據說他的 node js 有個內建的什麼碗糕不用自己裝
+00:53 < hychen> clkao, ?
+00:53 < clkao> tkirby: 他遇到的問題是我們的那個 lsc hack in package.ls
+00:53 < ETBlue> 喔喔對問 clkao 
+00:53 < clkao> not portable
+00:53 < tkirby> 囧!
+00:53 < ETBlue> 我就是要 clone 他的專案啦才會遇到這一堆 QAQ
+00:53 -!- KNY [~Adium@111-253-151-78.dynamic.hinet.net] has quit [Quit: Leaving.]
+00:53 < hychen> 哪一個??/
+00:53 < ETBlue> hackfoldr
+00:54 < hychen> clkao, 內建什麼東西?
+00:54 < ETBlue> https://github.com/g0v/hack.g0v.tw
+00:54 < kcwu> ETBlue's url: [g0v/hack.g0v.tw · GitHub]
+00:54 -!- iamblue [76a0fde9@gateway/web/freenode/ip.118.160.253.233] has joined #g0v.tw
+00:54 < clkao> hychen: nodejs 0.8+
+00:54 < clkao> 12.04 好像要裝 ppa 覺得太苦 :p
+00:54 < ETBlue> iamblue !
+00:54 < hychen> clkao, 喔
+00:54 < iamblue> hello~~
+00:54 < ETBlue> iamblue: i am blue too
+00:54 < iamblue> Jedi大在嗎～～～
+00:54 < ETBlue> Jedi_: 在嗎
+00:55 < au> oh, 之前沒看到 gist
+00:55 < au> 那來修一下, a sec
+00:55 < hychen> clkao, ppa不是一鍵安裝嗎?
+00:55 < iamblue> 其實我們最近是正在密集改系統，忘了回覆，還請您見諒QQ
+00:55 < ETBlue> au ∫OoO∫
+00:56 < ETBlue> Jedi_ 好像 z 了還是去洗澡
+00:57 < ETBlue> au: 對喔 gist 是昨晚貼的，那時你可能已經睡了 XD
+00:57 < au> 正在等 Win8 開機
+00:57 < hychen> clkao, 那我出個g0v專用12.04? 內建新的node.js XD
+00:58 < au> hychen++ 
+00:58 < clkao> LOL
+00:58 < clkao> iamblue: !!!
+00:59 < tkirby> 話說我在 win7 上跑得起來 hack.g0v.tw 的 brunch, 只是會死在沒 sass.. 
+00:59 < tkirby> 唔, 還要裝 ruby...
+01:01 < ETBlue> hychen: 可以做到這種事情嗎？！我要我要！！！ >o<
+01:02 < hychen> ETBlue, 可以啊
+01:02 < au> 修好了。
+01:02 < hychen> ETBlue, 我想想看要放什麼東西
+01:02 < ETBlue> hychen: 除了 node js 以外其他他們常用的碗糕可以也一起裝好嗎.... XD
+01:02 < hychen> ETBlue, 比如說什麼呢?
+01:03 < ETBlue> tkirby: 就說吧，寫個 html 超麻煩的啦 ><
+01:03 < tkirby> ETBlue: au 不是說修好了 xD
+01:03 < au> ETBlue: try "git pull" in hackfoldr
+01:03 < tkirby> 阿, 可是 sass 應該還是得裝 xD
+01:03 < ETBlue> hychen: 我也不知道他們會用到什麼 @@" 
+01:03 < au> Windows 可以跑了（但還是要 ruby 和 sass）
+01:03 < hychen> ETBlue, ruby跟sass跟git....
+01:04 < ETBlue> au: 沒問題， ruby 跟 sass 我原本就有... XD
+01:04 < au> 那跑看看。
+01:04 < au> npm i 然後 npm run start
+01:05 < clkao> hack.g0v.tw 的 gh-pages 好像發瘋了
+01:06 < ETBlue> au: 在 master 嗎
+01:07 < au> ETBlue: hackfoldr 的 master
+01:07 < au> let me merge it to hack.g0v.tw
+01:08 < ETBlue> https://gist.github.com/ETBlue/5649864
+01:08 < au> OK merged too
+01:08 < ETBlue> 喔喔喔
+01:08 < au> try again
+01:08 < ETBlue> 我重新 pull ?
+01:08 < au> 對
+01:09 < clkao> netdna.bootstrapcdn.com/ down orz
+01:09 < ETBlue> holy sh... i did it!!!!!!!!!!!!!!!!!!
+01:09 < au> nice
+01:09 < clkao> ETBlue: holy bash or zsh?
+01:10 < tkirby> xD
+01:10  * tkirby 語錄ing
+01:10 < ETBlue> 我的天啊 QAQ 我好感動 QAQ
+01:10 < tkirby> au++
+01:10 < au> glad to help
+01:10 < ETBlue> clkao: 呃 XD
+01:11 < ETBlue> au: i love you!!!!!
+01:11 < au> :D
+01:11 < ETBlue> 天啊我的人生變彩色的了
+01:11 < au> 房車變坦克了
+01:12 < ETBlue> 疑，說到這個那我就不用研究怎麼把 ubuntu 桌面換成 unity 2d 了... XD
+01:12 < tkirby> xDDDDDDD
+01:12 < tkirby> 你還是可以研究... xD
+01:12 < ETBlue> XD XD XD
+01:12 < tkirby> 不對, 請 hychen 出 ubuntu 12 with nodejs 就好了 xD
+01:13 < ETBlue> 還要 ruby, sass XD
+01:13 < tkirby> xD
+01:13 < ETBlue> 啊我知道了，把 clkao 常用工具都裝上去... 
+01:14 < tkirby> xD
+01:14 < hychen> ETBlue, 你要自動安裝還是要手動安裝?
+01:14 < ETBlue> hychen: 我想想看，如果考慮到將來跟我一樣只是想寫個前端的人的話，好像自動比較快 @@"
+01:15 < ETBlue> hychen: 因為我們不太在意多裝什麼東西，只怕少裝東西然後要一直 drbug ><
+01:15 < ETBlue> debug
+01:15 < hychen> ETBlue, 反正都放在VM裡面對吧
+01:15 < ETBlue> hychen: 是的 >o<
+01:21 < Jedi_> iamblue: hello!
+01:21  * Jedi_ 追一下 log
+01:21 < iamblue> Jedi_: hello!
+01:22 < clkao> iamblue: 我改了一堆 hackfoldr 的東西, g0v-welfare page 如果壞掉請通一下 ;)
+01:22 < iamblue> clkao: OK!  
+01:22 < Jedi_> ETBlue: 我在看網路設備（？）
+01:23 < Jedi_> 追完 log 了
+01:23 -!- poga [~poga@1-171-126-136.dynamic.hinet.net] has joined #g0v.tw
+01:24 < ETBlue> Jedi_: 呼叫看看 iamblue 好像還在 irc 上
+01:24 < ETBlue> Jedi_: 喔喔他剛回了 XD
+01:24 < tkirby> ETBlue: 他們不是兩分鐘前才 hello
+01:24 < Jedi_> KD
+01:24 < tkirby> ETBlue: 喔喔你發現了 XD
+01:25 < tkirby> zzZ
+01:25 < ETBlue> tkirby: 我只先看戳到我的 msg... XD
+01:25 < tkirby> ETBlue: xD
+01:25  * tkirby poke ETBlue 
+01:25 < iamblue> Jedi_: 其實我今天正在寫個人篩選XD
+01:25 < Jedi_> 個人篩選？
+01:25 < iamblue> Jedi_: 就是輸入個人情況條件
+01:25  * ETBlue poked
+01:26 < iamblue> 然後產生所得結果
+01:26 < Jedi_> 是在寫綜合的社福申請嗎？
+01:26 < iamblue> 剛好之前就有規劃先拿聽障這部份先試做一下
+01:26 < iamblue> 嗯嗯  
+01:26 < hychen> ETBlue, 瀏覽器預設要用哪個?
+01:27 < Jedi_> 嗯嗯
+01:27 < iamblue> 我們社福的搜尋有兩大階段
+01:27 < hychen> ETBlue, sublime2 要預先裝嗎?
+01:27 < ETBlue> hychen: 我自己通常是 chrome @@"
+01:27 < ETBlue> hychen: 要！！！ >o<
+01:27 < iamblue> 第一大是各領域的  第二大才是針對個人條件搜尋
+01:27 < hychen> ETBlue, google chrome?
+01:28 < ETBlue> hychen: yes please!
+01:28 < Jedi_> iamblue: 問一下兩個小細節
+01:29 < ETBlue> clkao: clone 你的專案還會需要裝什麼其他的嗎？我想請 hychen 一起包進去... XDDDD
+01:29 < Jedi_> iamblue: 1.現在輸入身心障礙程度的時候有沒有處理多重障礙的情況？ 2.地區資訊目前涵蓋的情況如何呢？
+01:29 < Jedi_> iamblue: btw, 各領域指的是？
+01:30 < iamblue> Jedi_: 目前在線上的版本沒有，但是我有規劃在身障的福利搜尋裡
+01:31 < iamblue> Jedi_: 各領域指的是"教育""交通""工作"...etc
+01:32 < Jedi_> iamblue: 另外就是，單以助聽器補助來說，目前設籍彰化縣的個案會有三種管道: 1.社政(領有身心障礙證明,聽閾55~110 dB HL) 2.退輔會(榮民，優耳聽損劣於45 dB HL) 3.兒童(0~6歲，不限聽閾)
+01:33 < Jedi_> 理論上這三種情況都應該要加入福利條件...?
+01:35 < iamblue> Jedi_: 沒錯，但我們在tag的時候需要考量很多地方
+01:35 < Jedi_> indeed
+01:35 < Jedi_> iamblue: i see. # 各領域指的是"教育""交通""工作"
+01:35 < iamblue> Jedi_: 我自己比較傾向於給一個有篩選後的方向給使用者，細節的話在傾使用者去詳細看
+01:36 < Jedi_> 呃，像是怎樣呢？
+01:36 < iamblue> Jedi_: 比如說像是您剛剛說的三個管道
+01:36 < Jedi_> iamblue: 等等，所以生活輔具要怎麼塞進各領域？
+01:36 -!- pm5 [~pm5@111-248-230-248.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+01:37 < Jedi_> 喔，就是「輔具申請」
+01:37 < iamblue> Jedi_: 像是聽障分貝部分我不去做細分  都一律歸類為聽障
+01:37 < iamblue> Jedi_: 是的！！
+01:37 < Jedi_> 輔具申請其實還有分生活輔具跟醫療輔具，另外還有長照 :-/
+01:38 < Jedi_> 輔具申請其實還有分生活輔具跟醫療輔具，另外還有長照(失能老人) :-/
+01:38 < Jedi_> 會走不同路線
+01:38 < iamblue> Jedi_: 這個部分之前我有跟peggy討論到
+01:38 < Jedi_> 嗯嗯
+01:38 < ETBlue> （福利請聽真是一個偉大的專案...）
+01:39 < iamblue> Jedi_: 輔具申請我們會分掉成像您說的小部分
+01:39 < Jedi_> 不過都歸類成「聽障」會不會造成認定誤解呢？例如覺得「我的聽力損失只有到 30 dB HL，不算有聽障」
+01:40 < iamblue> Jedi_: 真是個好問題  XD
+01:41 < Jedi_> 喔，對了，其實還有調頻輔具，這邊要走教育部系統 zz
+01:41  * Jedi_ 也是大專聽障調頻輔具評估人員
+01:41 < iamblue> 對了...
+01:42 < iamblue> 我最近也要買助聽器  Q_Q
+01:42 < iamblue> 但是台北市的職務在設計這塊沒有認識的朋友申請過
+01:43 < iamblue> 不知道Jedi大有相關經驗的管道嗎？
+01:43 < Jedi_> 有身心障礙證明嗎？ ._.
+01:43 < iamblue> 有  我是先天的  重度
+01:43 < Jedi_> 台北市跟新北市的情況又不一樣喔
+01:43 < Jedi_> 新北市好像比較亂...
+01:43 < iamblue> 我公司在台北市應該是跟台北市勞工局申請吧？
+01:44 < iamblue> 但聽說這個會影響公司稅收？  名義上是用公司名義買？
+01:44 < Jedi_> 台北市勞工局？這我真的不知道
+01:45 < Jedi_> 所以台北市可以由公司買而不是自己買？
+01:45 < Jedi_> humm
+01:45 < iamblue> 還是要自己買
+01:46 < iamblue> 補助多少我目前問到的都沒有一定標準＠＠
+01:46 < Jedi_> 你沒有學生身分了？
+01:46 < iamblue> 他們說要找三家公司試戴一個禮拜
+01:46 < iamblue> 沒
+01:47 < Jedi_> 勞工局那個管道我完全不熟 orz
+01:47 < Jedi_> 來看看他們網頁...
+01:47 < iamblue> 那網頁超爛的XD
+01:48 < Jedi_> 我只知道勞工職業疾病認定的標準跟身心障礙鑑定標準不同 :-/
+01:48 < Jedi_> # 聽障的部份
+01:48 < Jedi_> 但是不知道勞動局會補助助聽器 :o
+01:49 < iamblue> 助聽器公司目前也比較希望是選oticon  
+01:49 < iamblue> 助聽器公司目前也比較希望是選oticon  
+01:49 < Jedi_> humm, http://www.bola.taipei.gov.tw/ct.asp?xitem=1906346&CtNode=62824&mp=116003
+01:49 < kcwu> Jedi_'s url: [臺北市政府勞動局 ─ 輔具協助跨越就業障礙]
+01:50 < iamblue> 但似乎過件率有點低？
+01:50 < Jedi_> 科林啊，工作過一個月然後爆肝住院四天，然後就離職了 KD
+01:50 -!- hychen [~hychen@220-133-235-224.HINET-IP.hinet.net] has quit [Ping timeout: 252 seconds]
+01:51 < iamblue> XD
+01:51 < iamblue> 沒辦法  以前都買他們家的  有優惠比較省一點
+01:52 < Jedi_> 追到 http://www.laws.taipei.gov.tw/taipei/lawsystem/showmaster01.jsp?LawID=P09E2006-20100607
+01:52 < kcwu> Jedi_'s url: [臺北市法規查詢系統 - 臺北市法規 - 法規資訊]
+01:52 < Jedi_> 繼續細看
+01:53 < clkao> 測試中: http://hack.g0v.tw/people
+01:53 < Jedi_> 好像不對，再找找
+01:53 < clkao> 有人要登入看看嗎 :p
+01:54 < Jedi_> iamblue: 其實可以多試聽幾家看看....
+01:54 < clkao> 然後 tag 有 disqus: http://hack.g0v.tw/tag/hackath3n
+01:54 < clkao> firebase++ # ETBlue 自動跳出來了
+01:55 < iamblue> 有非移頻的推薦嗎～～
+01:56 < iamblue> 我目前試過chili感受最好
+01:56 < iamblue> 但是一隻價位太恐怖 囧
+01:56 < ETBlue> clkao: 啊，不能用逗號一次輸入多個 XD
+01:56 -!- hychen [~hychen@220-133-235-224.HINET-IP.hinet.net] has joined #g0v.tw
+01:56 < clkao> ETBlue: XD
+01:57 < clkao> 還好我已經寫了刪除
+01:57 < iamblue> 我大頭貼怎麼這麼小XD
+01:57 < Jedi_> iamblue: http://rcat.web.ym.edu.tw/front/bin/ptlist.phtml?Category=35
+01:57 < kcwu> Jedi_'s url: [國立陽明大學ICF暨輔助科技研究中心 -- 陸、服務申請表與自評表]
+01:58 < ETBlue> 我的刪除按鈕被文字推到你的頭像右邊然後就點不到惹 QAQ
+01:58 < Jedi_> iamblue: 你要走的路線應該是看這邊....
+01:58 < Jedi_> 陽明復健科技輔具所....當年第一屆招生時有考上，但是沒去念 zz
+01:58 < ETBlue> clkao: 感謝 XD
+01:58 < clkao> 先手動幫你砍 :P
+01:59 < iamblue> 感謝！！！
+01:59 < clkao> firebase 真的是太邪惡了
+02:01 < iamblue> 對了
+02:01 < iamblue> 有人熟悉disqus api嗎～～
+02:02 < Jedi_> iamblue: 因為不同廠牌的處理原則不同，不過通常適合職場使用的大概很難便宜 :-/
+02:05 < hychen> ETBlue, clkao的什麼專案?
+02:05 < iamblue> Jedi_ : 好吧，當做上帝給我的考驗 ;P
+02:05 < clkao> ETBlue: 我想 project 弄另外的 registry, 才不會跟 tag 混太多
+02:06 < clkao> ETBlue: 也方便找到沒有 follow 任何專案的人
+02:06 < clkao> 明天吧
+02:06 < ETBlue> hychen: https://github.com/g0v/hack.g0v.tw
+02:06 < kcwu> ETBlue's url: [g0v/hack.g0v.tw · GitHub]
+02:06 < clkao> iamblue: 我剛放了 disqus support on hack.g0v.tw
+02:06 < ETBlue> clkao 真是太強大惹... 
+02:06 < clkao> 不過只是用 embed, 沒用到他 api
+02:07 < iamblue> clkao : QQ
+02:08 < clkao> ETBlue: tag 一下 hackath3n 吧
+02:08 < clkao> 我看會不會自動冒出來
+02:08 < clkao> (on http://hack.g0v.tw/tag/hackath3n)
+02:08 < iamblue> clkao : 我要做的東西剛剛被我不小心試出來，不過好難解釋
+02:09 < iamblue> clkao : 下次遇到你在跟你說明～～～
+02:09 < clkao> ok ;)
+02:09 < Jedi_> iamblue: 話說除了 Oticon 之外，有空的話，也可以去試試看 Unitron 跟 Phonak
+02:10 < iamblue> 好！！
+02:15 < hychen> preseed 寫好了, 不過還沒測, http://g0v.github.io/d-i/
+02:15 < kcwu> hychen's url: [透過網路自動安裝 Ubuntu 12.04]
+02:15 < hychen> 人在外面網路很不穩, 大概要星期一才能做比較完整的測試..
+02:16 -!- VoidChen [~VoidChen@114-45-234-93.dynamic.hinet.net] has quit [Remote host closed the connection]
+02:19 -!- hychen [~hychen@220-133-235-224.HINET-IP.hinet.net] has quit [Quit: Leaving]
+02:48 -!- poga [~poga@1-171-126-136.dynamic.hinet.net] has quit [Remote host closed the connection]
+02:55 -!- iamblue [76a0fde9@gateway/web/freenode/ip.118.160.253.233] has quit [Ping timeout: 250 seconds]
+03:54 < ETBlue> clkao: back
+03:57 < ETBlue> clkao: 會！！！！！！！！！
+03:57 < ETBlue> clkao: omg this is magic
+03:59 < ETBlue> hychen++++++++++++
+03:59 < ETBlue> 噢大家都睡惹
+04:00 -!- fukuball [76e99c74@gateway/web/freenode/ip.118.233.156.116] has joined #g0v.tw
+04:01 < fukuball> 第一次使用 g0v 的 irc...
+04:02 < clkao> 真的該睡了... 
+04:02 < clkao> ETBlue: what is magic?
+04:03 < clkao> 不過好像踩到 angularjs 地雷了... 現在 hackfoldr 原來的 feature 點選 document 會變成 full page reload
+04:03 < ETBlue> clkao: 完全就像阿修說的，對 designer 來說寫程式的就是變魔術，砰！的一聲就出現了 XD
+04:04 < ETBlue> fukuball !
+04:25 -!- juanna [~juanna@114-37-90-110.dynamic.hinet.net] has joined #g0v.tw
+04:28 -!- juanna_ [~juanna@114-37-88-98.dynamic.hinet.net] has quit [Ping timeout: 260 seconds]
+05:29 -!- Jedi_ [~Jedi@jedi.org] has quit [Ping timeout: 240 seconds]
+05:31 -!- haroldwu` [~user@114-46-129-17.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+05:32 -!- haroldwu` [~user@118-170-200-128.dynamic.hinet.net] has joined #g0v.tw
+07:02 -!- ETBlue_ [~chatzilla@175.182.237.104] has joined #g0v.tw
+07:03 -!- ETBlue [~chatzilla@175.182.237.104] has quit [Ping timeout: 248 seconds]
+07:03 -!- ETBlue_ is now known as ETBlue
+07:13 -!- mp607 [~mp607@61-64-176-185-adsl-kao.dynamic.so-net.net.tw] has quit [Quit: mp607]
+07:37 -!- hychen [~hychen@220-133-235-224.HINET-IP.hinet.net] has joined #g0v.tw
+07:43 < hychen> 用vagrant不知道會不會比較簡單?
+08:02 < hychen> 不過還是要自己先弄一個virtualbox exported tarball..
+08:03 < hychen> 那還是先做一個auto installation preseed 先....
+08:57 -!- hychen [~hychen@220-133-235-224.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+08:58 -!- hychen [~hychen@220-133-235-224.HINET-IP.hinet.net] has joined #g0v.tw
+09:06 -!- iamblue [76a9e94b@gateway/web/freenode/ip.118.169.233.75] has joined #g0v.tw
+09:08 -!- Jedi_ [~Jedi@jedi.org] has joined #g0v.tw
+09:17 -!- jslee [~jslee@140.109.127.7] has joined #g0v.tw
+09:18 -!- hychen [~hychen@220-133-235-224.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+09:23 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+09:24 < iamblue> Jedi_ : 我覺得我真的可以找一天去彰化跟你聊聊  XD
+09:24 < iamblue> Jedi_ : 預計在六月中旬的週末不知道方便嗎XD?
+09:26 < iamblue> 對了....本irc有log嗎？
+09:27 < iamblue> http://logbot.owo.tw:5000/channel/g0v.tw/today
+09:27 < iamblue> 這個似乎一直都進不去？
+09:28 < tkirby> 好像掛掉了蠻長一段時間的
+09:29 < Jedi_> iamblue: 我星期六都要上班，然後目前的行事曆看起來... 6/9 跟 6/16 都有研討會 :-/
+09:31 < Jedi_> # 星期六如果沒上班，大概也就是有研討會，例如 6/15
+09:31 < iamblue> Jedi_: 那...6/23?
+09:32 < Jedi_> 本來是要去宜蘭參加輔具展的，不過後來推掉了 KD
+09:32 < Jedi_> 所以應該是有空
+09:33 < iamblue> Jedi_: 太好了  那暫定那週吧 ~~
+09:33 < Jedi_> okay, 你在彰化有固定去的地方嗎？
+09:33 < iamblue> Jedi_: 沒有  順便觀光XD
+09:33 < Jedi_> 不然其實我到台中市的次數比到彰化市多很多....
+09:34 < Jedi_> hum, 你有交通工具還是要搭車？
+09:34 < iamblue> Jedi_: 主要是搭高鐵  比較快XD
+09:35 < Jedi_> 那台中找地方比較方便吧
+09:35 < iamblue> 好～～
+09:36 < Jedi_> 如果可能的話，當天約比較早的時段吧，怕星期一早上六點就要上班 :-/
+09:36 < Jedi_> 星期日不能太晚睡
+09:37 < iamblue> 沒問題  我們約白天
+09:37 < iamblue> 應該會是中午跟下午時段
+09:39 < Jedi_> okay
+09:39 -!- jslee_ [~jslee@140.109.127.7] has joined #g0v.tw
+09:40 < Jedi_> :D
+09:40 < iamblue> 地點我找一下～～  之後跟你確認
+09:40 < Jedi_> 好的，麻煩你了～
+09:42 -!- jslee [~jslee@140.109.127.7] has quit [Ping timeout: 248 seconds]
+09:43 -!- pm5 [~pm5@111-248-230-248.dynamic.hinet.net] has joined #g0v.tw
+09:48 -!- jslee [~jslee@140.109.127.7] has joined #g0v.tw
+09:48 < Jedi_> iamblue: 剛剛看到 http://www.bli.gov.tw/sub.aspx?a=YDwm%2bEYqsSM%3d
+09:49 < Jedi_> iamblue: and ref: http://www.bli.gov.tw/sub.aspx?a=8GmbiLpDm9o%3d
+09:49 < Jedi_> iamblue: 看起來像是你打算走的補助途徑，這個助聽器補助到一萬元而已的樣子？
+09:49 < kcwu> Jedi_'s url: [職業災害勞工輔助器具補助標準表 - 行政院勞工委員會勞工保險局全球資訊網]
+09:49 < kcwu> Jedi_'s url: [器具補助 - 行政院勞工委員會勞工保險局全球資訊網]
+09:50 < Jedi_> iamblue: 不過如果你走身心障礙的輔具補助的話，非低收入戶、非中低收入戶，雙耳應該可以補助到一萬五?
+09:50 -!- jslee_ [~jslee@140.109.127.7] has quit [Ping timeout: 252 seconds]
+09:52 -!- jslee_ [~jslee@140.109.127.7] has joined #g0v.tw
+09:52 -!- jslee_ [~jslee@140.109.127.7] has quit [Remote host closed the connection]
+09:53 -!- jslee [~jslee@140.109.127.7] has quit [Ping timeout: 248 seconds]
+09:54 < Jedi_> 看起來勞保局這條路也是對單耳聽損者較有利
+09:54 < iamblue> 補助價錢也跟聽障協會的人說的差不多～
+09:55 < iamblue> 不無小補～～
+09:56 < Jedi_> 現在補助最多的方案是25歲以下日間部在學，或18歲以下，雙耳可以補助到四萬
+09:56 < Jedi_> 走身心障礙輔具補駔
+09:56 < Jedi_> 走身心障礙輔具補助
+09:57 -!- jslee [~jslee@140.109.127.7] has joined #g0v.tw
+09:57 < iamblue> 囧   太早畢業了
+09:58 < iamblue> 今年23  ...
+09:58 < Jedi_> 所以凌晨才問你還有沒有學生身分 KD
+09:59 < Jedi_> 總之你可以考慮一下是不是還要走勞保局（一萬），還是改走身心障礙輔具（一萬五），先問問看吧
+09:59  * Jedi_ 先去吃早餐 &
+09:59 < iamblue> 好的～～  太感謝！！！
+10:00 < iamblue> 這些詢問結果一定要加入福利搜尋XD
+10:00 < Jedi_> 喔，對了，身心障礙補助要領到一萬五的話還要多做效益驗證，這個各醫院會有不同的自費收費
+10:00 < Jedi_> 勞保局的方案似乎不用做效益驗證（不確定）
+10:01  * Jedi_ really &
+10:03 < ETBlue> Jedi_: 為何你會到台中的次數比彰化多（歪頭
+10:03 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+10:04 < ipa> 福利請聽真是偉大的專案+1
+10:04 < ipa> 然後各位四點睡十點起來也太強了
+10:04  * Jedi_ 又跑回來
+10:04 < Jedi_> iamblue: 對了，你知道你買手機有補助吧？
+10:05 < Jedi_> iamblue: 如果你會手語或者讀唇的話，買智慧型手機補助還會更多
+10:05 < iamblue> 完全不知道＠＠   ....
+10:05 < Jedi_> ETBlue: 因為開車到彰化大概要 70 分鐘
+10:07 < Jedi_> iamblue: 輔具補助基準第65、66項，行動電話機（A款/B款）
+10:07 -!- jslee_ [~jslee@140.109.127.7] has joined #g0v.tw
+10:07 < Jedi_> A 款不需評估，直接申請即可，低收入戶2000，中低收入戶1500，一般戶1000，使用年限3年
+10:07 < ETBlue> ipa 早安 XD 因為實在太 high 了，想到就無法賴床
+10:08  * ETBlue 覺得 Jedi_ 超級專業
+10:08 < Jedi_> B 款（具影像即時傳輸功能，就是要有前鏡頭）要由甲、乙、丙、丁類評估人員（擇一即可）評估，補助低收入戶4000，中低3000，一般2000，使用年限3年
+10:09 < Jedi_> 所以之後有要換手機的話就去申請吧，不無小補
+10:09 -!- jslee [~jslee@140.109.127.7] has quit [Ping timeout: 248 seconds]
+10:09 < iamblue> 太好了（筆記
+10:09 < Jedi_> 身心障礙除了每一項的使用年限外，每兩年可以申請四項（雙耳助聽器總共算一項）
+10:11 < Jedi_> iamblue: 還有，你買 webcam 其實也有補助 *爆* 不需評估，低收入戶600，中低450，一般300，使用年限5年
+10:11 < iamblue> 對了...這邊的大家目前是怎麼記錄log呢？   好怕斷線就全沒了真可惜Q_Q
+10:12 < Jedi_> iamblue: 再來就是傳真機、電話擴音器、電話閃光震動器、門鈴閃光器、無線震動警示器、火警閃光警示器，這些都有補助，而且都是不需評估項目，直接申請就可以
+10:13 < Jedi_> 有需要就去申請，不無小補...
+10:13 -!- jslee [~jslee@140.109.127.7] has joined #g0v.tw
+10:13  * Jedi_ 真的要出門吃早餐了 &
+10:16 -!- jslee_ [~jslee@140.109.127.7] has quit [Ping timeout: 256 seconds]
+10:17 -!- jslee_ [~jslee@140.109.127.7] has joined #g0v.tw
+10:18 < iamblue> 好的～～感謝～～～
+10:20 -!- jslee [~jslee@140.109.127.7] has quit [Ping timeout: 248 seconds]
+10:25 -!- jslee [~jslee@140.109.127.7] has joined #g0v.tw
+10:26 < ipa> log壞囉？
+10:26 < iamblue> 沒錯  
+10:26 < iamblue> http://logbot.owo.tw:5000/channel/g0v.tw/today  kirby說壞很久囉～～
+10:27 < ipa> iamblue: 應該是用server連irc 那順便來徵求irc不斷線使用教學手冊吧！
+10:28 -!- jslee_ [~jslee@140.109.127.7] has quit [Ping timeout: 256 seconds]
+10:29  * ipa 徵求掛irc不斷線教學
+10:29 < ipa> iamblue: 如果有徵到，我會整合到hack.g0v
+10:31 < iamblue> 感動推~~~
+10:32 -!- jslee_ [~jslee@140.109.127.7] has joined #g0v.tw
+10:33 -!- jslee [~jslee@140.109.127.7] has quit [Ping timeout: 248 seconds]
+10:42 < ipa> 或是誰要在放隻bot進來，這樣可以輪流壞掉（誤）
+11:08 < ETBlue> iamblue: 我在 chatzilla 有勾 log 的選項，又持續掛網，所以目前為止你們的對話我的電腦裡應該都有一份 @@ tka__ 是用 server 連 irc，可能會有更完整的記錄
+11:10 < ETBlue> iamblue: fyi，jedi_ 其實還有另一個專業是擔任人生導師... XDXD
+11:10 < iamblue> XD
+11:10 < iamblue> 心靈導師
+11:10 < iamblue> XD
+11:10 < ETBlue> iamblue: 沒錯（點頭）太久了記錯詞... XD
+11:12 < ETBlue> ipa: logbot 不曉得有沒有 source code，直接掛到 g0v 的 server 底下應該比較不會死
+11:17 < thschee> 下午如果有朋友在台北天母附近不妨來 data weekend 晃晃 http://registrano.com/events/cft-dataweekend01/
+11:17 < kcwu> thschee's url: [CfT Data Weekend w/ QS Taiwan #01 | Registrano]
+11:17 < thschee> 如果沒空 6.15 還有一場 http://registrano.com/events/dataweekend02/
+11:17 < kcwu> thschee's url: [CfT Data Weekend w/ OKFN Taiwan #2 | Registrano]
+11:18 < thschee> 以後 biweekly 都會有 data weekend 活動 :)
+11:26 < ETBlue> thschee 又在到處播種！ XDDDDDDDDDDDD
+11:28 < Jedi_> ...
+11:34 < clkao> 要怎麼收穫，先怎麼栽？
+11:34 -!- jslee_ [~jslee@140.109.127.7] has quit [Remote host closed the connection]
+11:35 < clkao> firebase admin 還可以看 concurrent users
+11:46 -!- Supaplextw [~Lucky@36-229-251-75.dynamic-ip.hinet.net] has joined #g0v.tw
+11:53 -!- icman [~icman@123.240.147.165] has joined #g0v.tw
+11:57 -!- a-tsioh [~pierre@175.176.102.84.rev.sfr.net] has quit [Ping timeout: 252 seconds]
+12:06 -!- UncleHandsome [~sora@UncleHandsome.Dorm8.NCTU.edu.tw] has quit [Read error: Connection reset by peer]
+12:12 < clkao> angularjs 1.1.5 地雷已回報... orz
+12:13 < clkao> bleeding edge fun
+12:13 < clkao> ETBlue: 對了，這個你知道嗎? 最近多了一堆: http://fortawesome.github.io/Font-Awesome/cheatsheet/
+12:13 < kcwu> clkao's url: [Font Awesome Cheatsheet]
+12:15 < ETBlue> clkao: 挖喔 bootstrap 真是前途光明
+12:18 < ETBlue> clkao: 說到這個，原本 tka 一直想說服我 gcaa 的 mobile web 用 bootstrap 做... 不過好像迷你規模的網頁用那個反而比較慢？還是因為我不熟的關係
+12:19 < ETBlue> clkao: 後來連 haml 也因為跟 h5bp 的樣板不相容而沒用，結果最後是手刻 html = =
+12:19 < clkao> 噢 反正... 慢的時間是順便累積一下自己的能力 以後其他就快啦 XD
+12:19 < ETBlue> clkao: 然後才改去 iconmoon 弄 fonts... 感覺 font-awesome 看起來是 bootstrap 專用的（沒細研究亂猜）
+12:19 < clkao> 都可以 只是剛好跟 bootstrap 很合而已
+12:19 < ETBlue> clkao: 原來如此 orz 
+12:24 < clkao> ETBlue: 所以... 你 local 可以跑 hack.g0v.tw hub 了嗎?
+12:33 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+12:36 < iamblue> mobile web別用bootstrap做 :p
+12:36 < iamblue> 我們公司目前有個產品正在開發  就是做mobile web的人性化製作平台XD
+12:36 < ETBlue> clkao: 我是不是要把昨天跑起來的 server 關掉然後 pull 然後重跑才會有？
+12:36 < ETBlue> iamblue: 喔喔喔喔喔！！！！！
+12:37 < iamblue> 我建議是所有的動作都用css3去做  bootstrap 的效果在某些mobile上面會破掉或很頓
+12:37 < ETBlue> iamblue: 為啥 bootsstrap 不適合 mobile？ @@?
+12:37 < clkao> ETBlue: 不過你應該是 master? 我正在把 hub merge 上去
+12:37 < clkao> 據說 bootstrap 3 就快了 只是就不支援 ie8 ? XD
+12:37 < iamblue> 沒錯～～
+12:37 < iamblue> 但仔細去看bs3也都是大都改成css3
+12:38 < iamblue> 我是說效果的部份
+12:38 < clkao> 我是覺得 先用無妨 除非你本來就知道那是個很大的 app 在 mobile 會超慢，影響 user
+12:38 < ETBlue> clkao: github 上面 hack.g0v.tw 跟 hackfoldr 跟 hub 好像是不同的 project？但為什麼最後能合在一起 @@? 
+12:38 < clkao> ETBlue: 因為愛?
+12:39 < ETBlue> clkao: 因為愛所以不適合 mobile 是哪招 = =
+12:39 < clkao> ETBlue: hackfoldr/hackfodlr -> g0v/hack.g0v.tw#master -> g0v/hack.g0v.tw#hub
+12:39 < clkao> 有三個 branch 
+12:39 < ETBlue> clkao: 喔喔是因為愛所以合體...
+12:39 < clkao> 但是現在 hub 進 master 了
+12:39 < ETBlue> clkao: 而且是 3P 合體
+12:39 < ETBlue> 呃
+12:39 < clkao> http://hack.g0v.tw/ 更新了, hackpad 使用正式的 embed ai
+12:39 < clkao> api
+12:40 < clkao> 不會有右邊亂七八糟的東西了，應該 load 也比較快
+12:40 < ETBlue> iamblue: 聽說 mobile 也不適合用 jquery？
+12:41 < ETBlue> iamblue: 如果 從 jquery 改用 zepto.js 是不是code 都不用改寫... XD?
+12:41 < iamblue> ETBlue: 能盡量抽掉不要的功能即可
+12:41 < thschee> etblue: 來天母荼毒老外，他們是貴國的資料弱勢使用者啊
+12:41 < ETBlue> iamblue: 是指不要載入整個 jquery js 嗎
+12:42 < iamblue> ETBlue: 嗯嗯
+12:42 < ETBlue> clkao: 雖然聽不懂不過我知道結論是我可以 pull 了 XDXDXD
+12:42 < iamblue> ETBlue: 但我們是自己去開發有用的部份＠＠
+12:42 < ETBlue> clkao: 我需要改 clone 還沒合體前的那三個專案嗎？
+12:43 < ETBlue> iamblue: 感覺好硬，完全不是我能理解的範圍......
+12:43 < iamblue> ETBlue: 可以參考這個～～
+12:43 < iamblue> ETBlue: http://mobilewebcandothat.mobileweb.com.tw/
+12:43 < kcwu> iamblue's url: [JSDC 2013 - Mobile Web Can Do That？]
+12:43 < ETBlue> 可憐的老外，資料若是還要被 thschee 播種荼毒（點頭
+12:43 < iamblue> ETBlue: 我家老大JSDC演講
+12:45 < ETBlue> iamblue: 這投影片好潮
+12:50 < ipa> 哀號 我需要右邊亂七八糟的東西啊～ 刀下留人～
+12:51 < au> <pocture> => <picture> (#Image-Set-Page5)
+12:53 < clkao> ETBlue: 不用 就 hack.g0v.tw#master 
+12:53 < ETBlue> clkao: roger. 問你喔， npm i 是不是只要頭一次的時候輸入就好了，以後要跑 server 只要輸入第二行？
+12:54 < clkao> 一般來說 不過現在應該要再跑一次 因為用了新的外掛
+12:54 < clkao> ipa: 改回來了 沒 toc 是蠻困擾的 orz
+12:54 < clkao> ETBlue: 那... tag & people page 就交給你和 fukuball 了... 我待會先來弄 project registry
+12:55 < ETBlue> ipa: clkao: 原來是砍了 hackpad 的 toc 跟 people 那欄... 還沒看到就改回來了 XD
+12:56 < ETBlue> 跑 npm i 結果看到 jserv 的 id 出現在訊息裡（揉眼睛）
+12:57 < clkao> 應該是 jsenv XD
+12:58 < ETBlue> 喔喔真的 XD
+12:59 < clkao> 真不賴, disqus link 回去的 uri 也會動: http://hack.g0v.tw/tag/hackath3n#comment-908775072
+13:01 < clkao> ETBlue: 可以先把想達成的開在 https://github.com/g0v/hack.g0v.tw/issues
+13:01 < kcwu> clkao's url: [Issues · g0v/hack.g0v.tw · GitHub]
+13:01 < ETBlue> 喔喔喔喔喔天啊跑起來了
+13:01 < clkao> brunch 只是.. 比較複雜的 fire.app 而已.. 其實還不賴 :p
+13:03 < clkao> ETBlue: 已經用了 font awesome, 所以你看 people.jade 裡面有 i.icon-facebook.icon-large
+13:06 < clkao> ETBlue: 記得裝 https://github.com/davidrios/jade-tmbundle :p
+13:06 < kcwu> clkao's url: [davidrios/jade-tmbundle · GitHub]
+13:08 < ETBlue> clkao: 問你喔，那個 jade tmbundle 安裝指令是要打在哪裡... = =?
+13:08 < ETBlue> clkao: command line 的隨便地方都能打嗎 @@?
+13:10 < clkao> ETBlue: 你有 package manager 的話就 cmd-shift-p install package 
+13:10 < ETBlue> 是在 sublime text 2 裡面打？
+13:11 < clkao> right. 如果已經有 package control 的話 
+13:11 < Jedi_> ETBlue: 其實 sublime 裡面的 package control 就可以直接裝 jade
+13:11 < clkao> jedi 不是 ultraeditor 達人
+13:12 < Jedi_> 噗
+13:13 < ETBlue> 好像成功惹... 在 st2 裡面名稱就叫做 jade 而已
+13:13 < Jedi_> yap
+13:13 < ETBlue> 然後右下角格式拉開來就看的到 jade 了！！！！！！！！！
+13:14 < Jedi_> ETBlue: 因為 "tmbundle" 的意思是 "TextMate Bundle"....但是你是在 sublime 裝，所以 KD
+13:15 -!- jslee [~jslee@140.109.127.7] has joined #g0v.tw
+13:16 < ipa> UltraEditor! 突然坐上時光機了...
+13:17  * Jedi_ flops
+13:17 -!- jslee [~jslee@140.109.127.7] has quit [Remote host closed the connection]
+13:23 < ETBlue> clkao: 我現在連到 http://localhost:3333/people 跟 http://localhost:3333/tag 是沒有資料的對嗎？people 一開頭就是 {{user.displayName}} {{user.username}} 這些參數，tag 的預覽則是空的
+13:24 < ETBlue> clkao: 啊 tag 有東西！關於 {{ tag }}
+13:25 < ETBlue> clkao: 我如果想預覽結果的話是不是要自己塞一些假資料進去
+13:25 < clkao> ETBlue: 應該是會有資料喔 看到 {{tag}} 應該是有 error. 看一下 console?
+13:25 -!- pm5 [~pm5@111-248-230-248.dynamic.hinet.net] has quit [Ping timeout: 252 seconds]
+13:27 < ETBlue> clkao: https://gist.github.com/ETBlue/5651801#file-gistfile1-txt
+13:27 -!- iamblue [76a9e94b@gateway/web/freenode/ip.118.169.233.75] has quit [Ping timeout: 250 seconds]
+13:30 < clkao> 怪了, 你有 app/config.jsenv 嗎？
+13:44 < ETBlue> clkao: 有耶，內容是
+13:44 < ETBlue> {
+13:44 < ETBlue>   FIREBASE: "https://g0vhub.firebaseio.com"
+13:44 < ETBlue> }
+13:45 < ETBlue> 醬子對嗎？
+13:47 < clkao> 對啊
+13:48 < clkao> 還是 npm start 沒重跑? rm -rf _public 再重跑看看
+13:49 -!- poga [~poga@1-171-126-136.dynamic.hinet.net] has joined #g0v.tw
+13:49 < clkao> 可能他拿到最新的東西
+--- Log opened 日  5月 26 13:53:43 2013
+13:53 -!- ronnywan1 [~ronnywang@ec2-54-249-42-170.ap-northeast-1.compute.amazonaws.com] has joined #g0v.tw
+13:53 -!- Irssi: #g0v.tw: Total of 86 nicks [0 ops, 0 halfops, 0 voices, 86 normal]
+13:53 -!- walkingi1e [~walkingic@114-32-34-65.HINET-IP.hinet.net] has joined #g0v.tw
+13:53 -!- aar0ntw_ [~ubuntu@ec2-204-236-166-4.us-west-1.compute.amazonaws.com] has joined #g0v.tw
+13:54 -!- Irssi: Join to #g0v.tw was synced in 32 secs
+13:54 -!- iamblue [8c70194e@gateway/web/freenode/ip.140.112.25.78] has joined #g0v.tw
+13:54 -!- tkirby [b88039@bsd1.csie.ntu.edu.tw] has quit [Write error: Broken pipe]
+13:54 -!- walkingice [~walkingic@114-32-34-65.HINET-IP.hinet.net] has quit [Write error: Broken pipe]
+13:54 -!- ronnywang [~ronnywang@ec2-54-249-42-170.ap-northeast-1.compute.amazonaws.com] has quit [Write error: Broken pipe]
+13:54 -!- aar0ntw [~ubuntu@ec2-204-236-166-4.us-west-1.compute.amazonaws.com] has quit [Write error: Broken pipe]
+14:11 < ETBlue> clkao: https://gist.github.com/ETBlue/5651871#file-gistfile1-txt 弄完以後還是一樣 QAQ
+14:12 < ETBlue> clkao: 還是我少裝了什麼 @@?
+14:14 < clkao> ETBlue: 你的 rm -rf 好像沒作用? :p 把 _public 整個刪除吧
+14:14 < clkao> 檢查一下 _public/js/app.js 裡面有沒有 FIREBASE
+14:17 < ETBlue> clkao: 哭哭，-public 資料夾整個刪除以後重跑還是一樣 orz
+14:18 < ETBlue> app.js 裡面搜尋 firebase 是有找到詞，但很多地方都有出現
+14:18 < ETBlue> 我貼一下 gist
+14:19 < ETBlue> https://gist.github.com/ETBlue/5651882#file-app-js 這是刪掉 _public 重跑後又再度出現的 _public 內的東西... @@
+14:20 < ETBlue> clkao: 這是 windows 的關係嗎？！ QAQ
+14:28 -!- superbil [~superbil@114-34-221-169.HINET-IP.hinet.net] has quit [Quit: WeeChat 0.4.0]
+14:29 < clkao> 噢 我好像知道了
+14:31 < clkao> ETBlue: ok pull and rerun npm start
+14:32 < ETBlue> clkao: omg!!!!!!!!!!!!!!!!!!!!!!! it works!!!!!!!!!!!!!!!!!!!!!!!
+14:32 -!- pm5 [~pm5@111-248-230-248.dynamic.hinet.net] has joined #g0v.tw
+14:33 < clkao> 可以開始亂改了 :p 他會 autoreload
+14:33 < clkao> ETBlue: 然後你如果有 http://www.growlforwindows.com/gfw/help/growlnotify.aspx 的話，改爛了他會跳出來跟你說
+14:33 < kcwu> clkao's url: [Growl for Windows]
+14:35 < ETBlue> clkao: http://localhost:3333/tag/hackath3n 的畫面內容只有標題「關於 hackath3n」下面是空的，這樣正常嗎
+14:35 < clkao> ETBlue: hub.ls L14 comment 掉才會在 localhost 出現 disuqs
+14:35 < ETBlue> clkao: roger
+14:37 -!- pm5 [~pm5@111-248-230-248.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+14:38 < ETBlue> hmmm
+14:38 < ETBlue> 26 May 14:37:29 - info: application started on http://localhost:3333/
+14:38 < ETBlue> 26 May 14:37:32 - error: Compiling of 'app\app\hub.ls' failed. rror: unmatched d
+14:38 < ETBlue> edent (2 for 10) on line 26
+14:40 < ETBlue> chrome 倒是沒有吐錯誤訊息了... @@
+14:40 < iamblue> clkao : 想問你一個firebase問題＠＠
+14:40 < clkao> iamblue: yes?
+14:40 < iamblue> clkao: 想問你一個firebase問題＠＠
+14:40 < ETBlue> clkao: 不過我想沒差，反正只有 disqus 這一區看不見，那個我也沒有要改 XD
+14:41 < iamblue> clkao: https://listeningme.firebaseio.com/
+14:41 < kcwu> iamblue's url: [Forge: Firebase Graphical Debugger]
+14:41 < iamblue> clkao: 我的瀏覽器會一直出現failed: WebSocket is closed before the connection is established. 
+14:41 < iamblue> 不過我之前在寫的時候他是有寫進去的，但這個後台一直都在呈現圓圈圈的東西＠＠
+14:42 < iamblue> 這問題你們有遇到嗎？
+14:42 < clkao> 圓圈圈？
+14:42 < clkao> loading?
+14:42 < iamblue> 對
+14:42 < clkao> 我有看到那個 error. 但是使用起來沒啥問題
+14:43 < iamblue> ＠＠
+14:43 < iamblue> 我如果是這樣寫
+14:43 < iamblue> var dataRef = new Firebase('https://listeningme.firebaseio.com/hihi'); 		dataRef.set("hello world!3");
+14:43 < kcwu> iamblue's url: [Forge: Firebase Graphical Debugger]
+14:44 < iamblue> 我去https://listeningme.firebaseio.com/hihi.json是有東西的
+14:44 < clkao> *nod*
+14:44 < iamblue> 但官方的後台一直卡在這個loading  ....  QQ
+14:44 < clkao> iamblue: try cmd-shift-n? 也許你有什麼 browser extension 和他衝
+14:47 < iamblue> 一樣耶＠＠
+14:47 < iamblue> 我試過firefox , safari也是
+14:48 < clkao> 那就不知道了... 寄信給 support@ ?
+14:50 -!- superbil [~superbil@114-34-221-169.HINET-IP.hinet.net] has joined #g0v.tw
+14:50 < iamblue> OK 好 ～
+14:59 < iamblue> failed: WebSocket is closed before the connection is 
+14:59 < iamblue> 這個錯誤你們會一直持續出現在瀏覽器端嗎？
+14:59 < iamblue> clkao: ~~
+15:01 < clkao> 有
+15:06 -!- pm5 [~pm5@111-248-230-248.dynamic.hinet.net] has joined #g0v.tw
+15:08 < iamblue> 太詭異了
+15:08 < iamblue> 我整台電腦不行  可是平板就可以＠＠
+15:10 < c9s> 好像有遇過類似的問題.. 不過忘記為什麼了 XD
+15:10 < c9s> 應該是跟 server 端有關係
+15:10 < clkao> ETBlue: project meta data: https://github.com/g0v/hack.g0v.tw/blob/master/g0v.json
+15:10 < kcwu> clkao's url: [hack.g0v.tw/g0v.json at master · g0v/hack.g0v.tw · GitHub]
+15:11 < clkao> c9s: 最近在忙啥？這次要來黑客松嗎 :P
+15:13 < c9s> 咦 是下禮拜四嗎？還是什麼時候?
+15:13 < clkao> 6/8 啦
+15:13 < clkao> 下禮拜四應該是山豬趴吧
+15:14 < c9s> 哦哦哦哦!
+15:14 < c9s> 我看看
+15:15 < iamblue> 我覺得有可能是台大無線網路有擋
+15:15 < c9s> 不知道耶... 也許可以 XD
+15:15 < iamblue> 我試過用3G是可以  但是用無線網路就不行＠＠
+15:16 < iamblue> 慘...6/2有ntu hackthon....
+15:16 < c9s> iamblue: 那就是中間有 proxy，但是這個 proxy 不支援 websocket?
+15:16 < clkao> iamblue: 有報？
+15:16 < iamblue> 可能是喔
+15:16 < c9s> iamblue: 所以你會看到 close connection 然後 fallback 用 flash 之類的 (?) 是 socket.io 嗎?
+15:16 < clkao> 應該是會 safely fallback 才對 也許哪裡爛掉
+15:17 < iamblue> clkao: 有！
+15:17 < iamblue> 沒有callback@@
+15:26 -!- pm5 [~pm5@111-248-230-248.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+15:26 -!- iamblue_ [1bf00d85@gateway/web/freenode/ip.27.240.13.133] has joined #g0v.tw
+15:27 < iamblue_> 突然發現斷線XD  剛剛有最新消息嗎～～
+15:30 -!- iamblue [8c70194e@gateway/web/freenode/ip.140.112.25.78] has quit [Ping timeout: 250 seconds]
+15:31 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Operation timed out]
+15:35 -!- iamblue_ [1bf00d85@gateway/web/freenode/ip.27.240.13.133] has quit [Quit: Page closed]
+15:45 < clkao> 應該沒有 :p
+15:58 -!- iamblue [76a9efd0@gateway/web/freenode/ip.118.169.239.208] has joined #g0v.tw
+15:59 < clkao> au: ethercalc denies cors ~ 20% of the time
+15:59 < clkao> au: XMLHttpRequest cannot load https://www.ethercalc.org/_/g0v-ly/csv. Origin http://hack.g0v.tw is not allowed by Access-Control-Allow-Origin. 
+16:00 < clkao> au: you have outdated worker or something?
+16:00 < ipa> iamblue: http://lzy-blah.blogspot.tw/2007/08/screen-irssi-irc-q.html
+16:00 < kcwu> ipa's url: [lzy's 543: 用 screen + irssi 上 irc 之鄉民版教學 (含Q&A)]
+16:00 < ipa> 用這個可以掛irc不斷線
+16:00 < ipa> 但要有自己的server先
+16:02 < Jedi_> iamblue: 如果沒有自己的伺服器，但是有一台可以穩定一直連線的電腦擺在什麼地方的話.... 可以用用看 http://quassel-irc.org/
+16:02 < kcwu> Jedi_'s url: [Blogs | Quassel IRC]
+16:09 < iamblue> clkao: 剛剛借用一下師大的無線網路也有擋firebase   @@
+16:10 < clkao> iamblue: 不過只有 admin 介面不能動？ hack.g0v.tw/people 看得到嗎？
+16:12 < iamblue> 在網頁端用直接用push那些的都不行
+16:12 < iamblue> 讀取也不行
+16:12 < iamblue> 不過我現在回家了沒有測試到 hack.g0v.tw/people XD
+16:15 < iamblue> 但是如果是在nodejs server裡做動作的話（local端）並用他們的網路是可以
+16:21 < clkao> iamblue: 所以現在什麼東西放 firebase 呢？
+16:24 < iamblue> 追蹤使用者行為的東西
+16:25 < clkao> iamblue: 是噢 沒直接用 segmentio
+16:25 < iamblue> 那個是＠＠？
+16:26 < clkao> iamblue: 對了 angularjs#2 日期決定了嗎？
+16:26 < clkao> iamblue: http://segment.io/ 快速整合各種 tracking 工具
+16:26 < kcwu> clkao's url: [Segment.io | The simple analytics API — Segment.io]
+16:26 < iamblue> 我們有用intercom 但有些東西像是"看其他人正在搜尋什麼關鍵字"之類的就另外做～～
+16:26 < clkao> 噢～～
+16:26 < clkao> 聽起來不賴
+16:27 < iamblue> firebase真的超方便
+16:27 < iamblue> 但如果全台灣很多學術網路有擋就......
+16:28 < iamblue> 6/14 or 6/21這兩天學長方便嗎？
+16:29 < iamblue> 擇一天即可～～～  特別挑學長方便的禮拜五
+16:34 < clkao> iamblue: 那就 14th 好了，感謝！
+16:43 < clkao> 發現 hackpad 的 8-SPC bug 好像修好了
+16:43 < ipa> 沒有啊 打萌典的典就跳
+17:08 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+17:10 -!- iamblue [76a9efd0@gateway/web/freenode/ip.118.169.239.208] has quit [Ping timeout: 250 seconds]
+17:31 < au> clkao: use the new url scheme https://www.ethercalc.org/g0v-ly.csv
+17:31 < au> er, nvm
+17:32 < au> same thing
+17:33 < clkao> tkirby_: 話說... 收到 pullreq: https://github.com/g0v/ly-vote/issues/1
+17:33 < kcwu> clkao's url: [Tweaking click behavior by viirya · Pull Request #1 · g0v/ly-vote · GitHub]
+17:33 < au> clkao: can we get client-side to retry 3 times on fail? usually the next fetch works right away
+17:33 < au> I'll look into server side later tonight
+17:33 < clkao> au: yeah, sure.
+17:45 < au> 原來是 https://gist.github.com/aku/5466527
+17:45 < au> # large_client_header_buffers
+17:46 < clkao> so 502 bad gateway makes the frontend not sending cors header?
+17:46 < au> something like that
+17:46 < au> cors.conf only applicable to 200s
+17:47 < au> 修好了
+17:47 < clkao> right.  i thought newer nginx doesnt need to do anythign for socketio to work
+17:47 < clkao> au++
+17:57 < au> ok everything consistently works now
+17:57 < au> still fine tuning, will be restarting a few times
+17:58 < clkao> au++ # thanks!
+17:59 < clkao> au: will you help adding g0v.json to moedict projects?
+18:00 < au> g0v.json?
+18:01 < clkao> like https://github.com/g0v/hack.g0v.tw/blob/master/g0v.json
+18:01 < kcwu> clkao's url: [hack.g0v.tw/g0v.json at master · g0v/hack.g0v.tw · GitHub]
+18:01 < clkao> will aggregate those onto hack.g0v.tw (or g0v.tw project list)
+18:01 < clkao> comment/suggestion/pullreq welcome ;)
+18:02 < au> k k
+18:02 < clkao> well just push. don't need to send pullreq ;)
+18:20 -!- a-tsioh [~pierre@175.176.102.84.rev.sfr.net] has joined #g0v.tw
+18:21 -!- iamblue [76a0fde9@gateway/web/freenode/ip.118.160.253.233] has joined #g0v.tw
+18:22 < iamblue> clkao: 學長～～如果罐成6/21你方便嗎？
+18:22 < iamblue> clkao: 因為14那天有js meetup
+18:26 < iamblue> clkao: 24有人了  QQ    如果是28方便嗎～～～？
+18:30 < clkao> iamblue: 21st works
+18:30 < clkao> 28th works too
+19:43 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+19:52 < ETBlue> clkao: 如何使用 hackfoldr 10 步驟草稿 done XD http://hack.g0v.tw/meta/UCulzu5FRaB
+19:53 < ETBlue> ipa: 我後來移到這裡來惹，想說全部集中在一起比較方便切.. XDXD http://hack.g0v.tw/meta
+19:55 -!- iamblue [76a0fde9@gateway/web/freenode/ip.118.160.253.233] has quit [Ping timeout: 250 seconds]
+19:56 < ETBlue> 這 hackfoldr 真是越用越好用，想當初看 clkao demo 第一版的時候我還覺得這什麼奇怪的東西... XD
+20:05 -!- iamblue [76a9ed43@gateway/web/freenode/ip.118.169.237.67] has joined #g0v.tw
+20:09 -!- iamblue [76a9ed43@gateway/web/freenode/ip.118.169.237.67] has quit [Ping timeout: 250 seconds]
+20:15 < clkao> ETBlue: 你有發現現在收起來，滑鼠移上去會有 tooltip 了嗎
+20:17 < ETBlue> clkao: 沒有，哪裡收起來 @@?
+20:17 < clkao> 按橘色的線會收起來
+20:22 < ETBlue> 看到了！！！！！！
+20:22 < ipa> 基礎建設meta可乾脆放到上面長期專案下拉選單？
+20:22 < ETBlue> 好可愛 XDXD
+20:23 < ETBlue> ipa: 真的
+20:23 < clkao> ETBlue: push 吧 只要改一行~
+20:24 < ipa> ETBlue: 好多零時xx，有點頭暈，有點看不懂是什麼 XD
+20:35 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has quit []
+20:37 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 252 seconds]
+20:37 < ipa> 我加了兩個英文，讓標題格式一致。但不確定零時通關的定義...先寫 training
+20:37 < Zespre> metlift
+20:37 < Zespre> sorry |||
+20:38 < ETBlue> clkao: 理論上應該這樣就可以了，但我改好在自己電腦無法 preview... 剛才在 git 裡面亂搞不曉得有沒有搞壞什麼 = ="
+20:39 < ETBlue> clkao: 好像因為 windows 換行的關係所以他顯示成每一行都改過 orz
+20:39 < ETBlue> ipa: 先亂寫，請隨意調整 >o<
+20:43 < clkao> ETBlue: orz
+20:43 < clkao> ETBlue: https://help.github.com/articles/dealing-with-line-endings#platform-windows
+20:44 < kcwu> clkao's url: [Dealing with line endings · GitHub Help]
+20:44 < clkao> 看看有沒幫助
+20:47 < clkao> 可惡的 line ending
+20:47 < ETBlue> 理論上有設定過 '_>`
+20:48 < ETBlue> 沒關係我已經做好隨時要開虛擬坦克的心裡準備（遠目
+20:52 -!- wHisKy [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+20:52 < Jedi_> Tron?
+20:53 < clkao> 每個人心中 都有自己的虛擬坦克? XD
+20:55 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+20:58 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+21:02 -!- poga [~poga@1-171-126-136.dynamic.hinet.net] has quit [Remote host closed the connection]
+21:03 -!- a-tsioh [~pierre@175.176.102.84.rev.sfr.net] has quit [Quit: WeeChat 0.3.8]
+21:05 -!- You're now known as ronnywang
+21:07 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+21:14 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 248 seconds]
+21:18 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+21:21 < clkao> 原來除了一哄而散之外, 還有: https://moedict.tw/#一哄而集
+21:21 < kcwu> clkao's url: [萌典〔教育部國語＋臺灣閩南語常用詞辭典〕（民間線上版）]
+21:21 < clkao> 這不就是黑客松嗎? XD
+21:25 -!- mp607 [~mp607@140.130.198.18] has joined #g0v.tw
+21:35 -!- derjohng2 [~Adium@122-116-218-31.HINET-IP.hinet.net] has joined #g0v.tw
+21:35 -!- derjohng [~Adium@122-116-218-31.HINET-IP.hinet.net] has quit [Read error: Connection reset by peer]
+21:46 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+21:52 -!- derjohng2 [~Adium@122-116-218-31.HINET-IP.hinet.net] has quit [Quit: Leaving.]
+21:54 -!- MnO2 [~MnO2@1.34.43.236] has quit [Read error: Operation timed out]
+22:00 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+22:10 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 252 seconds]
+22:10 < ETBlue> 一哄而集... （冷）
+22:10 < ETBlue> Jedi_: tron 是啥宅物
+22:10 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+22:11 -!- ck [~ck@60-251-161-130.HINET-IP.hinet.net] has joined #g0v.tw
+22:13 < ETBlue> Jedi_: 對吼你不知道前幾天的坦克哏！你看這另一個宅物 = = http://www.audreyt.org/free-tank.txt
+22:36 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+22:47 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+22:56 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 279 seconds]
+22:59 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+23:12 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 245 seconds]
+23:13 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+23:17 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Read error: Operation timed out]
+23:25 -!- iamblue [76a0fde9@gateway/web/freenode/ip.118.160.253.233] has joined #g0v.tw
+23:26 < ipa> ETBlue: 回頭想改meta標題，發現已經改成我想改的樣子 @@
+23:27 -!- mrmoneyc [~mrmoneyc@198.199.98.216] has joined #g0v.tw
+23:27 < ipa> 莫非這就是秘密的力量
+23:28 -!- MnO2 [~MnO2@1.34.43.236] has quit [Ping timeout: 276 seconds]
+23:28 -!- fukuball [76e99c74@gateway/web/freenode/ip.118.233.156.116] has quit [Ping timeout: 250 seconds]
+23:29 < ETBlue> ipa: 心有靈犀 >///<
+23:30 < ETBlue> ipa: 因為我自己也看不太懂，就揣摩了一下
+23:30 < ETBlue> ipa: 想到什麼再幫我接著改 >o<
+23:31 < ipa> ETBlue++ 
+23:33 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+23:36 -!- iamblue [76a0fde9@gateway/web/freenode/ip.118.160.253.233] has quit [Ping timeout: 250 seconds]

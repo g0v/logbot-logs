@@ -1,0 +1,157 @@
+--- Day changed 四 12月 24 2015
+00:00 < slackbot13> <lanf0n> 你點 explore data 就可以進那個 db 做 CRUD 的動作了 O_O
+00:01 < slackbot13> <charl> select * from ER into ER.[hospital_sn] 需要修改ER為twer嗎
+00:02 < slackbot13> <lanf0n> 要
+00:02 < slackbot13> <charl> 兩個都改嗎
+00:02 < slackbot13> <lanf0n> 等等等等等我想一下
+00:03 < slackbot13> <lanf0n> 兩個都要
+00:04 < slackbot13> <lanf0n> 我 README 竟然忘了寫.......
+00:13 < slackbot13> <charl> 好的
+00:14 < slackbot13> <charl> write point 需要設置參數嗎
+00:16 < slackbot13> <lanf0n> NO 那個是 web介面的單筆寫入(沒記錯的話)
+00:16 < slackbot13> <charl> 好
+00:16 < slackbot13> <charl> 加了好多條continuous queries怎麼辦
+00:16 < slackbot13> <charl> 能刪除嗎
+00:17 < slackbot13> <charl> drop continuous?
+00:17 < slackbot13> <lanf0n> 可以, 參考這裡 <https://influxdb.com/docs/v0.8/api/continuous_queries.html#listing-continuous-queries>
+00:17 < kcwu_> slackbot13's url: [Continuous Queries | InfluxDB]
+00:21 < slackbot13> <charl> OK啦 沒報錯
+00:27 < slackbot13> <charl> @lanf0n: 請問grafana為什麼點不開設置
+00:27 < slackbot13> <charl> 我裝的版本是
+00:28 < slackbot13> <charl> 1.9.1
+00:29 < slackbot13> <lanf0n> charl: grafana 可以直接 pull gh-pages 的 branch 就可以了
+00:30 < slackbot13> <lanf0n> pull 下來之後改 config.js
+00:30 < slackbot13> <charl> 是這個嗎：er.mohw.data-gh-pages
+00:30 < slackbot13> <lanf0n> yes
+00:32 < slackbot13> <charl> git pull 到那個目錄下面
+00:32 < slackbot13> <charl> 哪個
+00:33 < slackbot13> <lanf0n> umm... 應該說 gh-pages 這個 repo branch 是一個靜態網站, 讀的資料來自於 config.js 的設定
+00:34 < slackbot13> <lanf0n> 所以應該看你 grafana 本來要放哪(?)
+00:34 < slackbot13> <charl> "/usr/share/nginx/html"
+00:39 < slackbot13> <charl> 就直接放這目錄下面嗎
+00:39 < slackbot13> <lanf0n> uh.... 我沒有用過純 nginx ><
+00:39 < slackbot13> <charl> 還要改nginx環境的嗎？
+00:40 < slackbot13> <lanf0n> 呃........應該是... 我也不知道XDDD
+00:40 < slackbot13> 因為 grafana 原本就是 host 在 gh-pages 上了... :joy:
+00:41 < slackbot13> <lanf0n> 這樣要拜託其他人救你 :joy_cat:
+00:43 < slackbot13> <charl> 奧
+00:43 < slackbot13> <charl> 謝謝大神
+00:43 < slackbot13> <charl> 那麼'/dashboard/file/all.json'是在哪的
+00:44 < slackbot13> <lanf0n> 應該是你如果要提到 80 port 的位置(網站位置?) 看是在哪就...放在哪 .__.
+00:45 < slackbot13> <lanf0n> 在 app/dashboard/file/all.json
+00:45 < slackbot13> <charl> 奧奧
+00:45 < slackbot13> <charl> MoHW-Hosp-Data-master這個是幹嘛的呢
+00:47 < slackbot13> <lanf0n> 你是指檔案還是...?
+00:47 < slackbot13> <charl> undefined
+00:48 < slackbot13> <charl> <https://github.com/FlyMed/MoHW-Hosp-Data>
+00:48 < kcwu_> slackbot13's url: [FlyMed/MoHW-Hosp-Data · GitHub]
+00:49 < slackbot13> <lanf0n> 這.......... 我不知道哪來的 O_O???
+00:50 < slackbot13> <lanf0n> er 沒有用到這個 repo 的資料額
+00:50 < slackbot13> <charl> 奧奧 我們老師發給我的
+00:50 < slackbot13> <charl> 說讓我們搭建一個<http://er.mohw.g0v.tw/>
+00:50 < kcwu_> slackbot13's url: [零時政府衛生福利部 - 全國重度級急救責任醫院急診即時訊息]
+00:51 < slackbot13> <lanf0n> 那就是...... 自己的作業自己做了 :joy_cat:
+00:51 < slackbot13> <charl> 好難啊
+00:51 < slackbot13> <lanf0n> 沒關係啦 build 起來就贏一半了(咦
+00:53 < slackbot13> <charl> 好像all.json是個面板配置文件
+00:53 < slackbot13> <lanf0n> 等等等等.......所以是有堂課要做這個O__O?? in china or taiwan?
+00:54 < slackbot13> <charl> undefined
+00:54 < slackbot13> <charl> 在那個 賣高鐵送防火牆的國家
+00:54 < slackbot13> <lanf0n> :joy:
+00:55 < slackbot13> <au> charl:  好奇問一下，是杭州的美術學院嗎？
+00:55 < slackbot13> <charl> 很近啊
+00:55 < slackbot13> <charl> 你怎麼知道的
+00:55 < slackbot13> <lanf0n> 資料是來自 influxdb, 因為你 influxdb 剛建起來所以是空的沒錯(?)
+00:55 < slackbot13> 跑的那個 `node twer.js twer.csv ....` command 是把 parse 下來的資料存進去 influxdb
+00:56 < slackbot13> <lanf0n> 該不會是 au 推的坑吧........ :joy_cat:
+00:56 < slackbot13> <charl> 但是好像沒有存進去哦
+00:56 < slackbot13> <au> 算是吧 XD 我有參加 <http://caa-ins.org/index.php?title=Loadingthon&amp;variant=zh-hant#.E6.B4.BB.E5.8B.95.E5.AE.89.E6.8E.92> 的討論...
+00:56 < slackbot13> <au> 線上黑客松策展 《能不能在杭州做這個？》 會播之前 g0v 的各次提案和成果報告
+00:56 < slackbot13> <charl> 好像要聯合er.mohw.data-gh-pages 和  MoHW-Hosp-Data-master
+00:57 < slackbot13> <lanf0n> 天吶.......
+00:57 < slackbot13> <au> 剛好是周六，本來要直播的，只是牆測一測不太穩，就播錄影了。（我只知道這樣）
+00:58 < slackbot13> <lanf0n> 你可以進 web 介面用 query command  `select * from ....` 看資料有沒有進去
+00:58 < slackbot13> <lanf0n> query 那個欄位有點類似 mysql ... command 的部份可以參考 influxdb v0.8 的 document
+00:59 < slackbot13> <charl> 支持 show tables嗎
+00:59 < slackbot13> <lanf0n> 或是直接 cat temp 檔案 或是 backup/ 裡面的檔案...
+00:59 < slackbot13> <johnny> 零的循環XD
+00:59 < slackbot13> <lanf0n> 看裡面有沒有東西 :joy:
+01:00 < slackbot13> <lanf0n> 說不定被牆掉所以 crawlers 抓不到東西所以裡面也是空的....
+01:00 < slackbot13> <lanf0n> 它沒有 table
+01:01 < slackbot13> <charl> 應該是沒有的吧
+01:01 < slackbot13> <lanf0n> 這是一個強迫正常專案更新的.... :joy:
+01:04 < slackbot13> <lanf0n> 或是你可以直接用 `node twer.js twer.csv` 測 crawlers 有沒有抓到東西...(沒加 influxdb 的相關參數它還是可以跑然後會吐在螢幕上)
+01:04 < slackbot13> <charl> 沒抓到ERROR: Couldn't find series: hospital_sn:astonished:
+01:05 < slackbot13> <charl> 抓到了 一大堆
+01:05 < slackbot13> <charl> 跑不完
+01:05 < slackbot13> <lanf0n> 我記得有......快 40 間吧
+01:06 < slackbot13> <lanf0n> 如果 吐出來的東西是正常的那就是... influxdb 那邊設定的問題了
+01:06 < slackbot13> <charl> 奧奧 我看看
+01:06 < slackbot13> <charl> 帶的參數user是root還是自己建立的
+01:07 < slackbot13> <lanf0n> 就是你可以 access influxdb 的那個 dataset 的 account
+01:08 < slackbot13> <charl> 是這個嗎
+01:08 < slackbot13> <charl> undefined
+01:09 < slackbot13> <lanf0n> 用 admin 的話就是 admin O_O
+01:09 < slackbot13> <charl> aoao
+01:10 < slackbot13> <lanf0n> error 吐 hospital_sn 是在 grafana?
+01:11 < slackbot13> <lanf0n> 呃那個...........
+01:11 < slackbot13> <lanf0n> 是 `continuous query ` 的問題.... 那個 ER 是 series 不是 database 所以不能改掉 :sweat_smile:
+01:13 < slackbot13> <lanf0n> 剛看了一下村長寫的 ls .... writePoint 是寫進 'ER'
+01:13 < slackbot13> 所以.... my fault
+01:13 < slackbot13> <charl> 在influxdb
+01:15 < slackbot13> <charl> 好厲害
+01:16 < slackbot13> <charl> 有反應了
+01:16 < slackbot13> <charl> undefined
+01:16 < slackbot13> <lanf0n> 賀
+01:16 < slackbot13> <lanf0n> 我可以睡覺了 yay
+01:16 < slackbot13> <charl> 等等大神
+01:16 < slackbot13> <charl> 最後問一下
+01:17 < slackbot13> <charl> gh-page怎麼用
+01:17 < slackbot13> <lanf0n> 我只是雜魚 :joy_cat:  ...
+01:17 < slackbot13> <charl> :sob:別謙虛
+01:19 < slackbot13> <au> `gh-pages` 的介紹可以參考
+01:19 < slackbot13> <http://blog.ccjeng.com/2015/06/github.html> (中文)
+01:19 < kcwu_> slackbot13's url: [[教學] 如何在GitHub建立靜態網站 - [鍵盤自耕農]]
+01:19 < slackbot13> <https://developer.mozilla.org/es/docs/Learn/Using_Github_pages> (英文)
+01:19 < kcwu_> slackbot13's url: [Using Github pages - Entendiendo la Web | MDN]
+01:19 < slackbot13> <charl> 好的 我看看
+01:19 < slackbot13> <charl> 謝謝大神 晚安
+01:19 < slackbot13> <lanf0n> yay 感謝 au++
+01:20 < slackbot13> <au> 醒來好像可以整理一下寫進 `README` 裡，給（像我一開始那樣）對要不要保留方括號不熟悉的人用
+01:21 < slackbot13> <au> (我是說前面一整串的 <http://logbot.g0v.tw/channel/g0v.tw/2015-12-23> &amp; <http://logbot.g0v.tw/channel/g0v.tw/2015-12-24）>
+01:21 < kcwu_> slackbot13's url (1/2): [Logbot | #g0v.tw]
+01:21 < slackbot13> <au> 就交給 charl 了 XDD 晚安
+01:22 < slackbot13> <charl> 我也能改readme嗎？
+01:22 < slackbot13> <charl> 好
+01:22 < slackbot13> <charl> 晚安 au
+01:22 < slackbot13> <au> charl: 可以按 <https://github.com/g0v/er.mohw/edit/master/README.md> 送出 pull request
+01:22 < kcwu_> slackbot13's url: [Sign in to GitHub · GitHub]
+01:23 < slackbot13> <lanf0n> charl: yes, PR welcome
+01:24 < slackbot13> <lanf0n> 方括號是抄 arg parse 的... 本來以為那個很 make sense :joy_cat:
+01:25 < slackbot13> <lanf0n> 撤退了
+01:26 < slackbot13> <charl> 謝謝各位這麼關照新人 非常感謝 國內的求救環境根本比不了
+08:08 -!- Kenliu [3d0ea542@gateway/web/cgi-irc/kiwiirc.com/ip.61.14.165.66] has left #g0v.tw []
+08:31 < slackbot13> <billy3321> <https://drive.google.com/folderview?id=0Bxo5b-i23NKEc0NRLU5XdXJPX3c&amp;usp=sharing>
+08:31 < kcwu_> slackbot13's url: [候選人公開行程]
+08:31 < slackbot13> <billy3321> 這裡有一批野生的總統候選人公開行程表
+10:36 -!- KCinTWwasJP [uid134525@gateway/web/irccloud.com/x-ergxsajpginruyma] has left #g0v.tw []
+11:32 < slackbot13> <t0mst0ne> 牆內的黑客松？ 好有趣阿...
+12:00 < slackbot13> <charl> 早上好各位
+12:01 < slackbot13> <caasi> 早安 XD
+12:07 < slackbot13> <marksylee> 早
+19:44 < slackbot13> <lanf0n> muyueh: <http://xbsoftware.com/products/enjoyhint/> #tutorial-website_pen
+19:44 < kcwu_> slackbot13's url: [EnjoyHint - Interactive Guided Tours Through Site | XB Software]
+20:56 < slackbot13> <clkao> 短講居然已經爆滿惹
+22:54 < slackbot13> <johnny> 看起來中選會今天沒有要送聖誕小禮了
+22:55 < slackbot13> <kiang> 我這邊是有志工幫忙把大部分號碼填上去了 XD
+22:56 < slackbot13> <kiang> ... cloudflare-nginx 502 Bad Gateway
+22:58 < slackbot13> <johnny> 期待他們提早釋出公報內容
+23:13 < slackbot13> <clkao> 咦 本來是說 12/24 or 12/25 ?
+23:17 < slackbot13> <johnny> 上次是說12/24
+23:18 < slackbot13> <johnny> 特地排空來迎接他了呢
+23:18 < slackbot13> <johnny> 說明文件也莫名消失了 <http://2016.cec.gov.tw/cms/8133710/204>
+23:18 < kcwu_> slackbot13's url: [:::資料公開 api 說明:::105年中央公職人員選舉專區 - 中央選舉委員會]
+23:28 < caasih> Lee1092: 有空回應一下 XD
+23:35 < slackbot13> <clkao> 至少 web ui 有 permalink # <http://2016.cec.gov.tw/frontsite/2016/proofreader/session/%E6%99%82%E4%BB%A3%E5%8A%9B%E9%87%8F>
+23:36 < slackbot13> <clkao> 資料應該還沒進去  他這個前端應該是用同一個
+23:38 < slackbot13> <muyueh> @lanf0n 這就是我要找的！！！大感謝

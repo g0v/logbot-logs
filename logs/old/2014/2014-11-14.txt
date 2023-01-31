@@ -1,0 +1,445 @@
+--- Day changed 五 11月 14 2014
+00:06 < johnny__> thea, reswind: 花蓮、南投的議員都更新了
+00:23 < t0mst0ne_> 請問extract pdf 中文字 是用 xpdf 套件嗎  ?  ( 像這樣 ?pdftotext -cfg /usr/local/etc/xpdfrc -enc Big5 X.pdf X.text)
+00:26 < kiang> t0mst0ne_: 我用 pdfbox 比較多 https://pdfbox.apache.org/ ， abiword 效果也不錯 https://paulbradley.org/word-convert-pdf/
+00:26 < kcwu> kiang's url (1/2): [Apache PDFBox | A Java PDF Library]
+00:27 < kcwu> kiang's url (2/2): [Using Abiword to convert Word documents to PDF files using the Linux command line]
+00:30 < kiang> t0mst0ne_: 然後複雜一點就乾脆把字元跟座標抓出來 https://github.com/yllan/TextPositionExtractor ，再慢慢去歸類
+00:30 < kcwu> kiang's url: [yllan/TextPositionExtractor · GitHub]
+00:35 < thea> johnny__: 辛苦了～～！ :D
+00:37 < thea> 我遇到編碼問題...  http://www.ntcc.gov.tw/14.html  <==  unicode 用python存起來亂碼...
+00:37 < kcwu> thea's url: [南投縣議會]
+00:38 < thea> 試過幾個編碼解法 目前還都是亂碼...  http://billy3321.blogspot.tw/2008/10/pythonunicode.html
+00:38 < kcwu> thea's url: [雨蒼的終端機: Python中的Unicode問題]
+00:38 < t0mst0ne_> kiang: thanks !
+00:41 -!- chihchun is now known as chihchun_afk
+00:42 < johnny__> thea: 用requests 抓的嗎
+00:43 -!- pcchou__ is now known as pcchou_
+00:47 < thea> 恩，對。不過requests回來是中文，經過去html標籤處理後才是亂碼
+00:47 < thea> 難道問題出在去html標籤段（驚
+00:49 < thea> 喔我測了一下，出在requests段沒錯...
+00:50 -!- chihchun_afk is now known as chihchun
+00:50 < thea> <option value="²Ä¤Q¤K©¡">²Ä¤Q¤K©¡   <== 變這樣
+00:52 < johnny__> https://www.irccloud.com/pastebin/FAn8Ooco
+00:52 < kcwu> johnny__'s url: [Pastebin: FAn8Ooco | IRCCloud]
+00:52 < johnny__> thea: try it ^^
+00:55 < thea> johnny__
+00:55 < thea> 好～謝謝！！
+00:55 < johnny__> thea: 也可參考其他縣市的爬蟲 https://github.com/g0v/councilor-voter-guide/blob/master/crawler/tcc/tcc/spiders/bills.py
+00:55 < kcwu> johnny__'s url: [councilor-voter-guide/bills.py at master · g0v/councilor-voter-guide · GitHub]
+01:00 < thea> johnny__: 網址可以換這個看看嗎 'http://www.ntcc.gov.tw/ntcc/anews_list_show.asp?sn=20140901141308'
+01:01 < thea> 亂碼是出在這頁
+01:11 < gugod> kiang: 有試過 tika http://tika.apache.org/ 嗎？ 
+01:11 < kcwu> gugod's url: [Apache Tika - Apache Tika]
+01:30 < kiang> gugod: 沒試過，不過看起來 pdf 的部份也是呼叫 pdfbox 處理的？
+03:21 < gugod> kiang: 我也還在 survey XD
+03:21 < gugod> 所以尚不太熟悉
+04:09 -!- chihchun is now known as chihchun_afk
+05:08 -!- pierre1 is now known as a-tsioh
+06:33  * fntsrlike test
+09:40 < johnny__> thea: 用requests的話，加 r.encoding = 'big5' 即可
+09:47 < miaoski> au: 萌典松是哪天？22 號？
+09:47  * miaoski 只能遠端參加 Q.Q
+09:58 < yhsiangCloud> miaoski: 22
+09:59 < miaoski> yhsiangCloud: ++
+10:18 < thea> @johnny__: 成功了，謝謝
+10:24 < superbil> johnny__: 請問議員小松要怎麼參加？
+10:25 < johnny__> superbil: 右上join !!  http://www.meetup.com/Taipei-py/events/218592523/
+10:25 < kcwu> johnny__'s url: [議員投票網站 Sprint! - Taipei.py - Taipei Python User Group (Taipei) - Meetup]
+10:27 < superbil> johnny__: ok!
+10:31 < thea> 嘉義跟金門有人開始動工了!!(感動
+10:31 < superbil> timothy 說可以處理金門縣的，不過他就遠端參加
+10:34 < reswind> thea: 嘉義好像之前就有人做了？不過看起來還缺少一點點東西？
+10:36 < tonyq___> https://hackpad.com/odconf20-BaBPAXeLPO8 今天在臺北大學的 ODD 研討會
+10:36 < kcwu> tonyq___'s url: [odconf20 - hackpad.com]
+10:36 < tonyq___> 我筆電電有四小時 看能紀錄多少 
+10:43 < kiang> tonyq___++
+10:44 < jung__> tonyq___: ++
+10:45 < kiang> tonyq___: 去 costco 搬一台 http://canady1980.pixnet.net/blog/post/49187122 就可以撐整天了 XD
+10:45 < kcwu> kiang's url: [好市多的多功能汽車急救器 Power Dome LT @ Yona亮晶晶＊旅行地圖 :: 痞客邦 PIXNET ::]
+10:54 < miheille> thea: https://drive.google.com/file/d/0BwPaHSTiwhagRDBEZDBNVUVXR0U/view?usp=sharing
+10:54 < kcwu> miheille's url: [taiwan pic.png - Google 雲端硬碟]
+10:56 < thea> miheille: 我可以試著把線條修拉直一點嗎 ha
+10:57 < miheille> 可以阿
+10:57 < kiang> 咦？不直接用 svg 轉嗎？
+10:58 < thea> miheille: 如果只是簡單的台灣地圖，向量地圖檔應該頗多找的到
+10:58 < miheille> ...@@歐
+11:03 < miheille> thea: 鋸齒編修好了 :D
+11:05 < jung__> 突然發現臺北大學OD研討會還有另一個文字轉播 https://odsuggestion.hackpad.com/--shs1EiUXJ58
+11:05 < kcwu> jung__'s url: [第二屆開放資料研討會 &nbsp;文字轉播 - odsuggestion.hackpad.com]
+11:14 < a0kman> 豪可愛  http://www.pictosan.com/
+11:14 < kcwu> a0kman's url: [日本ピクトさん学会]
+11:38 < miheille> thea: 改這樣呢 把線修過了 https://drive.google.com/file/d/0BwPaHSTiwhagcWNOTHBTOUsyVWc/view?usp=sharing
+11:43 < johnny__> miheille: 亂入一下，可能要留個位給澎湖和連江
+11:44 < miheille> johnny: 阿我忘記了
+11:47 < miheille> thea: png圖檔是不是可以直接用gimp開? 要存什麼格式呢
+11:51 < reswind> johnny__: hihi 嘉義縣議員的資料我也把他補齊了，但是我失手了 T_T 我把他疊在剛剛發的 花蓮縣議案 的 commit 上去～
+11:51 < reswind> johnny__: 所以嘉義縣議員的資料，等上面那個 pull request 過了之後我在把他補發上去～
+11:53 < reswind> johnny__: 但是 hackpad 上面的狀態我就先改掉囉～
+11:57 < tonyq___> 剛忍不住爆氣直接飆了
+11:59 < miheille> what happened?
+11:59 < hcchien> ??
+12:05 < kiang> tonyq___: 求掛
+12:05 < tonyq___> open data 已經推兩年，但這兩年來每年都有失敗案例，台北公車被迫下架、實價登錄被迫下架、政治獻金被迫要人工列印。這很可笑。另外是 whisky
+12:05 < tonyq___> 提到三千多項，但我們隨便選幾個就發現資料格式是有問題的，資料毫無吸引力、又有一堆格式問題。最後是剛工研院提到，我覺得我站在使用者的角度。有沒有 OG 的國際規格到底對我們促進國內 OD 推廣有什麼影響？ 這會妨礙我們制定一個統一的標準或規範嗎？
+12:05 < tonyq___> 請不要措置問題，謝謝。
+12:06 < tonyq___> 我剛直接在提問時間飆這個問題
+12:06 < tonyq___> 幹 工研院的問他他只會講台灣沒投資w3c 投資 OD 標準
+12:06 < tonyq___> 政府的整天吹送自己 OD 已經作多好有多好
+12:06 < tonyq___> 媽的 看在工程師眼裡不知檢討不知廉恥。
+12:08 < kiang> tonyq___++, 要他們聽懂有點難度就是了
+12:10 < miheille> 技術可能都外包了吧.所以沒人會
+12:11 < miheille> 看這次中選會縣市官網全部都長一樣..只有網址不一樣而已~_~
+12:15 < miaoski> au: 可以問一下 ethercalc 的問題？我從 git clone 下來的版本，二個人同時修改的時候，不會自動 refresh / 看到別人改了什麼，都要手動 refresh 這是正常的嗎？
+12:16 < miaoski> tonyq___: ++
+12:16 < kiang> miheille: 不知道實際分成幾個標案就是了，寫一次程式可以吃十多個標案應該可以吃很飽...
+12:23 < a0kman> XD 公務單位的部分OD態度在這次的summit松也有被看見XDDDD  整個笑翻
+12:30 < miaoski> au: hmm Firefox 好像沒問題，但 Chrome 卻不行
+12:31 < miaoski> au: sorry. 不行 :(
+12:41 < miheille> 刀塔傳奇序號 有人要嗎
+12:46 < thea> miheille
+12:46 < thea> 剛去吃飯O_O/
+12:46 < thea> 如果只是台灣地圖，有很多向量黨我可以直接抓來用 就不用重畫
+12:46 < thea> 看有沒有要重新設計
+12:46 < miheille> the 我現在才要吃
+12:48 < miheille> thea: 重新設計什麼
+12:48 < thea> 像這個  我剛下載下來就能用了 http://commons.wikimedia.org/wiki/File:Taiwan_location_map.svg
+12:57 < thea> 剛png的這張圖 可以給我沒有立體的 黑白嗎  有即時描圖的功能可以直接產出來~
+13:07 < miheille> thea: https://drive.google.com/file/d/0BwPaHSTiwhagcEctbHdiMmdRZE0/view?usp=sharing
+13:07 < thea> 3Q
+13:11 < miheille> thea: 澎湖金門連江要嗎
+13:15 < thea> 要喔
+13:18 < miheille> 好
+13:19 < a0kman> 這個演說真不賴，講到資訊知識了解上的偏見
+13:20 < a0kman> http://www.ted.com/talks/hans_and_ola_rosling_how_not_to_be_ignorant_about_the_world?language=zh-cn
+13:27 < thea> miheille: 轉完會像這樣 https://drive.google.com/file/d/0B5LlfzuZ7KpQS0EyNXlfeFJPOXc/view?usp=sharing
+13:36 < tonyq___> https://hackpad.com/odconf20-BaBPAXeLPO8 
+13:37 < tonyq___> 下午場 無人飛行 載具 vs open data 現正同步中
+13:46 < miheille> a0kman: 我看完了
+13:47 < a0kman> XD"
+13:47 < a0kman> 我覺得很不賴
+13:47 < a0kman> 同時也暗示了多元資訊的整合是很重要的
+13:48 < a0kman> 否則很容易被過時教育和偏見媒體左右
+13:48 < miheille> 原來人類智商一直書給黑猩猩
+14:04 -!- Wei-Chih is now known as AlcHawk
+14:17 < miheille> thea: 像這樣嗎 ttps://drive.google.com/file/d/0BwPaHSTiwhagU2VmLXBYV25NNk0/view?usp=sharing
+14:17 < miheille> https://drive.google.com/file/d/0BwPaHSTiwhagU2VmLXBYV25NNk0/view?usp=sharing
+14:25 < miheille> thea: 這個有填色白色了 https://drive.google.com/file/d/0BwPaHSTiwhagUHAzSFJGekpJX28/view?usp=sharing
+14:52 < au> miaoski: node 版本? 用 npm i -g ethercalc 裝看看? 試著跑 redis? 開 issue 吧 XD
+14:56 < miheille> thea: 晚點我重畫好了
+15:02 < miaoski> npm i -g 裝的/ redis 有裝 / node 0.10.18
+15:03 < miaoski> au: 好。確定這樣不正常就好 :) 因為我印象中在立法院用的時候，是可以同步的... 看到別人修改很有趣這樣
+15:03 < miaoski> 那再請問一下，copy 一格的東西，沒辦法一次 paste 到很多格 (excel 可以) 這樣是預期中的嗎？
+15:06 < au> 可以用選取格右下角的 pie menu 小藍點，拖曳做 fill right/fill down
+15:08 < au> 或是用選單列左起第三個圖示 copy，再選取多格，用左起第五個圖示 paste，也可以。
+15:08 < au> Cmd-C/Cmd-V 只能一次一格。
+15:08 < miaoski> au: 了解。所以是正常的 :)
+15:09 < miaoski> 我沒有 npm -i -g 我剛說錯。我裝在 ./node_modules :P 我去試試
+15:25 -!- chihchun_afk is now known as chihchun
+15:27 < a0kman> 一整個很愛北海道米網頁和廣告的概念  http://www.hokkaido-kome.gr.jp/  
+15:35 < thea> miheille: 地圖不用重畫~  有檔案可以拿來用  主要是與本島的擺放位置
+15:35 < thea> 還是我直接想辦法塞就好
+15:41 < tonyq___> 下午第二場李木約講d3 對上資料視覺化
+15:41 < tonyq___> https://hackpad.com/odconf20-BaBPAXeLPO8
+15:42 < hcchien> 原來 docker 不是包 binary!?
+15:49 < miheille> thea: 金門連江離台灣比較遠 你看是要放在旁邊還是要照地圖位置
+15:59 < thea> http://commons.wikimedia.org/wiki/File:Political_divisions_of_the_Republic_of_China(Taiwan).svg  <== 向這個已經是可以直接用的svg了
+16:05 < ronnywang> http://data.gov.tw/node/7504 # 這份資料裡面的 新北市和臺北巿的市 竟然是不同一個字 XD
+16:07 < kiang> 很多資料都沒有經過詳實處理吧，很多地名會改來改去...
+16:08 < thea> 中文的奧秘
+16:08 < kiang> 不過這也許可以證明，資料真的是 raw data XD
+16:13 < miheille> thea: 我是想地圖線條可以簡單一點點
+16:14 < thea> miheille: 以前我看過一張類似方塊型的 還滿可愛的 但找不到了
+16:16 < tonyq___> 繼續一樣是資料視覺化
+16:26 < miheille> 像這樣嗎 http://www.nhi.gov.tw/mqinfo/Map_1.aspx?Type=DM&DAID=110&List=4
+16:43 < thea> 這個也不錯 他座標是寫死的
+16:45 < miheille> thea: 碰到字才會產生連結
+16:46 -!- ymow__ is now known as ymow
+16:48 < johnny__> ronnywang: 之前在比較舊的會議記錄有碰過，後來經 au 的指點，文字都先 NFC unicode normalize http://en.wikipedia.org/wiki/Unicode_equivalence#Normalization
+17:06 < kiang> 彰化有一位村里長跟一位鄉民代表因病去世...，今年選舉好像蠻多候選人消失的消息
+17:17 < miheille> kiang: 有阿 年紀太大掰掰的好幾個
+17:18 < miheille> thea: https://drive.google.com/file/d/0BwPaHSTiwhagOVJKbGZFUkVvZk0/view?usp=sharing
+17:20 < miheille> 這次的我還滿喜歡的
+17:47 < johnny__> 請問有類似 Disqus功能，可整合在mobile app的套件嗎
+17:48 < reswind> johnny__: 關於議案的 "election_year": "2009"
+17:49 < reswind> johnny__: 請問一下這個是代表這個議案的提出來的年份嗎？？
+17:50 < johnny__> reswind: 是屆的概念，例如第17屆 = "election_year": "2009"
+17:50 < miheille> 選舉年份吧
+17:50 < reswind> johnny__: 喔喔，這個就比較有機會了～～～收到
+17:52 < johnny__> reswind: 非直轄市的目前看到都是 第17屆：2009、第16屆：2005、第15屆：2002、第14屆：1998
+17:53 < reswind> johnny__: 感激！！我正在查這個年份 XD
+18:06 < yhsiang> johnny__: https://help.disqus.com/customer/portal/articles/1104789-mobile-integration @ android看來沒有
+18:08 < johnny__> yhsiang: Orz...  thanks!
+18:15 < miheille> jhinny: 目前有哪個縣市需要補充資料的嗎
+18:24 < ipa> 明天要去 code for japan 亂入 @@
+18:29 < thea> miheille: https://drive.google.com/file/d/0B5LlfzuZ7KpQX2JrNG1oclJQbEE/view?usp=sharing  <<== done
+18:29 < thea> 下班XD
+18:38 < t0mst0ne_> 請問一下, 有沒有人知道市區水溝蓋的資料在哪裡找 ?  http://www.cingwei.com.tw/p13.html 
+18:38 < t0mst0ne_> 找到水溝蓋, 就可以畫地下排水溝的map ;  或是哪裡已經有高雄市水溝map ? 
+18:47 < miheille> t0mst0ne: http://webcache.googleusercontent.com/search?q=cache:p5H4HI0ddIsJ:fcp.wra.gov.tw/default.asp%3Fmp%3D10%26county%3D29+&cd=1&hl=zh-TW&ct=clnk&gl=tw&client=firefox-a 本來打高雄排水會有一些東西.不過點進去就消失了
+18:47 < miheille> 我上次去高雄看到朋友把路口常見的水泥孔當煙灰缸用 XD
+19:07 < a0kman> http://www.techbang.com/posts/20997-research-shows-that-government-websites-are-too-ugly-would-leave-people-think-the-government-low-energy
+19:07 < a0kman> XDDD
+19:09 < miheille> 研究顯示政府網站太難看，會導致民眾認為政府低能-->這句話不用前半句也可以成立
+19:14 < t0mst0ne_> miheille: 找不到ㄟ, 看起來沒有公佈管線資料, 很多事都加速發生中
+19:15 < miheille> t0mst0ne: 你住高雄嗎, 高雄好像每個路口都有排水口. 水泥的一個洞
+19:20 < t0mst0ne_> miheille: 沒有, 我住東部; 因為耳聞防疫人員多年前的故事:  幾年前登革熱爆發時, 防疫人員打開人孔蓋; 一群黑壓壓的蚊子飛出來; 防疫人員對住戶說, 要注意這個, 會積水, 裏頭一堆病媒蚊; 然後居民說"那不歸我管, 歸政府管...."   防疫人員也很無耐
+19:21 < miheille> t0mst0ne_: 我有一個很人工的想法, 把高雄道路網畫出來, 徵求高雄市民補上水溝蓋位置. 我那高雄朋友根本不知有登革熱這新聞! 因為新聞沒啥報
+19:23 < t0mst0ne_> miheille: 人工OCR 嗎 !  可是高雄居民不知道登革熱這新聞有點誇張ㄟ ....那新聞再抱啥?
+19:23 < miheille> t0mst0ne_: 我記得這幾天也有看到開發專案有高雄登革熱的提案
+19:23 < seadog007> 原來有提案(遠目
+19:24 < miheille> t0mst0ne_: OCR是什麼?我覺得高雄對記者媒體是滿隱瞞的/氣爆、輕軌有人受傷這些
+19:24 < seadog007> 文字辨識
+19:25 < seadog007> miheille: 等等 其實新聞有報啊= =
+19:25 < seadog007> 還很多
+19:26 -!- chihchun is now known as chihchun_afk
+19:26 < miheille> t0mst0ne_:登革熱的提案好像不見了. 應該說八卦新聞太多都把重要新聞洗掉了吧
+19:26 < miheille> t0mst0ne_: 登革熱那個是想把高雄登革熱地區/感染人數 圖表顯示
+19:27 < t0mst0ne_> 另外還有種辦法, 請鄉民打開GPS拍照, 然後送到flickr , 加上hashtag , 然後看看可不可以用程式抓下來, 自動extract gps 標到 OSM 上  (天真的想法) 
+19:27 < miheille> seadog007: 新聞是有報, 但不是所有高雄人都會去關心新聞/他們週休二日很少/很多還是月休制
+19:28 < miheille> 拍照的話照片會很多很多
+19:29 < seadog007> miheille: 我記得有圖表了耶
+19:30 < miheille> seadog007: 在哪裡 想看
+19:31 < t0mst0ne_> https://g0v.hackpad.com/NpPQ1UZc3Up  CDC即管局都有圖表, 但是就是沒有時序演儘變化
+19:31 < seadog007> 哪種圖表
+19:31 < seadog007> 地區圖
+19:31 < seadog007> ?
+19:31 < miheille> seadog007: 你剛剛說的圖表
+19:32 < miheille> t0mst0ne_: 夭壽喔2014是怎麼了! 太熱嗎
+19:32 < seadog007> miheille: 阿就CDC阿
+19:32 < seadog007> <-- 天天跑去疫區的
+19:33 < miheille> 喔我看到了
+19:33 < t0mst0ne_> miheille: 所以...不知道 ; 亂入(和氣爆有關 or 和氣爆的疫區有關 or 無關) .....
+19:33 < miheille> 他那是累積人數對嗎
+19:33 < seadog007> 恩
+19:34 < miheille> 感染登革熱會怎麼樣阿?
+19:34 -!- chihchun_afk is now known as chihchun
+19:34 < t0mst0ne_> 準備opendata 資料時看到這裡 (http://en.wikipedia.org/wiki/John_Snow_(physician)#mediaviewer/File:Chol_an.gif) 想到登革熱是病媒蚊, 病媒蚊是需要水, 水溝就是重點防治; 然後過去的防治都很不容易; 然後氣爆  #$%^&
+19:35 < t0mst0ne_> http://zh.wikipedia.org/wiki/%E9%AA%A8%E7%97%9B%E7%86%B1%E7%97%87
+19:36 < t0mst0ne_> 得一種, 發燒, 沒事;  但沒有免疫力; 得第2種, 出血性登革熱, 就不大好 ......
+19:37 < t0mst0ne_> 今年東南亞, case 都多, 可能很熱有關.....
+19:38 < t0mst0ne_> 如果畫出水溝地圖, 高雄居民會比較注意嗎 ? 我也不知道  
+19:39 < seadog007> 應該會筆記好懂
+19:39 < t0mst0ne_> https://www.irccloud.com/pastebin/7CdGvFFm
+19:39 < t0mst0ne_> s/黑死病/霍亂/ 原文是cholera 
+19:40 < seadog007> s/筆記/比較
+19:40 < miheille> http://udn.com/NEWS/NATIONAL/NATS3/9058746.shtml 最近的新聞
+20:02 < miheille> 氣爆管線圖http://zbryikt.github.io/visualize/kh-pipe/ 好像還真的跟登革熱密集疫區有重疊
+20:04 < miheille> tutorabc還真不死心. 跟她說不用還是寄DM來了
+20:18 < t0mst0ne_> miheille: ++
+20:18 < miheille> 右
+20:22 < t0mst0ne_> ㄚ , 好像 google map 街景就可以標水溝蓋了  XD  ;  只是標完應該密密麻麻, 也不知道有沒有用 Orz
+20:24 < t0mst0ne_> 有點扯, 人孔蓋超多的, 好密啊...算了, 大概很難估了, 是不是整個城市底下都是.....
+20:24 < miheille> t0mst0ne_: 我把疫區圖跟氣爆管重疊了 https://drive.google.com/file/d/0BwPaHSTiwhagbHIweUVQRWRjQ3c/view?usp=sharing
+20:26 < t0mst0ne_> miheille: 好厲害 !
+20:26 < miheille> ....剛好看到g0v做的氣爆管線
+20:28 < miheille> 氣爆管跟水管是一樣的路線嗎?
+20:28 < lanf0n> miheille: 只好寫上今日公報了ww
+20:28 < miheille> ??公報??
+20:29 < t0mst0ne_> miheille: 應該不是; 不過病媒蚊至少是在地下道; 至於氣爆管, 不懂...
+20:29 < kiang> 氣爆管跟部份下水道是重疊的
+20:29 < kiang> 因為洩漏後順著水溝擴散
+20:30 < kiang> 所以光看地下管線分佈並沒有辦法看出氣爆實際影響範圍
+20:31 < miheille> 推論: 氣爆管>影響地下水道>登革熱, 是這樣嗎
+20:32 < kiang> 登革熱主要原因是暖冬現象吧，下水道破壞後還原速度應該也是影響這次疫情的關鍵，但並沒有完整數據囉
+20:33 < miheille> 我覺得蚊子就是高溫產物...這夏天蚊子超多
+20:35 < lanf0n> miheille: https://g0v.hackpad.com/201411101116--7VKOrWmJ5St
+20:39 < miheille> 哇..好神奇 .那個請問一下.發病日統計橫軸的年週是什麼 http://nidss.cdc.gov.tw/singledisease.aspx?Pt=s&dt=4&dc=1&disease=487a&d=3&i=all&s=determined_cnt&RK=W&Q=N
+20:40 < miheille> lanf0n: 我要更正一下.管線不是氣爆管.是地下管線.
+20:41 < kiang> miheille: 應該是該年度的第 n 週吧
+20:42 < miheille> 恩對 就是第幾週
+20:46 < kiang> 目前看到馬來西亞已經嚴重到發布旅遊警示，有 170 死亡；廣東說有 21,527 個病例，但死亡人數只有 6 個，感覺中國的數字都跟世界不太一樣
+20:46 < miheille> 不能說的秘密
+20:49 < lanf0n> 中國的數字是平行世界那的吧...
+20:55 < t0mst0ne_> kiang: 台東也很熱, 但是沒有太多病例 , 所以水溝(或下水道, 或...) 可能還是有點影響 ;  另外其他城市也有下水道,也是沒太多case 
+20:55 < miheille> 會跟颱風有關嗎
+20:56 < t0mst0ne_> 所以是不是高雄的下水道和別地方不一樣; 或生態系不一樣, ...
+20:57 < miheille> 就比較熱又靠海人口密集
+21:22 < miheille> 我高雄朋友跟我說. 高雄今年很多預算都被砍了. >很多事無法做
+21:22 < miheille> 登革熱集中在三民區-算是老社區! 衛生環境比較不好
+21:23 < miheille> 想了老半天結果直接問當地人最快
+21:29 < t0mst0ne_> miheille: 預算被砍 ....那可能是主因 
+21:30 < miheille> t0mst0ne_ : 他說他們有個流氓議長
+21:30 < t0mst0ne_> 那高雄市議會可以找到砍預算的會議記錄嗎 ?  來找找
+21:31 < miheille> ㄆ...找通過的搞不好比叫快喔
+21:32 < t0mst0ne_> 不大懂議事紀錄, 被砍不會有記錄嗎 ?
+21:32 < miheille> ....這就要請教專家了...
+21:32 < miheille> 呼叫專家
+21:37 -!- vincent is now known as Guest16832
+21:42 < Guest16832> test
+21:44 < miheille> t0mst0ne: 高雄市議會 http://cissearch.kcc.gov.tw/ 右下角是最近案件統計. 打開看會覺得很神奇...
+21:47 < thea> 話說是不是chrome有時候會打不開 http://hack.g0v.tw/irc 呀
+21:48 < lanf0n> thea: 可以用 irccloud
+21:49 < kiang> http://www.appledaily.com.tw/appledaily/article/headline/20140215/35642449/ 砍預算的新聞
+21:49 < thea> 嗯嗯～我改用safari或firefox就可以看到登入 ＱＱ irccloud剛登入覺得太醜了 嗚嗚~!!
+21:49 < kiang> 台東人口密度應該沒有高雄來的高，數量驚人大多是人口密集跟衛生條件不佳同時存在吧
+21:50 < miheille>  恩這就是答案了
+21:51 < thea> 我姊北高，他說每年都有耶（今年更多就是了
+21:52 < miheille> 今年是爆多 11000例
+21:52 < Wei-Chih> 大家好
+21:52 < miheille> hi, 晚上好
+21:52 < Wei-Chih> 新手加入
+21:52 < t0mst0ne_> kiang: 也有可能 !
+21:52 < t0mst0ne_> http://councils.g0v.tw/bills/%E9%AB%98%E9%9B%84%E5%B8%82/normal/?keyword=%E7%99%BB%E9%9D%A9%E7%86%B1 
+21:53 < miheille> XD 這個好強
+21:54 < t0mst0ne_> 不過看到的是2011, 2012 , 2013/14 沒有記錄, 不知道是否是沒有議案還是13/14 記錄還沒入
+21:54 < lanf0n> Wei-Chih: hi~
+21:54 < johnny__> t0mst0ne_: 這個是砍預算的表決  http://councils.g0v.tw/votes/%E9%AB%98%E9%9B%84%E5%B8%82/normal/
+21:57 < miheille> 很誇張
+21:57 < johnny__> t0mst0ne_: 最後缺席這麼多又都是同黨，大概可以google一下應該有新聞，
+21:58 < t0mst0ne_> johnny__: miheille 找不到和防治有關的預算被砍 ?? 
+21:59 < miheille> t0mmst0ne_ :基本上砍掉57億等於是什麼都不給做了
+22:00 < miheille> t0mst0ne_: 其實我覺得預算跟登革熱關係不大/主要是疫區(三民區)衛生環境不好、人口集中
+22:03 < t0mst0ne_> 真的不大懂議會記錄和整個運作; 汗顏, 難怪當初選3類組 XD
+22:05 < johnny__> 有沒有可能是國家的教育就沒有想讓大家懂 XD
+22:06 < miheille> t0mst0ne_: 各人專長不同, 不過如果可以找出預算不通過與災害的關聯性那就好玩了
+22:06 < miheille> 政府離人民太遠了
+22:07 < thea> 其實每個縣市自治的關係吧，所以格式都不太一樣 ...
+22:09 < Wei-Chih> 真的沒有統一的格式....
+22:09 < Wei-Chih> 各自為政嘛~lol
+22:09 < reswind> johnny__: Hi Hi 要增加的欄位新增完畢了！
+22:10 < kiang> 地方議會一直是各自為政的，透明度很糟，也造成監督不易吧
+22:10 < johnny__> reswind: 哦哦好！
+22:11 < johnny__> reswind: 明天會去小松嗎？
+22:12 < t0mst0ne_> johnny__: ++  
+22:13 < reswind> johnny__: Sorry 應該沒有辦法 T_T 跟 JCConf 衝了，下午有些場次我有興趣～
+22:14 < johnny__> reswind: 那無法喝到我準備的檸檬汁了哈哈哈
+22:14 < reswind> johnny__: 竟然還有這種福利 ... XDDDD
+22:15 < miheille> ....有檸檬汁... 我的鼻子快塞住了
+22:15 < thea> mihille: 明天會來嗎 XD
+22:15 < miheille> 想去阿.可是我在南投
+22:16 < thea> !! 原來你在南投～～
+22:17 < miheille> 每天滿滿的選舉車從外面經過
+22:17 < seadog007> 台南沒有OWO
+22:18 < kiang> seadog007: 台南 maker faire
+22:18 < kiang> 我應該會去坐檯吧 XD
+22:18 < miheille> 台南護手霜...哈哈
+22:18 < kiang> 不要欺負秀霞啦 ;)
+22:19 < seadog007> XDDD
+22:19 < seadog007> kiang: 會去喔
+22:19 < seadog007> kiang: 哪個攤位呢XD
+22:19 < kiang> seadog007: 是啊，要來攤位這邊搞個小松嗎？
+22:19 < seadog007> 誒誒 好像可以噢XD
+22:20 < kiang> 我找找（還沒搞懂攤位地圖 XD ）
+22:21 < kiang> seadog007: D18 遊戲實驗室
+22:21 < seadog007> OK 喔 XD
+22:22 < kiang> 通關密語：隔壁有個女同學很正
+22:22 < seadog007> 蛤= =
+22:22 < kiang> XD
+22:22 < kiang> seadog007: 成大學生？
+22:23 < seadog007> kiang: X
+22:23 < seadog007> 看到我不要太訝異喔
+22:23 < kiang> seadog007: 見過嗎？ id 沒印象
+22:23 < seadog007> kiang: 應該有吧 有去 summit嗎?
+22:23 < kiang> seadog007: 沒耶，在家裡打小孩
+22:24 < seadog007> 我想想喔 今年才接觸社群
+22:24 < kiang> seadog007: https://www.facebook.com/groups/mosut/ ?
+22:25 < seadog007> 沒有在裡面
+22:25 < kiang> 嗯，那應該沒見過吧
+22:25 < seadog007> 就是被SITCON貼文亂標的那個啦ww
+22:26 < seadog007> https://www.facebook.com/SitconTW?fref=ts
+22:26 < seadog007> 聽說我是活招牌(X
+22:27 < kiang> seadog007: 我狀況外， Sitcon 總召？
+22:28 < kiang> 看起來 fb id 也是 seadog007 ，看到人頭了，不是女同學，唉
+22:28 < seadog007> kiang: 我沒有那麼老啦QQ
+22:28 < seadog007> 新鮮的肝(X
+22:29 < seadog007> <-- 小孩
+22:29 < kiang> seadog007: http://sdt.lionfree.net/ ?
+22:29 < seadog007> 我不是lion喔
+22:30 < seadog007> 不過我是SDT的啦
+22:30 < seadog007> kiang: 歡迎去 #ysitd 了解更多XD
+22:30 < kiang> seadog007: 明天來了就知道囉 :)
+22:35 < pcchou> 原來…
+22:40 < johnny__> reswind: 請問一下你跑完 bills crawler大概多久？我加了提案單位去跑，目前大概五分鐘了還在跑說
+22:44 < RzChen> 小試身手...完成基隆市議員基本資料爬蟲..眼皮一直跳跳ˊˋ
+22:44 < thea> RzChen++
+22:45 < RzChen> HI!!!
+22:45 < RzChen> 決定明天到現場繼續奮鬥Q_Q
+22:46 -!- peng_ is now known as Guest14738
+22:48 < johnny__> RzChen ++  明天見
+22:51 < Michael_LI> ＜相信大夥已經知道g0v上公視節目曝光，今天補充一點東西＞「麥迪遜（James Madison）民主」︰我們選出一個政府要強大，但是又要強大到它能夠制約住自己的權利！
+22:51 < thea> 明天方便能稍微講解一下crawler中  bills & meeting_minutes的流程嗎
+22:52 < Michael_LI> 續上／（海盜船有民主制度，選舉船長，通常舵手也是制衡船長的監督力量）／http://bit.ly/11-14JamesMadison
+22:52 < johnny__> thea: 好，我準備一下
+22:53 < thea> johnny__: 謝謝～
+23:00 < reswind> johnny__: 你說花蓮縣的嗎？超久的 XDDDDD
+23:00 < reswind> johnny__: 我都是跑了就放著去做其他事情了
+23:02 < johnny__> reswind: got it, 那個 format有問題的議案，我發個 issue記錄起來，有人有空的時候就可以去回報了
+23:03 < reswind> johnny__: 說的這個就尷尬阿，花連縣議會沒有 email 等溝通管道可以通知
+23:03 < reswind> johnny__: 除了打電話 .....
+23:03 < miheille> 大家晚安~
+23:04 < thea> 晚安～
+23:04 < thea> reswind: 找議員ＸＤ
+23:05 < reswind> johnny__: 好主意，我找那個提案的議員，跟他說這樣會少算一筆！！
+23:05 < reswind> Orz 打錯，應該是 thea XDD
+23:05 < johnny__> reswind: 之前 pofeng 大大就是打電話去 XD
+23:06 < reswind> johnny__: XD 嗯嗯，好主意。不過明天星期六，我先寄信給那個議員好了 ~~
+23:09 < reswind> johnny__: 你是對的，那個議員沒有所謂的 email 跟 facebook ....
+23:11 < johnny__> reswind: 有些議會會寫議員手機 XD
+23:12 < reswind> 嘉義縣的議案資料 query 條件超奇怪的 Orz
+23:12 < reswind> 那個是傳說中的 ASP.NET 的格式嗎？ http://www.cyscc.gov.tw/chinese/Discussing_index.aspx?n=40
+23:13 < reswind> 我用瀏覽器抓到他傳過去的 form-data 是一整陀的
+23:17 < thea> 為什麼需要query阿  送空白不會有全部資料嗎
+23:18 < reswind> thea: 會有，但是他有分類，如果我想要議員提案，應該就會需要跟縣長提案不同的參數
+23:18 < reswind> thea: 另外，如果想要讓他不要分頁的話，也需要填寫最大比數
+23:18 < thea> 嗯嗯！！
+23:19 < thea> 我在南投貌似沒看到縣長提案 orz
+23:19 < reswind> thea: 不過我現在沒有辦法模仿他去填寫需要的資料，因此取不到資訊
+23:20 < reswind> thea: 目前我打算用暴力法了 ...
+23:20 < thea> 我是先把議程的link先全數抓下來  寫到txt檔案內  讓strart url 開檔案...
+23:22 < reswind> thea: 嗯，最慘就是用這個方法了 ...
+23:23 < reswind> thea: 先手動 query 然後把網頁存起來 T_T
+23:23 < seadog007> @@
+23:23 < seadog007> 應該可以自動化吧
+23:23 < reswind> 不過嘉義縣的議案好少 ...
+23:23 < thea> 不用啊 抓取該頁的所有link
+23:23 < reswind> 我需要有人教我怎麼去 query 嘉義縣議案 T_T
+23:24 < reswind> seadog007: 我目前卡關再不知道怎麼 query http://www.cyscc.gov.tw/chinese/Discussing_index.aspx?n=40
+23:24 < reswind> thea: 嗯嗯，我了解～我跟你說的方法應該是一樣的 T_T
+23:24 < seadog007> 所以是要dump什麼呢
+23:24 < reswind> seadog007: 議員提案的所有議案
+23:26 < seadog007> 提案人居然還有「縣張花冠」 這種東西呢ww
+23:27 < seadog007> 9頁 應該可以
+23:28 < seadog007> 抓內容就好了嗎?
+23:28 < thea> 縣長提案好酷～
+23:29 < reswind> seadog007: 嗯～如果要抓所有 link 我這邊應該是沒有問題，可是卡在說要自動化的部份
+23:29 < reswind> seadog007: 例如你現在要選取議員提案，他的網址還是 http://www.cyscc.gov.tw/chinese/Discussing_index.aspx?n=40
+23:29 < seadog007> 其實
+23:29 < seadog007> http://www.cyscc.gov.tw/chinese/Discussing_Detail.aspx?s=383
+23:29 < seadog007> 這個直接來就好了啊
+23:29 < seadog007> s改掉
+23:29 < reswind> 是阿，這個就是暴力法
+23:30 < reswind> 就是所有 id 重頭到尾都去抓一次
+23:30 < reswind> 可是因為不知道 id 起頭跟結尾，所以可能會對那個網站多發很多不必要，或者無用的 request ..
+23:30 < reswind> 我本來是想避免這種情況拉 Orz ...
+23:30 < seadog007> 應該是1
+23:31 < reswind> 你可以試試看 7
+23:31 < reswind> 7 就是空的
+23:31 < reswind> 所以並不是完全連號～
+23:31 < seadog007> 前面都空的啊
+23:32 < seadog007> 1秒一個應該是打不下來啦
+23:33 < seadog007> 5分鐘應該就夠了
+23:33 < reswind> seadog007: 嗯嗯 ...
+23:44 < pcchou> timdream, 晚安！ 你是？
+23:45 < timdream> pcchou: 你好，我只是個路人 ….
+23:46 < timdream> pcchou: 剛剛電腦自己斷線重連
+23:48 < pcchou> 突然發現 #g0v.tw 應該也需要一個ID對照表的(X
+23:51 < seadog007> 爬到有資料的列表了
+23:52 < seadog007> 然後篩選出議員的
+23:55 < seadog007> reswind: 我有有資料的列表了
+23:55 < seadog007> 要連其他資料一起砍下來嗎?
+23:56 < seadog007> 還是只要議員的
+23:56 < reswind> seadog007: 喔喔，酷～請問一下你是送怎樣的 request 過去呢？
+23:56 < seadog007> 就 for 啊@@
+23:56 < seadog007> http://www.cyscc.gov.tw/chinese/Discussing_Detail.aspx?s=
+23:56 < seadog007> 這個
+23:56 < reswind> seadog007: 其實我也不太清楚說，我之前做花蓮的是順便全部都砍下來
+23:57 < seadog007> 去看有沒有#ctl00_ContentPlaceHolder1_fvDetail_Label2
+23:57 < reswind> seadog007: 喔喔了解 XDDDD 所以你要順便把嘉義縣議會的 crawler 都做完嗎 (推坑)
+23:57 < seadog007> 這個
+23:57 < seadog007> 小弟國中生 沒時間ww
+23:57 < reswind> seadog007: 真是太厲害了 ......
+23:57 < thea> seadog007: ++
+23:58 < seadog007> 我們學校的資料我怎麼砍夜砍不下來呢
+23:58 < reswind> seadog007: 感謝你，我知道方法了～剩下的我把 crawler 寫完就 OK 了
+23:58 < seadog007> s/夜/也/

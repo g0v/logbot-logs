@@ -1,0 +1,548 @@
+--- Day changed 三  6月 25 2014
+00:02 -!- chihchun is now known as chihchun_afk
+00:04 < au> NewCliCker: 抱歉我還沒有寫復原的界面... 目前的復原方式可以用 Clipboard -> SocialCalc save format -> .txt 貼進文字框 -> load SC clipboard with this -> 回 A1 貼上 來達成，但是這太麻煩了... 命令列的回復方式如下:
+00:04 < au> curl https://ethercalc.org/static/history/G8VTV/1403598901269.txt | curl -i -X PUT --data-binar@-  https://ethercalc.org/_/G8VTV
+00:04 < au> 現在已回復
+00:05 < NewCliCker> au++++++++++ <(_ _)> 
+00:05 < au> er, irc 貼上漏字，重貼... :
+00:05 < au> curl https://ethercalc.org/static/history/G8VTV/1403598901269.txt | curl -i -X PUT --data-binary @- https://ethercalc.org/_/G8VTV
+00:09 < isacl> au: soga, 原來是 --data-binary , 剛剛一直在用 -d 都不成功 (太久沒用了忘記了) :p
+00:09 < Rhozan> 太強了 都看不懂 au++
+00:10 < isacl> 我是先 try clipboard 但漏掉了要回 A1 貼上。用 clipboard 步驟真的好多
+00:10 < clkao> au: 剛才是被大量清還是... ?
+00:11 < NewCliCker> au++ 話說，命令列是哪裡啊？ Comment 那一欄嗎？
+00:11 < au> clkao: 不是，是有日文用戶在玩
+00:11 < au> https://ethercalc.org/static/history/G8VTV/1403621401402.txt
+00:11 < clkao> 那怎麼 poplusteam 也 GG :p
+00:11 < au> NewCliCker: 是... 就是命令列 (cmd.exe、powershell、bash、terminal)
+00:12 < au> clkao: PUT handler 沒寫好 XD 剛修了也 npm publish 新版了
+00:12 < a0000778> au: 剛剛那條不能用在cmd吧 XD
+00:12 < au> a0000778: 有灌 MSYS 或 cygwin 就可以啊
+00:12 < au> 或是 curl.exe
+00:15 < NewCliCker> au: XD XD 原來如此，我還想說 ethercalc 有命令列整個好先進，又學到一招
+00:15 < a0000778> au: 那個還算cmd麼...
+00:17 < isacl> a0000778: 用 curl.exe 的話可以算啊
+00:18 < NewCliCker> 我來把 http://hackfoldr.org/projectpool 裡面蒐集到的 hackfoldr 都巡一遍看看好了 XD #大規模hackfoldr殺傷性武器
+00:18 < a0000778> isacl: 但是不能用 | 吧？
+00:19 < au> cmd.exe 支援 pipe 
+00:19 < isacl> a0000778: 印象中可以
+00:19 < au> DOS 6.0 就支援了
+00:19 < a0000778> 慘了 對cmd瞭解不夠
+00:19 < isacl> 只是 @- 我不太確定 :P
+00:31 < NewCliCker> au++++ 大感謝 #自動備份功能可以讓人安心睡覺
+00:32 < A-Han> 各位鄉親好友們 雖然給力萌典：動詞分類庫建置計畫 尚未正式上線（因為選擇句型的介面還要稍微改一下 使用說明和範例也要另外寫XDD
+00:32 < A-Han> 不過 因為au在hackath9n過於神速的緣故 我終於把hackpad補完了！
+00:32 < A-Han> https://g0v.hackpad.com/s1olVpQVFRS
+00:32 < kcwu> A-Han's url: [給力萌典：動詞分類庫建置計劃 - g0v.hackpad.com]
+00:33 < A-Han> （因為au只花兩小時填坑 XDDD
+00:34 < A-Han> 因為這是另開的hackpad 包括目標和階段補上
+00:34 < A-Han> 希望大家給意見 也一同加入共筆
+00:35 < A-Han> 比較具體的部分可以直接看 https://g0v.hackpad.com/s1olVpQVFRS#:h=3.-目標與進程   （前面其實是理念分享
+00:39 < A-Han> au 我提到萌典的部分如果有誤 請幫我直接修正 非常感謝~~
+00:51 < A-Han> au 可否請問新手問題 :P
+00:52 < A-Han> au: 我現在在你上次給我的新手頁面上 https://github.com/g0v/moedict-dodo/edit/gh-pages/index.html  
+00:52 < kcwu> A-Han's url: [Sign in · GitHub]
+00:52 < A-Han> 講錯 你上次給我的「編輯」頁面上
+00:54 < A-Han> 我要把按鈕3分兩個 按鈕4也分兩個 「無法判斷」刪除
+00:54 < A-Han> 1 2 3 4 類別可以用顏色區分（淺色以避免文字不清楚） 1黃 2藍 3綠 4紅
+00:55 < A-Han> 3的兩個按鈕為 「兩個都可以填入同一個名詞，而且意思都一樣。」 「兩個都可以填入同一個名詞，但是意思不一樣。」
+00:55 < A-Han> 4的兩個按鈕為 「兩個都不可以填入名詞，因為這個動詞本來就不能接一個受詞。」  「兩個都不可以填入名詞，因為這個動詞不是現代國語的動詞。」
+00:56 < A-Han> 根據以上需求 我現在先找color 但我發現color的指令好像不是寫在文字內容附近？
+00:58 < A-Han> 我好像講太亂了 我寫在hackpad :P
+01:03 < A-Han> au: hackpad裡 關於 20140625網站介面修改
+01:03 < A-Han> au: 或者向大家求救修改方法
+01:04 < A-Han> 講錯：或者我在此向大家求救修改方法 感謝 :D
+01:04 < A-Han> https://github.com/g0v/moedict-dodo/edit/gh-pages/index.html
+01:04 < kcwu> A-Han's url: [Sign in · GitHub]
+01:16 < A-Han> miaoski_home: 
+01:17 < A-Han> miaoski_home, a-tsioh   https://g0v.hackpad.com/s1olVpQVFRS
+01:17 < kcwu> A-Han's url: [給力萌典：動詞分類庫建置計劃 - g0v.hackpad.com]
+01:20 -GitHub130:#g0v.tw- [hack.g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/hack.g0v.tw/commit/669458901fe62470cc3632da7882c2823b89d197
+01:20 -GitHub130:#g0v.tw- hack.g0v.tw/gh-pages 6694589 g0v general (via TravisCI): regen for d88dda5
+01:20 < a-tsioh> A-Han: 看到了
+01:21 < a-tsioh> （當然還沒看完:p)
+01:21 < A-Han> a-tsioh: 
+01:22 < A-Han> a-tsioh: 慢來因為天色已晚 XD
+01:22 < a-tsioh> :)
+01:23 < a-tsioh> ETBlue: 在嗎？（還是現在太早?)
+01:23 < ETBlue> a-tsioh: 在 XD
+01:23 < ETBlue> 喔喔喔多了好多 log 沒追
+01:23 < a-tsioh> A-Han: 我會告訴所友
+01:24 < A-Han> a-tsioh: 
+01:24 < A-Han> a-tsioh: 好的感謝 :D
+01:25 < A-Han> a-tsioh: 不過我正想辦法改網頁 如果有朋友能在hackpad給意見 那就太感謝了~~
+01:25 < a-tsioh> ETBlue: 我想把Android輸入法變成g0v計劃
+01:26 < a-tsioh> 說不定這樣會有人來幫忙，我有一點來不及而且想專心design webapp
+01:27 < ETBlue> a-tsioh++ !!!
+01:28 < a-tsioh> 我不是很懂過程
+01:29 < a-tsioh> 是要去找「沒有人」申請嗎? XD
+01:31 < ETBlue> a-tsioh: 據說有三個步驟 1.在 repo 加入 g0v.json 檔案, 格式 https://github.com/g0v/hack.g0v.tw/blob/master/g0v.json
+01:31 < kcwu> ETBlue's url: [hack.g0v.tw/g0v.json at master · g0v/hack.g0v.tw · GitHub]
+01:32 < ETBlue> a-tsioh: 2.在 http://hack.g0v.tw/project 搜尋框輸入專案名稱，找不到結果時會出現新增專案按鈕
+01:32 < ETBlue> a-tsioh: 3. (optional) 可以把 repo transfer 給 https://github.com/g0v 
+01:32 < kcwu> ETBlue's url: [g0v · GitHub]
+01:33  * ETBlue 寫一下 hackpad 好了 XD
+01:34 < a-tsioh> 好我看一下
+01:37 < sb-werrom> NewCliCker: 順便也幫忙看看有沒有哪些專案分類錯誤或不適當 話說昨天又一個新網頁專案可以新增上去
+01:41 < ETBlue> a-tsioh: 將現有專案加入 g0v 步驟 https://g0v.hackpad.com/-g0v--weScR5YVcZs 
+01:41 < kcwu> ETBlue's url: [步驟 - 將現有作品變成 g0v 專案 - g0v.hackpad.com]
+01:42 < clkao> 爆炸了
+01:42 < clkao> 雨太大好像把水管弄爛了 停水..... orz
+01:43 < A-Han> clkao: 最會下雨的文山區反而沒雨@@
+01:43 < sb-werrom> .....發現台灣西半部海岸邊一堆小而強的對流胞
+01:45 -GitHub53:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/ce6a6d1566ccf53fb38210d57a3cad97038408ea
+01:45 -GitHub53:#g0v.tw- g0v.tw/gh-pages ce6a6d1 g0v general (via TravisCI): regen for 15b3d18
+01:47 < ETBlue> 什麼是對流胞？（googling...
+01:48 -!- sb-werrom [76A16607@conference/jsconf/x-pfjvldqjbthqecse] has left #g0v.tw []
+01:49 < ETBlue> 喔喔喔，積雨雲 XD
+01:50 < Lee1092> ipa:  Ya 成功啦~  http://g0v.tw/zh-TW/communique.html    英文版先用了  g0v Newsletter  代替  XD
+01:50 < kcwu> Lee1092's url: [公報]
+01:50 < clkao> tkalu, walkingice: kktix bug: "說明文字" 欄位雖然說欄位名稱 （不顯示）... 可是還是顯示了... 
+01:50 < a-tsioh> ETBlue++
+01:51 < a-tsioh> audience是啥？
+01:51 < ETBlue> Lee1092: 挖好漂亮！
+01:54 < clkao> please help reviewing http://g0v-tw.kktix.cc/events/g0v-summit-2014-international?locale=en
+01:54 < kcwu> clkao's url: [g0v summit 2014 - international]
+01:54 < clkao> (and the form)
+01:54 < Lee1092> ETBlue: 謝謝   其實是 Semantic-UI 太好用了  (y)
+01:57 < Lee1092> clkao++  看到 kktix 都有股衝動想搶票  lol...
+01:58 < caasihuang> Lee1092++
+02:01 < clkao> Lee1092: ....
+02:03 < a-tsioh> 在「新增專案」有卡住的感覺
+02:04 < ETBlue> a-tsioh: 我試試看 XD
+02:05 < ETBlue> a-tsioh: 噢，要先登入…
+02:06 < superbil> Lee1092: ++ 好漂几
+02:06 < ETBlue> a-tsioh: 而且要先有 g0v.json 檔案 XD
+02:06 < superbil> ETBlue: ++
+02:07 < superbil> 看到這個才想到，本來的通訊錄重做出去後都沒有做 g0v.json XD
+02:08 < ETBlue> a-tsioh: audience 是…這裡有名詞解釋 https://g0v.hackpad.com/g0v.json-spec-c07sSfauWSc
+02:08 < kcwu> ETBlue's url: [g0v.json spec - g0v.hackpad.com]
+02:08 < a-tsioh> 都有
+02:11 < ETBlue> superbil: 求幫 a-tsioh debug 加入專案的問題……我沒做過 XD
+02:18 < superbil> ETBlue: 我試一下，這事我目前也只做過一次
+02:19 < a-tsioh> 這個repository
+02:19 < a-tsioh> https://github.com/a-tsioh/TaigIME-android
+02:19 < kcwu> a-tsioh's url: [a-tsioh/TaigIME-android · GitHub]
+02:19 < ETBlue> superbil++ :D
+02:23 < superbil> a-tsioh: 試了一下看來有東西壞掉了... 
+02:23 < a-tsioh> :s
+02:23 < superbil> Unexpected token ... :S
+02:23 < a-tsioh> yep
+02:24 < a-tsioh> I wasn't expecting any token
+02:29 < superbil> 慘了 不知道從那邊下手
+02:33 < a-tsioh> 沒關係，不急
+02:33 < a-tsioh> 現在已經很晚我先去休息，下次再試試看
+02:34 < ETBlue> a-tsioh: 晚安
+02:35 < a-tsioh> bonne nuit !
+02:52 < caasihuang> yhsiang: ping
+03:45 < kiang> http://www.ptt.cc/bbs/Gossiping/M.1403621681.A.52B.html - 之前 clkao 提的新媒體？
+03:45 < kcwu> kiang's url: [批踢踢實業坊]
+03:50 < kiang> (某戰場文字太多，還是睡覺去好了...)
+07:06 < yhsiangCloud__> caasihuang: pong
+09:05 < miaoski_home> clkao: 建議 s/created/found|established/
+09:07 < miaoski_home> 建議 s/across many fields//
+09:07 < miaoski_home> s/among the/one of the/
+09:09 < miaoski_home> A-Han: 對不起我突然掉進民有、民治、民享，也就是倫理、民主、科學、也就是民族、民權、民生了 @@
+09:11 < A-Han> miaoski_home: 我懂了 非常非常感謝！
+09:12 < miaoski> A-Han: 沒事，我一定是早上還沒睡醒 @@ 
+09:13 < A-Han> 哈哈 是我書寫的壞習慣
+09:15 < A-Han> 覺得有任何一點抽象概念不一樣 就會有強迫症寫一段 以為這樣才完整
+09:16 < A-Han> （都是被菸酒生活害的XD
+10:55 < caasihuang> yhsiangCloud__: 想問問你做 hackfoldr responsive 時，在 index 跟 hack 都加了 menu 的緣由？
+10:57 < NewCliCker> sb-werrom: 您說 http://hackfoldr.org/projectpool 又一個新網頁專案可以新增上去，是指哪一個呢？我感覺自 6/21 黑客松開始有如雨後春筍好像要增加的不只一個...
+11:06 < Lee1092> NewCliCker:  之前 22號  tw 整裡缺少的 名單  https://gist.github.com/anonymous/57cfc649b60d13a2b7f3   我還沒時間加上去  有空可以幫忙補  thx XD
+11:06 < kcwu> Lee1092's url: [專案池連結新增(至20140622_2120)]
+11:14 < lanf0n> Lee1092: project pool hackfoldr 要 redirect 到自己嗎...囧
+11:15 < NewCliCker> Lee1092: cool ! 早上已經先加了萌典 hackfoldr ; btw 我先把「將自己參與的作品專案加入 project pool hackfoldr 」加進「將現有作品變成 g0v 專案」的 SOP 流程，https://g0v.hackpad.com/-g0v--weScR5YVcZs 
+11:15 < kcwu> NewCliCker's url: [步驟 - 將現有作品變成 g0v 專案 - g0v.hackpad.com]
+11:17 < Lee1092> lanf0n:   XDDD  無限 redirect  哈哈哈  都可啦  
+11:17 < yhsiang> caasihuang: index hack?
+11:17 < yhsiang> caasihuang: index是原本的menu
+11:17 < caasihuang> yhsiang: index.jade 跟 hack.jade ？
+11:17 < yhsiang> caasihuang: hack裡面是responsive後會出現的menu
+11:17 < Lee1092> NewCliCker++  
+11:18 < yhsiang> 就是不破壞原本架構 
+11:19 < caasihuang> yhsiang: 瞭解，那三個 icon-bar 是？
+11:20 < yhsiang> bootstrap2的icon-bar啊
+11:20 < caasihuang> 在 g0v.today 看不到那三個 icon-bar
+11:20 < yhsiang> 三個icon-bar要在手機上才會看到啊 XD
+11:21 < yhsiang> bootstrap 2沒有三條線的icon所以那時候是用icon-bar*3來做
+11:21 < lanf0n> Lee1092: done
+11:21 < caasihuang> 但 visible-desktop （index.jade）裡也加了 icon-bar * 3 ？
+11:22 < yhsiang> 那邊應該是原本的 不是我加的
+11:22 < lanf0n> dev.g0v 在 meta 的hackfoldr下(本來就有), bindola加進動民主家族的hackfoldr
+11:23 < lanf0n> 其他沒有的都新增了 app的部份應該已經算成品(?)了....沒動那塊
+11:23 < caasihuang> yhsiang: 瞭解了，感謝。我知道你要做的是漢堡按鈕啦啦啦啦啦 XD
+11:27 < NewCliCker> Lee1092: btw 您是去 tkirby 的 d3js 的 Lee ，還是 inLiveTW 的 Lee ，還是兩個都是您，還是兩個都不是您？ #人臉辨識與id辨識腦區打結中
+11:28 < lanf0n> NewCliCker: 都是? XDD
+11:38 < yurenju__> g8v 派上用場了 http://bit.ly/TurYF0
+11:38 < kcwu> yurenju__'s url: [實況]
+11:40 < NewCliCker> yurenju__+++++ <(_ _)>
+11:45 < hcchien> 對了，有誰需要我帶去 coscup 講者晚宴的嗎
+11:53 < hcchien> 好像該填回復了
+11:56 < ipa> http://fb.scrape4.me/# 來用這個 是tkirby寫的？
+11:58 < tkirby> 是滴
+11:58 < A-Han> NewCliCker++++
+12:06 < ipa> tkirby++ 抓完了，有分享文字，但連結都掉了
+12:06 < clkao> {{wall.length}} posts retrieved.
+12:10 < NewCliCker> G8V電視牆：張志軍現場實況 & 頻道聊天室 + 壹電視新聞支援 http://j.mp/1q7ihdx
+12:16 -!- Paddy is now known as Guest97834
+12:19 < tkalu> clkao: fixed
+12:25 < Lee1092> NewCliCker:  應該都是  我記得我兩場都有去   XDD
+12:25 < tkirby> XD!
+12:28 < NewCliCker> Lee1092: XD 抱歉，我人臉辨識大概只有放行林克穎海關的程度 <(_ _)>
+12:29 < simonpai> NewCliCker XDDD
+12:55 < hcchien> 好可怕，我的螢幕忽然變藍色
+12:57 < Lee1092> NewCliCker: XDDD   No mind
+13:11 < AceChen> hcchien++ 藍叮叮
+13:28 < Lee1092> NewCliCker++  a0000778++  電視牆好方便壓~    果真政府是最好的推廣者(!?)
+13:40 < CindyLinz> NewCliCker: 現在 karma collect 用的 rule, 在 alias 變換以前是用 $line =~ /([a-zA-Z0-9_^-]+?)[_ :,^-]*\+\+/g 取的, 所以 NewCliCker++ NewCliCker ++ NewCliCker: ++ 都會取到 NewCliCker
+13:40 < CindyLinz> (直接給你 +3 XDXD)
+13:43 < NewCliCker> CindyLinz++++++++++++ 那這樣子12個 + 會 +6 嗎？
+13:43 < CindyLinz> NewCliCker: 不會, 這樣會一個 ^^|
+13:44 < CindyLinz> 名字的文字每出現一次只會被套用一次 XD
+13:45 < twpaddy> hcchien: 請問要加入 g0v summit 銷售組，該怎麼做？
+13:45 < NewCliCker> CindyLinz: QAQ 原來是這樣，我之前自作聰明跟 A-Han 說了錯誤訊息 XD 
+13:46 < CindyLinz> NewCliCker: 有 source 啊~~ XD
+13:46 < twpaddy> hackpad 上面銷售組的資料 好像不多，不知該從何著手
+13:47 < hlb> 銷售組！
+13:48 < isacl> 梟首組！
+13:48 < hlb> twpaddy: 大概可以從幫忙寫好 Call for Sponsor 做起？
+13:49 < isacl> 囧 銷售
+13:49 < NewCliCker> CindyLinz: 那我只好惱羞成怒，把它改成可以計算 n 個 + 然後 pull request (誤
+13:49 < hlb> 自從上次拿到遞不出去的 cfs 之後，還沒看到新的版本
+13:49 < twpaddy> 現在的cfs 在那兒？
+13:53 < CindyLinz> NewCliCker: 這樣真的好嗎 ^^|
+13:54 < Michael_LI> 直播臺又要大爆炸了
+13:54 < CindyLinz> NewCliCker: 有的人情感比較激烈, 習慣常常打一排 + 的, 他的意見會變比較大聲耶 XD
+13:57 < NewCliCker> CindyLinz: 對啊，前面惱羞成怒的部分我只是開玩笑而已，所以後面打(誤) XD ，我會去跟 A-Han 老實承認我自己沒看 Code 就散播不實謠言 XD 
+13:57 < CindyLinz> XDD
+14:01 < NewCliCker> 嗚嗚，好可怕，只是貼了一個 G8V電視牆之張志軍現場的網址 FB從中午開始就不斷被叮咚，被大家追著推各式各樣的坑，要推也要推 a0000778 才對呀，他才是電視牆作者啦 QAQ ，要修改 g0v.today 的要找 au ，大家都跑來找我是哪招啦 QAQ
+14:04 < a0000778> NewCliCker: 正在解決於 FireFox 上無法瀏覽的問題
+14:06 < NewCliCker> a0000778: ++++ 辛苦了，昨晚才在想自己忘了測 Firefox， 果然今天就出包 XD 
+14:07 < ipa> twpaddy: 可以看一下這裡 細節問 hcchien :P
+14:07 < ipa> twpaddy: call for sponsor 文案有些在這裡 http://hack.g0v.tw/g0v-summit2014/3Ulg4cd3T9I
+14:08 < ipa> 疑剛沒貼到 summit資料夾：http://hack.g0v.tw/g0v-summit2014/
+14:09 < twpaddy> @hlb , get it, thanks, 了解，的確是簡單版（之前有看到這個
+14:09 < Michael_LI> NewCliCker 我也想找你問話呢
+14:10 < a0000778> 看來我該換滑鼠了...按一下變成按3下了！
+14:11 < twpaddy> @ipa , get it ,thanks
+14:12 -!- chihchun_afk is now known as chihchun
+14:13 < NewCliCker> Michael_LI: 啊，是（立正），請廣宣團長訓示 <(￣一￣ )
+14:16 < Michael_LI> NewCliCker 就是前幾天我們在寫的hackpad，其中有談到要備份(非youtube)影片，有沒有好工具可用，或是得挖坑才行。
+14:17 < Michael_LI> 挖嘞～"被" 成了團長了
+14:17 < NewCliCker> XD 
+14:21 < NewCliCker> Michael_LI: 這個備份(非youtube)影片坑之前我有請教 venev 瑪麗亞，她指示了一條明路：「去找 yhsiang 就對了」。臉紅紅 ly 老師有寫立法院 ivod 上傳到 Youtube 的自動化工具，我想應該是可以比照辦理 XD 
+14:21 < a0000778> NewCliCker: 已修正 應該不會被敲了XD
+14:22 < Michael_LI> 註解： NewCliCker 你會被人追，主要是g8v在推廣過程，媒觀的座談會文案，都是你出面，不出名都難。(煙)
+14:23 < Michael_LI> 收到明牌
+14:24 < a0000778> 我都蹲在 NewCliCker 牌的訊息轟炸保護傘下XD
+14:27 < NewCliCker> Michael_LI: XD 幸好我已經先把教學文件寫好，大家可以自己建立自己喜歡的電視牆連播網，#自己想看的電視自己建 #我要回到閒雲野鶴的生活
+14:29 -!- utena [3d3c7f17@gateway/web/cgi-irc/kiwiirc.com/ip.61.60.127.23] has left #g0v.tw []
+14:29 < hlb> twpaddy++ # 先給 karma
+14:33 < NewCliCker> a0000778: ++++ ，結果電視牆 firefox 顯示不出來的原因是甚麼啊？
+14:37 < a0000778> NewCliCker: 沒支援 NamedNodeMap 結果跑到那段就死了 反正加些功能進去 果斷讓他跳過了
+14:38 < NewCliCker> a0000778++++ 太強大了 (y)
+14:41 < a0000778> NewCliCker: 剛剛測試 j.mp 縮出來的網址 在 Safari 出來會是錯誤的
+14:41 < a0000778> Chrome/FireFox/Opera/Safari 都測了 有人測過IE嗎XD?
+14:48 < Michael_LI> 14:41:37 a0000778 Chrome/FireFox/Opera/
+14:51 < NewCliCker> a0000778: 唔，IE 11 OK
+14:52 < Michael_LI> a0000778 我用手機中，剛才試試 Chrome 看影片還可以，其它就不行  /FireFox不行用，醬子
+14:54 < yhsiang> clkao: http://hackfoldr.org/cfa-brigade-tw/ # 整理成cfa要的格式了
+14:54 < a0000778> 電視牆用手機看 沒問題麼... 應該很吃電 效能會悲劇吧
+14:57 < NewCliCker> Michael_LI++ 想不到電視牆可以在手機上跑起來，手機的支援度我和 a0000778 討論的結果是使用手機使用者還是推薦使用 yutin 的 inLiveTW app 比較好 https://inlivetw.github.io/enter/
+14:58 < au> NewCliCker: g0v.today 恢復自動更新。
+15:00 < NewCliCker> au++++ 所以 g0v.today 的後台是 https://ethercalc.org/1v3anz7jfe 吧？
+15:00 < kcwu> NewCliCker's url: [EtherCalc - Share the URL to your friends and edit together!]
+15:01 < clkao> .......... 這不是就是要不公開的嗎？
+15:02 < au> clkao: NewCliCker 現在似乎是覺得公開也無所謂了...
+15:02 < au> 就先試看看吧
+15:02 < au> 不行再換
+15:04 < ETBlue> 我賭可以撐一天 XD
+15:04 < au> 反正有自動備份還原
+15:05 < isacl> ETBlue: 那我賭兩天 XD
+15:06 < NewCliCker> clkao: 唔，因為今天的張志軍，有人一直FB敲我說要更新 g0v.today 的直播列表，所以我在 公民直攝 那邊建議 音地 要不要針對每一次事件建立一個hackfoldr ex. 張志軍的英文是 Zhang ZhiJun 所以我先隨便幫他們開個 http://hackfoldr.org/zzj
+15:08 < NewCliCker> 然後我建議音地可以開一個公民直播記者用的 hackfoldr 比如說 http://hackfoldr.org/ShotForDemocracy 或是 http://hackfoldr.org/SFD 之類的，然後裡面再收錄各次主要事件的 hackfoldr
+15:09 < au> g0v.today 看你想用來作總目錄或是怎樣，我沒什麼意見，但是以 portal 性質為主
+15:09 < au> 畢竟副本太多不可能在一個 hackfoldr 裡做完，這個網域也不適合處理短時間突發的事件
+15:10 < au> isacl clkao 如果另有想法也歡迎更改坑形
+15:11 < NewCliCker> 音地似乎覺得想繼續沿用 g0v.today 或是 nonuke.today ，可是我總覺得 nonuke.today 底下都是張志軍的直播好怪啊... 我是建議他們乾脆建立比如說 nozzj.today ，不然都混在一起怎麼看怎麼怪
+15:11 < au> hackfoldr.org/zzj 就好了
+15:11 < au> (吧) 然後 _blank 從 g0v.today 連過去
+15:12 < au> 上次 nonuke 也是這樣做的
+15:12 < clkao> ++
+15:13 < Lee1092> 我也覺得 突發事件  用 hackfoldr.org  就好    張應該也不會每天來台  XD  
+15:13 < au> 每天一個 today 太傷了 :p
+15:13 < au> 625.today 626.today 627.today
+15:13 < yhsiangCloud__> 那要用protips.center嗎 XD
+15:13 < yhsiangCloud__> 講個祕訣 :p
+15:13 < Lee1092> XDDDDD  
+15:13 < clkao> 就註冊 366 個 domain :p
+15:14 < au> 敏感日期還要同時註冊 604.today 和 535.today
+15:14 < au> # https://zh.wikipedia.org/zh-tw/5%E6%9C%8835%E6%97%A5
+15:14 < kcwu> au's url: [5月35日 - 維基百科，自由的百科全書]
+15:15 < Lee1092> 404.today 要怎麼辦~   
+15:15 < au> 協尋失蹤兒童節?
+15:17 < simonpai> 535 無誤 XD
+15:18 < jimyhuang__> 失蹤教師節也可來協尋一下
+15:18 < NewCliCker> 其實我自己私心是覺得 g0v.today 很適合拿來放 g0v 的 Matrix hackfoldr ，像是 http://hackfoldr.org/projectpool 這樣彙整 g0v 的專案和事件，不過也許有些沒有人想要當做能反應時事的平台？
+15:19 < au> NewCliCker: meta-hackfoldr 的話都可以放吧，有分區就好
+15:20 < au> 反正編輯群是沒有人，沒有人覺得 ok 就好了
+15:22 < NewCliCker> www 沒有人覺得 ok 就好了 XD
+15:37 < jimyhuang__> 可惡，地號查詢 gg 了 ... 
+15:39 < clkao> ...
+15:45 < isacl> g0v.today 我也沒意見 (其實放公報好像不錯)
+15:49 < ETBlue> 我們的零時廣場 QAQ
+15:50 < ETBlue> （…停止開發了）
+15:51 < jimyhuang__> 嘖...加了referer 限制... 
+15:51 < clkao> 可惡 yutin 沒上 irc... 事件提醒一直跳針... XD
+15:52 < ETBlue> whisky... 啊不在, ipa, venev, bp(也不在XD) …你們有人要去晚上的經貿國是會議北區會後交流會嗎？
+15:54 < ETBlue> 我應該依照慣例會不出門（被毆）重點是後來也沒空上去弄 loomio 議題 QQ
+15:55 < ipa> clkao: Lee1092 我開了 issue https://github.com/inLiveTW/chrome/issues/5 #inLiveTW 事件提醒跳針
+15:55 < kcwu> ipa's url: [chrome extention 事件提醒同則出現三次 · Issue #5 · inLiveTW/chrome · GitHub]
+15:55 < ipa> ETBlue: 我不會出現喔
+15:57 < ETBlue> ipa: ok, 那我就更不會出現了 XDDDD
+16:00 < jimyhuang__> 地號查詢破解了... http://goo.gl/ZM3TbI #繼續上班
+16:16 < ddio> jimyhuang__: ++++
+16:16 < ddio> 這是誰作的阿！
+16:21 < clkao> 資料科學愛好者年會的 g0v 講題要講什麼呢.... ><
+16:21 < clkao> 資料、社群，與 OO... ? 
+16:21 < clkao> 詞窮了
+16:26 < clkao> yhsiang: 結果 cfa 說經費用完了 只好請得獎的嗨懂贊助 :p
+16:27 < au> 「資料、科學、愛好者」
+16:27 < clkao> .....
+16:27 < au> 「資料科學、愛好者、年會」
+16:27 < clkao> 資料、科學、愛好者、幽默
+16:28 < au> 「資料、社群，與祕訣」
+16:28 < jimyhuang__> ... 連 au 都follow 秘訣梗
+16:28 < au> jimyhuang__: https://twitter.com/audreyt/status/408841349455024128
+16:28 < kcwu> au's url: [Twitter / audreyt: @clkao @ETBlue @evenwu ...]
+16:29 < CindyLinz> SIGDATA
+16:29  * jimyhuang__ 頭昏 /o_o\
+16:31 < CindyLinz> au: O___________O
+16:31 < au> CindyLinz: \equirecursion with impredicative quantification/
+16:31 < Lee1092> au 我想到 call back hell    lol
+16:32 < ddio> jimyhuang__: 喔...原來被破解是說壞了...囧...
+16:32 < CindyLinz> au: 太恐怖了 :|
+16:32 < jimyhuang__> ddio: 本來是好的，後來被referer擋了..  接下來看看還會用什麼擋
+16:33 < CindyLinz> 講祕訣原本是好的.... Q_Q
+16:33 < ddio> jimyhuang__: 了解！
+16:33 < jimyhuang__> CindyLinz: 講個秘訣還是好的啊 XD 
+16:34 < CindyLinz> jimyhuang__: 這種講法嗎 O_O # 16:27 < au> jimyhuang__: https://twitter.com/audreyt/status/408841349455024128
+16:34 < kcwu> CindyLinz's url: [Twitter / audreyt: @clkao @ETBlue @evenwu ...]
+16:37 < ETBlue> CindyLinz: 這種講法我覺得很好啊 XDDDD
+16:37 < CindyLinz> 我不要聽 >w<
+16:40 < tkirby> CindyLinz: 講個祕訣，講講個祕訣之前，先講講個祕訣，在講祕訣
+16:43 < A-Han> 太好玩了
+16:44 < clkao> CindyLinz: 講個 tcp 笑話來聽聽吧
+16:44 < CindyLinz> clkao: connection timeout... XD
+16:45 < ETBlue> A-Han: 是語言學上的好玩，還是看到 tkirby 玩 CindyLinz 好玩 XD
+16:45 < A-Han> 我想到這句 不加引號會想摔電腦：黃國昌指出馬卡茸說陳為廷認為江宜樺覺得學運只罵政府很煩是逃避責任並不正確簡直腦袋有洞
+16:45 < Lee1092> syn
+16:45 < ETBlue> XDDDDDDDDDD
+16:45 < A-Han> ETBlue: 是語言學上的好玩 嗚我太笨了沒發現tkirby玩CindyLinz
+16:46 < CindyLinz> 龐大國家機器中的腐敗教育制度下的副產品裡面的寄生蟲旁邊的小樓囉
+16:46 < clkao> 揭露龐大國家機器中的腐敗教育制度下的副產品裡面的寄生蟲旁邊的小樓囉的相聲演員
+16:46 < ETBlue> 好像可以再包一兩層
+16:47 < CindyLinz> ......
+16:47 < CindyLinz> 還剛好對齊了...ww
+16:47 < au> A-Han: 如果對資訊科學裡的複雜度理論有興趣，可以參考 <指數成長歌>
+16:47 < au> http://conway.rutgers.edu/~ccshan/wiki/blog/posts/Exponential_song/
+16:47 < kcwu> au's url: [&#x6307;&#x6578;&#x6210;&#x9577;&#x6B4C; The descriptive complexity of songs]
+16:49 < A-Han> au: 這好好玩 我沒聽過 來看一下
+16:50 < ETBlue> 揭露了揭露龐大國家機器中的腐敗教育制度下的副產品裡面的寄生蟲旁邊的小樓囉的相聲演員的相聲演員
+16:50 < A-Han> 啊我好像有點看懂 指數成長歌
+16:51 < A-Han> 也是第一段embedded在第二段 第二段embedded在第三段的樣子
+16:51 < au> 對，但是有一個特徵是要記起來  O(log log n)  比要唱出來  O(log n) 容易
+16:52 < A-Han> 這個特徵我就沒看懂了
+16:53 < au> (因為要記起來只要記左括號的部份，但是表演時還要額外記住目前到每個堆疊的哪一層)
+16:54 < A-Han> 真希望語言分析也可以把  O(log log n)    O(log n)  應用進去 因為在語言學只簡單稱 recursive property 或 recursive system 而已
+16:54 < A-Han> 啊 懂了！
+16:55 < A-Han> 也就是記「現在唱到哪一層」最難
+16:55 < au> 對，但是要儲存/記憶時只要記「他好奇/我會問/你知道/這首歌/是指數成長」這幾個字
+16:55 < A-Han> yeah~~~ :D
+16:56 < A-Han> 類似我剛剛的句子：黃國昌指出馬卡茸說陳為廷認為江宜樺覺得學運只罵政府很煩是逃避責任並不正確簡直腦袋有洞
+16:56 < au> 不太類似，因為這個句子要記起來和要講出來是一樣累的 (當然要聽懂更累)
+16:56 < miaoski> Chromecast 不能播 ustream 真是頭痛。到底該怎麼改 .... @@
+16:57 < miaoski> 現在直播的幾台通通是 ustream T_T
+16:57 < A-Han> 那這樣：我知道他知道你知道這件事
+16:57 < A-Han> 也就是動詞都一樣 就比較類似你的例子
+16:58 < au> 這樣就是記/講都是 O(log n)
+16:58 < clkao> 記個指數秘訣
+16:58 < A-Han> 我知道他知道你知道我知道他知道你知道我知道他知道你知道這件事 XDD
+17:00 < A-Han> https://www.irccloud.com/pastebin/ut2ikjJj
+17:00 < kcwu> A-Han's url: [Pastebin: ut2ikjJj | IRCCloud]
+17:02 < A-Han> 比如 黃國昌指出N腦袋有洞 ←"指出"  "腦袋有洞" 當一層
+17:03 < au> 是，如果指數+動詞相同，就會完全混亂了
+17:03 < au> 「你知道我知道這件事不知道這件事不知道我知道這件事不知道這件事？」
+17:03 < A-Han> yeah
+17:04 < A-Han> 好好玩 因為以前不知道複雜度理論也分析這樣的結構 我來找找文獻 :D
+17:04 -!- CelloCello [~Sero@1.34.191.8] has left #g0v.tw []
+17:04 < A-Han> au++++
+17:12 < isacloud__> 今天的討論太有趣了
+17:19 < clkao> isacloud__: about.. ?
+17:26 -GitHub47:#g0v.tw- [hack.g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/hack.g0v.tw/commit/199d099270753339d10e6224fc54e9f6adfc9017
+17:26 -GitHub47:#g0v.tw- hack.g0v.tw/gh-pages 199d099 g0v general (via TravisCI): regen for 7f63009
+17:40 < A-Han> au: 我發現了
+17:41 < A-Han> 指數成長也是可以用 你知道 我會問 他好奇 來標記層數
+17:41 < A-Han> 果然主詞動詞不一樣才可以避免混亂（雖然還是很難記
+17:42 < au> 是
+17:49 < hlb> 每天註冊一個 .today，這樣可以做歷史上的今天
+17:51 < hlb> 「講個祕訣：18 年前的今天，也有人被關在旅館裡」
+17:51 < anon1269> hlb: 求八卦 :3
+17:52 < kiang> hlb: 求八卦+1
+17:52 < Lee1092> 想聽課本沒教的歷史~ 
+17:52 < mouthbrother> hlb: 八卦++
+17:52 < hlb> 我開玩笑的啦 XD
+17:52 < hlb> 要先註冊 001.today 到 366.today 才會發生
+17:52 < hlb> 這就是所謂的 today conflict
+17:52 < kiang> XD
+17:53 < mouthbrother> XDDDDD
+17:54 < hlb> 以現在的狀況還會發生「可惡，我們要弄 176.today」「可是去年被關在旅館裡的 176.today 還沒 mark as done」
+17:54  * hlb 唉，真不好笑
+17:58 < S3p_lin> history.today ?
+17:58 < S3p_lin> This name is reserved by the Registry in accordance with ICANN Policy.
+17:58 < S3p_lin> 歷史被保留了...
+17:59 < kiang> taiwan.today - 台灣被蟑螂買走了，要花更多 $$ 才能夠贖回...
+18:00 < yhsiang> room-service.today
+18:00 < S3p_lin> yhsiang++
+18:00 < NewCliCker> hlb: 還蠻好笑的呀 #還沒 mark as done 。要避免這種狀況就是加年份 ex. 176.2014.today 這樣 (示範甚麼樣的發言才是真的不好笑...冷~
+18:09 < superbil> hlb ++
+18:24 < hcchien> bdexit
+18:25 < ipa> https://www.facebook.com/inLiveTW?fref=photo 剛剛開張的 inLiveTW 粉絲頁，大家讚一下
+18:25 < kcwu> ipa's url: [inLiveTW | Facebook]
+18:27 < kiang> ipa: 要不要發一篇 room service 的消息讓大家轉比較有感覺呢？
+18:29 < ipa> kiang: 要問該頁管理員
+18:29 < ipa> 但我不知道是誰，yutin 在中國，可能是 Lee1092 ?
+18:33 < Lee1092> ipa:   剛剛 yutin 在 工作 group 指揮發的 XD
+18:38 < a0000778> NewCliCker: 剛剛 G8V電視牆 新增了子母畫面功能(應該是這個名子沒錯吧?) 看看要不要更新一下畫面的配置
+18:41 < NewCliCker> a0000778 子母畫面功能要怎麼弄啊？
+18:41 < a0000778> NewCliCker: 隨便找個視窗 右上角應該有個大
+18:42 < anon1269> a0000778: ++ NewCliCker ++
+18:44 < anon1269> 話說g8v的網址是？
+18:44 < a0000778> anon1269: 目前是 a0000778.github.io/g8v
+18:44 < kiang> 陳為廷、林飛帆現在是被警察包起來嗎？還是單純對峙？（剛剛才開始看...）
+18:45 < NewCliCker> a0000778: 喔，你的意思是說現在可以把每個直播視窗弄的小小小小的，想看的人按一下「大」就可以自動切換成比較大的視窗這樣嗎？這功能好耶
+18:46 < a0000778> NewCliCker: 大視窗只會有一個 想看比較詳細再按大
+18:49 < NewCliCker> a0000778: 喔喔，所以全部視窗我們把他先縮比較小擺在右側和下方，左上角留給大視窗這樣子對吧
+18:49 < a0000778> NewCliCker: 嗯
+18:55 < NewCliCker> a0000778: 這功能真讚，不過我現在有事得出門，您先弄一個好了，直播頻道列表可以看這邊 http://inlivetw.github.io/chrome/#/tab/live 或 
+18:55 < kcwu> NewCliCker's url: [LiveTW]
+18:55 < NewCliCker> a0000778 或這裡 https://docs.google.com/document/d/114U-Ejkwes1DHW7FfK-RAw_TXsdCEEpcy3YAwkMgh8g/edit
+18:55 < kcwu> NewCliCker's url: [張志軍來台相關人力排班、資訊匯整表 - Google 文件]
+19:46 < ipa> tkirby: 請問一下可以知道計算出 g0v github 總 commit 量嗎？
+19:47 < ipa> https://g0v.hackpad.com/g0v-summit-2014--3Ulg4cd3T9I 在用 nchild 給的參考列社群數字
+19:47 < kcwu> ipa's url: [g0v summit 2014 網站 / 文宣內容 - g0v.hackpad.com]
+19:48 < hlb> 這邊有 rails 的人要換工作嗎... :p
+19:52 < miaoski> 有 python 的人要換工作 (哭著跑開)
+20:01 < clkao> 成功置入 # https://github.com/ciudadanointeligente/home-poplus/commit/b14e007ae7bcfed599c1e28c913c0c3734748e73
+20:01 < kcwu> clkao's url: [Add link to hackfoldr · b14e007 · ciudadanointeligente/home-poplus · GitHub]
+20:14 < jimyhuang__> clkao++
+20:17 < clkao> 資料、社群、大協作 - 零時政府的數位革命
+20:17 < clkao> 這個如何 XD
+20:19 < kang1> 我是長鋼
+20:19 < kang1> 請問一下要參加 "國際社群參與協力團"
+20:19 < kang1> 要在哪一個 hackpad 討論啊?
+20:19 < kang1> 這一個裡面沒看到:https://g0v.hackpad.com/ieiIzaSfOWu
+20:19 < kcwu> kang1's url: [國際社群參與協力團 - g0v.hackpad.com]
+20:21 < clkao> 嗯？就在那邊 只是目前還沒把坑切細, 所以只有英文公報坑... 有想做的事情嗎？
+20:22 < kang1> 有 ~ 想說如果三個月出一篇 500 字中文英文稿的話 , 應該是可以負擔
+20:22 < clkao> 主題是... ? 特定專案還是... ?
+20:23 < kang1> 週六的時候聽起來 , 可以做: 例如訪問駱勁誠 ,  然後寫一篇中英文稿介紹  立委投票指南 ,
+20:24 < kang1> 類似這樣子的 專案或 近況 , 展望報導 , 對嗎?
+20:24 < kang1> ( 想說有三個月可以精練的話 , 甚至可以去 my society 等等 , 去寫跨國比較)
+20:25 < clkao> 先列一下各種有可能的主題？然後自己認領投票指南? XD
+20:27 < kang1> 了解 , 我想一下然後就寫入 hackpad 裡
+20:27 < clkao> 我已經加了 看還有想到什麼就直接放上去吧
+20:30 < clkao> coscup 忘記有沒有填晚宴... 
+20:38 < BV1AL> 四軸飛行器掛小型擴音機，飛到張匪志軍面前嗆聲技術上可行吧？
+20:40 < miaoski> BV1AL: 可，不過會不會被打下來
+20:42 < BV1AL> 用拖把打嗎？
+20:42 < miaoski> 說不定會拔槍哦 XD
+20:45 -!- chihchun is now known as chihchun_afk
+20:46 < BV1AL> 不建議人多的地方拔槍，建議警察脫皮鞋起來丟
+20:51 < clkao> 突然看到這一篇 # http://www.nownews.com/n/2014/06/10/1270440/2
+20:51 < kcwu> clkao's url: [第2頁 | 觀察／恐龍般的國民兩黨網路政策想像 | NOWnews 今日新聞]
+20:54 < clkao> 聯合報邀請的演講，要徵 20 字的行動描述... 「資訊透明，開放協作，」 -> 又詞窮了
+21:24 < a0000778> NewCliCker: 集合了5個實況者的上電視牆 雖然都已經沒直播了... http://bit.ly/TvUmqc
+21:24 < kcwu> a0000778's url: [G8V.TV 電視牆]
+21:33 < hcchien> 結果 paddy 走了
+21:42 < jimyhuang__> hcchien: paddy？
+21:45 -!- chihchun_afk is now known as chihchun
+21:47 < hcchien> jimyhuang__: twpaddy | hcchien: 請問要加入 g0v summit 銷售組，該怎麼做？
+21:48 < johnny__> 有人用scrapy處理過Big5的網站嗎? 求教
+21:50 < ipa> hcchien: paddy 有在 hackpad 上討論留言
+21:52 < yhsiang> clkao: XD 我有看到 mindos g4
+21:52 < yhsiang> mindos是說沒差
+21:52 < yhsiang> 不知道嗨董目前打算 XD
+21:58 < hcchien> ipa: ok. 回了
+21:59 < clkao> yhsiang: 機票跟票買了嗎？
+22:02 < clkao> bobchao: ping
+22:03 < yhsiang> clkao: 還沒阿 應該要來買一下吧?
+22:08 < jimyhuang__> ipa: clkao sunlight foundation邀訪我也寄出去了
+22:24 < yhsiang> clkao: 有要去嗎? 
+22:50 < clkao> yhsiang: 我不行啦
+22:51 < yhsiang> ok 那我跟mindos就等hychen XD
+22:51 < yhsiang> 還有人要去okfest嗎 XDD 團報 -2 :p
+22:54 < yhsiang> NewCliCker: 欸 我試的是youtube live stream, 影片上傳備份的話應該要問kcwu
+22:55 < Lee1092> clkao:  g0v 是在Y! hack day 那天創辦的嗎?    可以算算成立多久  # 社群數字 
+23:12 < johnny__> 終於解決了...因為蠻多人留言給我，留個紀錄給大家，在抓http://tccmis.tcc.gov.tw/webFULLTEXT/FULLTEXTSH_Start.asp
+23:13 < yhsiang> johnny__: XD
+23:13 < johnny__> 這個網站是big5，但scrapy不知為何自動用latin1 decode在encode成unicode了
+23:13 < yhsiang> 我猜是因為在frameset下面?
+23:14 < yhsiang> johnny__: http://tccmis.tcc.gov.tw/webFULLTEXT/FT_SearchInput.asp 這個試看看?
+23:14 < kcwu> yhsiang's url: [全文檢索]
+23:14 < johnny__> 所以目前在輸出前都加上.encode('latin1').decode('big5')，雖然醜一點但暫時可以解決
+23:15 < johnny__> yhsiang: 在frameset下面是指包了很多層嗎  看網站原始碼居然有兩行<meta http-equiv="Content-Type" content="text/html; charset=big5">
+23:16 < hcchien> 今天討論，Y! open hack 應該會改時間
+23:16 < yhsiang> 就因為他frameset那層沒有宣告meta 所以可能就預設latin1 decode去
+23:16 < yhsiang> hcchien++ 
+23:17 < yhsiang> johnny__: frameset是以前的include多個網頁 作為切版的方式目前已經建議改用iframe
+23:19 < johnny__> yhsiang: 恩恩大概了解了，不過你剛貼的網頁沒辦法查搜尋結果，這網站真的怪怪的，好難使用
+23:23 -GitHub127:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/5a442eb784fb6d0b4555072ad4d610e4e7f84832
+23:23 -GitHub127:#g0v.tw- g0v.tw/gh-pages 5a442eb g0v general (via TravisCI): regen for ff55d4f
+23:23 < yhsiang> johnny__: XD 他可能是output道別的frameset
+23:29 < Lee1092> hcchien++
+23:30 -GitHub102:#g0v.tw- [g0v.tw] none pushed 1 new commit to gh-pages: https://github.com/g0v/g0v.tw/commit/110209ae06bd2af40963e712bf7a6bfd1b55349b
+23:30 -GitHub102:#g0v.tw- g0v.tw/gh-pages 110209a g0v general (via TravisCI): regen for 832205c
+23:32 < xsoameix> clkao: 想請問一下，我執行 lsc ys-misq.ls tcp://ly:password@localhost/ly 後，跳出 error: FATAL:  database "undefined" does not exist，這是指我資料庫缺少甚麼資料嗎？
+23:33 < yhsiang> xsoameix: DBNAME
+23:34 < yhsiang> DB=xxx lsc ys-misq.ls tcp://ly:password@localhost/ly
+23:35 < xsoameix> yhsiang: 感謝 :)
+23:35 < yhsiang> xsoameix: 應該是少了相關的環境變數 ?
+23:35 < yhsiang> 所以work了?
+23:35 < clkao>  --db tcp://ly:password@localhost/ly should work actually
+23:35 < clkao> you are missing --db
+23:36 < yhsiang> johnny__: http://tccmis.tcc.gov.tw/OM/OM_SearchList.asp 他後面是藏在這個 XD
+23:36 < yhsiang> 然後post 正確data + referer 應該可以查到
+23:37 < xsoameix> clkao: 所以是這樣嗎？lsc ys-misq.ls --db tcp://ly:password@localhost/ly
+23:37 < clkao> should be
+23:37 < yhsiang> 2011年的
+23:37 < yhsiang> johnny__: 要不要聯絡一下作者 :p 他有寫作者名字 版號:1.0.2 修改日期：2011/04/21 XDD
+23:40 < xsoameix> clkao: 跳出 Error: permission denied for schema plv8x，權限好像不夠，現在 ly 的權限只有 Create DB，是否要再增加呢？
+23:43 < johnny__> yhsiang: 恩我是抓這個連結，但這連結scrapy encoding會出錯
+23:43 < mrbigmouth_> venev:  ihower: http://mrbigmouth.github.io/campaign-finance/ 開放政治獻金專案新資料庫(?) 雖然設計還沒到我手上  還是依照黑客松講過的一些功能稍微設計了一下程式架構....把搜尋跟資料表排序等功能弄了出來....完全沒美工就是了 XD  (設計哪時出來啊!)
+23:43 < kcwu> mrbigmouth_'s url: [政治獻金資料庫 - 國家自己救]
+23:44 < yhsiang> johnny__: 因為沒宣告meta XD
+23:44 < yhsiang> 我直接用postman rest去try也是亂碼
+23:44 < yhsiang> mrbigmouth_++
+23:44 < clkao> grant CREATE on database ly to ly
+23:44 < clkao> xsoameix: ^^ see cookbooks/ly.g0v.tw/recipes/apiserver.rb
+23:45 < caasihuang> mrbigmouth_++
+23:45 < xsoameix> clkao: 感謝 :)
+23:45 < clkao> mrbigmouth_++
+23:46 < yhsiang> caasihuang: 後來有搞清楚了嗎 XD
+23:47 < Rhozan> mrbigmouth_: ++
+23:48 < Rhozan> 那個背景滿可愛的..XD
+23:48 < mrbigmouth_> Rhozan: 那個是原資料庫的背景  我直接抓下來用 XD
+23:48 < caasihuang> yhsiang: 有喔，現在卡 $state.current.title 跑不出來
+23:49 < yhsiang> caasihuang: 那個可能廢掉了 ?
+23:49 < mrbigmouth_> Rhozan: 布景暫時用bootstrap....反正怎麼方便怎麼來  目前工作其實就是用Backbone把各class router切一切而已  然後就datatable、raphael等套件隨便應用一下....(叫我套件王!)
+23:49 < yhsiang> caasihuang: 你可能去check我的commit跟au的commit 
+23:50 < Lee1092> mrbigmouth_++
+23:50 < caasihuang> yhsiang: 但還用 bootstrap 的版本跑得出來耶，好，我去看看你們的 commits
+23:50 < yhsiang> caasihuang: XD 真的喔
+23:50 < caasihuang> 我是把 g0v.today ，當對照組啦
+23:51 < yhsiang> caasihuang: 因為那時候還有nonuke.today XD
+23:51 < yhsiang> 有放個計時器 XD
+23:53 < caasihuang> XD 原來如此

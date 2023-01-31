@@ -1,0 +1,395 @@
+--- Day changed 二  3月 26 2013
+00:01 -!- WTWu [~WTWu@175.182.230.90] has joined #g0v.tw
+00:01 -!- WTWu [~WTWu@175.182.230.90] has quit [Remote host closed the connection]
+00:01 -!- ETWu [~ETWu@175.182.230.90] has joined #g0v.tw
+00:05 -!- pm5_ [~pm5@111-248-219-30.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+00:06 -!- pm5 [~pm5@111-248-219-30.dynamic.hinet.net] has quit [Ping timeout: 255 seconds]
+00:10 < tkirby> clkao: 嗚阿! 政治人物地圖出現了!
+00:13 < kcwu> 唉, youbike 的站點資訊開始擋程式下載, 頻頻修改 login 方式
+00:14 < kcwu> 3rd party 程式不斷壞掉
+00:14 -!- kong0107 [6fb82f64@gateway/web/freenode/ip.111.184.47.100] has quit [Quit: Page closed]
+00:15 < clkao> kcwu: 必經之痛?
+00:19 < icman> http://newtalk.tw/news/2013/03/25/34863.html
+00:19 < kcwu> icman's url: [核事故宣導 阿嬤問倒原能會官員 - 新頭殼 newtalk]
+00:20 < clkao> tkirby: 話說 makefile 越改越苦了 有機會應該要玩玩 gruntjs
+00:20 < tkirby> XD
+00:21 -!- JiyiNg [~JiyiNg@175.182.230.90] has joined #g0v.tw
+00:24 < tkirby> hmm
+00:25 -!- ck__ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+00:25 -!- ETWu [~ETWu@175.182.230.90] has left #g0v.tw []
+00:25 < kcwu> 新抓法: curl "http://www.youbike.com.tw/info.php"  -H "Cookie: PHPSESSID=hello"; curl "http://www.youbike.com.tw/genxml.php" -H "Cookie: PHPSESSID=hello"
+00:25 < clkao> 話說 LOL
+00:26 < clkao> PHPSESSID=its-our-data-not-yours
+00:26 < tkirby> XD
+00:26 < kcwu> 要先抓 info.php, 才能抓 genxml.php, 用一樣(任意)的 cookie
+00:34 < clkao> updated http://ly.g0v.tw.jit.su/#/calendar 
+00:38 -!- JiyiNg [~JiyiNg@175.182.230.90] has quit [Ping timeout: 245 seconds]
+00:39 < au> clkao: a2 說 plv8 和 railgun 只能挑一個裝，默
+00:39  * au 繼續尋找 hosting
+00:39 < clkao> au: er, what's the rationale?
+00:39 < au> railgun is specific to a single IP apparently
+00:40 < au> so it's essentially shared hosting behind apache2.2
+00:40 < clkao> ah. so custom pg will be moved to another host
+00:40 < au> aye
+00:43  * tkirby o/` only my railgun~ o/`
+00:45 < au> 科学の超電磁砲
+00:48 < tkirby> XD!
+00:51 < kcwu> 話說我沒明顯感到 railgun ? (hinet 光世代)
+00:52 < au> kcwu: 我選了 plv8 
+00:53 < au> 所以目前並沒有 railgun 
+00:53 < kcwu> au: 意思是 www.moedict.tw 沒有用過 railgun?
+00:53 < au> kcwu: moedict.org 和 moedict.tw 哪個快？ (hinet 光世代)
+00:53 < au> kcwu: 目前還沒有
+00:55 < kcwu> .org 很穩定的 21x ms; .tw 滿多 4xx ms, 少數 2xx,3xx ms, 最快 250ms
+00:56 < au> ok, 所以 cloudflare 並沒有加分
+00:56 < au> 感謝
+01:05 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 245 seconds]
+01:07 -!- Zero0 [~itszero@itszero.xen.prgmr.com] has quit [Ping timeout: 255 seconds]
+01:09 -!- Zero0 [~itszero@itszero.xen.prgmr.com] has joined #g0v.tw
+01:09 -!- icman [~icman@123.240.139.67] has quit [Quit: 明天天氣晴]
+01:12 -!- pm5__ [~pm5@111-248-219-30.dynamic.hinet.net] has joined #g0v.tw
+01:12 -!- pm5___ [~pm5@111-248-219-30.dynamic.hinet.net] has joined #g0v.tw
+01:16 -!- pm5___ [~pm5@111-248-219-30.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+01:16 -!- pm5__ [~pm5@111-248-219-30.dynamic.hinet.net] has quit [Ping timeout: 245 seconds]
+01:23 < MindosCheng> tkirby : 不是，閃爍是 z fighting
+01:24 < MindosCheng> 我是指少一塊沒畫出來
+01:25 < MindosCheng> z fighting 可能要把 z buffer 加深
+01:26 < clkao> is it three.js bug or the way we extrude breaks it?
+01:26 < clkao> au so pgrest worky on the box?
+01:27 < MindosCheng> z fighting 是兩塊 triangle 的 z 靠太近，有時其中一塊被判斷在上面，有時反之
+01:28 < MindosCheng> 我試試把 z buffer 加深一點
+01:28 < au> clkao: yup
+01:40 < MindosCheng> 其實我忘記 z fighting 的正解怎麼做了。一般 driver 會提供一個 最小可區辨 delta z
+01:43 -!- MnO2 [~MnO2@1.34.43.236] has quit [Quit: MnO2]
+01:45 -!- Tunghua [~Tunghua@1.34.114.149] has quit [Quit: Computer has gone to sleep.]
+01:50 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+01:56 < tkirby> hmm
+02:09 < MindosCheng> 貴公司員工都不用睡覺的嗎
+02:12 < clkao> https://github.com/mrdoob/three.js/issues/655
+02:12 < kcwu> clkao's url: [Z-Fighting · Issue #655 · mrdoob/three.js · GitHub]
+02:17 < tkirby> 該來睡了
+02:19 < tkirby> clkao: hack.g0v.tw 加了個 icon... btw 連進 hackath2n 再連到 /#/, 左邊的 item 會變多? 這是正確的嗎?
+02:20 < tkirby> .zzZ
+02:24 < clkao> bug i think
+02:26 < MindosCheng> clkao : let cam.near = 10.0 works :)
+02:38 < au> pushed kirby's new UI to hack.g0v.tw 
+02:42 < au> fixed hackath2n -> /#/ items bug
+02:45 < au> push 上線了
+02:48 < clkao> (H)
+02:49 < clkao> this even works in mobile
+02:50 < au> awesome
+02:53 < clkao> sould probably open first entry automatically
+02:54 < au> *nod*
+02:56 < MindosCheng> clkao++ # Z fighting solved! http://g0v.github.com/twgeojson/3dmap2.html
+02:56 < kcwu> MindosCheng's url: [webgl + d3 geojson]
+02:57 < au> MindosCheng++ # Z fighter
+02:57 < MindosCheng> Use the force!
+02:58 < au> MBPR13" 有 61 fps... Firefox++ # 然後 Intel HD 4000 好像也還不錯
+03:13 < MindosCheng> 有 HW support 應該都不差 :)
+03:32 -!- kcliu [722d41d9@gateway/web/freenode/ip.114.45.65.217] has quit [Ping timeout: 245 seconds]
+04:07 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 252 seconds]
+04:12 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+05:12 -!- juanna [~juanna@114-37-104-251.dynamic.hinet.net] has joined #g0v.tw
+05:12 -!- juanna_ [~juanna@114-37-98-64.dynamic.hinet.net] has quit [Read error: Connection reset by peer]
+06:20 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 240 seconds]
+06:53 -!- pm5 [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+06:53 -!- pm5_ [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+07:21 < gugod> https://github.com/g0v/esmoe 這兩天做了這個，用 es 做 moedict 的反查, 有興趣一起弄的人可以找我問細節
+07:21 < kcwu> gugod's url: [g0v/esmoe · GitHub]
+07:30 -!- swem [~Thunderbi@host-61-70-226-12.static.kbtelecom.net] has joined #g0v.tw
+07:42 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+07:54 -!- Tunghua [~Tunghua@1.34.114.149] has joined #g0v.tw
+08:31 -!- ck_ [~ck@220-136-178-31.dynamic.hinet.net] has joined #g0v.tw
+08:53 -!- ck_ [~ck@220-136-178-31.dynamic.hinet.net] has quit [Remote host closed the connection]
+08:56 -!- ck_ [~ck@220-136-178-31.dynamic.hinet.net] has joined #g0v.tw
+09:02 -!- favonia [~favonia@pdpc/supporter/student/favonia] has quit [Ping timeout: 256 seconds]
+09:06 -!- swem [~Thunderbi@host-61-70-226-12.static.kbtelecom.net] has quit [Ping timeout: 264 seconds]
+09:11 -!- pm5_ [~pm5@111-248-216-119.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+09:11 -!- pm5 [~pm5@111-248-216-119.dynamic.hinet.net] has quit [Ping timeout: 246 seconds]
+09:19 -!- KNY [~Adium@111-253-148-199.dynamic.hinet.net] has joined #g0v.tw
+09:22 < edwardc> es!!! elasticsearch ?
+09:22 -!- ck_ [~ck@220-136-178-31.dynamic.hinet.net] has quit [Remote host closed the connection]
+09:23 < edwardc> gugod++
+09:24 -!- ck_ [~ck@220-136-178-31.dynamic.hinet.net] has joined #g0v.tw
+09:24 -!- KNY [~Adium@111-253-148-199.dynamic.hinet.net] has left #g0v.tw []
+09:27 -!- ck_ [~ck@220-136-178-31.dynamic.hinet.net] has quit [Remote host closed the connection]
+09:28 -!- MnO2 [~MnO2@nat/yahoo/x-pzjinxdnsdntkhsr] has joined #g0v.tw
+09:30 -!- ck_ [~ck@220-136-178-31.dynamic.hinet.net] has joined #g0v.tw
+09:31 -!- pm5 [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+09:33 -!- pm5___ [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+09:53 -!- hychen [~hychen@175.41.48.77] has joined #g0v.tw
+09:55 -!- ck_ [~ck@220-136-178-31.dynamic.hinet.net] has quit [Remote host closed the connection]
+09:59 -!- ck_ [~ck@220-136-178-31.dynamic.hinet.net] has joined #g0v.tw
+10:02 -!- Custom_ is now known as Custom
+10:12 -!- ck_ [~ck@220-136-178-31.dynamic.hinet.net] has quit [Remote host closed the connection]
+10:12 -!- pm5 [~pm5@111-248-216-119.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+10:12 -!- pm5___ [~pm5@111-248-216-119.dynamic.hinet.net] has quit [Ping timeout: 264 seconds]
+10:17 < clkao> au: hm, ethercalc csv hung again
+10:43 -!- kaxing [~kaxing@175.41.48.77] has joined #g0v.tw
+10:55 -!- ctf_ [~ctf_-_@175.41.48.77] has joined #g0v.tw
+11:00 < clkao> tkirby: 那個第一行不能在 ul 裡面 :p 會變成可以 drag & drop XD 但是我改成外面的 div 就整個爛了... css 功力不足 XD
+11:02 < clkao> 加上了 reload index 的功能
+11:02 < clkao> 還有 include generic url(!)
+11:03 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+11:13 < clkao> 瞬間變成超厲害的 organizer
+11:13 < clkao> 好像可以推出 private list, US$1/folder per month?
+11:22 -!- zz_chihchun is now known as chihchun
+11:26 < tkirby> clkao: 我把 div 拉出去了, 看看行不行.. XD
+11:26 < ipa> hackfolder功能可望解決我資料四散的苦惱
+11:27 < clkao> 他其實是一個... 可以管理的 onetab :P
+11:27 < clkao> 管理及分享
+11:27 < clkao> tkirby: that's https://github.com/g0v/hack.g0v.tw/issues/7
+11:27 < kcwu> clkao's url: [title should not be draggable · Issue #7 · g0v/hack.g0v.tw · GitHub]
+11:28 < clkao> tkirby: you can say 'close #7' in commit message
+11:28 < tkirby> issue 總是在被看到前解決(嗎) XD
+11:29 < tkirby> 竟然新增了 doctype!
+11:29 < clkao> 我在瘋狂開 issue 中
+11:30 < tkirby> clkao: "歐拉歐拉歐拉" (狂開)    tkirby: "沒用沒用沒用" (狂關)
+11:30 < clkao> LOL
+11:31 < clkao> 晚上來把他 rename 成 hackfoldr, 然後 hack.g0v.tw fork 他 include default lists
+11:32 < clkao> 還是有什麼好名字呢... *ponder*
+11:33 < tkirby> hack4dr? Xd
+11:33 < clkao> 好像不賴
+11:33 < clkao> 可惜沒有 .dr
+11:41 < clkao> MindosCheng: z fighting 好像還是有? http://g0v.github.com/twgeojson/3dmap2.html 
+11:41 < kcwu> clkao's url: [webgl + d3 geojson]
+11:48 < au> clkao: it recovers in 60 seconds when that hapens
+11:49 -!- AceLan_ [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has quit [Ping timeout: 260 seconds]
+11:50 < au> 後來想到也許多一個可讀寫的 /_/page/json endpoint (array of arrays, 不含格式)
+11:51 < au> 寫入時分拆回既有的 cell, 未設定格式者沿用上一列的, seems about it
+11:51 < au> . o O { EtherCalc Fission Tables }
+11:52 < clkao> almost like that
+11:52 < clkao> ethertable
+11:53 < au> PUT 是全寫，POST 加一列
+11:53 < au> OK, seems doable
+11:57 -!- 36DAAADQY [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+11:57 -!- pm5_ [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+11:57 < clkao> hacktab.it
+11:58 < clkao> cotab.ly
+11:59 < au> hackfoldr 比較好記
+12:00 < clkao> MindosCheng++ # 好像只有 canvas 時會有 z-fighting, webgl 是好的 
+12:00 < clkao> not 4dr? too tricky
+12:01 < au> "fourder"
+12:01 < au> 唸音稍有不同
+12:01 < clkao> MindosCheng: 而且我說的三角形邊線好像也是 canvas 才有... so... naughty three.js bug for canvas backend
+12:01 < clkao> let's ignore that
+12:01 < clkao> au: indeeed
+12:02 < clkao> hack4dr 會被發音成 hack 4 drive
+12:02 < clkao> hackfoldr or hackfolder ?
+12:02 < au> why not both?
+12:02 < clkao> foldr is of course, more functional
+12:02 < clkao> yeah
+12:21 < clkao> MindosCheng++ # 超美的 忍不住再 ++ 一次
+12:22 < tkirby> XD
+12:22 < tkirby> MindosCheng++ # 超美
+12:24 < clkao> hackpad 終於加了 heading 功能 也變美了: https://hackpad.com/g0v.tw-media-enquiries-DQVOamxsKKR
+12:25 < kcwu> clkao's url: [g0v.tw media enquiries - hackpad.com]
+12:28 < tkirby> 今天是個美麗的日子 (!?)
+12:30 < clkao> 要去美麗灣吹風嗎
+12:31 < tkirby> 好遠.. 不過老婆倒是在台東沒錯 XD
+12:35 -!- AceLan [~Chia-Lin@61-221-51-174.HINET-IP.hinet.net] has joined #g0v.tw
+12:44 < Jedi_> 賀
+12:56 < juanna> 我一年去美麗灣二次 XD
+13:01 -!- wHisKy- [whisky@122-116-86-57.HINET-IP.hinet.net] has joined #g0v.tw
+13:01 -!- MnO2 [~MnO2@nat/yahoo/x-pzjinxdnsdntkhsr] has quit [Quit: MnO2]
+13:02 -!- wHisKy [~whisky@122-116-86-57.HINET-IP.hinet.net] has quit [Ping timeout: 245 seconds]
+13:03 -!- MnO2 [~MnO2@nat/yahoo/x-idybvbqavadgurgb] has joined #g0v.tw
+13:25 -!- KNY [~Adium@111-253-148-199.dynamic.hinet.net] has joined #g0v.tw
+13:32 -!- mjhsieh_ [~mjhsieh@ec2-50-18-49-144.us-west-1.compute.amazonaws.com] has quit [Quit: leaving]
+13:39 -!- shawnwan1 [~shawn@163.16.5.181] has joined #g0v.tw
+13:43 -!- shawnwang [~shawn@163.16.5.181] has quit [Ping timeout: 276 seconds]
+14:21 -!- Al_Cho [~al_cho@59-124-67-67.HINET-IP.hinet.net] has joined #g0v.tw
+14:42 < ipa> 太邪惡了，hackfolder上面已經有九大建設連結 
+14:43 < clkao> tkirby: safari layout 爆炸 變成跟 mobile 一樣 上下分
+14:43 < tkirby> 囧
+14:43 < tkirby> 看來要來使用 bootstrap grid layout 了
+14:44 < clkao> 應該還是用 flex box 比較好？看有沒有 polyfill ?
+14:45 < au> 剛把 01 02 拿掉了
+14:46 < au> 也移除了用不到的「請將想法加在下面」
+14:46 < clkao> (H)
+14:46 < tkirby> 嗚.. 沒用過 flexbox...
+14:47  * tkirby 淹沒在時代潮流之中
+14:47 < clkao> tkirby: it's the next big thing!  before the next next big thing!
+14:47 < au> 顧名思義是從 Adobe Flex 抄來的 box model
+14:47 < au> (其實無誤)
+14:47 < clkao> 話說那個 100% 是寫成 angular directive and binding
+14:48 < clkao> pure css 好像要每個 parent 都設 height: 100% 超苦的? 還是有比較好的方法?
+14:48 < clkao> 100% height i menat.
+14:48 < au> (現在叫 display: flex 了, 以前叫 display: flexbox)
+14:49 < clkao> 我好像有 both flex and -webkit-flex
+14:49 < au> url.png icon 是沒 git add 或是還沒找到?
+14:50 < tkirby> 昨天我加的時候還沒有 doctype:url.. 所以就...
+14:50 < clkao> there's no such thing
+14:50 < clkao> https://github.com/g0v/hack.g0v.tw/issues/8
+14:50 < kcwu> clkao's url: [for generic url, use their favicon · Issue #8 · g0v/hack.g0v.tw · GitHub]
+14:51 < au> huh ok
+14:55 < clkao> au: there's no "title" metadata for ethercalc doc itself?
+14:56 -!- KNY [~Adium@111-253-148-199.dynamic.hinet.net] has left #g0v.tw []
+14:57 < tkirby> flex box in css 看起來還沒有定案? 
+14:58 < tkirby> 總覺得用這個東西有點危險
+14:58 < au> clkao: title's just pad id
+14:58 < au> same as etherpad
+15:01 < clkao> tkirby: 真的嗎 我以為去年大改過就差不多了 XD
+15:01 < opop> 有想要婊資策會App創意園區的朋友請聯絡我，時間緊湊，要婊要快
+15:02 < au> ok #8 favicon 解票 + deployed
+15:02 < au> clkao++ # 開票中心
+15:02 < tkirby> au: 動..動作真快
+15:03 < au> XD
+15:03 < clkao> au++
+15:03 < tkirby> clkao: 乍看之下是這樣啦 XD
+15:03 < clkao> 太威了
+15:08 < hlb> tkirby: 現在應該不危險了啦 :p
+15:10 < clkao> au: link 好像壞掉了 變成 http://hack.g0v.tw/#/s8r4l008sk/t
+15:10 < clkao> 話說 ng-href 不會去改 browser status, 好弱啊
+15:13 < au> clkao: fixed pushed, also reload becomes ↺
+15:14 < clkao> saw that, really lovely
+15:14 < clkao> au++ # unicode all-knowing
+15:15 < clkao> first two entries on http://hack.g0v.tw/#/ is still /t ?
+15:15 < au> weird
+15:15 < clkao> also the ethercalc link became raw uri not properly typed?
+15:17 < au> fixed
+15:17 < au> pushed
+15:31 < clkao> do /win 48
+15:31 < clkao> woot
+15:37 < clkao> https://github.com/Nami-Doc/nephrite # fascinating
+15:37 < kcwu> clkao's url: [Nami-Doc/nephrite · GitHub]
+15:49 -!- pm5_ [~pm5@111-248-216-119.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+15:49 -!- 36DAAADQY [~pm5@111-248-216-119.dynamic.hinet.net] has quit [Ping timeout: 248 seconds]
+15:51 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+15:53 < au> sidebar toggle collapse pushed
+16:11 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+16:14 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+16:23 -!- pm5_ [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+16:23 -!- pm5___ [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+16:26 -!- pm5____ [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+16:26 -!- pm5____ [~pm5@111-248-216-119.dynamic.hinet.net] has left #g0v.tw []
+16:27 -!- pm5___ [~pm5@111-248-216-119.dynamic.hinet.net] has left #g0v.tw []
+16:28 -!- pm5_ [~pm5@111-248-216-119.dynamic.hinet.net] has quit [Remote host closed the connection]
+16:30 -!- pm5 [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+16:39 < clkao> au: reload collapses sidebar as well?
+16:40 < clkao> au: maybe slightly wider collapsed sidebar that shows the icon, so navigation works?
+16:41 < au> shows only the icon, you mean
+16:41 < au> ?
+16:44 < clkao> yeah.
+16:44 < clkao> btw http://angular-ui.github.com/#directives-showhide
+16:44 < kcwu> clkao's url: [AngularUI for AngularJS]
+16:44 < clkao> so controller doesnt touch view
+16:46 < clkao> will work on that after dinner if you haven't already
+16:46  * clkao does some actual $work
+16:46 < clkao> bbl
+16:48 < au> huh ng-attr-title doesn't seem to work
+16:49 < clkao> for <title> ? iirc index needs some magic
+16:50 < au> no for icon tooltip
+16:51 < au> anyway WIP is in as of master f4e2545
+16:51 < au> need to do some $unicode $job as well
+16:51 < au> bbiab
+16:52 -!- SarsTW [~wenpei@nw188.csie.ncu.edu.tw] has quit [Ping timeout: 256 seconds]
+16:52 -!- SarsTW [~wenpei@nw188.csie.ncu.edu.tw] has joined #g0v.tw
+17:01 -!- Goddamn_ [~goddamn@114-34-87-138.HINET-IP.hinet.net] has joined #g0v.tw
+17:01 -!- ipa_ [~ipa@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+17:01 -!- ca^_ [~ca@220-133-60-215.HINET-IP.hinet.net] has joined #g0v.tw
+17:01 -!- unayung_ [~unayung@li538-211.members.linode.com] has joined #g0v.tw
+17:06 -!- Netsplit *.net <-> *.split quits: unayung, ca^, Goddamn, ipa
+17:08 -!- Goddamn_ is now known as Goddamn
+17:11 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+17:20 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+17:23 -!- KNY1 [~Adium@114-38-136-132.dynamic.hinet.net] has joined #g0v.tw
+17:24 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has joined #g0v.tw
+17:33 -!- pm5 [~pm5@111-248-216-119.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+17:46 -!- KNY1 [~Adium@114-38-136-132.dynamic.hinet.net] has left #g0v.tw []
+17:54 -!- pm5 [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+18:08 -!- chadliu23 [~chadliu23@DHCP-19192.iis.sinica.edu.tw] has joined #g0v.tw
+18:13 -!- swem [~Thunderbi@host-61-70-226-12.static.kbtelecom.net] has joined #g0v.tw
+18:17 -!- kaxing [~kaxing@175.41.48.77] has quit [Ping timeout: 245 seconds]
+18:42 -!- pm5 [~pm5@111-248-216-119.dynamic.hinet.net] has quit [Ping timeout: 240 seconds]
+18:52 -!- hychen [~hychen@175.41.48.77] has quit [Quit: Leaving]
+19:11 -!- yurenju [~yurenju@118-163-10-190.HINET-IP.hinet.net] has quit [Quit: Computer has gone to sleep.]
+19:18 -!- pm5 [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+19:29 -!- ctf_ [~ctf_-_@175.41.48.77] has quit [Quit: Leaving]
+19:53 -!- swem [~Thunderbi@host-61-70-226-12.static.kbtelecom.net] has quit [Ping timeout: 272 seconds]
+20:00 -!- ipa [~ipa@59-126-64-204.HINET-IP.hinet.net] has joined #g0v.tw
+20:04 -!- ipa_ [~ipa@59-126-64-204.HINET-IP.hinet.net] has quit [Ping timeout: 246 seconds]
+20:07 -!- MnO2 [~MnO2@nat/yahoo/x-idybvbqavadgurgb] has quit [Quit: MnO2]
+20:07 -!- swem [~Thunderbi@host-61-70-226-12.static.kbtelecom.net] has joined #g0v.tw
+20:17 -!- swem [~Thunderbi@host-61-70-226-12.static.kbtelecom.net] has quit [Ping timeout: 240 seconds]
+20:34 -!- chihchun is now known as zz_chihchun
+20:47 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+20:48 -!- favonia [~favonia@pdpc/supporter/student/favonia] has joined #g0v.tw
+20:50 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has quit [Remote host closed the connection]
+21:04 -!- ck_ [~ck@60-251-161-132.HINET-IP.hinet.net] has joined #g0v.tw
+21:54 -!- czchen [70696195@gateway/web/freenode/ip.112.105.97.149] has joined #g0v.tw
+21:58 -!- kcliu [722d41d9@gateway/web/freenode/ip.114.45.65.217] has joined #g0v.tw
+22:00 -!- MnO2 [~MnO2@1.34.43.236] has joined #g0v.tw
+22:26 -!- pm5 [~pm5@111-248-216-119.dynamic.hinet.net] has quit [Ping timeout: 256 seconds]
+22:35 -!- Person [7a745ecd@gateway/web/freenode/ip.122.116.94.205] has joined #g0v.tw
+22:39 < ronnywang> https://www.google.com/fusiontables/DataSource?docid=1aoRYsCJrFkPzrSJ-oeJU6fYfgDPMuk--RYr6cL4
+22:39 < kcwu> ronnywang's url: [Google Fusion Tables]
+22:39 < ronnywang> 我把民政局上抓下來的天龍國門牌位置丟上 Fusion Table 來看看
+22:41 < edwardc> cool
+22:43 < ronnywang> 不過好像因為點太多，Google Map 拉近之後很多點還是沒有被顯示出來，像北投區幾乎都是空的
+22:46 -!- pm5 [~pm5@111-248-216-119.dynamic.hinet.net] has joined #g0v.tw
+22:50 < clkao> 南港也是 :P
+22:53 < ronnywang> 不過資料中是有的，所以是 Fusion Table 的問題... 我來試試看其他類似服務
+22:53 < MindosCheng> clkao, tkirby :  謝謝　拿原來的東西把 bug 修一修而已啦 :P
+22:54 < edwardc> ronnywang: 這裡有多少筆？
+22:54 < ronnywang> 26萬筆
+22:54 < edwardc> 我這裡也有個 256K 筆的資料 XD 等等轉成 csv 丟看看
+22:55 < ronnywang> 喔喔，Fusion Table 的文件有說他最多只能在地圖上顯示十萬筆
+22:56 < ronnywang> 那我把行政區和村里也加進去讓他可以 Filter 應該就可以解決了
+22:59 < MindosCheng> under canvas should be slow? 
+23:01 < MindosCheng> So, no need to fix z-fighting since unusable :P
+23:02 < MindosCheng> Still tow todos : camera should not go below horizon.
+23:03 < MindosCheng> contour for each area
+23:03 < MindosCheng> (third) amount -> color
+23:20 -!- kong0107 [770e56b3@gateway/web/freenode/ip.119.14.86.179] has joined #g0v.tw
+23:26 -!- icman [~icman@123.240.139.67] has joined #g0v.tw
+23:36 < clkao> tkirby, au: use ./deploy to deploy
+23:39 < tkirby> clkao: got it
+23:40 < clkao> weird, the deploy version is not updated
+23:43 < MindosCheng> Interesting, there are SVGrenderer... but not workable.
+23:43 < clkao> 白癡 沒真的 push 出去 XD
+23:43 < clkao> MindosCheng: yes, it's experimental. very evil three.js backend
+23:44 < tkirby> MindosCheng: 阿, 還有那個地圖指標, 就上禮拜六餐廳我背後那個... XD
+23:44 < MindosCheng> 蝦米，我們沒有勞委會嗎
+23:46 < tkirby> MindosCheng: 國土量測局局長!
+23:46 < clkao> deploy 了, 現在左欄縮起來後會維持著了 但是會閃一下
+23:46 < MindosCheng> tkirby : 不是你嗎 XD
+23:47 < tkirby> MindosCheng: 我是統計處處長, 你看, 我昨天還更新了鄉鎮統計資訊 https://github.com/g0v/twstat/tree/master/raw/town
+23:47 < kcwu> tkirby's url: [twstat/raw/town at master · g0v/twstat · GitHub]
+23:47 < clkao> title= 也對了
+23:47 < clkao> 天啊 整個超好用了
+23:48 < MindosCheng> tkirby : 請受小弟一拜
+23:48 < tkirby> MindosCheng: 大師快別這樣  小的承受不起 (跪)
+23:48 < tkirby> 點 hackId, sidebar 也會收... 
+23:48  * tkirby 來修
+23:49 < clkao> MindosCheng: 先來把 3dmap 改用 topo json 的 source 吧 :p
+23:49 < clkao> tkirby: ㄟ 我修好了吧
+23:49 < MindosCheng> 現在是零食世家　：ｐ
+23:49 < clkao> 噢 耐個沒有
+23:49 < clkao> tkirby: 試試看 ngx-final
+23:49 < tkirby> clkao: 你修了 reload 按鈕?
+23:49 < tkirby> ngx-final!!
+23:49 < clkao> yeah
+23:49 < clkao> ngx-final and ngx-noclick
+23:49 < clkao> 應該要包一包 
+23:49 < clkao> 太常用了
+23:52  * tkirby 因為一下就修掉了所以呈現沒有成就感的狀態
+23:52 < clkao> tkirby: 無聊的話研究一下 ui-router? 現在因為用 ng-href, 整個 view 會砍掉重練, iframe 就變成每次重新生了. 本來是會 hide 起來而已 (#9)
+23:52 < clkao> tkirby: 這個 ly 也需要
+23:52 < clkao> 不然太苦了
+23:52  * MindosCheng 還是弄不清楚 geojson / topojson 差在那裡
+23:52 < tkirby> MindosCheng: topojson 小很多
+23:53 < clkao> (而且現在的 behaviour 超笨, 他會記得已經開個 iframe, 所以.... 換了另一個 entries 後, 他會重新 create 兩個 iframe, 然後隱藏現在沒有要看的 XD
+23:53 < tkirby>  .... 的樣子?
+23:53 < tkirby> XD
+23:53 < MindosCheng> format 不同?
+23:53 < clkao> MindosCheng: topojson 有 border 資訊 而不是多個不同不相干的 feature 
+23:53 < clkao> 所以你可以作 cartogram 在地圖上擠來擠去
+23:53 < MindosCheng> 嗯....
+23:55 < tkirby> 把 topojson morphing 成 Voronoi diagram?
+23:55 < clkao> tkirby: ng-view 解了應該閃爍問題也不會有了
+23:55 < tkirby> 閃爍問題是指?
+23:55 < clkao> collapse 後, 點其他 item
+23:56 < tkirby> 烏噢!
+23:56 < clkao> 他會維持 collapse  只是會先開一下再關 XD
+23:56 < tkirby> XDDD

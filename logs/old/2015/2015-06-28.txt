@@ -1,0 +1,261 @@
+--- Day changed 日  6月 28 2015
+00:26 < slackbot1> <clkao> yurenju: 往下捲有台北市跟新北市 右上角設定也可以自訂 dashboard
+00:40 < slackbot1> <goodjack> 請問放大之後怎麼縮小?
+00:52 < slackbot1> <lanf0n> goodjack: 右上有 zoom out
+00:53 < slackbot1> <goodjack> 喔喔看到了 謝謝
+00:53 < slackbot1> 我一直在找放大鏡之類的圖示反而沒看文字><
+00:57 < slackbot1> <billy3321> pcchou: hi?
+01:15 < slackbot1> <mousems> site是否死了？ES沒有回應
+01:15 < slackbot1> <mousems> dashboard 轉圈圈中
+01:16 < slackbot1> <mousems> 我剛剛轉去我是中壢人所以...PV大概有一萬五
+01:16 < slackbot1> <acechen> http://er.mohw.g0v.tw 現在load不出來，有人也這樣嗎
+01:16 < kcwu> slackbot1's url: [零時政府衛生福利部 - 全國重度級急救責任醫院急診即時訊息]
+01:16 < slackbot1> <acechen> 嗯嗯
+01:17 < superbil> 感覺是被DDoS
+01:17 < slackbot1> <mousems> +1
+01:17 < slackbot1> <mousems> sorry, 剛剛轉去我們粉絲團
+01:18 < slackbot1> <mousems> 已觸及23,856名用戶
+01:21 < slackbot1> <mousems> tag @t0mst0ne
+01:32 < slackbot1> <t0mst0ne> 不知道為什麼....我的port forward OK , server 都還在, 但是連過去不行 Orz
+01:35 < slackbot1> <t0mst0ne> OK , tcpxd fail, I restart it , may try now @mousems   
+01:35 < slackbot1> by the way, 發生什麼事, 是那個八仙樂園事件嗎 ?
+01:41 < slackbot1> <lanf0n> t0mst0ne: 應該是
+01:44 < slackbot1> <mousems> ok了
+01:44 < slackbot1> <mousems> yeah
+01:44 < slackbot1> <mousems> 八仙事件
+01:44 < slackbot1> <t0mst0ne> 我幾個小時前看, 巨觀上,  看不出來有什麼變化  XD
+01:44 < slackbot1> <mousems> 或許是瞬間流量太大，RAM吃滿了
+01:44 < slackbot1> <mousems> ES好像有這種問題XD
+01:44 < slackbot1> <mousems> 我不知道
+01:45 < slackbot1> <mousems> server RAM 多大呢？
+01:45 < slackbot1> <t0mst0ne> @mousems:  server 沒問題, 因為我用 tcpxd port forward , 應該是tcpxd zombie ( process 在,  204g4
+01:46 < slackbot1> <t0mst0ne> 但是沒作用
+01:46 < slackbot1> <mousems> OK
+01:46 < slackbot1> <mousems> thanks
+01:46 < slackbot1> <t0mst0ne> 然後是influxdb , 不是 ES :stuck_out_tongue:
+01:47 < slackbot1> <mousems> XD
+08:35 < pcchou> billy3321: mail 你回了XD
+10:12 < slackbot1> <ipa> t0mst0ne: 要開一個北區的dashboard嗎？
+10:13 < slackbot1> <ipa> 只有北區的話可以請大家只看雙北、桃園，不要前往
+10:30 < slackbot1> <t0mst0ne> @ipa 可以再解釋一下這個dashboard 裡需要列入那些醫院嗎？
+10:37 < slackbot1> <clkao> t0mst0ne: grafana 可以有多個 dashboard (json)
+10:37 < slackbot1> <t0mst0ne> @ipa @lanf0n 可以先幫忙改一下gh-pages/app/dashboard.json 嗎，因為我在外，手邊沒電腦可用，要到13：00 、 如果要特別開一個dashboard 放第一列，span 4 cell , 只放北區（可能要定義一下）應該可以達到 ipa 的需求；偷吃步是，先在local 調好，之後download dashboard json , 再放到gh-pages 
+10:38 < slackbot1> <clkao> t0mst0ne: 應該就是列入北北基桃的
+10:38 < slackbot1> <clkao> t0mst0ne: ok let me see
+10:38 < slackbot1> <t0mst0ne> 抱歉我要到13:00才能趕回家Orz
+10:39 < slackbot1> <t0mst0ne> Ps : 通常到週日晚er 等床最多（ maximum of the week)
+10:39 < slackbot1> <t0mst0ne> @clkao:  thanks !
+10:41 < slackbot1> <clkao> t0mst0ne: 對了，現在有沒有給一般人看的「自我評估要不要去急診」的 material?
+10:43 < slackbot1> <ipa> 檢傷分類？<http://health.gov.taipei/Portals/0/%E9%86%AB%E8%AD%B7%E7%AE%A1%E7%90%86%E8%99%95/%E6%80%A5%E8%A8%BA%E6%AA%A2%E5%82%B7%E5%88%86%E9%A1%9E.pdf>
+10:44 < slackbot1> <t0mst0ne> 印象中沒有，給民眾版
+10:44 < slackbot1> <ipa> t0mst0ne: 是不是可呼籲345級先別去北北基桃急診室？
+10:45 < slackbot1> <t0mst0ne> 也許可以寫在Dashboard 上（但是要強調不要去那幾家，若有需要輕症可以去其他小型醫院）
+10:47 < slackbot1> <ipa> t0mst0ne: 先寫了貼文文案 你有空看一下怎麼改 <https://g0v.hackpad.com/w01v8lrMLTY>
+10:47 < kcwu> slackbot1's url: [新聞中心（發佈工作站） - g0v.hackpad.com]
+10:47 < slackbot1> <t0mst0ne> 民眾不易自我判斷檢傷分類，也許應該列出其他等級醫院
+10:49 < slackbot1> <ipa> 其他等級要用什麼字查？非重度急診醫院？
+10:49 < slackbot1> <t0mst0ne> @ipa 瞭解
+10:52 < slackbot1> <t0mst0ne> @kiang 的 repo 可以查ㄧ下北區，有急診的醫院（但有burn center 和沒burn center ) 
+10:52 < slackbot1> <ipa> 中度、輕度查到的是 pdf 檔 XD
+10:52 < slackbot1> <ipa> <http://www.ccd.mohw.gov.tw/public/news/news/ee84311afbe0b5436dd46f01ab2b9e3d.pdf>
+10:57 < slackbot1> <t0mst0ne> @clementtang: 您之前好像有抓每家醫院有那些service 的pages ? 可以filter 北市 ，新北市，有急診，沒燙傷中心的醫院嗎？@thanks
+11:01 < slackbot1> <t0mst0ne> 檔案在此 <https://github.com/FlyMed/MoHW-Hosp-Data/tree/master/data>
+11:01 < kcwu> slackbot1's url: [MoHW-Hosp-Data/data at master · FlyMed/MoHW-Hosp-Data · GitHub]
+11:04 < slackbot1> <t0mst0ne> More specifically <https://github.com/FlyMed/MoHW-Hosp-Data/blob/master/data/Hospital-Dept.csv>
+11:04 < kcwu> slackbot1's url: [MoHW-Hosp-Data/Hospital-Dept.csv at master · FlyMed/MoHW-Hosp-Data · GitHub]
+11:04 < slackbot1> <ipa> t0mst0ne: 所以應該是請輕症去「有急救、沒燙傷中心」的「中/輕度等級急救醫院」吧？
+11:06 < slackbot1> <t0mst0ne> Yes
+11:06 < slackbot1> <t0mst0ne> Burn center 
+11:06 < slackbot1> <https://www.facebook.com/psdrliu/posts/10154000700348047>
+11:06 < kcwu> slackbot1's url: [Facebook]
+11:08 < slackbot1> <clkao> 首頁改成北北基桃 12 家了
+11:10 < slackbot1> <t0mst0ne> Burn center 要另外查，wait for more 
+11:11 < slackbot1> <clkao> 如果看 7d 其實並沒有顯著增加 ?
+11:11 < slackbot1> <t0mst0ne> 應該是這幾家醫院
+11:11 < slackbot1> <http://www.burn.org.tw/index.php/hospital>
+11:11 < kcwu> slackbot1's url: [台灣燒傷暨傷口照護學會 合格燒燙傷醫院名單]
+11:12 < slackbot1> <t0mst0ne> @clkao: you got it ( no realtime total patient data)
+11:20 < slackbot1> <t0mst0ne> 等床人數小於在急診就診人數
+11:21 < slackbot1> <ipa> <https://docs.google.com/spreadsheets/d/1qnxwkhBf6FGk1Iw846EJWc4rX9p_HMzSq-dBUgz1uy0/edit#gid=0> 來自ntu視覺化小組的資料
+11:21 < kcwu> slackbot1's url: [醫院資料 - Google 試算表]
+11:21 < slackbot1> <ipa> <http://datajournalism.ntu.edu.tw/post/89560547578> 這個專題
+11:21 < kcwu> slackbot1's url: [datajournalismNTU - 就醫路遙遙：細探台灣醫療資源分布 記者陳燕珩、蔣宜婷、蔣珮伊／報導 ...]
+11:24 < slackbot1> <kiang> <https://github.com/FlyMed/MoHW-Hosp-Data/blob/master/data/Hospital-BedSize.csv> - 有燒燙傷病房資訊
+11:24 < kcwu> slackbot1's url: [MoHW-Hosp-Data/Hospital-BedSize.csv at master · FlyMed/MoHW-Hosp-Data · GitHub]
+11:28 < slackbot1> <t0mst0ne> @clkao: 可以加等推床人數嗎？
+11:35 < slackbot1> <clkao> 疑 不是有留著嗎
+11:43 < slackbot1> <ipa> kiang: 要filter出「有急救、沒燙傷中心」的「中/輕度等級急救醫院」嗎？
+12:15 < slackbot1> <kiang> ipa: <https://gist.github.com/kiang/8cf44989cc14c6b4f1af>  - 台北市比較多，新北只有亞東
+12:16 < kcwu> slackbot1's url: [燒傷病床清單]
+12:54 < slackbot1> <t0mst0ne> 咦, @muyueh  好像已經匯入, 只是SQL 要怎麼下 ?
+12:54 < slackbot1> <https://sheethub.com/clementtang/%E9%86%AB%E4%BA%8B%E6%A9%9F%E6%A7%8B%E7%97%85%E5%BA%8A%E9%A1%9E%E5%88%A5%E8%88%87%E5%BA%8A%E6%95%B8%E8%B3%87%E6%96%99>
+12:54 < kcwu> slackbot1's url: [醫事機構病床類別與床數資料]
+12:55 < slackbot1> <t0mst0ne> SELECT * FROM this ORDER BY _id_ ASC where City = '台北市'  這樣嗎 ?
+12:57 < slackbot1> <t0mst0ne> 另一個找北部有急診醫院
+12:57 < slackbot1> <https://sheethub.com/clementtang/%E9%86%AB%E4%BA%8B%E6%A9%9F%E6%A7%8B%E8%A8%BA%E7%99%82%E7%A7%91%E5%88%A5%E8%B3%87%E6%96%99>
+12:57 < slackbot1> SQL ? 像這樣? 
+12:57 < kcwu> slackbot1's url: [醫事機構診療科別資料]
+12:57 < slackbot1> Department Name = 急診醫學科 AND City= 台北市, 新北市, 桃園縣
+12:57 < slackbot1> <t0mst0ne> @clkao: 大概是這樣
+12:59 < slackbot1> <t0mst0ne> 這樣好像也不對 , 是用 AND 嗎 ?
+12:59 < slackbot1> SELECT * FROM this WHERE City = '臺北市' AND Department Name = '急診醫學科' ORDER BY _id_ ASC
+13:00 < slackbot1> <clkao> “Department Name” （要 double quote）
+13:01 < slackbot1> <clkao> 不過這因為是展開的，得要 self join 才能 filter "有急診醫學” “無燒燙傷"
+13:01 < slackbot1> <t0mst0ne> @clkao:   OK , 瞭解
+13:01 < slackbot1> <https://sheethub.com/clementtang/%E9%86%AB%E4%BA%8B%E6%A9%9F%E6%A7%8B%E8%A8%BA%E7%99%82%E7%A7%91%E5%88%A5%E8%B3%87%E6%96%99/sql?sql=SELECT+*+FROM+this+WHERE+City+%3D+%27%E8%87%BA%E5%8C%97%E5%B8%82%27+AND+%22Department+Name%22+%3D+%27%E6%80%A5%E8%A8%BA%E9%86%AB%E5%AD%B8%E7%A7%91%27+ORDER+BY+_id_+ASC>
+13:01 < kcwu> slackbot1's url: [SQL: SELECT * FROM this WHERE City = '臺北市' AND "Department Name" = '急診醫學科' ORDER BY _id_ ASC || 醫事機構診療科別資料]
+13:02 < slackbot1> <t0mst0ne> @muyueh: @clkao    有辦法Cross join 2 個db 應該就完成了
+13:04 < slackbot1> <clkao> 或者 array_agg(“Department Name”) @> … 再加 group by Name .. 不過 sheethub 應該不支援
+13:10 < slackbot1> <t0mst0ne> 好像也不能 新北市 OR 台北市 OR 桃園縣
+13:12 < slackbot1> <clkao> 要分開寫... 不過好像 paren parsing 有問題... 也不支援 City in (‘….’, ‘…')
+13:15 < slackbot1> <ronnywang> 嗯，還沒支援 IN (xxx,xxx) ，所以要用 City='新北市' OR City='台北市' ...
+13:15 < slackbot1> <ronnywang> 現在是想要 JOIN 醫事機構診療科別資料 和 醫事機構病床類別與床數資料 兩個 sheet 嗎?
+13:15 < slackbot1> <t0mst0ne> @ronnywang:  Yes
+13:17 < slackbot1> <t0mst0ne> join 完就可以 filter 新北市, 台北市, 桃園縣, 有急診科的醫院, 但要排除有燙傷病房的醫院; 之後提供給民眾  "參考" 
+13:17 < slackbot1> 對,只能 "參考" 因為世事難料 ORz
+13:29 < slackbot1> <t0mst0ne> @clkao:  要 implant 這個進去嗎  ?   
+13:29 < slackbot1> <https://gist.github.com/tony1223/695a3c4c2d1ccb8eae85>
+13:29 < kcwu> slackbot1's url: [八仙事件-醫院與社福中心聯絡窗口資料檔]
+13:41 < slackbot1> <ronnywang> <https://sheethub.com/clementtang/%E9%86%AB%E4%BA%8B%E6%A9%9F%E6%A7%8B%E8%A8%BA%E7%99%82%E7%A7%91%E5%88%A5%E8%B3%87%E6%96%99/sql?sql=SELECT+*+FROM+this+WHERE+%22Department+Name%22+%3D+%27%E6%80%A5%E8%A8%BA%E9%86%AB%E5%AD%B8%E7%A7%91%27+AND+%28City+%3D+%27%E8%87%BA%E5%8C%97%E5%B8%82%27+OR+City+%3D+%27%E6%A1%83%E5%9C%92%E5%B8%82%27+OR+City+%3D+%27%E6%96%B0%E5%8C%97%E5%B8%82%27%29>
+13:41 < kcwu> slackbot1's url: [SQL: SELECT * FROM this WHERE "Department Name" = '急診醫學科' AND (City = '臺北市' OR City = '桃園市' OR City = '新北市') || 醫事機構診療科別資料]
+13:42 < slackbot1> <ronnywang> 現在這樣先過濾出新雙北桃園有急診的醫院，不過還沒排除燙傷病房
+13:55 < slackbot1> <t0mst0ne> @ronnywang:  ++
+14:01 < slackbot1> <t0mst0ne> 不然就排除 BAS_AGENCY_ID = 0401180014 , 0601160016, 1101020018, 1101100011,1101150011, 1132070011,1301200010,0501110514,1131010011 , 1131090019, 0132010014
+14:02 < slackbot1> <t0mst0ne> 好慘, 也沒剩幾家 , 這就是健保下, 醫院醫學中心化的結果, 中型醫院很難存活
+14:06 < slackbot1> <kiang> <https://gist.github.com/tony1223/098e45623c73274f7ae3> 傷患名單
+14:06 < kcwu> slackbot1's url: [八仙氣爆案傷者送醫資料檔.json]
+14:15 < slackbot1> <kiang> Raw data - <http://www.gov.taipei/ct.asp?xItem=108880666&amp;ctNode=38161&amp;mp=100001>
+14:17 < slackbot1> <ronnywang> @t0mst0ne:  <https://gist.github.com/ronnywang/5934de21dc1663ff3e1f#file-list-csv>
+14:17 < kcwu> slackbot1's url: [無燒燙傷病房的有急診醫院]
+14:18 < slackbot1> <ronnywang> 一共 31 家醫院是有急診無燒燙傷
+14:19 < slackbot1> <ronnywang> 目前 sheethub 還不能一個 query 解決，所以我還是搭配了一下程式處理一下，程式也附在下面了
+14:20 < slackbot1> <t0mst0ne> @ronnywang:  Thanks
+14:20 < slackbot1> <ipa> @ronnywang++
+14:22 < slackbot1> <t0mst0ne> 不過看一下, 市聯醫收了不少, 所以還是得看實際狀況
+14:22 < slackbot1> 收治單位  醫療檢傷
+14:22 < slackbot1> 淡水馬偕          54
+14:22 < slackbot1> 內湖三總  檢傷一級    46
+14:22 < slackbot1> 林口長庚  檢傷一級    33
+14:22 < slackbot1> 臺北榮總  檢傷二級    31
+14:23 < slackbot1> 衛部台北  檢傷二級    30
+14:23 < slackbot1> 新光醫院  檢傷二級    16
+14:23 < slackbot1> 臺北馬偕  檢傷二級    14
+14:23 < slackbot1> 聯醫中興  檢傷二級    13
+14:23 < slackbot1> 臺北國泰  檢傷二級    13
+14:23 < slackbot1> 慈濟台北  檢傷二級    13
+14:23 < slackbot1> 雙和醫院  檢傷一級    13
+14:23 < slackbot1> 亞東醫院  檢傷三級    12
+14:23 < slackbot1> 臺北榮總  檢傷三級    11
+14:23 < slackbot1> 新光醫院  檢傷一級    11
+14:23 < slackbot1> 林口長庚  檢傷三級    11
+14:23 < slackbot1> 國泰汐止  檢傷二級     9
+14:23 < slackbot1> 臺大醫院  檢傷三級     8
+14:23 < slackbot1>       檢傷二級     8
+14:23 < slackbot1> 臺北馬偕  檢傷三級     7
+14:23 < slackbot1> 亞東醫院  檢傷一級     7
+14:23 < slackbot1> 振興醫院  檢傷一級     6
+14:23 < slackbot1>       檢傷二級     6
+14:23 < slackbot1> 三重市醫  檢傷三級     6
+14:23 < slackbot1> 板橋市醫           6
+14:23 < slackbot1> 萬芳醫院  檢傷三級     5
+14:23 < slackbot1>       檢傷一級     5
+14:23 < slackbot1> 新泰    檢傷四級     5
+14:23 < slackbot1> 聯醫仁愛  檢傷三級     4
+14:23 < slackbot1> 萬芳醫院  檢傷二級     4
+14:23 < slackbot1> 聯醫忠孝  檢傷二級     4
+14:23 < slackbot1>               ..
+14:23 < slackbot1> 振興醫院  檢傷三級     2
+14:23 < slackbot1> 聯醫陽明  檢傷二級     2
+14:23 < slackbot1> 聖保祿醫  檢傷二級     2
+14:23 < slackbot1> 聯醫中興  檢傷三級     2
+14:23 < slackbot1> 桃園醫院  檢傷二級     2
+14:23 < slackbot1> 聖保祿醫  檢傷三級     2
+14:23 < slackbot1>       檢傷一級     2
+14:23 < slackbot1> 板橋市醫  檢傷二級     2
+14:23 < slackbot1> 耕莘醫院  檢傷二級     1
+14:23 < slackbot1> 中國    檢傷一級     1
+14:23 < slackbot1>       檢傷二級     1
+14:23 < slackbot1> 中國附醫  檢傷三級     1
+14:23 < slackbot1> 中山醫院  檢傷一級     1
+14:23 < slackbot1> 耕莘醫院  檢傷一級     1
+14:23 < slackbot1> 義大醫院  檢傷一級     1
+14:23 < slackbot1> 淡水馬偕  檢傷三級     1
+14:23 < slackbot1>       檢傷一級     1
+14:23 < slackbot1> 敏盛    檢傷二級     1
+14:23 < slackbot1> 桃園總醫  檢傷二級     1
+14:23 < slackbot1> 敏盛    檢傷一級     1
+14:23 < slackbot1> 板橋市醫  檢傷三級     1
+14:23 < slackbot1> 基隆長庚  檢傷一級     1
+14:23 < slackbot1> 板橋中興  檢傷四級     1
+14:23 < slackbot1> 天晟    檢傷二級     1
+14:23 < slackbot1> 新竹馬偕  檢傷四級     1
+14:23 < slackbot1> 新泰    檢傷二級     1
+14:23 < slackbot1> 臺北榮總  檢傷一級     1
+14:23 < slackbot1> 臺北國泰  檢傷一級     1
+14:23 < slackbot1> 新泰    檢傷一級     1
+14:23 < slackbot1> 新光醫院  檢傷三級     1
+14:24 < ronnywang> https://sheethub.com/ronnywang/%E5%85%AB%E4%BB%99%E6%A8%82%E5%9C%92%E5%82%B7%E4%BA%A1%E5%90%8D%E5%96%AE
+14:24 < kcwu> ronnywang's url: [八仙樂園傷亡名單]
+14:25 < slackbot1> <t0mst0ne> 接下來其實應該是要有人update 轉院的情形, 因為轉院隨時會發生, 可能就無法用一般情況來推測
+14:25 < ronnywang> 不知道台北市那份 json 會不會持續更新
+14:45 < slackbot1> <t0mst0ne> 應該要等官方正式公佈嚴重度....
+14:46 -!- au_ is now known as au
+14:49 -!- xzo [24e9ba2a@gateway/web/cgi-irc/kiwiirc.com/ip.36.233.186.42] has left #g0v.tw []
+14:51 < slackbot1> <ipa> @yutin: 是塵爆，不是氣爆 # <http://g0v.github.io/color/>
+14:51 < kcwu> slackbot1's url: [八仙火災傷者開放資料檔]
+15:03 < slackbot1> <yutin> ok 修正為 八仙塵爆傷者開放資料查詢
+15:09 < superbil> yutin 幫你轉傳出去了，應該慢慢會散佈
+15:33 < slackbot1> <yutin> 3q
+15:33 < slackbot1> <yutin> http://javascript.tw 有一串討論在處理這個data
+15:47 < slackbot1> <etblue> 挖 @@ … t0mst0ne++ clkao++ ipa++ kiang++ ronnywang++ yutin++ mousems++
+16:16 -!- jslee [~jslee@220-134-212-123.HINET-IP.hinet.net] has left #g0v.tw []
+16:20 < slackbot1> <t0mst0ne> 有辦法用D3 做成這樣嗎? <https://137c5b29a2c95f7641e56c0d9b2a751a312bd8aa.googledrive.com/host/0BwcmXsFAhzhoaWx5eWhRUWVyV0k/#/>  (純粹想, 如果 data 持續 update, 可以看到是哪些醫院在收治嚴重病患 )
+16:26 < slackbot1> <clkao> t0mst0ne: yes 這是 cross filter
+16:27 < slackbot1> <t0mst0ne> @clkao:  想學 ^.^
+16:29 < slackbot1> <clkao> t0mst0ne: <http://square.github.io/crossfilter/>
+16:29 < kcwu> slackbot1's url: [Crossfilter]
+16:44 < slackbot1> <t0mst0ne> Thanks !
+16:56 < slackbot1> <clkao> yutin: 可以加個 link 到資訊局該筆資料集嗎?
+16:58 < slackbot1> <yutin> @clkao ok 目前資料來源是 <https://gist.github.com/tony1223/098e45623c73274f7ae3> 我找一下資訊局來源
+16:58 < kcwu> slackbot1's url: [八仙氣爆案傷者送醫資料檔.json]
+17:01 < slackbot1> <yutin> <http://www.gov.taipei/ct.asp?xItem=108880666&amp;ctNode=38161&amp;mp=100001>
+17:19 < slackbot1> <clkao> yutin: 加個 license file ?
+17:20 < slackbot1> <yutin> CC0 ok 等會補上
+17:23 < slackbot1> <clkao> t0mst0ne: mobile device 比例高的可怕 好險 grafana 做的還 ok
+17:25 < slackbot1> <t0mst0ne> @clkao:  您真會選！當初怎麼沒選ES?
+17:26 < slackbot1> <clkao> 因為搭 influx 的三四個看起來就 grafana 比較完整，也比較 active
+17:27 < slackbot1> <clkao> 其他有的是從 graphile 前端改來的 水土不服
+17:28 < slackbot1> <ipa> @yutin++
+17:56 -!- chihchun_afk is now known as chihchun
+18:36 < slackbot1> <kiang> <http://www.ntpc.gov.tw/ch/home.jsp?id=28&amp;parentpath=0,6,27&amp;mcustomize=news_view.jsp&amp;dataserno=201506280013&amp;t=null&amp;mserno=201309100001> 發現這裡有傷患全名
+19:01 < clkao> yutin: rawgit 炸了
+19:01 < clkao> Push 到 gh pages 吧
+19:25 < slackbot1> <au> rawgit 修好了，換到 cdn.rawgit 即可
+19:25 < slackbot1> <mrorz> <https://github.com/g0v/color/pull/4>
+19:25 < kcwu> slackbot1's url: [Change to cdn.rawgit.com by MrOrz · Pull Request #4 · g0v/color · GitHub]
+19:26 < slackbot1> <mrorz> 無恥地自己按下了 merge xd
+19:26 < slackbot1> <yutin> QQ 
+19:27 < slackbot1> <yutin> CDN <https://rawgit.com/g0v/color/gh-pages/index.html>
+19:27 < kcwu> slackbot1's url: [八仙塵爆傷者開放資料查詢]
+19:27 < slackbot1> <mrorz> done
+19:27 < slackbot1> <mrorz> 噗
+19:27 < slackbot1> <au> yutin: 是說 smart table 啦 XD 剛我和 mrorz 同時修好了
+19:30 < slackbot1> <yutin> 原來 au++
+19:40 < slackbot1> <jimyhuang> yutin++
+19:44 -!- chihchun is now known as chihchun_afk
+19:47 < slackbot1> <jimyhuang> 有人知道台北市政府的公告，是有熟人在更新的嗎？居然把社群協力的人和網址，通通列進去（個人感受大躍進） <http://www.gov.taipei/ct.asp?xItem=108880666&amp;ctNode=38161&amp;mp=100001>
+20:05 < jimyhuang> 看到缺血資訊，想要查詢血庫狀況，不知道從何著手... http://www.ettoday.net/news/20150628/527165.htm
+20:05 < kcwu> jimyhuang's url: [大面積燒燙傷患需「熱血」　護士：已缺血一周！ | ETtoday生活新聞 | ETtoday 新聞雲]
+20:14 < slackbot1> <au> jimyhuang: 對，是爆肝公務員 Saul Peng 即時更新的。（這應該可以講吧 XD）
+20:16 < jimyhuang> 真是突飛猛進
+20:29 < slackbot1> <clkao> jimyhuang: 缺血好像有一次黑客松有人試圖要做...
+20:58 < slackbot1> <au> <https://goo.gl/MhQUGn> 裡面 `class=“storage”` 就是了
+21:03 < slackbot1> <jimyhuang> au++
+21:28 -!- chihchun_afk is now known as chihchun
+21:33 < ronnywang> ssex
+21:33 < ronnywang> oops
+21:36 < slackbot1> <clkao> sgossipping aronnyvvang
+22:03 -!- chihchun is now known as chihchun_afk
+23:42 < slackbot1> <ipa> jimyhuang: 捐血站地圖？（整個簡化 XD）
+23:50 < slackbot1> <yutin> 捐血中心的網站GG哩
+23:52 < slackbot1> <ipa> 對.... 動不了 右側有血庫存量圖示

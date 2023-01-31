@@ -1,0 +1,447 @@
+--- Day changed 三  8月 06 2014
+00:03 < kiang> https://www.facebook.com/photo.php?fbid=732605943444304 - 高雄氣爆案好像越來越大條了，是說那些工作單號不知道有沒有細節可查
+00:03 < kcwu> kiang's url: [管碧玲 - 手機上傳 | Facebook]
+00:19 < japie_> au: 請問一下，送出 post 給 ethercalc 時，沒有指定參數是不是應該就會在最後一行? 但現在我送出好幾次都在同一行不斷複寫...
+00:21 < au> japie_: code 借看一下，可能是 bug 也可能是空白行沒有算好
+00:24 < japie_> au: https://github.com/hackfoldr/hackfoldr-2.0/blob/master/index.jade#L563
+00:24 < kcwu> japie_'s url: [hackfoldr-2.0/index.jade at master · hackfoldr/hackfoldr-2.0 · GitHub]
+00:25 < au> japie_: 測試的 ethercalc pad id 是?
+00:25 < japie> welcome-to-hackfoldr
+00:26 < au> reproduced, fixing
+00:28 < yhsiang> japie++ au++ XD
+00:54 < au> japie_: 我 command line ok
+00:54 < au> 但是 hack.etblue.tw 目前測不出來
+00:55 < au> (server 修好了)
+00:57 < clkao> pol.is 來信說要不要聊一下
+00:57 < au> japie_: 目前 regen snapshot 要半秒左右，所以如果連續快速 post 的話可能還是會蓋過
+00:58 < au> 但已經比之前卡住的情況好了，我明天再想想怎麼補強這邊
+01:00 < lanf0n> 村長的 ls code 消失惹...
+01:00 < yhsiang> 嘖嘖! # pol.is 來信 XD
+01:02 < clkao> 咦 我剛看那格是新光
+01:02 < clkao> ethercalc bug 嗎
+01:03 < au> clkao: 哪個 pad 的哪格?
+01:03 < au> (剛有重開過 server 一下下)
+01:04 < clkao> twer H10, 剛才 G11-H11 變成跟 H10-H11 一樣 所以我移除了
+01:04 < au> ok
+01:06 < clkao> 結果其實好像砍到 H10
+01:07 < au> 我看 audit 是
+01:07 < au> 186) "set G10 empty"
+01:07 < au> 187) "set H10 empty"
+01:07 < au> 和 snapshot 相符
+01:08 < clkao> right, 那顯然剛才 UI inconsistent
+01:09 < au> yeah sorry, 可能 socket.io reconncet 時 server 剛好沒開完
+01:09 < au> should be fine now
+01:10 < mrorz> 被 pol.is 約談了（驚
+01:10 < mrorz> 喔不是我是村長
+01:10 < clkao> mrorz: 你要參加嗎 :P
+01:10 < mrorz> 他也有寄給 Jones 教授說
+01:10 < clkao> ha :p
+01:11 < mrorz> 企劃擋人財路被發現了嗎（誤
+01:11 < mrorz> 好窩+1，也請 CC 給 Jones 教授一份
+01:11 < mrorz> 聊一下是 email 聊還是 skype （驚
+01:12 < clkao> hangout
+01:12 < mrorz> 有點刺激
+01:14 < mrorz> hangout 該不會是現在吧 QQ
+01:15 < clkao> no lah
+01:19 < clkao> lancetw++, venev++ # sayit 翻一半了
+01:26 < au> japie_: ok 快速重複 post 也修好了
+01:33 < ETBlue> au: japie 額我之前 gh-pages 沒 push 成功（因為沒 pull），已補 pushed，已經不會重複覆寫了 :D
+01:34 < au> deploy 裡要先 git pull 再 git push 比較安全
+01:34 < ETBlue> roger
+01:35 < au> 會動了耶
+01:36 < au> ETBlue++ japie++
+01:37 < japie> git 沒 pull 不能 push 吧(? 不是會被 reject 
+01:38 < au> 對啊。
+01:38 < ETBlue> 所以才沒更新上去… lol
+01:38 < japie> 所以是什麼的問題啊我沒有看很懂QQ
+01:38 < ETBlue> 真的會動了 au++ japie++ :D :D :D
+01:38 < clkao> 太強
+01:40 < au> ETBlue: https://github.com/hackfoldr/hackfoldr-2.0/issues/10 我追加了一個 scope
+01:40 < kcwu> au's url: [使用者貢獻鏈結 · Issue #10 · hackfoldr/hackfoldr-2.0 · GitHub]
+01:40 < au> 「
+01:40 < au> 「按筆形 Edit 按鈕後，出現 Add 和 Refresh 但 不要 出現 ethercalc 畫面」
+01:40 < au> 這樣應該下一波鄉民之亂會好很多
+01:40 < ETBlue> au: 真的
+01:41 < ETBlue> au: 內行的再連去 ethercalc
+01:41 < au> (only apply to ethercalcs with > in them)
+01:41 < au> yeah, 然後建議分類看有沒有意義，沒有的話可以先 strike 掉
+01:41 < au> 這樣就又一張卡片解掉了
+01:42 < au> japie_: 兩個不相干的問題，一個是 post new line 之後 server 有一小段時間會沒有 refresh line count，在 server 端修好了
+01:42 < au> 另一個是你新寫的 code 其實只有在 master 沒有到 gh-pages 所以前端沒有這個功能，這個 etblue 在 deploy 修好了
+01:43 < ETBlue> au: 確認一下有 > 表示接受 link 但不出現 ethercalc，沒 > 表示不接受 link 也不出現 ethercalc?
+01:43 < au> 所以就會動了
+01:43 < au> 有 > 表示接受 link 但不出現 ethercalc，沒 > 表示要出現 ethercalc (至於要不要接受 link... 都可以, 留著好像比較簡單)
+01:43 < ETBlue> 喔喔喔…然後有 > 是在任何 A column 的 > 都算
+01:43 < au> yup
+01:44 < japie> 原來如此 看懂了 謝謝
+01:44 < ETBlue> 我想一下有沒有另一種標示可以同時使用好了，這條我自己會記不住 XD
+01:45 < au> 因為如果有 >，接受 link 就會變 folder 裡的 subitem
+01:45 < clkao> ETBlue: 呃！明天要 DTF + 遺址鬆嗎？
+01:45 < au> 但是沒有的話，就變成 toplevel link
+01:45 < ETBlue> clkao: 我有回你啊
+01:45 < ETBlue> clkao: 要啦！
+01:45 < au> 似乎有點干擾... 但用新標記也可, anyway, improvise!
+01:45 < clkao> 怪似乎有點干擾 我沒看到
+01:45 < lanf0n> 淡水馬偕有 SN @@ 還是用一樣的(?
+01:47 < ETBlue> clkao: 感謝你不是用發 calendar 的方式對待我…（推眼鏡
+01:47 < clkao> lanf0n: "1","1131100010","財團法人基督長老教會馬偕紀念醫院淡水分院"
+01:47 < lanf0n> clkao: thx~
+01:49 < au> NewCliCker: 上上次萌典松的 justin.tv 內部員工消息剛剛證實了...
+01:49 < au> http://www.justin.tv/ 今天收攤
+01:49 < kcwu> au's url: [Goodbye from Justin.tv]
+01:49 < clkao> gg
+01:55 < clkao> 財政部來邀約演講... @@a
+01:56 < yhsiangCloud__> 話說goinstant也收攤不是嗎XD
+01:57 < yhsiangCloud__> clkao: !!要講什麼
+01:57 < clkao> 國外開放政府經驗 XD
+01:58 < au> yhsiangCloud__: 對啊，往左上角移動變成 Amazon Mayday 的鄰居了
+01:59 < clkao> wardley map 的左上角？XD
+01:59 < au> you got it XD
+01:59 < clkao> 秘訣太多
+02:01 < yhsiangCloud__> XD
+02:01 < yhsiangCloud__> 明天繼續救火松zzZz
+02:02 < clkao> 什麼東西失火了？
+02:02 < yhsiangCloud__> 跟消防員有關的事情所以叫救火松XD
+02:03 < clkao> 天乾物燥 小心乾草 講個秘訣 早點睡覺
+02:04 < clkao> 原來不是某草... 
+02:06 < lanf0n> 兩點了 囧
+02:07 < ETBlue> au: done, 但內行的打 /edit 還是可以開 ethercalc XD
+02:07 < ETBlue> http://hack.etblue.tw/welcome-to-hackfoldr
+02:08 < ETBlue> 沃草聽起來就很潮，很不容易著火
+02:08 < au> ETBlue: 這樣就很潮了，我想不容易著火
+02:09 < ETBlue> XDDDD
+02:15 < clkao> 財政部長的前身（1917-1921）叫做「護法政府財政總（部）長」
+02:16 < lanf0n> 爬完淡水馬偕 正式宣告破關 (X)
+02:16 < yhsiangCloud__> ETBlue: 好潮……
+02:16 < yhsiangCloud__> lanf0n++
+02:18 < lanf0n> ETBlue: add to foldr 不能用....QQQ ((試好久
+02:18 < pipi_> 救火松是哪個松@@
+02:18 < lanf0n> 總覺得 hackfoldr 2.0 快變成 ETBlue 的 SoC 了...
+02:19 < pipi_> 需要滅火松
+02:19 < ETBlue> lanf0n: 為啥我可以用 o_0 refresh?
+02:19 < ETBlue> lanf0n: 賀破關
+02:19 < lanf0n> ETBlue: 噢原來是我沒+ http:// .....
+02:20 < ETBlue> XD 因為 5566 所以加上了 validation
+02:20 < ETBlue> 現在應該至少沒那麼好亂按
+02:21 < lanf0n> XDDD 好想把 ^^^^^^ 上句 po joke XDD
+02:21 < ETBlue> 難怪我一直有種 SoC 感… mentor 是 au 這樣 = =b
+02:21 < ETBlue> lanf0n: 請便XD
+02:28 < ETBlue> 嘖 gsheet 的沒用…
+02:31 < au> gsheet append 要用 tool -> create a form 或是 macro ，有點麻煩
+02:31 < au> 直接建議使用者留 comment 比較簡單一點
+03:15 < hychen> ETBlue 好強啊!
+03:15 < hychen> clkaoud: 蘋果也有報誒
+06:27 < gugod1> ETBlue++
+06:27 -!- gugod1 is now known as gugod
+08:45 < acinic> @clkao1
+09:45 -!- chihchun is now known as chihchun_afk
+09:47 < clkao> fnord
+10:04 < xsoameix> 本來要打 require 'pry-nav'; binding.pry, 結果打成 console.log 0.0
+10:05 < walkingice> js 化 XD
+10:08 < xsoameix> 潛意識完全被帶著走了~
+10:16 < xsoameix> 不知道 javascript 有沒有 binding.pry 之類的好東西？
+10:18 -!- acinic [guest-acin@conference/jsconf/x-kwdqptsthylkafoo] has left #g0v.tw []
+10:18 < clkao> xsoameix: 下午要來遺址鬆嗎？
+10:19 < xsoameix> 遺址鬆？
+10:20 < clkao> 就上次那邊
+10:21 < au> xsoameix: emacs 派可以用 https://github.com/swank-js/swank-js 
+10:22 < kcwu> au's url: [swank-js/swank-js · GitHub]
+10:22 < au> browser inspector 的話通常是打一個 debugger;
+10:22 < au> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger
+10:22 < kcwu> au's url: [debugger - JavaScript | MDN]
+10:22 < xsoameix> 好阿，我下午到 :)
+10:25 < xsoameix> au: 感謝，我 try try 看 :)
+10:27 < t0mst0ne_> lanf0n: clkao   求問 https://gist.github.com/lanfon72/7a43aedc8e8f7f63ca0a 裏頭的headers , data 是怎麼生出來的?  先用Firefox 開, 然後在哪裡可以找到這些資訊? Thanks
+10:27 < kcwu> t0mst0ne_'s url: [prase mmh(TamShui) live ER status board]
+10:27 < lanf0n> t0mst0ne_: 噢我是用 chrome....(艸)
+10:27 < t0mst0ne_> lanf0n: 那 chrome 在哪來 ?
+10:28 < t0mst0ne_> 好像和昨天村長解安泰是一樣的方法 ?
+10:28 < clkao> t0mst0ne_: chrome 的話 developer tool network tab 有一個 copy as curl 的功能
+10:29 < clkao> 不過只是要看 header 一樣是近 console network tab
+10:29 < johnny__> t0mst0ne_: 可按F12，以這個網頁為例，點network裡.aspx那個檔案可以看到
+10:29 < lanf0n> t0mst0ne_: 像這樣 http://ppt.cc/WEp-
+10:29 < kcwu> lanf0n's url: [來個 PPT 短網址 :: 縮圖剪剪樂!]
+10:29 < au> (Firefox 32 network tab 按右鍵也有 copy as curl)
+10:30  * lanf0n 貼了才發現有灌firefox...囧
+10:31 < lanf0n> t0mst0ne_: firefox 也是 F12 然後點網路XD (((竟然是中文!!
+10:38 < lanf0n> yhsiang: 我應該吃完午餐才過去(1230~1300左右XD
+10:45  * pipi_ 浮出
+10:52 < t0mst0ne_> clkao: 
+10:53 < t0mst0ne_> clkao: 啊, mac 裡的chrome 是要在 左下 Name Default.aspx 按左鍵才有 copy as curl , thanks 
+10:55 -!- Lan is now known as DannyLan
+10:55 -!- DannyLan [~Lan@42-75-180-202.EMOME-IP.hinet.net] has left #g0v.tw []
+10:59 -!- DannyLan [~DannyLan@42-75-180-202.EMOME-IP.hinet.net] has left #g0v.tw []
+11:00 < t0mst0ne_> lanf0n: 請問你的git當中, import requests , headers {} 裡頭的項目有哪些是必要填入的呢?  因為我的chrome network tab 沒有cookie, 但多了 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' , 'Cache-Control: max-age=0', 'Connection: keep-alive', 'DNT: 1'
+11:02 < lanf0n> t0mst0ne_: requests lib 好像沒有要求XD...? ((其實我也沒有細看文件...只是把覺得會用到的丟進去(艸)
+11:11 -!- chihchun_afk is now known as chihchun
+11:17 < lanf0n> t0mst0ne_: 感覺完全沒有回答到你的問題QAQ...還是你要問看看 johnny__ 大大...^^^^
+11:19 < t0mst0ne_> lanf0n: 我來照著改看看, 免得哪一天web default 指向淡水就糗了
+11:22 < johnny__> lanf0n: t0mst0ne_: XD header我也不是很懂，都是直接F12 -> copy paste，這裡有詳細的header解釋 http://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+11:22 < kcwu> johnny__'s url: [List of HTTP header fields - Wikipedia, the free encyclopedia]
+11:23 < t0mst0ne_> lanf0n: 沒有cookie 可動, 直接改data 即可 !
+11:23 < lanf0n> t0mst0ne_: 主要應該是data裡面有Radiobutton的identify XD
+11:24  * lanf0n 家用網路斷線中...
+11:24 < t0mst0ne_> lanf0n: 你的git 只有20行, 要不要直接再寫一個放到ethercal 臺北馬偕 !
+11:24 < johnny__> 稍微注意lanf0n寫的 request.post('https://.....', verify=False)，verify=False是for https，請他不要做SSL check，類似curl -k
+11:30 < kiang> tkirby: 改了一個把欣高天然氣管線拿掉的版本 http://kiang.github.io/visualize/kh-pipe/
+11:30 < kcwu> kiang's url: [高雄地下管線圖]
+11:39 < t0mst0ne_> johnny__: 還有一個小問題, 我昨天用urllib2 直接抓下來, table 裡頭有 <td><font> ...</font></td>, 但是用 lanf0n  的request.port 回來的只有 <td>...</td> ; 是因為urllib 和request 不同, 還是因為 get 和post 的關係 ?
+11:43 < johnny__> t0mst0ne_: !!會這樣啊，哪一個醫院我試試看
+11:43 < lanf0n> t0mst0ne_: 應該是post的關係 我用get 抓也會有font
+11:45 < t0mst0ne_> 了解, 還是好好學requests 好了, 可以處理比較複雜的
+11:47 < lanf0n> t0mst0ne_: 剛測了一下是 headers 的關係XD....(然後不丟 headers 直接丟 data 也抓的到...lol)
+11:52 < t0mst0ne_> johnny__: lanf0n 另外 "update_time = pending[0].replace(u'上午',u'am') if u'上午' in pending[0] else pending[0].replace(u'下午',u'pm')" 我在mac py2.7 必須要把 replace裡加註 u'' 才行, 是否這是2.7 / 3.0 的差異 ?? ( 沒裝3.0)
+11:53 < lanf0n> t0mst0ne_: 呃對...昨天沒開vm用 2.7 測QQQ..
+11:53 < johnny__> t0mst0ne_: 是的 py3預設用unicode編碼，所以可以直接寫'上午'
+11:54 < t0mst0ne_> 不知道最後這些git ( py, php, ...) 如何畫零為整, env 會用哪一版?
+11:55 < lanf0n> t0mst0ne_: 已改~感謝
+11:55 < lanf0n> urllib2 不支援 py3 的樣子... 目前是都修成相容 py2.7
+11:56 < t0mst0ne_> 我在mac 上用homebrew , pip maintain  python version ; 之前裝了entho...py3, 結果整個lib 亂掉,只好暫時先用py2.7 ...
+11:57 < hesurt> @t0mst0ne
+11:57 -!- hesurt [guest-hesu@conference/jsconf/x-mztoiixeqnzcbqgn] has left #g0v.tw []
+11:59 < johnny__> lanf0n: t0mst0ne_:趁午休寫了一個兩院區的，已貼ethercalc，再麻煩幫我檢驗拉
+12:05 < lanf0n> johnny__: 噢喔!! 可是兩個院區的 hospital_SN 不一樣啦XD
+12:07 < johnny__> lanf0n: 喔喔原來，那我可以把院區拿掉了
+12:08 < lanf0n> johnny__: 不要刪掉啊QAQQQQ ((可以留下來當學習教材...
+12:09 < mottly2> 有人可以去改local.data.g0v → 貢獻(提交) → 請先閱讀 裡面的錯字嗎？ 第6行 狀況"微" 第9行 則"英"提供
+12:09 < t0mst0ne_> 還在努力中 (match.append('1131100010')
+12:09 < t0mst0ne_>     match.append(district[i-1])
+12:09 < johnny__> lanf0n: 改好了，沒刪沒刪，幾乎都抄你的阿
+12:09 < tkirby> kiang: !!! 我也改成可以切換了說
+12:12 < lanf0n> mottly2: 幫你先加在 https://g0v.hackpad.com/eDY68cTC3Hv 裡面了XD
+12:12 < kcwu> lanf0n's url: [地方政府開放資料彙整與評比建議 - g0v.hackpad.com]
+12:12  * lanf0n 準備出門
+12:27 < kiang> tkirby++, 我直接改原始資料而已 XD
+12:30 < jimyhuang__> au: 我下載 libreoffice dev，成功轉完 pdf 搭配 noto sans   \o/
+12:31 < au> \o/
+12:32 < hcchien> ipa: 有沒有人到很多人的 keynote 檔嗎
+13:07 < ipa> Gdrive好像有 你看一下
+13:07 < ipa> 沒的話晚點傳上去
+13:07 < ipa> 對
+13:09 < ipa> Oops最後一句傳錯頻
+13:09 < NewCliCker> au++ #Justin.tv收攤 您消息超0通的啦，比官方臉書發布時間還早兩個小時！ XD http://on.fb.me/1pBHUAM 
+13:09 < kcwu> NewCliCker's url: [Justin.tv - Justin.tv is no longer in service. Thank you... | Facebook]
+13:10 < NewCliCker> 我想，接下來原本定居在 Justin.tv 上非遊戲內容的台灣直播主們應該又會轉回去 UStream.tv 開台吧 cc a0000778 
+13:16 < hcchien> 簡報區好像沒看到
+13:33 < t0mst0ne_> au: clkao 
+13:36 < t0mst0ne_>  au clkao  請問一個破繭的問題: 若要讓一個過去30年都用微軟開發軟體(power builder) + oracle 的企業,將現有系統(100-200支程式), 轉換到opensouce 開發環境, 並改成web ( server - cient) 架構, 大概選哪個語言比較合適 ?   
+13:41 < kcwu> 所謂的砍掉重練
+13:56 < lanf0n> 問一下 py module 重名的話怎麼移除QQ
+13:58 -!- pcchou is now known as sean64
+13:59 -!- sean64 is now known as pcchou
+14:05  * lanf0n 已解QQ
+14:25 < clkao> ls
+14:28 < au> t0mst0ne_: ls
+14:32 < au> t0mst0ne_: oracle 沒有要換掉的話可以考慮 StrongLoop LoopBack for Oracle
+14:33 < au> 如果連 oracle 都要換掉的話，用 postgresql 砍掉重練也做得到，不過破繭期會比較長吧。
+14:34 < au> hcchien: https://docs.google.com/file/d/0BzGJ4qvz2D3ERVFIaUxFMzNGYzA/edit
+14:34 < kcwu> au's url: [20140720_ipa_coscup.key.zip - Google 雲端硬碟]
+14:37 < ipa> https://www.stormboard.com/ d042l4
+14:37 < kcwu> ipa's url: [Stormboard - Online Brainstorming and Planning. Add a sticky note and post it online with dot voting.]
+14:37 < ipa> 看到 jimyhuang__ 有用這個好像不賴
+14:41 < t0mst0ne_> 請問ls 的全名是？
+14:41 < au> t0mst0ne_: LiveScript, http://livescript.net/
+14:41 < kcwu> au's url: [LiveScript - a language which compiles to JavaScript]
+14:41 < ipa> http://www.slideshare.net/jimyhuang/ss-37600652/74
+14:41 < kcwu> ipa's url: [只會用鍵盤可以改變什麼？]
+14:43 < lanf0n> 直接跳 ls 感覺好殘忍QQ
+14:43 < au> t0mst0ne_: 如果很需要 IDE 的人，又在 Windows 上，可以考慮 Visual Studio 2013 with TypeScript
+14:44 < lanf0n> 如果跑兩個stream的話有辦法寫在同一個 script 嗎QQ
+14:45 < au> 兩個stream?
+15:02 < hcchien> au: got it, thanks
+15:08 < jimyhuang__> ipa: 還行～不過不能匯出很困擾... 
+15:09 < ipa> 啥 不能匯出 @@ 我正在試玩弄文章結構
+15:10 < jimyhuang__> 每月 $10 才能匯出 excel .. https://www.stormboard.com/main/pricing
+15:10 < kcwu> jimyhuang__'s url: [Stormboard]
+15:10 < jimyhuang__> 我本來想匯出 pdf / png 等等保存而已，結果發現只能捷圖
+15:14 < au> 可是沒有線，不能畫 wardley map XD
+15:14 < au> realtimeboard.com 可以
+15:14 < au> (但是是 flash (不過數字鍵 hotkey 用起來還滿順的))
+15:16 < jimyhuang__> 感覺 realtimeboard 比較厲害
+15:17 < hcchien> 話說，印象中好像 au 某份投影片中有提到萌典一開始在做補字的過程
+15:17 < hcchien> 哪裡可以找到呢
+15:17  * ipa 還沒上船就跳船 # realtimeboard
+15:17 < jimyhuang__> hcchien: 你是啥時的演講坑啊 ... 
+15:18 < hcchien> jimyhuang__: 下禮拜一在公司裡講
+15:18 < jimyhuang__> 難怪 ... 
+15:18 < jimyhuang__> hcchien: 那個主持人，也要填講者表格嗎？感覺有些內容不需要填... 
+15:18 < jimyhuang__> 還有政府與談人
+15:19 < au> hcchien: http://www.audreyt.org/newdict/jekyller/_public/?full#crowd-ocr-for-154-glyphs-2013325
+15:19 < kcwu> au's url: [PgREST Node.js in the Database]
+15:19 < hcchien> jimyhuang__: 主持人不用填
+15:19 < au> hcchien: http://www.audreyt.org/newdict/jekyller/_public/?full#crowd-ocr-for-1000-glyphs http://www.audreyt.org/newdict/jekyller/_public/?full#finished-in-24-hours
+15:20 < jimyhuang__> hcchien: 政府與談人？
+15:22 < au> hcchien: http://audreyt.org/tmp/moedict-cwcc.pdf 裡面也有同樣的內容
+15:22 < hcchien> jimyhuang__: 與談人應該需要一些基本資料
+15:22 < mottly2> 請問這個是不是壞掉了 http://inlivetw.github.io/chrome 明明現在有直播卻沒有更新
+15:22 < kcwu> mottly2's url: [LiveTW]
+15:22 < au> hcchien: keynote'09 格式我放在 https://drive.google.com/?pli=1&ddrp=1#folders/0BzGJ4qvz2D3EbGVSTmJQMW5laGs 了
+15:22 < kcwu> au's url: [Redirecting...]
+15:23 < hcchien> cool
+15:24 < ETBlue> 在 edit mode 可以假裝拖曳排序了 http://hack.etblue.tw/welcome-to-hackfoldr/edit
+15:25 < ETBlue> 但好像每個 item 要給個 id 才能傳排序資料回後端 www
+15:25 < au> ipa: 講個祕訣，realtimeboard 預設只有簡體字型，但是打正體中文時會跳出切換視窗，此時選 Japanese 即可
+15:28 < au> ETBlue: 有 row number 就可以了
+15:28 < au> http://logbot.g0v.tw/channel/g0v.tw/2014-08-01/45
+15:28 < kcwu> au's url: [Logbot | #g0v.tw | au> 也就是 $.ajax({ contentType: 'text/plain', data: 'moveinsert A2:F2 A5', type: 'POST', processData: false }) 的意思]
+15:29 < au> (這是叫後端把第二列向下移三列的意思，依此類推)
+15:30 < ETBlue> 所以我要把 row number 轉成 a.link.item 的 id 然後從 jquery ui sortable 傳回的順序 array 裡找出移動的 row 然後貼去 ethercalc ...?
+15:31 < au> 是的
+15:31 < ETBlue> jquery ui sortable 好像除了 id 以外沒有其他傳回順序的方式（揉眼睛）
+15:32 < au> var data = $(this).sortable('toArray', { attribute: 'data-row-number' });
+15:32 < au> 就可以用別的 attribute (預設是 attribute: 'id') 詳見 http://api.jqueryui.com/sortable/#method-toArray
+15:32 < kcwu> au's url: [Sortable Widget | jQuery UI API Documentation]
+15:32 < ETBlue> !!!!!
+15:34 < ETBlue> 不管用啥 attr 的確是對應到 row index 的 number 最好操作
+15:34 < ETBlue> 難怪預設是 id @@
+15:47 < lanf0n> au: 有點難解釋 不過 ly 說不用那麼麻煩了QQ
+15:48 < pbear6150> 請問 [對政府防災系統的想像] https://g0v.hackpad.com/8wlJG0GYN8o 出現錯誤訊息「Oops! A server error occured. It's been logged.」
+15:49 < pbear6150> 是暫時壞掉嗎？
+15:50 < au> lanf0n: ok XD
+15:50 < lanf0n> pbear6150: 額 應該是炸掉了....
+15:54 < lanf0n> dropbox 應該有備份檔(?
+16:00 < pbear6150> lanf0n: 這是 tonyq 開的，所以我的 dropbox 沒有備份，剛剛已經跟他說了～
+16:00 < lanf0n> pbear6150: 呃其實是我開的XD 不過 workspace的admin應該有備份...
+16:00 < pbear6150> 下次要記得先 follow 一下 Orz...
+16:01 < pbear6150> lanf0n: 喔喔，搞錯了，歹勢 ^^"
+16:02 < hcchien> 嗯，蝦蝦在 trello 爆發了
+16:05 < clkao> 原來是因為本來權限設定錯誤嗎 XD
+16:05 < Lee1092> lanf0n:  pbear6150  頁面庫存還有  快抓 http://webcache.googleusercontent.com/search?q=cache:blOdNqjxaC8J:https://g0v.hackpad.com/ep/pad/static/8wlJG0GYN8o+&cd=2&hl=zh-TW&ct=clnk&gl=tw&client=firefox-a
+16:05 < kcwu> Lee1092's url: [/683$8wlJG0GYN8o]
+16:05 < hcchien> 要重新 login
+16:06 < pbear6150> Lee1092: 嗚嗚，庫存也太少了（淚）
+16:07 < lanf0n> Lee1092: 我的 dropbox 沒XD 應該是 admin才有 backup
+16:08 < Lee1092> kcwu:  的備份 https://github.com/g0v-data/hackpad-backup-g0v/blob/master/8wlJG0GYN8o.html
+16:08 < kcwu> Lee1092's url: [hackpad-backup-g0v/8wlJG0GYN8o.html at master · g0v-data/hackpad-backup-g0v · GitHub]
+16:10 < Lee1092> lanf0n:  我沒按發瞜  so  這次我的 dropbox 沒有  囧> 
+16:10 < lanf0n> Lee1092: ! 原來是要按 follow....
+16:11 < t0mst0ne_> au: 請問這幾個都是JavaScript  衍化出來？
+16:11 < pbear6150> lanf0n: 剛剛發現，原來在不同網域的hackpad裡，自己帳號的dropbox同步是分開的。剛剛在 g0v 網域裡面，把同步打開了 Orz...
+16:12 < au> t0mst0ne_: 語義都接近 JavaScript，是的，泛稱 AltJS
+16:14 < t0mst0ne_> au:  那原來學c 再學JavaScript 應該不會太殘忍吧？ 
+16:16 < au> 我是覺得不會，主要是為了 web based client-server 能用同一種語言
+16:17 < au> Server 端可以用 Nashorn (JVM) 或 Node (v8)
+16:18 < lanf0n> 噢....原來我沒 connect to dropbox QQ...
+16:19 < au> 當然如果用 C# 或 F# 也是有 JSIL、FunScript、IL2CPP+Emscripten、甚至 C++ 的 Duetto 這些方式寫前端程式，只是成熟度較低，目前還不太適合大規模使用
+16:20 < t0mst0ne_> Au thanks
+16:20 < au> np
+16:20 -GitHub103:#g0v.tw- [twlyparser] clkao closed pull request #20: Parse list3 (master...parse-list3) https://github.com/g0v/twlyparser/pull/20
+16:27 -!- AC_OP2 is now known as madarame
+16:34 < pbear6150> lanf0n: 還好現在發現了～之前 dropbox 出過問題，不知道是否這樣，把我原本的授權也 disconnect 了
+16:51 -GitHub61:#g0v.tw- [ly.g0v.tw] clkao closed pull request #169: Hot bills (hot-bills...hot-bills) https://github.com/g0v/ly.g0v.tw/pull/169
+16:51 -GitHub180:#g0v.tw- [ly.g0v.tw] clkao closed pull request #167: Completed the steps bar of bill. (master...feature/steps-bar-of-bill) https://github.com/g0v/ly.g0v.tw/pull/167
+16:54 < travis-ci> [travis-ci] g0v/ly.g0v.tw#384 (hot-bills - 268c45c : Chia-liang Kao): The build was fixed.
+16:54 < travis-ci> [travis-ci] Change view : https://github.com/g0v/ly.g0v.tw/compare/88b769a2cce0...268c45cb240e
+16:54 < travis-ci> [travis-ci] Build details : http://travis-ci.org/g0v/ly.g0v.tw/builds/31790319
+16:54 -!- travis-ci [~travis-ci@ec2-54-242-1-212.compute-1.amazonaws.com] has left #g0v.tw []
+17:00 < travis-ci> [travis-ci] xsoameix/ly.g0v.tw#24 (hot-bills - 9fc6478 : Lien Chiang): The build has errored.
+17:00 < travis-ci> [travis-ci] Change view : https://github.com/xsoameix/ly.g0v.tw/compare/0774b4ffe1d0...9fc6478f2165
+17:00 < travis-ci> [travis-ci] Build details : http://travis-ci.org/xsoameix/ly.g0v.tw/builds/31790107
+17:00 -!- travis-ci [~travis-ci@ec2-54-242-1-212.compute-1.amazonaws.com] has left #g0v.tw []
+17:56 -!- mottly2 [guest-mott@conference/jsconf/x-sqmpwawzyzatevfb] has left #g0v.tw []
+18:02 < tonyq> pbear6150: 那個 hackpad 不是我開，也不是我關的
+18:02 < tonyq> QQ 我記得當時是有人提議要開我只是順手轉貼而已
+18:03 < pbear6150> tonyq: 我知道搞錯人了 XD 是 lanf0n 開的～
+18:04 < tonyq> XD
+18:06 < johnny__> lanf0n: t0mst0ne_: 剛看FB發現update_time忘了時區問題，可參考馬偕台北淡水的gist，不好意思改了又改
+18:07 < lanf0n> 咦?
+18:08 < lanf0n> 問一下 git commit -a 寫完之後的檔名....改成別的有差嗎XD
+18:19 < t0mst0ne_> 阿，回家來改！ thanks
+18:43 < lanf0n> johnny__: ?! 不用轉啊XD 再轉就變成 UTC-8惹...
+19:03 < t0mst0ne_> 考慮時區的原因是因為之後會放其他地區run parser 嗎？
+19:05 -!- CelloCello [~Sero@1.34.191.8] has left #g0v.tw []
+19:06 < lanf0n> t0mst0ne_: 應該是跑的 server 有可能是在不同時區
+19:09 < lanf0n> 啊噢...可是這樣不確定 .strptime抓出來的時區是server的還是html的...(??
+19:21 < lanf0n> ls
+19:32 < t0mst0ne_> 可是網頁寫的時間就是gmt+8 , server side 應該已經校正過了吧？
+19:33 < clkao> timestamp 是 timezone-less 的
+19:34 < clkao> 所以轉換時要告訴他你的 timezone
+20:02 < t0mst0ne_> Ok i see http://www.epochconverter.com/  
+20:02 < kcwu> t0mst0ne_'s url: [Epoch Converter - Unix Timestamp Converter]
+20:02 < lanf0n> t0mst0ne_: 抓下來的時間是用str再轉datetime, 所以.strftime的時間應該是server-side的
+20:03 < lanf0n> ^的timezone
+20:05 < lanf0n> 為了以防萬一,strptime(datetime+' HKT', format+' %Z' 應該就可以解了~
+20:15 < t0mst0ne_> Oh., 所以tw 還是UTC +8 , 需要convert (http://zh.wikipedia.org/wiki/%E6%97%B6%E5%8C%BA%E5%88%97%E8%A1%A8)
+20:15 < clkao> 光田綜合醫院 的分院沒有不同代號？ orz
+20:25 -!- pluvia [716a68d2@gateway/web/cgi-irc/kiwiirc.com/ip.113.106.104.210] has left #g0v.tw []
+20:31  * ipa 立馬轉場到綠客松
+20:34 < ipa> clkao: loomio 確定會來？
+20:34 < t0mst0ne_> clkao: "0936050029","光田醫療社團法人光田綜合醫院","台中市沙鹿區沙田路１１７號 ?
+20:38 < t0mst0ne_> clkao: 
+20:39 < t0mst0ne_> clkao: 對, 分院沒有, 不然如果是字串 , '0936050029-2'
+20:55 < johnny__> lanf0n: 錯過討論了，那我那樣轉對嗎
+21:02 < mingtsay> ipa: （蹭蹭（？
+21:07 < ipa> ttcat: https://g0v.hackpad.com/Clay-Shirky-qPQA2Zq94TQ
+21:08 < kcwu> ipa's url: [Clay Shirky講者資料 - g0v.hackpad.com]
+21:08 < mingtsay> jeff17289: Welcome to g0v.tw
+21:08 < ipa> http://en.wikipedia.org/wiki/Clay_Shirky
+21:08 < kcwu> ipa's url: [Clay Shirky - Wikipedia, the free encyclopedia]
+21:09 < ronnywang> g0v 能夠申請 mirror 中研院 ckip 嗎 XD  有點想把 newsdiff 裡面每天各媒體人名出現的次數做新聞風雲人物排行榜
+21:12 < ipa> ttcat: 我貼在這頁最下面
+21:14 < ipa> ttcat: http://hack.g0v.tw/g0v-summit2014/CM11AB8j3pE
+21:16 < ipa> clkao: pokr 和 fci 全名是？
+21:19 < au> ipa: Fundación Ciudadano Inteligente (Smart Citizen Foundation)
+21:20 < au> Pokr.kr 的全名是 "Pokr - Politics in Korea"
+21:21 < lanf0n> johnny__: 多轉了4hr XD
+21:21 < lanf0n> johnny__: 不過 %z看來有 bug...
+21:21 < ipa> au++ thanks~
+21:22 < ipa> https://www.irccloud.com/pastebin/je0HweUi
+21:22 < kcwu> ipa's url: [Pastebin: je0HweUi | IRCCloud]
+21:32 < t0mst0ne_> lanf0n: time data '2014/8/6pm09:32HKT' does not match format '%Y/%m/%d%p%H:%M %Z'   你的字串出來是黏在一起嗎 ?
+21:34 < lanf0n> t0mst0ne_: 我剛發現...johnny__ 的 time 抓的時間是對的, 但轉出來的 timestamp 是錯的QQQ (用 strftime('%s')
+21:35 < lanf0n> t0mst0ne_: johnny__ 然後 %z 好像有雷 剛有查到似乎是用 C 的 function, lubuntu12 可以pass, win7/lubuntu14 can't
+21:40 < lanf0n> t0mst0ne_: johnny__ sorry 是我忘了+ match.append....((艸艸艸  HKG不能用 CST可以QQ (py2.x py3k can't)
+22:11 < clkao> win 18
+22:21 < t0mst0ne_> 奇怪 連不到  g0v.hackpad.com
+22:32 < t0mst0ne_> lanf0n: johnny__ 本來想用 %z ( -8000) 但是py2.7 不行 Oz
+22:33 < t0mst0ne_> -0800 
+22:38 < pipi_> 用個T台的標題 資訊公開防危機 是否食物 廠商 都要整合的更好
+22:39 < xsoameix> 今天第一次參加這種以討論性質為主的會議，感覺還蠻有意義 :)
+22:40 < clkao> t0mst0ne_: 發現現在有些醫院有即時病床數了耶 # http://www.cmuh.cmu.edu.tw/web/guest/current_bed_availability
+22:40 < kcwu> clkao's url: [病床動態公告]
+22:41 < t0mst0ne_> clkao:  有些醫院會公告, 但是好像不是硬性規定; 要parse ? 欄位可能要再確定 Orz
+22:42 < lanf0n> 超挫折...
+22:42 < t0mst0ne_> https://www.irccloud.com/pastebin/aoK2yo6E
+22:42 < kcwu> t0mst0ne_'s url: [Pastebin: aoK2yo6E | IRCCloud]
+22:46 < t0mst0ne_> clkao: 有的醫院一直dynamic 關床, 不大確定是否公開資訊對醫院有利or 弊
+22:49 < lanf0n> t0mst0ne_: 嗯因為 %Z &z 的支援好像有點妙...XD (然後.strftime('%s') 應該是會抓 locale 再去轉成timestamp.... 其實如果os的 locale是zh_tw 的話timestamp都會是一致的
+22:51 < clkao> t0mst0ne_: 未服部好像有寫有公開的會醫療品質評分比較高
+23:00 < t0mst0ne_> Oh 是不是我弄錯了, 為什麼連這兩行都一樣?  lanf0n 
+23:00 < t0mst0ne_> https://www.irccloud.com/pastebin/qcgh47es
+23:00 < kcwu> t0mst0ne_'s url: [Pastebin: qcgh47es | IRCCloud]
+23:01 < kiang> ronnywang: 先用 https://github.com/hightman/scws ？
+23:01 < kcwu> kiang's url: [hightman/scws · GitHub]
+23:02 < t0mst0ne_> lanf0n: 雞籠長庚parse 出來 "%Y/%m/%d %H:%M:%S" 是正確的, Epoch time 不用再改, 我猜應該是 Strptime的參數出問題
+23:04 < t0mst0ne_> %p 有問題
+23:04 < lanf0n> t0mst0ne_: 好挫折..................
+23:06 < t0mst0ne_> https://www.irccloud.com/pastebin/kV383iEF
+23:06 < kcwu> t0mst0ne_'s url: [Pastebin: kV383iEF | IRCCloud]
+23:07 < lanf0n> t0mst0ne_: 啊啊啊啊啊啊啊 %H要用 %I
+23:07 < lanf0n> t0mst0ne_: https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
+23:07 < kcwu> lanf0n's url: [8.1. datetime — Basic date and time types — Python v2.7.8 documentation]
+23:07  * lanf0n 好隱藏的bug....
+23:08 < t0mst0ne_> lanf0n:  You got it ...24 : 12 %H : %I      sh*t
+23:09 < lanf0n> 時區還是無解...
+23:11 < t0mst0ne_> lanf0n: 可是 "print (datetime.strptime(update_time, '%Y/%m/%d%p%I:%M')).strftime('%s')" 這個出來的和 http://www.epochconverter.com/ 一樣 ?
+23:11 < kcwu> t0mst0ne_'s url: [Epoch Converter - Unix Timestamp Converter]
+23:12 < lanf0n> t0mst0ne_: 對啊因為你 import locale, locale.getdefaultlocale() 看到的應該是 (zh_tw, utf-8) 吧(?
+23:13 < t0mst0ne_> lanf0n: 對
+23:14 < lanf0n> t0mst0ne_: 剛那個文件下面的 Note: 1. 有寫XD
+23:16 < t0mst0ne_> lanf0n:  那這樣, 要怎麼讓script 放到不同timezone 機器跑, 也跑出一樣的結果? (還是不同timezone 機器在run script 前已經自我校正?) 
+23:18 < t0mst0ne_> 其實 我看不懂 johnny__:  這一段的function def unix_time(dt):
+23:18 < lanf0n> t0mst0ne_: 假定不會自動校正的情況下就是...要轉時區XDD(卡在這 超挫折)  但其實要有不同timezone的機器....(等koding.com的vm開等超久....
+23:19 < lanf0n> 不知道 python 有沒有辦法在 script 的 title 指定時區之類的......囧
+23:24 < yhsiang> clkao: 有辦法在8/30辦workshop嗎 ?
+23:31 < t0mst0ne_> lanf0n: koding.com server 在哪一區? 
+23:33 < clkao> yhsiang: ??
+23:35 < yhsiang> clkao: evenwu說想合辦前端松 預計是8/30 可是8/30剛好是大黑客松 XD
+23:35 < lanf0n> t0mst0ne_: 我也不知道XD 但感覺是在美國
+23:35 < yhsiang> 所以目前應該是16會繼續辦  但是看大黑客松有沒有workshop的空間? XD
+23:36 < xsoameix> clkao: 你說的那兩點剛剛已經做完了(1. 被退回的議案應該有驚嘆號 2.如果提案沒有日期，把一讀的日期 copy 過去)，接下來我會在同一個 branch (hot-bills) 加上測試
+23:40 < clkao> yhsiang: 大鬆我看很難 而且報名也結束了
+23:40 < clkao> xsoameix: hot-bills is merged, you can start a new branch actually
+23:41 < yhsiang> clkao: ok got it
+23:42 < xsoameix> clkao: 好，那我另外創一個 branch
+23:43 < johnny__> t0mst0ne_: 我本來以為epoch time是時間減掉1970/01/01 00:00的秒數，但現在有點搞混，需要點時間搞清楚了
+23:48 < t0mst0ne_> lanf0n: johnny__ 惡補中 https://www.youtube.com/watch?v=LnVkLXRIbIg
+23:48 < kcwu> t0mst0ne_'s url: [What you need to know about datetimes - YouTube]
